@@ -358,7 +358,10 @@ def t_runner_venue_reads_are_read_only():
     src = open(os.path.join(HERE, "p2_audit.py")).read()
     body = src[src.index("def read_novig_fills"):src.index("def send_private")]
     paths = set(__import__("re").findall(r'"(/v[0-9][^"]*)"', body))
-    assert paths == {"/v3/portfolio/fills", "/v4/mm/get_trades"}, paths   # px_login's POST /auth/login lives in book_check
+    # 16 Nov: + ProphetX matching detail (documented read; resolves orders the 100-row get_trades cap hides)
+    assert paths == {"/v3/portfolio/fills", "/v4/mm/get_trades", "/v2/mm/get_wager_matching_detail?"}, paths   # px_login's POST /auth/login lives in book_check
+    # every px_call in the readers is a GET: one argument, no request body
+    assert all(",".join(m.split(",")[1:]).strip() == "" for m in __import__("re").findall(r"px_call\(([^()]*(?:\([^()]*\))?[^()]*)\)", body)), "px_call with a body"
     for bad in ("place", "cancel", "order(", "/orders", "trade_key", "TRADE_KEY_PEM", "px_live", "book_live", "executor"):
         assert bad not in body, bad
     assert "nv.ready()" in body          # Novig refuses to run unless the key is confirmed read-only

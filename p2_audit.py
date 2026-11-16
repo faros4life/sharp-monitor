@@ -71,6 +71,43 @@ def read_px_trades():
         return [], f"prophetx trades unreadable ({type(e).__name__})", False
 
 
+def read_px_matching(order_ids, frm_ts, to_ts, max_pages=60):
+    """(matched_ids, complete, note). READ-ONLY GETs of /v2/mm/get_wager_matching_detail: the time range paged to
+    the end by next_cursor, plus one call filtered to the given wager ids. complete=True ONLY when the range was
+    paged to a page with no cursor and no error. Counts only are printed."""
+    from p2_audit_core import px_match_records, px_next_cursor, px_matched_ids
+    import urllib.parse as up
+    try:
+        import book_check as bc
+        if not bc.px_login():
+            return set(), False, "prophetx login failed"
+        recs, cur, pages, complete = [], None, 0, False
+        while pages < max_pages:
+            q = {"from": int(frm_ts), "to": int(to_ts), "limit": 100}
+            if cur:
+                q["next_cursor"] = cur
+            d = bc.px_call("/v2/mm/get_wager_matching_detail?" + up.urlencode(q)) or {}
+            pages += 1
+            recs += px_match_records(d)
+            cur = px_next_cursor(d)
+            if not cur:
+                complete = True
+                break
+        by_id = 0
+        if order_ids:
+            try:
+                d2 = bc.px_call("/v2/mm/get_wager_matching_detail?" + up.urlencode({"wager_ids": ",".join(order_ids)})) or {}
+                r2 = px_match_records(d2)
+                by_id = len(r2)
+                recs += r2
+            except Exception as e2:
+                by_id = f"error {type(e2).__name__}"
+        note = f"pages {pages}, records {len(recs)}, by-id records {by_id}, complete {complete}"
+        return px_matched_ids(recs), complete, note
+    except Exception as e:
+        return set(), False, f"matching detail unreadable ({type(e).__name__})"
+
+
 def send_private(text, rows):
     """PRIVATE Telegram delivery - the route last50_report.send_telegram already uses (secrets TELEGRAM_BOT_TOKEN /
     TELEGRAM_CHAT_ID). The public log gets only 'delivered: N message(s) + CSV' or the exception TYPE. Returns True/False."""
@@ -202,11 +239,24 @@ def main():
     # SECTION G (Peter, 16 Nov): every missing fill record and every missing certified CLV since 12 Nov, each with
     # the evidence-based reason. Detail is private; the public log carries category counts only.
     venue_ids_seen = {i for t, ids_l in links.items() if t != "_incomplete" for ids in ids_l for i in ids}
-    fx = rs.fill_exceptions(rr, fills_all, venue_ids_seen, pok)
+    fx0 = rs.fill_exceptions(rr, fills_all, venue_ids_seen, pok)
+    px_ids = sorted({i for e in fx0 if "prophet" in e["venue"] for i in e.get("ids") or []})
+    px_ev = None
+    if px_ids:
+        import time as _time
+        frm = int(rs._t(rs.START_ET + "T05:00:00Z").timestamp())
+        px_matched, px_full, px_note = read_px_matching(px_ids, frm, int(_time.time()))
+        print(f"prophetx matching detail: {px_note} | queried orders {len(px_ids)}")
+        px_ev = {"matched": px_matched, "complete": px_full}
+    tracked = {str(r.get("order_ref")) for r in rows if r.get("order_ref")}
+    tracked |= {i for t_, ids_l in links.items() if t_ != "_incomplete" and t_ in {str(r.get("id") or "") for r in rows}
+                for ids in ids_l for i in ids}
+    fx = rs.fill_exceptions(rr, fills_all, venue_ids_seen, pok, px_ev, tracked)
     raw_clv = {k: r for k, r in cb.items()}
     cx = rs.clv_exceptions(rows, raw_clv, clv, set(stale))
     text += rs.render_exceptions(fx, cx)
-    print(f"section G: no-fill-record orders {len(fx)} {rs.category_counts(fx)} | settled without certified CLV {len(cx)} "
+    print(f"section G: no-fill-record orders {len(fx)} {rs.category_counts(fx)} | confirmed fills NOT in Project 2 "
+          f"{sum(1 for e in fx if e.get('in_project2') is False)} | settled without certified CLV {len(cx)} "
           f"{rs.category_counts(cx)}")
     # Section E covers the previous ET day (the scheduled 04:52 ET run reports yesterday's slate);
     # REPORT_DAY overrides it for a one-off check of a specific day.

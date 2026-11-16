@@ -157,7 +157,7 @@ def render_day(day, out_o, out_p, once):
     return "\n".join(L)
 
 
-def fill_exceptions(orders, fills, venue_order_ids, px_complete):
+def fill_exceptions(orders, fills, venue_order_ids, px_complete, px_evidence=None, tracked_ids=None):
     """Every placed order since START_ET with no registry fill record, classified by VENUE evidence.
     venue_order_ids: every order/client id seen in the venues' own fill and trade reads."""
     d = lambda x: x if isinstance(x, dict) else {}
@@ -178,13 +178,23 @@ def fill_exceptions(orders, fills, venue_order_ids, px_complete):
             venue = str(lo.get("book") or o.get("fill_book") or "?").lower()
             if any(i in venue_order_ids for i in ids):
                 cat = "VENUE SHOWS A FILL - registry fill record missing (record gap, position is real)"
+            elif "prophet" in venue and px_evidence is not None:
+                from p2_audit_core import px_classify
+                v = px_classify(ids, px_evidence.get("matched") or set(), bool(px_evidence.get("complete")))
+                cat = {"FILLED": "FILLED - ProphetX matching detail shows a match (registry fill record missing)",
+                       "UNFILLED": "UNFILLED - ProphetX matching detail, paged to the end, shows no match",
+                       "UNKNOWN": "UNKNOWN - ProphetX matching detail incomplete or unreadable"}[v]
             elif "prophet" in venue and not px_complete:
                 cat = "UNKNOWN - ProphetX trade read capped at 100, cannot prove fill or no fill"
             elif "novig" in venue or "prophet" in venue:
                 cat = "NO FILL AT VENUE - complete venue read shows none (unfilled; not a position)"
             else:
                 cat = f"UNKNOWN - no venue read for {venue}"
-            out.append({"day": day, "key": key, "venue": venue, "category": cat})
+            tr = None
+            if cat.startswith(("FILLED", "VENUE SHOWS")):
+                tr = any(i in (tracked_ids or set()) for i in ids)
+            out.append({"day": day, "key": key, "venue": venue, "category": cat, "ids": ids,
+                        "in_project2": tr})
     return out
 
 
@@ -216,7 +226,8 @@ def render_exceptions(fx, cx):
     L = ["", f"SECTION G - RECONCILIATION OF EXCEPTIONS (from {START_ET} ET)",
          f"  placed orders with no registry fill record: {len(fx)}"]
     for e in fx:
-        L.append(f"   - {e['day']} | {e['key']} | {e['venue']} | {e['category']}")
+        t_ = "" if e.get("in_project2") is None else (" | in Project 2: yes" if e["in_project2"] else " | in Project 2: NO - missing position")
+        L.append(f"   - {e['day']} | {e['key']} | {e['venue']} | {e['category']}{t_}")
     L.append(f"  settled bot bets without certified CLV: {len(cx)} (never counted as zero)")
     for e in cx:
         L.append(f"   - {e['game']} | {e['bet']} | {e['book']} | {e['category']}")

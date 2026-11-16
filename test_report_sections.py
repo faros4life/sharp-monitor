@@ -101,6 +101,22 @@ check("stale-excluded named as such", cc["c"].startswith("EXCLUDED AS STALE"))
 check("done without a close = UNRECOVERABLE with the reason", cc["d"].startswith("UNRECOVERABLE") and "not covered" in cc["d"])
 check("fixture doubt named as such", cc["e"].startswith("FIXTURE DOUBT"))
 check("category counts are names only", rs.category_counts(fx) == {"VENUE SHOWS A FILL": 1, "UNKNOWN": 1, "NO FILL AT VENUE": 1})
+# ProphetX matching detail
+r1 = {"data": {"matching_details": [{"wager_id": "p1", "matched_stake": 50}, {"wager_id": "z9", "matched_stake": 0}],
+               "next_cursor": "abc"}}
+check("records found anywhere in the response", len(core.px_match_records(r1)) == 2)
+check("cursor found", core.px_next_cursor(r1) == "abc" and core.px_next_cursor({"data": {"next_cursor": ""}}) is None)
+m = core.px_matched_ids(core.px_match_records(r1))
+check("a zero-quantity record is not a fill", m == {"p1"}, m)
+check("matched -> FILLED", core.px_classify(["p1"], m, False) == "FILLED")
+check("no match on an INCOMPLETE read -> UNKNOWN, never UNFILLED", core.px_classify(["p2"], m, False) == "UNKNOWN")
+check("no match on a complete paged read -> UNFILLED", core.px_classify(["p2"], m, True) == "UNFILLED")
+fx2 = rs.fill_exceptions(od, {"f1": {"state": "FILLED"}}, {"v1"}, False, {"matched": {"p1"}, "complete": False}, set())
+c2 = {e["key"]: e for e in fx2}
+check("ProphetX order upgraded to FILLED by matching detail", c2["r1|NCAAF|b|side|b"]["category"].startswith("FILLED"))
+check("a confirmed fill with no tracker row is flagged missing from Project 2", c2["r1|NCAAF|b|side|b"]["in_project2"] is False)
+fx3 = rs.fill_exceptions(od, {"f1": {"state": "FILLED"}}, {"v1"}, False, {"matched": set(), "complete": False}, {"p1"})
+check("incomplete matching read leaves UNKNOWN", {e["key"]: e for e in fx3}["r1|NCAAF|b|side|b"]["category"].startswith("UNKNOWN"))
 if fails:
     print("FAILED", fails); sys.exit(1)
 print("test_report_sections: all passed")

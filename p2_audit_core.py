@@ -471,3 +471,58 @@ def fills_without_tracker_row(links, index, row_ids):
         if any(i in (index or {}) for ids in orders for i in ids):
             out[tid.split("|", 1)[0]] += 1
     return dict(out)
+
+
+# ---- ProphetX per-order matching detail (Peter, 16 Nov: resolve the 100-row get_trades cap) -----------------------------
+# ProphetX reference: /v2/mm/get_wager_matching_detail "supports filtering by wager_ids and time range (from/to) with
+# cursor pagination" (next_cursor; limit max 100). A wager is an order. READ-ONLY.
+PX_ID_KEYS = ("wager_id", "order_id", "id_wager", "bet_id")
+PX_QTY_KEYS = ("matched_stake", "matched_quantity", "stake", "quantity", "matched_amount", "filled_quantity")
+
+
+def px_match_records(resp):
+    """Every dict anywhere in a response that carries a wager/order id. Pure."""
+    out, stack = [], [resp]
+    while stack:
+        x = stack.pop()
+        if isinstance(x, dict):
+            if any(x.get(k) not in (None, "") for k in PX_ID_KEYS):
+                out.append(x)
+            stack.extend(v for v in x.values() if isinstance(v, (dict, list)))
+        elif isinstance(x, list):
+            stack.extend(x)
+    return out
+
+
+def px_next_cursor(resp):
+    stack = [resp]
+    while stack:
+        x = stack.pop()
+        if isinstance(x, dict):
+            for k in ("next_cursor", "nextCursor"):
+                if k in x:
+                    return x[k] or None
+            stack.extend(v for v in x.values() if isinstance(v, dict))
+    return None
+
+
+def px_matched_ids(records):
+    """Order ids with a matched (filled) amount. A record whose every quantity field is zero is NOT a fill;
+    a record with no quantity field is a matching-detail row, which the endpoint returns only for matches."""
+    ids = set()
+    for r in records:
+        q = [r.get(k) for k in PX_QTY_KEYS if r.get(k) not in (None, "")]
+        try:
+            filled = (not q) or any(float(v) > 0 for v in q)
+        except (TypeError, ValueError):
+            filled = True
+        if filled:
+            ids.update(str(r.get(k)) for k in PX_ID_KEYS if r.get(k) not in (None, ""))
+    return ids
+
+
+def px_classify(order_ids, matched, complete):
+    """FILLED when the venue shows a match; UNFILLED only when the paged read is provably complete; else UNKNOWN."""
+    if any(str(i) in matched for i in order_ids):
+        return "FILLED"
+    return "UNFILLED" if complete else "UNKNOWN"
