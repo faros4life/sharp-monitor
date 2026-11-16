@@ -200,16 +200,88 @@ def lane_rows(name):
     return rows
 
 
-def board_rows():
+def board_rows(field="call"):
+    """field="call" = the live v3 call; field="v2" = the superseded v2 call, which keeps grading (reg 14)."""
     d = (load("board/calls.json") or {}).get("calls") or {}
     rows = []
     for k, x in d.items():
-        if x.get("call") != "PLAY" or x.get("result") not in ("W", "L", "P"):
+        if x.get(field) != "PLAY" or x.get("result") not in ("W", "L", "P"):
             continue
         rows.append({"ts": str(x.get("at") or ""), "game": x.get("game") or "", "am": x.get("price"),
                      "res": x["result"], "clv": None,
                      "key": (x.get("day"), frozenset(sc.toks(x.get("game"))), x.get("mk"), x.get("side"))})
     return rows
+
+
+EXCH = ("prophetx", "novig", "kalshi", "polymarket_us", "polymarket.us")
+T18 = "2026-11-03T16:45:00Z"   # EDGE2 clock (paper_rules T60); reg 18 is its SENT exchange subset
+
+
+def misprice_rows():
+    """Reg 18 EXCHANGE MISPRICE: a SENT alert priced at an exchange, stated edge_pct >= +2 vs Pinnacle fair after fee,
+    bettable pricing only (Polymarket Global is refused), from the EDGE2 clock. Read-only over alerts.json."""
+    S = load("alerts.json") or []
+    rows = []
+    for x in S:
+        if not isinstance(x, dict) or x.get("result") not in ("W", "L", "P") or not x.get("sent_to_phone"):
+            continue
+        if str(x.get("book_key") or "").lower() not in EXCH or x.get("pricing_bettable") is False:
+            continue
+        try:
+            if float(x.get("edge_pct")) < 2:
+                continue
+        except (TypeError, ValueError):
+            continue
+        if str(x.get("alert_utc") or "") < T18:
+            continue
+        am = x.get("price_after_fee") if x.get("price_after_fee") is not None else x.get("price")
+        rows.append({"ts": str(x.get("alert_utc") or ""), "game": x.get("game") or "", "am": am, "res": x["result"],
+                     "clv": sc.std_clv(x.get("close_fair_prob"), am, x.get("book_key")),
+                     "key": (str(x.get("alert_utc") or "")[:10], frozenset(sc.toks(x.get("game"))),
+                             str(x.get("kind")), str(x.get("bet") or ""))})
+    return rows
+
+
+_TRACKER = None
+
+
+def tracker_bets():
+    """Decrypted tracker bets, or None when TRACKER_PASSPHRASE is absent/wrong (then those tests stay UNANSWERED)."""
+    global _TRACKER
+    if _TRACKER is None:
+        _TRACKER = False
+        if os.environ.get("TRACKER_PASSPHRASE"):
+            try:
+                import tracker_build as tb
+                _TRACKER = (tb.dec(json.load(open(tb.STATE))) or {}).get("bets") or {}
+            except Exception as e:
+                print(f"tracker not readable ({type(e).__name__})")
+    return _TRACKER or None
+
+
+def tracker_rows(pred):
+    """Graded tracker rows matching pred, graded 1u at the row's own price (the real fill price for bot rows)."""
+    B = tracker_bets()
+    if B is None:
+        return None
+    rows = []
+    for bid, b in B.items():
+        res = {"WIN": "W", "WON": "W", "LOSS": "L", "LOST": "L", "PUSH": "P", "VOID": "P"}.get(
+            str(b.get("result") or "").upper(), str(b.get("result") or "").upper())
+        if res not in ("W", "L", "P") or not pred(b):
+            continue
+        rows.append({"ts": str(b.get("placed") or b.get("first_seen") or ""), "game": b.get("game") or "",
+                     "am": b.get("price"), "res": res, "clv": None,
+                     "key": (str(b.get("placed") or "")[:10], frozenset(sc.toks(b.get("game"))), str(b.get("bet") or ""))})
+    return rows
+
+
+def bot_lane(lane):
+    return lambda b: b.get("source") == "bot" and b.get("lane") == lane
+
+
+def peter_feed(b):
+    return str(b.get("source") or "").startswith("Peter")
 
 
 def registry_names():
@@ -283,7 +355,7 @@ def main():
         csv_rows.extend(o)
 
     S = sharp_rows()
-    run("SHARP ALERTS - all graded", S, "population the feed draws on; not any one lane")
+    run("STEAM (reg 6) - sharp alerts, all graded", S, "the whole Steam alert feed; not any one lane")
     run("SHARP ALERTS - sent to phone", [r for r in S if r["sent"]])
     run("SHARP ALERTS - NBA unders", [r for r in S if r["lg"] == "NBA" and "under" in r["bet"].lower()],
         "PROXY for Lane 1's market only - Lane 1's real fills are not in this repo (see OPEN ITEMS)")
@@ -298,9 +370,27 @@ def main():
     run("PULL_FADE (reg 25)", lane_rows("pull_fade"), "paper lane; price is the logged probability")
     run("SOLO (reg 26)", lane_rows("solo"), "paper lane; price is the logged probability")
     run("BETS BOARD PLAYS (reg 7)", board_rows(), "PLAY calls only; frozen call log")
+    run("BOARD v2 (reg 14)", board_rows("v2"), "v2 PLAY calls from the same frozen call log")
+    run("ML_STAY (reg 24)", lane_rows("ml_stay"), "paper lane; price is the logged probability")
+
+    run("EXCHANGE MISPRICE (reg 18)", misprice_rows(), "SENT, exchange-priced, edge >= +2% vs Pinnacle fair, from 3 Nov 11:45 ET")
+    covered = {6, 7, 9, 13, 14, 18, 24, 25, 26}
+    for n, label, pred, note in ((1, "LANE 1 (reg 1) - live bot fills", bot_lane("rules"), "real fills, 1u at fill price"),
+                                 (None, "R1 - live bot fills", bot_lane("r1"), "real fills, 1u at fill price"),
+                                 (None, "BOARD v3 - live bot fills", bot_lane("board"), "real fills, 1u at fill price"),
+                                 (8, "LANE 2 (reg 8) - bot rows", bot_lane("lane2"), "bot rows tagged lane2"),
+                                 (3, "PETER - FEED PLAYS (reg 3)", peter_feed, "his own logged bets, 1u at logged price")):
+        rows = tracker_rows(pred)
+        if rows is None:
+            say("")
+            say(f"{label}: UNANSWERED - tracker not decrypted (TRACKER_PASSPHRASE missing in this run)")
+            status[label] = "UNANSWERED"
+            continue
+        run(label, rows, note)
+        if n:
+            covered.add(n)
 
     reg = registry_names()
-    covered = {7, 9, 13, 25, 26}
     say("")
     say("=" * 100)
     say("UNANSWERED - registered tests this report cannot grade from the repo files")
@@ -312,7 +402,7 @@ def main():
             f"(encrypted state, bot ledger email, or its own run output)")
     say("")
     say("OPEN ITEMS (carried until answered or you close them)")
-    say("  1. Lane 1 / R1 / Board live fills: executed results are in the executor ledger email, not the repo.")
+    say("  1. Lane 1 / R1 / Board live fills: read from the encrypted tracker; UNANSWERED above if it did not decrypt.")
     say("  2. Encrypted per-play CLV (clv/state.enc, tracker, slowhr): needs TRACKER_PASSPHRASE in the run.")
     say("  3. Circa close: not yet included; Pinnacle only until circa_close data is wired in.")
     say("  4. Lane rows and Board PLAYs have no standard CLV here, so they can reach CONTINUE TESTING at best.")
