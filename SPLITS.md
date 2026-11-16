@@ -1,4 +1,4 @@
-# Paper splits (updated 2026-11-16T02:40:18Z)
+# Paper splits (updated 2026-11-16T03:00:23Z)
 
 Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kill bar: 30+ resulted at -0.10u/play or worse closes a split.
 
@@ -6,14 +6,14 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 |---|---|---|---|---|---|---|---|
 | Phase-1 live filter (paper view) | a-priori | 2026-10-26 | 28-28-0 | -3.88 | -0.069 | -1.60 | OPEN |
 | Phase-1 control group | control | 2026-10-26 | 40-38-2 | -3.65 | -0.046 | -1.94 | OPEN |
-| Hard Rock-priced, routed | a-priori | 2026-10-26 | 77-61-0 | +7.45 | +0.054 | -0.97 | ELIGIBLE at next review |
-| Fade Hard Rock-priced | scan | 2026-10-26 | 77-61-0 | -15.43 | -0.112 | -0.97 | CLOSED |
+| Hard Rock-priced, routed | a-priori | 2026-10-26 | 78-61-0 | +8.40 | +0.060 | -0.95 | ELIGIBLE at next review |
+| Fade Hard Rock-priced | scan | 2026-10-26 | 78-61-0 | -16.43 | -0.118 | -0.95 | CLOSED |
 | PM-global-priced, routed | a-priori | 2026-10-26 | 0-0-0 | +0.00 |  |  | OPEN |
-| Unders only | scan | 2026-10-26 | 66-60-0 | -1.50 | -0.012 | -0.86 | OPEN |
+| Unders only | scan | 2026-10-26 | 67-60-0 | -0.55 | -0.004 | -0.84 | OPEN |
 | Combined filter | scan | 2026-10-26 | 82-81-0 | -8.32 | -0.051 | -2.12 | OPEN |
 | Priced -125 or worse | scan | 2026-10-26 | 13-16-0 | -5.68 | -0.196 | -2.98 | OPEN |
-| College basketball | scan | 2026-10-26 | 291-239-0 | +14.71 | +0.028 | -1.41 | OPEN |
-| Fade alerts sent 12-24h out | scan | 2026-10-26 | 57-47-0 | -8.24 | -0.079 | -1.27 | CLOSED |
+| College basketball | scan | 2026-10-26 | 292-239-0 | +15.66 | +0.029 | -1.41 | OPEN |
+| Fade alerts sent 12-24h out | scan | 2026-10-26 | 57-48-0 | -7.14 | -0.068 | -1.28 | CLOSED |
 | Tier 2 core (paper) | tier | 2026-10-27 | 17-20-0 | -5.50 | -0.149 | -2.14 | CLOSED |
 | Evening sends, ex-Hard Rock | scan | 2026-10-26 | 22-18-0 | +1.16 | +0.029 | -3.39 | OPEN |
 | Muted midday (11 AM-2 PM ET) | scan | 2026-10-26 | 70-63-0 | -1.11 | -0.008 | -0.15 | OPEN |
