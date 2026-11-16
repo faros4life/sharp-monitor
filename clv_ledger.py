@@ -28,6 +28,8 @@ from datetime import datetime, timedelta, timezone
 import clv_stale as cstale     # leaf module, tracker_build only - safe to import here
 import fixture_match as fxm   # leaf module, tracker_build only - the SHARED fixture matcher
 import credit_gate as cg       # leaf module, stdlib only - safe to import here
+SIDE_EV = ({}, [])
+SIDE_LOG = collections.Counter()
 import executor as ex
 import sharp_monitor as sm
 import tracker_build as tb
@@ -265,6 +267,71 @@ def parsed(b):
     kind, team, line, neg = pb[0], pb[1], pb[2], pb[3]
     return (kind, team, line, neg)
 
+
+
+# ------------------------------------------------------------------ verified side from the registry (Peter, 16 Nov)
+def registry_side(row_id, snap, pm_links, orders):
+    """(side_text, why). A Polymarket US settled row records only the line ("-15.50"), so its side was never known.
+    The side is taken from the bot's own registry claim ONLY through an exact chain, failing closed at every step:
+      row market slug -> exactly ONE venue-confirmed order id (pm_links, written by pmus-activity's read-back)
+      -> exactly ONE registry order with that id -> its claim: same league, a spread/side market, teams that match the
+      row's game, and an order line EQUAL to the row's line. Pure: pm_links {order_id: slug}, orders [registry rows]."""
+    m = re.search(r"\[([^\]]+)\]", str(row_id or ""))
+    if snap.get("flip"):
+        return None, "short contract - the held side cannot be proven from the claim"
+    if not str(row_id or "").startswith("pm|") or not m:
+        return None, "not a Polymarket row with a market slug"
+    oids = [o for o, sl in (pm_links or {}).items() if sl == m.group(1)]
+    if len(oids) != 1:
+        return None, f"{len(oids)} venue-confirmed orders on this market (need exactly 1)"
+    def _lo(o):
+        x = o.get("live_order")
+        return x if isinstance(x, dict) else {}
+    hits = {(o.get("key"), o.get("decided_utc") or o.get("et_day")): o for o in orders or []
+            if str(_lo(o).get("order_id") or "") == oids[0]}
+    if len(hits) != 1:
+        return None, f"{len(hits)} registry orders carry this order id (need exactly 1)"
+    o = next(iter(hits.values()))
+    parts = [p for p in str(o.get("key") or "").split("|") if p]
+    if parts and parts[0] in ("rule", "rules", "board", "r1", "lane2"):
+        parts = parts[1:]
+    if len(parts) < 4:
+        return None, "registry claim key is incomplete"
+    lg, teams, mkt, side = parts[0], parts[1], parts[2].lower(), parts[3]
+    if lg.upper() != str(snap.get("league") or "").upper():
+        return None, "registry league differs from the row's league"
+    if mkt not in ("side", "spread"):
+        return None, f"registry market '{mkt}' is not a spread"
+    if side.lower() in ("over", "under") or not any(c.isalpha() for c in side):
+        return None, "registry side is not a team"
+    rt = {t for t in re.split(r"[+_\s]+", teams.lower()) if t}
+    gt = tb.toks(snap.get("game")) - tb.WEAK
+    if not rt or not (rt <= gt or gt <= rt or len(rt & gt) >= 2):
+        return None, "registry teams do not match the row's game"
+    # The row's bet text is a bare signed line ("-15.50"); anything else is not this case.
+    bt = str(snap.get("bet") or "").strip()
+    if not re.fullmatch(r"[+-]?\d+(\.\d+)?", bt):
+        return None, "the row's bet text is not a bare line"
+    oline = o.get("fill_line") if o.get("fill_line") is not None else o.get("alert_line")
+    try:
+        if oline is None or abs(float(oline) - float(bt)) > 1e-9:
+            return None, "the order's line does not equal the row's line"
+    except (TypeError, ValueError):
+        return None, "line unreadable"
+    team = side.replace("_", " ")
+    return f"{team} {float(bt):+g}", "registry claim via Polymarket order read-back"
+
+
+def load_side_evidence():
+    """(pm_links, orders) from the encrypted reporting files. ({}, []) if either is absent - then nothing changes."""
+    try:
+        links = tb.dec(json.load(open("reporting/pm_links.enc"))) or {}
+        import reporting_ledger as rl
+        cur = rl.latest(rl.load_ledger())
+        orders = [d for (k, _i), (_f, d) in cur.items() if k == "order"]
+        return links, orders
+    except Exception:
+        return {}, []
 
 # ------------------------------------------------------------------ market map (public ids only)
 def load_markets(st, now):
@@ -843,7 +910,7 @@ def close_for(b, f, pm, mkmap, start, lg):
             return None, "politics market, not a sports bet - never scored against a game close"
     except Exception:
         pass
-    pz = parsed(b)
+    pz = parsed(dict(b, bet=b["side_verified"], flip=None) if b.get("side_verified") else b)
     if not pz:
         return None, "bet text not parsed"
     sid = SPORT[lg]
@@ -1171,6 +1238,8 @@ def lane_stats(rows):
 
 
 def main():
+    global SIDE_EV
+    SIDE_EV = load_side_evidence()   # 16 Nov: registry-verified sides for line-only Polymarket rows (read-only)
     now = datetime.now(timezone.utc)
     if not KEY or not tb.PASS:
         print("CLV ledger: ODDSPAPI_KEY or TRACKER_PASSPHRASE not set; skipped")
@@ -1192,6 +1261,11 @@ def main():
         for f in ("book", "game", "bet", "flip", "league", "source", "teams", "game_start", "placed", "settled", "first_seen"):
             if b.get(f) not in (None, "", []):
                 snap[f] = b[f]
+        if not snap.get("side_verified") and str(k).startswith("pm|"):
+            _sv, _svw = registry_side(k, snap, *SIDE_EV)
+            if _sv:
+                snap["side_verified"], snap["side_src"] = _sv, _svw   # a full spread bet: "<team> <line>"
+                SIDE_LOG["side recovered"] += 1
         try:
             PROV["snap_" + copy_phase1(snap, b, iso(now))] += 1   # P1-A/C: gated, never relabels history
         except Exception as _ce:
@@ -1283,6 +1357,14 @@ def main():
             for f in ("clv", "close_p", "eff_am", "close_am", "how", "age_min", "scored", "done", "tries", "why", "fixture"):
                 rec.pop(f, None)
         st["rescored_v2"] = iso(now)
+    # Reopen ONCE a row that gave up only because its side was unknown and now has a registry-verified side.
+    for k, rec in st["bets"].items():
+        s_ = rec.get("snap") or {}
+        if (rec.get("done") and rec.get("clv") is None and s_.get("side_verified") and not rec.get("side_reopened")
+                and str(rec.get("why") or "").startswith("the bet text is")):
+            rec["done"], rec["tries"], rec["side_reopened"] = False, 0, iso(now)
+            SIDE_LOG["reopened"] += 1
+    print(f"CLV ledger verified-side recovery (counts only): {dict(SIDE_LOG) or 'none'}", flush=True)
     # 3) which leagues need fixtures
     pend = []
     for k, rec in st["bets"].items():
