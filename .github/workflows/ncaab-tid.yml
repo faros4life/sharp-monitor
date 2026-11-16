@@ -1,0 +1,38 @@
+name: ncaab-tid
+
+# Peter, Nov 16 16:10: ONE billable /tournaments call to identify the NCAA Division I men's
+# basketball tournament id. Dispatch only, no schedule. contents: write is required ONLY so the
+# shared credit gate can push its reservation (credits/gate.json) - the Nov 14 ncaab-probe runs had
+# contents: read, so the gate failed closed and no request ever went out. The script writes no
+# other state; the last step proves no tracked file outside credits/ changed.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ncaab-tid
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: One tournament-list call (selects nothing)
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+        run: python -u ncaab_tid.py
+      - name: Prove nothing outside the credit gate changed
+        run: |
+          git fetch -q origin main
+          if [ -n "$(git status --porcelain -uno -- . ':!credits')" ]; then git status --porcelain -uno; exit 1; fi
+          echo "clean"
