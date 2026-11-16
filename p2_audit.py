@@ -276,6 +276,20 @@ def main():
     since = [r for r in rows if rs._event_time(r) is not None and rs._event_time(r) >= _f0]
     print(f"section F scope: bot rows with no event time (excluded, not guessed) {sum(1 for r in rows if rs._event_time(r) is None)}")
     rep_f = build(since, index, reg._venue, links, clv, ruled)
+    # 16 Nov (Peter): trace each lane conflict. Labels and counts only - no game, side, id or amount.
+    from p2_audit_core import resolve as _res, resolve_link as _rl, canon_lane as _cl
+    for c_ in rep_f.get("lane_conflicts") or []:
+        r_ = since[c_["row"]]
+        st_, ln_, k_ = _res(r_, index, reg._venue)
+        via_ = "order id on the row"
+        if st_ != "exact":
+            st_, ln_, k_ = _rl(r_, links, index, reg._venue)
+            via_ = f"venue fill/trade link ({len((links or {}).get(str(r_.get('id') or '')) or [])} venue record(s))"
+        ev_ = "|".join(str(k_ or "").split("|")[1:3]) if k_ else ""
+        other_ = sorted({_cl(l2) for cl_ in index.values() for v, k2, l2 in cl_ if ev_ and ev_ in str(k2)} - {c_["registry_lane"]})
+        print(f"conflict trace: venue {r_.get('book')} | registry claim lane {c_['registry_lane']} via {via_} | "
+              f"claim key lane prefix {str(k_ or '').split('|')[0]} | tracker lane {r_.get('lane')} (lane_src {r_.get('lane_src')}) | "
+              f"tracker lane_fuzzy {r_.get('lane_fuzzy')} | registry orders on the same event under ANOTHER lane: {other_ or 'none'}")
     eof = rep_f.get("exactly_once") or {}
     print(f"section F (from {rs.START_ET} ET): bot rows {len(since)} | exactly-once {'OK' if eof.get('ok') else 'FAILED'} | "
           "buckets " + ", ".join(f"{b} {v['all']['settled']}+{v['open_or_ambiguous']} open" for b, v in rep_f["buckets"].items()))
