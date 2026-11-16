@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 15, 11:50 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 16.
+Updated Sun Nov 15, 11:55 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 15.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1600-1220 (-11.41u flat) | rule met: 965-740
+**Record:** 1600-1221 (-12.41u flat) | rule met: 965-740
 
-**Fade (paper, betting against the print):** 954-1327 (-242.25u flat, after fees)
+**Fade (paper, betting against the print):** 955-1327 (-238.74u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -64,7 +64,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 15 12:25PM | NFL | Buffalo vs New York J: Total Points | total: Over 50.5 points | kalshi | $142k | -104 |  |  | +1.0c | yes | L |
 | Nov 15 12:20PM | NFL | Miami Dolphins @ Indianapolis Colts | spread: IND -4.5 (-4.5) | novig | $29k | -102 | ✅ kalshi |  | +1.0c |  | L |
 | Nov 15 12:15PM | NBA | Indiana Pacers @ Philadelphia 76ers | moneyline: PHI (0) | novig | $61k | -277 | ✅ kalshi,prophetx | ✅ | -2.0c |  | W |
-| Nov 15 12:10PM | NFL | Los Angeles C vs Baltimore | moneyline: Baltimore | kalshi | $267k | -203 | ✅ novig,prophetx |  | +0.0c |  | pending |
+| Nov 15 12:10PM | NFL | Los Angeles C vs Baltimore | moneyline: Baltimore | kalshi | $267k | -203 | ✅ novig,prophetx |  | +1.0c |  | pending |
 | Nov 15 12:05PM | NBA | Indiana Pacers at Philadelphia 76ers | moneyline: Philadelphia 76ers | prophetx | $25k | -285 | ✅ kalshi,novig |  | -2.6c |  | W |
 | Nov 15 12:05PM | NCAAF | Ole Miss @ Oklahoma | moneyline: OU (0) | novig | $26k | -122 |  |  | +0.0c |  | W |
 | Nov 15 11:55AM | NFL | Buffalo Bills at New York Jets | spread: Buffalo Bills -7.5 (-7.5) | prophetx | $35k | -103 | ✅ novig |  | -0.2c | yes | W |
@@ -128,7 +128,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 11:30PM | NBA | Charlotte vs Los Angeles C | moneyline: Los Angeles C | kalshi | $35k | -108 |  |  | +0.0c | yes | W |
 | Nov 14 11:20PM | NHL | Edmonton vs Philadelphia | moneyline: Edmonton | kalshi | $52k | -144 |  |  | -2.0c | yes | W |
 | Nov 14 11:20PM | NBA | Los Angeles L vs Phoenix | moneyline: Los Angeles L | kalshi | $41k | -150 |  |  | +2.0c |  | W |
-| Nov 14 11:05PM | NHL | Vancouver vs Vegas | moneyline: Vegas | kalshi | $67k | -400 |  |  | -1.0c | yes | pending |
+| Nov 14 11:05PM | NHL | Vancouver vs Vegas | moneyline: Vegas | kalshi | $67k | -400 |  |  | -1.0c | yes | L |
 | Nov 14 11:05PM | NHL | Nashville vs San Jose | moneyline: Nashville | kalshi | $43k | -163 |  |  | -1.0c | yes | L |
 | Nov 14 11:05PM | NHL | Calgary vs Anaheim | moneyline: Anaheim | kalshi | $27k | -138 |  |  | +0.0c | yes | W |
 | Nov 14 11:05PM | NBA | Dallas vs Boston | moneyline: Boston | kalshi | $181k | -525 |  |  | +4.0c |  | W |
