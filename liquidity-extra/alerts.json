@@ -1,6 +1,133 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-16T19:40:16Z",
+   "base_depth": 57337,
+   "best_price": 0.64,
+   "best_price_american": -178,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.64,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-17",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 13417,
+     "new_this_side": 50699,
+     "other_side": 39543,
+     "other_side_all_levels": 52044,
+     "ratio": 3.1,
+     "this_side": 121319,
+     "this_side_all_levels": 141042
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "A. Zverev (0)",
+     "price": 0.64,
+     "this_side": 6074
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 5479.37,
+    "volume_24h_fp": 5991.889999999999,
+    "volume_fp": 6031.139999999999
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 29.14,
+    "volume_24h_fp": 174.32,
+    "volume_fp": 105.76
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 5450.23,
+    "volume_24h_fp": 5817.57,
+    "volume_fp": 5925.38
+   },
+   "fade_price": 0.36,
+   "first_seen_utc": "2026-11-16T19:30:38Z",
+   "game": "Zverev vs Shelton",
+   "game_surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "game_x": 3.52,
+   "key": "kalshi|KXATPMATCH-26NOV17ZVESHE|ml|0",
+   "lead_min": 1430,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 50699,
+   "new_x": 3.1,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 5479.37,
+      "volume_24h_fp": 5991.889999999999,
+      "volume_fp": 6031.139999999999
+     },
+     "game_normal": 40113,
+     "game_x": 3.52,
+     "normal": 16355,
+     "now": 141042,
+     "type": "ML",
+     "x": 8.62
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 124654.0,
+      "volume": 151983.0
+     },
+     "game_normal": 2790,
+     "game_x": 2.18,
+     "normal": 606,
+     "now": 6074,
+     "type": "ML",
+     "x": 10.02
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": true,
+   "price": 0.64,
+   "price_american": -178,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.64,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26NOV17ZVESHE-ZVE"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Zverev",
+   "side_label": "Zverev",
+   "size_x": 8.62,
+   "start_source": "novig",
+   "start_utc": "2026-11-17T19:30:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "Zverev",
+    "Shelton"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-16T19:20:34Z",
    "base_depth": 75519,
    "best_price": 0.5399,
@@ -40,9 +167,9 @@
     "volume_fp": 15.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 5747.66,
-    "volume_24h_fp": 4808.6,
-    "volume_fp": 6294.23
+    "open_interest_fp": 5850.23,
+    "volume_24h_fp": 6396.8,
+    "volume_fp": 6396.8
    },
    "ex_stats_first": {
     "open_interest_fp": 4430.04,
@@ -79,6 +206,8 @@
    "norm_ready_books": 1,
    "paper_only": false,
    "price": 0.53,
+   "price_after_15m": 0.5399,
+   "price_after_15m_book": "prophetx",
    "price_american": -113,
    "price_rule": "ok",
    "price_when_first_seen": 0.53,
@@ -161,6 +290,7 @@
    "size_x": 4.5,
    "start_source": "odds",
    "start_utc": "2026-11-17T00:00:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi"
    ],
@@ -355,9 +485,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 5266.75,
-    "volume_24h_fp": 5222.75,
-    "volume_fp": 5266.75
+    "open_interest_fp": 5284.69,
+    "volume_24h_fp": 5266.75,
+    "volume_fp": 5284.69
    },
    "ex_stats_first": {
     "open_interest_fp": 5203.75,
@@ -540,9 +670,9 @@
     "volume_fp": 115.13
    },
    "ex_stats_close": {
-    "open_interest_fp": 7426.570000000001,
-    "volume_24h_fp": 6628.360000000001,
-    "volume_fp": 7586.46
+    "open_interest_fp": 7498.929999999999,
+    "volume_24h_fp": 6695.49,
+    "volume_fp": 7658.820000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 5739.1900000000005,
@@ -670,8 +800,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.64,
-   "clv_cents": 10.0,
+   "close_price": 0.65,
+   "clv_cents": 11.0,
    "confirmed_after_min": 10,
    "date": "2026-11-16",
    "depth_by_book": {
@@ -877,9 +1007,9 @@
     "volume_fp": 1.65
    },
    "ex_stats_close": {
-    "open_interest_fp": 5623.8,
-    "volume_24h_fp": 5884.780000000001,
-    "volume_fp": 5982.96
+    "open_interest_fp": 5647.85,
+    "volume_24h_fp": 5907.77,
+    "volume_fp": 6007.01
    },
    "ex_stats_first": {
     "open_interest_fp": 1923.0,
@@ -1062,9 +1192,9 @@
     "volume_fp": 5.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3729.2799999999997,
-    "volume_24h_fp": 4408.99,
-    "volume_fp": 4431.09
+    "open_interest_fp": 3730.64,
+    "volume_24h_fp": 4424.28,
+    "volume_fp": 4432.45
    },
    "ex_stats_first": {
     "open_interest_fp": 987.24,
@@ -1239,9 +1369,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 4171.82,
-    "volume_24h_fp": 4072.0699999999997,
-    "volume_fp": 4173.82
+    "open_interest_fp": 4173.030000000001,
+    "volume_24h_fp": 4082.7300000000005,
+    "volume_fp": 4175.030000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 600.8599999999999,
@@ -1424,7 +1554,7 @@
    "ex_stats_close": {
     "open_interest_fp": 4523.33,
     "volume_24h_fp": 4753.92,
-    "volume_fp": 4758.04
+    "volume_fp": 4758.15
    },
    "ex_stats_first": {
     "open_interest_fp": 577.81,
@@ -1611,9 +1741,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 4466.35,
-    "volume_24h_fp": 3946.45,
-    "volume_fp": 4556.45
+    "open_interest_fp": 4527.49,
+    "volume_24h_fp": 4551.99,
+    "volume_fp": 4617.59
    },
    "ex_stats_first": {
     "open_interest_fp": 114.28,
