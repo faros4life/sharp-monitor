@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 16, 5:30 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 20.
+Updated Mon Nov 16, 5:40 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 20.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -11,7 +11,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 16 4:30PM | NCAAB | Montana vs Kansas St.: Point Total | total: NOT Over 153.5 points | kalshi | $37k | -100 |  | ✅ | +0.0c | yes | pending |
-| Nov 16 4:30PM | NCAAB | Tarleton St. vs Drake: Spread | spread: NOT Drake wins by over 10.5 points | kalshi | $32k | -133 |  |  | +2.0c |  | pending |
+| Nov 16 4:30PM | NCAAB | Tarleton St. vs Drake: Spread | spread: NOT Drake wins by over 10.5 points | kalshi | $32k | -133 |  |  | +3.0c |  | pending |
 | Nov 16 4:30PM | NCAAB | Richmond vs Virginia Tech: Spread | spread: NOT Virginia Tech wins by over 13.5 points | kalshi | $52k | -113 |  |  | +1.0c |  | pending |
 | Nov 16 4:20PM | NCAAB | Richmond vs Virginia Tech: Point Total | total: NOT Over 152.5 points | kalshi | $45k | -104 |  | ✅ | +3.0c |  | pending |
 | Nov 16 4:20PM | NCAAB | Montana vs Kansas St.: Spread | spread: NOT Kansas St. wins by over 15.5 points | kalshi | $29k | -113 |  | ✅ | +1.0c |  | pending |
@@ -23,7 +23,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 16 10:00AM | NCAAB | Long Beach St. vs UCLA: Spread | spread: NOT UCLA wins by over 34.5 points | kalshi | $59k | -117 |  |  | +12.0c | yes | pending |
 | Nov 16 9:50AM | NCAAB | Iona vs UMBC | moneyline: Iona | kalshi | $61k | -138 |  |  | -1.0c |  | pending |
 | Nov 15 10:20PM | NCAAB | Western Kentucky vs Tulsa | moneyline: Tulsa | kalshi | $29k | -300 |  |  | -4.0c |  | pending |
-| Nov 15 10:20PM | NCAAB | Tarleton St. vs Drake | moneyline: Drake | kalshi | $34k | -488 |  |  | -2.0c |  | pending |
+| Nov 15 10:20PM | NCAAB | Tarleton St. vs Drake | moneyline: Drake | kalshi | $34k | -488 |  |  | -3.0c |  | pending |
 | Nov 15 10:20PM | NCAAB | Eastern Kentucky vs Kent St. | moneyline: Kent St. | kalshi | $32k | -488 |  |  | -1.0c |  | pending |
 | Nov 15 10:20PM | NCAAB | Abilene Christian vs Missouri St. | moneyline: Missouri St. | kalshi | $28k | -300 |  |  | -7.0c |  | pending |
 | Nov 15 5:10PM | NCAAB | Texas St. vs UTSA: Point Total | total: NOT Over 147.5 points | kalshi | $37k | -104 | ✅ novig | ✅ | +3.0c | yes | L |
