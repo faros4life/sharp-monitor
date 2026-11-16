@@ -1,15 +1,18 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 16, 4:20 PM ET. This run: 2 new, 0 not confirmed, 3 pending. Open alerts: 18.
+Updated Mon Nov 16, 4:30 PM ET. This run: 3 new, 0 not confirmed, 0 pending. Open alerts: 20.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 295-176 (-25.09u flat) | rule met: 51-48
+**Record:** 296-176 (-24.80u flat) | rule met: 51-48
 
-**Fade (paper, betting against the print):** 151-260 (+22.41u flat, after fees)
+**Fade (paper, betting against the print):** 151-261 (+21.41u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 16 4:30PM | NCAAB | Montana vs Kansas St.: Point Total | total: NOT Over 153.5 points | kalshi | $37k | -100 |  | ✅ | +0.0c |  | pending |
+| Nov 16 4:30PM | NCAAB | Tarleton St. vs Drake: Spread | spread: NOT Drake wins by over 10.5 points | kalshi | $32k | -133 |  |  | +0.0c |  | pending |
+| Nov 16 4:30PM | NCAAB | Richmond vs Virginia Tech: Spread | spread: NOT Virginia Tech wins by over 13.5 points | kalshi | $52k | -113 |  |  | +0.0c |  | pending |
 | Nov 16 4:20PM | NCAAB | Richmond vs Virginia Tech: Point Total | total: NOT Over 152.5 points | kalshi | $45k | -104 |  | ✅ | +0.0c |  | pending |
 | Nov 16 4:20PM | NCAAB | Montana vs Kansas St.: Spread | spread: NOT Kansas St. wins by over 15.5 points | kalshi | $29k | -113 |  | ✅ | +0.0c |  | pending |
 | Nov 16 2:40PM | TENNIS | Zverev vs Shelton | moneyline: Zverev | kalshi | $51k | -178 |  |  | +0.0c |  | pending |
@@ -37,7 +40,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 15 10:30AM | NCAAB | Norfolk St. vs Georgia St.: Spread | spread: NOT Georgia St. wins by over 11.5 points | kalshi | $33k | +113 |  |  | +3.0c |  | L |
 | Nov 15 10:10AM | NCAAB | Norfolk St. vs Georgia St.: Point Total | total: NOT Over 144.5 points | kalshi | $28k | -100 |  |  | +3.0c | yes | W |
 | Nov 15 10:00AM | NCAAB | Niagara vs Iowa St.: Point Total | total: Over 143.5 points | kalshi | $32k | -100 |  |  | +1.0c |  | L |
-| Nov 15 4:20AM | TENNIS | Medvedev vs Cobolli | moneyline: Medvedev | kalshi | $66k | -335 |  |  | +1.0c |  | pending |
+| Nov 15 4:20AM | TENNIS | Medvedev vs Cobolli | moneyline: Medvedev | kalshi | $66k | -335 |  |  | +1.0c |  | W |
 | Nov 15 4:00AM | NCAAB | Cal Poly vs Montana St. | moneyline: Montana St. | kalshi | $46k | -270 |  |  | -1.0c | yes | W |
 | Nov 15 2:20AM | TENNIS | Svitolina vs Andreeva | moneyline: Andreeva | kalshi | $43k | -257 |  |  | +12.0c |  | W |
 | Nov 15 2:10AM | TENNIS | Zverev vs Jodar | moneyline: Zverev | kalshi | $72k | -233 |  |  | +2.0c |  | W |
@@ -207,6 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 8 9:20AM | NCAAB | Central Connecticut St. vs Dartmouth | moneyline: Dartmouth | kalshi | $39k | -233 |  |  | +8.0c |  | L |
 | Nov 8 9:20AM | NCAAB | Brown vs Lehigh | moneyline: Lehigh | kalshi | $28k | -186 |  |  | +2.0c |  | L |
 | Nov 8 7:20AM | TENNIS | Adrian Mannarino vs Toby Samuel | moneyline: Adrian Mannarino | kalshi | $44k | -108 |  |  | -47.0c | yes | L |
-| Nov 8 6:30AM | TENNIS | Inaki Montes-de la Torre vs Lorenzo Sonego | moneyline: Inaki Montes-de la Torre | kalshi | $29k | +138 |  |  | -28.0c | yes | L |
-| Nov 8 3:50AM | TENNIS | Claire Liu vs Alexandra Eala | moneyline: Claire Liu | kalshi | $258k | -186 |  |  | +19.0c |  | W |
-| Nov 8 2:40AM | TENNIS | Marta Kostyuk vs Linda Noskova | moneyline: Linda Noskova | kalshi | $286k | -122 |  |  | +4.0c | yes | W |

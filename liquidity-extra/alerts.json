@@ -1,6 +1,564 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-16T21:30:26Z",
+   "base_depth": 62135,
+   "best_price": 0.5,
+   "best_price_american": -100,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-16",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 10346,
+     "new_this_side": 37099,
+     "other_side": 8269,
+     "other_side_all_levels": 59348,
+     "ratio": 3.2,
+     "this_side": 26125,
+     "this_side_all_levels": 97258
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 153.5 (153.5)",
+     "price": 0.5,
+     "this_side": 2853
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "under 153.5 (153.5)",
+     "price": 0.5,
+     "this_side": 2528
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 703.49,
+    "volume_24h_fp": 693.83,
+    "volume_fp": 703.49
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 9.66,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 9.66
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 693.83,
+    "volume_24h_fp": 693.83,
+    "volume_fp": 693.83
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-11-16T21:20:32Z",
+   "game": "Montana vs Kansas St.: Point Total",
+   "game_surge_books": [
+    "prophetx"
+   ],
+   "game_x": 1.47,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAMBTOTAL-26NOV16MONTKSU-154\"}",
+   "lead_min": 210,
+   "league": "NCAAB",
+   "line": 153.5,
+   "market": "total",
+   "new_money": 37099,
+   "new_x": 1.36,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 703.49,
+      "volume_24h_fp": 693.83,
+      "volume_fp": 703.49
+     },
+     "game_normal": 66112,
+     "game_x": 1.47,
+     "normal": 27368,
+     "now": 97258,
+     "type": "UNDER",
+     "x": 3.55
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 940595.0,
+      "volume": 961295.0
+     },
+     "game_normal": 2980,
+     "game_x": 1.11,
+     "normal": 1621,
+     "now": 3320,
+     "type": "UNDER",
+     "x": 2.05
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 1128,
+     "game_x": 2.4,
+     "normal": 571,
+     "now": 2707,
+     "type": "UNDER",
+     "x": 4.74
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 153.5,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": 154.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 153.5,
+     "price": 104
+    },
+    "betrivers": {
+     "point": 154.5,
+     "price": -117
+    },
+    "betus": {
+     "point": 154.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 154.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 154.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": 154.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 153.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 153.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": 154.0,
+     "price": -108
+    },
+    "novig": {
+     "point": 153.5,
+     "price": 100
+    },
+    "polymarket": {
+     "point": 153.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 153.5,
+     "price": 100
+    },
+    "williamhill_us": {
+     "point": 154.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAMBTOTAL-26NOV16MONTKSU-154"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [
+    "Under 155.5 (-110)"
+   ],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 153.5 points",
+   "size_x": 3.55,
+   "start_source": "odds",
+   "start_utc": "2026-11-17T01:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Montana",
+    "Kansas St."
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-16T21:30:26Z",
+   "base_depth": 63039,
+   "best_price": 0.5872,
+   "best_price_american": -142,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.57,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-16",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 338,
+     "new_this_side": 31533,
+     "other_side": 28156,
+     "other_side_all_levels": 57703,
+     "ratio": 1.3,
+     "this_side": 36670,
+     "this_side_all_levels": 101877
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 10928.8,
+    "volume_24h_fp": 11053.96,
+    "volume_fp": 11079.5
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 25.54,
+    "volume_24h_fp": 180.52,
+    "volume_fp": 25.54
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 10903.26,
+    "volume_24h_fp": 10873.44,
+    "volume_fp": 11053.96
+   },
+   "fade_price": 0.44,
+   "first_seen_utc": "2026-11-16T21:20:32Z",
+   "game": "Tarleton St. vs Drake: Spread",
+   "game_surge_books": [],
+   "game_x": 1.76,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAMBSPREAD-26NOV16TARLDRKE-DRKE11\"}",
+   "lead_min": 180,
+   "league": "NCAAB",
+   "line": 10.5,
+   "market": "spread",
+   "new_money": 31533,
+   "new_x": 1.04,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 10928.8,
+      "volume_24h_fp": 11053.96,
+      "volume_fp": 11079.5
+     },
+     "game_normal": 58005,
+     "game_x": 1.76,
+     "normal": 30369,
+     "now": 101877,
+     "type": "SPREAD",
+     "x": 3.35
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.57,
+   "price_american": -133,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.57,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 9.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": 9.5,
+     "price": -115
+    },
+    "betopenly": {
+     "point": 9.0,
+     "price": 102
+    },
+    "betrivers": {
+     "point": 8.5,
+     "price": -115
+    },
+    "betus": {
+     "point": 9.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 9.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 9.5,
+     "price": -112
+    },
+    "fanatics": {
+     "point": 9.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 8.5,
+     "price": -102
+    },
+    "kalshi": {
+     "point": 7.5,
+     "price": 127
+    },
+    "lowvig": {
+     "point": 9.5,
+     "price": -111
+    },
+    "novig": {
+     "point": 9.5,
+     "price": -108
+    },
+    "polymarket": {
+     "point": 9.5,
+     "price": -113
+    },
+    "prophetx": {
+     "point": 8.5,
+     "price": 107
+    },
+    "williamhill_us": {
+     "point": 9.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAMBSPREAD-26NOV16TARLDRKE-DRKE11"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Tarleton St.",
+   "side_label": "NOT Drake wins by over 10.5 points",
+   "size_x": 3.35,
+   "start_source": "odds",
+   "start_utc": "2026-11-17T00:30:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Tarleton St.",
+    "Drake"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-16T21:30:26Z",
+   "base_depth": 83397,
+   "best_price": 0.525,
+   "best_price_american": -111,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.53,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-16",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -705,
+     "new_this_side": 51797,
+     "other_side": 28081,
+     "other_side_all_levels": 103082,
+     "ratio": 1.8,
+     "this_side": 49754,
+     "this_side_all_levels": 136613
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "RICH +13.5 (-13.5)",
+     "price": 0.525,
+     "this_side": 2522
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 11838.95,
+    "volume_24h_fp": 12519.13,
+    "volume_fp": 12607.53
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 8.0,
+    "volume_24h_fp": 20.05,
+    "volume_fp": 8.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 11830.95,
+    "volume_24h_fp": 12499.08,
+    "volume_fp": 12599.53
+   },
+   "fade_price": 0.48,
+   "first_seen_utc": "2026-11-16T21:20:32Z",
+   "game": "Richmond vs Virginia Tech: Spread",
+   "game_surge_books": [
+    "novig"
+   ],
+   "game_x": 1.62,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAMBSPREAD-26NOV16RICHVT-VT14\"}",
+   "lead_min": 150,
+   "league": "NCAAB",
+   "line": 13.5,
+   "market": "spread",
+   "new_money": 51797,
+   "new_x": 1.71,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 11838.95,
+      "volume_24h_fp": 12519.13,
+      "volume_fp": 12607.53
+     },
+     "game_normal": 84531,
+     "game_x": 1.62,
+     "normal": 30369,
+     "now": 136613,
+     "type": "SPREAD",
+     "x": 4.5
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 1706134.0,
+      "volume": 1759822.0
+     },
+     "game_normal": 2715,
+     "game_x": 2.2,
+     "normal": 1889,
+     "now": 5968,
+     "type": "SPREAD",
+     "x": 3.16
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.53,
+   "price_american": -113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.53,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 12.5,
+     "price": -102
+    },
+    "betonlineag": {
+     "point": 13.0,
+     "price": -115
+    },
+    "betopenly": {
+     "point": 12.5,
+     "price": 107
+    },
+    "betrivers": {
+     "point": 12.5,
+     "price": -112
+    },
+    "betus": {
+     "point": 13.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 13.0,
+     "price": -115
+    },
+    "draftkings": {
+     "point": 12.5,
+     "price": -102
+    },
+    "fanatics": {
+     "point": 12.5,
+     "price": -105
+    },
+    "fanduel": {
+     "point": 12.5,
+     "price": -102
+    },
+    "kalshi": {
+     "point": 13.5,
+     "price": -113
+    },
+    "lowvig": {
+     "point": 13.0,
+     "price": -111
+    },
+    "novig": {
+     "point": 13.5,
+     "price": -111
+    },
+    "polymarket": {
+     "point": 12.5,
+     "price": 108
+    },
+    "prophetx": {
+     "point": 12.5,
+     "price": 104
+    },
+    "williamhill_us": {
+     "point": 13.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAMBSPREAD-26NOV16RICHVT-VT14"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Richmond",
+   "side_label": "NOT Virginia Tech wins by over 13.5 points",
+   "size_x": 4.5,
+   "start_source": "odds",
+   "start_utc": "2026-11-17T00:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "Richmond",
+    "Virginia Tech"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-16T21:20:32Z",
    "base_depth": 56875,
    "best_price": 0.5265,
@@ -38,6 +596,11 @@
     "open_interest_fp": 0.0,
     "volume_24h_fp": 0.0,
     "volume_fp": 0.0
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 5232.8,
+    "volume_24h_fp": 3978.94,
+    "volume_fp": 5232.8
    },
    "ex_stats_first": {
     "open_interest_fp": 3978.94,
@@ -208,6 +771,11 @@
     "open_interest_fp": 0.0,
     "volume_24h_fp": 0.0,
     "volume_fp": 2.74
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 18864.88,
+    "volume_24h_fp": 20698.3,
+    "volume_fp": 20701.04
    },
    "ex_stats_first": {
     "open_interest_fp": 18864.88,
@@ -384,9 +952,9 @@
     "volume_fp": 105.76
    },
    "ex_stats_close": {
-    "open_interest_fp": 6378.02,
-    "volume_24h_fp": 6812.42,
-    "volume_fp": 6947.55
+    "open_interest_fp": 6385.469999999999,
+    "volume_24h_fp": 6874.73,
+    "volume_fp": 6955.0
    },
    "ex_stats_first": {
     "open_interest_fp": 5450.23,
@@ -513,9 +1081,9 @@
     "volume_fp": 15.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 9778.7,
-    "volume_24h_fp": 9467.65,
-    "volume_fp": 10327.35
+    "open_interest_fp": 9804.68,
+    "volume_24h_fp": 10327.35,
+    "volume_fp": 10353.33
    },
    "ex_stats_first": {
     "open_interest_fp": 4430.04,
@@ -832,7 +1400,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 5474.51,
-    "volume_24h_fp": 5473.51,
+    "volume_24h_fp": 5474.51,
     "volume_fp": 5474.51
    },
    "ex_stats_first": {
@@ -1016,9 +1584,9 @@
     "volume_fp": 115.13
    },
    "ex_stats_close": {
-    "open_interest_fp": 9190.15,
-    "volume_24h_fp": 8172.700000000001,
-    "volume_fp": 9362.04
+    "open_interest_fp": 9274.15,
+    "volume_24h_fp": 8373.72,
+    "volume_fp": 9446.04
    },
    "ex_stats_first": {
     "open_interest_fp": 5739.1900000000005,
@@ -1172,9 +1740,9 @@
     "volume_fp": 2320.29
    },
    "ex_stats_close": {
-    "open_interest_fp": 16557.74,
-    "volume_24h_fp": 21059.07,
-    "volume_fp": 21464.74
+    "open_interest_fp": 16918.87,
+    "volume_24h_fp": 21464.74,
+    "volume_fp": 21977.59
    },
    "ex_stats_first": {
     "open_interest_fp": 9253.65,
@@ -1353,9 +1921,9 @@
     "volume_fp": 1.65
    },
    "ex_stats_close": {
-    "open_interest_fp": 10958.509999999998,
-    "volume_24h_fp": 9196.380000000001,
-    "volume_fp": 11440.57
+    "open_interest_fp": 11525.53,
+    "volume_24h_fp": 10749.83,
+    "volume_fp": 12007.59
    },
    "ex_stats_first": {
     "open_interest_fp": 1923.0,
@@ -1538,9 +2106,9 @@
     "volume_fp": 5.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 5177.16,
-    "volume_24h_fp": 5867.15,
-    "volume_fp": 5895.389999999999
+    "open_interest_fp": 7777.549999999999,
+    "volume_24h_fp": 5894.389999999999,
+    "volume_fp": 8495.78
    },
    "ex_stats_first": {
     "open_interest_fp": 987.24,
@@ -1715,9 +2283,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 7764.1900000000005,
+    "open_interest_fp": 9912.3,
     "volume_24h_fp": 7424.79,
-    "volume_fp": 7766.1900000000005
+    "volume_fp": 9914.3
    },
    "ex_stats_first": {
     "open_interest_fp": 600.8599999999999,
@@ -1899,7 +2467,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 15596.45,
-    "volume_24h_fp": 15656.01,
+    "volume_24h_fp": 15937.33,
     "volume_fp": 15941.45
    },
    "ex_stats_first": {
@@ -2087,9 +2655,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 4889.74,
-    "volume_24h_fp": 4879.4400000000005,
-    "volume_fp": 4994.75
+    "open_interest_fp": 5732.55,
+    "volume_24h_fp": 4975.38,
+    "volume_fp": 5837.5599999999995
    },
    "ex_stats_first": {
     "open_interest_fp": 114.28,
@@ -4932,6 +5500,7 @@
     "volume_fp": 879.45
    },
    "fade_price": 0.24,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-15T09:10:25Z",
    "game": "Medvedev vs Cobolli",
    "game_surge_books": [
@@ -4986,11 +5555,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXATPMATCH-26NOV16MEDCOB-MED"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
+   "settled_utc": "2026-11-16T21:30:26Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Medvedev",
@@ -5007,7 +5578,7 @@
     "Cobolli"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.29
   },
   {
    "alerted_utc": "2026-11-15T09:00:25Z",
