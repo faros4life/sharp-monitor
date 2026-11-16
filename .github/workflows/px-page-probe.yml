@@ -1,0 +1,21 @@
+name: px-page-probe
+# ONE-OFF, READ-ONLY (Peter, 16 Nov): how ProphetX get_trades pages and sorts. GET only, DATA key only,
+# no trading key, no Gmail, no OddsPapi. Log = counts, field names and dates only.
+on:
+  workflow_dispatch: {}
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Probe
+        env:
+          PROPHETX_ACCESS_KEY: ${{ secrets.PROPHETX_ACCESS_KEY }}
+          PROPHETX_SECRET_KEY: ${{ secrets.PROPHETX_SECRET_KEY }}
+        run: python -u px_page_probe.py
