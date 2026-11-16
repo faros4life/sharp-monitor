@@ -202,8 +202,45 @@ def main():
             promo_dup += 1          # same bet already present as a bot row: NOT added
             continue
         promoted.append(dict(b, source="bot", source_was=b.get("source"), source_by="registry order id"))
+    # 16 Nov: Polymarket US rows carry no order id, but a settled row's id embeds the venue market slug
+    # ("pm|Title [slug]|outcome|settled") and the registry stores the request it sent, marketSlug included. Linked
+    # ONLY when exactly one placed registry bot order and exactly one tracker row share the slug.
+    import re as _re
+    _d = lambda x: x if isinstance(x, dict) else {}
+    pm_orders = {}
+    for o in rr:
+        for lo in [_d(o.get("live_order")), _d(o.get("live_rest"))]:
+            slug = _d(lo.get("order")).get("marketSlug")
+            if lo.get("status") == "placed" and slug and str(lo.get("order_id") or "") in index:
+                pm_orders.setdefault(slug, set()).add(str(lo["order_id"]))
+    pm_rows = {}
+    for b in raw.values():
+        m = _re.search(r"\[([^\]]+)\]", str(b.get("id") or "")) if str(b.get("id") or "").startswith("pm|") else None
+        if m and not b.get("dup_of"):
+            pm_rows.setdefault(m.group(1), []).append(b)
+    pm_linked = pm_ambiguous = 0
+    have = {str(b.get("id")) for b in rows + promoted}
+    for slug, oids in pm_orders.items():
+        cand = pm_rows.get(slug) or []
+        if len(oids) != 1 or len(cand) != 1:
+            pm_ambiguous += 1 if cand else 0
+            continue
+        b = cand[0]
+        if str(b.get("id")) in have:
+            if not b.get("order_ref"):
+                for r_ in rows + promoted:
+                    if str(r_.get("id")) == str(b.get("id")):
+                        r_["order_ref"] = next(iter(oids))
+            continue
+        if (str(b.get("game")), str(b.get("bet")), str(b.get("book"))) in _bot_keys:
+            promo_dup += 1          # same bet already present as a bot row: NOT added
+            continue
+        promoted.append(dict(b, source="bot", source_was=b.get("source"), order_ref=next(iter(oids)),
+                             source_by="registry order market slug"))
+        pm_linked += 1
     rows = rows + promoted
-    print(f"registry-proven bot rows the tracker labelled otherwise: added {len(promoted)}, "
+    print(f"registry-proven bot rows the tracker labelled otherwise: added {len(promoted)} "
+          f"(of which Polymarket US by market slug {pm_linked}, ambiguous slugs not linked {pm_ambiguous}), "
           f"skipped as already present {promo_dup}")
     fills, nf, nok = read_novig_fills()
     trades, nt, pok = read_px_trades()

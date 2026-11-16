@@ -124,6 +124,11 @@ check("a historical bet discovered today is NOT a new fill", rs.project1([old], 
 check("and never qualifies", rs.project1([old], {"h": 0.01})["qualifying"] == 0)
 nt = {"id": "n", "result": "W", "ingest_checked": "2026-11-16T13:37:00Z"}
 check("a row with no bet time cannot qualify", rs.project1([nt], {})["first_seen_since_start"] == 0)
+pmo = [{"key": "r1|NCAAF|s+v|side|s", "et_day": "2026-11-14", "live_order": {"status": "placed", "order_id": "pm1", "book": "polymarket_us"}}]
+check("Polymarket US order with a linked venue row -> FILLED and in Project 2",
+      (lambda e: e["category"].startswith("FILLED") and e["in_project2"] is True)(rs.fill_exceptions(pmo, {}, set(), True, None, {"pm1"})[0]))
+check("Polymarket US order with no linked row stays UNKNOWN",
+      rs.fill_exceptions(pmo, {}, set(), True, None, set())[0]["category"].startswith("UNKNOWN"))
 if fails:
     print("FAILED", fails); sys.exit(1)
 print("test_report_sections: all passed")

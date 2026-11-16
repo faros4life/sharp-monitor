@@ -202,6 +202,8 @@ def fill_exceptions(orders, fills, venue_order_ids, px_complete, px_evidence=Non
                 cat = "UNKNOWN - ProphetX trade read capped at 100, cannot prove fill or no fill"
             elif "novig" in venue or "prophet" in venue:
                 cat = "NO FILL AT VENUE - complete venue read shows none (unfilled; not a position)"
+            elif any(i in (tracked_ids or set()) for i in ids):
+                cat = f"FILLED - a {venue} venue position row is linked to this order (Project 2)"
             else:
                 cat = f"UNKNOWN - no venue read for {venue}"
             tr = None
