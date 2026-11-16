@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 16, 8:20 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 9.
+Updated Mon Nov 16, 8:30 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 9.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -13,7 +13,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 15 10:20PM | NCAAB | Western Kentucky vs Tulsa | moneyline: Tulsa | kalshi | $29k | -300 |  |  | +0.0c |  | pending |
 | Nov 15 10:20PM | NCAAB | Tarleton St. vs Drake | moneyline: Drake | kalshi | $34k | -488 |  |  | -1.0c |  | pending |
 | Nov 15 10:20PM | NCAAB | Eastern Kentucky vs Kent St. | moneyline: Kent St. | kalshi | $32k | -488 |  |  | +1.0c |  | pending |
-| Nov 15 10:20PM | NCAAB | Abilene Christian vs Missouri St. | moneyline: Missouri St. | kalshi | $28k | -300 |  |  | -1.0c |  | pending |
+| Nov 15 10:20PM | NCAAB | Abilene Christian vs Missouri St. | moneyline: Missouri St. | kalshi | $28k | -300 |  |  | -5.0c |  | pending |
 | Nov 15 5:10PM | NCAAB | Texas St. vs UTSA: Point Total | total: NOT Over 147.5 points | kalshi | $37k | -104 | ✅ novig | ✅ | +3.0c | yes | L |
 | Nov 15 4:20PM | NCAAB | Western Michigan vs Southern Indiana: Point Total | total: Over 141.5 points | kalshi | $38k | +108 |  | ❌ | +0.0c |  | L |
 | Nov 15 4:10PM | NCAAB | Coastal Carolina vs Wisconsin: Point Total | total: NOT Over 149.5 points | kalshi | $33k | -113 |  |  | +0.0c | yes | L |
