@@ -379,7 +379,10 @@ def held_from_market(mk, vdir, claim_team, claim_line):
             hl = None
     try:
         if hl is None or claim_line is None or abs(hl - float(claim_line)) > 1e-9:
-            return None, "the held side's line does not equal the claim's line"
+            rel = ("held line unreadable" if hl is None else "claim line absent" if claim_line is None else
+                   "same size, opposite sign" if abs(abs(hl) - abs(float(claim_line))) < 1e-9 else "different size")
+            src = "from the side's label" if mm else "from the market line"
+            return None, f"the held side's line does not equal the claim's line ({rel}; held line {src})"
     except (TypeError, ValueError):
         return None, "line unreadable"
     return f"{claim_team} {hl:+g}", "venue market definition + venue direction + registry claim agree"
