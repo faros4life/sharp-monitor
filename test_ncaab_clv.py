@@ -84,5 +84,44 @@ for n in (3, 5):
     check(f"{n} qualifying rows -> refused, nothing reopened (fail closed)",
           cl.ncaab_reopen(st, NOW).startswith("refused") and st == before)
 
+# ---- the one-time NCAAB fixture recovery (max two billable calls, once)
+CALLS = []
+
+
+def fake_api(path, billable, apikey=None, **params):
+    CALLS.append(path)
+    if path == "/tournaments":
+        return [{"tournamentName": "NCAA Division I", "categorySlug": "usa", "tournamentId": 777, "upcomingFixtures": 9}]
+    return [{"fixtureId": "fx1", "startTime": "2026-11-14T00:00:00.000Z", "statusId": 3,
+             "participant1Name": "Duke Blue Devils", "participant2Name": "North Carolina Tar Heels"}]
+
+
+cl.api = fake_api
+LO, HI = datetime(2026, 11, 12, tzinfo=timezone.utc), datetime(2026, 11, 15, tzinfo=timezone.utc)
+st = {"bets": {}}
+CALLS.clear()
+got = cl.ncaab_fx_once(st, NOW, "NCAAB", LO, HI, set())
+check("no stored tournament id: at most two billable calls (tournament + fixtures)",
+      CALLS == ["/tournaments", "/fixtures"] and st["ncaab_fx_once"]["billable"] == 2, )
+check("the fixture is persisted in the ledger's own cache", "fx1" in st.get("fixtures", {}) and st.get("ncaab_tid") == 777)
+CALLS.clear()
+check("never repeated", cl.ncaab_fx_once(st, NOW, "NCAAB", LO, HI, set()) == "already used" and CALLS == [])
+st = {"bets": {}, "ncaab_tid": 777}
+CALLS.clear()
+cl.ncaab_fx_once(st, NOW, "NCAAB", LO, HI, set())
+check("stored tournament id: exactly one call", CALLS == ["/fixtures"] and st["ncaab_fx_once"]["billable"] == 1)
+_cap = cl.CAP
+cl.CAP = cl.used_this_period({"bets": {}}, NOW) + 1          # room for one call only
+st = {"bets": {}}
+CALLS.clear()
+r = cl.ncaab_fx_once(st, NOW, "NCAAB", LO, HI, set())
+check("budget short of the calls it may need -> refused, nothing spent", r.startswith("refused") and CALLS == []
+      and "ncaab_fx_once" not in st)
+cl.CAP = _cap
+src = open("clv_ledger.py").read()
+check("only the four reopened rows can queue the lookup",
+      'if lg in CACHE_ONLY_FX and not (rec.get("ncaab_reopened") and not st.get("ncaab_fx_once")):' in src)
+check("CAP is unchanged", cl.CAP == int(__import__("os").environ.get("CLV_MONTH_CAP", "") or "1000"))
+
 print(f"\n{'ALL PASS' if not BAD else str(len(BAD)) + ' FAILED'}")
 sys.exit(1 if BAD else 0)

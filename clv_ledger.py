@@ -1275,6 +1275,27 @@ def ncaab_reopen(st, now):
     return f"reopened {len(hit)}"
 
 
+def ncaab_fx_once(st, now, lg, lo, hi, fetched):
+    """Peter, Nov 16 14:08: at most TWO billable calls, ONCE, to recover fixtures for the four
+    reopened NCAAB bot rows - a tournament lookup only if no id is stored, plus one /fixtures.
+    Refuses without spending unless the month's credit gate has room for every call it may make.
+    The once-flag is set as soon as any call has billed, so no later run can repeat it."""
+    if st.get("ncaab_fx_once"):
+        return "already used"
+    n = (0 if st.get("ncaab_tid") else 1) + 1
+    used0 = used_this_period(st, now)
+    if not can_bill(st, now, n):
+        return f"refused: budget would not cover {n} call(s) (used {used0} of {CAP})"
+    ok = refresh_fixtures(st, now, lg, (lo - timedelta(days=1)).astimezone(ET), (hi + timedelta(days=1)).astimezone(ET))
+    spent = used_this_period(st, now) - used0
+    if spent:
+        st["ncaab_fx_once"] = {"at": iso(now), "billable": spent, "fixtures_ok": bool(ok)}
+    if ok:
+        fetched.add(lg)
+    n_fx = sum(1 for f in (st.get("fixtures") or {}).values() if f.get("lg") == lg)
+    return f"billable {spent} (tid {'stored' if n == 1 else 'looked up'}), fixtures call {'ok' if ok else 'not made/failed'}, {lg} fixtures cached {n_fx}"
+
+
 # ------------------------------------------------------------------ main
 # Nov 4 (Peter 14:56 "yes"): Pinnacle's LIMIT at the bet's placed time, on every scored fill (read-only, from the same history
 # the close comes from). LOW = at or below the P-limit test's frozen FIT median for that league x market (Item 56, Nov 4);
@@ -1509,8 +1530,8 @@ def main():
             continue
         if rec.get("fixture") or find_fixture(st, s):
             continue
-        if lg in CACHE_ONLY_FX:
-            continue          # never a paid fixture lookup for a cache-only league
+        if lg in CACHE_ONLY_FX and not (rec.get("ncaab_reopened") and not st.get("ncaab_fx_once")):
+            continue          # cache-only league: the ONE approved lookup is for the four reopened rows only
         d0 = max(tp(s.get("game_start") or s.get("decided_utc")) or now, now - timedelta(days=FETCH_DAYS))   # keep the call small
         lo, hi = need.get(lg, (d0, d0))
         need[lg] = (min(lo, d0), max(hi, d0))
@@ -1519,6 +1540,10 @@ def main():
             beyond[lg] = beyond.get(lg, 0) + 1
     fetched = set()        # leagues whose fixtures were ACTUALLY re-read from OddsPapi this run
     for lg, (lo, hi) in need.items():
+        if lg in CACHE_ONLY_FX:
+            print(f"CLV ledger NCAAB one-time fixture recovery (counts only): {ncaab_fx_once(st, now, lg, lo, hi, fetched)}",
+                  flush=True)
+            continue
         if lg in beyond:
             FX_LOG.append(f"{lg}: {beyond[lg]} pending game(s) start after the newest cached fixture "
                           f"({newest.get(lg) and newest[lg].astimezone(ET).strftime('%Y-%m-%d %H:%M') or 'none cached'})")
