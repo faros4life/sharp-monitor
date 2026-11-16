@@ -354,6 +354,31 @@ def score_line(g):
 
 
 # ------------------------------------------------------------------ book reads (read-only)
+def px_all_trades(call, max_pages=30):
+    """(trades, pages, complete). ProphetX /v4/mm/get_trades returns 100 rows and a data.next_cursor (probe 16 Nov,
+    px-page-probe on bc72aad: page 2 via the cursor returns another 100). The tracker read only page 1, so fills beyond
+    it never became rows - a Nov 13 bot fill shown by ProphetX's matching detail had no tracker row. Follows the cursor
+    to the end, keeps each trade id once. GET only; `call` is the existing client (px_live._call)."""
+    import urllib.parse as up
+    out, seen, cur, pages, seen_cur = [], set(), None, 0, set()
+    while pages < max_pages:
+        d = call("/v4/mm/get_trades" + ("?" + up.urlencode({"next_cursor": cur}) if cur else "")) or {}
+        pages += 1
+        data = d.get("data") if isinstance(d.get("data"), dict) else {}
+        rows = data.get("trades") or []
+        for t in rows:
+            k = str((t or {}).get("id") or "")
+            if k and k in seen:
+                continue
+            seen.add(k)
+            out.append(t)
+        cur = data.get("next_cursor") or None
+        if not cur or not rows or cur in seen_cur:
+            break
+        seen_cur.add(cur)
+    return out, pages, cur is None
+
+
 def read_prophetx():
     """(open bets, settled bets) from ProphetX trades (trading key)."""
     import px_live
@@ -368,7 +393,8 @@ def read_prophetx():
     except Exception:
         pass
     op, se = [], []
-    for t in px_live.trades():
+    _trades, _pages, _complete = px_all_trades(px_live._call)
+    for t in _trades:
         st = str(t.get("winning_status") or "").lower()
         stake = px_live.stake_of(t)
         pr = int(t.get("price") or 0)
@@ -408,7 +434,8 @@ def read_prophetx():
             se.append({**b, "result": "P", "profit": 0.0, "settled": iso(when), "site": True})
         else:
             op.append(b)
-    LOG["prophetx"] = f"ok {len(op)} open {len(se)} settled"
+    LOG["prophetx"] = (f"ok {len(op)} open {len(se)} settled (pages {_pages}"
+                       f"{'' if _complete else ', TRUNCATED at the page cap'})")
     return op, se
 
 
