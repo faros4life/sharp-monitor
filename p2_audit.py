@@ -190,6 +190,21 @@ def main():
     no_lane = src_stats.get("rows_no_provable_lane", 0)
     print("claim sources (order ids, deduplicated):", {k: v for k, v in src_stats.items() if k != "rows_no_provable_lane"})
 
+    # 16 Nov: a venue row whose order id IS a placed registry bot order is a bot fill by registry evidence, whatever
+    # the tracker's own source label says. Paging the tracker's ProphetX read surfaced such a fill labelled manual.
+    # Promoted rows are counted and checked against existing bot rows so one bet can never be counted twice.
+    _bot_keys = {(str(b.get("game")), str(b.get("bet")), str(b.get("book"))) for b in rows}
+    promoted, promo_dup = [], 0
+    for b in raw.values():
+        if b.get("dup_of") or (b.get("source") or "") == "bot" or str(b.get("order_ref") or "") not in index:
+            continue
+        if (str(b.get("game")), str(b.get("bet")), str(b.get("book"))) in _bot_keys:
+            promo_dup += 1          # same bet already present as a bot row: NOT added
+            continue
+        promoted.append(dict(b, source="bot", source_was=b.get("source"), source_by="registry order id"))
+    rows = rows + promoted
+    print(f"registry-proven bot rows the tracker labelled otherwise: added {len(promoted)}, "
+          f"skipped as already present {promo_dup}")
     fills, nf, nok = read_novig_fills()
     trades, nt, pok = read_px_trades()
     links = link_index(fills, trades, {"nv": nok, "px": pok})
