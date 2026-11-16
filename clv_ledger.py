@@ -1287,6 +1287,8 @@ def ncaab_fx_once(st, now, lg, lo, hi, fetched):
     The once-flag is set as soon as any call has billed, so no later run can repeat it."""
     if st.get("ncaab_fx_once"):
         return "already used"
+    if os.path.exists("oddspapi/fixtures_ncaab.json"):   # the isolated ncaab-fx job spent the one call
+        return "already used (isolated recovery store present)"
     if not NCAAB_VERIFIED_TID:
         return "blocked: no verified NCAA Division I men's tournament id - no paid call made"
     if st.get("ncaab_tid") not in (None, NCAAB_VERIFIED_TID):

@@ -43,7 +43,7 @@ import tracker_build as tb
 #   oddspapi/fixtures.json           written by the plimit-logger workflow (x2_tag / slow_hr)
 #   oddspapi/fixtures_recovered.json written ONLY by clv_recover (the liquidity CLV recovery), so
 #                                    recovery never contends with that workflow's own commits
-ALT_PATHS = ["oddspapi/fixtures.json", "oddspapi/fixtures_recovered.json"]
+ALT_PATHS = ["oddspapi/fixtures.json", "oddspapi/fixtures_recovered.json", "oddspapi/fixtures_ncaab.json"]   # Nov 16: one-time NCAAB recovery
 
 
 def alt_fixtures():

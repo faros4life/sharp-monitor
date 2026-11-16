@@ -129,5 +129,17 @@ check("only the four reopened rows can queue the lookup",
       'if lg in CACHE_ONLY_FX and not (rec.get("ncaab_reopened") and not st.get("ncaab_fx_once")):' in src)
 check("CAP is unchanged", cl.CAP == int(__import__("os").environ.get("CLV_MONTH_CAP", "") or "1000"))
 
+# ---- the isolated recovery store makes the ledger's own lookup a permanent no-op
+import os as _os
+_p = "oddspapi/fixtures_ncaab.json"
+if not _os.path.exists(_p):
+    open(_p, "w").write("{}")
+    CALLS.clear()
+    r = cl.ncaab_fx_once({"bets": {}}, NOW, "NCAAB", LO, HI, set())
+    _os.remove(_p)
+    check("isolated store present -> the ledger never makes its own NCAAB call", r.startswith("already used") and CALLS == [])
+import fixture_match as _fxm
+check("the ledger reads the NCAAB store as an alternate fixture source", _p in _fxm.ALT_PATHS)
+
 print(f"\n{'ALL PASS' if not BAD else str(len(BAD)) + ' FAILED'}")
 sys.exit(1 if BAD else 0)
