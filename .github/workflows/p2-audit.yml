@@ -34,14 +34,16 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           EV: ${{ github.event_name }}
           UP: ${{ github.event.workflow_run.conclusion }}
+          ACTOR: ${{ github.triggering_actor }}
         run: |
-          if [ "$EV" = "workflow_dispatch" ]; then echo "go=1" >> "$GITHUB_OUTPUT"; echo "manual: runs"; exit 0; fi
+          # tick.py dispatches as github-actions[bot]: that is the AUTOMATIC daily path, not a person
+          if [ "$EV" = "workflow_dispatch" ] && [ "$ACTOR" != "github-actions[bot]" ]; then echo "go=1" >> "$GITHUB_OUTPUT"; echo "manual: runs"; exit 0; fi
           if [ "$EV" = "workflow_run" ] && [ "$UP" != "success" ]; then echo "go=0" >> "$GITHUB_OUTPUT"; echo "upstream not successful: skip"; exit 0; fi
           today=$(TZ=America/New_York date +%F)
           # ET midnight in UTC, so "already sent today" is judged on the ET day the report belongs to
           since=$(date -u -d "TZ=\"America/New_York\" $today 00:00" +%Y-%m-%dT%H:%M:%SZ)
           n=$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/p2-audit.yml/runs?status=success&created=>=${since}&per_page=50" \
-                --jq "[.workflow_runs[] | select(.id != ${GITHUB_RUN_ID} and .event != \"workflow_dispatch\")] | length")
+                --jq "[.workflow_runs[] | select(.id != ${GITHUB_RUN_ID} and (.event != \"workflow_dispatch\" or .triggering_actor.login == \"github-actions[bot]\"))] | length")
           if [ "${n:-0}" -gt 0 ]; then echo "go=0" >> "$GITHUB_OUTPUT"; echo "automatic report already delivered for $today: skip"
           else echo "go=1" >> "$GITHUB_OUTPUT"; echo "first automatic report for $today: runs"; fi
   run:

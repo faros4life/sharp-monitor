@@ -60,6 +60,14 @@ JOBS = {   # workflow file: minimum minutes between runs (matches each workflow'
     # plays each side): the reminder fires, reads a stale email, and reschedules forever. 720 min
     # matches the twice-daily cadence the check-in expects. Paper, read-only, history-cache only.
     "plimit-level.yml": 720,
+    # Nov 16 (Peter approved the scheduling fix): none of these three fired on GitHub's cron on 15 or 16 Nov,
+    # and a workflow_run chain cannot fire off clv-ledger because tick starts it with GITHUB_TOKEN. All three
+    # are reporting-only. The ledger is append-only (extra runs harmless; must run well inside the registry's
+    # 4-day prune). p2-audit's gate keeps automatic Telegram reports to one per ET day; the dashboard's
+    # committed marker keeps its email to one per ET day.
+    "reporting-ledger.yml": 360,
+    "p2-audit.yml": 1440,
+    "clv-dashboard.yml": 1440,
 }
 BUSY = {"queued", "in_progress", "waiting", "pending", "requested"}
 
