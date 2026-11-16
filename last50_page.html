@@ -52,7 +52,7 @@ ul{margin:6px 0 0;padding-left:18px;color:var(--mute);font-size:13px}
 <h1>Last 50 plays per test</h1>
 <p class="sub" id="asof"></p>
 <section class="live" id="live"><h2>Live bot plays (display list)</h2><p class="small">This box is the tracker's display list. It is not the graded record: lane grading uses the reporting ledger (bot order rows, confirmed fills) and is in the LIVE rows of the table and the daily report.</p><div id="livebody"></div></section>
-<div class="note">Live first (confirmed fills only), then the top 5 paper tests, then the rest; paper and live are never pooled. Flat 1u at the fill (live) or logged (paper) price, no dollars. CERTIFIED CLV means a verified Pinnacle no-vig close, same line, after fees; coverage is shown. Corrected 16 Nov 2026: an earlier version showed provisional closes (live feed reads 5-30 minutes before start, and the alerting venue's own close) under the CLV heading. Those are now in a separate "Provisional, NOT certified" column and never count toward a verdict or confidence grade. The superseded page is kept as a separate snapshot. Confidence: HIGH = 50 plays and CLV on 80%+, MEDIUM = 25+ plays and CLV on 50%+, else LOW. "Pass" needs both halves positive on units and CLV, with the units interval above zero.</div>
+<div class="note">Live first (confirmed fills only), then the top 5 paper tests, then the rest; paper and live are never pooled. Flat 1u at the fill (live) or logged (paper) price, no dollars. CERTIFIED CLV means a verified Pinnacle no-vig close, same line, after fees; coverage is shown. Corrected 16 Nov 2026: an earlier version showed provisional closes (live feed reads 5-30 minutes before start, and the alerting venue's own close) under the CLV heading. Coverage is counted against eligible US-executable plays (CLV_STANDARD.md s7, 14 Nov), with whole-population coverage shown beside it. Provisional values are in a separate "Provisional, NOT certified" column and never count toward a verdict or confidence grade. The superseded page is kept as a separate snapshot. Confidence: HIGH = 50 plays and CLV on 80%+, MEDIUM = 25+ plays and CLV on 50%+, else LOW. "Pass" needs both halves positive on units and CLV, with the units interval above zero.</div>
 <div class="wrap"><table id="sum"></table></div>
 <h2>Play by play (newest first)</h2>
 <div id="detail"></div>
@@ -82,7 +82,7 @@ D.tests.forEach(t=>{
  [t.h1,t.h2].forEach(h=>tr.append(el("td",cls(h.units),h.w+"-"+h.l+" "+u(h.units)+" ("+pc(h.roi)+")")));
  tr.append(el("td",cls(t.all.units),t.all.w+"-"+t.all.l+" "+u(t.all.units)));
  tr.append(el("td",cls(t.all.roi),pc(t.all.roi)));
- tr.append(el("td",cls(t.all.clv),t.all.clv==null?"n/a (0/"+t.n+")":pc(t.all.clv,2)+" ("+t.all.clv_n+"/"+t.n+")"+(t.all.clv_pos_pct==null?"":", beat close "+Math.round(t.all.clv_pos_pct)+"%")+(t.all.clv_ci?", CI "+pc(t.all.clv_ci[0],2)+" to "+pc(t.all.clv_ci[1],2):"")));
+ tr.append(el("td",cls(t.all.clv),t.all.clv==null?"n/a (0/"+t.n+")":pc(t.all.clv,2)+" ("+(t.all.exec_n!=null&&t.all.exec_n!=t.n?t.all.clv_n+"/"+t.all.exec_n+" US-executable; "+t.all.clv_n+"/"+t.n+" all":t.all.clv_n+"/"+t.n)+")"+(t.all.clv_pos_pct==null?"":", beat close "+Math.round(t.all.clv_pos_pct)+"%")+(t.all.clv_ci?", CI "+pc(t.all.clv_ci[0],2)+" to "+pc(t.all.clv_ci[1],2):"")));
  tr.append(el("td","muted",(t.all.pclv==null)?"-":pc(t.all.pclv,2)+" ("+t.all.pclv_n+"/"+t.n+")"));
  const v=el("td");v.append(el("span","pill "+vcls(t.verdict),t.verdict));tr.append(v);
  tr.append(el("td","",t.conf||""));
@@ -100,7 +100,7 @@ D.tests.filter(t=>t.n).forEach(t=>{
   const b=el("div","h");b.append(el("b","",l));
   b.append(el("span","",h.w+"-"+h.l+"  "+u(h.units)));
   b.append(el("span","","ROI "+pc(h.roi)));
-  b.append(el("span","","Certified CLV "+(h.clv==null?"n/a":pc(h.clv,2)+" ("+h.clv_n+" rows"+(h.clv_pos_pct==null?"":", beat close "+Math.round(h.clv_pos_pct)+"%")+")")+(h.pclv==null?"":" | provisional, NOT certified "+pc(h.pclv,2)+" ("+h.pclv_n+")")));
+  b.append(el("span","",(h.exec_n!=null&&h.exec_n!=h.n?"US-executable subset "+h.exec_w+"-"+h.exec_l+" "+(h.exec_units>=0?"+":"")+h.exec_units.toFixed(2)+"u ("+h.exec_n+" plays) | ":"")+"Certified CLV "+(h.clv==null?"n/a":pc(h.clv,2)+" ("+h.clv_n+" rows"+(h.clv_pos_pct==null?"":", beat close "+Math.round(h.clv_pos_pct)+"%")+")")+(h.pclv==null?"":" | provisional, NOT certified "+pc(h.pclv,2)+" ("+h.pclv_n+")")));
   hv.append(b)});
  i.append(hv);
  if(t.ci)i.append(el("p","small","Per-play units, 95% interval: "+t.ci[0].toFixed(2)+" to "+t.ci[1].toFixed(2)+". Wide intervals mean 50 plays cannot separate skill from luck."));

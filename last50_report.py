@@ -95,6 +95,9 @@ def half_stats(xs):
     us = [unit_of(r["am"], r["res"]) for r in graded]
     us = [u for u in us if u is not None]
     clvs = [r["clv"] for r in xs if r.get("clv") is not None]
+    ex = [r for r in xs if r.get("us_exec", True)]          # s7 operational population (all rows when unmarked)
+    ex_g = [r for r in ex if r["res"] in ("W", "L")]
+    ex_u = [u for u in (unit_of(r["am"], r["res"]) for r in ex_g) if u is not None]
     pcl = [r["pclv"] for r in xs if r.get("pclv") is not None]
     return {"n": len(xs), "w": sum(1 for r in xs if r["res"] == "W"),
             "l": sum(1 for r in xs if r["res"] == "L"), "units": sum(us),
@@ -102,6 +105,8 @@ def half_stats(xs):
             "clv": st.mean(clvs) if clvs else None, "clv_n": len(clvs), "clv_ci": ci_mean(clvs),
             "clv_pos_pct": (100 * sum(1 for c in clvs if c > 0) / len(clvs)) if clvs else None,
             "pclv": st.mean(pcl) if pcl else None, "pclv_n": len(pcl),
+            "exec_n": len(ex), "exec_w": sum(1 for r in ex if r["res"] == "W"), "exec_l": sum(1 for r in ex if r["res"] == "L"),
+            "exec_units": sum(ex_u), "exec_roi": (100 * sum(ex_u) / len(ex_u)) if ex_u else None,
             "pclv_src": next((r.get("pclv_src") for r in xs if r.get("pclv") is not None), None)}
 
 
@@ -109,6 +114,9 @@ def fmt(h):
     roi = "n/a" if h["roi"] is None else f"{h['roi']:+.1f}%"
     clv = "n/a" if h["clv"] is None else (f"{h['clv']:+.2f}% (n {h['clv_n']}, beat close {h['clv_pos_pct']:.0f}%"
                                           + (f", 95% CI [{h['clv_ci'][0]:+.2f}, {h['clv_ci'][1]:+.2f}]" if h.get("clv_ci") else "") + ")")
+    if h.get("exec_n") is not None and h["exec_n"] != h["n"]:
+        clv += (f" | coverage {h['clv_n']}/{h['exec_n']} US-executable, {h['clv_n']}/{h['n']} whole population"
+                f" | executable subset {h['exec_w']}-{h['exec_l']} {h['exec_units']:+.2f}u")
     pv = "" if not h.get("pclv_n") else f" | provisional, NOT certified: {h['pclv']:+.2f}% (n {h['pclv_n']})"
     return f"n {h['n']:2d} | {h['w']}-{h['l']} | {h['units']:+6.2f}u | ROI {roi} | CERTIFIED CLV {clv}{pv}"
 
@@ -119,15 +127,16 @@ def verdict(w, h1, h2, ho):
     ci = ci_mean(ho["us"])
     if ci and ci[1] < 0:
         return "CLEAR FAIL"
-    if ho["clv_n"] < 0.8 * ho["n"]:
-        # 16 Nov: without certified CLV on 80%+ of the window there is nothing to qualify on
-        return f"INSUFFICIENT EVIDENCE (certified CLV {ho['clv_n']}/{ho['n']})"
+    den = ho.get("exec_n", ho["n"])   # CLV_STANDARD.md s7 (14 Nov): eligible US-executable rows are the denominator
+    if ho["clv_n"] < 0.8 * den:
+        # without certified CLV on 80%+ of the executable window there is nothing to qualify on
+        return f"INSUFFICIENT EVIDENCE (certified CLV {ho['clv_n']}/{den} executable, {ho['clv_n']}/{ho['n']} all)"
     cc = ho.get("clv_ci")
     if cc and cc[1] < 0:
         # SCORECARD.md: CLEAR FAIL also on "a precise and representative certified-CLV CI excluding zero negative"
-        # (representative = certified on 80%+ of the window, checked above)
+        # (representative = certified on 80%+ of the EXECUTABLE window, s7, checked above)
         return f"CLEAR FAIL (certified CLV 95% CI {cc[0]:+.2f} to {cc[1]:+.2f}, below zero)"
-    clv_ok = all(h["clv"] is not None and h["clv"] > 0 and h["clv_n"] >= 0.8 * h["n"] for h in (h1, h2))
+    clv_ok = all(h["clv"] is not None and h["clv"] > 0 and h["clv_n"] >= 0.8 * h.get("exec_n", h["n"]) for h in (h1, h2))
     if ci and ci[0] > 0 and h1["units"] > 0 and h2["units"] > 0 and clv_ok:
         return "POTENTIAL PASS"
     return "CONTINUE TESTING"
@@ -153,9 +162,9 @@ def report(name, rows, note="", frozen=False):
     if ci:
         say(f"  per-play units 95% CI [{ci[0]:+.2f}, {ci[1]:+.2f}] (n {len(ho['us'])})")
     v = verdict(w, h1, h2, ho)
-    full = ho["clv"] is not None and ho["clv_n"] >= 0.8 * ho["n"]
+    full = ho["clv"] is not None and ho["clv_n"] >= 0.8 * ho.get("exec_n", ho["n"])
     status = "ANSWERED" if len(w) >= N and full else "PARTIAL"
-    say(f"  STATUS {status} | VERDICT {v} | CONFIDENCE {confidence(ho['n'], ho['clv_n'])}")
+    say(f"  STATUS {status} | VERDICT {v} | CONFIDENCE {confidence(ho['n'], ho['clv_n'], ho.get('exec_n'))}")
     if ho["clv"] is None:
         say("  CLV: n/a - no standard (Pinnacle same-line, after-fee) close on these rows; cannot pass")
     elif ho["clv_n"] < ho["n"]:
@@ -183,10 +192,19 @@ def liq_certified(rows, path="liquidity/clv_certified.json"):
         cert = (json.load(open(path)) or {}).get("certified") or {}
     except (OSError, ValueError):
         cert = {}
+    try:
+        rej = (json.load(open(path)) or {}).get("rejected") or {}
+    except (OSError, ValueError):
+        rej = {}
     out = []
     for r in rows:
         c = cert.get(r.get("aid") or "")
-        out.append(dict(r, clv=c["clv_pct"]) if c and c.get("clv_pct") is not None else dict(r))
+        o = dict(r, clv=c["clv_pct"]) if c and c.get("clv_pct") is not None else dict(r)
+        # CLV_STANDARD.md s7: a venue that cannot be bet from the US is outside the operational denominator.
+        # ONLY that exact class; a missing close on an executable venue stays in as a genuine gap.
+        why = str(rej.get(r.get("aid") or "") or "")
+        o["us_exec"] = not (why.startswith("VENUE_NOT_PRICEABLE") and "not tradeable from the US" in why)
+        out.append(o)
     return out
 
 
@@ -345,9 +363,11 @@ def slowhr_rows(dog_band=False):
     return rows
 
 
-def confidence(n, clv_n):
-    """Stated rule: HIGH = 50 plays and certified CLV on 80%+; MEDIUM = 25+ plays and CLV on 50%+; else LOW."""
-    cov = (clv_n / n) if n else 0
+def confidence(n, clv_n, exec_n=None):
+    """Stated rule: HIGH = 50 plays and certified CLV on 80%+; MEDIUM = 25+ plays and CLV on 50%+; else LOW.
+    Coverage is against eligible US-executable rows (CLV_STANDARD.md s7) when the caller knows them."""
+    den = exec_n if exec_n is not None else n
+    cov = (clv_n / den) if den else 0
     if n >= 50 and cov >= 0.8:
         return "HIGH"
     if n >= 25 and cov >= 0.5:

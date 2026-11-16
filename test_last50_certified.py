@@ -49,6 +49,34 @@ check("representative certified CLV with a CI below zero -> CLEAR FAIL", L.verdi
 thin = [dict(r, clv=None) if i >= 39 else r for i, r in enumerate(neg)]
 ht = L.half_stats(thin)
 check("the same negative CLV on only 39/50 -> INSUFFICIENT EVIDENCE, not a fail", L.verdict(thin, ht, ht, ht).startswith("INSUFFICIENT"))
+# --- CLV_STANDARD.md s7 denominator consistency (16 Nov) ---
+src7 = open("last50_report.py").read()
+check("every 80% coverage test uses the executable denominator (no bare 0.8 * n left)",
+      "0.8 * ho[\"n\"]" not in src7 and "0.8 * h[\"n\"]" not in src7 and src7.count("exec_n") >= 6)
+bot = [dict(S[0], res="W" if i % 2 else "L", clv=-2.0 - (i % 4) * 0.3, us_exec=True) for i in range(39)]
+bot += [dict(S[0], res="W", clv=None, us_exec=True)]                       # 1 executable, history missing
+bot += [dict(S[0], res="L", clv=None, us_exec=False) for _ in range(10)]   # 10 Polymarket Global
+hb = L.half_stats(bot)
+check("s7: coverage is 39/40 executable, whole population 39/50", hb["clv_n"] == 39 and hb["exec_n"] == 40 and hb["n"] == 50)
+check("s7: a negative certified CI on 39/40 executable -> CLEAR FAIL", L.verdict(bot, hb, hb, hb).startswith("CLEAR FAIL"))
+check("s7: confidence uses the same denominator", L.confidence(hb["n"], hb["clv_n"], hb["exec_n"]) == "HIGH"
+      and L.confidence(hb["n"], hb["clv_n"]) == "MEDIUM")
+check("the missing-history play is NOT assumed: it stays uncertified and inside the denominator",
+      sum(1 for r in bot if r["clv"] is None and r["us_exec"]) == 1 and hb["exec_n"] == 40)
+check("executable subset W-L excludes the non-executable plays",
+      hb["exec_w"] + hb["exec_l"] == 40 and hb["w"] + hb["l"] == 50)
+check("both coverage figures are printed when they differ", "39/40 US-executable" in L.fmt(hb) and "39/50 whole population" in L.fmt(hb))
+plain = L.half_stats([dict(r) for r in S])
+check("a test with no executability marks keeps n as its denominator", plain["exec_n"] == plain["n"])
+import json as _j, tempfile as _tf, os as _os
+tf = _tf.NamedTemporaryFile("w", suffix=".json", delete=False)
+_j.dump({"certified": {}, "rejected": {"a|1": "VENUE_NOT_PRICEABLE: polymarket is not tradeable from the US (x)",
+                                       "b|1": "MISSING_HISTORY: fixture f has no cached Pinnacle history",
+                                       "c|1": "VENUE_NOT_PRICEABLE: venue not in the venue registry"}}, tf); tf.close()
+mk = {r["aid"]: r for r in L.liq_certified([{"aid": a, "clv": None, "pclv": 1.0, "res": "W", "am": -110} for a in ("a|1", "b|1", "c|1")], tf.name)}
+_os.unlink(tf.name)
+check("only 'not tradeable from the US' leaves the denominator", mk["a|1"]["us_exec"] is False and mk["b|1"]["us_exec"] is True
+      and mk["c|1"]["us_exec"] is True)
 if fails:
     print("FAILED", fails); sys.exit(1)
 print("test_last50_certified: all passed")
