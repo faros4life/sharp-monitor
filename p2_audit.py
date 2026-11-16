@@ -218,6 +218,13 @@ def main():
         m = _re.search(r"\[([^\]]+)\]", str(b.get("id") or "")) if str(b.get("id") or "").startswith("pm|") else None
         if m and not b.get("dup_of"):
             pm_rows.setdefault(m.group(1), []).append(b)
+    _pm_all = [o for o in rr for lo in [_d(o.get("live_order")), _d(o.get("live_rest"))]
+               if lo.get("status") == "placed" and "polymarket" in str(lo.get("book") or o.get("fill_book") or "").lower()]
+    print(f"polymarket link diag: placed PM orders {len(_pm_all)}, with marketSlug in the stored request {sum(len(v) for v in pm_orders.values())}, "
+          f"tracker pm rows with a slug in the id {sum(len(v) for v in pm_rows.values())} "
+          f"(pm rows total {sum(1 for b in raw.values() if str(b.get('id') or '').startswith('pm|'))}), "
+          f"slugs on both sides {len(set(pm_orders) & set(pm_rows))}, "
+          f"stored request keys {sorted({k for o in _pm_all for k in _d(_d(o.get('live_order')).get('order'))})[:12]}")
     pm_linked = pm_ambiguous = 0
     have = {str(b.get("id")) for b in rows + promoted}
     for slug, oids in pm_orders.items():
