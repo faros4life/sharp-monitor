@@ -45,14 +45,14 @@ ul{margin:6px 0 0;padding-left:18px;color:var(--mute);font-size:13px}
 .play{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:8px 0;border-top:1px solid var(--line)}
 .play .sc{grid-column:1/-1;font-size:13px;color:var(--mute)}.tag{font-size:11px;font-weight:700;padding:1px 6px;border-radius:99px;background:var(--pill)}
 .err{color:var(--neg);font-size:13px;margin-top:6px}
-</style>
+.muted{color:#8a8a8a;font-style:italic}</style>
 </head>
 <body>
 <main>
 <h1>Last 50 plays per test</h1>
 <p class="sub" id="asof"></p>
 <section class="live" id="live"><h2>Live bot plays (display list)</h2><p class="small">This box is the tracker's display list. It is not the graded record: lane grading uses the reporting ledger (bot order rows, confirmed fills) and is in the LIVE rows of the table and the daily report.</p><div id="livebody"></div></section>
-<div class="note">Live first (confirmed fills only), then the top 5 paper tests, then the rest; paper and live are never pooled. Flat 1u at the fill (live) or logged (paper) price, no dollars. CLV is certified only (Pinnacle no-vig close, same line, after fees); coverage is shown. Confidence: HIGH = 50 plays and CLV on 80%+, MEDIUM = 25+ plays and CLV on 50%+, else LOW. "Pass" needs both halves positive on units and CLV, with the units interval above zero.</div>
+<div class="note">Live first (confirmed fills only), then the top 5 paper tests, then the rest; paper and live are never pooled. Flat 1u at the fill (live) or logged (paper) price, no dollars. CERTIFIED CLV means a verified Pinnacle no-vig close, same line, after fees; coverage is shown. Corrected 16 Nov 2026: an earlier version showed provisional closes (live feed reads 5-30 minutes before start, and the alerting venue's own close) under the CLV heading. Those are now in a separate "Provisional, NOT certified" column and never count toward a verdict or confidence grade. The superseded page is kept as a separate snapshot. Confidence: HIGH = 50 plays and CLV on 80%+, MEDIUM = 25+ plays and CLV on 50%+, else LOW. "Pass" needs both halves positive on units and CLV, with the units interval above zero.</div>
 <div class="wrap"><table id="sum"></table></div>
 <h2>Play by play (newest first)</h2>
 <div id="detail"></div>
@@ -70,7 +70,7 @@ const vcls=v=>v.startsWith("CLEAR")?"fail":v.startsWith("POTENTIAL")?"pass":"con
 const el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.textContent=h;return e};
 $("#asof").textContent="Data as of "+D.asof;
 const sum=$("#sum");
-sum.innerHTML="<tr><th>Test</th><th>Plays · dates</th><th>Older half</th><th>Newer half</th><th>Total</th><th>ROI</th><th>CLV (coverage)</th><th>Verdict</th><th>Confidence</th></tr>";
+sum.innerHTML="<tr><th>Test</th><th>Plays · dates</th><th>Older half</th><th>Newer half</th><th>Total</th><th>ROI</th><th>Certified CLV (coverage)</th><th>Provisional, NOT certified</th><th>Verdict</th><th>Confidence</th></tr>";
 const GN={live:"LIVE - confirmed bot fills",manual:"MANUAL - Peter's own bets",top:"PAPER - top 5",paper:"PAPER - other tests"};let lastG=null;
 if(!D.live_ok){const tr=el("tr");const c=el("td","small","LIVE and MANUAL: graded in the daily report (needs the private key, not available when this page is built).");c.colSpan=9;tr.append(c);sum.append(tr)}
 D.tests.forEach(t=>{
@@ -83,6 +83,7 @@ D.tests.forEach(t=>{
  tr.append(el("td",cls(t.all.units),t.all.w+"-"+t.all.l+" "+u(t.all.units)));
  tr.append(el("td",cls(t.all.roi),pc(t.all.roi)));
  tr.append(el("td",cls(t.all.clv),t.all.clv==null?"n/a (0/"+t.n+")":pc(t.all.clv,2)+" ("+t.all.clv_n+"/"+t.n+")"));
+ tr.append(el("td","muted",(t.all.pclv==null)?"-":pc(t.all.pclv,2)+" ("+t.all.pclv_n+"/"+t.n+")"));
  const v=el("td");v.append(el("span","pill "+vcls(t.verdict),t.verdict));tr.append(v);
  tr.append(el("td","",t.conf||""));
  sum.append(tr);
@@ -99,16 +100,16 @@ D.tests.filter(t=>t.n).forEach(t=>{
   const b=el("div","h");b.append(el("b","",l));
   b.append(el("span","",h.w+"-"+h.l+"  "+u(h.units)));
   b.append(el("span","","ROI "+pc(h.roi)));
-  b.append(el("span","","CLV "+(h.clv==null?"n/a":pc(h.clv,2)+" ("+h.clv_n+" rows)")));
+  b.append(el("span","","Certified CLV "+(h.clv==null?"n/a":pc(h.clv,2)+" ("+h.clv_n+" rows)")+(h.pclv==null?"":" | provisional, NOT certified "+pc(h.pclv,2)+" ("+h.pclv_n+")")));
   hv.append(b)});
  i.append(hv);
  if(t.ci)i.append(el("p","small","Per-play units, 95% interval: "+t.ci[0].toFixed(2)+" to "+t.ci[1].toFixed(2)+". Wide intervals mean 50 plays cannot separate skill from luck."));
  const w=el("div","wrap");const tb=el("table","mini");
- tb.innerHTML="<tr><th>Date</th><th>Game</th><th>Price</th><th>Result</th><th>CLV</th></tr>";
+ tb.innerHTML="<tr><th>Date</th><th>Game</th><th>Price</th><th>Result</th><th>Certified CLV</th><th>Provisional, NOT certified</th></tr>";
  t.plays.forEach(p=>{const tr=el("tr");tr.append(el("td","",p.d));tr.append(el("td","",p.g));
   tr.append(el("td","",p.p==null?"n/a":(p.p>0?"+":"")+p.p));
   tr.append(el("td",p.r=="W"?"pos":p.r=="L"?"neg":"",p.r));
-  tr.append(el("td",cls(p.c),p.c==null?"n/a":pc(p.c,2)));tb.append(tr)});
+  tr.append(el("td",cls(p.c),p.c==null?"n/a":pc(p.c,2)));tr.append(el("td","muted",p.pc==null?"-":pc(p.pc,2)));tb.append(tr)});
  w.append(tb);i.append(w);d.append(i);det.append(d);
 });
 D.un.forEach(x=>$("#un").append(el("li","",x)));

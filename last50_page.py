@@ -15,12 +15,13 @@ def add(name, rows, note="", group="paper"):
     h = len(w) // 2
     h1, h2, ho = r.half_stats(w[:h]), r.half_stats(w[h:]), r.half_stats(w)
     ci = r.ci_mean(ho["us"])
-    f = lambda x: {k: x[k] for k in ("n", "w", "l", "units", "roi", "clv", "clv_n")}
+    f = lambda x: {k: x[k] for k in ("n", "w", "l", "units", "roi", "clv", "clv_n", "clv_ci", "pclv", "pclv_n", "pclv_src")}
     tests.append({"name": name, "note": note, "group": group, "n": len(w), "total": total, "from": w[0]["ts"][:10],
                   "to": w[-1]["ts"][:10], "h1": f(h1), "h2": f(h2), "all": f(ho), "ci": ci,
                   "verdict": r.verdict(w, h1, h2, ho), "conf": r.confidence(ho["n"], ho["clv_n"]),
                   "plays": [{"d": p["ts"][:10], "g": p["game"], "p": p["am"], "r": p["res"],
-                             "c": (None if p["clv"] is None else round(p["clv"], 2))} for p in reversed(w)]})
+                             "c": (None if p["clv"] is None else round(p["clv"], 2)),
+                             "pc": (None if p.get("pclv") is None else round(p["pclv"], 2))} for p in reversed(w)]})
 
 
 live_ok = False

@@ -94,17 +94,21 @@ def half_stats(xs):
     graded = [r for r in xs if r["res"] in ("W", "L")]
     us = [unit_of(r["am"], r["res"]) for r in graded]
     us = [u for u in us if u is not None]
-    clvs = [r["clv"] for r in xs if r["clv"] is not None]
+    clvs = [r["clv"] for r in xs if r.get("clv") is not None]
+    pcl = [r["pclv"] for r in xs if r.get("pclv") is not None]
     return {"n": len(xs), "w": sum(1 for r in xs if r["res"] == "W"),
             "l": sum(1 for r in xs if r["res"] == "L"), "units": sum(us),
             "roi": (100 * sum(us) / len(us)) if us else None, "us": us,
-            "clv": st.mean(clvs) if clvs else None, "clv_n": len(clvs)}
+            "clv": st.mean(clvs) if clvs else None, "clv_n": len(clvs), "clv_ci": ci_mean(clvs),
+            "pclv": st.mean(pcl) if pcl else None, "pclv_n": len(pcl),
+            "pclv_src": next((r.get("pclv_src") for r in xs if r.get("pclv") is not None), None)}
 
 
 def fmt(h):
     roi = "n/a" if h["roi"] is None else f"{h['roi']:+.1f}%"
     clv = "n/a" if h["clv"] is None else f"{h['clv']:+.2f}% (n {h['clv_n']})"
-    return f"n {h['n']:2d} | {h['w']}-{h['l']} | {h['units']:+6.2f}u | ROI {roi} | CLV {clv}"
+    pv = "" if not h.get("pclv_n") else f" | provisional, NOT certified: {h['pclv']:+.2f}% (n {h['pclv_n']})"
+    return f"n {h['n']:2d} | {h['w']}-{h['l']} | {h['units']:+6.2f}u | ROI {roi} | CERTIFIED CLV {clv}{pv}"
 
 
 def verdict(w, h1, h2, ho):
@@ -113,6 +117,9 @@ def verdict(w, h1, h2, ho):
     ci = ci_mean(ho["us"])
     if ci and ci[1] < 0:
         return "CLEAR FAIL"
+    if ho["clv_n"] < 0.8 * ho["n"]:
+        # 16 Nov: without certified CLV on 80%+ of the window there is nothing to qualify on
+        return f"INSUFFICIENT EVIDENCE (certified CLV {ho['clv_n']}/{ho['n']})"
     clv_ok = all(h["clv"] is not None and h["clv"] > 0 and h["clv_n"] >= 0.8 * h["n"] for h in (h1, h2))
     if ci and ci[0] > 0 and h1["units"] > 0 and h2["units"] > 0 and clv_ok:
         return "POTENTIAL PASS"
@@ -147,12 +154,20 @@ def report(name, rows, note="", frozen=False):
     elif ho["clv_n"] < ho["n"]:
         say(f"  CLV coverage {ho['clv_n']}/{ho['n']} rows usable; the rest are EXCLUDED, not estimated")
     out = [{"test": name, "half": "H1" if i < h else "H2", "ts": r["ts"], "game": r["game"],
-            "price_am": r["am"], "result": r["res"], "std_clv_pct": ("" if r["clv"] is None else round(r["clv"], 3))}
+            "price_am": r["am"], "result": r["res"], "certified_clv_pct": ("" if r["clv"] is None else round(r["clv"], 3)),
+            "provisional_clv_pct_not_certified": ("" if r.get("pclv") is None else round(r["pclv"], 3)),
+            "provisional_source": r.get("pclv_src") or ""}
            for i, r in enumerate(w)]
     return status, out
 
 
 # --------------------------------------------------------------------------- populations
+# 16 Nov (Peter): "clv" on a row is CERTIFIED Pinnacle CLV only. Anything else lives in "pclv", labelled by source,
+# and never reaches a CLV heading, a verdict or a confidence grade.
+PROV_ALERT = "provisional: live feed read 5-30 min before start, line not verified (clv_verified False)"
+PROV_VENUE = "not Pinnacle: the alerting venue's own last pregame price"
+
+
 def sharp_rows():
     S = load("alerts.json") or []
     rows = []
@@ -161,9 +176,11 @@ def sharp_rows():
             continue
         am = x.get("price_after_fee") if x.get("price_after_fee") is not None else x.get("price")
         c = sc.std_clv(x.get("close_fair_prob"), am, x.get("book_key"))
+        cert = x.get("clv_verified") is True     # 16 Nov: the writer marks a live feed read PROVISIONAL (False)
         g = frozenset(sc.toks(x.get("game")))
         rows.append({"ts": str(x.get("alert_utc") or ""), "game": x.get("game") or "", "am": am,
-                     "res": x["result"], "clv": c, "sent": bool(x.get("sent_to_phone")),
+                     "res": x["result"], "clv": c if cert else None, "pclv": None if cert else c,
+                     "pclv_src": PROV_ALERT, "sent": bool(x.get("sent_to_phone")),
                      "lg": x.get("sport"), "kind": x.get("kind"), "bet": str(x.get("bet") or ""),
                      "key": (str(x.get("alert_utc") or "")[:10], g, str(x.get("kind")), str(x.get("bet") or ""))})
     return rows
@@ -177,8 +194,10 @@ def liq_rows():
             continue
         am = x.get("price_american")
         c = sc.std_clv(x.get("close_price"), am, x.get("book"))
+        # 16 Nov: close_price is the ALERTING VENUE'S own last pregame price (liquidity_monitor), not Pinnacle.
         rows.append({"ts": str(x.get("alerted_utc") or ""), "game": x.get("game") or "", "am": am,
-                     "res": x["result"], "clv": c, "lg": x.get("league"), "mk": x.get("market"),
+                     "res": x["result"], "clv": None, "pclv": c, "pclv_src": PROV_VENUE,
+                     "lg": x.get("league"), "mk": x.get("market"),
                      "side": x.get("side"), "book": x.get("book"), "lead": x.get("lead_min"),
                      "nm": x.get("new_money"),
                      "key": (str(x.get("alerted_utc") or "")[:10], frozenset(sc.toks(x.get("game"))),
@@ -235,8 +254,10 @@ def misprice_rows():
         if str(x.get("alert_utc") or "") < T18:
             continue
         am = x.get("price_after_fee") if x.get("price_after_fee") is not None else x.get("price")
+        c_ = sc.std_clv(x.get("close_fair_prob"), am, x.get("book_key"))
+        cert = x.get("clv_verified") is True
         rows.append({"ts": str(x.get("alert_utc") or ""), "game": x.get("game") or "", "am": am, "res": x["result"],
-                     "clv": sc.std_clv(x.get("close_fair_prob"), am, x.get("book_key")),
+                     "clv": c_ if cert else None, "pclv": None if cert else c_, "pclv_src": PROV_ALERT,
                      "key": (str(x.get("alert_utc") or "")[:10], frozenset(sc.toks(x.get("game"))),
                              str(x.get("kind")), str(x.get("bet") or ""))})
     return rows
@@ -296,7 +317,8 @@ def slowhr_rows(dog_band=False):
         cf = x.get("close_fair")
         clv = None if cf is None or not x.get("hr_price") else 100 * (float(cf) * float(x["hr_price"]) - 1)
         rows.append({"ts": str(x.get("t_confirm") or x.get("t_move") or ""), "game": f"{x.get('game')} - {x.get('team')}",
-                     "am": x["hr_am"], "res": res, "clv": clv, "key": k})
+                     "am": x["hr_am"], "res": res, "clv": None, "pclv": clv,   # 16 Nov: no certification record
+                     "pclv_src": "SLOW-HR close_fair: no certification record", "key": k})
     return rows
 
 
@@ -346,7 +368,7 @@ def send_telegram(body, rows):
             req = urllib.request.Request(base + "sendMessage", data, {"Content-Type": "application/json"})
             urllib.request.urlopen(req, timeout=30).read()
         buf = io.StringIO()
-        w = csv.DictWriter(buf, fieldnames=["test", "half", "ts", "game", "price_am", "result", "std_clv_pct"],
+        w = csv.DictWriter(buf, fieldnames=["test", "half", "ts", "game", "price_am", "result", "certified_clv_pct", "provisional_clv_pct_not_certified", "provisional_source"],
                            extrasaction="ignore")
         w.writeheader()
         for r in rows:
@@ -386,7 +408,8 @@ def main():
     say("LIVE first (real fills only), then the top 5 paper tests, then the rest. Paper and live are never pooled.")
     say("Window: last 50 graded plays per test, one play per game+market+side, older half / newer half.")
     say("Flat 1u at the actual fill (live) or logged (paper) price. No dollars. Fills are never assumed.")
-    say("CLV: certified only (Pinnacle no-vig close, same line or moneyline, after fees); coverage printed.")
+    say("CLV: CERTIFIED only (Pinnacle no-vig close, same line or moneyline, after fees); coverage printed. Provisional")
+    say("     closes (live feed reads, venue closes) are shown separately, labelled, and never count toward a verdict.")
     say("CONFIDENCE: HIGH = 50 plays and certified CLV on 80%+; MEDIUM = 25+ plays and CLV on 50%+; else LOW.")
 
     status, csv_rows = {}, []
