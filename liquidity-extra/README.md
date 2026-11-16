@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 16, 6:20 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 21.
+Updated Mon Nov 16, 6:30 PM ET. This run: 1 new, 1 not confirmed, 1 pending. Open alerts: 22.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 16 6:30PM | NCAAB | The Citadel vs Clemson: Point Total | total: Over 141.5 points | kalshi | $67k | -108 |  |  | +0.0c |  | pending |
 | Nov 16 5:50PM | NCAAB | Western Illinois vs Minnesota: Point Total | total: NOT Over 136.5 points | kalshi | $28k | -104 |  | ✅ | +1.0c |  | pending |
 | Nov 16 4:30PM | NCAAB | Montana vs Kansas St.: Point Total | total: NOT Over 153.5 points | kalshi | $37k | -100 |  | ✅ | +0.0c | yes | pending |
 | Nov 16 4:30PM | NCAAB | Tarleton St. vs Drake: Spread | spread: NOT Drake wins by over 10.5 points | kalshi | $32k | -133 |  |  | +3.0c |  | pending |
@@ -18,7 +19,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 16 4:20PM | NCAAB | Montana vs Kansas St.: Spread | spread: NOT Kansas St. wins by over 15.5 points | kalshi | $29k | -113 |  | ✅ | +1.0c |  | pending |
 | Nov 16 2:40PM | TENNIS | Zverev vs Shelton | moneyline: Zverev | kalshi | $51k | -178 |  |  | +1.0c |  | pending |
 | Nov 16 2:20PM | NCAAB | Eastern Kentucky vs Kent St.: Spread | spread: NOT Kent St. wins by over 10.5 points | kalshi | $46k | -113 |  |  | +4.0c |  | pending |
-| Nov 16 2:00PM | NCAAB | Murray St. vs Hofstra | moneyline: Murray St. | kalshi | $41k | -488 |  |  | +2.0c |  | pending |
+| Nov 16 2:00PM | NCAAB | Murray St. vs Hofstra | moneyline: Murray St. | kalshi | $41k | -488 |  |  | +3.0c |  | pending |
 | Nov 16 1:30PM | NCAAB | Abilene Christian vs Missouri St.: Point Total | total: NOT Over 139.5 points | kalshi | $28k | +113 |  | ✅ | +4.0c | yes | pending |
 | Nov 16 1:10PM | NCAAB | Illinois vs Duke | moneyline: Duke | kalshi | $28k | -335 |  |  | +1.0c |  | pending |
 | Nov 16 10:00AM | NCAAB | Long Beach St. vs UCLA: Spread | spread: NOT UCLA wins by over 34.5 points | kalshi | $59k | -117 |  |  | +12.0c | yes | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 8 9:30AM | NCAAB | Norfolk St. vs William & Mary | moneyline: William & Mary | kalshi | $25k | -456 |  |  | +1.0c |  | W |
 | Nov 8 9:20AM | NCAAB | Quinnipiac vs Vermont | moneyline: Vermont | kalshi | $36k | -317 |  |  | +2.0c |  | L |
 | Nov 8 9:20AM | NCAAB | Central Connecticut St. vs Dartmouth | moneyline: Dartmouth | kalshi | $39k | -233 |  |  | +8.0c |  | L |
-| Nov 8 9:20AM | NCAAB | Brown vs Lehigh | moneyline: Lehigh | kalshi | $28k | -186 |  |  | +2.0c |  | L |
