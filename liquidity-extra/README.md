@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 16, 11:00 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 12.
+Updated Mon Nov 16, 11:15 AM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 11.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,6 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 16 10:30AM | NCAAB | Texas Southern vs UC San Diego: Spread | spread: NOT UC San Diego wins by over 18.5 points | kalshi | $26k | +108 |  |  | +0.0c |  | pending |
 | Nov 16 10:00AM | NCAAB | Long Beach St. vs UCLA: Spread | spread: NOT UCLA wins by over 34.5 points | kalshi | $59k | -117 |  |  | +0.0c |  | pending |
 | Nov 16 9:50AM | NCAAB | Iona vs UMBC | moneyline: Iona | kalshi | $61k | -138 |  |  | +0.0c |  | pending |
 | Nov 15 10:20PM | NCAAB | Western Kentucky vs Tulsa | moneyline: Tulsa | kalshi | $29k | -300 |  |  | -3.0c |  | pending |
@@ -210,3 +209,4 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 8 2:00AM | NCAAB | Idaho St. vs Air Force | moneyline: Air Force | kalshi | $27k | -233 |  |  | +0.0c |  | W |
 | Nov 8 2:00AM | NCAAB | Campbell vs Western Michigan | moneyline: Western Michigan | kalshi | $28k | -223 |  |  | -4.0c |  | W |
 | Nov 7 10:40PM | TENNIS | Claire Liu vs Alexandra Eala | moneyline: Alexandra Eala | kalshi | $31k | -223 |  |  | -1.0c | yes | L |
+| Nov 7 10:40PM | TENNIS | Ben Shelton vs Carlos Alcaraz | moneyline: Carlos Alcaraz | kalshi | $31k | -355 | ✅ novig |  | -1.0c |  | W |
