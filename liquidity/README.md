@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 16, 11:00 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 29.
+Updated Mon Nov 16, 11:06 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 29.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -13,9 +13,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 16 10:45AM | NFL | Los Angeles Chargers @ Baltimore Ravens | moneyline: BAL (0) | novig | $223k | -217 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Nov 16 10:45AM | NBA | Portland vs Minnesota: Total Points | total: Over 226.5 points | kalshi | $52k | -108 |  |  | +0.0c |  | pending |
 | Nov 16 10:45AM | NBA | Phoenix vs Denver: Total Points | total: Over 230.5 points | kalshi | $81k | -100 | ✅ novig | ✅ | +0.0c |  | pending |
-| Nov 16 10:45AM | NBA | Philadelphia vs Brooklyn: Spread | spread: NOT Philadelphia wins by over 5.5 points | kalshi | $34k | -100 | ✅ novig | ✅ | +0.0c |  | pending |
-| Nov 16 10:45AM | NBA | Memphis vs Washington: Spread | spread: NOT Memphis wins by over 3.5 points | kalshi | $32k | -104 |  | ✅ | +0.0c |  | pending |
-| Nov 16 9:20AM | NBA | Phoenix vs Denver: Total Points | total: Over 228.5 points | kalshi | $29k | -108 |  |  | +3.0c | yes | pending |
+| Nov 16 10:45AM | NBA | Philadelphia vs Brooklyn: Spread | spread: NOT Philadelphia wins by over 5.5 points | kalshi | $34k | -100 | ✅ novig | ✅ | -1.0c |  | pending |
+| Nov 16 10:45AM | NBA | Memphis vs Washington: Spread | spread: NOT Memphis wins by over 3.5 points | kalshi | $32k | -104 |  | ✅ | +0.0c | yes | pending |
+| Nov 16 9:20AM | NBA | Phoenix vs Denver: Total Points | total: Over 228.5 points | kalshi | $29k | -108 |  |  | +2.0c | yes | pending |
 | Nov 16 9:20AM | NBA | Philadelphia vs Brooklyn: Total Points | total: Over 224.5 points | kalshi | $32k | -113 |  |  | +2.0c |  | pending |
 | Nov 16 9:20AM | NBA | Phoenix vs Denver: Spread | spread: Denver wins by over 9.5 points | kalshi | $40k | -108 | ✅ novig | ❌ | +0.0c | yes | pending |
 | Nov 16 9:15AM | NCAAF | Miami (OH) vs Kent St. | moneyline: Miami (OH) | kalshi | $271k | -335 |  |  | +0.0c |  | pending |
