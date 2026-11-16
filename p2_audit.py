@@ -358,6 +358,16 @@ def main():
     integ = rs.integrity(rr, fills_all, rows, clv, rep, pok)
     text += rs.render(p1, integ, ledger_extra)
     text += text_h
+    # SECTION J (Peter, 16 Nov): every Nov 12+ bot position graded, each gap with its exact reason. Private table;
+    # the log carries counts and reason categories only.
+    grades = rs.grade_rows(since, rep_f.get("row_bucket") or {}, clv, cb, set(stale), UNIT_SCHEDULE)
+    gsum = rs.grade_summary(grades)
+    text += rs.render_grades(grades, gsum)
+    print("section J coverage:", gsum, "| exactly-once:", (rep_f.get("exactly_once") or {}).get("ok"))
+    import collections as _co
+    import re as _re2
+    print("section J incomplete-grade reasons:", dict(_co.Counter(_re2.sub(r"'[^']*'", "'…'", m)[:90]
+                                                              for g in grades for m in g["missing"])))
     # SECTION G (Peter, 16 Nov): every missing fill record and every missing certified CLV since 12 Nov, each with
     # the evidence-based reason. Detail is private; the public log carries category counts only.
     venue_ids_seen = {i for t, ids_l in links.items() if t != "_incomplete" for ids in ids_l for i in ids}
@@ -379,7 +389,7 @@ def main():
     text += rs.render_exceptions(fx, cx)
     _rb = (rep.get("row_bucket") or {})
     for e_ in cx:   # league / ledger reason / attempts only - no game, side, id or amount
-        print(f"  G missing close: lane {_rb.get(e_['id'], '?')} | league {e_['league']} | reason: {e_['why']} | "
+        print(f"  G missing close: lane {_rb.get(e_['id'], '?')} | league {e_['league']} | reason: {__import__('re').sub(chr(39) + '[^' + chr(39) + ']*' + chr(39), '...', e_['why'])} | "
               f"tries {e_['tries']} done {e_['done']} | start time on row {e_['has_start']}"
               + (lambda r0: f" | venue {r0.get('book')} | order id on row {bool(r0.get('order_ref'))} | "
                  f"tracker strategy_key {bool(r0.get('strategy_key'))} | lane_src {r0.get('lane_src')}")(

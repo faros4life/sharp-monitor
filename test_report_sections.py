@@ -151,6 +151,27 @@ sc = rs.lane_scope(bk, "R1", {"a": 0.02}, {"R1": ("2026-11-11T00:00:00+00:00", 2
 check("a 2-play lane is INSUFFICIENT EVIDENCE under the registered gate", sc["verdict"] == "INSUFFICIENT EVIDENCE", sc["verdict"])
 check("H1 + H2 = whole", sc["H1"]["n"] + sc["H2"]["n"] == sc["whole"]["n"])
 check("scorecard text carries no currency sign", "$" not in rs.render_scorecard([("X", {"R1": sc})], {}, {}))
+from datetime import datetime as _D, timezone as _Z
+NOW = _D(2026, 11, 16, 15, 0, tzinfo=_Z.utc)
+gr = [{"id": "a", "game": "A @ B", "bet": "A -3", "book": "novig", "result": "W", "stake": 200, "profit": 180, "game_start": "2026-11-13T00:00:00Z"},
+      {"id": "b", "game": "C @ D", "bet": "C +4", "book": "prophetx", "result": "L", "stake": 200, "profit": -200, "game_start": "2026-11-13T00:00:00Z"},
+      {"id": "c", "game": "E @ F", "bet": "E -1", "book": "novig", "game_start": "2026-11-13T00:00:00Z"},
+      {"id": "d", "game": "G @ H", "bet": "G -2", "book": "novig", "game_start": "2026-11-16T23:00:00Z"},
+      {"id": "e", "game": "I @ J", "bet": "-15.50", "book": "Polymarket US", "result": "W", "stake": None, "profit": 50, "game_start": "2026-11-14T20:00:00Z"}]
+rb = {"a": "EXACT:R1", "b": "EXACT:R1", "c": "EXACT:BOARD V3", "d": "EXACT:BOARD V3", "e": "UNATTRIBUTED(no_order_ref)"}
+G = {g["id"]: g for g in rs.grade_rows(gr, rb, {"a": 0.012}, {"b": {"done": True, "why": "league NCAAB not covered"}}, set(),
+                                       {"R1": ("2026-11-11T00:00:00+00:00", 200.0)}, NOW)}
+check("a settled, linked, priced, certified play is FULLY GRADED", G["a"]["fully_graded"] and G["a"]["units"] == 0.9 and G["a"]["roi"] == 90.0, G["a"])
+check("a missing close is reported with the ledger's reason, never zero",
+      G["b"]["clv"] is None and "league NCAAB not covered" in G["b"]["clv_status"] and not G["b"]["fully_graded"])
+check("unsettled 3 days after the game -> MISSING settlement", G["c"]["settle_status"] == "MISSING")
+check("a game not finished -> open, not missing", G["d"]["settle_status"].startswith("open"))
+check("invalid stake -> missing realized P/L, never guessed", G["e"]["net"] is None and any("realized P/L" in m for m in G["e"]["missing"]))
+check("no exact lane -> missing lane, trigger UNKNOWN", G["e"]["trigger"] == "UNKNOWN" and any(m.startswith("lane") for m in G["e"]["missing"]))
+S = rs.grade_summary(list(G.values()))
+check("summary counts", S["positions"] == 5 and S["settled"] == 3 and S["open"] == 2 and S["fully_graded"] == 1
+      and S["missing_settlement"] == 1 and S["missing_pl"] == 1 and S["missing_certified_clv"] == 2 and S["missing_lane"] == 1, S)
+check("the private table carries no currency sign", "$" not in rs.render_grades(list(G.values()), S))
 if fails:
     print("FAILED", fails); sys.exit(1)
 print("test_report_sections: all passed")

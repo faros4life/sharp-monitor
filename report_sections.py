@@ -343,3 +343,100 @@ def render_scorecard(scopes, non_exact, unit_sched):
                     L.append(f"            - {c['clause']}: {c['state']} {c.get('detail', '')}")
     L.append(f"  Kept separate (not in any lane above): {non_exact}")
     return "\n".join(L)
+
+
+# ---------------------------------------------------------------- SECTION J: per-play grade audit (Peter, 16 Nov)
+def grade_rows(since_rows, row_bucket, certified, clv_rows, stale_ids, unit_sched, now_utc=None):
+    """One graded line per bot position from START_ET, with the exact reason for every missing field. Pure.
+    Never invents a result, a fill or a close: a missing value stays missing with its reason."""
+    from p2_audit_core import utc, verified_money, SETTLED as _S
+    now_utc = now_utc or datetime.now(timezone.utc)
+    out = []
+    for b in since_rows:
+        i = str(b.get("id") or "")
+        bucket = row_bucket.get(i, "?")
+        lane = bucket.split(":", 1)[1] if bucket.startswith("EXACT:") else None
+        res = b.get("result") if b.get("result") in _S else None
+        gs = utc(b.get("game_start") or "")
+        g = {"id": i, "date": _et_day(b.get("game_start") or b.get("settled")), "game": b.get("game"),
+             "venue": b.get("book"), "bet": b.get("bet"), "bucket": bucket, "lane": lane, "result": res or "OPEN",
+             "missing": []}
+        # lane / trigger
+        if not lane:
+            g["missing"].append(f"lane: {bucket}")
+        g["trigger"] = (lane + " rule (lane-level; no per-play trigger tag exists)") if lane else "UNKNOWN"
+        # fill: EXACT = the venue order id or a venue fill/trade record ties this position to one registry order
+        g["fill"] = "confirmed (venue-linked to one registry order)" if lane else "not proven"
+        # settlement
+        if not res:
+            if gs and (now_utc - gs).total_seconds() > 36 * 3600:
+                g["missing"].append("settlement: game ended over 36h ago and the venue shows no result")
+                g["settle_status"] = "MISSING"
+            else:
+                g["settle_status"] = "open (game not finished)"
+        else:
+            g["settle_status"] = "settled"
+        # money
+        pl = {"result": res, "stake": b.get("stake"), "profit": b.get("profit")}
+        if res and verified_money(pl):
+            g["net"], g["roi"] = round(b["profit"], 2), round(100 * b["profit"] / b["stake"], 2)
+            u = (unit_sched or {}).get(lane)
+            g["units"] = (round(b["profit"] / u[1], 2) if u and gs and gs >= utc(u[0]) else None)
+            if g["units"] is None:
+                g["missing"].append("units: no verified unit for this lane and date")
+        elif res:
+            g["net"] = g["roi"] = g["units"] = None
+            g["missing"].append("realized P/L: stake or profit missing or invalid on the venue row")
+        else:
+            g["net"] = g["roi"] = g["units"] = None
+        # CLV
+        c = certified.get(i)
+        r = (clv_rows or {}).get(i)
+        if c is not None:
+            g["clv"], g["clv_status"] = round(100 * c, 2), "certified"
+        else:
+            g["clv"] = None
+            if r is None:
+                st = "not in the CLV ledger (never scored)"
+            elif i in (stale_ids or set()):
+                st = "excluded as stale"
+            elif r.get("fixture_doubt"):
+                st = "fixture doubt (Pinnacle match not certain)"
+            elif r.get("done"):
+                st = "unrecoverable: " + str(r.get("why") or "no reason recorded")[:80]
+            else:
+                st = "pending: " + str(r.get("why") or "not scored yet")[:80]
+            g["clv_status"] = st
+            if res:
+                g["missing"].append("certified CLV: " + st)
+        g["fully_graded"] = bool(res and g.get("net") is not None and g.get("units") is not None
+                                 and g["clv"] is not None and lane)
+        out.append(g)
+    return out
+
+
+def grade_summary(rows):
+    settled = [g for g in rows if g["result"] != "OPEN"]
+    return {"positions": len(rows), "settled": len(settled), "open": len(rows) - len(settled),
+            "fully_graded": sum(g["fully_graded"] for g in rows),
+            "missing_settlement": sum(1 for g in rows if g.get("settle_status") == "MISSING"),
+            "missing_pl": sum(1 for g in settled if g.get("net") is None),
+            "missing_units": sum(1 for g in settled if g.get("net") is not None and g.get("units") is None),
+            "missing_certified_clv": sum(1 for g in settled if g["clv"] is None),
+            "missing_lane": sum(1 for g in rows if not g["lane"]),
+            "missing_trigger_tag": len(rows)}   # no per-play trigger tag exists in any source
+
+
+def render_grades(rows, summ):
+    f = lambda x, s="": "n/a" if x is None else f"{x:+.2f}{s}"
+    L = ["", f"SECTION J - EVERY BOT POSITION FROM {START_ET} ET, GRADED (private)",
+         f"  positions {summ['positions']} | settled {summ['settled']} | open {summ['open']} | FULLY GRADED {summ['fully_graded']} "
+         f"| missing: settlement {summ['missing_settlement']}, P/L {summ['missing_pl']}, units {summ['missing_units']}, "
+         f"certified CLV {summ['missing_certified_clv']}, lane {summ['missing_lane']}, per-play trigger tag {summ['missing_trigger_tag']}",
+         "  Strategy qualification and rankings: INSUFFICIENT EVIDENCE until grading is complete."]
+    for g in sorted(rows, key=lambda x: str(x["date"])):
+        L.append(f"  {g['date']} | {g['lane'] or g['bucket']} | {g['venue']} | {g['game']} | {g['bet']} | {g['result']} | "
+                 f"net {f(g.get('net'))} | units {f(g.get('units'), 'u')} | ROI {f(g.get('roi'), '%')} | "
+                 f"CLV {f(g['clv'], '%') if g['clv'] is not None else g['clv_status']} | fill {g['fill']} | "
+                 f"{'FULLY GRADED' if g['fully_graded'] else 'INCOMPLETE: ' + '; '.join(g['missing'])}")
+    return "\n".join(L)
