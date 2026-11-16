@@ -405,6 +405,99 @@ def t_novig_page_cap_marks_truncated():
         sys.modules.pop("novig_signed", None)
 
 
+# ---- RULED (Peter's 13 Nov table) - never EXACT, multi-lane -> UNATTRIBUTED
+TOKS = lambda t: set(__import__("re").findall(r"[a-z]+", str(t).lower()))
+TRG = {"Lane 1": [("11-01", {"boston"}, {"orlando"})], "R1": [("11-11", {"utah"}, {"denver"})],
+       "Bets Board v3": [("11-11", {"utah"}, {"denver"}), ("11-20", {"late"}, {"game"})]}
+RG = lambda **k: R(order_ref=None, **k)
+
+
+def t_ruled_matches_date_window_and_both_teams():
+    assert c.ruled_lane(RG(game="Boston Celtics @ Orlando Magic", game_start="2026-11-02T00:30:00Z"), TRG, TOKS) == ("PHASE 1", None)
+    assert c.ruled_lane(RG(game="Boston Celtics @ Miami Heat", game_start="2026-11-01T23:00:00Z"), TRG, TOKS) == (None, None)
+    assert c.ruled_lane(RG(game="Boston @ Orlando", game_start="2026-11-05T00:00:00Z"), TRG, TOKS) == (None, None)
+
+
+def t_ruled_two_lanes_is_unattributed():
+    assert c.ruled_lane(RG(game="Utah Jazz @ Denver Nuggets", game_start="2026-11-11T02:00:00Z"), TRG, TOKS) == (None, "ruled_multi_lane")
+    rep = c.build([RG(game="Utah @ Denver", game_start="2026-11-11T02:00:00Z")], IDX, ruled=(TRG, TOKS))
+    assert set(rep["buckets"]) == {"UNATTRIBUTED(ruled_multi_lane)"}
+
+
+def t_ruled_window_is_oct31_to_nov12_only():
+    assert c.ruled_lane(RG(game="Late @ Game", game_start="2026-11-20T00:00:00Z"), TRG, TOKS) == (None, None)
+
+
+def t_ruled_never_exact_and_exact_wins():
+    rep = c.build([RG(game="Boston @ Orlando", game_start="2026-11-01T23:00:00Z"),
+                   R(order_ref="A", game="Boston @ Orlando", game_start="2026-11-01T23:00:00Z")], IDX, ruled=(TRG, TOKS))
+    assert "RULED:PHASE 1" in rep["buckets"] and "EXACT:R1" in rep["buckets"]
+    assert not any(b.startswith("EXACT:PHASE") for b in rep["buckets"])
+    assert c.units_for("RULED:PHASE 1", ["2026-11-10T00:00:00+00:00", "x"], 300) is None      # no units on RULED
+
+
+def t_ruled_beats_fuzzy_and_disagreement_is_counted():
+    rep = c.build([RG(game="Boston @ Orlando", game_start="2026-11-01T23:00:00Z", lane="R1")], IDX, ruled=(TRG, TOKS))
+    assert "RULED:PHASE 1" in rep["buckets"] and rep["join"].get("ruled_vs_tracker_text_disagree") == 1
+
+
+def t_no_ruled_table_means_old_behaviour():
+    assert set(c.build([RG(lane="R1")], IDX)["buckets"]) == {"FUZZY:R1"}
+
+
+# ---- EXACT claims from live registry + durable ledger, deduplicated by immutable id
+def _o(oid, src, key="NBA|A|total|OVER", book="novig", cid=None):
+    return {"key": key, "source": src, "live_order": {"status": "placed", "order_id": oid, "client_id": cid, "book": book}}
+
+
+def t_index_dedups_by_id_across_sources():
+    import registry as reg
+    live = [_o("c1", "board"), _o("c2", "r1")]
+    led = [_o("c1", "board"), _o("c3", "rules")]
+    idx, st = c.index_from_sources([("registry", live), ("ledger", led)], reg.row_lane, reg._venue)
+    assert idx["c1"] == [("novig", "NBA|A|total|OVER", "board")]          # same claim in both sources = ONE claim
+    assert st["ids_in_registry+ledger"] == 1 and st["ids_in_registry"] == 1 and st["ids_in_ledger"] == 1
+    assert "ids_cross_source_conflict" not in st
+
+
+def t_index_cross_source_conflict_is_kept_and_ambiguous():
+    import registry as reg
+    idx, st = c.index_from_sources([("registry", [_o("c1", "board")]), ("ledger", [_o("c1", "r1")])], reg.row_lane, reg._venue)
+    assert st["ids_cross_source_conflict"] == 1 and len(idx["c1"]) == 2
+    assert c.resolve(R(order_ref="c1", book="Novig"), idx)[0].startswith("ambiguous_claims")
+
+
+def t_index_lane_from_source_not_key_prefix():
+    import registry as reg
+    idx, st = c.index_from_sources([("registry", [_o("c9", "muse", key="board|NBA|A|total|OVER"),
+                                                   _o("c8", "muse")])], reg.row_lane, reg._venue)
+    assert idx["c9"][0][2] == "board" and "c8" not in idx and st["rows_no_provable_lane"] == 1
+
+
+def t_index_client_id_also_indexed():
+    import registry as reg
+    idx, _ = c.index_from_sources([("ledger", [_o("v77", "r1", cid="c77")])], reg.row_lane, reg._venue)
+    assert set(idx) == {"v77", "c77"}
+
+
+# ---- Section F: every row from 12 Nov is classified exactly once
+def t_section_f_exactly_once_over_mixed_classes():
+    rows = [R(id="1", order_ref="A", game_start="2026-11-12T23:00:00Z"),
+            RG(id="2", game="Boston @ Orlando", game_start="2026-11-01T23:00:00Z"),
+            RG(id="3", lane="R1", game_start="2026-11-13T23:00:00Z"),
+            RG(id="4", game_start="2026-11-13T23:00:00Z", result=None, profit=None)]
+    rep = c.build(rows, IDX, ruled=(TRG, TOKS))
+    eo = rep["exactly_once"]
+    assert eo["ok"] and eo["rows"] == 4 and set(rep["row_bucket"].values()) == {"EXACT:R1", "RULED:PHASE 1", "FUZZY:R1",
+                                                                                  "UNATTRIBUTED(no_order_ref)"}
+
+
+
+def t_fills_without_tracker_row():
+    li = c.link_index([F("M", "O", "c1"), F("M", "Q", "zz")], [{"id": 5, "order_id": "P9"}])
+    assert c.fills_without_tracker_row(li, NVX, {"nv|M|O"}) == {"px": 1}      # nv|M|Q is not our order; px|5 has no row
+    assert c.fills_without_tracker_row(li, NVX, {"nv|M|O", "px|5"}) == {}
+
 _n = 0
 for n, f in list(globals().items()):
     if n.startswith("t_"):

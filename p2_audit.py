@@ -11,7 +11,7 @@ import json
 import os
 import sys
 
-from p2_audit_core import CSV_FIELDS, build, link_index, render
+from p2_audit_core import CSV_FIELDS, build, fills_without_tracker_row, index_from_sources, link_index, render
 
 
 def read_novig_fills():
@@ -142,26 +142,13 @@ def main():
         ledger_fills = {i: d for (k, i), (_f, d) in cur.items() if k == "fill"}
     else:
         print("durable ledger ABSENT - registry window only")
-    rr, ledger_extra = rs.merge_orders(rr, ledger_orders)
-    # Lane comes from the registry row itself (registry.row_lane: 'source' = rules|board|r1|lane2, or a lane prefix on the key).
-    # executor is NOT imported: executor.lane_of reads row['live'] as a dict, but ledger rows store 'live' as a BOOL, so it would
-    # label every order PHASE 1; and importing executor pulls in every venue module. An unknown source proves nothing.
-    d = lambda x: x if isinstance(x, dict) else {}
-    index, no_lane = {}, 0
-    for row in rr:
-        key = row.get("key")
-        more = row.get("live_more")
-        los = [d(row.get("live_order")), d(row.get("live_rest"))] + [d(x) for x in (more if isinstance(more, list) else [])]
-        placed = [lo for lo in los if lo.get("status") == "placed" and lo.get("order_id") and not lo.get("intent") and not lo.get("voided")
-                  and not str(lo.get("order_id")).startswith("intent-")]
-        if not key or not placed:
-            continue
-        lane = reg.row_lane(row)
-        if not lane:
-            no_lane += 1
-            continue
-        for lo in placed:
-            index.setdefault(str(lo["order_id"]), []).append((reg._venue(lo.get("book") or row.get("fill_book")), str(key), lane))
+    rr_live = list(rr)
+    rr, ledger_extra = rs.merge_orders(rr, ledger_orders)     # (used by the integrity / day sections, unchanged)
+    # EXACT claims (Peter, 16 Nov): live registry + durable ledger, DEDUPLICATED BY IMMUTABLE ORDER / CLIENT ID. The lane is
+    # registry.row_lane on the stored row (its 'source' field), never a key prefix or a game name.
+    index, src_stats = index_from_sources([("registry", rr_live), ("ledger", ledger_orders)], reg.row_lane, reg._venue)
+    no_lane = src_stats.get("rows_no_provable_lane", 0)
+    print("claim sources (order ids, deduplicated):", {k: v for k, v in src_stats.items() if k != "rows_no_provable_lane"})
 
     fills, nf, nok = read_novig_fills()
     trades, nt, pok = read_px_trades()
@@ -174,7 +161,18 @@ def main():
     stale = cstale.stale_map(cb, st.get("bets") or {})
     clv = {k: r["clv"] for k, r in cb.items()
            if r.get("clv") is not None and not r.get("fixture_doubt") and k not in stale}
-    rep = build(rows, index, reg._venue, links, clv)
+    from bot_live_export import TRIGGERS     # Peter's 13 Nov ruled lane table (constant only; nothing is run)
+    ruled = (TRIGGERS, tb.toks)
+    rep = build(rows, index, reg._venue, links, clv, ruled)
+    # SECTION F (Peter, 16 Nov): every bot row from 12 Nov ET, classified the same way, with its own exactly-once check.
+    since = [r for r in rows if (rs._et_day(r.get("game_start") or r.get("settled") or r.get("first_seen")) or "") >= rs.START_ET]
+    rep_f = build(since, index, reg._venue, links, clv, ruled)
+    eof = rep_f.get("exactly_once") or {}
+    print(f"section F (from {rs.START_ET} ET): bot rows {len(since)} | exactly-once {'OK' if eof.get('ok') else 'FAILED'} | "
+          "buckets " + ", ".join(f"{b} {v['all']['settled']}+{v['open_or_ambiguous']} open" for b, v in rep_f["buckets"].items()))
+    print("section F join:", rep_f["join"])
+    print("bot fills of registry orders with NO tracker row (by venue):",
+          fills_without_tracker_row(links, index, {str(r.get("id") or "") for r in rows}) or "none")
     print("bot rows:", len(rows), "| with a venue order id (order_ref):", sum(1 for r in rows if r.get("order_ref")),
           "| registry order ids:", len(index), "| registry rows with no provable lane:", no_lane, "| join:", rep["join"])
     td = {}
@@ -188,9 +186,14 @@ def main():
         a = v["all"]
         print(f"{b}: settled {a['settled']} (verified money {a['verified_money']}), open/ambiguous {v['open_or_ambiguous']}, "
               f"no-time {v['settled_no_time']}, mixed time basis {v['MIXED_TIME_BASIS']}")
-    print("FUZZY lanes are the tracker's own text-matched labels (UNVERIFIED). EXACT = venue order id or venue fill/trade link "
-          "to ONE registry claim per order, one lane per position.")
+    print("EXACT = VERIFIED (venue order id or venue fill/trade link to ONE registry claim per order, one lane per position). "
+          "RULED = Peter's 13 Nov ruled table, Oct 31 - Nov 12 (never EXACT). FUZZY = tracker text label (UNVERIFIED).")
     text, csv_rows = render(rep)
+    tf, cf = render(rep_f)
+    text += f"\n\nSECTION F - EVERY BOT ROW FROM {rs.START_ET} ET (settled W/L, ROI, units where verified, certified CLV availability)\n" + tf
+    for r_ in cf:
+        r_["bucket"] = "F|" + r_["bucket"]
+    csv_rows += cf
     fills_all = dict(ledger_fills)
     fills_all.update(reg.fills() or {})
     p1 = rs.project1(rows, clv)

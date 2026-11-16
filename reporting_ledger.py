@@ -88,8 +88,20 @@ LANES = ("rules", "rule", "board", "r1", "lane2")
 
 
 def lane_of_key(k):
+    """DEPRECATED for counts (Peter, 16 Nov): a key prefix proves nothing - executor.ledger_row stores key = derive_key(play),
+    normally with NO lane prefix, so this returned '?' for most real orders. Kept for any external caller."""
     p = str(k or "").split("|")[0]
     return {"rule": "rules"}.get(p, p) if p in LANES else "?"
+
+
+def lane_of_row(d):
+    """Lane counts come from the STORED order row's verified fields (registry.row_lane: 'source' = rules|board|r1|lane2, or a
+    lane prefix that agrees with it). Unknown or disagreeing -> '?'. Reads the record; never alters it."""
+    try:
+        import registry as _rg
+        return _rg.row_lane(d or {}) or "?"
+    except Exception:
+        return "?"
 
 
 def daily(L):
@@ -97,18 +109,32 @@ def daily(L):
     settlement day = tracker settled; first-seen day = tracker ingest_checked (Project 1 stamp)."""
     cur = latest(L)
     D = collections.defaultdict(collections.Counter)
+    # Fill lanes come from the ORDER the fill belongs to, joined by immutable id (fill record id == order_id or client_id),
+    # with the lane from that stored order row - not from the fill's unprefixed play_key. Two lanes on one id -> '?'.
+    id_lane = {}
+    for (kind, _rid), (_f, d) in cur.items():
+        if kind != "order":
+            continue
+        ln = lane_of_row(d)
+        los = [d.get("live_order"), d.get("live_rest")] + list(d.get("live_more") or [])
+        for lo in los:
+            lo = lo if isinstance(lo, dict) else {}
+            for fld in ("order_id", "client_id"):
+                i = str(lo.get(fld) or "")
+                if i:
+                    id_lane[i] = ln if id_lane.get(i, ln) == ln else "?"
     for (kind, rid), (first, d) in cur.items():
         if kind == "order":
             day = (d.get("et_day") or et_day(d.get("decided_utc")) or "?")
             if day >= START_ET:
                 D[day]["orders"] += 1
                 D[day]["orders_with_live_order"] += 1 if d.get("live_order") else 0
-                D[day][f"orders_lane_{lane_of_key(d.get('key'))}"] += 1
+                D[day][f"orders_lane_{lane_of_row(d)}"] += 1
         elif kind == "fill":
             day = et_day(d.get("ts")) or "?"
             if day >= START_ET:
                 D[day][f"fill_{d.get('state')}"] += 1
-                D[day][f"fill_lane_{lane_of_key(d.get('play_key'))}"] += 1 if d.get("state") in ("FILLED", "PARTIAL") else 0
+                D[day][f"fill_lane_{id_lane.get(str(rid), '?')}"] += 1 if d.get("state") in ("FILLED", "PARTIAL") else 0
         elif kind == "tracker_bot":
             sday = et_day(d.get("settled"))
             fday = et_day(d.get("ingest_checked"))

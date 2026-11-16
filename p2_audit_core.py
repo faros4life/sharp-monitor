@@ -108,7 +108,7 @@ def resolve(row, index, norm=_norm):
     return "exact", ln, k
 
 
-def classify(rows, index, norm=_norm, links=None):
+def classify(rows, index, norm=_norm, links=None, ruled=None):
     """-> (items, stats, conflicts). Each item: (row, bucket, group_key or None).
     Any non-empty tracker lane or lane_fuzzy that differs from the registry lane (after canon_lane) is a CONFLICT, whatever
     lane_src says: the row goes to CONFLICT(registry=<lane>), is listed in conflicts, is never merged and never counted EXACT."""
@@ -138,6 +138,18 @@ def classify(rows, index, norm=_norm, links=None):
             continue
         st[status] += 1
         status = status.split(":", 1)[0]
+        if ruled is not None:
+            rl, why = ruled_lane(r, ruled[0], ruled[1])
+            if why:
+                st["ruled:" + why] += 1
+                items.append((r, "UNATTRIBUTED(" + why + ")", None))
+                continue
+            if rl:
+                st["ruled"] += 1
+                if r.get("lane") and canon_lane(r["lane"]) != rl:
+                    st["ruled_vs_tracker_text_disagree"] += 1
+                items.append((r, "RULED:" + rl, None))
+                continue
         if r.get("lane"):
             items.append((r, "FUZZY:" + (canon_lane(r["lane"]) or str(r["lane"])), None))
         else:
@@ -243,8 +255,9 @@ def bucket_report(plays, clv=None):
             "units": "UNAVAILABLE (no verified unit schedule)", "time_diag": time_diag(plays)}
 
 
-def build(rows, index, norm=_norm, links=None, clv=None):
-    items, stats, conflicts = classify(rows, index, norm, links)
+def build(rows, index, norm=_norm, links=None, clv=None, ruled=None):
+    """ruled = (bot_live_export.TRIGGERS, tracker_build.toks) or None."""
+    items, stats, conflicts = classify(rows, index, norm, links, ruled)
     groups = consolidate(items)
     # Exactly-once: every bot row must sit in exactly one play in exactly one bucket (partial fills merge into
     # their play, never into a second one). A failure here means the recap double- or under-counts.
@@ -279,8 +292,9 @@ def units_for(bucket, seg_range, net):
 
 def render(rep):
     """(text, csv_rows) for PRIVATE delivery only. Aggregates per bucket and segment; never a game, bet, ticket or row."""
-    L = ["PROJECT 2 - live lane audit (private). Buckets never mix: EXACT = venue order id -> one registry claim;",
-         "FUZZY = the tracker's own lane label (UNVERIFIED); UNATTRIBUTED = no provable lane; CONFLICT = tracker vs registry disagree.",
+    L = ["PROJECT 2 - live lane audit (private). Buckets never mix: EXACT (VERIFIED) = venue order id or venue fill/trade link -> one",
+         "registry claim; RULED = Peter's 13 Nov game-level lane table (Oct 31 - Nov 12), never EXACT; FUZZY = tracker text label (UNVERIFIED);",
+         "UNATTRIBUTED = no provable lane; CONFLICT = tracker vs registry disagree.",
          "Units (EXACT plays only, dated on/after the unit's start): Lane 1 300 from 9 Nov; R1 200 and Board V3 200 from 11 Nov. ROI = net / risked.",
          f"Join: {rep.get('join')} | lane conflicts: {len(rep.get('lane_conflicts') or [])}", ""]
     rows = []
@@ -379,3 +393,81 @@ def resolve_link(row, links, index, norm=_norm):
     if len(lanes) != 1:
         return "link_position_multi_lane", None, None
     return "exact_link", next(iter(lanes)), "|".join(sorted(keys))
+
+
+# ------------------------------------------------------------------ Peter, 16 Nov 04:43 "USE BOTH"
+RULED_LANE = {"lane 1": "PHASE 1", "r1": "R1", "bets board v3": "BOARD V3", "board v3": "BOARD V3", "board": "BOARD V3"}
+RULED_FROM, RULED_TO = "2026-10-31", "2026-11-12"       # Peter: RULED recovers Oct 31 - Nov 12 only
+
+
+def ruled_lane(row, triggers, toks):
+    """The lane Peter RULED for this row's game (bot_live_export.TRIGGERS: his 13 Nov recap table), by the SAME rule the
+    Last-50 panel uses (bot_live_export.trigger_plays): game date within +-1 day of the ruled MM-DD, and a word of each
+    ruled team in the row's game text. -> (lane, None) | (None, 'ruled_multi_lane') | (None, None).
+    Game-level evidence: a RULED lane is never EXACT."""
+    from datetime import datetime as _d, timedelta as _td
+    day = str(row.get("game_start") or row.get("settled") or row.get("first_seen") or "")[:10]
+    gt = toks(row.get("game") or "")
+    hits = set()
+    for lane, games in (triggers or {}).items():
+        for md, a, b in games:
+            d0 = _d.strptime("2026-" + md, "%Y-%m-%d")
+            if not (RULED_FROM <= d0.strftime("%Y-%m-%d") <= RULED_TO):
+                continue
+            days = {(d0 + _td(days=x)).strftime("%Y-%m-%d") for x in (-1, 0, 1)}
+            A, B = (a if isinstance(a, (set, frozenset)) else {a}), (b if isinstance(b, (set, frozenset)) else {b})
+            if day in days and (A & gt) and (B & gt):
+                hits.add(RULED_LANE.get(str(lane).strip().lower(), str(lane).upper()))
+    if len(hits) > 1:
+        return None, "ruled_multi_lane"
+    return (next(iter(hits)), None) if hits else (None, None)
+
+
+def index_from_sources(sources, row_lane, venue):
+    """Claims index built from several order sources, DEDUPLICATED BY IMMUTABLE ID: {order or client id: [(venue, key, lane)]}
+    plus per-id provenance. sources = [(name, rows)]. A claim is (venue, key, lane); the same claim seen in two sources is ONE
+    claim. Two DIFFERENT claims on one id across sources are kept both, so resolve() reports them ambiguous (never picks).
+    -> (index, stats). stats counts ids by source overlap and cross-source conflicts; never an identifier."""
+    d = lambda x: x if isinstance(x, dict) else {}
+    claims, seen_in, no_lane = {}, {}, 0
+    for name, rows in sources:
+        for row in rows or []:
+            key = row.get("key")
+            more = row.get("live_more")
+            los = [d(row.get("live_order")), d(row.get("live_rest"))] + [d(x) for x in (more if isinstance(more, list) else [])]
+            placed = [lo for lo in los if lo.get("status") == "placed" and lo.get("order_id") and not lo.get("intent")
+                      and not lo.get("voided") and not str(lo.get("order_id")).startswith("intent-")]
+            if not key or not placed:
+                continue
+            lane = row_lane(row)
+            if not lane:
+                no_lane += 1
+                continue
+            for lo in placed:
+                for fld in ("order_id", "client_id"):
+                    i = str(lo.get(fld) or "")
+                    if not i or i.startswith("intent-"):
+                        continue
+                    c = (venue(lo.get("book") or row.get("fill_book")), str(key), lane)
+                    claims.setdefault(i, set()).add(c)
+                    seen_in.setdefault(i, set()).add(name)
+    names = [n for n, _r in sources]
+    st = Counter()
+    for i, src in seen_in.items():
+        st["ids_in_" + "+".join(n for n in names if n in src)] += 1
+        if len(src) > 1 and len({(v, canon_lane(ln)) for v, _k, ln in claims[i]}) > 1:
+            st["ids_cross_source_conflict"] += 1
+    st["rows_no_provable_lane"] = no_lane
+    return {i: sorted(c) for i, c in claims.items()}, dict(st)
+
+
+def fills_without_tracker_row(links, index, row_ids):
+    """Count venue positions (Novig nv|.. / ProphetX px|..) whose fills belong to OUR registry orders but which have NO tracker
+    row at all - a bot fill the tracker never recorded. Counts only."""
+    out = Counter()
+    for tid, orders in (links or {}).items():
+        if tid == "_incomplete" or tid in row_ids:
+            continue
+        if any(i in (index or {}) for ids in orders for i in ids):
+            out[tid.split("|", 1)[0]] += 1
+    return dict(out)
