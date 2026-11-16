@@ -60,3 +60,25 @@ print()
 if fails:
     print(f"FAILED {len(fails)}: " + "; ".join(fails)); sys.exit(1)
 print("test_reporting_ledger: all passed")
+
+
+# ---- lane counts from the stored row's verified fields, never a key prefix (Peter, 16 Nov)
+def _lane_counts():
+    L = {"version": 1, "events": [], "head": {}}
+    now = "2026-11-13T12:00:00Z"
+    rl.observe(L, "order", "o1", {"key": "NBA|A @ B|total|OVER", "source": "board", "et_day": "2026-11-13",
+                                  "live_order": {"order_id": "c1", "status": "placed"}}, now)
+    rl.observe(L, "order", "o2", {"key": "NBA|C @ D|total|UNDER", "source": "r1", "et_day": "2026-11-13",
+                                  "live_order": {"order_id": "c2", "status": "placed"}}, now)
+    rl.observe(L, "order", "o3", {"key": "NBA|E @ F|total|UNDER", "source": "muse", "et_day": "2026-11-13"}, now)
+    rl.observe(L, "fill", "c1", {"state": "FILLED", "ts": now, "play_key": "NBA|A @ B|total|OVER"}, now)
+    rl.observe(L, "fill", "c2", {"state": "PARTIAL", "ts": now, "play_key": "NBA|C @ D|total|UNDER"}, now)
+    rl.observe(L, "fill", "zz", {"state": "FILLED", "ts": now, "play_key": "board|NBA|X"}, now)
+    return rl.daily(L)["2026-11-13"]
+
+
+D_ = _lane_counts()
+assert D_["orders_lane_board"] == 1 and D_["orders_lane_r1"] == 1 and D_["orders_lane_?"] == 1, dict(D_)
+assert D_["fill_lane_board"] == 1 and D_["fill_lane_r1"] == 1, dict(D_)
+assert D_["fill_lane_?"] == 1, dict(D_)          # a fill with no matching order id is '?', even with a lane-prefixed play_key
+print("lane counts from verified fields: ok")
