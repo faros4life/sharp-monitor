@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 16, 10:05 AM ET. This run: 0 new, 1 not confirmed, 1 pending. Open alerts: 26.
+Updated Mon Nov 16, 10:10 AM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 26.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -29,7 +29,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 15 10:45PM | NBA | Houston vs Miami | moneyline: Houston | kalshi | $89k | -144 |  |  | -2.0c |  | pending |
 | Nov 15 10:30PM | NBA | Phoenix vs Denver | moneyline: Denver | kalshi | $79k | -376 |  |  | +0.0c |  | pending |
 | Nov 15 10:25PM | NBA | Houston vs Miami | moneyline: Miami | kalshi | $29k | +127 |  |  | +0.0c |  | pending |
-| Nov 15 9:00PM | NBA | Chicago vs Cleveland | moneyline: Cleveland | kalshi | $103k | -355 |  |  | -1.0c |  | pending |
+| Nov 15 9:00PM | NBA | Chicago vs Cleveland | moneyline: Cleveland | kalshi | $103k | -355 |  |  | -2.0c |  | pending |
 | Nov 15 8:55PM | NBA | Orlando vs Boston | moneyline: Boston | kalshi | $109k | -426 |  |  | -5.0c | yes | pending |
 | Nov 15 8:50PM | NBA | Golden State vs New Orleans | moneyline: Golden State | kalshi | $98k | -127 |  |  | +4.0c |  | pending |
 | Nov 15 8:45PM | NBA | Oklahoma City vs Sacramento: Total Points | total: NOT Over 221.5 points | kalshi | $59k | -104 | ✅ novig |  | +0.0c | yes | L |
