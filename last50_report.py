@@ -122,6 +122,11 @@ def verdict(w, h1, h2, ho):
     if ho["clv_n"] < 0.8 * ho["n"]:
         # 16 Nov: without certified CLV on 80%+ of the window there is nothing to qualify on
         return f"INSUFFICIENT EVIDENCE (certified CLV {ho['clv_n']}/{ho['n']})"
+    cc = ho.get("clv_ci")
+    if cc and cc[1] < 0:
+        # SCORECARD.md: CLEAR FAIL also on "a precise and representative certified-CLV CI excluding zero negative"
+        # (representative = certified on 80%+ of the window, checked above)
+        return f"CLEAR FAIL (certified CLV 95% CI {cc[0]:+.2f} to {cc[1]:+.2f}, below zero)"
     clv_ok = all(h["clv"] is not None and h["clv"] > 0 and h["clv_n"] >= 0.8 * h["n"] for h in (h1, h2))
     if ci and ci[0] > 0 and h1["units"] > 0 and h2["units"] > 0 and clv_ok:
         return "POTENTIAL PASS"

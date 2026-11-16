@@ -43,6 +43,12 @@ idx = [i for i, l in enumerate(lines) if "sc.std_clv(" in l]
 check("every computed close is routed through a certification check or into the provisional field",
       len(idx) >= 3 and all(any("pclv" in l for l in lines[i:i + 6]) for i in idx), idx)
 check("SLOW-HR's uncertified close is provisional too", '"clv": None, "pclv": clv' in src)
+neg = [dict(S[0], res="W", clv=-2.0 + (i % 3) * 0.1) for i in range(50)]
+hn = L.half_stats(neg)
+check("representative certified CLV with a CI below zero -> CLEAR FAIL", L.verdict(neg, hn, hn, hn).startswith("CLEAR FAIL"))
+thin = [dict(r, clv=None) if i >= 39 else r for i, r in enumerate(neg)]
+ht = L.half_stats(thin)
+check("the same negative CLV on only 39/50 -> INSUFFICIENT EVIDENCE, not a fail", L.verdict(thin, ht, ht, ht).startswith("INSUFFICIENT"))
 if fails:
     print("FAILED", fails); sys.exit(1)
 print("test_last50_certified: all passed")
