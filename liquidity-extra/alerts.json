@@ -1,6 +1,172 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-16T17:30:32Z",
+   "base_depth": 74370,
+   "best_price": 0.5664,
+   "best_price_american": -131,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.56,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-16",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -127,
+     "new_this_side": 25934,
+     "other_side": 11080,
+     "other_side_all_levels": 37488,
+     "ratio": 3.0,
+     "this_side": 33124,
+     "this_side_all_levels": 96850
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 13533.64,
+    "volume_24h_fp": 15353.58,
+    "volume_fp": 15353.58
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 42.0,
+    "volume_24h_fp": 87.3,
+    "volume_fp": 42.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 13491.64,
+    "volume_24h_fp": 15266.28,
+    "volume_fp": 15311.58
+   },
+   "fade_price": 0.45,
+   "first_seen_utc": "2026-11-16T17:20:40Z",
+   "game": "Abilene Christian vs Missouri St.: Spread",
+   "game_surge_books": [],
+   "game_x": 1.99,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAMBSPREAD-26NOV16ACMOSU-MOSU7\"}",
+   "lead_min": 449,
+   "league": "NCAAB",
+   "line": 6.5,
+   "market": "spread",
+   "new_money": 25934,
+   "new_x": 1.21,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 13533.64,
+      "volume_24h_fp": 15353.58,
+      "volume_fp": 15353.58
+     },
+     "game_normal": 48612,
+     "game_x": 1.99,
+     "normal": 21365,
+     "now": 96850,
+     "type": "SPREAD",
+     "x": 4.53
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.56,
+   "price_american": -127,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.56,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 5.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 5.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 5.5,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 5.5,
+     "price": -109
+    },
+    "betus": {
+     "point": 5.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 5.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 5.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 5.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 5.5,
+     "price": -102
+    },
+    "kalshi": {
+     "point": 6.5,
+     "price": -127
+    },
+    "lowvig": {
+     "point": 5.5,
+     "price": -106
+    },
+    "novig": {
+     "point": 29.5,
+     "price": -100000
+    },
+    "polymarket": {
+     "point": 5.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 5.5,
+     "price": -106
+    },
+    "williamhill_us": {
+     "point": 5.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAMBSPREAD-26NOV16ACMOSU-MOSU7"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Abilene Christian",
+   "side_label": "NOT Missouri St. wins by over 6.5 points",
+   "size_x": 4.53,
+   "start_source": "odds",
+   "start_utc": "2026-11-17T01:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Abilene Christian",
+    "Missouri St."
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-16T15:30:40Z",
    "base_depth": 23597,
    "best_price": 0.4975,
@@ -41,7 +207,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 2412.18,
-    "volume_24h_fp": 2558.95,
+    "volume_24h_fp": 2606.43,
     "volume_fp": 2606.43
    },
    "ex_stats_first": {
@@ -208,9 +374,9 @@
     "volume_fp": 2320.29
    },
    "ex_stats_close": {
-    "open_interest_fp": 15317.35,
-    "volume_24h_fp": 19651.3,
-    "volume_fp": 19651.3
+    "open_interest_fp": 15417.35,
+    "volume_24h_fp": 19751.3,
+    "volume_fp": 19751.3
    },
    "ex_stats_first": {
     "open_interest_fp": 9253.65,
@@ -389,9 +555,9 @@
     "volume_fp": 1.65
    },
    "ex_stats_close": {
-    "open_interest_fp": 2932.92,
-    "volume_24h_fp": 3237.21,
-    "volume_fp": 3257.7
+    "open_interest_fp": 3277.7200000000003,
+    "volume_24h_fp": 3577.83,
+    "volume_fp": 3602.5
    },
    "ex_stats_first": {
     "open_interest_fp": 1923.0,
@@ -574,9 +740,9 @@
     "volume_fp": 5.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2547.27,
-    "volume_24h_fp": 2623.12,
-    "volume_fp": 2623.12
+    "open_interest_fp": 2641.61,
+    "volume_24h_fp": 2711.46,
+    "volume_fp": 2717.46
    },
    "ex_stats_first": {
     "open_interest_fp": 987.24,
@@ -751,9 +917,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3123.45,
-    "volume_24h_fp": 3030.3599999999997,
-    "volume_fp": 3125.45
+    "open_interest_fp": 3226.52,
+    "volume_24h_fp": 3137.4300000000003,
+    "volume_fp": 3228.52
    },
    "ex_stats_first": {
     "open_interest_fp": 600.8599999999999,
@@ -934,9 +1100,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3166.99,
-    "volume_24h_fp": 3162.87,
-    "volume_fp": 3166.99
+    "open_interest_fp": 3588.52,
+    "volume_24h_fp": 3702.12,
+    "volume_fp": 3706.24
    },
    "ex_stats_first": {
     "open_interest_fp": 577.81,
@@ -1123,9 +1289,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2489.39,
-    "volume_24h_fp": 2503.12,
-    "volume_fp": 2507.58
+    "open_interest_fp": 2493.7,
+    "volume_24h_fp": 2507.43,
+    "volume_fp": 2511.89
    },
    "ex_stats_first": {
     "open_interest_fp": 114.28,
@@ -3957,9 +4123,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 51946.32,
-    "volume_24h_fp": 51940.84,
-    "volume_fp": 53908.479999999996
+    "open_interest_fp": 53181.01,
+    "volume_24h_fp": 53200.8,
+    "volume_fp": 55145.71
    },
    "ex_stats_first": {
     "open_interest_fp": 879.45,
