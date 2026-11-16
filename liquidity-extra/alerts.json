@@ -1,6 +1,176 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-16T18:30:23Z",
+   "base_depth": 30688,
+   "best_price": 0.4745,
+   "best_price_american": 111,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.47,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-16",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 8703,
+     "new_this_side": 27520,
+     "other_side": 10757,
+     "other_side_all_levels": 40604,
+     "ratio": 0.8,
+     "this_side": 8740,
+     "this_side_all_levels": 56792
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 5203.75,
+    "volume_24h_fp": 5176.84,
+    "volume_fp": 5203.75
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 5203.75,
+    "volume_24h_fp": 5176.84,
+    "volume_fp": 5203.75
+   },
+   "fade_price": 0.54,
+   "first_seen_utc": "2026-11-16T18:20:23Z",
+   "game": "Abilene Christian vs Missouri St.: Point Total",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 2.42,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAMBTOTAL-26NOV16ACMOSU-140\"}",
+   "lead_min": 390,
+   "league": "NCAAB",
+   "line": 139.5,
+   "market": "total",
+   "new_money": 27520,
+   "new_x": 1.54,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 5203.75,
+      "volume_24h_fp": 5176.84,
+      "volume_fp": 5203.75
+     },
+     "game_normal": 23460,
+     "game_x": 2.42,
+     "normal": 17839,
+     "now": 56792,
+     "type": "UNDER",
+     "x": 3.18
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.47,
+   "price_american": 113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.47,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 140.5,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": 141.5,
+     "price": -115
+    },
+    "betopenly": {
+     "point": 141.5,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 141.5,
+     "price": -109
+    },
+    "betus": {
+     "point": 141.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 141.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 141.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": 141.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 141.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 139.5,
+     "price": 113
+    },
+    "lowvig": {
+     "point": 141.5,
+     "price": -113
+    },
+    "novig": {
+     "point": 140.5,
+     "price": 106
+    },
+    "polymarket": {
+     "point": 141.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 141.5,
+     "price": -112
+    },
+    "williamhill_us": {
+     "point": 141.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAMBTOTAL-26NOV16ACMOSU-140"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [
+    "Under 144.5 (-115)"
+   ],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 139.5 points",
+   "size_x": 3.18,
+   "start_source": "odds",
+   "start_utc": "2026-11-17T01:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Abilene Christian",
+    "Missouri St."
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-16T18:10:20Z",
    "base_depth": 32730,
    "best_price": 0.775,
@@ -46,9 +216,9 @@
     "volume_fp": 115.13
    },
    "ex_stats_close": {
-    "open_interest_fp": 5862.57,
+    "open_interest_fp": 7187.82,
     "volume_24h_fp": 5143.22,
-    "volume_fp": 6022.46
+    "volume_fp": 7347.71
    },
    "ex_stats_first": {
     "open_interest_fp": 5739.1900000000005,
@@ -99,6 +269,8 @@
    "norm_ready_books": 2,
    "paper_only": false,
    "price": 0.77,
+   "price_after_15m": 0.775,
+   "price_after_15m_book": "novig",
    "price_american": -335,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.77,
@@ -149,6 +321,7 @@
    "size_x": 9.88,
    "start_source": "odds",
    "start_utc": "2026-11-18T00:00:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi"
    ],
@@ -201,7 +374,7 @@
    "ex_stats_close": {
     "open_interest_fp": 15521.79,
     "volume_24h_fp": 19900.58,
-    "volume_fp": 19900.58
+    "volume_fp": 19931.35
    },
    "ex_stats_first": {
     "open_interest_fp": 9253.65,
@@ -380,9 +553,9 @@
     "volume_fp": 1.65
    },
    "ex_stats_close": {
-    "open_interest_fp": 4446.4,
+    "open_interest_fp": 4763.4400000000005,
     "volume_24h_fp": 4772.139999999999,
-    "volume_fp": 4794.63
+    "volume_fp": 5111.67
    },
    "ex_stats_first": {
     "open_interest_fp": 1923.0,
@@ -565,9 +738,9 @@
     "volume_fp": 5.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3537.98,
+    "open_interest_fp": 3544.55,
     "volume_24h_fp": 4236.27,
-    "volume_fp": 4236.27
+    "volume_fp": 4242.84
    },
    "ex_stats_first": {
     "open_interest_fp": 987.24,
@@ -925,9 +1098,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3612.85,
+    "open_interest_fp": 3751.94,
     "volume_24h_fp": 3843.4399999999996,
-    "volume_fp": 3847.56
+    "volume_fp": 3986.65
    },
    "ex_stats_first": {
     "open_interest_fp": 577.81,
@@ -1114,9 +1287,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3600.77,
+    "open_interest_fp": 3773.99,
     "volume_24h_fp": 3613.0699999999997,
-    "volume_fp": 3618.96
+    "volume_fp": 3864.09
    },
    "ex_stats_first": {
     "open_interest_fp": 114.28,
@@ -3948,9 +4121,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 77261.34,
+    "open_interest_fp": 81196.01999999999,
     "volume_24h_fp": 85925.57999999999,
-    "volume_fp": 88583.89
+    "volume_fp": 92554.73999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 879.45,
