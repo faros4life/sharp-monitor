@@ -34,9 +34,22 @@ def merge_orders(registry_rows, ledger_rows):
     return list(registry_rows or []) + extra, len(extra)
 
 
+def _event_time(b):
+    """When the BET happened: placed, else game start, else settlement. Never the discovery stamp."""
+    for k in ("placed", "game_start", "settled"):
+        t = _t(b.get(k)) if b.get(k) else None
+        if t:
+            return t
+    return None
+
+
 def project1(bot_rows, clv, baseline_utc=P1_BASELINE_UTC):
-    """Bot rows first observed (ingest_checked, a never-overwritten stamp) on/after 12 Nov ET."""
-    fresh = [b for b in bot_rows if (_et_day(b.get("ingest_checked")) or "") >= START_ET]
+    """Bot rows first observed (ingest_checked, a never-overwritten stamp) on/after 12 Nov ET AND whose bet itself
+    happened then. 16 Nov: paging the tracker's ProphetX read discovered ~260 OLD trades in one run; their first-seen
+    stamp is today, but they are history and must never count as new fills."""
+    start = _t(START_ET + "T05:00:00+00:00")
+    fresh = [b for b in bot_rows if (_et_day(b.get("ingest_checked")) or "") >= START_ET
+             and _event_time(b) is not None and _event_time(b) >= start]
     graded = [b for b in fresh if b.get("result") in SETTLED]
     with_clv = [b for b in graded if clv.get(str(b.get("id"))) is not None]
     vals = [clv[str(b.get("id"))] for b in with_clv]
@@ -49,7 +62,8 @@ def project1(bot_rows, clv, baseline_utc=P1_BASELINE_UTC):
         out["qualifying_why"] = "acceptance baseline timestamp NOT CONFIRMED - qualifying count withheld"
     else:
         b0 = _t(baseline_utc)
-        q = [b for b in graded if _t(b.get("ingest_checked")) and _t(b.get("ingest_checked")) >= b0]
+        q = [b for b in graded if _t(b.get("ingest_checked")) and _t(b.get("ingest_checked")) >= b0
+             and _event_time(b) >= b0]
         out["qualifying"] = len(q)
     if len(vals) >= 2:
         order = sorted(with_clv, key=lambda b: str(b.get("settled") or ""))

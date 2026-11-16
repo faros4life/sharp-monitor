@@ -14,7 +14,7 @@ check("ledger restores pruned orders, never duplicates live ones", len(m) == 2 a
 
 rows = [{"id": "a", "result": "W", "settled": "2026-11-13T05:00:00Z", "ingest_checked": "2026-11-12T20:00:00Z"},
         {"id": "b", "result": "L", "settled": "2026-11-14T05:00:00Z", "ingest_checked": "2026-11-13T20:00:00Z"},
-        {"id": "c", "ingest_checked": "2026-11-14T20:00:00Z"},
+        {"id": "c", "ingest_checked": "2026-11-14T20:00:00Z", "game_start": "2026-11-15T01:00:00Z"},
         {"id": "d", "result": "W", "settled": "2026-11-10T05:00:00Z", "ingest_checked": "2026-11-09T20:00:00Z"}]
 clv = {"a": 0.01, "d": 0.05}
 p1 = rs.project1(rows, clv, None)
@@ -119,6 +119,11 @@ fx3 = rs.fill_exceptions(od, {"f1": {"state": "FILLED"}}, {"v1"}, False, {"match
 check("incomplete matching read leaves UNKNOWN", {e["key"]: e for e in fx3}["r1|NCAAF|b|side|b"]["category"].startswith("UNKNOWN"))
 check("cursor field detected even when empty", core.px_has_cursor_field({"data": {"next_cursor": None}}))
 check("no cursor field is not proof of the end", not core.px_has_cursor_field({"data": {"cursor": "x"}}))
+old = {"id": "h", "result": "W", "settled": "2026-10-20T05:00:00Z", "ingest_checked": "2026-11-16T13:37:00Z"}
+check("a historical bet discovered today is NOT a new fill", rs.project1([old], {"h": 0.01})["first_seen_since_start"] == 0)
+check("and never qualifies", rs.project1([old], {"h": 0.01})["qualifying"] == 0)
+nt = {"id": "n", "result": "W", "ingest_checked": "2026-11-16T13:37:00Z"}
+check("a row with no bet time cannot qualify", rs.project1([nt], {})["first_seen_since_start"] == 0)
 if fails:
     print("FAILED", fails); sys.exit(1)
 print("test_report_sections: all passed")
