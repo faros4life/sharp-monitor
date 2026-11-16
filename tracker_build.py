@@ -1081,7 +1081,7 @@ let bar='';const mk=mkOf(b);const lm=String(b.bet||'').match(/(\\d+(?:\\.\\d+)?)
 if(mk==='Total Points'&&tm&&lm){const tot=tm[0].score+tm[1].score,ln=parseFloat(lm[1]),mx=Math.max(tot,ln)*1.15||1;
 bar=`<div class="bar" style="color:${r==='W'?'var(--win)':'#e5483b'}"><i class="${c}" style="width:${Math.min(100,tot/mx*100)}%"></i><u style="left:${ln/mx*100}%"></u><b style="left:${Math.min(100,tot/mx*100)}%">${tot}</b></div>`;}
 return `<div class="bl"><div class="t1"><div><div class="nm">${esc(b.bet)}</div><div class="ty">${esc(src(b))}</div></div>
-<div class="pf"><div class="k">Profit</div><div class="v" style="color:${r==='W'?'var(--win)':r==='L'?'var(--loss)':'var(--fg)'}">${$(Math.abs(b.profit||0))}</div></div></div>
+<div class="pf"><div class="k">Profit</div><div class="v" style="color:${r==='W'?'var(--win)':r==='L'?'var(--loss)':'var(--fg)'}">${$(b.profit||0)}</div></div></div>
 ${mk?`<div class="mk">${mk}</div>`:''}<div class="gm">${esc(gm)}</div>
 <div class="t3"><div class="sc">${esc(sc)}<span class="badge ${c}">${r==='W'?'WON':r==='L'?'LOST':'PUSH'}</span></div>
 <div class="od">${pr(b.price)}<span class="bk1" title="${esc(b.book)}">${esc(String(b.book||'?').charAt(0))}</span></div></div>${bar}</div>`;};
@@ -1111,7 +1111,7 @@ const calBox=()=>{const [Y,M]=window.CALM.split('-').map(Number);const first=new
 let mp=0;Object.entries(byDay).forEach(([k,l])=>{if(k.startsWith(window.CALM))mp+=l.reduce((a,b)=>a+(b.result?(b.profit||0):0),0)});
 let cells='';for(let i=0;i<first.getDay();i++)cells+='<div class="c empty"></div>';
 for(let dd=1;dd<=days;dd++){const k=`${window.CALM}-${String(dd).padStart(2,'0')}`;const st=dayStats(k);let p='',cl='';
-if(st.s.length){cl=st.pnl>0?'pos':st.pnl<0?'neg':'';p=`<div class="p">${k1(Math.abs(st.pnl))}</div>`;}else if(st.o.length){cl='open';p=`<div class="p open">${k1(st.risk)}</div>`;}
+if(st.s.length){cl=st.pnl>0?'pos':st.pnl<0?'neg':'';p=`<div class="p">${k1(st.pnl)}</div>`;}else if(st.o.length){cl='open';p=`<div class="p open">${k1(st.risk)}</div>`;}
 cells+=`<div class="c ${cl} ${k===window.SEL?'sel':''} ${k===todayK?'today':''}" onclick="SEL='${k}';render(DATA)"><div class="n">${dd}</div>${p}</div>`;}
 const mv=n=>{const x=new Date(Y,M-1+n,1);return `${x.getFullYear()}-${String(x.getMonth()+1).padStart(2,'0')}`;};
 return `<div class="box"><div class="calh"><div><button onclick="CALM='${mv(-1)}';render(DATA)">‹</button><span class="mo">${first.toLocaleDateString('en-US',{month:'short',year:'numeric'})}</span><button onclick="CALM='${mv(1)}';render(DATA)">›</button></div>
