@@ -3,6 +3,11 @@ name: p2-audit
 # no exchange TRADING keys (Novig read key + ProphetX data key only, for the venue fill/trade link), no commit, no cache, no artifact upload. Public log = counts only. The dollar / ROI report goes only to
 # Peter's private Telegram (Peter approved Nov 14 18:06 ET).
 on:
+  # 16 Nov: the cron never fired. Chained to reporting-ledger (itself chained to clv-ledger). A gate job lets
+  # automatic triggers deliver ONE Telegram report per ET day; a manual dispatch always runs.
+  workflow_run:
+    workflows: [reporting-ledger]
+    types: [completed]
   schedule:
     - cron: "52 9 * * *"     # 04:52 ET daily, after reporting-ledger (04:32 ET). One private Telegram report a day.
   workflow_dispatch:
@@ -13,11 +18,35 @@ on:
         default: ""
 permissions:
   contents: read
+  actions: read      # gate only: lists this workflow's own earlier runs
 concurrency:
   group: p2-audit
   cancel-in-progress: false
 jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    outputs:
+      go: ${{ steps.g.outputs.go }}
+    steps:
+      - id: g
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EV: ${{ github.event_name }}
+          UP: ${{ github.event.workflow_run.conclusion }}
+        run: |
+          if [ "$EV" = "workflow_dispatch" ]; then echo "go=1" >> "$GITHUB_OUTPUT"; echo "manual: runs"; exit 0; fi
+          if [ "$EV" = "workflow_run" ] && [ "$UP" != "success" ]; then echo "go=0" >> "$GITHUB_OUTPUT"; echo "upstream not successful: skip"; exit 0; fi
+          today=$(TZ=America/New_York date +%F)
+          # ET midnight in UTC, so "already sent today" is judged on the ET day the report belongs to
+          since=$(date -u -d "TZ=\"America/New_York\" $today 00:00" +%Y-%m-%dT%H:%M:%SZ)
+          n=$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/p2-audit.yml/runs?status=success&created=>=${since}&per_page=50" \
+                --jq "[.workflow_runs[] | select(.id != ${GITHUB_RUN_ID} and .event != \"workflow_dispatch\")] | length")
+          if [ "${n:-0}" -gt 0 ]; then echo "go=0" >> "$GITHUB_OUTPUT"; echo "automatic report already delivered for $today: skip"
+          else echo "go=1" >> "$GITHUB_OUTPUT"; echo "first automatic report for $today: runs"; fi
   run:
+    needs: gate
+    if: needs.gate.outputs.go == '1'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:

@@ -19,6 +19,11 @@ name: clv-dashboard
 # the send and written after it, so a retry or a manual dispatch cannot send a second copy.
 
 on:
+  # 16 Nov: neither cron slot fired on 15 or 16 Nov. Chained to clv-ledger as well; the committed
+  # one-email-per-ET-day marker already makes repeat runs send nothing.
+  workflow_run:
+    workflows: [clv-ledger]
+    types: [completed]
   schedule:
     - cron: "12 9 * * *"
     # BACKUP slot, 15 Nov 2026: the 04:12 ET slot did not fire on 15 Nov while other workflows'
@@ -48,6 +53,7 @@ concurrency:
 
 jobs:
   build:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
