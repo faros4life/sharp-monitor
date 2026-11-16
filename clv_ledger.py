@@ -55,7 +55,15 @@ FETCH_DAYS = 45                  # Nov 5 (Peter, explicit release): was 14. The 
 FX_KEEP_DAYS = FETCH_DAYS + 14   # fixture cache retention - always longer than the window, never inside it
 SPORT = {"NBA": 11, "NFL": 14, "NCAAF": 14, "NHL": 15}
 TOURN = {"NBA": 132, "NFL": 31, "NHL": 234}           # NCAAF looked up once (the probe's 850 was wrong)
-ML_MARKET = {11: "111", 14: "141", 15: "151"}         # Winner incl. overtime (hockey: incl. OT and penalties)
+ML_MARKET = {11: "111", 14: "141", 15: "151"}
+# Nov 16 (Peter, approved): NCAAB is SCORED with the same certified close as every other league.
+# SPORT itself is unchanged so no other job's league list moves. NCAAB fixtures are CACHE-ONLY:
+# a fixture lookup for NCAAB is a paid call and is not approved, so this ledger never asks for one;
+# a row whose game is in no cached store waits with that reason and burns no retry.
+SCORE_SPORT = dict(SPORT, NCAAB=11)
+CACHE_ONLY_FX = frozenset({"NCAAB"})
+NCAAB_REOPEN_START_ET = "2026-11-12"   # report_sections.START_ET: the four settled bot rows Peter named
+NCAAB_REOPEN_EXPECT = 4         # Winner incl. overtime (hockey: incl. OT and penalties)
 FRESH_MIN = 24 * 60  # history stores CHANGES: a line's last pre-start tick is its price at the start unless it is a day old
 SCORE_AFTER_MIN = 10  # score a bet this long after its listed start
 MAX_TRIES = 8
@@ -979,7 +987,7 @@ def close_for(b, f, pm, mkmap, start, lg):
     pz = parsed(dict(b, bet=b["side_verified"], flip=None) if b.get("side_verified") else b)
     if not pz:
         return None, "bet text not parsed"
-    sid = SPORT[lg]
+    sid = SCORE_SPORT[lg]
     lab = lg
     if pz[0] == "ml":
         side, _swhy = fxm.resolve_side(f, pz[1], lg, which_team)
@@ -1140,7 +1148,7 @@ def novig_at(b, f, nm_pm, mkmap, when, lg):
     pz = parsed(b)
     if not pz:
         return None
-    sid = SPORT[lg]
+    sid = SCORE_SPORT[lg]
     if pz[0] == "ml":
         side = which_team(f, pz[1])
         if not side:
@@ -1241,6 +1249,30 @@ def lane_of(s, sv):
         if tb.toks(p.get("game")) & bt and (pz[0] == "total" and pz[1] == sz[1] or tb.toks(str(pz[1])) & tb.toks(str(sz[1]))):
             return "Street Value"
     return "Peter other"
+
+
+def ncaab_reopen(st, now):
+    """Reopen ONCE the settled bot NCAAB rows closed only because NCAAB was not scored (Peter, Nov 16).
+
+    Exactly NCAAB_REOPEN_EXPECT rows must qualify: bot source, NCAAB, done with no CLV, why exactly
+    'league NCAAB not covered', game on/after NCAAB_REOPEN_START_ET (ET), never reopened before.
+    Any other count reopens NOTHING (fail closed), so no unintended row is ever rescored."""
+    if st.get("ncaab_reopen_v1"):
+        return "already applied"
+    hit = []
+    for k, rec in (st.get("bets") or {}).items():
+        s_ = rec.get("snap") or {}
+        gs = tp(s_.get("game_start"))
+        if (s_.get("source") == "bot" and s_.get("league") == "NCAAB" and rec.get("done") and rec.get("clv") is None
+                and rec.get("why") == "league NCAAB not covered" and not rec.get("ncaab_reopened")
+                and gs and gs.astimezone(ET).strftime("%Y-%m-%d") >= NCAAB_REOPEN_START_ET):
+            hit.append(rec)
+    if len(hit) != NCAAB_REOPEN_EXPECT:
+        return f"refused: {len(hit)} qualifying rows (need exactly {NCAAB_REOPEN_EXPECT})"
+    for rec in hit:
+        rec["done"], rec["tries"], rec["ncaab_reopened"] = False, 0, iso(now)
+    st["ncaab_reopen_v1"] = iso(now)
+    return f"reopened {len(hit)}"
 
 
 # ------------------------------------------------------------------ main
@@ -1434,6 +1466,7 @@ def main():
             rec["done"], rec["tries"], rec["side_reopened"] = False, 0, iso(now)
             SIDE_LOG["reopened"] += 1
     print(f"CLV ledger verified-side recovery (counts only): {dict(SIDE_LOG) or 'none'}", flush=True)
+    print(f"CLV ledger NCAAB reopen (counts only): {ncaab_reopen(st, now)}", flush=True)
     # 3) which leagues need fixtures
     pend = []
     for k, rec in st["bets"].items():
@@ -1472,10 +1505,12 @@ def main():
     for k, rec in pend:
         s = rec["snap"]
         lg = s.get("league")
-        if lg not in SPORT:
+        if lg not in SCORE_SPORT:
             continue
         if rec.get("fixture") or find_fixture(st, s):
             continue
+        if lg in CACHE_ONLY_FX:
+            continue          # never a paid fixture lookup for a cache-only league
         d0 = max(tp(s.get("game_start") or s.get("decided_utc")) or now, now - timedelta(days=FETCH_DAYS))   # keep the call small
         lo, hi = need.get(lg, (d0, d0))
         need[lg] = (min(lo, d0), max(hi, d0))
@@ -1498,7 +1533,7 @@ def main():
     for k, rec in pend:
         s = rec["snap"]
         lg = s.get("league")
-        if lg not in SPORT:
+        if lg not in SCORE_SPORT:
             rec["tries"] = rec.get("tries", 0) + 1
             rec["why"] = f"league {lg or 'unknown'} not covered"
             if lg or rec["tries"] >= MAX_TRIES:
@@ -1537,6 +1572,9 @@ def main():
                 rec["why"] = "no OddsPapi fixture matched"
                 if rec["tries"] >= MAX_TRIES:
                     rec["done"] = True
+            elif lg in CACHE_ONLY_FX:
+                rec["why"] = (f"{lg} fixture not in any cached store; a {lg} fixture lookup is a paid call "
+                              "and is not approved - uncertified, retry not counted")
             else:
                 rec["why"] = "no fixture yet - no fresh lookup this run (6 h cooldown), retry not counted"
             continue
