@@ -1115,9 +1115,9 @@ ${mk?`<div class="mk">${mk}</div>`:''}<div class="gm">${esc(gm)}</div>
 <div class="od">${pr(b.price)}<span class="bk1" title="${esc(b.book)}">${esc(String(b.book||'?').charAt(0))}</span></div></div>${bar}</div>`;};
 const dkey=b=>{const x=new Date(b.game_start||b.settled||0);return isNaN(x)?'Earlier':x.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',timeZone:'America/New_York'});};
 const settledHTML=a=>{if(!a.length)return '';const g={};a.forEach(b=>{(g[dkey(b)]=g[dkey(b)]||[]).push(b)});
-return '<h2>Settled</h2>'+Object.entries(g).map(([k,l])=>{const tot=l.reduce((s,b)=>s+(b.profit||0),0);const w=l.filter(b=>b.result==='W').length,lo=l.filter(b=>b.result==='L').length;
+return '<h2>Settled</h2>'+Object.entries(g).map(([k,l])=>{const tot=l.reduce((s,b)=>s+(b.profit||0),0);const _r=recordOf(l),w=_r.w,lo=_r.l;
 return `<div class="day"><span>${esc(k)} · ${w}-${lo}</span><span style="color:${tot>0?'var(--win)':tot<0?'var(--loss)':'var(--muted)'}">${sg(Math.round(tot*100)/100)}</span></div>`+l.map(rowOf).join('')}).join('');};
-const wl=a=>{const w=a.filter(b=>b.result==='W').length,l=a.filter(b=>b.result==='L').length;return w+l?`${w}-${l}`:'';};
+const wl=a=>{const r=recordOf(a);return r.w+r.l+r.p?`${r.w}-${r.l}`+(r.p?`-${r.p}`:''):'';};   /* Nov 16: games 1x, same as the ledger - two record systems on one page is worse than either */
 const today=new Date().toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',timeZone:'America/New_York'});
 const ymd=x=>{const s=x.game_start||(x.result?x.settled:null);if(!s)return null;return new Date(s).toLocaleDateString('en-CA',{timeZone:'America/New_York'});};
 const ALL=(d.all||[]);const byDay={};ALL.forEach(b=>{const k=ymd(b);if(k)(byDay[k]=byDay[k]||[]).push(b)});const tk=b=>b.game_start||b.placed||b.settled||'';Object.values(byDay).forEach(l=>l.sort((x,y)=>tk(x).localeCompare(tk(y))));
