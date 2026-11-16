@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 16, 11:45 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 27.
+Updated Mon Nov 16, 11:50 AM ET. This run: 1 new, 0 not confirmed, 3 pending. Open alerts: 28.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,9 +10,10 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 16 11:50AM | NFL | Los Angeles Chargers @ Baltimore Ravens | spread: BAL -4.5 (-4.5) | novig | $27k | -104 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 16 11:35AM | NBA | Orlando vs Boston: Total Points | total: Over 211.5 points | kalshi | $27k | -113 |  | ✅ | +0.0c |  | pending |
 | Nov 16 10:00AM | NFL | Los Angeles Chargers @ Baltimore Ravens | moneyline: BAL (0) | novig | $67k | -208 | ✅ kalshi,prophetx |  | +1.0c |  | pending |
-| Nov 16 9:55AM | NBA | Portland vs Minnesota: Total Points | total: Over 226.5 points | kalshi | $27k | -108 |  |  | +0.0c |  | pending |
+| Nov 16 9:55AM | NBA | Portland vs Minnesota: Total Points | total: Over 226.5 points | kalshi | $27k | -108 |  |  | +1.0c |  | pending |
 | Nov 16 9:20AM | NBA | Phoenix vs Denver: Total Points | total: Over 228.5 points | kalshi | $29k | -108 |  |  | +2.0c | yes | pending |
 | Nov 16 9:20AM | NBA | Philadelphia vs Brooklyn: Total Points | total: Over 224.5 points | kalshi | $32k | -113 |  |  | +2.0c |  | pending |
 | Nov 16 9:20AM | NBA | Phoenix vs Denver: Spread | spread: Denver wins by over 9.5 points | kalshi | $40k | -108 | ✅ novig | ❌ | +0.0c | yes | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 4:35PM | NCAAF | Mississippi Valley St. vs Florida A&M | moneyline: Florida A&M | kalshi | $42k | -223 |  |  | +12.0c | yes | W |
 | Nov 14 4:35PM | NCAAF | Appalachian St. vs Marshall | moneyline: Marshall | kalshi | $75k | -104 |  | ✅ | +1.0c | yes | L |
 | Nov 14 4:30PM | NCAAF | Arizona St. vs UCF: Spread | spread: NOT UCF wins by over 3.5 points | kalshi | $281k | -108 |  |  | +2.0c |  | W |
-| Nov 14 4:00PM | NCAAF | Texas @ LSU | moneyline: LSU (0) | novig | $30k | -182 | ✅ kalshi,prophetx |  | -0.5c |  | L |
