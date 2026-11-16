@@ -329,6 +329,23 @@ def main():
               f"no-time {v['settled_no_time']}, mixed time basis {v['MIXED_TIME_BASIS']}")
     print("EXACT = VERIFIED (venue order id or venue fill/trade link to ONE registry claim per order, one lane per position). "
           "RULED = Peter's 13 Nov ruled table, Oct 31 - Nov 12 (never EXACT). FUZZY = tracker text label (UNVERIFIED).")
+    # SECTION H (Peter, 16 Nov): final lane scorecard, three scopes. Figures go to Telegram only; the log carries
+    # sample sizes and the registered verdicts.
+    from p2_audit_core import UNIT_SCHEDULE
+    _c0 = rs._t(rs.CHANGE_UTC)
+    rep_c = build([r for r in rows if rs._event_time(r) is not None and rs._event_time(r) >= _c0],
+                  index, reg._venue, links, clv, ruled)
+    scopes = []
+    for nm_, rp_ in (("CUMULATIVE (all EXACT, all time)", rep), ("SINCE 12 NOV ET", rep_f),
+                     ("SINCE THE 11 NOV 11:31:19 AM ET PRICING CHANGE", rep_c)):
+        by_ = {ln: rs.lane_scope(rp_, ln, clv, UNIT_SCHEDULE) for ln in rs.LANES_LIVE}
+        scopes.append((nm_, by_))
+        print(f"section H {nm_}: " + " | ".join(
+            f"{ln} settled {x['whole']['n']} (H1 {x['H1']['n']}, H2 {x['H2']['n']}), certified CLV {x['whole']['clv_n']}, "
+            f"open {x['open']}, {x['verdict']}" if x else f"{ln} none" for ln, x in by_.items()))
+    non_exact = {b_: v_["all"]["settled"] + v_["open_or_ambiguous"] for b_, v_ in rep["buckets"].items() if not b_.startswith("EXACT:")}
+    print(f"section H kept separate (all time, not in any lane): {non_exact}")
+    text_h = rs.render_scorecard(scopes, non_exact, UNIT_SCHEDULE)
     text, csv_rows = render(rep)
     tf, cf = render(rep_f)
     text += f"\n\nSECTION F - EVERY BOT ROW FROM {rs.START_ET} ET (settled W/L, ROI, units where verified, certified CLV availability)\n" + tf
@@ -340,6 +357,7 @@ def main():
     p1 = rs.project1(rows, clv)
     integ = rs.integrity(rr, fills_all, rows, clv, rep, pok)
     text += rs.render(p1, integ, ledger_extra)
+    text += text_h
     # SECTION G (Peter, 16 Nov): every missing fill record and every missing certified CLV since 12 Nov, each with
     # the evidence-based reason. Detail is private; the public log carries category counts only.
     venue_ids_seen = {i for t, ids_l in links.items() if t != "_incomplete" for ids in ids_l for i in ids}

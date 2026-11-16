@@ -256,3 +256,87 @@ def category_counts(xs):
         k = e["category"].split(" - ")[0]
         c[k] = c.get(k, 0) + 1
     return c
+
+
+# ---------------------------------------------------------------- SECTION H: final lane scorecard (Peter, 16 Nov)
+CHANGE_UTC = "2026-11-11T16:31:19+00:00"     # the approved pricing-model change, 11 Nov 11:31:19 AM ET
+LANES_LIVE = ("PHASE 1", "R1", "BOARD V3")
+
+
+def _ci(vals):
+    """95% normal interval for a mean, or None below 5 observations (not meaningful)."""
+    n = len(vals)
+    if n < 5:
+        return None
+    m = sum(vals) / n
+    sd = (sum((v - m) ** 2 for v in vals) / (n - 1)) ** 0.5
+    h = 1.96 * sd / n ** 0.5
+    return [round(m - h, 2), round(m + h, 2)]
+
+
+def seg_stats(plays, clv, unit, unit_since):
+    """One segment: W-L-P, net, risked, ROI, units (only if every play is on/after the unit's start), certified CLV,
+    beat-close %, coverage, and 95% intervals for CLV and units. Missing closes are excluded, never zero."""
+    from p2_audit_core import verified_money, utc
+    ok = [p for p in plays if verified_money(p)]
+    net, risked = sum(p["profit"] for p in ok), sum(p["stake"] for p in ok)
+    t0 = utc(unit_since) if unit_since else None
+    def _when(p):
+        return utc(p.get("game_start") or "") or utc(p.get("settled") or "")
+    dated = bool(ok) and t0 is not None and all(_when(p) is not None and _when(p) >= t0 for p in ok)
+    units_each = [p["profit"] / unit for p in ok] if (unit and dated) else None
+    cv = []
+    for p in plays:
+        v = [clv.get(i) for i in p.get("ids") or []]
+        if v and None not in v:
+            cv.append(100 * sum(v) / len(v))
+    return {"n": len(plays), "W": sum(p["result"] == "W" for p in plays), "L": sum(p["result"] == "L" for p in plays),
+            "P": sum(p["result"] == "P" for p in plays), "net": round(net, 2), "risked": round(risked, 2),
+            "roi": round(100 * net / risked, 2) if risked else None,
+            "units": round(sum(units_each), 2) if units_each is not None else None,
+            "units_ci": _ci(units_each) if units_each is not None else None,
+            "clv": round(sum(cv) / len(cv), 2) if cv else None, "clv_n": len(cv), "clv_missing": len(plays) - len(cv),
+            "beat": round(100 * sum(v > 0 for v in cv) / len(cv), 1) if cv else None, "clv_ci": _ci(cv)}
+
+
+def lane_scope(rep, lane, clv, unit_sched):
+    b = (rep.get("buckets") or {}).get("EXACT:" + lane)
+    unit, since = (unit_sched.get(lane) or (None, None))[1], (unit_sched.get(lane) or (None, None))[0]
+    if not b:
+        return None
+    plays = b.get("_settled_timed") or []
+    h = len(plays) // 2
+    w, h1, h2 = (seg_stats(x, clv, unit, since) for x in (plays, plays[:h], plays[h:]))
+    from clv_dashboard import gate
+    g = gate(lane, {"clv": h1["clv"], "units": h1["units"]}, {"clv": h2["clv"], "units": h2["units"]},
+             {"n": w["clv_n"], "clv": w["clv"], "ci": w["clv_ci"], "pos": round((w["beat"] or 0) * w["clv_n"] / 100)}, True)
+    return {"whole": w, "H1": h1, "H2": h2, "open": b.get("open_or_ambiguous", 0), "verdict": g["verdict"],
+            "clauses": g.get("clauses") or []}
+
+
+def render_scorecard(scopes, non_exact, unit_sched):
+    def f(x, d=2, suf=""):
+        return "n/a" if x is None else f"{x:+.{d}f}{suf}"
+    L = ["", "SECTION H - LANE SCORECARD (EXACT attribution only; missing closes excluded, never zero)",
+         "  Units: Lane 1 300 from 9 Nov; R1 and Board V3 200 from 11 Nov. 95% intervals shown only at n >= 5.",
+         "  Qualification = the registered SCORECARD.md gate (clv_dashboard.gate), unchanged."]
+    for scope, by in scopes:
+        L.append(f"  -- {scope}")
+        for lane in LANES_LIVE:
+            x = by.get(lane)
+            if not x:
+                L.append(f"   {lane}: no settled EXACT plays")
+                continue
+            for seg in ("whole", "H1", "H2"):
+                s_ = x[seg]
+                L.append(f"   {lane:<8} {seg:<5} n {s_['n']:>2} W-L-P {s_['W']}-{s_['L']}-{s_['P']} net {s_['net']:+.2f} "
+                         f"units {f(s_['units'], suf='u')}{'' if not s_['units_ci'] else ' CI ' + str(s_['units_ci'])} "
+                         f"ROI {f(s_['roi'], suf='%')} | CLV {f(s_['clv'], suf='%')}"
+                         f"{'' if not s_['clv_ci'] else ' CI ' + str(s_['clv_ci'])} on {s_['clv_n']} (missing {s_['clv_missing']}) "
+                         f"beat {('n/a' if s_['beat'] is None else str(s_['beat']) + '%')}")
+            L.append(f"   {lane:<8} open {x['open']} | QUALIFICATION: {x['verdict']}")
+            for c in x["clauses"]:
+                if c["state"] != "MET":
+                    L.append(f"            - {c['clause']}: {c['state']} {c.get('detail', '')}")
+    L.append(f"  Kept separate (not in any lane above): {non_exact}")
+    return "\n".join(L)

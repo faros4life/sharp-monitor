@@ -252,7 +252,8 @@ def bucket_report(plays, clv=None):
             "game_start_range": rng("game_start"), "multi_row_plays": sum(p["rows"] > 1 for p in plays),
             "mixed_result_plays": sum(p["mixed_results"] for p in plays),
             "possible_split_flagged_NOT_MERGED": sum(v - 1 for v in Counter((p.get("game"), p.get("bet"), p.get("book")) for p in plays).values() if v > 1),
-            "units": "UNAVAILABLE (no verified unit schedule)", "time_diag": time_diag(plays)}
+            "units": "UNAVAILABLE (no verified unit schedule)", "time_diag": time_diag(plays),
+            "_settled_timed": timed}   # PRIVATE: per-play rows for the scorecard (Telegram only, never printed)
 
 
 def build(rows, index, norm=_norm, links=None, clv=None, ruled=None):

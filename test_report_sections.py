@@ -137,6 +137,20 @@ check("a registry order under the label's lane for the same event keeps it CONFL
       Y({"lane": "PHASE 1", "lane_src": None}, "BOARD V3", {"PHASE 1"}) is False)
 check("no disagreement -> nothing to resolve", Y({"lane": "BOARD V3"}, "BOARD V3", set()) is False)
 check("no tracker label -> nothing to resolve", Y({}, "BOARD V3", set()) is False)
+mk = lambda i, res, st, pr, gs: {"ids": [i], "result": res, "stake": st, "profit": pr, "game_start": gs, "settled": gs, "rows": 1}
+pl = [mk("a", "W", 200, 180, "2026-11-12T18:00:00Z"), mk("b", "L", 200, -200, "2026-11-13T18:00:00Z")]
+ss = rs.seg_stats(pl, {"a": 0.02}, 200.0, "2026-11-11T00:00:00+00:00")
+check("scorecard units = net/unit when every play is on/after the unit start", ss["units"] == -0.1, ss)
+check("scorecard CLV excludes a missing close, never zero", ss["clv"] == 2.0 and ss["clv_n"] == 1 and ss["clv_missing"] == 1, ss)
+check("no interval below n=5", ss["clv_ci"] is None and ss["units_ci"] is None)
+check("a play before the unit start makes units UNAVAILABLE",
+      rs.seg_stats(pl, {}, 200.0, "2026-11-13T00:00:00+00:00")["units"] is None)
+check("ROI is net over risked", ss["roi"] == -5.0, ss)
+bk = {"buckets": {"EXACT:R1": {"_settled_timed": pl, "open_or_ambiguous": 1}}}
+sc = rs.lane_scope(bk, "R1", {"a": 0.02}, {"R1": ("2026-11-11T00:00:00+00:00", 200.0)})
+check("a 2-play lane is INSUFFICIENT EVIDENCE under the registered gate", sc["verdict"] == "INSUFFICIENT EVIDENCE", sc["verdict"])
+check("H1 + H2 = whole", sc["H1"]["n"] + sc["H2"]["n"] == sc["whole"]["n"])
+check("scorecard text carries no currency sign", "$" not in rs.render_scorecard([("X", {"R1": sc})], {}, {}))
 if fails:
     print("FAILED", fails); sys.exit(1)
 print("test_report_sections: all passed")
