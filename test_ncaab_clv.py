@@ -98,8 +98,11 @@ def fake_api(path, billable, apikey=None, **params):
 
 cl.api = fake_api
 LO, HI = datetime(2026, 11, 12, tzinfo=timezone.utc), datetime(2026, 11, 15, tzinfo=timezone.utc)
+check("the verified id is Peter's pick, 648", cl.NCAAB_VERIFIED_TID == 648)
+_v = cl.NCAAB_VERIFIED_TID
+cl.NCAAB_VERIFIED_TID = None
 check("no verified tournament id -> blocked, nothing spent",
-      cl.NCAAB_VERIFIED_TID is None and cl.ncaab_fx_once({"bets": {}}, NOW, "NCAAB", LO, HI, set()).startswith("blocked")
+      cl.ncaab_fx_once({"bets": {}}, NOW, "NCAAB", LO, HI, set()).startswith("blocked")
       and CALLS == [])
 cl.NCAAB_VERIFIED_TID = 777
 st = {"bets": {}}
@@ -120,7 +123,7 @@ CALLS.clear()
 r = cl.ncaab_fx_once(st, NOW, "NCAAB", LO, HI, set())
 check("budget short -> refused, nothing spent", r.startswith("refused") and CALLS == [] and "ncaab_fx_once" not in st)
 cl.CAP = _cap
-cl.NCAAB_VERIFIED_TID = None
+cl.NCAAB_VERIFIED_TID = _v
 src = open("clv_ledger.py").read()
 check("only the four reopened rows can queue the lookup",
       'if lg in CACHE_ONLY_FX and not (rec.get("ncaab_reopened") and not st.get("ncaab_fx_once")):' in src)

@@ -68,7 +68,7 @@ NCAAB_REOPEN_EXPECT = 4
 # authoritative metadata BEFORE any paid fixture call. tournament()'s "most upcoming NCAA" pick is not
 # verification, and it returned no id on both prior attempts (ncaab-probe, Nov 14). Until a verified id
 # is recorded here, the one-time fixture recovery is BLOCKED and spends nothing.
-NCAAB_VERIFIED_TID = None
+NCAAB_VERIFIED_TID = 648   # Peter, Nov 16 16:22: "NCAA, Regular Season" (slug ncaa-regular-season, USA) - his explicit pick
 FRESH_MIN = 24 * 60  # history stores CHANGES: a line's last pre-start tick is its price at the start unless it is a day old
 SCORE_AFTER_MIN = 10  # score a bet this long after its listed start
 MAX_TRIES = 8
