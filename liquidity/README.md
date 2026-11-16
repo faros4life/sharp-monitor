@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 16, 10:36 AM ET. This run: 0 new, 1 not confirmed, 2 pending. Open alerts: 26.
+Updated Mon Nov 16, 10:39 AM ET. This run: 0 new, 1 not confirmed, 5 pending. Open alerts: 24.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,10 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 16 10:00AM | NFL | Los Angeles Chargers @ Baltimore Ravens | moneyline: BAL (0) | novig | $67k | -208 | ✅ kalshi,prophetx |  | +0.5c |  | pending |
-| Nov 16 9:55AM | NBA | Portland vs Minnesota: Total Points | total: Over 226.5 points | kalshi | $27k | -108 |  |  | +0.0c |  | pending |
-| Nov 16 9:20AM | NBA | Phoenix vs Denver: Total Points | total: Over 228.5 points | kalshi | $29k | -108 |  |  | +3.0c | yes | pending |
-| Nov 16 9:20AM | NBA | Philadelphia vs Brooklyn: Total Points | total: Over 224.5 points | kalshi | $32k | -113 |  |  | +2.0c | yes | pending |
+| Nov 16 9:20AM | NBA | Phoenix vs Denver: Total Points | total: Over 228.5 points | kalshi | $29k | -108 |  |  | +3.0c |  | pending |
+| Nov 16 9:20AM | NBA | Philadelphia vs Brooklyn: Total Points | total: Over 224.5 points | kalshi | $32k | -113 |  |  | +2.0c |  | pending |
 | Nov 16 9:20AM | NBA | Phoenix vs Denver: Spread | spread: Denver wins by over 9.5 points | kalshi | $40k | -108 | ✅ novig | ❌ | +0.0c | yes | pending |
 | Nov 16 9:15AM | NCAAF | Miami (OH) vs Kent St. | moneyline: Miami (OH) | kalshi | $271k | -335 |  |  | +0.0c |  | pending |
 | Nov 16 9:05AM | NCAAF | Ball St. vs Ohio | moneyline: Ohio | kalshi | $293k | -426 |  |  | +0.0c |  | pending |
@@ -210,3 +208,5 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 4:30PM | NCAAF | Arizona St. vs UCF: Spread | spread: NOT UCF wins by over 3.5 points | kalshi | $281k | -108 |  |  | +2.0c |  | W |
 | Nov 14 4:00PM | NCAAF | Texas @ LSU | moneyline: LSU (0) | novig | $30k | -182 | ✅ kalshi,prophetx |  | -0.5c |  | L |
 | Nov 14 3:45PM | NFL | New England Patriots @ Detroit Lions | moneyline: DET (0) | novig | $29k | -138 | ✅ prophetx |  | +0.5c |  | W |
+| Nov 14 3:45PM | NCAAF | Texas Tech vs Oklahoma St. | moneyline: Oklahoma St. | kalshi | $649k | -163 | ✅ prophetx |  | +0.0c |  | L |
+| Nov 14 3:45PM | NCAAF | Louisville vs North Carolina | moneyline: Louisville | kalshi | $434k | -163 | ✅ novig,prophetx |  | +0.0c |  | W |
