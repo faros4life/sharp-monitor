@@ -22,7 +22,9 @@ STUBS = """const esc=s=>String(s??'');
 const $=v=>v==null?'—':(v<0?'-$':'$')+Math.abs(v).toFixed(2);
 const sg=v=>v==null?'—':(v>0?'+':'')+$(v);
 const pr=p=>p==null?'':String(p);
-const ymd=b=>b.day||null; let DATA={all:[]};"""
+const ymd=b=>b.day||null; let DATA={all:[]};
+var window={};   // the page keeps its view state on window; node has none
+"""
 
 TESTS = r"""
 let fail=[];const ck=(n,g,w)=>{if(JSON.stringify(g)!==JSON.stringify(w))fail.push(n+': got '+JSON.stringify(g)+' want '+JSON.stringify(w));};

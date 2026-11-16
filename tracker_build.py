@@ -1042,6 +1042,7 @@ h2{font-size:17px;margin:14px 0 6px}.card{padding:10px 12px;border-radius:14px;m
 .row .l2{color:var(--muted);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.row>div:first-child{min-width:0}
 .row .amt{font:600 17px Oswald,sans-serif;white-space:nowrap}.row.win .amt{color:var(--win)}.row.loss .amt{color:var(--loss)}
 .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px;margin-bottom:10px}
+.seg.two{grid-template-columns:repeat(2,1fr)}.box.vt{padding:8px}
 .seg{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:10px;overflow:hidden}
 .seg button{font:500 14px Inter,sans-serif;padding:8px 0;background:none;border:0;color:var(--muted)}.seg button.on{background:#222a27;color:var(--fg);font-weight:600}
 .sum{color:var(--muted);font-size:13px;margin:8px 2px}.sum b{color:var(--fg)}
@@ -1217,6 +1218,12 @@ function monthBookHTML(){
            rows.map(r=>`<tr><td>${esc(r.k)}</td><td>${r.r.w}-${r.r.l}${r.r.p?'-'+r.r.p:''}</td><td class="n">${bk[r.k].length}</td>`+
              `<td class="n ${r.p>0?'win':r.p<0?'loss':''}">${sg(Math.round(r.p*100)/100)}</td></tr>`).join('')+
            '</tbody></table></div>';}).join('');}
+/* Nov 16 (Peter): "make a tab, don't show on the bottom - I like the clean look". The board
+   stays the default view; the full ledger and the by-month/by-book tables live behind History and
+   are only built when that tab is open. */
+window.VIEW=window.VIEW||'board';
+const viewTabs=()=>{const b=(k,t)=>`<button class="${window.VIEW===k?'on':''}" onclick="VIEW='${k}';render(DATA)">${t}</button>`;
+  return `<div class="box vt"><div class="seg two">${b('board','Board')}${b('history','History')}</div></div>`;};
 function ledgerHTML(){
   const ALLB=(DATA.all||[]);
   const open=ALLB.filter(b=>!b.result&&b.open), set=ALLB.filter(b=>b.result);
@@ -1241,7 +1248,7 @@ function ledgerHTML(){
   return h;}
 document.getElementById('app').innerHTML=`<div class="top1"><h1>Bet Tracker</h1><button class="rf" id="rf" onclick="refresh()">↻ Refresh</button></div><p class="sub">Updated ${esc(d.updated)} · settled profit from the books' own numbers</p>
 <div class="tiles">${tile('Today',t.today,wl(d.settled.filter(b=>dkey(b)===today)))}${tile('This week',t.week,wl(d.settled))}${tile('This month',t.month,'')}</div>
-${dayBox()}${calBox()}${dayList()}${sec('Other open bets',d.unmatched||[],'up')}${ledgerHTML()}
+${viewTabs()}${window.VIEW==='history'?ledgerHTML():dayBox()+calBox()+dayList()+sec('Other open bets',d.unmatched||[],'up')}
 <p class="sub">Reads: ${esc(d.reads)}</p>`;
 clearTimeout(window._rt);window._rt=setTimeout(refresh,d.live.length?60000:300000);}
 async function refresh(){const btn=document.getElementById('rf');if(btn){btn.classList.add('busy');btn.textContent='Refreshing…';}
