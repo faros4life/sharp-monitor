@@ -51,6 +51,27 @@ ck('peter',tagOf({source:'Peter'}),'Peter');
 const SET=['Bot - Lane 1','Bot - R1','Bot - Board v3','Street Value','Peter','OddsJam','Claude'];
 ['Peter','bot','ntfy (bot fill)','HR flag (Peter manual)','Bets Board','Street Value','OddsJam','Claude']
  .forEach(s=>{const t=tagOf({source:s});if(SET.indexOf(t)<0&&!/^Bot - /.test(t))fail.push('tag outside the spec set: '+s+' -> '+t);});
+
+/* by month, by book: a month's headline must equal the sum of the book rows under it, or the page
+   shows two totals for one month - the same two-records fault as the W-L split. */
+DATA={all:[
+ {day:'2026-10-30',game:'G1',bet:'Under 1',book:'Novig',result:'W',profit:100},
+ {day:'2026-10-31',game:'G2',bet:'Under 2',book:'ProphetX',result:'L',profit:-40},
+ {day:'2026-11-02',game:'G3',bet:'Under 3',book:'Novig',result:'W',profit:25.5},
+ {day:'2026-11-03',game:'G4',bet:'Under 4',book:'Hard Rock',result:'L',profit:-10.25},
+ {day:'2026-11-03',game:'G4',bet:'Under 4',book:'Novig',result:'W',profit:60},
+ {game:'G5',bet:'pending',book:'Novig'}]};
+const html=monthBookHTML();
+ck('both months rendered',[/October 2026/.test(html),/November 2026/.test(html)],[true,true]);
+const nums=s=>(s.match(/[-+]\$[\d,]+\.\d\d/g)||[]).map(x=>Number(x.replace(/[$,+]/g,'')));
+const oct=html.slice(html.indexOf('October 2026'),html.length);
+ck('October total is the sum of its books',Math.round(money(DATA.all.filter(b=>b.day&&b.day<'2026-11'&&b.result))*100)/100,60);
+ck('November total is the sum of its books',Math.round(money(DATA.all.filter(b=>b.day&&b.day>='2026-11'&&b.result))*100)/100,75.25);
+ck('pending excluded from by-month',/pending/.test(html),false);
+/* G4 is two books, one side: one game in the W-L, both dollars */
+const novRec=recordOf(DATA.all.filter(b=>b.day&&b.day>='2026-11'&&b.result));
+ck('November games-1x',[novRec.w,novRec.l,novRec.games],[2,0,2]);
+
 console.log(fail.length?'test_tracker_ledger: FAIL':'test_tracker_ledger: PASS');
 fail.forEach(f=>console.log('  '+f));
 process.exit(fail.length?1:0);

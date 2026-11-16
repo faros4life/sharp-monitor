@@ -1196,6 +1196,27 @@ const rankBy=(list,f,label)=>{const g={};list.forEach(b=>{if(!b.result)return;co
   return rows.length?`<h2>${label}</h2><div class="tw"><table class="led"><thead><tr><th>${label}</th><th>W-L</th><th>Profit</th></tr></thead><tbody>`+
     rows.map(r=>`<tr><td>${esc(r.k)}</td><td>${r.w}-${r.l}${r.ps?'-'+r.ps:''}</td><td class="n ${r.p>0?'win':r.p<0?'loss':''}">${sg(Math.round(r.p*100)/100)}</td></tr>`).join('')+
     '</tbody></table></div>':'';};
+/* Nov 16 (Peter): by month, by book. The tracker's own figures are encrypted, so a monthly
+   by-book number could only be read off this page - it was being retyped by hand into a sheet
+   that then marked it authoritative. Reading it here removes the retyping step. Months newest
+   first; books ranked by profit within each month; W-L counts games 1x like every other record,
+   dollars never merge. */
+const monKey=b=>{const k=ymd(b);return k?k.slice(0,7):null;};
+const monName=m=>{const [y,mm]=m.split('-');return new Date(Number(y),Number(mm)-1,1).toLocaleDateString('en-US',{month:'long',year:'numeric'});};
+function monthBookHTML(){
+  const set=(DATA.all||[]).filter(b=>b.result&&monKey(b));
+  if(!set.length)return '';
+  const by={};set.forEach(b=>{(by[monKey(b)]=by[monKey(b)]||[]).push(b);});
+  return '<h2>By month, by book</h2>'+Object.keys(by).sort().reverse().map(m=>{
+    const l=by[m],mr=recordOf(l),mp=money(l);
+    const bk={};l.forEach(b=>{const k=b.book||'?';(bk[k]=bk[k]||[]).push(b);});
+    const rows=Object.entries(bk).map(([k,v])=>({k:k,r:recordOf(v),p:money(v)})).sort((a,b)=>b.p-a.p);
+    return `<div class="day tot"><span>${esc(monName(m))} \u00b7 ${mr.w}-${mr.l}${mr.p?'-'+mr.p:''} (${mr.games} games)</span>`+
+           `<span class="${mp>0?'win':mp<0?'loss':''}">${sg(Math.round(mp*100)/100)}</span></div>`+
+           '<div class="tw"><table class="led"><thead><tr><th>Book</th><th>W-L</th><th>Bets</th><th>Profit</th></tr></thead><tbody>'+
+           rows.map(r=>`<tr><td>${esc(r.k)}</td><td>${r.r.w}-${r.r.l}${r.r.p?'-'+r.r.p:''}</td><td class="n">${bk[r.k].length}</td>`+
+             `<td class="n ${r.p>0?'win':r.p<0?'loss':''}">${sg(Math.round(r.p*100)/100)}</td></tr>`).join('')+
+           '</tbody></table></div>';}).join('');}
 function ledgerHTML(){
   const ALLB=(DATA.all||[]);
   const open=ALLB.filter(b=>!b.result&&b.open), set=ALLB.filter(b=>b.result);
@@ -1216,7 +1237,7 @@ function ledgerHTML(){
   const wk=set.filter(b=>(ymd(b)||'')>=monK), wr=recordOf(wk), ar=recordOf(set);
   h+=`<div class="day tot"><span>Week (Mon-Sun) · ${wr.w}-${wr.l}${wr.p?'-'+wr.p:''}</span><span class="${money(wk)>0?'win':money(wk)<0?'loss':''}">${sg(Math.round(money(wk)*100)/100)}</span></div>`;
   h+=`<div class="day tot"><span>Overall · ${ar.w}-${ar.l}${ar.p?'-'+ar.p:''} (${ar.games} games)</span><span class="${money(set)>0?'win':money(set)<0?'loss':''}">${sg(Math.round(money(set)*100)/100)}</span></div>`;
-  h+=rankBy(set,tagOf,'By source')+rankBy(set,b=>b.book,'By book');
+  h+=rankBy(set,tagOf,'By source')+rankBy(set,b=>b.book,'By book')+monthBookHTML();
   return h;}
 document.getElementById('app').innerHTML=`<div class="top1"><h1>Bet Tracker</h1><button class="rf" id="rf" onclick="refresh()">↻ Refresh</button></div><p class="sub">Updated ${esc(d.updated)} · settled profit from the books' own numbers</p>
 <div class="tiles">${tile('Today',t.today,wl(d.settled.filter(b=>dkey(b)===today)))}${tile('This week',t.week,wl(d.settled))}${tile('This month',t.month,'')}</div>
