@@ -277,8 +277,6 @@ def registry_side(row_id, snap, pm_links, orders):
       -> exactly ONE registry order with that id -> its claim: same league, a spread/side market, teams that match the
       row's game, and an order line EQUAL to the row's line. Pure: pm_links {order_id: slug}, orders [registry rows]."""
     m = re.search(r"\[([^\]]+)\]", str(row_id or ""))
-    if snap.get("flip"):
-        return None, "short contract - the held side cannot be proven from the claim"
     if not str(row_id or "").startswith("pm|") or not m:
         return None, "not a Polymarket row with a market slug"
     oids = [o for o, sl in (pm_links or {}).items() if sl == m.group(1)]
@@ -313,13 +311,18 @@ def registry_side(row_id, snap, pm_links, orders):
     if not re.fullmatch(r"[+-]?\d+(\.\d+)?", bt):
         return None, "the row's bet text is not a bare line"
     oline = o.get("fill_line") if o.get("fill_line") is not None else o.get("alert_line")
+    # LONG the "-x" contract holds that line; SHORT it holds the other team at +x. The claim (the bot's own team and
+    # line) must say exactly that: equal to the row's line when long, its exact negation when short. Anything else is
+    # a contradiction and is refused. The bet scored is the CLAIM's team at the CLAIM's line - nothing inferred.
     try:
-        if oline is None or abs(float(oline) - float(bt)) > 1e-9:
-            return None, "the order's line does not equal the row's line"
+        want = -float(bt) if snap.get("flip") else float(bt)
+        if oline is None or abs(float(oline) - want) > 1e-9:
+            return None, ("the order's line is not the negation of the row's line (short)" if snap.get("flip")
+                          else "the order's line does not equal the row's line")
     except (TypeError, ValueError):
         return None, "line unreadable"
     team = side.replace("_", " ")
-    return f"{team} {float(bt):+g}", "registry claim via Polymarket order read-back"
+    return f"{team} {float(oline):+g}", "registry claim via Polymarket order read-back"
 
 
 def load_side_evidence():

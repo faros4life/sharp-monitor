@@ -24,7 +24,12 @@ check("a totals claim -> refused", R(RID, SNAP, LINKS, [dict(ORD[0], key="r1|NCA
 check("teams that do not match the row -> refused", R(RID, dict(SNAP, game="Duke vs Wake Forest"), LINKS, ORD)[0] is None)
 check("order line differs from the row line -> refused", R(RID, SNAP, LINKS, [dict(ORD[0], fill_line=-14.5)])[0] is None)
 check("opposite sign is a different bet -> refused", R(RID, SNAP, LINKS, [dict(ORD[0], fill_line=15.5)])[0] is None)
-check("a short contract -> refused", R(RID, dict(SNAP, flip=True), LINKS, ORD)[0] is None)
+SH = [dict(ORD[0], key="r1|NCAAF|stanford+virginia_tech|side|virginia_tech", fill_line=15.5)]
+check("short of the -15.5 contract + claim 'virginia tech +15.5' -> that bet", R(RID, dict(SNAP, flip=True), LINKS, SH)[0] == "virginia tech +15.5",
+      R(RID, dict(SNAP, flip=True), LINKS, SH))
+check("short contract but claim line equals the row line -> contradiction, refused", R(RID, dict(SNAP, flip=True), LINKS, ORD)[0] is None)
+check("long contract but claim line is the negation -> contradiction, refused", R(RID, SNAP, LINKS, SH)[0] is None)
+check("the short result scores as a spread on the claim's team", cl.parsed({"bet": "virginia tech +15.5"}) == ("spread", "virginia tech", 15.5, None))
 check("bet text that is not a bare line -> refused", R(RID, dict(SNAP, bet="Stanford -15.5"), LINKS, ORD)[0] is None)
 check("non-Polymarket rows are never touched", R("px|123", SNAP, LINKS, ORD)[0] is None)
 check("alert_line used when no fill_line", R(RID, SNAP, LINKS, [dict(ORD[0], fill_line=None, alert_line=-15.5)])[0] == "stanford -15.5")
