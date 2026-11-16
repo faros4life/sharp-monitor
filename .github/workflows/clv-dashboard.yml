@@ -19,18 +19,7 @@ name: clv-dashboard
 # the send and written after it, so a retry or a manual dispatch cannot send a second copy.
 
 on:
-  # 16 Nov: neither cron slot fired on 15 or 16 Nov. Chained to clv-ledger as well; the committed
-  # one-email-per-ET-day marker already makes repeat runs send nothing.
-  workflow_run:
-    workflows: [clv-ledger]
-    types: [completed]
-  schedule:
-    - cron: "12 9 * * *"
-    # BACKUP slot, 15 Nov 2026: the 04:12 ET slot did not fire on 15 Nov while other workflows'
-    # schedules did. The primary slot is unchanged. If both fire, the second run rebuilds the same
-    # page and sends NO second email: the committed one-per-ET-day marker is checked before the
-    # send (clv_dashboard.send_email), which is what makes this safe.
-    - cron: "47 10 * * *"
+  # SCHEDULE: tick.py (DAILY_ET / JOBS) is the only scheduler - GitHub cron barely fires in this repo and is UTC-fixed.
   workflow_dispatch:
     inputs:
       email:

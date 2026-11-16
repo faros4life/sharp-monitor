@@ -66,15 +66,56 @@ JOBS = {   # workflow file: minimum minutes between runs (matches each workflow'
     # 4-day prune). p2-audit's gate keeps automatic Telegram reports to one per ET day; the dashboard's
     # committed marker keeps its email to one per ET day.
     "reporting-ledger.yml": 360,
-    "p2-audit.yml": 1440,
-    "clv-dashboard.yml": 1440,
 }
+# Nov 16 (Peter): DAILY jobs run once per reporting day at a fixed New York time. An interval job counts ANY run
+# (a manual run restarted its 24 h clock and pushed the morning report later each time). A daily job counts only
+# AUTOMATIC runs (schedule events, or dispatches by github-actions[bot] - this file), so manual runs never move it.
+# America/New_York via zoneinfo, so the time holds through daylight-saving changes. If tick is down at the target
+# time, the next tick that day still delivers (no lost day). At most MAX_DAILY_TRIES automatic attempts a day, so a
+# job that keeps failing is not re-dispatched every 5 minutes.
+DAILY_ET = {
+    "clv-dashboard.yml": (4, 12),   # the dashboard's approved 04:12 ET slot; one email per ET day is its own marker
+    "p2-audit.yml": (4, 52),        # the Project 2 Telegram report's approved 04:52 ET slot; its gate allows one a day
+}
+MAX_DAILY_TRIES = 3
+BOT = "github-actions[bot]"
 BUSY = {"queued", "in_progress", "waiting", "pending", "requested"}
 
 
 def gh(*args):
     r = subprocess.run(["gh", *args], capture_output=True, text=True, timeout=40)
     return r.returncode, r.stdout
+
+
+def is_automatic(run):
+    return run.get("event") == "schedule" or (run.get("event") == "workflow_dispatch" and run.get("actor") == BOT)
+
+
+def daily_due(hh, mm, now_utc, runs):
+    """Pure. runs: this workflow's runs created on today's New York date: {event, actor, status, conclusion}."""
+    from zoneinfo import ZoneInfo
+    now_et = now_utc.astimezone(ZoneInfo("America/New_York"))
+    if (now_et.hour, now_et.minute) < (hh, mm):
+        return False
+    if any(r.get("status") in BUSY for r in runs):
+        return False
+    auto = [r for r in runs if is_automatic(r)]
+    if any(r.get("conclusion") == "success" for r in auto):
+        return False
+    return len(auto) < MAX_DAILY_TRIES
+
+
+def today_runs(wf, now_utc):
+    """This workflow's runs since New York midnight, via the API (it carries the triggering actor)."""
+    from zoneinfo import ZoneInfo
+    et = now_utc.astimezone(ZoneInfo("America/New_York"))
+    midnight = et.replace(hour=0, minute=0, second=0, microsecond=0).astimezone(timezone.utc)
+    rc, out = gh("api", f"repos/{{owner}}/{{repo}}/actions/workflows/{wf}/runs?created=>="
+                 f"{midnight.strftime('%Y-%m-%dT%H:%M:%SZ')}&per_page=100",
+                 "--jq", "[.workflow_runs[] | {event, actor: .triggering_actor.login, status, conclusion}]")
+    if rc != 0:
+        raise RuntimeError("runs unreadable")
+    return json.loads(out or "[]")
 
 
 def main():
@@ -91,6 +132,14 @@ def main():
                 continue
             last = datetime.fromisoformat(runs[0]["createdAt"].replace("Z", "+00:00")) if runs else None
             if last is None or now - last >= timedelta(minutes=mins - 2):
+                rc, _ = gh("workflow", "run", wf, "--ref", "main")
+                started += rc == 0
+                skipped += rc != 0
+        except Exception:
+            skipped += 1
+    for wf, (hh, mm) in DAILY_ET.items():
+        try:
+            if daily_due(hh, mm, now, today_runs(wf, now)):
                 rc, _ = gh("workflow", "run", wf, "--ref", "main")
                 started += rc == 0
                 skipped += rc != 0

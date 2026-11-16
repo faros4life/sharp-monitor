@@ -11,13 +11,7 @@ name: reporting-ledger
 # Pushes made by this job use GITHUB_TOKEN and cannot retrigger it.
 
 on:
-  # 16 Nov: the cron below never fired on 15 or 16 Nov while clv-ledger's did. workflow_run chains this job
-  # to clv-ledger (every 6 h, reliable); the cron stays as a second path. Append-only, so extra runs are harmless.
-  workflow_run:
-    workflows: [clv-ledger]
-    types: [completed]
-  schedule:
-    - cron: "32 9 * * *"     # 04:32 ET daily, before p2-audit; snapshots well inside the 4-day prune window
+  # SCHEDULE: tick.py (DAILY_ET / JOBS) is the only scheduler - GitHub cron barely fires in this repo and is UTC-fixed.
   push:
     branches: [reporting-ledger]
     paths: [reporting_ledger.py, .github/workflows/reporting-ledger.yml]

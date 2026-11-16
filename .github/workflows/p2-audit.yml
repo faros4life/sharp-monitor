@@ -3,13 +3,7 @@ name: p2-audit
 # no exchange TRADING keys (Novig read key + ProphetX data key only, for the venue fill/trade link), no commit, no cache, no artifact upload. Public log = counts only. The dollar / ROI report goes only to
 # Peter's private Telegram (Peter approved Nov 14 18:06 ET).
 on:
-  # 16 Nov: the cron never fired. Chained to reporting-ledger (itself chained to clv-ledger). A gate job lets
-  # automatic triggers deliver ONE Telegram report per ET day; a manual dispatch always runs.
-  workflow_run:
-    workflows: [reporting-ledger]
-    types: [completed]
-  schedule:
-    - cron: "52 9 * * *"     # 04:52 ET daily, after reporting-ledger (04:32 ET). One private Telegram report a day.
+  # SCHEDULE: tick.py (DAILY_ET / JOBS) is the only scheduler - GitHub cron barely fires in this repo and is UTC-fixed.
   workflow_dispatch:
     inputs:
       report_day:
