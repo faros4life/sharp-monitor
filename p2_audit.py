@@ -209,7 +209,7 @@ def main():
     # tracker's ProphetX read surfaced ~260 old trades in one run, all "first seen" today.
     _f0 = rs._t(rs.START_ET + "T05:00:00+00:00")
     since = [r for r in rows if rs._event_time(r) is not None and rs._event_time(r) >= _f0]
-    print(f"section F scope: bot rows with no bet time (excluded, not guessed) {sum(1 for r in rows if rs._event_time(r) is None)}")
+    print(f"section F scope: bot rows with no event time (excluded, not guessed) {sum(1 for r in rows if rs._event_time(r) is None)}")
     rep_f = build(since, index, reg._venue, links, clv, ruled)
     eof = rep_f.get("exactly_once") or {}
     print(f"section F (from {rs.START_ET} ET): bot rows {len(since)} | exactly-once {'OK' if eof.get('ok') else 'FAILED'} | "
