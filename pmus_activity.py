@@ -151,6 +151,53 @@ def order_lookup(oid):
     print("  order not found on either path", flush=True)
 
 
+GATEWAY = "https://gateway.polymarket.us"   # public, unauthenticated read (the executor's own market source)
+
+
+def public_get(path, params=None):
+    url = GATEWAY + path + ("?" + urllib.parse.urlencode(params) if params else "")
+    req = urllib.request.Request(url, headers={"Accept": "application/json"})
+    with urllib.request.urlopen(req, timeout=25) as r:
+        return json.loads(r.read().decode() or "{}")
+
+
+def market_definition(slug):
+    """(market, event, how) for one market slug from the PUBLIC gateway. GET only, no key. Tries the paths the
+    executor uses. Returns the raw dicts (stored encrypted by the caller); prints structure only."""
+    mk, how = None, "not found"
+    for label, path, params in (("markets/{slug}", f"/v1/markets/{slug}", None),
+                                ("markets/slug/{slug}", f"/v1/markets/slug/{slug}", None),
+                                ("markets?slug", "/v1/markets", {"slug": slug})):
+        try:
+            d = public_get(path, params)
+        except Exception as e:
+            how = f"{label}: {type(e).__name__} {getattr(e, 'code', '')}"
+            continue
+        cand = d.get("market") if isinstance(d, dict) and isinstance(d.get("market"), dict) else d
+        if isinstance(cand, dict) and isinstance(cand.get("markets"), list):
+            cand = next((m for m in cand["markets"] if m.get("slug") == slug), None)
+        if isinstance(cand, dict) and cand.get("marketSides"):
+            mk, how = cand, label
+            break
+    ev = None
+    if mk:
+        for label, path, params in (("events/slug", f"/v1/events/slug/{mk.get('eventSlug')}", None) if mk.get("eventSlug") else (None, None, None),
+                                    ("events?gameId", "/v1/events", {"gameId": mk.get("gameId")}) if mk.get("gameId") else (None, None, None)):
+            if not path:
+                continue
+            try:
+                d = public_get(path, params)
+            except Exception:
+                continue
+            e_ = d.get("event") if isinstance(d, dict) and isinstance(d.get("event"), dict) else d
+            if isinstance(e_, dict) and isinstance(e_.get("events"), list) and e_["events"]:
+                e_ = e_["events"][0]
+            if isinstance(e_, dict) and e_.get("teams"):
+                ev = e_
+                break
+    return mk, ev, how
+
+
 def pmus_verdict(d):
     """FILLED / CANCELLED / UNFILLED / OPEN / UNKNOWN from the order's OWN record (GET /v1/order/{id}). Pure.
     Polymarket US silently rewrites what it accepts (CLAUDE.md), so only the read-back record decides."""
@@ -216,6 +263,16 @@ def registry_unknowns():
             if "LONG" in intent_of.upper() or "SHORT" in intent_of.upper():
                 links[oid_of + "#intent"] = "LONG" if "LONG" in intent_of.upper() else "SHORT"
             print(f"    venue direction recorded: {'yes' if (oid_of + '#intent') in links else 'NO (field absent)'}")
+            mk_, ev_, how_ = market_definition(slug_of)
+            if mk_:
+                sides_ = mk_.get("marketSides") or []
+                links[oid_of + "#market"] = {"market": mk_, "event": ev_}
+                print(f"    market definition: found via {how_} | sides {len(sides_)} | long flags "
+                      f"{[bool(x.get('long', True)) for x in sides_]} | sides with teamId {sum(1 for x in sides_ if x.get('teamId') or x.get('participantId'))} | "
+                      f"side fields {sorted({k for x in sides_ for k in x})[:12]} | market line present {mk_.get('line') is not None} | "
+                      f"event teams {len((ev_ or {}).get('teams') or [])}")
+            else:
+                print(f"    market definition: NOT found ({how_})")
     # Persist ONLY order id -> venue market slug for venue-confirmed fills, encrypted, so the report can link the
     # fill to its tracker position without holding the Polymarket key. No amounts, sides or prices.
     if links:

@@ -279,7 +279,7 @@ def registry_side(row_id, snap, pm_links, orders):
     m = re.search(r"\[([^\]]+)\]", str(row_id or ""))
     if not str(row_id or "").startswith("pm|") or not m:
         return None, "not a Polymarket row with a market slug"
-    oids = [o for o, sl in (pm_links or {}).items() if sl == m.group(1) and "#" not in o]
+    oids = [o for o, sl in (pm_links or {}).items() if "#" not in o and sl == m.group(1)]
     if len(oids) != 1:
         return None, f"{len(oids)} venue-confirmed orders on this market (need exactly 1)"
     def _lo(o):
