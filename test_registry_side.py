@@ -37,6 +37,28 @@ check("venue says LONG overrides a wrong tracker short flag", R(RID, dict(SNAP, 
 check("venue says SHORT with a claim at the row's line -> contradiction, refused",
       R(RID, SNAP, dict(LINKS, **{"o1#intent": "SHORT"}), ORD)[0] is None)
 check("the #intent entry is never mistaken for an order on the market", R(RID, SNAP, {"o1": "cfb-stan-vt-2026-11-14", "o1#intent": "cfb-stan-vt-2026-11-14"}, ORD)[0] == "stanford -15.5")
+# --- venue market definition path (16 Nov) ---
+def MK(long_team, short_team, long_lbl, short_lbl, mtype="spread"):
+    return {"sportsMarketType": mtype, "line": 15.5, "marketSides": [
+        {"long": True, "team": {"name": long_team}, "description": f"{long_team} {long_lbl}"},
+        {"long": False, "team": {"name": short_team}, "description": f"{short_team} {short_lbl}"}]}
+SH2 = [dict(ORD[0], key="r1|NCAAF|stanford+virginia_tech|side|virginia_tech", fill_line=-15.5)]
+def L(intent, mk):
+    return dict(LINKS, **{"o1#intent": intent, "o1#market": {"market": mk, "event": None}})
+check("BUY_SHORT holds the SHORT side: claim team + its own line agree -> certified bet",
+      R(RID, SNAP, L("SHORT", MK("Stanford", "Virginia Tech", "+15.5", "-15.5")), SH2)[0] == "virginia tech -15.5",
+      R(RID, SNAP, L("SHORT", MK("Stanford", "Virginia Tech", "+15.5", "-15.5")), SH2))
+check("BUY_LONG holds the LONG side", R(RID, SNAP, L("LONG", MK("Virginia Tech", "Stanford", "-15.5", "+15.5")), SH2)[0] == "virginia tech -15.5")
+check("reversed labels: the held side is the OTHER team -> refused",
+      R(RID, SNAP, L("SHORT", MK("Virginia Tech", "Stanford", "-15.5", "+15.5")), SH2)[0] is None)
+check("held side's line differs from the claim's line -> refused",
+      R(RID, SNAP, L("SHORT", MK("Stanford", "Virginia Tech", "-15.5", "+15.5")), SH2)[0] is None)
+check("claim team names both sides (ambiguous) -> refused",
+      R(RID, SNAP, L("SHORT", MK("Virginia Tech A", "Virginia Tech", "+15.5", "-15.5")), SH2)[0] is None)
+check("not a spread market -> refused", R(RID, SNAP, L("SHORT", MK("Stanford", "Virginia Tech", "+15.5", "-15.5", "moneyline")), SH2)[0] is None)
+check("venue direction unknown -> refused", R(RID, SNAP, dict(LINKS, **{"o1#market": {"market": MK("Stanford", "Virginia Tech", "+15.5", "-15.5")}}), SH2)[0] is None)
+check("settlement row line from a different market -> refused",
+      R(RID, dict(SNAP, bet="-7.50"), L("SHORT", MK("Stanford", "Virginia Tech", "+15.5", "-15.5")), SH2)[0] is None)
 if fails:
     print("FAILED", fails); sys.exit(1)
 print("test_registry_side: all passed")

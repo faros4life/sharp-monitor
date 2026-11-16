@@ -314,6 +314,18 @@ def registry_side(row_id, snap, pm_links, orders):
     # LONG the "-x" contract holds that line; SHORT it holds the other team at +x. The claim (the bot's own team and
     # line) must say exactly that: equal to the row's line when long, its exact negation when short. Anything else is
     # a contradiction and is refused. The bet scored is the CLAIM's team at the CLAIM's line - nothing inferred.
+    team = side.replace("_", " ")
+    mdef = (pm_links or {}).get(oids[0] + "#market")
+    vdir0 = (pm_links or {}).get(oids[0] + "#intent")
+    if isinstance(mdef, dict) and isinstance(mdef.get("market"), dict):
+        # 16 Nov (Peter): with the venue's market definition on file, the held side is a FACT: the side whose long flag
+        # matches the venue's own BUY_LONG/BUY_SHORT. It must be the claim's team (and the other side must not be),
+        # its own signed line must equal the claim's line, and the market must be a spread.
+        hb, hw = held_from_market(mdef["market"], vdir0, team, oline)
+        # the tracker's settlement row must be the same market: its bare line is one side's label (same magnitude)
+        if hb and abs(abs(float(bt)) - abs(float(hb.rsplit(" ", 1)[1]))) > 1e-9:
+            return None, "the settlement row's line is not this market's line"
+        return hb, hw
     # Direction: the VENUE's own order record (BUY_LONG / BUY_SHORT, saved by pmus-activity's read-back) decides.
     # Settled Polymarket rows carry no direction from the venue, so the tracker's flag is used only when the venue's
     # is absent - and then any disagreement with the claim fails closed below.
@@ -329,6 +341,48 @@ def registry_side(row_id, snap, pm_links, orders):
     team = side.replace("_", " ")
     return f"{team} {float(oline):+g}", "registry claim via Polymarket order read-back"
 
+
+
+def _side_text(sd):
+    t = sd.get("team")
+    parts = [str(v) for v in (t.values() if isinstance(t, dict) else [t]) if isinstance(v, str)]
+    return " ".join(parts + [str(sd.get("description") or ""), str(sd.get("identifier") or "")])
+
+
+def held_from_market(mk, vdir, claim_team, claim_line):
+    """(bet_text, why) from the venue's market definition. Pure. Fails closed on any ambiguity or contradiction."""
+    if vdir not in ("LONG", "SHORT"):
+        return None, "venue direction unknown"
+    mtype = " ".join(str(mk.get(k) or "") for k in ("sportsMarketType", "marketType", "type")).lower()
+    if "spread" not in mtype:
+        return None, f"market is not a spread ({mtype.strip() or 'type absent'})"
+    sides = [x for x in mk.get("marketSides") or [] if isinstance(x, dict)]
+    if len(sides) != 2:
+        return None, f"market has {len(sides)} sides (need 2)"
+    held = [x for x in sides if bool(x.get("long", True)) == (vdir == "LONG")]
+    if len(held) != 1:
+        return None, "the venue direction does not single out one side"
+    held, other = held[0], next(x for x in sides if x is not held[0])
+    ct = tb.toks(claim_team) - tb.WEAK
+    ht, ot = tb.toks(_side_text(held)) - tb.WEAK, tb.toks(_side_text(other)) - tb.WEAK
+    if not ct or not (ct <= ht):
+        return None, "the held side is not the claim's team"
+    if ct <= ot:
+        return None, "the claim's team names both sides (ambiguous)"
+    mm = re.search(r"([+-]\d+(?:\.\d+)?)", str(held.get("description") or ""))
+    hl = float(mm.group(1)) if mm else None
+    if hl is None:
+        ln = mk.get("line")
+        try:
+            hl = (float(ln) if held.get("long", True) else -float(ln)) if ln is not None else None
+        except (TypeError, ValueError):
+            hl = None
+    try:
+        if hl is None or claim_line is None or abs(hl - float(claim_line)) > 1e-9:
+            return None, "the held side's line does not equal the claim's line"
+    except (TypeError, ValueError):
+        return None, "line unreadable"
+    return f"{claim_team} {hl:+g}", "venue market definition + venue direction + registry claim agree"
 
 def load_side_evidence():
     """(pm_links, orders) from the encrypted reporting files. ({}, []) if either is absent - then nothing changes."""
