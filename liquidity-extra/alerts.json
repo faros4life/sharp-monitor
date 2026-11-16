@@ -1,6 +1,166 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-16T15:30:40Z",
+   "base_depth": 23597,
+   "best_price": 0.4975,
+   "best_price_american": 101,
+   "best_price_book": "kalshi",
+   "bid_improved": true,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.48,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 20,
+   "date": "2026-11-16",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -3283,
+     "new_this_side": 26017,
+     "other_side": 19846,
+     "other_side_all_levels": 32892,
+     "ratio": 0.9,
+     "this_side": 18562,
+     "this_side_all_levels": 71141
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 850.32,
+    "volume_24h_fp": 977.04,
+    "volume_fp": 1000.04
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 43.0,
+    "volume_24h_fp": 613.0,
+    "volume_fp": 43.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 807.32,
+    "volume_24h_fp": 364.04,
+    "volume_fp": 957.04
+   },
+   "fade_price": 0.53,
+   "first_seen_utc": "2026-11-16T15:10:23Z",
+   "game": "Texas Southern vs UC San Diego: Spread",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 8.75,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAMBSPREAD-26NOV16TXSOUCSD-UCSD19\"}",
+   "lead_min": 689,
+   "league": "NCAAB",
+   "line": 18.5,
+   "market": "spread",
+   "new_money": 26017,
+   "new_x": 1.35,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 850.32,
+      "volume_24h_fp": 977.04,
+      "volume_fp": 1000.04
+     },
+     "game_normal": 8129,
+     "game_x": 8.75,
+     "normal": 19266,
+     "now": 71141,
+     "type": "SPREAD",
+     "x": 3.69
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.48,
+   "price_american": 108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.46,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 19.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 19.0,
+     "price": -110
+    },
+    "betrivers": {
+     "point": 18.5,
+     "price": -105
+    },
+    "bovada": {
+     "point": 19.5,
+     "price": -115
+    },
+    "draftkings": {
+     "point": 19.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 19.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 19.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 18.5,
+     "price": 108
+    },
+    "lowvig": {
+     "point": 19.0,
+     "price": -106
+    },
+    "novig": {
+     "point": 40.5,
+     "price": -5782
+    },
+    "polymarket": {
+     "point": 19.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 19.5,
+     "price": -105
+    },
+    "williamhill_us": {
+     "point": 19.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAMBSPREAD-26NOV16TXSOUCSD-UCSD19"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Texas Southern",
+   "side_label": "NOT UC San Diego wins by over 18.5 points",
+   "size_x": 3.69,
+   "start_source": "odds",
+   "start_utc": "2026-11-17T03:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Texas Southern",
+    "UC San Diego"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-16T15:00:27Z",
    "base_depth": 55607,
    "best_price": 0.5525,
@@ -40,9 +200,9 @@
     "volume_fp": 2320.29
    },
    "ex_stats_close": {
-    "open_interest_fp": 10006.7,
-    "volume_24h_fp": 11493.98,
-    "volume_fp": 13814.27
+    "open_interest_fp": 10031.58,
+    "volume_24h_fp": 13822.47,
+    "volume_fp": 13847.35
    },
    "ex_stats_first": {
     "open_interest_fp": 9253.65,
@@ -81,6 +241,8 @@
    "norm_ready_books": 1,
    "paper_only": false,
    "price": 0.54,
+   "price_after_15m": 0.5566,
+   "price_after_15m_book": "prophetx",
    "price_american": -117,
    "price_rule": "ok",
    "price_when_first_seen": 0.54,
@@ -155,6 +317,7 @@
    "size_x": 6.1,
    "start_source": "odds",
    "start_utc": "2026-11-17T03:00:00Z",
+   "still_actionable": false,
    "surge_books": [
     "kalshi"
    ],
@@ -217,9 +380,9 @@
     "volume_fp": 1.65
    },
    "ex_stats_close": {
-    "open_interest_fp": 1925.65,
-    "volume_24h_fp": 2193.93,
-    "volume_fp": 2210.42
+    "open_interest_fp": 1948.97,
+    "volume_24h_fp": 2213.25,
+    "volume_fp": 2233.74
    },
    "ex_stats_first": {
     "open_interest_fp": 1923.0,
@@ -402,9 +565,9 @@
     "volume_fp": 5.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2104.19,
-    "volume_24h_fp": 1998.05,
-    "volume_fp": 2170.11
+    "open_interest_fp": 2183.64,
+    "volume_24h_fp": 2174.85,
+    "volume_fp": 2249.56
    },
    "ex_stats_first": {
     "open_interest_fp": 987.24,
@@ -579,9 +742,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1740.05,
-    "volume_24h_fp": 1677.66,
-    "volume_fp": 1742.05
+    "open_interest_fp": 1806.76,
+    "volume_24h_fp": 1740.37,
+    "volume_fp": 1808.76
    },
    "ex_stats_first": {
     "open_interest_fp": 600.8599999999999,
@@ -762,9 +925,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1722.5500000000002,
-    "volume_24h_fp": 1718.4299999999998,
-    "volume_fp": 1722.5500000000002
+    "open_interest_fp": 1790.08,
+    "volume_24h_fp": 1719.6,
+    "volume_fp": 1790.08
    },
    "ex_stats_first": {
     "open_interest_fp": 577.81,
@@ -951,9 +1114,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1936.85,
-    "volume_24h_fp": 1605.66,
-    "volume_fp": 1950.85
+    "open_interest_fp": 1997.04,
+    "volume_24h_fp": 1982.13,
+    "volume_fp": 2011.04
    },
    "ex_stats_first": {
     "open_interest_fp": 114.28,
@@ -3785,9 +3948,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 31144.03,
-    "volume_24h_fp": 27441.12,
-    "volume_fp": 31602.909999999996
+    "open_interest_fp": 35087.899999999994,
+    "volume_24h_fp": 31264.420000000002,
+    "volume_fp": 35546.78
    },
    "ex_stats_first": {
     "open_interest_fp": 879.45,
