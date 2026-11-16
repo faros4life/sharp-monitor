@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 16, 4:34 PM ET. This run: 0 new, 1 not confirmed, 2 pending. Open alerts: 44.
+Updated Mon Nov 16, 4:35 PM ET. This run: 2 new, 0 not confirmed, 1 pending. Open alerts: 47.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 16 4:35PM | NFL | Los Angeles C vs Baltimore: Total Points | total: Over 39.5 points | kalshi | $132k | -100 | ✅ novig,prophetx |  | +0.0c |  | pending |
+| Nov 16 4:35PM | NBA | Houston vs Miami: Spread | spread: NOT Houston wins by over 1.5 points | kalshi | $39k | +108 | ✅ novig | ✅ | +0.0c |  | pending |
+| Nov 16 4:25PM | NBA | Chicago vs Cleveland: Spread | spread: NOT Cleveland wins by over 8.5 points | kalshi | $30k | -104 |  | ✅ | +0.0c |  | pending |
 | Nov 16 3:50PM | NBA | Orlando vs Boston: Total Points | total: NOT Over 213.5 points | kalshi | $29k | -113 |  | ❌ | +0.0c |  | pending |
 | Nov 16 3:45PM | NHL | Washington vs Tampa Bay | moneyline: Tampa Bay | kalshi | $38k | -150 |  |  | +0.0c |  | pending |
 | Nov 16 3:40PM | NHL | Los Angeles vs Boston | moneyline: Boston | kalshi | $45k | -150 |  |  | +0.0c |  | pending |
@@ -207,6 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 6:35PM | NHL | Philadelphia vs Columbus: Spread | spread: NOT Columbus wins by over 1.5 goals | kalshi | $70k | -213 | ✅ novig |  | +0.0c | yes | W |
 | Nov 14 6:35PM | NHL | Minnesota vs Boston: Spread | spread: NOT Minnesota wins by over 1.5 goals | kalshi | $83k | -213 | ✅ novig |  | +0.0c | yes | L |
 | Nov 14 6:30PM | NCAAF | San Jose St. vs Air Force | moneyline: Air Force | kalshi | $242k | -525 | ✅ prophetx | ✅ | +0.0c | yes | W |
-| Nov 14 6:20PM | NBA | Denver Nuggets @ New Orleans Pelicans | moneyline: DEN (0) | novig | $85k | -525 | ✅ kalshi,prophetx |  | +0.0c |  | W |
-| Nov 14 6:20PM | NBA | Denver vs New Orleans | moneyline: Denver | kalshi | $374k | -525 | ✅ novig,prophetx |  | +1.0c | yes | W |
-| Nov 14 6:00PM | NHL | New Jersey vs Washington | moneyline: New Jersey | kalshi | $61k | -127 | ✅ novig,prophetx |  | +0.0c |  | W |
