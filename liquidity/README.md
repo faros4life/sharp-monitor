@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 16, 4:35 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 16.
+Updated Mon Nov 16, 4:40 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 16.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -63,7 +63,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 15 12:45PM | NFL | Jacksonville Jaguars @ Tennessee Titans | spread: TEN +10.5 (10.5) | novig | $41k | -100 | ✅ kalshi |  | +0.0c | yes | L |
 | Nov 15 12:35PM | NFL | Jacksonville Jaguars at Tennessee Titans | moneyline: Jacksonville Jaguars | prophetx | $33k | -500 | ✅ kalshi,novig |  | +0.0c |  | W |
 | Nov 15 12:30PM | NFL | Buffalo Bills at New York Jets | moneyline: Buffalo Bills | prophetx | $69k | -400 | ✅ kalshi,novig |  | +0.0c |  | W |
-| Nov 15 12:30PM | NHL | Vancouver vs Utah | moneyline: Utah | kalshi | $32k | -317 |  |  | +0.0c | yes | pending |
+| Nov 15 12:30PM | NHL | Vancouver vs Utah | moneyline: Utah | kalshi | $32k | -317 |  |  | -1.0c | yes | pending |
 | Nov 15 12:25PM | NFL | Jacksonville Jaguars at Tennessee Titans | spread: Jacksonville Jaguars -10.5 (-10.5) | prophetx | $30k | -105 |  |  | +0.0c |  | W |
 | Nov 15 12:25PM | NFL | Buffalo vs New York J: Total Points | total: Over 50.5 points | kalshi | $142k | -104 |  |  | +1.0c | yes | L |
 | Nov 15 12:20PM | NFL | Miami Dolphins @ Indianapolis Colts | spread: IND -4.5 (-4.5) | novig | $29k | -102 | ✅ kalshi |  | +1.0c |  | L |
