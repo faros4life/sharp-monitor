@@ -117,6 +117,8 @@ check("ProphetX order upgraded to FILLED by matching detail", c2["r1|NCAAF|b|sid
 check("a confirmed fill with no tracker row is flagged missing from Project 2", c2["r1|NCAAF|b|side|b"]["in_project2"] is False)
 fx3 = rs.fill_exceptions(od, {"f1": {"state": "FILLED"}}, {"v1"}, False, {"matched": set(), "complete": False}, {"p1"})
 check("incomplete matching read leaves UNKNOWN", {e["key"]: e for e in fx3}["r1|NCAAF|b|side|b"]["category"].startswith("UNKNOWN"))
+check("cursor field detected even when empty", core.px_has_cursor_field({"data": {"next_cursor": None}}))
+check("no cursor field is not proof of the end", not core.px_has_cursor_field({"data": {"cursor": "x"}}))
 if fails:
     print("FAILED", fails); sys.exit(1)
 print("test_report_sections: all passed")

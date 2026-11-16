@@ -526,3 +526,14 @@ def px_classify(order_ids, matched, complete):
     if any(str(i) in matched for i in order_ids):
         return "FILLED"
     return "UNFILLED" if complete else "UNKNOWN"
+
+
+def px_has_cursor_field(resp):
+    stack = [resp]
+    while stack:
+        x = stack.pop()
+        if isinstance(x, dict):
+            if "next_cursor" in x or "nextCursor" in x:
+                return True
+            stack.extend(v for v in x.values() if isinstance(v, dict))
+    return False

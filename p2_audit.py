@@ -75,7 +75,7 @@ def read_px_matching(order_ids, frm_ts, to_ts, max_pages=60):
     """(matched_ids, complete, note). READ-ONLY GETs of /v2/mm/get_wager_matching_detail: the time range paged to
     the end by next_cursor, plus one call filtered to the given wager ids. complete=True ONLY when the range was
     paged to a page with no cursor and no error. Counts only are printed."""
-    from p2_audit_core import px_match_records, px_next_cursor, px_matched_ids
+    from p2_audit_core import px_match_records, px_next_cursor, px_matched_ids, px_has_cursor_field
     import urllib.parse as up
     try:
         import book_check as bc
@@ -88,10 +88,13 @@ def read_px_matching(order_ids, frm_ts, to_ts, max_pages=60):
                 q["next_cursor"] = cur
             d = bc.px_call("/v2/mm/get_wager_matching_detail?" + up.urlencode(q)) or {}
             pages += 1
-            recs += px_match_records(d)
+            page = px_match_records(d)
+            recs += page
             cur = px_next_cursor(d)
             if not cur:
-                complete = True
+                # complete ONLY if the cursor field exists (and is empty) or the page is short: a renamed cursor
+                # field must never read as "no more pages"
+                complete = px_has_cursor_field(d) or len(page) < 100
                 break
         by_id = 0
         if order_ids:
@@ -255,6 +258,10 @@ def main():
     raw_clv = {k: r for k, r in cb.items()}
     cx = rs.clv_exceptions(rows, raw_clv, clv, set(stale))
     text += rs.render_exceptions(fx, cx)
+    for e_ in fx:   # venue + verdict only: no game, side, id or amount
+        print(f"  G order exception: day {e_['day']} venue {e_['venue']} lane {e_['key'].split('|')[0]} -> "
+              f"{e_['category'].split(' - ')[0]}" + ("" if e_.get("in_project2") is None else
+              f" | linked to a Project 2 position: {'yes' if e_['in_project2'] else 'NO'}"))
     print(f"section G: no-fill-record orders {len(fx)} {rs.category_counts(fx)} | confirmed fills NOT in Project 2 "
           f"{sum(1 for e in fx if e.get('in_project2') is False)} | settled without certified CLV {len(cx)} "
           f"{rs.category_counts(cx)}")
