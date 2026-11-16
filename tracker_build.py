@@ -1060,6 +1060,7 @@ h2{font-size:17px;margin:14px 0 6px}.card{padding:10px 12px;border-radius:14px;m
 .cal .c.pos{background:#3f6b2a;border-color:#5f9a3e}.cal .c.neg{background:#7a1c1c;border-color:#a83232}
 .cal .c.pos .n,.cal .c.neg .n,.cal .c.pos .p,.cal .c.neg .p{color:#fff}.cal .c.open{border-color:#60a5fa}
 .cal .c.sel{outline:2px solid #60a5fa;outline-offset:1px}.cal .c.empty{background:none;border-color:transparent}
+.tw{overflow-x:auto;margin:6px 0 14px}table.led{border-collapse:collapse;width:100%;font:13px Inter,sans-serif;white-space:nowrap}table.led th{text-align:left;font-weight:600;color:var(--muted);padding:6px 10px;border-bottom:1px solid var(--line)}table.led td{padding:6px 10px;border-bottom:1px solid var(--line)}table.led td.n{text-align:right;font-variant-numeric:tabular-nums}table.led td.gm2{max-width:260px;overflow:hidden;text-overflow:ellipsis}table.led td.st{font-weight:600}table.led .win{color:var(--win)}table.led .loss{color:var(--loss)}.day.tot{font-weight:600}
 .tabs{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:10px}
 .tabs button{font:500 15px Inter,sans-serif;padding:9px 0;background:none;border:0;color:var(--muted)}.tabs button.on{background:#222a27;color:var(--fg);font-weight:600}
 .tk{display:grid;grid-template-columns:repeat(3,1fr);text-align:center;margin:4px 0 10px}.tk .v{font:600 26px Oswald,sans-serif}.tk .k{color:var(--muted);font-size:13px}
@@ -1154,9 +1155,72 @@ return `<div class="box"><div class="tabs">${tb('settled',st.s.length,'Settled')
 <div class="tk"><div><div class="v">${list.length}</div><div class="k">Bets</div></div><div><div class="v">${$(risk)}</div><div class="k">At Risk</div></div>
 <div><div class="v" style="color:${T!=='settled'?'var(--fg)':pnl>0?'var(--win)':pnl<0?'var(--loss)':'var(--fg)'}">${sg(Math.round(pnl*100)/100)}</div><div class="k">${T==='settled'?'Profit':'Max Profit'}</div></div></div>
 ${T==='settled'?list.map(rowOf).join(''):'</div>'+list.map(b=>card(b,T==='live'?'live':'up')).join('')+'<div>'}</div>`;};
+
+/* Nov 16 (Peter, via the Live Bet Tracker spec): the 13-column ledger, the spec's source tags,
+   PENDING/WON/LOST/PUSH, per-day W-L and P&L that tie to their own rows, week and overall lines,
+   and ranked by-source / by-book summaries. Dollars are site figures and are never merged; only
+   the W-L COUNT folds split fills and same-game/same-side wagers into one game (Peter Nov 12,
+   "All games count 1x"). A zero-fill or refused order is not a row - rows come from the ledger,
+   which only holds fills. */
+const TAGS={'lane 1':'Bot - Lane 1','lane1':'Bot - Lane 1','r1':'Bot - R1','board':'Bot - Board v3',
+            'board v3':'Bot - Board v3','bets board':'Bot - Board v3','street value':'Street Value',
+            'street value cfb':'Street Value','oddsjam':'OddsJam','claude':'Claude'};
+const tagOf=b=>{const ln=String(b.lane||'').toLowerCase().trim(),sc=String(b.source||'').toLowerCase().trim();
+  if(TAGS[ln])return TAGS[ln];if(TAGS[sc])return TAGS[sc];
+  if(sc.indexOf('street value')>=0)return 'Street Value';
+  if(sc.indexOf('board')>=0)return 'Bot - Board v3';
+  if(sc.indexOf('bot')>=0||sc.indexOf('ntfy')>=0)return ln?('Bot - '+b.lane):'Bot - Lane 1';
+  return 'Peter';};
+const statOf=b=>b.result==='W'?'WON':b.result==='L'?'LOST':b.result==='P'?'PUSH':'PENDING';
+const finalOf=b=>{const t=b.teams;return (t&&t.length===2&&t[0].score!=null&&b.result)?`${t[0].score}-${t[1].score}`:'';};
+const etd=v=>{if(!v)return '';const x=new Date(v);return isNaN(x)?'':x.toLocaleString('en-US',{month:'short',day:'numeric',timeZone:'America/New_York'});};
+/* one game = same game + same side; price and book are deliberately NOT in the key, so split
+   fills across books collapse to a single counted game */
+const gkey=b=>(String(b.game||'')+'|'+String(b.bet||'').toLowerCase().replace(/[-+]?\\d+(\\.\\d+)?\\s*$/,'')).trim();
+const recordOf=list=>{const g={};list.forEach(b=>{if(!b.result)return;const k=gkey(b);g[k]=(g[k]||0)+(b.profit||0);});
+  let w=0,l=0,p=0;Object.values(g).forEach(v=>{if(v>0.004)w++;else if(v<-0.004)l++;else p++;});
+  return {w:w,l:l,p:p,games:Object.keys(g).length};};
+const money=list=>list.reduce((a,b)=>a+(b.profit||0),0);
+const COLS=['Date Placed','Event Date (ET)','Sport','Game','Bet','Book','Price','Stake','To Pay','Source','Status','Final','Profit (site)'];
+const trOf=b=>{const st=statOf(b),c=st==='WON'?'win':st==='LOST'?'loss':'';
+  return `<tr><td>${esc(etd(b.placed||b.first_seen))}</td><td>${esc(etd(b.game_start))}</td><td>${esc(b.sport||b.lg||'')}</td>
+<td class="gm2">${esc(b.game||'')}</td><td>${esc(b.bet||'')}</td><td>${esc(b.book||'')}</td><td>${esc(pr(b.price))}</td>
+<td class="n">${$(b.stake)}</td><td class="n">${$(b.to_pay)}</td><td>${esc(tagOf(b))}</td>
+<td class="st ${c}">${st}</td><td>${esc(finalOf(b))}</td>
+<td class="n ${c}">${b.result?sg(Math.round((b.profit||0)*100)/100):'—'}</td></tr>`;};
+const tableOf=rows=>`<div class="tw"><table class="led"><thead><tr>${COLS.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table></div>`;
+const dayLabel=k=>new Date(k+'T12:00:00').toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
+const rankBy=(list,f,label)=>{const g={};list.forEach(b=>{if(!b.result)return;const k=f(b)||'?';(g[k]=g[k]||[]).push(b);});
+  const rows=Object.entries(g).map(([k,l])=>{const r=recordOf(l);return {k:k,p:money(l),w:r.w,l:r.l,ps:r.p};})
+    .sort((a,b)=>b.p-a.p);
+  return rows.length?`<h2>${label}</h2><div class="tw"><table class="led"><thead><tr><th>${label}</th><th>W-L</th><th>Profit</th></tr></thead><tbody>`+
+    rows.map(r=>`<tr><td>${esc(r.k)}</td><td>${r.w}-${r.l}${r.ps?'-'+r.ps:''}</td><td class="n ${r.p>0?'win':r.p<0?'loss':''}">${sg(Math.round(r.p*100)/100)}</td></tr>`).join('')+
+    '</tbody></table></div>':'';};
+function ledgerHTML(){
+  const ALLB=(DATA.all||[]);
+  const open=ALLB.filter(b=>!b.result&&b.open), set=ALLB.filter(b=>b.result);
+  const byd=o=>{const g={};o.forEach(b=>{const k=ymd(b)||'Earlier';(g[k]=g[k]||[]).push(b);});return g;};
+  let h='<h2>Open plays</h2>';
+  const og=byd(open), ok=Object.keys(og).sort();
+  h+= ok.length?ok.map(k=>{const l=og[k];const risk=l.reduce((a,b)=>a+(b.stake||0),0),win=l.reduce((a,b)=>a+((b.to_pay||0)-(b.stake||0)),0);
+      return `<div class="day"><span>${esc(k==='Earlier'?k:dayLabel(k))} · ${l.length} open</span><span>${$(risk)} to win ${$(win)}</span></div>`+
+             tableOf(l.map(trOf).join(''));}).join(''):'<p class="sub">No open plays.</p>';
+  h+='<h2>Settled</h2>';
+  const sg2=byd(set), sk=Object.keys(sg2).sort().reverse();
+  h+=sk.map(k=>{const l=sg2[k],r=recordOf(l),p=money(l);
+      return `<div class="day"><span>${esc(k==='Earlier'?k:dayLabel(k))} · ${r.w}-${r.l}${r.p?'-'+r.p:''}</span>`+
+             `<span class="${p>0?'win':p<0?'loss':''}">${sg(Math.round(p*100)/100)}</span></div>`+tableOf(l.map(trOf).join(''));}).join('');
+  /* running totals as their own lines */
+  const now=new Date(), dow=(now.getDay()+6)%7, mon=new Date(now);mon.setDate(now.getDate()-dow);
+  const monK=mon.toLocaleDateString('en-CA',{timeZone:'America/New_York'});
+  const wk=set.filter(b=>(ymd(b)||'')>=monK), wr=recordOf(wk), ar=recordOf(set);
+  h+=`<div class="day tot"><span>Week (Mon-Sun) · ${wr.w}-${wr.l}${wr.p?'-'+wr.p:''}</span><span class="${money(wk)>0?'win':money(wk)<0?'loss':''}">${sg(Math.round(money(wk)*100)/100)}</span></div>`;
+  h+=`<div class="day tot"><span>Overall · ${ar.w}-${ar.l}${ar.p?'-'+ar.p:''} (${ar.games} games)</span><span class="${money(set)>0?'win':money(set)<0?'loss':''}">${sg(Math.round(money(set)*100)/100)}</span></div>`;
+  h+=rankBy(set,tagOf,'By source')+rankBy(set,b=>b.book,'By book');
+  return h;}
 document.getElementById('app').innerHTML=`<div class="top1"><h1>Bet Tracker</h1><button class="rf" id="rf" onclick="refresh()">↻ Refresh</button></div><p class="sub">Updated ${esc(d.updated)} · settled profit from the books' own numbers</p>
 <div class="tiles">${tile('Today',t.today,wl(d.settled.filter(b=>dkey(b)===today)))}${tile('This week',t.week,wl(d.settled))}${tile('This month',t.month,'')}</div>
-${dayBox()}${calBox()}${dayList()}${sec('Other open bets',d.unmatched||[],'up')}
+${dayBox()}${calBox()}${dayList()}${sec('Other open bets',d.unmatched||[],'up')}${ledgerHTML()}
 <p class="sub">Reads: ${esc(d.reads)}</p>`;
 clearTimeout(window._rt);window._rt=setTimeout(refresh,d.live.length?60000:300000);}
 async function refresh(){const btn=document.getElementById('rf');if(btn){btn.classList.add('busy');btn.textContent='Refreshing…';}
