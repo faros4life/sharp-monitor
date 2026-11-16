@@ -1,6 +1,174 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-16T15:30:40Z",
+   "base_depth": 23597,
+   "best_price": 0.4975,
+   "best_price_american": 101,
+   "best_price_book": "kalshi",
+   "bid_improved": true,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 2.0,
+   "confirmed_after_min": 20,
+   "date": "2026-11-16",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -3283,
+     "new_this_side": 26017,
+     "other_side": 19846,
+     "other_side_all_levels": 32892,
+     "ratio": 0.9,
+     "this_side": 18562,
+     "this_side_all_levels": 71141
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 850.32,
+    "volume_24h_fp": 977.04,
+    "volume_fp": 1000.04
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 43.0,
+    "volume_24h_fp": 613.0,
+    "volume_fp": 43.0
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 2317.31,
+    "volume_24h_fp": 2502.09,
+    "volume_fp": 2511.56
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 807.32,
+    "volume_24h_fp": 364.04,
+    "volume_fp": 957.04
+   },
+   "fade_price": 0.53,
+   "first_seen_utc": "2026-11-16T15:10:23Z",
+   "game": "Texas Southern vs UC San Diego: Spread",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 8.75,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAMBSPREAD-26NOV16TXSOUCSD-UCSD19\"}",
+   "lead_min": 689,
+   "league": "NCAAB",
+   "line": 18.5,
+   "market": "spread",
+   "new_money": 26017,
+   "new_x": 1.35,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 850.32,
+      "volume_24h_fp": 977.04,
+      "volume_fp": 1000.04
+     },
+     "game_normal": 8129,
+     "game_x": 8.75,
+     "normal": 19266,
+     "now": 71141,
+     "type": "SPREAD",
+     "x": 3.69
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.48,
+   "price_after_15m": 0.4975,
+   "price_after_15m_book": "kalshi",
+   "price_american": 108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.46,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 19.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 19.0,
+     "price": -110
+    },
+    "betrivers": {
+     "point": 18.5,
+     "price": -105
+    },
+    "bovada": {
+     "point": 19.5,
+     "price": -115
+    },
+    "draftkings": {
+     "point": 19.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 19.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 19.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 18.5,
+     "price": 108
+    },
+    "lowvig": {
+     "point": 19.0,
+     "price": -106
+    },
+    "novig": {
+     "point": 40.5,
+     "price": -5782
+    },
+    "polymarket": {
+     "point": 19.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 19.5,
+     "price": -105
+    },
+    "williamhill_us": {
+     "point": 19.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAMBSPREAD-26NOV16TXSOUCSD-UCSD19"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Texas Southern",
+   "side_label": "NOT UC San Diego wins by over 18.5 points",
+   "size_x": 3.69,
+   "start_source": "odds",
+   "start_utc": "2026-11-17T03:00:00Z",
+   "still_actionable": true,
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Texas Southern",
+    "UC San Diego"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-16T15:00:27Z",
    "base_depth": 55607,
    "best_price": 0.5525,
@@ -14,8 +182,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.57,
-   "clv_cents": 3.0,
+   "close_price": 0.58,
+   "clv_cents": 4.0,
    "confirmed_after_min": 10,
    "date": "2026-11-16",
    "depth_by_book": {
@@ -40,9 +208,9 @@
     "volume_fp": 2320.29
    },
    "ex_stats_close": {
-    "open_interest_fp": 15242.57,
-    "volume_24h_fp": 19538.52,
-    "volume_fp": 19576.52
+    "open_interest_fp": 15317.35,
+    "volume_24h_fp": 19576.52,
+    "volume_fp": 19651.3
    },
    "ex_stats_first": {
     "open_interest_fp": 9253.65,
@@ -220,9 +388,9 @@
     "volume_fp": 1.65
    },
    "ex_stats_close": {
-    "open_interest_fp": 2831.2200000000003,
-    "volume_24h_fp": 3028.8900000000003,
-    "volume_fp": 3156.0
+    "open_interest_fp": 2932.92,
+    "volume_24h_fp": 3032.74,
+    "volume_fp": 3257.7
    },
    "ex_stats_first": {
     "open_interest_fp": 1923.0,
@@ -406,7 +574,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 2544.27,
-    "volume_24h_fp": 2616.02,
+    "volume_24h_fp": 2620.12,
     "volume_fp": 2620.12
    },
    "ex_stats_first": {
@@ -582,9 +750,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2477.58,
-    "volume_24h_fp": 2217.18,
-    "volume_fp": 2479.58
+    "open_interest_fp": 3118.25,
+    "volume_24h_fp": 2388.49,
+    "volume_fp": 3120.25
    },
    "ex_stats_first": {
     "open_interest_fp": 600.8599999999999,
@@ -765,9 +933,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3160.1499999999996,
+    "open_interest_fp": 3166.99,
     "volume_24h_fp": 3111.56,
-    "volume_fp": 3160.1499999999996
+    "volume_fp": 3166.99
    },
    "ex_stats_first": {
     "open_interest_fp": 577.81,
@@ -954,9 +1122,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2454.92,
+    "open_interest_fp": 2455.27,
     "volume_24h_fp": 2468.65,
-    "volume_fp": 2473.11
+    "volume_fp": 2473.46
    },
    "ex_stats_first": {
     "open_interest_fp": 114.28,
@@ -3788,9 +3956,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 45417.28,
-    "volume_24h_fp": 43420.48,
-    "volume_fp": 47379.44
+    "open_interest_fp": 51790.399999999994,
+    "volume_24h_fp": 45347.33,
+    "volume_fp": 53752.56
    },
    "ex_stats_first": {
     "open_interest_fp": 879.45,
