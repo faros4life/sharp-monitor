@@ -192,7 +192,7 @@ def registry_unknowns():
     print(f"Polymarket US orders since {rs.START_ET} with no fill record: {len(fx)}")
     links = {}
     for e in fx:
-        verdict, status, slug_of, oid_of = "UNKNOWN", "not found", None, None
+        verdict, status, slug_of, oid_of, intent_of = "UNKNOWN", "not found", None, None, ""
         for oid in e.get("ids") or []:
             for path in (f"/v1/order/{oid}", f"/v1/orders/{oid}"):
                 try:
@@ -205,12 +205,17 @@ def registry_unknowns():
                     status = str(o.get("status") or o.get("state") or "?")
                     verdict = pmus_verdict(d)
                     slug_of, oid_of = o.get("marketSlug") or o.get("market_slug"), str(oid)
+                    intent_of = str(o.get("intent") or o.get("side") or "")
                     break
             if verdict != "UNKNOWN":
                 break
         print(f"  {e['day']} lane {e['key'].split('|')[0]}: venue status {status} -> {verdict}")
         if verdict == "FILLED" and slug_of and oid_of:
             links[oid_of] = slug_of
+            # the venue's own direction for this order (BUY_LONG / BUY_SHORT), stored beside the slug link
+            if "LONG" in intent_of.upper() or "SHORT" in intent_of.upper():
+                links[oid_of + "#intent"] = "LONG" if "LONG" in intent_of.upper() else "SHORT"
+            print(f"    venue direction recorded: {'yes' if (oid_of + '#intent') in links else 'NO (field absent)'}")
     # Persist ONLY order id -> venue market slug for venue-confirmed fills, encrypted, so the report can link the
     # fill to its tracker position without holding the Polymarket key. No amounts, sides or prices.
     if links:

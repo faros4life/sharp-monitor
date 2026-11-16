@@ -279,7 +279,7 @@ def registry_side(row_id, snap, pm_links, orders):
     m = re.search(r"\[([^\]]+)\]", str(row_id or ""))
     if not str(row_id or "").startswith("pm|") or not m:
         return None, "not a Polymarket row with a market slug"
-    oids = [o for o, sl in (pm_links or {}).items() if sl == m.group(1)]
+    oids = [o for o, sl in (pm_links or {}).items() if sl == m.group(1) and "#" not in o]
     if len(oids) != 1:
         return None, f"{len(oids)} venue-confirmed orders on this market (need exactly 1)"
     def _lo(o):
@@ -314,10 +314,15 @@ def registry_side(row_id, snap, pm_links, orders):
     # LONG the "-x" contract holds that line; SHORT it holds the other team at +x. The claim (the bot's own team and
     # line) must say exactly that: equal to the row's line when long, its exact negation when short. Anything else is
     # a contradiction and is refused. The bet scored is the CLAIM's team at the CLAIM's line - nothing inferred.
+    # Direction: the VENUE's own order record (BUY_LONG / BUY_SHORT, saved by pmus-activity's read-back) decides.
+    # Settled Polymarket rows carry no direction from the venue, so the tracker's flag is used only when the venue's
+    # is absent - and then any disagreement with the claim fails closed below.
+    vdir = (pm_links or {}).get(oids[0] + "#intent")
+    short = (vdir == "SHORT") if vdir in ("LONG", "SHORT") else bool(snap.get("flip"))
     try:
-        want = -float(bt) if snap.get("flip") else float(bt)
+        want = -float(bt) if short else float(bt)
         if oline is None or abs(float(oline) - want) > 1e-9:
-            return None, ("the order's line is not the negation of the row's line (short)" if snap.get("flip")
+            return None, ("the order's line is not the negation of the row's line (short)" if short
                           else "the order's line does not equal the row's line")
     except (TypeError, ValueError):
         return None, "line unreadable"

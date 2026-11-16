@@ -33,6 +33,10 @@ check("the short result scores as a spread on the claim's team", cl.parsed({"bet
 check("bet text that is not a bare line -> refused", R(RID, dict(SNAP, bet="Stanford -15.5"), LINKS, ORD)[0] is None)
 check("non-Polymarket rows are never touched", R("px|123", SNAP, LINKS, ORD)[0] is None)
 check("alert_line used when no fill_line", R(RID, SNAP, LINKS, [dict(ORD[0], fill_line=None, alert_line=-15.5)])[0] == "stanford -15.5")
+check("venue says LONG overrides a wrong tracker short flag", R(RID, dict(SNAP, flip=True), dict(LINKS, **{"o1#intent": "LONG"}), ORD)[0] == "stanford -15.5")
+check("venue says SHORT with a claim at the row's line -> contradiction, refused",
+      R(RID, SNAP, dict(LINKS, **{"o1#intent": "SHORT"}), ORD)[0] is None)
+check("the #intent entry is never mistaken for an order on the market", R(RID, SNAP, {"o1": "cfb-stan-vt-2026-11-14", "o1#intent": "cfb-stan-vt-2026-11-14"}, ORD)[0] == "stanford -15.5")
 if fails:
     print("FAILED", fails); sys.exit(1)
 print("test_registry_side: all passed")
