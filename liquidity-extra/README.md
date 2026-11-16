@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 16, 10:00 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 11.
+Updated Mon Nov 16, 10:10 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 11.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -12,10 +12,10 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 16 10:00AM | NCAAB | Long Beach St. vs UCLA: Spread | spread: NOT UCLA wins by over 34.5 points | kalshi | $59k | -117 |  |  | +0.0c |  | pending |
 | Nov 16 9:50AM | NCAAB | Iona vs UMBC | moneyline: Iona | kalshi | $61k | -138 |  |  | +0.0c |  | pending |
-| Nov 15 10:20PM | NCAAB | Western Kentucky vs Tulsa | moneyline: Tulsa | kalshi | $29k | -300 |  |  | -2.0c |  | pending |
+| Nov 15 10:20PM | NCAAB | Western Kentucky vs Tulsa | moneyline: Tulsa | kalshi | $29k | -300 |  |  | -3.0c |  | pending |
 | Nov 15 10:20PM | NCAAB | Tarleton St. vs Drake | moneyline: Drake | kalshi | $34k | -488 |  |  | -2.0c |  | pending |
 | Nov 15 10:20PM | NCAAB | Eastern Kentucky vs Kent St. | moneyline: Kent St. | kalshi | $32k | -488 |  |  | +1.0c |  | pending |
-| Nov 15 10:20PM | NCAAB | Abilene Christian vs Missouri St. | moneyline: Missouri St. | kalshi | $28k | -300 |  |  | -6.0c |  | pending |
+| Nov 15 10:20PM | NCAAB | Abilene Christian vs Missouri St. | moneyline: Missouri St. | kalshi | $28k | -300 |  |  | -7.0c |  | pending |
 | Nov 15 5:10PM | NCAAB | Texas St. vs UTSA: Point Total | total: NOT Over 147.5 points | kalshi | $37k | -104 | ✅ novig | ✅ | +3.0c | yes | L |
 | Nov 15 4:20PM | NCAAB | Western Michigan vs Southern Indiana: Point Total | total: Over 141.5 points | kalshi | $38k | +108 |  | ❌ | +0.0c |  | L |
 | Nov 15 4:10PM | NCAAB | Coastal Carolina vs Wisconsin: Point Total | total: NOT Over 149.5 points | kalshi | $33k | -113 |  |  | +0.0c | yes | L |
