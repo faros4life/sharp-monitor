@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 16, 4:10 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 16.
+Updated Mon Nov 16, 4:20 PM ET. This run: 2 new, 0 not confirmed, 3 pending. Open alerts: 18.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,8 +10,10 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 16 4:20PM | NCAAB | Richmond vs Virginia Tech: Point Total | total: NOT Over 152.5 points | kalshi | $45k | -104 |  | ✅ | +0.0c |  | pending |
+| Nov 16 4:20PM | NCAAB | Montana vs Kansas St.: Spread | spread: NOT Kansas St. wins by over 15.5 points | kalshi | $29k | -113 |  | ✅ | +0.0c |  | pending |
 | Nov 16 2:40PM | TENNIS | Zverev vs Shelton | moneyline: Zverev | kalshi | $51k | -178 |  |  | +0.0c |  | pending |
-| Nov 16 2:20PM | NCAAB | Eastern Kentucky vs Kent St.: Spread | spread: NOT Kent St. wins by over 10.5 points | kalshi | $46k | -113 |  |  | +2.0c |  | pending |
+| Nov 16 2:20PM | NCAAB | Eastern Kentucky vs Kent St.: Spread | spread: NOT Kent St. wins by over 10.5 points | kalshi | $46k | -113 |  |  | +3.0c |  | pending |
 | Nov 16 2:00PM | NCAAB | Murray St. vs Hofstra | moneyline: Murray St. | kalshi | $41k | -488 |  |  | +1.0c |  | pending |
 | Nov 16 1:30PM | NCAAB | Abilene Christian vs Missouri St.: Point Total | total: NOT Over 139.5 points | kalshi | $28k | +113 |  | ✅ | +4.0c | yes | pending |
 | Nov 16 1:10PM | NCAAB | Illinois vs Duke | moneyline: Duke | kalshi | $28k | -335 |  |  | +1.0c |  | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 8 6:30AM | TENNIS | Inaki Montes-de la Torre vs Lorenzo Sonego | moneyline: Inaki Montes-de la Torre | kalshi | $29k | +138 |  |  | -28.0c | yes | L |
 | Nov 8 3:50AM | TENNIS | Claire Liu vs Alexandra Eala | moneyline: Claire Liu | kalshi | $258k | -186 |  |  | +19.0c |  | W |
 | Nov 8 2:40AM | TENNIS | Marta Kostyuk vs Linda Noskova | moneyline: Linda Noskova | kalshi | $286k | -122 |  |  | +4.0c | yes | W |
-| Nov 8 2:30AM | TENNIS | Elias Ymer vs Juan Manuel Cerundolo | moneyline: Juan Manuel Cerundolo | kalshi | $38k | -335 | ✅ novig |  | -4.0c |  | W |
-| Nov 8 2:30AM | TENNIS | Inaki Montes-de la Torre vs Lorenzo Sonego | moneyline: Lorenzo Sonego | kalshi | $26k | -300 |  |  | +0.0c | yes | W |
