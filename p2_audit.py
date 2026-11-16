@@ -268,6 +268,24 @@ def main():
            if r.get("clv") is not None and not r.get("fixture_doubt") and k not in stale}
     from bot_live_export import TRIGGERS     # Peter's 13 Nov ruled lane table (constant only; nothing is run)
     ruled = (TRIGGERS, tb.toks)
+    # 16 Nov (Peter): resolve a lane CONFLICT that is only the tracker's text label disagreeing with an exact registry
+    # claim (see p2_audit_core.text_label_yields). Report copy only; the old label is kept beside it.
+    from p2_audit_core import resolve as _res0, resolve_link as _rl0, canon_lane as _cl0, text_label_yields
+    n_yield = 0
+    for r_ in rows:
+        st0, ln0, k0 = _res0(r_, index, reg._venue)
+        if st0 != "exact" and links is not None:
+            st0, ln0, k0 = _rl0(r_, links, index, reg._venue)
+            st0 = "exact" if st0 == "exact_link" else st0
+        if st0 != "exact":
+            continue
+        ev0 = "|".join(str(k0 or "").split("|")[1:3])
+        others = {_cl0(l2) for cl_ in index.values() for v, k2, l2 in cl_ if ev0 and ev0 in str(k2)} - {_cl0(ln0)}
+        if text_label_yields(r_, ln0, others):
+            r_["lane_text_label_overridden"] = r_.get("lane")
+            r_["lane"], r_["lane_fuzzy"] = _cl0(ln0), None
+            n_yield += 1
+    print(f"lane conflicts resolved for the registry claim (tracker text label only, no registry support): {n_yield}")
     rep = build(rows, index, reg._venue, links, clv, ruled)
     # SECTION F (Peter, 16 Nov): every bot row from 12 Nov ET, classified the same way, with its own exactly-once check.
     # 16 Nov: by the BET's own time only (placed / game start / settlement), never a discovery stamp - paging the

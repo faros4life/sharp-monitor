@@ -129,6 +129,14 @@ check("Polymarket US order with a linked venue row -> FILLED and in Project 2",
       (lambda e: e["category"].startswith("FILLED") and e["in_project2"] is True)(rs.fill_exceptions(pmo, {}, set(), True, None, {"pm1"})[0]))
 check("Polymarket US order with no linked row stays UNKNOWN",
       rs.fill_exceptions(pmo, {}, set(), True, None, set())[0]["category"].startswith("UNKNOWN"))
+Y = core.text_label_yields
+check("text label vs exact registry claim, no other-lane order -> registry wins",
+      Y({"lane": "PHASE 1", "lane_src": None}, "BOARD V3", set()) is True)
+check("a registry-derived tracker label never yields", Y({"lane": "PHASE 1", "lane_src": "registry-order-id"}, "BOARD V3", set()) is False)
+check("a registry order under the label's lane for the same event keeps it CONFLICT",
+      Y({"lane": "PHASE 1", "lane_src": None}, "BOARD V3", {"PHASE 1"}) is False)
+check("no disagreement -> nothing to resolve", Y({"lane": "BOARD V3"}, "BOARD V3", set()) is False)
+check("no tracker label -> nothing to resolve", Y({}, "BOARD V3", set()) is False)
 if fails:
     print("FAILED", fails); sys.exit(1)
 print("test_report_sections: all passed")

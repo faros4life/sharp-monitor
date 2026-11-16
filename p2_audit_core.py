@@ -537,3 +537,16 @@ def px_has_cursor_field(resp):
                 return True
             stack.extend(v for v in x.values() if isinstance(v, dict))
     return False
+
+
+def text_label_yields(row, registry_lane, other_lanes_same_event):
+    """16 Nov (Peter): 'Tracker labels alone cannot override a verified registry claim.' True when a CONFLICT is only
+    the tracker's own TEXT label disagreeing: the registry claim is exact (caller), the label was not registry-derived,
+    and no registry order exists for the same event under the label's lane. Anything else stays CONFLICT. Pure."""
+    if str(row.get("lane_src") or "") == "registry-order-id":
+        return False
+    seen = {canon_lane(row.get(f)) for f in ("lane", "lane_fuzzy")} - {None}
+    reg = canon_lane(registry_lane)
+    if not reg or not seen or seen == {reg}:
+        return False
+    return not (seen - {reg}) & {canon_lane(x) for x in (other_lanes_same_event or [])}
