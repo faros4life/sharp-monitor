@@ -141,7 +141,7 @@ def report(name, rows, note="", frozen=False):
     v = verdict(w, h1, h2, ho)
     full = ho["clv"] is not None and ho["clv_n"] >= 0.8 * ho["n"]
     status = "ANSWERED" if len(w) >= N and full else "PARTIAL"
-    say(f"  STATUS {status} | VERDICT {v}")
+    say(f"  STATUS {status} | VERDICT {v} | CONFIDENCE {confidence(ho['n'], ho['clv_n'])}")
     if ho["clv"] is None:
         say("  CLV: n/a - no standard (Pinnacle same-line, after-fee) close on these rows; cannot pass")
     elif ho["clv_n"] < ho["n"]:
@@ -242,46 +242,72 @@ def misprice_rows():
     return rows
 
 
-_TRACKER = None
+# --------------------------------------------------------------------------- live (reporting ledger)
+def live_rows(acct, lane):
+    """One row per LIVE BOT PLAY with a confirmed fill and a settled result (live_ledger.account)."""
+    return [{"ts": p["t"], "game": p["key"].split("|")[1] if "|" in p["key"] else p["key"], "am": p["am_net"],
+             "res": p["res"], "clv": p["clv"], "key": p["key"]}
+            for p in acct["plays"] if p["lane"] == lane and p["res"] in ("W", "L", "P") and p["am_net"] is not None]
 
 
-def tracker_bets():
-    """Decrypted tracker bets, or None when TRACKER_PASSPHRASE is absent/wrong (then those tests stay UNANSWERED)."""
-    global _TRACKER
-    if _TRACKER is None:
-        _TRACKER = False
-        if os.environ.get("TRACKER_PASSPHRASE"):
-            try:
-                import tracker_build as tb
-                _TRACKER = (tb.dec(json.load(open(tb.STATE))) or {}).get("bets") or {}
-            except Exception as e:
-                print(f"tracker not readable ({type(e).__name__})")
-    return _TRACKER or None
+def manual_rows(acct, src):
+    return [{"ts": m["t"], "game": f"{m['game']} - {m['bet']}", "am": m["am"], "res": m["res"], "clv": m["clv"],
+             "key": tuple(sorted(m["rows"]))}
+            for m in acct["manual"] if m["src"] == src and m["res"] in ("W", "L", "P") and m["am"] is not None]
 
 
-def tracker_rows(pred):
-    """Graded tracker rows matching pred, graded 1u at the row's own price (the real fill price for bot rows)."""
-    B = tracker_bets()
-    if B is None:
+# --------------------------------------------------------------------------- SLOW-HR / DOG BAND (paper)
+SLOWHR_EV_MIN = 2.0                      # slowhr_cell.EV_MIN - the registered cell
+DOG_BAND_FROM = "2026-11-07T05:00:00Z"   # REGISTRY 12: forward from 7 Nov (ET)
+
+
+def slowhr_rows(dog_band=False):
+    """SLOW-HR (#11) registered cell: Type P x moneyline x Hard Rock underdog (price > 0) x EV >= +2% x not LATE, first
+    sighting per event + market + side (slowhr_cell rules), graded 1u at the Hard Rock price on ESPN finals.
+    DOG BAND (#12): the same cell, +100 to +299 only, from 7 Nov. Paper. None if the state cannot be decrypted."""
+    if not os.environ.get("TRACKER_PASSPHRASE"):
         return None
-    rows = []
-    for bid, b in B.items():
-        res = {"WIN": "W", "WON": "W", "LOSS": "L", "LOST": "L", "PUSH": "P", "VOID": "P"}.get(
-            str(b.get("result") or "").upper(), str(b.get("result") or "").upper())
-        if res not in ("W", "L", "P") or not pred(b):
+    try:
+        import tracker_build as tb
+        S = (tb.dec(json.load(open("slowhr/state.enc"))) or {}).get("sightings") or []
+        import finals as fin
+    except Exception as e:
+        print(f"slowhr not readable ({type(e).__name__})")
+        return None
+    first = {}
+    for x in sorted(S, key=lambda z: str(z.get("t_move") or "")):
+        am = x.get("hr_am")
+        if not (x.get("kind") == "P" and x.get("type") == "moneyline" and am is not None and am > 0
+                and x.get("ev_pct") is not None and x["ev_pct"] >= SLOWHR_EV_MIN and not x.get("late")):
             continue
-        rows.append({"ts": str(b.get("placed") or b.get("first_seen") or ""), "game": b.get("game") or "",
-                     "am": b.get("price"), "res": res, "clv": None,
-                     "key": (str(b.get("placed") or "")[:10], frozenset(sc.toks(b.get("game"))), str(b.get("bet") or ""))})
+        if dog_band and not (100 <= am <= 299 and str(x.get("t_confirm") or "") >= DOG_BAND_FROM):
+            continue
+        day = str(x.get("start") or "")[:10]
+        ev = (x.get("league"), day, frozenset(sc.toks(x.get("game"))), x.get("type"), str(x.get("side")))
+        first.setdefault(ev, x)
+    rows = []
+    for k, x in first.items():
+        try:
+            res = fin.result(x)
+        except Exception:
+            res = None
+        if res is None:
+            continue
+        cf = x.get("close_fair")
+        clv = None if cf is None or not x.get("hr_price") else 100 * (float(cf) * float(x["hr_price"]) - 1)
+        rows.append({"ts": str(x.get("t_confirm") or x.get("t_move") or ""), "game": f"{x.get('game')} - {x.get('team')}",
+                     "am": x["hr_am"], "res": res, "clv": clv, "key": k})
     return rows
 
 
-def bot_lane(lane):
-    return lambda b: b.get("source") == "bot" and b.get("lane") == lane
-
-
-def peter_feed(b):
-    return str(b.get("source") or "").startswith("Peter")
+def confidence(n, clv_n):
+    """Stated rule: HIGH = 50 plays and certified CLV on 80%+; MEDIUM = 25+ plays and CLV on 50%+; else LOW."""
+    cov = (clv_n / n) if n else 0
+    if n >= 50 and cov >= 0.8:
+        return "HIGH"
+    if n >= 25 and cov >= 0.5:
+        return "MEDIUM"
+    return "LOW"
 
 
 def registry_names():
@@ -339,74 +365,164 @@ def send_telegram(body, rows):
     return True
 
 
+WHY_NOT = {
+    4: "no executed-play log links Hard Rock wagers to scanner flags (only 2 documented pushes); signals are not bets",
+    10: "post_test recomputes on each run; no stored per-play record - not integrated yet",
+    15: "rule text and start date are not in the repo or the BUCKET REPORT emails - needs Peter's definition",
+    16: "rule text and start date are not in the repo or the BUCKET REPORT emails - needs Peter's definition",
+    17: "registry one-liner only; start date and data source not documented",
+    19: "'gettable' is not defined anywhere; the 61-row second queue is player props, which Peter excluded",
+    20: "rule text and start date are not in the repo or the BUCKET REPORT emails - needs Peter's definition",
+    21: "CLOSED - final read 11 Nov (FAIL); not re-graded here",
+    22: "no FanDuel / DraftKings play log exists (exlag covers the four exchanges only)",
+    23: "CLOSED - CLEAR FAIL 11 Nov; not re-graded here",
+}
+
+
 def main():
+    import live_ledger as ll
     say("VALUE LAB - LAST-50 REPORT (deterministic; no model computed these numbers)")
     say(sc.cs.stamp())
-    say("CLV BASIS: Pinnacle no-vig close, same line, net of fees (CLV_STANDARD.md). Circa close is")
-    say("NOT in this report yet (circa_close data is not read here) - see OPEN ITEMS.")
-    say("Window: last 50 graded plays per test, one play per game+market+side, 25 older / 25 newer.")
-    say("Flat 1u at the logged price. No dollars. Fills are never assumed.")
+    say("LIVE first (real fills only), then the top 5 paper tests, then the rest. Paper and live are never pooled.")
+    say("Window: last 50 graded plays per test, one play per game+market+side, older half / newer half.")
+    say("Flat 1u at the actual fill (live) or logged (paper) price. No dollars. Fills are never assumed.")
+    say("CLV: certified only (Pinnacle no-vig close, same line or moneyline, after fees); coverage printed.")
+    say("CONFIDENCE: HIGH = 50 plays and certified CLV on 80%+; MEDIUM = 25+ plays and CLV on 50%+; else LOW.")
 
     status, csv_rows = {}, []
+    covered = set()
 
     def run(label, rows, note="", frozen=False):
         s, o = report(label, rows, note, frozen)
         status[label] = s
         csv_rows.extend(o)
 
-    S = sharp_rows()
-    run("STEAM (reg 6) - sharp alerts, all graded", S, "the whole Steam alert feed; not any one lane")
-    run("SHARP ALERTS - sent to phone", [r for r in S if r["sent"]])
-    run("SHARP ALERTS - NBA unders", [r for r in S if r["lg"] == "NBA" and "under" in r["bet"].lower()],
-        "PROXY for Lane 1's market only - Lane 1's real fills are not in this repo (see OPEN ITEMS)")
-    Q = liq_rows()
-    run("LIQ - NBA UNDER, Kalshi-triggered", [r for r in Q if r["lg"] == "NBA" and r["mk"] == "total"
-                                              and r["side"] == "UNDER" and r["book"] == "kalshi"],
-        "bettable venue only; Polymarket GLOBAL rows are excluded by venue")
-    run("LIQ-BOT (reg 9) - NBA totals, 4h+ lead", [r for r in Q if r["lg"] == "NBA" and r["mk"] == "total"
-                                                   and r["lead"] is not None and r["lead"] >= 240])
-    run("LIQ-SMALL (reg 13) - NBA totals, $25-50k prints", [r for r in Q if r["lg"] == "NBA" and r["mk"] == "total"
-                                                            and r["nm"] is not None and 25000 <= r["nm"] <= 50000])
-    run("PULL_FADE (reg 25)", lane_rows("pull_fade"), "paper lane; price is the logged probability")
-    run("SOLO (reg 26)", lane_rows("solo"), "paper lane; price is the logged probability")
-    run("BETS BOARD PLAYS (reg 7)", board_rows(), "PLAY calls only; frozen call log")
-    run("BOARD v2 (reg 14)", board_rows("v2"), "v2 PLAY calls from the same frozen call log")
-    run("ML_STAY (reg 24)", lane_rows("ml_stay"), "paper lane; price is the logged probability")
+    # ------------------------------------------------------------------ LIVE
+    say("")
+    say("=" * 100)
+    say(f"LIVE - actual bot fills from {ll.START_UTC[:10]} 00:00 ET (reporting ledger; lane from the bot's own order row)")
+    say("=" * 100)
+    src = ll.load()
+    if src is None:
+        say("  UNANSWERED: reporting ledger / tracker not decrypted in this run (TRACKER_PASSPHRASE missing)")
+        acct = None
+    else:
+        Lg, B, C = src
+        acct = ll.account(Lg, B, C, ll.feed_alerts())
+        for lane, reg_n in (("LANE 1", 1), ("R1", None), ("BOARD V3", None), ("LANE 2", 8)):
+            rows = live_rows(acct, lane)
+            run(f"{lane} - live fills", rows, "confirmed fills only; partial fills merged; 1u at the fill price")
+            if reg_n and rows:
+                covered.add(reg_n)
+        if not live_rows(acct, "LANE 2"):
+            say("  LANE 2: no live orders in the ledger - Lane 2 is paper + dry-run (REGISTRY 8)")
+        res_by_key = {p["key"]: p["res"] for p in acct["plays"]}
+        am_by_key = {p["key"]: p["am_net"] for p in acct["plays"]}
+        rest = [{"ts": r["t"], "game": r["key"].split("|")[1], "am": r["am"] if r["am"] is not None else am_by_key.get(r["key"]),
+                 "res": res_by_key.get(r["key"]), "clv": None, "key": r["key"]}
+                for r in ll.resting(Lg) if r["filled"] and (r["am"] is not None or am_by_key.get(r["key"]) is not None)]
+        run("RESTING BIDS (reg 2) - resting legs that filled", rest,
+            "graded with the play's settled result at the resting leg's own fill price (the play's blended price when the leg "
+            "has none); CLV not joined per leg")
+        covered.add(2)
+        nf = [r for r in ll.resting(Lg) if not r["filled"]]
+        say(f"  resting legs with no confirmed fill: {len(nf)} (excluded)")
 
-    run("EXCHANGE MISPRICE (reg 18)", misprice_rows(), "SENT, exchange-priced, edge >= +2% vs Pinnacle fair, from 3 Nov 11:45 ET")
-    covered = {6, 7, 9, 13, 14, 18, 24, 25, 26}
-    for n, label, pred, note in ((1, "LANE 1 (reg 1) - live bot fills", bot_lane("rules"), "real fills, 1u at fill price"),
-                                 (None, "R1 - live bot fills", bot_lane("r1"), "real fills, 1u at fill price"),
-                                 (None, "BOARD v3 - live bot fills", bot_lane("board"), "real fills, 1u at fill price"),
-                                 (8, "LANE 2 (reg 8) - bot rows", bot_lane("lane2"), "bot rows tagged lane2"),
-                                 (3, "PETER - FEED PLAYS (reg 3)", peter_feed, "his own logged bets, 1u at logged price")):
-        rows = tracker_rows(pred)
+        say("")
+        say("LIVE RECONCILIATION - every bot order in the window")
+        for p in sorted(acct["plays"], key=lambda p: p["t"]):
+            clv = "n/a" if p["clv"] is None else f"{p['clv']:+.2f}%"
+            say(f"  COUNTED  {p['t'][:16]} {p['lane']:<9} {p['key']} | fill {p['am']} (after fees {p['am_net']}) "
+                f"{p['res'] or '-'} | {p['status']} | "
+                f"{p['evidence']} | legs {p['fills']} | CLV {clv}")
+        for e in sorted(acct["excluded"], key=lambda e: e["t"]):
+            say(f"  EXCLUDED {e['t'][:16]} {str(e['lane']):<9} {e['key']} | {e['why']}")
+        for u in sorted(acct["unresolved"], key=lambda u: u["t"]):
+            say(f"  UNRESOLVED {u['t'][:16]} {str(u['lane']):<9} {u['key']} | {u['why']} | tracker rows {len(u['rows'])}")
+
+    # ------------------------------------------------------------------ MANUAL (real money, not bot)
+    say("")
+    say("=" * 100)
+    say("MANUAL - Peter's own bets (bot-linked fills removed, partial fills merged)")
+    say("=" * 100)
+    if acct is None:
+        say("  UNANSWERED: tracker not decrypted in this run")
+    else:
+        run("PETER - FEED PLAYS (reg 3)", manual_rows(acct, "Peter feed"),
+            "manual bets with an alert (sharp / liquidity / board) on the same game+market+side BEFORE the bet")
+        run("STREET VALUE (reg 5)", manual_rows(acct, "Street Value"), "rows tagged Street Value from the private SV notes")
+        covered.update({3, 5})
+        other = [m for m in acct["manual"] if m["src"] == "manual, no feed origin"]
+        say(f"  manual bets with no documented feed origin (not graded as a strategy): {len(other)}")
+
+    # ------------------------------------------------------------------ PAPER
+    S = sharp_rows()
+    Q = liq_rows()
+    paper = [
+        (6, "STEAM (reg 6) - sharp alerts, all graded", S, "the whole Steam alert feed; not any one lane"),
+        (None, "SHARP ALERTS - sent to phone", [r for r in S if r["sent"]], ""),
+        (None, "SHARP ALERTS - NBA unders", [r for r in S if r["lg"] == "NBA" and "under" in r["bet"].lower()],
+         "PROXY for Lane 1's market only, not Lane 1's fills"),
+        (None, "LIQ - NBA UNDER, Kalshi-triggered", [r for r in Q if r["lg"] == "NBA" and r["mk"] == "total"
+                                                     and r["side"] == "UNDER" and r["book"] == "kalshi"], "bettable venue only"),
+        (9, "LIQ-BOT (reg 9) - NBA totals, 4h+ lead", [r for r in Q if r["lg"] == "NBA" and r["mk"] == "total"
+                                                       and r["lead"] is not None and r["lead"] >= 240], ""),
+        (13, "LIQ-SMALL (reg 13) - NBA totals, $25-50k prints", [r for r in Q if r["lg"] == "NBA" and r["mk"] == "total"
+                                                                and r["nm"] is not None and 25000 <= r["nm"] <= 50000], ""),
+        (25, "PULL_FADE (reg 25)", lane_rows("pull_fade"), "price is the logged probability"),
+        (26, "SOLO (reg 26)", lane_rows("solo"), "price is the logged probability"),
+        (7, "BETS BOARD PLAYS (reg 7)", board_rows(), "PLAY calls only; frozen call log"),
+        (14, "BOARD v2 (reg 14)", board_rows("v2"), "v2 PLAY calls from the same frozen call log"),
+        (24, "ML_STAY (reg 24)", lane_rows("ml_stay"), "price is the logged probability"),
+        (18, "EXCHANGE MISPRICE (reg 18)", misprice_rows(), "SENT, exchange-priced, edge >= +2% vs Pinnacle fair, from 3 Nov"),
+    ]
+    for reg_n, label, dog in ((11, "SLOW-HR (reg 11) - registered cell", False), (12, "DOG BAND (reg 12)", True)):
+        rows = slowhr_rows(dog)
         if rows is None:
             say("")
-            say(f"{label}: UNANSWERED - tracker not decrypted (TRACKER_PASSPHRASE missing in this run)")
-            status[label] = "UNANSWERED"
-            continue
+            say(f"{label}: UNANSWERED - slowhr state not decrypted in this run")
+        else:
+            paper.append((reg_n, label, rows, "Type P ML Hard Rock dogs, EV >= +2%, not LATE, first sighting; ESPN finals"
+                          + ("; +100 to +299, from 7 Nov" if dog else "")))
+
+    def rank(item):
+        w, _t = window(item[2])
+        ci = ci_mean(half_stats(w)["us"]) if len(w) >= N else None
+        return ci[0] if ci else -9.0
+
+    top = sorted([x for x in paper if len(window(x[2])[0]) >= N], key=rank, reverse=True)[:5]
+    say("")
+    say("=" * 100)
+    say("PAPER - TOP 5 by the lower end of the units 95% CI (50-play windows only; no CLV gate applied to the rank)")
+    say("=" * 100)
+    for reg_n, label, rows, note in top:
         run(label, rows, note)
-        if n:
-            covered.add(n)
+    say("")
+    say("=" * 100)
+    say("PAPER - all other tests")
+    say("=" * 100)
+    for reg_n, label, rows, note in paper:
+        if reg_n:
+            covered.add(reg_n)
+        if (reg_n, label, rows, note) not in top:
+            run(label, rows, note)
 
     reg = registry_names()
     say("")
     say("=" * 100)
-    say("UNANSWERED - registered tests this report cannot grade from the repo files")
+    say("NOT IN THIS REPORT - with the reason")
     say("=" * 100)
     for n, name in sorted(reg.items()):
         if n in covered:
             continue
-        say(f"  #{n:>2} {name} - per-play record is not in a file this report reads "
-            f"(encrypted state, bot ledger email, or its own run output)")
+        say(f"  #{n:>2} {name} - {WHY_NOT.get(n, 'research track; not verified as a play log (not classified yet)')}")
     say("")
     say("OPEN ITEMS (carried until answered or you close them)")
-    say("  1. Lane 1 / R1 / Board live fills: read from the encrypted tracker; UNANSWERED above if it did not decrypt.")
-    say("  2. Encrypted per-play CLV (clv/state.enc, tracker, slowhr): needs TRACKER_PASSPHRASE in the run.")
-    say("  3. Circa close: not yet included; Pinnacle only until circa_close data is wired in.")
-    say("  4. Lane rows and Board PLAYs have no standard CLV here, so they can reach CONTINUE TESTING at best.")
-    say("  5. Tests with a rule change need their change-point date; none is flagged automatically yet.")
+    say("  1. UNRESOLVED live plays above count for nobody until a venue order record settles who placed them.")
+    say("  2. Novig bot fills join the tracker by bot wallet + play (E3): the tracker stores a Novig position id, not the")
+    say("     order id. E1/E2 are exact order-id joins.")
+    say("  3. #15 / #16 / #20 definitions and start dates; #17 / #19 documented rules (see above).")
+    say("  4. Circa close not included; Pinnacle only.")
     say("")
     say("SUMMARY: " + ", ".join(f"{k}: {v}" for k, v in Counter(status.values()).items()))
     return 0 if send_telegram("\n".join(L), csv_rows) else 1
