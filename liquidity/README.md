@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 16, 3:10 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 39.
+Updated Mon Nov 16, 3:15 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 39.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -12,7 +12,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 16 2:50PM | NBA | Golden State vs New Orleans: Total Points | total: NOT Over 223.5 points | kalshi | $49k | -100 | ✅ novig | ✅ | +0.0c |  | pending |
 | Nov 16 2:50PM | NBA | Philadelphia vs Brooklyn: Spread | spread: NOT Philadelphia wins by over 4.5 points | kalshi | $28k | +108 |  | ✅ | +1.0c | yes | pending |
-| Nov 16 2:35PM | NBA | Orlando vs Boston: Spread | spread: NOT Boston wins by over 8.5 points | kalshi | $34k | -108 | ✅ novig | ✅ | -1.0c |  | pending |
+| Nov 16 2:35PM | NBA | Orlando vs Boston: Spread | spread: NOT Boston wins by over 8.5 points | kalshi | $34k | -108 | ✅ novig | ✅ | +0.0c |  | pending |
 | Nov 16 1:45PM | NBA | Memphis vs Washington: Total Points | total: NOT Over 232.5 points | kalshi | $58k | -104 | ✅ novig | ❌ | -1.0c |  | pending |
 | Nov 16 1:35PM | NBA | Portland vs Minnesota: Total Points | total: NOT Over 228.5 points | kalshi | $28k | -108 |  |  | +0.0c |  | pending |
 | Nov 16 1:20PM | NBA | Houston vs Miami: Spread | spread: Houston wins by over 1.5 points | kalshi | $28k | -113 | ✅ novig | ✅ | +0.0c | yes | pending |
@@ -21,13 +21,13 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 16 12:20PM | NFL | Los Angeles Chargers @ Baltimore Ravens | spread: LAC +4.5 (-4.5) | novig | $49k | +102 |  |  | +0.5c |  | pending |
 | Nov 16 12:15PM | NBA | Houston vs Miami: Spread | spread: Houston wins by over 2.5 points | kalshi | $37k | -108 |  | ✅ | -4.0c | yes | pending |
 | Nov 16 11:55AM | NFL | Los Angeles C vs Baltimore: Spread | spread: Baltimore wins by over 4.5 points | kalshi | $693k | -104 | ✅ novig |  | +0.0c |  | pending |
-| Nov 16 11:50AM | NFL | Los Angeles Chargers @ Baltimore Ravens | spread: BAL -4.5 (-4.5) | novig | $27k | -104 | ✅ kalshi |  | -0.5c |  | pending |
+| Nov 16 11:50AM | NFL | Los Angeles Chargers @ Baltimore Ravens | spread: BAL -4.5 (-4.5) | novig | $27k | -104 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 16 11:35AM | NBA | Orlando vs Boston: Total Points | total: Over 211.5 points | kalshi | $27k | -113 |  | ✅ | +1.0c | yes | pending |
 | Nov 16 10:00AM | NFL | Los Angeles Chargers @ Baltimore Ravens | moneyline: BAL (0) | novig | $67k | -208 | ✅ kalshi,prophetx |  | +0.5c |  | pending |
 | Nov 16 9:55AM | NBA | Portland vs Minnesota: Total Points | total: Over 226.5 points | kalshi | $27k | -108 |  |  | +2.0c |  | pending |
 | Nov 16 9:20AM | NBA | Phoenix vs Denver: Total Points | total: Over 228.5 points | kalshi | $29k | -108 |  |  | +2.0c | yes | pending |
 | Nov 16 9:20AM | NBA | Philadelphia vs Brooklyn: Total Points | total: Over 224.5 points | kalshi | $32k | -113 |  |  | +3.0c | yes | pending |
-| Nov 16 9:20AM | NBA | Phoenix vs Denver: Spread | spread: Denver wins by over 9.5 points | kalshi | $40k | -108 | ✅ novig | ❌ | -2.0c | yes | pending |
+| Nov 16 9:20AM | NBA | Phoenix vs Denver: Spread | spread: Denver wins by over 9.5 points | kalshi | $40k | -108 | ✅ novig | ❌ | -1.0c | yes | pending |
 | Nov 16 9:15AM | NCAAF | Miami (OH) vs Kent St. | moneyline: Miami (OH) | kalshi | $271k | -335 |  |  | -1.0c |  | pending |
 | Nov 16 9:05AM | NCAAF | Ball St. vs Ohio | moneyline: Ohio | kalshi | $293k | -426 |  |  | +0.0c |  | pending |
 | Nov 16 8:00AM | NBA | Houston vs Miami: Spread | spread: NOT Houston wins by over 2.5 points | kalshi | $34k | -100 |  | ✅ | +3.0c | yes | pending |
