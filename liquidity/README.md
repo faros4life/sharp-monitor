@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 16, 5:05 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 48.
+Updated Mon Nov 16, 5:10 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 48.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -23,9 +23,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 16 2:50PM | NBA | Philadelphia vs Brooklyn: Spread | spread: NOT Philadelphia wins by over 4.5 points | kalshi | $28k | +108 |  | ✅ | +1.0c | yes | pending |
 | Nov 16 2:35PM | NBA | Orlando vs Boston: Spread | spread: NOT Boston wins by over 8.5 points | kalshi | $34k | -108 | ✅ novig | ✅ | -2.0c |  | pending |
 | Nov 16 1:45PM | NBA | Memphis vs Washington: Total Points | total: NOT Over 232.5 points | kalshi | $58k | -104 | ✅ novig | ❌ | -1.0c |  | pending |
-| Nov 16 1:35PM | NBA | Portland vs Minnesota: Total Points | total: NOT Over 228.5 points | kalshi | $28k | -108 |  |  | +0.0c |  | pending |
+| Nov 16 1:35PM | NBA | Portland vs Minnesota: Total Points | total: NOT Over 228.5 points | kalshi | $28k | -108 |  |  | -1.0c |  | pending |
 | Nov 16 1:20PM | NBA | Houston vs Miami: Spread | spread: Houston wins by over 1.5 points | kalshi | $28k | -113 | ✅ novig | ✅ | +0.0c | yes | pending |
-| Nov 16 12:50PM | NBA | Golden State vs New Orleans: Spread | spread: Golden State wins by over 3.5 points | kalshi | $36k | -100 |  | ✅ | +0.0c |  | pending |
+| Nov 16 12:50PM | NBA | Golden State vs New Orleans: Spread | spread: Golden State wins by over 3.5 points | kalshi | $36k | -100 |  | ✅ | -1.0c |  | pending |
 | Nov 16 12:30PM | NBA | Philadelphia vs Brooklyn: Total Points | total: Over 226.5 points | kalshi | $28k | +104 |  | ✅ | +2.0c | yes | pending |
 | Nov 16 12:20PM | NFL | Los Angeles Chargers @ Baltimore Ravens | spread: LAC +4.5 (-4.5) | novig | $49k | +102 |  |  | +0.5c |  | pending |
 | Nov 16 12:15PM | NBA | Houston vs Miami: Spread | spread: Houston wins by over 2.5 points | kalshi | $37k | -108 |  | ✅ | -4.0c | yes | pending |
