@@ -1,16 +1,17 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 15, 10:55 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 32.
+Updated Sun Nov 15, 11:00 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 31.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1588-1215 (-15.42u flat) | rule met: 959-738
+**Record:** 1590-1215 (-14.70u flat) | rule met: 961-738
 
-**Fade (paper, betting against the print):** 949-1315 (-235.66u flat, after fees)
+**Fade (paper, betting against the print):** 949-1317 (-237.66u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 15 10:45PM | NBA | Memphis vs Washington | moneyline: Memphis | kalshi | $82k | -163 |  |  | +0.0c |  | pending |
+| Nov 15 11:00PM | NBA | Houston vs Miami: Spread | spread: NOT Houston wins by over 3.5 points | kalshi | $26k | -113 |  |  | +0.0c |  | pending |
+| Nov 15 10:45PM | NBA | Memphis vs Washington | moneyline: Memphis | kalshi | $82k | -163 |  |  | -1.0c |  | pending |
 | Nov 15 10:45PM | NBA | Houston vs Miami | moneyline: Houston | kalshi | $89k | -144 |  |  | -1.0c |  | pending |
 | Nov 15 10:30PM | NBA | Phoenix vs Denver | moneyline: Denver | kalshi | $79k | -376 |  |  | +1.0c |  | pending |
 | Nov 15 10:25PM | NBA | Houston vs Miami | moneyline: Miami | kalshi | $29k | +127 |  |  | -1.0c |  | pending |
@@ -46,8 +47,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 15 2:10PM | NFL | Pittsburgh vs Cincinnati: Spread | spread: Cincinnati wins by over 3.5 points | kalshi | $465k | -104 |  |  | +3.0c | yes | pending |
 | Nov 15 2:00PM | NFL | San Francisco vs Dallas: Spread | spread: NOT San Francisco wins by over 3.5 points | kalshi | $224k | -100 |  |  | +1.0c | yes | L |
 | Nov 15 1:50PM | NBA | San Antonio vs Utah: Total Points | total: NOT Over 225.5 points | kalshi | $49k | -100 | ✅ novig | ✅ | +6.0c | yes | W |
-| Nov 15 1:45PM | NBA | Atlanta Hawks at Milwaukee Bucks | moneyline: Atlanta Hawks | prophetx | $45k | -280 | ✅ kalshi,novig | ✅ | +1.9c |  | pending |
-| Nov 15 1:45PM | NBA | Atlanta Hawks @ Milwaukee Bucks | moneyline: ATL (0) | novig | $45k | -277 | ✅ kalshi,prophetx | ✅ | +2.0c |  | pending |
+| Nov 15 1:45PM | NBA | Atlanta Hawks at Milwaukee Bucks | moneyline: Atlanta Hawks | prophetx | $45k | -280 | ✅ kalshi,novig | ✅ | +1.9c |  | W |
+| Nov 15 1:45PM | NBA | Atlanta Hawks @ Milwaukee Bucks | moneyline: ATL (0) | novig | $45k | -277 | ✅ kalshi,prophetx | ✅ | +2.0c |  | W |
 | Nov 15 1:30PM | NBA | New York vs Toronto: Spread | spread: New York wins by over 5.5 points | kalshi | $27k | -100 |  | ✅ | -6.0c | yes | L |
 | Nov 15 1:30PM | NBA | Atlanta vs Milwaukee: Spread | spread: Atlanta wins by over 8.5 points | kalshi | $28k | -100 |  | ✅ | +2.0c | yes | L |
 | Nov 15 1:20PM | NBA | Houston vs Washington: Spread | spread: Houston wins by over 7.5 points | kalshi | $25k | -113 |  | ❌ | +2.0c | yes | W |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 3:10PM | NCAAF | Michigan vs Oregon | moneyline: Oregon | kalshi | $252k | -355 | ✅ novig,prophetx |  | +0.0c | yes | W |
 | Nov 14 3:10PM | NCAAF | Georgia Southern vs Georgia St. | moneyline: NOT Georgia St. | kalshi | $181k | -203 |  | ❌ | -1.0c | yes | W |
 | Nov 14 3:10PM | NCAAF | Georgia Southern vs Georgia St. | moneyline: Georgia St. | kalshi | $169k | +194 |  | ❌ | +2.0c | yes | L |
-| Nov 14 2:50PM | NCAAF | New Mexico St. vs Missouri St. | moneyline: Missouri St. | kalshi | $256k | -104 | ✅ prophetx |  | +0.0c | yes | W |
