@@ -12,6 +12,10 @@ on:
       days:
         description: "How many days back"
         default: "30"
+      mode:
+        description: "registry_unknowns = read back Polymarket US bot orders since 12 Nov with no fill record (status only, no ids, no email)"
+        required: false
+        default: ""
 
 permissions:
   contents: read
@@ -35,4 +39,6 @@ jobs:
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
           DAYS: ${{ github.event.inputs.days || '30' }}
           PMUS_ORDER_ID: ${{ github.event.inputs.order_id }}
+          MODE: ${{ github.event.inputs.mode }}
+          REGISTRY_TOKEN: ${{ github.event.inputs.mode == 'registry_unknowns' && secrets.REGISTRY_TOKEN || '' }}   # read-only registry, only in this mode
         run: python -u pmus_activity.py

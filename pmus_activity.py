@@ -151,7 +151,68 @@ def order_lookup(oid):
     print("  order not found on either path", flush=True)
 
 
+def pmus_verdict(d):
+    """FILLED / CANCELLED / UNFILLED / OPEN / UNKNOWN from the order's OWN record (GET /v1/order/{id}). Pure.
+    Polymarket US silently rewrites what it accepts (CLAUDE.md), so only the read-back record decides."""
+    if not isinstance(d, dict) or not d:
+        return "UNKNOWN"
+    o = d.get("order") if isinstance(d.get("order"), dict) else d
+    def f(x):
+        try:
+            return float(x)
+        except (TypeError, ValueError):
+            return 0.0
+    filled = f(o.get("filledQuantity") or o.get("filled_quantity") or o.get("cumQuantity"))
+    ex = o.get("executions") or d.get("executions") or []
+    ex_q = sum(f((e or {}).get("quantity")) for e in ex if isinstance(e, dict)) if isinstance(ex, list) else 0.0
+    st = str(o.get("status") or o.get("state") or "").upper()
+    if filled > 0 or ex_q > 0:
+        return "FILLED"
+    if any(w in st for w in ("CANCEL", "EXPIRE", "REJECT")):
+        return "CANCELLED"
+    if any(w in st for w in ("OPEN", "NEW", "PENDING", "RESTING", "PARTIAL")):
+        return "OPEN"
+    if "FILL" in st:          # says filled yet carries no quantity: contradictory, never guessed
+        return "UNKNOWN"
+    return "UNFILLED" if st else "UNKNOWN"
+
+
+def registry_unknowns():
+    """16 Nov (Peter): read back every Polymarket US bot order since 12 Nov that has no registry fill record.
+    Reads the private registry (read token) and signed GETs the venue. Log: day, lane, status, verdict only -
+    no order id, no amount, no side."""
+    import registry as rg
+    import report_sections as rs
+    reg = rg.load()
+    if reg is None:
+        print("registry unreadable - nothing classified")
+        return 1
+    fx = [e for e in rs.fill_exceptions(reg.get("orders") or [], rg.fills() or {}, set(), True)
+          if "polymarket" in e["venue"]]
+    print(f"Polymarket US orders since {rs.START_ET} with no fill record: {len(fx)}")
+    for e in fx:
+        verdict, status = "UNKNOWN", "not found"
+        for oid in e.get("ids") or []:
+            for path in (f"/v1/order/{oid}", f"/v1/orders/{oid}"):
+                try:
+                    d = signed_get(path, {})
+                except Exception as x:
+                    status = f"read error {type(x).__name__} {getattr(x, 'code', '')}"
+                    continue
+                if isinstance(d, dict) and d:
+                    o = d.get("order") if isinstance(d.get("order"), dict) else d
+                    status = str(o.get("status") or o.get("state") or "?")
+                    verdict = pmus_verdict(d)
+                    break
+            if verdict != "UNKNOWN":
+                break
+        print(f"  {e['day']} lane {e['key'].split('|')[0]}: venue status {status} -> {verdict}")
+    return 0
+
+
 def main():
+    if (os.environ.get("MODE") or "").strip() == "registry_unknowns":
+        return registry_unknowns()
     oid = (os.environ.get("PMUS_ORDER_ID") or "").strip()
     if oid:
         print(f"ORDER LOOKUP {oid} (read-only, status only)", flush=True)
