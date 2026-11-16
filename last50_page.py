@@ -14,7 +14,7 @@ def add(name, rows, note=""):
       "h1":f(h1),"h2":f(h2),"all":f(ho),"ci":ci,"verdict":r.verdict(w,h1,h2,ho),
       "plays":[{"d":p["ts"][:10],"g":p["game"],"p":p["am"],"r":p["res"],"c":(None if p["clv"] is None else round(p["clv"],2))} for p in reversed(w)]})
 S=r.sharp_rows(); Q=r.liq_rows()
-add("Sharp alerts, all",S,"Whole feed, not one lane")
+add("Steam (sharp alerts, all)",S,"Whole Steam feed, not one lane; registry 6")
 add("Sharp alerts, sent to phone",[x for x in S if x["sent"]])
 add("Sharp alerts, NBA unders",[x for x in S if x["lg"]=="NBA" and "under" in x["bet"].lower()],"Stand-in for Lane 1's market; Lane 1 fills are not in the repo")
 add("Liquidity, NBA under (Kalshi)",[x for x in Q if x["lg"]=="NBA" and x["mk"]=="total" and x["side"]=="UNDER" and x["book"]=="kalshi"],"Bettable venue only")
@@ -23,7 +23,13 @@ add("LIQ-SMALL, NBA totals $25-50k prints",[x for x in Q if x["lg"]=="NBA" and x
 add("Pull-fade",r.lane_rows("pull_fade"),"Paper lane; registry 25")
 add("Solo",r.lane_rows("solo"),"Paper lane; registry 26")
 add("Bets Board PLAY calls",r.board_rows(),"Frozen call log; registry 7")
-reg=r.registry_names(); cov={7,9,13,25,26}
+add("Board v2 PLAY calls",r.board_rows("v2"),"Same frozen call log, v2 rule; registry 14")
+add("ML_STAY",r.lane_rows("ml_stay"),"Paper lane; registry 24")
+add("Exchange misprice",r.misprice_rows(),"Sent, exchange-priced, edge +2% or more vs Pinnacle, from Nov 3; registry 18")
+for lab,pred in (("Lane 1 live fills",r.bot_lane("rules")),("R1 live fills",r.bot_lane("r1")),("Board v3 live fills",r.bot_lane("board")),("Lane 2 bot rows",r.bot_lane("lane2")),("Peter feed plays",r.peter_feed)):
+    rows=r.tracker_rows(pred)
+    if rows is not None: add(lab,rows,"Real fills or logged bets, 1u at their own price")
+reg=r.registry_names(); cov={6,7,9,13,14,18,24,25,26}|({1,3,8} if r.tracker_bets() is not None else set())
 un=[f"#{n} {m}" for n,m in sorted(reg.items()) if n not in cov]
 json.dump({"asof":datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),"tests":tests,"un":un},open(sys.argv[1]+'/data.json','w'))
 print(len(tests),len(un))
