@@ -330,7 +330,8 @@ def load_side_evidence():
         cur = rl.latest(rl.load_ledger())
         orders = [d for (k, _i), (_f, d) in cur.items() if k == "order"]
         return links, orders
-    except Exception:
+    except Exception as e:
+        SIDE_LOG[f"evidence unreadable ({type(e).__name__})"] += 1
         return {}, []
 
 # ------------------------------------------------------------------ market map (public ids only)
@@ -1240,6 +1241,7 @@ def lane_stats(rows):
 def main():
     global SIDE_EV
     SIDE_EV = load_side_evidence()   # 16 Nov: registry-verified sides for line-only Polymarket rows (read-only)
+    SIDE_LOG[f"evidence: venue links {len(SIDE_EV[0])}, ledger orders {len(SIDE_EV[1])}"] += 1
     now = datetime.now(timezone.utc)
     if not KEY or not tb.PASS:
         print("CLV ledger: ODDSPAPI_KEY or TRACKER_PASSPHRASE not set; skipped")
@@ -1263,6 +1265,8 @@ def main():
                 snap[f] = b[f]
         if not snap.get("side_verified") and str(k).startswith("pm|"):
             _sv, _svw = registry_side(k, snap, *SIDE_EV)
+            if not _sv:
+                SIDE_LOG["refused: " + re.sub(r"\d+", "N", _svw)] += 1
             if _sv:
                 snap["side_verified"], snap["side_src"] = _sv, _svw   # a full spread bet: "<team> <line>"
                 SIDE_LOG["side recovered"] += 1
