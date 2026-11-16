@@ -430,7 +430,8 @@ def grade_summary(rows):
 def render_grades(rows, summ):
     f = lambda x, s="": "n/a" if x is None else f"{x:+.2f}{s}"
     L = ["", f"SECTION J - EVERY BOT POSITION FROM {START_ET} ET, GRADED (private)",
-         f"  positions {summ['positions']} | settled {summ['settled']} | open {summ['open']} | FULLY GRADED {summ['fully_graded']} "
+         f"  positions {summ['positions']} | settled {summ['settled']} | open {summ['open']}"
+         f"{' (' + str(summ['open_fill_rows']) + ' open fill rows)' if 'open_fill_rows' in summ else ''} | FULLY GRADED {summ['fully_graded']} "
          f"| missing: settlement {summ['missing_settlement']}, P/L {summ['missing_pl']}, units {summ['missing_units']}, "
          f"certified CLV {summ['missing_certified_clv']}, lane {summ['missing_lane']}, per-play trigger tag {summ['missing_trigger_tag']}",
          "  Strategy qualification and rankings: INSUFFICIENT EVIDENCE until grading is complete."]

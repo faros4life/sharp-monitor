@@ -362,6 +362,12 @@ def main():
     # the log carries counts and reason categories only.
     grades = rs.grade_rows(since, rep_f.get("row_bucket") or {}, clv, cb, set(stale), UNIT_SCHEDULE)
     gsum = rs.grade_summary(grades)
+    # Positions are PLAYS: partial fills of one order merge into one play (p2_audit_core.consolidate). Settled rows
+    # map 1:1 to settled plays (checked); open rows can be several fills of one open play.
+    _open_plays = sum(v.get("open_or_ambiguous", 0) for v in (rep_f.get("buckets") or {}).values())
+    _settled_plays = sum(v["all"]["settled"] for v in (rep_f.get("buckets") or {}).values())
+    gsum = dict(gsum, open_fill_rows=gsum["open"], open=_open_plays, positions=_settled_plays + _open_plays,
+                settled_rows_equal_plays=(gsum["settled"] == _settled_plays))
     text += rs.render_grades(grades, gsum)
     print("section J coverage:", gsum, "| exactly-once:", (rep_f.get("exactly_once") or {}).get("ok"))
     import collections as _co
