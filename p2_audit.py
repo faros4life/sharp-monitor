@@ -207,12 +207,18 @@ def main():
     # ONLY when exactly one placed registry bot order and exactly one tracker row share the slug.
     import re as _re
     _d = lambda x: x if isinstance(x, dict) else {}
+    # The registry keeps no copy of the Polymarket request, so the order's market slug comes from the VENUE: the
+    # pmus-activity job reads each fill back and saves order id -> marketSlug (encrypted, reporting/pm_links.enc).
+    pm_links = {}
+    if _os.path.exists("reporting/pm_links.enc"):
+        pm_links = tb.dec(json.load(open("reporting/pm_links.enc"))) or {}
     pm_orders = {}
     for o in rr:
         for lo in [_d(o.get("live_order")), _d(o.get("live_rest"))]:
-            slug = _d(lo.get("order")).get("marketSlug")
-            if lo.get("status") == "placed" and slug and str(lo.get("order_id") or "") in index:
-                pm_orders.setdefault(slug, set()).add(str(lo["order_id"]))
+            oid_ = str(lo.get("order_id") or "")
+            slug = pm_links.get(oid_) or _d(lo.get("order")).get("marketSlug")
+            if lo.get("status") == "placed" and slug and oid_ in index:
+                pm_orders.setdefault(slug, set()).add(oid_)
     pm_rows = {}
     for b in raw.values():
         m = _re.search(r"\[([^\]]+)\]", str(b.get("id") or "")) if str(b.get("id") or "").startswith("pm|") else None
@@ -224,7 +230,7 @@ def main():
           f"tracker pm rows with a slug in the id {sum(len(v) for v in pm_rows.values())} "
           f"(pm rows total {sum(1 for b in raw.values() if str(b.get('id') or '').startswith('pm|'))}), "
           f"slugs on both sides {len(set(pm_orders) & set(pm_rows))}, "
-          f"stored request keys {sorted({k for o in _pm_all for k in _d(_d(o.get('live_order')).get('order'))})[:12]}")
+          f"venue links on file {len(pm_links)}")
     pm_linked = pm_ambiguous = 0
     have = {str(b.get("id")) for b in rows + promoted}
     for slug, oids in pm_orders.items():

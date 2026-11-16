@@ -18,7 +18,7 @@ on:
         default: ""
 
 permissions:
-  contents: read
+  contents: write    # registry_unknowns mode only: commits reporting/pm_links.enc (encrypted, no amounts)
 
 jobs:
   run:
@@ -40,5 +40,29 @@ jobs:
           DAYS: ${{ github.event.inputs.days || '30' }}
           PMUS_ORDER_ID: ${{ github.event.inputs.order_id }}
           MODE: ${{ github.event.inputs.mode }}
+          TRACKER_PASSPHRASE: ${{ github.event.inputs.mode == 'registry_unknowns' && secrets.TRACKER_PASSPHRASE || '' }}
           REGISTRY_TOKEN: ${{ github.event.inputs.mode == 'registry_unknowns' && secrets.REGISTRY_TOKEN || '' }}   # read-only registry, only in this mode
         run: python -u pmus_activity.py
+      - name: Commit the encrypted order->market links (registry_unknowns mode only)
+        if: github.event.inputs.mode == 'registry_unknowns'
+        run: |
+          [ -f reporting/pm_links.enc ] || { echo "no links file"; exit 0; }
+          python - <<'PY'
+          import json
+          b = json.load(open("reporting/pm_links.enc"))
+          assert set(b) == {"s", "i", "c", "n"}, "FAIL: links file is not ciphertext"
+          PY
+          git status --porcelain --untracked-files=all -- . ':!reporting/pm_links.enc' > "$RUNNER_TEMP/d"
+          if [ -s "$RUNNER_TEMP/d" ]; then echo "FAIL: unexpected changes"; cat "$RUNNER_TEMP/d"; exit 1; fi
+          git config user.name "pmus-activity"; git config user.email "pmus-activity@users.noreply.github.com"
+          git add reporting/pm_links.enc
+          git diff --cached --quiet && { echo "no change"; exit 0; }
+          git commit -q -m "pm links (encrypted)"
+          for i in 1 2 3 4 5; do
+            git push -q origin HEAD:main && { echo committed; exit 0; }
+            cp reporting/pm_links.enc "$RUNNER_TEMP/l.enc"
+            git fetch -q --depth=1 origin main && git reset -q --hard FETCH_HEAD || exit 1
+            mkdir -p reporting && cp "$RUNNER_TEMP/l.enc" reporting/pm_links.enc
+            git add reporting/pm_links.enc && git commit -q -m "pm links (encrypted)"; sleep 3
+          done
+          echo "FAIL: push"; exit 1

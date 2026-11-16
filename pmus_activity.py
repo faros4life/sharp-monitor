@@ -190,8 +190,9 @@ def registry_unknowns():
     fx = [e for e in rs.fill_exceptions(reg.get("orders") or [], rg.fills() or {}, set(), True)
           if "polymarket" in e["venue"]]
     print(f"Polymarket US orders since {rs.START_ET} with no fill record: {len(fx)}")
+    links = {}
     for e in fx:
-        verdict, status = "UNKNOWN", "not found"
+        verdict, status, slug_of, oid_of = "UNKNOWN", "not found", None, None
         for oid in e.get("ids") or []:
             for path in (f"/v1/order/{oid}", f"/v1/orders/{oid}"):
                 try:
@@ -203,10 +204,26 @@ def registry_unknowns():
                     o = d.get("order") if isinstance(d.get("order"), dict) else d
                     status = str(o.get("status") or o.get("state") or "?")
                     verdict = pmus_verdict(d)
+                    slug_of, oid_of = o.get("marketSlug") or o.get("market_slug"), str(oid)
                     break
             if verdict != "UNKNOWN":
                 break
         print(f"  {e['day']} lane {e['key'].split('|')[0]}: venue status {status} -> {verdict}")
+        if verdict == "FILLED" and slug_of and oid_of:
+            links[oid_of] = slug_of
+    # Persist ONLY order id -> venue market slug for venue-confirmed fills, encrypted, so the report can link the
+    # fill to its tracker position without holding the Polymarket key. No amounts, sides or prices.
+    if links:
+        import json as _j
+        import tracker_build as tb
+        path = "reporting/pm_links.enc"
+        cur = {}
+        if os.path.exists(path):
+            cur = tb.dec(_j.load(open(path)))
+        cur.update(links)
+        os.makedirs("reporting", exist_ok=True)
+        _j.dump(tb.enc(cur), open(path, "w"))
+        print(f"venue-confirmed order->market links saved (encrypted): {len(links)} new, {len(cur)} total")
     return 0
 
 
