@@ -380,7 +380,10 @@ def main():
     _rb = (rep.get("row_bucket") or {})
     for e_ in cx:   # league / ledger reason / attempts only - no game, side, id or amount
         print(f"  G missing close: lane {_rb.get(e_['id'], '?')} | league {e_['league']} | reason: {e_['why']} | "
-              f"tries {e_['tries']} done {e_['done']} | start time on row {e_['has_start']}")
+              f"tries {e_['tries']} done {e_['done']} | start time on row {e_['has_start']}"
+              + (lambda r0: f" | venue {r0.get('book')} | order id on row {bool(r0.get('order_ref'))} | "
+                 f"tracker strategy_key {bool(r0.get('strategy_key'))} | lane_src {r0.get('lane_src')}")(
+                  next((r for r in rows if str(r.get('id') or '') == e_['id']), {})))
     for e_ in fx:   # venue + verdict only: no game, side, id or amount
         print(f"  G order exception: day {e_['day']} venue {e_['venue']} lane {e_['key'].split('|')[0]} -> "
               f"{e_['category'].split(' - ')[0]}" + ("" if e_.get("in_project2") is None else
