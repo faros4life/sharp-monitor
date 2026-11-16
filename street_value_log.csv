@@ -1,0 +1,10 @@
+# Street Value price log. One row per play per stage, so card-day vs kickoff vs close can be compared.
+# stage: card = when the card was built; kick = last read before kickoff; close = closing line.
+# price_after_fee is the quoted price net of that book's fee (ProphetX 2% of winnings, Kalshi 0.07 taker, Polymarket US 0.06 taker).
+sport,week,game,play,stage,logged_et,line,price_after_fee,book,result
+NFL,12,IND @ HOU,HOU,card,2026-11-16 10:30,-10.5,102,novig,
+NFL,12,ARI @ KC,ARI (DOUBLE),card,2026-11-16 10:30,16.5,-116,kalshi,
+NFL,12,NO @ CHI,NO,card,2026-11-16 10:30,10.5,-108,novig,
+NFL,12,TEN @ DAL,TEN,card,2026-11-16 10:30,8.0,-110,hardrockbet,
+NFL,12,JAX @ NYG,NYG,card,2026-11-16 10:30,6.5,-103,kalshi,
+NFL,12,PIT @ PHI,PIT,card,2026-11-16 10:30,-4.5,-107,kalshi,
