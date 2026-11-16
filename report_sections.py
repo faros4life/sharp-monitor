@@ -234,7 +234,10 @@ def clv_exceptions(bot_rows, clv_rows, certified, stale_ids):
             cat = f"PENDING - not yet scored (tries {r.get('tries') or 0}); {str(r.get('why') or 'no reason recorded')[:60]}"
         else:
             cat = f"UNRECOVERABLE - {str(r.get('why') or 'no reason recorded')[:60]}"
-        out.append({"game": b.get("game"), "bet": b.get("bet"), "book": b.get("book"), "category": cat})
+        out.append({"game": b.get("game"), "bet": b.get("bet"), "book": b.get("book"), "category": cat,
+                    "id": i, "league": b.get("league") or (r or {}).get("snap", {}).get("league"),
+                    "why": str((r or {}).get("why") or "")[:70], "tries": (r or {}).get("tries"),
+                    "done": (r or {}).get("done"), "has_start": bool(b.get("game_start"))})
     return out
 
 

@@ -377,6 +377,10 @@ def main():
     raw_clv = {k: r for k, r in cb.items()}
     cx = rs.clv_exceptions(rows, raw_clv, clv, set(stale))
     text += rs.render_exceptions(fx, cx)
+    _rb = (rep.get("row_bucket") or {})
+    for e_ in cx:   # league / ledger reason / attempts only - no game, side, id or amount
+        print(f"  G missing close: lane {_rb.get(e_['id'], '?')} | league {e_['league']} | reason: {e_['why']} | "
+              f"tries {e_['tries']} done {e_['done']} | start time on row {e_['has_start']}")
     for e_ in fx:   # venue + verdict only: no game, side, id or amount
         print(f"  G order exception: day {e_['day']} venue {e_['venue']} lane {e_['key'].split('|')[0]} -> "
               f"{e_['category'].split(' - ')[0]}" + ("" if e_.get("in_project2") is None else
