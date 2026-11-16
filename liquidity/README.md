@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 16, 1:15 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 12.
+Updated Mon Nov 16, 1:20 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 13.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 16 1:20AM | NBA | Portland vs Minnesota: Total Points | total: Over 228.5 points | kalshi | $56k | -108 |  |  | +0.0c |  | pending |
 | Nov 15 11:00PM | NBA | Houston vs Miami: Spread | spread: NOT Houston wins by over 3.5 points | kalshi | $26k | -113 |  |  | +1.0c |  | pending |
 | Nov 15 10:45PM | NBA | Memphis vs Washington | moneyline: Memphis | kalshi | $82k | -163 |  |  | +0.0c |  | pending |
 | Nov 15 10:45PM | NBA | Houston vs Miami | moneyline: Houston | kalshi | $89k | -144 |  |  | -2.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 3:10PM | NCAAF | Tulane vs Rice | moneyline: Rice | kalshi | $93k | -156 | ✅ novig,prophetx | ✅ | +0.0c | yes | L |
 | Nov 14 3:10PM | NCAAF | Michigan vs Oregon | moneyline: Oregon | kalshi | $252k | -355 | ✅ novig,prophetx |  | +0.0c | yes | W |
 | Nov 14 3:10PM | NCAAF | Georgia Southern vs Georgia St. | moneyline: NOT Georgia St. | kalshi | $181k | -203 |  | ❌ | -1.0c | yes | W |
-| Nov 14 3:10PM | NCAAF | Georgia Southern vs Georgia St. | moneyline: Georgia St. | kalshi | $169k | +194 |  | ❌ | +2.0c | yes | L |
