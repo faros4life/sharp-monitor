@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 17, 5:00 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 36.
+Updated Tue Nov 17, 5:10 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 37.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,14 +10,15 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 17 5:10PM | NCAAB | Illinois vs Duke: Point Total | total: NOT Over 167.5 points | kalshi | $47k | -104 |  | ❌ | +0.0c |  | pending |
 | Nov 17 4:50PM | NCAAB | Nicholls St. vs Ole Miss: Point Total | total: NOT Over 143.5 points | kalshi | $51k | -117 |  |  | +0.0c |  | pending |
 | Nov 17 4:20PM | NCAAB | Western Carolina vs Butler: Point Total | total: Over 157.5 points | kalshi | $35k | -127 |  | ❌ | +0.0c |  | pending |
-| Nov 17 4:10PM | NCAAB | Michigan St. vs Tennessee: Point Total | total: NOT Over 149.5 points | kalshi | $29k | -100 |  | ✅ | +0.0c |  | pending |
+| Nov 17 4:10PM | NCAAB | Michigan St. vs Tennessee: Point Total | total: NOT Over 149.5 points | kalshi | $29k | -100 |  | ✅ | +1.0c |  | pending |
 | Nov 17 4:10PM | NCAAB | Illinois vs Duke: Spread | spread: NOT Duke wins by over 8.5 points | kalshi | $25k | -104 |  |  | +0.0c |  | pending |
 | Nov 17 4:10PM | NCAAB | Jacksonville St. vs Louisiana Tech | moneyline: Louisiana Tech | kalshi | $38k | -127 |  |  | -1.0c |  | pending |
 | Nov 17 3:50PM | NCAAB | Middle Tennessee vs Georgia Southern: Point Total | total: Over 154.5 points | kalshi | $25k | -108 |  | ✅ | +0.0c |  | pending |
 | Nov 17 3:40PM | NCAAB | Akron vs Bucknell: Point Total | total: Over 147.5 points | kalshi | $29k | +113 |  |  | +0.0c | yes | pending |
-| Nov 17 3:30PM | NCAAB | UT Arlington vs Southern Miss: Spread | spread: NOT Southern Miss wins by over 1.5 points | kalshi | $38k | +104 |  |  | +0.0c |  | pending |
+| Nov 17 3:30PM | NCAAB | UT Arlington vs Southern Miss: Spread | spread: NOT Southern Miss wins by over 1.5 points | kalshi | $38k | +104 |  |  | +1.0c |  | pending |
 | Nov 17 3:21PM | NCAAB | Charlotte vs Davidson: Spread | spread: NOT Davidson wins by over 3.5 points | kalshi | $26k | -108 |  |  | +0.0c |  | pending |
 | Nov 17 3:21PM | NCAAB | Mississippi St. vs UCF | moneyline: UCF | kalshi | $38k | -100 | ✅ novig |  | +2.0c |  | pending |
 | Nov 17 3:21PM | NCAAB | Texas A&M-Corpus Christi vs Rice | moneyline: Rice | kalshi | $31k | -127 | ✅ novig |  | +0.0c | yes | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 11 2:00AM | NCAAB | Penn vs Navy | moneyline: Penn | kalshi | $49k | -456 |  |  | -62.0c | yes | L |
 | Nov 11 2:00AM | NCAAB | North Carolina Central vs VMI | moneyline: VMI | kalshi | $36k | -270 |  |  | +6.0c |  | W |
 | Nov 11 2:00AM | NCAAB | North Carolina A&T vs East Carolina | moneyline: East Carolina | kalshi | $66k | -525 |  |  | +1.0c |  | W |
-| Nov 11 2:00AM | NCAAB | Loyola Chicago vs Air Force | moneyline: Loyola Chicago | kalshi | $64k | -456 |  | ✅ | +1.0c |  | L |
