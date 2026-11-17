@@ -511,6 +511,18 @@ def main():
     day = _os.environ.get("REPORT_DAY") or (_dt.now(rs.ET) - _td(days=1)).strftime("%Y-%m-%d")
     so, sp = rs.day_selections(day, rr, fills_all, rows, clv, rep.get("row_bucket") or {})
     text += rs.render_day(day, so, sp, rep.get("exactly_once") or {})
+    # SECTION K (Peter, Nov 17, Project 3): paper Bets Board PLAY calls traced through the live executor.
+    try:
+        import board_build as _bb
+        _calls = (json.load(open("board/calls.json")) or {}).get("calls") or {}
+        _bb.backfill_results(_calls, _bb.load())          # same late-game grading fix the board now applies
+        _tr, _ex, _ts = rs.paper_live_trace(_calls, rr, fills_all)
+        text += rs.render_trace(_tr, _ex, _ts)
+        print("section K paper->live (counts only): " + " | ".join(
+            f"{c} {v['n']} (paper {v['W']}-{v['L']}, ungraded {v['UNGRADED']})" for c, v in _ts.items())
+            + f" | live board orders not paper PLAY: {len(_ex)}")
+    except Exception as _e:
+        print(f"section K unavailable ({type(_e).__name__})")
     eo = rep.get("exactly_once") or {}
     print(f"section E {day}: bot orders {len(so)}, bot positions {len(sp)} "
           f"(settled {sum(1 for p in sp if p['result'] != 'OPEN')}, CLV missing {sum(1 for p in sp if p['clv'] == 'MISSING')}) | "

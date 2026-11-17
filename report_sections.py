@@ -157,6 +157,88 @@ def day_selections(day, orders, fills, bot_rows, clv, row_bucket):
     return out_o, out_p
 
 
+# ---------------------------------------------------------------- SECTION K: paper Board -> live executor (Nov 17)
+def _board_side(side_text):
+    t = str(side_text or "").strip().lower()
+    if t.startswith("over"):
+        return "OVER"
+    if t.startswith("not over") or t.startswith("under"):
+        return "UNDER"
+    return None
+
+
+def paper_live_trace(calls, orders, fills, start_et=START_ET):
+    """PRIVATE ONLY. Every paper Bets Board PLAY call from start_et traced to the live executor's own record of it.
+    Join is the board play key the executor writes (board|<league>|<game>|<market>|<OVER/UNDER>) - exact, never
+    fuzzy. Category per call: NOT DECIDED (no executor record) | DECIDED, NOT PLACED (reason) | PLACED, NO FILL
+    (fill state) | FILLED. Also lists filled live board orders that were not paper PLAY calls. Pure."""
+    d = lambda x: x if isinstance(x, dict) else {}
+    pk = {str(f.get("play_key")): f for f in (fills or {}).values() if f.get("play_key")}
+    by_key = {}
+    for o in orders or []:
+        by_key.setdefault(str(o.get("key") or ""), []).append(o)
+    out, seen = [], set()
+    for k, c in sorted((calls or {}).items(), key=lambda kv: str(kv[1].get("at") or "")):
+        if c.get("call") != "PLAY" or str(c.get("day") or "") < start_et:
+            continue
+        sd = _board_side(c.get("side"))
+        key = f"board|{c.get('league')}|{c.get('game')}|{c.get('mk')}|{sd}"
+        seen.add(key)
+        os_ = by_key.get(key) or []
+        row = {"day": c.get("day"), "game": c.get("game"), "side": c.get("side"), "paper_price": c.get("price"),
+               "paper_book": c.get("book"), "result": c.get("result") or "UNGRADED", "units": c.get("units"), "key": key}
+        if not os_:
+            row["cat"], row["detail"] = "NOT DECIDED", "no executor record for this play key"
+        else:
+            o = os_[-1]
+            lo = d(o.get("live_order"))
+            f = fills.get(str(lo.get("order_id"))) or fills.get(str(lo.get("client_id"))) or pk.get(key) \
+                or pk.get(key.split("|", 1)[-1]) or {}
+            st = f.get("state")
+            if lo.get("status") != "placed":
+                row["cat"] = "DECIDED, NOT PLACED"
+                row["detail"] = " | ".join(str(x)[:60] for x in (o.get("verdict"), o.get("live_why_not") or lo.get("reason") or o.get("reason")) if x)
+            elif st in ("FILLED", "PARTIAL"):
+                row["cat"] = "FILLED"
+                row["detail"] = (f"{lo.get('book') or o.get('fill_book')} live after-fee {o.get('live_px_price_after_fee')} "
+                                 f"line {o.get('live_px_line')} vs paper {c.get('price')} line {c.get('line')}")
+            else:
+                row["cat"], row["detail"] = "PLACED, NO FILL", f"fill state {st or 'NO FILL RECORD'}"
+        out.append(row)
+    extra = []
+    for key, os_ in by_key.items():
+        if not key.startswith("board|") or key in seen:
+            continue
+        o = os_[-1]
+        lo = d(o.get("live_order"))
+        if (o.get("et_day") or _et_day(o.get("decided_utc")) or "") < start_et or lo.get("status") != "placed":
+            continue
+        extra.append({"key": key, "day": o.get("et_day") or _et_day(o.get("decided_utc")), "venue": lo.get("book")})
+    summ = {}
+    for r in out:
+        x = summ.setdefault(r["cat"], {"n": 0, "W": 0, "L": 0, "P": 0, "UNGRADED": 0, "units": 0.0})
+        x["n"] += 1
+        x[r["result"] if r["result"] in ("W", "L", "P") else "UNGRADED"] += 1
+        x["units"] = round(x["units"] + ((r["units"] or 0) if r["result"] in ("W", "L", "P") else 0), 2)
+    return out, extra, summ
+
+
+def render_trace(out, extra, summ):
+    L = ["", f"SECTION K - PAPER BETS BOARD PLAY -> LIVE EXECUTOR, from {START_ET} ET (private; exact play-key join)",
+         "  Does the live path exclude winners, losers, or both? Paper W-L and paper units by what the executor did:"]
+    for cat in ("FILLED", "PLACED, NO FILL", "DECIDED, NOT PLACED", "NOT DECIDED"):
+        x = summ.get(cat)
+        if x:
+            L.append(f"   {cat:<20} n {x['n']:>2} | paper W-L-P {x['W']}-{x['L']}-{x['P']} (ungraded {x['UNGRADED']}) | paper units {x['units']:+.2f}u")
+    for r in out:
+        L.append(f"  {r['day']} | {r['game']} | {r['side']} | paper {r['paper_book']} {r['paper_price']} {r['result']} | "
+                 f"{r['cat']}: {r['detail']}")
+    L.append(f"  live board orders placed that were NOT paper PLAY calls: {len(extra)}")
+    for e in extra:
+        L.append(f"   - {e['day']} | {e['key']} | {e['venue']}")
+    return "\n".join(L)
+
+
 def render_day(day, out_o, out_p, once):
     L = ["", f"SECTION E - BOT SELECTIONS FOR {day} (private; anything you bet that is not here was not a bot bet)",
          f"  exactly-once check: {'OK' if once.get('ok') else 'FAILED'} ({once.get('rows')} bot rows, "
