@@ -1780,17 +1780,38 @@ def run():
                                      + (" | No line conversion - run/puck-line price comparison." if _cv is None
                                         else " | same line as Pinnacle, no conversion" if _cv == 0
                                         else f" | EV CONVERTED {_cv:g} pt from Pinnacle's number - treat the % as UNVERIFIED"))
+                        # HR1 (Peter, 17 Nov 2026): a MANUAL Hard Rock college-basketball play, pushed so he can place
+                        # it himself. FIRST alert per game/market/side only (not repeat), matching the backtested
+                        # population. Claude places NOTHING at Hard Rock on any lane, so this changes no bot behaviour:
+                        # it is a notification only, and it reaches Telegram as well as ntfy because Peter asked for it
+                        # there ("send alerts to telegram this way i manualy play them"). Labelled MANUAL so it can
+                        # never read as a bot play. UNITS-ONLY evidence - see agree_rules.hr1.
+                        hr1_ok = False
+                        try:
+                            import agree_rules as _ar
+                            hr1_ok = (not repeat) and _ar.hr1(
+                                {"sport": cfg["label"], "book_key": a.get("book"), "kind": a.get("kind"),
+                                 "bet": f"{a.get('side')} ", "top25": is_t25, "late": late,
+                                 "price_after_fee": net(a["price"], a["book"], cfg["label"]),
+                                 "alert_utc": now_utc().strftime("%Y-%m-%dT%H:%M:%SZ"), "start_utc": a["start"]})[0]
+                        except Exception as _x:
+                            print(f"hr1 check skipped: {str(_x)[:60]}")
+                        if hr1_ok:
+                            label = (f"HR1 MANUAL BET at HARD ROCK: {a['text'].split(' at ')[0]}"
+                                     " | open Hard Rock, bet only if this price is still there; check the max it allows"
+                                     " | log it to Muse as source HR1")
                         # Nov 12 (Peter: "only actionable and live notifications", then "triggers ... on anything that
                         # goes live"): the phone gets the TRIGGER for every live (phase-1) play on ntfy AND Telegram, then
                         # the executor's LIVE PLAY and the fill. PAPER alerts stay muted (PUSH_SHARP_ALERTS=on unmutes them).
-                        (notify if (PUSH_SHARP or p1_ok or hr_ev) else (lambda *x, **y: print("push muted: paper alert logged only")))(
-                               ("LIVE " if p1_ok else "HR MISPRICE " if hr_ev else "PAPER ") + f"Sharp alert {cfg['label']}" + (" LATE" if late else ""),
+                        (notify if (PUSH_SHARP or p1_ok or hr_ev or hr1_ok) else (lambda *x, **y: print("push muted: paper alert logged only")))(
+                               ("LIVE " if p1_ok else "HR1 MANUAL " if hr1_ok else "HR MISPRICE " if hr_ev else "PAPER ") + f"Sharp alert {cfg['label']}" + (" LATE" if late else ""),
                                f"{label}\n{a['text']}\n{bet_size(a['price'], a['book'])}{prior_note}\n{a['game']}{tag}, {a['start']}\n{a['why']}\n"
                                f"Grade {grade} ({score}/100) | "
                                + (f"LATE: starts in {lead_text(lead)}" if late else f"starts in {lead_text(lead)}"),
                                red=late, yellow=(not late) and bool(prior or (repeat and REPEAT_MODE != "mute")),   # late = red only
-                               extra_tags=("white_check_mark",) if p1_ok else (("mag",) if hr_ev else ("page_facing_up",)),
-                               headline=f"{a['game']} \u2014 {a['text'].split(' at ')[0]} @ {nm(a['book'])}", live=p1_ok)
+                               extra_tags=("white_check_mark",) if p1_ok else (("mag",) if (hr_ev or hr1_ok) else ("page_facing_up",)),
+                               headline=f"{a['game']} \u2014 {a['text'].split(' at ')[0]} @ {nm(a['book'])}",
+                               live=p1_ok or hr1_ok)   # Nov 17: HR1 mirrors to Telegram (Peter asked); mirror flag only
                     st["alerted"][a["id"]] = time.time()
                     e = {k: a[k] for k in ("id", "ev", "game", "kind", "side", "pt", "price", "book", "conf", "nconf", "cby", "evp", "fade")}
                     e.update(sport=cfg["label"], start=a["commence"], t=time.time(), lead=round(lead), late=late,

@@ -189,6 +189,41 @@ def r1(a):
     return (not why), why
 
 
+HR1_PRICE = (-119.0, -101.0)   # after-fee band, as backtested (observed range -115..-105)
+HR1_MIN_LEAD = 60              # Peter's standing rule: nothing inside the last hour
+
+
+def hr1(a):
+    """HR1 (Peter, 17 Nov 2026): a MANUAL Hard Rock college-basketball alert, pushed so Peter can place it himself.
+    Returns (eligible, [reasons it is not]). NOT a bot lane: Claude places nothing at Hard Rock on any lane, and this
+    rule is never consulted by the executor. Non-Top-25 NCAAB, Hard Rock the alerting book, after-fee price -119..-101,
+    spreads plus totals UNDERS only, not late, 60+ minutes before tip. One alert per game/market/side is enforced by
+    the caller (first alert only). Basis: 124 graded plays, 81-43, +33.35u, ROI +24.3%, both halves positive - UNITS
+    ONLY, with 3 certified Pinnacle closes in the whole Hard Rock NCAAB population, so this is unverified on price."""
+    why = []
+    if (a.get("sport") or "").upper() != "NCAAB":
+        why.append("not college basketball")
+    if str(a.get("book_key") or "").strip().lower() not in HARD_ROCK:
+        why.append("not Hard Rock-priced")
+    if a.get("top25") is not False:   # explicit non-Top-25 only; untagged or Top 25 is out
+        why.append("not tagged non-Top-25")
+    k = a.get("kind")
+    if not (k == "spr" or (k == "tot" and side_of(a) == "UNDER")):
+        why.append("HR1 is spreads and totals unders only")
+    p = a.get("price_after_fee")
+    try:
+        if p is None or not (HR1_PRICE[0] <= float(p) <= HR1_PRICE[1]):
+            why.append(f"after-fee price {p} outside {HR1_PRICE[0]:g}..{HR1_PRICE[1]:g}")
+    except (TypeError, ValueError):
+        why.append(f"after-fee price {p} unreadable")
+    ld = lead_min(a)
+    if a.get("late"):
+        why.append("late")
+    if ld is None or ld < HR1_MIN_LEAD:
+        why.append(f"under {HR1_MIN_LEAD} min before tip")
+    return (not why), why
+
+
 def phase1(a, muse_agree, tag_nfl=False):
     """Phase-1 LIVE filter (Muse + Peter, Oct 25). Returns (eligible, [reasons it is not]).
     tag_nfl=True (Peter's amendment, Oct 26): the DRY RUN also tags NFL plays; NFL in/out is decided at the pre-live
