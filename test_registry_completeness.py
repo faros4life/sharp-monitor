@@ -38,6 +38,17 @@ def ck(name, got, want):
 NOW = datetime(2026, 11, 12, 19, 0, 0, tzinfo=timezone.utc)
 
 
+# Nov 17: registry's window cuts read the WALL clock while these tests pass a fixed NOW, so they began failing once
+# the real date moved past the window. Freeze the module's clock to the test's clock (test-only; registry unchanged).
+class _FrozenDT(R.datetime):
+    @classmethod
+    def now(cls, tz=None):
+        return NOW if tz is None else NOW.astimezone(tz)
+
+
+R.datetime = _FrozenDT
+
+
 def iso(dt):
     return dt.strftime("%Y-%m-%dT%H:%M:%SZ")
 

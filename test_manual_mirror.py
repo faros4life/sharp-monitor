@@ -21,6 +21,17 @@ import registry as R
 
 UTC = timezone.utc
 NOW = datetime(2026, 11, 12, 18, 0, 0, tzinfo=UTC)
+
+
+# Nov 17: registry's window cuts read the WALL clock while these tests pass a fixed NOW, so they began failing once
+# the real date moved past the window. Freeze the module's clock to the test's clock (test-only; registry unchanged).
+class _FrozenDT(R.datetime):
+    @classmethod
+    def now(cls, tz=None):
+        return NOW if tz is None else NOW.astimezone(tz)
+
+
+R.datetime = _FrozenDT
 TODAY = NOW.strftime("%Y-%m-%d")
 FRESH = (NOW - timedelta(minutes=5)).strftime("%Y-%m-%dT%H:%M:%SZ")
 STALE = (NOW - timedelta(minutes=R.FRESH_MIN + 1)).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -127,10 +138,10 @@ check("claim no longer trusted", not R.manual_complete(now=NOW))
 check("the notes themselves are NOT destroyed", R.manual_notes() == [N1])
 
 print("\nset_manual_complete() makes exactly the claim it is entitled to")
-# It stamps from the REAL clock, not the frozen NOW above, so trust is checked against real time.
+# It stamps from the module clock, so trust is checked against that same clock.
 s = Store({"manual": [N1], "meta": {}}).install()
 R.set_manual_complete()
-REAL = datetime.now(UTC)
+REAL = R.datetime.now(UTC)   # the module clock (frozen to NOW above) - the clock set_manual_complete stamps from
 check("through is today", s.data["meta"]["man_complete_through"] == REAL.strftime("%Y-%m-%d"))
 check("and it is immediately trusted", R.manual_complete(now=REAL))
 check("the orders claim was NOT touched", "complete_through" not in s.data["meta"])

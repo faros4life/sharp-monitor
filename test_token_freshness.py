@@ -16,6 +16,17 @@ import registry as R
 
 UTC = timezone.utc
 NOW = datetime(2026, 11, 12, 18, 0, 0, tzinfo=UTC)
+
+
+# Nov 17: registry's window cuts read the WALL clock while these tests pass a fixed NOW, so they began failing once
+# the real date moved past the window. Freeze the module's clock to the test's clock (test-only; registry unchanged).
+class _FrozenDT(R.datetime):
+    @classmethod
+    def now(cls, tz=None):
+        return NOW if tz is None else NOW.astimezone(tz)
+
+
+R.datetime = _FrozenDT
 TODAY = NOW.strftime("%Y-%m-%d")
 OLD = (NOW - timedelta(days=R.KEEP_DAYS + 1)).strftime("%Y-%m-%d")
 FRESH_STAMP = (NOW - timedelta(minutes=5)).strftime("%Y-%m-%dT%H:%M:%SZ")
