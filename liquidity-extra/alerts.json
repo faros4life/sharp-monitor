@@ -1,6 +1,197 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-17T17:00:26Z",
+   "base_depth": 82544,
+   "best_price": 0.5124,
+   "best_price_american": -105,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-17",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 11889,
+     "new_this_side": 41686,
+     "other_side": 22094,
+     "other_side_all_levels": 101116,
+     "ratio": 1.5,
+     "this_side": 32694,
+     "this_side_all_levels": 120137
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Over 167.5 (167.5)",
+     "price": 0.515,
+     "this_side": 12582
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 1221.08,
+    "volume_24h_fp": 1221.08,
+    "volume_fp": 1221.08
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 62.84,
+    "volume_24h_fp": 62.84,
+    "volume_fp": 62.84
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 1158.24,
+    "volume_24h_fp": 1158.24,
+    "volume_fp": 1158.24
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-11-17T16:50:34Z",
+   "game": "Illinois vs Duke: Point Total",
+   "game_surge_books": [
+    "novig"
+   ],
+   "game_x": 1.61,
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAMBTOTAL-26NOV17ILLDUKE-168\"}",
+   "lead_min": 420,
+   "league": "NCAAB",
+   "line": 167.5,
+   "market": "total",
+   "new_money": 41686,
+   "new_x": 1.56,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 1221.08,
+      "volume_24h_fp": 1221.08,
+      "volume_fp": 1221.08
+     },
+     "game_normal": 74793,
+     "game_x": 1.61,
+     "normal": 26644,
+     "now": 120137,
+     "type": "OVER",
+     "x": 4.51
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 490325.0,
+      "volume": 497556.0
+     },
+     "game_normal": 800,
+     "game_x": 16.17,
+     "normal": 1140,
+     "now": 12942,
+     "type": "OVER",
+     "x": 11.35
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 167.5,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": 166.5,
+     "price": -115
+    },
+    "betopenly": {
+     "point": 167.0,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 166.5,
+     "price": -109
+    },
+    "betus": {
+     "point": 167.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 167.0,
+     "price": -110
+    },
+    "circasports": {
+     "point": 167.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 166.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": 166.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 166.5,
+     "price": -115
+    },
+    "kalshi": {
+     "point": 167.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": 166.5,
+     "price": -113
+    },
+    "novig": {
+     "point": 167.5,
+     "price": -106
+    },
+    "polymarket": {
+     "point": 167.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 166.5,
+     "price": -115
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBTOTAL-26NOV17ILLDUKE-168"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [
+    "Over 166.5 (-110)"
+   ],
+   "sharp_oppose": [],
+   "side": "OVER",
+   "side_label": "Over 167.5 points",
+   "size_x": 4.51,
+   "start_source": "odds",
+   "start_utc": "2026-11-18T00:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "Illinois",
+    "Duke"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-17T16:50:34Z",
    "base_depth": 330117,
    "best_price": 0.55,
@@ -50,6 +241,11 @@
     "open_interest_fp": 772.49,
     "volume_24h_fp": 2421.75,
     "volume_fp": 862.49
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 69005.86,
+    "volume_24h_fp": 69186.35,
+    "volume_fp": 72035.47
    },
    "ex_stats_first": {
     "open_interest_fp": 68156.58,
@@ -412,8 +608,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": 0.0,
+   "close_price": 0.51,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-17",
    "depth_by_book": {
@@ -450,9 +646,9 @@
     "volume_fp": 169.4
    },
    "ex_stats_close": {
-    "open_interest_fp": 21634.300000000003,
-    "volume_24h_fp": 22461.47,
-    "volume_fp": 24005.7
+    "open_interest_fp": 34787.91,
+    "volume_24h_fp": 36318.18,
+    "volume_fp": 37935.85
    },
    "ex_stats_first": {
     "open_interest_fp": 18299.129999999997,
@@ -577,7 +773,8 @@
      "price": -105
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-17T17:00:26Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV17ARKIND-IND"
@@ -853,9 +1050,9 @@
     "volume_fp": 128.73
    },
    "ex_stats_close": {
-    "open_interest_fp": 7623.73,
-    "volume_24h_fp": 7796.209999999999,
-    "volume_fp": 7818.41
+    "open_interest_fp": 7755.27,
+    "volume_24h_fp": 7927.75,
+    "volume_fp": 7949.950000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 7063.18,
@@ -1220,9 +1417,9 @@
     "volume_fp": 0.29
    },
    "ex_stats_close": {
-    "open_interest_fp": 198.2,
+    "open_interest_fp": 203.45,
     "volume_24h_fp": 198.2,
-    "volume_fp": 198.2
+    "volume_fp": 203.45
    },
    "ex_stats_first": {
     "open_interest_fp": 19.2,
@@ -1333,9 +1530,9 @@
     "volume_fp": 11619.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 12923.71,
-    "volume_24h_fp": 13348.29,
-    "volume_fp": 13349.46
+    "open_interest_fp": 13015.04,
+    "volume_24h_fp": 13440.79,
+    "volume_fp": 13440.79
    },
    "ex_stats_first": {
     "open_interest_fp": 1013.77,
@@ -2043,9 +2240,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 717.8900000000001,
-    "volume_24h_fp": 512.12,
-    "volume_fp": 717.8900000000001
+    "open_interest_fp": 718.3299999999999,
+    "volume_24h_fp": 512.56,
+    "volume_fp": 718.3299999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 248.24,
@@ -2630,9 +2827,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 13654.759999999998,
-    "volume_24h_fp": 13578.039999999999,
-    "volume_fp": 13654.759999999998
+    "open_interest_fp": 13856.849999999999,
+    "volume_24h_fp": 13780.13,
+    "volume_fp": 13856.849999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 10475.15,
@@ -2825,9 +3022,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3992.73,
+    "open_interest_fp": 4093.68,
     "volume_24h_fp": 3499.73,
-    "volume_fp": 4012.73
+    "volume_fp": 4113.68
    },
    "ex_stats_first": {
     "open_interest_fp": 941.54,
@@ -3017,9 +3214,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 6672.71,
+    "open_interest_fp": 6686.17,
     "volume_24h_fp": 6659.93,
-    "volume_fp": 6704.8
+    "volume_fp": 6718.26
    },
    "ex_stats_first": {
     "open_interest_fp": 138.57,
@@ -5475,9 +5672,9 @@
     "volume_fp": 115.13
    },
    "ex_stats_close": {
-    "open_interest_fp": 52710.78,
-    "volume_24h_fp": 51043.009999999995,
-    "volume_fp": 56257.67
+    "open_interest_fp": 56847.67,
+    "volume_24h_fp": 55042.509999999995,
+    "volume_fp": 60400.520000000004
    },
    "ex_stats_first": {
     "open_interest_fp": 5739.1900000000005,

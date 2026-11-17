@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 17, 11:50 AM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 24.
+Updated Tue Nov 17, 12:00 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 25.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,9 +10,10 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 17 12:00PM | NCAAB | Illinois vs Duke: Point Total | total: Over 167.5 points | kalshi | $42k | -100 | ✅ novig | ✅ | +0.0c |  | pending |
 | Nov 17 11:50AM | NCAAB | Villanova vs Pittsburgh | moneyline: Villanova | kalshi | $116k | -117 |  |  | +0.0c |  | pending |
 | Nov 17 11:30AM | NCAAB | Tennessee St. vs South Florida: Point Total | total: NOT Over 165.5 points | kalshi | $34k | -108 |  |  | +0.0c | yes | pending |
-| Nov 17 11:10AM | NCAAB | Arkansas vs Indiana | moneyline: Indiana | kalshi | $29k | +104 | ✅ novig | ✅ | +0.0c |  | pending |
+| Nov 17 11:10AM | NCAAB | Arkansas vs Indiana | moneyline: Indiana | kalshi | $29k | +104 | ✅ novig | ✅ | +2.0c | yes | pending |
 | Nov 17 10:40AM | NCAAB | UT Arlington vs Southern Miss | moneyline: UT Arlington | kalshi | $26k | +127 |  |  | +0.0c |  | pending |
 | Nov 17 10:40AM | NCAAB | Southern Illinois vs Liberty | moneyline: Southern Illinois | kalshi | $70k | -127 | ✅ novig |  | +0.0c |  | pending |
 | Nov 17 10:30AM | NCAAB | Lipscomb vs Purdue: Spread | spread: Purdue wins by over 20.5 points | kalshi | $29k | -122 |  |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 9 2:20AM | TENNIS | Alex Michelsen vs Yannick Hanfmann | moneyline: Alex Michelsen | kalshi | $26k | -300 |  |  | +1.0c | yes | W |
 | Nov 9 1:40AM | NCAAB | Charlotte vs Seton Hall | moneyline: Seton Hall | kalshi | $31k | -213 |  |  | -3.0c | yes | W |
 | Nov 9 1:31AM | NCAAB | Kansas City vs Jacksonville | moneyline: Jacksonville | kalshi | $29k | -223 |  |  | -5.0c |  | W |
-| Nov 9 1:31AM | NCAAB | Stonehill vs Columbia | moneyline: Columbia | kalshi | $44k | -567 |  |  | +4.0c |  | W |
