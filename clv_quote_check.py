@@ -40,6 +40,17 @@ def main():
         if (gs and gs.astimezone(cl.ET).strftime("%Y-%m-%d") >= START
                 and r.get("clv") is not None and not r.get("fixture_doubt") and rs.clv_method(r) == "certified"):
             rows.append((k, r))
+    # Bot set, the way p2_audit builds it: tracker-labelled bot rows plus rows whose venue order id is a registry bot
+    # order (here: the durable reporting ledger's orders - no registry token in this job).
+    import os
+    import p2_audit_core as pc
+    import registry as reg
+    import reporting_ledger as rl
+    trk = (tb.dec(json.load(open("tracker/state.enc"))) or {}).get("bets") or {}
+    lo = [d for (kd, _i), (_f, d) in rl.latest(rl.load_ledger()).items() if kd == "order"] if os.path.exists(rl.OUT) else []
+    idx, _st = pc.index_from_sources([("ledger", lo)], reg.row_lane, reg._venue)
+    bot = {k for k, b in trk.items() if not b.get("dup_of") and ((b.get("source") or "") == "bot" or str(b.get("order_ref") or "") in idx)}
+    print(f"bot rows (tracker label or registry order id): {len(bot)}")
     print(f"certified closes from {START} ET (rows, every source - a superset of the bot positions, which include "
           f"registry-proven rows the tracker labels otherwise): {len(rows)}; tracker-labelled bot {sum(1 for _k, r in rows if (r.get('snap') or {}).get('source') == 'bot')}")
     C = collections.Counter()
@@ -69,11 +80,11 @@ def main():
             C["unverifiable: stored close not reproduced"] += 1
             continue
         if b and abs(b["p"] - a["p"]) < 1e-12 and b["how"] == a["how"]:
-            C["OK: same close using active lines only"] += 1
+            C[f"OK: same close using active lines only | {'BOT' if k in bot else 'not bot'}"] += 1
         elif b:
-            C[f"AFFECTED: close changes without withdrawn lines ({b['how'][:4]})"] += 1
+            C[f"AFFECTED: close changes without withdrawn lines ({b['how'][:4]}) | {'BOT' if k in bot else 'not bot'}"] += 1
         else:
-            C["AFFECTED: no close without withdrawn lines"] += 1
+            C[f"AFFECTED: no close without withdrawn lines | {'BOT' if k in bot else 'not bot'}"] += 1
         if (a.get("age_min") or 0) > STALE_MIN:
             C[f"stale-feed warning: close older than {STALE_MIN} min"] += 1
         C[f"league {lg}"] += 1
