@@ -1,6 +1,111 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-17T15:10:21Z",
+   "base_depth": 165686,
+   "best_price": 0.8494,
+   "best_price_american": -564,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.84,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-17",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 3099,
+     "new_this_side": 29311,
+     "other_side": 7887,
+     "other_side_all_levels": 15995,
+     "ratio": 8.6,
+     "this_side": 67454,
+     "this_side_all_levels": 188199
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 19.490000000000002,
+    "volume_24h_fp": 19.490000000000002,
+    "volume_fp": 19.490000000000002
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.29,
+    "volume_24h_fp": 0.29,
+    "volume_fp": 0.29
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 19.2,
+    "volume_24h_fp": 19.2,
+    "volume_fp": 19.2
+   },
+   "fade_price": 0.18,
+   "first_seen_utc": "2026-11-17T15:00:33Z",
+   "game": "Bryant vs UMass",
+   "game_surge_books": [],
+   "game_x": 1.12,
+   "key": "kalshi|KXNCAAMBGAME-26NOV17BRYMASS|ml|1",
+   "lead_min": 740,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 29311,
+   "new_x": 0.62,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 19.490000000000002,
+      "volume_24h_fp": 19.490000000000002,
+      "volume_fp": 19.490000000000002
+     },
+     "game_normal": 168714,
+     "game_x": 1.12,
+     "normal": 47071,
+     "now": 188199,
+     "type": "ML",
+     "x": 4.0
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.84,
+   "price_american": -525,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.84,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV17BRYMASS-MASS"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UMass",
+   "side_label": "UMass",
+   "size_x": 4.0,
+   "start_source": "kalshi",
+   "start_utc": "2026-11-18T03:30:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Bryant",
+    "UMass"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-17T14:50:31Z",
    "base_depth": 52495,
    "best_price": 0.5377,
@@ -81,6 +186,8 @@
    "norm_ready_books": 1,
    "paper_only": false,
    "price": 0.53,
+   "price_after_15m": 0.52,
+   "price_after_15m_book": "novig",
    "price_american": -113,
    "price_rule": "ok",
    "price_when_first_seen": 0.53,
@@ -155,6 +262,7 @@
    "size_x": 4.73,
    "start_source": "odds",
    "start_utc": "2026-11-18T01:00:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi"
    ],
@@ -205,9 +313,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3580.78,
-    "volume_24h_fp": 3619.49,
-    "volume_fp": 3619.49
+    "open_interest_fp": 3617.31,
+    "volume_24h_fp": 3656.02,
+    "volume_fp": 3656.02
    },
    "ex_stats_first": {
     "open_interest_fp": 3580.78,
@@ -355,8 +463,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.72,
-   "clv_cents": 0.0,
+   "close_price": 0.71,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-17",
    "depth_by_book": {
@@ -393,9 +501,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1332.5900000000001,
-    "volume_24h_fp": 1241.96,
-    "volume_fp": 1332.5900000000001
+    "open_interest_fp": 1368.57,
+    "volume_24h_fp": 1242.09,
+    "volume_fp": 1403.57
    },
    "ex_stats_first": {
     "open_interest_fp": 1332.5900000000001,
@@ -1137,9 +1245,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 299.4,
-    "volume_24h_fp": 291.66999999999996,
-    "volume_fp": 299.4
+    "open_interest_fp": 299.55,
+    "volume_24h_fp": 291.82,
+    "volume_fp": 299.55
    },
    "ex_stats_first": {
     "open_interest_fp": 265.66,
@@ -1334,9 +1442,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 12963.33,
-    "volume_24h_fp": 12785.94,
-    "volume_fp": 12963.33
+    "open_interest_fp": 12982.480000000001,
+    "volume_24h_fp": 12905.76,
+    "volume_fp": 12982.480000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 10475.15,
@@ -1529,9 +1637,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3608.0699999999997,
-    "volume_24h_fp": 3115.0699999999997,
-    "volume_fp": 3628.0699999999997
+    "open_interest_fp": 3631.0,
+    "volume_24h_fp": 3138.0,
+    "volume_fp": 3651.0
    },
    "ex_stats_first": {
     "open_interest_fp": 941.54,
@@ -3847,9 +3955,9 @@
     "volume_fp": 103.19
    },
    "ex_stats_close": {
-    "open_interest_fp": 51673.61,
-    "volume_24h_fp": 50281.09,
-    "volume_fp": 54685.67
+    "open_interest_fp": 52703.44,
+    "volume_24h_fp": 51329.44,
+    "volume_fp": 55715.5
    },
    "ex_stats_first": {
     "open_interest_fp": 4979.67,
@@ -4179,9 +4287,9 @@
     "volume_fp": 115.13
    },
    "ex_stats_close": {
-    "open_interest_fp": 35157.899999999994,
-    "volume_24h_fp": 33325.52,
-    "volume_fp": 37998.149999999994
+    "open_interest_fp": 41018.81,
+    "volume_24h_fp": 39190.69,
+    "volume_fp": 43869.020000000004
    },
    "ex_stats_first": {
     "open_interest_fp": 5739.1900000000005,
