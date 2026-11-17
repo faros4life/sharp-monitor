@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 17, 12:20 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 20.
+Updated Tue Nov 17, 12:25 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 18.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1624-1253 (-23.60u flat) | rule met: 972-758
+**Record:** 1625-1254 (-23.45u flat) | rule met: 972-758
 
-**Fade (paper, betting against the print):** 987-1351 (-219.40u flat, after fees)
+**Fade (paper, betting against the print):** 988-1352 (-217.60u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -66,7 +66,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 16 9:05AM | NCAAF | Ball St. vs Ohio | moneyline: Ohio | kalshi | $293k | -426 |  |  | +0.0c |  | pending |
 | Nov 16 8:00AM | NBA | Houston vs Miami: Spread | spread: NOT Houston wins by over 2.5 points | kalshi | $34k | -100 |  | ✅ | +5.0c | yes | W |
 | Nov 16 7:50AM | NHL | Montreal vs New York R | moneyline: New York R | kalshi | $31k | +104 |  |  | -1.0c |  | W |
-| Nov 16 4:45AM | NHL | Vancouver vs Utah: Spread | spread: NOT Utah wins by over 1.5 goals | kalshi | $32k | +117 |  |  | +0.0c |  | pending |
+| Nov 16 4:45AM | NHL | Vancouver vs Utah: Spread | spread: NOT Utah wins by over 1.5 goals | kalshi | $32k | +117 |  |  | +0.0c |  | W |
 | Nov 16 4:10AM | NFL | Los Angeles C vs Baltimore: Total Points | total: Over 38.5 points | kalshi | $114k | -108 |  |  | +1.0c | yes | W |
 | Nov 16 4:05AM | NFL | Los Angeles C vs Baltimore: Spread | spread: NOT Baltimore wins by over 4.5 points | kalshi | $304k | -100 | ✅ novig |  | +0.0c | yes | W |
 | Nov 16 3:40AM | NHL | Montreal vs New York R | moneyline: Montreal | kalshi | $25k | -108 |  |  | +1.0c | yes | L |
@@ -120,7 +120,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 15 12:45PM | NFL | Jacksonville Jaguars @ Tennessee Titans | spread: TEN +10.5 (10.5) | novig | $41k | -100 | ✅ kalshi |  | +0.0c | yes | L |
 | Nov 15 12:35PM | NFL | Jacksonville Jaguars at Tennessee Titans | moneyline: Jacksonville Jaguars | prophetx | $33k | -500 | ✅ kalshi,novig |  | +0.0c |  | W |
 | Nov 15 12:30PM | NFL | Buffalo Bills at New York Jets | moneyline: Buffalo Bills | prophetx | $69k | -400 | ✅ kalshi,novig |  | +0.0c |  | W |
-| Nov 15 12:30PM | NHL | Vancouver vs Utah | moneyline: Utah | kalshi | $32k | -317 |  |  | -1.0c | yes | pending |
+| Nov 15 12:30PM | NHL | Vancouver vs Utah | moneyline: Utah | kalshi | $32k | -317 |  |  | -1.0c | yes | L |
 | Nov 15 12:25PM | NFL | Jacksonville Jaguars at Tennessee Titans | spread: Jacksonville Jaguars -10.5 (-10.5) | prophetx | $30k | -105 |  |  | +0.0c |  | W |
 | Nov 15 12:25PM | NFL | Buffalo vs New York J: Total Points | total: Over 50.5 points | kalshi | $142k | -104 |  |  | +1.0c | yes | L |
 | Nov 15 12:20PM | NFL | Miami Dolphins @ Indianapolis Colts | spread: IND -4.5 (-4.5) | novig | $29k | -102 | ✅ kalshi |  | +1.0c |  | L |
