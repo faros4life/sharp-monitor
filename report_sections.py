@@ -275,7 +275,32 @@ def _am_to_p(a):
     return 100 / (a + 100) if a > 0 else -a / (-a + 100)
 
 
-def fill_rate(orders, fills, fx, start_et=START_ET):
+def _order_confirmed(key, lane, rows_by_lane):
+    """A venue-confirmed live position (EXACT bucket of this lane) for an order key: same side word, every team of
+    the key's game present in the position's game text. Exactly one match, else None - never guessed."""
+    import tracker_build as _tb
+    parts = key.split("|")
+    if len(parts) < 5:
+        return None
+    game, side = parts[2].split(":")[0], parts[4].upper()
+    teams = [_tb.toks(x) - _tb.WEAK for x in game.replace(" vs ", " @ ").replace(" at ", " @ ").split(" @ ")]
+    if len(teams) != 2 or not all(teams):
+        return None
+    hits = []
+    for b in rows_by_lane.get(lane) or []:
+        g = _tb.toks(b.get("game")) - _tb.WEAK
+        bt = str(b.get("bet") or "").strip().lower()
+        sw = "OVER" if bt.startswith("over") else ("UNDER" if bt.startswith("under") else None)
+        if side in ("OVER", "UNDER") and sw != side:
+            continue
+        if side not in ("OVER", "UNDER") and not (_tb.toks(side) - _tb.WEAK) & (_tb.toks(b.get("bet")) - _tb.WEAK):
+            continue
+        if all(t & g for t in teams):
+            hits.append(b)
+    return hits[0] if len(hits) == 1 else None
+
+
+def fill_rate(orders, fills, fx, start_et=START_ET, rows_by_lane=None):
     """PRIVATE ONLY. Every PLACED live order leg since start_et: lane, venue, outcome, price gap and timing.
     Outcome from the registry fill record first (FILLED/PARTIAL -> FILLED; NO_FILL/EXPIRED/CANCELLED -> NOT FILLED;
     PLACED/RESTING -> PENDING), else from Section G's venue evidence (fx), else UNKNOWN - never guessed.
@@ -316,6 +341,8 @@ def fill_rate(orders, fills, fx, start_et=START_ET):
                 c = next((ev[i] for i in ids if i in ev), "")
                 outc = ("FILLED" if c.startswith(("FILLED", "VENUE SHOWS")) else
                         "NOT FILLED" if c.startswith(("NO FILL", "UNFILLED")) else "UNKNOWN")
+            if outc != "FILLED" and kind == "first" and _order_confirmed(key, lane, rows_by_lane or {}):
+                outc = "FILLED"   # venue evidence wins over a stale or missing registry fill record
             pa, pl = _am_to_p(o.get("alert_price_after_fee")), _am_to_p(o.get("live_px_price_after_fee"))
             dec, st_u = _t(o.get("decided_utc")), _t(o.get("start_utc"))
             legs.append({"day": day, "lane": lane, "kind": kind, "venue": str(lo.get("book") or o.get("live_book") or "?").lower(),

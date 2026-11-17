@@ -493,7 +493,12 @@ def main():
     text += rs.render_exceptions(fx, cx)
     # SECTION L (Peter, Nov 17, Project 3): live fill rate by lane and venue, with price gap and timing.
     try:
-        _legs, _fs = rs.fill_rate(rr, fills_all, fx)
+        _rbl = {}
+        for _b in rows:
+            _bk = (rep_f.get("row_bucket") or {}).get(str(_b.get("id") or ""), "")
+            if _bk.startswith("EXACT:"):
+                _rbl.setdefault(_bk.split(":", 1)[1], []).append(_b)
+        _legs, _fs = rs.fill_rate(rr, fills_all, fx, rows_by_lane=_rbl)
         text += rs.render_fill_rate(_legs, _fs)
         print("section L fill rate (counts only): " + " | ".join(
             f"{ln}/{vn} placed {x['placed']} filled {x['FILLED']} not {x['NOT FILLED']} pending {x['PENDING']} unknown {x['UNKNOWN']}"

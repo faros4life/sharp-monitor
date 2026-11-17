@@ -40,5 +40,11 @@ check("no currency sign", "$" not in rs.render_fill_rate(legs, summ))
 o5 = [{"key": "board|NBA|P vs Q: Total Points|total|OVER", "et_day": "2026-11-15", "live_order": {"status": "placed", "client_id": "c9", "book": "novig"}}]
 lg5, sm5 = rs.fill_rate(o5, {"f1": {"play_key": "NBA|P vs Q: Total Points|total|OVER", "state": "FILLED"}}, [], "2026-11-12")
 check("Novig fill found by play key (lane prefix optional)", lg5[0]["outcome"] == "FILLED")
+o6 = [{"key": "board|NBA|Orlando vs Boston: Total Points|total|OVER", "et_day": "2026-11-16", "live_order": {"status": "placed", "client_id": "c7", "book": "novig"}}]
+pos = {"BOARD V3": [{"game": "Orlando Magic @ Boston Celtics", "bet": "Over 210.5"}]}
+lg6, _s = rs.fill_rate(o6, {"f": {"play_key": "NBA|Orlando vs Boston: Total Points|total|OVER", "state": "PLACED"}}, [], "2026-11-12", rows_by_lane=pos)
+check("venue-confirmed live position beats a stale PLACED fill record", lg6[0]["outcome"] == "FILLED")
+lg7, _s = rs.fill_rate(o6, {}, [], "2026-11-12", rows_by_lane={"BOARD V3": pos["BOARD V3"] * 2})
+check("two matching positions -> not guessed", lg7[0]["outcome"] == "UNKNOWN")
 print("ALL PASS" if not BAD else f"{len(BAD)} FAILED")
 sys.exit(1 if BAD else 0)
