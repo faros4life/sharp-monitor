@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 17, 10:20 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 18.
+Updated Tue Nov 17, 10:30 AM ET. This run: 1 new, 0 not confirmed, 2 pending. Open alerts: 19.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,10 +10,11 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 17 10:30AM | NCAAB | Lipscomb vs Purdue: Spread | spread: Purdue wins by over 20.5 points | kalshi | $29k | -122 |  |  | +0.0c |  | pending |
 | Nov 17 10:10AM | NCAAB | Bryant vs UMass | moneyline: UMass | kalshi | $29k | -525 |  |  | +0.0c |  | pending |
 | Nov 17 9:50AM | NCAAB | Maryland-Eastern Shore vs DePaul: Spread | spread: DePaul wins by over 31.5 points | kalshi | $33k | -113 |  |  | +0.0c |  | pending |
 | Nov 17 9:40AM | NCAAB | Cleveland St. vs Xavier: Point Total | total: NOT Over 159.5 points | kalshi | $32k | -108 |  |  | +1.0c |  | pending |
-| Nov 17 9:20AM | NCAAB | Green Bay vs West Florida | moneyline: Green Bay | kalshi | $57k | -257 |  |  | -1.0c |  | pending |
+| Nov 17 9:20AM | NCAAB | Green Bay vs West Florida | moneyline: Green Bay | kalshi | $57k | -257 |  |  | -2.0c |  | pending |
 | Nov 17 7:10AM | NCAAB | Alabama St. vs UC Davis | moneyline: UC Davis | kalshi | $70k | -567 |  |  | +0.0c |  | pending |
 | Nov 17 1:40AM | NCAAB | Seattle vs California Baptist | moneyline: Seattle | kalshi | $29k | -355 |  |  | +0.0c |  | pending |
 | Nov 17 1:40AM | NCAAB | Le Moyne vs Evansville | moneyline: Evansville | kalshi | $26k | -257 |  |  | +4.0c | yes | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 9 1:31AM | NCAAB | LIU vs Towson | moneyline: Towson | kalshi | $32k | -233 |  |  | +6.0c |  | W |
 | Nov 9 1:15AM | NCAAB | Syracuse vs Indiana | moneyline: Indiana | kalshi | $41k | -213 |  |  | +1.0c |  | W |
 | Nov 9 1:15AM | NCAAB | Howard vs Penn | moneyline: Penn | kalshi | $31k | -223 |  |  | -18.0c |  | W |
-| Nov 8 5:40PM | TENNIS | Coco Gauff vs Jessica Pegula | moneyline: Coco Gauff | kalshi | $80k | -178 |  |  | +21.0c | yes | W |
