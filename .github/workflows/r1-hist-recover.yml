@@ -1,0 +1,59 @@
+name: r1-hist-recover
+# Peter, 17 Nov 2026 ("Option 1: Free only"): free Pinnacle history for R1's listed-but-uncached games, then the
+# cache-only re-certification. Dispatch only. ONLY the free-account key is passed (history is a free path; no paid
+# key exists in this job, so nothing can bill). Writes hcache (saved) and paper/clv_certified.json. Counts-only log.
+on:
+  workflow_dispatch: {}
+permissions:
+  contents: write
+concurrency:
+  group: paper-clv-certify
+  cancel-in-progress: false
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Restore shared OddsPapi history cache
+        id: restore
+        uses: actions/cache/restore@v4
+        with:
+          path: hcache
+          key: hcache-${{ github.run_id }}
+          restore-keys: hcache-
+      - name: Free history for R1 targets (free key only)
+        env:
+          ODDSPAPI_FREE_KEY: ${{ secrets.ODDSPAPI_FREE_KEY }}
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+        run: python -u r1_hist_recover.py
+      - name: Save the history cache
+        if: always() && steps.restore.outputs.cache-matched-key != ''
+        uses: actions/cache/save@v4
+        with:
+          path: hcache
+          key: hcache-${{ github.run_id }}
+      - name: Re-certify (cache-only, no key)
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+        run: python -u paper_clv_certify.py
+      - name: Commit the certified file only
+        run: |
+          git status --porcelain --untracked-files=all -- . ':!paper/clv_certified.json' ':!hcache' > "$RUNNER_TEMP/d"
+          if [ -s "$RUNNER_TEMP/d" ]; then echo "FAIL: unexpected changes"; cat "$RUNNER_TEMP/d"; exit 1; fi
+          git config user.name "r1-hist-recover"; git config user.email "r1-hist-recover@users.noreply.github.com"
+          git add paper/clv_certified.json
+          git diff --cached --quiet && { echo "no change"; exit 0; }
+          git commit -q -m "paper: certified Pinnacle CLV after free R1 history"
+          for i in 1 2 3 4 5; do
+            git push -q origin HEAD:main && { echo committed; exit 0; }
+            cp paper/clv_certified.json "$RUNNER_TEMP/c.json"
+            git fetch -q --depth=1 origin main && git reset -q --hard FETCH_HEAD || exit 1
+            mkdir -p paper; cp "$RUNNER_TEMP/c.json" paper/clv_certified.json
+            git add paper/clv_certified.json && git commit -q -m "paper: certified Pinnacle CLV after free R1 history"; sleep 3
+          done
+          echo "FAIL: push"; exit 1
