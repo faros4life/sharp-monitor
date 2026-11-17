@@ -29,7 +29,13 @@ import clv_scorecard as sc
 import executor as ex
 
 ET = timezone(timedelta(hours=-5))
-ADOPTED = {"Phase 1": "2026-11-05", "R1": "2026-11-11", "Board V3": "2026-11-06"}
+# Commit times (UTC) of the gates now deployed. Selection = the lane's current eligibility rule.
+ADOPTED = {"Phase 1": "2026-11-05T01:20:00Z",    # 8b2e6ff Matchbook-only out, 12-24h paper (after 3fdce8c NCAAF overs)
+           "R1": "2026-11-11T13:24:00Z",         # 46c8d65 R1 lane as specified
+           "Board V3": "2026-11-06T03:41:00Z"}   # 3393fcf calls frozen at post (v3 rule 259c46e, Nov 4 20:50)
+NO_TOL = "2026-11-13T13:45:00Z"                  # bc911ee no-tolerance value gate, all lanes
+ROUTE = "2026-11-17T14:44:00Z"                   # 33167fb trigger venue first, balance to Novig, all lanes
+BOARD_CONFIRM_MIN = 15
 CERT_HOW = ("own line", "moneyline")
 
 
@@ -95,15 +101,32 @@ def alert_plays(A, pc, which):
         except (TypeError, ValueError):
             dec = None
         pid = f"sharp|{a.get('alert_utc')}|{a.get('game')}|{a.get('bet')}|{a.get('book_key')}"
-        out.append({"day": d, "res": a["result"], "dec": dec, "clv": cert_clv(pc, None, pid, a=a), "recon": False,
+        out.append({"ts": a.get("alert_utc") or "", "day": d, "res": a["result"], "dec": dec, "clv": cert_clv(pc, None, pid, a=a), "recon": False,
                     "lg": a.get("sport")})
     return out
 
 
-def board_plays(C, pc, lc):
+def _t(s):
+    try:
+        return datetime.fromisoformat(str(s).replace("Z", "+00:00"))
+    except ValueError:
+        return None
+
+
+def board_plays(C, pc, lc, feed, drop):
+    """15-min persistence: a call whose source money was pulled within 15 min of posting never reaches an order.
+    'Price not moved toward the side' is NOT reconstructable (no point-in-time price path) and is not applied."""
     out, seen = [], set()
     for k, x in sorted(C.items(), key=lambda kv: kv[1].get("at") or ""):
         if x.get("call") != "PLAY" or x.get("mk") != "total" or (x.get("league") or x.get("lg")) != "NBA":
+            continue
+        src, at = feed.get(k), _t(x.get("at"))
+        if src is None:
+            drop["no source alert"] += 1
+            continue
+        pu = _t(src.get("pulled_utc")) if src.get("pulled") else None
+        if pu and at and pu <= at + timedelta(minutes=BOARD_CONFIRM_MIN):
+            drop["pulled within 15 min"] += 1
             continue
         g = (x.get("day"), frozenset(sc.toks(x.get("game"))))
         if g in seen:
@@ -115,7 +138,7 @@ def board_plays(C, pc, lc):
             dec = sc.cs.net_dec(sc.cs.canon(x.get("book")), sc.cl.am_to_dec(float(x.get("price"))))
         except Exception:
             dec = None
-        out.append({"day": x.get("day") or et_day(x.get("at")), "res": x["result"], "dec": dec,
+        out.append({"ts": x.get("at") or "", "day": x.get("day") or et_day(x.get("at")), "res": x["result"], "dec": dec,
                     "clv": cert_clv(pc, lc, f"liq|{k}", aid=k), "recon": bool(x.get("recon")), "lg": "NBA"})
     return out
 
@@ -150,17 +173,22 @@ def line(tag, s):
 def main():
     A = load("alerts.json", "alerts") or []
     C = load("board/calls.json", "calls") or {}
+    import board_build as bb
+    feed = {f"{x.get('key')}|{x.get('alerted_utc')}": x for x in bb.load()}
+    drop = collections.Counter()
     pc = (load("paper/clv_certified.json") or {}).get("certified") or {}
     lc = (load("liquidity/clv_certified.json") or {}).get("certified") or {}
     print("LIVE STRATEGY BACKTEST - read-only, current rules, alert-time fields, cache-only certified CLV")
     for name, rows in (("Phase 1", alert_plays(A, pc, "P1")), ("R1", alert_plays(A, pc, "R1")),
-                       ("Board V3", board_plays(C, pc, lc))):
-        rows.sort(key=lambda r: r["day"])
+                       ("Board V3", board_plays(C, pc, lc, feed, drop))):
+        rows.sort(key=lambda r: r["ts"])
         cut = ADOPTED[name]
-        print(f"\n{name}: {rows[0]['day'] if rows else '-'} to {rows[-1]['day'] if rows else '-'}; rule adopted {cut}")
-        print(line("all graded", summ(rows)))
-        print(line("in sample (before)", summ([r for r in rows if r["day"] < cut])))
-        print(line("OUT OF SAMPLE", summ([r for r in rows if r["day"] >= cut])))
+        print(f"\n{name}: {rows[0]['day'] if rows else '-'} to {rows[-1]['day'] if rows else '-'}; selection rule {cut}")
+        print(line("RETRO all (what-if)", summ(rows)))
+        print(line("retro before rule", summ([r for r in rows if r["ts"] < cut])))
+        print(line("FORWARD since rule", summ([r for r in rows if r["ts"] >= cut])))
+        print(line("FORWARD since no-tol", summ([r for r in rows if r["ts"] >= NO_TOL])))
+        print(line("since routing Nov 17", summ([r for r in rows if r["ts"] >= ROUTE])))
         l50 = rows[-50:]
         h = len(l50) // 2
         print(line(f"last {len(l50)}", summ(l50)))
@@ -169,6 +197,8 @@ def main():
         if any(r["recon"] for r in rows):
             print(line("reconstructed calls", summ([r for r in rows if r["recon"]])))
             print(line("frozen calls", summ([r for r in rows if not r["recon"]])))
+        if name == "Board V3":
+            print("  excluded by persistence/source:", dict(drop))
         print("  by league:", {k: f"{s['w']}-{s['l']} {s['u']:+.2f}u" for k, s in
                                ((lg, summ([r for r in rows if r["lg"] == lg])) for lg in sorted({r["lg"] for r in rows}))})
     return 0
