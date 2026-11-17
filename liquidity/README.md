@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 16, 9:25 PM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 64.
+Updated Mon Nov 16, 9:30 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 63.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1602-1222 (-12.39u flat) | rule met: 966-741
+**Record:** 1603-1222 (-11.79u flat) | rule met: 966-741
 
-**Fade (paper, betting against the print):** 956-1329 (-239.98u flat, after fees)
+**Fade (paper, betting against the print):** 956-1330 (-240.98u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -63,7 +63,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 16 3:40AM | NHL | Montreal vs New York R | moneyline: Montreal | kalshi | $25k | -108 |  |  | +1.0c | yes | pending |
 | Nov 16 1:20AM | NBA | Portland vs Minnesota: Total Points | total: Over 228.5 points | kalshi | $56k | -108 |  |  | -3.0c | yes | pending |
 | Nov 15 11:00PM | NBA | Houston vs Miami: Spread | spread: NOT Houston wins by over 3.5 points | kalshi | $26k | -113 |  |  | +5.0c |  | pending |
-| Nov 15 10:45PM | NBA | Memphis vs Washington | moneyline: Memphis | kalshi | $82k | -163 |  |  | -2.0c |  | pending |
+| Nov 15 10:45PM | NBA | Memphis vs Washington | moneyline: Memphis | kalshi | $82k | -163 |  |  | -2.0c |  | W |
 | Nov 15 10:45PM | NBA | Houston vs Miami | moneyline: Houston | kalshi | $89k | -144 |  |  | -6.0c |  | pending |
 | Nov 15 10:30PM | NBA | Phoenix vs Denver | moneyline: Denver | kalshi | $79k | -376 |  |  | +0.0c |  | pending |
 | Nov 15 10:25PM | NBA | Houston vs Miami | moneyline: Miami | kalshi | $29k | +127 |  |  | +4.0c |  | pending |
