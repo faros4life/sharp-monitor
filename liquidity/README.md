@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 17, 2:35 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 20.
+Updated Tue Nov 17, 2:40 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 20.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,8 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 17 1:50AM | NHL | Washington vs Tampa Bay: Spread | spread: NOT Tampa Bay wins by over 1.5 goals | kalshi | $28k | -178 |  |  | +0.0c |  | pending |
-| Nov 17 1:20AM | NBA | Charlotte vs Los Angeles L: Total Points | total: Over 218.5 points | kalshi | $66k | -108 |  |  | +0.0c |  | pending |
+| Nov 17 1:50AM | NHL | Washington vs Tampa Bay: Spread | spread: NOT Tampa Bay wins by over 1.5 goals | kalshi | $28k | -178 |  |  | -1.0c |  | pending |
+| Nov 17 1:20AM | NBA | Charlotte vs Los Angeles L: Total Points | total: Over 218.5 points | kalshi | $66k | -108 |  |  | +1.0c |  | pending |
 | Nov 17 12:35AM | NBA | Detroit vs San Antonio: Spread | spread: San Antonio wins by over 9.5 points | kalshi | $43k | +104 |  |  | +1.0c |  | pending |
 | Nov 16 11:55PM | NHL | Buffalo vs Philadelphia: Spread | spread: NOT Buffalo wins by over 1.5 goals | kalshi | $38k | -233 |  |  | +0.0c |  | pending |
 | Nov 16 11:55PM | NBA | Portland vs Minnesota | moneyline: Minnesota | kalshi | $43k | -127 |  |  | -1.0c | yes | pending |
