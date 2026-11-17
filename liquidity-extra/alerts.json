@@ -1,6 +1,202 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-17T05:40:19Z",
+   "base_depth": 15164,
+   "best_price": 0.755,
+   "best_price_american": -308,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.76,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-17",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 6168,
+     "new_this_side": 52119,
+     "other_side": 7775,
+     "other_side_all_levels": 17950,
+     "ratio": 6.5,
+     "this_side": 50840,
+     "this_side_all_levels": 66695
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "STAN (0)",
+     "price": 0.755,
+     "this_side": 2916
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Stanford",
+     "price": 0.759,
+     "this_side": 622
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 941.54,
+    "volume_24h_fp": 455.58000000000004,
+    "volume_fp": 941.54
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 18.28,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 941.54,
+    "volume_24h_fp": 437.3,
+    "volume_fp": 941.54
+   },
+   "fade_price": 0.26,
+   "first_seen_utc": "2026-11-17T05:30:22Z",
+   "game": "UC Irvine vs Stanford",
+   "game_surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "game_x": 2.52,
+   "key": "kalshi|KXNCAAMBGAME-26NOV17UCISTAN|ml|1",
+   "lead_min": 1280,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 52119,
+   "new_x": 4.86,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 941.54,
+      "volume_24h_fp": 455.58000000000004,
+      "volume_fp": 941.54
+     },
+     "game_normal": 26470,
+     "game_x": 2.52,
+     "normal": 10723,
+     "now": 66695,
+     "type": "ML",
+     "x": 6.22
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 8751.0,
+      "volume": 8751.0
+     },
+     "game_normal": 1080,
+     "game_x": 2.94,
+     "normal": 1480,
+     "now": 3172,
+     "type": "ML",
+     "x": 2.14
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 495,
+     "game_x": 1.66,
+     "normal": 393,
+     "now": 819,
+     "type": "ML",
+     "x": 2.09
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.76,
+   "price_american": -317,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.76,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -325
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -325
+    },
+    "betrivers": {
+     "point": null,
+     "price": -375
+    },
+    "betus": {
+     "point": null,
+     "price": -325
+    },
+    "bovada": {
+     "point": null,
+     "price": -350
+    },
+    "draftkings": {
+     "point": null,
+     "price": -345
+    },
+    "fanatics": {
+     "point": null,
+     "price": -330
+    },
+    "fanduel": {
+     "point": null,
+     "price": -320
+    },
+    "kalshi": {
+     "point": null,
+     "price": -317
+    },
+    "lowvig": {
+     "point": null,
+     "price": -325
+    },
+    "novig": {
+     "point": null,
+     "price": -308
+    },
+    "polymarket": {
+     "point": null,
+     "price": -317
+    },
+    "prophetx": {
+     "point": null,
+     "price": -315
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV17UCISTAN-STAN"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Stanford",
+   "side_label": "Stanford",
+   "size_x": 6.22,
+   "start_source": "odds",
+   "start_utc": "2026-11-18T03:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "UC Irvine",
+    "Stanford"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-17T02:30:31Z",
    "base_depth": 44598,
    "best_price": 0.8494,
@@ -2167,7 +2363,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 7222.6,
-    "volume_24h_fp": 2480.84,
+    "volume_24h_fp": 3264.25,
     "volume_fp": 7624.34
    },
    "ex_stats_first": {
@@ -2498,9 +2694,9 @@
     "volume_fp": 115.13
    },
    "ex_stats_close": {
-    "open_interest_fp": 16818.9,
-    "volume_24h_fp": 14710.349999999999,
-    "volume_fp": 18788.85
+    "open_interest_fp": 16833.4,
+    "volume_24h_fp": 15768.29,
+    "volume_fp": 18803.35
    },
    "ex_stats_first": {
     "open_interest_fp": 5739.1900000000005,

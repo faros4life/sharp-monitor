@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 17, 12:30 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 8.
+Updated Tue Nov 17, 12:40 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 9.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 17 12:40AM | NCAAB | UC Irvine vs Stanford | moneyline: Stanford | kalshi | $52k | -317 |  |  | +0.0c |  | pending |
 | Nov 16 9:30PM | NCAAB | Sam Houston vs Wyoming | moneyline: Wyoming | kalshi | $49k | -525 |  |  | +2.0c | yes | pending |
 | Nov 16 7:10PM | NCAAB | Western Illinois vs Minnesota: Point Total | total: Over 136.5 points | kalshi | $33k | +104 |  | ❌ | +0.0c |  | W |
 | Nov 16 7:10PM | NCAAB | Central Arkansas vs Oklahoma St.: Point Total | total: NOT Over 162.5 points | kalshi | $33k | -104 | ✅ novig | ❌ | +0.0c |  | L |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 8 11:30AM | NCAAB | Quinnipiac @ Vermont | spread: Quinnipiac +8.5 (-8.5) | novig | $555k | -100 |  | ❌ | +2.0c | yes | W |
 | Nov 8 11:30AM | NCAAB | Arkansas @ Virginia | spread: UVA -3.5 (-3.5) | novig | $803k | -104 |  | ❌ | +0.5c | yes | L |
 | Nov 8 10:50AM | NCAAB | Rider vs Binghamton | moneyline: Binghamton | kalshi | $27k | -317 |  | ✅ | -4.0c | yes | W |
-| Nov 8 10:00AM | NCAAB | Arkansas vs Virginia | moneyline: Virginia | kalshi | $66k | -150 |  | ✅ | +3.0c | yes | W |
