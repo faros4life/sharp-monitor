@@ -491,6 +491,12 @@ def main():
     raw_clv = {k: r for k, r in cb.items()}
     cx = rs.clv_exceptions(rows, raw_clv, clv, set(stale))
     text += rs.render_exceptions(fx, cx)
+    # Nov 17 (Peter): missing-CLV TREND log - every settled bot bet since START_ET without certified CLV, recomputed
+    # each run from the durable CLV ledger, grouped by reason, lane and league. Counts only; flags a repeat.
+    _tr = rs.clv_trend(cx, lambda i: (rep.get("row_bucket") or {}).get(i, "?"))
+    text += "\n  MISSING-CLV TREND (reason | lane | league: n): " + "; ".join(f"{a} | {b} | {c}: {n}" for (a, b, c), n in sorted(_tr.items()))
+    print("missing-CLV trend (counts only): " + ("; ".join(f"{a} | {b} | {c}: {n}" for (a, b, c), n in sorted(_tr.items())) or "none")
+          + (" | RECURRING: " + ", ".join(sorted({a for (a, b, c), n in _tr.items() if n >= 3})) if any(n >= 3 for n in _tr.values()) else ""))
     # SECTION L (Peter, Nov 17, Project 3): live fill rate by lane and venue, with price gap and timing.
     try:
         _rbl = {}

@@ -465,6 +465,27 @@ def clv_exceptions(bot_rows, clv_rows, certified, stale_ids):
     return out
 
 
+def clv_reason_class(why):
+    """Coarse, stable reason class for the missing-CLV trend log (Nov 17)."""
+    w = str(why or "").lower()
+    for k, v in (("side was never recorded", "side not captured"), ("not a team", "side not captured"),
+                 ("fixture not in any cached store", "fixture not yet fetched"), ("no fixture", "fixture unmatched"),
+                 ("no oddspapi fixture matched", "fixture unmatched"), ("maps onto", "fixture unmatched"),
+                 ("fixture doubt", "fixture uncertain"), ("no pinnacle", "no same-line Pinnacle close"),
+                 ("freshness", "stale close"), ("history", "history unavailable"), ("stale", "excluded as stale"),
+                 ("not parsed", "bet text not parsed"), ("not covered", "league not covered"), ("never scored", "never scored")):
+        if k in w:
+            return v
+    return "other"
+
+
+def clv_trend(cx, lane_of):
+    """{(reason class, lane, league): n} over every settled bot bet since START_ET without certified CLV. Pure."""
+    from collections import Counter
+    return dict(Counter((clv_reason_class(e.get("why") or e.get("category")), lane_of(e.get("id")), e.get("league") or "?")
+                        for e in cx or []))
+
+
 def render_exceptions(fx, cx):
     L = ["", f"SECTION G - RECONCILIATION OF EXCEPTIONS (from {START_ET} ET)",
          f"  placed orders with no registry fill record: {len(fx)}"]

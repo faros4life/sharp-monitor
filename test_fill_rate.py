@@ -46,5 +46,11 @@ lg6, _s = rs.fill_rate(o6, {"f": {"play_key": "NBA|Orlando vs Boston: Total Poin
 check("venue-confirmed live position beats a stale PLACED fill record", lg6[0]["outcome"] == "FILLED")
 lg7, _s = rs.fill_rate(o6, {}, [], "2026-11-12", rows_by_lane={"BOARD V3": pos["BOARD V3"] * 2})
 check("two matching positions -> not guessed", lg7[0]["outcome"] == "UNKNOWN")
+cx = [{"id": "a", "why": "the bet text is '-15.50', not a team - the side was never recorded", "league": "NCAAF"},
+      {"id": "b", "why": "NCAAB fixture not in any cached store; waiting", "league": "NCAAB"},
+      {"id": "c", "why": "no fixture in any basketball competition", "league": "NCAAB"}]
+tr = rs.clv_trend(cx, lambda i: "EXACT:R1")
+check("trend groups by reason, lane, league", tr == {("side not captured", "EXACT:R1", "NCAAF"): 1, ("fixture not yet fetched", "EXACT:R1", "NCAAB"): 1,
+                                                    ("fixture unmatched", "EXACT:R1", "NCAAB"): 1})
 print("ALL PASS" if not BAD else f"{len(BAD)} FAILED")
 sys.exit(1 if BAD else 0)
