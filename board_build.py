@@ -239,6 +239,26 @@ def load_calls():
         return {}
 
 
+def backfill_results(C, alerts):
+    """Nov 17 (Peter, Project 3): grade every frozen call whose result has since arrived in the FULL alert feeds.
+    The board only re-reads TODAY's alerts, so a call whose game finished after midnight ET (late West Coast tips)
+    was never graded and silently left the paper record - 13 of 83 finished Bets Board PLAYs on Nov 17. Only an
+    exact key|alerted_utc match is used; nothing is inferred. Returns how many calls were graded."""
+    idx = {}
+    for x in alerts or []:
+        if isinstance(x, dict):
+            idx.setdefault(f"{x.get('key') or ''}|{x.get('alerted_utc') or ''}", x)
+    n = 0
+    for k, e in C.items():
+        if e.get("result") in ("W", "L", "P"):
+            continue
+        x = idx.get(k)
+        if x and x.get("result") in ("W", "L", "P"):
+            e["result"], e["units"] = x["result"], x.get("units_flat") or 0
+            n += 1
+    return n
+
+
 def freeze_calls(rows, now):
     """Record every row's call the first time the board sees it, and never change it again; results are filled in later.
     Nov 5 (Peter): a row's live call used to be recomputed every run, so money pulled AFTER a PLAY posted turned that
@@ -258,6 +278,7 @@ def freeze_calls(rows, now):
         if r["result"] in ("W", "L", "P"):   # grades arrive after the call; only the result may change
             e["result"], e["units"] = r["result"], r["units"]
         r["frozen"] = e["call"]
+    backfill_results(C, load())
     try:
         os.makedirs(os.path.dirname(CALLS), exist_ok=True)
         with open(CALLS, "w") as f:
