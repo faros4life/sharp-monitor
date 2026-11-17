@@ -1,18 +1,18 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 16, 10:06 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 12.
+Updated Mon Nov 16, 10:12 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 11.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 301-184 (-28.90u flat) | rule met: 51-48
+**Record:** 301-185 (-29.90u flat) | rule met: 51-49
 
-**Fade (paper, betting against the print):** 159-266 (+31.31u flat, after fees)
+**Fade (paper, betting against the print):** 160-266 (+32.24u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 16 9:30PM | NCAAB | Sam Houston vs Wyoming | moneyline: Wyoming | kalshi | $49k | -525 |  |  | +3.0c | yes | pending |
 | Nov 16 7:10PM | NCAAB | Western Illinois vs Minnesota: Point Total | total: Over 136.5 points | kalshi | $33k | +104 |  | ❌ | +0.0c |  | W |
-| Nov 16 7:10PM | NCAAB | Central Arkansas vs Oklahoma St.: Point Total | total: NOT Over 162.5 points | kalshi | $33k | -104 | ✅ novig | ❌ | +0.0c |  | pending |
+| Nov 16 7:10PM | NCAAB | Central Arkansas vs Oklahoma St.: Point Total | total: NOT Over 162.5 points | kalshi | $33k | -104 | ✅ novig | ❌ | +0.0c |  | L |
 | Nov 16 6:30PM | NCAAB | The Citadel vs Clemson: Point Total | total: Over 141.5 points | kalshi | $67k | -108 |  |  | +2.0c |  | L |
 | Nov 16 5:50PM | NCAAB | Western Illinois vs Minnesota: Point Total | total: NOT Over 136.5 points | kalshi | $28k | -104 |  | ✅ | +1.0c |  | L |
 | Nov 16 4:30PM | NCAAB | Montana vs Kansas St.: Point Total | total: NOT Over 153.5 points | kalshi | $37k | -100 |  | ✅ | +1.0c | yes | W |
