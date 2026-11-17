@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 17, 12:10 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 9.
+Updated Tue Nov 17, 12:20 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 8.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 303-185 (-28.46u flat) | rule met: 51-49
+**Record:** 303-186 (-29.46u flat) | rule met: 51-49
 
-**Fade (paper, betting against the print):** 160-268 (+30.24u flat, after fees)
+**Fade (paper, betting against the print):** 161-268 (+31.29u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -25,7 +25,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 16 2:00PM | NCAAB | Murray St. vs Hofstra | moneyline: Murray St. | kalshi | $41k | -488 |  |  | +4.0c |  | pending |
 | Nov 16 1:30PM | NCAAB | Abilene Christian vs Missouri St.: Point Total | total: NOT Over 139.5 points | kalshi | $28k | +113 |  | ✅ | +3.0c | yes | W |
 | Nov 16 1:10PM | NCAAB | Illinois vs Duke | moneyline: Duke | kalshi | $28k | -335 |  |  | +0.0c |  | pending |
-| Nov 16 10:00AM | NCAAB | Long Beach St. vs UCLA: Spread | spread: NOT UCLA wins by over 34.5 points | kalshi | $59k | -117 |  |  | +12.0c | yes | pending |
+| Nov 16 10:00AM | NCAAB | Long Beach St. vs UCLA: Spread | spread: NOT UCLA wins by over 34.5 points | kalshi | $59k | -117 |  |  | +12.0c | yes | L |
 | Nov 16 9:50AM | NCAAB | Iona vs UMBC | moneyline: Iona | kalshi | $61k | -138 |  |  | -1.0c |  | L |
 | Nov 15 10:20PM | NCAAB | Western Kentucky vs Tulsa | moneyline: Tulsa | kalshi | $29k | -300 |  |  | -4.0c |  | W |
 | Nov 15 10:20PM | NCAAB | Tarleton St. vs Drake | moneyline: Drake | kalshi | $34k | -488 |  |  | -3.0c |  | L |
