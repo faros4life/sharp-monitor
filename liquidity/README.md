@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 16, 7:50 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 58.
+Updated Mon Nov 16, 7:55 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 58.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -19,7 +19,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 16 6:20PM | NBA | Houston Rockets @ Miami Heat | moneyline: HOU (0) | novig | $41k | -125 | ✅ kalshi,prophetx | ✅ | -3.0c | yes | pending |
 | Nov 16 6:20PM | NBA | Orlando Magic @ Boston Celtics | moneyline: BOS (0) | novig | $39k | -335 | ✅ kalshi,prophetx | ❌ | -0.5c |  | pending |
 | Nov 16 6:05PM | NBA | Orlando Magic at Boston Celtics | moneyline: Boston Celtics | prophetx | $29k | -340 | ✅ kalshi,novig | ❌ | -0.5c | yes | pending |
-| Nov 16 5:35PM | NBA | Portland vs Minnesota: Spread | spread: NOT Minnesota wins by over 2.5 points | kalshi | $30k | -104 | ✅ novig |  | +1.0c | yes | pending |
+| Nov 16 5:35PM | NBA | Portland vs Minnesota: Spread | spread: NOT Minnesota wins by over 2.5 points | kalshi | $30k | -104 | ✅ novig |  | +2.0c | yes | pending |
 | Nov 16 4:40PM | NBA | Phoenix vs Denver: Total Points | total: NOT Over 230.5 points | kalshi | $34k | -100 |  | ❌ | +0.0c |  | pending |
 | Nov 16 4:35PM | NFL | Los Angeles C vs Baltimore: Total Points | total: Over 39.5 points | kalshi | $132k | -100 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 16 4:35PM | NBA | Houston vs Miami: Spread | spread: NOT Houston wins by over 1.5 points | kalshi | $39k | +108 | ✅ novig | ✅ | +2.0c | yes | pending |
@@ -53,7 +53,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 16 7:50AM | NHL | Montreal vs New York R | moneyline: New York R | kalshi | $31k | +104 |  |  | -1.0c |  | pending |
 | Nov 16 4:45AM | NHL | Vancouver vs Utah: Spread | spread: NOT Utah wins by over 1.5 goals | kalshi | $32k | +117 |  |  | +1.0c |  | pending |
 | Nov 16 4:10AM | NFL | Los Angeles C vs Baltimore: Total Points | total: Over 38.5 points | kalshi | $114k | -108 |  |  | +1.0c |  | pending |
-| Nov 16 4:05AM | NFL | Los Angeles C vs Baltimore: Spread | spread: NOT Baltimore wins by over 4.5 points | kalshi | $304k | -100 | ✅ novig |  | +0.0c |  | pending |
+| Nov 16 4:05AM | NFL | Los Angeles C vs Baltimore: Spread | spread: NOT Baltimore wins by over 4.5 points | kalshi | $304k | -100 | ✅ novig |  | +1.0c |  | pending |
 | Nov 16 3:40AM | NHL | Montreal vs New York R | moneyline: Montreal | kalshi | $25k | -108 |  |  | +1.0c | yes | pending |
 | Nov 16 1:20AM | NBA | Portland vs Minnesota: Total Points | total: Over 228.5 points | kalshi | $56k | -108 |  |  | -3.0c | yes | pending |
 | Nov 15 11:00PM | NBA | Houston vs Miami: Spread | spread: NOT Houston wins by over 3.5 points | kalshi | $26k | -113 |  |  | +5.0c |  | pending |
@@ -63,7 +63,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 15 10:25PM | NBA | Houston vs Miami | moneyline: Miami | kalshi | $29k | +127 |  |  | +4.0c |  | pending |
 | Nov 15 9:00PM | NBA | Chicago vs Cleveland | moneyline: Cleveland | kalshi | $103k | -355 |  |  | -4.0c |  | pending |
 | Nov 15 8:55PM | NBA | Orlando vs Boston | moneyline: Boston | kalshi | $109k | -426 |  |  | -4.0c | yes | pending |
-| Nov 15 8:50PM | NBA | Golden State vs New Orleans | moneyline: Golden State | kalshi | $98k | -127 |  |  | +4.0c |  | pending |
+| Nov 15 8:50PM | NBA | Golden State vs New Orleans | moneyline: Golden State | kalshi | $98k | -127 |  |  | +5.0c |  | pending |
 | Nov 15 8:45PM | NBA | Oklahoma City vs Sacramento: Total Points | total: NOT Over 221.5 points | kalshi | $59k | -104 | ✅ novig |  | +0.0c | yes | L |
 | Nov 15 8:35PM | NBA | Philadelphia vs Brooklyn | moneyline: Philadelphia | kalshi | $118k | -223 |  |  | -1.0c |  | pending |
 | Nov 15 8:15PM | NBA | Oklahoma City Thunder @ Sacramento Kings | moneyline: OKC (0) | novig | $55k | -525 | ✅ kalshi,prophetx |  | +0.5c |  | W |
