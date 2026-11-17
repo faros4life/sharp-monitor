@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 17, 3:07 PM ET. This run: 0 new, 0 not confirmed, 3 pending. Open alerts: 27.
+Updated Tue Nov 17, 3:13 PM ET. This run: 0 new, 0 not confirmed, 3 pending. Open alerts: 27.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 17 2:50PM | NCAAB | Florida vs Notre Dame: Spread | spread: NOT Florida wins by over 15.5 points | kalshi | $31k | -100 |  |  | +1.0c |  | pending |
+| Nov 17 2:50PM | NCAAB | Florida vs Notre Dame: Spread | spread: NOT Florida wins by over 15.5 points | kalshi | $31k | -100 |  |  | +2.0c |  | pending |
 | Nov 17 2:20PM | NCAAB | Arkansas vs Indiana: Point Total | total: NOT Over 153.5 points | kalshi | $26k | -104 |  | ✅ | +0.0c |  | pending |
 | Nov 17 1:20PM | NCAAB | Houston vs Rutgers: Spread | spread: NOT Houston wins by over 17.5 points | kalshi | $36k | -117 |  | ✅ | -1.0c |  | pending |
 | Nov 17 12:00PM | NCAAB | Illinois vs Duke: Point Total | total: Over 167.5 points | kalshi | $42k | -100 | ✅ novig | ✅ | +1.0c |  | pending |
