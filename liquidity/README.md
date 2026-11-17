@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 16, 11:15 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 28.
+Updated Mon Nov 16, 11:20 PM ET. This run: 2 new, 0 not confirmed, 0 pending. Open alerts: 30.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 16 11:20PM | NHL | Dallas vs Vegas: Spread | spread: NOT Vegas wins by over 1.5 goals | kalshi | $35k | -213 |  |  | +0.0c |  | pending |
+| Nov 16 11:20PM | NHL | Toronto vs Chicago | moneyline: Toronto | kalshi | $48k | -138 | ✅ novig |  | +0.0c |  | pending |
 | Nov 16 11:10PM | NHL | Anaheim vs St. Louis: Total Goals | total: Over 6.5 goals scored | kalshi | $26k | +108 |  |  | +0.0c |  | pending |
 | Nov 16 11:10PM | NHL | Calgary vs San Jose | moneyline: San Jose | kalshi | $42k | -122 |  |  | +0.0c |  | pending |
 | Nov 16 10:40PM | NHL | Columbus vs New York I | moneyline: New York I | kalshi | $49k | -133 |  |  | +0.0c |  | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 9:20PM | NHL | Calgary vs Los Angeles: Spread | spread: NOT Los Angeles wins by over 1.5 goals | kalshi | $29k | -170 | ✅ novig |  | +0.0c | yes | W |
 | Nov 14 9:05PM | NFL | Carolina vs New Orleans | moneyline: Carolina | kalshi | $265k | +117 | ✅ novig |  | +5.0c | yes | W |
 | Nov 14 9:00PM | NFL | Jacksonville vs Tennessee | moneyline: Jacksonville | kalshi | $255k | -525 | ✅ novig,prophetx |  | +0.0c | yes | W |
-| Nov 14 8:55PM | NFL | Miami vs Indianapolis | moneyline: Indianapolis | kalshi | $3,628k | -203 | ✅ novig,prophetx |  | +1.0c |  | W |
-| Nov 14 8:45PM | NCAAF | Utah St. vs San Diego St. | moneyline: San Diego St. | kalshi | $102k | +138 | ✅ prophetx |  | +0.0c | yes | W |
