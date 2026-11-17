@@ -1919,6 +1919,30 @@ TOL_BOOKS = tuple(x.strip() for x in (os.environ.get("EXEC_TOL_BOOKS", "") or "p
 VENUE_ORDER = ("novig", "prophetx", "kalshi", "polymarket_us")
 
 
+TRIGGER_BOOK = {"kalshi": "kalshi", "novig": "novig", "novig.us": "novig", "prophetx": "prophetx",
+                "polymarket_us": "polymarket_us", "polymarket.us": "polymarket_us", "polymarket us": "polymarket_us"}
+
+
+def trigger_first(r, ent):
+    """Nov 17 (Peter, all live lanes): the venue that TRIGGERED the alert gets the order first, at the alert price or
+    better (its price already includes fees); any unfilled balance goes to Novig next, then the remaining live venues
+    in their usual best-price order. If the triggering venue no longer offers the alert price or better it is not in
+    the list, so Novig goes first. Only venues already accepted at the alert number (or the approved tolerance) are
+    ever reordered - no price limit changes. A trigger that is not a live exchange keeps the best-price order."""
+    lcs = list(r.get("lcs") or [])
+    trig = TRIGGER_BOOK.get(str((ent or {}).get("book_key") or (ent or {}).get("book") or "").strip().lower())
+    if not lcs or not trig:
+        r["route"] = {"trigger": trig, "rule": "best price (trigger is not a live exchange)" if lcs else "no live venue"}
+        return
+    first = [c for c in lcs if c["book"] == trig]
+    nov = [c for c in lcs if c["book"] == "novig" and c["book"] != trig]
+    rest = [c for c in lcs if c not in first and c not in nov]
+    r["lcs"] = first + nov + rest
+    r["lc"] = r["lcs"][0]
+    r["route"] = {"trigger": trig, "rule": "trigger venue first" if first else "trigger venue off the alert price - Novig first",
+                  "order": [c["book"] for c in r["lcs"]]}
+
+
 def venue_rank(book):
     return VENUE_ORDER.index(book) if book in VENUE_ORDER else len(VENUE_ORDER)
 
@@ -4656,6 +4680,7 @@ def ledger_row(r, run_start):
             "alert_book": e.get("book_key"), "alert_price_after_fee": e.get("price_after_fee"), "alert_line": e.get("point"),
             "fill_book": r.get("book"), "fill_price_after_fee": r.get("american"), "fill_screen": r.get("shown"),
             "fill_line": r.get("take_line"),
+            "route": r.get("route"),   # Nov 17: trigger-venue-first routing actually applied (audit)
             # Nov 6 (Peter, $25-50k NBA forward paper test): depth at the chosen price and whether the unit fits. Logging only.
             "fill_avail": r.get("fillable"), "fill_partial": r.get("partial"), "live": bool(lv.get("go")), "live_nfl": bool(lv.get("nfl")), "live_why_not": lv.get("why"),
             "live_px_price_after_fee": lv.get("am"), "live_px_line": lv.get("line"), "live_book": lv.get("book"),
@@ -5344,6 +5369,7 @@ def main():
                 r["live"] = {"go": False, "lane": "lane2", "why": [f"Lane 2 is dry-run only (Peter Nov 4) - {p['rules']['reason']}"]}
             elif p.get("source") == "board":   # Lane 3: its own live decision (never the phase-1 filter), own record
                 r["entry"] = ent = p.get("board_entry") or {}
+                trigger_first(r, ent)
                 lk = derive_key(p) or p["play_key"]
                 why = [] if BOARD_LIVE else ["board lane not switched on (EXEC_BOARD_LIVE)"]
                 if lk in MANUAL_HELD:
@@ -5369,6 +5395,7 @@ def main():
                     r["live"] = {"go": False, "lane": "board", "why": why}
             elif p.get("source") == "r1":   # R1 lane: its own live decision (never the phase-1 filter), own $200 unit and daily limit
                 r["entry"] = ent = p.get("r1_entry") or {}
+                trigger_first(r, ent)
                 lk = derive_key(p) or p["play_key"]
                 why = [] if R1_LIVE else ["R1 lane not switched on (EXEC_R1_LIVE)"]
                 if lk in MANUAL_HELD:
@@ -5393,6 +5420,7 @@ def main():
                 else:
                     r["live"] = {"go": False, "lane": "r1", "why": why}
             elif ent and (p.get("source") != "rules" or RULES_LIVE):   # phase-1 live tag (Oct 30: coded AGREE goes live too)
+                trigger_first(r, ent)
                 ok, why = agree_rules.phase1(ent, True)   # totals unders NBA/NCAAF/NFL + NCAAF overs (Nov 3/Nov 4); spreads paper. See agree_rules.PHASE1
                 lk = derive_key(p) or p["play_key"]
                 if ok and lk in MUSE_DISAGREE:
