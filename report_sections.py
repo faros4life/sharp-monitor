@@ -266,6 +266,89 @@ def render_trace(out, extra, summ):
     return "\n".join(L)
 
 
+# ---------------------------------------------------------------- SECTION L: live fill rate (Nov 17, Project 3)
+def _am_to_p(a):
+    try:
+        a = float(a)
+    except (TypeError, ValueError):
+        return None
+    return 100 / (a + 100) if a > 0 else -a / (-a + 100)
+
+
+def fill_rate(orders, fills, fx, start_et=START_ET):
+    """PRIVATE ONLY. Every PLACED live order leg since start_et: lane, venue, outcome, price gap and timing.
+    Outcome from the registry fill record first (FILLED/PARTIAL -> FILLED; NO_FILL/EXPIRED/CANCELLED -> NOT FILLED;
+    PLACED/RESTING -> PENDING), else from Section G's venue evidence (fx), else UNKNOWN - never guessed.
+    Price gap = live after-fee implied probability minus the alert's after-fee implied probability, in cents
+    (positive = the live order asked for a WORSE price than the alert). Pure."""
+    d = lambda x: x if isinstance(x, dict) else {}
+    ev = {}
+    for e in fx or []:
+        for i in e.get("ids") or []:
+            ev[i] = e.get("category") or ""
+    legs = []
+    for o in orders or []:
+        day = o.get("et_day") or _et_day(o.get("decided_utc")) or ""
+        if day < start_et:
+            continue
+        key = str(o.get("key") or "")
+        lane = key.split("|", 1)[0] if key.split("|", 1)[0] in ("board", "r1", "rule", "rules") else (o.get("source") or "phase1")
+        lane = {"board": "BOARD V3", "r1": "R1", "rule": "PHASE 1", "rules": "PHASE 1"}.get(lane, "PHASE 1")
+        more = o.get("live_more")
+        for kind, lo in [("first", d(o.get("live_order"))), ("rest", d(o.get("live_rest")))] + \
+                [("balance", d(x)) for x in (more if isinstance(more, list) else [])]:
+            if lo.get("status") != "placed":
+                continue
+            ids = [str(lo.get(k)) for k in ("order_id", "client_id") if lo.get(k)]
+            st = next((d(fills.get(i)).get("state") for i in ids if i in (fills or {})), None)
+            if st in ("FILLED", "PARTIAL"):
+                outc = "FILLED"
+            elif st in ("NO_FILL", "EXPIRED", "CANCELLED", "CANCELED"):
+                outc = "NOT FILLED"
+            elif st in ("PLACED", "RESTING"):
+                outc = "PENDING"
+            else:
+                c = next((ev[i] for i in ids if i in ev), "")
+                outc = ("FILLED" if c.startswith(("FILLED", "VENUE SHOWS")) else
+                        "NOT FILLED" if c.startswith(("NO FILL", "UNFILLED")) else "UNKNOWN")
+            pa, pl = _am_to_p(o.get("alert_price_after_fee")), _am_to_p(o.get("live_px_price_after_fee"))
+            dec, st_u = _t(o.get("decided_utc")), _t(o.get("start_utc"))
+            legs.append({"day": day, "lane": lane, "kind": kind, "venue": str(lo.get("book") or o.get("live_book") or "?").lower(),
+                         "outcome": outc, "key": key,
+                         "gap_c": round(100 * (pl - pa), 1) if (pa is not None and pl is not None) else None,
+                         "latency_min": round(o["latency_s"] / 60) if isinstance(o.get("latency_s"), (int, float)) else None,
+                         "to_start_min": round((st_u - dec).total_seconds() / 60) if (dec and st_u) else None})
+    summ = {}
+    for g in legs:
+        x = summ.setdefault((g["lane"], g["venue"]), {"placed": 0, "FILLED": 0, "NOT FILLED": 0, "PENDING": 0, "UNKNOWN": 0})
+        x["placed"] += 1
+        x[g["outcome"]] += 1
+    return legs, summ
+
+
+def render_fill_rate(legs, summ):
+    import statistics as _st
+    med = lambda v: (round(_st.median(v), 1) if v else None)
+    L = ["", f"SECTION L - LIVE FILL RATE, every placed order leg from {START_ET} ET (private)",
+         "  outcome: registry fill record first, else venue evidence (Section G), else UNKNOWN. gap = live after-fee price "
+         "minus the alert's, in cents of probability (+ = worse than the alert)."]
+    for (lane, venue), x in sorted(summ.items()):
+        dec = x["FILLED"] + x["NOT FILLED"]
+        rate = f"{100 * x['FILLED'] / dec:.0f}%" if dec else "n/a"
+        L.append(f"   {lane:<9} {venue:<14} placed {x['placed']:>2} | filled {x['FILLED']} | not filled {x['NOT FILLED']} | "
+                 f"pending {x['PENDING']} | unknown {x['UNKNOWN']} | fill rate {rate}")
+    for outc in ("FILLED", "NOT FILLED"):
+        g = [l for l in legs if l["outcome"] == outc]
+        if g:
+            L.append(f"   {outc:<10} median gap {med([l['gap_c'] for l in g if l['gap_c'] is not None])}c | median alert->order "
+                     f"{med([l['latency_min'] for l in g if l['latency_min'] is not None])} min | median order->tip "
+                     f"{med([l['to_start_min'] for l in g if l['to_start_min'] is not None])} min")
+    for l in legs:
+        L.append(f"  {l['day']} | {l['lane']} | {l['venue']} | {l['kind']} | {l['outcome']} | gap {l['gap_c']}c | "
+                 f"alert->order {l['latency_min']} min | order->tip {l['to_start_min']} min | {l['key']}")
+    return "\n".join(L)
+
+
 def render_day(day, out_o, out_p, once):
     L = ["", f"SECTION E - BOT SELECTIONS FOR {day} (private; anything you bet that is not here was not a bot bet)",
          f"  exactly-once check: {'OK' if once.get('ok') else 'FAILED'} ({once.get('rows')} bot rows, "

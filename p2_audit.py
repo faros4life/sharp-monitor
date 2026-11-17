@@ -491,6 +491,15 @@ def main():
     raw_clv = {k: r for k, r in cb.items()}
     cx = rs.clv_exceptions(rows, raw_clv, clv, set(stale))
     text += rs.render_exceptions(fx, cx)
+    # SECTION L (Peter, Nov 17, Project 3): live fill rate by lane and venue, with price gap and timing.
+    try:
+        _legs, _fs = rs.fill_rate(rr, fills_all, fx)
+        text += rs.render_fill_rate(_legs, _fs)
+        print("section L fill rate (counts only): " + " | ".join(
+            f"{ln}/{vn} placed {x['placed']} filled {x['FILLED']} not {x['NOT FILLED']} pending {x['PENDING']} unknown {x['UNKNOWN']}"
+            for (ln, vn), x in sorted(_fs.items())))
+    except Exception as _e:
+        print(f"section L unavailable ({type(_e).__name__})")
     _rb = (rep.get("row_bucket") or {})
     for e_ in cx:   # league / ledger reason / attempts only - no game, side, id or amount
         print(f"  G missing close: lane {_rb.get(e_['id'], '?')} | league {e_['league']} | reason: {__import__('re').sub(chr(39) + '[^' + chr(39) + ']*' + chr(39), '...', e_['why'])} | "
