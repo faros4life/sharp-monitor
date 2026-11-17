@@ -111,6 +111,33 @@ def read_px_matching(order_ids, frm_ts, to_ts, max_pages=60):
         return set(), False, f"matching detail unreadable ({type(e).__name__})"
 
 
+def degraded_reason(novig_complete, novig_note):
+    """None when the scorecard may be delivered; else why it must be withheld. Pure. ProphetX is not gated: its read
+    is always flagged possibly-truncated and contributes no EXACT link, so it cannot silently change attribution."""
+    if novig_complete:
+        return None
+    return f"Novig venue read unavailable ({str(novig_note)[:60]})"
+
+
+def send_notice(text):
+    """One short PRIVATE Telegram message (no CSV). Same route as send_private. Returns True/False."""
+    import urllib.request
+    tok = (os.environ.get("TELEGRAM_BOT_TOKEN") or "").strip()
+    chat = (os.environ.get("TELEGRAM_CHAT_ID") or "").strip()
+    if not tok or not chat:
+        print("telegram not configured - notice NOT delivered")
+        return False
+    try:
+        req = urllib.request.Request(f"https://api.telegram.org/bot{tok}/sendMessage",
+                                     json.dumps({"chat_id": chat, "text": text}).encode(), {"Content-Type": "application/json"})
+        urllib.request.urlopen(req, timeout=30).read()
+    except Exception as e:
+        print(f"telegram notice failed ({type(e).__name__})")
+        return False
+    print("telegram notice delivered (scorecard withheld)")
+    return True
+
+
 def send_private(text, rows):
     """PRIVATE Telegram delivery - the route last50_report.send_telegram already uses (secrets TELEGRAM_BOT_TOKEN /
     TELEGRAM_CHAT_ID). The public log gets only 'delivered: N message(s) + CSV' or the exception TYPE. Returns True/False."""
@@ -437,6 +464,12 @@ def main():
           f"(fill by id {integ['fill_record_by_id']}, by play_key {integ['fill_record_by_play_key']}) without fill record {integ['placed_orders_without_fill_record']}, not-terminal fills "
           f"{integ['fill_records_not_terminal']}, settled missing CLV {integ['settled_missing_certified_clv']}, "
           f"not exact {integ['positions_without_exact_lane']}")
+    why_deg = degraded_reason(nok, nf)
+    if why_deg:
+        # Nov 17 (Peter): a degraded run must never replace a valid scorecard. Nothing is sent but a one-line notice.
+        print(f"SCORECARD WITHHELD: {why_deg}; rows needing the venue read are labelled UNATTRIBUTED(venue_read_unavailable)")
+        return 0 if send_notice(f"P2 audit: {why_deg}. Scorecard WITHHELD - the last valid report stands. "
+                                f"No record was lost; the next run with a working Novig read restores it.") else 1
     return 0 if send_private(text, csv_rows) else 1
 
 

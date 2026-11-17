@@ -121,6 +121,10 @@ def classify(rows, index, norm=_norm, links=None, ruled=None):
             st["link:" + ls] += 1
             if ls == "exact_link":
                 status, lane, key, via = "exact", ll, lk, "venue_link"
+            elif ls == "link_source_incomplete":
+                # Nov 17 (Peter): the venue read failed, so the link was not CHECKED - a different state from a row
+                # that has no order reference, with the opposite remedy. Never promoted; just named correctly.
+                status = "venue_read_unavailable"
         if status == "exact":
             reg_c = canon_lane(lane)
             seen = {canon_lane(r.get(f)) for f in ("lane", "lane_fuzzy")} - {None}
