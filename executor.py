@@ -4674,7 +4674,10 @@ def ledger_row(r, run_start):
     lv = r.get("live") or {}
     return {"key": derive_key(p) or p.get("play_key"), "source": p.get("source") or "muse", "verdict": r["verdict"],
             "reason": r.get("reason"), "alert_utc": e.get("alert_utc") or p.get("alert_utc"), "verdict_utc": p.get("verdict_utc"),
-            "run_start_utc": run_start.strftime("%Y-%m-%dT%H:%M:%SZ"), "start_utc": p.get("start_utc"),   # Nov 12: the game start, so a later audit can join settled results exactly "decided_utc": dec.strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "run_start_utc": run_start.strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "start_utc": p.get("start_utc"),   # Nov 12: the game start, so a later audit can join settled results exactly
+            # Nov 17: decided_utc used to sit INSIDE the comment above, so it was never written on any ledger row.
+            "decided_utc": dec.strftime("%Y-%m-%dT%H:%M:%SZ"),
             "latency_s": round((dec - at).total_seconds()) if at else None,
             "muse_delay_s": round((vt - at).total_seconds()) if (vt and at) else None,
             "alert_book": e.get("book_key"), "alert_price_after_fee": e.get("price_after_fee"), "alert_line": e.get("point"),
@@ -4990,9 +4993,16 @@ def journal_order(r, lo, is_rest=False, cid=None):
     oid, book = lo.get("order_id"), (lo.get("book") or "prophetx")
     try:
         p = r.get("play") or {}
+        _now = datetime.now(timezone.utc)
+        _e = r.get("entry") or {}
+        _at = iso_t(_e.get("alert_utc") or p.get("alert_utc"))
         row = {"key": p.get("play_key") or derive_key(p) or "",
                "source": p.get("source"), "journal": True,
-               "decided_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+               "decided_utc": _now.strftime("%Y-%m-%dT%H:%M:%SZ"),
+               # Nov 17 (Project 3 fill-rate audit): the three fields a journal-only order was missing. Logging only.
+               "start_utc": p.get("start_utc"),
+               "alert_price_after_fee": _e.get("price_after_fee"),
+               "latency_s": round((_now - _at).total_seconds()) if _at else None,
                ("live_rest" if is_rest else "live_order"): {
                    "status": "placed", "order_id": oid, "book": book,
                    "asked_stake": lo.get("asked_stake") if lo.get("asked_stake") is not None else lo.get("asked"),
