@@ -184,7 +184,7 @@ PROV_ALERT = "provisional: live feed read 5-30 min before start, line not verifi
 PROV_VENUE = "not Pinnacle: the alerting venue's own last pregame price"
 
 
-def liq_certified(rows, path="liquidity/clv_certified.json"):
+def liq_certified(rows, path="liquidity/clv_certified.json", field="aid", keep=False):
     """16 Nov: certified Pinnacle CLV from liq_clv_certify (cache-only, clv_obs_audit waterfall) onto LIQ rows.
     Applied ONLY to LIQ-SMALL and LIQ-BOT. A row without a certified entry keeps clv None; its venue close stays
     in pclv, labelled. Returns new row dicts; the inputs and their W-L/units are untouched."""
@@ -198,14 +198,22 @@ def liq_certified(rows, path="liquidity/clv_certified.json"):
         rej = {}
     out = []
     for r in rows:
-        c = cert.get(r.get("aid") or "")
-        o = dict(r, clv=c["clv_pct"]) if c and c.get("clv_pct") is not None else dict(r)
+        c = cert.get(r.get(field) or "")
+        fill = c and c.get("clv_pct") is not None and not (keep and r.get("clv") is not None)
+        o = dict(r, clv=c["clv_pct"]) if fill else dict(r)
         # CLV_STANDARD.md s7: a venue that cannot be bet from the US is outside the operational denominator.
         # ONLY that exact class; a missing close on an executable venue stays in as a genuine gap.
-        why = str(rej.get(r.get("aid") or "") or "")
+        why = str(rej.get(r.get(field) or "") or "")
         o["us_exec"] = not (why.startswith("VENUE_NOT_PRICEABLE") and "not tradeable from the US" in why)
         out.append(o)
     return out
+
+
+def paper_certified(rows, path="paper/clv_certified.json"):
+    """17 Nov: certified Pinnacle CLV from paper_clv_certify (cache-only, same waterfall) onto the other paper tests,
+    keyed by each row's "pid". Fills clv ONLY where the row has none; provisional values stay in pclv, labelled.
+    A missing close is never a zero. s7: Polymarket Global rows leave the operational denominator, nothing else."""
+    return liq_certified(rows, path, field="pid", keep=True)
 
 
 def sharp_rows():
@@ -221,6 +229,7 @@ def sharp_rows():
         rows.append({"ts": str(x.get("alert_utc") or ""), "game": x.get("game") or "", "am": am,
                      "res": x["result"], "clv": c if cert else None, "pclv": None if cert else c,
                      "pclv_src": PROV_ALERT, "sent": bool(x.get("sent_to_phone")),
+                     "pid": f"sharp|{x.get('alert_utc')}|{x.get('game')}|{x.get('bet')}|{x.get('book_key')}",
                      "lg": x.get("sport"), "kind": x.get("kind"), "bet": str(x.get("bet") or ""),
                      "key": (str(x.get("alert_utc") or "")[:10], g, str(x.get("kind")), str(x.get("bet") or ""))})
     return rows
@@ -238,6 +247,7 @@ def liq_rows():
         rows.append({"ts": str(x.get("alerted_utc") or ""), "game": x.get("game") or "", "am": am,
                      "res": x["result"], "clv": None, "pclv": c, "pclv_src": PROV_VENUE,
                      "aid": f"{x.get('key')}|{x.get('alerted_utc')}",
+                     "pid": f"liq|{x.get('key')}|{x.get('alerted_utc')}",
                      "lg": x.get("league"), "mk": x.get("market"),
                      "side": x.get("side"), "book": x.get("book"), "lead": x.get("lead_min"),
                      "nm": x.get("new_money"),
@@ -254,7 +264,7 @@ def lane_rows(name):
             continue
         am = am_from_prob(x.get("price"))
         rows.append({"ts": str(x.get("snapshot_utc") or x.get("detected_utc") or ""), "game": x.get("game") or "",
-                     "am": am, "res": x["result"], "clv": None,
+                     "am": am, "res": x["result"], "clv": None, "pid": f"lane:{name}|{k}",
                      "key": (str(x.get("start_utc") or "")[:10], frozenset(sc.toks(x.get("game"))),
                              x.get("market"), x.get("side") or x.get("pulled_side"))})
     return rows
@@ -304,6 +314,7 @@ def misprice_rows():
         cert = x.get("clv_verified") is True
         rows.append({"ts": str(x.get("alert_utc") or ""), "game": x.get("game") or "", "am": am, "res": x["result"],
                      "clv": c_ if cert else None, "pclv": None if cert else c_, "pclv_src": PROV_ALERT,
+                     "pid": f"sharp|{x.get('alert_utc')}|{x.get('game')}|{x.get('bet')}|{x.get('book_key')}",
                      "key": (str(x.get("alert_utc") or "")[:10], frozenset(sc.toks(x.get("game"))),
                              str(x.get("kind")), str(x.get("bet") or ""))})
     return rows
@@ -530,22 +541,22 @@ def main():
     S = sharp_rows()
     Q = liq_rows()
     paper = [
-        (6, "STEAM (reg 6) - sharp alerts, all graded", S, "the whole Steam alert feed; not any one lane"),
-        (None, "SHARP ALERTS - sent to phone", [r for r in S if r["sent"]], ""),
-        (None, "SHARP ALERTS - NBA unders", [r for r in S if r["lg"] == "NBA" and "under" in r["bet"].lower()],
+        (6, "STEAM (reg 6) - sharp alerts, all graded", paper_certified(S), "the whole Steam alert feed; not any one lane"),
+        (None, "SHARP ALERTS - sent to phone", paper_certified([r for r in S if r["sent"]]), ""),
+        (None, "SHARP ALERTS - NBA unders", paper_certified([r for r in S if r["lg"] == "NBA" and "under" in r["bet"].lower()]),
          "PROXY for Lane 1's market only, not Lane 1's fills"),
-        (None, "LIQ - NBA UNDER, Kalshi-triggered", [r for r in Q if r["lg"] == "NBA" and r["mk"] == "total"
-                                                     and r["side"] == "UNDER" and r["book"] == "kalshi"], "bettable venue only"),
+        (None, "LIQ - NBA UNDER, Kalshi-triggered", paper_certified([r for r in Q if r["lg"] == "NBA" and r["mk"] == "total"
+                                                     and r["side"] == "UNDER" and r["book"] == "kalshi"]), "bettable venue only"),
         (9, "LIQ-BOT (reg 9) - NBA totals, 4h+ lead", liq_certified([r for r in Q if r["lg"] == "NBA" and r["mk"] == "total"
                                                        and r["lead"] is not None and r["lead"] >= 240]), ""),
         (13, "LIQ-SMALL (reg 13) - NBA totals, $25-50k prints", liq_certified([r for r in Q if r["lg"] == "NBA" and r["mk"] == "total"
                                                                 and r["nm"] is not None and 25000 <= r["nm"] <= 50000]), ""),
-        (25, "PULL_FADE (reg 25)", lane_rows("pull_fade"), "price is the logged probability"),
-        (26, "SOLO (reg 26)", lane_rows("solo"), "price is the logged probability"),
+        (25, "PULL_FADE (reg 25)", paper_certified(lane_rows("pull_fade")), "price is the logged probability"),
+        (26, "SOLO (reg 26)", paper_certified(lane_rows("solo")), "price is the logged probability"),
         (7, "BETS BOARD PLAYS (reg 7)", liq_certified(board_rows()), "PLAY calls only; frozen call log; certified CLV = the source liquidity alert's"),
         (14, "BOARD v2 (reg 14)", liq_certified(board_rows("v2")), "v2 PLAY calls from the same frozen call log; certified CLV = the source liquidity alert's"),
-        (24, "ML_STAY (reg 24)", lane_rows("ml_stay"), "price is the logged probability"),
-        (18, "EXCHANGE MISPRICE (reg 18)", misprice_rows(), "SENT, exchange-priced, edge >= +2% vs Pinnacle fair, from 3 Nov"),
+        (24, "ML_STAY (reg 24)", paper_certified(lane_rows("ml_stay")), "price is the logged probability"),
+        (18, "EXCHANGE MISPRICE (reg 18)", paper_certified(misprice_rows()), "SENT, exchange-priced, edge >= +2% vs Pinnacle fair, from 3 Nov"),
     ]
     for reg_n, label, dog in ((11, "SLOW-HR (reg 11) - registered cell", False), (12, "DOG BAND (reg 12)", True)):
         rows = slowhr_rows(dog)

@@ -37,18 +37,18 @@ if src:
 
 S = r.sharp_rows(); Q = r.liq_rows()
 paper = [
-    ("Steam (sharp alerts, all)", S, "Whole Steam feed, not one lane; registry 6"),
-    ("Sharp alerts, sent to phone", [x for x in S if x["sent"]], ""),
-    ("Sharp alerts, NBA unders", [x for x in S if x["lg"] == "NBA" and "under" in x["bet"].lower()], "Stand-in for Lane 1's market, not its fills"),
-    ("Liquidity, NBA under (Kalshi)", [x for x in Q if x["lg"] == "NBA" and x["mk"] == "total" and x["side"] == "UNDER" and x["book"] == "kalshi"], "Bettable venue only"),
+    ("Steam (sharp alerts, all)", r.paper_certified(S), "Whole Steam feed, not one lane; registry 6"),
+    ("Sharp alerts, sent to phone", r.paper_certified([x for x in S if x["sent"]]), ""),
+    ("Sharp alerts, NBA unders", r.paper_certified([x for x in S if x["lg"] == "NBA" and "under" in x["bet"].lower()]), "Stand-in for Lane 1's market, not its fills"),
+    ("Liquidity, NBA under (Kalshi)", r.paper_certified([x for x in Q if x["lg"] == "NBA" and x["mk"] == "total" and x["side"] == "UNDER" and x["book"] == "kalshi"]), "Bettable venue only"),
     ("LIQ-BOT, NBA totals 4h+", r.liq_certified([x for x in Q if x["lg"] == "NBA" and x["mk"] == "total" and x["lead"] is not None and x["lead"] >= 240]), "Registry 9"),
     ("LIQ-SMALL, NBA totals $25-50k prints", r.liq_certified([x for x in Q if x["lg"] == "NBA" and x["mk"] == "total" and x["nm"] is not None and 25000 <= x["nm"] <= 50000]), "Registry 13"),
-    ("Pull-fade", r.lane_rows("pull_fade"), "Paper lane; registry 25"),
-    ("Solo", r.lane_rows("solo"), "Paper lane; registry 26"),
+    ("Pull-fade", r.paper_certified(r.lane_rows("pull_fade")), "Paper lane; registry 25"),
+    ("Solo", r.paper_certified(r.lane_rows("solo")), "Paper lane; registry 26"),
     ("Bets Board PLAY calls", r.liq_certified(r.board_rows()), "Frozen call log; registry 7; late games graded from the full feed (Nov 17); certified CLV from the source liquidity alert"),
     ("Board v2 PLAY calls", r.liq_certified(r.board_rows("v2")), "Same frozen call log, v2 rule; registry 14; same grading fix and CLV source"),
-    ("ML_STAY", r.lane_rows("ml_stay"), "Paper lane; registry 24"),
-    ("Exchange misprice", r.misprice_rows(), "Sent, exchange-priced, edge +2% or more vs Pinnacle, from Nov 3; registry 18"),
+    ("ML_STAY", r.paper_certified(r.lane_rows("ml_stay")), "Paper lane; registry 24"),
+    ("Exchange misprice", r.paper_certified(r.misprice_rows()), "Sent, exchange-priced, edge +2% or more vs Pinnacle, from Nov 3; registry 18"),
 ]
 for lab, dog in (("Slow-HR cell", False), ("Dog band", True)):
     rows = r.slowhr_rows(dog)
