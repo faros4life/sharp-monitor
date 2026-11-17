@@ -1720,8 +1720,19 @@ def main():
                 if rec["tries"] >= MAX_TRIES:
                     rec["done"] = True
             elif lg in CACHE_ONLY_FX:
-                rec["why"] = (f"{lg} fixture not in any cached store; waiting for the capped daily {lg} lookup "
-                              "(1 paid call per ET day) - retry not counted")
+                # Nov 17: this said "not in any cached store; waiting for the capped daily lookup" even AFTER that
+                # lookup had run and the game simply did not match - so a genuinely UNMATCHED row (Central Arkansas)
+                # was filed in the trend log as "fixture not yet fetched", which reads as "more data will fix it".
+                # day_listed answers which state we are in: a stored list already covering this game's day means the
+                # lookup happened, so the row is unmatched and the try counts toward done.
+                if day_listed(lg, tp(s.get("game_start")), st):   # THIS row's start; gs above belongs to another loop
+                    rec["tries"] = rec.get("tries", 0) + 1
+                    rec["why"] = f"no OddsPapi fixture matched ({lg} list for this date is already cached)"
+                    if rec["tries"] >= MAX_TRIES:
+                        rec["done"] = True
+                else:
+                    rec["why"] = (f"{lg} fixture not in any cached store; waiting for the capped daily {lg} lookup "
+                                  "(1 paid call per ET day) - retry not counted")
             else:
                 rec["why"] = "no fixture yet - no fresh lookup this run (6 h cooldown), retry not counted"
             continue
