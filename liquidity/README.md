@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 17, 12:20 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 62.
+Updated Tue Nov 17, 12:26 PM ET. This run: 0 new, 1 not confirmed, 1 pending. Open alerts: 62.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -29,7 +29,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 17 10:05AM | NCAAF | Ball St. vs Ohio: Total Points | total: NOT Over 49.5 points | kalshi | $25k | +104 | ✅ novig,prophetx |  | +0.0c | yes | pending |
 | Nov 17 9:55AM | NCAAF | Miami (OH) vs Kent St.: Spread | spread: NOT Miami (OH) wins by over 9.5 points | kalshi | $42k | -104 |  |  | +0.0c |  | pending |
 | Nov 17 9:40AM | NCAAF | Akron vs UMass | moneyline: UMass | kalshi | $156k | -150 |  |  | +1.0c |  | pending |
-| Nov 17 9:20AM | NBA | New York vs Toronto: Total Points | total: Over 214.5 points | kalshi | $26k | -108 |  | ❌ | -1.0c |  | pending |
+| Nov 17 9:20AM | NBA | New York vs Toronto: Total Points | total: Over 214.5 points | kalshi | $26k | -108 |  | ❌ | +0.0c | yes | pending |
 | Nov 17 9:16AM | NCAAF | Ball St. vs Ohio: Spread | spread: NOT Ohio wins by over 11.5 points | kalshi | $244k | -108 |  |  | +3.0c |  | pending |
 | Nov 17 9:16AM | NBA | Detroit vs San Antonio: Total Points | total: NOT Over 222.5 points | kalshi | $28k | -100 |  |  | +0.0c |  | pending |
 | Nov 17 8:46AM | NBA | Detroit Pistons @ San Antonio Spurs | moneyline: SAS (0) | novig | $25k | -376 | ✅ kalshi,prophetx |  | +0.0c | yes | pending |
@@ -68,7 +68,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 16 8:15PM | NHL | Nashville vs Minnesota | moneyline: Minnesota | kalshi | $61k | -178 |  |  | +2.0c | yes | pending |
 | Nov 16 8:10PM | NFL | Los Angeles Chargers at Baltimore Ravens | moneyline: Baltimore Ravens | prophetx | $146k | -205 | ✅ kalshi,novig |  | +0.0c |  | L |
 | Nov 16 8:10PM | NFL | Los Angeles C vs Baltimore: Total Points | total: NOT Over 39.5 points | kalshi | $189k | -104 | ✅ novig,prophetx |  | +0.0c | yes | L |
-| Nov 16 8:10PM | NBA | New York vs Toronto | moneyline: New York | kalshi | $87k | -144 |  |  | -2.0c |  | pending |
+| Nov 16 8:10PM | NBA | New York vs Toronto | moneyline: New York | kalshi | $87k | -144 |  |  | +2.0c |  | pending |
 | Nov 16 8:05PM | NBA | Detroit vs San Antonio | moneyline: San Antonio | kalshi | $82k | -317 |  |  | +4.0c |  | pending |
 | Nov 16 7:50PM | NBA | Golden State vs New Orleans: Total Points | total: Over 223.5 points | kalshi | $37k | -100 |  | ❌ | +0.0c | yes | L |
 | Nov 16 7:45PM | NBA | Charlotte vs Los Angeles L | moneyline: Los Angeles L | kalshi | $32k | -400 |  |  | -7.0c |  | pending |
