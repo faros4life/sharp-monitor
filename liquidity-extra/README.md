@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 17, 6:00 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 40.
+Updated Tue Nov 17, 6:10 PM ET. This run: 1 new, 1 not confirmed, 3 pending. Open alerts: 41.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 17 5:40PM | NCAAB | Jacksonville St. vs Louisiana Tech: Point Total | total: Over 128.5 points | kalshi | $31k | -133 |  | ❌ | +0.0c |  | pending |
+| Nov 17 6:10PM | NCAAB | Cal State Northridge vs Troy | moneyline: Troy | kalshi | $48k | -122 | ✅ novig | ❌ | +0.0c |  | pending |
+| Nov 17 5:40PM | NCAAB | Jacksonville St. vs Louisiana Tech: Point Total | total: Over 128.5 points | kalshi | $31k | -133 |  | ❌ | +0.0c | yes | pending |
 | Nov 17 5:40PM | NCAAB | Southern Illinois vs Liberty: Point Total | total: NOT Over 144.5 points | kalshi | $26k | -100 |  |  | +0.0c | yes | pending |
 | Nov 17 5:20PM | NCAAB | Saint Peter's vs UMass Lowell: Point Total | total: Over 128.5 points | kalshi | $52k | -113 |  |  | -2.0c |  | pending |
 | Nov 17 5:10PM | NCAAB | Illinois vs Duke: Point Total | total: NOT Over 167.5 points | kalshi | $47k | -104 |  | ❌ | +0.0c |  | pending |
@@ -29,7 +30,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 17 2:20PM | NCAAB | Arkansas vs Indiana: Point Total | total: NOT Over 153.5 points | kalshi | $26k | -104 |  | ✅ | +1.0c |  | pending |
 | Nov 17 1:20PM | NCAAB | Houston vs Rutgers: Spread | spread: NOT Houston wins by over 17.5 points | kalshi | $36k | -117 |  | ✅ | -1.0c |  | W |
 | Nov 17 12:00PM | NCAAB | Illinois vs Duke: Point Total | total: Over 167.5 points | kalshi | $42k | -100 | ✅ novig | ✅ | +0.0c |  | pending |
-| Nov 17 11:50AM | NCAAB | Villanova vs Pittsburgh | moneyline: Villanova | kalshi | $116k | -117 |  |  | +1.0c |  | pending |
+| Nov 17 11:50AM | NCAAB | Villanova vs Pittsburgh | moneyline: Villanova | kalshi | $116k | -117 |  |  | +1.0c | yes | pending |
 | Nov 17 11:30AM | NCAAB | Tennessee St. vs South Florida: Point Total | total: NOT Over 165.5 points | kalshi | $34k | -108 |  |  | +0.0c | yes | pending |
 | Nov 17 11:10AM | NCAAB | Arkansas vs Indiana | moneyline: Indiana | kalshi | $29k | +104 | ✅ novig | ✅ | +4.0c | yes | pending |
 | Nov 17 10:40AM | NCAAB | UT Arlington vs Southern Miss | moneyline: UT Arlington | kalshi | $26k | +127 |  |  | +1.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 11 2:22AM | NCAAB | Cornell vs St. Bonaventure | moneyline: St. Bonaventure | kalshi | $34k | -335 |  |  | -1.0c |  | W |
 | Nov 11 2:22AM | NCAAB | Campbell vs East Tennessee St. | moneyline: East Tennessee St. | kalshi | $25k | -203 |  | ❌ | -2.0c |  | W |
 | Nov 11 2:00AM | NCAAB | South Florida vs Saint Joseph's | moneyline: South Florida | kalshi | $50k | -285 |  |  | -1.0c |  | L |
-| Nov 11 2:00AM | NCAAB | Kansas City vs Florida A&M | moneyline: Kansas City | kalshi | $38k | -233 |  |  | +5.0c |  | W |
