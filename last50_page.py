@@ -45,8 +45,10 @@ paper = [
     ("LIQ-SMALL, NBA totals $25-50k prints", r.liq_certified([x for x in Q if x["lg"] == "NBA" and x["mk"] == "total" and x["nm"] is not None and 25000 <= x["nm"] <= 50000]), "Registry 13"),
     ("Pull-fade", r.paper_certified(r.lane_rows("pull_fade")), "Paper lane; registry 25"),
     ("Solo", r.paper_certified(r.lane_rows("solo")), "Paper lane; registry 26"),
-    ("Bets Board PLAY calls", r.liq_certified(r.board_rows()), "Frozen call log; registry 7; late games graded from the full feed (Nov 17); certified CLV from the source liquidity alert"),
-    ("Board v2 PLAY calls", r.liq_certified(r.board_rows("v2")), "Same frozen call log, v2 rule; registry 14; same grading fix and CLV source"),
+    ("Board V4 (LIVE since Nov 17)", r.board_v4_rows(), "Registry 7. PLAY calls a second book confirmed at alert time ($10k+, same game, side and line) - the live board rule since 12:40 PM ET Nov 17"),
+    ("Board V3 (shadow)", r.liq_certified(r.board_rows()), "Registry 7. Every PLAY call, confirmed or not - the rule that was live until Nov 17, kept as the shadow comparison"),
+    ("Board v2 (superseded Nov 6)", r.liq_certified(r.board_rows("v2")), "Registry 14. Kept for history; never a live rule"),
+    ("HR1 - manual Hard Rock CBB", r.hr1_rows(), "Non-Top-25 college basketball, Hard Rock-priced, -119 to -101 after fee, spreads and totals unders, 60+ min before tip. Peter places these by hand - not a bot lane"),
     ("ML_STAY", r.paper_certified(r.lane_rows("ml_stay")), "Paper lane; registry 24"),
     ("Exchange misprice", r.paper_certified(r.misprice_rows()), "Sent, exchange-priced, edge +2% or more vs Pinnacle, from Nov 3; registry 18"),
 ]

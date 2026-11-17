@@ -270,6 +270,39 @@ def lane_rows(name):
     return rows
 
 
+def hr1_rows():
+    """HR1 (Peter, 17 Nov): MANUAL Hard Rock college-basketball alerts, pushed to his phone so he places them himself.
+    agree_rules.hr1 is the one definition of the rule; first alert per game/market/side only, as pushed."""
+    import agree_rules as ar
+    rows, seen = [], set()
+    for x in sorted(load("alerts.json") or [], key=lambda a: str(a.get("alert_utc") or "")):
+        if not isinstance(x, dict) or x.get("result") not in ("W", "L", "P") or not ar.hr1(x)[0]:
+            continue
+        k = (str(x.get("start_utc"))[:10], frozenset(sc.toks(x.get("game"))), x.get("kind"), ar.side_of(x))
+        if k in seen:
+            continue
+        seen.add(k)
+        am = x.get("price_after_fee")
+        c = sc.std_clv(x.get("close_fair_prob"), am, x.get("book_key"))
+        cert = x.get("clv_verified") is True
+        rows.append({"ts": str(x.get("alert_utc") or ""), "game": x.get("game") or "", "am": am, "res": x["result"],
+                     "clv": c if cert else None, "pclv": None if cert else c, "pclv_src": PROV_ALERT,
+                     "pid": f"sharp|{x.get('alert_utc')}|{x.get('game')}|{x.get('bet')}|{x.get('book_key')}", "key": k})
+    return paper_certified(rows)
+
+
+def board_v4_rows(field="call"):
+    """Board V4 (live since 17 Nov 12:40 ET): the V3 call log filtered by executor.board_v4 - a second book confirmed
+    the same game, market, side and line at alert time. ONE definition of the gate: the executor's own function."""
+    try:
+        import board_build as bb
+        import executor as ex
+        feed = {f"{x.get('key')}|{x.get('alerted_utc')}": x for x in bb.load()}
+    except Exception:
+        return []
+    return [r for r in liq_certified(board_rows(field)) if ex.board_v4(feed.get(r.get("aid") or ""))[0]]
+
+
 def board_rows(field="call"):
     """field="call" = the live v3 call; field="v2" = the superseded v2 call, which keeps grading (reg 14)."""
     d = (load("board/calls.json") or {}).get("calls") or {}
@@ -553,8 +586,10 @@ def main():
                                                                 and r["nm"] is not None and 25000 <= r["nm"] <= 50000]), ""),
         (25, "PULL_FADE (reg 25)", paper_certified(lane_rows("pull_fade")), "price is the logged probability"),
         (26, "SOLO (reg 26)", paper_certified(lane_rows("solo")), "price is the logged probability"),
-        (7, "BETS BOARD PLAYS (reg 7)", liq_certified(board_rows()), "PLAY calls only; frozen call log; certified CLV = the source liquidity alert's"),
-        (14, "BOARD v2 (reg 14)", liq_certified(board_rows("v2")), "v2 PLAY calls from the same frozen call log; certified CLV = the source liquidity alert's"),
+        (7, "BOARD V4 (reg 7) - LIVE since 17 Nov", board_v4_rows(), "V3 PLAY calls that a second book confirmed at alert time ($10k, same line); the live board rule"),
+        (7, "BOARD V3 (reg 7) - shadow", liq_certified(board_rows()), "every PLAY call, confirmed or not; the pre-17-Nov live rule, now shadow only"),
+        (14, "BOARD v2 (reg 14) - superseded 6 Nov", liq_certified(board_rows("v2")), "v2 PLAY calls from the same frozen call log; kept for history, not a live rule"),
+        (None, "HR1 - MANUAL Hard Rock CBB", hr1_rows(), "non-Top-25 NCAAB, Hard Rock-priced, -119..-101, spreads + totals unders, 60+ min; Peter places these by hand"),
         (24, "ML_STAY (reg 24)", paper_certified(lane_rows("ml_stay")), "price is the logged probability"),
         (18, "EXCHANGE MISPRICE (reg 18)", paper_certified(misprice_rows()), "SENT, exchange-priced, edge >= +2% vs Pinnacle fair, from 3 Nov"),
     ]
