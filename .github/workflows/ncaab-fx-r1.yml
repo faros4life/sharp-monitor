@@ -1,7 +1,10 @@
 name: ncaab-fx-r1
 # Peter, 17 Nov 2026 ("Do paid calls"): ONE billable /fixtures call to recover the fixture lists for R1's uncovered
 # college-basketball games, then FREE Pinnacle history for the matched fixtures, then the cache-only re-certification.
-# Dispatch only. Writes the public fixture store and paper/clv_certified.json. clv/ is never written. Log: counts only.
+# Dispatch only. Writes the fixture store, paper/clv_certified.json and credits/gate.json - the gate record MUST
+# be committed because it is the record of the paid call. The first run (17 Nov) made its call, matched 13 of 17
+# games and cached their history, then failed this guard on credits/gate.json and lost the fixtures with it: the
+# guard had been copied from the cache-only certifier, which never bills. clv/ is never written. Log: counts only.
 on:
   workflow_dispatch: {}
 permissions:
@@ -48,19 +51,20 @@ jobs:
       - name: Commit the fixture store and the certified file
         if: always()
         run: |
-          git status --porcelain --untracked-files=all -- . ':!oddspapi/fixtures_ncaab.json' ':!paper/clv_certified.json' ':!hcache' > "$RUNNER_TEMP/d"
+          git status --porcelain --untracked-files=all -- . ':!oddspapi/fixtures_ncaab.json' ':!paper/clv_certified.json' ':!credits/gate.json' ':!hcache' > "$RUNNER_TEMP/d"
           if [ -s "$RUNNER_TEMP/d" ]; then echo "FAIL: unexpected changes"; cat "$RUNNER_TEMP/d"; exit 1; fi
           git config user.name "ncaab-fx-r1"; git config user.email "ncaab-fx-r1@users.noreply.github.com"
-          git add oddspapi/fixtures_ncaab.json paper/clv_certified.json
+          git add oddspapi/fixtures_ncaab.json paper/clv_certified.json credits/gate.json
           git diff --cached --quiet && { echo "no change"; exit 0; }
           git commit -q -m "NCAAB: R1 fixture recovery + certified Pinnacle CLV"
           for i in 1 2 3 4 5; do
             git push -q origin HEAD:main && { echo committed; exit 0; }
-            cp oddspapi/fixtures_ncaab.json "$RUNNER_TEMP/f.json"; cp paper/clv_certified.json "$RUNNER_TEMP/c.json"
+            cp oddspapi/fixtures_ncaab.json "$RUNNER_TEMP/f.json"; cp paper/clv_certified.json "$RUNNER_TEMP/c.json"; cp credits/gate.json "$RUNNER_TEMP/g.json"
             git fetch -q --depth=1 origin main && git reset -q --hard FETCH_HEAD || exit 1
-            mkdir -p oddspapi paper
+            mkdir -p oddspapi paper credits
             cp "$RUNNER_TEMP/f.json" oddspapi/fixtures_ncaab.json; cp "$RUNNER_TEMP/c.json" paper/clv_certified.json
-            git add oddspapi/fixtures_ncaab.json paper/clv_certified.json
+            cp "$RUNNER_TEMP/g.json" credits/gate.json
+            git add oddspapi/fixtures_ncaab.json paper/clv_certified.json credits/gate.json
             git commit -q -m "NCAAB: R1 fixture recovery + certified Pinnacle CLV"; sleep 3
           done
           echo "FAIL: push"; exit 1

@@ -47,8 +47,10 @@ def t_guards():
     assert s.count("cl.STATE") == 1 and "tb.dec(json.load(open(cl.STATE)))" in s   # ledger state is READ, never written
     wf = open(".github/workflows/ncaab-fx-r1.yml").read()
     assert "ODDSPAPI_KEY" in wf and "ODDSPAPI_FREE_KEY" in wf
-    assert "paper_clv_certify.py" in wf                                      # re-certify in the same run
+    assert "paper_clv_certify.py" in wf
     assert "oddspapi/fixtures_ncaab.json" in wf and "paper/clv_certified.json" in wf
+    assert wf.count("credits/gate.json") >= 3        # the paid-call record is committed, and the guard allows it
+    assert "':!credits/gate.json'" in wf
 
 
 for f in (t_targets, t_window_is_one_range, t_fixtures_from, t_guards):
