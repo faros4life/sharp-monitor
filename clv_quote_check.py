@@ -1,60 +1,83 @@
 #!/usr/bin/env python3
-"""READ-ONLY check of the stalest certified NCAAB close (Peter, Nov 16 19:09). FREE history path only.
+"""READ-ONLY Pinnacle ACTIVE-FLAG audit of certified live bot closes (Peter, Nov 17). FREE history path only.
 
-For the reopened NCAAB bot row with the oldest certified quote, reports - minutes and flags only,
-never a price - whether the bet's own Pinnacle line was still ACTIVE at its last pregame tick, and
-how fresh Pinnacle's other total lines (including the main line) were at the start. Writes nothing.
+For every bot row from Nov 12 ET with a CERTIFIED close (report_sections.clv_method == 'certified'), the close is
+recomputed twice with the ledger's own close_for: as stored (every last pregame tick), and with a withdrawn line
+treated as absent (a line whose last pregame tick is active=False). Same result -> the close did not depend on a
+withdrawn line. Different -> AFFECTED. Also flags closes older than 60 min (stale-feed warning).
+Counts only in the log; no prices, ids or amounts. Writes nothing; the ledger is never changed.
 """
+import collections
 import json
 import sys
 
 import clv_ledger as cl
+import fixture_match as fxm
 import hist_cache as hc
+import report_sections as rs
 import tracker_build as tb
+
+START = "2026-11-12"
+STALE_MIN = 60
+
+
+_LAST_TICK = cl.last_tick   # the ledger's own reader, captured before any substitution
+
+
+def active_only(ticks, before):
+    lt = _LAST_TICK(ticks, before)
+    return None if (lt and lt[1].get("active") is False) else lt
 
 
 def main():
     st = tb.dec(json.load(open(cl.STATE)))
     mk = (json.load(open(cl.MKFILE)) or {}).get("m") or {}
-    rows = [r for r in st["bets"].values() if r.get("ncaab_reopened") and r.get("clv") is not None]
-    print(f"certified reopened NCAAB rows: {len(rows)}")
-    if not rows:
-        return 1
-    r = max(rows, key=lambda x: x.get("age_min") or 0)
-    s, fid = r["snap"], r.get("fixture")
-    fx = json.load(open("oddspapi/fixtures_ncaab.json"))["fixtures"].get(fid) or {}
-    start = cl.tp(fx.get("start"))
-    pz = cl.parsed(s)
-    print(f"row: market {pz[0]} | how {r.get('how')} | stored quote age {r.get('age_min')} min | fixture found {bool(fx)}")
-    h = hc.get_hist(fid, ["pinnacle"], start)
-    if isinstance(h, dict) and h.get("_error"):
-        h = cl.api("/historical-odds", False, fixtureId=fid, bookmakers="pinnacle")
-    pm = cl.book_markets(h, "pinnacle")
-    lines = []
-    for mid, (sid, typ, hcap, outs) in mk.items():
-        if sid != 11 or typ != "totals" or mid not in pm:
+    fxs = dict({k: f for k, (f, _s) in fxm.alt_fixtures().items()}, **(st.get("fixtures") or {}))
+    rows = []
+    for k, r in (st.get("bets") or {}).items():
+        s = r.get("snap") or {}
+        gs = cl.tp(s.get("game_start"))
+        if (s.get("source") == "bot" and gs and gs.astimezone(cl.ET).strftime("%Y-%m-%d") >= START
+                and r.get("clv") is not None and not r.get("fixture_doubt") and rs.clv_method(r) == "certified"):
+            rows.append((k, r))
+    print(f"certified bot closes from {START} ET (rows): {len(rows)}")
+    C = collections.Counter()
+    orig_lt = cl.last_tick
+    for k, r in rows:
+        s, fid = r["snap"], r.get("fixture")
+        f = fxs.get(fid)
+        if not f:
+            C["unverifiable: fixture not in any store"] += 1
             continue
-        info = {"own": abs(hcap - pz[2]) < 1e-9, "diff": round(hcap - pz[2], 1)}
-        for oid, o in (pm[mid].get("outcomes") or {}).items():
-            ticks = (o.get("players") or {}).get("0") or []
-            pre = [t for t in ticks if cl.tp(t.get("createdAt")) and cl.tp(t["createdAt"]) <= start]
-            post = [t for t in ticks if cl.tp(t.get("createdAt")) and cl.tp(t["createdAt"]) > start]
-            if not pre:
-                continue
-            last = max(pre, key=lambda t: cl.tp(t["createdAt"]))
-            age = round((start - cl.tp(last["createdAt"])).total_seconds() / 60)
-            info.setdefault("ages", []).append(age)
-            info.setdefault("active", []).append(last.get("active"))
-            info.setdefault("limit", []).append(last.get("limit"))
-            info["any_inactive_pre"] = info.get("any_inactive_pre", False) or any(t.get("active") is False for t in pre)
-            info["post_ticks"] = info.get("post_ticks", 0) + len(post)
-        if info.get("ages"):
-            lines.append(info)
-    main_ = max(lines, key=lambda x: min(x.get("limit") or [0])) if lines else None
-    for x in sorted(lines, key=lambda x: x["diff"]):
-        tag = "OWN " if x["own"] else ("MAIN" if x is main_ else "    ")
-        print(f"{tag} line diff {x['diff']:+.1f} | last pregame tick ages (min) {x['ages']} | active flag at last tick {x['active']} "
-              f"| any inactive tick pregame {x['any_inactive_pre']} | limit rank {'top' if x is main_ else '-'} | ticks after start {x['post_ticks']}")
+        start = cl.tp(f.get("start")) or cl.tp(s.get("game_start"))
+        h = hc.get_hist(fid, ["pinnacle"], start)
+        if isinstance(h, dict) and h.get("_error"):
+            h = cl.api("/historical-odds", False, fixtureId=fid, bookmakers="pinnacle")
+        if isinstance(h, dict) and h.get("_error"):
+            C["unverifiable: history unavailable"] += 1
+            continue
+        pm = cl.book_markets(h, "pinnacle")
+        lg = s.get("league")
+        a, _ = cl.close_for(s, f, pm, mk, start, lg)
+        cl.last_tick = active_only
+        try:
+            b, why_b = cl.close_for(s, f, pm, mk, start, lg)
+        finally:
+            cl.last_tick = orig_lt
+        if not a:
+            C["unverifiable: stored close not reproduced"] += 1
+            continue
+        if b and abs(b["p"] - a["p"]) < 1e-12 and b["how"] == a["how"]:
+            C["OK: same close using active lines only"] += 1
+        elif b:
+            C[f"AFFECTED: close changes without withdrawn lines ({b['how'][:4]})"] += 1
+        else:
+            C["AFFECTED: no close without withdrawn lines"] += 1
+        if (a.get("age_min") or 0) > STALE_MIN:
+            C[f"stale-feed warning: close older than {STALE_MIN} min"] += 1
+        C[f"league {lg}"] += 1
+    for kk in sorted(C):
+        print(f"  {kk}: {C[kk]}")
     return 0
 
 
