@@ -1,6 +1,357 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-17T00:10:33Z",
+   "base_depth": 49791,
+   "best_price": 0.4952,
+   "best_price_american": 102,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.49,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-16",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -15391,
+     "new_this_side": 32614,
+     "other_side": 49464,
+     "other_side_all_levels": 76058,
+     "ratio": 0.6,
+     "this_side": 27390,
+     "this_side_all_levels": 78066
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 7331.09,
+    "volume_24h_fp": 7313.18,
+    "volume_fp": 7507.48
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 9.3,
+    "volume_24h_fp": 12.3,
+    "volume_fp": 9.3
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 7321.79,
+    "volume_24h_fp": 7300.88,
+    "volume_fp": 7498.18
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-11-17T00:00:26Z",
+   "game": "Western Illinois vs Minnesota: Point Total",
+   "game_surge_books": [],
+   "game_x": 1.24,
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAMBTOTAL-26NOV16WIUMINN-137\"}",
+   "lead_min": 49,
+   "league": "NCAAB",
+   "line": 136.5,
+   "market": "total",
+   "new_money": 32614,
+   "new_x": 1.0,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 7331.09,
+      "volume_24h_fp": 7313.18,
+      "volume_fp": 7507.48
+     },
+     "game_normal": 62896,
+     "game_x": 1.24,
+     "normal": 32656,
+     "now": 78066,
+     "type": "OVER",
+     "x": 2.39
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.49,
+   "price_american": 104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.49,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 135.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": 136.0,
+     "price": -105
+    },
+    "betrivers": {
+     "point": 136.5,
+     "price": -109
+    },
+    "betus": {
+     "point": 136.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 135.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 135.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": 135.5,
+     "price": -115
+    },
+    "fanduel": {
+     "point": 135.5,
+     "price": -115
+    },
+    "kalshi": {
+     "point": 136.5,
+     "price": 104
+    },
+    "lowvig": {
+     "point": 136.0,
+     "price": -103
+    },
+    "novig": {
+     "point": 135.5,
+     "price": -104
+    },
+    "polymarket": {
+     "point": 135.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 135.5,
+     "price": -107
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBTOTAL-26NOV16WIUMINN-137"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Under 137.5 (-115)"
+   ],
+   "side": "OVER",
+   "side_label": "Over 136.5 points",
+   "size_x": 2.39,
+   "start_source": "odds",
+   "start_utc": "2026-11-17T01:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Western Illinois",
+    "Minnesota"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-17T00:10:33Z",
+   "base_depth": 42533,
+   "best_price": 0.505,
+   "best_price_american": -102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-16",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -5790,
+     "new_this_side": 33299,
+     "other_side": 39736,
+     "other_side_all_levels": 73250,
+     "ratio": 0.8,
+     "this_side": 30563,
+     "this_side_all_levels": 85955
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 162.5 (162.5)",
+     "price": 0.505,
+     "this_side": 14119
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 7043.71,
+    "volume_24h_fp": 8069.09,
+    "volume_fp": 8185.45
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 106.89,
+    "volume_24h_fp": 77.29,
+    "volume_fp": 116.36
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 6936.82,
+    "volume_24h_fp": 7991.8,
+    "volume_fp": 8069.09
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-17T00:00:26Z",
+   "game": "Central Arkansas vs Oklahoma St.: Point Total",
+   "game_surge_books": [
+    "novig"
+   ],
+   "game_x": 1.57,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAMBTOTAL-26NOV16CARKOKST-163\"}",
+   "lead_min": 49,
+   "league": "NCAAB",
+   "line": 162.5,
+   "market": "total",
+   "new_money": 33299,
+   "new_x": 1.46,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 7043.71,
+      "volume_24h_fp": 8069.09,
+      "volume_fp": 8185.45
+     },
+     "game_normal": 54693,
+     "game_x": 1.57,
+     "normal": 22863,
+     "now": 85955,
+     "type": "UNDER",
+     "x": 3.76
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 1724439.0,
+      "volume": 1893029.0
+     },
+     "game_normal": 5844,
+     "game_x": 2.46,
+     "normal": 1615,
+     "now": 14387,
+     "type": "UNDER",
+     "x": 8.91
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 162.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 162.0,
+     "price": -108
+    },
+    "betopenly": {
+     "point": 162.0,
+     "price": 105
+    },
+    "betrivers": {
+     "point": 162.5,
+     "price": -112
+    },
+    "betus": {
+     "point": 162.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 162.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 162.5,
+     "price": -108
+    },
+    "fanatics": {
+     "point": 162.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 162.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 162.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 162.0,
+     "price": -106
+    },
+    "novig": {
+     "point": 162.5,
+     "price": -102
+    },
+    "polymarket": {
+     "point": 162.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 162.5,
+     "price": -102
+    },
+    "williamhill_us": {
+     "point": 162.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAMBTOTAL-26NOV16CARKOKST-163"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Over 161.5 (-115)"
+   ],
+   "side": "UNDER",
+   "side_label": "NOT Over 162.5 points",
+   "size_x": 3.76,
+   "start_source": "odds",
+   "start_utc": "2026-11-17T01:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "Central Arkansas",
+    "Oklahoma St."
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-16T23:30:24Z",
    "base_depth": 79035,
    "best_price": 0.5355,
@@ -210,9 +561,9 @@
     "volume_fp": 19.32
    },
    "ex_stats_close": {
-    "open_interest_fp": 7321.79,
-    "volume_24h_fp": 7300.88,
-    "volume_fp": 7498.18
+    "open_interest_fp": 7331.09,
+    "volume_24h_fp": 7313.18,
+    "volume_fp": 7507.48
    },
    "ex_stats_first": {
     "open_interest_fp": 2908.52,
@@ -356,8 +707,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.51,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-16",
    "depth_by_book": {
@@ -394,9 +745,9 @@
     "volume_fp": 9.66
    },
    "ex_stats_close": {
-    "open_interest_fp": 1518.69,
+    "open_interest_fp": 10902.35,
     "volume_24h_fp": 1537.64,
-    "volume_fp": 1537.64
+    "volume_fp": 10921.3
    },
    "ex_stats_first": {
     "open_interest_fp": 693.83,
@@ -597,7 +948,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 45523.5,
-    "volume_24h_fp": 46957.8,
+    "volume_24h_fp": 46990.22,
     "volume_fp": 46990.22
    },
    "ex_stats_first": {
@@ -1143,9 +1494,9 @@
     "volume_fp": 2.74
    },
    "ex_stats_close": {
-    "open_interest_fp": 52758.1,
-    "volume_24h_fp": 54901.39,
-    "volume_fp": 55364.39
+    "open_interest_fp": 52874.36,
+    "volume_24h_fp": 55364.39,
+    "volume_fp": 55574.91
    },
    "ex_stats_first": {
     "open_interest_fp": 18864.88,
@@ -1628,9 +1979,9 @@
     "volume_fp": 103.19
    },
    "ex_stats_close": {
-    "open_interest_fp": 5242.14,
-    "volume_24h_fp": 1124.8600000000001,
-    "volume_fp": 5311.14
+    "open_interest_fp": 5244.44,
+    "volume_24h_fp": 1119.31,
+    "volume_fp": 5313.44
    },
    "ex_stats_first": {
     "open_interest_fp": 4979.67,
@@ -1773,7 +2124,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 20929.48,
-    "volume_24h_fp": 20680.99,
+    "volume_24h_fp": 21276.28,
     "volume_fp": 21276.28
    },
    "ex_stats_first": {
@@ -1957,9 +2308,9 @@
     "volume_fp": 115.13
    },
    "ex_stats_close": {
-    "open_interest_fp": 11142.83,
-    "volume_24h_fp": 10365.349999999999,
-    "volume_fp": 11381.22
+    "open_interest_fp": 11175.02,
+    "volume_24h_fp": 10371.349999999999,
+    "volume_fp": 11413.41
    },
    "ex_stats_first": {
     "open_interest_fp": 5739.1900000000005,
@@ -2656,9 +3007,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 13370.98,
-    "volume_24h_fp": 13438.720000000001,
-    "volume_fp": 14399.91
+    "open_interest_fp": 13450.380000000001,
+    "volume_24h_fp": 13930.79,
+    "volume_fp": 14479.31
    },
    "ex_stats_first": {
     "open_interest_fp": 600.8599999999999,
@@ -3028,9 +3379,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 9284.65,
-    "volume_24h_fp": 9969.83,
-    "volume_fp": 10157.32
+    "open_interest_fp": 9401.369999999999,
+    "volume_24h_fp": 10068.880000000001,
+    "volume_fp": 10309.990000000002
    },
    "ex_stats_first": {
     "open_interest_fp": 114.28,

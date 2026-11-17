@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 16, 7:00 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 22.
+Updated Mon Nov 16, 7:10 PM ET. This run: 2 new, 0 not confirmed, 0 pending. Open alerts: 24.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,9 +10,11 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 16 7:10PM | NCAAB | Western Illinois vs Minnesota: Point Total | total: Over 136.5 points | kalshi | $33k | +104 |  | ❌ | +0.0c |  | pending |
+| Nov 16 7:10PM | NCAAB | Central Arkansas vs Oklahoma St.: Point Total | total: NOT Over 162.5 points | kalshi | $33k | -104 | ✅ novig | ❌ | +0.0c |  | pending |
 | Nov 16 6:30PM | NCAAB | The Citadel vs Clemson: Point Total | total: Over 141.5 points | kalshi | $67k | -108 |  |  | +2.0c |  | pending |
 | Nov 16 5:50PM | NCAAB | Western Illinois vs Minnesota: Point Total | total: NOT Over 136.5 points | kalshi | $28k | -104 |  | ✅ | +1.0c |  | pending |
-| Nov 16 4:30PM | NCAAB | Montana vs Kansas St.: Point Total | total: NOT Over 153.5 points | kalshi | $37k | -100 |  | ✅ | +0.0c | yes | pending |
+| Nov 16 4:30PM | NCAAB | Montana vs Kansas St.: Point Total | total: NOT Over 153.5 points | kalshi | $37k | -100 |  | ✅ | +1.0c | yes | pending |
 | Nov 16 4:30PM | NCAAB | Tarleton St. vs Drake: Spread | spread: NOT Drake wins by over 10.5 points | kalshi | $32k | -133 |  |  | +3.0c |  | pending |
 | Nov 16 4:30PM | NCAAB | Richmond vs Virginia Tech: Spread | spread: NOT Virginia Tech wins by over 13.5 points | kalshi | $52k | -113 |  |  | +1.0c |  | pending |
 | Nov 16 4:20PM | NCAAB | Richmond vs Virginia Tech: Point Total | total: NOT Over 152.5 points | kalshi | $45k | -104 |  | ✅ | +4.0c |  | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 8 10:50AM | NCAAB | Rider vs Binghamton | moneyline: Binghamton | kalshi | $27k | -317 |  | ✅ | -4.0c | yes | W |
 | Nov 8 10:00AM | NCAAB | Arkansas vs Virginia | moneyline: Virginia | kalshi | $66k | -150 |  | ✅ | +3.0c | yes | W |
 | Nov 8 9:30AM | NCAAB | Norfolk St. vs William & Mary | moneyline: William & Mary | kalshi | $25k | -456 |  |  | +1.0c |  | W |
-| Nov 8 9:20AM | NCAAB | Quinnipiac vs Vermont | moneyline: Vermont | kalshi | $36k | -317 |  |  | +2.0c |  | L |
-| Nov 8 9:20AM | NCAAB | Central Connecticut St. vs Dartmouth | moneyline: Dartmouth | kalshi | $39k | -233 |  |  | +8.0c |  | L |
