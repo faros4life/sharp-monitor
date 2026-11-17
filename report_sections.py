@@ -282,6 +282,7 @@ def fill_rate(orders, fills, fx, start_et=START_ET):
     Price gap = live after-fee implied probability minus the alert's after-fee implied probability, in cents
     (positive = the live order asked for a WORSE price than the alert). Pure."""
     d = lambda x: x if isinstance(x, dict) else {}
+    pk = {str(f.get("play_key")): f for f in (fills or {}).values() if isinstance(f, dict) and f.get("play_key")}
     ev = {}
     for e in fx or []:
         for i in e.get("ids") or []:
@@ -301,6 +302,10 @@ def fill_rate(orders, fills, fx, start_et=START_ET):
                 continue
             ids = [str(lo.get(k)) for k in ("order_id", "client_id") if lo.get(k)]
             st = next((d(fills.get(i)).get("state") for i in ids if i in (fills or {})), None)
+            if st is None and kind == "first":
+                # the venue runner writes the fill under the play key (lane prefix optional) - same join as integrity()
+                f_ = pk.get(key) or pk.get(key.split("|", 1)[-1])
+                st = d(f_).get("state") if f_ else None
             if st in ("FILLED", "PARTIAL"):
                 outc = "FILLED"
             elif st in ("NO_FILL", "EXPIRED", "CANCELLED", "CANCELED"):

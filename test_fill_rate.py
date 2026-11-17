@@ -37,5 +37,8 @@ l1 = next(l for l in legs if l["kind"] == "first" and l["outcome"] == "FILLED")
 check("price gap in cents of probability, + = worse than the alert", l1["gap_c"] is not None and l1["gap_c"] > 0)
 check("timing in minutes", l1["latency_min"] == 20 and l1["to_start_min"] == 540)
 check("no currency sign", "$" not in rs.render_fill_rate(legs, summ))
+o5 = [{"key": "board|NBA|P vs Q: Total Points|total|OVER", "et_day": "2026-11-15", "live_order": {"status": "placed", "client_id": "c9", "book": "novig"}}]
+lg5, sm5 = rs.fill_rate(o5, {"f1": {"play_key": "NBA|P vs Q: Total Points|total|OVER", "state": "FILLED"}}, [], "2026-11-12")
+check("Novig fill found by play key (lane prefix optional)", lg5[0]["outcome"] == "FILLED")
 print("ALL PASS" if not BAD else f"{len(BAD)} FAILED")
 sys.exit(1 if BAD else 0)
