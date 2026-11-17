@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 17, 6:30 PM ET. This run: 1 new, 0 not confirmed, 2 pending. Open alerts: 43.
+Updated Tue Nov 17, 6:40 PM ET. This run: 1 new, 1 not confirmed, 1 pending. Open alerts: 44.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 17 6:40PM | NCAAB | Eastern Illinois vs Vanderbilt: Spread | spread: NOT Vanderbilt wins by over 41.5 points | kalshi | $29k | -113 |  | ✅ | +0.0c |  | pending |
 | Nov 17 6:30PM | NCAAB | Bowling Green vs William & Mary: Point Total | total: Over 168.5 points | kalshi | $29k | -113 |  | ❌ | +0.0c |  | pending |
 | Nov 17 6:20PM | NCAAB | Wagner vs Saint Joseph's: Point Total | total: Over 137.5 points | kalshi | $28k | +104 |  |  | +0.0c |  | pending |
 | Nov 17 6:10PM | NCAAB | Cal State Northridge vs Troy | moneyline: Troy | kalshi | $48k | -122 | ✅ novig | ❌ | +0.0c |  | pending |
@@ -20,7 +21,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 17 4:50PM | NCAAB | Nicholls St. vs Ole Miss: Point Total | total: NOT Over 143.5 points | kalshi | $51k | -117 |  |  | +0.0c | yes | pending |
 | Nov 17 4:20PM | NCAAB | Western Carolina vs Butler: Point Total | total: Over 157.5 points | kalshi | $35k | -127 |  | ❌ | -2.0c |  | pending |
 | Nov 17 4:10PM | NCAAB | Michigan St. vs Tennessee: Point Total | total: NOT Over 149.5 points | kalshi | $29k | -100 |  | ✅ | +0.0c |  | pending |
-| Nov 17 4:10PM | NCAAB | Illinois vs Duke: Spread | spread: NOT Duke wins by over 8.5 points | kalshi | $25k | -104 |  |  | +0.0c | yes | pending |
+| Nov 17 4:10PM | NCAAB | Illinois vs Duke: Spread | spread: NOT Duke wins by over 8.5 points | kalshi | $25k | -104 |  |  | -2.0c | yes | pending |
 | Nov 17 4:10PM | NCAAB | Jacksonville St. vs Louisiana Tech | moneyline: Louisiana Tech | kalshi | $38k | -127 |  |  | -1.0c |  | pending |
 | Nov 17 3:50PM | NCAAB | Middle Tennessee vs Georgia Southern: Point Total | total: Over 154.5 points | kalshi | $25k | -108 |  | ✅ | +0.0c |  | pending |
 | Nov 17 3:40PM | NCAAB | Akron vs Bucknell: Point Total | total: Over 147.5 points | kalshi | $29k | +113 |  |  | +0.0c | yes | pending |
@@ -62,7 +63,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 16 2:20PM | NCAAB | Eastern Kentucky vs Kent St.: Spread | spread: NOT Kent St. wins by over 10.5 points | kalshi | $46k | -113 |  |  | +4.0c |  | W |
 | Nov 16 2:00PM | NCAAB | Murray St. vs Hofstra | moneyline: Murray St. | kalshi | $41k | -488 |  |  | +2.0c |  | W |
 | Nov 16 1:30PM | NCAAB | Abilene Christian vs Missouri St.: Point Total | total: NOT Over 139.5 points | kalshi | $28k | +113 |  | ✅ | +3.0c | yes | W |
-| Nov 16 1:10PM | NCAAB | Illinois vs Duke | moneyline: Duke | kalshi | $28k | -335 |  |  | +1.0c |  | pending |
+| Nov 16 1:10PM | NCAAB | Illinois vs Duke | moneyline: Duke | kalshi | $28k | -335 |  |  | +2.0c |  | pending |
 | Nov 16 10:00AM | NCAAB | Long Beach St. vs UCLA: Spread | spread: NOT UCLA wins by over 34.5 points | kalshi | $59k | -117 |  |  | +12.0c | yes | L |
 | Nov 16 9:50AM | NCAAB | Iona vs UMBC | moneyline: Iona | kalshi | $61k | -138 |  |  | -1.0c |  | L |
 | Nov 15 10:20PM | NCAAB | Western Kentucky vs Tulsa | moneyline: Tulsa | kalshi | $29k | -300 |  |  | -4.0c |  | W |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 11 2:22AM | NCAAB | Marquette vs Michigan | moneyline: Michigan | kalshi | $29k | -163 |  |  | -2.0c |  | W |
 | Nov 11 2:22AM | NCAAB | Kent St. vs UNC Wilmington | moneyline: UNC Wilmington | kalshi | $31k | -270 |  |  | -2.0c |  | W |
 | Nov 11 2:22AM | NCAAB | Jackson St. vs Southern Miss | moneyline: Southern Miss | kalshi | $27k | -456 |  |  | -18.0c |  | W |
-| Nov 11 2:22AM | NCAAB | Cornell vs St. Bonaventure | moneyline: St. Bonaventure | kalshi | $34k | -335 |  |  | -1.0c |  | W |
