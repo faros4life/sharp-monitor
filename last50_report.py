@@ -263,12 +263,17 @@ def lane_rows(name):
 def board_rows(field="call"):
     """field="call" = the live v3 call; field="v2" = the superseded v2 call, which keeps grading (reg 14)."""
     d = (load("board/calls.json") or {}).get("calls") or {}
+    try:   # Nov 17: grade late-finishing calls from the full feeds (same fix the board build now applies)
+        import board_build as _bb
+        _bb.backfill_results(d, _bb.load())
+    except Exception:
+        pass
     rows = []
     for k, x in d.items():
         if x.get(field) != "PLAY" or x.get("result") not in ("W", "L", "P"):
             continue
         rows.append({"ts": str(x.get("at") or ""), "game": x.get("game") or "", "am": x.get("price"),
-                     "res": x["result"], "clv": None,
+                     "res": x["result"], "clv": None, "aid": k,   # aid = the source liquidity alert id (key|alerted_utc)
                      "key": (x.get("day"), frozenset(sc.toks(x.get("game"))), x.get("mk"), x.get("side"))})
     return rows
 
@@ -537,8 +542,8 @@ def main():
                                                                 and r["nm"] is not None and 25000 <= r["nm"] <= 50000]), ""),
         (25, "PULL_FADE (reg 25)", lane_rows("pull_fade"), "price is the logged probability"),
         (26, "SOLO (reg 26)", lane_rows("solo"), "price is the logged probability"),
-        (7, "BETS BOARD PLAYS (reg 7)", board_rows(), "PLAY calls only; frozen call log"),
-        (14, "BOARD v2 (reg 14)", board_rows("v2"), "v2 PLAY calls from the same frozen call log"),
+        (7, "BETS BOARD PLAYS (reg 7)", liq_certified(board_rows()), "PLAY calls only; frozen call log; certified CLV = the source liquidity alert's"),
+        (14, "BOARD v2 (reg 14)", liq_certified(board_rows("v2")), "v2 PLAY calls from the same frozen call log; certified CLV = the source liquidity alert's"),
         (24, "ML_STAY (reg 24)", lane_rows("ml_stay"), "price is the logged probability"),
         (18, "EXCHANGE MISPRICE (reg 18)", misprice_rows(), "SENT, exchange-priced, edge >= +2% vs Pinnacle fair, from 3 Nov"),
     ]
