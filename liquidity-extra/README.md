@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 17, 1:30 AM ET. This run: 2 new, 0 not confirmed, 2 pending. Open alerts: 11.
+Updated Tue Nov 17, 1:40 AM ET. This run: 2 new, 0 not confirmed, 0 pending. Open alerts: 13.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 17 1:40AM | NCAAB | Seattle vs California Baptist | moneyline: Seattle | kalshi | $29k | -355 |  |  | +0.0c |  | pending |
+| Nov 17 1:40AM | NCAAB | Le Moyne vs Evansville | moneyline: Evansville | kalshi | $26k | -257 |  |  | +0.0c |  | pending |
 | Nov 17 1:30AM | NCAAB | Florida International vs UAB | moneyline: UAB | kalshi | $39k | -170 |  |  | +0.0c |  | pending |
 | Nov 17 1:30AM | NCAAB | Central Michigan vs Dayton | moneyline: Dayton | kalshi | $36k | -567 |  |  | +0.0c |  | pending |
 | Nov 17 12:40AM | NCAAB | UC Irvine vs Stanford | moneyline: Stanford | kalshi | $52k | -317 |  |  | -1.0c |  | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 8 1:40PM | TENNIS | Thiago Agustin Tirante vs Jaume Munar | moneyline: Thiago Agustin Tirante | kalshi | $228k | -233 |  |  | +4.0c | yes | W |
 | Nov 8 12:50PM | TENNIS | Thiago Agustin Tirante vs Jaume Munar | moneyline: Jaume Munar | kalshi | $127k | -213 |  |  | -41.0c | yes | L |
 | Nov 8 11:30AM | NCAAB | Quinnipiac @ Vermont | moneyline: UVM (0) | novig | $63k | -355 |  | ❌ | -1.0c | yes | W |
-| Nov 8 11:30AM | NCAAB | Central Connecticut @ Dartmouth | moneyline: DART (0) | novig | $171k | -335 | ✅ kalshi |  | +1.5c | yes | L |
-| Nov 8 11:30AM | NCAAB | Quinnipiac @ Vermont | spread: Quinnipiac +8.5 (-8.5) | novig | $555k | -100 |  | ❌ | +2.0c | yes | W |
