@@ -503,6 +503,15 @@ def main():
         print("section L fill rate (counts only): " + " | ".join(
             f"{ln}/{vn} placed {x['placed']} filled {x['FILLED']} not {x['NOT FILLED']} pending {x['PENDING']} unknown {x['UNKNOWN']}"
             for (ln, vn), x in sorted(_fs.items())))
+        import statistics as _stl
+        for _o in ("FILLED", "NOT FILLED"):
+            for _ln in sorted({l["lane"] for l in _legs}):
+                _g = [l for l in _legs if l["outcome"] == _o and l["lane"] == _ln]
+                _m = lambda k: (round(_stl.median([l[k] for l in _g if l[k] is not None]), 1)
+                                if any(l[k] is not None for l in _g) else None)
+                if _g:
+                    print(f"section L {_ln} {_o}: n {len(_g)} | median gap {_m('gap_c')}c | median alert->order {_m('latency_min')} min"
+                          f" | median order->tip {_m('to_start_min')} min")
     except Exception as _e:
         print(f"section L unavailable ({type(_e).__name__})")
     _rb = (rep.get("row_bucket") or {})
