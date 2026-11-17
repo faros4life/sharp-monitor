@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 17, 3:40 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 32.
+Updated Tue Nov 17, 3:50 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 33.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 17 3:40PM | NCAAB | Akron vs Bucknell: Point Total | total: Over 147.5 points | kalshi | $29k | +113 |  |  | +0.0c |  | pending |
+| Nov 17 3:50PM | NCAAB | Middle Tennessee vs Georgia Southern: Point Total | total: Over 154.5 points | kalshi | $25k | -108 |  | ✅ | +0.0c |  | pending |
+| Nov 17 3:40PM | NCAAB | Akron vs Bucknell: Point Total | total: Over 147.5 points | kalshi | $29k | +113 |  |  | +0.0c | yes | pending |
 | Nov 17 3:30PM | NCAAB | UT Arlington vs Southern Miss: Spread | spread: NOT Southern Miss wins by over 1.5 points | kalshi | $38k | +104 |  |  | +0.0c |  | pending |
 | Nov 17 3:21PM | NCAAB | Charlotte vs Davidson: Spread | spread: NOT Davidson wins by over 3.5 points | kalshi | $26k | -108 |  |  | +0.0c |  | pending |
 | Nov 17 3:21PM | NCAAB | Mississippi St. vs UCF | moneyline: UCF | kalshi | $38k | -100 | ✅ novig |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 10 6:29PM | NCAAB | Evansville vs Middle Tennessee | moneyline: Middle Tennessee | kalshi | $29k | -400 | ✅ novig | ✅ | +1.0c | yes | W |
 | Nov 10 6:08PM | NCAAB | Winthrop vs Kennesaw St. | moneyline: Kennesaw St. | kalshi | $37k | -525 |  | ✅ | -2.0c | yes | W |
 | Nov 10 5:47PM | NCAAB | Florida vs Florida St.: Point Total | total: Over 164.5 points | kalshi | $85k | -104 |  | ✅ | +0.0c |  | L |
-| Nov 10 2:52PM | NCAAB | Nicholls St. vs Tulane | moneyline: Tulane | kalshi | $34k | -400 |  | ✅ | +0.0c |  | W |
