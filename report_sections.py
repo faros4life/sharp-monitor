@@ -481,6 +481,17 @@ def grade_rows(since_rows, row_bucket, certified, clv_rows, stale_ids, unit_sche
     return out
 
 
+def position_counts(grades, settled_plays, cert, est):
+    """Section J headline counts by POSITION (a settled play may be several fill rows). A position is fully graded,
+    certified or estimated only when EVERY one of its fill rows is. Pure."""
+    g = {x["id"]: x for x in grades}
+    def every(p, ok):
+        return bool(p.get("ids")) and all(ok(i) for i in p["ids"])
+    return {"fully_graded": sum(every(p, lambda i: (g.get(i) or {}).get("fully_graded")) for p in settled_plays),
+            "certified_clv_positions": sum(every(p, lambda i: cert.get(i) is not None) for p in settled_plays),
+            "estimated_clv_positions": sum(every(p, lambda i: est.get(i) is not None) for p in settled_plays)}
+
+
 def grade_summary(rows):
     settled = [g for g in rows if g["result"] != "OPEN"]
     return {"positions": len(rows), "settled": len(settled), "open": len(rows) - len(settled),
@@ -497,7 +508,8 @@ def render_grades(rows, summ):
     f = lambda x, s="": "n/a" if x is None else f"{x:+.2f}{s}"
     L = ["", f"SECTION J - EVERY BOT POSITION FROM {START_ET} ET, GRADED (private)",
          f"  positions {summ['positions']} | settled {summ['settled']} | open {summ['open']}"
-         f"{' (' + str(summ['open_fill_rows']) + ' open fill rows)' if 'open_fill_rows' in summ else ''} | FULLY GRADED {summ['fully_graded']} "
+         f"{' (' + str(summ['open_fill_rows']) + ' open fill rows)' if 'open_fill_rows' in summ else ''} | FULLY GRADED {summ['fully_graded']} positions"
+         f"{' (' + str(summ['fully_graded_fill_rows']) + ' fill rows)' if 'fully_graded_fill_rows' in summ else ''} "
          f"| missing: settlement {summ['missing_settlement']}, P/L {summ['missing_pl']}, units {summ['missing_units']}, "
          f"certified CLV {summ['missing_certified_clv']}, lane {summ['missing_lane']}, per-play trigger tag {summ['missing_trigger_tag']}",
          "  Strategy qualification and rankings: INSUFFICIENT EVIDENCE until grading is complete."]

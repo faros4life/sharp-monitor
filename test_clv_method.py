@@ -46,5 +46,16 @@ g = rs.grade_rows([{"id": "c", "result": "L", "stake": 100.0, "profit": -100.0, 
 check("a line-move-adjusted bet is graded ESTIMATED, not certified", g["clv"] is None and g["clv_status"].startswith("ESTIMATED only"))
 check("and it is not fully graded", g["fully_graded"] is False)
 
+# Section J by POSITION (Nov 17): a 2-row position counts once, and only when every row qualifies
+grs = [{"id": "x1", "fully_graded": True}, {"id": "x2", "fully_graded": True}, {"id": "y1", "fully_graded": True},
+       {"id": "z1", "fully_graded": False}]
+pls = [{"ids": ["x1", "x2"]}, {"ids": ["y1"]}, {"ids": ["z1"]}]
+pc = rs.position_counts(grs, pls, {"x1": .01, "x2": .02, "y1": .0}, {"z1": .03})
+check("fully graded counts positions, not fill rows", pc["fully_graded"] == 2)
+check("certified positions need every row certified", pc["certified_clv_positions"] == 2)
+check("estimated positions counted apart", pc["estimated_clv_positions"] == 1)
+pc2 = rs.position_counts([{"id": "x1", "fully_graded": True}, {"id": "x2", "fully_graded": False}], [{"ids": ["x1", "x2"]}], {"x1": .01}, {})
+check("one ungraded row makes the whole position incomplete", pc2["fully_graded"] == 0 and pc2["certified_clv_positions"] == 0)
+
 print("ALL PASS" if not BAD else f"{len(BAD)} FAILED")
 sys.exit(1 if BAD else 0)

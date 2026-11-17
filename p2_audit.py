@@ -374,13 +374,14 @@ def main():
     _settled_plays = sum(v["all"]["settled"] for v in (rep_f.get("buckets") or {}).values())
     # Nov 17: every Section J headline count is by POSITION (play); fill-row counts are kept beside them, labelled.
     _sp = [p for v in (rep_f.get("buckets") or {}).values() for p in (v.get("_settled_timed") or [])]
-    _cert_p = sum(1 for p in _sp if p.get("ids") and all(clv.get(i) is not None for i in p["ids"]))
-    _est_p = sum(1 for p in _sp if p.get("ids") and all(clv_est.get(i) is not None for i in p["ids"]))
-    gsum = dict(gsum, settled_fill_rows=gsum["settled"], open_fill_rows=gsum["open"],
+    _pc = rs.position_counts(grades, _sp, clv, clv_est)
+    gsum = dict(gsum, fully_graded_fill_rows=gsum["fully_graded"], fully_graded=_pc["fully_graded"],
+                settled_fill_rows=gsum["settled"], open_fill_rows=gsum["open"],
                 missing_certified_clv_fill_rows=gsum["missing_certified_clv"],
                 settled=_settled_plays, open=_open_plays, positions=_settled_plays + _open_plays,
-                certified_clv_positions=_cert_p, estimated_clv_positions=_est_p,
-                missing_certified_clv=_settled_plays - _cert_p,
+                certified_clv_positions=_pc["certified_clv_positions"],
+                estimated_clv_positions=_pc["estimated_clv_positions"],
+                missing_certified_clv=_settled_plays - _pc["certified_clv_positions"],
                 settled_rows_equal_plays=(gsum["settled"] == _settled_plays))
     text += rs.render_grades(grades, gsum)
     print("section J coverage:", gsum, "| exactly-once:", (rep_f.get("exactly_once") or {}).get("ok"))
