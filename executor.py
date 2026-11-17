@@ -745,6 +745,48 @@ def board_v4(x):
     return False, "second book failed verification (" + "; ".join(bad)[:120] + ")", None
 
 
+# ---------------------------------------------------------------- Board after-fee floor (Peter, 17 Nov, Option 1)
+# A board alert's price is the TRIGGER VENUE'S RAW SCREEN PRICE, but board_plays has always handed it to the
+# executor in a field called price_after_fee. The executor then demands the alert number or better AFTER fees, so a
+# Kalshi-triggered call at a raw -104 required -104 after fees - a standard Kalshi itself cannot meet, because its
+# own fee turns that same 51c cost into -112. Novig gives up nothing and ProphetX two cents, which is why those two
+# took every fill. The error made the bot STRICTER than intended, never looser, so it cost plays rather than money.
+#
+# BOARD_FEE_BASIS converts the alert to the trigger venue's TRUE after-fee equivalent, so every venue is compared on
+# the same basis. OFF by default: it can admit orders the old floor refused, and Peter approves that before it runs.
+# The zero-tolerance rule is unchanged - it is applied to the corrected number instead of the mislabelled one.
+BOARD_FEE_BASIS = (os.environ.get("EXEC_BOARD_FEE_BASIS") or "off").strip().lower() == "on"
+
+
+def board_after_fee_floor(x):
+    """(floor_american, detail) for a board alert: its RAW cost re-priced at the TRIGGER venue's own fee, which is
+    what every candidate venue is already measured on. Returns (None, why) when it cannot be computed, and the
+    caller then keeps the raw number - fail closed to the stricter floor, never to a looser one.
+
+    No double counting: the input is x["price"], the venue's raw 0-1 COST, never a number a fee has touched.
+    board_build.after_fee_dec is the one fee model, the same one the board's own pages price with."""
+    try:
+        import board_build as bb
+        cost, book = x.get("price"), str(x.get("book") or "").strip().lower()
+        if cost is None or not book:
+            return None, "no cost or book on the alert"
+        # Fail closed on a venue with no fee branch. after_fee_dec returns the ZERO-FEE price for a name it does
+        # not know, which would quietly become a floor as loose as the raw number for an unknown book - the same
+        # silent-drop shape CLAUDE.md warns about. Only venues whose fee we actually model may set the floor.
+        if book not in TRIGGER_BOOK:
+            return None, f"{book} has no modelled fee - keeping the raw floor"
+        dec = bb.after_fee_dec(book, float(cost), x.get("league"))
+        if not dec or dec <= 1:
+            return None, f"no after-fee price for {book}"
+        import clv_ledger as _cl
+        am = _cl.dec_to_am(dec)
+        if am is None:
+            return None, "after-fee price does not convert"
+        return am, f"{book} raw cost {float(cost):.4f} -> after fee {am:+d}"
+    except Exception as ex:
+        return None, f"{type(ex).__name__}: {str(ex)[:40]}"
+
+
 def board_v4_strength(x):
     """LOGGING ONLY (Peter, 17 Nov 2026). Never read by any gate. One record per other book the alert stored evidence
     for: exchange, league, market, dollar size, that exchange's trailing normal for the league and market
@@ -825,13 +867,17 @@ def board_plays(now):
         sd, ln, am = x.get("side"), x.get("line"), x.get("price_american")
         if sd not in ("OVER", "UNDER") or ln is None or am is None:
             continue
+        _bf, _bfw = board_after_fee_floor(x)
         p = {"sport": "NBA", "game": x.get("game") or "", "bet": f"{'Over' if sd == 'OVER' else 'Under'} {float(ln):g} ({int(am):+d})",
              "start_utc": x.get("start_utc"), "late": False, "source": "board", "alert_utc": x.get("alerted_utc"),
              "rules": {"verdict": "AGREE", "gate": None,
                        # Nov 6: the version that actually produced this row, not "v2" as it used to say.
                        "reason": f"board v3 PLAY (Lane 3) [v2={r.get('v2')}, v1={r.get('v1')}]"},
              "board_v4": dict(zip(("ok", "why", "evidence"), board_v4(x)), strength=board_v4_strength(x)),   # Nov 17: logged always; a gate only when EXEC_BOARD_V4 is on
-             "board_entry": {"alert_utc": x.get("alerted_utc"), "book_key": x.get("book"), "price_after_fee": am,
+             "board_entry": {"alert_utc": x.get("alerted_utc"), "book_key": x.get("book"),
+                             "price_after_fee": (_bf if (BOARD_FEE_BASIS and _bf is not None) else am),
+                             "alert_price_raw": am, "fee_basis": _bfw,   # audit: both numbers on every row
+                             "fee_basis_on": BOARD_FEE_BASIS,
                              "point": ln, "sport": "NBA", "bet": None}}
         k = derive_key(p)
         if not k or k in seen:
