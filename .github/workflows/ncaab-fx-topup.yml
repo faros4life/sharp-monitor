@@ -1,0 +1,53 @@
+name: ncaab-fx-topup
+
+# Peter, Nov 17 07:26 "Get it": ONE billable /fixtures top-up for NCAAB tournament 648, then read-only grading.
+# over the four reopened bot rows' dates - then a READ-ONLY certification of those four with the
+# ledger's own functions. Dispatch only. contents: write so the credit gate can reserve and the
+# public fixture-id store (oddspapi/fixtures_ncaab.json) can be committed. clv/ is never written.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ncaab-fx-topup
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Restore shared OddsPapi history cache (restore only)
+        uses: actions/cache/restore@v4
+        with:
+          path: hcache
+          key: hcache-${{ github.run_id }}
+          restore-keys: hcache-
+      - name: One fixture-list call + read-only certification
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          ODDSPAPI_FREE_KEY: ${{ secrets.ODDSPAPI_FREE_KEY }}
+        run: python -u ncaab_fx_topup.py
+      - name: Commit the fixture store only
+        if: always()
+        run: |
+          if [ -n "$(git status --porcelain -uno -- clv)" ]; then echo "FAIL: clv/ changed"; exit 1; fi
+          if [ -f oddspapi/fixtures_ncaab.json ]; then
+            git config user.name "ncaab-fx"; git config user.email "ncaab-fx@users.noreply.github.com"
+            cp oddspapi/fixtures_ncaab.json "$RUNNER_TEMP/fx.json"
+            for i in 1 2 3 4 5; do
+              git fetch -q origin main && git reset -q --hard origin/main
+              cp "$RUNNER_TEMP/fx.json" oddspapi/fixtures_ncaab.json
+              git add oddspapi/fixtures_ncaab.json && git commit -qm "ncaab-fx: NCAAB fixture top-up (tournament 648, Nov 17)" && git push -q origin HEAD:main && break
+              sleep $((i * 3))
+            done
+          fi
