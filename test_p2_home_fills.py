@@ -69,6 +69,6 @@ check("snapshot stores only ids, time and wallet tag - no price, size or cost",
 wf = open(".github/workflows/p2-audit.yml").read()
 check("audit gets the NARROW read token only, not the broad snapshot token",
       "NOVIG_READ_TOKEN: ${{ secrets.NOVIG_READ_TOKEN }}" in wf and "NOVIG_SNAPSHOT_TOKEN" not in wf)
-check("fallback is SHADOW by default", "P2_NV_FALLBACK: shadow" in wf)
+check("fallback switched on only with its approval note", "P2_NV_FALLBACK: \"on\"   # Peter approved Nov 17" in wf)
 print("ALL PASS" if not BAD else f"{len(BAD)} FAILED")
 sys.exit(1 if BAD else 0)
