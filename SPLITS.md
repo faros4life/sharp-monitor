@@ -1,4 +1,4 @@
-# Paper splits (updated 2026-11-17T17:35:24Z)
+# Paper splits (updated 2026-11-17T17:40:24Z)
 
 Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kill bar: 30+ resulted at -0.10u/play or worse closes a split.
 
