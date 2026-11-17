@@ -61,16 +61,29 @@ A timed-out job reports as `cancelled`, not `failure`, which is why nine hours o
 benign. I then set a 10-minute timeout on my own report an hour after diagnosing this, and read its
 `cancelled` as a result.
 
-**Known live instance (Nov 10):** `executor-dry-run` has `timeout-minutes: 20` and re-runs up to 3
+**Known instance (Nov 10), NOT OBSERVED since Nov 17 18:15 UTC:** the last 30 runs all succeeded, in
+30 seconds to 2 minutes, with no kill and no `cancelled`. The mechanism below is UNCHANGED in the
+workflow - the 20-minute timeout and the 3 catch-up passes are both still there - so this is a quiet
+period, not a fix, and the correctness risk in the last paragraph is exactly as live as it ever was.
+Treat the next `cancelled` on this workflow as that risk, not as a lost run.
+
+`executor-dry-run` has `timeout-minutes: 20` and re-runs up to 3
 catch-up passes when a newer `alerts.json` lands mid-run. Passes take 6-15 minutes each, so when
 several fire the run exceeds 20 minutes and is killed. One was killed during pass 2. That run had
 placed nothing, but a kill can land anywhere - including AFTER an order is placed and BEFORE the
 ledger email that is the bot-order registry. An order missing from that registry means the daily
 stop undercounts, so this is a correctness risk and not merely a lost run.
 
-**Dropping MLB did NOT fix `liquidity-extra`** - five consecutive runs still die at exactly 9
-minutes. The work genuinely does not fit; the league list was a guess and it was wrong. Diagnose
+**Dropping MLB did NOT fix `liquidity-extra`** - five consecutive runs still died at exactly 9
+minutes. The work genuinely did not fit; the league list was a guess and it was wrong. Diagnose
 where the time actually goes before changing anything else there.
+
+**RECOVERED as of Nov 17, 19:40 UTC - cause never diagnosed.** 19 of the last 20 runs succeeded, the
+most recent eleven consecutively, at 6-7 minutes each against the 10-minute schedule. Nothing in this
+repo was changed to achieve that, so the fix is not ours and the headroom is 3-4 minutes, not comfort:
+whatever made the work fit (a lighter November card, a faster venue) can reverse without warning. If
+it dies at exactly 9 minutes again, the rule above still stands - measure where the time goes, do not
+guess at the league list a second time.
 
 ## Verifying a finding's arithmetic is not verifying that the behaviour is unintended
 
