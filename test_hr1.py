@@ -27,15 +27,46 @@ def t_rule():
     assert ar.hr1(m(price_after_fee=-119))[0] and ar.hr1(m(price_after_fee=-101))[0]   # band is inclusive
 
 
+def t_evaluated_before_the_mute_chain():
+    """The defect that made HR1 dead on arrival: the chain opens with the non-Top-25 skip, and HR1 is non-Top-25 by
+    definition, so every eligible alert was dropped before the push code ran (hr1_pushed stayed 0)."""
+    s = open("sharp_monitor.py").read()
+    i_eval = s.index("hr1_ok = hr1_sent = False")
+    i_skip = s.index('if is_t25 is False and NCAAF_TOP25 == "filter" and not hr1_ok:')
+    i_push = s.index("PUSH_SHARP or p1_ok or hr_ev or hr1_ok")
+    assert i_eval < i_skip < i_push                       # decided BEFORE the chain that used to bypass it
+    assert 'if is_t25 is False and NCAAF_TOP25 == "filter" and not hr1_ok:' in s
+    # every other mute route is untouched
+    for route in ('elif late and LATE_MODE == "mute":', 'elif repeat and REPEAT_MODE == "mute":',
+                  "elif hr_dog(a):"):
+        assert route in s and "hr1" not in s[s.index(route):s.index(route) + 120]
+    # the record says PUSHED only where the push ran, not merely where the alert was eligible
+    assert s.count("hr1_sent = True") == 1 and s.index("hr1_sent = True") < s.index("if hr1_sent:")
+    assert 'if hr1_sent:' in s and 'e["hr1"] = True' in s
+    # sent_to_phone / muted are NOT touched: R1 reads muted alerts and the Steam sent-to-phone test depends on it
+    assert 'e["muted"] = bool(is_t25 is False and NCAAF_TOP25 == "filter")' in s
+
+
+def t_manual_only():
+    """HR1 can never place or propose a bet."""
+    for f in ("executor.py", "book_live.py", "board_build.py", "lanes.py"):
+        import os
+        if os.path.exists(f):
+            assert "hr1" not in open(f).read().lower(), f
+    s = open("sharp_monitor.py").read()
+    assert "HR1 MANUAL BET at HARD ROCK" in s and "log it to Muse as source HR1" in s
+    assert "HR1 MANUAL " in s                              # the push title cannot read as a bot play
+
+
 def t_push_wiring():
     s = open("sharp_monitor.py").read()
-    assert "hr1_ok = False" in s and "_ar.hr1(" in s
+    assert "hr1_ok = hr1_sent = False" in s and "_ar.hr1(" in s
     assert "(not repeat) and" in s                                  # first alert per game/market/side only
     # hr1_ok must be bound on EVERY path: it is read outside the if/elif/else chain that computes it, so an alert
     # taking an earlier branch (the Hard Rock spread-dog skip) killed three runs on 17 Nov.
-    init = [l for l in s.split("\n") if l.strip().startswith("hr1_ok = False")]
+    init = [l for l in s.split("\n") if l.strip().startswith("hr1_ok = hr1_sent = False")]
     assert len(init) == 1 and len(init[0]) - len(init[0].lstrip()) == 20
-    assert s.index("hr1_ok = False") < min(s.index(x) for x in ("if hr1_ok:", "or hr1_ok)", "if hr1_ok else"))
+    assert s.index("hr1_ok = hr1_sent = False") < min(s.index(x) for x in ("if hr1_ok:", "or hr1_ok)", "if hr1_ok else"))
     assert "PUSH_SHARP or p1_ok or hr_ev or hr1_ok" in s            # HR1 is pushed even while paper alerts are muted
     assert "live=p1_ok or hr1_ok" in s                              # ... and mirrored to Telegram
     assert "HR1 MANUAL " in s and "HR1 MANUAL BET at HARD ROCK" in s
@@ -68,10 +99,10 @@ def t_record_kept():
     """HR1 alerts stay on the record whether or not Peter bets them: the push flag is stored, and the rule's
     verdict is written beside it. An HR1 alert he skipped must never look like no alert at all."""
     s = open("sharp_monitor.py").read()
-    assert 'if hr1_ok:' in s and 'e["hr1"] = True' in s          # push decision persisted on the durable event
+    assert 'if hr1_sent:' in s and 'e["hr1"] = True' in s          # push decision persisted on the durable event
     assert '"hr1_pushed": bool(e.get("hr1")),' in s              # ... and exported
     assert 'row["hr1_eligible"] = _ar.hr1(row)[0]' in s          # ... with the rule's verdict on the stored row
-    assert s.index('e["hr1"] = True') > s.index("hr1_ok = False")
+    assert s.index('e["hr1"] = True') > s.index("hr1_ok = hr1_sent = False")
     # the report reads the rule, not a hand-copied filter
     r = open("last50_report.py").read()
     assert "def hr1_rows" in r and "ar.hr1(x)[0]" in r
@@ -99,6 +130,7 @@ def t_prices_at_alert():
     assert '"fade", "prices")' in s                           # carried onto the durable event
 
 
-for f in (t_rule, t_push_wiring, t_backtest_population, t_record_kept, t_prices_at_alert):
+for f in (t_rule, t_evaluated_before_the_mute_chain, t_manual_only, t_push_wiring, t_backtest_population,
+          t_record_kept, t_prices_at_alert):
     f()
 print("hr1 tests: OK")

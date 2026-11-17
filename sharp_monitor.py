@@ -1755,15 +1755,29 @@ def run():
                     prior = sorted((x for x in st["log"] if x["ev"] == a["ev"] and not (x["kind"] == a["kind"] and x["side"] == a["side"])),
                                    key=lambda x: x.get("t", 0))
                     opp = [x for x in prior if mkt(x["kind"]) == mkt(a["kind"])]
-                    hr1_ok = False   # Nov 17 FIX: set BEFORE the branch chain. It was only assigned inside the final
-                    # else, so an alert taking an earlier branch (the Hard Rock spread-dog skip) reached the
-                    # `if hr1_ok` below unbound and killed the run - three sharp-monitor runs died that way.
+                    # HR1 (Peter, 17 Nov): decided HERE, ahead of the mute chain below. It was first written inside
+                    # that chain's final `else`, which non-Top-25 college alerts NEVER reach - the chain opens with
+                    # `if is_t25 is False and NCAAF_TOP25 == "filter"` and HR1 is non-Top-25 by definition, so every
+                    # eligible alert was skipped before the push code ran and hr1_pushed stayed 0 (Fordham Rams
+                    # -11.5, 19:35 UTC, the first qualifying alert). It was also unbound on every other branch, which
+                    # killed three runs. One assignment, before every use, outside the chain.
+                    # MANUAL ONLY: no executor or gate reads agree_rules.hr1; Claude places nothing at Hard Rock.
+                    hr1_ok = hr1_sent = False
+                    try:
+                        import agree_rules as _ar
+                        hr1_ok = (not repeat) and _ar.hr1(
+                            {"sport": cfg["label"], "book_key": a.get("book"), "kind": a.get("kind"),
+                             "bet": f"{a.get('side')} ", "top25": is_t25, "late": late,
+                             "price_after_fee": net(a["price"], a["book"], cfg["label"]),
+                             "alert_utc": now_utc().strftime("%Y-%m-%dT%H:%M:%SZ"), "start_utc": a["start"]})[0]
+                    except Exception as _x:
+                        print(f"hr1 check skipped: {str(_x)[:60]}")
                     prior_note = ""
                     if opp:
                         prior_note = f"\nOPPOSITE of earlier alert {describe(opp[0])} - first alert is the play, don't bet this"
                     elif prior:
                         prior_note = f"\nEarlier alert on this game: {describe(prior[0])} - first alert is the play"
-                    if is_t25 is False and NCAAF_TOP25 == "filter":
+                    if is_t25 is False and NCAAF_TOP25 == "filter" and not hr1_ok:
                         print(f"Skipped (non-Top 25): {a['text']} | {a['game']}")
                     elif late and LATE_MODE == "mute":
                         print(f"Not sent (late, {lead_text(lead)} to start): {a['text']} | {a['game']}")
@@ -1823,16 +1837,8 @@ def run():
                         # it is a notification only, and it reaches Telegram as well as ntfy because Peter asked for it
                         # there ("send alerts to telegram this way i manualy play them"). Labelled MANUAL so it can
                         # never read as a bot play. UNITS-ONLY evidence - see agree_rules.hr1.
-                        try:
-                            import agree_rules as _ar
-                            hr1_ok = (not repeat) and _ar.hr1(
-                                {"sport": cfg["label"], "book_key": a.get("book"), "kind": a.get("kind"),
-                                 "bet": f"{a.get('side')} ", "top25": is_t25, "late": late,
-                                 "price_after_fee": net(a["price"], a["book"], cfg["label"]),
-                                 "alert_utc": now_utc().strftime("%Y-%m-%dT%H:%M:%SZ"), "start_utc": a["start"]})[0]
-                        except Exception as _x:
-                            print(f"hr1 check skipped: {str(_x)[:60]}")
                         if hr1_ok:
+                            hr1_sent = True   # the push below runs: notify() is selected whenever hr1_ok
                             label = (f"HR1 MANUAL BET at HARD ROCK: {a['text'].split(' at ')[0]}"
                                      " | open Hard Rock, bet only if this price is still there; check the max it allows"
                                      " | log it to Muse as source HR1")
@@ -1852,7 +1858,10 @@ def run():
                     e = {k: a[k] for k in ("id", "ev", "game", "kind", "side", "pt", "price", "book", "conf", "nconf", "cby", "evp", "fade", "prices")}
                     e.update(sport=cfg["label"], start=a["commence"], t=time.time(), lead=round(lead), late=late,
                              score=score, grade=grade)
-                    if hr1_ok:   # Nov 17: HR1 was PUSHED for this alert - kept so "offered" can be told from "bet"
+                    # Nov 17: record the push only where it HAPPENED. hr1_ok means eligible; an eligible Hard Rock
+                    # spread dog still falls to the hr_dog skip (Peter, Nov 3) and reaches no push, so writing
+                    # hr1_pushed from eligibility alone would claim a phone alert that was never sent.
+                    if hr1_sent:
                         e["hr1"] = True
                     if is_t25 is not None:
                         e["t25"] = is_t25
