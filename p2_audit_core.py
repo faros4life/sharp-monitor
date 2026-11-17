@@ -373,10 +373,78 @@ def link_index(fills, trades, complete=None):
     return out
 
 
+# ------------------------------------------------------------------ Nov 17 (Peter, Option A): home-runner fill snapshot
+SNAP_MAX_AGE_MIN = 30          # fills refresh every ~5 min on the home runner; 30 min = six missed cycles, never a gap
+SNAP_FILL_KEYS = ("fillId", "orderId", "clientId", "marketId", "outcomeId")
+
+
+def fill_time(f):
+    """A fill's time as aware UTC datetime, from epoch ms/s or ISO text; None when absent or unreadable."""
+    v = (f or {}).get("ts") if (f or {}).get("ts") is not None else (f or {}).get("createdAt")
+    try:
+        if isinstance(v, (int, float)) or str(v).isdigit():
+            x = float(v)
+            return datetime.fromtimestamp(x / 1000 if x > 1e11 else x, tz=timezone.utc)
+        return utc(str(v)) if v else None
+    except Exception:
+        return None
+
+
+def snapshot_usable(doc, now):
+    """(ok, why) for the home-runner fills snapshot. Usable only when the read was complete and is <= 30 min old."""
+    if not isinstance(doc, dict) or not isinstance(doc.get("fills"), list):
+        return False, "no snapshot"
+    if not doc.get("complete"):
+        return False, f"snapshot incomplete ({str(doc.get('note'))[:40]})"
+    t = utc(str(doc.get("fills_utc") or ""))
+    if not t:
+        return False, "snapshot has no read time"
+    age = (now - t).total_seconds() / 60
+    if age > SNAP_MAX_AGE_MIN:
+        return False, f"snapshot {age:.0f} min old (max {SNAP_MAX_AGE_MIN})"
+    return True, f"home snapshot {age:.0f} min old"
+
+
+def snapshot_compare(cloud, snap, cutoff):
+    """Counts only: identity of fills dated at or before cutoff, by fillId, field by field. Pure."""
+    def keyed(xs):
+        out = {}
+        for f in xs or []:
+            if isinstance(f, dict) and f.get("fillId") is not None:
+                t = fill_time(f)
+                if t is not None and t <= cutoff:
+                    out[str(f["fillId"])] = tuple(str(f.get(k)) for k in SNAP_FILL_KEYS)
+        return out
+    a, b = keyed(cloud), keyed(snap)
+    both = set(a) & set(b)
+    return {"equal": sum(a[i] == b[i] for i in both), "field_mismatch": sum(a[i] != b[i] for i in both),
+            "cloud_only": len(set(a) - set(b)), "home_only": len(set(b) - set(a))}
+
+
+def snapshot_row_gaps(rows, snap_fills, fills_utc):
+    """Tracker Novig row ids that the snapshot cannot vouch for: first seen after the snapshot's read, no first-seen
+    time at all, or seen before it yet without any fill on its market/outcome. Those rows stay link-source-incomplete
+    (never no_venue_link, never promoted). Pure."""
+    have = {(str(f.get("marketId")), str(f.get("outcomeId"))) for f in snap_fills or [] if isinstance(f, dict)}
+    t0 = utc(str(fills_utc or ""))
+    gaps = set()
+    for r in rows or []:
+        rid = str(r.get("id") or "")
+        if not rid.startswith("nv|"):
+            continue
+        seen = utc(str(r.get("ingest_checked") or r.get("first_seen") or r.get("placed") or ""))
+        _nv, mk, oc = (rid.split("|") + ["", ""])[:3]
+        if not t0 or not seen or seen > t0 or (mk, oc) not in have:
+            gaps.add(rid)
+    return gaps
+
+
 def resolve_link(row, links, index, norm=_norm):
     """-> (status, lane, key). status: exact_link | no_venue_link | link_source_incomplete | link_order_not_in_registry |
     link_order_ambiguous | link_position_multi_lane | venue_unmatched"""
     rid = str(row.get("id") or "")
+    if rid in (links or {}).get("_incomplete_ids", set()):        # Nov 17: per-row, from the home-snapshot coverage check
+        return "link_source_incomplete", None, None
     if rid.split("|", 1)[0] in (links or {}).get("_incomplete", set()):
         return "link_source_incomplete", None, None
     orders = (links or {}).get(rid)

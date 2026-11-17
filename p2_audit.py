@@ -111,6 +111,32 @@ def read_px_matching(order_ids, frm_ts, to_ts, max_pages=60):
         return set(), False, f"matching detail unreadable ({type(e).__name__})"
 
 
+def read_home_fills():
+    """Nov 17 (Peter, Option A): the home runner's fill snapshot (private repo novig-runner), read with the NARROW
+    read-only token NOVIG_READ_TOKEN only - never the broad NOVIG_SNAPSHOT_TOKEN. -> dict or None. Counts-only log."""
+    import base64
+    import urllib.request
+    tok = (os.environ.get("NOVIG_READ_TOKEN") or "").strip()
+    if not tok:
+        print("home fills snapshot: NOVIG_READ_TOKEN not set - not read")
+        return None
+    try:
+        req = urllib.request.Request("https://api.github.com/repos/faros4life/novig-runner/contents/snapshot/novig_fills.json?ref=main",
+                                     headers={"Authorization": f"Bearer {tok}", "Accept": "application/vnd.github+json",
+                                              "User-Agent": "sharp-monitor-p2"})
+        with urllib.request.urlopen(req, timeout=20) as r:
+            cur = json.loads(r.read().decode() or "{}")
+        if cur.get("content"):
+            return json.loads(base64.b64decode(cur["content"]).decode() or "{}")
+        # files over 1 MB come back without inline content
+        req = urllib.request.Request(cur.get("download_url") or "", headers={"Authorization": f"Bearer {tok}", "User-Agent": "sharp-monitor-p2"})
+        with urllib.request.urlopen(req, timeout=30) as r:
+            return json.loads(r.read().decode() or "{}")
+    except Exception as e:
+        print(f"home fills snapshot unreadable ({type(e).__name__})")
+        return None
+
+
 def degraded_reason(novig_complete, novig_note):
     """None when the scorecard may be delivered; else why it must be withheld. Pure. ProphetX is not gated: its read
     is always flagged possibly-truncated and contributes no EXACT link, so it cannot silently change attribution."""
@@ -284,7 +310,28 @@ def main():
           f"skipped as already present {promo_dup}")
     fills, nf, nok = read_novig_fills()
     trades, nt, pok = read_px_trades()
+    # Nov 17 (Peter, Option A): home-runner fill evidence. SHADOW by default: compared with every complete cloud read,
+    # used in place of a failed cloud read only when P2_NV_FALLBACK=on (Peter flips it after the comparison matches).
+    from datetime import datetime, timezone
+    from p2_audit_core import snapshot_usable, snapshot_compare, snapshot_row_gaps, utc as _utc
+    _mode = (os.environ.get("P2_NV_FALLBACK") or "shadow").strip().lower()
+    _now = datetime.now(timezone.utc)
+    _home = read_home_fills()
+    _hok, _hwhy = snapshot_usable(_home, _now)
+    _gaps, nv_source = set(), "cloud read" if nok else None
+    if nok and _home and isinstance(_home.get("fills"), list):
+        _cut = min(_now, _utc(str(_home.get("fills_utc") or "")) or _now)
+        print(f"home fills shadow comparison (counts only, fills dated <= the earlier read): {snapshot_compare(fills, _home['fills'], _cut)} "
+              f"| snapshot {_hwhy}")
+    elif not nok:
+        print(f"home fills snapshot: {_hwhy} | fallback mode {_mode}")
+        if _mode == "on" and _hok:
+            fills, nok, nf = _home["fills"], True, f"home snapshot fallback - {_hwhy}"
+            _gaps = snapshot_row_gaps(rows, fills, _home.get("fills_utc"))
+            nv_source = f"home-runner snapshot read at {_home.get('fills_utc')}"
+            print(f"home fills fallback USED: {len(fills)} fills; Novig rows the snapshot cannot vouch for: {len(_gaps)}")
     links = link_index(fills, trades, {"nv": nok, "px": pok})
+    links["_incomplete_ids"] = _gaps
     print(f"venue reads: novig fills {len(fills)} ({nf}) | prophetx trades {len(trades)} ({nt}) | tracker rows with a venue link "
           f"{sum(1 for r in rows if str(r.get('id') or '') in links)} of {len(rows)} | complete: novig {nok}, prophetx {pok}")
     import clv_ledger as cl
@@ -381,6 +428,7 @@ def main():
     text_h = rs.render_scorecard(scopes, non_exact, UNIT_SCHEDULE)
     text, csv_rows = render(rep)
     tf, cf = render(rep_f)
+    text += f"\n\nNovig fill evidence: {nv_source or 'UNAVAILABLE'}"
     text += f"\n\nSECTION F - EVERY BOT ROW FROM {rs.START_ET} ET (settled W/L, ROI, units where verified, certified CLV availability)\n" + tf
     for r_ in cf:
         r_["bucket"] = "F|" + r_["bucket"]

@@ -17,6 +17,8 @@ from datetime import datetime, timezone
 import novig_signed as nv
 
 PATH = "snapshot/novig_positions.json"
+FILLS_PATH = "snapshot/novig_fills.json"   # Nov 17 (Peter, Option A): fill evidence for the cloud P2 audit when Novig blocks it
+FILL_KEYS = ("fillId", "orderId", "clientId", "marketId", "outcomeId")
 
 
 def read_positions():
@@ -107,6 +109,70 @@ def read_settled(prev):
     return out
 
 
+def read_fills(prev_ids):
+    """Every Novig fill, main + bot sub-wallet, paged to the end with the same read the cloud audit makes
+    (/v3/portfolio/fills, limit 100, 'after' cursor, 40-page guard). Stored MINIMAL: the ids the audit links on plus
+    a time and a wallet tag - no price, size, cost or wallet id. complete=False when a cursor is still pending at the
+    guard, or when any fill id seen in the previous complete snapshot is missing now (retention/partial response).
+    Read-only GETs. -> (fills, complete, note)."""
+    fills, complete, note = [], True, "ok"
+    for kid in dict.fromkeys([nv._S["id"], (os.environ.get("NOVIG_TRADE_KEY_ID") or "").strip()]):
+        if not kid:
+            continue
+        after, pages = None, 0
+        while True:
+            pages += 1
+            if pages > 40:
+                complete, note = False, "TRUNCATED at the 40-page guard"
+                break
+            d = nv.get("/v3/portfolio/fills", dict({"limit": 100, "keyId": kid}, **({"after": after} if after else {})))
+            got, nxt = [], None
+            for v in (d.values() if isinstance(d, dict) else [d]):
+                if isinstance(v, list):
+                    got += v
+                elif isinstance(v, dict):
+                    got += v.get("items") or v.get("fills") or v.get("data") or []
+                    nxt = nxt or v.get("next")
+            if isinstance(d, dict):
+                nxt = nxt or d.get("next")
+            for f in got:
+                if isinstance(f, dict):
+                    row = {k: f.get(k) for k in FILL_KEYS}
+                    row["ts"] = f.get("ts") or f.get("createdAt") or f.get("createdTs") or f.get("time")
+                    row["wallet"] = "main" if kid == nv._S["id"] else "sub"
+                    fills.append(row)
+            if not got or not nxt:
+                break
+            after = nxt
+    ids = {str(f.get("fillId")) for f in fills if f.get("fillId") is not None}
+    lost = set(prev_ids or ()) - ids
+    if lost:
+        complete, note = False, f"{len(lost)} fill id(s) from the previous complete snapshot are missing"
+    return fills, complete, note
+
+
+def write_fills(now):
+    """Separate file and separate success flag: a fill-read failure can never touch the positions snapshot, its 'ok'
+    flag or the executor's 15-minute gate. On failure the previous file is left as is (its fills_utc ages)."""
+    api = f"https://api.github.com/repos/{os.environ['GITHUB_REPOSITORY']}/contents/{FILLS_PATH}"
+    prev, sha = {}, None
+    try:
+        cur = gh("GET", api + "?ref=main")
+        sha = cur.get("sha")
+        prev = json.loads(base64.b64decode(cur.get("content") or "").decode() or "{}")
+    except Exception:
+        pass
+    prev_ids = [str(f.get("fillId")) for f in (prev.get("fills") or []) if f.get("fillId") is not None] if prev.get("complete") else []
+    fills, complete, note = read_fills(prev_ids)
+    doc = {"fills_utc": now, "complete": complete, "note": note, "n": len(fills), "fills": fills}
+    body = {"message": f"Novig fills snapshot {now}", "branch": "main",
+            "content": base64.b64encode(json.dumps(doc, indent=0).encode()).decode()}
+    if sha:
+        body["sha"] = sha
+    gh("PUT", api, body)
+    print(f"Fills {now}: {len(fills)} fills, complete {complete} ({note})")   # counts only
+
+
 def gh(method, url, body=None):
     req = urllib.request.Request(url, data=json.dumps(body).encode() if body is not None else None, method=method, headers={
         "Authorization": f"Bearer {os.environ['GITHUB_TOKEN']}", "Accept": "application/vnd.github+json",
@@ -150,6 +216,11 @@ def main():
     gh("PUT", api, body)
     print(f"Snapshot {now}: read {'OK' if pos is not None else 'FAILED'}; {len(pos or [])} open positions; "
           f"{len(snap.get('settled') or [])} settled (35 days)")   # counts only
+    try:   # Nov 17 (Option A): never allowed to affect the positions snapshot above or its exit status
+        if pos is not None:
+            write_fills(now)
+    except Exception as ex:
+        print(f"Fills snapshot not written ({type(ex).__name__}); previous file left as is")
     if pos is None:
         print(f"   read error: {err}")
         sys.exit(1)

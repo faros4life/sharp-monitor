@@ -62,6 +62,8 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           NOVIG_READ_KEY_ID: ${{ secrets.NOVIG_READ_KEY_ID }}       # read-only (novig_signed.ready verifies the scope)
           NOVIG_READ_KEY_PEM: ${{ secrets.NOVIG_READ_KEY_PEM }}
+          NOVIG_READ_TOKEN: ${{ secrets.NOVIG_READ_TOKEN }}   # Nov 17 Option A: Contents READ on novig-runner only (home fill snapshot)
+          P2_NV_FALLBACK: shadow   # shadow = compare only; set to on after the home snapshot matches the cloud read
           NOVIG_TRADE_KEY_ID: ${{ secrets.NOVIG_TRADE_KEY_ID }}     # key ID only, to read the bot sub-wallet; no trade PEM
           PROPHETX_ACCESS_KEY: ${{ secrets.PROPHETX_ACCESS_KEY }}   # DATA key (read-only), GET trades
           PROPHETX_SECRET_KEY: ${{ secrets.PROPHETX_SECRET_KEY }}

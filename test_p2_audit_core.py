@@ -266,7 +266,8 @@ def t_workflow_secrets_are_exactly_the_needed_four():
     wf = open(os.path.join(HERE, ".github", "workflows", "p2-audit.yml")).read()
     assert set(_re.findall(r"secrets\.([A-Z_]+)", wf)) == {"TRACKER_PASSPHRASE", "REGISTRY_TOKEN", "TELEGRAM_BOT_TOKEN", "TELEGRAM_CHAT_ID",
                                                            "NOVIG_READ_KEY_ID", "NOVIG_READ_KEY_PEM", "NOVIG_TRADE_KEY_ID",
-                                                           "PROPHETX_ACCESS_KEY", "PROPHETX_SECRET_KEY"}
+                                                           "PROPHETX_ACCESS_KEY", "PROPHETX_SECRET_KEY",
+                                                           "NOVIG_READ_TOKEN"}   # Nov 17 Option A: read-only, novig-runner only
     for bad in ("NOVIG_TRADE_KEY_PEM", "PX_TRADE", "PROPHETX_TRADE", "GMAIL", "ODDSPAPI", "KALSHI", "PMUS"):
         assert bad not in wf, bad
     assert "contents: read" in wf and "upload-artifact" not in wf and "actions/cache" not in wf and "git push" not in wf and "git commit" not in wf
