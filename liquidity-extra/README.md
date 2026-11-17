@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 17, 4:50 PM ET. This run: 1 new, 1 not confirmed, 0 pending. Open alerts: 36.
+Updated Tue Nov 17, 5:00 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 36.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -19,7 +19,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 17 3:40PM | NCAAB | Akron vs Bucknell: Point Total | total: Over 147.5 points | kalshi | $29k | +113 |  |  | +0.0c | yes | pending |
 | Nov 17 3:30PM | NCAAB | UT Arlington vs Southern Miss: Spread | spread: NOT Southern Miss wins by over 1.5 points | kalshi | $38k | +104 |  |  | +0.0c |  | pending |
 | Nov 17 3:21PM | NCAAB | Charlotte vs Davidson: Spread | spread: NOT Davidson wins by over 3.5 points | kalshi | $26k | -108 |  |  | +0.0c |  | pending |
-| Nov 17 3:21PM | NCAAB | Mississippi St. vs UCF | moneyline: UCF | kalshi | $38k | -100 | ✅ novig |  | +1.0c |  | pending |
+| Nov 17 3:21PM | NCAAB | Mississippi St. vs UCF | moneyline: UCF | kalshi | $38k | -100 | ✅ novig |  | +2.0c |  | pending |
 | Nov 17 3:21PM | NCAAB | Texas A&M-Corpus Christi vs Rice | moneyline: Rice | kalshi | $31k | -127 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 17 2:50PM | NCAAB | Florida vs Notre Dame: Spread | spread: NOT Florida wins by over 15.5 points | kalshi | $31k | -100 |  |  | +5.0c | yes | pending |
 | Nov 17 2:20PM | NCAAB | Arkansas vs Indiana: Point Total | total: NOT Over 153.5 points | kalshi | $26k | -104 |  | ✅ | +0.0c |  | pending |
