@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 16, 10:55 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 26.
+Updated Mon Nov 16, 11:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 26.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -12,7 +12,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 16 10:40PM | NHL | Columbus vs New York I | moneyline: New York I | kalshi | $49k | -133 |  |  | +0.0c |  | pending |
 | Nov 16 10:35PM | NBA | Utah vs Los Angeles C | moneyline: Los Angeles C | kalshi | $110k | -203 |  |  | +0.0c |  | pending |
-| Nov 16 9:50PM | NBA | Charlotte vs Los Angeles L | moneyline: Charlotte | kalshi | $105k | +300 |  |  | +1.0c |  | pending |
+| Nov 16 9:50PM | NBA | Charlotte vs Los Angeles L | moneyline: Charlotte | kalshi | $105k | +300 |  |  | +2.0c |  | pending |
 | Nov 16 8:35PM | NHL | Vancouver Canucks @ Utah Mammoth | spread: UTA -1.5 (-1.5) | novig | $25k | -117 | ✅ kalshi |  | +1.0c | yes | pending |
 | Nov 16 8:15PM | NHL | Nashville vs Minnesota | moneyline: Minnesota | kalshi | $61k | -178 |  |  | +0.0c | yes | pending |
 | Nov 16 8:10PM | NFL | Los Angeles Chargers at Baltimore Ravens | moneyline: Baltimore Ravens | prophetx | $146k | -205 | ✅ kalshi,novig |  | +0.0c |  | pending |

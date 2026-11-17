@@ -1,6 +1,140 @@
 {
  "moves": [
   {
+   "alerted_utc": "2026-11-17T04:00:18Z",
+   "bar": false,
+   "best_price": 0.51,
+   "best_price_book": "novig",
+   "book": "kalshi",
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "date": "2026-11-17",
+   "dir": "RAISE",
+   "ex_stats": {
+    "open_interest_fp": 854.34,
+    "volume_24h_fp": 842.77,
+    "volume_fp": 899.64
+   },
+   "first_play": false,
+   "game": "Detroit vs San Antonio: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBASPREAD-26NOV17DETSAS-SAS9\"}",
+   "lead_min": 1260,
+   "league": "NBA",
+   "league_x": 1.34,
+   "line": 8.5,
+   "market": "spread",
+   "normal_4h": 28983,
+   "now": 75285,
+   "other_side_now": 72195,
+   "paper_only": true,
+   "price": 0.52,
+   "price_american": -108,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNBASPREAD-26NOV17DETSAS-SAS9"
+   },
+   "result": null,
+   "side": "Detroit",
+   "side_label": "NOT San Antonio wins by over 8.5 points",
+   "side_raw": 0,
+   "start_utc": "2026-11-18T01:00:00Z",
+   "teams": [
+    "Detroit",
+    "San Antonio"
+   ],
+   "units_flat": null,
+   "x": 2.6
+  },
+  {
+   "alerted_utc": "2026-11-17T04:00:18Z",
+   "bar": true,
+   "best_price": 0.5,
+   "best_price_book": "novig",
+   "book": "kalshi",
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "date": "2026-11-17",
+   "dir": "RAISE",
+   "ex_stats": {
+    "open_interest_fp": 854.34,
+    "volume_24h_fp": 842.77,
+    "volume_fp": 899.64
+   },
+   "first_play": false,
+   "game": "Detroit vs San Antonio: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBASPREAD-26NOV17DETSAS-SAS9\"}",
+   "lead_min": 1260,
+   "league": "NBA",
+   "league_x": 1.29,
+   "line": -8.5,
+   "market": "spread",
+   "normal_4h": 20957,
+   "now": 72195,
+   "other_side_now": 75285,
+   "paper_only": true,
+   "price": 0.5,
+   "price_american": -100,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBASPREAD-26NOV17DETSAS-SAS9"
+   },
+   "result": null,
+   "side": "San Antonio",
+   "side_label": "San Antonio wins by over 8.5 points",
+   "side_raw": 1,
+   "start_utc": "2026-11-18T01:00:00Z",
+   "teams": [
+    "Detroit",
+    "San Antonio"
+   ],
+   "units_flat": null,
+   "x": 3.44
+  },
+  {
+   "alerted_utc": "2026-11-17T04:00:18Z",
+   "bar": false,
+   "best_price": 0.585,
+   "best_price_book": "novig",
+   "book": "novig",
+   "close_price": 0.585,
+   "clv_cents": 0.0,
+   "date": "2026-11-17",
+   "dir": "DROP",
+   "ex_stats": {
+    "openInterest": 845376.0,
+    "volume": 954591.0
+   },
+   "first_play": false,
+   "game": "Los Angeles Kings @ Boston Bruins",
+   "key": "novig|{\"market_id\": \"01a1e540-fe7a-7393-bbfb-52e8ce3afdf2\", \"outcome_id\": \"01a1e540-fe7a-7393-bbfb-52f5f0328380\"}",
+   "lead_min": 1200,
+   "league": "NHL",
+   "league_x": 0.82,
+   "line": null,
+   "market": "moneyline",
+   "normal_4h": 7769,
+   "now": 3860,
+   "other_side_now": 3339,
+   "paper_only": true,
+   "price": 0.585,
+   "price_american": -141,
+   "ref": {
+    "market_id": "01a1e540-fe7a-7393-bbfb-52e8ce3afdf2",
+    "outcome_id": "01a1e540-fe7a-7393-bbfb-52f5f0328380"
+   },
+   "result": null,
+   "side": "Boston Bruins",
+   "side_label": "BOS (0)",
+   "side_raw": 1,
+   "start_utc": "2026-11-18T00:00:00Z",
+   "teams": [
+    "Los Angeles Kings",
+    "Boston Bruins"
+   ],
+   "units_flat": null,
+   "x": 0.5
+  },
+  {
    "alerted_utc": "2026-11-17T03:55:38Z",
    "bar": false,
    "best_price": 0.265,
@@ -13,6 +147,10 @@
    "ex_stats": {
     "openInterest": 1040884.0,
     "volume": 1148000.0
+   },
+   "ex_stats_close": {
+    "openInterest": 1050317.0,
+    "volume": 1157433.0
    },
    "first_play": false,
    "game": "Charlotte Hornets @ Los Angeles Lakers",
@@ -58,6 +196,10 @@
     "openInterest": 292717.0,
     "volume": 322235.0
    },
+   "ex_stats_close": {
+    "openInterest": 292717.0,
+    "volume": 322235.0
+   },
    "first_play": false,
    "game": "Detroit Pistons @ San Antonio Spurs",
    "key": "novig|{\"market_id\": \"01a1e6f7-bd48-7483-933f-599912193ba2\", \"outcome_id\": \"01a1e6f7-bd48-7483-933f-59bcc5134a09\"}",
@@ -99,6 +241,10 @@
    "date": "2026-11-17",
    "dir": "RAISE",
    "ex_stats": {
+    "openInterest": 292717.0,
+    "volume": 322235.0
+   },
+   "ex_stats_close": {
     "openInterest": 292717.0,
     "volume": 322235.0
    },
@@ -247,8 +393,8 @@
     "volume": 8179.0
    },
    "ex_stats_close": {
-    "openInterest": 8179.0,
-    "volume": 8179.0
+    "openInterest": 12102.0,
+    "volume": 12102.0
    },
    "first_play": false,
    "game": "Utah Jazz @ Los Angeles Clippers",
@@ -494,9 +640,9 @@
     "volume_fp": 16.05
    },
    "ex_stats_close": {
-    "open_interest_fp": 16.05,
+    "open_interest_fp": 24.05,
     "volume_24h_fp": 16.0,
-    "volume_fp": 16.05
+    "volume_fp": 24.05
    },
    "first_play": false,
    "game": "Calgary vs San Jose: Total Goals",
@@ -547,9 +693,9 @@
     "volume_fp": 16.05
    },
    "ex_stats_close": {
-    "open_interest_fp": 16.05,
+    "open_interest_fp": 24.05,
     "volume_24h_fp": 16.0,
-    "volume_fp": 16.05
+    "volume_fp": 24.05
    },
    "first_play": false,
    "game": "Calgary vs San Jose: Total Goals",
@@ -641,8 +787,8 @@
    "best_price": 0.435,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.4386,
-   "clv_cents": 0.0,
+   "close_price": 0.4405,
+   "clv_cents": 0.2,
    "date": "2026-11-17",
    "dir": "RAISE",
    "ex_stats": null,
@@ -696,8 +842,8 @@
     "volume": 108833.0
    },
    "ex_stats_close": {
-    "openInterest": 178549.0,
-    "volume": 197894.0
+    "openInterest": 188352.0,
+    "volume": 207697.0
    },
    "first_play": false,
    "game": "Detroit Pistons @ San Antonio Spurs",
@@ -801,9 +947,9 @@
     "volume_fp": 12883.25
    },
    "ex_stats_close": {
-    "open_interest_fp": 14222.89,
+    "open_interest_fp": 19353.62,
     "volume_24h_fp": 21621.06,
-    "volume_fp": 23500.489999999998
+    "volume_fp": 29551.68
    },
    "first_play": true,
    "game": "Portland vs Minnesota",
@@ -844,8 +990,8 @@
    "best_price": 0.235,
    "best_price_book": "novig",
    "book": "kalshi",
-   "close_price": 0.26,
-   "clv_cents": 3.0,
+   "close_price": 0.27,
+   "clv_cents": 4.0,
    "date": "2026-11-17",
    "dir": "RAISE",
    "ex_stats": {
@@ -854,9 +1000,9 @@
     "volume_fp": 48433.649999999994
    },
    "ex_stats_close": {
-    "open_interest_fp": 62772.78,
+    "open_interest_fp": 63858.55,
     "volume_24h_fp": 62978.49,
-    "volume_fp": 72736.34
+    "volume_fp": 73848.51000000001
    },
    "first_play": true,
    "game": "Charlotte vs Los Angeles L",
@@ -1095,8 +1241,8 @@
    "best_price": 0.4874,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.44,
-   "clv_cents": -3.0,
+   "close_price": 0.45,
+   "clv_cents": -2.0,
    "date": "2026-11-17",
    "dir": "RAISE",
    "ex_stats": {
@@ -1105,9 +1251,9 @@
     "volume_fp": 8488.689999999999
    },
    "ex_stats_close": {
-    "open_interest_fp": 14222.89,
+    "open_interest_fp": 19353.62,
     "volume_24h_fp": 21621.06,
-    "volume_fp": 23500.489999999998
+    "volume_fp": 29551.68
    },
    "first_play": true,
    "game": "Portland vs Minnesota",
@@ -1209,9 +1355,9 @@
     "volume_fp": 2638.9
    },
    "ex_stats_close": {
-    "open_interest_fp": 2873.41,
+    "open_interest_fp": 2891.41,
     "volume_24h_fp": 2575.25,
-    "volume_fp": 3203.6800000000003
+    "volume_fp": 3221.6800000000003
    },
    "first_play": false,
    "game": "Anaheim vs St. Louis",
@@ -1262,9 +1408,9 @@
     "volume_fp": 2638.9
    },
    "ex_stats_close": {
-    "open_interest_fp": 2873.41,
+    "open_interest_fp": 2891.41,
     "volume_24h_fp": 2575.25,
-    "volume_fp": 3203.6800000000003
+    "volume_fp": 3221.6800000000003
    },
    "first_play": false,
    "game": "Anaheim vs St. Louis",
@@ -1314,8 +1460,8 @@
     "volume": 136823.0
    },
    "ex_stats_close": {
-    "openInterest": 233728.0,
-    "volume": 256286.0
+    "openInterest": 385723.0,
+    "volume": 412281.0
    },
    "first_play": false,
    "game": "Nashville Predators @ Minnesota Wild",
@@ -1417,9 +1563,9 @@
     "volume_fp": 4284.93
    },
    "ex_stats_close": {
-    "open_interest_fp": 8125.4,
+    "open_interest_fp": 8283.17,
     "volume_24h_fp": 6492.6900000000005,
-    "volume_fp": 8322.369999999999
+    "volume_fp": 8480.14
    },
    "first_play": true,
    "game": "Utah vs Los Angeles C",
@@ -1470,9 +1616,9 @@
     "volume_fp": 19845.57
    },
    "ex_stats_close": {
-    "open_interest_fp": 43046.869999999995,
+    "open_interest_fp": 43131.52,
     "volume_24h_fp": 40181.0,
-    "volume_fp": 47673.69
+    "volume_fp": 47765.39
    },
    "first_play": true,
    "game": "Detroit vs San Antonio",
@@ -1576,9 +1722,9 @@
     "volume_fp": 4277.639999999999
    },
    "ex_stats_close": {
-    "open_interest_fp": 8125.4,
+    "open_interest_fp": 8283.17,
     "volume_24h_fp": 6492.6900000000005,
-    "volume_fp": 8322.369999999999
+    "volume_fp": 8480.14
    },
    "first_play": true,
    "game": "Utah vs Los Angeles C",
@@ -1680,9 +1826,9 @@
     "volume_fp": 22897.65
    },
    "ex_stats_close": {
-    "open_interest_fp": 62772.78,
+    "open_interest_fp": 63858.55,
     "volume_24h_fp": 62978.49,
-    "volume_fp": 72736.34
+    "volume_fp": 73848.51000000001
    },
    "first_play": true,
    "game": "Charlotte vs Los Angeles L",
@@ -1733,9 +1879,9 @@
     "volume_fp": 19017.6
    },
    "ex_stats_close": {
-    "open_interest_fp": 43046.869999999995,
+    "open_interest_fp": 43131.52,
     "volume_24h_fp": 40181.0,
-    "volume_fp": 47673.69
+    "volume_fp": 47765.39
    },
    "first_play": true,
    "game": "Detroit vs San Antonio",
@@ -1786,9 +1932,9 @@
     "volume_fp": 11409.439999999999
    },
    "ex_stats_close": {
-    "open_interest_fp": 17886.38,
+    "open_interest_fp": 18009.5,
     "volume_24h_fp": 16397.85,
-    "volume_fp": 20852.23
+    "volume_fp": 21167.04
    },
    "first_play": true,
    "game": "New York vs Toronto",
@@ -1839,9 +1985,9 @@
     "volume_fp": 11409.439999999999
    },
    "ex_stats_close": {
-    "open_interest_fp": 17886.38,
+    "open_interest_fp": 18009.5,
     "volume_24h_fp": 16397.85,
-    "volume_fp": 20852.23
+    "volume_fp": 21167.04
    },
    "first_play": true,
    "game": "New York vs Toronto",
@@ -2462,9 +2608,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3.46,
+    "open_interest_fp": 11.46,
     "volume_24h_fp": 3.46,
-    "volume_fp": 3.46
+    "volume_fp": 11.46
    },
    "first_play": false,
    "game": "Ottawa vs Winnipeg: Total Goals",
@@ -2923,9 +3069,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3.46,
+    "open_interest_fp": 11.46,
     "volume_24h_fp": 3.46,
-    "volume_fp": 3.46
+    "volume_fp": 11.46
    },
    "first_play": false,
    "game": "Ottawa vs Winnipeg: Total Goals",
@@ -3188,9 +3334,9 @@
     "volume_fp": 4439.36
    },
    "ex_stats_close": {
-    "open_interest_fp": 10424.84,
+    "open_interest_fp": 10439.84,
     "volume_24h_fp": 9549.13,
-    "volume_fp": 10920.84
+    "volume_fp": 10935.84
    },
    "first_play": false,
    "game": "Edmonton vs Florida",
@@ -3241,9 +3387,9 @@
     "volume_fp": 4439.36
    },
    "ex_stats_close": {
-    "open_interest_fp": 10424.84,
+    "open_interest_fp": 10439.84,
     "volume_24h_fp": 9549.13,
-    "volume_fp": 10920.84
+    "volume_fp": 10935.84
    },
    "first_play": false,
    "game": "Edmonton vs Florida",
@@ -3661,6 +3807,7 @@
     "side": "OVER"
    },
    "result": null,
+   "settle_tries": 1,
    "side": "OVER",
    "side_label": "over 230 (230)",
    "side_raw": "OVER",
@@ -3707,6 +3854,7 @@
     "side": "UNDER"
    },
    "result": null,
+   "settle_tries": 1,
    "side": "UNDER",
    "side_label": "under 230 (230)",
    "side_raw": "UNDER",
@@ -3855,6 +4003,7 @@
     "side": "1"
    },
    "result": null,
+   "settle_tries": 1,
    "side": "Denver Nuggets",
    "side_label": "Denver Nuggets",
    "side_raw": 1,
@@ -4054,7 +4203,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "Baltimore Ravens",
    "side_label": "Baltimore Ravens -5.5 (-5.5)",
    "side_raw": 1,
@@ -4203,6 +4352,7 @@
     "side": "1"
    },
    "result": null,
+   "settle_tries": 1,
    "side": "Denver Nuggets",
    "side_label": "Denver Nuggets -9.5 (-9.5)",
    "side_raw": 1,
@@ -4456,8 +4606,8 @@
    "best_price": 0.5172,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.495,
-   "clv_cents": -1.7,
+   "close_price": 0.4975,
+   "clv_cents": -1.5,
    "date": "2026-11-17",
    "dir": "DROP",
    "ex_stats": null,
@@ -4530,6 +4680,7 @@
     "side": "0"
    },
    "result": null,
+   "settle_tries": 1,
    "side": "Phoenix Suns",
    "side_label": "Phoenix Suns +9.5 (+9.5)",
    "side_raw": 0,
@@ -4555,6 +4706,7 @@
    "ex_stats": null,
    "first_play": true,
    "game": "Portland Trail Blazers at Minnesota Timberwolves",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 7.5, \"px_event\": 1704742705, \"px_market\": 223, \"side\": \"1\"}",
    "lead_min": 264,
    "league": "NBA",
@@ -4575,8 +4727,9 @@
     "px_market": 223,
     "side": "1"
    },
-   "result": null,
-   "settle_tries": 12,
+   "result": "W",
+   "settle_tries": 13,
+   "settled_utc": "2026-11-17T04:00:18Z",
    "side": "Minnesota Timberwolves",
    "side_label": "Minnesota Timberwolves -7.5 (-7.5)",
    "side_raw": 1,
@@ -4586,7 +4739,7 @@
     "Portland Trail Blazers",
     "Minnesota Timberwolves"
    ],
-   "units_flat": null,
+   "units_flat": 1.84,
    "x": 0.34
   },
   {
@@ -4749,9 +4902,9 @@
     "volume_fp": 5493.3099999999995
    },
    "ex_stats_close": {
-    "open_interest_fp": 8402.1,
+    "open_interest_fp": 12456.61,
     "volume_24h_fp": 5023.99,
-    "volume_fp": 8568.1
+    "volume_fp": 12622.609999999999
    },
    "first_play": false,
    "game": "Nashville vs Minnesota",
@@ -4802,9 +4955,9 @@
     "volume_fp": 5493.3099999999995
    },
    "ex_stats_close": {
-    "open_interest_fp": 8402.1,
+    "open_interest_fp": 12456.61,
     "volume_24h_fp": 5023.99,
-    "volume_fp": 8568.1
+    "volume_fp": 12622.609999999999
    },
    "first_play": false,
    "game": "Nashville vs Minnesota",
@@ -4919,6 +5072,7 @@
     "side": "1"
    },
    "result": null,
+   "settle_tries": 1,
    "side": "Denver Nuggets",
    "side_label": "Denver Nuggets -9.5 (-9.5)",
    "side_raw": 1,
@@ -5095,6 +5249,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Golden State Warriors at New Orleans Pelicans",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 223.5, \"px_event\": 1704742727, \"px_market\": 225, \"side\": \"UNDER\"}",
    "lead_min": 390,
    "league": "NBA",
@@ -5115,8 +5270,9 @@
     "px_market": 225,
     "side": "UNDER"
    },
-   "result": null,
-   "settle_tries": 12,
+   "result": "W",
+   "settle_tries": 13,
+   "settled_utc": "2026-11-17T04:00:18Z",
    "side": "UNDER",
    "side_label": "under 223.5 (223.5)",
    "side_raw": "UNDER",
@@ -5126,7 +5282,7 @@
     "Golden State Warriors",
     "New Orleans Pelicans"
    ],
-   "units_flat": null,
+   "units_flat": 1.02,
    "x": 2.69
   },
   {
@@ -6801,9 +6957,9 @@
     "volume_fp": 9360.44
    },
    "ex_stats_close": {
-    "open_interest_fp": 17028.1,
+    "open_interest_fp": 17307.01,
     "volume_24h_fp": 16344.48,
-    "volume_fp": 18239.339999999997
+    "volume_fp": 18518.25
    },
    "first_play": true,
    "game": "Los Angeles vs Boston",
@@ -6854,9 +7010,9 @@
     "volume_fp": 9360.44
    },
    "ex_stats_close": {
-    "open_interest_fp": 17028.1,
+    "open_interest_fp": 17307.01,
     "volume_24h_fp": 16344.48,
-    "volume_fp": 18239.339999999997
+    "volume_fp": 18518.25
    },
    "first_play": false,
    "game": "Los Angeles vs Boston",
@@ -6957,8 +7113,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 18230.0,
-    "volume": 18230.0
+    "openInterest": 20932.0,
+    "volume": 20932.0
    },
    "first_play": false,
    "game": "Nashville Predators @ Minnesota Wild",
@@ -7908,6 +8064,7 @@
    },
    "first_play": false,
    "game": "Golden State Warriors @ New Orleans Pelicans",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1e1e1-5a8f-76e3-b701-02004e926ce6\", \"outcome_id\": \"01a1e1e1-5a8f-76e3-b701-02117ffd8723\"}",
    "lead_min": 450,
    "league": "NBA",
@@ -7926,8 +8083,9 @@
     "market_id": "01a1e1e1-5a8f-76e3-b701-02004e926ce6",
     "outcome_id": "01a1e1e1-5a8f-76e3-b701-02117ffd8723"
    },
-   "result": null,
-   "settle_tries": 12,
+   "result": "L",
+   "settle_tries": 13,
+   "settled_utc": "2026-11-17T04:00:18Z",
    "side": "OVER",
    "side_label": "Over 223.5 (223.5)",
    "side_raw": "OVER",
@@ -7937,7 +8095,7 @@
     "Golden State Warriors",
     "New Orleans Pelicans"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 2.24
   },
   {
@@ -7946,8 +8104,8 @@
    "best_price": 0.55,
    "best_price_book": "novig",
    "book": "kalshi",
-   "close_price": 0.52,
-   "clv_cents": -2.0,
+   "close_price": 0.53,
+   "clv_cents": -1.0,
    "date": "2026-11-17",
    "dir": "RAISE",
    "ex_stats": {
@@ -8487,7 +8645,7 @@
     "outcome_id": "01a1a3d7-a41d-7cb1-9060-07616e2c49ed"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "Los Angeles Chargers",
    "side_label": "LAC +4.5 (-4.5)",
    "side_raw": 0,
@@ -9899,7 +10057,7 @@
     "outcome_id": "01a1a3d7-a41c-77b1-a388-e0417d67732e"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "Los Angeles Chargers",
    "side_label": "LAC (0)",
    "side_raw": 0,
@@ -9951,7 +10109,7 @@
     "outcome_id": "01a1a3d7-a41c-77b1-a388-e038eced1309"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "Baltimore Ravens",
    "side_label": "BAL (0)",
    "side_raw": 1,
@@ -10076,8 +10234,8 @@
    "best_price": 0.5872,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.52,
-   "clv_cents": -5.0,
+   "close_price": 0.53,
+   "clv_cents": -4.0,
    "date": "2026-11-17",
    "dir": "DROP",
    "ex_stats": {
@@ -10462,6 +10620,7 @@
     "market_ticker": "KXNBATOTAL-26NOV16PHXDEN-229"
    },
    "result": null,
+   "settle_tries": 1,
    "side": "OVER",
    "side_label": "Over 228.5 points",
    "side_raw": "OVER",
@@ -10770,6 +10929,7 @@
     "side": "0"
    },
    "result": null,
+   "settle_tries": 1,
    "side": "Phoenix Suns",
    "side_label": "Phoenix Suns +10 (+10)",
    "side_raw": 0,
@@ -10816,6 +10976,7 @@
     "side": "1"
    },
    "result": null,
+   "settle_tries": 1,
    "side": "Denver Nuggets",
    "side_label": "Denver Nuggets -10 (-10)",
    "side_raw": 1,
@@ -10969,6 +11130,7 @@
     "outcome_id": "01a1e25a-b1fb-7d70-9210-c092116fc903"
    },
    "result": null,
+   "settle_tries": 1,
    "side": "Denver Nuggets",
    "side_label": "DEN (0)",
    "side_raw": 1,
@@ -11015,7 +11177,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "Baltimore Ravens",
    "side_label": "Baltimore Ravens -5.5 (-5.5)",
    "side_raw": 1,
@@ -11344,6 +11506,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Portland Trail Blazers at Minnesota Timberwolves",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 228.5, \"px_event\": 1704742705, \"px_market\": 225, \"side\": \"OVER\"}",
    "lead_min": 670,
    "league": "NBA",
@@ -11364,8 +11527,9 @@
     "px_market": 225,
     "side": "OVER"
    },
-   "result": null,
-   "settle_tries": 12,
+   "result": "L",
+   "settle_tries": 13,
+   "settled_utc": "2026-11-17T04:00:18Z",
    "side": "OVER",
    "side_label": "over 228.5 (228.5)",
    "side_raw": "OVER",
@@ -11375,7 +11539,7 @@
     "Portland Trail Blazers",
     "Minnesota Timberwolves"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 2.13
   },
   {
@@ -11924,7 +12088,7 @@
     "market_ticker": "KXNFLGAME-26NOV16LACBAL-LAC"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "Los Angeles C",
    "side_label": "Los Angeles C",
    "side_raw": 0,
@@ -11950,6 +12114,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Golden State Warriors at New Orleans Pelicans",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 225.0, \"px_event\": 1704742727, \"px_market\": 225, \"side\": \"OVER\"}",
    "lead_min": 704,
    "league": "NBA",
@@ -11970,8 +12135,9 @@
     "px_market": 225,
     "side": "OVER"
    },
-   "result": null,
-   "settle_tries": 12,
+   "result": "L",
+   "settle_tries": 13,
+   "settled_utc": "2026-11-17T04:00:18Z",
    "side": "OVER",
    "side_label": "over 225 (225)",
    "side_raw": "OVER",
@@ -11981,7 +12147,7 @@
     "Golden State Warriors",
     "New Orleans Pelicans"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 11.48
   },
   {
@@ -11997,6 +12163,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Golden State Warriors at New Orleans Pelicans",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 225.0, \"px_event\": 1704742727, \"px_market\": 225, \"side\": \"UNDER\"}",
    "lead_min": 704,
    "league": "NBA",
@@ -12017,8 +12184,9 @@
     "px_market": 225,
     "side": "UNDER"
    },
-   "result": null,
-   "settle_tries": 12,
+   "result": "W",
+   "settle_tries": 13,
+   "settled_utc": "2026-11-17T04:00:18Z",
    "side": "UNDER",
    "side_label": "under 225 (225)",
    "side_raw": "UNDER",
@@ -12028,7 +12196,7 @@
     "Golden State Warriors",
     "New Orleans Pelicans"
    ],
-   "units_flat": null,
+   "units_flat": 0.99,
    "x": 12.42
   },
   {
@@ -12044,6 +12212,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Golden State Warriors at New Orleans Pelicans",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 0, \"px_event\": 1704742727, \"px_market\": 219, \"side\": \"0\"}",
    "lead_min": 704,
    "league": "NBA",
@@ -12064,8 +12233,9 @@
     "px_market": 219,
     "side": "0"
    },
-   "result": null,
-   "settle_tries": 12,
+   "result": "L",
+   "settle_tries": 13,
+   "settled_utc": "2026-11-17T04:00:18Z",
    "side": "Golden State Warriors",
    "side_label": "Golden State Warriors",
    "side_raw": 0,
@@ -12075,7 +12245,7 @@
     "Golden State Warriors",
     "New Orleans Pelicans"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 2.14
   },
   {
@@ -12286,6 +12456,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Portland Trail Blazers at Minnesota Timberwolves",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 228.0, \"px_event\": 1704742705, \"px_market\": 225, \"side\": \"OVER\"}",
    "lead_min": 720,
    "league": "NBA",
@@ -12306,8 +12477,9 @@
     "px_market": 225,
     "side": "OVER"
    },
-   "result": null,
-   "settle_tries": 12,
+   "result": "L",
+   "settle_tries": 13,
+   "settled_utc": "2026-11-17T04:00:18Z",
    "side": "OVER",
    "side_label": "over 228 (228)",
    "side_raw": "OVER",
@@ -12317,7 +12489,7 @@
     "Portland Trail Blazers",
     "Minnesota Timberwolves"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 124.98
   },
   {
@@ -12333,6 +12505,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Portland Trail Blazers at Minnesota Timberwolves",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 228.0, \"px_event\": 1704742705, \"px_market\": 225, \"side\": \"UNDER\"}",
    "lead_min": 720,
    "league": "NBA",
@@ -12353,8 +12526,9 @@
     "px_market": 225,
     "side": "UNDER"
    },
-   "result": null,
-   "settle_tries": 12,
+   "result": "W",
+   "settle_tries": 13,
+   "settled_utc": "2026-11-17T04:00:18Z",
    "side": "UNDER",
    "side_label": "under 228 (228)",
    "side_raw": "UNDER",
@@ -12364,7 +12538,7 @@
     "Portland Trail Blazers",
     "Minnesota Timberwolves"
    ],
-   "units_flat": null,
+   "units_flat": 0.99,
    "x": 39.18
   },
   {
@@ -13363,6 +13537,7 @@
    },
    "first_play": false,
    "game": "Portland Trail Blazers @ Minnesota Timberwolves",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1e1d6-1951-7843-8040-1ce5085cdcb4\", \"outcome_id\": \"01a1e1d6-1951-7843-8040-1cfcc823c4d3\"}",
    "lead_min": 742,
    "league": "NBA",
@@ -13381,8 +13556,9 @@
     "market_id": "01a1e1d6-1951-7843-8040-1ce5085cdcb4",
     "outcome_id": "01a1e1d6-1951-7843-8040-1cfcc823c4d3"
    },
-   "result": null,
-   "settle_tries": 12,
+   "result": "W",
+   "settle_tries": 13,
+   "settled_utc": "2026-11-17T04:00:18Z",
    "side": "Minnesota Timberwolves",
    "side_label": "MIN -2.5 (-2.5)",
    "side_raw": 1,
@@ -13392,7 +13568,7 @@
     "Portland Trail Blazers",
     "Minnesota Timberwolves"
    ],
-   "units_flat": null,
+   "units_flat": 1.06,
    "x": 2.89
   },
   {
@@ -13415,6 +13591,7 @@
    },
    "first_play": false,
    "game": "Golden State Warriors @ New Orleans Pelicans",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1e1e1-5a8f-76e3-b701-0266cb4914f1\", \"outcome_id\": \"01a1e1e1-5a8f-76e3-b701-028da12ee180\"}",
    "lead_min": 742,
    "league": "NBA",
@@ -13433,8 +13610,9 @@
     "market_id": "01a1e1e1-5a8f-76e3-b701-0266cb4914f1",
     "outcome_id": "01a1e1e1-5a8f-76e3-b701-028da12ee180"
    },
-   "result": null,
-   "settle_tries": 12,
+   "result": "W",
+   "settle_tries": 13,
+   "settled_utc": "2026-11-17T04:00:18Z",
    "side": "UNDER",
    "side_label": "Under 225.5 (225.5)",
    "side_raw": "UNDER",
@@ -13444,7 +13622,7 @@
     "Golden State Warriors",
     "New Orleans Pelicans"
    ],
-   "units_flat": null,
+   "units_flat": 1.0,
    "x": 2.09
   },
   {
@@ -13467,6 +13645,7 @@
    },
    "first_play": false,
    "game": "Portland Trail Blazers @ Minnesota Timberwolves",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1e1d1-fa70-7c03-938d-1bf25e0c1007\", \"outcome_id\": \"01a1e1d1-fa70-7c03-938d-1c18986b71b2\"}",
    "lead_min": 742,
    "league": "NBA",
@@ -13485,8 +13664,9 @@
     "market_id": "01a1e1d1-fa70-7c03-938d-1bf25e0c1007",
     "outcome_id": "01a1e1d1-fa70-7c03-938d-1c18986b71b2"
    },
-   "result": null,
-   "settle_tries": 12,
+   "result": "W",
+   "settle_tries": 13,
+   "settled_utc": "2026-11-17T04:00:18Z",
    "side": "UNDER",
    "side_label": "Under 228.5 (228.5)",
    "side_raw": "UNDER",
@@ -13496,7 +13676,7 @@
     "Portland Trail Blazers",
     "Minnesota Timberwolves"
    ],
-   "units_flat": null,
+   "units_flat": 1.0,
    "x": 2.07
   },
   {
@@ -13566,6 +13746,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Portland Trail Blazers at Minnesota Timberwolves",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 0, \"px_event\": 1704742705, \"px_market\": 219, \"side\": \"0\"}",
    "lead_min": 742,
    "league": "NBA",
@@ -13586,8 +13767,9 @@
     "px_market": 219,
     "side": "0"
    },
-   "result": null,
-   "settle_tries": 12,
+   "result": "L",
+   "settle_tries": 13,
+   "settled_utc": "2026-11-17T04:00:18Z",
    "side": "Portland Trail Blazers",
    "side_label": "Portland Trail Blazers",
    "side_raw": 0,
@@ -13597,7 +13779,7 @@
     "Portland Trail Blazers",
     "Minnesota Timberwolves"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 2.17
   },
   {
@@ -13613,6 +13795,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Portland Trail Blazers at Minnesota Timberwolves",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 0, \"px_event\": 1704742705, \"px_market\": 219, \"side\": \"1\"}",
    "lead_min": 742,
    "league": "NBA",
@@ -13633,8 +13816,9 @@
     "px_market": 219,
     "side": "1"
    },
-   "result": null,
-   "settle_tries": 12,
+   "result": "W",
+   "settle_tries": 13,
+   "settled_utc": "2026-11-17T04:00:18Z",
    "side": "Minnesota Timberwolves",
    "side_label": "Minnesota Timberwolves",
    "side_raw": 1,
@@ -13644,7 +13828,7 @@
     "Portland Trail Blazers",
     "Minnesota Timberwolves"
    ],
-   "units_flat": null,
+   "units_flat": 0.79,
    "x": 2.03
   },
   {
@@ -13730,7 +13914,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "OVER",
    "side_label": "over 39 (39)",
    "side_raw": "OVER",
@@ -13929,6 +14113,7 @@
     "side": "0"
    },
    "result": null,
+   "settle_tries": 1,
    "side": "Phoenix Suns",
    "side_label": "Phoenix Suns +10 (+10)",
    "side_raw": 0,
@@ -13975,6 +14160,7 @@
     "side": "1"
    },
    "result": null,
+   "settle_tries": 1,
    "side": "Denver Nuggets",
    "side_label": "Denver Nuggets -10 (-10)",
    "side_raw": 1,
@@ -14530,6 +14716,7 @@
     "outcome_id": "01a1e1e1-5a8c-7422-8ca3-3ec90778d412"
    },
    "result": null,
+   "settle_tries": 1,
    "side": "Phoenix Suns",
    "side_label": "PHX +10.5 (-10.5)",
    "side_raw": 0,
@@ -14581,6 +14768,7 @@
     "outcome_id": "01a1e1e1-5a8c-7422-8ca3-3eba1f545d89"
    },
    "result": null,
+   "settle_tries": 1,
    "side": "Denver Nuggets",
    "side_label": "DEN -10.5 (-10.5)",
    "side_raw": 1,
@@ -14630,6 +14818,7 @@
     "outcome_id": "01a1e1e1-5a8e-7611-8f11-178df6ed0f29"
    },
    "result": null,
+   "settle_tries": 1,
    "side": "UNDER",
    "side_label": "Under 228.5 (228.5)",
    "side_raw": "UNDER",
@@ -14678,6 +14867,7 @@
     "outcome_id": "01a1e1e1-5a8e-7611-8f11-1777040fa885"
    },
    "result": null,
+   "settle_tries": 1,
    "side": "OVER",
    "side_label": "Over 228.5 (228.5)",
    "side_raw": "OVER",
@@ -14709,6 +14899,7 @@
    },
    "first_play": false,
    "game": "Golden State Warriors @ New Orleans Pelicans",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1e1e1-5a8b-7b90-a42f-8beba66a8a4b\", \"outcome_id\": \"01a1e1e1-5a8b-7b90-a42f-8bf7b96c9e85\"}",
    "lead_min": 804,
    "league": "NBA",
@@ -14727,8 +14918,9 @@
     "market_id": "01a1e1e1-5a8b-7b90-a42f-8beba66a8a4b",
     "outcome_id": "01a1e1e1-5a8b-7b90-a42f-8bf7b96c9e85"
    },
-   "result": null,
-   "settle_tries": 12,
+   "result": "W",
+   "settle_tries": 13,
+   "settled_utc": "2026-11-17T04:00:18Z",
    "side": "New Orleans Pelicans",
    "side_label": "NOP +3.5 (3.5)",
    "side_raw": 1,
@@ -14738,7 +14930,7 @@
     "Golden State Warriors",
     "New Orleans Pelicans"
    ],
-   "units_flat": null,
+   "units_flat": 0.94,
    "x": 2.27
   },
   {
@@ -15132,6 +15324,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Golden State Warriors at New Orleans Pelicans",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 0, \"px_event\": 1704742727, \"px_market\": 219, \"side\": \"1\"}",
    "lead_min": 804,
    "league": "NBA",
@@ -15152,8 +15345,9 @@
     "px_market": 219,
     "side": "1"
    },
-   "result": null,
-   "settle_tries": 12,
+   "result": "W",
+   "settle_tries": 13,
+   "settled_utc": "2026-11-17T04:00:18Z",
    "side": "New Orleans Pelicans",
    "side_label": "New Orleans Pelicans",
    "side_raw": 1,
@@ -15163,7 +15357,7 @@
     "Golden State Warriors",
     "New Orleans Pelicans"
    ],
-   "units_flat": null,
+   "units_flat": 1.41,
    "x": 2.02
   },
   {
@@ -15560,6 +15754,7 @@
     "side": "OVER"
    },
    "result": null,
+   "settle_tries": 1,
    "side": "OVER",
    "side_label": "over 228 (228)",
    "side_raw": "OVER",
@@ -15606,6 +15801,7 @@
     "side": "UNDER"
    },
    "result": null,
+   "settle_tries": 1,
    "side": "UNDER",
    "side_label": "under 228 (228)",
    "side_raw": "UNDER",
@@ -16432,6 +16628,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Portland Trail Blazers at Minnesota Timberwolves",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 229.5, \"px_event\": 1704742705, \"px_market\": 225, \"side\": \"OVER\"}",
    "lead_min": 920,
    "league": "NBA",
@@ -16452,8 +16649,9 @@
     "px_market": 225,
     "side": "OVER"
    },
-   "result": null,
-   "settle_tries": 12,
+   "result": "L",
+   "settle_tries": 13,
+   "settled_utc": "2026-11-17T04:00:18Z",
    "side": "OVER",
    "side_label": "over 229.5 (229.5)",
    "side_raw": "OVER",
@@ -16463,7 +16661,7 @@
     "Portland Trail Blazers",
     "Minnesota Timberwolves"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 6.35
   },
   {
@@ -16479,6 +16677,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Portland Trail Blazers at Minnesota Timberwolves",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 229.5, \"px_event\": 1704742705, \"px_market\": 225, \"side\": \"UNDER\"}",
    "lead_min": 920,
    "league": "NBA",
@@ -16499,8 +16698,9 @@
     "px_market": 225,
     "side": "UNDER"
    },
-   "result": null,
-   "settle_tries": 12,
+   "result": "W",
+   "settle_tries": 13,
+   "settled_utc": "2026-11-17T04:00:18Z",
    "side": "UNDER",
    "side_label": "under 229.5 (229.5)",
    "side_raw": "UNDER",
@@ -16510,7 +16710,7 @@
     "Portland Trail Blazers",
     "Minnesota Timberwolves"
    ],
-   "units_flat": null,
+   "units_flat": 0.88,
    "x": 2.79
   },
   {
@@ -19495,6 +19695,7 @@
     "side": "0"
    },
    "result": null,
+   "settle_tries": 1,
    "side": "Phoenix Suns",
    "side_label": "Phoenix Suns",
    "side_raw": 0,
@@ -19684,6 +19885,7 @@
    },
    "first_play": false,
    "game": "Golden State Warriors @ New Orleans Pelicans",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1e208-905e-7b72-a90f-3eda73d536b5\", \"outcome_id\": \"01a1e208-905e-7b72-a90f-3eff938c6a38\"}",
    "lead_min": 1050,
    "league": "NBA",
@@ -19702,8 +19904,9 @@
     "market_id": "01a1e208-905e-7b72-a90f-3eda73d536b5",
     "outcome_id": "01a1e208-905e-7b72-a90f-3eff938c6a38"
    },
-   "result": null,
-   "settle_tries": 12,
+   "result": "L",
+   "settle_tries": 13,
+   "settled_utc": "2026-11-17T04:00:18Z",
    "side": "Golden State Warriors",
    "side_label": "GSW (0)",
    "side_raw": 0,
@@ -19713,7 +19916,7 @@
     "Golden State Warriors",
     "New Orleans Pelicans"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 2.13
   },
   {
@@ -19755,6 +19958,7 @@
     "outcome_id": "01a1e25a-b1fb-7d70-9210-c0aaecbc6651"
    },
    "result": null,
+   "settle_tries": 1,
    "side": "Phoenix Suns",
    "side_label": "PHX (0)",
    "side_raw": 0,
@@ -19806,6 +20010,7 @@
     "outcome_id": "01a1e25a-b1fb-7d70-9210-c092116fc903"
    },
    "result": null,
+   "settle_tries": 1,
    "side": "Denver Nuggets",
    "side_label": "DEN (0)",
    "side_raw": 1,
@@ -19838,6 +20043,7 @@
    },
    "first_play": false,
    "game": "Portland Trail Blazers @ Minnesota Timberwolves",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1e1ec-b3e9-7eb2-a8a6-541b5c0cc70a\", \"outcome_id\": \"01a1e1ec-b3e9-7eb2-a8a6-543fb63c9616\"}",
    "lead_min": 1060,
    "league": "NBA",
@@ -19856,8 +20062,9 @@
     "market_id": "01a1e1ec-b3e9-7eb2-a8a6-541b5c0cc70a",
     "outcome_id": "01a1e1ec-b3e9-7eb2-a8a6-543fb63c9616"
    },
-   "result": null,
-   "settle_tries": 12,
+   "result": "L",
+   "settle_tries": 13,
+   "settled_utc": "2026-11-17T04:00:18Z",
    "side": "Portland Trail Blazers",
    "side_label": "POR (0)",
    "side_raw": 0,
@@ -19867,7 +20074,7 @@
     "Portland Trail Blazers",
     "Minnesota Timberwolves"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 2.04
   },
   {
@@ -20216,6 +20423,7 @@
    },
    "first_play": false,
    "game": "Portland Trail Blazers @ Minnesota Timberwolves",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1e1d1-fa70-7c03-938d-1bf25e0c1007\", \"outcome_id\": \"01a1e1d1-fa70-7c03-938d-1c022ef6bfbf\"}",
    "lead_min": 1114,
    "league": "NBA",
@@ -20234,8 +20442,9 @@
     "market_id": "01a1e1d1-fa70-7c03-938d-1bf25e0c1007",
     "outcome_id": "01a1e1d1-fa70-7c03-938d-1c022ef6bfbf"
    },
-   "result": null,
-   "settle_tries": 12,
+   "result": "L",
+   "settle_tries": 13,
+   "settled_utc": "2026-11-17T04:00:18Z",
    "side": "OVER",
    "side_label": "Over 228.5 (228.5)",
    "side_raw": "OVER",
@@ -20245,7 +20454,7 @@
     "Portland Trail Blazers",
     "Minnesota Timberwolves"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 3.0
   },
   {
@@ -20535,6 +20744,7 @@
    },
    "first_play": true,
    "game": "Golden State Warriors @ New Orleans Pelicans",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1e208-905e-7b72-a90f-3eda73d536b5\", \"outcome_id\": \"01a1e208-905e-7b72-a90f-3ee6dc6dcf50\"}",
    "lead_min": 1124,
    "league": "NBA",
@@ -20553,8 +20763,9 @@
     "market_id": "01a1e208-905e-7b72-a90f-3eda73d536b5",
     "outcome_id": "01a1e208-905e-7b72-a90f-3ee6dc6dcf50"
    },
-   "result": null,
-   "settle_tries": 12,
+   "result": "W",
+   "settle_tries": 13,
+   "settled_utc": "2026-11-17T04:00:18Z",
    "side": "New Orleans Pelicans",
    "side_label": "NOP (0)",
    "side_raw": 1,
@@ -20564,7 +20775,7 @@
     "Golden State Warriors",
     "New Orleans Pelicans"
    ],
-   "units_flat": null,
+   "units_flat": 1.38,
    "x": 0.38
   },
   {
@@ -20587,6 +20798,7 @@
    },
    "first_play": false,
    "game": "Golden State Warriors @ New Orleans Pelicans",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1e1e1-5a8b-7b90-a42f-8beba66a8a4b\", \"outcome_id\": \"01a1e1e1-5a8b-7b90-a42f-8c05f4180590\"}",
    "lead_min": 1134,
    "league": "NBA",
@@ -20605,8 +20817,9 @@
     "market_id": "01a1e1e1-5a8b-7b90-a42f-8beba66a8a4b",
     "outcome_id": "01a1e1e1-5a8b-7b90-a42f-8c05f4180590"
    },
-   "result": null,
-   "settle_tries": 12,
+   "result": "L",
+   "settle_tries": 13,
+   "settled_utc": "2026-11-17T04:00:18Z",
    "side": "Golden State Warriors",
    "side_label": "GSW -3.5 (3.5)",
    "side_raw": 0,
@@ -20616,7 +20829,7 @@
     "Golden State Warriors",
     "New Orleans Pelicans"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 2.13
   },
   {
@@ -20695,6 +20908,7 @@
    },
    "first_play": true,
    "game": "Portland Trail Blazers @ Minnesota Timberwolves",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1e1d1-fa70-7c03-938d-1bf25e0c1007\", \"outcome_id\": \"01a1e1d1-fa70-7c03-938d-1c022ef6bfbf\"}",
    "lead_min": 1144,
    "league": "NBA",
@@ -20713,8 +20927,9 @@
     "market_id": "01a1e1d1-fa70-7c03-938d-1bf25e0c1007",
     "outcome_id": "01a1e1d1-fa70-7c03-938d-1c022ef6bfbf"
    },
-   "result": null,
-   "settle_tries": 12,
+   "result": "L",
+   "settle_tries": 13,
+   "settled_utc": "2026-11-17T04:00:18Z",
    "side": "OVER",
    "side_label": "Over 228.5 (228.5)",
    "side_raw": "OVER",
@@ -20724,7 +20939,7 @@
     "Portland Trail Blazers",
     "Minnesota Timberwolves"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 0.49
   },
   {
@@ -21062,6 +21277,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Portland Trail Blazers at Minnesota Timberwolves",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 7.5, \"px_event\": 1704742705, \"px_market\": 223, \"side\": \"1\"}",
    "lead_min": 1160,
    "league": "NBA",
@@ -21082,8 +21298,9 @@
     "px_market": 223,
     "side": "1"
    },
-   "result": null,
-   "settle_tries": 12,
+   "result": "W",
+   "settle_tries": 13,
+   "settled_utc": "2026-11-17T04:00:18Z",
    "side": "Minnesota Timberwolves",
    "side_label": "Minnesota Timberwolves -7.5 (-7.5)",
    "side_raw": 1,
@@ -21093,7 +21310,7 @@
     "Portland Trail Blazers",
     "Minnesota Timberwolves"
    ],
-   "units_flat": null,
+   "units_flat": 1.9,
    "x": 2.25
   },
   {
@@ -21754,6 +21971,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Portland Trail Blazers at Minnesota Timberwolves",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 7.5, \"px_event\": 1704742705, \"px_market\": 223, \"side\": \"0\"}",
    "lead_min": 1184,
    "league": "NBA",
@@ -21774,8 +21992,9 @@
     "px_market": 223,
     "side": "0"
    },
-   "result": null,
-   "settle_tries": 12,
+   "result": "L",
+   "settle_tries": 13,
+   "settled_utc": "2026-11-17T04:00:18Z",
    "side": "Portland Trail Blazers",
    "side_label": "Portland Trail Blazers +7.5 (+7.5)",
    "side_raw": 0,
@@ -21785,7 +22004,7 @@
     "Portland Trail Blazers",
     "Minnesota Timberwolves"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 2.01
   },
   {
@@ -21808,6 +22027,7 @@
    },
    "first_play": false,
    "game": "Portland Trail Blazers @ Minnesota Timberwolves",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1e1d6-1951-7843-8040-1ce5085cdcb4\", \"outcome_id\": \"01a1e1d6-1951-7843-8040-1d0c8ef510be\"}",
    "lead_min": 1200,
    "league": "NBA",
@@ -21826,8 +22046,9 @@
     "market_id": "01a1e1d6-1951-7843-8040-1ce5085cdcb4",
     "outcome_id": "01a1e1d6-1951-7843-8040-1d0c8ef510be"
    },
-   "result": null,
-   "settle_tries": 12,
+   "result": "L",
+   "settle_tries": 13,
+   "settled_utc": "2026-11-17T04:00:18Z",
    "side": "Portland Trail Blazers",
    "side_label": "POR +2.5 (-2.5)",
    "side_raw": 0,
@@ -21837,7 +22058,7 @@
     "Portland Trail Blazers",
     "Minnesota Timberwolves"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 2.34
   },
   {
@@ -21936,7 +22157,7 @@
     "market_ticker": "KXNFLGAME-26NOV16LACBAL-BAL"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "Baltimore",
    "side_label": "Baltimore",
    "side_raw": 1,
@@ -21969,6 +22190,7 @@
    },
    "first_play": false,
    "game": "Golden State Warriors @ New Orleans Pelicans",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1e208-905e-7b72-a90f-3eda73d536b5\", \"outcome_id\": \"01a1e208-905e-7b72-a90f-3ee6dc6dcf50\"}",
    "lead_min": 1204,
    "league": "NBA",
@@ -21987,8 +22209,9 @@
     "market_id": "01a1e208-905e-7b72-a90f-3eda73d536b5",
     "outcome_id": "01a1e208-905e-7b72-a90f-3ee6dc6dcf50"
    },
-   "result": null,
-   "settle_tries": 12,
+   "result": "W",
+   "settle_tries": 13,
+   "settled_utc": "2026-11-17T04:00:18Z",
    "side": "New Orleans Pelicans",
    "side_label": "NOP (0)",
    "side_raw": 1,
@@ -21998,7 +22221,7 @@
     "Golden State Warriors",
     "New Orleans Pelicans"
    ],
-   "units_flat": null,
+   "units_flat": 1.38,
    "x": 2.31
   },
   {
@@ -22267,7 +22490,7 @@
     "market_ticker": "KXNFLGAME-26NOV16LACBAL-LAC"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "Los Angeles C",
    "side_label": "Los Angeles C",
    "side_raw": 0,
@@ -22300,6 +22523,7 @@
    },
    "first_play": false,
    "game": "Portland Trail Blazers @ Minnesota Timberwolves",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1e1ec-b3e9-7eb2-a8a6-541b5c0cc70a\", \"outcome_id\": \"01a1e1ec-b3e9-7eb2-a8a6-542f864405d0\"}",
    "lead_min": 1240,
    "league": "NBA",
@@ -22318,8 +22542,9 @@
     "market_id": "01a1e1ec-b3e9-7eb2-a8a6-541b5c0cc70a",
     "outcome_id": "01a1e1ec-b3e9-7eb2-a8a6-542f864405d0"
    },
-   "result": null,
-   "settle_tries": 12,
+   "result": "W",
+   "settle_tries": 13,
+   "settled_utc": "2026-11-17T04:00:18Z",
    "side": "Minnesota Timberwolves",
    "side_label": "MIN (0)",
    "side_raw": 1,
@@ -22329,7 +22554,7 @@
     "Portland Trail Blazers",
     "Minnesota Timberwolves"
    ],
-   "units_flat": null,
+   "units_flat": 0.79,
    "x": 3.81
   },
   {
@@ -22583,6 +22808,7 @@
     "market_ticker": "KXNBAGAME-26NOV16PHXDEN-DEN"
    },
    "result": null,
+   "settle_tries": 1,
    "side": "Denver",
    "side_label": "Denver",
    "side_raw": 1,
@@ -22636,6 +22862,7 @@
     "market_ticker": "KXNBAGAME-26NOV16PHXDEN-PHX"
    },
    "result": null,
+   "settle_tries": 1,
    "side": "Phoenix",
    "side_label": "Phoenix",
    "side_raw": 0,
@@ -23872,7 +24099,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "Los Angeles Chargers",
    "side_label": "Los Angeles Chargers +6 (+6)",
    "side_raw": 0,
@@ -23919,7 +24146,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "Baltimore Ravens",
    "side_label": "Baltimore Ravens -6 (-6)",
    "side_raw": 1,
@@ -25579,7 +25806,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "Los Angeles Chargers",
    "side_label": "Los Angeles Chargers",
    "side_raw": 0,
@@ -25626,7 +25853,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "Baltimore Ravens",
    "side_label": "Baltimore Ravens -6 (-6)",
    "side_raw": 1,
@@ -25727,7 +25954,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "Los Angeles Chargers",
    "side_label": "Los Angeles Chargers +6 (+6)",
    "side_raw": 0,
@@ -26034,7 +26261,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "UNDER",
    "side_label": "under 38.5 (38.5)",
    "side_raw": "UNDER",
@@ -27381,7 +27608,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "OVER",
    "side_label": "over 38.5 (38.5)",
    "side_raw": "OVER",
@@ -28314,7 +28541,7 @@
     "outcome_id": "01a1a3d7-a41e-7b13-8d18-19b0e70f33ca"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "OVER",
    "side_label": "Over 38.5 (38.5)",
    "side_raw": "OVER",
