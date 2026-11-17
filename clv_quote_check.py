@@ -37,10 +37,11 @@ def main():
     for k, r in (st.get("bets") or {}).items():
         s = r.get("snap") or {}
         gs = cl.tp(s.get("game_start"))
-        if (s.get("source") == "bot" and gs and gs.astimezone(cl.ET).strftime("%Y-%m-%d") >= START
+        if (gs and gs.astimezone(cl.ET).strftime("%Y-%m-%d") >= START
                 and r.get("clv") is not None and not r.get("fixture_doubt") and rs.clv_method(r) == "certified"):
             rows.append((k, r))
-    print(f"certified bot closes from {START} ET (rows): {len(rows)}")
+    print(f"certified closes from {START} ET (rows, every source - a superset of the bot positions, which include "
+          f"registry-proven rows the tracker labels otherwise): {len(rows)}; tracker-labelled bot {sum(1 for _k, r in rows if (r.get('snap') or {}).get('source') == 'bot')}")
     C = collections.Counter()
     orig_lt = cl.last_tick
     for k, r in rows:
