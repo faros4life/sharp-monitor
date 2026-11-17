@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 16, 7:35 PM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 56.
+Updated Mon Nov 16, 7:40 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 56.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 16 7:25PM | NBA | Philadelphia vs Brooklyn: Spread | spread: NOT Philadelphia wins by over 5.5 points | kalshi | $135k | -104 | ✅ novig,prophetx | ✅ | +0.0c |  | pending |
+| Nov 16 7:25PM | NBA | Philadelphia vs Brooklyn: Spread | spread: NOT Philadelphia wins by over 5.5 points | kalshi | $135k | -104 | ✅ novig,prophetx | ✅ | +0.0c | yes | pending |
 | Nov 16 7:10PM | NBA | Golden State vs New Orleans: Spread | spread: NOT Golden State wins by over 3.5 points | kalshi | $27k | -108 | ✅ novig | ❌ | +0.0c | yes | pending |
 | Nov 16 6:40PM | NBA | Orlando vs Boston: Spread | spread: Boston wins by over 8.5 points | kalshi | $101k | -108 | ✅ novig | ❌ | +0.0c | yes | pending |
 | Nov 16 6:35PM | NBA | Memphis vs Washington: Spread | spread: Memphis wins by over 3.5 points | kalshi | $35k | -113 |  | ❌ | -1.0c |  | pending |
