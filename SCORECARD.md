@@ -48,6 +48,8 @@ paper test today is CONTINUE. The binding constraint is fills, not CLV.
 | --- | --- | --- | --- | --- | --- |
 | 1 | LANE 1 | **ACTUAL FILLS — the only realized record in the system.** 41 graded bot fills → **33 verified same-line (80.5% coverage)**. Executed CLV **+0.37%** [−1.46, +2.19], beat the close **24/33 = 72.7%** Wilson [55.8, 84.9] — **excludes a coin flip**. Record 20-13, **+3.70u on 35.77u staked, ROI +10.3%**. Halves: H1 +1.38% / **H2 −0.59%**. Venue: Novig 40, PM-US 1 (bracketed, out of headline). Taker basis (conservative; maker would read better) | **33 real fills** | 11 Nov (`executed_clv`) | **CONTINUE TESTING** — strongest evidence anywhere, but certified n=33 is below the n≥100 precision bar and H2 CLV is negative |
 | 2 | RESTING BIDS | — | live money | — | KEPT, graded separately |
+| 7 | **BOARD V4** | **LIVE from 17 Nov 12:40 ET**, replacing v3. V3's rule plus ONE gate: a second book confirmed the same game, market, side and line at alert time ($10k, from the alert's own stored evidence). Retro what-if on the 33 bettable plays: 22-11, **+10.15u, ROI +28.4%**, certified CLV **+1.33%** [−0.89, +3.55] on 25 closes; halves +8.6u / +1.6u. The 37 plays it rejects: +4.80u, ROI +11.5%, CLV **−3.67%** [−5.78, −1.57] on 32. Switch `EXEC_BOARD_V4`. | live money | 17 Nov | **RETRO ONLY — the rule was found in this data.** Forward record starts now |
+| 29 | **R1** | 47 graded, 30-17, +10.79u, ROI +20.3%, certified CLV **−1.52%** [−3.25, +0.20] on **39/47** (coverage 9→26→39 on 17 Nov: the certifier's own league map excluded NCAAB, then free history, then one paid /fixtures call). Forward since the rule went live 11 Nov: **7-7, −1.04u, ROI −6.5%**, CLV −0.30% on 12/14. Halves +10.32u then +0.47u. | live money | 17 Nov | **INSUFFICIENT EVIDENCE, leaning negative.** Profit is first-half only; CLV does not support it |
 
 ### MANUAL — Peter bets by hand
 
@@ -56,6 +58,7 @@ paper test today is CONTINUE. The binding constraint is fills, not CLV.
 | 3 | PETER — FEED PLAYS | — | real money | — | KEPT |
 | 4 | HR SCANNER FLAGS | — | real money | — | KEPT |
 | 5 | STREET VALUE | — | real money | — | KEPT |
+| — | **HR1** | **New 17 Nov (Peter: "send alerts to telegram this way i manualy play them").** Non-Top-25 NCAAB, Hard Rock-priced, after-fee −119..−101, spreads + totals unders, not late, 60+ min before tip, first alert per game/market/side. 124 graded, 81-43, **+33.35u, ROI +24.3%**; halves +14.25u / +19.10u. **UNITS ONLY — 3 certified Pinnacle closes in the whole 328-play Hard Rock NCAAB population.** Pushed to ntfy and Telegram, labelled MANUAL; Claude places nothing at Hard Rock on any lane. `agree_rules.hr1`; `hr1_pushed` / `hr1_eligible` on every alert row. | real money, by hand | 17 Nov | **COLLECTING.** Unverified on price; Peter is limited on CBB at Hard Rock, so small stakes |
 | 6 | STEAM | feed-wide 708 graded, −0.26u, −0.0%, day-CI [−6.4, +5.7]% | none (paper since 17 Oct) | 11 Nov | KEPT + ON · **CLEAR FAIL** feed-wide |
 | 7 | BETS BOARD PLAYS | **v3 rule (from 4 Nov, ratified 6 Nov as the rule the historical record ran on). PLAY: 62 graded, 42-20, +20.43u, +33.0%**, 22 Oct–10 Nov, all NBA totals. **LEAN: 308 graded, +20.65u, +6.7%**, from 5 Nov. **DEAD: 228 graded, −9.36u, −4.1%** | board paper for live money since 4 Nov; PLAY calls hand-bet | 11 Nov | **CONTINUE TESTING.** v3 PLAY *is* the LIQ-BOT rule (entry 9), so this is that lane's paper record — not a second strategy |
 
@@ -69,7 +72,7 @@ paper test today is CONTINUE. The binding constraint is fills, not CLV.
 | 11 | SLOW-HR | **508 sightings, all with a close. Avg CLV −1.73c, beat close 135/508 = 26.6%.** Judged (not LATE) 465, −1.70c, 129/465. LATE 43, −2.07c. Type P 500, −1.71c; Type L 8, −3.15c. NFL −2.63c (160) · NCAAF −1.35c (301) · NHL −1.12c (47). Deviation on record: graded vs Pinnacle close, consensus close not wired | none | 11 Nov (`slow_hr`) | **CLEAR FAIL on pricing** — negative in every league and both types |
 | 12 | DOG BAND | — | none | — | paper, forward from 7 Nov |
 | 13 | LIQ-SMALL | $25–50k-print subset **priced from Lane 3 rows — not an independent population**. Its executable entries are SIMULATED depth checks, not orders. Lane 3 shadow: 27 rows in window, **0 confirmed fills**, 7 simulated | **0 confirmed** | 11 Nov | **INSUFFICIENT EVIDENCE** |
-| 14 | BOARD v2 | — | none | — | parallel grading |
+| 14 | BOARD v2 | — | none | — | parallel grading; **superseded 6 Nov**, kept for history only |
 | 15 | P-NHL-DOGS | — | none | — | checkpoint 50, judged 100 |
 | 16 | P-CFB-OVER / P-NFL-OVER | — | none | — | same bars as 15 |
 | 17 | HR-A | — | none | — | judged at 100 sightings |
@@ -283,6 +286,14 @@ regimes and the post-change window is the one to read.
 | 6 Nov | Fee model `2026-11-06.11` → `.12` (Novig is not flat zero: 0 pre-game straights, 0.06·C·p(1−p) live/futures) | Any after-fee figure spanning it |
 | 6 Nov | NCAAB openers freeze lookahead `AHEAD_DAYS` 2 → 3 | Entry 23 — before this, ~45% of Pinnacle-posted games were disqualified as "frozen after the open". The 7 Nov checkpoint straddles the change |
 | 9 Nov | Lane 2 paid polling paused (`EXEC_LANE2_PAID` default off) | Entry 8 stops buying live Pinnacle limits |
+| 11 Nov | R1 went live (`EXEC_R1_LIVE`); risk 1500 → 2000 | Entry 29 — read R1 from 11 Nov 13:24 UTC forward separately |
+| 13 Nov | No-tolerance value gate, every lane | Lane 1, R1, Board — a post-13 Nov window is the only one on the current pricing rule |
+| 16 Nov | CLV on a row means a CERTIFIED Pinnacle close only (same line or exact moneyline); the alerting venue's own close and an unverified live read moved to `pclv`, labelled | Every CLV figure on the Last 50 page. LIQ-SMALL went +0.85% → −2.57% on this change alone, with no new data |
+| 17 Nov | Board grading backfilled from the full feeds | 13 of 83 board PLAY calls had never been graded; registry 7 and 14 both move |
+| 17 Nov | Trigger-venue-first routing, every live lane | Lane 1, R1, Board — fills from 17 Nov 14:44 UTC |
+| 17 Nov | **Board V4 replaced v3 as the live board rule** (`EXEC_BOARD_V4` on at 12:40 ET) | Entry 7. V3 continues as a shadow record; V4's forward window starts 17 Nov |
+| 17 Nov | Certifier league map was `SPORT` (no NCAAB) → `SCORE_SPORT` | R1's certified CLV coverage: 29 of 47 plays had been filed "league not covered" by the reader, not by the data |
+| 17 Nov | One paid /fixtures call recovered NCAAB fixture lists for 3–11 Nov; free history for the matched games | R1 coverage 9 → 39 of 47. Read R1's CLV from 17 Nov, not from earlier reports |
 
 ### Bets Board, all three rule versions (graded, from `board/calls.json`)
 
@@ -338,7 +349,11 @@ Numbers unavailable here are marked with what is needed.
 | O6 | **Board calls are priced at the TRIGGER venue, not the best bettable venue.** `board_build.after_fee_dec` also prices Polymarket GLOBAL at the US fee. Consequence: `board_clv_check` drops 20 of 58 rows as unbettable when 15 of them were gettable on Novig/Kalshi/ProphetX, so the −0.41% certified CLV is computed on the wrong population | **open — now the blocking defect for the NBA-totals family** | price each call at the best bettable exchange quoting that line, then recompute certified CLV |
 | O7 | Registry entries with no numbers on this scorecard | open | their own report emails: Resting Bids (2), Peter Feed Plays (3), HR Scanner Flags (4), Street Value (5), Lane 2 (8), POST & WAIT (10), DOG BAND (12), P-NHL-DOGS (15), P-CFB/NFL-OVER (16), HR-A (17), PLIMIT-CUT (19), EX-B (20), plus lenses 24-26 and research 27-32 |
 | O8 | Zero confirmed fills outside Lane 1 | open | structural: nothing else is live |
-| O9 | Certified CLV coverage is low and non-representative (NHL 56% vs NBA 7%) | open | fixture-matching quality is a standing objective |
+| O9 | Certified CLV coverage is low and non-representative (NHL 56% vs NBA 7%) | **improved 17 Nov** | the reader, not the data, caused much of it: `SCORE_SPORT` fix + free history + one paid /fixtures call took R1 from 9/47 to 39/47. Remaining 8 are genuinely unmatched |
+| O11 | **Board V4's first ledger row has not been seen.** The accept/reject and its evidence are written by `ledger_row`, verified locally and by test, but no board play has come through since V4 went live | open | one board play under V4, then the private audit (Claude cannot open the ledger) |
+| O12 | **V4 was found in the data it is measured on.** The 33-play retro is not out-of-sample | open | forward plays only; do not restate the retro figures as V4's record |
+| O13 | **HR1 is unverified on price.** 124 plays, +33.35u, but 3 certified closes in the whole 328-play Hard Rock NCAAB population | open | `prices_at_alert` (added 17 Nov) will let these be re-judged at an exchange price; needs forward alerts |
+| O14 | 8 R1 plays still have no certified close — genuinely unmatched or ambiguous fixtures, not a missing lookup | open | fixture-matching quality; no further paid call would help |
 | O10 | Lane 1's certified CLV is positive overall (+0.37%) but negative in H2 (−0.59%) on n=33 | open | more verified fills; n≥100 for the precision bar |
 
 ## O6 AUDIT RESULT (11 Nov) — entry basis corrected in code; close leg blocked
