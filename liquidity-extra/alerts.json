@@ -1,6 +1,213 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-17T19:20:22Z",
+   "base_depth": 50967,
+   "best_price": 0.515,
+   "best_price_american": -106,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-17",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 4590,
+     "new_this_side": 26113,
+     "other_side": 27171,
+     "other_side_all_levels": 64942,
+     "ratio": 1.0,
+     "this_side": 26919,
+     "this_side_all_levels": 77069
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "Under 153.5 (153.5)",
+     "price": 0.515,
+     "this_side": 5779
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "under 153.5 (153.5)",
+     "price": 0.5169,
+     "this_side": 1308
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 5855.43,
+    "volume_24h_fp": 6587.32,
+    "volume_fp": 6587.32
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 5855.43,
+    "volume_24h_fp": 6587.32,
+    "volume_fp": 6587.32
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-11-17T19:10:17Z",
+   "game": "Arkansas vs Indiana: Point Total",
+   "game_surge_books": [],
+   "game_x": 1.53,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAMBTOTAL-26NOV17ARKIND-154\"}",
+   "lead_min": 310,
+   "league": "NCAAB",
+   "line": 153.5,
+   "market": "total",
+   "new_money": 26113,
+   "new_x": 0.79,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 5855.43,
+      "volume_24h_fp": 6587.32,
+      "volume_fp": 6587.32
+     },
+     "game_normal": 50404,
+     "game_x": 1.53,
+     "normal": 33170,
+     "now": 77069,
+     "type": "UNDER",
+     "x": 2.32
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 167195.0,
+      "volume": 167195.0
+     },
+     "game_normal": 4991,
+     "game_x": 1.29,
+     "normal": 1805,
+     "now": 6432,
+     "type": "UNDER",
+     "x": 3.56
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 1190,
+     "game_x": 1.43,
+     "normal": 520,
+     "now": 1699,
+     "type": "UNDER",
+     "x": 3.27
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 153.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 153.5,
+     "price": -115
+    },
+    "betopenly": {
+     "point": 153.5,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 154.5,
+     "price": -113
+    },
+    "betus": {
+     "point": 153.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 153.5,
+     "price": -110
+    },
+    "circasports": {
+     "point": 153.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 153.5,
+     "price": -112
+    },
+    "fanatics": {
+     "point": 153.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 153.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 153.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 153.5,
+     "price": -113
+    },
+    "novig": {
+     "point": 153.5,
+     "price": -106
+    },
+    "polymarket": {
+     "point": 153.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": 153.5,
+     "price": -107
+    },
+    "williamhill_us": {
+     "point": 153.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAMBTOTAL-26NOV17ARKIND-154"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [
+    "Under 154.5 (-110)"
+   ],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 153.5 points",
+   "size_x": 2.32,
+   "start_source": "odds",
+   "start_utc": "2026-11-18T00:30:03Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Arkansas",
+    "Indiana"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-17T18:20:20Z",
    "base_depth": 130924,
    "best_price": 0.5505,
@@ -222,9 +429,9 @@
     "volume_fp": 62.84
    },
    "ex_stats_close": {
-    "open_interest_fp": 2290.69,
+    "open_interest_fp": 2310.01,
     "volume_24h_fp": 2295.97,
-    "volume_fp": 2295.97
+    "volume_fp": 2315.29
    },
    "ex_stats_first": {
     "open_interest_fp": 1158.24,
@@ -427,9 +634,9 @@
     "volume_fp": 862.49
    },
    "ex_stats_close": {
-    "open_interest_fp": 76729.66,
+    "open_interest_fp": 76947.92,
     "volume_24h_fp": 76863.6,
-    "volume_fp": 80043.17
+    "volume_fp": 80290.06
    },
    "ex_stats_first": {
     "open_interest_fp": 68156.58,
@@ -833,9 +1040,9 @@
     "volume_fp": 169.4
    },
    "ex_stats_close": {
-    "open_interest_fp": 80241.6,
+    "open_interest_fp": 81219.03,
     "volume_24h_fp": 83744.33,
-    "volume_fp": 86085.94
+    "volume_fp": 87063.37
    },
    "ex_stats_first": {
     "open_interest_fp": 18299.129999999997,
@@ -1237,9 +1444,9 @@
     "volume_fp": 128.73
    },
    "ex_stats_close": {
-    "open_interest_fp": 8857.47,
+    "open_interest_fp": 8926.23,
     "volume_24h_fp": 8924.73,
-    "volume_fp": 9052.15
+    "volume_fp": 9120.91
    },
    "ex_stats_first": {
     "open_interest_fp": 7063.18,
@@ -1719,7 +1926,7 @@
    "ex_stats_close": {
     "open_interest_fp": 13111.98,
     "volume_24h_fp": 13699.63,
-    "volume_fp": 13699.63
+    "volume_fp": 13733.66
    },
    "ex_stats_first": {
     "open_interest_fp": 1013.77,
@@ -3014,9 +3221,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 17168.98,
+    "open_interest_fp": 17893.57,
     "volume_24h_fp": 17092.260000000002,
-    "volume_fp": 17168.98
+    "volume_fp": 17896.870000000003
    },
    "ex_stats_first": {
     "open_interest_fp": 10475.15,
@@ -3209,9 +3416,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 8020.129999999999,
+    "open_interest_fp": 8055.95,
     "volume_24h_fp": 7543.38,
-    "volume_fp": 8070.469999999999
+    "volume_fp": 8106.289999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 941.54,
@@ -5613,7 +5820,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Murray St.",
@@ -5860,9 +6067,9 @@
     "volume_fp": 115.13
    },
    "ex_stats_close": {
-    "open_interest_fp": 81588.22,
+    "open_interest_fp": 82104.36,
     "volume_24h_fp": 78132.53,
-    "volume_fp": 85722.44
+    "volume_fp": 86238.58
    },
    "ex_stats_first": {
     "open_interest_fp": 5739.1900000000005,
