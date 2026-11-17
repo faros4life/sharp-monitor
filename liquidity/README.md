@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 16, 7:45 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 57.
+Updated Mon Nov 16, 7:50 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 58.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 16 7:50PM | NBA | Golden State vs New Orleans: Total Points | total: Over 223.5 points | kalshi | $37k | -100 |  | ❌ | +0.0c |  | pending |
 | Nov 16 7:45PM | NBA | Charlotte vs Los Angeles L | moneyline: Los Angeles L | kalshi | $32k | -400 |  |  | +0.0c |  | pending |
 | Nov 16 7:25PM | NBA | Philadelphia vs Brooklyn: Spread | spread: NOT Philadelphia wins by over 5.5 points | kalshi | $135k | -104 | ✅ novig,prophetx | ✅ | +0.0c | yes | pending |
 | Nov 16 7:10PM | NBA | Golden State vs New Orleans: Spread | spread: NOT Golden State wins by over 3.5 points | kalshi | $27k | -108 | ✅ novig | ❌ | -1.0c | yes | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 7:25PM | NCAAF | UNLV vs New Mexico: Spread | spread: New Mexico wins by over 20.5 points | kalshi | $61k | +113 |  | ✅ | +0.0c |  | L |
 | Nov 14 7:15PM | NBA | Brooklyn vs Memphis: Spread | spread: Memphis wins by over 4.5 points | kalshi | $27k | -100 |  | ✅ | +0.0c | yes | W |
 | Nov 14 7:10PM | NBA | Dallas Mavericks at Cleveland Cavaliers | moneyline: Dallas Mavericks | prophetx | $36k | -310 | ✅ kalshi,novig |  | +0.9c |  | L |
-| Nov 14 7:10PM | NBA | Dallas Mavericks @ Cleveland Cavaliers | moneyline: DAL (0) | novig | $29k | -300 | ✅ kalshi,prophetx |  | +1.5c |  | L |
