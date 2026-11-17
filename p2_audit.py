@@ -411,8 +411,16 @@ def main():
     _c0 = rs._t(rs.CHANGE_UTC)
     rep_c = build([r for r in rows if rs._event_time(r) is not None and rs._event_time(r) >= _c0],
                   index, reg._venue, links, clv, ruled)
+    # Nov 17 (Peter): the previous ET day on its own, beside the cumulative scopes - same EXACT plays, same rules,
+    # chronological halves within the day (shown for completeness; one day is statistically insufficient).
+    from datetime import datetime as _dtd, timedelta as _tdd
+    _rday = os.environ.get("REPORT_DAY") or (_dtd.now(rs.ET) - _tdd(days=1)).strftime("%Y-%m-%d")
+    rep_d = build([r for r in rows if rs._event_time(r) is not None
+                   and rs._event_time(r).astimezone(rs.ET).strftime("%Y-%m-%d") == _rday],
+                  index, reg._venue, links, clv, ruled)
     scopes = []
-    for nm_, rp_ in (("CUMULATIVE (all EXACT, all time)", rep), ("SINCE 12 NOV ET", rep_f),
+    for nm_, rp_ in (("SINCE 12 NOV ET", rep_f), (f"{_rday} ET ONLY (one day - halves statistically insufficient)", rep_d),
+                     ("CUMULATIVE (all EXACT, all time)", rep),
                      ("SINCE THE 11 NOV 11:31:19 AM ET PRICING CHANGE", rep_c)):
         by_ = {ln: rs.lane_scope(rp_, ln, clv, UNIT_SCHEDULE, clv_est) for ln in rs.LANES_LIVE}
         scopes.append((nm_, by_))

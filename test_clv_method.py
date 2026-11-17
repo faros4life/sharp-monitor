@@ -57,5 +57,9 @@ check("estimated positions counted apart", pc["estimated_clv_positions"] == 1)
 pc2 = rs.position_counts([{"id": "x1", "fully_graded": True}, {"id": "x2", "fully_graded": False}], [{"ids": ["x1", "x2"]}], {"x1": .01}, {})
 check("one ungraded row makes the whole position incomplete", pc2["fully_graded"] == 0 and pc2["certified_clv_positions"] == 0)
 
+src = open("p2_audit.py").read()
+check("Section H carries the previous ET day as its own scope, beside Nov 12-forward",
+      'ET ONLY (one day - halves statistically insufficient)' in src and '("SINCE 12 NOV ET", rep_f)' in src)
+
 print("ALL PASS" if not BAD else f"{len(BAD)} FAILED")
 sys.exit(1 if BAD else 0)
