@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 17, 1:10 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 25.
+Updated Tue Nov 17, 1:20 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 26.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 17 1:20PM | NCAAB | Houston vs Rutgers: Spread | spread: NOT Houston wins by over 17.5 points | kalshi | $36k | -117 |  | ✅ | +0.0c |  | pending |
 | Nov 17 12:00PM | NCAAB | Illinois vs Duke: Point Total | total: Over 167.5 points | kalshi | $42k | -100 | ✅ novig | ✅ | +1.0c |  | pending |
 | Nov 17 11:50AM | NCAAB | Villanova vs Pittsburgh | moneyline: Villanova | kalshi | $116k | -117 |  |  | +1.0c |  | pending |
 | Nov 17 11:30AM | NCAAB | Tennessee St. vs South Florida: Point Total | total: NOT Over 165.5 points | kalshi | $34k | -108 |  |  | +0.0c | yes | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 9 6:10AM | TENNIS | Tomas Martin Etcheverry vs Max Dahlin | moneyline: Tomas Martin Etcheverry | kalshi | $55k | -376 | ✅ novig |  | +3.0c | yes | W |
 | Nov 9 2:20AM | TENNIS | Alex Michelsen vs Yannick Hanfmann | moneyline: Alex Michelsen | kalshi | $26k | -300 |  |  | +1.0c | yes | W |
 | Nov 9 1:40AM | NCAAB | Charlotte vs Seton Hall | moneyline: Seton Hall | kalshi | $31k | -213 |  |  | -3.0c | yes | W |
-| Nov 9 1:31AM | NCAAB | Kansas City vs Jacksonville | moneyline: Jacksonville | kalshi | $29k | -223 |  |  | -5.0c |  | W |

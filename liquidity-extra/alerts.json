@@ -1,6 +1,174 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-17T18:20:20Z",
+   "base_depth": 130924,
+   "best_price": 0.5505,
+   "best_price_american": -122,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.54,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-17",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 6171,
+     "new_this_side": 36065,
+     "other_side": 28215,
+     "other_side_all_levels": 125193,
+     "ratio": 2.0,
+     "this_side": 57589,
+     "this_side_all_levels": 170756
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 67566.75,
+    "volume_24h_fp": 89343.62,
+    "volume_fp": 97368.8
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 5103.23,
+    "volume_24h_fp": 2652.74,
+    "volume_fp": 7799.67
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 62463.52,
+    "volume_24h_fp": 86690.88,
+    "volume_fp": 89569.13
+   },
+   "fade_price": 0.48,
+   "first_seen_utc": "2026-11-17T18:10:22Z",
+   "game": "Houston vs Rutgers: Spread",
+   "game_surge_books": [],
+   "game_x": 1.37,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAMBSPREAD-26NOV17HOURUTG-HOU18\"}",
+   "lead_min": 40,
+   "league": "NCAAB",
+   "line": 17.5,
+   "market": "spread",
+   "new_money": 36065,
+   "new_x": 1.31,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 67566.75,
+      "volume_24h_fp": 89343.62,
+      "volume_fp": 97368.8
+     },
+     "game_normal": 124986,
+     "game_x": 1.37,
+     "normal": 27475,
+     "now": 170756,
+     "type": "SPREAD",
+     "x": 6.21
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.54,
+   "price_american": -117,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.54,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 16.5,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": 16.5,
+     "price": -105
+    },
+    "betopenly": {
+     "point": 16.5,
+     "price": 106
+    },
+    "betrivers": {
+     "point": 16.5,
+     "price": -104
+    },
+    "betus": {
+     "point": 16.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 16.5,
+     "price": -110
+    },
+    "circasports": {
+     "point": 16.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 16.5,
+     "price": -108
+    },
+    "fanduel": {
+     "point": 16.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 17.5,
+     "price": -117
+    },
+    "lowvig": {
+     "point": 16.5,
+     "price": -101
+    },
+    "novig": {
+     "point": 16.5,
+     "price": 100
+    },
+    "polymarket": {
+     "point": 16.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 16.5,
+     "price": 100
+    },
+    "williamhill_us": {
+     "point": 16.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAMBSPREAD-26NOV17HOURUTG-HOU18"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [
+    "Rutgers Scarlet Knights +17.5 (-117)"
+   ],
+   "sharp_oppose": [],
+   "side": "Rutgers",
+   "side_label": "NOT Houston wins by over 17.5 points",
+   "size_x": 6.21,
+   "start_source": "odds",
+   "start_utc": "2026-11-17T19:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Houston",
+    "Rutgers"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-17T17:00:26Z",
    "base_depth": 82544,
    "best_price": 0.5124,
@@ -46,9 +214,9 @@
     "volume_fp": 62.84
    },
    "ex_stats_close": {
-    "open_interest_fp": 1845.63,
+    "open_interest_fp": 1980.88,
     "volume_24h_fp": 1850.91,
-    "volume_fp": 1850.91
+    "volume_fp": 1986.16
    },
    "ex_stats_first": {
     "open_interest_fp": 1158.24,
@@ -251,9 +419,9 @@
     "volume_fp": 862.49
    },
    "ex_stats_close": {
-    "open_interest_fp": 71880.57,
-    "volume_24h_fp": 71777.72,
-    "volume_fp": 75171.18
+    "open_interest_fp": 72109.77,
+    "volume_24h_fp": 72043.62,
+    "volume_fp": 75400.38
    },
    "ex_stats_first": {
     "open_interest_fp": 68156.58,
@@ -457,9 +625,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 975.71,
+    "open_interest_fp": 1057.33,
     "volume_24h_fp": 1068.72,
-    "volume_fp": 1068.72
+    "volume_fp": 1150.34
    },
    "ex_stats_first": {
     "open_interest_fp": 891.09,
@@ -657,9 +825,9 @@
     "volume_fp": 169.4
    },
    "ex_stats_close": {
-    "open_interest_fp": 58638.47,
-    "volume_24h_fp": 57996.09,
-    "volume_fp": 63608.14
+    "open_interest_fp": 60109.08,
+    "volume_24h_fp": 60911.1,
+    "volume_fp": 65852.62
    },
    "ex_stats_first": {
     "open_interest_fp": 18299.129999999997,
@@ -865,9 +1033,9 @@
     "volume_fp": 0.54
    },
    "ex_stats_close": {
-    "open_interest_fp": 1099.6100000000001,
+    "open_interest_fp": 1131.7,
     "volume_24h_fp": 1015.12,
-    "volume_fp": 1100.6100000000001
+    "volume_fp": 1132.7
    },
    "ex_stats_first": {
     "open_interest_fp": 630.69,
@@ -1061,9 +1229,9 @@
     "volume_fp": 128.73
    },
    "ex_stats_close": {
-    "open_interest_fp": 8414.0,
-    "volume_24h_fp": 8522.369999999999,
-    "volume_fp": 8608.68
+    "open_interest_fp": 8424.69,
+    "volume_24h_fp": 8586.48,
+    "volume_fp": 8619.369999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 7063.18,
@@ -1259,7 +1427,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 3287.91,
-    "volume_24h_fp": 3658.42,
+    "volume_24h_fp": 3700.45,
     "volume_fp": 3700.45
    },
    "ex_stats_first": {
@@ -1543,7 +1711,7 @@
    "ex_stats_close": {
     "open_interest_fp": 13111.98,
     "volume_24h_fp": 13690.66,
-    "volume_fp": 13690.66
+    "volume_fp": 13699.63
    },
    "ex_stats_first": {
     "open_interest_fp": 1013.77,
@@ -1897,9 +2065,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 5890.32,
-    "volume_24h_fp": 5950.75,
-    "volume_fp": 6070.32
+    "open_interest_fp": 5965.82,
+    "volume_24h_fp": 5979.6900000000005,
+    "volume_fp": 6145.82
    },
    "ex_stats_first": {
     "open_interest_fp": 1332.5900000000001,
@@ -2081,9 +2249,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1408.5,
+    "open_interest_fp": 1434.11,
     "volume_24h_fp": 1289.65,
-    "volume_fp": 1408.56
+    "volume_fp": 1434.17
    },
    "ex_stats_first": {
     "open_interest_fp": 120.85,
@@ -2251,9 +2419,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 971.0799999999999,
+    "open_interest_fp": 1069.98,
     "volume_24h_fp": 890.3100000000001,
-    "volume_fp": 1096.08
+    "volume_fp": 1194.98
    },
    "ex_stats_first": {
     "open_interest_fp": 248.24,
@@ -2458,7 +2626,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 11044.990000000002,
-    "volume_24h_fp": 6131.82,
+    "volume_24h_fp": 11267.34,
     "volume_fp": 11286.990000000002
    },
    "ex_stats_first": {
@@ -2838,9 +3006,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 15620.8,
-    "volume_24h_fp": 15405.39,
-    "volume_fp": 15620.8
+    "open_interest_fp": 15654.48,
+    "volume_24h_fp": 15544.08,
+    "volume_fp": 15654.48
    },
    "ex_stats_first": {
     "open_interest_fp": 10475.15,
@@ -3034,7 +3202,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 6960.280000000001,
-    "volume_24h_fp": 6404.25,
+    "volume_24h_fp": 6481.030000000001,
     "volume_fp": 6994.030000000001
    },
    "ex_stats_first": {
@@ -5683,9 +5851,9 @@
     "volume_fp": 115.13
    },
    "ex_stats_close": {
-    "open_interest_fp": 71382.73,
-    "volume_24h_fp": 65864.86,
-    "volume_fp": 75348.72
+    "open_interest_fp": 72187.34,
+    "volume_24h_fp": 68944.01,
+    "volume_fp": 76313.56
    },
    "ex_stats_first": {
     "open_interest_fp": 5739.1900000000005,
