@@ -1,6 +1,389 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-17T15:40:22Z",
+   "base_depth": 106426,
+   "best_price": 0.4534,
+   "best_price_american": 121,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.44,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-17",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -570,
+     "new_this_side": 25842,
+     "other_side": 18935,
+     "other_side_all_levels": 130136,
+     "ratio": 2.1,
+     "this_side": 39018,
+     "this_side_all_levels": 132082
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "UT Arlington",
+     "price": 0.4484,
+     "this_side": 1105
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 631.23,
+    "volume_24h_fp": 598.69,
+    "volume_fp": 631.23
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.54,
+    "volume_24h_fp": 54.67,
+    "volume_fp": 0.54
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 630.69,
+    "volume_24h_fp": 544.02,
+    "volume_fp": 630.69
+   },
+   "fade_price": 0.57,
+   "first_seen_utc": "2026-11-17T15:30:23Z",
+   "game": "UT Arlington vs Southern Miss",
+   "game_surge_books": [],
+   "game_x": 1.74,
+   "key": "kalshi|KXNCAAMBGAME-26NOV17UTAUSM|ml|0",
+   "lead_min": 560,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 25842,
+   "new_x": 0.52,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 631.23,
+      "volume_24h_fp": 598.69,
+      "volume_fp": 631.23
+     },
+     "game_normal": 76108,
+     "game_x": 1.74,
+     "normal": 49820,
+     "now": 132082,
+     "type": "ML",
+     "x": 2.65
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 738,
+     "game_x": 1.7,
+     "normal": 440,
+     "now": 1252,
+     "type": "ML",
+     "x": 2.85
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.44,
+   "price_american": 127,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.44,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 118
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 120
+    },
+    "betrivers": {
+     "point": null,
+     "price": 123
+    },
+    "betus": {
+     "point": null,
+     "price": 120
+    },
+    "bovada": {
+     "point": null,
+     "price": 120
+    },
+    "circasports": {
+     "point": null,
+     "price": 115
+    },
+    "draftkings": {
+     "point": null,
+     "price": 124
+    },
+    "fanatics": {
+     "point": null,
+     "price": 120
+    },
+    "fanduel": {
+     "point": null,
+     "price": 118
+    },
+    "kalshi": {
+     "point": null,
+     "price": 127
+    },
+    "lowvig": {
+     "point": null,
+     "price": 120
+    },
+    "novig": {
+     "point": null,
+     "price": 125
+    },
+    "polymarket": {
+     "point": null,
+     "price": 127
+    },
+    "prophetx": {
+     "point": null,
+     "price": 123
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 122
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV17UTAUSM-UTA"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UT Arlington",
+   "side_label": "UT Arlington",
+   "size_x": 2.65,
+   "start_source": "odds",
+   "start_utc": "2026-11-18T01:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "prophetx"
+   ],
+   "teams": [
+    "UT Arlington",
+    "Southern Miss"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-17T15:40:22Z",
+   "base_depth": 257939,
+   "best_price": 0.56,
+   "best_price_american": -127,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.56,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-17",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -3493,
+     "new_this_side": 69744,
+     "other_side": 44758,
+     "other_side_all_levels": 227009,
+     "ratio": 1.8,
+     "this_side": 78380,
+     "this_side_all_levels": 328139
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Southern Illinois (0)",
+     "price": 0.56,
+     "this_side": 12617
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Southern Illinois",
+     "price": 0.5595,
+     "this_side": 978
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 7191.91,
+    "volume_24h_fp": 7193.54,
+    "volume_fp": 7386.59
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 128.73,
+    "volume_24h_fp": 178.29,
+    "volume_fp": 128.73
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 7063.18,
+    "volume_24h_fp": 7015.25,
+    "volume_fp": 7257.86
+   },
+   "fade_price": 0.45,
+   "first_seen_utc": "2026-11-17T15:30:23Z",
+   "game": "Southern Illinois vs Liberty",
+   "game_surge_books": [
+    "novig"
+   ],
+   "game_x": 1.47,
+   "key": "kalshi|KXNCAAMBGAME-26NOV17SIULIB|ml|0",
+   "lead_min": 440,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 69744,
+   "new_x": 1.4,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 7191.91,
+      "volume_24h_fp": 7193.54,
+      "volume_fp": 7386.59
+     },
+     "game_normal": 223955,
+     "game_x": 1.47,
+     "normal": 49820,
+     "now": 328139,
+     "type": "ML",
+     "x": 6.59
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 1400113.0,
+      "volume": 1580117.0
+     },
+     "game_normal": 4177,
+     "game_x": 3.36,
+     "normal": 4043,
+     "now": 14036,
+     "type": "ML",
+     "x": 3.47
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 544,
+     "game_x": 1.98,
+     "normal": 440,
+     "now": 1078,
+     "type": "ML",
+     "x": 2.45
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.56,
+   "price_american": -127,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.56,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -135
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -133
+    },
+    "betrivers": {
+     "point": null,
+     "price": -132
+    },
+    "betus": {
+     "point": null,
+     "price": -135
+    },
+    "bovada": {
+     "point": null,
+     "price": -130
+    },
+    "circasports": {
+     "point": null,
+     "price": -130
+    },
+    "draftkings": {
+     "point": null,
+     "price": -130
+    },
+    "fanatics": {
+     "point": null,
+     "price": -130
+    },
+    "fanduel": {
+     "point": null,
+     "price": -126
+    },
+    "kalshi": {
+     "point": null,
+     "price": -127
+    },
+    "lowvig": {
+     "point": null,
+     "price": -133
+    },
+    "novig": {
+     "point": null,
+     "price": -127
+    },
+    "polymarket": {
+     "point": null,
+     "price": -127
+    },
+    "prophetx": {
+     "point": null,
+     "price": -127
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV17SIULIB-SIU"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Southern Illinois",
+   "side_label": "Southern Illinois",
+   "size_x": 6.59,
+   "start_source": "odds",
+   "start_utc": "2026-11-17T23:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Southern Illinois",
+    "Liberty"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-17T15:30:23Z",
    "base_depth": 98041,
    "best_price": 0.5673,
@@ -38,6 +421,11 @@
     "open_interest_fp": 79.31,
     "volume_24h_fp": 111.0,
     "volume_fp": 79.31
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 3171.19,
+    "volume_24h_fp": 3583.73,
+    "volume_fp": 3583.73
    },
    "ex_stats_first": {
     "open_interest_fp": 3091.88,
@@ -203,7 +591,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 168.78,
-    "volume_24h_fp": 163.53,
+    "volume_24h_fp": 168.78,
     "volume_fp": 168.78
    },
    "ex_stats_first": {
@@ -672,7 +1060,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1712.69,
-    "volume_24h_fp": 1312.94,
+    "volume_24h_fp": 1505.06,
     "volume_fp": 1747.69
    },
    "ex_stats_first": {
@@ -855,9 +1243,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 256.94,
-    "volume_24h_fp": 38.09,
-    "volume_fp": 257.0
+    "open_interest_fp": 934.94,
+    "volume_24h_fp": 138.09,
+    "volume_fp": 935.0
    },
    "ex_stats_first": {
     "open_interest_fp": 120.85,
@@ -1231,9 +1619,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 846.93,
-    "volume_24h_fp": 790.29,
-    "volume_fp": 919.93
+    "open_interest_fp": 847.88,
+    "volume_24h_fp": 900.28,
+    "volume_fp": 920.88
    },
    "ex_stats_first": {
     "open_interest_fp": 390.28999999999996,
@@ -1415,9 +1803,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 299.55,
+    "open_interest_fp": 300.16,
     "volume_24h_fp": 291.82,
-    "volume_fp": 299.55
+    "volume_fp": 300.16
    },
    "ex_stats_first": {
     "open_interest_fp": 265.66,
@@ -1612,9 +2000,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 13098.78,
-    "volume_24h_fp": 12905.76,
-    "volume_fp": 13098.78
+    "open_interest_fp": 13293.83,
+    "volume_24h_fp": 12979.310000000001,
+    "volume_fp": 13293.83
    },
    "ex_stats_first": {
     "open_interest_fp": 10475.15,
@@ -1807,9 +2195,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3631.0,
+    "open_interest_fp": 3676.8999999999996,
     "volume_24h_fp": 3138.0,
-    "volume_fp": 3651.0
+    "volume_fp": 3696.8999999999996
    },
    "ex_stats_first": {
     "open_interest_fp": 941.54,
@@ -2001,7 +2389,7 @@
    "ex_stats_close": {
     "open_interest_fp": 6144.360000000001,
     "volume_24h_fp": 6104.79,
-    "volume_fp": 6149.66
+    "volume_fp": 6176.45
    },
    "ex_stats_first": {
     "open_interest_fp": 138.57,
@@ -4125,9 +4513,9 @@
     "volume_fp": 103.19
    },
    "ex_stats_close": {
-    "open_interest_fp": 55321.68,
-    "volume_24h_fp": 51755.369999999995,
-    "volume_fp": 58339.740000000005
+    "open_interest_fp": 57670.89,
+    "volume_24h_fp": 53936.82,
+    "volume_fp": 60691.25
    },
    "ex_stats_first": {
     "open_interest_fp": 4979.67,
@@ -4457,9 +4845,9 @@
     "volume_fp": 115.13
    },
    "ex_stats_close": {
-    "open_interest_fp": 41681.34,
-    "volume_24h_fp": 39523.71,
-    "volume_fp": 44740.41
+    "open_interest_fp": 42004.36,
+    "volume_24h_fp": 39741.44,
+    "volume_fp": 45150.43
    },
    "ex_stats_first": {
     "open_interest_fp": 5739.1900000000005,
