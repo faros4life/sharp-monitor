@@ -1383,12 +1383,23 @@ def write_alerts_file(st, n):
                     "clv_pin_line": cl.get("pin_line"), "clv_conv_pts": cl.get("conv_pts"),
                     "clv_read_utc": cl.get("read_utc"), "clv_skipped": e.get("cl_skip"),
                     "executable_book": executable(e, first_text.get((e["ev"], e["kind"], e["side"]))),
+                    # Nov 17 (Peter, HR1): hr1_pushed = this alert actually reached his phone as an HR1 manual play,
+                    # recorded at push time. hr1_eligible = what agree_rules.hr1 says about the stored row now. Keeping
+                    # both means an HR1 alert he did NOT bet is still on the record, so "no alert" and "alert, no bet"
+                    # can never collapse into one number. Logging only - nothing reads these to place a bet.
+                    "hr1_pushed": bool(e.get("hr1")),
                     # Oct 28 (Muse fix list): global Polymarket is not bettable from the US; tag it so every split can
                     # exclude it. The feed stopped pricing on it Oct 25 (last such alert Oct 26 02:10Z).
                     "pricing_bettable": e.get("book") != "polymarket",
                     # Oct 31 (Muse): the alert's "bet only at X or better" LINE, for spreads/totals - a hard floor for
                     # the executor (no fill at a worse line, whatever the converted price).
                     "floor_line": floor_line(e.get("kind"), first_why.get((e["ev"], e["kind"], e["side"])))})
+    try:   # Nov 17: the rule's verdict on the stored row (needs the row's own price_after_fee / top25 / late fields)
+        import agree_rules as _ar
+        for row in out:
+            row["hr1_eligible"] = _ar.hr1(row)[0]
+    except Exception as _x:
+        print(f"hr1_eligible skipped: {str(_x)[:60]}")
     bets = {(e["ev"], e["kind"], e["side"]): e for e in st["log"]}
     every = []
     for e in sorted(st.get("sent", []), key=lambda x: x["t"], reverse=True):
@@ -1816,6 +1827,8 @@ def run():
                     e = {k: a[k] for k in ("id", "ev", "game", "kind", "side", "pt", "price", "book", "conf", "nconf", "cby", "evp", "fade")}
                     e.update(sport=cfg["label"], start=a["commence"], t=time.time(), lead=round(lead), late=late,
                              score=score, grade=grade)
+                    if hr1_ok:   # Nov 17: HR1 was PUSHED for this alert - kept so "offered" can be told from "bet"
+                        e["hr1"] = True
                     if is_t25 is not None:
                         e["t25"] = is_t25
                         e["muted"] = bool(is_t25 is False and NCAAF_TOP25 == "filter")

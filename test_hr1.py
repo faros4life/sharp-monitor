@@ -59,6 +59,19 @@ def t_backtest_population():
     assert len(rows) >= 120 and w >= 78, (len(rows), w)   # 124 and 81 at adoption; grows forward
 
 
-for f in (t_rule, t_push_wiring, t_backtest_population):
+def t_record_kept():
+    """HR1 alerts stay on the record whether or not Peter bets them: the push flag is stored, and the rule's
+    verdict is written beside it. An HR1 alert he skipped must never look like no alert at all."""
+    s = open("sharp_monitor.py").read()
+    assert 'if hr1_ok:' in s and 'e["hr1"] = True' in s          # push decision persisted on the durable event
+    assert '"hr1_pushed": bool(e.get("hr1")),' in s              # ... and exported
+    assert 'row["hr1_eligible"] = _ar.hr1(row)[0]' in s          # ... with the rule's verdict on the stored row
+    assert s.index('e["hr1"] = True') > s.index("hr1_ok = False")
+    # the report reads the rule, not a hand-copied filter
+    r = open("last50_report.py").read()
+    assert "def hr1_rows" in r and "ar.hr1(x)[0]" in r
+
+
+for f in (t_rule, t_push_wiring, t_backtest_population, t_record_kept):
     f()
 print("hr1 tests: OK")
