@@ -696,6 +696,55 @@ BOARD_LIVE = (os.environ.get("EXEC_BOARD_LIVE") or "off").strip().lower() == "on
 BOARD_CONFIRM_MIN = 15   # Lane 3: a PLAY call must still be PLAY 15 min after it posted (the board's gettable-price basis)
 
 
+# ---------------------------------------------------------------- Board V4 gate (Peter, 17 Nov 2026)
+# V4 = Board V3 exactly, plus ONE gate: a genuinely independent second book confirmed the same game, market, side and
+# line AT ALERT TIME (liquidity_monitor writes rule_met / second_book / depth_by_book once, when the alert is created,
+# which is before the 15-minute persistence check; nothing updates them later). OFF by default. Peter flips the repo
+# variable EXEC_BOARD_V4; Claude cannot. With it off, selection and orders are byte-for-byte V3 and the evidence is
+# only logged (shadow). With it on, a play that fails is still evaluated and logged as the V3 shadow signal but can
+# never produce an order: same play key, same lane, same caps, so V3 and V4 cannot both bet one signal.
+BOARD_V4 = (os.environ.get("EXEC_BOARD_V4") or "off").strip().lower() == "on"
+BOARD_V4_BOOKS = ("kalshi", "novig", "prophetx", "polymarket", "polymarket_us")   # Polymarket Global may confirm (Peter)
+BOARD_V4_MIN = 10000.0   # same bar as liquidity_monitor.SECOND_MIN
+
+
+def board_v4(x):
+    """(ok, why, evidence) from the liquidity alert's OWN alert-time fields. Fail closed on anything missing, loose or
+    inconsistent: no second-book data, a book equal to the trigger, unknown book, size under $10k, not the heavier
+    side, no price, or a second-book label that does not carry the alert's exact line."""
+    if not isinstance(x, dict):
+        return False, "no source alert", None
+    if x.get("rule_met") is not True or x.get("second_book_status") != "ok":
+        return False, f"no second-book confirmation at alert time (status {x.get('second_book_status') or 'missing'})", None
+    sb, dbb, line = x.get("second_book"), x.get("depth_by_book"), x.get("line")
+    if not isinstance(sb, list) or not sb or not isinstance(dbb, dict) or line is None:
+        return False, "second-book evidence missing", None
+    trig = str(x.get("book") or "").strip().lower()
+    bad = []
+    for b in sb:
+        bk = str(b or "").strip().lower()
+        d = dbb.get(b)
+        if not trig or bk == trig or bk not in BOARD_V4_BOOKS:
+            bad.append(f"{bk or '?'}: not an independent known book")
+            continue
+        if not isinstance(d, dict):
+            bad.append(f"{bk}: no evidence row")
+            continue
+        try:
+            size, price = float(d.get("this_side")), float(d.get("price"))
+            nums = [float(v) for v in re.findall(r"\d+(?:\.\d+)?", str(d.get("label") or ""))]
+            same_line = any(abs(v - float(line)) < 1e-9 for v in nums)
+        except (TypeError, ValueError):
+            bad.append(f"{bk}: evidence unreadable")
+            continue
+        if size < BOARD_V4_MIN or d.get("heavier_side") is not True or not 0 < price < 1 or not same_line:
+            bad.append(f"{bk}: size {size:.0f}, heavier {d.get('heavier_side')}, same line {same_line}")
+            continue
+        return True, None, {"book": bk, "size": round(size), "price": price, "label": str(d.get("label"))[:60],
+                            "line": line, "alerted_utc": x.get("alerted_utc"), "trigger": trig}
+    return False, "second book failed verification (" + "; ".join(bad)[:120] + ")", None
+
+
 def board_plays(now):
     """Nov 3 (Peter 2:01 PM "ok build"; rulebook v5 Lane 3): board PLAY calls (NBA totals, overs and unders) that
     survive: money not pulled, price not moved toward the side, still PLAY >= 15 min after posting, game not started.
@@ -738,6 +787,7 @@ def board_plays(now):
              "rules": {"verdict": "AGREE", "gate": None,
                        # Nov 6: the version that actually produced this row, not "v2" as it used to say.
                        "reason": f"board v3 PLAY (Lane 3) [v2={r.get('v2')}, v1={r.get('v1')}]"},
+             "board_v4": dict(zip(("ok", "why", "evidence"), board_v4(x))),   # Nov 17: logged always; a gate only when EXEC_BOARD_V4 is on
              "board_entry": {"alert_utc": x.get("alerted_utc"), "book_key": x.get("book"), "price_after_fee": am,
                              "point": ln, "sport": "NBA", "bet": None}}
         k = derive_key(p)
@@ -4684,6 +4734,7 @@ def ledger_row(r, run_start):
             "fill_book": r.get("book"), "fill_price_after_fee": r.get("american"), "fill_screen": r.get("shown"),
             "fill_line": r.get("take_line"),
             "route": r.get("route"),   # Nov 17: trigger-venue-first routing actually applied (audit)
+            "board_v4": p.get("board_v4"), "board_v4_gate": (BOARD_V4 if p.get("source") == "board" else None),   # Nov 17: accept/reject + evidence
             # Nov 6 (Peter, $25-50k NBA forward paper test): depth at the chosen price and whether the unit fits. Logging only.
             "fill_avail": r.get("fillable"), "fill_partial": r.get("partial"), "live": bool(lv.get("go")), "live_nfl": bool(lv.get("nfl")), "live_why_not": lv.get("why"),
             "live_px_price_after_fee": lv.get("am"), "live_px_line": lv.get("line"), "live_book": lv.get("book"),
@@ -5382,6 +5433,8 @@ def main():
                 trigger_first(r, ent)
                 lk = derive_key(p) or p["play_key"]
                 why = [] if BOARD_LIVE else ["board lane not switched on (EXEC_BOARD_LIVE)"]
+                if BOARD_V4 and (p.get("board_v4") or {}).get("ok") is not True:   # V4: no confirmation = no bet (fail closed)
+                    why.append(f"Board V4: {(p.get('board_v4') or {}).get('why') or 'confirmation not verified'} - V3 signal logged, not bet")
                 if lk in MANUAL_HELD:
                     why.append(f"{MANUAL_HELD[lk]} with Peter's manual bet (Bets manual note)")
                 if lk in LIVEKEYS or any(same_bet(lk, k) for k in LIVEKEYS):
