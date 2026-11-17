@@ -97,6 +97,11 @@ def fake_api(path, billable, apikey=None, **params):
 
 
 cl.api = fake_api
+# The one-time NCAAB store now exists in the repo (the recovery ran on Nov 16), which correctly makes the ledger's own
+# lookup a no-op. These checks exercise the gate logic itself, so they run as if the store were absent.
+import os as _os_t
+_real_exists = _os_t.path.exists
+_os_t.path.exists = lambda p: False if p == "oddspapi/fixtures_ncaab.json" else _real_exists(p)
 LO, HI = datetime(2026, 11, 12, tzinfo=timezone.utc), datetime(2026, 11, 15, tzinfo=timezone.utc)
 check("the verified id is Peter's pick, 648", cl.NCAAB_VERIFIED_TID == 648)
 _v = cl.NCAAB_VERIFIED_TID
@@ -129,6 +134,7 @@ check("only the four reopened rows can queue the lookup",
       'if lg in CACHE_ONLY_FX and not (rec.get("ncaab_reopened") and not st.get("ncaab_fx_once")):' in src)
 check("CAP is unchanged", cl.CAP == int(__import__("os").environ.get("CLV_MONTH_CAP", "") or "1000"))
 
+_os_t.path.exists = _real_exists
 # ---- the isolated recovery store makes the ledger's own lookup a permanent no-op
 import os as _os
 _p = "oddspapi/fixtures_ncaab.json"

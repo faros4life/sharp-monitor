@@ -264,8 +264,10 @@ def main():
     import clv_stale as cstale
     cb = (tb.dec(json.load(open(cl.STATE))) or {}).get("bets") or {}
     stale = cstale.stale_map(cb, st.get("bets") or {})
-    clv = {k: r["clv"] for k, r in cb.items()
-           if r.get("clv") is not None and not r.get("fixture_doubt") and k not in stale}
+    # Nov 17 (Peter): CERTIFIED = same-line Pinnacle (or exact moneyline) only. Line-move-adjusted closes are kept
+    # apart as ESTIMATED and never reach a certified figure or gate; an unrecognised method is neither.
+    import report_sections as _rs0
+    clv, clv_est, clv_unk = _rs0.split_clv(cb, set(stale))
     from bot_live_export import TRIGGERS     # Peter's 13 Nov ruled lane table (constant only; nothing is run)
     ruled = (TRIGGERS, tb.toks)
     # 16 Nov (Peter): resolve a lane CONFLICT that is only the tracker's text label disagreeing with an exact registry
@@ -338,11 +340,15 @@ def main():
     scopes = []
     for nm_, rp_ in (("CUMULATIVE (all EXACT, all time)", rep), ("SINCE 12 NOV ET", rep_f),
                      ("SINCE THE 11 NOV 11:31:19 AM ET PRICING CHANGE", rep_c)):
-        by_ = {ln: rs.lane_scope(rp_, ln, clv, UNIT_SCHEDULE) for ln in rs.LANES_LIVE}
+        by_ = {ln: rs.lane_scope(rp_, ln, clv, UNIT_SCHEDULE, clv_est) for ln in rs.LANES_LIVE}
         scopes.append((nm_, by_))
         print(f"section H {nm_}: " + " | ".join(
             f"{ln} settled {x['whole']['n']} (H1 {x['H1']['n']}, H2 {x['H2']['n']}), certified CLV {x['whole']['clv_n']}, "
             f"open {x['open']}, {x['verdict']}" if x else f"{ln} none" for ln, x in by_.items()))
+        print(f"section H {nm_} CLV method by play (counts only): " + " | ".join(
+            f"{ln} certified {x['whole']['clv_n']}, estimated {x['est']['whole']['clv_n']}, "
+            f"neither {x['whole']['n'] - x['whole']['clv_n'] - x['est']['whole']['clv_n']}" if x else f"{ln} none"
+            for ln, x in by_.items()))
     non_exact = {b_: v_["all"]["settled"] + v_["open_or_ambiguous"] for b_, v_ in rep["buckets"].items() if not b_.startswith("EXACT:")}
     print(f"section H kept separate (all time, not in any lane): {non_exact}")
     text_h = rs.render_scorecard(scopes, non_exact, UNIT_SCHEDULE)
@@ -360,13 +366,21 @@ def main():
     text += text_h
     # SECTION J (Peter, 16 Nov): every Nov 12+ bot position graded, each gap with its exact reason. Private table;
     # the log carries counts and reason categories only.
-    grades = rs.grade_rows(since, rep_f.get("row_bucket") or {}, clv, cb, set(stale), UNIT_SCHEDULE)
+    grades = rs.grade_rows(since, rep_f.get("row_bucket") or {}, clv, cb, set(stale), UNIT_SCHEDULE, estimated=clv_est)
     gsum = rs.grade_summary(grades)
     # Positions are PLAYS: partial fills of one order merge into one play (p2_audit_core.consolidate). Settled rows
     # map 1:1 to settled plays (checked); open rows can be several fills of one open play.
     _open_plays = sum(v.get("open_or_ambiguous", 0) for v in (rep_f.get("buckets") or {}).values())
     _settled_plays = sum(v["all"]["settled"] for v in (rep_f.get("buckets") or {}).values())
-    gsum = dict(gsum, open_fill_rows=gsum["open"], open=_open_plays, positions=_settled_plays + _open_plays,
+    # Nov 17: every Section J headline count is by POSITION (play); fill-row counts are kept beside them, labelled.
+    _sp = [p for v in (rep_f.get("buckets") or {}).values() for p in (v.get("_settled_timed") or [])]
+    _cert_p = sum(1 for p in _sp if p.get("ids") and all(clv.get(i) is not None for i in p["ids"]))
+    _est_p = sum(1 for p in _sp if p.get("ids") and all(clv_est.get(i) is not None for i in p["ids"]))
+    gsum = dict(gsum, settled_fill_rows=gsum["settled"], open_fill_rows=gsum["open"],
+                missing_certified_clv_fill_rows=gsum["missing_certified_clv"],
+                settled=_settled_plays, open=_open_plays, positions=_settled_plays + _open_plays,
+                certified_clv_positions=_cert_p, estimated_clv_positions=_est_p,
+                missing_certified_clv=_settled_plays - _cert_p,
                 settled_rows_equal_plays=(gsum["settled"] == _settled_plays))
     text += rs.render_grades(grades, gsum)
     print("section J coverage:", gsum, "| exactly-once:", (rep_f.get("exactly_once") or {}).get("ok"))

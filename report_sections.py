@@ -264,6 +264,31 @@ def category_counts(xs):
 # ---------------------------------------------------------------- SECTION H: final lane scorecard (Peter, 16 Nov)
 CHANGE_UTC = "2026-11-11T16:31:19+00:00"     # the approved pricing-model change, 11 Nov 11:31:19 AM ET
 LANES_LIVE = ("PHASE 1", "R1", "BOARD V3")
+# Nov 17 (Peter, CLV_STANDARD.md section 1): only a same-line Pinnacle close (or the exact moneyline market) is
+# CERTIFIED. A close read off Pinnacle's main line and moved to the bet's number with the half-point table is an
+# ESTIMATE: reported separately, never in a certified mean, half, interval or qualification gate. Ledger rows are
+# read, never changed.
+CERT_HOW = ("own line", "moneyline")
+
+
+def clv_method(r):
+    """'certified' | 'estimated' | 'unknown' for a scored CLV ledger row (r['how'] is set by clv_ledger.close_for)."""
+    how = str((r or {}).get("how") or "")
+    if how in CERT_HOW:
+        return "certified"
+    if how.startswith("main ") and " moved to " in how:
+        return "estimated"
+    return "unknown"
+
+
+def split_clv(cb, excluded):
+    """(certified, estimated, unknown) {id: clv} from the ledger rows that carry a CLV and are not excluded."""
+    out = ({}, {}, {})
+    for k, r in (cb or {}).items():
+        if r.get("clv") is None or r.get("fixture_doubt") or k in excluded:
+            continue
+        out[("certified", "estimated", "unknown").index(clv_method(r))][k] = r["clv"]
+    return out
 
 
 def _ci(vals):
@@ -302,7 +327,7 @@ def seg_stats(plays, clv, unit, unit_since):
             "beat": round(100 * sum(v > 0 for v in cv) / len(cv), 1) if cv else None, "clv_ci": _ci(cv)}
 
 
-def lane_scope(rep, lane, clv, unit_sched):
+def lane_scope(rep, lane, clv, unit_sched, est=None):
     b = (rep.get("buckets") or {}).get("EXACT:" + lane)
     unit, since = (unit_sched.get(lane) or (None, None))[1], (unit_sched.get(lane) or (None, None))[0]
     if not b:
@@ -313,8 +338,33 @@ def lane_scope(rep, lane, clv, unit_sched):
     from clv_dashboard import gate
     g = gate(lane, {"clv": h1["clv"], "units": h1["units"]}, {"clv": h2["clv"], "units": h2["units"]},
              {"n": w["clv_n"], "clv": w["clv"], "ci": w["clv_ci"], "pos": round((w["beat"] or 0) * w["clv_n"] / 100)}, True)
+    est_seg = {k: seg_stats(x, est or {}, unit, since) for k, x in (("whole", plays), ("H1", plays[:h]), ("H2", plays[h:]))}
     return {"whole": w, "H1": h1, "H2": h2, "open": b.get("open_or_ambiguous", 0), "verdict": g["verdict"],
-            "clauses": g.get("clauses") or []}
+            "clauses": g.get("clauses") or [], "est": est_seg, "plays": plays}
+
+
+def combined_scope(by):
+    """All proven lanes together: W-L-P, net, risked, ROI, units (sum of each lane's own-unit figure, only when every
+    lane has one), and certified / estimated CLV pooled over plays. Each play appears in exactly one lane."""
+    xs = [x for x in by.values() if x]
+    if not xs:
+        return None
+    out = {}
+    for seg in ("whole", "H1", "H2"):
+        ss = [x[seg] for x in xs]
+        es = [x["est"][seg] for x in xs]
+        n_c = sum(s["clv_n"] for s in ss)
+        n_e = sum(s["clv_n"] for s in es)
+        risked = sum(s["risked"] for s in ss)
+        out[seg] = {"n": sum(s["n"] for s in ss), "W": sum(s["W"] for s in ss), "L": sum(s["L"] for s in ss),
+                    "P": sum(s["P"] for s in ss), "net": round(sum(s["net"] for s in ss), 2), "risked": round(risked, 2),
+                    "roi": round(100 * sum(s["net"] for s in ss) / risked, 2) if risked else None,
+                    "units": (round(sum(s["units"] for s in ss), 2) if all(s["units"] is not None for s in ss) else None),
+                    "clv": (round(sum(s["clv"] * s["clv_n"] for s in ss if s["clv_n"]) / n_c, 2) if n_c else None),
+                    "clv_n": n_c, "clv_missing": sum(s["clv_missing"] for s in ss),
+                    "est_clv": (round(sum(s["clv"] * s["clv_n"] for s in es if s["clv_n"]) / n_e, 2) if n_e else None),
+                    "est_n": n_e}
+    return out
 
 
 def render_scorecard(scopes, non_exact, unit_sched):
@@ -337,16 +387,27 @@ def render_scorecard(scopes, non_exact, unit_sched):
                          f"ROI {f(s_['roi'], suf='%')} | CLV {f(s_['clv'], suf='%')}"
                          f"{'' if not s_['clv_ci'] else ' CI ' + str(s_['clv_ci'])} on {s_['clv_n']} (missing {s_['clv_missing']}) "
                          f"beat {('n/a' if s_['beat'] is None else str(s_['beat']) + '%')}")
-            L.append(f"   {lane:<8} open {x['open']} | QUALIFICATION: {x['verdict']}")
+                e_ = x["est"][seg]
+                L.append(f"   {'':<8} {seg:<5} ESTIMATED CLV (line-move adjusted, NOT certified, not in any gate) "
+                         f"{f(e_['clv'], suf='%')}{'' if not e_['clv_ci'] else ' CI ' + str(e_['clv_ci'])} on {e_['clv_n']} "
+                         f"beat {('n/a' if e_['beat'] is None else str(e_['beat']) + '%')}")
+            L.append(f"   {lane:<8} open {x['open']} | QUALIFICATION (certified CLV only): {x['verdict']}")
             for c in x["clauses"]:
                 if c["state"] != "MET":
                     L.append(f"            - {c['clause']}: {c['state']} {c.get('detail', '')}")
+        cb_ = combined_scope(by)
+        if cb_:
+            for seg in ("whole", "H1", "H2"):
+                s_ = cb_[seg]
+                L.append(f"   {'COMBINED':<8} {seg:<5} n {s_['n']:>2} W-L-P {s_['W']}-{s_['L']}-{s_['P']} net {s_['net']:+.2f} "
+                         f"units {f(s_['units'], suf='u')} ROI {f(s_['roi'], suf='%')} | certified CLV {f(s_['clv'], suf='%')} "
+                         f"on {s_['clv_n']} (missing {s_['clv_missing']}) | estimated CLV {f(s_['est_clv'], suf='%')} on {s_['est_n']}")
     L.append(f"  Kept separate (not in any lane above): {non_exact}")
     return "\n".join(L)
 
 
 # ---------------------------------------------------------------- SECTION J: per-play grade audit (Peter, 16 Nov)
-def grade_rows(since_rows, row_bucket, certified, clv_rows, stale_ids, unit_sched, now_utc=None):
+def grade_rows(since_rows, row_bucket, certified, clv_rows, stale_ids, unit_sched, now_utc=None, estimated=None):
     """One graded line per bot position from START_ET, with the exact reason for every missing field. Pure.
     Never invents a result, a fill or a close: a missing value stays missing with its reason."""
     from p2_audit_core import utc, verified_money, SETTLED as _S
@@ -402,6 +463,11 @@ def grade_rows(since_rows, row_bucket, certified, clv_rows, stale_ids, unit_sche
                 st = "excluded as stale"
             elif r.get("fixture_doubt"):
                 st = "fixture doubt (Pinnacle match not certain)"
+            elif (estimated or {}).get(i) is not None:
+                st = (f"ESTIMATED only ({str(r.get('how'))[:40]}): {100 * estimated[i]:+.2f}% - line-move adjusted, "
+                      "not a same-line close, never certified")
+            elif r.get("clv") is not None:
+                st = f"unclassified close method ({str(r.get('how'))[:30]}) - not certified"
             elif r.get("done"):
                 st = "unrecoverable: " + str(r.get("why") or "no reason recorded")[:80]
             else:
