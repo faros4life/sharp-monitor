@@ -43,7 +43,7 @@ jobs:
             git push -q origin HEAD:main && { echo committed; exit 0; }
             cp paper/clv_certified.json "$RUNNER_TEMP/c.json"
             git fetch -q --depth=1 origin main && git reset -q --hard FETCH_HEAD || exit 1
-            cp "$RUNNER_TEMP/c.json" paper/clv_certified.json
+            mkdir -p paper; cp "$RUNNER_TEMP/c.json" paper/clv_certified.json
             git add paper/clv_certified.json && git commit -q -m "paper: certified Pinnacle CLV (cache-only)"; sleep 3
           done
           echo "FAIL: push"; exit 1
