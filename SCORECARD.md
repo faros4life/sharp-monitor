@@ -49,7 +49,7 @@ paper test today is CONTINUE. The binding constraint is fills, not CLV.
 | 1 | LANE 1 | **ACTUAL FILLS — the only realized record in the system.** 41 graded bot fills → **33 verified same-line (80.5% coverage)**. Executed CLV **+0.37%** [−1.46, +2.19], beat the close **24/33 = 72.7%** Wilson [55.8, 84.9] — **excludes a coin flip**. Record 20-13, **+3.70u on 35.77u staked, ROI +10.3%**. Halves: H1 +1.38% / **H2 −0.59%**. Venue: Novig 40, PM-US 1 (bracketed, out of headline). Taker basis (conservative; maker would read better) | **33 real fills** | 11 Nov (`executed_clv`) | **CONTINUE TESTING** — strongest evidence anywhere, but certified n=33 is below the n≥100 precision bar and H2 CLV is negative |
 | 2 | RESTING BIDS | — | live money | — | KEPT, graded separately |
 | 7 | **BOARD V4** | **LIVE from 17 Nov 12:40 ET**, replacing v3. V3's rule plus ONE gate: a second book confirmed the same game, market, side and line at alert time ($10k, from the alert's own stored evidence). Retro what-if on the 33 bettable plays: 22-11, **+10.15u, ROI +28.4%**, certified CLV **+1.33%** [−0.89, +3.55] on 25 closes; halves +8.6u / +1.6u. The 37 plays it rejects: +4.80u, ROI +11.5%, CLV **−3.67%** [−5.78, −1.57] on 32. Switch `EXEC_BOARD_V4`. | live money | 17 Nov | **RETRO ONLY — the rule was found in this data.** Forward record starts now |
-| 29 | **R1** | 47 graded, 30-17, +10.79u, ROI +20.3%, certified CLV **−1.52%** [−3.25, +0.20] on **39/47** (coverage 9→26→39 on 17 Nov: the certifier's own league map excluded NCAAB, then free history, then one paid /fixtures call). Forward since the rule went live 11 Nov: **7-7, −1.04u, ROI −6.5%**, CLV −0.30% on 12/14. Halves +10.32u then +0.47u. | live money | 17 Nov | **INSUFFICIENT EVIDENCE, leaning negative.** Profit is first-half only; CLV does not support it |
+| 29 | **R1** | 47 graded, 30-17, +10.79u, ROI +20.3%, certified CLV **−1.52%** [−3.25, +0.20] on **39/47** (coverage 9→26→39 on 17 Nov: the certifier's own league map excluded NCAAB, then free history, then one paid /fixtures call). Forward since the rule went live 11 Nov: **7-7, −1.04u, ROI −6.5%**, CLV −0.30% on 12/14. Halves +10.32u then +0.47u. | live money | 17 Nov | **LIVE, CONTINUING TO A REGISTERED 25-FILL CHECKPOINT** (Peter, 17 Nov 14:42 ET). See the registered rule below |
 
 ### MANUAL — Peter bets by hand
 
@@ -318,6 +318,37 @@ Stated in one place because the rule differs by lane and the differences are del
   it was. `v3_n` caps the night at 5 plays by alert time.
 - **Liquidity lanes:** the 22–31 Oct backtest is never part of their record (`lanes.py`).
 - **EV study:** pre-registered buckets are judged only on sightings after 31 Oct 14:35Z.
+
+## R1 — REGISTERED CHECKPOINT (Peter, 17 Nov 2026 14:42 ET)
+
+Registered IN ADVANCE, before the data exists, so the decision is not re-argued week to week.
+
+**R1 stays live under its current rules, stakes, price floor and risk limits, and continues to 25 UNIQUE LIVE
+SETTLED selections.** Peter's reason for not pausing on the historical figure: the actual executed fills carry
+**+2.08% certified CLV on 6 of 8** settled bets, while the retro population carries −1.52%. Those are not in
+conflict — the retro figure prices every eligible alert whether or not a venue was there; the live fills are the
+subset that cleared the no-tolerance gate at the alert price or better. Opposite signs, so the live record is the
+one that bears on real money, and eight fills is too few to act on.
+
+Starting state at registration: **8 live settled fills, 3-5, about −2.76u, certified CLV +2.08% on 6.**
+
+At 25 fills the report states one of these, and nothing else:
+
+| Units | Certified CLV | Verdict |
+| --- | --- | --- |
+| ≤ 0 | ≤ 0 | **PAUSE FOR REVIEW** |
+| < 0 | > 0 | **INCONCLUSIVE** — Peter decides; the window is NEVER extended automatically |
+| > 0 | either | **CONTINUE** |
+| either | no certified close at all | report coverage; Peter decides |
+
+Also reported at the checkpoint: after-fee units and ROI, W-L, certified CLV with coverage, chronological H1/H2,
+uncertainty, and execution quality.
+
+**During the window:** no change to R1's rule, no parameter tuning, no re-slicing of its history. The checkpoint
+never overrides a daily stop or any other operational safety control — those bind first, always.
+
+Implementation: `last50_report.r1_checkpoint` prints the count and, at 25, the verdict. Reporting only; it reads
+the ledger and changes nothing. Tests: `test_r1_checkpoint.py`.
 
 ## Open discrepancies to settle (not changed here)
 

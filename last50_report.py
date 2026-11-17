@@ -353,6 +353,39 @@ def misprice_rows():
     return rows
 
 
+# --------------------------------------------------------------------------- R1 25-fill checkpoint (registered 17 Nov)
+R1_CHECK_N = 25
+R1_CHECK_TITLE = f"R1 CHECKPOINT (registered 17 Nov by Peter) - decision at {R1_CHECK_N} unique live settled fills"
+
+
+def r1_checkpoint(rows, n_target=R1_CHECK_N):
+    """One line. Pure: counts unique settled live R1 fills, and states the registered verdict only AT the target.
+    Units are at the fill price after fees; CLV counts certified closes only and a missing close is never a zero."""
+    rows = [r for r in rows or [] if r.get("res") in ("W", "L", "P")]
+    seen, uniq = set(), []
+    for r in sorted(rows, key=lambda r: str(r.get("ts") or "")):
+        k = r.get("key")
+        if k in seen:
+            continue
+        seen.add(k)
+        uniq.append(r)
+    n = len(uniq)
+    u = sc.units(uniq)
+    c = [r["clv"] for r in uniq if r.get("clv") is not None]
+    m = (sum(c) / len(c)) if c else None
+    head = (f"  {n}/{n_target} unique live settled fills | units {u:+.2f} | certified CLV "
+            + (f"{m:+.2f}% on {len(c)}" if m is not None else f"- on 0 of {n}"))
+    if n < n_target:
+        return head + f" | {n_target - n} to go, no decision before then"
+    if u <= 0 and (m is not None and m <= 0):
+        return head + " | VERDICT: PAUSE FOR REVIEW (units and certified CLV both nonpositive)"
+    if m is not None and m > 0 and u < 0:
+        return head + " | VERDICT: INCONCLUSIVE - certified CLV positive, units negative. Peter decides; do NOT extend"
+    if m is None:
+        return head + " | VERDICT: NO CERTIFIED CLV at the checkpoint - report coverage, Peter decides"
+    return head + " | VERDICT: CONTINUE (units and/or certified CLV positive)"
+
+
 # --------------------------------------------------------------------------- live (reporting ledger)
 def live_rows(acct, lane):
     """One row per LIVE BOT PLAY with a confirmed fill and a settled result (live_ledger.account)."""
@@ -529,6 +562,14 @@ def main():
             run(f"{lane} - live fills", rows, "confirmed fills only; partial fills merged; 1u at the fill price")
             if reg_n and rows:
                 covered.add(reg_n)
+        # ------------------------------------------------------------ R1 pre-registered checkpoint (Peter, 17 Nov)
+        # "CONTINUE TO 25 LIVE SETTLED FILLS." Registered IN ADVANCE so the decision is not re-argued each week:
+        # at 25 unique live settled selections, PAUSE FOR REVIEW if units <= 0 AND certified CLV <= 0; if CLV > 0
+        # and units < 0, report INCONCLUSIVE and wait for Peter - never extend the window automatically. Nothing
+        # here changes R1's rule, stakes, price floor or risk limits, and it never overrides a daily stop.
+        say("")
+        say(R1_CHECK_TITLE)
+        say(r1_checkpoint(live_rows(acct, "R1")))
         if not live_rows(acct, "LANE 2"):
             say("  LANE 2: no live orders in the ledger - Lane 2 is paper + dry-run (REGISTRY 8)")
         res_by_key = {p["key"]: p["res"] for p in acct["plays"]}
