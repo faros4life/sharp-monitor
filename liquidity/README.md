@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 17, 3:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 69.
+Updated Tue Nov 17, 3:04 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 69.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -15,7 +15,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 17 1:20PM | NBA | Utah vs Los Angeles C: Total Points | total: Over 225.5 points | kalshi | $32k | -100 |  |  | +2.0c | yes | pending |
 | Nov 17 1:20PM | NHL | Columbus vs New York I | moneyline: Columbus | kalshi | $60k | +127 |  |  | +1.0c |  | pending |
 | Nov 17 1:00PM | NHL | Washington vs Tampa Bay: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $58k | -104 | ✅ novig |  | +0.0c |  | pending |
-| Nov 17 12:55PM | NHL | Washington vs Tampa Bay: Spread | spread: Tampa Bay wins by over 1.5 goals | kalshi | $43k | +163 | ✅ novig |  | +1.0c |  | pending |
+| Nov 17 12:55PM | NHL | Washington vs Tampa Bay: Spread | spread: Tampa Bay wins by over 1.5 goals | kalshi | $43k | +163 | ✅ novig |  | +1.0c | yes | pending |
 | Nov 17 12:35PM | NCAAF | Miami (OH) vs Kent St.: Total Points | total: Over 44.5 points | kalshi | $134k | -108 |  |  | +0.0c |  | pending |
 | Nov 17 11:55AM | NHL | Washington Capitals @ Tampa Bay Lightning | spread: TBL -1.5 (-1.5) | novig | $56k | +167 | ✅ kalshi |  | +0.5c |  | pending |
 | Nov 17 11:40AM | NHL | Buffalo vs Philadelphia | moneyline: Philadelphia | kalshi | $90k | +117 | ✅ prophetx |  | +0.0c | yes | pending |
@@ -55,7 +55,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 17 7:00AM | NHL | Toronto vs Chicago: Spread | spread: NOT Toronto wins by over 1.5 goals | kalshi | $39k | -186 | ✅ novig |  | +1.0c |  | pending |
 | Nov 17 5:55AM | NHL | Anaheim vs St. Louis | moneyline: St. Louis | kalshi | $26k | -133 |  |  | -2.0c | yes | pending |
 | Nov 17 4:50AM | NHL | Edmonton vs Florida: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $56k | -127 |  |  | +1.0c | yes | pending |
-| Nov 17 4:35AM | NHL | Dallas vs Vegas | moneyline: Vegas | kalshi | $38k | -122 |  |  | +1.0c | yes | pending |
+| Nov 17 4:35AM | NHL | Dallas vs Vegas | moneyline: Vegas | kalshi | $38k | -122 |  |  | +0.0c | yes | pending |
 | Nov 17 4:30AM | NHL | Ottawa vs Winnipeg | moneyline: Ottawa | kalshi | $56k | -122 |  |  | +1.0c | yes | pending |
 | Nov 17 4:30AM | NHL | Edmonton vs Florida | moneyline: Florida | kalshi | $80k | -117 |  |  | +1.0c | yes | pending |
 | Nov 17 4:16AM | NCAAF | Central Michigan vs Buffalo: Total Points | total: NOT Over 45.5 points | kalshi | $36k | -104 |  |  | +0.0c | yes | pending |
