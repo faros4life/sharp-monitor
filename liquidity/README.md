@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 16, 11:45 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 18.
+Updated Mon Nov 16, 11:50 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 18.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -39,7 +39,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 16 4:25PM | NBA | Chicago vs Cleveland: Spread | spread: NOT Cleveland wins by over 8.5 points | kalshi | $30k | -104 |  | ✅ | +0.0c | yes | L |
 | Nov 16 3:50PM | NBA | Orlando vs Boston: Total Points | total: NOT Over 213.5 points | kalshi | $29k | -113 |  | ❌ | +1.0c | yes | L |
 | Nov 16 3:45PM | NHL | Washington vs Tampa Bay | moneyline: Tampa Bay | kalshi | $38k | -150 |  |  | +0.0c |  | pending |
-| Nov 16 3:40PM | NHL | Los Angeles vs Boston | moneyline: Boston | kalshi | $45k | -150 |  |  | -1.0c |  | pending |
+| Nov 16 3:40PM | NHL | Los Angeles vs Boston | moneyline: Boston | kalshi | $45k | -150 |  |  | -2.0c |  | pending |
 | Nov 16 3:24PM | NBA | Memphis vs Washington: Spread | spread: NOT Memphis wins by over 3.5 points | kalshi | $42k | -104 | ✅ novig | ✅ | -2.0c |  | L |
 | Nov 16 3:20PM | NBA | Phoenix vs Denver: Total Points | total: Over 230.5 points | kalshi | $45k | -104 | ✅ novig,prophetx | ✅ | +0.0c |  | L |
 | Nov 16 2:50PM | NBA | Golden State vs New Orleans: Total Points | total: NOT Over 223.5 points | kalshi | $49k | -100 | ✅ novig | ✅ | +1.0c | yes | W |
