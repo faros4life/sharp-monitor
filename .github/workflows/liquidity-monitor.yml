@@ -45,6 +45,12 @@ jobs:
             for i in 1 2 3 4 5; do
               git fetch -q origin main && git reset -q --hard origin/main
               rm -rf liquidity && cp -r "$RUNNER_TEMP/out/liquidity" .
+              # Nov 17 (Peter, data integrity): the line above replaces the directory with THIS run's snapshot, so a
+              # run working from older state used to DELETE newer published alerts (Houston/Miami, 16 Nov 16:22:46).
+              # history.jsonl is append-only and union-merged against whatever upstream already has, so whichever
+              # order two processes write in, no published alert can be lost. The live export is untouched.
+              git show origin/main:liquidity/history.jsonl > "$RUNNER_TEMP/up.jsonl" 2>/dev/null || : > "$RUNNER_TEMP/up.jsonl"
+              python liq_history.py liquidity/history.jsonl "$RUNNER_TEMP/up.jsonl"
               git add -A liquidity
               git diff --cached --quiet && break
               git commit -q -m "Update liquidity alerts"

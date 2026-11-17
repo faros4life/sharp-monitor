@@ -2150,6 +2150,17 @@ def run():
         update_alert_times(alerts, n)
     except Exception as ex:
         print(f"alert_times update failed: {str(ex)[:80]}")
+    # Nov 17 (Peter, data integrity): record every published alert in the APPEND-ONLY history before the live
+    # export is rewritten. alerts.json is replaced in full each run, and the workflow then replaces this whole
+    # directory with the run's snapshot, so a process writing from older state DELETES newer published alerts -
+    # it took the Houston/Miami Under 232.5 out between 16:21:11 and 16:22:46 on 16 Nov, with five others, and
+    # the board had already frozen a PLAY call on it. The history is never read for selection or execution.
+    try:
+        import liq_history as lh
+        _added, _total = lh.record(OUT_DIR, alerts)
+        print(f"alert history: +{_added} new, {_total} published alerts on record")   # counts only
+    except Exception as ex:
+        print(f"alert history update failed: {str(ex)[:80]}")
     save(ALERTS_FILE, {"note": (
         "Liquidity paper alerts (Kalshi + Novig + Polymarket public books; ProphetX read-only key, a trigger book from Oct 24), newest first. Trigger: >= $%d (and >= 10%% of the "
         "side's prior size, capped at $100k) of NEW bids on one side since the last check, measured on total side depth (all price "
