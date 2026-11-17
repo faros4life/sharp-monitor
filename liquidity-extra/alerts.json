@@ -1,6 +1,569 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-17T20:21:04Z",
+   "base_depth": 57958,
+   "best_price": 0.5375,
+   "best_price_american": -116,
+   "best_price_book": "kalshi",
+   "bid_improved": true,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 14,
+   "date": "2026-11-17",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 3215,
+     "new_this_side": 26021,
+     "other_side": 52403,
+     "other_side_all_levels": 107969,
+     "ratio": 0.8,
+     "this_side": 43405,
+     "this_side_all_levels": 133998
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 29188.83,
+    "volume_24h_fp": 21966.59,
+    "volume_fp": 31702.59
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 9562.0,
+    "volume_24h_fp": 17791.64,
+    "volume_fp": 9736.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 19626.83,
+    "volume_24h_fp": 4174.95,
+    "volume_fp": 21966.59
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-11-17T20:07:20Z",
+   "game": "Charlotte vs Davidson: Spread",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 2.37,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAMBSPREAD-26NOV17CHARDAV-DAV4\"}",
+   "lead_min": 219,
+   "league": "NCAAB",
+   "line": 3.5,
+   "market": "spread",
+   "new_money": 26021,
+   "new_x": 0.78,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 29188.83,
+      "volume_24h_fp": 21966.59,
+      "volume_fp": 31702.59
+     },
+     "game_normal": 56444,
+     "game_x": 2.37,
+     "normal": 33226,
+     "now": 133998,
+     "type": "SPREAD",
+     "x": 4.03
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 3.5,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": 4.0,
+     "price": -112
+    },
+    "betopenly": {
+     "point": 4.0,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 3.5,
+     "price": -112
+    },
+    "betus": {
+     "point": 4.0,
+     "price": -115
+    },
+    "bovada": {
+     "point": 3.5,
+     "price": -110
+    },
+    "circasports": {
+     "point": 4.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 3.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 4.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 3.5,
+     "price": -106
+    },
+    "kalshi": {
+     "point": 3.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 4.0,
+     "price": -108
+    },
+    "novig": {
+     "point": 3.5,
+     "price": -106
+    },
+    "polymarket": {
+     "point": 3.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": 3.5,
+     "price": -108
+    },
+    "williamhill_us": {
+     "point": 3.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAMBSPREAD-26NOV17CHARDAV-DAV4"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Charlotte",
+   "side_label": "NOT Davidson wins by over 3.5 points",
+   "size_x": 4.03,
+   "start_source": "odds",
+   "start_utc": "2026-11-18T00:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Charlotte",
+    "Davidson"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-17T20:21:04Z",
+   "base_depth": 170466,
+   "best_price": 0.4977,
+   "best_price_american": 101,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 14,
+   "date": "2026-11-17",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 4717,
+     "new_this_side": 38290,
+     "other_side": 102552,
+     "other_side_all_levels": 240178,
+     "ratio": 1.2,
+     "this_side": 121123,
+     "this_side_all_levels": 281583
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "UCF (0)",
+     "price": 0.505,
+     "this_side": 12734
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "UCF",
+     "price": 0.4926,
+     "this_side": 3146
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 20740.4,
+    "volume_24h_fp": 20547.010000000002,
+    "volume_fp": 20866.4
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 134.64,
+    "volume_24h_fp": 1649.28,
+    "volume_fp": 134.64
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 20605.760000000002,
+    "volume_24h_fp": 18897.73,
+    "volume_fp": 20731.760000000002
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-17T20:07:20Z",
+   "game": "Mississippi St. vs UCF",
+   "game_surge_books": [],
+   "game_x": 1.67,
+   "key": "kalshi|KXNCAAMBGAME-26NOV17MSSTUCF|ml|1",
+   "lead_min": 219,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 38290,
+   "new_x": 0.48,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 20740.4,
+      "volume_24h_fp": 20547.010000000002,
+      "volume_fp": 20866.4
+     },
+     "game_normal": 168234,
+     "game_x": 1.67,
+     "normal": 79027,
+     "now": 281583,
+     "type": "ML",
+     "x": 3.56
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 1915004.0,
+      "volume": 2807033.0
+     },
+     "game_normal": 13303,
+     "game_x": 1.56,
+     "normal": 6904,
+     "now": 20772,
+     "type": "ML",
+     "x": 3.01
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 2235,
+     "game_x": 1.46,
+     "normal": 727,
+     "now": 3256,
+     "type": "ML",
+     "x": 4.48
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -115
+    },
+    "betopenly": {
+     "point": null,
+     "price": -104
+    },
+    "betrivers": {
+     "point": null,
+     "price": -107
+    },
+    "bovada": {
+     "point": null,
+     "price": -110
+    },
+    "draftkings": {
+     "point": null,
+     "price": -108
+    },
+    "fanatics": {
+     "point": null,
+     "price": -110
+    },
+    "fanduel": {
+     "point": null,
+     "price": -110
+    },
+    "kalshi": {
+     "point": null,
+     "price": -104
+    },
+    "novig": {
+     "point": null,
+     "price": -102
+    },
+    "polymarket": {
+     "point": null,
+     "price": 100
+    },
+    "prophetx": {
+     "point": null,
+     "price": 103
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV17MSSTUCF-UCF"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UCF",
+   "side_label": "UCF",
+   "size_x": 3.56,
+   "start_source": "odds",
+   "start_utc": "2026-11-18T00:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Mississippi St.",
+    "UCF"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-17T20:21:04Z",
+   "base_depth": 219231,
+   "best_price": 0.565,
+   "best_price_american": -130,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.56,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 14,
+   "date": "2026-11-17",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -1511,
+     "new_this_side": 31154,
+     "other_side": 44333,
+     "other_side_all_levels": 152227,
+     "ratio": 1.9,
+     "this_side": 85906,
+     "this_side_all_levels": 258182
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "RICE (0)",
+     "price": 0.565,
+     "this_side": 10564
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Rice",
+     "price": 0.5614,
+     "this_side": 1125
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 7213.74,
+    "volume_24h_fp": 7718.97,
+    "volume_fp": 7914.18
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 10.44,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 7213.74,
+    "volume_24h_fp": 7708.530000000001,
+    "volume_fp": 7914.18
+   },
+   "fade_price": 0.45,
+   "first_seen_utc": "2026-11-17T20:07:20Z",
+   "game": "Texas A&M-Corpus Christi vs Rice",
+   "game_surge_books": [
+    "prophetx"
+   ],
+   "game_x": 1.48,
+   "key": "kalshi|KXNCAAMBGAME-26NOV17AMCCRICE|ml|1",
+   "lead_min": 279,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 31154,
+   "new_x": 0.39,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 7213.74,
+      "volume_24h_fp": 7718.97,
+      "volume_fp": 7914.18
+     },
+     "game_normal": 174890,
+     "game_x": 1.48,
+     "normal": 79027,
+     "now": 258182,
+     "type": "ML",
+     "x": 3.27
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 848121.0,
+      "volume": 1076105.0
+     },
+     "game_normal": 15976,
+     "game_x": 1.14,
+     "normal": 6904,
+     "now": 18237,
+     "type": "ML",
+     "x": 2.64
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 529,
+     "game_x": 2.12,
+     "normal": 727,
+     "now": 1125,
+     "type": "ML",
+     "x": 1.55
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.56,
+   "price_american": -127,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.56,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -135
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -135
+    },
+    "betrivers": {
+     "point": null,
+     "price": -137
+    },
+    "bovada": {
+     "point": null,
+     "price": -135
+    },
+    "circasports": {
+     "point": null,
+     "price": -135
+    },
+    "draftkings": {
+     "point": null,
+     "price": -135
+    },
+    "fanatics": {
+     "point": null,
+     "price": -140
+    },
+    "fanduel": {
+     "point": null,
+     "price": -130
+    },
+    "kalshi": {
+     "point": null,
+     "price": -127
+    },
+    "lowvig": {
+     "point": null,
+     "price": -135
+    },
+    "novig": {
+     "point": null,
+     "price": -130
+    },
+    "polymarket": {
+     "point": null,
+     "price": -127
+    },
+    "prophetx": {
+     "point": null,
+     "price": -128
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -130
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV17AMCCRICE-RICE"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Rice",
+   "side_label": "Rice",
+   "size_x": 3.27,
+   "start_source": "odds",
+   "start_utc": "2026-11-18T01:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "Texas A&M-Corpus Christi",
+    "Rice"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-17T19:50:24Z",
    "base_depth": 159212,
    "best_price": 0.505,
@@ -14,8 +577,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 2.0,
+   "close_price": 0.53,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-11-17",
    "depth_by_book": {
@@ -52,9 +615,9 @@
     "volume_fp": 2631.2
    },
    "ex_stats_close": {
-    "open_interest_fp": 67409.42,
+    "open_interest_fp": 73415.12,
     "volume_24h_fp": 70105.08,
-    "volume_fp": 73240.25
+    "volume_fp": 80774.35
    },
    "ex_stats_first": {
     "open_interest_fp": 51717.62,
@@ -114,7 +677,7 @@
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.5,
-   "price_after_15m": 0.52,
+   "price_after_15m": 0.51,
    "price_after_15m_book": "novig",
    "price_american": -100,
    "price_rule": "ok",
@@ -267,9 +830,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 6070.48,
+    "open_interest_fp": 6167.09,
     "volume_24h_fp": 6802.37,
-    "volume_fp": 6802.37
+    "volume_fp": 6898.98
    },
    "ex_stats_first": {
     "open_interest_fp": 5855.43,
@@ -652,9 +1215,9 @@
     "volume_fp": 62.84
    },
    "ex_stats_close": {
-    "open_interest_fp": 4276.62,
+    "open_interest_fp": 4370.5,
     "volume_24h_fp": 4243.26,
-    "volume_fp": 4281.9
+    "volume_fp": 4375.78
    },
    "ex_stats_first": {
     "open_interest_fp": 1158.24,
@@ -857,9 +1420,9 @@
     "volume_fp": 862.49
    },
    "ex_stats_close": {
-    "open_interest_fp": 81008.16,
+    "open_interest_fp": 81666.09,
     "volume_24h_fp": 60840.6,
-    "volume_fp": 84389.84
+    "volume_fp": 85050.63
    },
    "ex_stats_first": {
     "open_interest_fp": 68156.58,
@@ -1263,9 +1826,9 @@
     "volume_fp": 169.4
    },
    "ex_stats_close": {
-    "open_interest_fp": 102868.27,
+    "open_interest_fp": 103763.57,
     "volume_24h_fp": 100241.04000000001,
-    "volume_fp": 108982.75
+    "volume_fp": 109878.04999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 18299.129999999997,
@@ -1471,9 +2034,9 @@
     "volume_fp": 0.54
    },
    "ex_stats_close": {
-    "open_interest_fp": 3089.71,
+    "open_interest_fp": 3132.5,
     "volume_24h_fp": 3053.37,
-    "volume_fp": 3090.71
+    "volume_fp": 3133.5
    },
    "ex_stats_first": {
     "open_interest_fp": 630.69,
@@ -1667,9 +2230,9 @@
     "volume_fp": 128.73
    },
    "ex_stats_close": {
-    "open_interest_fp": 10406.48,
+    "open_interest_fp": 10432.73,
     "volume_24h_fp": 10392.53,
-    "volume_fp": 10601.16
+    "volume_fp": 10627.41
    },
    "ex_stats_first": {
     "open_interest_fp": 7063.18,
@@ -2247,7 +2810,8 @@
      "price": 100
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-17T20:21:04Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBSPREAD-26NOV17UMESDEP-DEP32"
@@ -2687,9 +3251,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1782.1999999999998,
+    "open_interest_fp": 1783.77,
     "volume_24h_fp": 1663.35,
-    "volume_fp": 1782.26
+    "volume_fp": 1783.8300000000002
    },
    "ex_stats_first": {
     "open_interest_fp": 120.85,
@@ -2857,9 +3421,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1192.45,
+    "open_interest_fp": 1215.42,
     "volume_24h_fp": 1111.68,
-    "volume_fp": 1317.45
+    "volume_fp": 1340.42
    },
    "ex_stats_first": {
     "open_interest_fp": 248.24,
@@ -3831,9 +4395,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 7809.0199999999995,
+    "open_interest_fp": 8849.43,
     "volume_24h_fp": 7796.24,
-    "volume_fp": 7841.11
+    "volume_fp": 8881.52
    },
    "ex_stats_first": {
     "open_interest_fp": 138.57,
@@ -6292,9 +6856,9 @@
     "volume_fp": 115.13
    },
    "ex_stats_close": {
-    "open_interest_fp": 87926.54999999999,
+    "open_interest_fp": 88154.64,
     "volume_24h_fp": 82794.25,
-    "volume_fp": 92267.92
+    "volume_fp": 92496.01000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 5739.1900000000005,
