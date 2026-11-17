@@ -130,8 +130,37 @@ check("budget short -> refused, nothing spent", r.startswith("refused") and CALL
 cl.CAP = _cap
 cl.NCAAB_VERIFIED_TID = _v
 src = open("clv_ledger.py").read()
-check("only the four reopened rows can queue the lookup",
-      'if lg in CACHE_ONLY_FX and not (rec.get("ncaab_reopened") and not st.get("ncaab_fx_once")):' in src)
+check("a row an alternate store already holds never queues a paid lookup",
+      'if lg in CACHE_ONLY_FX and (fxm.ordered_match(s, ALT_FX, tp)[0] or day_listed(lg, tp(s.get("game_start")), st)):' in src)
+
+# ---- Nov 17: capped DAILY NCAAB lookup
+cl.NCAAB_VERIFIED_TID = 648
+D0 = datetime(2026, 11, 17, 15, 0, tzinfo=timezone.utc)
+st = {"bets": {}}
+CALLS.clear()
+r1 = cl.ncaab_fx_daily(st, D0, "NCAAB", LO, HI, set())
+check("first NCAAB lookup of the day: exactly one /fixtures, no tournament search", CALLS == ["/fixtures"] and st["ncaab_tid"] == 648)
+check("the day is recorded as used", st["ncaab_fx_daily"].get("2026-11-17") == 1)
+CALLS.clear()
+r2 = cl.ncaab_fx_daily(st, D0 + timedelta(hours=7), "NCAAB", LO, HI, set())
+check("a second call the same ET day is refused (daily cap)", CALLS == [] and r2.startswith("daily cap reached"))
+CALLS.clear()
+st["fx_last"] = {}
+cl.ncaab_fx_daily(st, D0 + timedelta(days=1), "NCAAB", LO, HI, set())
+check("the next ET day may call again, once", CALLS == ["/fixtures"] and st["ncaab_fx_daily"].get("2026-11-18") == 1)
+CALLS.clear()
+check("a different stored tournament id blocks the call",
+      cl.ncaab_fx_daily({"bets": {}, "ncaab_tid": 555}, D0, "NCAAB", LO, HI, set()).startswith("blocked") and CALLS == [])
+_cap = cl.CAP
+cl.CAP = cl.used_this_period({"bets": {}}, D0)
+CALLS.clear()
+check("no monthly room -> refused, nothing spent", cl.ncaab_fx_daily({"bets": {}}, D0, "NCAAB", LO, HI, set()).startswith("refused") and CALLS == [])
+cl.CAP = _cap
+check("daily cap is 1", cl.NCAAB_DAILY_FX_CAP == 1)
+cl.ALT_FX = {"f1": {"lg": "NCAAB", "start": "2026-11-17T00:00:00.000Z"}}
+check("a game day already listed is never re-bought", cl.day_listed("NCAAB", datetime(2026, 11, 17, 1, 0, tzinfo=timezone.utc), {}))
+check("an unlisted game day may be fetched", not cl.day_listed("NCAAB", datetime(2026, 11, 20, 1, 0, tzinfo=timezone.utc), {}))
+cl.ALT_FX = {}
 check("CAP is unchanged", cl.CAP == int(__import__("os").environ.get("CLV_MONTH_CAP", "") or "1000"))
 
 _os_t.path.exists = _real_exists

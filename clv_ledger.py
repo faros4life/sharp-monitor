@@ -62,6 +62,10 @@ ML_MARKET = {11: "111", 14: "141", 15: "151"}         # Winner incl. overtime (h
 # a row whose game is in no cached store waits with that reason and burns no retry.
 SCORE_SPORT = dict(SPORT, NCAAB=11)
 CACHE_ONLY_FX = frozenset({"NCAAB"})
+# Nov 17 (Peter, "We need to fix it"): NCAAB gets ONE capped paid /fixtures call per ET day, only when an NCAAB row is
+# actually waiting for a fixture that no store holds, always on the verified tournament (no tournament search), inside
+# the monthly cap. Everything else about the cache-only rule is unchanged.
+NCAAB_DAILY_FX_CAP = 1
 NCAAB_REOPEN_START_ET = "2026-11-12"   # report_sections.START_ET: the four settled bot rows Peter named
 NCAAB_REOPEN_EXPECT = 4
 # Peter, Nov 16 16:07: the NCAAB tournament must be verified as NCAA Division I men's basketball from
@@ -1280,6 +1284,43 @@ def ncaab_reopen(st, now):
     return f"reopened {len(hit)}"
 
 
+def day_listed(lg, gs, st):
+    """True when a stored fixture list already covers this league within 12 h of the game start."""
+    if not gs:
+        return False
+    for f in list((st.get("fixtures") or {}).values()) + list(ALT_FX.values()):
+        t = tp(f.get("start"))
+        if f.get("lg") == lg and t and abs((t - gs).total_seconds()) <= 12 * 3600:
+            return True
+    return False
+
+
+def ncaab_fx_daily(st, now, lg, lo, hi, fetched):
+    """At most NCAAB_DAILY_FX_CAP billable /fixtures calls per ET day, on the verified tournament only, and only when
+    the month's cap has room. The day is consumed only when a call actually billed (refresh_fixtures also keeps its
+    own 6 h cooldown). -> counts-only status line."""
+    if not NCAAB_VERIFIED_TID:
+        return "blocked: no verified tournament id - no call"
+    if st.get("ncaab_tid") not in (None, NCAAB_VERIFIED_TID):
+        return "blocked: stored NCAAB tournament id differs from the verified id - no call"
+    day = now.astimezone(ET).strftime("%Y-%m-%d")
+    used = (st.get("ncaab_fx_daily") or {}).get(day, 0)
+    if used >= NCAAB_DAILY_FX_CAP:
+        return f"daily cap reached ({used}/{NCAAB_DAILY_FX_CAP}) - no call"
+    if not can_bill(st, now, 1):
+        return "refused: monthly cap - no call"
+    st["ncaab_tid"] = NCAAB_VERIFIED_TID
+    u0 = used_this_period(st, now)
+    ok = refresh_fixtures(st, now, lg, (lo - timedelta(days=1)).astimezone(ET), (hi + timedelta(days=1)).astimezone(ET))
+    spent = used_this_period(st, now) - u0
+    if spent:
+        st.setdefault("ncaab_fx_daily", {})[day] = used + spent
+        st["ncaab_fx_daily"] = {d: n for d, n in st["ncaab_fx_daily"].items() if d >= (now - timedelta(days=14)).astimezone(ET).strftime("%Y-%m-%d")}
+    if ok:
+        fetched.add(lg)
+    return f"billable {spent}, fixtures call {'ok' if ok else 'not made/failed'} ({used + spent}/{NCAAB_DAILY_FX_CAP} today)"
+
+
 def ncaab_fx_once(st, now, lg, lo, hi, fetched):
     """Peter, Nov 16 14:08: at most TWO billable calls, ONCE, to recover fixtures for the four
     reopened NCAAB bot rows - a tournament lookup only if no id is stored, plus one /fixtures.
@@ -1542,8 +1583,10 @@ def main():
             continue
         if rec.get("fixture") or find_fixture(st, s):
             continue
-        if lg in CACHE_ONLY_FX and not (rec.get("ncaab_reopened") and not st.get("ncaab_fx_once")):
-            continue          # cache-only league: the ONE approved lookup is for the four reopened rows only
+        if lg in CACHE_ONLY_FX and (fxm.ordered_match(s, ALT_FX, tp)[0] or day_listed(lg, tp(s.get("game_start")), st)):
+            # Already held by an alternate store, or that game day's list is already on file (so a failed match is a
+            # NAME problem a new list cannot fix): never pay for it again.
+            continue
         d0 = max(tp(s.get("game_start") or s.get("decided_utc")) or now, now - timedelta(days=FETCH_DAYS))   # keep the call small
         lo, hi = need.get(lg, (d0, d0))
         need[lg] = (min(lo, d0), max(hi, d0))
@@ -1553,7 +1596,7 @@ def main():
     fetched = set()        # leagues whose fixtures were ACTUALLY re-read from OddsPapi this run
     for lg, (lo, hi) in need.items():
         if lg in CACHE_ONLY_FX:
-            print(f"CLV ledger NCAAB one-time fixture recovery (counts only): {ncaab_fx_once(st, now, lg, lo, hi, fetched)}",
+            print(f"CLV ledger NCAAB daily fixture lookup (counts only): {ncaab_fx_daily(st, now, lg, lo, hi, fetched)}",
                   flush=True)
             continue
         if lg in beyond:
@@ -1610,8 +1653,8 @@ def main():
                 if rec["tries"] >= MAX_TRIES:
                     rec["done"] = True
             elif lg in CACHE_ONLY_FX:
-                rec["why"] = (f"{lg} fixture not in any cached store; a {lg} fixture lookup is a paid call "
-                              "and is not approved - uncertified, retry not counted")
+                rec["why"] = (f"{lg} fixture not in any cached store; waiting for the capped daily {lg} lookup "
+                              "(1 paid call per ET day) - retry not counted")
             else:
                 rec["why"] = "no fixture yet - no fresh lookup this run (6 h cooldown), retry not counted"
             continue
