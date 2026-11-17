@@ -745,6 +745,49 @@ def board_v4(x):
     return False, "second book failed verification (" + "; ".join(bad)[:120] + ")", None
 
 
+def board_v4_strength(x):
+    """LOGGING ONLY (Peter, 17 Nov 2026). Never read by any gate. One record per other book the alert stored evidence
+    for: exchange, league, market, dollar size, that exchange's trailing normal for the league and market
+    (liquidity_monitor norm_by_book, written at alert time), ratio = size / normal, NEW / RESTING / UNKNOWN money, and
+    whether the proposed 1x and 2x normalized gates (never below the $10k floor) would have passed. Missing data is
+    None / UNKNOWN, never guessed: the alert stores freshness only as 'any confirming book was fresh', so NEW is
+    stated only when there is exactly one confirming book."""
+    out = []
+    try:
+        if not isinstance(x, dict) or not isinstance(x.get("depth_by_book"), dict):
+            return out
+        trig = str(x.get("book") or "").strip().lower()
+        sb = [str(b or "").strip().lower() for b in (x.get("second_book") or [])] if isinstance(x.get("second_book"), list) else []
+        fresh, nb = x.get("second_book_fresh"), x.get("norm_by_book") if isinstance(x.get("norm_by_book"), dict) else {}
+        for b, d in x["depth_by_book"].items():
+            bk = str(b or "").strip().lower()
+            if bk == trig or not isinstance(d, dict):
+                continue
+            try:
+                size = float(d.get("this_side"))
+            except (TypeError, ValueError):
+                size = None
+            try:
+                normal = float((nb.get(b) or {}).get("normal"))
+                normal = normal if normal > 0 else None
+            except (TypeError, ValueError):
+                normal = None
+            ratio = round(size / normal, 2) if size is not None and normal else None
+            if bk not in sb or not isinstance(fresh, bool):
+                money = "UNKNOWN"
+            elif fresh is False:
+                money = "RESTING"
+            else:
+                money = "NEW" if len(sb) == 1 else "UNKNOWN"
+            gate = (lambda k: None if size is None or normal is None else bool(size >= max(BOARD_V4_MIN, k * normal)))
+            out.append({"book": bk, "league": x.get("league"), "market": x.get("market"), "confirming": bk in sb,
+                        "size": round(size) if size is not None else None, "normal": round(normal) if normal else None,
+                        "ratio": ratio, "money": money, "pass_1x": gate(1), "pass_2x": gate(2)})
+    except Exception:
+        return out   # logging must never break a run
+    return out
+
+
 def board_plays(now):
     """Nov 3 (Peter 2:01 PM "ok build"; rulebook v5 Lane 3): board PLAY calls (NBA totals, overs and unders) that
     survive: money not pulled, price not moved toward the side, still PLAY >= 15 min after posting, game not started.
@@ -787,7 +830,7 @@ def board_plays(now):
              "rules": {"verdict": "AGREE", "gate": None,
                        # Nov 6: the version that actually produced this row, not "v2" as it used to say.
                        "reason": f"board v3 PLAY (Lane 3) [v2={r.get('v2')}, v1={r.get('v1')}]"},
-             "board_v4": dict(zip(("ok", "why", "evidence"), board_v4(x))),   # Nov 17: logged always; a gate only when EXEC_BOARD_V4 is on
+             "board_v4": dict(zip(("ok", "why", "evidence"), board_v4(x)), strength=board_v4_strength(x)),   # Nov 17: logged always; a gate only when EXEC_BOARD_V4 is on
              "board_entry": {"alert_utc": x.get("alerted_utc"), "book_key": x.get("book"), "price_after_fee": am,
                              "point": ln, "sport": "NBA", "bet": None}}
         k = derive_key(p)

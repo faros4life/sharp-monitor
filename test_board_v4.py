@@ -81,6 +81,35 @@ def t_wiring():
         assert name in s
 
 
-for f in (t_gate, t_plays_same_key, t_wiring):
+def t_strength_logging_only():
+    import json
+    from datetime import datetime as dt, timezone as tz
+    x = mut(norm_by_book={"novig": {"normal": 8000}, "kalshi": {"normal": 90000}}, second_book_fresh=True)
+    r = ex.board_v4_strength(x)
+    assert len(r) == 1 and r[0] == {"book": "novig", "league": "NBA", "market": "total", "confirming": True, "size": 15000,
+                                    "normal": 8000, "ratio": 1.88, "money": "NEW", "pass_1x": True, "pass_2x": False}
+    assert ex.board_v4_strength(mut(second_book_fresh=False))[0]["money"] == "RESTING"
+    assert ex.board_v4_strength(mut())[0]["money"] == "UNKNOWN"                     # freshness not recorded
+    y = mut(second_book=["novig", "prophetx"], second_book_fresh=True)             # two books, one flag: do not infer NEW
+    y["depth_by_book"]["prophetx"] = {"this_side": 12000, "label": "Under 224.5", "price": 0.5, "heavier_side": True}
+    assert {v["money"] for v in ex.board_v4_strength(y)} == {"UNKNOWN"}
+    z = ex.board_v4_strength(mut())[0]                                              # no normal: ratio and gates unknown
+    assert z["normal"] is None and z["ratio"] is None and z["pass_1x"] is None and z["pass_2x"] is None
+    w = ex.board_v4_strength(mut(rule_met=False, second_book=[], second_book_status="none_10k", nv={"this_side": 4000}))
+    assert w[0]["confirming"] is False and w[0]["size"] == 4000 and w[0]["money"] == "UNKNOWN"   # rejected signals log too
+    assert ex.board_v4_strength(None) == [] and ex.board_v4_strength({"depth_by_book": "x"}) == []
+    # the gate ignores strength: identical decision with or without normals / freshness
+    assert ex.board_v4(x)[:2] == ex.board_v4(GOOD)[:2] and ex.board_v4(mut(nv={"this_side": 9999}, norm_by_book={"novig": {"normal": 1}}))[0] is False
+    src = open("executor.py").read()
+    assert src.count("board_v4_strength(") == 2                                    # defined once, called once (in board_plays)
+    # persists on the ledger row and survives JSON
+    p = {"play_key": "board|k", "source": "board", "sport": "NBA", "game": "A vs. B", "bet": "Under 224.5 (-108)",
+         "start_utc": "2026-11-18T00:00:00Z", "alert_utc": "2026-11-17T15:00:00Z",
+         "board_v4": dict(zip(("ok", "why", "evidence"), ex.board_v4(x)), strength=r)}
+    lr = json.loads(json.dumps(ex.ledger_row({"play": p, "entry": {}, "verdict": "SKIP"}, dt.now(tz.utc)), default=str))
+    assert lr["board_v4"]["strength"] == r and lr["board_v4"]["ok"] is True and lr["board_v4_gate"] is False
+
+
+for f in (t_gate, t_plays_same_key, t_wiring, t_strength_logging_only):
     f()
 print("board v4 tests: OK")
