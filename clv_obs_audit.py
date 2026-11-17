@@ -194,7 +194,8 @@ def classify(x, src, fxs, alt, allfx, mkmap):
     sides, how = fxm.sides_of(snap)
     if not sides or not all(sides):
         return "FIXTURE_OR_IDENTITY", f"cannot be split into two named sides ({how})"
-    if lg not in cl.SPORT:
+    # 17 Nov: SCORE_SPORT, the ledger's own scoring map (adds NCAAB). cl.SPORT left 29 of 47 R1 plays "not covered".
+    if lg not in cl.SCORE_SPORT:
         return "LEAGUE_NOT_COVERED", f"league {lg or 'unknown'} has no OddsPapi sport id"
     fid, note = fxm.ordered_match(snap, allfx, cl.tp)
     if not fid:
@@ -204,7 +205,7 @@ def classify(x, src, fxs, alt, allfx, mkmap):
         return "MISSING_HISTORY", f"fixture {fid} has no cached Pinnacle history"
     f = allfx[fid]
     p, why = cb.pinnacle_no_vig_close(f, snap, mkmap, cl.book_markets(h, "pinnacle"), cl.parsed,
-                                      cl.which_team, cl.two_way, cl.novig_p, cl.SPORT,
+                                      cl.which_team, cl.two_way, cl.novig_p, cl.SCORE_SPORT,
                                       cl.ML_MARKET, cl.FRESH_MIN, cl.tp)
     if p is None:
         w = str(why)
