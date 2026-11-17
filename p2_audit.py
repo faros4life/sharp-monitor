@@ -563,6 +563,9 @@ def main():
           f"(fill by id {integ['fill_record_by_id']}, by play_key {integ['fill_record_by_play_key']}) without fill record {integ['placed_orders_without_fill_record']}, not-terminal fills "
           f"{integ['fill_records_not_terminal']}, settled missing CLV {integ['settled_missing_certified_clv']}, "
           f"not exact {integ['positions_without_exact_lane']}")
+    if (os.environ.get("P2_DELIVER") or "1").strip() == "0":
+        print("delivery skipped: verification run (deliver=0) - nothing sent to Telegram")
+        return 0
     why_deg = degraded_reason(nok, nf)
     if why_deg:
         # Nov 17 (Peter): a degraded run must never replace a valid scorecard. Nothing is sent but a one-line notice.

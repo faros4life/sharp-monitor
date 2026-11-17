@@ -10,6 +10,10 @@ on:
         description: "ET day for section E (YYYY-MM-DD); blank = yesterday"
         required: false
         default: ""
+      deliver:
+        description: "1 = send the private Telegram report (scheduled default); 0 = verification run, log only"
+        required: false
+        default: "1"
 permissions:
   contents: read
   actions: read      # gate only: lists this workflow's own earlier runs
@@ -60,6 +64,7 @@ jobs:
           REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}   # contents read on the private registry
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}   # private delivery only (same route as last50-report)
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          P2_DELIVER: ${{ inputs.deliver || '1' }}   # Nov 17 (Peter): manual verification runs pass 0 - no Telegram
           NOVIG_READ_KEY_ID: ${{ secrets.NOVIG_READ_KEY_ID }}       # read-only (novig_signed.ready verifies the scope)
           NOVIG_READ_KEY_PEM: ${{ secrets.NOVIG_READ_KEY_PEM }}
           NOVIG_READ_TOKEN: ${{ secrets.NOVIG_READ_TOKEN }}   # Nov 17 Option A: Contents READ on novig-runner only (home fill snapshot)
