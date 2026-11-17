@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 17, 6:20 PM ET. This run: 1 new, 2 not confirmed, 1 pending. Open alerts: 42.
+Updated Tue Nov 17, 6:30 PM ET. This run: 1 new, 0 not confirmed, 2 pending. Open alerts: 43.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 17 6:30PM | NCAAB | Bowling Green vs William & Mary: Point Total | total: Over 168.5 points | kalshi | $29k | -113 |  | ❌ | +0.0c |  | pending |
 | Nov 17 6:20PM | NCAAB | Wagner vs Saint Joseph's: Point Total | total: Over 137.5 points | kalshi | $28k | +104 |  |  | +0.0c |  | pending |
 | Nov 17 6:10PM | NCAAB | Cal State Northridge vs Troy | moneyline: Troy | kalshi | $48k | -122 | ✅ novig | ❌ | +0.0c |  | pending |
 | Nov 17 5:40PM | NCAAB | Jacksonville St. vs Louisiana Tech: Point Total | total: Over 128.5 points | kalshi | $31k | -133 |  | ❌ | +0.0c | yes | pending |
@@ -45,7 +46,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 17 1:40AM | NCAAB | Seattle vs California Baptist | moneyline: Seattle | kalshi | $29k | -355 |  |  | -1.0c |  | pending |
 | Nov 17 1:40AM | NCAAB | Le Moyne vs Evansville | moneyline: Evansville | kalshi | $26k | -257 |  |  | +3.0c | yes | pending |
 | Nov 17 1:30AM | NCAAB | Florida International vs UAB | moneyline: UAB | kalshi | $39k | -170 |  |  | +0.0c |  | pending |
-| Nov 17 1:30AM | NCAAB | Central Michigan vs Dayton | moneyline: Dayton | kalshi | $36k | -567 |  |  | +3.0c | yes | pending |
+| Nov 17 1:30AM | NCAAB | Central Michigan vs Dayton | moneyline: Dayton | kalshi | $36k | -567 |  |  | +4.0c | yes | pending |
 | Nov 17 12:40AM | NCAAB | UC Irvine vs Stanford | moneyline: Stanford | kalshi | $52k | -317 |  |  | -2.0c |  | pending |
 | Nov 16 9:30PM | NCAAB | Sam Houston vs Wyoming | moneyline: Wyoming | kalshi | $49k | -525 |  |  | +3.0c | yes | pending |
 | Nov 16 7:10PM | NCAAB | Western Illinois vs Minnesota: Point Total | total: Over 136.5 points | kalshi | $33k | +104 |  | ❌ | +0.0c |  | W |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 11 2:22AM | NCAAB | Kent St. vs UNC Wilmington | moneyline: UNC Wilmington | kalshi | $31k | -270 |  |  | -2.0c |  | W |
 | Nov 11 2:22AM | NCAAB | Jackson St. vs Southern Miss | moneyline: Southern Miss | kalshi | $27k | -456 |  |  | -18.0c |  | W |
 | Nov 11 2:22AM | NCAAB | Cornell vs St. Bonaventure | moneyline: St. Bonaventure | kalshi | $34k | -335 |  |  | -1.0c |  | W |
-| Nov 11 2:22AM | NCAAB | Campbell vs East Tennessee St. | moneyline: East Tennessee St. | kalshi | $25k | -203 |  | ❌ | -2.0c |  | W |
