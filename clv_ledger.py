@@ -66,6 +66,12 @@ CACHE_ONLY_FX = frozenset({"NCAAB"})
 # actually waiting for a fixture that no store holds, always on the verified tournament (no tournament search), inside
 # the monthly cap. Everything else about the cache-only rule is unchanged.
 NCAAB_DAILY_FX_CAP = 1
+# Nov 17 (Peter, OK): a SECOND daily NCAAB lookup, basketball-wide (sportId 11), only for a waiting NCAAB row whose game
+# day IS in the regular-season list but whose game is not (OddsPapi files some early-season events separately).
+# One call per ET day, never the same game date twice. Professional and women's competitions are not stored.
+NCAAB_WIDE_DAILY_CAP = 1
+NOT_MENS_COLLEGE_TIDS = frozenset({132, 486, 875, 1329, 1580, 2382, 14458, 15822, 23881, 34992, 38949, 40401, 41126,
+                                   45587, 46736, 53592, 21384, 33946, 33948, 34006, 34008, 40443})
 NCAAB_REOPEN_START_ET = "2026-11-12"   # report_sections.START_ET: the four settled bot rows Peter named
 NCAAB_REOPEN_EXPECT = 4
 # Peter, Nov 16 16:07: the NCAAB tournament must be verified as NCAA Division I men's basketball from
@@ -1295,6 +1301,59 @@ def day_listed(lg, gs, st):
     return False
 
 
+def wide_searched_days(st):
+    """ET game dates already searched basketball-wide (ledger record + the one-off Nov 17 search store)."""
+    days = set((st.get("ncaab_wide_days") or {}).keys())
+    try:
+        tag = (json.load(open("oddspapi/fixtures_ncaab.json")).get("sportsearch_2026_11_17") or {}).get("window") or []
+    except Exception:
+        tag = []
+    if len(tag) == 2:
+        d0, d1 = tag
+        x = datetime.strptime(d0, "%Y-%m-%d")
+        while x.strftime("%Y-%m-%d") <= d1:
+            days.add(x.strftime("%Y-%m-%d"))
+            x += timedelta(days=1)
+    return days
+
+
+def ncaab_wide_daily(st, now, game_days, fetched):
+    """At most NCAAB_WIDE_DAILY_CAP basketball-wide /fixtures calls per ET day; the OLDEST unsearched game date first,
+    window that date + 1 day (under the 48 h limit); never a date already searched; monthly cap respected. Stores
+    only fixtures outside the professional/women's competitions, labelled NCAAB; never overwrites a stored fixture."""
+    day = now.astimezone(ET).strftime("%Y-%m-%d")
+    used = (st.get("ncaab_wide_daily") or {}).get(day, 0)
+    if used >= NCAAB_WIDE_DAILY_CAP:
+        return f"daily cap reached ({used}/{NCAAB_WIDE_DAILY_CAP}) - no call"
+    todo = sorted(set(game_days) - wide_searched_days(st))
+    if not todo:
+        return "every waiting game date already searched - no call"
+    if not can_bill(st, now, 1):
+        return "refused: monthly cap - no call"
+    d0 = todo[0]
+    d1 = (datetime.strptime(d0, "%Y-%m-%d") + timedelta(days=1)).strftime("%Y-%m-%d")
+    try:
+        d = api("/fixtures", True, sportId=11, **{"from": d0, "to": d1})
+    except GateRefused:
+        return "refused by the credit gate - no call"
+    bill(st, now)
+    st.setdefault("ncaab_wide_daily", {})[day] = used + 1
+    if isinstance(d, dict) and d.get("_error"):
+        return f"call failed ({d['_error']}) - date not marked searched"
+    st.setdefault("ncaab_wide_days", {})[d0] = iso(now)
+    fx, added = st.setdefault("fixtures", {}), 0
+    for f in d if isinstance(d, list) else []:
+        if not f.get("fixtureId") or f["fixtureId"] in fx or f.get("tournamentId") in NOT_MENS_COLLEGE_TIDS:
+            continue
+        fx[f["fixtureId"]] = {"lg": "NCAAB", "start": f.get("startTime"), "status": f.get("statusId"),
+                              "p1": " ".join(str(f.get(k) or "") for k in ("participant1Name", "participant1ShortName", "participant1Abbr")),
+                              "p2": " ".join(str(f.get(k) or "") for k in ("participant2Name", "participant2ShortName", "participant2Abbr")),
+                              "n1": f.get("participant1Name"), "n2": f.get("participant2Name"), "wide": True}
+        added += 1
+    fetched.add("NCAAB")
+    return f"billable 1 (date {d0}), fixtures added {added} ({used + 1}/{NCAAB_WIDE_DAILY_CAP} today)"
+
+
 def ncaab_fx_daily(st, now, lg, lo, hi, fetched):
     """At most NCAAB_DAILY_FX_CAP billable /fixtures calls per ET day, on the verified tournament only, and only when
     the month's cap has room. The day is consumed only when a call actually billed (refresh_fixtures also keeps its
@@ -1576,6 +1635,7 @@ def main():
         if d and lgf and (lgf not in newest or d > newest[lgf]):
             newest[lgf] = d
     beyond = {}
+    wide_days = set()      # NCAAB game dates needing a basketball-wide search (Nov 17)
     for k, rec in pend:
         s = rec["snap"]
         lg = s.get("league")
@@ -1583,9 +1643,13 @@ def main():
             continue
         if rec.get("fixture") or find_fixture(st, s):
             continue
-        if lg in CACHE_ONLY_FX and (fxm.ordered_match(s, ALT_FX, tp)[0] or day_listed(lg, tp(s.get("game_start")), st)):
-            # Already held by an alternate store, or that game day's list is already on file (so a failed match is a
-            # NAME problem a new list cannot fix): never pay for it again.
+        if lg in CACHE_ONLY_FX and fxm.ordered_match(s, ALT_FX, tp)[0]:
+            continue          # already held by an alternate store: never pay for it again
+        if lg in CACHE_ONLY_FX and day_listed(lg, tp(s.get("game_start")), st):
+            # The regular-season list for that day is on file and the game is not in it: a basketball-wide search
+            # (filed under another competition) is the only lookup that could help - never the same list again.
+            _gd = tp(s.get("game_start")).astimezone(ET).strftime("%Y-%m-%d")
+            wide_days.add(_gd)
             continue
         d0 = max(tp(s.get("game_start") or s.get("decided_utc")) or now, now - timedelta(days=FETCH_DAYS))   # keep the call small
         lo, hi = need.get(lg, (d0, d0))
@@ -1594,6 +1658,9 @@ def main():
         if gs and (lg not in newest or gs > newest[lg]):
             beyond[lg] = beyond.get(lg, 0) + 1
     fetched = set()        # leagues whose fixtures were ACTUALLY re-read from OddsPapi this run
+    if wide_days:
+        print(f"CLV ledger NCAAB basketball-wide lookup (counts only): {ncaab_wide_daily(st, now, wide_days, fetched)}",
+              flush=True)
     for lg, (lo, hi) in need.items():
         if lg in CACHE_ONLY_FX:
             print(f"CLV ledger NCAAB daily fixture lookup (counts only): {ncaab_fx_daily(st, now, lg, lo, hi, fetched)}",

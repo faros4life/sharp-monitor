@@ -38,7 +38,7 @@ check("SPORT (other jobs' league list) is unchanged", cl.SPORT == {"NBA": 11, "N
 check("NCAAB is scored on basketball's sport id", cl.SCORE_SPORT.get("NCAAB") == 11)
 check("NCAAB fixtures are cache-only (no paid lookup)", "NCAAB" in cl.CACHE_ONLY_FX)
 src = open("clv_ledger.py").read()
-need = src[src.index("    beyond = {}\n    for k, rec in pend:"):src.index("    fetched = set()")]
+need = src[src.index("    beyond = {}\n    wide_days = set()"):src.index("    fetched = set()")]
 check("the fixture-need loop skips cache-only leagues before any refresh is queued",
       need.index("if lg in CACHE_ONLY_FX") < need.index("need[lg] ="))
 
@@ -131,7 +131,9 @@ cl.CAP = _cap
 cl.NCAAB_VERIFIED_TID = _v
 src = open("clv_ledger.py").read()
 check("a row an alternate store already holds never queues a paid lookup",
-      'if lg in CACHE_ONLY_FX and (fxm.ordered_match(s, ALT_FX, tp)[0] or day_listed(lg, tp(s.get("game_start")), st)):' in src)
+      'if lg in CACHE_ONLY_FX and fxm.ordered_match(s, ALT_FX, tp)[0]:' in src)
+check("a listed day with an unmatched game goes to the basketball-wide search, never the same list again",
+      "wide_days.add(_gd)" in src)
 
 # ---- Nov 17: capped DAILY NCAAB lookup
 cl.NCAAB_VERIFIED_TID = 648
@@ -175,6 +177,32 @@ if not _os.path.exists(_p):
     check("isolated store present -> the ledger never makes its own NCAAB call", r.startswith("already used") and CALLS == [])
 import fixture_match as _fxm
 check("the ledger reads the NCAAB store as an alternate fixture source", _p in _fxm.ALT_PATHS)
+
+# ---- Nov 17: basketball-wide daily NCAAB search
+WCALLS = []
+def wide_api(path, billable, apikey=None, **params):
+    WCALLS.append((path, params.get("sportId"), params.get("from"), params.get("to")))
+    return [{"fixtureId": "c1", "tournamentId": 99999, "startTime": "2026-11-17T01:00:00.000Z",
+             "participant1Name": "Oklahoma State Cowboys", "participant2Name": "Central Arkansas Bears"},
+            {"fixtureId": "n1", "tournamentId": 132, "startTime": "2026-11-17T00:00:00.000Z",
+             "participant1Name": "Boston Celtics", "participant2Name": "Orlando Magic"}]
+cl.api = wide_api
+W0 = datetime(2026, 11, 18, 15, 0, tzinfo=timezone.utc)
+st = {"bets": {}}
+fet = set()
+r = cl.ncaab_wide_daily(st, W0, {"2026-11-20", "2026-11-19"}, fet)
+check("one basketball-wide call, oldest date first, window under 48 h",
+      WCALLS == [("/fixtures", 11, "2026-11-19", "2026-11-20")])
+check("college fixture stored as NCAAB; NBA fixture never stored", "c1" in st["fixtures"] and "n1" not in st["fixtures"]
+      and st["fixtures"]["c1"]["lg"] == "NCAAB")
+check("the searched date is recorded and NCAAB counts as fetched", "2026-11-19" in st["ncaab_wide_days"] and "NCAAB" in fet)
+WCALLS.clear()
+check("second wide call the same ET day is refused", cl.ncaab_wide_daily(st, W0, {"2026-11-20"}, set()).startswith("daily cap") and WCALLS == [])
+WCALLS.clear()
+check("a date already searched is never searched again",
+      cl.ncaab_wide_daily(st, W0 + timedelta(days=1), {"2026-11-19"}, set()).startswith("every waiting game date") and WCALLS == [])
+check("the Nov 16-17 one-off search counts as searched", {"2026-11-16", "2026-11-17"} <= cl.wide_searched_days({}))
+cl.api = fake_api
 
 print(f"\n{'ALL PASS' if not BAD else str(len(BAD)) + ' FAILED'}")
 sys.exit(1 if BAD else 0)
