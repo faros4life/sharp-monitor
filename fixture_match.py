@@ -64,6 +64,17 @@ def alt_fixtures():
     return out
 
 
+def _at_sep(game):
+    """Game text with every venue's away/home separator normalised to '@'. Nov 17: ProphetX writes 'Away at Home';
+    only '@', ' v ' and ' vs ' were split, so a ProphetX row without snap.teams could not be split at all.
+    ' at ' is replaced only when it occurs exactly once, so a team name containing ' at ' can never be cut in two."""
+    txt = str(game or "").replace(" v ", " @ ").replace(" vs ", " @ ")
+    if "@" not in txt and txt.lower().count(" at ") == 1:
+        i = txt.lower().index(" at ")
+        txt = txt[:i] + " @ " + txt[i + 4:]
+    return txt
+
+
 def sides_of(s):
     """([away tokens, home tokens], how) for a row, or (None, why).
 
@@ -73,7 +84,7 @@ def sides_of(s):
     tms = [(t.get("name") or "").strip() for t in (s.get("teams") or []) if (t.get("name") or "").strip()]
     if len(tms) >= 2:
         return [tb.toks(tms[0]) - tb.WEAK, tb.toks(tms[1]) - tb.WEAK], "snap.teams"
-    txt = str(s.get("game") or "").replace(" v ", " @ ").replace(" vs ", " @ ")
+    txt = _at_sep(s.get("game"))
     parts = [p for p in txt.split("@") if p.strip()]
     if len(parts) == 2:
         return [tb.toks(parts[0]) - tb.WEAK, tb.toks(parts[1]) - tb.WEAK], "game text"
@@ -90,7 +101,7 @@ def raw_sides_of(s):
            if (t.get("name") or "").strip()]
     if len(tms) >= 2:
         return tms[:2]
-    txt = str(s.get("game") or "").replace(" v ", " @ ").replace(" vs ", " @ ")
+    txt = _at_sep(s.get("game"))
     parts = [p.strip() for p in txt.split("@") if p.strip()]
     return parts[:2] if len(parts) == 2 else None
 

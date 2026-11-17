@@ -25,6 +25,11 @@ ROW = {"league": "NCAAF", "game": "Louisiana @ UL Monroe", "bet": "Under 48.5",
        "game_start": "2026-11-13T02:00:00Z"}
 
 
+def fxm_at_split_ok():
+    import fixture_match as _fm
+    return _fm.sides_of({"game": "Central Arkansas at Oklahoma State"})[1] == "game text"
+
+
 def check(name, cond, detail=""):
     if cond:
         print(f"  ok   {name}")
@@ -159,6 +164,10 @@ def main():
                                   "ticker": "KXNBATOTAL-26NOV13LALLAC-230"}, {"d": derby}, cl.tp)
     check("but the derby DOES resolve once the ticker carries both codes", fid == "d", f"{fid} {why}")
 
+    # Nov 17: ProphetX 'Away at Home' game text splits into two sides
+    check("ProphetX 'A at B' splits into two sides", fxm_at_split_ok())
+    check("a game text with two ' at ' is never cut", __import__("fixture_match")._at_sep("X at Y at Z") == "X at Y at Z")
+    check("'@' text unchanged", __import__("fixture_match")._at_sep("A @ B") == "A @ B")
     print()
     if BAD:
         print(f"FAILED {len(BAD)}: {BAD}")
