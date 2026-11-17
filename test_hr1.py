@@ -31,6 +31,11 @@ def t_push_wiring():
     s = open("sharp_monitor.py").read()
     assert "hr1_ok = False" in s and "_ar.hr1(" in s
     assert "(not repeat) and" in s                                  # first alert per game/market/side only
+    # hr1_ok must be bound on EVERY path: it is read outside the if/elif/else chain that computes it, so an alert
+    # taking an earlier branch (the Hard Rock spread-dog skip) killed three runs on 17 Nov.
+    init = [l for l in s.split("\n") if l.strip().startswith("hr1_ok = False")]
+    assert len(init) == 1 and len(init[0]) - len(init[0].lstrip()) == 20
+    assert s.index("hr1_ok = False") < min(s.index(x) for x in ("if hr1_ok:", "or hr1_ok)", "if hr1_ok else"))
     assert "PUSH_SHARP or p1_ok or hr_ev or hr1_ok" in s            # HR1 is pushed even while paper alerts are muted
     assert "live=p1_ok or hr1_ok" in s                              # ... and mirrored to Telegram
     assert "HR1 MANUAL " in s and "HR1 MANUAL BET at HARD ROCK" in s

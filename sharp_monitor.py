@@ -1755,6 +1755,9 @@ def run():
                     prior = sorted((x for x in st["log"] if x["ev"] == a["ev"] and not (x["kind"] == a["kind"] and x["side"] == a["side"])),
                                    key=lambda x: x.get("t", 0))
                     opp = [x for x in prior if mkt(x["kind"]) == mkt(a["kind"])]
+                    hr1_ok = False   # Nov 17 FIX: set BEFORE the branch chain. It was only assigned inside the final
+                    # else, so an alert taking an earlier branch (the Hard Rock spread-dog skip) reached the
+                    # `if hr1_ok` below unbound and killed the run - three sharp-monitor runs died that way.
                     prior_note = ""
                     if opp:
                         prior_note = f"\nOPPOSITE of earlier alert {describe(opp[0])} - first alert is the play, don't bet this"
@@ -1820,7 +1823,6 @@ def run():
                         # it is a notification only, and it reaches Telegram as well as ntfy because Peter asked for it
                         # there ("send alerts to telegram this way i manualy play them"). Labelled MANUAL so it can
                         # never read as a bot play. UNITS-ONLY evidence - see agree_rules.hr1.
-                        hr1_ok = False
                         try:
                             import agree_rules as _ar
                             hr1_ok = (not repeat) and _ar.hr1(
