@@ -167,7 +167,28 @@ def _board_side(side_text):
     return None
 
 
-def paper_live_trace(calls, orders, fills, start_et=START_ET):
+def _live_position(c, live_rows):
+    """The venue-confirmed live Board V3 position for a paper call: same ET game day, both team tokens of the paper
+    game present in the live row's game text, same OVER/UNDER. Exactly one match or None (never guessed)."""
+    import tracker_build as _tb
+    sd = _board_side(c.get("side"))
+    gt = str(c.get("game") or "").split(":")[0]
+    teams = [_tb.toks(x) - _tb.WEAK for x in gt.split(" vs ")]
+    if len(teams) != 2 or not all(teams) or not sd:
+        return None
+    hits = []
+    for b in live_rows or []:
+        if _et_day(b.get("game_start")) != c.get("day") and _et_day(b.get("settled")) != c.get("day"):
+            continue
+        bt = str(b.get("bet") or "").strip().lower()
+        bsd = "OVER" if bt.startswith("over") else ("UNDER" if bt.startswith("under") else None)
+        g = _tb.toks(b.get("game")) - _tb.WEAK
+        if bsd == sd and all(t & g for t in teams):
+            hits.append(b)
+    return hits[0] if len(hits) == 1 else None
+
+
+def paper_live_trace(calls, orders, fills, start_et=START_ET, live_rows=None):
     """PRIVATE ONLY. Every paper Bets Board PLAY call from start_et traced to the live executor's own record of it.
     Join is the board play key the executor writes (board|<league>|<game>|<market>|<OVER/UNDER>) - exact, never
     fuzzy. Category per call: NOT DECIDED (no executor record) | DECIDED, NOT PLACED (reason) | PLACED, NO FILL
@@ -187,9 +208,15 @@ def paper_live_trace(calls, orders, fills, start_et=START_ET):
         os_ = by_key.get(key) or []
         row = {"day": c.get("day"), "game": c.get("game"), "side": c.get("side"), "paper_price": c.get("price"),
                "paper_book": c.get("book"), "result": c.get("result") or "UNGRADED", "units": c.get("units"), "key": key}
-        if not os_:
+        lp = _live_position(c, live_rows)
+        if lp is not None:
+            # Venue evidence wins: a confirmed live Board V3 position is FILLED whatever the registry fill record says
+            # (several venue fills carry no registry fill record - Section G).
+            row["cat"] = "FILLED"
+            row["detail"] = f"venue-confirmed live position, {lp.get('book')} live price {lp.get('price')} vs paper {c.get('price')}, live result {lp.get('result') or 'OPEN'}"
+        elif not os_:
             row["cat"], row["detail"] = "NOT DECIDED", "no executor record for this play key"
-        else:
+        if lp is None and os_:
             o = os_[-1]
             lo = d(o.get("live_order"))
             f = fills.get(str(lo.get("order_id"))) or fills.get(str(lo.get("client_id"))) or pk.get(key) \

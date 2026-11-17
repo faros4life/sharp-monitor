@@ -38,5 +38,15 @@ check("summary shows winners AND losers per category", summ["DECIDED, NOT PLACED
 check("a placed live board order that was not a paper PLAY is listed", len(extra) == 1 and "X vs Y" in extra[0]["key"])
 txt = rs.render_trace(out, extra, summ)
 check("no currency sign in the section", "$" not in txt)
+# venue evidence wins over a missing registry fill record
+live = [{"game": "Charlotte Hornets @ Denver Nuggets", "bet": "Under 210.5", "book": "Novig", "price": -105, "result": "W", "game_start": "2026-11-14T00:30:00Z"}]
+calls2 = {"c2": dict(calls["c2"], game="Charlotte vs Denver: Total Points")}
+o2 = [{"key": "board|NBA|Charlotte vs Denver: Total Points|total|UNDER", "et_day": "2026-11-13", "live_order": {"status": "placed", "order_id": "o2"}}]
+out2, _e, _s = rs.paper_live_trace(calls2, o2, {"o2": {"state": "NO_FILL"}}, "2026-11-12", live_rows=live)
+check("a venue-confirmed live position is FILLED even without a registry fill record", out2[0]["cat"] == "FILLED")
+live2 = live + [dict(live[0])]
+out3, _e, _s = rs.paper_live_trace(calls2, o2, {"o2": {"state": "NO_FILL"}}, "2026-11-12", live_rows=live2)
+check("two matching live rows -> not guessed (falls back to the executor record)", out3[0]["cat"] == "PLACED, NO FILL")
+
 print("ALL PASS" if not BAD else f"{len(BAD)} FAILED")
 sys.exit(1 if BAD else 0)
