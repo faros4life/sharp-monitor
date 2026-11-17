@@ -353,6 +353,59 @@ def misprice_rows():
     return rows
 
 
+# --------------------------------------------------------------------------- Board V4 split (Peter, 17 Nov, O19)
+CHEAP = ("novig", "prophetx")          # fee ~0 and ~2c: these took every board fill before the correction
+MARGINAL = ("kalshi", "polymarket_us", "polymarket.us")   # fee 7-8c: only fillable once the floor is on the same basis
+BV4_TITLE = "BOARD V4 SPLIT (O19) - actual after-fee fills, by price basis and by fill venue"
+
+
+def _grp(rows):
+    """(n, W-L, after-fee units, ROI, certified CLV, coverage). Units at the FILL price; a missing close is
+    never counted as zero, so coverage is reported beside the mean and never hidden inside it."""
+    n = len(rows)
+    w = sum(r.get("res") == "W" for r in rows)
+    l = sum(r.get("res") == "L" for r in rows)
+    u = sc.units(rows)
+    rk = 0.0
+    for r in rows:
+        try:
+            d = sc.cl.am_to_dec(float(r["am"]))
+            rk += 1 / (d - 1) if d < 2 else 1.0
+        except (TypeError, ValueError, KeyError, ZeroDivisionError):
+            pass
+    c = [r["clv"] for r in rows if r.get("clv") is not None]
+    return {"n": n, "w": w, "l": l, "u": u, "roi": (100 * u / rk) if rk else None,
+            "clv": (sum(c) / len(c)) if c else None, "cn": len(c)}
+
+
+def _line(tag, g):
+    if not g["n"]:
+        return f"  {tag:<34} no fills yet"
+    roi = f"{g['roi']:+6.1f}%" if g["roi"] is not None else "     -"
+    clv = f"{g['clv']:+.2f}% on {g['cn']}/{g['n']}" if g["clv"] is not None else f"- on 0/{g['n']}"
+    return f"  {tag:<34} n {g['n']:>3}  {g['w']}-{g['l']}  {g['u']:+7.2f}u  ROI {roi}  certified CLV {clv}"
+
+
+def board_v4_split(rows):
+    """Two comparisons Peter asked for, on SETTLED board fills only. Pure.
+    Peter's warning, kept in the output: a worse entry price does not by itself say the marginal fills lose money."""
+    rows = [r for r in rows or [] if r.get("res") in ("W", "L", "P")]
+    def books_of(r):
+        return [str(b).strip().lower() for b in (r.get("books") or [])]
+    out = ["", BV4_TITLE,
+           "  basis = the board floor this order used: corrected = the trigger venue's own after-fee price (17 Nov on)."]
+    out.append(_line("BEFORE the fee correction", _grp([r for r in rows if r.get("fee_basis") is not True])))
+    out.append(_line("AFTER the fee correction", _grp([r for r in rows if r.get("fee_basis") is True])))
+    out.append("")
+    out.append(_line("filled Novig / ProphetX only", _grp([r for r in rows if books_of(r)
+                                                           and all(b in CHEAP for b in books_of(r))])))
+    out.append(_line("any Kalshi / Polymarket US leg", _grp([r for r in rows if any(b in MARGINAL for b in books_of(r))])))
+    out.append(_line("fill venue not recorded", _grp([r for r in rows if not books_of(r)])))
+    out.append("  a lower CLV on the newly eligible venues is expected from their entry price alone; it does not say")
+    out.append("  whether those bets are profitable. Read units and ROI beside it, and the sample size beside both.")
+    return out
+
+
 # --------------------------------------------------------------------------- R1 25-fill checkpoint (registered 17 Nov)
 R1_CHECK_N = 25
 R1_CHECK_TITLE = f"R1 CHECKPOINT (registered 17 Nov by Peter) - decision at {R1_CHECK_N} unique live settled fills"
@@ -567,6 +620,8 @@ def main():
         # at 25 unique live settled selections, PAUSE FOR REVIEW if units <= 0 AND certified CLV <= 0; if CLV > 0
         # and units < 0, report INCONCLUSIVE and wait for Peter - never extend the window automatically. Nothing
         # here changes R1's rule, stakes, price floor or risk limits, and it never overrides a daily stop.
+        for _ln in board_v4_split(live_rows(acct, "BOARD V3")):
+            say(_ln)
         say("")
         say(R1_CHECK_TITLE)
         say(r1_checkpoint(live_rows(acct, "R1")))

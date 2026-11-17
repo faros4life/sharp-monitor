@@ -239,6 +239,10 @@ def account(L, bets, clv=None, alerts=None, start=START_UTC):
             p["lanes"].add(lane)
             continue
         p["lanes"].add(lane)
+        # Nov 17 (Peter, O19): which price basis the board floor used on this order, so the daily report can split
+        # before and after the fee correction without inferring it from a date. Absent on every pre-17-Nov row.
+        if o.get("board_fee_basis") is not None:
+            p["fee_basis"] = bool(o["board_fee_basis"])
         for nm, lo in legs(o):
             lid = str(lo.get("order_id") or lo.get("client_id") or f"{rid}:{nm}")
             ok, am, w, how = leg_fill(lo, fills, vmap)
@@ -331,6 +335,10 @@ def account(L, bets, clv=None, alerts=None, start=START_UTC):
         am_by_id = {i: (b.get("price") if b.get("price") is not None else am) for i, b in rows}
         plays.append({"lane": lane_name, "key": key, "t": p["t"], "am": am, "am_net": am_net, "res": res, "evidence": ev,
                       "rows": [i for i, _ in rows], "fills": len(filled),
+                      # Nov 17 (Peter, O19): the venues this play actually FILLED on, and the board price basis,
+                      # so the report can ask whether the newly eligible venues carry their own weight.
+                      "books": sorted({l["book"] for l in filled if l.get("book")}),
+                      "fee_basis": p.get("fee_basis"),
                       "clv": certified([i for i, _ in rows], am_by_id),
                       "status": "graded" if res else ("open" if rows else "filled, no tracker settlement")})
 
