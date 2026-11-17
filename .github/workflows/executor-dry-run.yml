@@ -137,6 +137,8 @@ jobs:
           EXEC_BOARD_LIVE: ${{ vars.EXEC_BOARD_LIVE || 'off' }}
           # Board V4 (17 Nov): second-book confirmation gate on the SAME board lane. Off until Peter sets the variable.
           EXEC_BOARD_V4: ${{ vars.EXEC_BOARD_V4 || 'off' }}
+          # Board after-fee floor (17 Nov): compare the alert on the same basis as the venues. Off until Peter sets it.
+          EXEC_BOARD_FEE_BASIS: ${{ vars.EXEC_BOARD_FEE_BASIS || 'off' }}
           # Nov 11 (Peter "NO MORE PAPER"): R1 live lane (non-Top-25 college, ProphetX-priced spreads + unders). Places money only
           # when this repo VARIABLE is "on" (and EXEC_LIVE is on). Own $200 unit; own daily risk limit and play cap below.
           EXEC_R1_LIVE: ${{ vars.EXEC_R1_LIVE || 'off' }}

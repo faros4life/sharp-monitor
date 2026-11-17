@@ -4833,6 +4833,10 @@ def ledger_row(r, run_start):
             "fill_line": r.get("take_line"),
             "route": r.get("route"),   # Nov 17: trigger-venue-first routing actually applied (audit)
             "board_v4": p.get("board_v4"), "board_v4_gate": (BOARD_V4 if p.get("source") == "board" else None),   # Nov 17: accept/reject + evidence
+            # Nov 17 (Peter, requirement 5): which price basis the board floor used on THIS row, and the raw alert
+            # number beside it, so before-and-after results can be split without guessing from the commit date.
+            "board_fee_basis": (e.get("fee_basis_on") if p.get("source") == "board" else None),
+            "board_alert_price_raw": (e.get("alert_price_raw") if p.get("source") == "board" else None),
             # Nov 6 (Peter, $25-50k NBA forward paper test): depth at the chosen price and whether the unit fits. Logging only.
             "fill_avail": r.get("fillable"), "fill_partial": r.get("partial"), "live": bool(lv.get("go")), "live_nfl": bool(lv.get("nfl")), "live_why_not": lv.get("why"),
             "live_px_price_after_fee": lv.get("am"), "live_px_line": lv.get("line"), "live_book": lv.get("book"),
