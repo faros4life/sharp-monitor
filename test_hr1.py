@@ -72,6 +72,28 @@ def t_record_kept():
     assert "def hr1_rows" in r and "ar.hr1(x)[0]" in r
 
 
-for f in (t_rule, t_push_wiring, t_backtest_population, t_record_kept):
+
+
+
+def t_prices_at_alert():
+    """Nov 17: every bettable venue's price for the alerted side, captured at alert time. Logging only."""
+    import sharp_monitor as sm
+    assert set(sm.BET_BOOKS) >= {"novig", "kalshi", "prophetx", "polymarket_us", "hardrockbet"}
+    p = sm.book_prices([(224.5, -110, "novig"), (224.5, -105, "novig"), (224.5, -108, "kalshi"),
+                        (224.5, -112, "pinnacle"), (224.5, -109, "betonlineag"), (224.5, None, "prophetx")], "NBA")
+    assert set(p) == {"novig", "kalshi"}                      # only venues Peter can bet; junk dropped
+    assert p["novig"]["price"] == -105                        # best after-fee per book kept
+    assert p["novig"]["point"] == 224.5 and isinstance(p["novig"]["after_fee"], (int, float))
+    assert p["kalshi"]["after_fee"] < p["kalshi"]["price"]        # the venue fee is applied, not the raw price
+    assert sm.book_prices([(-110, "novig")], "NBA")["novig"]["point"] is None   # two-tuple (RL/ML) form
+    assert sm.book_prices(None, "NBA") == {} and sm.book_prices([], "NBA") == {}
+    s = open("sharp_monitor.py").read()
+    assert s.count("offers=offers") == 4                      # spreads, totals, run line, moneyline
+    assert 'prices=book_prices(offers, cfg["label"])' in s
+    assert '"prices_at_alert": e.get("prices") or None,' in s
+    assert '"fade", "prices")' in s                           # carried onto the durable event
+
+
+for f in (t_rule, t_push_wiring, t_backtest_population, t_record_kept, t_prices_at_alert):
     f()
 print("hr1 tests: OK")

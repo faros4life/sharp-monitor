@@ -305,6 +305,26 @@ def nm(b):
     return NAMES.get(b, b)
 
 
+def book_prices(offers, label):
+    """Nov 17 (Peter): every BETTABLE venue's price for THIS side at alert time, so a signal priced at one book can
+    later be judged at the price another book was showing. Best after-fee per book. Logging only - no rule reads it.
+    Without this, a Hard Rock-signalled play can never be re-priced on an exchange, which is why the Hard Rock CBB
+    cell could not be tested anywhere but Hard Rock."""
+    out = {}
+    for o in offers or ():
+        pt, pr, b = (o if len(o) == 3 else (None, o[0], o[1]))
+        if b not in BET_BOOKS or pr is None:
+            continue
+        try:
+            af = round(net(pr, b, label), 1)
+        except Exception:
+            continue
+        cur = out.get(b)
+        if cur is None or af > cur["after_fee"]:
+            out[b] = {"price": pr, "point": pt, "after_fee": af}
+    return out
+
+
 def also(books, best):
     rest = [nm(b) for b in dict.fromkeys(books) if b != best]
     return f" (also: {', '.join(rest)})" if rest else ""
@@ -596,7 +616,7 @@ def detect(event, cfg, lines, base):
         return {"pt": p2, "price": pr, "book": b}
 
     def add(kind, side, pt, price, book, new_key, text, why, conf, mag=1.0, nb=1, edge=None, evp=None,
-            pin_line=None, conv=None):
+            pin_line=None, conv=None, offers=None):
         nc = len(cnames) if conf == "yes" else 0
         if conf == "no":
             return  # confirm book disagrees: likely noise or stale sharp data
@@ -610,7 +630,7 @@ def detect(event, cfg, lines, base):
                            # half_point_value, which has no distance guard. Carry BOTH numbers and the distance so the
                            # push, the exports and the audit can all see whether an EV figure is a same-line
                            # comparison or a conversion. conv 0 = same line.
-                           pin_line=pin_line, conv=conv,
+                           pin_line=pin_line, conv=conv, prices=book_prices(offers, cfg["label"]),
                            evp=round(100 * (evp if evp is not None else edge), 1) if (evp is not None or edge is not None) else None))
 
     # Spreads: sharp side = team whose number got worse (money pushed it).
@@ -635,7 +655,7 @@ def detect(event, cfg, lines, base):
                 f"{nm(SHARP)} moved {fmt_pt(old)} -> {fmt_pt(new)}; bet only at {fmt_pt(new + 0.5)} or better",
                 agree(f"spreads|{team}", old, new),
                 mag=move / (cfg.get("spread") or 1), nb=len([x for x in offers if x[0] > new]), evp=evp,
-                pin_line=new, conv=round(abs(pt - new), 1))
+                pin_line=new, conv=round(abs(pt - new), 1), offers=offers)
 
     # Totals
     if "Over" in sb.get("totals", {}):
@@ -664,7 +684,7 @@ def detect(event, cfg, lines, base):
                         agree("totals|Over", old, new),
                         mag=abs(new - old) / cfg["total"],
                         nb=len([x for x in offers if (x[0] < new if side == "Over" else x[0] > new)]), evp=evp,
-                        pin_line=new, conv=round(abs(pt - new), 1))
+                        pin_line=new, conv=round(abs(pt - new), 1), offers=offers)
 
     # Run lines (MLB) and puck lines (NHL): point usually stays at 1.5, so watch the price at that point.
     # Sharp side = team whose no-vig run-line probability rose at an unchanged point.
@@ -689,7 +709,7 @@ def detect(event, cfg, lines, base):
                      + floor_note(edge_price(new), b)),
                     agree(k, old, new),
                     mag=(new - old) / cfg["rl"], nb=len([x for x in offers if edge_ok(net(x[0], x[1], cfg["label"]), new)]),
-                    edge=new / am_to_prob(net(pr, b, cfg["label"])) - 1)
+                    edge=new / am_to_prob(net(pr, b, cfg["label"])) - 1, offers=offers)
 
     # Moneyline (MLB/NHL): sharp side = team whose no-vig win prob rose.
     if "ml" in cfg and len(sb.get("h2h", {})) == 2:
@@ -710,7 +730,7 @@ def detect(event, cfg, lines, base):
                      f"bet only at {fmt_price(edge_price(new))} or better" + floor_note(edge_price(new), b)),
                     agree(f"h2h|{team}", old, new),
                     mag=(new - old) / cfg["ml"], nb=len([x for x in offers if edge_ok(net(x[0], x[1], cfg["label"]), new)]),
-                    edge=new / am_to_prob(net(pr, b, cfg["label"])) - 1)
+                    edge=new / am_to_prob(net(pr, b, cfg["label"])) - 1, offers=offers)
     return alerts
 
 
@@ -951,6 +971,7 @@ CLOSE_WINDOW = float(os.environ.get("CLOSE_WINDOW_MIN", "") or "30")      # read
 CLOSE_MIN_LEAD = float(os.environ.get("CLOSE_MIN_LEAD_MIN", "") or "20")  # feed start times can run 5-10 min late (Oct 25)
 LABEL_KEY = {v["label"]: k for k, v in SPORTS.items()}
 EXEC_BOOKS = ("novig", "kalshi", "prophetx", "polymarket_us")   # books the executor can place
+BET_BOOKS = EXEC_BOOKS + ("hardrockbet", "hardrockbet_fl")      # Nov 17: every venue Peter can bet (book_prices)
 
 
 def close_prob(e, pin):
@@ -1388,6 +1409,8 @@ def write_alerts_file(st, n):
                     # both means an HR1 alert he did NOT bet is still on the record, so "no alert" and "alert, no bet"
                     # can never collapse into one number. Logging only - nothing reads these to place a bet.
                     "hr1_pushed": bool(e.get("hr1")),
+                    # Nov 17 (Peter): each bettable venue's own price for this side AT ALERT TIME. Logging only.
+                    "prices_at_alert": e.get("prices") or None,
                     # Oct 28 (Muse fix list): global Polymarket is not bettable from the US; tag it so every split can
                     # exclude it. The feed stopped pricing on it Oct 25 (last such alert Oct 26 02:10Z).
                     "pricing_bettable": e.get("book") != "polymarket",
@@ -1824,7 +1847,7 @@ def run():
                                headline=f"{a['game']} \u2014 {a['text'].split(' at ')[0]} @ {nm(a['book'])}",
                                live=p1_ok or hr1_ok)   # Nov 17: HR1 mirrors to Telegram (Peter asked); mirror flag only
                     st["alerted"][a["id"]] = time.time()
-                    e = {k: a[k] for k in ("id", "ev", "game", "kind", "side", "pt", "price", "book", "conf", "nconf", "cby", "evp", "fade")}
+                    e = {k: a[k] for k in ("id", "ev", "game", "kind", "side", "pt", "price", "book", "conf", "nconf", "cby", "evp", "fade", "prices")}
                     e.update(sport=cfg["label"], start=a["commence"], t=time.time(), lead=round(lead), late=late,
                              score=score, grade=grade)
                     if hr1_ok:   # Nov 17: HR1 was PUSHED for this alert - kept so "offered" can be told from "bet"
