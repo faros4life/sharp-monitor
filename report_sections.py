@@ -319,7 +319,7 @@ def fill_rate(orders, fills, fx, start_et=START_ET, rows_by_lane=None):
             continue
         key = str(o.get("key") or "")
         lane = key.split("|", 1)[0] if key.split("|", 1)[0] in ("board", "r1", "rule", "rules") else (o.get("source") or "phase1")
-        lane = {"board": "BOARD V3", "r1": "R1", "rule": "PHASE 1", "rules": "PHASE 1"}.get(lane, "PHASE 1")
+        lane = {"board": "BOARD V3", "r1": "R1", "rule": "PHASE 1", "rules": "PHASE 1"}.get(lane, "PHASE 1")   # report keeps V3 as the lane's historical name; the live rule is named in the executor's own notifications
         more = o.get("live_more")
         for kind, lo in [("first", d(o.get("live_order"))), ("rest", d(o.get("live_rest")))] + \
                 [("balance", d(x)) for x in (more if isinstance(more, list) else [])]:

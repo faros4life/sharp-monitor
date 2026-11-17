@@ -68,6 +68,31 @@ def t_plays_same_key():
     assert [p["board_v4"]["ok"] for p in out[True]] == [True, False] and out[True][1]["board_v4"]["why"]
 
 
+def t_lane_name_follows_the_live_rule():
+    """Peter, 17 Nov: a notification that says BOARD V3 while V4 is deciding names a rule that did not place the bet.
+    The label follows the switch; the lane KEY, caps and accounting do not change."""
+    import importlib
+    import os
+    r = {"live": {"lane": "board"}, "play": {"source": "board"}}
+    r1 = {"live": {"lane": "r1"}, "play": {"source": "r1"}}
+    prev = os.environ.get("EXEC_BOARD_V4")
+    try:
+        for val, want in (("off", "[BOARD V3] "), ("on", "[BOARD V4] ")):
+            os.environ["EXEC_BOARD_V4"] = val
+            m = importlib.reload(ex)
+            assert m.lane_tag(r) == want, (val, m.lane_tag(r))
+            assert m.lane_tag(r1) == "[R1] "                                  # other lanes unaffected
+            # LANE_NAME stays the canonical map other modules check; only the message changes
+            assert m.LANE_NAME == {"board": "BOARD V3", "r1": "R1", "lane2": "LANE 2", "rules": "PHASE 1"}
+            assert m.BOARD_UNIT == 200.0 and "board|" in m.LANE_PREFIXES      # unit and play-key prefix untouched
+    finally:
+        if prev is None:
+            os.environ.pop("EXEC_BOARD_V4", None)
+        else:
+            os.environ["EXEC_BOARD_V4"] = prev
+        importlib.reload(ex)
+
+
 def t_wiring():
     s = open("executor.py").read()
     i = s.index('elif p.get("source") == "board":')
@@ -110,6 +135,6 @@ def t_strength_logging_only():
     assert lr["board_v4"]["strength"] == r and lr["board_v4"]["ok"] is True and lr["board_v4_gate"] is False
 
 
-for f in (t_gate, t_plays_same_key, t_wiring, t_strength_logging_only):
+for f in (t_gate, t_plays_same_key, t_lane_name_follows_the_live_rule, t_wiring, t_strength_logging_only):
     f()
 print("board v4 tests: OK")

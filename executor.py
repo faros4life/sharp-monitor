@@ -1060,7 +1060,7 @@ def lane_report(results):
     out = ["LANES (this run; today's exposure is ET-day, from the ledger registry)"]
     for lane, name, unit, cap, lim, store, on in (
             ("rules", "Phase 1", LIVE_UNIT, None, None, None, px_live.LIVE),
-            ("board", "Board v3", BOARD_UNIT, BOARD_MAX_PLAYS, BOARD_DAILY_RISK, BOARD, BOARD_LIVE),
+            ("board", ("Board v4" if BOARD_V4 else "Board v3"), BOARD_UNIT, BOARD_MAX_PLAYS, BOARD_DAILY_RISK, BOARD, BOARD_LIVE),   # Nov 17: the per-lane report names the rule that is deciding
             ("r1", "R1", R1_UNIT, R1_MAX_PLAYS, R1_DAILY_RISK, R1, R1_LIVE)):
         rs = [r for r in results if (r.get("play") or {}).get("source") == lane
               or (lane == "rules" and (r.get("play") or {}).get("source") in (None, "muse", "rules"))]
@@ -1131,8 +1131,17 @@ def lane_of(r):
 
 
 def lane_tag(r):
-    """'[R1] ' / '[BOARD V3] ' / '[PHASE 1] ' - which lane fired, on EVERY notification."""
-    return f"[{LANE_NAME.get(lane_of(r), 'PHASE 1')}] "
+    """'[R1] ' / '[BOARD V4] ' / '[PHASE 1] ' - which lane fired, on EVERY notification.
+
+    Nov 17 (Peter: "telegram should read v4 not v3 i got a fill"). LANE_NAME stays the canonical lane -> name map,
+    which other modules check against; only the message Peter reads names the rule that actually decided the play.
+    With EXEC_BOARD_V4 on, a second-book confirmation is required and V3 is a shadow record, so "[BOARD V3]" on a
+    fill credits a rule that did not place it. Label only: lane key, play key, caps, risk accounting and the ledger
+    are unchanged."""
+    lane = lane_of(r)
+    if lane == "board" and BOARD_V4:
+        return "[BOARD V4] "
+    return f"[{LANE_NAME.get(lane, 'PHASE 1')}] "
 
 
 def prior_hold(p):
