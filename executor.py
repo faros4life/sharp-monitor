@@ -119,6 +119,74 @@ BANNED_WORDS = ("parlay", "1h", "1q", "first half", "1st half", "first quarter",
 BOOKS = ("novig", "prophetx", "kalshi", "polymarket_us")
 LOG = []   # counts only for the public log
 VSTAT = collections.Counter()   # Nov 18 (Peter): (venue, check verdict) -> count, for the public log
+# Nov 18 (Peter, authorized): VSTAT answers "did a market match" and NOTHING else - its "ok" means the
+# ladder held at least one priced level, which is not the same claim as "a price we could take". The
+# executor already computes the rest on every alert and throws it away, so nothing visible could say
+# whether Polymarket US is missing our line, priced out of contention, short of size, or simply never
+# reached because the order is already full. Those four have DIFFERENT remedies, so they get four
+# counters rather than one verdict.
+#   Q1 match     (venue, mtype, exact|off-line|no-market)
+#   Q2 price     (venue, vs-alert) and (venue, vs-novig), plus which venue held the best net price
+#   Q3 liquidity (venue, size at our number as a MULTIPLE of the unit - never a dollar amount)
+#   Q4 routing   (venue, trigger|pos2|pos3|pos4|absent) from the order actually applied
+QSTAT = collections.Counter()
+
+
+def _qbucket(dollars, unit):
+    """Size at our number, as a share of the stake. Buckets only: the public log prints no dollars."""
+    try:
+        u = float(unit or 0)
+        d = float(dollars or 0)
+        if u <= 0:
+            return "unit?"
+        if d <= 0:
+            return "none"
+        r = d / u
+        return ">=2x unit" if r >= 2 else ("1-2x unit" if r >= 1 else ("0.25-1x unit" if r >= 0.25 else "<0.25x unit"))
+    except Exception:
+        return "unit?"
+
+
+def qstat_record(res, mtype, price, unit=None):
+    """Record Q1-Q3 for one alert across all four venues. MEASUREMENT ONLY.
+
+    Wrapped whole in try/except on purpose: this runs inside the live order pass every five minutes and
+    must never be able to break it. A counter that can kill an order pass is worse than no counter.
+    """
+    try:
+        unit = UNIT if unit is None else unit
+        best, bestv = None, None
+        for b, r in (res or {}).items():
+            st = str((r or {}).get("status") or "none")
+            if st != "ok":
+                QSTAT[(b, "match", f"no-market ({st[:18]})")] += 1
+                continue
+            QSTAT[(b, "match", f"{mtype}: " + ("exact line" if (r or {}).get("exact_line") else "off our line"))] += 1
+            q = (r or {}).get("best_price_american_qual")
+            if q is None:
+                QSTAT[(b, "price", "no priced level")] += 1
+                continue
+            if price is not None:
+                QSTAT[(b, "price", "beats our number" if q > price
+                       else ("at our number" if q == price else "worse than our number"))] += 1
+            QSTAT[(b, "liquidity", _qbucket((r or {}).get("dollars_at_alert_price_or_better"), unit))] += 1
+            if best is None or q > best:
+                best, bestv = q, b
+        if bestv:
+            QSTAT[(bestv, "best net price", "won the comparison")] += 1
+        nq = ((res or {}).get("novig") or {}).get("best_price_american_qual")
+        for b, r in (res or {}).items():
+            if b == "novig":
+                continue
+            q = (r or {}).get("best_price_american_qual")
+            if q is None:
+                continue
+            if nq is None:
+                QSTAT[(b, "vs novig", "novig had no price")] += 1
+            else:
+                QSTAT[(b, "vs novig", "better" if q > nq else ("same" if q == nq else "worse"))] += 1
+    except Exception:
+        pass
 
 
 def log_report():
@@ -144,6 +212,14 @@ def log_report():
     # actually computed. Coefficients only: no stake, balance, price or bet text.
     print(f"PMUS fee model: {pf.MODEL} (taker {pf.taker()}, gate {PMUS_QUAL_FEE}, "
           f"floor basis {pf.floor_coef()}, maker {pf.maker()})")
+    if QSTAT:
+        print("venue opportunity (counts only; no dollars - liquidity is a multiple of the stake):")
+        for _b in sorted({k[0] for k in QSTAT}):
+            for _dim in ("match", "price", "vs novig", "liquidity", "best net price", "routing"):
+                _p = ", ".join(f"{k[2]} {v}" for k, v in sorted(QSTAT.items())
+                               if k[0] == _b and k[1] == _dim)
+                if _p:
+                    print(f"  {_b:<15} {_dim:<15} {_p}")
     if VSTAT:
         print("venue check verdicts (counts only):")
         for _b in sorted({k[0] for k in VSTAT}):
@@ -2115,6 +2191,21 @@ def trigger_first(r, ent):
     r["lc"] = r["lcs"][0]
     r["route"] = {"trigger": trig, "rule": "trigger venue first" if first else "trigger venue off the alert price - Novig first",
                   "order": [c["book"] for c in r["lcs"]]}
+    # Nov 18 (Peter, Q4): the order ACTUALLY applied. r["route"] already carried this and reached only
+    # the private email, so nothing public could say whether Polymarket US gets a turn at all. Position
+    # is the opportunity: a venue that is always fourth on a unit the first two fill never competes,
+    # which is a routing question and not a price one.
+    try:
+        _ord = [c["book"] for c in r["lcs"]]
+        for _b in BOOKS:
+            if _b not in _ord:
+                QSTAT[(_b, "routing", "absent from the route")] += 1
+            else:
+                _i = _ord.index(_b)
+                QSTAT[(_b, "routing", "trigger (first refusal)" if _i == 0 and _b == trig
+                       else f"position {_i + 1} of {len(_ord)}")] += 1
+    except Exception:
+        pass
 
 
 def venue_rank(book):
@@ -2223,6 +2314,7 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
 
     with perf("probe alert line"):
         res = probe(line)   # the alert line (also what the report's book table shows)
+    qstat_record(res, mtype, price)   # Nov 18: measurement only; cannot raise into the order path
     if res["novig"].get("status") == "game_not_on_novig":   # show what Novig lists that day (names only)
         day = datetime.fromisoformat(al["start_utc"].replace("Z", "+00:00")).astimezone(lm.ET).date()
         res["novig"]["seen"] = sorted({e.get("description") for e in evs_by.values()
