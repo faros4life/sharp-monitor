@@ -1,18 +1,18 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 17, 10:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 19.
+Updated Tue Nov 17, 10:10 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 17.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 319-201 (-32.22u flat) | rule met: 54-51
+**Record:** 320-202 (-32.80u flat) | rule met: 54-51
 
-**Fade (paper, betting against the print):** 176-284 (+33.58u flat, after fees)
+**Fade (paper, betting against the print):** 177-285 (+33.51u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 17 8:20PM | NCAAB | Kansas vs UNLV: Point Total | total: Over 157.5 points | kalshi | $26k | -113 |  |  | +1.0c | yes | pending |
 | Nov 17 7:40PM | NCAAB | Montana St. vs Gonzaga: Spread | spread: Gonzaga wins by over 21.5 points | kalshi | $33k | -122 |  |  | +0.0c | yes | pending |
-| Nov 17 7:40PM | NCAAB | Le Moyne vs Evansville: Spread | spread: NOT Evansville wins by over 7.5 points | kalshi | $27k | -104 |  |  | +0.0c |  | pending |
+| Nov 17 7:40PM | NCAAB | Le Moyne vs Evansville: Spread | spread: NOT Evansville wins by over 7.5 points | kalshi | $27k | -104 |  |  | +0.0c |  | L |
 | Nov 17 6:40PM | NCAAB | Eastern Illinois vs Vanderbilt: Spread | spread: NOT Vanderbilt wins by over 41.5 points | kalshi | $29k | -113 |  | ✅ | +0.0c |  | L |
 | Nov 17 6:30PM | NCAAB | Bowling Green vs William & Mary: Point Total | total: Over 168.5 points | kalshi | $29k | -113 |  | ❌ | +0.0c |  | L |
 | Nov 17 6:20PM | NCAAB | Wagner vs Saint Joseph's: Point Total | total: Over 137.5 points | kalshi | $28k | +104 |  |  | +0.0c |  | W |
@@ -48,7 +48,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 17 9:20AM | NCAAB | Green Bay vs West Florida | moneyline: Green Bay | kalshi | $57k | -257 |  |  | -6.0c |  | L |
 | Nov 17 7:10AM | NCAAB | Alabama St. vs UC Davis | moneyline: UC Davis | kalshi | $70k | -567 |  |  | +2.0c |  | pending |
 | Nov 17 1:40AM | NCAAB | Seattle vs California Baptist | moneyline: Seattle | kalshi | $29k | -355 |  |  | -1.0c |  | pending |
-| Nov 17 1:40AM | NCAAB | Le Moyne vs Evansville | moneyline: Evansville | kalshi | $26k | -257 |  |  | +3.0c | yes | pending |
+| Nov 17 1:40AM | NCAAB | Le Moyne vs Evansville | moneyline: Evansville | kalshi | $26k | -257 |  |  | +3.0c | yes | W |
 | Nov 17 1:30AM | NCAAB | Florida International vs UAB | moneyline: UAB | kalshi | $39k | -170 |  |  | +0.0c |  | W |
 | Nov 17 1:30AM | NCAAB | Central Michigan vs Dayton | moneyline: Dayton | kalshi | $36k | -567 |  |  | +4.0c | yes | W |
 | Nov 17 12:40AM | NCAAB | UC Irvine vs Stanford | moneyline: Stanford | kalshi | $52k | -317 |  |  | -2.0c |  | pending |
