@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 18, 1:10 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 46.
+Updated Wed Nov 18, 1:15 PM ET. This run: 2 new, 0 not confirmed, 0 pending. Open alerts: 48.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 18 1:15PM | NBA | Milwaukee vs Miami: Total Points | total: NOT Over 236.5 points | kalshi | $38k | -100 | ✅ novig,prophetx | ✅ | +0.0c |  | pending |
+| Nov 18 1:15PM | NBA | Chicago vs Brooklyn: Spread | spread: NOT Brooklyn wins by over 2.5 points | kalshi | $30k | -104 | ✅ novig |  | +0.0c |  | pending |
 | Nov 18 12:50PM | NBA | Detroit vs New Orleans: Spread | spread: Detroit wins by over 6.5 points | kalshi | $36k | -100 | ✅ novig | ❌ | +0.0c |  | pending |
 | Nov 18 12:25PM | NBA | Milwaukee Bucks @ Miami Heat | moneyline: MIA (0) | novig | $33k | -567 | ✅ kalshi | ✅ | +0.0c |  | pending |
 | Nov 18 12:06PM | NBA | Milwaukee vs Miami: Spread | spread: Miami wins by over 11.5 points | kalshi | $46k | -104 | ✅ novig | ✅ | +1.0c |  | pending |
@@ -36,7 +38,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 18 1:55AM | NBA | Houston Rockets @ Indiana Pacers | moneyline: HOU (0) | novig | $36k | -270 | ✅ kalshi |  | +0.5c | yes | pending |
 | Nov 18 1:35AM | NBA | Utah vs Los Angeles L | moneyline: Los Angeles L | kalshi | $130k | -426 |  |  | -2.0c |  | pending |
 | Nov 18 12:40AM | NFL | Indianapolis vs Houston | moneyline: Houston | kalshi | $474k | -567 | ✅ novig |  | +0.0c | yes | pending |
-| Nov 18 12:15AM | NBA | Washington vs Toronto: Total Points | total: Over 227.5 points | kalshi | $28k | -100 |  |  | -5.0c | yes | pending |
+| Nov 18 12:15AM | NBA | Washington vs Toronto: Total Points | total: Over 227.5 points | kalshi | $28k | -100 |  |  | -4.0c | yes | pending |
 | Nov 17 11:30PM | NBA | Detroit vs New Orleans | moneyline: Detroit | kalshi | $97k | -245 |  |  | +0.0c |  | pending |
 | Nov 17 11:10PM | NBA | Chicago vs Brooklyn: Total Points | total: Over 238.5 points | kalshi | $25k | +104 |  |  | +5.0c | yes | pending |
 | Nov 17 11:05PM | NHL | Boston vs Detroit | moneyline: Boston | kalshi | $43k | -100 |  |  | +0.0c | yes | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 15 7:45PM | NHL | Florida vs Dallas: Total Goals | total: NOT Over 5.5 goals scored | kalshi | $66k | -100 | ✅ novig | ❌ | +0.0c | yes | W |
 | Nov 15 7:45PM | NFL | Pittsburgh vs Cincinnati: Spread | spread: NOT Cincinnati wins by over 4.5 points | kalshi | $204k | -108 |  |  | +0.0c | yes | L |
 | Nov 15 7:00PM | NHL | Edmonton vs Philadelphia: Total Goals | total: NOT Over 5.5 goals scored | kalshi | $27k | +108 | ✅ novig |  | +0.0c | yes | L |
-| Nov 15 6:50PM | NBA | Oklahoma City vs Sacramento: Spread | spread: Oklahoma City wins by over 11.5 points | kalshi | $42k | +104 | ✅ novig |  | +6.0c | yes | W |
-| Nov 15 6:15PM | NBA | Atlanta vs Milwaukee: Spread | spread: NOT Atlanta wins by over 8.5 points | kalshi | $46k | -100 | ✅ novig,prophetx | ❌ | -1.0c | yes | W |
