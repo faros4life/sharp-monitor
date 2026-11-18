@@ -324,13 +324,22 @@ def to_american(d):
 # threshold, no registered criterion and no order, so correcting it changes a number shown on the
 # board and nothing the board, alerts or the executor act on.
 PMUS_FEE = pf.taker() # Polymarket US taker, from pmus_fee (the single source of truth)
+# Nov 18 (Peter: "Keep Global and US fee calculations separate"). after_fee_dec priced the GLOBAL book
+# `polymarket` with PMUS_FEE, so the crypto CLOB was charged the US venue's rate. That was already wrong
+# at 0.06 and would have tripled on activation. Global is a different venue with its own published fee
+# and is NOT bettable from the US; this is the same 0.03 that liquidity_monitor and book_check use.
+PM_GLOBAL_FEE = float(os.environ.get("PM_FEE", "") or "0.03")
 KALSHI_FEE = 0.07     # Kalshi taker
 NOVIG_LIVE = 0.06     # Novig charges nothing pre-game; 0.06 taker on live and futures
 PX_WIN_FEE = 0.02     # ProphetX: 2% of net gains per market, EXCEPT NHL
 PX_NHL_TAKER = 0.035  # ProphetX NHL runs on a taker schedule instead
 
 
-def after_fee_dec(book, p, league=None, live=False):
+def after_fee_dec(book, p, league=None, live=False, coef=None):
+    """After-fee decimal for the board. `coef` overrides the venue's taker coefficient for callers that
+    must price on a basis other than the live one - executor.board_after_fee_floor uses it to hold the
+    execution floor at its strictest basis while economics follow the accurate rate. One formula, one
+    fee table; the override replaces a number, never the arithmetic."""
     if not p or not 0 < p < 1:
         return None
     b = (book or "").lower()
@@ -341,14 +350,18 @@ def after_fee_dec(book, p, league=None, live=False):
         f = PX_NHL_TAKER
     elif b == "kalshi":
         f = KALSHI_FEE
-    elif b in ("polymarket", "polymarket_us", "polymarket.us"):
+    elif b in ("polymarket_us", "polymarket.us"):
         f = PMUS_FEE
+    elif b in ("polymarket", "polymarket.global"):
+        f = PM_GLOBAL_FEE          # the global CLOB: its own fee, never the US venue's
     elif b in ("novig", "novig.us"):
         if not live:
             return 1 / p          # free pre-game
         f = NOVIG_LIVE
     else:
         return 1 / p              # Hard Rock and anything unknown: vig is in the price
+    if coef is not None:
+        f = float(coef)
     return 1 / (p * (1 + f * (1 - p)))
 
 

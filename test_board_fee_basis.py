@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
-"""Board after-fee floor (Peter, 17 Nov, Option 1). OFF by default: it can admit orders the old floor refused."""
+"""Board after-fee floor (Peter, 17 Nov, Option 1). It can admit orders the old floor refused.
+
+CODE DEFAULT is off; the DEPLOYED setting is ON. executor-dry-run.yml passes
+`vars.EXEC_BOARD_FEE_BASIS || 'off'`, and the production log prints `BOARD_FEE_BASIS: on`. Reading
+executor.py's default - or t_off_by_default below - and reporting the lane as inert is a mistake that
+was actually made on Nov 18; CLAUDE.md already warns that a workflow env override BEATS a code
+default. Treat every assertion here as covering a LIVE path.
+"""
 import importlib
 import os
 
@@ -7,6 +14,7 @@ import executor as ex
 
 
 def t_off_by_default():
+    """The CODE default only. This says nothing about production, where the repo variable turns it ON."""
     assert ex.BOARD_FEE_BASIS is False
     assert "EXEC_BOARD_FEE_BASIS" in open("executor.py").read()
 
@@ -14,18 +22,15 @@ def t_off_by_default():
 def t_floor_is_the_trigger_venues_own_after_fee_price():
     """The alert's raw COST re-priced at the trigger venue's fee - never a number a fee has already touched.
 
-    Polymarket US is model-dependent and the two numbers are NOT interchangeable (Nov 18):
-      legacy   (0.06)  -> -111
-      schedule (0.095) -> -114
-    A bigger fee makes the venue's own after-fee price WORSE, so a floor derived from it sits LOWER and
-    admits prices the old floor refused. That is the opposite direction from Peter's Nov 6 freeze, which
-    exists so a fee correction can never make a bet eligible that was not eligible before. The number is
-    asserted per model rather than overwritten, so neither value can drift unnoticed while this lane is
-    off (EXEC_BOARD_FEE_BASIS is False by default, which is what keeps it inert today).
+    Polymarket US is -111 in BOTH fee models, and that is now a property rather than a coincidence.
+    A bigger fee makes the venue's own after-fee price WORSE, which puts this floor LOWER and admits
+    prices the old floor refused - so activating the Nov 14 schedule would have moved it to -114. The
+    floor therefore prices on pmus_fee.floor_coef(), the strictest basis, while economics use the
+    accurate rate. An earlier version of this test asserted -114 under the schedule, which encoded the
+    loosening as if it were expected; it is not, and this lane is LIVE (BOARD_FEE_BASIS is ON in
+    production, whatever executor.py's own default says), so the loosening would have reached money.
     """
-    import pmus_fee as pf
-    pm_want = -114 if pf.MODEL == "schedule" else -111
-    for book, want in (("kalshi", -112), ("novig", -104), ("prophetx", -106), ("polymarket_us", pm_want)):
+    for book, want in (("kalshi", -112), ("novig", -104), ("prophetx", -106), ("polymarket_us", -111)):
         am, why = ex.board_after_fee_floor({"price": 0.51, "book": book, "league": "NBA"})
         assert am == want, (book, am)
         assert "raw cost" in why
@@ -88,7 +93,17 @@ def t_nothing_else_changed():
                                                                              "price": 0.51, "heavier_side": True}}})[0]
             src = open("executor.py").read()
             assert "def board_gate" in src and "LIVEKEYS" in src and "live_guards" in src
-            assert src.count("BOARD_FEE_BASIS") == 5   # two comment mentions, the definition, the floor choice, the audit field
+            # The point of this tripwire is that no NEW CODE PATH starts reading the flag - not that
+            # the string appears a fixed number of times. Counting raw occurrences made a prose comment
+            # break it (Nov 18), which trains the reader to bump the number rather than check the
+            # change. Comments are stripped so the count means what it claims.
+            # Counted as SITES, not occurrences: the definition line holds the name twice, because
+            # "BOARD_FEE_BASIS" is a substring of the variable "EXEC_BOARD_FEE_BASIS" it reads. An
+            # occurrence count therefore says 4 for 3 sites, which is exactly the kind of number
+            # nobody can check at a glance.
+            code = [ln.split("#", 1)[0] for ln in src.splitlines()]
+            sites = [ln.strip() for ln in code if "BOARD_FEE_BASIS" in ln]
+            assert len(sites) == 3, sites   # the definition, the floor choice in board_entry, the audit field
     finally:
         if prev is None:
             os.environ.pop("EXEC_BOARD_FEE_BASIS", None)

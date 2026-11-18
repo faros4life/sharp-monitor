@@ -140,3 +140,26 @@ def gate_coef(**kw):
     no revisiting when a tier is later verified.
     """
     return max(QUAL_FLOOR, taker(**kw))
+
+
+# The strictest basis this venue's EXECUTION FLOOR has ever been computed on. Pinned, not floated.
+FLOOR_BASIS = LEGACY_TAKER
+
+
+def floor_coef(**kw):
+    """The coefficient a board EXECUTION FLOOR must price with: never looser than today's.
+
+    Peter, Nov 18: "Fix board_after_fee_floor so activating the new fee schedule can NEVER loosen the
+    existing Board execution floor. Preserve the stricter permitted price while computing economics
+    using the accurate applicable fee."
+
+    The floor is the alert's raw cost re-priced at the venue's own fee, so it moves OPPOSITE to the
+    gate: a BIGGER fee makes the after-fee price worse, which puts the floor LOWER and admits prices
+    the old floor refused. gate_coef() takes max() for that reason and this takes min() - the two are
+    not inconsistent, they are the same rule ("never more permissive") applied to quantities that run
+    in opposite directions. Economics keep the accurate rate; only the floor is held back.
+
+    min() also means a LATER verified cheap tier can still tighten the floor, while no tier can ever
+    loosen it below the Nov-14 basis.
+    """
+    return min(taker(**kw), FLOOR_BASIS)

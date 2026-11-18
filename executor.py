@@ -788,7 +788,14 @@ def board_after_fee_floor(x):
         # silent-drop shape CLAUDE.md warns about. Only venues whose fee we actually model may set the floor.
         if book not in TRIGGER_BOOK:
             return None, f"{book} has no modelled fee - keeping the raw floor"
-        dec = bb.after_fee_dec(book, float(cost), x.get("league"))
+        # Nov 18 (Peter, activation blocker 1): the floor is held at Polymarket US's STRICTEST basis.
+        # This floor moves opposite to the gate - a bigger fee makes the after-fee price worse, which
+        # puts the floor LOWER and admits prices the old floor refused. Activating the Nov 14 schedule
+        # would have moved this floor from -111 to -114 on a 0.51 cost while BOARD_FEE_BASIS is ON in
+        # production, which is the correction creating a bet. Economics still use the accurate rate;
+        # only this floor is pinned. Every other venue is unaffected (coef stays None).
+        fc = pf.floor_coef() if TRIGGER_BOOK.get(book) == "polymarket_us" else None
+        dec = bb.after_fee_dec(book, float(cost), x.get("league"), coef=fc)
         if not dec or dec <= 1:
             return None, f"no after-fee price for {book}"
         import clv_ledger as _cl
