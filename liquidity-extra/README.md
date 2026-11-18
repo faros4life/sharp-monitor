@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 18, 1:30 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 4.
+Updated Wed Nov 18, 1:40 AM ET. This run: 1 new, 0 not confirmed, 2 pending. Open alerts: 5.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 18 1:40AM | NCAAB | Samford vs USC Upstate | moneyline: Samford | kalshi | $28k | -270 |  |  | +0.0c |  | pending |
 | Nov 17 8:20PM | NCAAB | Kansas vs UNLV: Point Total | total: Over 157.5 points | kalshi | $26k | -113 |  |  | +1.0c | yes | W |
 | Nov 17 7:40PM | NCAAB | Montana St. vs Gonzaga: Spread | spread: Gonzaga wins by over 21.5 points | kalshi | $33k | -122 |  |  | +1.0c | yes | L |
 | Nov 17 7:40PM | NCAAB | Le Moyne vs Evansville: Spread | spread: NOT Evansville wins by over 7.5 points | kalshi | $27k | -104 |  |  | +0.0c |  | L |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 11 2:43AM | NCAAB | UMass Lowell vs UMass | moneyline: UMass | kalshi | $89k | -567 |  |  | -23.0c | yes | W |
 | Nov 11 2:43AM | NCAAB | Chicago St. vs California Baptist | moneyline: California Baptist | kalshi | $222k | -525 |  |  | +3.0c |  | L |
 | Nov 11 2:43AM | TENNIS | Gojo vs Humbert | moneyline: Humbert | kalshi | $30k | -203 |  |  | -3.0c |  | W |
-| Nov 11 2:22AM | NCAAB | Stony Brook vs Princeton | moneyline: Princeton | kalshi | $25k | -203 |  |  | -1.0c |  | W |
