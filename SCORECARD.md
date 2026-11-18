@@ -319,6 +319,64 @@ Stated in one place because the rule differs by lane and the differences are del
 - **Liquidity lanes:** the 22–31 Oct backtest is never part of their record (`lanes.py`).
 - **EV study:** pre-registered buckets are judged only on sightings after 31 Oct 14:35Z.
 
+## BOARD V4 — REGISTERED 25-FILL INTERIM REVIEW (Peter, 18 Nov 2026)
+
+Registered IN ADVANCE, before the data exists, so the decision is not re-argued week to week.
+
+**An INTERIM REVIEW POINT, not proof of an edge** (Peter's words). V4 stays live under existing risk limits,
+stakes, price floor and routing.
+
+### Why this was registered
+
+The in-sample split, recomputed 18 Nov over the full 88-row board population with every row keyed to its own
+call (`v4_alerts_report.py`):
+
+| | n | W-L | Units | ROI | Certified CLV |
+| --- | --- | --- | --- | --- | --- |
+| V4 confirmed | 43 | 27-16 | +4.10u | +14.8% | **+0.35%** [−2.20, +2.90] on 18/43 |
+| V4 rejected (V3 shadow) | 45 | 28-17 | **+8.80u** | **+19.1%** | −3.67% [−5.78, −1.57] on 32/45 |
+
+The selections V4 REJECTS carried higher units and ROI than the ones it confirms, at an essentially identical
+win rate (62.8% vs 62.2%). V4 selects PRICES, not outcomes. The only difference between the two sets that
+clears noise is CLV; the units/ROI gap does not, at this sample.
+
+**This supersedes an earlier figure of "33 confirmed, 22-11, +10.15u, ROI +28.4%, CLV +1.33%" reported to Peter
+on 18 Nov. That figure does not reproduce** — it was computed without every row keyed to its call and
+understated the confirmed set by ten plays. A first version of `v4_alerts_report.py` left 33 of 88 rows
+"unresolvable" while those 33 carried nearly all the profit; reporting it would have shown V4 confirmed as
+NEGATIVE. Neither number is the record. The table above is.
+
+Peter's bottom line, 18 Nov: **"V4 is not disproven, but the original justification for replacing V3 is weaker
+than we thought."** He would not switch back to V3 on in-sample figures, and would not call V4 a proven
+improvement. Note for the review: V4's rule was FOUND in this window, so in-sample it should flatter itself.
+It does not. That is worse evidence than a null result, and it is why this review is a real decision point.
+
+### The registered rule — at 25 live settled V4 fills
+
+Compare actual after-fee ROI and units against certified Pinnacle CLV, and SEPARATELY grade the rejected
+V3-shadow selections at realistically executable prices.
+
+| Units | Certified CLV | Verdict |
+| --- | --- | --- |
+| > 0 | > 0 | **CONTINUE**, subject to normal risk controls |
+| ≤ 0 | ≤ 0 | **REVIEW FOR PAUSE** |
+| mixed | mixed | **INCONCLUSIVE** — Peter decides; NEVER an automatic extension |
+| either | missing or insufficient certified closes | report coverage and uncertainty; **no unsupported verdict** |
+
+Also reported: after-fee units and ROI, W-L, certified CLV with coverage, chronological H1/H2, uncertainty, and
+execution quality — and the V3-shadow comparison beside it on the same basis.
+
+### Frozen for the observation window
+
+**Do NOT tune the confirmation threshold, the money normalization, or the pricing rules while this window is
+open.** The $10,000 second-book floor, the normalized-strength logging, the fee basis and the trigger-first
+routing all stay exactly as they are. Changing any of them voids the comparison.
+
+Starting state at registration: **0 live settled V4 fills.** V4 activated 17 Nov evening ET, so every figure
+above is in-sample and there is no out-of-sample record yet. The one live V4 accept to date — Utah Jazz @ LA
+Clippers Under 225.5 — lost, and sits HELD OUT of the CLV ledger on a fixture mis-pin (stored fixture points at
+Lakers vs Clippers), carrying +0.33%.
+
 ## R1 — REGISTERED CHECKPOINT (Peter, 17 Nov 2026 14:42 ET)
 
 Registered IN ADVANCE, before the data exists, so the decision is not re-argued week to week.
