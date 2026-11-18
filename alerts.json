@@ -3721,7 +3721,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "-2.5 pts",
+   "clv": "-4 pts",
    "clv_conv_pts": null,
    "clv_pin_line": null,
    "clv_read_utc": null,
@@ -5415,7 +5415,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+2.5 pts",
+   "clv": "+4 pts",
    "clv_conv_pts": null,
    "clv_pin_line": null,
    "clv_read_utc": null,
@@ -5847,6 +5847,81 @@
    "sport": "NCAAB",
    "start_utc": "2026-11-19T00:00:00Z",
    "top25": false,
+   "units_flat": null
+  },
+  {
+   "alert_utc": "2026-11-18T23:10:22Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "Under 220.5 (-119)",
+   "book": "ProphetX",
+   "book_key": "prophetx",
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+1.5 pts",
+   "clv_conv_pts": null,
+   "clv_pin_line": null,
+   "clv_read_utc": null,
+   "clv_skipped": null,
+   "clv_source": null,
+   "clv_verified": null,
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -4.8,
+   "executable_book": true,
+   "fade_book": "prophetx",
+   "fade_point": 220.5,
+   "fade_price": 102,
+   "fade_price_after_fee": -100,
+   "fade_units": null,
+   "final": null,
+   "floor_line": 219.5,
+   "game": "Philadelphia 76ers @ Orlando Magic",
+   "grade": "B",
+   "hr1_eligible": false,
+   "hr1_pushed": false,
+   "hr1_verified": null,
+   "hr1_verify_status": null,
+   "hr1_verify_why": null,
+   "kind": "tot",
+   "late": true,
+   "minutes_before_start": 50,
+   "point": 220.5,
+   "price": -119,
+   "price_after_fee": -121,
+   "prices_at_alert": {
+    "hardrockbet": {
+     "after_fee": -105,
+     "point": 219.5,
+     "price": -105
+    },
+    "kalshi": {
+     "after_fee": -111.5,
+     "point": 219.5,
+     "price": -104
+    },
+    "novig": {
+     "after_fee": -106,
+     "point": 219.5,
+     "price": -106
+    },
+    "prophetx": {
+     "after_fee": -121.4,
+     "point": 220.5,
+     "price": -119
+    }
+   },
+   "pricing_bettable": true,
+   "result": null,
+   "score": 72,
+   "sent_to_phone": true,
+   "sport": "NBA",
+   "start_utc": "2026-11-19T00:00:00Z",
+   "top25": null,
    "units_flat": null
   },
   {
@@ -89112,6 +89187,31 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Under 220.5 (-119) at ProphetX [-121 after ProphetX fee] (also: Hard Rock, Novig, Kalshi)",
+   "bet": "Under 220.5 (-119)",
+   "bet_result": null,
+   "book": "ProphetX",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -4.8,
+   "final": null,
+   "game": "Philadelphia 76ers @ Orlando Magic",
+   "grade": "B",
+   "late": true,
+   "minutes_before_start": 50,
+   "price": -119,
+   "price_after_fee": -121,
+   "pushed_to_phone": true,
+   "repeat": false,
+   "score": 72,
+   "sent_et": "2026-11-18 18:10",
+   "sport": "NBA",
+   "start_utc": "2026-11-19T00:00:00Z",
+   "why": "Pinnacle total moved 222 -> 219; bet only at 219.5 or better (confirmed by BetOnline, Matchbook)"
+  },
   {
    "alert_text": "North Carolina Central Eagles +23.5 (-121) at ProphetX [-123 after ProphetX fee]",
    "bet": "North Carolina Central Eagles +23.5 (-121)",
