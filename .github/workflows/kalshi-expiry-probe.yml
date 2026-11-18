@@ -1,0 +1,52 @@
+name: kalshi-expiry-probe
+
+# Peter, 18 Nov 2026: "Read back the actual order, verify its expiration and status, and identify
+# any other live resting orders missing confirmed expiration."
+#
+# READ-ONLY BY CONSTRUCTION, not by promise:
+#   * permissions: contents: read - this job cannot push.
+#   * kalshi_expiry_probe.py contains no POST, PUT, PATCH or DELETE and calls no place or cancel
+#     function; test_kalshi_expiry_probe.py asserts that from the parsed AST, not from the text.
+#   * The Kalshi key is a Read/Trade key - there is no read-only variant - so the guarantee has to
+#     come from the code, which is why the AST test exists and runs here before the probe does.
+#   * No OddsPapi key is passed, so no billable call is possible.
+#   * Nothing is cancelled even when an order is found unsafe. Cancelling a resting bid is a
+#     live-betting change and needs Peter's explicit yes; the probe escalates instead.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kalshi-expiry-probe
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Prove the probe has no write path before giving it a trading key
+        run: python -u test_kalshi_expiry_probe.py
+      - name: Read the resting orders back from Kalshi
+        env:
+          KALSHI_KEY_ID: ${{ secrets.KALSHI_KEY_ID }}
+          KALSHI_PRIVATE_KEY: ${{ secrets.KALSHI_PRIVATE_KEY }}
+          REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+        run: python -u kalshi_expiry_probe.py
+      - name: Guard - nothing was modified
+        if: always()
+        run: |
+          git status --porcelain -uno > "$RUNNER_TEMP/d" || true
+          if [ -s "$RUNNER_TEMP/d" ]; then
+            echo "FAIL: the probe modified tracked files:"; cat "$RUNNER_TEMP/d"; exit 1
+          fi
+          echo "clean: no tracked file modified"
