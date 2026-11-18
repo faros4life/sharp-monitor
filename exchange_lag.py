@@ -112,7 +112,7 @@ def _is_nhl(league):
     return str(league or "").strip().lower() in ("nhl", "icehockey_nhl", "hockey", "ice hockey")
 
 
-def eff(book, dec, maker=False, live=False, league=None):
+def eff(book, dec, maker=False, live=False, league=None, coef=None):
     """After-fee decimal: what $1 staked pays back.
 
     league matters for ProphetX alone, which prices NHL on a maker/taker scale and everything else
@@ -137,6 +137,12 @@ def eff(book, dec, maker=False, live=False, league=None):
         f = TAKER.get(book)
         if book == "novig.us" and live:
             f = NOVIG_LIVE_TAKER
+    if coef is not None and not (book == "prophetx" and not _is_nhl(league)):
+        # Nov 18 (Peter, forward CLV consistency): grade a fill on the coefficient that applied WHEN IT
+        # EXECUTED, read off the recorded order row, instead of whatever the model says today. Only the
+        # standard form takes an override - ProphetX's non-NHL fee is 2% of GAINS, a different shape
+        # entirely, so a coefficient there would be meaningless and is ignored rather than misapplied.
+        f = float(coef)
     if f is None:
         return dec                                 # Hard Rock: vig is already in the price
     p = 1 / dec

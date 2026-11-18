@@ -11,7 +11,8 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import book_live as bl  # noqa: E402
-import executor as ex  # noqa: E402
+import executor as ex
+import pmus_fee as pf  # noqa: E402
 
 OK, BAD = [], []
 
@@ -25,8 +26,17 @@ rb = inspect.getsource(ex.rest_bid)
 ck("PM US maker pricing is OFF by default", ex.PMUS_REST_MAKER is False, str(ex.PMUS_REST_MAKER))
 ck("the maker flag is env-gated, not code-default",
    'os.environ.get("EXEC_PMUS_REST_MAKER")' in inspect.getsource(ex))
-ck("the published rebate is recorded but negative (a rebate, not a fee)",
-   ex.PMUS_MAKER_REBATE == -0.0125, str(ex.PMUS_MAKER_REBATE))
+# Nov 18: this pinned -0.0125 and called it "the published rebate". The venue's Nov 14 schedule grants
+# NO maker rebate below $10MM of 30-day maker volume, so at our volume the maker side is FREE, not paid,
+# and -0.0125 beat even its top tier (-0.0104). The rebate now comes from pmus_fee, which returns 0.0
+# until eligibility is verified. The PROPERTY is what matters and it holds in both models: the maker
+# side never costs MORE than the taker side, so pricing on it can only make us bid less aggressively.
+ck("the maker coefficient comes from pmus_fee, not a literal",
+   ex.PMUS_MAKER_REBATE == pf.maker(), f"{ex.PMUS_MAKER_REBATE} vs {pf.maker()}")
+ck("the maker side never costs more than the taker side",
+   ex.PMUS_MAKER_REBATE <= pf.taker(), f"{ex.PMUS_MAKER_REBATE} vs {pf.taker()}")
+ck("an unverified rebate is never credited",
+   pf.MODEL != "schedule" or ex.PMUS_MAKER_REBATE == 0.0, str(ex.PMUS_MAKER_REBATE))
 ck("resting prices TAKER unless the maker flag is explicitly on",
    "PMUS_MAKER_REBATE if PMUS_REST_MAKER else" in rb)
 ck("the taker coefficient comes from the scored entry, not a constant",
@@ -43,9 +53,9 @@ ck("book_live records participateDontInitiate as still unproven",
 
 # taker is the conservative direction: a positive coef costs us, a rebate would pay us.
 # Pricing on a rebate we may not receive would bid MORE aggressively, so taker can only under-bid.
-ck("taker coefficient is a cost (positive) and the rebate a credit (negative)",
-   ex.PMUS_MAKER_REBATE < 0 < 0.06)
-cost_taker = bl.kalshi_cost_for(0.52, 0.06)
+ck("the taker coefficient is a cost (positive) and the maker side is never a cost",
+   pf.taker() > 0 >= ex.PMUS_MAKER_REBATE, f"taker {pf.taker()} maker {ex.PMUS_MAKER_REBATE}")
+cost_taker = bl.kalshi_cost_for(0.52, pf.taker())
 cost_maker = bl.kalshi_cost_for(0.52, ex.PMUS_MAKER_REBATE)
 ck("the solver accepts a negative coefficient", cost_maker is not None)
 ck("taker pricing bids no higher than maker pricing (never over-bids on an unproven rebate)",

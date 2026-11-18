@@ -72,12 +72,24 @@ def toks(s):
     return set(re.findall(r"[a-z]{3,}", str(s or "").lower()))
 
 
-def std_clv(close_prob, american, book):
-    """The one basis. Returns None when it cannot be computed - never a substitute."""
+def std_clv(close_prob, american, book, fee_coef=None, maker=False):
+    """The one basis. Returns None when it cannot be computed - never a substitute.
+
+    fee_coef is the coefficient RECORDED ON THE ORDER AT EXECUTION TIME (executor.fee_meta). Passing
+    it grades the fill on the fee that actually applied, rather than on whatever the venue model says
+    when the grader runs - which matters the moment a venue changes its schedule, as Polymarket US did
+    on Nov 14 2026.
+
+    fee_coef=None means "no coefficient was recorded, use the venue model". That is the case for every
+    historical fill, which is exactly how their original treatment is preserved: an old row has no such
+    field, so it grades as it always did. None is NOT "no fee" - collapsing those two would grade a
+    ProphetX fill, whose fee is 2% of gains rather than a coefficient, at zero.
+    """
     if close_prob is None or american is None or not book:
         return None
     try:
-        return 100 * (float(close_prob) * cs.net_dec(cs.canon(book), cl.am_to_dec(american)) - 1)
+        return 100 * (float(close_prob) * cs.net_dec(cs.canon(book), cl.am_to_dec(american),
+                                                     maker=bool(maker), coef=fee_coef) - 1)
     except Exception:
         return None
 

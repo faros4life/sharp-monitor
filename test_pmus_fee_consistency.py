@@ -149,6 +149,14 @@ ok("board_build has no bare 0.06 PMUS literal", "PMUS_FEE = 0.06" not in src["bo
 ok("sharp_monitor has no bare 0.06 PMUS literal", 'or "0.06"' not in src["sharp_monitor.py"])
 ok("ncaab_grade has no bare 0.06 PMUS literal", 'or "0.06"' not in src["ncaab_grade.py"])
 ok("executor gate is not a frozen literal", "PMUS_QUAL_FEE = 0.0695" not in src["executor.py"])
+# Nov 18: a SEVENTH literal survived the first sweep - a live `or 0.06` fallback inside rest_bid's
+# Polymarket US branch, plus PMUS_MAKER_REBATE = -0.0125. It survived because the sweep that was
+# supposed to find it was piped through `head -20` and the executor.py lines were cut off. These two
+# assertions are cheaper than remembering not to truncate evidence.
+ok("rest_bid has no literal 0.06 fee fallback", 'taker_fee_coef") or 0.06' not in src["executor.py"])
+ok("the resting maker rebate is not a literal", "PMUS_MAKER_REBATE = -0.0125" not in src["executor.py"])
+ok("every live PMUS coefficient in executor resolves through pmus_fee",
+   src["executor.py"].count("pf.taker()") >= 2 and "pf.maker()" in src["executor.py"])
 for f in ("executor.py", "board_build.py", "sharp_monitor.py", "ncaab_grade.py", "exchange_lag.py"):
     ok(f"{f} imports pmus_fee", "import pmus_fee as pf" in src[f])
 

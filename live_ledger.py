@@ -102,10 +102,12 @@ def leg_clv_pct(close_p, filled):
         return None, []
     out, num, den = [], 0.0, 0.0
     for l in filled or []:
-        c = sc.std_clv(close_p, l.get("am"), l.get("book"))
+        c = sc.std_clv(close_p, l.get("am"), l.get("book"),
+                       fee_coef=l.get("fee_coef"), maker=bool(l.get("fee_maker")))
         if c is None:
             continue
-        out.append({"book": l.get("book"), "am": l.get("am"), "clv": round(c, 2)})
+        out.append({"book": l.get("book"), "am": l.get("am"), "clv": round(c, 2),
+                    "fee_coef": l.get("fee_coef"), "fee_model": l.get("fee_model")})
         wt = l.get("w") or 0.0
         num += c * wt
         den += wt
@@ -276,7 +278,11 @@ def account(L, bets, clv=None, alerts=None, start=START_UTC):
             ok, am, w, how = leg_fill(lo, fills, vmap)
             prev = p["legs"].get(lid)
             if not prev or (ok and not prev["ok"]):
-                p["legs"][lid] = {"ok": ok, "am": am, "w": w, "how": how, "book": lo.get("book")}
+                # Nov 18: carry the EXECUTION-TIME fee off the registry row. Absent on every
+                # historical fill, which is what preserves their original treatment.
+                p["legs"][lid] = {"ok": ok, "am": am, "w": w, "how": how, "book": lo.get("book"),
+                                  "fee_coef": lo.get("fee_coef"), "fee_model": lo.get("fee_model"),
+                                  "fee_maker": bool(lo.get("fee_maker"))}
             p["order_ids"].add(norm_ref(lo.get("order_id")))
 
     # 2. tracker rows: index for joins
@@ -288,12 +294,42 @@ def account(L, bets, clv=None, alerts=None, start=START_UTC):
     def row_res(b):
         return RES.get(str(b.get("result") or "").upper())
 
-    def certified(ids, am_by_id):
+    def fee_by_book(filled):
+        """{canonical venue: (fee_coef, maker)} from the EXECUTION-TIME fee recorded on each leg.
+
+        Only legs that actually recorded a coefficient are included, so a play with no such legs - every
+        historical play - yields an empty map and grades exactly as it always did.
+        """
+        import clv_std as _cs
+        out = {}
+        for l in filled or []:
+            if l.get("fee_coef") is None:
+                continue
+            try:
+                out[_cs.canon(l.get("book"), strict=False)] = (l["fee_coef"], bool(l.get("fee_maker")))
+            except Exception:
+                continue
+        return out
+
+    def certified(ids, am_by_id, fees=None):
+        """CERTIFICATION RULES ARE UNCHANGED (Peter, requirement 5): still a verified same-line or exact
+        moneyline Pinnacle close and nothing else. Only the ECONOMICS the certified price is netted at
+        can now come from the order row - the fee that applied when the bet executed, instead of the
+        grader's own default hours later. `fees` empty or absent -> the venue model, as before.
+        """
+        import clv_std as _cs
         for i in ids:
             r = clv.get(i) or {}
             how = str(r.get("how") or "").strip().lower()
             if how in ("own line", "moneyline") and r.get("close_p") is not None:
-                c = sc.std_clv(r.get("close_p"), am_by_id.get(i), bets[i].get("book"))
+                bk = bets[i].get("book")
+                fc, mk = None, False
+                if fees:
+                    try:
+                        fc, mk = fees.get(_cs.canon(bk, strict=False), (None, False))
+                    except Exception:
+                        fc, mk = None, False
+                c = sc.std_clv(r.get("close_p"), am_by_id.get(i), bk, fee_coef=fc, maker=mk)
                 if c is not None:
                     return c
         return None
@@ -382,7 +418,7 @@ def account(L, bets, clv=None, alerts=None, start=START_UTC):
                       # so the report can ask whether the newly eligible venues carry their own weight.
                       "books": sorted({l["book"] for l in filled if l.get("book")}),
                       "fee_basis": p.get("fee_basis"),
-                      "clv": certified([i for i, _ in rows], am_by_id),
+                      "clv": certified([i for i, _ in rows], am_by_id, fees=fee_by_book(filled)),
                       # Nov 18 (Peter): fill-implied CLV - its own measure, kept beside the certified `clv`
                       # above and never blended into it. Percentages only.
                       "clv_fill": fi_mean,

@@ -3767,7 +3767,12 @@ REST_CID = "rest-" + hashlib.sha1(f"{os.getpid()}|{time.time()}".encode()).hexdi
 # Taker pricing is strictly conservative: it can only make us bid LESS aggressively. Peter flips
 # EXEC_PMUS_REST_MAKER=1 once the verdict is in.
 PMUS_REST_MAKER = (os.environ.get("EXEC_PMUS_REST_MAKER") or "").strip() == "1"
-PMUS_MAKER_REBATE = -0.0125   # Polymarket's published maker rebate: the venue pays us to post
+# Nov 18: this was a literal -0.0125, described as "the venue pays us to post". Both halves were
+# wrong. The venue's published schedule grants NO maker rebate below $10MM of 30-day MAKER volume,
+# and -0.0125 is better than its TOP tier (-0.0104) in any case - so this priced a resting bid on
+# money that is not earned at our volume, which is the opposite of the conservative intent stated
+# directly above. pmus_fee.maker() returns 0.0 until rebate eligibility is verified.
+PMUS_MAKER_REBATE = pf.maker()
 
 
 def rest_pre_alert(r, risk, expire, books):
@@ -4073,7 +4078,13 @@ def rest_bid(r):
             # carries 'polymarket': 0.03 while the entry is built with the corrected 0.06, and
             # picking the wrong one silently mis-prices every bid. taker_fee_coef is whatever this
             # entry was actually scored with.
-            coef = PMUS_MAKER_REBATE if PMUS_REST_MAKER else (x.get("taker_fee_coef") or 0.06)
+            # Nov 18: the fallback was a literal 0.06 - a SEVENTH copy of the coefficient, in a live
+            # order-pricing path, and below every published tier. An entry that carried no
+            # taker_fee_coef therefore priced a real resting bid as though the fee were 0.06, bidding
+            # more aggressively than the venue's actual schedule allows. pmus_fee.taker() is the one
+            # source of truth; the entry's own value still wins when it has one, because that is what
+            # the entry was actually scored with.
+            coef = PMUS_MAKER_REBATE if PMUS_REST_MAKER else (x.get("taker_fee_coef") or pf.taker())
             c = book_live.kalshi_cost_for(p_star, coef)   # same solver; verified for a negative coef
             if not c:
                 why_not.append("Polymarket US: no price clears the alert number")
@@ -4931,14 +4942,22 @@ def ledger_row(r, run_start):
             "stack_cap": stack_cap_report(r),
             "lane2": ({k: e.get(k) for k in ("label", "limit", "limit_how", "median", "market", "book_key", "hr_priced", "edge_pct",
                                               "edge_band", "lead_min", "timing", "top25")} if p.get("source") == "lane2" else None),
+            # Nov 18: fee_model / fee_coef / fee_maker are added to all THREE projections. These are
+            # fixed key lists, and CLAUDE.md already records this exact projection silently dropping a
+            # field twice (the Nov 17 trio, then expires_utc) - a key absent here is a key the registry
+            # never sees, and the grader would fall back to today's schedule without saying so.
             "live_order": dict({k: (lv.get("order") or {}).get(k) for k in ("status", "reason", "order_id", "asked_stake", "limit",
                                                                             "filled_stake", "avg_price")},
-                               book=(lv.get("order") or {}).get("book") or "prophetx") if lv.get("order") else None,
-            "live_rest": ({k: (lv.get("rest") or {}).get(k) for k in ("status", "reason", "book", "order_id", "asked_stake",
-                                                                       "limit", "filled_stake", "expires_utc")}
+                               book=(lv.get("order") or {}).get("book") or "prophetx",
+                               **fee_meta((lv.get("order") or {}).get("book") or "prophetx",
+                                          maker=bool((lv.get("order") or {}).get("resting")))) if lv.get("order") else None,
+            "live_rest": (dict({k: (lv.get("rest") or {}).get(k) for k in ("status", "reason", "book", "order_id", "asked_stake",
+                                                                           "limit", "filled_stake", "expires_utc")},
+                               **fee_meta((lv.get("rest") or {}).get("book"), maker=True))
                           if lv.get("rest") else None),
-            "live_more": [{k: o.get(k) for k in ("status", "reason", "book", "order_id", "asked_stake", "limit", "filled_stake",
-                                                  "avg_price")} for o in (lv.get("more") or [])]}
+            "live_more": [dict({k: o.get(k) for k in ("status", "reason", "book", "order_id", "asked_stake", "limit",
+                                                       "filled_stake", "avg_price")},
+                               **fee_meta(o.get("book"), maker=bool(o.get("resting")))) for o in (lv.get("more") or [])]}
 
 
 def send(subject, body):
@@ -5186,6 +5205,46 @@ def journal_latch_why():
     return JOURNAL["latch"]
 
 
+def fee_meta(book, maker=False):
+    """The fee facts that applied to an order AT EXECUTION TIME, for the registry row.
+
+    Peter, Nov 18: "For new fills, record the execution-time fee coefficient." Grading a fill on
+    whatever the model says at SCORING time is wrong the moment a venue changes its schedule - a bet
+    taken at 0.06 is not a bet taken at 0.095 - and the CLV ledger runs hours or days later, pinned to
+    its own basis on purpose so history is not restated.
+
+    Computed here rather than inside any order path: the order is placed and journaled in the SAME
+    process and run, so the model cannot differ between the two, and this way nothing in the execution
+    path changes. Recording only - no gate, cap, limit or selection reads it.
+
+    fee_coef is None for a venue whose fee is not a coefficient of the standard form (ProphetX charges
+    2% of GAINS outside NHL). None means "fall back to the venue model", NOT "no fee" - the two are
+    different and the grader must not collapse them.
+    """
+    b = (book or "").strip().lower()
+    try:
+        if b in ("polymarket_us", "polymarket.us"):
+            return {"fee_model": pf.MODEL, "fee_maker": bool(maker),
+                    "fee_coef": (pf.maker() if maker else pf.taker())}
+        if b == "kalshi":
+            # TAKER only. Kalshi's maker rate is modelled CONSERVATIVELY in exchange_lag and flagged
+            # open there, so recording the taker coefficient for a RESTING fill would be a confidently
+            # wrong number - worse than none, because None routes the grader to the venue model that
+            # knows the maker side. executor cannot import exchange_lag (it imports executor), so this
+            # defers rather than copies the number: one fee table, not a seventh literal.
+            return {"fee_model": "fixed" if not maker else "maker_unverified",
+                    "fee_maker": bool(maker), "fee_coef": None if maker else bc.TAKER_COEF["kalshi"]}
+        if b in ("novig", "novig.us"):
+            # Pre-game straights are free on BOTH sides; a LIVE or futures take is 0.06. This row cannot
+            # see live-ness, so it records nothing numeric and lets the venue model decide.
+            return {"fee_model": "fixed", "fee_maker": bool(maker), "fee_coef": 0.0}
+        if b == "prophetx":
+            return {"fee_model": "px_win_fee", "fee_maker": bool(maker), "fee_coef": None}
+    except Exception:
+        pass
+    return {"fee_model": "unknown", "fee_maker": bool(maker), "fee_coef": None}
+
+
 def journal_order(r, lo, is_rest=False, cid=None):
     """Nov 11 (Peter, crash-safe order logging). Write ONE durable registry row the moment an order
     is placed, instead of only at the end of the run.
@@ -5236,7 +5295,10 @@ def journal_order(r, lo, is_rest=False, cid=None):
                    # already; expires_utc was missed that round.
                    "expires_utc": lo.get("expires_utc"),
                    # Nov 11: resolves the write-ahead intent row and makes the money count once
-                   "client_id": cid or (r.get("live") or {}).get("client_id"), "intent": False}}
+                   "client_id": cid or (r.get("live") or {}).get("client_id"), "intent": False,
+                   # Nov 18: the execution-time fee, so the CLV ledger grades this fill on the
+                   # coefficient that actually applied and never on today's schedule.
+                   **fee_meta(book, maker=bool(is_rest or lo.get("resting")))}}
         send(f"Bets LIVE: order journal {book} {oid}",
              "ORDER JOURNAL - one durable registry row, written the moment this order was placed, so a run\n"
              "killed before its end-of-run ledger cannot lose this order from the registry (daily-stop\n"

@@ -480,6 +480,17 @@ def kalshi_order_expiry(o):
 
 def kalshi_cost_for(after_fee_prob, coef):
     """Pre-fee Kalshi cost c whose after-fee cost c + coef*c*(1-c) is <= after_fee_prob, rounded DOWN to the cent."""
+    if after_fee_prob is None or coef is None:
+        return None
+    # Nov 18: coef == 0 made this raise ZeroDivisionError on 2*a. It was unreachable while every
+    # coefficient was non-zero, and became reachable the moment Polymarket US's maker rate was
+    # corrected to 0.0 (no rebate below $10MM of 30-day maker volume) - rest_bid passes that straight
+    # in when EXEC_PMUS_REST_MAKER is on, so enabling the flag would have CRASHED a live resting pass
+    # rather than mispricing it. With no fee the quadratic degenerates to c = after_fee_prob.
+    if abs(float(coef)) < 1e-12:
+        c = float(after_fee_prob)
+        c = math.floor(c * 100 + 1e-9) / 100
+        return c if 0.01 <= c <= 0.99 else None
     a, b = coef, -(1 + coef)
     disc = b * b - 4 * a * after_fee_prob
     if disc < 0:

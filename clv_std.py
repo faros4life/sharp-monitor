@@ -172,7 +172,7 @@ def canon(book, strict=True):
     return None
 
 
-def net_dec(book, raw_dec, maker=False, league=None, live=False):
+def net_dec(book, raw_dec, maker=False, league=None, live=False, coef=None):
     """Effective decimal AFTER that venue's fee. Hard Rock and Novig return the raw price unchanged,
     for different reasons: Novig charges nothing, Hard Rock's vig is already in the price.
 
@@ -190,12 +190,12 @@ def net_dec(book, raw_dec, maker=False, league=None, live=False):
     # live or futures take was priced at zero instead of 0.06. Both are documented schedules that
     # eff() already implements - the context simply never reached it. Callers that know the league
     # must pass it; the defaults keep the pre-game, non-NHL behaviour every existing caller assumes.
-    return raw_dec if c == "hardrockbet" else el.eff(c, float(raw_dec), maker, live, league)
+    return raw_dec if c == "hardrockbet" else el.eff(c, float(raw_dec), maker, live, league, coef)
 
 
-def net_clv(close_prob, raw_dec, book, maker=False, league=None, live=False):
+def net_clv(close_prob, raw_dec, book, maker=False, league=None, live=False, coef=None):
     """The one formula, as a percentage. None when any input is missing."""
-    nd = net_dec(book, raw_dec, maker, league, live)
+    nd = net_dec(book, raw_dec, maker, league, live, coef)
     if nd is None or close_prob is None:
         return None
     return round(100.0 * (float(close_prob) * nd - 1.0), 3)
