@@ -2735,7 +2735,16 @@ def fmt(r):
         # Nov 11 (Peter, "retry"): refused with nothing placed, so NO xpid and NO xwp - the play
         # stays new for the next run and the opposite side stays free, because neither a bet nor a
         # side was actually taken. Only the alert-suppressing token is written.
-        tag = retry_tok(dk or p["play_key"])
+        # Nov 18 (Peter: "Still getting this why" - SAME PLAY attempts 3 and 4, one a minute, on a
+        # Jazz/Lakers Under the daily stop was refusing). The token was written under derive_key(p),
+        # but live_play_alert looks it up through handled_keys(p) - and for source "rules" (PHASE 1)
+        # and "lane2" that returns the play_key ALONE. Written under one key, searched under another,
+        # so the match never happened and the alert repeated every run until tip-off. Phase 1 is the
+        # lane this hits, which is why it survived: the other lanes' handled_keys includes derive_key.
+        # The mirror image of the Nov 12 note above, where the guards tested derive_key and the row
+        # stored only the raw key. Choosing the key by the SAME rule as handled_keys is what keeps
+        # the write and the read in one namespace.
+        tag = retry_tok(p["play_key"] if p.get("source") in ("rules", "lane2") else (dk or p["play_key"]))
     else:
         tag = r["pid"] + (f" {wp(dk)}" if ((r["verdict"] == "WOULD PLACE" or rested) and dk and p.get("source") not in ("rules", "lane2")) else "")   # Nov 4: a Lane 2 dry-run row never marks a side as taken
     head = f"{src_tag(p)}[{tag}] {p.get('sport')} {p.get('game')} | {p.get('bet')}"

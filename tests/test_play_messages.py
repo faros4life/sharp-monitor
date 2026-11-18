@@ -139,3 +139,29 @@ check("still-resting bid is not reported as expired", not out)
 
 print(f"{'PASS' if not FAIL else 'FAIL'} test_play_messages.py {PASS} checks" + (f", {FAIL} failed" if FAIL else ""))
 sys.exit(1 if FAIL else 0)
+
+
+# Nov 18 (Peter: "Still getting this why"). The retry token suppresses the repeat LIVE PLAY alert,
+# but it was WRITTEN under derive_key(p) while live_play_alert LOOKS IT UP through handled_keys(p) -
+# which for source "rules" (PHASE 1) and "lane2" is the play_key ALONE. Written in one namespace,
+# searched in another, so a refused play re-alerted every run until tip-off. Four attempts in five
+# minutes on a Jazz/Lakers Under that the daily stop was refusing.
+import executor as _ex
+
+_src = _ex.__dict__ and open("executor.py").read()
+_i = _src.index("def fmt(r):")
+_blk = _src[_i:_i + 2600]
+check("the retry token picks its key by source, as handled_keys does",
+      'p.get("source") in ("rules", "lane2")' in _blk)
+
+for _s in ("rules", "lane2", "board", "r1", None):
+    _p = {"play_key": "r1|NCAAF|x", "source": _s, "sport": "NBA",
+          "game": "Utah Jazz @ Los Angeles Lakers", "bet": "Under 231.5 (-112)"}
+    _dk = _ex.derive_key(_p)
+    _written = _p["play_key"] if _s in ("rules", "lane2") else (_dk or _p["play_key"])
+    check(f"source {_s}: the written retry key is one handled_keys() searches",
+          _written in _ex.handled_keys(_p))
+
+check("PHASE 1 (source rules) is the lane that was broken",
+      _ex.handled_keys({"play_key": "k", "source": "rules", "sport": "NBA",
+                        "game": "A @ B", "bet": "Under 1.5 (-110)"}) == {"k"})
