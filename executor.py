@@ -4151,8 +4151,21 @@ def rest_bid(r):
     why_not = []
     for b in REST_BOOKS:
         x = books.get(b) or {}
-        if x.get("status") != "ok" or not x.get("exact_line"):
-            why_not.append(f"{BOOK_NAME.get(b, b)}: no exact-line market")
+        # Nov 18 (Peter: "There is a game on both"). This merged TWO failures with opposite remedies
+        # into one string, "no exact-line market": the venue having no priced market at all, and the
+        # venue having the game at a DIFFERENT line. The first is a matching or listing problem; the
+        # second is just the market being elsewhere and tells us where. Peter read the merged message
+        # and correctly objected that the game WAS on both venues - and the message could not settle
+        # it, which is CLAUDE.md's board_clv_check lesson repeating. Reporting only; the gate itself
+        # is unchanged and still requires an ok status AND our exact line.
+        _nm = BOOK_NAME.get(b, b)
+        if x.get("status") != "ok":
+            why_not.append(f"{_nm}: {str(x.get('status') or 'no market').replace('_', ' ')[:48]}")
+            continue
+        if not x.get("exact_line"):
+            _bl, _al = x.get("line"), x.get("alert_line")
+            why_not.append(f"{_nm}: has the game at {_bl}, not our {_al}"
+                           if _bl is not None else f"{_nm}: line unreadable (ours {_al})")
             continue
         if b == "kalshi":
             kb = x.get("kalshi_buy") or []

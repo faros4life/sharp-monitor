@@ -176,11 +176,10 @@ ck("best executable exchange: all four venues eligible to fill",
 ck("Polymarket GLOBAL is never a fill venue", "polymarket" not in ex.LIVE_BOOKS)
 ck("board exposure unknown fails closed", ex.board_gate(100.0, "k")[0] is False)
 
-print(f"PASS {len(OK)}   FAIL {len(BAD)}")
-for b in BAD:
-    print("  FAIL:", b)
-sys.exit(1 if BAD else 0)
 
+# NOTE: assertions MUST go above the summary print below. Two blocks were appended after
+# sys.exit on Nov 18 and never executed - the file still reported PASS 74 and the suite total
+# did not move, so four real assertions looked green while never running at all.
 # Nov 18 (Peter: "I don't see resting bid ... nothing on either"). rest_pre_alert announces a bid
 # BEFORE dispatch; both submitted outcomes push; the all-refused path pushed nothing, so an
 # announced bid that never went out ended in silence. rest_pre_alert's docstring calls the
@@ -198,3 +197,25 @@ ck("the not-placed alert cannot break the resting path (best effort, logged on f
    "RESTING-NOT-PLACED ALERT FAILED" in _rb)
 ck("the refusal reason is still returned to the caller unchanged",
    'return {"status": "refused", "reason": _why}' in _rb)
+
+# Nov 18 (Peter: "There is a game on both"). The resting gate merged "no priced market" and "has the
+# game at a different line" into one string, so the refusal message could not say which - and those
+# two have opposite remedies. CLAUDE.md records the same mistake in board_clv_check.
+_rb2 = inspect.getsource(ex.rest_bid)
+# Checked against the APPENDED REASONS only, not the whole source: the first version of this
+# assertion scanned comments too and failed on the comment that documents the old phrase.
+_appends = [l for l in _rb2.splitlines() if "why_not.append" in l]
+ck("no refusal reason still uses the merged phrase",
+   not any("no exact-line market" in l for l in _appends), "; ".join(_appends)[:160])
+ck("there are refusal reasons to check at all", len(_appends) >= 4, len(_appends))
+ck("a line mismatch names BOTH lines, so the message says where the market is",
+   "has the game at" in _rb2 and "not our" in _rb2)
+ck("the two refusals are separate branches, not one condition",
+   _rb2.count('if x.get("status") != "ok"') == 1 and _rb2.count('if not x.get("exact_line")') == 1)
+ck("the gate still requires an ok status AND our exact line",
+   'x.get("status") != "ok"' in _rb2 and 'not x.get("exact_line")' in _rb2)
+
+print(f"PASS {len(OK)}   FAIL {len(BAD)}")
+for b in BAD:
+    print("  FAIL:", b)
+sys.exit(1 if BAD else 0)
