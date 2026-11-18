@@ -568,10 +568,63 @@ def build():
         "run": os.environ.get("GITHUB_RUN_ID", ""),
         "cutoff_label": CUTOFF_LABEL,
         "selections_total": len(obs), "bands": bands,
+        "bot_log": bot_log(st),   # Nov 18 (Peter): every bot play with its CLV, additive - the six bands are untouched
         "privacy": ("Counts, units and percentages only. No currency stakes and no account, "
                     "order or credential data."),
     }
     return view, None
+
+
+def bot_log(st):
+    """EVERY bot play with its CLV. No cap, no window (Peter, 18 Nov: "a log of every bot play with the CLV").
+
+    The CLV ledger's email prints only LAST 30 SCORED, and that slice is ordered by when a row was
+    SCORED while it displays game_start - so it reads like a date window and is not one, and whole
+    days go missing from it. This is the full record instead: one row per scored bot play, newest game
+    first. Percentages and prices only - no stakes, no dollars, no order ids.
+    """
+    out = []
+    for k, r in (st.get("bets") or {}).items():
+        s = r.get("snap") or {}
+        if (s.get("source") or "") != "bot" or r.get("clv") is None:
+            continue
+        out.append({"day": (s.get("game_start") or "")[:10], "lg": s.get("league") or "?",
+                    "book": s.get("book") or "?", "bet": str(s.get("bet") or "")[:40],
+                    "am": r.get("eff_am"), "close": r.get("close_am"),
+                    "clv": round(100 * r["clv"], 2), "how": r.get("how") or "",
+                    "held": bool(r.get("fixture_doubt"))})
+    out.sort(key=lambda x: x["day"], reverse=True)
+    v = [x["clv"] for x in out if not x["held"]]
+
+    def roll(keyfn):
+        """n, mean CLV and beat-close per period. Held-out rows are listed in the log but never
+        counted here, the same way the ledger excludes them from every figure."""
+        g = collections.OrderedDict()
+        for x in out:
+            if x["held"] or not x["day"]:
+                continue
+            g.setdefault(keyfn(x["day"]), []).append(x["clv"])
+        return [{"k": k, "n": len(vs), "mean": round(sum(vs) / len(vs), 2),
+                 "beat": sum(1 for y in vs if y > 0)} for k, vs in g.items()]
+
+    def isoweek(day):
+        try:
+            y, w, _ = datetime.strptime(day, "%Y-%m-%d").isocalendar()
+            return f"{y}-W{w:02d}"
+        except ValueError:
+            return "?"
+
+    return {"rows": out, "n": len(out),
+            "by_day": roll(lambda d: d),
+            "by_week": roll(isoweek),
+            "by_month": roll(lambda d: d[:7]),
+            "n_counted": len(v), "n_held": sum(1 for x in out if x["held"]),
+            "mean": (round(sum(v) / len(v), 2) if v else None),
+            "beat": sum(1 for x in v if x > 0),
+            "books": sorted({x["book"] for x in out}),
+            "note": ("Every scored bot play, not a 30-row window. Held-out rows are listed but excluded "
+                     "from the mean, same as the ledger. CLV is a verified Pinnacle no-vig close at the "
+                     "bet's own line, after fees.")}
 
 
 def research_candidates(obs, lane_for):
@@ -693,6 +746,25 @@ function render(d){const B=d.bands;let h='';
   (F.candidates.length?('<table><tr><th>candidate</th><th>whole</th><th>H1</th><th>H2</th><th>missing</th></tr>'+
    F.candidates.map(c=>'<tr><td>'+esc(c.name)+'</td><td>'+fig(c.whole)+'</td><td>'+fig(c.h1)+'</td><td>'+fig(c.h2)+'</td><td>'+
     c.missing.map(esc).join('<br>')+'</td></tr>').join('')+'</table>'):'<p class="mut">no candidate carries certified data</p>')+'</div>';
+ const G=d.bot_log;
+ if(G&&G.n){h+='<h2>BOT PLAY LOG &mdash; every bot play with its CLV</h2>';
+  h+='<div class="card"><p><b>'+G.n_counted+' counted</b>'+(G.n_held?' &middot; '+G.n_held+' held out':'')+
+     ' &middot; mean CLV '+(G.mean===null?'&mdash;':(G.mean>0?'+':'')+G.mean+'%')+
+     ' &middot; beat close '+G.beat+'/'+G.n_counted+' &middot; venues '+G.books.map(esc).join(', ')+'</p>';
+  [['By day','by_day'],['By week','by_week'],['By month','by_month']].forEach(p=>{
+   const rs=G[p[1]]||[];if(!rs.length)return;
+   h+='<p class="sub"><b>'+p[0]+'</b></p><table><tr><th>'+p[0].replace('By ','')+'</th><th>n</th><th>CLV</th><th>beat</th></tr>';
+   rs.forEach(x=>{h+='<tr><td>'+esc(x.k)+'</td><td>'+x.n+'</td>'+
+     '<td class="'+(x.mean>0?'ok':(x.mean<0?'bad':''))+'">'+(x.mean>0?'+':'')+x.mean+'%</td>'+
+     '<td>'+x.beat+'/'+x.n+'</td></tr>';});
+   h+='</table>';});
+  h+='<p class="sub"><b>Every play</b></p>';
+  h+='<table><tr><th>Day</th><th>Lg</th><th>Venue</th><th>Bet</th><th>You</th><th>Close</th><th>CLV</th><th></th></tr>';
+  G.rows.forEach(r=>{const c=r.clv>0?'ok':(r.clv<0?'bad':'');
+   h+='<tr'+(r.held?' class="warn"':'')+'><td>'+esc(r.day)+'</td><td>'+esc(r.lg)+'</td><td>'+esc(r.book)+'</td>'+
+      '<td>'+esc(r.bet)+'</td><td>'+(r.am>0?'+':'')+r.am+'</td><td>'+(r.close>0?'+':'')+r.close+'</td>'+
+      '<td class="'+c+'">'+(r.clv>0?'+':'')+r.clv+'%</td><td>'+(r.held?'<span class="pill warn">HELD OUT</span>':'')+'</td></tr>';});
+  h+='</table><p class="sub">'+esc(G.note)+'</p></div>';}
  document.getElementById('app').innerHTML=h;}
 async function go(p,save){try{const d=await unlock(p);try{if(save)localStorage.setItem('dbp',p)}catch(e){}render(d);}
  catch(e){document.getElementById('e').textContent='Wrong passphrase.';try{localStorage.removeItem('dbp')}catch(_){}}}
