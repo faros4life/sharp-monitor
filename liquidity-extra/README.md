@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 17, 8:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 45.
+Updated Tue Nov 17, 8:10 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 42.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 307-186 (-26.91u flat) | rule met: 51-49
+**Record:** 307-189 (-29.91u flat) | rule met: 51-50
 
-**Fade (paper, betting against the print):** 161-272 (+27.29u flat, after fees)
+**Fade (paper, betting against the print):** 164-272 (+30.30u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -17,8 +17,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 17 6:20PM | NCAAB | Wagner vs Saint Joseph's: Point Total | total: Over 137.5 points | kalshi | $28k | +104 |  |  | +0.0c |  | pending |
 | Nov 17 6:10PM | NCAAB | Cal State Northridge vs Troy | moneyline: Troy | kalshi | $48k | -122 | ✅ novig | ❌ | +0.0c |  | pending |
 | Nov 17 5:40PM | NCAAB | Jacksonville St. vs Louisiana Tech: Point Total | total: Over 128.5 points | kalshi | $31k | -133 |  | ❌ | +0.0c | yes | pending |
-| Nov 17 5:40PM | NCAAB | Southern Illinois vs Liberty: Point Total | total: NOT Over 144.5 points | kalshi | $26k | -100 |  |  | +0.0c | yes | pending |
-| Nov 17 5:20PM | NCAAB | Saint Peter's vs UMass Lowell: Point Total | total: Over 128.5 points | kalshi | $52k | -113 |  |  | -2.0c |  | pending |
+| Nov 17 5:40PM | NCAAB | Southern Illinois vs Liberty: Point Total | total: NOT Over 144.5 points | kalshi | $26k | -100 |  |  | +0.0c | yes | L |
+| Nov 17 5:20PM | NCAAB | Saint Peter's vs UMass Lowell: Point Total | total: Over 128.5 points | kalshi | $52k | -113 |  |  | -2.0c |  | L |
 | Nov 17 5:10PM | NCAAB | Illinois vs Duke: Point Total | total: NOT Over 167.5 points | kalshi | $47k | -104 |  | ❌ | +0.0c | yes | pending |
 | Nov 17 4:50PM | NCAAB | Nicholls St. vs Ole Miss: Point Total | total: NOT Over 143.5 points | kalshi | $51k | -117 |  |  | +0.0c | yes | pending |
 | Nov 17 4:20PM | NCAAB | Western Carolina vs Butler: Point Total | total: Over 157.5 points | kalshi | $35k | -127 |  | ❌ | -2.0c |  | pending |
@@ -39,9 +39,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 17 11:30AM | NCAAB | Tennessee St. vs South Florida: Point Total | total: NOT Over 165.5 points | kalshi | $34k | -108 |  |  | +0.0c | yes | pending |
 | Nov 17 11:10AM | NCAAB | Arkansas vs Indiana | moneyline: Indiana | kalshi | $29k | +104 | ✅ novig | ✅ | +5.0c | yes | pending |
 | Nov 17 10:40AM | NCAAB | UT Arlington vs Southern Miss | moneyline: UT Arlington | kalshi | $26k | +127 |  |  | +2.0c |  | pending |
-| Nov 17 10:40AM | NCAAB | Southern Illinois vs Liberty | moneyline: Southern Illinois | kalshi | $70k | -127 | ✅ novig |  | +0.0c |  | pending |
+| Nov 17 10:40AM | NCAAB | Southern Illinois vs Liberty | moneyline: Southern Illinois | kalshi | $70k | -127 | ✅ novig |  | +0.0c |  | L |
 | Nov 17 10:30AM | NCAAB | Lipscomb vs Purdue: Spread | spread: Purdue wins by over 20.5 points | kalshi | $29k | -122 |  |  | +2.0c | yes | pending |
-| Nov 17 10:10AM | NCAAB | Bryant vs UMass | moneyline: UMass | kalshi | $29k | -525 |  |  | -5.0c | yes | pending |
+| Nov 17 10:10AM | NCAAB | Bryant vs UMass | moneyline: UMass | kalshi | $29k | -525 |  |  | +1.0c | yes | pending |
 | Nov 17 9:50AM | NCAAB | Maryland-Eastern Shore vs DePaul: Spread | spread: DePaul wins by over 31.5 points | kalshi | $33k | -113 |  |  | -8.0c | yes | pending |
 | Nov 17 9:40AM | NCAAB | Cleveland St. vs Xavier: Point Total | total: NOT Over 159.5 points | kalshi | $32k | -108 |  |  | +2.0c |  | pending |
 | Nov 17 9:20AM | NCAAB | Green Bay vs West Florida | moneyline: Green Bay | kalshi | $57k | -257 |  |  | -6.0c |  | pending |
