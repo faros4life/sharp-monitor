@@ -111,6 +111,7 @@ BANNED_SPORTS = {"UFC", "MMA", "BOXING", "TENNIS", "ATP", "WTA", "SOCCER", "EPL"
 BANNED_WORDS = ("parlay", "1h", "1q", "first half", "1st half", "first quarter", "1st quarter", "home run", " hr ")
 BOOKS = ("novig", "prophetx", "kalshi", "polymarket_us")
 LOG = []   # counts only for the public log
+VSTAT = collections.Counter()   # Nov 18 (Peter): (venue, check verdict) -> count, for the public log
 
 
 def log_report():
@@ -130,6 +131,11 @@ def log_report():
     text - which is what makes them printable in a public repo's log."""
     if not LOG:
         return
+    if VSTAT:
+        print("venue check verdicts (counts only):")
+        for _b in sorted({k[0] for k in VSTAT}):
+            _parts = ", ".join(f"{k[1]} {v}" for k, v in sorted(VSTAT.items()) if k[0] == _b)
+            print(f"  {_b:<15} {_parts}")
     print(f"LOG ({len(LOG)} line(s); counts only)")
     for _l in LOG:
         print(f"  {_l}")
@@ -2177,6 +2183,13 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
                     fn = {"prophetx": bc.px_check, "kalshi": bc.kalshi_check, "polymarket_us": pmus_check}[b]
                     r = fn(al, mtype, side, ln, price, teams)
                 perf_venue(b, time.time() - t0, (r or {}).get("status") == "ok")
+                # Nov 18 (Peter): count each venue's CHECK VERDICT, counts only, for the public log.
+                # Polymarket US is a book Peter has money at and it has 1 scored fill all time, but the
+                # per-venue stats live in the private email, so nothing visible says WHY it never wins -
+                # whether it is last in VENUE_ORDER and the others fill first, whether its 0.06 taker fee
+                # makes it uncompetitive after fees (both by design), or whether pmus_check cannot match
+                # the game (a bug). Those need opposite responses and no number told them apart.
+                VSTAT[(b, str((r or {}).get("status") or "none")[:34])] += 1
                 MD["c"][ck] = r
                 return r
             except Exception as ex:
