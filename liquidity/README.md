@@ -1,41 +1,41 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 17, 10:00 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 78.
+Updated Tue Nov 17, 10:05 PM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 71.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1640-1268 (-25.83u flat) | rule met: 979-764
+**Record:** 1642-1273 (-28.84u flat) | rule met: 980-766
 
-**Fade (paper, betting against the print):** 1002-1367 (-217.70u flat, after fees)
+**Fade (paper, betting against the print):** 1007-1369 (-215.11u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 17 9:45PM | NBA | Charlotte vs Los Angeles L: Total Points | total: NOT Over 220.5 points | kalshi | $104k | -100 |  | ❌ | +0.0c |  | pending |
 | Nov 17 9:45PM | NHL | Boston vs Detroit | moneyline: Detroit | kalshi | $35k | -108 |  |  | -1.0c |  | pending |
-| Nov 17 9:40PM | NBA | Utah Jazz @ Los Angeles Clippers | spread: LAC -5.5 (-5.5) | novig | $29k | -111 |  |  | +0.0c |  | pending |
+| Nov 17 9:40PM | NBA | Utah Jazz @ Los Angeles Clippers | spread: LAC -5.5 (-5.5) | novig | $29k | -111 |  |  | -0.5c |  | pending |
 | Nov 17 9:10PM | NBA | Washington vs Toronto | moneyline: Toronto | kalshi | $42k | -213 |  |  | +0.0c |  | pending |
 | Nov 17 8:50PM | NBA | Philadelphia vs Orlando | moneyline: Philadelphia | kalshi | $55k | -122 |  |  | -1.0c |  | pending |
 | Nov 17 8:35PM | NBA | Utah vs Los Angeles C: Total Points | total: NOT Over 227.5 points | kalshi | $49k | -108 |  |  | +0.0c |  | pending |
 | Nov 17 8:35PM | NBA | Houston vs Indiana | moneyline: Houston | kalshi | $117k | -223 |  |  | +2.0c |  | pending |
 | Nov 17 8:30PM | NCAAF | Central Michigan vs Buffalo: Spread | spread: NOT Buffalo wins by over 1.5 points | kalshi | $97k | -104 | ✅ novig |  | +0.0c |  | pending |
 | Nov 17 8:20PM | NBA | Atlanta vs Oklahoma City | moneyline: Oklahoma City | kalshi | $109k | -257 |  |  | +0.0c |  | pending |
-| Nov 17 8:15PM | NBA | Golden State vs Dallas | moneyline: Dallas | kalshi | $104k | -186 |  |  | +2.0c |  | pending |
+| Nov 17 8:15PM | NBA | Golden State vs Dallas | moneyline: Dallas | kalshi | $104k | -186 |  |  | +3.0c |  | pending |
 | Nov 17 7:55PM | NBA | Chicago vs Brooklyn | moneyline: Brooklyn | kalshi | $77k | -138 |  |  | -1.0c | yes | pending |
 | Nov 17 7:45PM | NBA | Portland Trail Blazers at Minnesota Timberwolves | moneyline: Minnesota Timberwolves | prophetx | $39k | -162 | ✅ kalshi,novig | ✅ | -0.6c |  | pending |
 | Nov 17 7:45PM | NHL | Nashville vs Minnesota: Spread | spread: NOT Minnesota wins by over 1.5 goals | kalshi | $102k | -138 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 17 7:30PM | NBA | Portland Trail Blazers @ Minnesota Timberwolves | moneyline: MIN (0) | novig | $28k | -160 | ✅ kalshi,prophetx | ✅ | +0.0c |  | pending |
-| Nov 17 7:20PM | NBA | New York vs Toronto: Spread | spread: NOT New York wins by over 2.5 points | kalshi | $232k | -108 | ✅ novig | ✅ | +0.0c |  | pending |
+| Nov 17 7:20PM | NBA | New York vs Toronto: Spread | spread: NOT New York wins by over 2.5 points | kalshi | $232k | -108 | ✅ novig | ✅ | +0.0c |  | L |
 | Nov 17 7:20PM | NBA | New York vs Toronto | moneyline: Toronto | kalshi | $159k | +127 | ✅ novig | ✅ | +0.0c | yes | L |
 | Nov 17 7:15PM | NHL | Washington vs Tampa Bay | moneyline: Washington | kalshi | $116k | +127 |  |  | +0.0c |  | pending |
 | Nov 17 7:10PM | NBA | New York Knicks @ Toronto Raptors | moneyline: TOR (0) | novig | $73k | +122 | ✅ kalshi,prophetx | ✅ | +0.0c |  | pending |
-| Nov 17 7:05PM | NBA | Charlotte vs Los Angeles L: Total Points | total: NOT Over 222.5 points | kalshi | $88k | -104 | ✅ novig | ❌ | +3.0c | yes | pending |
+| Nov 17 7:05PM | NBA | Charlotte vs Los Angeles L: Total Points | total: NOT Over 222.5 points | kalshi | $88k | -104 | ✅ novig | ❌ | +4.0c | yes | pending |
 | Nov 17 7:05PM | NBA | Memphis vs Cleveland | moneyline: Cleveland | kalshi | $45k | -186 |  |  | +0.0c |  | pending |
 | Nov 17 6:50PM | NHL | Buffalo vs Philadelphia | moneyline: Buffalo | kalshi | $58k | -122 | ✅ novig |  | +0.0c | yes | L |
 | Nov 17 6:35PM | NBA | Utah Jazz at Los Angeles Clippers | moneyline: Los Angeles Clippers | prophetx | $31k | -215 | ✅ kalshi,novig |  | -0.5c |  | pending |
 | Nov 17 6:35PM | NBA | Utah Jazz @ Los Angeles Clippers | moneyline: LAC (0) | novig | $31k | -213 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Nov 17 6:30PM | NBA | Charlotte vs Los Angeles L: Spread | spread: Los Angeles L wins by over 7.5 points | kalshi | $49k | +108 |  |  | +0.0c | yes | pending |
 | Nov 17 6:25PM | NHL | Washington vs Tampa Bay: Total Goals | total: Over 6.5 goals scored | kalshi | $32k | -100 | ✅ novig |  | +0.0c | yes | pending |
-| Nov 17 6:20PM | NBA | New York vs Toronto: Total Points | total: Over 216.5 points | kalshi | $48k | +104 |  | ❌ | +0.0c | yes | pending |
+| Nov 17 6:20PM | NBA | New York vs Toronto: Total Points | total: Over 216.5 points | kalshi | $48k | +104 |  | ❌ | +0.0c | yes | L |
 | Nov 17 6:15PM | NHL | Columbus vs New York I: Total Goals | total: Over 5.5 goals scored | kalshi | $43k | -108 | ✅ novig |  | +0.0c | yes | W |
 | Nov 17 6:05PM | NBA | Detroit Pistons at San Antonio Spurs | moneyline: San Antonio Spurs | prophetx | $32k | -375 | ✅ kalshi,novig | ✅ | -0.2c |  | pending |
 | Nov 17 6:05PM | NHL | Ottawa vs Winnipeg: Total Goals | total: Over 5.5 goals scored | kalshi | $38k | -117 | ✅ novig |  | +0.0c | yes | L |
@@ -45,10 +45,10 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 17 4:55PM | NBA | Portland vs Minnesota: Spread | spread: Minnesota wins by over 2.5 points | kalshi | $29k | -108 | ✅ novig | ✅ | +4.0c | yes | pending |
 | Nov 17 4:50PM | NBA | Portland vs Minnesota: Total Points | total: Over 224.5 points | kalshi | $34k | -108 |  | ❌ | +2.0c | yes | pending |
 | Nov 17 4:35PM | NCAAF | Ball St. vs Ohio: Spread | spread: Ohio wins by over 10.5 points | kalshi | $50k | +104 | ✅ novig | ❌ | +0.0c |  | pending |
-| Nov 17 4:35PM | NBA | New York vs Toronto: Spread | spread: NOT New York wins by over 3.5 points | kalshi | $29k | +104 |  | ❌ | +7.0c | yes | pending |
+| Nov 17 4:35PM | NBA | New York vs Toronto: Spread | spread: NOT New York wins by over 3.5 points | kalshi | $29k | +104 |  | ❌ | +7.0c | yes | L |
 | Nov 17 4:20PM | NHL | Los Angeles vs Boston: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $30k | -122 | ✅ novig |  | +1.0c | yes | W |
-| Nov 17 2:00PM | NBA | New York vs Toronto: Total Points | total: NOT Over 214.5 points | kalshi | $32k | -100 | ✅ novig,prophetx | ✅ | -3.0c | yes | pending |
-| Nov 17 1:55PM | NBA | New York vs Toronto: Spread | spread: NOT New York wins by over 4.5 points | kalshi | $27k | -108 | ✅ novig | ❌ | +7.0c | yes | pending |
+| Nov 17 2:00PM | NBA | New York vs Toronto: Total Points | total: NOT Over 214.5 points | kalshi | $32k | -100 | ✅ novig,prophetx | ✅ | -3.0c | yes | W |
+| Nov 17 1:55PM | NBA | New York vs Toronto: Spread | spread: NOT New York wins by over 4.5 points | kalshi | $27k | -108 | ✅ novig | ❌ | +7.0c | yes | L |
 | Nov 17 1:20PM | NBA | Utah vs Los Angeles C: Total Points | total: Over 225.5 points | kalshi | $32k | -100 |  |  | +5.0c | yes | pending |
 | Nov 17 1:20PM | NHL | Columbus vs New York I | moneyline: Columbus | kalshi | $60k | +127 |  |  | +4.0c |  | L |
 | Nov 17 1:00PM | NHL | Washington vs Tampa Bay: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $58k | -104 | ✅ novig |  | +0.0c |  | pending |
@@ -64,7 +64,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 17 11:00AM | NCAAF | Eastern Michigan vs Western Michigan: Total Points | total: Over 46.5 points | kalshi | $40k | -104 |  |  | -3.0c | yes | W |
 | Nov 17 10:55AM | NBA | Utah vs Los Angeles C: Spread | spread: NOT Los Angeles C wins by over 6.5 points | kalshi | $39k | -108 | ✅ novig |  | +1.0c | yes | pending |
 | Nov 17 10:50AM | NHL | Calgary vs San Jose: Total Goals | total: Over 5.5 goals scored | kalshi | $35k | -127 |  |  | +0.0c | yes | pending |
-| Nov 17 10:36AM | NBA | Utah vs Los Angeles C: Total Points | total: NOT Over 225.5 points | kalshi | $35k | -104 | ✅ novig,prophetx |  | -4.0c |  | pending |
+| Nov 17 10:36AM | NBA | Utah vs Los Angeles C: Total Points | total: NOT Over 225.5 points | kalshi | $35k | -104 | ✅ novig,prophetx |  | -5.0c |  | pending |
 | Nov 17 10:20AM | NCAAF | Eastern Michigan vs Western Michigan: Spread | spread: NOT Western Michigan wins by over 14.5 points | kalshi | $35k | +104 |  |  | -7.0c | yes | W |
 | Nov 17 10:05AM | NHL | Dallas vs Vegas: Total Goals | total: Over 5.5 goals scored | kalshi | $33k | -113 | ✅ novig |  | +1.0c | yes | pending |
 | Nov 17 10:05AM | NHL | Toronto vs Chicago: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $41k | -100 | ✅ novig |  | +0.0c | yes | pending |
@@ -73,7 +73,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 17 10:05AM | NCAAF | Ball St. vs Ohio: Total Points | total: NOT Over 49.5 points | kalshi | $25k | +104 | ✅ novig,prophetx |  | +1.0c | yes | pending |
 | Nov 17 9:55AM | NCAAF | Miami (OH) vs Kent St.: Spread | spread: NOT Miami (OH) wins by over 9.5 points | kalshi | $42k | -104 |  |  | -1.0c | yes | L |
 | Nov 17 9:40AM | NCAAF | Akron vs UMass | moneyline: UMass | kalshi | $156k | -150 |  |  | +1.0c |  | pending |
-| Nov 17 9:20AM | NBA | New York vs Toronto: Total Points | total: Over 214.5 points | kalshi | $26k | -108 |  | ❌ | +2.0c | yes | pending |
+| Nov 17 9:20AM | NBA | New York vs Toronto: Total Points | total: Over 214.5 points | kalshi | $26k | -108 |  | ❌ | +2.0c | yes | L |
 | Nov 17 9:16AM | NCAAF | Ball St. vs Ohio: Spread | spread: NOT Ohio wins by over 11.5 points | kalshi | $244k | -108 |  |  | +2.0c |  | pending |
 | Nov 17 9:16AM | NBA | Detroit vs San Antonio: Total Points | total: NOT Over 222.5 points | kalshi | $28k | -100 |  |  | +3.0c |  | pending |
 | Nov 17 8:46AM | NBA | Detroit Pistons @ San Antonio Spurs | moneyline: SAS (0) | novig | $25k | -376 | ✅ kalshi,prophetx |  | +0.0c | yes | pending |
@@ -84,7 +84,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 17 8:05AM | NBA | Charlotte Hornets @ Los Angeles Lakers | moneyline: LAL (0) | novig | $26k | -285 | ✅ kalshi,prophetx |  | -1.5c |  | pending |
 | Nov 17 8:05AM | NBA | Portland vs Minnesota: Total Points | total: NOT Over 226.5 points | kalshi | $26k | +104 |  |  | +2.0c | yes | pending |
 | Nov 17 8:00AM | NHL | Calgary vs San Jose: Spread | spread: NOT San Jose wins by over 1.5 goals | kalshi | $47k | -213 | ✅ novig |  | +0.0c |  | pending |
-| Nov 17 8:00AM | NBA | New York vs Toronto: Total Points | total: NOT Over 216.5 points | kalshi | $51k | -100 |  |  | +2.0c | yes | pending |
+| Nov 17 8:00AM | NBA | New York vs Toronto: Total Points | total: NOT Over 216.5 points | kalshi | $51k | -100 |  |  | +2.0c | yes | W |
 | Nov 17 7:55AM | NHL | Toronto vs Chicago | moneyline: Chicago | kalshi | $58k | +133 |  |  | +1.0c |  | pending |
 | Nov 17 7:10AM | NHL | Anaheim vs St. Louis: Spread | spread: NOT St. Louis wins by over 1.5 goals | kalshi | $48k | -203 |  |  | +0.0c |  | pending |
 | Nov 17 7:05AM | NHL | Columbus vs New York I: Spread | spread: NOT New York I wins by over 1.5 goals | kalshi | $77k | -213 |  |  | +2.0c |  | L |
