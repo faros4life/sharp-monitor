@@ -88,6 +88,34 @@ def net_dec(book, dec):
         return dec
 
 
+def leg_clv_pct(close_p, filled):
+    """FILL-IMPLIED CLV from a certified close and the confirmed legs. (weighted_pct, legs) or (None, []).
+
+    Its own measure - never the official clv_report basis, never averaged into the certified `clv`.
+
+    Each leg is priced at its RAW fill price with its OWN venue's fee, then stake-weighted. Passing an
+    already-netted price (a play's `am_net`) would double-charge the fee, because sc.std_clv applies
+    net_dec itself. Per-leg also preserves the venue economics of a mixed-venue fill.
+    """
+    import clv_scorecard as sc
+    if close_p is None:
+        return None, []
+    out, num, den = [], 0.0, 0.0
+    for l in filled or []:
+        c = sc.std_clv(close_p, l.get("am"), l.get("book"))
+        if c is None:
+            continue
+        out.append({"book": l.get("book"), "am": l.get("am"), "clv": round(c, 2)})
+        wt = l.get("w") or 0.0
+        num += c * wt
+        den += wt
+    if not out:
+        return None, []
+    # equal weight when no leg carries a stake, so a play is never dropped for want of a weight
+    mean = (num / den) if den else (sum(x["clv"] for x in out) / len(out))
+    return round(mean, 2), out
+
+
 def bare_side(bet):
     """Polymarket US labels a spread by its number only ('-15.50')."""
     return bool(re.fullmatch(r"\s*[+-]\d+(?:\.\d+)?\s*", str(bet or "")))
@@ -270,6 +298,20 @@ def account(L, bets, clv=None, alerts=None, start=START_UTC):
                     return c
         return None
 
+    def close_p_of(ids):
+        """The certified close probability for this play, or None. Same guard as certified(): a verified
+        same-line or exact-moneyline Pinnacle close only - a line-move-adjusted close is never used here."""
+        for i in ids:
+            r = clv.get(i) or {}
+            if str(r.get("how") or "").strip().lower() in ("own line", "moneyline") and r.get("close_p") is not None:
+                return r["close_p"]
+        return None
+
+    def fill_implied(ids, filled):
+        """FILL-IMPLIED CLV for this play (Peter, Nov 18). See leg_clv_pct - the math lives there so it
+        is testable. Percentages only, no stakes or dollars."""
+        return leg_clv_pct(close_p_of(ids), filled)
+
     for key, p in P.items():
         lg, game, mk, side = (key.split("|") + [None] * 4)[:4]
         lanes = {x for x in p["lanes"] if x}
@@ -333,6 +375,7 @@ def account(L, bets, clv=None, alerts=None, start=START_UTC):
         if am is None and rows and ev != "E4 game settlement (row ownership unresolved)":
             am = am_net = rows[0][1].get("price")   # tracker price of the bot's own row (venue-reported, after fees)
         am_by_id = {i: (b.get("price") if b.get("price") is not None else am) for i, b in rows}
+        fi_mean, fi_legs = fill_implied([i for i, _ in rows], filled)
         plays.append({"lane": lane_name, "key": key, "t": p["t"], "am": am, "am_net": am_net, "res": res, "evidence": ev,
                       "rows": [i for i, _ in rows], "fills": len(filled),
                       # Nov 17 (Peter, O19): the venues this play actually FILLED on, and the board price basis,
@@ -340,6 +383,10 @@ def account(L, bets, clv=None, alerts=None, start=START_UTC):
                       "books": sorted({l["book"] for l in filled if l.get("book")}),
                       "fee_basis": p.get("fee_basis"),
                       "clv": certified([i for i, _ in rows], am_by_id),
+                      # Nov 18 (Peter): fill-implied CLV - its own measure, kept beside the certified `clv`
+                      # above and never blended into it. Percentages only.
+                      "clv_fill": fi_mean,
+                      "clv_fill_legs": fi_legs,
                       "status": "graded" if res else ("open" if rows else "filled, no tracker settlement")})
 
     # 2b. registry-order-id rows the ledger has not caught up with (E2)

@@ -456,6 +456,52 @@ def live_rows(acct, lane):
             for p in acct["plays"] if p["lane"] == lane and p["res"] in ("W", "L", "P") and p["am_net"] is not None]
 
 
+FILL_IMPLIED_TITLE = "FILL-IMPLIED CLV - live plays priced at what the venues actually FILLED"
+
+
+def fill_implied_block(acct):
+    """Its OWN measure, reported beside the certified basis and NEVER blended into it (Peter, Nov 18).
+
+    `clv` elsewhere in this report is the official clv_report basis: a verified same-line or exact-moneyline
+    Pinnacle close. This block prices the same plays at the venues' own fill prices, per leg, each with its
+    own venue fee. The two answer different questions - the certified number scores the SIGNAL at the alert
+    price, this one scores the ACCOUNT - so they are never averaged together or substituted for each other.
+
+    Percentages and counts only; no stakes, dollars or account data.
+    """
+    rows = [p for p in acct["plays"] if p.get("clv_fill") is not None]
+    out = [FILL_IMPLIED_TITLE,
+           "  not the official clv_report basis - a separate measure, never blended with certified CLV"]
+    if not rows:
+        out.append("  no live play carries a certified close yet - nothing to price")
+        return out
+    for lane in sorted({str(p["lane"]) for p in rows}):
+        L = [p for p in rows if str(p["lane"]) == lane]
+        v = [p["clv_fill"] for p in L]
+        beat = sum(1 for x in v if x > 0)
+        mean = sum(v) / len(v)
+        se = (sum((x - mean) ** 2 for x in v) / (len(v) * (len(v) - 1))) ** 0.5 if len(v) > 1 else None
+        band = f" +/-{se:.2f} (1 s.e.)" if se is not None else " (n=1, no spread)"
+        out.append(f"  {lane:<9} n {len(v)} of {sum(1 for p in acct['plays'] if p['lane'] == lane)} plays | "
+                   f"fill-implied CLV {mean:+.2f}%{band} | beat close {beat}/{len(v)}")
+    by = {}
+    for p in rows:
+        for l in p.get("clv_fill_legs") or []:
+            by.setdefault(l["book"] or "unknown", []).append(l["clv"])
+    if by:
+        out.append("  by fill venue (per leg, that venue's own fee):")
+        for b in sorted(by):
+            v = by[b]
+            out.append(f"    {b:<14} n {len(v)} | {sum(v)/len(v):+.2f}% | beat close {sum(1 for x in v if x > 0)}/{len(v)}")
+    gap = [(p["clv_fill"], p["clv"]) for p in rows if p.get("clv") is not None]
+    if gap:
+        d = [f - c for f, c in gap]
+        out.append(f"  fill vs certified on the same {len(gap)} plays: "
+                   f"fill {sum(f for f, _ in gap)/len(gap):+.2f}% | certified {sum(c for _, c in gap)/len(gap):+.2f}% | "
+                   f"gap {sum(d)/len(d):+.2f}pp (zero tolerance means fills price at or better than the alert)")
+    return out
+
+
 def manual_rows(acct, src):
     return [{"ts": m["t"], "game": f"{m['game']} - {m['bet']}", "am": m["am"], "res": m["res"], "clv": m["clv"],
              "key": tuple(sorted(m["rows"]))}
@@ -649,12 +695,18 @@ def main():
         say(f"  resting legs with no confirmed fill: {len(nf)} (excluded)")
 
         say("")
+        for _ln in fill_implied_block(acct):
+            say(_ln)
+
+        say("")
         say("LIVE RECONCILIATION - every bot order in the window")
         for p in sorted(acct["plays"], key=lambda p: p["t"]):
             clv = "n/a" if p["clv"] is None else f"{p['clv']:+.2f}%"
+            fi = "n/a" if p.get("clv_fill") is None else f"{p['clv_fill']:+.2f}%"
+            vn = ",".join(f"{l['book']}@{l['am']}:{l['clv']:+.2f}%" for l in (p.get("clv_fill_legs") or [])) or "-"
             say(f"  COUNTED  {p['t'][:16]} {p['lane']:<9} {p['key']} | fill {p['am']} (after fees {p['am_net']}) "
                 f"{p['res'] or '-'} | {p['status']} | "
-                f"{p['evidence']} | legs {p['fills']} | CLV {clv}")
+                f"{p['evidence']} | legs {p['fills']} | CLV {clv} | fill-implied {fi} [{vn}]")
         for e in sorted(acct["excluded"], key=lambda e: e["t"]):
             say(f"  EXCLUDED {e['t'][:16]} {str(e['lane']):<9} {e['key']} | {e['why']}")
         for u in sorted(acct["unresolved"], key=lambda u: u["t"]):
