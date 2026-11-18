@@ -1414,6 +1414,7 @@ def write_alerts_file(st, n):
                     # the record - which is what closing HR1 needs. None = verification never ran for this row
                     # (not eligible, or the row predates the gate). Logging only; nothing reads it to bet.
                     "hr1_verified": e.get("hr1_verified"),
+                    "hr1_verify_status": e.get("hr1_verify_status"),
                     "hr1_verify_why": e.get("hr1_verify_why") or None,
                     # Nov 17 (Peter): each bettable venue's own price for this side AT ALERT TIME. Logging only.
                     "prices_at_alert": e.get("prices") or None,
@@ -1786,22 +1787,29 @@ def run():
                     # unchanged - this decides only whether the alert is PUSHED, so the record still separates "did
                     # not qualify" from "qualified but could not be verified". Fails safe: anything unreadable,
                     # uncorroborated or implausible is not pushed. Manual only; no executor path reads this.
-                    hr1_vok, hr1_vwhy = True, ""
+                    hr1_vst, hr1_vwhy = "verified", ""
                     if hr1_ok:
                         try:
                             import agree_rules as _ar2
-                            hr1_vok, hr1_vwhy = _ar2.hr1_quote_ok(
+                            hr1_vst, hr1_vwhy = _ar2.hr1_quote_status(
                                 # the LIVE alert dict carries book_prices() under "prices"; "prices_at_alert" is
                                 # only the exported name in write_alerts_file. Reading the export name here would
                                 # have returned None on every alert and failed every quote closed - verification
                                 # that silently blocks everything is as bad as verification that passes everything.
                                 a.get("pt"), net(a["price"], a["book"], cfg["label"]), a.get("prices"))
                         except Exception as _v:
-                            hr1_vok, hr1_vwhy = False, f"verification raised {type(_v).__name__}"
-                        a["hr1_verified"], a["hr1_verify_why"] = bool(hr1_vok), hr1_vwhy
-                        if not hr1_vok:
-                            print(f"HR1 NOT PUSHED (quote unverified): {a['text']} | {a['game']} | {hr1_vwhy}")
+                            hr1_vst, hr1_vwhy = "blocked", f"verification raised {type(_v).__name__}"
+                        # Nov 18 (Peter): three states, never two. "blocked" is a SUSPICIOUS quote and is not sent.
+                        # "unverified" is a plausible quote that no book corroborates on the exact number - it is
+                        # SENT, labelled, because dropping it silently threw away the full-point Hard Rock spreads
+                        # HR1 exists to catch (Cincinnati -27.5 against -28.5 elsewhere).
+                        a["hr1_verified"] = (hr1_vst == "verified")
+                        a["hr1_verify_status"], a["hr1_verify_why"] = hr1_vst, hr1_vwhy
+                        if hr1_vst == "blocked":
+                            print(f"HR1 NOT PUSHED (suspicious quote): {a['text']} | {a['game']} | {hr1_vwhy}")
                             hr1_ok = False   # eligibility already recorded above; this blocks the push only
+                        elif hr1_vst == "unverified":
+                            print(f"HR1 PUSHED UNVERIFIED: {a['text']} | {a['game']} | {hr1_vwhy}")
                     prior_note = ""
                     if opp:
                         prior_note = f"\nOPPOSITE of earlier alert {describe(opp[0])} - first alert is the play, don't bet this"
@@ -1885,7 +1893,10 @@ def run():
                             # was not enough on 18 Nov: the board was 3 points away, which reads as a different market
                             # rather than a moved price, and the instruction did not tell him to stop.
                             _q = a.get("hr1_quote") or {}
-                            label = (f"HR1 MANUAL BET at HARD ROCK: {a['text'].split(' at ')[0]}"
+                            _unv = (a.get("hr1_verify_status") == "unverified")
+                            label = (("[HR1 - MANUAL - UNVERIFIED] no other book sits on this number, so the price "
+                                      "is NOT corroborated - check the board carefully. " if _unv else "")
+                                     + f"HR1 MANUAL BET at HARD ROCK: {a['text'].split(' at ')[0]}"
                                      f" | CHECK FIRST: Hard Rock's main number must be {_q.get('point')}"
                                      f" at {_q.get('price')}. DO NOT BET if the board shows a different number -"
                                      f" that is a bad quote, not a moved line. (sharp ref {_q.get('sharp_line')})"
@@ -1907,7 +1918,7 @@ def run():
                     # Nov 18: this projection is a FIXED key list, so a field set on the live alert dict is dropped
                     # unless it is named here. That is why the Navy row exported hr1_verified: None after the gate
                     # had already blocked it and printed the reason - the verdict never reached the record.
-                    for _k in ("hr1_verified", "hr1_verify_why"):
+                    for _k in ("hr1_verified", "hr1_verify_status", "hr1_verify_why"):
                         if _k in a:
                             e[_k] = a[_k]
                     e.update(sport=cfg["label"], start=a["commence"], t=time.time(), lead=round(lead), late=late,

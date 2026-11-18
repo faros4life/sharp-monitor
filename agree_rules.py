@@ -213,28 +213,37 @@ HR1_MAX_EDGE_C = 25.0    # Hard Rock may be better than the best same-line book 
 HR1_MAX_LINE_GAP = 1.5   # and its line may sit at most this far from the median of the other books' lines
 
 
-def hr1_quote_ok(point, after_fee, prices_at_alert):
-    """(ok, why) - is this Hard Rock quote corroborated well enough to hand Peter as an actionable bet?
+def hr1_quote_status(point, after_fee, prices_at_alert):
+    """(status, why) where status is "verified" | "unverified" | "blocked".
 
-    FAILS SAFE. No other book, no comparator, or anything unreadable returns False: an unverifiable quote is
-    not pushed. It never suppresses a quote that other books corroborate, which is what a genuine slow line
-    looks like.
+    Nov 18 (Peter), after the first gate blocked Cincinnati -27.5 (-110) while Novig and ProphetX both sat on
+    -28.5: Hard Rock was a FULL POINT better, which is the slow line HR1 exists to catch, and it was dropped
+    silently merely because no book shared the number. Spreads land on half-points, so that recurs.
+
+    Two states with opposite remedies must not be one message:
+      blocked    - the quote is SUSPICIOUS. Either a same-line book shows Hard Rock implausibly better
+                   (the 72c incident), or the number itself is far from where the market is. Not sent.
+      unverified - the quote is PLAUSIBLE but nothing sits on that exact number, so the price cannot be
+                   corroborated. Sent, labelled UNVERIFIED, for Peter to check against the live board.
+      verified   - a book on the same number corroborates the price.
+
+    FAILS SAFE on anything unreadable: no prices, no other book, no readable line -> blocked.
     """
     pa = prices_at_alert if isinstance(prices_at_alert, dict) else None
     if not pa:
-        return False, "no cross-book prices stored at alert time - cannot verify the quote"
+        return "blocked", "no cross-book prices stored at alert time - cannot verify the quote"
     if point is None or after_fee is None:
-        return False, "alert carries no line or no after-fee price"
+        return "blocked", "alert carries no line or no after-fee price"
     try:
         pt, af = float(point), float(after_fee)
     except (TypeError, ValueError):
-        return False, "line or price unreadable"
+        return "blocked", "line or price unreadable"
 
     others = {b: v for b, v in pa.items() if b not in HARD_ROCK and isinstance(v, dict)}
     if not others:
-        return False, "no other book quoted this side - nothing corroborates the quote"
+        return "blocked", "no other book quoted this side - nothing corroborates the quote"
 
-    # 1) price plausibility, against any book sitting on the SAME number
+    # 1) SUSPICIOUS PRICE - a book on the SAME number says what this side is worth, and Hard Rock is far better
     same = []
     for b, v in others.items():
         try:
@@ -246,10 +255,10 @@ def hr1_quote_ok(point, after_fee, prices_at_alert):
         best_b, best_af = max(same, key=lambda x: x[1])
         edge = af - best_af          # American after-fee: higher is better for the bettor
         if edge > HR1_MAX_EDGE_C:
-            return False, (f"Hard Rock {af:+.0f} is {edge:.0f}c better than {best_b} {best_af:+.0f} on the same "
-                           f"{pt:g} - implausible, treated as a bad quote (max {HR1_MAX_EDGE_C:.0f}c)")
+            return "blocked", (f"Hard Rock {af:+.0f} is {edge:.0f}c better than {best_b} {best_af:+.0f} on the same "
+                               f"{pt:g} - implausible, treated as a bad quote (max {HR1_MAX_EDGE_C:.0f}c)")
 
-    # 2) line plausibility, against where the other books actually are
+    # 2) SUSPICIOUS NUMBER - the line itself is nowhere near where the market is
     pts = []
     for v in others.values():
         try:
@@ -258,16 +267,19 @@ def hr1_quote_ok(point, after_fee, prices_at_alert):
         except (TypeError, ValueError):
             continue
     if not pts:
-        return False, "no other book's line is readable - nothing corroborates the number"
+        return "blocked", "no other book's line is readable - nothing corroborates the number"
     pts.sort()
     med = pts[len(pts) // 2] if len(pts) % 2 else (pts[len(pts) // 2 - 1] + pts[len(pts) // 2]) / 2
     gap = abs(pt - med)
     if gap > HR1_MAX_LINE_GAP:
-        return False, (f"Hard Rock line {pt:g} is {gap:g} from the other books' median {med:g} "
-                       f"- unconfirmed number (max {HR1_MAX_LINE_GAP:g})")
+        return "blocked", (f"Hard Rock line {pt:g} is {gap:g} from the other books' median {med:g} "
+                           f"- unconfirmed number (max {HR1_MAX_LINE_GAP:g})")
+
+    # 3) plausible, but nothing sits on this exact number: SEND IT, labelled, for Peter to check on the board
     if not same:
-        return False, f"no other book sits on {pt:g} - the price cannot be corroborated"
-    return True, ""
+        return "unverified", (f"no other book sits on {pt:g} (nearest market {med:g}) - price not corroborated; "
+                              f"check the exact line and price on the Hard Rock board before betting")
+    return "verified", ""
 
 
 def hr1(a):
