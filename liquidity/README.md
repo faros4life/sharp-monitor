@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 18, 10:50 AM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 37.
+Updated Wed Nov 18, 10:55 AM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 38.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,12 +10,13 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 18 10:55AM | NCAAF | Central Michigan vs Buffalo: Spread | spread: NOT Buffalo wins by over 2.5 points | kalshi | $65k | +104 |  | ❌ | +0.0c |  | pending |
 | Nov 18 10:40AM | NCAAF | Akron vs UMass: Spread | spread: UMass wins by over 3.5 points | kalshi | $53k | -100 |  |  | +0.0c |  | pending |
 | Nov 18 10:15AM | NCAAF | Akron vs UMass: Total Points | total: Over 46.5 points | kalshi | $41k | -104 |  |  | +4.0c | yes | pending |
 | Nov 18 9:25AM | NHL | Boston vs Detroit: Total Goals | total: NOT Over 5.5 goals scored | kalshi | $29k | +117 |  |  | +0.0c |  | pending |
 | Nov 18 9:25AM | NHL | Colorado vs Utah | moneyline: Utah | kalshi | $35k | -104 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 18 9:20AM | NBA | Philadelphia vs Orlando: Total Points | total: Over 221.5 points | kalshi | $34k | -104 |  |  | +0.0c |  | pending |
-| Nov 18 9:20AM | NBA | Boston vs Denver: Total Points | total: NOT Over 222.5 points | kalshi | $37k | -104 |  | ❌ | +5.0c |  | pending |
+| Nov 18 9:20AM | NBA | Boston vs Denver: Total Points | total: NOT Over 222.5 points | kalshi | $37k | -104 |  | ❌ | +6.0c |  | pending |
 | Nov 18 9:05AM | NCAAF | Central Michigan vs Buffalo: Spread | spread: Buffalo wins by over 2.5 points | kalshi | $41k | -100 | ✅ novig | ✅ | +2.0c |  | pending |
 | Nov 18 8:55AM | NBA | Phoenix vs Sacramento: Spread | spread: Phoenix wins by over 6.5 points | kalshi | $31k | -104 |  | ✅ | +0.0c |  | pending |
 | Nov 18 7:36AM | NCAAF | Central Michigan vs Buffalo | moneyline: Buffalo | kalshi | $120k | -113 |  |  | +4.0c |  | pending |
@@ -41,7 +42,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 17 8:35PM | NBA | Utah vs Los Angeles C: Total Points | total: NOT Over 227.5 points | kalshi | $49k | -108 |  |  | +0.0c | yes | L |
 | Nov 17 8:35PM | NBA | Houston vs Indiana | moneyline: Houston | kalshi | $117k | -223 |  |  | +4.0c |  | pending |
 | Nov 17 8:30PM | NCAAF | Central Michigan vs Buffalo: Spread | spread: NOT Buffalo wins by over 1.5 points | kalshi | $97k | -104 | ✅ novig |  | -4.0c | yes | pending |
-| Nov 17 8:20PM | NBA | Atlanta vs Oklahoma City | moneyline: Oklahoma City | kalshi | $109k | -257 |  |  | -2.0c |  | pending |
+| Nov 17 8:20PM | NBA | Atlanta vs Oklahoma City | moneyline: Oklahoma City | kalshi | $109k | -257 |  |  | -1.0c |  | pending |
 | Nov 17 8:15PM | NBA | Golden State vs Dallas | moneyline: Dallas | kalshi | $104k | -186 |  |  | -1.0c |  | pending |
 | Nov 17 7:55PM | NBA | Chicago vs Brooklyn | moneyline: Brooklyn | kalshi | $77k | -138 |  |  | -1.0c | yes | pending |
 | Nov 17 7:45PM | NBA | Portland Trail Blazers at Minnesota Timberwolves | moneyline: Minnesota Timberwolves | prophetx | $39k | -162 | ✅ kalshi,novig | ✅ | -0.6c |  | W |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 15 5:25PM | NHL | Edmonton vs Philadelphia: Total Goals | total: Over 5.5 goals scored | kalshi | $38k | -127 | ✅ novig |  | -3.0c | yes | W |
 | Nov 15 5:10PM | NBA | Houston Rockets at Washington Wizards | moneyline: Houston Rockets | prophetx | $33k | -295 | ✅ kalshi,novig | ❌ | +0.9c |  | W |
 | Nov 15 4:56PM | NBA | Dallas vs Boston: Spread | spread: NOT Boston wins by over 15.5 points | kalshi | $46k | -113 |  | ❌ | +0.0c |  | L |
-| Nov 15 4:50PM | NBA | Houston vs Washington: Total Points | total: Over 223.5 points | kalshi | $33k | +104 |  |  | +3.0c | yes | W |
