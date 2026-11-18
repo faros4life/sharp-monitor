@@ -511,31 +511,70 @@ def market_key(b):
     s = str(b.get("slug") or "").strip()
     if bk == "Polymarket US" and s:
         return ("Polymarket US", s)
+    # Nov 18 (Peter): ProphetX is where the stuck rows actually are - 349 of the 353, against Kalshi's 3
+    # and Polymarket US's 0. The Kalshi/PMUS reader asymmetry is real but it is NOT what that backlog is;
+    # those two have small samples because there are few such bets. A settled ProphetX row never passes
+    # through attach(), and read_prophetx sets game_start only when the venue itself returned a start, so
+    # when it does not the row is stuck for good. strike_id groups the fills of ONE bet (Nov 6), so a
+    # settled row can inherit from its own open sibling exactly as Kalshi does.
+    k = str(b.get("strike") or "").strip()
+    if bk == "ProphetX" and k:
+        return ("ProphetX", k)
     return None
 
 
 def inherit_game_start(bets):
-    """Give a settled Kalshi / Polymarket US row the start time its own open row already carried.
+    """Give a settled Kalshi / Polymarket US / ProphetX row the start time its own open row already carried.
 
     Source is the SAME venue and the SAME market id - the venue's own record, never a guess. Returns
     (adopted, still_missing) counts for the report. Sets nothing where no sibling row knows the start.
+
+    IDENTITY IS VALIDATED, not assumed (Peter, 18 Nov). A market id is only a key; before a start time
+    crosses from one row to another both rows must agree on the event:
+      * a key whose donors disagree on game_start is AMBIGUOUS and adopts nothing - a duplicate or reused
+        id must never pick a start at random;
+      * where both rows name a league they must match;
+      * where both rows name a game the team tokens must overlap.
+    Any row that fails validation is left exactly as it is and stays counted as missing. Nothing here
+    invents a timestamp, and no stake, fill, unit or CLV is touched.
     """
-    known = {}
+    donors = {}
     for b in bets.values():
         k = market_key(b)
         if k and b.get("game_start"):
-            known.setdefault(k, b["game_start"])
+            donors.setdefault(k, []).append(b)
+
+    known, ambiguous = {}, set()
+    for k, rows in donors.items():
+        starts = {str(r.get("game_start")) for r in rows}
+        if len(starts) > 1:        # same market id, two different start times: cannot be one event
+            ambiguous.add(k)
+            continue
+        known[k] = rows[0]
+
+    def same_event(a, b):
+        la, lb = str(a.get("league") or "").strip(), str(b.get("league") or "").strip()
+        if la and lb and la != lb:
+            return False
+        ta, tb_ = toks(a.get("game")) - WEAK, toks(b.get("game")) - WEAK
+        if ta and tb_ and not (ta & tb_):
+            return False
+        return True
+
     adopted, missing = 0, 0
     for b in bets.values():
         if b.get("game_start"):
             continue
         k = market_key(b)
-        if k and known.get(k):
-            b["game_start"] = known[k]
-            b["game_start_src"] = "sibling row, same venue market id"
-            adopted += 1
-        elif k:
+        if not k:
+            continue
+        src = known.get(k)
+        if src is None or k in ambiguous or not same_event(b, src):
             missing += 1
+            continue
+        b["game_start"] = src["game_start"]
+        b["game_start_src"] = "sibling row, same venue market id"
+        adopted += 1
     return adopted, missing
 
 

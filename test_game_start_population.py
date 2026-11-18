@@ -151,3 +151,80 @@ def test_other_venues_are_left_alone():
             "px|1": {"book": "ProphetX", "result": "L"}}
     assert tb.inherit_game_start(bets) == (0, 0)
     assert "game_start" not in bets["nv|m1|o1"]
+
+
+# ------------------------------------------------- ProphetX (Peter, 18 Nov): where the backlog actually is
+def test_prophetx_is_keyed_on_its_strike():
+    """349 of the 353 stuck rows are ProphetX. strike_id groups the fills of one bet (Nov 6)."""
+    assert tb.market_key({"book": "ProphetX", "strike": "27377044"}) == ("ProphetX", "27377044")
+    assert tb.market_key({"book": "ProphetX", "strike": ""}) is None
+    assert tb.market_key({"book": "ProphetX"}) is None
+
+
+def test_prophetx_settled_row_inherits_from_its_open_sibling():
+    bets = {
+        "px|1": {"book": "ProphetX", "strike": "S1", "league": "NBA", "game": "Lakers @ Bucks",
+                 "game_start": "2026-11-18T23:00:00+00:00"},
+        "px|2": {"book": "ProphetX", "strike": "S1", "league": "NBA", "game": "Lakers @ Bucks", "result": "L"},
+    }
+    ok, missing = tb.inherit_game_start(bets)
+    assert (ok, missing) == (1, 0)
+    assert bets["px|2"]["game_start"] == "2026-11-18T23:00:00+00:00"
+
+
+def test_duplicate_strike_with_conflicting_starts_adopts_nothing():
+    """A reused id must never pick a start at random."""
+    bets = {
+        "a": {"book": "ProphetX", "strike": "S9", "game": "A @ B", "game_start": "2026-11-18T23:00:00+00:00"},
+        "b": {"book": "ProphetX", "strike": "S9", "game": "A @ B", "game_start": "2026-11-19T01:00:00+00:00"},
+        "c": {"book": "ProphetX", "strike": "S9", "game": "A @ B", "result": "L"},
+    }
+    ok, missing = tb.inherit_game_start(bets)
+    assert (ok, missing) == (0, 1)
+    assert "game_start" not in bets["c"]
+
+
+def test_identity_is_validated_not_assumed():
+    """Same strike, different event: the start must not cross."""
+    bets = {
+        "donor": {"book": "ProphetX", "strike": "S2", "league": "NBA", "game": "Lakers @ Bucks",
+                  "game_start": "2026-11-18T23:00:00+00:00"},
+        "other": {"book": "ProphetX", "strike": "S2", "league": "NCAAB", "game": "Howard @ Duquesne", "result": "W"},
+    }
+    ok, missing = tb.inherit_game_start(bets)
+    assert (ok, missing) == (0, 1)
+    assert "game_start" not in bets["other"]
+
+
+def test_missing_sibling_leaves_the_row_alone_and_counted():
+    bets = {"px|9": {"book": "ProphetX", "strike": "S404", "game": "A @ B", "result": "L",
+                     "settled": "2026-11-19T03:00:00+00:00"}}
+    assert tb.inherit_game_start(bets) == (0, 1)
+    assert "game_start" not in bets["px|9"]
+
+
+def test_missing_identity_fields_do_not_block_a_same_key_adopt():
+    """A row with no league/game text is not rejected for lacking what it never carried."""
+    bets = {
+        "d": {"book": "ProphetX", "strike": "S3", "game_start": "2026-11-18T23:00:00+00:00"},
+        "r": {"book": "ProphetX", "strike": "S3", "result": "L"},
+    }
+    assert tb.inherit_game_start(bets)[0] == 1
+
+
+def test_kalshi_and_pmus_paths_still_work_after_the_change():
+    bets = {
+        "ks|T|yes": {"book": "Kalshi", "ticker": "T", "game": "A @ B", "game_start": "2026-11-18T23:00:00+00:00"},
+        "ks|T|settled": {"book": "Kalshi", "ticker": "T", "game": "A @ B", "result": "L"},
+        "pm|s|U": {"book": "Polymarket US", "slug": "s", "game": "C @ D", "game_start": "2026-11-18T23:00:00+00:00"},
+        "pm|t [s]|U|settled": {"book": "Polymarket US", "slug": "s", "game": "C @ D", "result": "W"},
+    }
+    assert tb.inherit_game_start(bets) == (2, 0)
+
+
+def test_venues_never_cross_on_a_shared_id():
+    bets = {
+        "px": {"book": "ProphetX", "strike": "X", "game": "A @ B", "game_start": "2026-11-18T23:00:00+00:00"},
+        "ks": {"book": "Kalshi", "ticker": "X", "game": "A @ B", "result": "L"},
+    }
+    assert tb.inherit_game_start(bets) == (0, 1)
