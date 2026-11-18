@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 18, 6:40 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 30.
+Updated Wed Nov 18, 6:50 PM ET. This run: 0 new, 1 not confirmed, 1 pending. Open alerts: 30.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 18 6:40PM | NCAAB | Howard vs Duquesne | moneyline: Duquesne | kalshi | $29k | -213 | ✅ novig |  | +0.0c |  | pending |
+| Nov 18 6:40PM | NCAAB | Howard vs Duquesne | moneyline: Duquesne | kalshi | $29k | -213 | ✅ novig |  | -1.0c |  | pending |
 | Nov 18 5:50PM | NCAAB | Kansas vs West Virginia: Spread | spread: NOT Kansas wins by over 8.5 points | kalshi | $58k | -122 |  | ✅ | +0.0c |  | pending |
 | Nov 18 4:50PM | NCAAB | Vermont vs Yale | moneyline: Yale | kalshi | $71k | -285 | ✅ novig | ✅ | +2.0c |  | pending |
 | Nov 18 4:50PM | NCAAB | Detroit Mercy vs Eastern Michigan | moneyline: Eastern Michigan | kalshi | $31k | -567 | ✅ novig |  | +0.0c | yes | pending |
