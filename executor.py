@@ -3144,8 +3144,22 @@ def _account_rows(rows, graded, ids, seen_oids, _intents, _confirmed):
                 continue   # settled win/push: not a loss toward the daily stop
             if (lo.get("book") or "prophetx") != "prophetx" and d_et in (None, datetime.now(lm.ET).date()):
                 fs = lo.get("filled_stake")   # fill-or-kill: what filled (unknown = all asked); resting: all asked
-                NONPX["today"] += (max(float(fs or 0), float(lo.get("asked_stake") or 0)) if (is_rest or fs is None)
-                                   else float(fs))
+                _amt = (max(float(fs or 0), float(lo.get("asked_stake") or 0)) if (is_rest or fs is None)
+                        else float(fs))
+                NONPX["today"] += _amt
+                # Nov 18: the corrected figure, computed in parallel and READ BY NOTHING. A released
+                # leg must be provably dead with an explicit zero fill, so the shadow can only ever be
+                # LOWER than or equal to the live number by rows that are not exposure at all.
+                try:
+                    if exposure_terminal(lo):
+                        NONPX_SHADOW["released"] += 1
+                    else:
+                        NONPX_SHADOW["today"] += _amt
+                        if d_et is None:
+                            NONPX_SHADOW["undated_kept"] += 1
+                            NONPX_SHADOW["undated_amt_legs"] += 1
+                except Exception:
+                    NONPX_SHADOW["today"] += _amt
 
 
 def bot_orders(M, days=4):
@@ -3154,6 +3168,7 @@ def bot_orders(M, days=4):
     Oct 27 fix (found by the brake check): match the SUBJECT PREFIX exactly ('Bets LIVE:'), via IMAP SUBJECT + SINCE and
     a header re-check, so dry-run emails (whose body says 'WOULD GO LIVE') are never read as live ones."""
     NONPX["today"] = 0.0
+    NONPX_SHADOW.update(today=0.0, released=0, undated_kept=0, undated_amt_legs=0)
     # Nov 1 (Peter, "1a"): a non-ProphetX bot bet whose game is already graded in the feed no longer counts as lost:
     # a WIN or PUSH frees its money for the daily stop, a LOSS counts in full, ungraded still counts in full (safe side).
     graded = {}
@@ -3316,6 +3331,41 @@ def _h(x):
 
 GUARD = {"ok": None, "why": ""}
 NONPX = {"today": 0.0}   # Oct 28: bot dollars risked today on books other than ProphetX (from the ledger registry)
+# Nov 18 (Peter, approved; NOT ACTIVE). The corrected exposure runs BESIDE the live number and is read
+# by nothing - live_guards still gates on NONPX["today"]. Two defects were investigated:
+#   A. a row whose decided_utc is missing falls into the `d_et in (None, today)` branch and is charged
+#      to EVERY day's stop, permanently. 16 of 67 registry rows are undated.
+#   B. a resting bid keeps its full asked stake forever; nothing releases it when the bid comes off
+#      the book unfilled.
+# Only B is correctable here. A cannot be fixed by dating the row from expires_utc or the game start -
+# Peter ruled that out explicitly, and rightly: neither is evidence of when the order was DECIDED. An
+# undated row is released only when B's terminal test proves it dead, so genuine prior-day outstanding
+# exposure is preserved. The rest need an independent fill reconciliation, not a date heuristic.
+NONPX_SHADOW = {"today": 0.0, "released": 0, "undated_kept": 0, "undated_amt_legs": 0}
+
+
+def exposure_terminal(lo):
+    """True only when this leg is PROVABLY off the book having filled NOTHING.
+
+    Deliberately strict (Peter: "release ONLY when terminal status and zero fills are authoritatively
+    confirmed"): an expiry in the past is not enough on its own, because an expired order may have
+    filled before it expired. It requires an EXPLICIT zero from a venue read.
+
+    filled_stake None means UNKNOWN, never zero - that distinction is the whole point. Five Novig
+    resting bids carry None today and stay counted until something reconciles them; treating unknown
+    as zero would release money that may be at a venue, which is the one direction a risk gate must
+    never fail in.
+    """
+    e = lo.get("expires_utc")
+    if not e:
+        return False
+    try:
+        if datetime.fromisoformat(str(e).replace("Z", "+00:00")) >= datetime.now(timezone.utc):
+            return False                       # still open: a live commitment
+    except Exception:
+        return False                           # unparseable expiry -> never released
+    fs = lo.get("filled_stake")
+    return isinstance(fs, (int, float)) and not isinstance(fs, bool) and float(fs) == 0.0
 
 # ---------------------------------------------------------------- Board v3 pilot limits (Peter, 11 Nov)
 # Lane-specific and ADDITIONAL to the global stop, which is untouched: px_live.preflight() still runs
