@@ -192,6 +192,83 @@ def r1(a):
 HR1_PRICE = (-119.0, -101.0)   # after-fee band, as backtested (observed range -115..-105)
 HR1_MIN_LEAD = 60              # Peter's standing rule: nothing inside the last hour
 
+# ----------------------------------------------------------------- HR1 quote verification (Peter, 18 Nov 2026)
+# HR1's first live push told Peter to risk a real stake on Hard Rock Under 132.5 (-110). Two minutes later
+# Hard Rock's board showed a main total of 129.5 (-105); the play did not exist. The line/price pairing was
+# ruled out as the cause - each book contributes one (point, price) tuple from its own main total.
+#
+# What DOES separate that alert from the two good ones is cross-book agreement, measured on the alert's own
+# stored evidence:
+#     18 Nov Under 132.5   Hard Rock -110  vs ProphetX -178 on the SAME 132.5   -> 72c
+#     17 Nov Utah -12.5    Hard Rock -110  vs Kalshi -113 / ProphetX -118       -> 11c
+#     17 Nov Fordham -11.5 Hard Rock -115  vs Kalshi -108                       ->  1c
+# A genuinely slow Hard Rock line is worth cents, not most of a dollar. 72c is a broken quote, and it is six
+# times the worst normal case.
+#
+# These gates are deliberately NOT part of hr1() eligibility: an alert that cannot be verified is still an
+# eligible alert, it is just not safe to hand Peter as actionable. They decide the PUSH only, so the record
+# keeps saying what qualified and what was merely unverifiable. MANUAL ONLY, as HR1 has always been: no
+# executor path reads any of this, and Claude places nothing at Hard Rock.
+HR1_MAX_EDGE_C = 25.0    # Hard Rock may be better than the best same-line book by at most this many cents
+HR1_MAX_LINE_GAP = 1.5   # and its line may sit at most this far from the median of the other books' lines
+
+
+def hr1_quote_ok(point, after_fee, prices_at_alert):
+    """(ok, why) - is this Hard Rock quote corroborated well enough to hand Peter as an actionable bet?
+
+    FAILS SAFE. No other book, no comparator, or anything unreadable returns False: an unverifiable quote is
+    not pushed. It never suppresses a quote that other books corroborate, which is what a genuine slow line
+    looks like.
+    """
+    pa = prices_at_alert if isinstance(prices_at_alert, dict) else None
+    if not pa:
+        return False, "no cross-book prices stored at alert time - cannot verify the quote"
+    if point is None or after_fee is None:
+        return False, "alert carries no line or no after-fee price"
+    try:
+        pt, af = float(point), float(after_fee)
+    except (TypeError, ValueError):
+        return False, "line or price unreadable"
+
+    others = {b: v for b, v in pa.items() if b not in HARD_ROCK and isinstance(v, dict)}
+    if not others:
+        return False, "no other book quoted this side - nothing corroborates the quote"
+
+    # 1) price plausibility, against any book sitting on the SAME number
+    same = []
+    for b, v in others.items():
+        try:
+            if v.get("point") is not None and abs(float(v["point"]) - pt) < 1e-9 and v.get("after_fee") is not None:
+                same.append((b, float(v["after_fee"])))
+        except (TypeError, ValueError):
+            continue
+    if same:
+        best_b, best_af = max(same, key=lambda x: x[1])
+        edge = af - best_af          # American after-fee: higher is better for the bettor
+        if edge > HR1_MAX_EDGE_C:
+            return False, (f"Hard Rock {af:+.0f} is {edge:.0f}c better than {best_b} {best_af:+.0f} on the same "
+                           f"{pt:g} - implausible, treated as a bad quote (max {HR1_MAX_EDGE_C:.0f}c)")
+
+    # 2) line plausibility, against where the other books actually are
+    pts = []
+    for v in others.values():
+        try:
+            if v.get("point") is not None:
+                pts.append(float(v["point"]))
+        except (TypeError, ValueError):
+            continue
+    if not pts:
+        return False, "no other book's line is readable - nothing corroborates the number"
+    pts.sort()
+    med = pts[len(pts) // 2] if len(pts) % 2 else (pts[len(pts) // 2 - 1] + pts[len(pts) // 2]) / 2
+    gap = abs(pt - med)
+    if gap > HR1_MAX_LINE_GAP:
+        return False, (f"Hard Rock line {pt:g} is {gap:g} from the other books' median {med:g} "
+                       f"- unconfirmed number (max {HR1_MAX_LINE_GAP:g})")
+    if not same:
+        return False, f"no other book sits on {pt:g} - the price cannot be corroborated"
+    return True, ""
+
 
 def hr1(a):
     """HR1 (Peter, 17 Nov 2026): a MANUAL Hard Rock college-basketball alert, pushed so Peter can place it himself.

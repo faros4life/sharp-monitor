@@ -1776,6 +1776,26 @@ def run():
                              "alert_utc": now_utc().strftime("%Y-%m-%dT%H:%M:%SZ"), "start_utc": a["commence"]})[0]
                     except Exception as _x:
                         print(f"hr1 check skipped: {str(_x)[:60]}")
+                    # Nov 18 (Peter): VERIFY THE QUOTE before handing it over as actionable. Eligibility above is
+                    # unchanged - this decides only whether the alert is PUSHED, so the record still separates "did
+                    # not qualify" from "qualified but could not be verified". Fails safe: anything unreadable,
+                    # uncorroborated or implausible is not pushed. Manual only; no executor path reads this.
+                    hr1_vok, hr1_vwhy = True, ""
+                    if hr1_ok:
+                        try:
+                            import agree_rules as _ar2
+                            hr1_vok, hr1_vwhy = _ar2.hr1_quote_ok(
+                                # the LIVE alert dict carries book_prices() under "prices"; "prices_at_alert" is
+                                # only the exported name in write_alerts_file. Reading the export name here would
+                                # have returned None on every alert and failed every quote closed - verification
+                                # that silently blocks everything is as bad as verification that passes everything.
+                                a.get("pt"), net(a["price"], a["book"], cfg["label"]), a.get("prices"))
+                        except Exception as _v:
+                            hr1_vok, hr1_vwhy = False, f"verification raised {type(_v).__name__}"
+                        a["hr1_verified"], a["hr1_verify_why"] = bool(hr1_vok), hr1_vwhy
+                        if not hr1_vok:
+                            print(f"HR1 NOT PUSHED (quote unverified): {a['text']} | {a['game']} | {hr1_vwhy}")
+                            hr1_ok = False   # eligibility already recorded above; this blocks the push only
                     prior_note = ""
                     if opp:
                         prior_note = f"\nOPPOSITE of earlier alert {describe(opp[0])} - first alert is the play, don't bet this"
