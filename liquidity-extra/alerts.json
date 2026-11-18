@@ -1,6 +1,210 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-18T20:10:26Z",
+   "base_depth": 58874,
+   "best_price": 0.375,
+   "best_price_american": 167,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.37,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-18",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 9039,
+     "new_this_side": 42601,
+     "other_side": 22115,
+     "other_side_all_levels": 100593,
+     "ratio": 3.8,
+     "this_side": 83207,
+     "this_side_all_levels": 112022
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "RAD (0)",
+     "price": 0.375,
+     "this_side": 21076
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Radford",
+     "price": 0.3759,
+     "this_side": 663
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 5004.98,
+    "volume_24h_fp": 2131.92,
+    "volume_fp": 5100.87
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 2866.0,
+    "volume_24h_fp": 1494.0,
+    "volume_fp": 2866.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 2138.98,
+    "volume_24h_fp": 637.92,
+    "volume_fp": 2234.87
+   },
+   "fade_price": 0.64,
+   "first_seen_utc": "2026-11-18T20:00:26Z",
+   "game": "Furman vs Radford",
+   "game_surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "game_x": 2.01,
+   "key": "kalshi|KXNCAAMBGAME-26NOV18FURRAD|ml|1",
+   "lead_min": 230,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 42601,
+   "new_x": 0.65,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 5004.98,
+      "volume_24h_fp": 2131.92,
+      "volume_fp": 5100.87
+     },
+     "game_normal": 55818,
+     "game_x": 2.01,
+     "normal": 65784,
+     "now": 112022,
+     "type": "ML",
+     "x": 1.7
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 1454356.0,
+      "volume": 1638365.0
+     },
+     "game_normal": 11122,
+     "game_x": 2.31,
+     "normal": 4222,
+     "now": 25655,
+     "type": "ML",
+     "x": 6.08
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 692,
+     "game_x": 1.04,
+     "normal": 684,
+     "now": 720,
+     "type": "ML",
+     "x": 1.05
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.37,
+   "price_american": 170,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.37,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 165
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 161
+    },
+    "betopenly": {
+     "point": null,
+     "price": 188
+    },
+    "betrivers": {
+     "point": null,
+     "price": 150
+    },
+    "bovada": {
+     "point": null,
+     "price": 165
+    },
+    "circasports": {
+     "point": null,
+     "price": 160
+    },
+    "draftkings": {
+     "point": null,
+     "price": 170
+    },
+    "fanatics": {
+     "point": null,
+     "price": 165
+    },
+    "fanduel": {
+     "point": null,
+     "price": 164
+    },
+    "kalshi": {
+     "point": null,
+     "price": 170
+    },
+    "lowvig": {
+     "point": null,
+     "price": 161
+    },
+    "novig": {
+     "point": null,
+     "price": 163
+    },
+    "polymarket": {
+     "point": null,
+     "price": 163
+    },
+    "prophetx": {
+     "point": null,
+     "price": 166
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 162
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV18FURRAD-RAD"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Radford",
+   "side_label": "Radford",
+   "size_x": 1.7,
+   "start_source": "odds",
+   "start_utc": "2026-11-19T00:00:00Z",
+   "surge_books": [
+    "novig"
+   ],
+   "teams": [
+    "Furman",
+    "Radford"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-18T20:00:26Z",
    "base_depth": 46902,
    "best_price": 0.49,
@@ -14,8 +218,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": 0.0,
+   "close_price": 0.485,
+   "clv_cents": -0.5,
    "confirmed_after_min": 10,
    "date": "2026-11-18",
    "depth_by_book": {
@@ -48,6 +252,10 @@
    "ex_stats_change": {
     "openInterest": 2419387.0,
     "volume": 2464426.0
+   },
+   "ex_stats_close": {
+    "openInterest": 16788830.0,
+    "volume": 25982642.0
    },
    "ex_stats_first": {
     "openInterest": 13579960.0,
@@ -253,6 +461,11 @@
     "volume_24h_fp": 0.0,
     "volume_fp": 12769.72
    },
+   "ex_stats_close": {
+    "open_interest_fp": 61141.41,
+    "volume_24h_fp": 69235.13,
+    "volume_fp": 78368.81
+   },
    "ex_stats_first": {
     "open_interest_fp": 46810.1,
     "volume_24h_fp": 57384.86,
@@ -451,6 +664,11 @@
     "open_interest_fp": 34045.99,
     "volume_24h_fp": 0.0,
     "volume_fp": 38181.63
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 514262.26,
+    "volume_24h_fp": 507411.86,
+    "volume_fp": 587031.6499999999
    },
    "ex_stats_first": {
     "open_interest_fp": 422241.45999999996,
@@ -665,7 +883,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 6057.73,
-    "volume_24h_fp": 6011.0599999999995,
+    "volume_24h_fp": 6016.54,
     "volume_fp": 6061.49
    },
    "ex_stats_first": {
@@ -873,9 +1091,9 @@
     "volume_fp": 32.32
    },
    "ex_stats_close": {
-    "open_interest_fp": 10975.29,
-    "volume_24h_fp": 9929.980000000001,
-    "volume_fp": 11141.130000000001
+    "open_interest_fp": 10984.34,
+    "volume_24h_fp": 11140.980000000001,
+    "volume_fp": 11150.18
    },
    "ex_stats_first": {
     "open_interest_fp": 1064.0500000000002,
@@ -1086,9 +1304,9 @@
     "volume_fp": 65.86
    },
    "ex_stats_close": {
-    "open_interest_fp": 15991.330000000002,
-    "volume_24h_fp": 15503.029999999999,
-    "volume_fp": 16588.96
+    "open_interest_fp": 16131.21,
+    "volume_24h_fp": 16150.95,
+    "volume_fp": 16750.39
    },
    "ex_stats_first": {
     "open_interest_fp": 8404.79,
@@ -1512,7 +1730,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 300.56,
-    "volume_24h_fp": 299.22,
+    "volume_24h_fp": 300.56,
     "volume_fp": 300.56
    },
    "ex_stats_first": {
@@ -1712,9 +1930,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 7519.58,
-    "volume_24h_fp": 7257.64,
-    "volume_fp": 7529.09
+    "open_interest_fp": 7460.5599999999995,
+    "volume_24h_fp": 7317.82,
+    "volume_fp": 7588.110000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 1338.76,
@@ -2094,9 +2312,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2708.0299999999997,
+    "open_interest_fp": 2715.1099999999997,
     "volume_24h_fp": 2884.87,
-    "volume_fp": 2885.3100000000004
+    "volume_fp": 2892.3900000000003
    },
    "ex_stats_first": {
     "open_interest_fp": 99.76,
@@ -2266,9 +2484,9 @@
     "volume_fp": 47.4
    },
    "ex_stats_close": {
-    "open_interest_fp": 97094.08,
-    "volume_24h_fp": 86753.08,
-    "volume_fp": 100968.79000000001
+    "open_interest_fp": 97678.73000000001,
+    "volume_24h_fp": 87874.79999999999,
+    "volume_fp": 101553.44
    },
    "ex_stats_first": {
     "open_interest_fp": 28121.41,
@@ -2633,9 +2851,9 @@
     "volume_fp": 12.37
    },
    "ex_stats_close": {
-    "open_interest_fp": 9842.64,
-    "volume_24h_fp": 6908.4800000000005,
-    "volume_fp": 9856.64
+    "open_interest_fp": 9917.24,
+    "volume_24h_fp": 9459.94,
+    "volume_fp": 9931.24
    },
    "ex_stats_first": {
     "open_interest_fp": 647.5699999999999,
@@ -2991,7 +3209,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 8340.06,
-    "volume_24h_fp": 6393.469999999999,
+    "volume_24h_fp": 8285.85,
     "volume_fp": 8517.52
    },
    "ex_stats_first": {
