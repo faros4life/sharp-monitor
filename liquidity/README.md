@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 17, 8:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 96.
+Updated Tue Nov 17, 8:05 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 96.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -22,7 +22,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 17 7:05PM | NBA | Memphis vs Cleveland | moneyline: Cleveland | kalshi | $45k | -186 |  |  | +0.0c |  | pending |
 | Nov 17 6:50PM | NHL | Buffalo vs Philadelphia | moneyline: Buffalo | kalshi | $58k | -122 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 17 6:35PM | NBA | Utah Jazz at Los Angeles Clippers | moneyline: Los Angeles Clippers | prophetx | $31k | -215 | ✅ kalshi,novig |  | +0.0c |  | pending |
-| Nov 17 6:35PM | NBA | Utah Jazz @ Los Angeles Clippers | moneyline: LAC (0) | novig | $31k | -213 | ✅ kalshi,prophetx |  | -0.5c |  | pending |
+| Nov 17 6:35PM | NBA | Utah Jazz @ Los Angeles Clippers | moneyline: LAC (0) | novig | $31k | -213 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Nov 17 6:30PM | NBA | Charlotte vs Los Angeles L: Spread | spread: Los Angeles L wins by over 7.5 points | kalshi | $49k | +108 |  |  | +0.0c | yes | pending |
 | Nov 17 6:25PM | NHL | Washington vs Tampa Bay: Total Goals | total: Over 6.5 goals scored | kalshi | $32k | -100 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 17 6:20PM | NBA | New York vs Toronto: Total Points | total: Over 216.5 points | kalshi | $48k | +104 |  | ❌ | +0.0c | yes | pending |
