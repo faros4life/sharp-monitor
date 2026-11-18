@@ -1409,6 +1409,12 @@ def write_alerts_file(st, n):
                     # both means an HR1 alert he did NOT bet is still on the record, so "no alert" and "alert, no bet"
                     # can never collapse into one number. Logging only - nothing reads these to place a bet.
                     "hr1_pushed": bool(e.get("hr1")),
+                    # Nov 18 (Peter): the quote-verification verdict and its reason. Without these the gate's
+                    # decision lived only in the Actions log, so "blocked, and why" could not be counted from
+                    # the record - which is what closing HR1 needs. None = verification never ran for this row
+                    # (not eligible, or the row predates the gate). Logging only; nothing reads it to bet.
+                    "hr1_verified": e.get("hr1_verified"),
+                    "hr1_verify_why": e.get("hr1_verify_why") or None,
                     # Nov 17 (Peter): each bettable venue's own price for this side AT ALERT TIME. Logging only.
                     "prices_at_alert": e.get("prices") or None,
                     # Oct 28 (Muse fix list): global Polymarket is not bettable from the US; tag it so every split can
@@ -1898,6 +1904,12 @@ def run():
                                live=p1_ok or hr1_ok)   # Nov 17: HR1 mirrors to Telegram (Peter asked); mirror flag only
                     st["alerted"][a["id"]] = time.time()
                     e = {k: a[k] for k in ("id", "ev", "game", "kind", "side", "pt", "price", "book", "conf", "nconf", "cby", "evp", "fade", "prices")}
+                    # Nov 18: this projection is a FIXED key list, so a field set on the live alert dict is dropped
+                    # unless it is named here. That is why the Navy row exported hr1_verified: None after the gate
+                    # had already blocked it and printed the reason - the verdict never reached the record.
+                    for _k in ("hr1_verified", "hr1_verify_why"):
+                        if _k in a:
+                            e[_k] = a[_k]
                     e.update(sport=cfg["label"], start=a["commence"], t=time.time(), lead=round(lead), late=late,
                              score=score, grade=grade)
                     # Nov 17: record the push only where it HAPPENED. hr1_ok means eligible; an eligible Hard Rock
