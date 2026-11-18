@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 18, 4:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 50.
+Updated Wed Nov 18, 4:45 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 50.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -21,7 +21,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 18 12:06PM | NBA | Boston vs Denver: Spread | spread: NOT Boston wins by over 2.5 points | kalshi | $26k | -100 |  |  | +0.0c |  | pending |
 | Nov 18 12:00PM | NBA | Milwaukee vs Miami | moneyline: Miami | kalshi | $146k | -567 | ✅ novig | ✅ | +0.0c | yes | pending |
 | Nov 18 11:36AM | NBA | Chicago vs Brooklyn | moneyline: Chicago | kalshi | $77k | +127 | ✅ prophetx |  | +0.0c |  | pending |
-| Nov 18 11:10AM | NBA | Washington vs Toronto: Total Points | total: NOT Over 227.5 points | kalshi | $58k | -108 |  |  | +4.0c | yes | pending |
+| Nov 18 11:10AM | NBA | Washington vs Toronto: Total Points | total: NOT Over 227.5 points | kalshi | $58k | -108 |  |  | +5.0c | yes | pending |
 | Nov 18 10:55AM | NCAAF | Central Michigan vs Buffalo: Spread | spread: NOT Buffalo wins by over 2.5 points | kalshi | $65k | +104 |  | ❌ | +0.0c | yes | pending |
 | Nov 18 10:40AM | NCAAF | Akron vs UMass: Spread | spread: UMass wins by over 3.5 points | kalshi | $53k | -100 |  |  | +0.0c |  | pending |
 | Nov 18 10:15AM | NCAAF | Akron vs UMass: Total Points | total: Over 46.5 points | kalshi | $41k | -104 |  |  | +3.0c | yes | pending |
