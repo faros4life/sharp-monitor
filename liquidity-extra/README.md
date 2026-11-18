@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 18, 5:40 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 28.
+Updated Wed Nov 18, 5:50 PM ET. This run: 1 new, 1 not confirmed, 0 pending. Open alerts: 29.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,10 +10,11 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 18 4:50PM | NCAAB | Vermont vs Yale | moneyline: Yale | kalshi | $71k | -285 | ✅ novig | ✅ | +0.0c |  | pending |
+| Nov 18 5:50PM | NCAAB | Kansas vs West Virginia: Spread | spread: NOT Kansas wins by over 8.5 points | kalshi | $58k | -122 |  | ✅ | +0.0c |  | pending |
+| Nov 18 4:50PM | NCAAB | Vermont vs Yale | moneyline: Yale | kalshi | $71k | -285 | ✅ novig | ✅ | +2.0c |  | pending |
 | Nov 18 4:50PM | NCAAB | Detroit Mercy vs Eastern Michigan | moneyline: Eastern Michigan | kalshi | $31k | -567 | ✅ novig |  | +0.0c | yes | pending |
-| Nov 18 4:10PM | NCAAB | Kansas vs West Virginia: Spread | spread: Kansas wins by over 8.5 points | kalshi | $27k | +113 |  | ❌ | +0.0c |  | pending |
-| Nov 18 4:10PM | NCAAB | Northern Illinois vs Marquette: Spread | spread: NOT Marquette wins by over 27.5 points | kalshi | $41k | -113 |  | ✅ | +0.0c |  | pending |
+| Nov 18 4:10PM | NCAAB | Kansas vs West Virginia: Spread | spread: Kansas wins by over 8.5 points | kalshi | $27k | +113 |  | ❌ | -1.0c |  | pending |
+| Nov 18 4:10PM | NCAAB | Northern Illinois vs Marquette: Spread | spread: NOT Marquette wins by over 27.5 points | kalshi | $41k | -113 |  | ✅ | +1.0c |  | pending |
 | Nov 18 4:10PM | NCAAB | IU Indy vs Penn St.: Spread | spread: NOT Penn St. wins by over 16.5 points | kalshi | $30k | -100 |  |  | +2.0c |  | pending |
 | Nov 18 4:10PM | NCAAB | Cornell vs Syracuse: Spread | spread: NOT Syracuse wins by over 19.5 points | kalshi | $38k | -122 |  | ✅ | +0.0c |  | pending |
 | Nov 18 3:40PM | NCAAB | Houston vs Florida | moneyline: Florida | kalshi | $93k | -108 | ✅ novig,prophetx |  | +0.0c | yes | pending |
@@ -22,13 +23,13 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 18 3:00PM | NCAAB | Houston vs Florida: Spread | spread: NOT Florida wins by over 1.5 points | kalshi | $26k | -104 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 18 3:00PM | NCAAB | Houston vs Florida | moneyline: Houston | kalshi | $115k | +108 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 18 1:40PM | NCAAB | Morgan St. vs North Carolina A&T | moneyline: North Carolina A&T | kalshi | $48k | -300 | ✅ novig |  | +1.0c |  | pending |
-| Nov 18 1:20PM | NCAAB | Binghamton vs Lafayette | moneyline: Lafayette | kalshi | $48k | -163 |  | ✅ | +2.0c |  | pending |
+| Nov 18 1:20PM | NCAAB | Binghamton vs Lafayette | moneyline: Lafayette | kalshi | $48k | -163 |  | ✅ | +2.0c | yes | pending |
 | Nov 18 12:20PM | NCAAB | Kansas vs West Virginia | moneyline: Kansas | kalshi | $33k | -376 |  |  | -3.0c |  | pending |
 | Nov 18 10:10AM | NCAAB | UC Riverside vs San Diego | moneyline: San Diego | kalshi | $49k | -245 |  |  | +0.0c | yes | pending |
 | Nov 18 10:10AM | NCAAB | Purdue Fort Wayne vs Bradley | moneyline: Bradley | kalshi | $33k | -257 | ✅ novig |  | +1.0c |  | pending |
 | Nov 18 10:00AM | NCAAB | Louisiana vs San Francisco | moneyline: San Francisco | kalshi | $113k | -567 |  |  | +0.0c |  | pending |
 | Nov 18 4:40AM | NCAAB | Rutgers vs Notre Dame | moneyline: Notre Dame | kalshi | $31k | -170 |  |  | -4.0c | yes | W |
-| Nov 18 2:40AM | NCAAB | Florida Gulf Coast vs Florida Atlantic | moneyline: Florida Atlantic | kalshi | $27k | -245 |  |  | -2.0c | yes | pending |
+| Nov 18 2:40AM | NCAAB | Florida Gulf Coast vs Florida Atlantic | moneyline: Florida Atlantic | kalshi | $27k | -245 |  |  | -1.0c | yes | pending |
 | Nov 18 2:20AM | NCAAB | UConn vs Arizona | moneyline: Arizona | kalshi | $25k | -144 |  |  | +1.0c |  | pending |
 | Nov 18 2:10AM | NCAAB | Fresno St. vs San Jose St. | moneyline: San Jose St. | kalshi | $25k | -233 |  |  | +1.0c |  | pending |
 | Nov 18 2:00AM | NCAAB | Boston College vs Harvard | moneyline: Boston College | kalshi | $26k | -170 |  |  | +0.0c | yes | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 12 1:31AM | NCAAB | West Florida vs Alabama A&M | moneyline: Alabama A&M | kalshi | $51k | -300 |  |  | -11.0c | yes | W |
 | Nov 12 1:31AM | NCAAB | UC Riverside vs San Jose St. | moneyline: San Jose St. | kalshi | $43k | -285 |  |  | +3.0c | yes | L |
 | Nov 12 1:31AM | NCAAB | Richmond vs Southern Illinois | moneyline: Richmond | kalshi | $35k | -156 |  |  | -4.0c | yes | L |
-| Nov 12 1:31AM | NCAAB | Oklahoma St. vs Texas A&M | moneyline: Texas A&M | kalshi | $58k | -285 |  |  | +3.0c | yes | W |
