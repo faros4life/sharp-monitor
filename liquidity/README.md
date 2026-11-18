@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 17, 8:55 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 102.
+Updated Tue Nov 17, 9:00 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 102.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -11,7 +11,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 17 8:50PM | NBA | Philadelphia vs Orlando | moneyline: Philadelphia | kalshi | $55k | -122 |  |  | -1.0c |  | pending |
-| Nov 17 8:35PM | NBA | Utah vs Los Angeles C: Total Points | total: NOT Over 227.5 points | kalshi | $49k | -108 |  |  | +0.0c |  | pending |
+| Nov 17 8:35PM | NBA | Utah vs Los Angeles C: Total Points | total: NOT Over 227.5 points | kalshi | $49k | -108 |  |  | -1.0c |  | pending |
 | Nov 17 8:35PM | NBA | Houston vs Indiana | moneyline: Houston | kalshi | $117k | -223 |  |  | +2.0c |  | pending |
 | Nov 17 8:30PM | NCAAF | Central Michigan vs Buffalo: Spread | spread: NOT Buffalo wins by over 1.5 points | kalshi | $97k | -104 | ✅ novig |  | +0.0c |  | pending |
 | Nov 17 8:20PM | NBA | Atlanta vs Oklahoma City | moneyline: Oklahoma City | kalshi | $109k | -257 |  |  | +0.0c |  | pending |
@@ -60,7 +60,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 17 11:00AM | NCAAF | Eastern Michigan vs Western Michigan: Total Points | total: Over 46.5 points | kalshi | $40k | -104 |  |  | -3.0c | yes | pending |
 | Nov 17 10:55AM | NBA | Utah vs Los Angeles C: Spread | spread: NOT Los Angeles C wins by over 6.5 points | kalshi | $39k | -108 | ✅ novig |  | +1.0c | yes | pending |
 | Nov 17 10:50AM | NHL | Calgary vs San Jose: Total Goals | total: Over 5.5 goals scored | kalshi | $35k | -127 |  |  | +0.0c | yes | pending |
-| Nov 17 10:36AM | NBA | Utah vs Los Angeles C: Total Points | total: NOT Over 225.5 points | kalshi | $35k | -104 | ✅ novig,prophetx |  | -4.0c |  | pending |
+| Nov 17 10:36AM | NBA | Utah vs Los Angeles C: Total Points | total: NOT Over 225.5 points | kalshi | $35k | -104 | ✅ novig,prophetx |  | -5.0c |  | pending |
 | Nov 17 10:20AM | NCAAF | Eastern Michigan vs Western Michigan: Spread | spread: NOT Western Michigan wins by over 14.5 points | kalshi | $35k | +104 |  |  | -7.0c | yes | pending |
 | Nov 17 10:05AM | NHL | Dallas vs Vegas: Total Goals | total: Over 5.5 goals scored | kalshi | $33k | -113 | ✅ novig |  | +2.0c | yes | pending |
 | Nov 17 10:05AM | NHL | Toronto vs Chicago: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $41k | -100 | ✅ novig |  | +0.0c | yes | pending |
