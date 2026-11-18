@@ -43,6 +43,10 @@ jobs:
       - name: Grade frozen numbers v1.1 (paper; OddsPapi free history; encrypted grades; private email; counts only)
         continue-on-error: true   # a grader failure never stops the freezer's save
         env:
+          # Polymarket US fee model (18 Nov, Peter yes): 'schedule' prices the venue's published Nov 14
+          # tiers (0.095 unverified taker, zero maker rebate); 'legacy' keeps the pre-Nov-14 0.06 basis.
+          # The board EXECUTION FLOOR is pinned to the strict basis either way and cannot loosen.
+          PMUS_FEE_MODEL: ${{ vars.PMUS_FEE_MODEL || 'legacy' }}
           ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
           ODDSPAPI_FREE_KEY: ${{ secrets.ODDSPAPI_FREE_KEY }}   # Nov 3: history goes through the free key (paid key: 403 on pinnacle)
           TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}

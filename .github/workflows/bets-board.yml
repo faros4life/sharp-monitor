@@ -43,6 +43,12 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      # Polymarket US fee model (18 Nov, Peter yes): 'schedule' prices the venue's published Nov 14
+      # tiers (0.095 unverified taker, zero maker rebate); 'legacy' keeps the pre-Nov-14 0.06 basis.
+      # Set at JOB level: board_build.py and tracker_build.py are different steps, and a per-step
+      # env reached only one of them. The board EXECUTION FLOOR is pinned either way.
+      PMUS_FEE_MODEL: ${{ vars.PMUS_FEE_MODEL || 'legacy' }}
     timeout-minutes: 9
     steps:
       - uses: actions/checkout@v4

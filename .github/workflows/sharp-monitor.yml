@@ -27,6 +27,10 @@ jobs:
           restore-keys: sharp-state-
       - name: Check lines
         env:
+          # Polymarket US fee model (18 Nov, Peter yes): 'schedule' prices the venue's published Nov 14
+          # tiers (0.095 unverified taker, zero maker rebate); 'legacy' keeps the pre-Nov-14 0.06 basis.
+          # The board EXECUTION FLOOR is pinned to the strict basis either way and cannot loosen.
+          PMUS_FEE_MODEL: ${{ vars.PMUS_FEE_MODEL || 'legacy' }}
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}   # Oct 27: every ntfy push mirrored to Telegram

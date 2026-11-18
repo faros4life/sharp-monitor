@@ -35,6 +35,10 @@ jobs:
       - run: pip install -q cryptography
       - name: Polymarket US slug lookup (read-only)
         env:
+          # Polymarket US fee model (18 Nov, Peter yes): 'schedule' prices the venue's published Nov 14
+          # tiers (0.095 unverified taker, zero maker rebate); 'legacy' keeps the pre-Nov-14 0.06 basis.
+          # The board EXECUTION FLOOR is pinned to the strict basis either way and cannot loosen.
+          PMUS_FEE_MODEL: ${{ vars.PMUS_FEE_MODEL || 'legacy' }}
           PMUS_KEY_ID: ${{ secrets.PMUS_KEY_ID }}
           PMUS_SECRET_KEY: ${{ secrets.PMUS_SECRET_KEY }}
           PMUS_SPORT: ${{ inputs.sport }}

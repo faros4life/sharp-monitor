@@ -49,6 +49,10 @@ jobs:
           python-version: "3.12"
       - name: Build the board
         env:
+          # Polymarket US fee model (18 Nov, Peter yes): 'schedule' prices the venue's published Nov 14
+          # tiers (0.095 unverified taker, zero maker rebate); 'legacy' keeps the pre-Nov-14 0.06 basis.
+          # The board EXECUTION FLOOR is pinned to the strict basis either way and cannot loosen.
+          PMUS_FEE_MODEL: ${{ vars.PMUS_FEE_MODEL || 'legacy' }}
           # Nov 12: live_plays_card() reads ledger rows from the private store before Gmail. This
           # is the job that publishes the page every 10 minutes, so without this token
           # registry.enabled() is False HERE and the card falls back to the IMAP read that printed

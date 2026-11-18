@@ -138,6 +138,12 @@ def log_report():
     text - which is what makes them printable in a public repo's log."""
     if not LOG:
         return
+    # Nov 18: the Actions step env dump already shows PMUS_FEE_MODEL arriving. That proves DELIVERY,
+    # not that the code resolved it - two different claims, and reading one as the other is exactly how
+    # EXEC_BOARD_FEE_BASIS got reported as off while production had it on. This prints what the process
+    # actually computed. Coefficients only: no stake, balance, price or bet text.
+    print(f"PMUS fee model: {pf.MODEL} (taker {pf.taker()}, gate {PMUS_QUAL_FEE}, "
+          f"floor basis {pf.floor_coef()}, maker {pf.maker()})")
     if VSTAT:
         print("venue check verdicts (counts only):")
         for _b in sorted({k[0] for k in VSTAT}):
