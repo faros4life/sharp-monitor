@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 17, 10:10 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 17.
+Updated Tue Nov 17, 10:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 16.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 320-202 (-32.80u flat) | rule met: 54-51
+**Record:** 321-202 (-31.92u flat) | rule met: 54-51
 
-**Fade (paper, betting against the print):** 177-285 (+33.51u flat, after fees)
+**Fade (paper, betting against the print):** 177-286 (+32.51u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -26,7 +26,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 17 4:10PM | NCAAB | Michigan St. vs Tennessee: Point Total | total: NOT Over 149.5 points | kalshi | $29k | -100 |  | ✅ | +0.0c |  | pending |
 | Nov 17 4:10PM | NCAAB | Illinois vs Duke: Spread | spread: NOT Duke wins by over 8.5 points | kalshi | $25k | -104 |  |  | -2.0c | yes | W |
 | Nov 17 4:10PM | NCAAB | Jacksonville St. vs Louisiana Tech | moneyline: Louisiana Tech | kalshi | $38k | -127 |  |  | -1.0c |  | W |
-| Nov 17 3:50PM | NCAAB | Middle Tennessee vs Georgia Southern: Point Total | total: Over 154.5 points | kalshi | $25k | -108 |  | ✅ | +0.0c |  | pending |
+| Nov 17 3:50PM | NCAAB | Middle Tennessee vs Georgia Southern: Point Total | total: Over 154.5 points | kalshi | $25k | -108 |  | ✅ | +0.0c |  | W |
 | Nov 17 3:40PM | NCAAB | Akron vs Bucknell: Point Total | total: Over 147.5 points | kalshi | $29k | +113 |  |  | +2.0c | yes | L |
 | Nov 17 3:30PM | NCAAB | UT Arlington vs Southern Miss: Spread | spread: NOT Southern Miss wins by over 1.5 points | kalshi | $38k | +104 |  |  | +1.0c |  | pending |
 | Nov 17 3:21PM | NCAAB | Charlotte vs Davidson: Spread | spread: NOT Davidson wins by over 3.5 points | kalshi | $26k | -108 |  |  | +0.0c |  | W |
