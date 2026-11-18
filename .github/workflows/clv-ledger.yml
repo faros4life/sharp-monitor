@@ -43,6 +43,14 @@ jobs:
           ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
           ODDSPAPI_FREE_KEY: ${{ secrets.ODDSPAPI_FREE_KEY }}   # Nov 3: history goes through the free key (paid key: 403 on pinnacle)
           TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          # Nov 18 (Peter): READ-ONLY use of the registry's strike map, the same secret
+          # reporting-ledger already passes. Without it registry.enabled() is False, so
+          # clv_ledger's strike-map recovery never ran and 349 ProphetX rows with no league AND
+          # no game text silently restored 0 - the run's own counter said
+          # "games restored from the registry strike map: 0" and there was no error, because an
+          # empty map is not an exception. The map is an ENTITY map (what a strike IS); it holds
+          # no position, price or balance.
+          REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
           EMAIL_NOW: ${{ inputs.email_now }}
           # Stage 2 ON (Peter, Nov 13): the selection-level scorecard is the official measurement
           # basis - one bet is one observation however many fills it took. The per-fill figures

@@ -794,12 +794,24 @@ def recover_leagues(st, now, max_rows=400):
     # have its game restored from there. That is venue metadata, not a guess from a description.
     nogame = [(k, r) for k, r in noleague if not (r.get("snap") or {}).get("game")]
     if nogame:
-        smap = {}
+        # Nov 18 (Peter): states with different remedies must not share one silent outcome. Until
+        # today clv-ledger was not passed REGISTRY_TOKEN, so enabled() was False, smap was {} and
+        # 349 rows restored 0 games with NO message at all - an empty map is not an exception, so
+        # nothing was logged and the run looked like it had simply found nothing to recover. Each
+        # case below now says which one it is.
+        smap, _smap_why = {}, ""
         try:
             import registry as _reg
-            smap = _reg.strike_map() if _reg.enabled() else {}
+            if not _reg.enabled():
+                _smap_why = "REGISTRY_TOKEN not set for this job - strike-map recovery did not run"
+            else:
+                smap = _reg.strike_map() or {}
+                if not smap:
+                    _smap_why = "registry reachable but its strike map is EMPTY - nothing cached to recover from"
         except Exception as e_:
-            LG_LOG.append(f"registry strike map unavailable ({type(e_).__name__})")
+            _smap_why = f"registry strike map unavailable ({type(e_).__name__})"
+        if _smap_why:
+            LG_LOG.append(_smap_why)
         trk = {}
         try:
             trk = (tb.dec(json.load(open(tb.STATE))) or {}).get("bets") or {}
@@ -812,8 +824,21 @@ def recover_leagues(st, now, max_rows=400):
                 r["snap"]["game"] = ent["game"]
                 r["snap"]["game_src"] = {"from": "registry strike map", "strike": sid, "at": iso(now)}
                 filled["game_from_strike"] += 1
+        # Nov 18 (Peter): say WHY the misses missed, split by cause - "no strike id on the row" and
+        # "strike id present but absent from the map" need opposite fixes, and one number cannot
+        # tell them apart. This is what verifies whether the registry actually holds these rows.
+        _no_sid = _no_hit = 0
+        for k, r in nogame:
+            if r["snap"].get("game"):
+                continue
+            if not str((trk.get(k) or {}).get("strike") or ""):
+                _no_sid += 1
+            else:
+                _no_hit += 1
         LG_LOG.append(f"rows with no league AND no game: {len(nogame)}; "
-                      f"games restored from the registry strike map: {filled['game_from_strike']}")
+                      f"games restored from the registry strike map: {filled['game_from_strike']}; "
+                      f"strike map entries: {len(smap)}; misses: {_no_sid} with no strike id on the row, "
+                      f"{_no_hit} whose strike id is not in the map")
     need = [(k, r) for k, r in noleague if (r.get("snap") or {}).get("game")]
     LG_LOG.append(f"rows with no league: {len(noleague)}; of those with a game text: {len(need)}")
     if not need:
