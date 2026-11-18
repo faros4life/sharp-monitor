@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 17, 10:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 13.
+Updated Tue Nov 17, 10:50 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 11.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 324-202 (-28.88u flat) | rule met: 54-51
+**Record:** 326-202 (-27.93u flat) | rule met: 55-51
 
-**Fade (paper, betting against the print):** 177-289 (+29.51u flat, after fees)
+**Fade (paper, betting against the print):** 177-291 (+27.51u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -31,7 +31,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 17 3:30PM | NCAAB | UT Arlington vs Southern Miss: Spread | spread: NOT Southern Miss wins by over 1.5 points | kalshi | $38k | +104 |  |  | +1.0c |  | W |
 | Nov 17 3:21PM | NCAAB | Charlotte vs Davidson: Spread | spread: NOT Davidson wins by over 3.5 points | kalshi | $26k | -108 |  |  | +0.0c |  | W |
 | Nov 17 3:21PM | NCAAB | Mississippi St. vs UCF | moneyline: UCF | kalshi | $38k | -100 | ✅ novig |  | +2.0c |  | L |
-| Nov 17 3:21PM | NCAAB | Texas A&M-Corpus Christi vs Rice | moneyline: Rice | kalshi | $31k | -127 | ✅ novig |  | +2.0c | yes | pending |
+| Nov 17 3:21PM | NCAAB | Texas A&M-Corpus Christi vs Rice | moneyline: Rice | kalshi | $31k | -127 | ✅ novig |  | +2.0c | yes | W |
 | Nov 17 2:50PM | NCAAB | Florida vs Notre Dame: Spread | spread: NOT Florida wins by over 15.5 points | kalshi | $31k | -100 |  |  | +5.0c | yes | W |
 | Nov 17 2:20PM | NCAAB | Arkansas vs Indiana: Point Total | total: NOT Over 153.5 points | kalshi | $26k | -104 |  | ✅ | +1.0c |  | L |
 | Nov 17 1:20PM | NCAAB | Houston vs Rutgers: Spread | spread: NOT Houston wins by over 17.5 points | kalshi | $36k | -117 |  | ✅ | -1.0c |  | W |
@@ -52,7 +52,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 17 1:30AM | NCAAB | Florida International vs UAB | moneyline: UAB | kalshi | $39k | -170 |  |  | +0.0c |  | W |
 | Nov 17 1:30AM | NCAAB | Central Michigan vs Dayton | moneyline: Dayton | kalshi | $36k | -567 |  |  | +4.0c | yes | W |
 | Nov 17 12:40AM | NCAAB | UC Irvine vs Stanford | moneyline: Stanford | kalshi | $52k | -317 |  |  | -2.0c |  | pending |
-| Nov 16 9:30PM | NCAAB | Sam Houston vs Wyoming | moneyline: Wyoming | kalshi | $49k | -525 |  |  | +4.0c | yes | pending |
+| Nov 16 9:30PM | NCAAB | Sam Houston vs Wyoming | moneyline: Wyoming | kalshi | $49k | -525 |  |  | +4.0c | yes | W |
 | Nov 16 7:10PM | NCAAB | Western Illinois vs Minnesota: Point Total | total: Over 136.5 points | kalshi | $33k | +104 |  | ❌ | +0.0c |  | W |
 | Nov 16 7:10PM | NCAAB | Central Arkansas vs Oklahoma St.: Point Total | total: NOT Over 162.5 points | kalshi | $33k | -104 | ✅ novig | ❌ | +0.0c |  | L |
 | Nov 16 6:30PM | NCAAB | The Citadel vs Clemson: Point Total | total: Over 141.5 points | kalshi | $67k | -108 |  |  | +2.0c |  | L |
