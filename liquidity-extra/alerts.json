@@ -193,8 +193,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": 0.0,
+   "close_price": 0.56,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-17",
    "depth_by_book": {
@@ -219,9 +219,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 12901.77,
+    "open_interest_fp": 27838.62,
     "volume_24h_fp": 12909.69,
-    "volume_fp": 12997.82
+    "volume_fp": 27934.67
    },
    "ex_stats_first": {
     "open_interest_fp": 8383.65,
@@ -2130,6 +2130,7 @@
     "volume_fp": 11898.57
    },
    "fade_price": 0.47,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-17T21:40:21Z",
    "game": "Nicholls St. vs Ole Miss: Point Total",
    "game_surge_books": [
@@ -2234,11 +2235,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAMBTOTAL-26NOV17NICHMISS-144"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settle_tries": 1,
+   "settled_utc": "2026-11-18T03:30:23Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -2253,7 +2256,7 @@
     "Ole Miss"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.86
   },
   {
    "alerted_utc": "2026-11-17T21:20:22Z",
@@ -3461,6 +3464,7 @@
     "volume_fp": 528.23
    },
    "fade_price": 0.52,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-17T20:21:04Z",
    "game": "UT Arlington vs Southern Miss: Spread",
    "game_surge_books": [
@@ -3568,12 +3572,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAMBSPREAD-26NOV17UTAUSM-USM2"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 3,
+   "settle_tries": 4,
+   "settled_utc": "2026-11-18T03:30:23Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UT Arlington",
@@ -3590,7 +3595,7 @@
     "Southern Miss"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.97
   },
   {
    "alerted_utc": "2026-11-17T20:21:04Z",
@@ -3991,6 +3996,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.58,
    "clv_cents": 2.0,
    "confirmed_after_min": 14,
@@ -4167,7 +4173,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Rice",
@@ -5694,6 +5700,7 @@
     "volume_fp": 630.69
    },
    "fade_price": 0.57,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-17T15:30:23Z",
    "game": "UT Arlington vs Southern Miss",
    "game_surge_books": [],
@@ -5804,12 +5811,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV17UTAUSM-UTA"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 3,
+   "settle_tries": 4,
+   "settled_utc": "2026-11-18T03:30:23Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UT Arlington",
@@ -5827,7 +5835,7 @@
     "Southern Miss"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.21
   },
   {
    "alerted_utc": "2026-11-17T15:40:22Z",
@@ -8156,6 +8164,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Wyoming",
