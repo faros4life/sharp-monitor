@@ -1,6 +1,618 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-18T20:00:26Z",
+   "base_depth": 46902,
+   "best_price": 0.49,
+   "best_price_american": 104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.49,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-18",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Houston",
+     "price": 0.48,
+     "this_side": 687996
+    },
+    "novig": {
+     "new_other_side": -19769,
+     "new_this_side": 25189,
+     "other_side": 16520,
+     "other_side_all_levels": 23883,
+     "ratio": 3.5,
+     "this_side": 57000,
+     "this_side_all_levels": 66219
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Houston",
+     "price": 0.4902,
+     "this_side": 7613
+    }
+   },
+   "ex_stats_alert": {
+    "openInterest": 15999347.0,
+    "volume": 25193159.0
+   },
+   "ex_stats_change": {
+    "openInterest": 2419387.0,
+    "volume": 2464426.0
+   },
+   "ex_stats_first": {
+    "openInterest": 13579960.0,
+    "volume": 22728733.0
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-11-18T19:50:25Z",
+   "game": "Florida @ Houston",
+   "game_surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "game_x": 2.74,
+   "key": "novig|{\"market_id\": \"01a1eca7-9013-7fc1-9058-d5bf259bc015\", \"outcome_id\": \"01a1eca7-9013-7fc1-9058-d5ccedf1c5c0\"}",
+   "lead_min": 90,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 25189,
+   "new_x": 6.15,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 456287.44999999995,
+      "volume_24h_fp": 469662.93,
+      "volume_fp": 509170.72
+     },
+     "game_normal": 450078,
+     "game_x": 2.16,
+     "normal": 65352,
+     "now": 973457,
+     "type": "ML",
+     "x": 14.9
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 15999347.0,
+      "volume": 25193159.0
+     },
+     "game_normal": 24173,
+     "game_x": 2.74,
+     "normal": 4096,
+     "now": 66219,
+     "type": "ML",
+     "x": 16.17
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 4567,
+     "game_x": 2.17,
+     "normal": 672,
+     "now": 9898,
+     "type": "ML",
+     "x": 14.73
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.49,
+   "price_american": 104,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.485,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 100
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 100
+    },
+    "betopenly": {
+     "point": null,
+     "price": 110
+    },
+    "betrivers": {
+     "point": null,
+     "price": 108
+    },
+    "betus": {
+     "point": null,
+     "price": 100
+    },
+    "bovada": {
+     "point": null,
+     "price": 105
+    },
+    "circasports": {
+     "point": null,
+     "price": 105
+    },
+    "draftkings": {
+     "point": null,
+     "price": 105
+    },
+    "fanatics": {
+     "point": null,
+     "price": 105
+    },
+    "fanduel": {
+     "point": null,
+     "price": -104
+    },
+    "kalshi": {
+     "point": null,
+     "price": 104
+    },
+    "lowvig": {
+     "point": null,
+     "price": 100
+    },
+    "novig": {
+     "point": null,
+     "price": 106
+    },
+    "polymarket": {
+     "point": null,
+     "price": 108
+    },
+    "prophetx": {
+     "point": null,
+     "price": 104
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 100
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a1eca7-9013-7fc1-9058-d5bf259bc015",
+    "outcome_id": "01a1eca7-9013-7fc1-9058-d5ccedf1c5c0"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Houston",
+   "side_label": "HOU (0)",
+   "size_x": 16.17,
+   "start_source": "odds",
+   "start_utc": "2026-11-18T21:30:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Florida",
+    "Houston"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-18T20:00:26Z",
+   "base_depth": 129254,
+   "best_price": 0.505,
+   "best_price_american": -102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-18",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 4064,
+     "new_this_side": 26424,
+     "other_side": 36793,
+     "other_side_all_levels": 133508,
+     "ratio": 2.0,
+     "this_side": 75013,
+     "this_side_all_levels": 167315
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "HOU +1.5 (1.5)",
+     "price": 0.505,
+     "this_side": 10604
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 55686.19,
+    "volume_24h_fp": 57384.86,
+    "volume_fp": 70372.58
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 8876.09,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 12769.72
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 46810.1,
+    "volume_24h_fp": 57384.86,
+    "volume_fp": 57602.86
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-11-18T19:50:25Z",
+   "game": "Houston vs Florida: Spread",
+   "game_surge_books": [
+    "novig"
+   ],
+   "game_x": 1.95,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAMBSPREAD-26NOV18HOUFLA-FLA2\"}",
+   "lead_min": 90,
+   "league": "NCAAB",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 26424,
+   "new_x": 1.18,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 55686.19,
+      "volume_24h_fp": 57384.86,
+      "volume_fp": 70372.58
+     },
+     "game_normal": 85774,
+     "game_x": 1.95,
+     "normal": 22451,
+     "now": 167315,
+     "type": "SPREAD",
+     "x": 7.45
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 3123835.0,
+      "volume": 4708298.0
+     },
+     "game_normal": 3972,
+     "game_x": 2.73,
+     "normal": 1872,
+     "now": 10857,
+     "type": "SPREAD",
+     "x": 5.8
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": 1.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 1.0,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -112
+    },
+    "betus": {
+     "point": 1.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -110
+    },
+    "circasports": {
+     "point": 1.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -115
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 1.0,
+     "price": -106
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -102
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -106
+    },
+    "williamhill_us": {
+     "point": 1.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAMBSPREAD-26NOV18HOUFLA-FLA2"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Houston",
+   "side_label": "NOT Florida wins by over 1.5 points",
+   "size_x": 7.45,
+   "start_source": "odds",
+   "start_utc": "2026-11-18T21:30:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "Houston",
+    "Florida"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-18T20:00:26Z",
+   "base_depth": 878811,
+   "best_price": 0.49,
+   "best_price_american": 104,
+   "best_price_book": "novig",
+   "bid_improved": true,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.48,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-18",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 31696,
+     "new_this_side": 115266,
+     "other_side": 584426,
+     "other_side_all_levels": 910779,
+     "ratio": 1.2,
+     "this_side": 687996,
+     "this_side_all_levels": 973457
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "HOU (0)",
+     "price": 0.49,
+     "this_side": 57000
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Houston",
+     "price": 0.4902,
+     "this_side": 7613
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 456287.44999999995,
+    "volume_24h_fp": 469662.93,
+    "volume_fp": 509170.72
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 34045.99,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 38181.63
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 422241.45999999996,
+    "volume_24h_fp": 469662.93,
+    "volume_fp": 470989.09
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-11-18T19:50:25Z",
+   "game": "Houston vs Florida",
+   "game_surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "game_x": 2.16,
+   "key": "kalshi|KXNCAAMBGAME-26NOV18HOUFLA|ml|0",
+   "lead_min": 90,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 115266,
+   "new_x": 1.76,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 456287.44999999995,
+      "volume_24h_fp": 469662.93,
+      "volume_fp": 509170.72
+     },
+     "game_normal": 450078,
+     "game_x": 2.16,
+     "normal": 65352,
+     "now": 973457,
+     "type": "ML",
+     "x": 14.9
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 15999347.0,
+      "volume": 25193159.0
+     },
+     "game_normal": 24173,
+     "game_x": 2.74,
+     "normal": 4096,
+     "now": 66219,
+     "type": "ML",
+     "x": 16.17
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 4567,
+     "game_x": 2.17,
+     "normal": 672,
+     "now": 9898,
+     "type": "ML",
+     "x": 14.73
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.48,
+   "price_american": 108,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.48,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 100
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 100
+    },
+    "betopenly": {
+     "point": null,
+     "price": 110
+    },
+    "betrivers": {
+     "point": null,
+     "price": 108
+    },
+    "betus": {
+     "point": null,
+     "price": 100
+    },
+    "bovada": {
+     "point": null,
+     "price": 105
+    },
+    "circasports": {
+     "point": null,
+     "price": 105
+    },
+    "draftkings": {
+     "point": null,
+     "price": 105
+    },
+    "fanatics": {
+     "point": null,
+     "price": 105
+    },
+    "fanduel": {
+     "point": null,
+     "price": -104
+    },
+    "kalshi": {
+     "point": null,
+     "price": 104
+    },
+    "lowvig": {
+     "point": null,
+     "price": 100
+    },
+    "novig": {
+     "point": null,
+     "price": 106
+    },
+    "polymarket": {
+     "point": null,
+     "price": 108
+    },
+    "prophetx": {
+     "point": null,
+     "price": 104
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 100
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV18HOUFLA-HOU"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Houston",
+   "side_label": "Houston",
+   "size_x": 14.9,
+   "start_source": "odds",
+   "start_utc": "2026-11-18T21:30:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Houston",
+    "Florida"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-18T18:40:25Z",
    "base_depth": 136129,
    "best_price": 0.75,
@@ -52,9 +664,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 6052.25,
+    "open_interest_fp": 6057.73,
     "volume_24h_fp": 6011.0599999999995,
-    "volume_fp": 6056.01
+    "volume_fp": 6061.49
    },
    "ex_stats_first": {
     "open_interest_fp": 5897.16,
@@ -261,9 +873,9 @@
     "volume_fp": 32.32
    },
    "ex_stats_close": {
-    "open_interest_fp": 10889.29,
+    "open_interest_fp": 10975.29,
     "volume_24h_fp": 9929.980000000001,
-    "volume_fp": 11055.130000000001
+    "volume_fp": 11141.130000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 1064.0500000000002,
@@ -474,9 +1086,9 @@
     "volume_fp": 65.86
    },
    "ex_stats_close": {
-    "open_interest_fp": 15301.23,
+    "open_interest_fp": 15991.330000000002,
     "volume_24h_fp": 15503.029999999999,
-    "volume_fp": 15898.86
+    "volume_fp": 16588.96
    },
    "ex_stats_first": {
     "open_interest_fp": 8404.79,
@@ -899,9 +1511,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 299.22,
+    "open_interest_fp": 300.56,
     "volume_24h_fp": 299.22,
-    "volume_fp": 299.22
+    "volume_fp": 300.56
    },
    "ex_stats_first": {
     "open_interest_fp": 76.0,
@@ -1100,9 +1712,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 7459.4,
+    "open_interest_fp": 7519.58,
     "volume_24h_fp": 7257.64,
-    "volume_fp": 7468.91
+    "volume_fp": 7529.09
    },
    "ex_stats_first": {
     "open_interest_fp": 1338.76,
@@ -1654,9 +2266,9 @@
     "volume_fp": 47.4
    },
    "ex_stats_close": {
-    "open_interest_fp": 95572.66,
+    "open_interest_fp": 97094.08,
     "volume_24h_fp": 86753.08,
-    "volume_fp": 99447.37
+    "volume_fp": 100968.79000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 28121.41,
@@ -2021,9 +2633,9 @@
     "volume_fp": 12.37
    },
    "ex_stats_close": {
-    "open_interest_fp": 7251.18,
+    "open_interest_fp": 9842.64,
     "volume_24h_fp": 6908.4800000000005,
-    "volume_fp": 7265.18
+    "volume_fp": 9856.64
    },
    "ex_stats_first": {
     "open_interest_fp": 647.5699999999999,
@@ -2378,9 +2990,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 6447.68,
+    "open_interest_fp": 8340.06,
     "volume_24h_fp": 6393.469999999999,
-    "volume_fp": 6625.14
+    "volume_fp": 8517.52
    },
    "ex_stats_first": {
     "open_interest_fp": 256.03999999999996,
