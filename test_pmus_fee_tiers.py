@@ -14,6 +14,7 @@ import os
 from datetime import datetime, timedelta, timezone
 
 import exchange_lag as el
+import pmus_fee as pf
 
 FAILED = []
 TOTAL = 0
@@ -32,13 +33,18 @@ DEC110 = 1 + 100 / 110          # -110
 
 
 def eff_with(model, *a, **k):
-    """Call eff() under a given model without leaving the module mutated."""
-    was = el.PMUS_FEE_MODEL
+    """Call eff() under a given model without leaving the module mutated.
+
+    Flips pmus_fee.MODEL, which is the ONLY model switch. An earlier version of this helper flipped
+    an exchange_lag alias instead and the fee did not move - two switches, one of them dead. That is
+    why the alias was deleted rather than kept for convenience.
+    """
+    was = pf.MODEL
     try:
-        el.PMUS_FEE_MODEL = model
+        pf.MODEL = model
         return el.eff(*a, **k)
     finally:
-        el.PMUS_FEE_MODEL = was
+        pf.MODEL = was
 
 
 # ---------------------------------------------------------------- 1. the table itself
@@ -59,22 +65,22 @@ ok("tier 1 maker threshold is $10MM",
 # ---------------------------------------------------------------- 2. tier selection by volume
 for vol, want in ((0.0, 0.095), (9_999.0, 0.095), (10_000.0, 0.085), (49_999.0, 0.085),
                   (50_000.0, 0.075), (249_999.0, 0.075), (250_000.0, 0.0695), (10_000_000.0, 0.0695)):
-    ok(f"taker volume {vol:,.0f} -> {want}", el.pmus_coef(taker_vol_30d=vol)[0] == want,
-       el.pmus_coef(taker_vol_30d=vol))
+    ok(f"taker volume {vol:,.0f} -> {want}", el.pmus_coef(taker_vol_30d=vol, model="schedule")[0] == want,
+       el.pmus_coef(taker_vol_30d=vol, model="schedule"))
 for vol, want in ((0.0, 0.0), (9_999_999.0, 0.0), (10_000_000.0, -0.0035),
                   (50_000_000.0, -0.0070), (200_000_000.0, -0.0104)):
-    ok(f"maker volume {vol:,.0f} -> {want}", el.pmus_coef(maker=True, maker_vol_30d=vol)[0] == want,
-       el.pmus_coef(maker=True, maker_vol_30d=vol))
+    ok(f"maker volume {vol:,.0f} -> {want}", el.pmus_coef(maker=True, maker_vol_30d=vol, model="schedule")[0] == want,
+       el.pmus_coef(maker=True, maker_vol_30d=vol, model="schedule"))
 
 # ---------------------------------------------------------------- 3. unknowns resolve CONSERVATIVELY
-c, why = el.pmus_coef()
+c, why = el.pmus_coef(model="schedule")
 ok("unknown taker tier -> 0.095", c == 0.095 and "unestablished" in why, (c, why))
-c, why = el.pmus_coef(maker=True)
+c, why = el.pmus_coef(maker=True, model="schedule")
 ok("unverified maker rebate -> 0.0", c == 0.0 and "unverified" in why, (c, why))
 ok("unknown taker tier is the WORST published tier, not a guess",
-   el.pmus_coef()[0] == max(t[1] for t in el.PMUS_TAKER_TIERS))
+   el.pmus_coef(model="schedule")[0] == max(t[1] for t in el.PMUS_TAKER_TIERS))
 ok("an unverified maker is never credited above raw price",
-   el.pmus_coef(maker=True)[0] >= 0.0)
+   el.pmus_coef(maker=True, model="schedule")[0] >= 0.0)
 
 # ---------------------------------------------------------------- 4. onboarding window
 first = datetime(2026, 11, 2, tzinfo=ET)
@@ -82,12 +88,12 @@ ok("day 1 is the day of the first fill", el.pmus_onboarding(first, datetime(2026
 ok("day 7 is still inside the window", el.pmus_onboarding(first, datetime(2026, 11, 8, 1, tzinfo=ET))[0] is True)
 ok("day 8 is outside the window", el.pmus_onboarding(first, datetime(2026, 11, 9, 1, tzinfo=ET)) == (False, 8))
 ok("onboarding gives 0.0695 regardless of zero volume",
-   el.pmus_coef(taker_vol_30d=0.0, first_fill=first, asof=datetime(2026, 11, 3, tzinfo=ET))[0] == 0.0695)
+   el.pmus_coef(taker_vol_30d=0.0, first_fill=first, asof=datetime(2026, 11, 3, tzinfo=ET), model="schedule")[0] == 0.0695)
 ok("spent onboarding falls back to the volume tier",
-   el.pmus_coef(taker_vol_30d=0.0, first_fill=first, asof=datetime(2026, 11, 18, tzinfo=ET))[0] == 0.095)
+   el.pmus_coef(taker_vol_30d=0.0, first_fill=first, asof=datetime(2026, 11, 18, tzinfo=ET), model="schedule")[0] == 0.095)
 ok("UNKNOWN first fill is NOT treated as onboarding", el.pmus_onboarding(None) == (False, None))
 ok("unknown first fill does not earn the cheap onboarding rate",
-   el.pmus_coef(taker_vol_30d=0.0)[0] == 0.095)
+   el.pmus_coef(taker_vol_30d=0.0, model="schedule")[0] == 0.095)
 ok("a first fill in the future is not a fill",
    el.pmus_onboarding(datetime(2026, 12, 25, tzinfo=ET), datetime(2026, 11, 18, tzinfo=ET)) == (False, None))
 
@@ -97,8 +103,13 @@ ok("legacy taker decimal is the old 0.06 answer",
    eff_with("legacy", "polymarket.us", DEC110))
 ok("legacy maker decimal still exceeds raw (the old -0.0125 rebate)",
    eff_with("legacy", "polymarket.us", DEC110, maker=True) > DEC110)
+# Only meaningful when the variable is actually unset: the suite is also run WITH it set to
+# "schedule" to prove the activated model regresses nothing, and asserting the default there would
+# fail on the test harness rather than on the code.
 ok("legacy default is what an unset environment gets",
-   (os.environ.get("PMUS_FEE_MODEL", "") or "legacy").strip().lower() == "legacy")
+   os.environ.get("PMUS_FEE_MODEL") is not None
+   or (os.environ.get("PMUS_FEE_MODEL", "") or "legacy").strip().lower() == "legacy")
+ok("exchange_lag exposes NO second model switch", not hasattr(el, "PMUS_FEE_MODEL"))
 for bk in ("kalshi", "novig.us", "prophetx"):
     ok(f"{bk} is untouched by the PMUS model",
        eff_with("schedule", bk, DEC110) == eff_with("legacy", bk, DEC110))
@@ -116,17 +127,17 @@ ok("posting still beats taking under the schedule", sch_m > sch_t)
 # raw_for() calls eff() internally, so BOTH halves of the round trip must run under the same model.
 # The first version of this assertion computed raw_for() as an argument - it was therefore evaluated
 # under legacy before eff_with() switched the model, and the "failure" was the test, not the code.
-_was = el.PMUS_FEE_MODEL
+_was = pf.MODEL
 try:
-    el.PMUS_FEE_MODEL = "schedule"
+    pf.MODEL = "schedule"
     _raw = el.raw_for("polymarket.us", 1.80)
     ok("raw_for inverts the schedule model", abs(el.eff("polymarket.us", _raw) - 1.80) < 1e-3,
        (_raw, el.eff("polymarket.us", _raw)))
     ok("schedule needs a HIGHER raw price than legacy for the same net",
-       _raw > (lambda: (setattr(el, "PMUS_FEE_MODEL", "legacy"), el.raw_for("polymarket.us", 1.80),
-                        setattr(el, "PMUS_FEE_MODEL", "schedule"))[1])())
+       _raw > (lambda: (setattr(pf, "MODEL", "legacy"), el.raw_for("polymarket.us", 1.80),
+                        setattr(pf, "MODEL", "schedule"))[1])())
 finally:
-    el.PMUS_FEE_MODEL = _was
+    pf.MODEL = _was
 
 print(("FAILED: " + ", ".join(FAILED)) if FAILED else "ALL PASS")
 # run_tests.py parses this exact shape. Without it the file reports rc=0 and NO assertion count, so 44

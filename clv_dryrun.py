@@ -53,11 +53,24 @@ def eligibility_frozen():
     """Peter, Nov 6: the Polymarket US fee correction must not create a newly eligible bet."""
     print("\nELIGIBILITY FREEZE - the PM US correction must never admit a bet")
     import executor as ex
-    guard("economics use the corrected 0.06", ex.PMUS_FEE == 0.06, f"PMUS_FEE={ex.PMUS_FEE}")
-    guard("eligibility stays on the old, stricter 0.0695",
-          ex.PMUS_QUAL_FEE == 0.0695, f"PMUS_QUAL_FEE={ex.PMUS_QUAL_FEE}")
-    worse = all(ex.qual_price(a, "polymarket_us") < a for a in (-110, -120, -126, -130, 150))
-    guard("the gate price is ALWAYS stricter than the economics price", worse)
+    import pmus_fee as pf
+    # Nov 18: these two guards pinned the literals 0.06 and 0.0695, so they asserted the MODEL rather
+    # than the property the freeze actually needs. Both now read pmus_fee, the single source of truth,
+    # and the INVARIANT below is what is really being protected - it holds in both models.
+    guard("economics use the active model's coefficient", ex.PMUS_FEE == pf.taker(),
+          f"PMUS_FEE={ex.PMUS_FEE} vs pmus_fee.taker()={pf.taker()}")
+    guard("eligibility is the STRICTER of the Nov 6 freeze and the active rate",
+          ex.PMUS_QUAL_FEE == pf.gate_coef() and ex.PMUS_QUAL_FEE >= pf.QUAL_FLOOR
+          and ex.PMUS_QUAL_FEE >= pf.taker(),
+          f"PMUS_QUAL_FEE={ex.PMUS_QUAL_FEE} floor={pf.QUAL_FLOOR} active={pf.taker()}")
+    # Never LENIENT is the property. Under legacy the gate is strictly stricter (0.0695 > 0.06); once
+    # the applicable rate reaches 0.095 the two coincide and the gate price EQUALS the economics price,
+    # which is still not lenient. Asserting `<` would fail there on arithmetic, not on a defect.
+    guard("the gate price is never more lenient than the economics price",
+          all(ex.qual_price(a, "polymarket_us") <= a for a in (-110, -120, -126, -130, 150)))
+    guard("the gate is strictly stricter whenever the freeze exceeds the active rate",
+          pf.gate_coef() <= pf.taker()
+          or all(ex.qual_price(a, "polymarket_us") < a for a in (-110, -120, -126, -130, 150)))
     guard("no other venue is affected by the freeze",
           all(ex.qual_price(a, b) == a for a in (-110, 150) for b in ("novig", "prophetx", "kalshi")))
     guard("the documented tie-break order is Novig, ProphetX, Kalshi, Polymarket US",
@@ -66,17 +79,28 @@ def eligibility_frozen():
     import book_check as bc
     r = bc.ladder_result([(0.545, 500.0)], None, None, None, None, ex.PMUS_FEE, ex.PMUS_QUAL_FEE)
     lv = r["buy_levels"][0]
+    # Nov 18: the three guards below used the LIVE coefficients and so asserted that a gap EXISTS
+    # between the economic and frozen prices. That gap is (qual - economics), and it closes to zero the
+    # moment the applicable rate reaches the freeze - at which point these failed on arithmetic while
+    # nothing was broken. The MECHANISM is now exercised with an explicit pair that always has a gap,
+    # so it stays tested in every model, and the live configuration is checked separately for the
+    # property that actually matters: never more lenient.
+    GAP = bc.ladder_result([(0.545, 500.0)], None, None, None, None, 0.06, 0.0695)
+    glv = GAP["buy_levels"][0]
     guard("the ladder emits a frozen per-level qualification price",
-          lv["american_after_fee_qual"] < lv["american"],
+          glv["american_after_fee_qual"] < glv["american"],
+          f"economic {glv['american']:+d} vs frozen {glv['american_after_fee_qual']:+d}")
+    guard("the LIVE pair is never more lenient per level",
+          lv["american_after_fee_qual"] <= lv["american"],
           f"economic {lv['american']:+d} vs frozen {lv['american_after_fee_qual']:+d}")
     guard("levels(qual=True) returns the frozen price, qual=False the economic one",
           ex.levels("polymarket_us", r, qual=True)[0][0] == lv["american_after_fee_qual"]
           and ex.levels("polymarket_us", r, qual=False)[0][0] == lv["american"])
-    thr = lv["american"]
+    thr = glv["american"]
     guard("the liquidity gate REJECTS at the frozen price where the corrected one would admit",
-          sum(d for a, d in ex.levels("polymarket_us", r, qual=True) if a >= thr) == 0
-          and sum(d for a, d in ex.levels("polymarket_us", r, qual=False) if a >= thr) > 0,
-          "avail 0 frozen vs 500 corrected - the gap Peter found, now closed")
+          sum(d for a, d in ex.levels("polymarket_us", GAP, qual=True) if a >= thr) == 0
+          and sum(d for a, d in ex.levels("polymarket_us", GAP, qual=False) if a >= thr) > 0,
+          "frozen admits nothing at the economic threshold - the gap Peter found, still closed")
     guard("a venue with no qual_coef is untouched",
           bc.ladder_result([(0.545, 500.0)], None, None, None, None, 0.07)["best_price_american_qual"]
           == bc.ladder_result([(0.545, 500.0)], None, None, None, None, 0.07)["best_price_american"])
@@ -95,8 +119,13 @@ def eligibility_frozen():
     guard("PM US best-price-only ladder with no frozen basis yields NO liquidity",
           ex.levels("polymarket_us", {"best_price_american": -127}, qual=True) == [])
     guard("dollars_at_alert_price_or_better counts on the frozen price",
-          bc.ladder_result([(0.545, 500.0)], lv["american"], None, None, None,
-                           ex.PMUS_FEE, ex.PMUS_QUAL_FEE)["dollars_at_alert_price_or_better"] == 0)
+          bc.ladder_result([(0.545, 500.0)], glv["american"], None, None, None,
+                           0.06, 0.0695)["dollars_at_alert_price_or_better"] == 0)
+    # And the cross-model safety property Peter's freeze exists for, which nothing tested until now:
+    # activating the schedule must never make a GATED Polymarket US price BETTER than it is today.
+    guard("activation cannot loosen the Polymarket US gate",
+          pf.gate_coef(model="schedule") >= pf.gate_coef(model="legacy"),
+          f"schedule gate {pf.gate_coef(model='schedule')} vs legacy gate {pf.gate_coef(model='legacy')}")
 
 
 def rules_unchanged():
@@ -154,8 +183,9 @@ def board_copy_in_step():
                     worst, where = abs(board - std), f"{bk} {lg} {a:+d}"
     guard("board_build.after_fee_dec equals clv_std.net_dec", worst < 1e-9,
           f"largest divergence across {n} cases: {worst:.12f}" + (f" at {where}" if where else ""))
-    guard("the board no longer charges Polymarket the superseded 0.0695",
-          abs(bb.PMUS_FEE - 0.06) < 1e-12, f"PMUS_FEE={bb.PMUS_FEE}")
+    import pmus_fee as pf
+    guard("the board prices Polymarket US from pmus_fee, not a literal of its own",
+          abs(bb.PMUS_FEE - pf.taker()) < 1e-12, f"PMUS_FEE={bb.PMUS_FEE} vs pmus_fee={pf.taker()}")
 
 
 def main():

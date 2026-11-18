@@ -12,7 +12,8 @@ confirmation read at +5 min), with the exchange in Hard Rock's place:
            2c of its pre-move price.
 Grade: CLV vs Pinnacle's no-vig close at that line. Shown raw (cents of probability, as SLOW-HR) and AFTER FEES
 (close chance x after-fee decimal - 1, in %). Fees (Muse registration 12:50): ProphetX 2% of winnings; Kalshi
-0.07 x P x (1 - P) per contract; Polymarket US = the executor's taker model 0.06 x P x (1 - P) per contract (today's
+0.07 x P x (1 - P) per contract; Polymarket US = the executor's taker model, owned by pmus_fee (legacy 0.06, schedule 0.095);
+the report legend prints whichever is active (today's
 Pistons fill: screen -117, after-fee -126); Novig none. DEPTH IS NOT CHECKED: a stale quote may have had no size behind it, so any
 pass needs the gettable-price audit before bot use.
 Split: FIT = first half of the window by date, CHECK = second half. Bar shown (proposed, pending Muse): >= 100
@@ -25,6 +26,7 @@ import os
 from datetime import datetime, timedelta, timezone
 
 import clv_ledger as cl
+import pmus_fee as pf
 import buckets as bkt
 import finals as fin
 import executor as ex
@@ -67,10 +69,10 @@ PX_NHL = {"taker": 0.035, "maker": 0.01}           # F(p) = a x (1-p) per traded
 # ("the taker fee is added on top of the trade price, not taken out of it" - Novig).
 TAKER = {"kalshi":        0.07,                    # schedule, Jul 7 2026, AND 32 live fills, median
                                                    # exactly 0.0700. Verified twice over.
-         "polymarket.us": 0.06,                    # venue's own published schedule (Peter, Nov 6)
+         "polymarket.us": pf.LEGACY_TAKER,         # preserved pre-Nov-14 assumption; pmus_fee owns it
          "novig.us":      0.0}                     # PRE-GAME straights only; see NOVIG_LIVE_TAKER.
 
-MAKER = {"polymarket.us": -0.0125,                 # a REBATE: Polymarket PAYS us to post, per its
+MAKER = {"polymarket.us": pf.LEGACY_MAKER,         # the OLD rebate assumption. pmus_fee owns it, and
                                                    # published schedule. +0.60% of the decimal at -110.
          "novig.us":      0.0,                     # "The maker fee is $0 across all trade types."
          "kalshi":        0.0175}                  # CONSERVATIVE. See KALSHI_MAKER_OPEN below.
@@ -84,90 +86,21 @@ MAKER = {"polymarket.us": -0.0125,                 # a REBATE: Polymarket PAYS u
 NOVIG_LIVE_TAKER = 0.06
 
 # ---------------------------------------------------------------- Polymarket US, schedule of Nov 14 2026
-# Peter, Nov 18, from the venue's own fee schedule ("Effective exchange-wide from 12:00 AM ET, Saturday,
-# November 14, 2026"). The SHAPE is unchanged - fee = COEF x contracts x p x (1-p) - but the coefficient is
-# NOT A CONSTANT, which is the whole correction. TAKER["polymarket.us"] = 0.06 is below EVERY published
-# tier, including the cheapest, so it understated the fee at all times and made this venue look better than
-# it is. Both of our old PMUS numbers erred the same way; see PMUS_MAKER_TIERS.
-#
-# Taker theta is tiered on TRAILING 30-DAY TAKER VOLUME, recomputed daily at 00:00 ET, excluding today.
-PMUS_TAKER_TIERS = ((250_000.0, 0.0695),           # Tier 4  $250k+
-                    (50_000.0,  0.075),            # Tier 3  $50k - $250k
-                    (10_000.0,  0.085),            # Tier 2  $10k - $50k
-                    (0.0,       0.095))            # Tier 1  under $10k
-PMUS_TAKER_UNKNOWN = 0.095                         # tier not established -> worst published tier (Peter,
-                                                   # Nov 18: "If the tier cannot be established, use the
-                                                   # conservative 0.095 coefficient").
-PMUS_ONBOARD_TAKER = 0.0695                        # days 1-7 from the account's FIRST FILL, any volume
-PMUS_ONBOARD_DAYS = 7                              # "Day 1 is the ET calendar day of the account's first
-                                                   # filled order, maker or taker. There is no hourly
-                                                   # proration." Days 8-30 use the HIGHER of first-7-day
-                                                   # volume x 30/7 and trailing 30 days, which can only
-                                                   # raise volume and so can only lower theta - we do not
-                                                   # model it, because ignoring it is the conservative side.
-# MAKER is where we were most wrong. The rebate does not begin until $10MM of 30-day MAKER volume; below
-# that the maker side is simply FREE - no fee and no rebate. MAKER["polymarket.us"] = -0.0125 is better
-# than the venue's TOP tier (-0.0104) and was being credited at a volume that earns nothing, so a resting
-# PMUS price was modelled ABOVE its raw price when in truth it only ever equals it.
-PMUS_MAKER_TIERS = ((200_000_000.0, -0.0104),      # Tier 4  $200MM+
-                    (50_000_000.0,  -0.0070),      # Tier 3  $50MM - $200MM
-                    (10_000_000.0,  -0.0035),      # Tier 2  $10MM - $50MM
-                    (0.0,            0.0))         # Tier 1  under $10MM: NO REBATE
-PMUS_MAKER_UNKNOWN = 0.0                           # never credit an unverified rebate (Peter, Nov 18)
-
-# "legacy" keeps the pre-Nov-14 assumptions byte for byte so live pricing cannot move before Peter's final
-# approval; "schedule" prices the tiers above. Peter flips repo variables, so the DEFAULT is legacy and
-# changing it is a deliberate act, not a side effect of this commit.
-PMUS_FEE_MODEL = (os.environ.get("PMUS_FEE_MODEL", "") or "legacy").strip().lower()
-
-
-def _tier_coef(tiers, vol):
-    """The coefficient for a volume, from a table ordered high threshold -> low. vol None -> None."""
-    if vol is None:
-        return None
-    for floor, coef in tiers:
-        if float(vol) >= floor:
-            return coef
-    return tiers[-1][1]
-
-
-def pmus_onboarding(first_fill=None, asof=None):
-    """(in_window, day_number_or_None). The 7-day boost runs on ET CALENDAR days from the first fill.
-
-    first_fill None -> (False, None): an unknown first fill is NOT treated as onboarding, because the boost
-    is the cheap side and assuming it is the optimistic error. A first fill in the future is not a fill.
-    """
-    if not first_fill:
-        return False, None
-    d0 = first_fill.date() if hasattr(first_fill, "date") else first_fill
-    d1 = (asof or datetime.now(timezone.utc)).astimezone(timezone(timedelta(hours=-5))).date()
-    day = (d1 - d0).days + 1                       # the day of the first fill is Day 1
-    if day < 1:
-        return False, None
-    return day <= PMUS_ONBOARD_DAYS, day
-
-
-def pmus_coef(maker=False, taker_vol_30d=None, maker_vol_30d=None, first_fill=None, asof=None):
-    """(coefficient, why) for Polymarket US under the Nov 14 schedule. `why` is for the log and the report.
-
-    Nothing here guesses: every unknown resolves to the conservative published value, and `why` names which
-    branch produced the number so a reader can tell a VERIFIED tier from a fallback. Returning the reason
-    beside the number is deliberate - a bare coefficient cannot distinguish "Tier 1, measured" from "tier
-    unknown", and those two have different remedies even though today they share a value.
-    """
-    if maker:
-        c = _tier_coef(PMUS_MAKER_TIERS, maker_vol_30d)
-        if c is None:
-            return PMUS_MAKER_UNKNOWN, "maker: volume unverified -> no rebate credited"
-        return c, ("maker: no rebate below $10MM 30-day maker volume" if c == 0.0
-                   else "maker: rebate tier from verified 30-day maker volume")
-    inw, day = pmus_onboarding(first_fill, asof)
-    if inw:
-        return PMUS_ONBOARD_TAKER, f"taker: onboarding day {day} of {PMUS_ONBOARD_DAYS}"
-    c = _tier_coef(PMUS_TAKER_TIERS, taker_vol_30d)
-    if c is None:
-        return PMUS_TAKER_UNKNOWN, "taker: tier unestablished -> worst published tier"
-    return c, "taker: tier from verified trailing 30-day taker volume"
+# The tier tables, the onboarding window and the conservative fallbacks now live in pmus_fee.py, which
+# is the single source of truth every module imports (Peter, Nov 18). These names are kept as aliases
+# so existing callers and tests keep working; they are NOT second copies.
+PMUS_TAKER_TIERS = pf.TAKER_TIERS
+PMUS_MAKER_TIERS = pf.MAKER_TIERS
+PMUS_TAKER_UNKNOWN = pf.TAKER_UNKNOWN
+PMUS_MAKER_UNKNOWN = pf.MAKER_UNKNOWN
+PMUS_ONBOARD_TAKER = pf.ONBOARD_TAKER
+PMUS_ONBOARD_DAYS = pf.ONBOARD_DAYS
+pmus_onboarding = pf.onboarding
+pmus_coef = pf.coef
+_tier_coef = pf._tier
+# NOTE: there is deliberately NO exchange_lag.PMUS_FEE_MODEL. An alias here would be a SECOND model
+# switch, and a caller flipping it would see the fee not move - the precise inconsistency this commit
+# exists to remove. pmus_fee.MODEL is the only switch; eff() reads it directly, every call.
 
 
 # Every coefficient above comes from the issuing venue's own published schedule (Peter, Nov 6:
@@ -192,10 +125,10 @@ def eff(book, dec, maker=False, live=False, league=None):
         return 1 + (dec - 1) * (1 - PX_WIN_FEE)    # on gains, so the same whichever side we are on
     if book == "prophetx":                         # NHL only: a real maker/taker scale
         f = PX_NHL["maker" if maker else "taker"]
-    elif book == "polymarket.us" and PMUS_FEE_MODEL == "schedule":
+    elif book == "polymarket.us" and pf.MODEL == "schedule":
         # The live path carries no account volume, so this resolves to the conservative published tier -
         # which is the intended answer, not a gap: an unverified account does not get the cheap rate.
-        f = pmus_coef(maker=maker)[0]
+        f = pf.taker() if not maker else pf.maker()
     elif maker:
         f = MAKER.get(book)
         if f is None:
@@ -376,7 +309,8 @@ def report(st, now, read, waiting, new):
     L = [f"EXCHANGE-LAG STUDY (paper; OddsPapi history; Pinnacle vs Novig / ProphetX / Kalshi / Polymarket US; "
          f"NBA/NFL/NCAAF/NHL from {WINDOW_FROM.date()})",
          "Test = SLOW-HR registered L/P (persist 3 min + confirm at +5) with the exchange in Hard Rock's place.",
-         "CLV vs Pinnacle no-vig close at that line; after fees: ProphetX 2% of winnings, Kalshi 0.07xPx(1-P), Polymarket US 0.06xPx(1-P), Novig 0.",
+         "CLV vs Pinnacle no-vig close at that line; after fees: ProphetX 2% of winnings, Kalshi "
+         f"0.07xPx(1-P), Polymarket US {pf.taker()}xPx(1-P) [{pf.MODEL}], Novig 0.",
          "DEPTH NOT CHECKED: a stale quote may have had no size. Any pass needs the gettable-price audit before bot use.",
          f"FIT = sightings on game days <= {mid}; CHECK = after. Bar (proposed): >= 100, after-fee CLV > 0, beat close >= 53%, both halves.",
          "Suspect quotes dropped (> +15% vs the close): " + ", ".join(f"{NAME[k]} {v}" for k, v in dropped.items()),

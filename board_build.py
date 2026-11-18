@@ -39,6 +39,8 @@ import re
 from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
+import pmus_fee as pf
+
 ET = ZoneInfo("America/New_York")
 OUT = os.environ.get("BOARD_OUT", "site")
 FEEDS = ("liquidity/alerts.json", "liquidity-extra/alerts.json")
@@ -321,7 +323,7 @@ def to_american(d):
 # DISPLAY ONLY: called from price_cell(), which renders an HTML span. It feeds no selection, no
 # threshold, no registered criterion and no order, so correcting it changes a number shown on the
 # board and nothing the board, alerts or the executor act on.
-PMUS_FEE = 0.06       # Polymarket US taker, corrected 6 Nov
+PMUS_FEE = pf.taker() # Polymarket US taker, from pmus_fee (the single source of truth)
 KALSHI_FEE = 0.07     # Kalshi taker
 NOVIG_LIVE = 0.06     # Novig charges nothing pre-game; 0.06 taker on live and futures
 PX_WIN_FEE = 0.02     # ProphetX: 2% of net gains per market, EXCEPT NHL

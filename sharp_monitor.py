@@ -23,6 +23,7 @@ from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
 import odds_screen  # Nov 5: odds screen feed (odds_screen.json), every game incl. all CFB, 0 extra credits
+import pmus_fee as pf  # Nov 18: single source of truth for Polymarket US fees
 import hr_scanner   # Nov 4: Hard Rock EV scanner (paper lane + manual ntfy flag; Muse terms 7:19 AM)
 
 ET = ZoneInfo("America/New_York")
@@ -345,11 +346,12 @@ def edge_price(fair):
 WIN_FEE = {"prophetx": float(os.environ.get("PX_FEE", "") or "0.02")}
 # Taker fees charged on the buy, per $1 contract = coef x P x (1 - P) (Oct 25: Kalshi + Polymarket US added)
 TAKER_FEE = {"kalshi": float(os.environ.get("KALSHI_FEE", "") or "0.07"),
-             # Nov 6: PM US taker corrected to Polymarket's own published schedule.
-             # exchange_lag.TAKER is
-             # the source of truth; this stays a literal rather than an import because this script
-             # runs live every 5 minutes and a new import is a new way for it to fail.
-             "polymarket_us": float(os.environ.get("PMUS_FEE", "") or "0.06")}
+             # Nov 18: this was a literal, kept out of an import because this script runs live every
+             # 5 minutes and "a new import is a new way for it to fail". That reasoning was sound and
+             # is preserved - pmus_fee imports NOTHING from this repo and nothing beyond the standard
+             # library, so it is as safe to import as this literal was to type, and there is now
+             # exactly one of it instead of five that drifted. PMUS_FEE still overrides, as before.
+             "polymarket_us": float(os.environ.get("PMUS_FEE", "") or pf.taker())}
 
 
 def _p2am(p):

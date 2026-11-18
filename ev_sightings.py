@@ -62,6 +62,7 @@ from datetime import datetime, timedelta, timezone
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 os.environ["LIQ_LEAGUES"] = "NFL,NCAAF,NBA,NHL"   # this process's copy of the helpers only
+import pmus_fee as pf  # noqa: E402  single source of truth for Polymarket US fees
 import liquidity_monitor as lm  # noqa: E402  read helpers only: get(), team matching, Kalshi/Novig/ProphetX parsing
 
 ET = lm.ET
@@ -81,8 +82,12 @@ A_MIN, A_QUAL, A_DEPTH = 0.02, 0.03, 250.0
 B_MIN_EV, B_DEPTH = 0.03, 250.0
 BOOKS = ("prophetx", "novig", "kalshi", "polymarket_us")
 READ_BOOKS = [b.strip() for b in (os.environ.get("EV_BOOKS", "") or ",".join(BOOKS)).split(",") if b.strip()]   # off switch per book
-TAKER = {"kalshi": 0.07, "polymarket_us": 0.06}     # per $1 contract = coef x P x (1-P).
-                                                    # Nov 6: PM US 0.06 -> 0.06, published schedule.
+# per $1 contract = coef x P x (1-P). Nov 18: Polymarket US no longer a literal of its own - pmus_fee is
+# the single source of truth - but this study is PINNED to the LEGACY basis deliberately. Every sighting
+# already recorded here was measured at 0.06, and floating this constant would silently restate that
+# history the moment the schedule is activated. A paper study must keep reporting on the basis it
+# measured; the live lanes are the ones that follow the active model.
+TAKER = {"kalshi": 0.07, "polymarket_us": pf.LEGACY_TAKER}
 PX_FEE = 0.02                                       # ProphetX: 2% of winnings
 PMUS = "https://gateway.polymarket.us"
 PMUS_SLUGS = {"NFL": ["nfl"], "NBA": ["nba"], "NCAAF": ["cfb", "ncaaf", "college-football"], "NHL": ["nhl"]}

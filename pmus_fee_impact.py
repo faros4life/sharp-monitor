@@ -13,27 +13,29 @@ import json
 
 import clv_std as cs
 import exchange_lag as el
+import pmus_fee as pf
 
 DEC = lambda am: 1 + (100 / abs(am) if am < 0 else am / 100)
 AM = lambda d: round(-100 / (d - 1), 1) if d < 2 else round((d - 1) * 100, 1)
 
 
 def under(model, fn):
-    was = el.PMUS_FEE_MODEL
+    """pmus_fee.MODEL is the only model switch; exchange_lag deliberately exposes no alias."""
+    was = pf.MODEL
     try:
-        el.PMUS_FEE_MODEL = model
+        pf.MODEL = model
         return fn()
     finally:
-        el.PMUS_FEE_MODEL = was
+        pf.MODEL = was
 
 
 print("=" * 96)
 print("POLYMARKET US FEE CORRECTION - BEFORE / AFTER   (model built, NOT activated: default is legacy)")
 print("=" * 96)
-print(f"active model this run: PMUS_FEE_MODEL={el.PMUS_FEE_MODEL!r}")
-print(f"legacy taker coef {el.TAKER['polymarket.us']}  legacy maker coef {el.MAKER['polymarket.us']}")
-print(f"schedule taker (tier unverified) {el.pmus_coef()[0]}   schedule maker (unverified) "
-      f"{el.pmus_coef(maker=True)[0]}")
+print(f"active model this run: PMUS_FEE_MODEL={pf.MODEL!r}")
+print(f"legacy taker coef {pf.LEGACY_TAKER}  legacy maker coef {pf.LEGACY_MAKER}")
+print(f"schedule taker (tier unverified) {pf.taker(model='schedule')}   schedule maker (unverified) "
+      f"{pf.maker(model='schedule')}   gate {pf.gate_coef(model='schedule')}")
 
 # ---------------------------------------------------------------- 1. PRICE IMPACT
 print("\n" + "-" * 96)

@@ -12,8 +12,20 @@ def t_off_by_default():
 
 
 def t_floor_is_the_trigger_venues_own_after_fee_price():
-    """The alert's raw COST re-priced at the trigger venue's fee - never a number a fee has already touched."""
-    for book, want in (("kalshi", -112), ("novig", -104), ("prophetx", -106), ("polymarket_us", -111)):
+    """The alert's raw COST re-priced at the trigger venue's fee - never a number a fee has already touched.
+
+    Polymarket US is model-dependent and the two numbers are NOT interchangeable (Nov 18):
+      legacy   (0.06)  -> -111
+      schedule (0.095) -> -114
+    A bigger fee makes the venue's own after-fee price WORSE, so a floor derived from it sits LOWER and
+    admits prices the old floor refused. That is the opposite direction from Peter's Nov 6 freeze, which
+    exists so a fee correction can never make a bet eligible that was not eligible before. The number is
+    asserted per model rather than overwritten, so neither value can drift unnoticed while this lane is
+    off (EXEC_BOARD_FEE_BASIS is False by default, which is what keeps it inert today).
+    """
+    import pmus_fee as pf
+    pm_want = -114 if pf.MODEL == "schedule" else -111
+    for book, want in (("kalshi", -112), ("novig", -104), ("prophetx", -106), ("polymarket_us", pm_want)):
         am, why = ex.board_after_fee_floor({"price": 0.51, "book": book, "league": "NBA"})
         assert am == want, (book, am)
         assert "raw cost" in why

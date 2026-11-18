@@ -40,6 +40,7 @@ try:   # Nov 11: fee-model stamp for the ledger's fee_basis (logging only; never
 except Exception:
     FEE_MODEL = None
 import agree_rules
+import pmus_fee as pf
 import lane2   # Nov 4: Lane 2 LOW-limit sharp alerts, DRY RUN ONLY (Peter 4:01 PM "no live play")
 import positions
 import px_live
@@ -96,14 +97,20 @@ BLIND_STREAK_AT = 5   # Nov 11 (Peter): consecutive blind runs before the POSITI
                       # Notification cadence ONLY - it does not change when the bot goes blind, and
                       # a blind run still places nothing on any venue, exactly as before.
 PMUS = "https://gateway.polymarket.us"
-PMUS_FEE = 0.06                                                  # Polymarket US taker, their published schedule
+PMUS_FEE = pf.taker()        # Polymarket US taker. pmus_fee is the single source of truth: legacy 0.06,
+                             # schedule 0.095 when the account tier is unverified.
 # ELIGIBILITY FREEZE (Peter, Nov 6): correcting the taker fee DOWN makes every Polymarket US net
 # price better, so a raw price that used to miss the -130 cap or the alert threshold could now
 # clear it. That would be the correction CREATING a bet, which Peter prohibited. So selection and
-# economics use the corrected 0.06, while the eligibility GATES price Polymarket US at the old,
-# stricter coefficient. The correction can therefore improve which venue we choose, and can never
-# make a bet eligible that was not eligible before.
-PMUS_QUAL_FEE = 0.0695
+# economics use the active model, while the eligibility GATES price Polymarket US at the STRICTER
+# of the Nov 6 freeze and the active rate. The correction can therefore improve which venue we
+# choose, and can never make a bet eligible that was not eligible before.
+#
+# Nov 18: this was a fixed 0.0695, which was the stricter number only while the model charged 0.06.
+# Once the applicable rate is 0.095 a frozen 0.0695 becomes the LENIENT side, and the gate would be
+# accepting trades priced below the conservative rate - exactly what Peter asked be made impossible.
+# pmus_fee.gate_coef() is max(freeze, active), which is right in both regimes.
+PMUS_QUAL_FEE = pf.gate_coef()
 PMUS_LEAGUES = {"NFL": ["nfl"], "NBA": ["nba"], "NHL": ["nhl"], "MLB": ["mlb"], "NCAAF": ["cfb", "ncaaf", "college-football"],
                 "NCAAB": ["cbb", "ncaab", "college-basketball"]}
 BANNED_SPORTS = {"UFC", "MMA", "BOXING", "TENNIS", "ATP", "WTA", "SOCCER", "EPL", "MLS", "LA LIGA", "SERIE A",

@@ -28,6 +28,7 @@ import clv_ledger as cl
 import finals as fin
 import hist_cache as hc
 import sharp_monitor as sm
+import pmus_fee as pf
 import tracker_build as tb
 
 ET = tb.ET
@@ -51,8 +52,9 @@ def eff(book, dec):
         return 1 + (dec - 1) * 0.98
     if book in ("kalshi", "polymarket.us"):
         p = 1 / dec
-        # Nov 6: PM US taker default corrected per the venue's published schedule
-        fee = 0.07 if book == "kalshi" else float(os.environ.get("PMUS_FEE", "") or "0.06")
+        # Nov 18: Polymarket US comes from pmus_fee, the single source of truth, instead of a
+        # fifth independent literal. PMUS_FEE still overrides it, as it did before.
+        fee = 0.07 if book == "kalshi" else float(os.environ.get("PMUS_FEE", "") or pf.taker())
         return 1 / (p * (1 + fee * (1 - p)))
     return dec
 
