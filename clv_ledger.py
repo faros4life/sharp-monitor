@@ -1431,7 +1431,15 @@ def plimit_tag(s, f, pin, mkmap, lg, when):
     pz = parsed(s)
     mk = {"ml": "moneyline", "spread": "spread", "total": "total"}.get(pz[0] if pz else "", "")
     cut = PLIM_CUT.get((lg, mk)) or PLIM_LEAGUE.get(lg)
-    return {"limit": round(lim), "how": how, "cut": cut, "grp": (None if not cut else ("LOW" if lim <= cut else "HIGH"))}
+    out = {"limit": round(lim), "how": how, "cut": cut,
+           "grp": (None if not cut else ("LOW" if lim <= cut else "HIGH"))}
+    if not cut:
+        # Nov 18: a limit WAS read but no frozen Item 56 cut exists for this league x market, so the row
+        # cannot be grouped. Without a reason it fell into plim_stats' bucket as "not tried", which is
+        # false - it was tried and it worked. No cut is invented here: freezing an NCAAB median is a
+        # decision and a FIT window, not a side effect of a report.
+        out["why"] = f"limit read, but no frozen Item 56 cut for {lg} x {mk or '?'} - not grouped"
+    return out
 
 
 def units_of(r):

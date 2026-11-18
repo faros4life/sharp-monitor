@@ -43,7 +43,15 @@ def pin_limit_at(b, f, pm, mkmap, when, lg):
     pz = cl.parsed(b)
     if not pz:
         return None, None
-    sid = cl.SPORT[lg]
+    # Nov 18: was cl.SPORT[lg], which has no NCAAB and raised KeyError: 'NCAAB' into the CLV ledger's
+    # P-limit section - 7 rows there read as a raw KeyError rather than a limit. SCORE_SPORT maps NCAAB
+    # to basketball's sport id 11, the same id as NBA, and ML_MARKET[11] exists, so NCAAB really is
+    # readable here; this is the same correction made in clv_obs_audit.classify on 17 Nov. An unknown
+    # league now returns cleanly instead of raising, so a new league is a missing read and never an
+    # exception string in a report.
+    sid = cl.SCORE_SPORT.get(lg)
+    if sid is None:
+        return None, None
 
     def lim(mid, oid):
         m = (pm.get(str(mid)) or {}).get("outcomes", {}).get(oid) or {}
