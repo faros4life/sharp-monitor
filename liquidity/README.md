@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 18, 4:00 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 27.
+Updated Wed Nov 18, 4:05 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 27.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -26,7 +26,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 17 9:45PM | NBA | Charlotte vs Los Angeles L: Total Points | total: NOT Over 220.5 points | kalshi | $104k | -100 |  | ❌ | -1.0c | yes | L |
 | Nov 17 9:45PM | NHL | Boston vs Detroit | moneyline: Detroit | kalshi | $35k | -108 |  |  | -2.0c |  | pending |
 | Nov 17 9:40PM | NBA | Utah Jazz @ Los Angeles Clippers | spread: LAC -5.5 (-5.5) | novig | $29k | -111 |  |  | -0.5c |  | pending |
-| Nov 17 9:10PM | NBA | Washington vs Toronto | moneyline: Toronto | kalshi | $42k | -213 |  |  | +1.0c |  | pending |
+| Nov 17 9:10PM | NBA | Washington vs Toronto | moneyline: Toronto | kalshi | $42k | -213 |  |  | +2.0c |  | pending |
 | Nov 17 8:50PM | NBA | Philadelphia vs Orlando | moneyline: Philadelphia | kalshi | $55k | -122 |  |  | +0.0c |  | pending |
 | Nov 17 8:35PM | NBA | Utah vs Los Angeles C: Total Points | total: NOT Over 227.5 points | kalshi | $49k | -108 |  |  | +0.0c | yes | L |
 | Nov 17 8:35PM | NBA | Houston vs Indiana | moneyline: Houston | kalshi | $117k | -223 |  |  | +4.0c |  | pending |
@@ -85,7 +85,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 17 10:05AM | NHL | Columbus vs New York I: Total Goals | total: NOT Over 5.5 goals scored | kalshi | $35k | +108 | ✅ novig |  | +1.0c | yes | L |
 | Nov 17 10:05AM | NCAAF | Ball St. vs Ohio: Total Points | total: NOT Over 49.5 points | kalshi | $25k | +104 | ✅ novig,prophetx |  | +1.0c | yes | L |
 | Nov 17 9:55AM | NCAAF | Miami (OH) vs Kent St.: Spread | spread: NOT Miami (OH) wins by over 9.5 points | kalshi | $42k | -104 |  |  | -1.0c | yes | L |
-| Nov 17 9:40AM | NCAAF | Akron vs UMass | moneyline: UMass | kalshi | $156k | -150 |  |  | +0.0c |  | pending |
+| Nov 17 9:40AM | NCAAF | Akron vs UMass | moneyline: UMass | kalshi | $156k | -150 |  |  | +1.0c |  | pending |
 | Nov 17 9:20AM | NBA | New York vs Toronto: Total Points | total: Over 214.5 points | kalshi | $26k | -108 |  | ❌ | +2.0c | yes | L |
 | Nov 17 9:16AM | NCAAF | Ball St. vs Ohio: Spread | spread: NOT Ohio wins by over 11.5 points | kalshi | $244k | -108 |  |  | +2.0c |  | W |
 | Nov 17 9:16AM | NBA | Detroit vs San Antonio: Total Points | total: NOT Over 222.5 points | kalshi | $28k | -100 |  |  | +3.0c |  | W |
