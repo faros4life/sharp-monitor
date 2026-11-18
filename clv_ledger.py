@@ -1941,8 +1941,13 @@ def main():
             for r in held:
                 s, fx = r["snap"], ((st.get("fixtures") or {}).get(r.get("fixture")) or {})
                 d = r.get("fixture_doubt") or {}
+                # Nov 18: print the row id. The UNPROVEN-orphan block above already prints one, and
+                # without it a held-out row cannot be named to clv_fixture_repair, whose allowlist is
+                # BY ID - so the one action that resolves these rows had no way to reference them. The
+                # id is an identifier, not a dollar figure, and this email is the private channel.
                 L.append(f"  {s.get('league') or '?'} {s.get('book') or '?'} {(s.get('bet') or '')[:26]} | "
-                         f"CLV {100 * r['clv']:+.2f}% | stored fixture points at "
+                         f"CLV {100 * r['clv']:+.2f}% | id {r.get('id') or r.get('key') or '?'} | "
+                         f"stored fixture points at "
                          f"{(fx.get('n1') or fx.get('p1') or '?')[:22]} vs {(fx.get('n2') or fx.get('p2') or '?')[:22]}")
                 L.append(f"      flagged {(d.get('since') or '')[:16]}: {d.get('why') or '?'}")
                 now_v, now_w = fixture_check(st, r)
