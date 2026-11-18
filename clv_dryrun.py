@@ -137,7 +137,12 @@ def rules_unchanged():
     guard("unit is $300", ex.UNIT == 300.0, f"UNIT={ex.UNIT}")
     guard("LIVE unit is $300", ex.LIVE_UNIT == 300.0, f"LIVE_UNIT={ex.LIVE_UNIT}")
     guard("per-order cap is $415", px_live.MAX_ORDER == 415.0, f"MAX_ORDER={px_live.MAX_ORDER}")
-    guard("daily stop is $2,250", px_live.DAILY_STOP == 2250.0, f"DAILY_STOP={px_live.DAILY_STOP}")
+    # Nov 18: this asserted 2,250 - the value BEFORE Peter raised it to 3,000 on Nov 11. px_live has
+    # carried "# Nov 11 (Peter): 2250 -> 3000" since that day and three tests assert 3,000, so this
+    # guard has been failing every dry run since, for seven days, on a stale expectation rather than
+    # a real drift. I read that failure as environmental twice today without checking it. A limit
+    # guard that cries wolf is worse than no guard: it trains the reader to skip the whole report.
+    guard("daily stop is $3,000", px_live.DAILY_STOP == 3000.0, f"DAILY_STOP={px_live.DAILY_STOP}")
     guard("spreads/totals never worse than -130", ex.CAP_LINE == -130, f"CAP_LINE={ex.CAP_LINE}")
     guard("minimum lead time 60 min", ex.MIN_LEAD_MIN == 60.0, f"MIN_LEAD_MIN={ex.MIN_LEAD_MIN}")
     guard("the four auto venues are unchanged", tuple(ex.BOOKS) == AUTO, f"{tuple(ex.BOOKS)}")
