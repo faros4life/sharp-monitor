@@ -2003,6 +2003,24 @@ def main():
                                      "game not started" if tp(r["snap"]["game_start"]) > now - timedelta(minutes=SCORE_AFTER_MIN) else "queued")
                 wr[w] = wr.get(w, 0) + 1
         L += [f"    {v} x {k2}" for k2, v in sorted(wr.items(), key=lambda x: -x[1])]
+        # Nov 18 (Peter): SAMPLE VISIBILITY. The scored basis and the stuck-row count, both BY BOOK, so
+        # the sample growing is visible in the report rather than history being quietly restated. A row
+        # with no game_start is never attempted, and until Nov 18 the Kalshi and Polymarket US readers
+        # never set that field - their settled rows are minted under a different id than the open row
+        # that knew the start, so unlike Novig they inherited nothing. These two lines are how we see
+        # whether the fix actually moved them; they decide nothing.
+        def _bk(r):
+            return str((r.get("snap") or {}).get("book") or "?")
+        sc_by, st_by = {}, {}
+        for k, r in st["bets"].items():
+            b = _bk(r)
+            if r.get("clv") is not None:
+                sc_by[b] = sc_by.get(b, 0) + 1
+            elif not r["snap"].get("game_start"):
+                st_by[b] = st_by.get(b, 0) + 1
+        L.append(f"  SCORED by book: {', '.join(f'{b} {sc_by[b]}' for b in sorted(sc_by)) or 'none'}")
+        L.append(f"  STUCK (no game_start) by book: {', '.join(f'{b} {st_by[b]}' for b in sorted(st_by)) or 'none'}"
+                 f" | total {sum(st_by.values())}")
         nc = [r for r in (st.get("novig_checks") or {}).values() if r.get("novig_price_then") is not None]
         L += ["", f"NOVIG STALE CHECK (bot Novig orders: the price the bot used vs Novig's own price in OddsPapi history at that "
                   f"moment): {len(nc)} checked"]

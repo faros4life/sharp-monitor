@@ -475,6 +475,70 @@ def iso(d):
     return d.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ") if d else None
 
 
+def venue_start_iso(get):
+    """ISO start from a venue payload, or None. `get` is the payload's .get.
+
+    Only fields that genuinely mean "when the game starts" are read, and the field lists are
+    liquidity_monitor's (k_start / pm_start) rather than a second set of our own. Never derived from a
+    DATE, a slug, a settle time or an expiry: all four would invent a time of day, and a wrong start
+    pins the wrong closing tick. No field -> None, and the row stays unscored and counted, which is the
+    behaviour we already have.
+    """
+    try:
+        import liquidity_monitor as lm
+    except Exception:
+        return None
+    for f in ("occurrence_datetime", "event_start_time", "game_start_time",   # Kalshi (lm.k_start)
+              "gameStartTime", "startTime", "start_time", "scheduledStart"):  # Polymarket US / Novig shapes
+        v = get(f)
+        if not v:
+            continue
+        d = lm.pm_start(v) if isinstance(v, str) else None
+        if d is not None:
+            return iso(d)
+    return None
+
+
+def market_key(b):
+    """The venue's own market identifier on a row, used to tie a SETTLED row to the OPEN row of the same
+    bet. Kalshi and Polymarket US mint a settled row under a DIFFERENT id than the open one
+    (`ks|TK|settled` vs `ks|TK|yes`), so unlike Novig - whose ids match and which therefore inherits
+    game_start for free - those two lose the start time the open row had. This is what re-ties them."""
+    bk = str(b.get("book") or "")
+    t = str(b.get("ticker") or "").strip()
+    if bk == "Kalshi" and t:
+        return ("Kalshi", t)
+    s = str(b.get("slug") or "").strip()
+    if bk == "Polymarket US" and s:
+        return ("Polymarket US", s)
+    return None
+
+
+def inherit_game_start(bets):
+    """Give a settled Kalshi / Polymarket US row the start time its own open row already carried.
+
+    Source is the SAME venue and the SAME market id - the venue's own record, never a guess. Returns
+    (adopted, still_missing) counts for the report. Sets nothing where no sibling row knows the start.
+    """
+    known = {}
+    for b in bets.values():
+        k = market_key(b)
+        if k and b.get("game_start"):
+            known.setdefault(k, b["game_start"])
+    adopted, missing = 0, 0
+    for b in bets.values():
+        if b.get("game_start"):
+            continue
+        k = market_key(b)
+        if k and known.get(k):
+            b["game_start"] = known[k]
+            b["game_start_src"] = "sibling row, same venue market id"
+            adopted += 1
+        elif k:
+            missing += 1
+    return adopted, missing
+
+
 def read_kalshi(since):
     import positions as ps
     op, se = [], []
@@ -502,9 +566,17 @@ def read_kalshi(since):
             # with a sports league and show on the tracker as NCAAF. The market text is the authority
             # on whether this is a game at all; where it says politics, carry no league.
             _lg = None if is_politics({"game": title, "bet": _bet}) else lg_of(tk)
-            op.append({"id": f"ks|{tk}|{'no' if q < 0 else 'yes'}", "book": "Kalshi", "game": title, "league": _lg,
-                       "bet": _bet, "flip": False, "stake": round(cost, 2),
-                       "to_pay": round(abs(q), 2), "price": p_to_american(pr), "date": ps._date(tk), "ticker": tk})
+            _row = {"id": f"ks|{tk}|{'no' if q < 0 else 'yes'}", "book": "Kalshi", "game": title, "league": _lg,
+                    "bet": _bet, "flip": False, "stake": round(cost, 2),
+                    "to_pay": round(abs(q), 2), "price": p_to_american(pr), "date": ps._date(tk), "ticker": tk}
+            # Nov 18: carry Kalshi's own scheduled start. Without it the row reaches clv_ledger with no
+            # game_start and is never attempted ("no game_start on the row"), which is how 353 rows
+            # accumulated against a scored basis of 149. Set ONLY from a real start field - never from
+            # ps._date(tk), which knows the day but not the time of day.
+            _gs = venue_start_iso((mk or {}).get)
+            if _gs:
+                _row["game_start"] = _gs
+            op.append(_row)
         cur = d.get("cursor")
         if not cur:
             break
@@ -566,11 +638,20 @@ def read_pmus(since):
         _ttl, _out = md.get("title") or "", md.get("outcome") or ""
         # Nov 8: same guard as the Kalshi path above - Polymarket carries plenty of politics markets,
         # and a slug fragment must not hand one a sports league.
-        op.append({"id": f"pm|{md.get('slug') or slug}|{md.get('outcome')}", "book": "Polymarket US", "game": _ttl,
-                   "league": None if is_politics({"game": _ttl, "bet": _out}) else
-                   lg_of((md.get("eventSlug") or md.get("slug") or slug or "").split("-")[0]),
-                   "bet": _out, "flip": q < 0, "stake": round(cost, 2), "to_pay": round(abs(q), 2),
-                   "price": p_to_american(cost / abs(q)) if cost else None, "date": ps._date(md.get("eventSlug") or md.get("slug") or slug)})
+        _row = {"id": f"pm|{md.get('slug') or slug}|{md.get('outcome')}", "book": "Polymarket US", "game": _ttl,
+                "league": None if is_politics({"game": _ttl, "bet": _out}) else
+                lg_of((md.get("eventSlug") or md.get("slug") or slug or "").split("-")[0]),
+                "bet": _out, "flip": q < 0, "stake": round(cost, 2), "to_pay": round(abs(q), 2),
+                "price": p_to_american(cost / abs(q)) if cost else None,
+                "date": ps._date(md.get("eventSlug") or md.get("slug") or slug),
+                "slug": str(md.get("slug") or slug or "")}   # Nov 18: ties the settled row back to this one
+        # Nov 18: same fix as Kalshi above. gameStartTime is the field Polymarket US carries
+        # (book_check.py reads it the same way); endDate is deliberately NOT in the chain - it is when
+        # the market ENDS, and using it would pin a closing tick after the game.
+        _gs = venue_start_iso(md.get)
+        if _gs:
+            _row["game_start"] = _gs
+        op.append(_row)
     acts, params = [], {"limit": 100}
     for _ in range(30):
         dd = pa.signed_get("/v1/portfolio/activities", params)
@@ -588,10 +669,15 @@ def read_pmus(since):
         t = datetime.strptime(r["time_et"], "%Y-%m-%d %H:%M").replace(tzinfo=ET)
         if t < since:
             continue
+        # Nov 18: pmus_activity.row() formats market as "title [marketSlug]", so the venue's own slug is
+        # already in hand - carrying it lets inherit_game_start() tie this row to the open row that knew
+        # the start time. Without it this row is a fresh id with no link back (unlike Novig, whose
+        # settled id matches its open id and inherits game_start for free).
+        _slug = r["market"].split(" [")[1].rstrip("]") if " [" in r["market"] else ""
         se.append({"id": f"pm|{r['market']}|{r['outcome']}|settled", "book": "Polymarket US", "game": r["market"].split(" [")[0],
                    "bet": r["outcome"], "stake": round(r["cost"] or 0, 2), "to_pay": round(r["amount"] or 0, 2),
                    "result": "W" if r["pnl"] > 0 else "L" if r["pnl"] < 0 else "P", "profit": r["pnl"],
-                   "settled": iso(t), "site": True})
+                   "settled": iso(t), "site": True, "slug": _slug})
     LOG["polymarket_us"] = f"ok {len(op)} open {len(se)} settled"
     return op, se
 
@@ -1585,6 +1671,12 @@ def main():
                     extra.add(dd)
     if extra:
         games += espn_games(sorted(extra)[:14])
+    # Nov 18 (Peter): tie each settled Kalshi / Polymarket US row to the start time its own open row
+    # carried. Runs BEFORE the scoreboard pin below so a row that can be re-tied from the venue's own
+    # record is never left to depend on the game still being inside the ESPN window - that timing luck
+    # is what left 353 rows permanently unscored. Counts only; nothing is invented.
+    _inh_ok, _inh_no = inherit_game_start(bets)
+    LOG["game_start_inherit"] = f"adopted {_inh_ok}, still missing {_inh_no}"
     for b in bets.values():
         # undo an earlier bad pin: a game more than 2 days from when the bet settled is not its game
         gs, ss = tparse(b.get("game_start")), tparse(b.get("settled"))

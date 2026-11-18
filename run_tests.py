@@ -57,6 +57,20 @@ def main():
         print("run_tests: no test files matched - treating that as a FAILURE (a silent empty run is how a suite dies)")
         return 1
     env = dict(os.environ, PYTHONDONTWRITEBYTECODE="1")
+    # Nov 18 (Peter): the suite is hermetic. tests_no_net blocks outbound sockets in every test
+    # subprocess, because an audit found three files dialling out - two of them attempting a PUT to the
+    # live order registry, stopped only by the agent proxy refusing that API. A proxy quirk is not a
+    # safety control. Loopback stays open. Set TEST_ALLOW_NET=1 to opt out for a one-off diagnosis.
+    if os.environ.get("TEST_ALLOW_NET") != "1":
+        env["PYTHONSTARTUP"] = ""
+        _inj = os.path.join(ROOT, "tests_no_net.py")
+        if os.path.exists(_inj):
+            env["PYTHONPATH"] = os.pathsep.join(x for x in (os.path.join(ROOT, "_nonet"), env.get("PYTHONPATH")) if x)
+            os.makedirs(os.path.join(ROOT, "_nonet"), exist_ok=True)
+            with open(os.path.join(ROOT, "_nonet", "sitecustomize.py"), "w") as _fh:
+                _fh.write("import sys, os\n"
+                          f"sys.path.insert(0, {ROOT!r})\n"
+                          "try:\n    import tests_no_net  # noqa: F401\nexcept Exception:\n    pass\n")
     failed, assertions = [], [0, 0]
     print(f"run_tests: {len(fs)} file(s), {TIMEOUT}s each\n")
     t0 = time.time()
