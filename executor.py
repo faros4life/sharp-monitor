@@ -4259,7 +4259,26 @@ def rest_bid(r):
         registry.release_submission(_rkey, REST_CID)
     except Exception as _ex:
         LOG.append(f"resting claim not released ({str(_ex)[:40]}) - it stays held, next run refuses")
-    return {"status": "refused", "reason": "; ".join(why_not) or "no resting book"}
+    _why = "; ".join(why_not) or "no resting book"
+    # Nov 18 (Peter: "I don't see resting bid ... nothing on either"). rest_pre_alert() announces
+    # "about to be submitted" and the two SUBMITTED outcomes above each push - but this path, where
+    # every book refuses, pushed NOTHING. So a bid that never went out ended in silence after being
+    # announced, and the only way to learn it had not been placed was to open both venue apps and
+    # find nothing. rest_pre_alert's own docstring calls the post-submission message mandatory
+    # (item 4); the refused case was the one branch that did not honour it. Reporting only - no
+    # order, gate, claim or stake changes, and the refusal reason was already being returned to the
+    # caller and into the ledger email.
+    try:
+        _rn = (f"{lane_tag(r)}RESTING BID NOT PLACED: {(p.get('bet') or '')[:60]}\n"
+               f"{p.get('sport') or ''} {p.get('game') or ''}\n"
+               f"No venue took it, so NOTHING is resting and no money is at the venue.\n"
+               f"why: {_why[:300]}")
+        tg(_rn)
+        push("RESTING BID NOT PLACED: " + (p.get("bet") or "")[:40], _rn, mirror=False)
+    except Exception as _ex:
+        LOG.append(f"RESTING-NOT-PLACED ALERT FAILED: {str(_ex)[:60]}")
+        print(f"resting not-placed alert FAILED: {str(_ex)[:80]}", flush=True)
+    return {"status": "refused", "reason": _why}
 
 
 def sent_tokens(M, toks, days=None):

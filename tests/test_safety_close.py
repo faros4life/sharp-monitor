@@ -180,3 +180,21 @@ print(f"PASS {len(OK)}   FAIL {len(BAD)}")
 for b in BAD:
     print("  FAIL:", b)
 sys.exit(1 if BAD else 0)
+
+# Nov 18 (Peter: "I don't see resting bid ... nothing on either"). rest_pre_alert announces a bid
+# BEFORE dispatch; both submitted outcomes push; the all-refused path pushed nothing, so an
+# announced bid that never went out ended in silence. rest_pre_alert's docstring calls the
+# post-submission message mandatory, and this was the branch that did not honour it.
+_rb = inspect.getsource(ex.rest_bid)
+ck("an announced resting bid that no venue takes is REPORTED, not silent",
+   "RESTING BID NOT PLACED" in _rb)
+ck("the not-placed message states that nothing is at the venue",
+   "no money is at the venue" in _rb)
+ck("the not-placed message carries the per-venue refusal reasons",
+   "why: {_why" in _rb or "why: " in _rb)
+ck("all three resting outcomes now push: out, error, not placed",
+   all(t in _rb for t in ("RESTING BID OUT on", "RESTING BID ERROR on", "RESTING BID NOT PLACED")))
+ck("the not-placed alert cannot break the resting path (best effort, logged on failure)",
+   "RESTING-NOT-PLACED ALERT FAILED" in _rb)
+ck("the refusal reason is still returned to the caller unchanged",
+   'return {"status": "refused", "reason": _why}' in _rb)
