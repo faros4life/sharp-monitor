@@ -89,8 +89,12 @@ def main():
     if alt:
         srcs = {src for _f, src in alt.values()}
         check("sources are named for the audit trail", all(isinstance(x, str) for x in srcs), srcs)
-        check("the Louisiana fixture is among them", "id1402765370899062" in alt,
-              "not in alt_fixtures - check oddspapi/fixtures.json")
+        # Nov 18: this pinned fixture id1402765370899062 (the 12 Nov Louisiana game). oddspapi/fixtures.json is a
+        # ROLLING window - today it spans 13-21 Nov - so that id aged out on its own and the assertion expired.
+        # Verified as expiry, not data loss: the store went 413 -> 414 fixtures across the same commits, so nothing
+        # was dropped in bulk. Assert the PROPERTY the live scorer depends on instead of one id with a shelf life.
+        check("holds fixtures the live scorer can match", len(alt) > 50, len(alt))
+        check("every entry is a fixture record", all(isinstance(f, dict) and f.get("start") for f, _s in alt.values()))
     else:
         print("  skip alt_fixtures content (no alternate store on disk in this checkout)")
 

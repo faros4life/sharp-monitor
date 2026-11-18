@@ -465,6 +465,75 @@ def clv_exceptions(bot_rows, clv_rows, certified, stale_ids):
     return out
 
 
+# ---------------------------------------------------------------- V4 / gate verification (Peter, 18 Nov, Option 1)
+# The private audit goes to Telegram, which Claude cannot read, and Gmail is off limits, so two approved
+# verifications had no route back: whether a board ledger row actually persisted its V4 evidence, and what
+# live_why_not says for a board call that never executed. Neither needs a private figure - a confirming venue's
+# liquidity is market data, and a gate reason is a reason - so this block is printed COUNTS AND REASON CODES ONLY to
+# the Actions log. No stake, balance, account, order id or game name. Reporting only: it decides nothing.
+V4_MIN_CONFIRM = 10000.0
+
+
+def _mask(t, n=90):
+    """Reason text with every digit run masked, so a line, price or amount cannot ride along inside it."""
+    import re
+    return re.sub(r"\d", "#", str(t or ""))[:n]
+
+
+def v4_verify(rows, lane_of):
+    """(lines, summary) for every BOARD order row. Pure. rows are ledger/registry order rows; lane_of(row) -> lane."""
+    out, seen = [], {"rows": 0, "with_evidence": 0, "accept": 0, "reject": 0, "rule_match": 0, "rule_mismatch": 0,
+                     "basis_corrected": 0, "basis_raw": 0, "no_v4_field": 0}
+    for r in rows or []:
+        if str(lane_of(r) or "").upper() not in ("BOARD V3", "BOARD V4", "BOARD"):
+            continue
+        seen["rows"] += 1
+        v = r.get("board_v4") if isinstance(r.get("board_v4"), dict) else None
+        if v is None:
+            seen["no_v4_field"] += 1
+            out.append("  V4 row: no board_v4 field on this order row (written before 17 Nov, or not a board play)")
+            continue
+        ok = v.get("ok") is True
+        seen["accept" if ok else "reject"] += 1
+        ev = v.get("evidence") if isinstance(v.get("evidence"), dict) else {}
+        if ev:
+            seen["with_evidence"] += 1
+        st = [x for x in (v.get("strength") or []) if isinstance(x, dict) and x.get("confirming")]
+        # does the decision match the approved rule? accept requires a confirming venue at or above the floor
+        size = ev.get("size")
+        match = (ok and size is not None and float(size) >= V4_MIN_CONFIRM) or (not ok and not ev)
+        seen["rule_match" if match else "rule_mismatch"] += 1
+        basis = r.get("board_fee_basis")
+        seen["basis_corrected" if basis is True else "basis_raw"] += 1
+        rt = r.get("route") if isinstance(r.get("route"), dict) else {}
+        out.append(f"  V4 row: {'ACCEPT' if ok else 'REJECT'} | evidence {'yes' if ev else 'no'}"
+                   + (f" | venue {ev.get('book')} size {int(size):,} >= floor {int(V4_MIN_CONFIRM):,}" if size is not None else "")
+                   + (f" | ratio {st[0].get('ratio')}x money {st[0].get('money')}" if st else " | ratio/money not recorded")
+                   + f" | price basis {'corrected after-fee' if basis is True else ('raw' if basis is False else 'not recorded')}"
+                   + f" | route {_mask(rt.get('rule'), 46) or 'not recorded'}"
+                   + f" | matches approved rule: {'YES' if match else 'NO'}"
+                   + (f" | why {_mask(v.get('why'), 60)}" if not ok and v.get("why") else ""))
+    return out, seen
+
+
+def gate_reasons(rows, lane_of, lanes=("BOARD V3", "BOARD V4", "BOARD")):
+    """Why board orders did not go live, as masked reason text with counts. Pure. No game, side price or amount."""
+    from collections import Counter
+    c, out = Counter(), []
+    for r in rows or []:
+        if str(lane_of(r) or "").upper() not in tuple(x.upper() for x in lanes):
+            continue
+        w = r.get("live_why_not")
+        if isinstance(w, list):
+            w = "; ".join(str(x) for x in w)
+        if not w:
+            continue
+        c[_mask(w, 110)] += 1
+    for why, n in c.most_common():
+        out.append(f"  gate reason x{n}: {why}")
+    return out, dict(c)
+
+
 def clv_reason_class(why):
     """Coarse, stable reason class for the missing-CLV trend log (Nov 17)."""
     w = str(why or "").lower()

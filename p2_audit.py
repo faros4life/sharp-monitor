@@ -554,6 +554,25 @@ def main():
             + f" | live board orders not paper PLAY: {len(_ex)}")
     except Exception as _e:
         print(f"section K unavailable ({type(_e).__name__})")
+    # VERIFICATION BLOCK (Peter, 18 Nov, Option 1): the two approved checks, counts and masked reason codes only.
+    # Printed to the ACTIONS LOG because the private report goes to Telegram, which Claude cannot read. No stake,
+    # balance, account, order id or game name is printed here. Decides nothing; Telegram reporting is unchanged.
+    try:
+        import registry as _reg
+        _lane_of = (lambda r: (rep.get("row_bucket") or {}).get(str(r.get("id") or ""), "").split(":")[-1]
+                    or str(_reg.row_lane(r) or ""))
+        _vl, _vs = rs.v4_verify(rr, _lane_of)
+        print("verification - BOARD V4 ledger rows: " + " | ".join(f"{k} {v}" for k, v in _vs.items()))
+        for _ln in _vl:
+            print(_ln)
+        _gl, _gc = rs.gate_reasons(rr, _lane_of)
+        print(f"verification - board gate reasons: {len(_gc)} distinct")
+        for _ln in _gl:
+            print(_ln)
+        if not _vs["rows"]:
+            print("verification: no board order rows in this window - nothing to verify")
+    except Exception as _e:
+        print(f"verification block unavailable ({type(_e).__name__}: {str(_e)[:60]})")
     eo = rep.get("exactly_once") or {}
     print(f"section E {day}: bot orders {len(so)}, bot positions {len(sp)} "
           f"(settled {sum(1 for p in sp if p['result'] != 'OPEN')}, CLV missing {sum(1 for p in sp if p['clv'] == 'MISSING')}) | "
