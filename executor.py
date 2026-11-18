@@ -215,7 +215,7 @@ def log_report():
     if QSTAT:
         print("venue opportunity (counts only; no dollars - liquidity is a multiple of the stake):")
         for _b in sorted({k[0] for k in QSTAT}):
-            for _dim in ("match", "price", "vs novig", "liquidity", "best net price", "routing"):
+            for _dim in ("match", "price", "vs novig", "liquidity", "best net price", "routing", "reach"):
                 _p = ", ".join(f"{k[2]} {v}" for k, v in sorted(QSTAT.items())
                                if k[0] == _b and k[1] == _dim)
                 if _p:
@@ -3744,13 +3744,21 @@ def live_remainder(r):
     target = lv["risk"]
     used = {lv["book"]}
     got = _got(first)
+    # Nov 18 (Peter): position in the route is NOT reach. "Fourth of four" does not establish that a
+    # venue was ever offered the order - the unit may already be full by the time its turn comes, and
+    # that is a different finding with a different fix from "reached and lost on price". So every
+    # candidate is recorded as reached or not, and the reason it was not.
+    QSTAT[(lv["book"], "reach", "filled first (its own order)")] += 1
+    _stopped = None
     for c in (r.get("lcs") or []):
         rem = round(target - got - sum(_got(o) for o in more), 2)
         if rem < MIN_TAKE - 0.01:
+            _stopped = "unit already filled"
             break
         if c["book"] in used:
             continue
         used.add(c["book"])
+        QSTAT[(c["book"], "reach", "reached with a usable remainder")] += 1
         save = dict(lv)
         lv.update(book=c["book"], px=c, ids=c.get("ids") or {}, risk=rem, line=c["line"], am=c["am"], shown=c["shown"])
         try:
@@ -3760,7 +3768,16 @@ def live_remainder(r):
         o = dict(o, book=o.get("book") or c["book"])
         more.append(o)
         if o.get("status") != "placed":
+            _stopped = f"stopped: {str(o.get('status'))[:18]}"
             break
+    # Whatever was never reached, and why. Without this, a venue that is always last and always full
+    # looks identical to one that was offered the order and refused it.
+    try:
+        for c in (r.get("lcs") or []):
+            if c["book"] not in used:
+                QSTAT[(c["book"], "reach", f"NOT reached - {_stopped or 'route exhausted'}")] += 1
+    except Exception:
+        pass
     return more
 
 

@@ -165,6 +165,42 @@ ok("qstat_record is called where all four venues are comparable",
 ok("the recorder is wrapped so it cannot break the order pass",
    "must never be able to break it" in src)
 
+# ---------------------------------------------------------------- 8. REACH is not POSITION (Peter, Nov 18)
+# "Fourth of four" does not establish that a venue was ever offered the order. These two must be
+# separately countable, or a venue that is always last and always full is indistinguishable from one
+# that was reached and refused.
+fresh()
+_r = {"live": {"book": "novig", "order": {"status": "placed", "asked_stake": 300.0, "filled_stake": 300.0},
+               "risk": 300.0},
+      "lcs": [{"book": "novig"}, {"book": "prophetx"}, {"book": "kalshi"}, {"book": "polymarket_us"}]}
+ex.live_remainder(_r)
+rch = keys("reach")
+ok("the first venue is recorded as having filled its own order",
+   keys("reach", "novig") == {"filled first (its own order)": 1}, keys("reach", "novig"))
+ok("a venue never offered the order is recorded as NOT reached",
+   any("NOT reached" in k for k in keys("reach", "polymarket_us")), keys("reach", "polymarket_us"))
+ok("the reason it was not reached is the filled unit, not a refusal",
+   any("unit already filled" in k for k in keys("reach", "polymarket_us")), keys("reach", "polymarket_us"))
+ok("every later venue in the route gets a reach row",
+   all(keys("reach", b) for b in ("prophetx", "kalshi", "polymarket_us")), rch)
+
+# a partial first fill DOES leave a remainder, so the next venue is reached
+fresh()
+_r2 = {"live": {"book": "novig", "order": {"status": "placed", "asked_stake": 300.0, "filled_stake": 50.0},
+                "risk": 300.0},
+       "lcs": [{"book": "novig"}, {"book": "polymarket_us"}]}
+try:
+    ex.live_remainder(_r2)
+except Exception:
+    pass   # live_order is not callable in a test; the reach row is written before it is called
+ok("a usable remainder records the next venue as REACHED",
+   any("reached with a usable remainder" in k for k in keys("reach", "polymarket_us")),
+   keys("reach", "polymarket_us"))
+ok("reach and routing are separate dimensions, never merged",
+   not (keys("reach", "polymarket_us") and keys("routing", "polymarket_us")))
+ok("the printer emits the reach dimension too",
+   '"reach"' in open("executor.py").read().split("for _dim in")[1][:120])
+
 print(("FAILED: " + ", ".join(FAILED)) if FAILED else "ALL PASS")
 print(f"{TOTAL - len(FAILED)} passed, {len(FAILED)} failed")
 raise SystemExit(1 if FAILED else 0)
