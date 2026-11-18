@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 18, 4:30 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 26.
+Updated Wed Nov 18, 4:40 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 26.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -16,7 +16,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 18 4:10PM | NCAAB | Cornell vs Syracuse: Spread | spread: NOT Syracuse wins by over 19.5 points | kalshi | $38k | -122 |  | ✅ | +0.0c |  | pending |
 | Nov 18 3:40PM | NCAAB | Houston vs Florida | moneyline: Florida | kalshi | $93k | -108 | ✅ novig,prophetx |  | +0.0c | yes | pending |
 | Nov 18 3:10PM | NCAAB | Furman vs Radford | moneyline: Radford | kalshi | $43k | +170 | ✅ novig |  | +0.0c |  | pending |
-| Nov 18 3:00PM | NCAAB | Florida @ Houston | moneyline: HOU (0) | novig | $25k | +104 | ✅ kalshi |  | -0.5c |  | pending |
+| Nov 18 3:00PM | NCAAB | Florida @ Houston | moneyline: HOU (0) | novig | $25k | +104 | ✅ kalshi |  | -0.5c | yes | pending |
 | Nov 18 3:00PM | NCAAB | Houston vs Florida: Spread | spread: NOT Florida wins by over 1.5 points | kalshi | $26k | -104 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 18 3:00PM | NCAAB | Houston vs Florida | moneyline: Houston | kalshi | $115k | +108 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 18 1:40PM | NCAAB | Morgan St. vs North Carolina A&T | moneyline: North Carolina A&T | kalshi | $48k | -300 | ✅ novig |  | +1.0c |  | pending |
