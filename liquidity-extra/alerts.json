@@ -1,6 +1,301 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-18T06:50:16Z",
+   "base_depth": 49600,
+   "best_price": 0.7,
+   "best_price_american": -233,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.72,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-18",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 368,
+     "new_this_side": 25069,
+     "other_side": 2261,
+     "other_side_all_levels": 14576,
+     "ratio": 6.1,
+     "this_side": 13841,
+     "this_side_all_levels": 74779
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Longwood (0)",
+     "price": 0.7,
+     "this_side": 276
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Longwood",
+     "price": 0.7015,
+     "this_side": 84
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 74.68,
+    "volume_24h_fp": 69.68,
+    "volume_fp": 74.68
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 74.68,
+    "volume_24h_fp": 69.68,
+    "volume_fp": 74.68
+   },
+   "fade_price": 0.29,
+   "first_seen_utc": "2026-11-18T06:40:16Z",
+   "game": "VMI vs Longwood",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 2.49,
+   "key": "kalshi|KXNCAAMBGAME-26NOV18VMILONG|ml|1",
+   "lead_min": 1030,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 25069,
+   "new_x": 0.62,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 74.68,
+      "volume_24h_fp": 69.68,
+      "volume_fp": 74.68
+     },
+     "game_normal": 29976,
+     "game_x": 2.49,
+     "normal": 40261,
+     "now": 74779,
+     "type": "ML",
+     "x": 1.86
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 31268.0,
+      "volume": 31268.0
+     },
+     "game_normal": 325,
+     "game_x": 1.82,
+     "normal": 2430,
+     "now": 592,
+     "type": "ML",
+     "x": 0.24
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 68,
+     "game_x": 1.24,
+     "normal": 521,
+     "now": 84,
+     "type": "ML",
+     "x": 0.16
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.72,
+   "price_american": -257,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.72,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -285
+    },
+    "draftkings": {
+     "point": null,
+     "price": -285
+    },
+    "fanatics": {
+     "point": null,
+     "price": -280
+    },
+    "kalshi": {
+     "point": null,
+     "price": -257
+    },
+    "novig": {
+     "point": null,
+     "price": -233
+    },
+    "polymarket": {
+     "point": null,
+     "price": -233
+    },
+    "prophetx": {
+     "point": null,
+     "price": -235
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV18VMILONG-LONG"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Longwood",
+   "side_label": "Longwood",
+   "size_x": 1.86,
+   "start_source": "odds",
+   "start_utc": "2026-11-19T00:00:00Z",
+   "surge_books": [],
+   "teams": [
+    "VMI",
+    "Longwood"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-18T06:50:16Z",
+   "base_depth": 60940,
+   "best_price": 0.8494,
+   "best_price_american": -564,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.84,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-18",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 59,
+     "new_this_side": 36991,
+     "other_side": 1640,
+     "other_side_all_levels": 7421,
+     "ratio": 18.4,
+     "this_side": 30094,
+     "this_side_all_levels": 97970
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 256.03999999999996,
+    "volume_24h_fp": 79.51,
+    "volume_fp": 311.18
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 256.03999999999996,
+    "volume_24h_fp": 79.51,
+    "volume_fp": 311.18
+   },
+   "fade_price": 0.18,
+   "first_seen_utc": "2026-11-18T06:40:16Z",
+   "game": "UNC Wilmington vs LIU",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 2.11,
+   "key": "kalshi|KXNCAAMBGAME-26NOV18UNCWLIU|ml|0",
+   "lead_min": 1030,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 36991,
+   "new_x": 0.92,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 256.03999999999996,
+      "volume_24h_fp": 79.51,
+      "volume_fp": 311.18
+     },
+     "game_normal": 46337,
+     "game_x": 2.11,
+     "normal": 40261,
+     "now": 97970,
+     "type": "ML",
+     "x": 2.43
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.84,
+   "price_american": -525,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.84,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -625
+    },
+    "fanatics": {
+     "point": null,
+     "price": -600
+    },
+    "kalshi": {
+     "point": null,
+     "price": -525
+    },
+    "polymarket": {
+     "point": null,
+     "price": -525
+    },
+    "prophetx": {
+     "point": null,
+     "price": -650
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV18UNCWLIU-UNCW"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNC Wilmington",
+   "side_label": "UNC Wilmington",
+   "size_x": 2.43,
+   "start_source": "odds",
+   "start_utc": "2026-11-19T00:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "UNC Wilmington",
+    "LIU"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-18T06:40:16Z",
    "base_depth": 48327,
    "best_price": 0.7438,
@@ -50,6 +345,11 @@
     "open_interest_fp": 0.0,
     "volume_24h_fp": 0.0,
     "volume_fp": 0.0
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 156.07999999999998,
+    "volume_24h_fp": 41.629999999999995,
+    "volume_fp": 156.07999999999998
    },
    "ex_stats_first": {
     "open_interest_fp": 156.07999999999998,
