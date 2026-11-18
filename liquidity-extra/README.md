@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 18, 4:40 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 26.
+Updated Wed Nov 18, 4:50 PM ET. This run: 2 new, 0 not confirmed, 0 pending. Open alerts: 28.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 18 4:50PM | NCAAB | Vermont vs Yale | moneyline: Yale | kalshi | $71k | -285 | ✅ novig | ✅ | +0.0c |  | pending |
+| Nov 18 4:50PM | NCAAB | Detroit Mercy vs Eastern Michigan | moneyline: Eastern Michigan | kalshi | $31k | -567 | ✅ novig |  | +0.0c |  | pending |
 | Nov 18 4:10PM | NCAAB | Kansas vs West Virginia: Spread | spread: Kansas wins by over 8.5 points | kalshi | $27k | +113 |  | ❌ | +0.0c |  | pending |
 | Nov 18 4:10PM | NCAAB | Northern Illinois vs Marquette: Spread | spread: NOT Marquette wins by over 27.5 points | kalshi | $41k | -113 |  | ✅ | +0.0c |  | pending |
 | Nov 18 4:10PM | NCAAB | IU Indy vs Penn St.: Spread | spread: NOT Penn St. wins by over 16.5 points | kalshi | $30k | -100 |  |  | +0.0c |  | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 12 1:31AM | NCAAB | UC Riverside vs San Jose St. | moneyline: San Jose St. | kalshi | $43k | -285 |  |  | +3.0c | yes | L |
 | Nov 12 1:31AM | NCAAB | Richmond vs Southern Illinois | moneyline: Richmond | kalshi | $35k | -156 |  |  | -4.0c | yes | L |
 | Nov 12 1:31AM | NCAAB | Oklahoma St. vs Texas A&M | moneyline: Texas A&M | kalshi | $58k | -285 |  |  | +3.0c | yes | W |
-| Nov 12 1:31AM | NCAAB | New Mexico St. vs UTEP | moneyline: UTEP | kalshi | $40k | -194 |  |  | +0.0c | yes | W |
-| Nov 12 1:31AM | NCAAB | Morgan St. vs UMBC | moneyline: UMBC | kalshi | $39k | -257 |  |  | +3.0c | yes | W |

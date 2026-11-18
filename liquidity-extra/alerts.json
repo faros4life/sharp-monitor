@@ -1,6 +1,398 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-18T21:50:20Z",
+   "base_depth": 145193,
+   "best_price": 0.74,
+   "best_price_american": -285,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.74,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-18",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 11994,
+     "new_this_side": 70782,
+     "other_side": 11647,
+     "other_side_all_levels": 51880,
+     "ratio": 11.1,
+     "this_side": 129629,
+     "this_side_all_levels": 220902
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "YALE (0)",
+     "price": 0.74,
+     "this_side": 14082
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Yale",
+     "price": 0.7368,
+     "this_side": 4909
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 9347.01,
+    "volume_24h_fp": 9743.0,
+    "volume_fp": 9751.17
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 59.35,
+    "volume_24h_fp": 263.42,
+    "volume_fp": 59.42
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 9287.66,
+    "volume_24h_fp": 9479.58,
+    "volume_fp": 9691.75
+   },
+   "fade_price": 0.27,
+   "first_seen_utc": "2026-11-18T21:40:16Z",
+   "game": "Vermont vs Yale",
+   "game_surge_books": [],
+   "game_x": 1.57,
+   "key": "kalshi|KXNCAAMBGAME-26NOV18UVMYALE|ml|1",
+   "lead_min": 130,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 70782,
+   "new_x": 1.01,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 9347.01,
+      "volume_24h_fp": 9743.0,
+      "volume_fp": 9751.17
+     },
+     "game_normal": 141098,
+     "game_x": 1.57,
+     "normal": 70336,
+     "now": 220902,
+     "type": "ML",
+     "x": 3.14
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 4630524.0,
+      "volume": 5196512.0
+     },
+     "game_normal": 22427,
+     "game_x": 1.19,
+     "normal": 5357,
+     "now": 26783,
+     "type": "ML",
+     "x": 5.0
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 2921,
+     "game_x": 1.75,
+     "normal": 854,
+     "now": 5119,
+     "type": "ML",
+     "x": 5.99
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.74,
+   "price_american": -285,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.74,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -325
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -340
+    },
+    "betopenly": {
+     "point": null,
+     "price": -285
+    },
+    "betrivers": {
+     "point": null,
+     "price": -375
+    },
+    "bovada": {
+     "point": null,
+     "price": -330
+    },
+    "circasports": {
+     "point": null,
+     "price": -360
+    },
+    "draftkings": {
+     "point": null,
+     "price": -340
+    },
+    "fanatics": {
+     "point": null,
+     "price": -340
+    },
+    "fanduel": {
+     "point": null,
+     "price": -285
+    },
+    "kalshi": {
+     "point": null,
+     "price": -285
+    },
+    "lowvig": {
+     "point": null,
+     "price": -340
+    },
+    "novig": {
+     "point": null,
+     "price": -300
+    },
+    "polymarket": {
+     "point": null,
+     "price": -285
+    },
+    "prophetx": {
+     "point": null,
+     "price": -300
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -335
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV18UVMYALE-YALE"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [
+    "Yale Bulldogs -6.5 (-118)"
+   ],
+   "sharp_oppose": [],
+   "side": "Yale",
+   "side_label": "Yale",
+   "size_x": 3.14,
+   "start_source": "odds",
+   "start_utc": "2026-11-19T00:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Vermont",
+    "Yale"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-18T21:50:20Z",
+   "base_depth": 292868,
+   "best_price": 0.85,
+   "best_price_american": -567,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.85,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-18",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 745,
+     "new_this_side": 31024,
+     "other_side": 28194,
+     "other_side_all_levels": 43430,
+     "ratio": 3.7,
+     "this_side": 105636,
+     "this_side_all_levels": 323245
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "EMU (0)",
+     "price": 0.85,
+     "this_side": 16598
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 7609.639999999999,
+    "volume_24h_fp": 6496.3099999999995,
+    "volume_fp": 7942.620000000001
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 193.67,
+    "volume_24h_fp": 6.98,
+    "volume_fp": 193.67
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 7415.97,
+    "volume_24h_fp": 6489.33,
+    "volume_fp": 7748.950000000001
+   },
+   "fade_price": 0.16,
+   "first_seen_utc": "2026-11-18T21:40:16Z",
+   "game": "Detroit Mercy vs Eastern Michigan",
+   "game_surge_books": [],
+   "game_x": 1.17,
+   "key": "kalshi|KXNCAAMBGAME-26NOV18DETEMU|ml|1",
+   "lead_min": 100,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 31024,
+   "new_x": 0.44,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 7609.639999999999,
+      "volume_24h_fp": 6496.3099999999995,
+      "volume_fp": 7942.620000000001
+     },
+     "game_normal": 276482,
+     "game_x": 1.17,
+     "normal": 70336,
+     "now": 323245,
+     "type": "ML",
+     "x": 4.6
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 1564166.0,
+      "volume": 1591080.0
+     },
+     "game_normal": 29672,
+     "game_x": 1.04,
+     "normal": 5357,
+     "now": 30992,
+     "type": "ML",
+     "x": 5.78
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.85,
+   "price_american": -567,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.85,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -700
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -650
+    },
+    "betrivers": {
+     "point": null,
+     "price": -625
+    },
+    "betus": {
+     "point": null,
+     "price": -720
+    },
+    "bovada": {
+     "point": null,
+     "price": -750
+    },
+    "circasports": {
+     "point": null,
+     "price": -720
+    },
+    "draftkings": {
+     "point": null,
+     "price": -700
+    },
+    "fanatics": {
+     "point": null,
+     "price": -750
+    },
+    "fanduel": {
+     "point": null,
+     "price": -650
+    },
+    "kalshi": {
+     "point": null,
+     "price": -567
+    },
+    "lowvig": {
+     "point": null,
+     "price": -650
+    },
+    "novig": {
+     "point": null,
+     "price": -567
+    },
+    "polymarket": {
+     "point": null,
+     "price": -614
+    },
+    "prophetx": {
+     "point": null,
+     "price": -580
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -650
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV18DETEMU-EMU"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Eastern Michigan",
+   "side_label": "Eastern Michigan",
+   "size_x": 4.6,
+   "start_source": "odds",
+   "start_utc": "2026-11-18T23:30:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "Detroit Mercy",
+    "Eastern Michigan"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-18T21:10:21Z",
    "base_depth": 38762,
    "best_price": 0.4874,
@@ -40,9 +432,9 @@
     "volume_fp": 928.46
    },
    "ex_stats_close": {
-    "open_interest_fp": 38115.74,
-    "volume_24h_fp": 40929.13,
-    "volume_fp": 41842.19
+    "open_interest_fp": 38665.17,
+    "volume_24h_fp": 42723.92,
+    "volume_fp": 42795.72
    },
    "ex_stats_first": {
     "open_interest_fp": 36075.77,
@@ -220,9 +612,9 @@
     "volume_fp": 18.26
    },
    "ex_stats_close": {
-    "open_interest_fp": 3451.58,
-    "volume_24h_fp": 3620.5,
-    "volume_fp": 3620.5
+    "open_interest_fp": 3453.4,
+    "volume_24h_fp": 3622.32,
+    "volume_fp": 3622.32
    },
    "ex_stats_first": {
     "open_interest_fp": 3433.32,
@@ -395,9 +787,9 @@
     "volume_fp": 301.1
    },
    "ex_stats_close": {
-    "open_interest_fp": 25226.7,
-    "volume_24h_fp": 24603.78,
-    "volume_fp": 26847.8
+    "open_interest_fp": 25320.23,
+    "volume_24h_fp": 26912.33,
+    "volume_fp": 26941.33
    },
    "ex_stats_first": {
     "open_interest_fp": 22530.33,
@@ -520,9 +912,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 6328.09,
-    "volume_24h_fp": 6964.66,
-    "volume_fp": 7041.8
+    "open_interest_fp": 6349.02,
+    "volume_24h_fp": 7062.73,
+    "volume_fp": 7062.73
    },
    "ex_stats_first": {
     "open_interest_fp": 6254.78,
@@ -935,9 +1327,9 @@
     "volume_fp": 2866.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 5483.66,
-    "volume_24h_fp": 5479.2300000000005,
-    "volume_fp": 5579.55
+    "open_interest_fp": 6245.79,
+    "volume_24h_fp": 6285.55,
+    "volume_fp": 6341.68
    },
    "ex_stats_first": {
     "open_interest_fp": 2138.98,
@@ -1788,9 +2180,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 6191.3099999999995,
-    "volume_24h_fp": 6237.63,
-    "volume_fp": 6294.889999999999
+    "open_interest_fp": 6193.4,
+    "volume_24h_fp": 6249.9400000000005,
+    "volume_fp": 6296.98
    },
    "ex_stats_first": {
     "open_interest_fp": 5897.16,
@@ -1997,9 +2389,9 @@
     "volume_fp": 32.32
    },
    "ex_stats_close": {
-    "open_interest_fp": 20773.47,
-    "volume_24h_fp": 20921.0,
-    "volume_fp": 20965.309999999998
+    "open_interest_fp": 20834.47,
+    "volume_24h_fp": 21039.1,
+    "volume_fp": 21039.25
    },
    "ex_stats_first": {
     "open_interest_fp": 1064.0500000000002,
@@ -2210,9 +2602,9 @@
     "volume_fp": 65.86
    },
    "ex_stats_close": {
-    "open_interest_fp": 23442.25,
-    "volume_24h_fp": 22535.17,
-    "volume_fp": 24065.379999999997
+    "open_interest_fp": 23723.589999999997,
+    "volume_24h_fp": 24065.379999999997,
+    "volume_fp": 24346.72
    },
    "ex_stats_first": {
     "open_interest_fp": 8404.79,
@@ -2422,9 +2814,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 4440.76,
-    "volume_24h_fp": 4430.12,
-    "volume_fp": 4445.51
+    "open_interest_fp": 4480.47,
+    "volume_24h_fp": 4446.45,
+    "volume_fp": 4485.22
    },
    "ex_stats_first": {
     "open_interest_fp": 1986.0800000000002,
@@ -2635,9 +3027,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 372.05,
-    "volume_24h_fp": 369.37,
-    "volume_fp": 372.05
+    "open_interest_fp": 375.40999999999997,
+    "volume_24h_fp": 372.05,
+    "volume_fp": 375.40999999999997
    },
    "ex_stats_first": {
     "open_interest_fp": 76.0,
@@ -2836,9 +3228,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 7538.12,
-    "volume_24h_fp": 7448.24,
-    "volume_fp": 7665.67
+    "open_interest_fp": 7544.51,
+    "volume_24h_fp": 7454.629999999999,
+    "volume_fp": 7672.0599999999995
    },
    "ex_stats_first": {
     "open_interest_fp": 1338.76,
@@ -3221,9 +3613,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 4325.12,
-    "volume_24h_fp": 4035.25,
-    "volume_fp": 4503.4
+    "open_interest_fp": 4437.5,
+    "volume_24h_fp": 4579.88,
+    "volume_fp": 4615.78
    },
    "ex_stats_first": {
     "open_interest_fp": 99.76,
@@ -3393,9 +3785,9 @@
     "volume_fp": 47.4
    },
    "ex_stats_close": {
-    "open_interest_fp": 125678.01,
-    "volume_24h_fp": 113558.22,
-    "volume_fp": 129746.91
+    "open_interest_fp": 127480.83,
+    "volume_24h_fp": 116110.98,
+    "volume_fp": 131549.72999999998
    },
    "ex_stats_first": {
     "open_interest_fp": 28121.41,
@@ -3567,9 +3959,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2090.27,
-    "volume_24h_fp": 2071.3,
-    "volume_fp": 2090.27
+    "open_interest_fp": 2172.04,
+    "volume_24h_fp": 2170.04,
+    "volume_fp": 2172.04
    },
    "ex_stats_first": {
     "open_interest_fp": 93.55000000000001,
@@ -3760,9 +4152,9 @@
     "volume_fp": 12.37
    },
    "ex_stats_close": {
-    "open_interest_fp": 13557.69,
-    "volume_24h_fp": 13116.74,
-    "volume_fp": 13825.91
+    "open_interest_fp": 13771.66,
+    "volume_24h_fp": 13494.33,
+    "volume_fp": 14039.880000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 647.5699999999999,
@@ -4118,7 +4510,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 8738.25,
-    "volume_24h_fp": 8680.619999999999,
+    "volume_24h_fp": 8684.04,
     "volume_fp": 8915.710000000001
    },
    "ex_stats_first": {
@@ -4266,7 +4658,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1586.32,
-    "volume_24h_fp": 1283.19,
+    "volume_24h_fp": 1471.9299999999998,
     "volume_fp": 1586.3799999999999
    },
    "ex_stats_first": {
