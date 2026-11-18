@@ -839,6 +839,42 @@ def recover_leagues(st, now, max_rows=400):
                       f"games restored from the registry strike map: {filled['game_from_strike']}; "
                       f"strike map entries: {len(smap)}; misses: {_no_sid} with no strike id on the row, "
                       f"{_no_hit} whose strike id is not in the map")
+        # Nov 18 (Peter, minimum-viable recovery): split the missing rows by SOURCE on a VERIFIED
+        # identifier before anyone spends effort recovering them. The execution studies (Q1, Q4) need
+        # BOT fills; a manual row restored moves neither. The bot order registry keys each order by
+        # play_key - league|game|market|side - so a row whose order_ref matches a registry order id
+        # has its identity available without a single venue call. READ-ONLY: this counts, it writes
+        # nothing, and no row is changed on the strength of it.
+        _reg_keys, _src, _joinable = {}, collections.Counter(), 0
+        try:
+            import registry as _reg2
+            for _row in (_reg2.rows() or []):
+                _k = _row.get("key")
+                if not _k:
+                    continue
+                _legs = [_row.get("live_order") or {}, _row.get("live_rest") or {}]
+                _legs += [x or {} for x in (_row.get("live_more") or [])]
+                for _lo in _legs:
+                    for _i in (_lo.get("order_id"), _lo.get("client_id")):
+                        if _i:
+                            _reg_keys[str(_i)] = _k
+        except Exception as _je:
+            LG_LOG.append(f"bot order registry join unavailable ({type(_je).__name__})")
+        for k, r in nogame:
+            _t = trk.get(k) or {}
+            _ref = str(_t.get("order_ref") or "")
+            _s = str((r.get("snap") or {}).get("source") or _t.get("source") or "")
+            if _ref and _ref in _reg_keys:
+                _src["BOT (registry order id matched)"] += 1
+                _joinable += 1
+            elif _s.lower().startswith("bot"):
+                _src["BOT (source tag, no registry match)"] += 1
+            elif _s:
+                _src[f"MANUAL ({_s[:16]})"] += 1
+            else:
+                _src["UNKNOWN (no source, no registry match)"] += 1
+        LG_LOG.append(f"missing-row sources: {dict(_src)}; registry orders indexed: {len(_reg_keys)}; "
+                      f"identities recoverable by order-id join: {_joinable}")
     need = [(k, r) for k, r in noleague if (r.get("snap") or {}).get("game")]
     LG_LOG.append(f"rows with no league: {len(noleague)}; of those with a game text: {len(need)}")
     if not need:
