@@ -1769,7 +1769,11 @@ def run():
                             {"sport": cfg["label"], "book_key": a.get("book"), "kind": a.get("kind"),
                              "bet": f"{a.get('side')} ", "top25": is_t25, "late": late,
                              "price_after_fee": net(a["price"], a["book"], cfg["label"]),
-                             "alert_utc": now_utc().strftime("%Y-%m-%dT%H:%M:%SZ"), "start_utc": a["start"]})[0]
+                             # a["start"] is a DISPLAY string ("Tue 7:00 PM ET", line ~582). lead_min cannot parse
+                             # it, returned None, and hr1 then failed every alert on "under 60 min before tip" with
+                             # no log line - which is why hr1_pushed stayed 0 even after the chain was reordered.
+                             # a["commence"] is the ISO game start, the same field write_alerts_file exports.
+                             "alert_utc": now_utc().strftime("%Y-%m-%dT%H:%M:%SZ"), "start_utc": a["commence"]})[0]
                     except Exception as _x:
                         print(f"hr1 check skipped: {str(_x)[:60]}")
                     prior_note = ""

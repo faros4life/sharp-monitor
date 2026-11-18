@@ -58,6 +58,23 @@ def t_manual_only():
     assert "HR1 MANUAL " in s                              # the push title cannot read as a bot play
 
 
+def t_live_path_uses_the_ISO_game_start():
+    """Third HR1 defect, 18 Nov: the live check was handed a["start"], a DISPLAY string ("Tue 7:00 PM ET"), so
+    lead_min returned None and hr1 rejected every alert on lead with no log line. hr1_pushed stayed 0 even after the
+    chain was reordered. a["commence"] is the ISO start, the field the export already uses."""
+    s = open("sharp_monitor.py").read()
+    i = s.index("hr1_ok = hr1_sent = False")
+    blk = s[i:i + 1400]
+    assert '"start_utc": a["commence"]' in blk and '"start_utc": a["start"]' not in blk
+    # a display-style start must not silently pass as a lead
+    assert ar.lead_min({"alert_utc": "2026-11-17T23:20:00Z", "start_utc": "Tue 7:00 PM ET"}) is None
+    assert ar.hr1(m(start_utc="Tue 7:00 PM ET"))[0] is False
+    # the real shape works: 40 minutes is too close, 4 hours is fine
+    assert ar.lead_min({"alert_utc": "2026-11-17T23:20:00Z", "start_utc": "2026-11-18T00:00:00Z"}) == 40.0
+    assert ar.hr1(m(alert_utc="2026-11-17T23:20:00Z", start_utc="2026-11-18T00:00:00Z"))[0] is False
+    assert ar.hr1(m(alert_utc="2026-11-17T20:00:00Z", start_utc="2026-11-18T00:00:00Z"))[0] is True
+
+
 def t_push_wiring():
     s = open("sharp_monitor.py").read()
     assert "hr1_ok = hr1_sent = False" in s and "_ar.hr1(" in s
@@ -130,7 +147,8 @@ def t_prices_at_alert():
     assert '"fade", "prices")' in s                           # carried onto the durable event
 
 
-for f in (t_rule, t_evaluated_before_the_mute_chain, t_manual_only, t_push_wiring, t_backtest_population,
+for f in (t_rule, t_evaluated_before_the_mute_chain, t_manual_only, t_live_path_uses_the_ISO_game_start,
+          t_push_wiring, t_backtest_population,
           t_record_kept, t_prices_at_alert):
     f()
 print("hr1 tests: OK")
