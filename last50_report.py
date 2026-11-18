@@ -270,9 +270,18 @@ def lane_rows(name):
     return rows
 
 
-def hr1_rows():
-    """HR1 (Peter, 17 Nov): MANUAL Hard Rock college-basketball alerts, pushed to his phone so he places them himself.
-    agree_rules.hr1 is the one definition of the rule; first alert per game/market/side only, as pushed."""
+HR1_START = "2026-11-18"   # Peter, 18 Nov: "start the hr1 fresh today with 0. We only count live plays."
+
+
+def hr1_live_rows(acct):
+    """HR1's RECORD: Peter's own manual Hard Rock bets tagged source HR1, from 18 Nov forward. Nothing else counts -
+    not an alert the rule selected, not a play he passed on. Empty until he places and logs the first one."""
+    return [r for r in manual_rows(acct, "HR1") if str(r.get("ts") or "") >= HR1_START]
+
+
+def hr1_alert_rows():
+    """DIAGNOSTIC, not a record: alerts matching agree_rules.hr1, graded at the alert price. Peter has bet none of
+    these. Kept so the push can be checked against what the rule selects; never reported as HR1's performance."""
     import agree_rules as ar
     rows, seen = [], set()
     for x in sorted(load("alerts.json") or [], key=lambda a: str(a.get("alert_utc") or "")):
@@ -685,7 +694,8 @@ def main():
         (7, "BOARD V4 (reg 7) - LIVE since 17 Nov", board_v4_rows(), "V3 PLAY calls that a second book confirmed at alert time ($10k, same line); the live board rule"),
         (7, "BOARD V3 (reg 7) - shadow", liq_certified(board_rows()), "every PLAY call, confirmed or not; the pre-17-Nov live rule, now shadow only"),
         (14, "BOARD v2 (reg 14) - superseded 6 Nov", liq_certified(board_rows("v2")), "v2 PLAY calls from the same frozen call log; kept for history, not a live rule"),
-        (None, "HR1 - MANUAL Hard Rock CBB", hr1_rows(), "non-Top-25 NCAAB, Hard Rock-priced, -119..-101, spreads + totals unders, 60+ min; Peter places these by hand"),
+        (None, f"HR1 - LIVE MANUAL PLAYS (from {HR1_START})", (hr1_live_rows(acct) if acct else []),
+         f"HR1's record: Peter's own Hard Rock bets tagged source HR1, from {HR1_START}. Nothing before that date and no alert he did not bet"),
         (24, "ML_STAY (reg 24)", paper_certified(lane_rows("ml_stay")), "price is the logged probability"),
         (18, "EXCHANGE MISPRICE (reg 18)", paper_certified(misprice_rows()), "SENT, exchange-priced, edge >= +2% vs Pinnacle fair, from 3 Nov"),
     ]

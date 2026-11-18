@@ -48,7 +48,7 @@ paper = [
     ("Board V4 (LIVE since Nov 17)", r.board_v4_rows(), "Registry 7. PLAY calls a second book confirmed at alert time ($10k+, same game, side and line) - the live board rule since 12:40 PM ET Nov 17"),
     ("Board V3 (shadow)", r.liq_certified(r.board_rows()), "Registry 7. Every PLAY call, confirmed or not - the rule that was live until Nov 17, kept as the shadow comparison"),
     ("Board v2 (superseded Nov 6)", r.liq_certified(r.board_rows("v2")), "Registry 14. Kept for history; never a live rule"),
-    ("HR1 - manual Hard Rock CBB", r.hr1_rows(), "Non-Top-25 college basketball, Hard Rock-priced, -119 to -101 after fee, spreads and totals unders, 60+ min before tip. Peter places these by hand - not a bot lane"),
+    ("HR1 - live manual plays", (r.hr1_live_rows(acct) if acct else []), f"HR1's record, from {r.HR1_START}: Peter's own Hard Rock bets tagged source HR1. Nothing before that date, and an alert he did not bet is not a play. Empty until the first one is logged"),
     ("ML_STAY", r.paper_certified(r.lane_rows("ml_stay")), "Paper lane; registry 24"),
     ("Exchange misprice", r.paper_certified(r.misprice_rows()), "Sent, exchange-priced, edge +2% or more vs Pinnacle, from Nov 3; registry 18"),
 ]

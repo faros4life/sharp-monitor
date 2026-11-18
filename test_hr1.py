@@ -75,6 +75,47 @@ def t_live_path_uses_the_ISO_game_start():
     assert ar.hr1(m(alert_utc="2026-11-17T20:00:00Z", start_utc="2026-11-18T00:00:00Z"))[0] is True
 
 
+def t_never_sendable_is_not_in_the_population():
+    """Peter, 18 Nov: "if blocked should not be part of the record". A Hard Rock spread UNDERDOG is never sent
+    (his Nov 3 rule), so it can never be bet and must not inflate HR1's paper population - 34 of 132 plays were
+    in that class. sharp_monitor.hr_dog stays the ONE live gate; the rule must agree with it on every alert."""
+    import json
+    import sharp_monitor as sm
+    assert ar.hr1(m(kind="spr", bet="Nicholls St +28.5", point=28.5))[0] is False
+    assert any("spread underdog" in w for w in ar.hr1(m(kind="spr", bet="X +3", point=3.0))[1])
+    assert ar.hr1(m(kind="spr", bet="Duke -6.5", point=-6.5))[0] is True      # favourites still qualify
+    assert ar.hr1(m(kind="tot", bet="Under 140.5 (-110)", point=140.5))[0] is True   # a total is not a dog
+    # the rule and the live gate must never disagree on a real alert
+    for a in json.load(open("alerts.json"))["alerts"]:
+        dog = sm.hr_dog({"book": a.get("book_key"), "kind": a.get("kind"), "pt": a.get("point")})
+        if dog:
+            assert ar.hr1(a)[0] is False, a.get("bet")
+    # the rule's population is the diagnostic, never the record
+    import last50_report as l50
+    assert len(l50.hr1_alert_rows()) > 50
+    assert not hasattr(l50, "hr1_rows")           # the ambiguous name is gone
+
+
+def t_record_is_live_plays_from_today():
+    """Peter, 18 Nov: "start the hr1 fresh today with 0. We only count live plays." """
+    import last50_report as l50
+    assert l50.HR1_START == "2026-11-18"
+    acct = {"manual": [
+        {"src": "HR1", "t": "2026-11-18T19:00:00Z", "game": "A @ B", "bet": "Under 140.5", "am": -110, "res": "W",
+         "clv": None, "rows": ["r1"]},
+        {"src": "HR1", "t": "2026-11-17T19:00:00Z", "game": "C @ D", "bet": "E -6", "am": -110, "res": "W",
+         "clv": None, "rows": ["r2"]},                       # before the start date: not HR1's record
+        {"src": "Street Value", "t": "2026-11-18T19:00:00Z", "game": "E @ F", "bet": "G -3", "am": -110,
+         "res": "W", "clv": None, "rows": ["r3"]},           # another source
+    ]}
+    rows = l50.hr1_live_rows(acct)
+    assert len(rows) == 1 and rows[0]["ts"].startswith("2026-11-18")
+    assert l50.hr1_live_rows({"manual": []}) == []           # fresh: zero plays
+    for f in ("last50_page.py", "last50_report.py"):
+        src = open(f).read()
+        assert "hr1_live_rows" in src and "hr1_rows()" not in src
+
+
 def t_push_wiring():
     s = open("sharp_monitor.py").read()
     assert "hr1_ok = hr1_sent = False" in s and "_ar.hr1(" in s
@@ -109,7 +150,12 @@ def t_backtest_population():
         seen.add(k)
         rows.append(a)
     w = sum(a["result"] == "W" for a in rows)
-    assert len(rows) >= 120 and w >= 78, (len(rows), w)   # 124 and 81 at adoption; grows forward
+    # 18 Nov: the population is now what can ACTUALLY be sent - never-sendable Hard Rock spread dogs are out
+    # (34 of the original 132), so the 124/81 at adoption became 98/61. This is a DIAGNOSTIC population; HR1's
+    # record is hr1_live_rows, which starts at zero on 18 Nov.
+    assert len(rows) >= 90 and w >= 55, (len(rows), w)
+    assert all(((a.get("point") if a.get("point") is not None else a.get("pt")) or 0) <= 0
+               or a.get("kind") not in ("spr", "rl") for a in rows)
 
 
 def t_record_kept():
@@ -148,6 +194,7 @@ def t_prices_at_alert():
 
 
 for f in (t_rule, t_evaluated_before_the_mute_chain, t_manual_only, t_live_path_uses_the_ISO_game_start,
+          t_never_sendable_is_not_in_the_population, t_record_is_live_plays_from_today,
           t_push_wiring, t_backtest_population,
           t_record_kept, t_prices_at_alert):
     f()

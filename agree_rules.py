@@ -221,6 +221,14 @@ def hr1(a):
         why.append("late")
     if ld is None or ld < HR1_MIN_LEAD:
         why.append(f"under {HR1_MIN_LEAD} min before tip")
+    # Nov 18 (Peter): "if blocked should not be part of the record". A Hard Rock spread UNDERDOG is never sent
+    # (his Nov 3 rule, sharp_monitor.hr_dog) and so can never be bet - 34 of the 132 historical plays were in that
+    # class. Counting them inflated HR1's paper record with plays that could not reach his phone. The ONE live gate
+    # stays sharp_monitor.hr_dog; this mirrors its condition so the rule's population is what can actually be
+    # played, and a test asserts the two agree on every alert in the feed.
+    if (a.get("kind") in ("spr", "rl")
+            and ((a.get("point") if a.get("point") is not None else a.get("pt")) or 0) > 0):
+        why.append("Hard Rock spread underdog: never sent (Peter, Nov 3)")
     return (not why), why
 
 
