@@ -168,7 +168,7 @@ def t_record_kept():
     assert s.index('e["hr1"] = True') > s.index("hr1_ok = hr1_sent = False")
     # the report reads the rule, not a hand-copied filter
     r = open("last50_report.py").read()
-    assert "def hr1_rows" in r and "ar.hr1(x)[0]" in r
+    assert "def hr1_alert_rows" in r and "ar.hr1(x)[0]" in r   # 18 Nov: renamed; the record is hr1_live_rows
 
 
 
