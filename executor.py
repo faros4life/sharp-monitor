@@ -5718,7 +5718,23 @@ def main():
     _phase("imap2 close")
     nw = sum(1 for r in results if r["verdict"] == "WOULD PLACE")
     when = now.astimezone(lm.ET).strftime('%a %b %d %I:%M %p ET')
-    body = [(f"LIVE ON for phase 1 (${LIVE_UNIT:.0f} to win, best price on {', '.join(BOOK_NAME.get(b, b) for b in LIVE_BOOKS)}); everything else is a dry run ({when})" if px_live.LIVE
+    # Nov 18 (Peter): this header was a HARDCODED string - "LIVE ON for phase 1 ...; everything else is a
+    # dry run" printed whenever px_live.LIVE was true, whatever the other lanes were doing. It was written
+    # when Phase 1 was the only live lane and was never updated when R1 and Board went live, the same
+    # staleness rest_wanted's docstring carried. So every run email has been telling Peter his R1 and Board
+    # money was a dry run while those lanes placed real orders - and it is why a reader of these emails
+    # (including me, 18 Nov) concluded R1 might not be live. The LANES block below already reads the
+    # per-lane flags; the header now reads the same ones instead of asserting from memory.
+    _lanes_on = [nm for nm, on, unit in (("Phase 1", px_live.LIVE, LIVE_UNIT),
+                                         (("Board v4" if BOARD_V4 else "Board v3"), BOARD_LIVE, BOARD_UNIT),
+                                         ("R1", R1_LIVE, R1_UNIT)) if on]
+    _lanes_off = [nm for nm, on, _u in (("Phase 1", px_live.LIVE, 0),
+                                        (("Board v4" if BOARD_V4 else "Board v3"), BOARD_LIVE, 0),
+                                        ("R1", R1_LIVE, 0)) if not on]
+    body = [(f"LIVE: {', '.join(_lanes_on)} (phase 1 ${LIVE_UNIT:.0f} to win, board ${BOARD_UNIT:.0f}, "
+             f"R1 ${R1_UNIT:.0f}; best price on {', '.join(BOOK_NAME.get(b, b) for b in LIVE_BOOKS)})"
+             + (f"; DRY RUN: {', '.join(_lanes_off)}" if _lanes_off else "")
+             + f" ({when})" if _lanes_on
              else f"DRY RUN - nothing was bet ({when})"), ""]
     places = [r for r in results if r["verdict"] == "WOULD PLACE"]
     helds = [r for r in results if r["verdict"] == "HELD"]
