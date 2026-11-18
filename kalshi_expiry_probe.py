@@ -99,12 +99,15 @@ def main():
 
     buckets = {"CONFIRMED_SAFE": [], "UNSAFE_NO_EXPIRY": [], "UNSAFE_LATE_EXPIRY": [],
                "NOT_RESTING": [], "UNREADABLE": []}
+    venue_raw = {}   # the venue's own record per order, so the render below re-reads nothing
     for oid, (row, lo) in sorted(rests.items()):
         key = str(row.get("key") or "").replace("|", " ")[:54]
         try:
             st_code, resp = book_live._k_call("GET", f"/portfolio/orders/{oid}")
             o = (resp or {}).get("order") or resp or {}
+            venue_raw[oid] = o
         except Exception as ex:
+            venue_raw[oid] = None
             buckets["UNREADABLE"].append((oid, key, f"{type(ex).__name__}: {str(ex)[:60]}"))
             continue
         status = str(o.get("status") or "").lower()
@@ -151,6 +154,36 @@ def main():
         say(f"  closed    {oid[:12]} {key:<54} {status:<8} rem {rem:g} - no live exposure")
     for oid, key, why in buckets["UNREADABLE"]:
         say(f"  UNKNOWN   {oid[:12]} {key:<54} readback failed: {why}")
+
+    # Nov 18 (Peter: the tests prove the probe cannot trade, they do not prove the NOTIFICATION
+    # fix works in production). The live message only fires on a fill or an expiry, which cannot
+    # be forced without placing an order. So the executor's own formatter is run here against the
+    # REAL venue records read above and the result printed. If this renders a Kalshi timestamp for
+    # each resting order, the production path formats correctly on live data; a fill then only has
+    # to deliver it.
+    say("")
+    say("NOTIFICATION RENDER - the executor's own formatter, on the venue records just read")
+    say("-" * 100)
+    for oid, (row, lo) in sorted(rests.items()):
+        o = venue_raw.get(oid)
+        if o is None:
+            say(f"  {oid[:12]} unreadable - no render")
+            continue
+        rem = num(o.get("remaining_count_fp"))
+        if rem is None:
+            rem = num(o.get("remaining_count")) or 0.0
+        vexp, vfield = venue_expiry(o)
+        if rem and vexp:
+            tail = (f"; {rem:g} still resting until "
+                    f"{vexp.astimezone(cl.ET):%-I:%M %p} ET (Kalshi's own {vfield})")
+        elif rem:
+            tail = (f"; {rem:g} still resting and KALSHI REPORTS NO EXPIRY on this order - "
+                    f"treat as potentially fillable past the cutoff and check it")
+        else:
+            tail = ""
+        say(f"  would read: ...{str(row.get('key') or '').replace('|', ' ')[:40]} | "
+            f"contracts at the {lo.get('limit')} limit{tail}")
+    say("  Compare against the old text, which could only ever say 'until None'.")
 
     unsafe = buckets["UNSAFE_NO_EXPIRY"] + buckets["UNSAFE_LATE_EXPIRY"]
     at_risk = [r for r in unsafe if (r[3] or 0) > 0]
