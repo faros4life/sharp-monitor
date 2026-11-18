@@ -499,7 +499,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+0.5 pts",
+   "clv": "+2 pts",
    "clv_conv_pts": null,
    "clv_pin_line": null,
    "clv_read_utc": null,
@@ -695,7 +695,7 @@
   },
   {
    "alert_utc": "2026-11-18T03:25:20Z",
-   "beat_close": true,
+   "beat_close": false,
    "beat_true_close": null,
    "bet": "Over 221.5 (-110)",
    "book": "Hard Rock",
@@ -703,7 +703,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+0.5 pts",
+   "clv": "-0.5 pts",
    "clv_conv_pts": null,
    "clv_pin_line": null,
    "clv_read_utc": null,
@@ -80894,6 +80894,31 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Over 223.5 (-110) at Hard Rock (also: ProphetX)",
+   "bet": "Over 223.5 (-110)",
+   "bet_result": null,
+   "book": "Hard Rock",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -1.2,
+   "final": null,
+   "game": "Golden State Warriors @ Dallas Mavericks",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 700,
+   "price": -110,
+   "price_after_fee": -110,
+   "pushed_to_phone": false,
+   "repeat": true,
+   "score": 88,
+   "sent_et": "2026-11-18 09:50",
+   "sport": "NBA",
+   "start_utc": "2026-11-19T02:30:00Z",
+   "why": "Pinnacle total moved 220.5 -> 224.5; bet only at 224 or better (confirmed by BetOnline, Matchbook)"
+  },
   {
    "alert_text": "Under 149.5 (-122) at ProphetX [-124 after ProphetX fee]",
    "bet": "Under 149.5 (-122)",
