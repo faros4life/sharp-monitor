@@ -1,18 +1,602 @@
 {
  "checks": [
   {
+   "alert_book": "Novig",
+   "alert_key": "2026-11-18 07:35|Milwaukee Bucks @ Miami Heat|Miami Heat -12.5 (-108)",
+   "best_now": {
+    "american": -108,
+    "book": "novig",
+    "dollars_at_alert_price_or_better_all_books": 313,
+    "exact_line": true,
+    "line": -12.5
+   },
+   "bet": "Miami Heat -12.5 (-108)",
+   "book": "novig",
+   "checked_utc": "2026-11-18T12:40:15Z",
+   "first": {
+    "alert_line": -12.5,
+    "alert_price": -108,
+    "alert_price_prob": 0.5192,
+    "best_price": 0.52,
+    "best_price_american": -108,
+    "buy_levels": [
+     {
+      "american": -108,
+      "contracts": 60150,
+      "dollars": 313,
+      "price": 0.52
+     },
+     {
+      "american": -111,
+      "contracts": 240289,
+      "dollars": 1262,
+      "price": 0.525
+     },
+     {
+      "american": -113,
+      "contracts": 169362,
+      "dollars": 898,
+      "price": 0.53
+     },
+     {
+      "american": -117,
+      "contracts": 895869,
+      "dollars": 4838,
+      "price": 0.54
+     },
+     {
+      "american": -120,
+      "contracts": 671,
+      "dollars": 4,
+      "price": 0.545
+     },
+     {
+      "american": -122,
+      "contracts": 153000,
+      "dollars": 842,
+      "price": 0.55
+     },
+     {
+      "american": -292,
+      "contracts": 78431,
+      "dollars": 584,
+      "price": 0.745
+     },
+     {
+      "american": -400,
+      "contracts": 1000,
+      "dollars": 8,
+      "price": 0.8
+     },
+     {
+      "american": -9900,
+      "contracts": 493200,
+      "dollars": 4883,
+      "price": 0.99
+     }
+    ],
+    "checked_utc": "2026-11-18T12:40:15Z",
+    "dollars_at_alert_price_or_better": 313,
+    "dollars_at_best": 313,
+    "exact_line": true,
+    "market_id": "01a1ebe5-ce60-7022-b487-b02763b13594",
+    "novig_label": "MIA -12.5",
+    "novig_line": -12.5,
+    "outcome_id": "01a1ebe5-ce60-7022-b487-b03d75f015bd",
+    "resting_bids_on_this_side_dollars": 6508,
+    "status": "ok"
+   },
+   "game": "Milwaukee Bucks @ Miami Heat",
+   "grade": "A",
+   "hardrock_first": {
+    "checked_utc": "2026-11-18T12:40:15Z",
+    "status": "no_odds_key"
+   },
+   "hardrock_latest": {
+    "checked_utc": "2026-11-18T12:40:15Z",
+    "status": "no_odds_key"
+   },
+   "kalshi_first": {
+    "alert_line": -12.5,
+    "alert_price": -108,
+    "best_price": 0.5375,
+    "best_price_american": -116,
+    "best_price_american_displayed": -108,
+    "best_price_american_qual": -116,
+    "buy_levels": [
+     {
+      "american": -116,
+      "american_after_fee_qual": -116,
+      "american_displayed": -108,
+      "dollars": 19387,
+      "price": 0.52,
+      "price_after_fee": 0.5375,
+      "price_after_fee_qual": 0.5375
+     },
+     {
+      "american": -121,
+      "american_after_fee_qual": -121,
+      "american_displayed": -113,
+      "dollars": 4425,
+      "price": 0.53,
+      "price_after_fee": 0.5474,
+      "price_after_fee_qual": 0.5474
+     },
+     {
+      "american": -126,
+      "american_after_fee_qual": -126,
+      "american_displayed": -117,
+      "dollars": 5343,
+      "price": 0.54,
+      "price_after_fee": 0.5574,
+      "price_after_fee_qual": 0.5574
+     },
+     {
+      "american": -131,
+      "american_after_fee_qual": -131,
+      "american_displayed": -122,
+      "dollars": 17716,
+      "price": 0.55,
+      "price_after_fee": 0.5673,
+      "price_after_fee_qual": 0.5673
+     },
+     {
+      "american": -137,
+      "american_after_fee_qual": -137,
+      "american_displayed": -127,
+      "dollars": 4215,
+      "price": 0.56,
+      "price_after_fee": 0.5772,
+      "price_after_fee_qual": 0.5772
+     },
+     {
+      "american": -142,
+      "american_after_fee_qual": -142,
+      "american_displayed": -133,
+      "dollars": 3304,
+      "price": 0.57,
+      "price_after_fee": 0.5872,
+      "price_after_fee_qual": 0.5872
+     },
+     {
+      "american": -148,
+      "american_after_fee_qual": -148,
+      "american_displayed": -138,
+      "dollars": 270,
+      "price": 0.58,
+      "price_after_fee": 0.5971,
+      "price_after_fee_qual": 0.5971
+     },
+     {
+      "american": -154,
+      "american_after_fee_qual": -154,
+      "american_displayed": -144,
+      "dollars": 243,
+      "price": 0.59,
+      "price_after_fee": 0.6069,
+      "price_after_fee_qual": 0.6069
+     },
+     {
+      "american": -161,
+      "american_after_fee_qual": -161,
+      "american_displayed": -150,
+      "dollars": 300,
+      "price": 0.6,
+      "price_after_fee": 0.6168,
+      "price_after_fee_qual": 0.6168
+     },
+     {
+      "american": -168,
+      "american_after_fee_qual": -168,
+      "american_displayed": -156,
+      "dollars": 686,
+      "price": 0.61,
+      "price_after_fee": 0.6267,
+      "price_after_fee_qual": 0.6267
+     }
+    ],
+    "checked_utc": "2026-11-18T12:40:15Z",
+    "dollars_at_alert_price_or_better": 0,
+    "dollars_at_best": 19387,
+    "exact_line": true,
+    "kalshi_buy": [
+     {
+      "buy": "yes",
+      "ticker": "KXNBASPREAD-26NOV18MILMIA-MIA13"
+     }
+    ],
+    "line": -12.5,
+    "markets": [
+     "KXNBASPREAD-26NOV18MILMIA-MIA13"
+    ],
+    "qual_fee_coef": 0.07,
+    "status": "ok",
+    "taker_fee_coef": 0.07
+   },
+   "kalshi_latest": {
+    "alert_line": -12.5,
+    "alert_price": -108,
+    "best_price": 0.5375,
+    "best_price_american": -116,
+    "best_price_american_displayed": -108,
+    "best_price_american_qual": -116,
+    "buy_levels": [
+     {
+      "american": -116,
+      "american_after_fee_qual": -116,
+      "american_displayed": -108,
+      "dollars": 19387,
+      "price": 0.52,
+      "price_after_fee": 0.5375,
+      "price_after_fee_qual": 0.5375
+     },
+     {
+      "american": -121,
+      "american_after_fee_qual": -121,
+      "american_displayed": -113,
+      "dollars": 4425,
+      "price": 0.53,
+      "price_after_fee": 0.5474,
+      "price_after_fee_qual": 0.5474
+     },
+     {
+      "american": -126,
+      "american_after_fee_qual": -126,
+      "american_displayed": -117,
+      "dollars": 5343,
+      "price": 0.54,
+      "price_after_fee": 0.5574,
+      "price_after_fee_qual": 0.5574
+     },
+     {
+      "american": -131,
+      "american_after_fee_qual": -131,
+      "american_displayed": -122,
+      "dollars": 17716,
+      "price": 0.55,
+      "price_after_fee": 0.5673,
+      "price_after_fee_qual": 0.5673
+     },
+     {
+      "american": -137,
+      "american_after_fee_qual": -137,
+      "american_displayed": -127,
+      "dollars": 4215,
+      "price": 0.56,
+      "price_after_fee": 0.5772,
+      "price_after_fee_qual": 0.5772
+     },
+     {
+      "american": -142,
+      "american_after_fee_qual": -142,
+      "american_displayed": -133,
+      "dollars": 3304,
+      "price": 0.57,
+      "price_after_fee": 0.5872,
+      "price_after_fee_qual": 0.5872
+     },
+     {
+      "american": -148,
+      "american_after_fee_qual": -148,
+      "american_displayed": -138,
+      "dollars": 270,
+      "price": 0.58,
+      "price_after_fee": 0.5971,
+      "price_after_fee_qual": 0.5971
+     },
+     {
+      "american": -154,
+      "american_after_fee_qual": -154,
+      "american_displayed": -144,
+      "dollars": 243,
+      "price": 0.59,
+      "price_after_fee": 0.6069,
+      "price_after_fee_qual": 0.6069
+     },
+     {
+      "american": -161,
+      "american_after_fee_qual": -161,
+      "american_displayed": -150,
+      "dollars": 300,
+      "price": 0.6,
+      "price_after_fee": 0.6168,
+      "price_after_fee_qual": 0.6168
+     },
+     {
+      "american": -168,
+      "american_after_fee_qual": -168,
+      "american_displayed": -156,
+      "dollars": 686,
+      "price": 0.61,
+      "price_after_fee": 0.6267,
+      "price_after_fee_qual": 0.6267
+     }
+    ],
+    "dollars_at_alert_price_or_better": 0,
+    "dollars_at_best": 19387,
+    "exact_line": true,
+    "kalshi_buy": [
+     {
+      "buy": "yes",
+      "ticker": "KXNBASPREAD-26NOV18MILMIA-MIA13"
+     }
+    ],
+    "line": -12.5,
+    "markets": [
+     "KXNBASPREAD-26NOV18MILMIA-MIA13"
+    ],
+    "qual_fee_coef": 0.07,
+    "status": "ok",
+    "taker_fee_coef": 0.07
+   },
+   "latest": {
+    "alert_line": -12.5,
+    "alert_price": -108,
+    "alert_price_prob": 0.5192,
+    "best_price": 0.52,
+    "best_price_american": -108,
+    "buy_levels": [
+     {
+      "american": -108,
+      "contracts": 60150,
+      "dollars": 313,
+      "price": 0.52
+     },
+     {
+      "american": -111,
+      "contracts": 240289,
+      "dollars": 1262,
+      "price": 0.525
+     },
+     {
+      "american": -113,
+      "contracts": 169362,
+      "dollars": 898,
+      "price": 0.53
+     },
+     {
+      "american": -117,
+      "contracts": 895869,
+      "dollars": 4838,
+      "price": 0.54
+     },
+     {
+      "american": -120,
+      "contracts": 671,
+      "dollars": 4,
+      "price": 0.545
+     },
+     {
+      "american": -122,
+      "contracts": 153000,
+      "dollars": 842,
+      "price": 0.55
+     },
+     {
+      "american": -292,
+      "contracts": 78431,
+      "dollars": 584,
+      "price": 0.745
+     },
+     {
+      "american": -400,
+      "contracts": 1000,
+      "dollars": 8,
+      "price": 0.8
+     },
+     {
+      "american": -9900,
+      "contracts": 493200,
+      "dollars": 4883,
+      "price": 0.99
+     }
+    ],
+    "dollars_at_alert_price_or_better": 313,
+    "dollars_at_best": 313,
+    "exact_line": true,
+    "market_id": "01a1ebe5-ce60-7022-b487-b02763b13594",
+    "novig_label": "MIA -12.5",
+    "novig_line": -12.5,
+    "outcome_id": "01a1ebe5-ce60-7022-b487-b03d75f015bd",
+    "resting_bids_on_this_side_dollars": 6508,
+    "status": "ok"
+   },
+   "lead_min_now": 680,
+   "polymarket_first": {
+    "checked_utc": "2026-11-18T12:40:15Z",
+    "status": "game_not_on_polymarket"
+   },
+   "polymarket_latest": {
+    "status": "game_not_on_polymarket"
+   },
+   "prophetx_first": {
+    "alert_line": -12.5,
+    "alert_price": -108,
+    "best_price_american": -112,
+    "best_price_american_displayed": -110,
+    "buy_levels": [
+     {
+      "american": -110,
+      "american_after_fee": -112,
+      "dollars": 70,
+      "strike_id": "89a87b183e6907bc46faf1861d17dfca",
+      "to_win": 95
+     },
+     {
+      "american": -111,
+      "american_after_fee": -113,
+      "dollars": 41,
+      "strike_id": "89a87b183e6907bc46faf1861d17dfca",
+      "to_win": 37
+     },
+     {
+      "american": -112,
+      "american_after_fee": -114,
+      "dollars": 2,
+      "strike_id": "89a87b183e6907bc46faf1861d17dfca",
+      "to_win": 1
+     },
+     {
+      "american": -116,
+      "american_after_fee": -118,
+      "dollars": 5,
+      "strike_id": "89a87b183e6907bc46faf1861d17dfca",
+      "to_win": 5
+     },
+     {
+      "american": -121,
+      "american_after_fee": -123,
+      "dollars": 839,
+      "strike_id": "89a87b183e6907bc46faf1861d17dfca",
+      "to_win": 693
+     },
+     {
+      "american": -122,
+      "american_after_fee": -124,
+      "dollars": 18,
+      "strike_id": "89a87b183e6907bc46faf1861d17dfca",
+      "to_win": 15
+     },
+     {
+      "american": -124,
+      "american_after_fee": -127,
+      "dollars": 111,
+      "strike_id": "89a87b183e6907bc46faf1861d17dfca",
+      "to_win": 89
+     },
+     {
+      "american": -130,
+      "american_after_fee": -133,
+      "dollars": 1,
+      "strike_id": "89a87b183e6907bc46faf1861d17dfca",
+      "to_win": 1
+     },
+     {
+      "american": -315,
+      "american_after_fee": -321,
+      "dollars": 630,
+      "strike_id": "89a87b183e6907bc46faf1861d17dfca",
+      "to_win": 200
+     },
+     {
+      "american": -540,
+      "american_after_fee": -551,
+      "dollars": 27,
+      "strike_id": "89a87b183e6907bc46faf1861d17dfca",
+      "to_win": 5
+     }
+    ],
+    "checked_utc": "2026-11-18T12:40:15Z",
+    "dollars_at_alert_price_or_better": 0,
+    "dollars_at_best": 70,
+    "exact_line": true,
+    "fee_on_winnings": 0.02,
+    "market_name": "Spread",
+    "prophetx_line": -12.5,
+    "status": "ok"
+   },
+   "prophetx_latest": {
+    "alert_line": -12.5,
+    "alert_price": -108,
+    "best_price_american": -112,
+    "best_price_american_displayed": -110,
+    "buy_levels": [
+     {
+      "american": -110,
+      "american_after_fee": -112,
+      "dollars": 70,
+      "strike_id": "89a87b183e6907bc46faf1861d17dfca",
+      "to_win": 95
+     },
+     {
+      "american": -111,
+      "american_after_fee": -113,
+      "dollars": 41,
+      "strike_id": "89a87b183e6907bc46faf1861d17dfca",
+      "to_win": 37
+     },
+     {
+      "american": -112,
+      "american_after_fee": -114,
+      "dollars": 2,
+      "strike_id": "89a87b183e6907bc46faf1861d17dfca",
+      "to_win": 1
+     },
+     {
+      "american": -116,
+      "american_after_fee": -118,
+      "dollars": 5,
+      "strike_id": "89a87b183e6907bc46faf1861d17dfca",
+      "to_win": 5
+     },
+     {
+      "american": -121,
+      "american_after_fee": -123,
+      "dollars": 839,
+      "strike_id": "89a87b183e6907bc46faf1861d17dfca",
+      "to_win": 693
+     },
+     {
+      "american": -122,
+      "american_after_fee": -124,
+      "dollars": 18,
+      "strike_id": "89a87b183e6907bc46faf1861d17dfca",
+      "to_win": 15
+     },
+     {
+      "american": -124,
+      "american_after_fee": -127,
+      "dollars": 111,
+      "strike_id": "89a87b183e6907bc46faf1861d17dfca",
+      "to_win": 89
+     },
+     {
+      "american": -130,
+      "american_after_fee": -133,
+      "dollars": 1,
+      "strike_id": "89a87b183e6907bc46faf1861d17dfca",
+      "to_win": 1
+     },
+     {
+      "american": -315,
+      "american_after_fee": -321,
+      "dollars": 630,
+      "strike_id": "89a87b183e6907bc46faf1861d17dfca",
+      "to_win": 200
+     },
+     {
+      "american": -540,
+      "american_after_fee": -551,
+      "dollars": 27,
+      "strike_id": "89a87b183e6907bc46faf1861d17dfca",
+      "to_win": 5
+     }
+    ],
+    "dollars_at_alert_price_or_better": 0,
+    "dollars_at_best": 70,
+    "exact_line": true,
+    "fee_on_winnings": 0.02,
+    "market_name": "Spread",
+    "prophetx_line": -12.5,
+    "status": "ok"
+   },
+   "sent_et": "2026-11-18 07:35",
+   "sport": "NBA",
+   "start_utc": "2026-11-19T00:00:00Z"
+  },
+  {
    "alert_book": "ProphetX",
    "alert_key": "2026-11-18 07:10|Milwaukee Bucks @ Miami Heat|Under 236.5 (-118)",
    "best_now": {
     "american": -117,
     "book": "novig",
-    "dollars_at_alert_price_or_better_all_books": 1569,
+    "dollars_at_alert_price_or_better_all_books": 1837,
     "exact_line": true,
     "line": 236.5
    },
    "bet": "Under 236.5 (-118)",
    "book": "novig",
-   "checked_utc": "2026-11-18T12:30:18Z",
+   "checked_utc": "2026-11-18T12:40:15Z",
    "first": {
     "alert_line": 236.5,
     "alert_price": -118,
@@ -225,7 +809,7 @@
       "american": -121,
       "american_after_fee_qual": -121,
       "american_displayed": -113,
-      "dollars": 11,
+      "dollars": 445,
       "price": 0.53,
       "price_after_fee": 0.5474,
       "price_after_fee_qual": 0.5474
@@ -234,7 +818,7 @@
       "american": -126,
       "american_after_fee_qual": -126,
       "american_displayed": -117,
-      "dollars": 341,
+      "dollars": 1055,
       "price": 0.54,
       "price_after_fee": 0.5574,
       "price_after_fee_qual": 0.5574
@@ -243,7 +827,7 @@
       "american": -131,
       "american_after_fee_qual": -131,
       "american_displayed": -122,
-      "dollars": 5829,
+      "dollars": 3851,
       "price": 0.55,
       "price_after_fee": 0.5673,
       "price_after_fee_qual": 0.5673
@@ -252,7 +836,7 @@
       "american": -137,
       "american_after_fee_qual": -137,
       "american_displayed": -127,
-      "dollars": 6070,
+      "dollars": 6346,
       "price": 0.56,
       "price_after_fee": 0.5772,
       "price_after_fee_qual": 0.5772
@@ -261,7 +845,7 @@
       "american": -142,
       "american_after_fee_qual": -142,
       "american_displayed": -133,
-      "dollars": 1752,
+      "dollars": 2783,
       "price": 0.57,
       "price_after_fee": 0.5872,
       "price_after_fee_qual": 0.5872
@@ -270,7 +854,7 @@
       "american": -148,
       "american_after_fee_qual": -148,
       "american_displayed": -138,
-      "dollars": 99,
+      "dollars": 70,
       "price": 0.58,
       "price_after_fee": 0.5971,
       "price_after_fee_qual": 0.5971
@@ -313,7 +897,7 @@
      }
     ],
     "dollars_at_alert_price_or_better": 0,
-    "dollars_at_best": 11,
+    "dollars_at_best": 445,
     "exact_line": true,
     "kalshi_buy": [
      {
@@ -338,14 +922,14 @@
     "buy_levels": [
      {
       "american": -117,
-      "contracts": 290533,
-      "dollars": 1569,
+      "contracts": 340233,
+      "dollars": 1837,
       "price": 0.54
      },
      {
       "american": -120,
-      "contracts": 242539,
-      "dollars": 1322,
+      "contracts": 217339,
+      "dollars": 1184,
       "price": 0.545
      },
      {
@@ -379,17 +963,17 @@
       "price": 0.99
      }
     ],
-    "dollars_at_alert_price_or_better": 1569,
-    "dollars_at_best": 1569,
+    "dollars_at_alert_price_or_better": 1837,
+    "dollars_at_best": 1837,
     "exact_line": true,
     "market_id": "01a1ebe5-ce99-7961-b8c8-d4149a160eaa",
     "novig_label": "Under 236.5",
     "novig_line": 236.5,
     "outcome_id": "01a1ebe5-ce99-7961-b8c8-d43376bd6d71",
-    "resting_bids_on_this_side_dollars": 2616,
+    "resting_bids_on_this_side_dollars": 2584,
     "status": "ok"
    },
-   "lead_min_now": 690,
+   "lead_min_now": 680,
    "polymarket_first": {
     "checked_utc": "2026-11-18T12:20:13Z",
     "status": "game_not_on_polymarket"
@@ -492,9 +1076,9 @@
      {
       "american": -118,
       "american_after_fee": -120,
-      "dollars": 26,
+      "dollars": 29,
       "strike_id": "86cd0928e39d6fe1490f48bbae5c672d",
-      "to_win": 60
+      "to_win": 62
      },
      {
       "american": -119,
@@ -511,8 +1095,8 @@
       "to_win": 1515
      },
      {
-      "american": -121,
-      "american_after_fee": -123,
+      "american": -122,
+      "american_after_fee": -124,
       "dollars": 16,
       "strike_id": "86cd0928e39d6fe1490f48bbae5c672d",
       "to_win": 14
@@ -525,8 +1109,8 @@
       "to_win": 39
      },
      {
-      "american": -129,
-      "american_after_fee": -132,
+      "american": -128,
+      "american_after_fee": -131,
       "dollars": 16,
       "strike_id": "86cd0928e39d6fe1490f48bbae5c672d",
       "to_win": 12
@@ -561,7 +1145,7 @@
      }
     ],
     "dollars_at_alert_price_or_better": 0,
-    "dollars_at_best": 26,
+    "dollars_at_best": 29,
     "exact_line": true,
     "fee_on_winnings": 0.02,
     "market_name": "Total Points",
@@ -576,7 +1160,7 @@
    "alert_book": "Novig",
    "alert_key": "2026-11-18 07:10|Memphis Grizzlies @ Cleveland Cavaliers|Under 235.5 (-104)",
    "best_now": {
-    "american": -111,
+    "american": -113,
     "book": "novig",
     "dollars_at_alert_price_or_better_all_books": 0,
     "exact_line": true,
@@ -584,7 +1168,7 @@
    },
    "bet": "Under 235.5 (-104)",
    "book": "novig",
-   "checked_utc": "2026-11-18T12:30:18Z",
+   "checked_utc": "2026-11-18T12:40:15Z",
    "first": {
     "alert_line": 235.5,
     "alert_price": -104,
@@ -797,7 +1381,7 @@
       "american": -121,
       "american_after_fee_qual": -121,
       "american_displayed": -113,
-      "dollars": 3760,
+      "dollars": 4655,
       "price": 0.53,
       "price_after_fee": 0.5474,
       "price_after_fee_qual": 0.5474
@@ -806,7 +1390,7 @@
       "american": -126,
       "american_after_fee_qual": -126,
       "american_displayed": -117,
-      "dollars": 2831,
+      "dollars": 4028,
       "price": 0.54,
       "price_after_fee": 0.5574,
       "price_after_fee_qual": 0.5574
@@ -815,7 +1399,7 @@
       "american": -131,
       "american_after_fee_qual": -131,
       "american_displayed": -122,
-      "dollars": 1681,
+      "dollars": 1741,
       "price": 0.55,
       "price_after_fee": 0.5673,
       "price_after_fee_qual": 0.5673
@@ -824,7 +1408,7 @@
       "american": -137,
       "american_after_fee_qual": -137,
       "american_displayed": -127,
-      "dollars": 1625,
+      "dollars": 1011,
       "price": 0.56,
       "price_after_fee": 0.5772,
       "price_after_fee_qual": 0.5772
@@ -842,7 +1426,7 @@
       "american": -148,
       "american_after_fee_qual": -148,
       "american_displayed": -138,
-      "dollars": 201,
+      "dollars": 259,
       "price": 0.58,
       "price_after_fee": 0.5971,
       "price_after_fee_qual": 0.5971
@@ -885,7 +1469,7 @@
      }
     ],
     "dollars_at_alert_price_or_better": 0,
-    "dollars_at_best": 3760,
+    "dollars_at_best": 4655,
     "exact_line": true,
     "kalshi_buy": [
      {
@@ -905,44 +1489,32 @@
     "alert_line": 235.5,
     "alert_price": -104,
     "alert_price_prob": 0.5098,
-    "best_price": 0.525,
-    "best_price_american": -111,
+    "best_price": 0.53,
+    "best_price_american": -113,
     "buy_levels": [
      {
-      "american": -111,
-      "contracts": 200,
-      "dollars": 1,
-      "price": 0.525
-     },
-     {
       "american": -113,
-      "contracts": 304765,
-      "dollars": 1615,
+      "contracts": 306148,
+      "dollars": 1623,
       "price": 0.53
      },
      {
       "american": -115,
-      "contracts": 1796,
-      "dollars": 10,
+      "contracts": 11796,
+      "dollars": 63,
       "price": 0.535
      },
      {
       "american": -122,
-      "contracts": 2986,
-      "dollars": 16,
+      "contracts": 4782,
+      "dollars": 26,
       "price": 0.55
      },
      {
       "american": -125,
-      "contracts": 200,
-      "dollars": 1,
+      "contracts": 115000,
+      "dollars": 638,
       "price": 0.555
-     },
-     {
-      "american": -127,
-      "contracts": 110000,
-      "dollars": 616,
-      "price": 0.56
      },
      {
       "american": -285,
@@ -964,16 +1536,16 @@
      }
     ],
     "dollars_at_alert_price_or_better": 0,
-    "dollars_at_best": 1,
+    "dollars_at_best": 1623,
     "exact_line": true,
     "market_id": "01a1eb6a-fec5-7592-b2e9-d7965300fb55",
     "novig_label": "Under 235.5",
     "novig_line": 235.5,
     "outcome_id": "01a1eb6a-fec5-7592-b2e9-d7b476540349",
-    "resting_bids_on_this_side_dollars": 3448,
+    "resting_bids_on_this_side_dollars": 9380,
     "status": "ok"
    },
-   "lead_min_now": 690,
+   "lead_min_now": 680,
    "polymarket_first": {
     "checked_utc": "2026-11-18T12:20:13Z",
     "status": "game_not_on_polymarket"
@@ -1048,23 +1620,30 @@
      {
       "american": -112,
       "american_after_fee": -114,
-      "dollars": 44,
+      "dollars": 45,
       "strike_id": "587d9f5dc481c766171deeb562dd6116",
-      "to_win": 39
+      "to_win": 40
      },
      {
       "american": -113,
       "american_after_fee": -115,
-      "dollars": 1860,
+      "dollars": 1831,
       "strike_id": "587d9f5dc481c766171deeb562dd6116",
-      "to_win": 1646
+      "to_win": 1620
+     },
+     {
+      "american": -116,
+      "american_after_fee": -118,
+      "dollars": 16,
+      "strike_id": "587d9f5dc481c766171deeb562dd6116",
+      "to_win": 14
      },
      {
       "american": -122,
       "american_after_fee": -124,
-      "dollars": 173,
+      "dollars": 130,
       "strike_id": "587d9f5dc481c766171deeb562dd6116",
-      "to_win": 142
+      "to_win": 106
      },
      {
       "american": -125,
@@ -1089,7 +1668,7 @@
      }
     ],
     "dollars_at_alert_price_or_better": 0,
-    "dollars_at_best": 44,
+    "dollars_at_best": 45,
     "exact_line": true,
     "fee_on_winnings": 0.02,
     "market_name": "Total Points",
@@ -1104,15 +1683,15 @@
    "alert_book": "Hard Rock",
    "alert_key": "2026-11-18 06:00|Philadelphia 76ers @ Orlando Magic|Philadelphia 76ers -1.5 (-115)",
    "best_now": {
-    "american": -106,
+    "american": -104,
     "book": "novig",
-    "dollars_at_alert_price_or_better_all_books": 16267,
+    "dollars_at_alert_price_or_better_all_books": 18290,
     "exact_line": true,
     "line": -1.5
    },
    "bet": "Philadelphia 76ers -1.5 (-115)",
    "book": "novig",
-   "checked_utc": "2026-11-18T12:30:18Z",
+   "checked_utc": "2026-11-18T12:40:15Z",
    "first": {
     "alert_line": -1.5,
     "alert_price": -115,
@@ -1325,7 +1904,7 @@
       "american": -116,
       "american_after_fee_qual": -116,
       "american_displayed": -108,
-      "dollars": 29483,
+      "dollars": 435,
       "price": 0.52,
       "price_after_fee": 0.5375,
       "price_after_fee_qual": 0.5375
@@ -1334,7 +1913,7 @@
       "american": -121,
       "american_after_fee_qual": -121,
       "american_displayed": -113,
-      "dollars": 12086,
+      "dollars": 37780,
       "price": 0.53,
       "price_after_fee": 0.5474,
       "price_after_fee_qual": 0.5474
@@ -1343,7 +1922,7 @@
       "american": -126,
       "american_after_fee_qual": -126,
       "american_displayed": -117,
-      "dollars": 12360,
+      "dollars": 37053,
       "price": 0.54,
       "price_after_fee": 0.5574,
       "price_after_fee_qual": 0.5574
@@ -1352,7 +1931,7 @@
       "american": -131,
       "american_after_fee_qual": -131,
       "american_displayed": -122,
-      "dollars": 1668,
+      "dollars": 2027,
       "price": 0.55,
       "price_after_fee": 0.5673,
       "price_after_fee_qual": 0.5673
@@ -1361,7 +1940,7 @@
       "american": -137,
       "american_after_fee_qual": -137,
       "american_displayed": -127,
-      "dollars": 121,
+      "dollars": 180,
       "price": 0.56,
       "price_after_fee": 0.5772,
       "price_after_fee_qual": 0.5772
@@ -1379,7 +1958,7 @@
       "american": -148,
       "american_after_fee_qual": -148,
       "american_displayed": -138,
-      "dollars": 171,
+      "dollars": 113,
       "price": 0.58,
       "price_after_fee": 0.5971,
       "price_after_fee_qual": 0.5971
@@ -1413,7 +1992,7 @@
      }
     ],
     "dollars_at_alert_price_or_better": 0,
-    "dollars_at_best": 29483,
+    "dollars_at_best": 435,
     "exact_line": true,
     "kalshi_buy": [
      {
@@ -1433,25 +2012,31 @@
     "alert_line": -1.5,
     "alert_price": -115,
     "alert_price_prob": 0.5349,
-    "best_price": 0.515,
-    "best_price_american": -106,
+    "best_price": 0.51,
+    "best_price_american": -104,
     "buy_levels": [
      {
+      "american": -104,
+      "contracts": 30000,
+      "dollars": 153,
+      "price": 0.51
+     },
+     {
       "american": -106,
-      "contracts": 37870,
-      "dollars": 195,
+      "contracts": 360824,
+      "dollars": 1858,
       "price": 0.515
      },
      {
       "american": -108,
-      "contracts": 1273778,
-      "dollars": 6624,
+      "contracts": 1280851,
+      "dollars": 6660,
       "price": 0.52
      },
      {
       "american": -111,
-      "contracts": 164000,
-      "dollars": 861,
+      "contracts": 174526,
+      "dollars": 916,
       "price": 0.525
      },
      {
@@ -1485,29 +2070,23 @@
       "price": 0.735
      },
      {
-      "american": -426,
-      "contracts": 25263,
-      "dollars": 205,
-      "price": 0.81
-     },
-     {
       "american": -441,
-      "contracts": 48649,
-      "dollars": 396,
+      "contracts": 74594,
+      "dollars": 608,
       "price": 0.815
      }
     ],
-    "dollars_at_alert_price_or_better": 7680,
-    "dollars_at_best": 195,
+    "dollars_at_alert_price_or_better": 9587,
+    "dollars_at_best": 153,
     "exact_line": true,
     "market_id": "01a1eb6a-fec4-73c1-8661-a67aaead5bdf",
     "novig_label": "PHI -1.5",
     "novig_line": -1.5,
     "outcome_id": "01a1eb6a-fec4-73c1-8661-a6948574fa4a",
-    "resting_bids_on_this_side_dollars": 8963,
+    "resting_bids_on_this_side_dollars": 9598,
     "status": "ok"
    },
-   "lead_min_now": 690,
+   "lead_min_now": 680,
    "polymarket_first": {
     "checked_utc": "2026-11-18T11:10:18Z",
     "status": "game_not_on_polymarket"
@@ -1597,57 +2176,50 @@
    "prophetx_latest": {
     "alert_line": -1.5,
     "alert_price": -115,
-    "best_price_american": -108,
-    "best_price_american_displayed": -106,
+    "best_price_american": -109,
+    "best_price_american_displayed": -107,
     "buy_levels": [
-     {
-      "american": -106,
-      "american_after_fee": -108,
-      "dollars": 36,
-      "strike_id": "0773c8e564012dc2177bd1b2410b75d1",
-      "to_win": 35
-     },
      {
       "american": -107,
       "american_after_fee": -109,
-      "dollars": 75,
+      "dollars": 2,
       "strike_id": "0773c8e564012dc2177bd1b2410b75d1",
-      "to_win": 76
+      "to_win": 8
      },
      {
       "american": -108,
       "american_after_fee": -110,
-      "dollars": 35,
+      "dollars": 31,
       "strike_id": "0773c8e564012dc2177bd1b2410b75d1",
-      "to_win": 129
+      "to_win": 126
      },
      {
       "american": -109,
       "american_after_fee": -111,
-      "dollars": 5403,
+      "dollars": 57,
       "strike_id": "0773c8e564012dc2177bd1b2410b75d1",
-      "to_win": 4958
+      "to_win": 54
      },
      {
       "american": -110,
       "american_after_fee": -112,
-      "dollars": 3038,
+      "dollars": 73,
       "strike_id": "0773c8e564012dc2177bd1b2410b75d1",
-      "to_win": 2761
+      "to_win": 66
      },
      {
-      "american": -114,
-      "american_after_fee": -116,
+      "american": -111,
+      "american_after_fee": -113,
+      "dollars": 8538,
+      "strike_id": "0773c8e564012dc2177bd1b2410b75d1",
+      "to_win": 7692
+     },
+     {
+      "american": -113,
+      "american_after_fee": -115,
       "dollars": 2,
       "strike_id": "0773c8e564012dc2177bd1b2410b75d1",
       "to_win": 2
-     },
-     {
-      "american": -116,
-      "american_after_fee": -118,
-      "dollars": 49,
-      "strike_id": "0773c8e564012dc2177bd1b2410b75d1",
-      "to_win": 43
      },
      {
       "american": -124,
@@ -1669,10 +2241,17 @@
       "dollars": 7,
       "strike_id": "0773c8e564012dc2177bd1b2410b75d1",
       "to_win": 5
+     },
+     {
+      "american": -295,
+      "american_after_fee": -301,
+      "dollars": 590,
+      "strike_id": "0773c8e564012dc2177bd1b2410b75d1",
+      "to_win": 200
      }
     ],
-    "dollars_at_alert_price_or_better": 8587,
-    "dollars_at_best": 36,
+    "dollars_at_alert_price_or_better": 8703,
+    "dollars_at_best": 2,
     "exact_line": true,
     "fee_on_winnings": 0.02,
     "market_name": "Spread",
@@ -1689,13 +2268,13 @@
    "best_now": {
     "american": -104,
     "book": "novig",
-    "dollars_at_alert_price_or_better_all_books": 178,
+    "dollars_at_alert_price_or_better_all_books": 177,
     "exact_line": true,
     "line": -7.5
    },
    "bet": "Houston Rockets -7.5 (-104)",
    "book": "novig",
-   "checked_utc": "2026-11-18T12:30:18Z",
+   "checked_utc": "2026-11-18T12:40:15Z",
    "first": {
     "alert_line": -7.5,
     "alert_price": -104,
@@ -1908,7 +2487,7 @@
       "american": -116,
       "american_after_fee_qual": -116,
       "american_displayed": -108,
-      "dollars": 3837,
+      "dollars": 3823,
       "price": 0.52,
       "price_after_fee": 0.5375,
       "price_after_fee_qual": 0.5375
@@ -1917,7 +2496,7 @@
       "american": -121,
       "american_after_fee_qual": -121,
       "american_displayed": -113,
-      "dollars": 11087,
+      "dollars": 11086,
       "price": 0.53,
       "price_after_fee": 0.5474,
       "price_after_fee_qual": 0.5474
@@ -1996,7 +2575,7 @@
      }
     ],
     "dollars_at_alert_price_or_better": 0,
-    "dollars_at_best": 3837,
+    "dollars_at_best": 3823,
     "exact_line": true,
     "kalshi_buy": [
      {
@@ -2021,8 +2600,8 @@
     "buy_levels": [
      {
       "american": -104,
-      "contracts": 35000,
-      "dollars": 178,
+      "contracts": 34608,
+      "dollars": 177,
       "price": 0.51
      },
      {
@@ -2080,17 +2659,17 @@
       "price": 0.725
      }
     ],
-    "dollars_at_alert_price_or_better": 178,
-    "dollars_at_best": 178,
+    "dollars_at_alert_price_or_better": 177,
+    "dollars_at_best": 177,
     "exact_line": true,
     "market_id": "01a1eb6f-936f-7553-a094-c3d120a18a42",
     "novig_label": "HOU -7.5",
     "novig_line": -7.5,
     "outcome_id": "01a1eb6f-936f-7553-a094-c3f4242e3f93",
-    "resting_bids_on_this_side_dollars": 7152,
+    "resting_bids_on_this_side_dollars": 7213,
     "status": "ok"
    },
-   "lead_min_now": 690,
+   "lead_min_now": 680,
    "polymarket_first": {
     "checked_utc": "2026-11-18T11:10:18Z",
     "status": "game_not_on_polymarket"
@@ -2193,16 +2772,16 @@
      {
       "american": -107,
       "american_after_fee": -109,
-      "dollars": 29,
+      "dollars": 11,
       "strike_id": "4d9509ea80c6dc18f534ebf741718e5a",
-      "to_win": 37
+      "to_win": 19
      },
      {
       "american": -108,
       "american_after_fee": -110,
-      "dollars": 36,
+      "dollars": 53,
       "strike_id": "4d9509ea80c6dc18f534ebf741718e5a",
-      "to_win": 33
+      "to_win": 49
      },
      {
       "american": -109,
@@ -2262,7 +2841,7 @@
      }
     ],
     "dollars_at_alert_price_or_better": 0,
-    "dollars_at_best": 29,
+    "dollars_at_best": 11,
     "exact_line": true,
     "fee_on_winnings": 0.02,
     "market_name": "Spread",
@@ -2285,7 +2864,7 @@
    },
    "bet": "Under 225.5 (-110)",
    "book": "novig",
-   "checked_utc": "2026-11-18T12:30:18Z",
+   "checked_utc": "2026-11-18T12:40:15Z",
    "first": {
     "alert_line": 225.5,
     "alert_price": -110,
@@ -2366,7 +2945,7 @@
     "status": "no_odds_key"
    },
    "hardrock_latest": {
-    "checked_utc": "2026-11-18T12:00:23Z",
+    "checked_utc": "2026-11-18T12:40:15Z",
     "status": "no_odds_key"
    },
    "kalshi_first": {
@@ -2498,7 +3077,7 @@
       "american": -112,
       "american_after_fee_qual": -112,
       "american_displayed": -104,
-      "dollars": 204,
+      "dollars": 255,
       "price": 0.51,
       "price_after_fee": 0.5275,
       "price_after_fee_qual": 0.5275
@@ -2507,7 +3086,7 @@
       "american": -116,
       "american_after_fee_qual": -116,
       "american_displayed": -108,
-      "dollars": 3406,
+      "dollars": 3904,
       "price": 0.52,
       "price_after_fee": 0.5375,
       "price_after_fee_qual": 0.5375
@@ -2516,7 +3095,7 @@
       "american": -121,
       "american_after_fee_qual": -121,
       "american_displayed": -113,
-      "dollars": 8859,
+      "dollars": 8422,
       "price": 0.53,
       "price_after_fee": 0.5474,
       "price_after_fee_qual": 0.5474
@@ -2525,7 +3104,7 @@
       "american": -126,
       "american_after_fee_qual": -126,
       "american_displayed": -117,
-      "dollars": 8944,
+      "dollars": 8809,
       "price": 0.54,
       "price_after_fee": 0.5574,
       "price_after_fee_qual": 0.5574
@@ -2552,7 +3131,7 @@
       "american": -142,
       "american_after_fee_qual": -142,
       "american_displayed": -133,
-      "dollars": 917,
+      "dollars": 914,
       "price": 0.57,
       "price_after_fee": 0.5872,
       "price_after_fee_qual": 0.5872
@@ -2586,7 +3165,7 @@
      }
     ],
     "dollars_at_alert_price_or_better": 0,
-    "dollars_at_best": 204,
+    "dollars_at_best": 255,
     "exact_line": false,
     "kalshi_buy": [
      {
@@ -2611,8 +3190,8 @@
     "buy_levels": [
      {
       "american": -115,
-      "contracts": 129751,
-      "dollars": 694,
+      "contracts": 109191,
+      "dollars": 584,
       "price": 0.535
      },
      {
@@ -2653,16 +3232,16 @@
      }
     ],
     "dollars_at_alert_price_or_better": 0,
-    "dollars_at_best": 694,
+    "dollars_at_best": 584,
     "exact_line": true,
     "market_id": "01a1eb6f-936e-7701-b0f2-97bde04c01ca",
     "novig_label": "Under 225.5",
     "novig_line": 225.5,
     "outcome_id": "01a1eb6f-936e-7701-b0f2-97dcde790177",
-    "resting_bids_on_this_side_dollars": 2059,
+    "resting_bids_on_this_side_dollars": 2012,
     "status": "ok"
    },
-   "lead_min_now": 690,
+   "lead_min_now": 680,
    "polymarket_first": {
     "checked_utc": "2026-11-18T03:30:17Z",
     "status": "game_not_on_polymarket"
@@ -2744,16 +3323,9 @@
      {
       "american": -115,
       "american_after_fee": -117,
-      "dollars": 1021,
+      "dollars": 1056,
       "strike_id": "5f2f87d1ab0ef89d803e7ad3b4c23a9f",
-      "to_win": 888
-     },
-     {
-      "american": -116,
-      "american_after_fee": -118,
-      "dollars": 35,
-      "strike_id": "5f2f87d1ab0ef89d803e7ad3b4c23a9f",
-      "to_win": 30
+      "to_win": 918
      },
      {
       "american": -117,
@@ -2829,7 +3401,7 @@
    },
    "bet": "Over 221.5 (-110)",
    "book": "novig",
-   "checked_utc": "2026-11-18T12:30:18Z",
+   "checked_utc": "2026-11-18T12:40:15Z",
    "first": {
     "checked_utc": "2026-11-18T03:30:17Z",
     "status": "game_not_on_novig"
@@ -2841,7 +3413,7 @@
     "status": "no_odds_key"
    },
    "hardrock_latest": {
-    "checked_utc": "2026-11-18T12:00:23Z",
+    "checked_utc": "2026-11-18T12:40:15Z",
     "status": "no_odds_key"
    },
    "kalshi_first": {
@@ -2973,7 +3545,7 @@
       "american": -131,
       "american_after_fee_qual": -131,
       "american_displayed": -122,
-      "dollars": 4046,
+      "dollars": 4348,
       "price": 0.55,
       "price_after_fee": 0.5673,
       "price_after_fee_qual": 0.5673
@@ -2982,7 +3554,7 @@
       "american": -137,
       "american_after_fee_qual": -137,
       "american_displayed": -127,
-      "dollars": 3616,
+      "dollars": 3392,
       "price": 0.56,
       "price_after_fee": 0.5772,
       "price_after_fee_qual": 0.5772
@@ -3000,7 +3572,7 @@
       "american": -148,
       "american_after_fee_qual": -148,
       "american_displayed": -138,
-      "dollars": 6007,
+      "dollars": 5714,
       "price": 0.58,
       "price_after_fee": 0.5971,
       "price_after_fee_qual": 0.5971
@@ -3018,7 +3590,7 @@
       "american": -161,
       "american_after_fee_qual": -161,
       "american_displayed": -150,
-      "dollars": 802,
+      "dollars": 1158,
       "price": 0.6,
       "price_after_fee": 0.6168,
       "price_after_fee_qual": 0.6168
@@ -3061,7 +3633,7 @@
      }
     ],
     "dollars_at_alert_price_or_better": 0,
-    "dollars_at_best": 4046,
+    "dollars_at_best": 4348,
     "exact_line": false,
     "kalshi_buy": [
      {
@@ -3143,7 +3715,7 @@
     "resting_bids_on_this_side_dollars": 5167,
     "status": "ok"
    },
-   "lead_min_now": 810,
+   "lead_min_now": 800,
    "polymarket_first": {
     "checked_utc": "2026-11-18T03:30:17Z",
     "status": "game_not_on_polymarket"
@@ -3309,15 +3881,15 @@
    "alert_book": "ProphetX",
    "alert_key": "2026-11-18 07:20|Phoenix Suns @ Sacramento Kings|Under 228.5 (-114)",
    "best_now": {
-    "american": -103,
+    "american": -116,
     "book": "kalshi",
-    "dollars_at_alert_price_or_better_all_books": 114,
+    "dollars_at_alert_price_or_better_all_books": 0,
     "exact_line": false,
     "line": 227.5
    },
    "bet": "Under 228.5 (-114)",
    "book": "novig",
-   "checked_utc": "2026-11-18T12:30:18Z",
+   "checked_utc": "2026-11-18T12:40:15Z",
    "first": {
     "alert_line": 228.5,
     "alert_price": -114,
@@ -3515,34 +4087,16 @@
    "kalshi_latest": {
     "alert_line": 228.5,
     "alert_price": -114,
-    "best_price": 0.5075,
-    "best_price_american": -103,
-    "best_price_american_displayed": 104,
-    "best_price_american_qual": -103,
+    "best_price": 0.5375,
+    "best_price_american": -116,
+    "best_price_american_displayed": -108,
+    "best_price_american_qual": -116,
     "buy_levels": [
-     {
-      "american": -103,
-      "american_after_fee_qual": -103,
-      "american_displayed": 104,
-      "dollars": 457,
-      "price": 0.49,
-      "price_after_fee": 0.5075,
-      "price_after_fee_qual": 0.5075
-     },
-     {
-      "american": -112,
-      "american_after_fee_qual": -112,
-      "american_displayed": -104,
-      "dollars": 459,
-      "price": 0.51,
-      "price_after_fee": 0.5275,
-      "price_after_fee_qual": 0.5275
-     },
      {
       "american": -116,
       "american_after_fee_qual": -116,
       "american_displayed": -108,
-      "dollars": 4211,
+      "dollars": 181,
       "price": 0.52,
       "price_after_fee": 0.5375,
       "price_after_fee_qual": 0.5375
@@ -3551,7 +4105,7 @@
       "american": -121,
       "american_after_fee_qual": -121,
       "american_displayed": -113,
-      "dollars": 5296,
+      "dollars": 6871,
       "price": 0.53,
       "price_after_fee": 0.5474,
       "price_after_fee_qual": 0.5474
@@ -3560,7 +4114,7 @@
       "american": -126,
       "american_after_fee_qual": -126,
       "american_displayed": -117,
-      "dollars": 2215,
+      "dollars": 12058,
       "price": 0.54,
       "price_after_fee": 0.5574,
       "price_after_fee_qual": 0.5574
@@ -3569,7 +4123,7 @@
       "american": -131,
       "american_after_fee_qual": -131,
       "american_displayed": -122,
-      "dollars": 2750,
+      "dollars": 6029,
       "price": 0.55,
       "price_after_fee": 0.5673,
       "price_after_fee_qual": 0.5673
@@ -3578,7 +4132,7 @@
       "american": -137,
       "american_after_fee_qual": -137,
       "american_displayed": -127,
-      "dollars": 1431,
+      "dollars": 3694,
       "price": 0.56,
       "price_after_fee": 0.5772,
       "price_after_fee_qual": 0.5772
@@ -3587,32 +4141,50 @@
       "american": -142,
       "american_after_fee_qual": -142,
       "american_displayed": -133,
-      "dollars": 220,
+      "dollars": 2212,
       "price": 0.57,
       "price_after_fee": 0.5872,
       "price_after_fee_qual": 0.5872
      },
      {
-      "american": -154,
-      "american_after_fee_qual": -154,
-      "american_displayed": -144,
-      "dollars": 649,
-      "price": 0.59,
-      "price_after_fee": 0.6069,
-      "price_after_fee_qual": 0.6069
-     },
-     {
       "american": -161,
       "american_after_fee_qual": -161,
       "american_displayed": -150,
-      "dollars": 606,
+      "dollars": 220,
       "price": 0.6,
       "price_after_fee": 0.6168,
       "price_after_fee_qual": 0.6168
+     },
+     {
+      "american": -168,
+      "american_after_fee_qual": -168,
+      "american_displayed": -156,
+      "dollars": 1220,
+      "price": 0.61,
+      "price_after_fee": 0.6267,
+      "price_after_fee_qual": 0.6267
+     },
+     {
+      "american": -175,
+      "american_after_fee_qual": -175,
+      "american_displayed": -163,
+      "dollars": 2480,
+      "price": 0.62,
+      "price_after_fee": 0.6365,
+      "price_after_fee_qual": 0.6365
+     },
+     {
+      "american": -183,
+      "american_after_fee_qual": -183,
+      "american_displayed": -170,
+      "dollars": 411,
+      "price": 0.63,
+      "price_after_fee": 0.6463,
+      "price_after_fee_qual": 0.6463
      }
     ],
-    "dollars_at_alert_price_or_better": 916,
-    "dollars_at_best": 457,
+    "dollars_at_alert_price_or_better": 0,
+    "dollars_at_best": 181,
     "exact_line": false,
     "kalshi_buy": [
      {
@@ -3632,31 +4204,19 @@
     "alert_line": 228.5,
     "alert_price": -114,
     "alert_price_prob": 0.5327,
-    "best_price": 0.53,
-    "best_price_american": -113,
+    "best_price": 0.545,
+    "best_price_american": -120,
     "buy_levels": [
      {
-      "american": -113,
-      "contracts": 21560,
-      "dollars": 114,
-      "price": 0.53
-     },
-     {
-      "american": -115,
-      "contracts": 196613,
-      "dollars": 1052,
-      "price": 0.535
-     },
-     {
-      "american": -117,
-      "contracts": 256151,
-      "dollars": 1383,
-      "price": 0.54
+      "american": -120,
+      "contracts": 201008,
+      "dollars": 1095,
+      "price": 0.545
      },
      {
       "american": -122,
-      "contracts": 65000,
-      "dollars": 358,
+      "contracts": 257000,
+      "dollars": 1414,
       "price": 0.55
      },
      {
@@ -3684,17 +4244,17 @@
       "price": 0.99
      }
     ],
-    "dollars_at_alert_price_or_better": 114,
-    "dollars_at_best": 114,
+    "dollars_at_alert_price_or_better": 0,
+    "dollars_at_best": 1095,
     "exact_line": true,
     "market_id": "01a1eb7d-4f62-7922-9b1f-04f631057368",
     "novig_label": "Under 228.5",
     "novig_line": 228.5,
     "outcome_id": "01a1eb7d-4f62-7922-9b1f-051b6c6287f1",
-    "resting_bids_on_this_side_dollars": 7800,
+    "resting_bids_on_this_side_dollars": 7444,
     "status": "ok"
    },
-   "lead_min_now": 870,
+   "lead_min_now": 860,
    "polymarket_first": {
     "checked_utc": "2026-11-18T12:30:18Z",
     "status": "game_not_on_polymarket"
@@ -3770,48 +4330,48 @@
    "prophetx_latest": {
     "alert_line": 228.5,
     "alert_price": -114,
-    "best_price_american": -117,
-    "best_price_american_displayed": -115,
+    "best_price_american": -122,
+    "best_price_american_displayed": -120,
     "buy_levels": [
-     {
-      "american": -115,
-      "american_after_fee": -117,
-      "dollars": 20,
-      "strike_id": "1a2a47c4a40e97d4589f6c361be95113",
-      "to_win": 17
-     },
-     {
-      "american": -116,
-      "american_after_fee": -118,
-      "dollars": 947,
-      "strike_id": "1a2a47c4a40e97d4589f6c361be95113",
-      "to_win": 816
-     },
-     {
-      "american": -117,
-      "american_after_fee": -119,
-      "dollars": 2572,
-      "strike_id": "1a2a47c4a40e97d4589f6c361be95113",
-      "to_win": 2198
-     },
      {
       "american": -120,
       "american_after_fee": -122,
-      "dollars": 1657,
+      "dollars": 63,
       "strike_id": "1a2a47c4a40e97d4589f6c361be95113",
-      "to_win": 1381
+      "to_win": 53
+     },
+     {
+      "american": -121,
+      "american_after_fee": -123,
+      "dollars": 872,
+      "strike_id": "1a2a47c4a40e97d4589f6c361be95113",
+      "to_win": 721
+     },
+     {
+      "american": -122,
+      "american_after_fee": -124,
+      "dollars": 2679,
+      "strike_id": "1a2a47c4a40e97d4589f6c361be95113",
+      "to_win": 2196
+     },
+     {
+      "american": -125,
+      "american_after_fee": -128,
+      "dollars": 389,
+      "strike_id": "1a2a47c4a40e97d4589f6c361be95113",
+      "to_win": 311
      },
      {
       "american": -132,
       "american_after_fee": -135,
-      "dollars": 187,
+      "dollars": 47,
       "strike_id": "1a2a47c4a40e97d4589f6c361be95113",
-      "to_win": 142
+      "to_win": 36
      },
      {
-      "american": -140,
-      "american_after_fee": -143,
-      "dollars": 18,
+      "american": -152,
+      "american_after_fee": -155,
+      "dollars": 19,
       "strike_id": "1a2a47c4a40e97d4589f6c361be95113",
       "to_win": 12
      },
@@ -3824,7 +4384,7 @@
      }
     ],
     "dollars_at_alert_price_or_better": 0,
-    "dollars_at_best": 20,
+    "dollars_at_best": 63,
     "exact_line": true,
     "fee_on_winnings": 0.02,
     "market_name": "Total Points",
@@ -3847,7 +4407,7 @@
    },
    "bet": "Phoenix Suns -6.5 (+100)",
    "book": "novig",
-   "checked_utc": "2026-11-18T12:30:18Z",
+   "checked_utc": "2026-11-18T12:40:15Z",
    "first": {
     "alert_line": -6.5,
     "alert_price": 100,
@@ -4063,7 +4623,7 @@
       "american": -116,
       "american_after_fee_qual": -116,
       "american_displayed": -108,
-      "dollars": 3166,
+      "dollars": 2778,
       "price": 0.52,
       "price_after_fee": 0.5375,
       "price_after_fee_qual": 0.5375
@@ -4072,7 +4632,7 @@
       "american": -121,
       "american_after_fee_qual": -121,
       "american_displayed": -113,
-      "dollars": 13472,
+      "dollars": 13375,
       "price": 0.53,
       "price_after_fee": 0.5474,
       "price_after_fee_qual": 0.5474
@@ -4081,7 +4641,7 @@
       "american": -126,
       "american_after_fee_qual": -126,
       "american_displayed": -117,
-      "dollars": 23105,
+      "dollars": 3631,
       "price": 0.54,
       "price_after_fee": 0.5574,
       "price_after_fee_qual": 0.5574
@@ -4090,7 +4650,7 @@
       "american": -131,
       "american_after_fee_qual": -131,
       "american_displayed": -122,
-      "dollars": 268,
+      "dollars": 25142,
       "price": 0.55,
       "price_after_fee": 0.5673,
       "price_after_fee_qual": 0.5673
@@ -4099,7 +4659,7 @@
       "american": -137,
       "american_after_fee_qual": -137,
       "american_displayed": -127,
-      "dollars": 10648,
+      "dollars": 10704,
       "price": 0.56,
       "price_after_fee": 0.5772,
       "price_after_fee_qual": 0.5772
@@ -4167,14 +4727,14 @@
     "buy_levels": [
      {
       "american": -104,
-      "contracts": 40816,
-      "dollars": 208,
+      "contracts": 45816,
+      "dollars": 234,
       "price": 0.51
      },
      {
       "american": -106,
-      "contracts": 155928,
-      "dollars": 803,
+      "contracts": 150928,
+      "dollars": 777,
       "price": 0.515
      },
      {
@@ -4185,20 +4745,14 @@
      },
      {
       "american": -113,
-      "contracts": 32500,
-      "dollars": 172,
+      "contracts": 43138,
+      "dollars": 229,
       "price": 0.53
      },
      {
-      "american": -115,
-      "contracts": 1033763,
-      "dollars": 5531,
-      "price": 0.535
-     },
-     {
       "american": -117,
-      "contracts": 130000,
-      "dollars": 702,
+      "contracts": 1182608,
+      "dollars": 6386,
       "price": 0.54
      },
      {
@@ -4221,16 +4775,16 @@
      }
     ],
     "dollars_at_alert_price_or_better": 0,
-    "dollars_at_best": 208,
+    "dollars_at_best": 234,
     "exact_line": true,
     "market_id": "01a1eb7d-4f62-7922-9b1f-058ccd6bf03b",
     "novig_label": "PHX -6.5",
     "novig_line": -6.5,
     "outcome_id": "01a1eb7d-4f62-7922-9b1f-05ab66bcf0a8",
-    "resting_bids_on_this_side_dollars": 8526,
+    "resting_bids_on_this_side_dollars": 8403,
     "status": "ok"
    },
-   "lead_min_now": 870,
+   "lead_min_now": 860,
    "polymarket_first": {
     "checked_utc": "2026-11-18T11:50:13Z",
     "status": "game_not_on_polymarket"
@@ -4319,9 +4873,9 @@
      {
       "american": -105,
       "american_after_fee": -107,
-      "dollars": 27,
+      "dollars": 10,
       "strike_id": "9bd0de9c6a897bbf2c4768ce508a02f1",
-      "to_win": 26
+      "to_win": 10
      },
      {
       "american": -106,
@@ -4338,18 +4892,18 @@
       "to_win": 30
      },
      {
+      "american": -108,
+      "american_after_fee": -110,
+      "dollars": 23,
+      "strike_id": "9bd0de9c6a897bbf2c4768ce508a02f1",
+      "to_win": 22
+     },
+     {
       "american": -109,
       "american_after_fee": -111,
       "dollars": 775,
       "strike_id": "9bd0de9c6a897bbf2c4768ce508a02f1",
       "to_win": 721
-     },
-     {
-      "american": -113,
-      "american_after_fee": -115,
-      "dollars": 18,
-      "strike_id": "9bd0de9c6a897bbf2c4768ce508a02f1",
-      "to_win": 16
      },
      {
       "american": -114,
@@ -4361,9 +4915,23 @@
      {
       "american": -118,
       "american_after_fee": -120,
-      "dollars": 5846,
+      "dollars": 15,
       "strike_id": "9bd0de9c6a897bbf2c4768ce508a02f1",
-      "to_win": 4954
+      "to_win": 12
+     },
+     {
+      "american": -119,
+      "american_after_fee": -121,
+      "dollars": 5861,
+      "strike_id": "9bd0de9c6a897bbf2c4768ce508a02f1",
+      "to_win": 4925
+     },
+     {
+      "american": -121,
+      "american_after_fee": -123,
+      "dollars": 18,
+      "strike_id": "9bd0de9c6a897bbf2c4768ce508a02f1",
+      "to_win": 15
      },
      {
       "american": -320,
@@ -4374,7 +4942,7 @@
      }
     ],
     "dollars_at_alert_price_or_better": 0,
-    "dollars_at_best": 27,
+    "dollars_at_best": 10,
     "exact_line": true,
     "fee_on_winnings": 0.02,
     "market_name": "Spread",
@@ -4391,13 +4959,13 @@
    "best_now": {
     "american": -100,
     "book": "novig",
-    "dollars_at_alert_price_or_better_all_books": 7840,
+    "dollars_at_alert_price_or_better_all_books": 12689,
     "exact_line": true,
     "line": 6.5
    },
    "bet": "Sacramento Kings +6.5 (-106)",
    "book": "novig",
-   "checked_utc": "2026-11-18T12:30:18Z",
+   "checked_utc": "2026-11-18T12:40:15Z",
    "first": {
     "alert_line": 6.5,
     "alert_price": -106,
@@ -4604,7 +5172,7 @@
       "american": -107,
       "american_after_fee_qual": -107,
       "american_displayed": -100,
-      "dollars": 5948,
+      "dollars": 6076,
       "price": 0.5,
       "price_after_fee": 0.5175,
       "price_after_fee_qual": 0.5175
@@ -4613,7 +5181,7 @@
       "american": -112,
       "american_after_fee_qual": -112,
       "american_displayed": -104,
-      "dollars": 17254,
+      "dollars": 16837,
       "price": 0.51,
       "price_after_fee": 0.5275,
       "price_after_fee_qual": 0.5275
@@ -4622,7 +5190,7 @@
       "american": -116,
       "american_after_fee_qual": -116,
       "american_displayed": -108,
-      "dollars": 8095,
+      "dollars": 15848,
       "price": 0.52,
       "price_after_fee": 0.5375,
       "price_after_fee_qual": 0.5375
@@ -4631,7 +5199,7 @@
       "american": -121,
       "american_after_fee_qual": -121,
       "american_displayed": -113,
-      "dollars": 23619,
+      "dollars": 15905,
       "price": 0.53,
       "price_after_fee": 0.5474,
       "price_after_fee_qual": 0.5474
@@ -4649,7 +5217,7 @@
       "american": -131,
       "american_after_fee_qual": -131,
       "american_displayed": -122,
-      "dollars": 395,
+      "dollars": 450,
       "price": 0.55,
       "price_after_fee": 0.5673,
       "price_after_fee_qual": 0.5673
@@ -4676,7 +5244,7 @@
       "american": -148,
       "american_after_fee_qual": -148,
       "american_displayed": -138,
-      "dollars": 27,
+      "dollars": 85,
       "price": 0.58,
       "price_after_fee": 0.5971,
       "price_after_fee_qual": 0.5971
@@ -4685,14 +5253,14 @@
       "american": -154,
       "american_after_fee_qual": -154,
       "american_displayed": -144,
-      "dollars": 268,
+      "dollars": 209,
       "price": 0.59,
       "price_after_fee": 0.6069,
       "price_after_fee_qual": 0.6069
      }
     ],
     "dollars_at_alert_price_or_better": 0,
-    "dollars_at_best": 5948,
+    "dollars_at_best": 6076,
     "exact_line": true,
     "kalshi_buy": [
      {
@@ -4723,14 +5291,14 @@
      },
      {
       "american": -102,
-      "contracts": 218586,
-      "dollars": 1104,
+      "contracts": 1210909,
+      "dollars": 6115,
       "price": 0.505
      },
      {
       "american": -104,
-      "contracts": 1113265,
-      "dollars": 5678,
+      "contracts": 95919,
+      "dollars": 489,
       "price": 0.51
      },
      {
@@ -4741,8 +5309,8 @@
      },
      {
       "american": -108,
-      "contracts": 11072,
-      "dollars": 58,
+      "contracts": 656,
+      "dollars": 3,
       "price": 0.52
      },
      {
@@ -4776,17 +5344,17 @@
       "price": 0.99
      }
     ],
-    "dollars_at_alert_price_or_better": 7743,
+    "dollars_at_alert_price_or_better": 7565,
     "dollars_at_best": 348,
     "exact_line": true,
     "market_id": "01a1eb7d-4f62-7922-9b1f-058ccd6bf03b",
     "novig_label": "SAC +6.5",
     "novig_line": 6.5,
     "outcome_id": "01a1eb7d-4f62-7922-9b1f-05969f0ce4c2",
-    "resting_bids_on_this_side_dollars": 6943,
+    "resting_bids_on_this_side_dollars": 7028,
     "status": "ok"
    },
-   "lead_min_now": 870,
+   "lead_min_now": 860,
    "polymarket_first": {
     "checked_utc": "2026-11-18T11:10:18Z",
     "status": "game_not_on_polymarket"
@@ -4889,23 +5457,23 @@
      {
       "american": -102,
       "american_after_fee": -104,
-      "dollars": 66,
+      "dollars": 47,
       "strike_id": "5b2b9a5c40eaf24ab3150e86f84bd2c5",
-      "to_win": 65
+      "to_win": 46
      },
      {
-      "american": -104,
-      "american_after_fee": -106,
-      "dollars": 31,
+      "american": -103,
+      "american_after_fee": -105,
+      "dollars": 30,
       "strike_id": "5b2b9a5c40eaf24ab3150e86f84bd2c5",
       "to_win": 30
      },
      {
-      "american": -105,
-      "american_after_fee": -107,
-      "dollars": 5169,
+      "american": -104,
+      "american_after_fee": -106,
+      "dollars": 5047,
       "strike_id": "5b2b9a5c40eaf24ab3150e86f84bd2c5",
-      "to_win": 4923
+      "to_win": 4853
      },
      {
       "american": -106,
@@ -4957,8 +5525,8 @@
       "to_win": 200
      }
     ],
-    "dollars_at_alert_price_or_better": 97,
-    "dollars_at_best": 66,
+    "dollars_at_alert_price_or_better": 5124,
+    "dollars_at_best": 47,
     "exact_line": true,
     "fee_on_winnings": 0.02,
     "market_name": "Spread",
@@ -4975,13 +5543,13 @@
    "best_now": {
     "american": -108,
     "book": "novig",
-    "dollars_at_alert_price_or_better_all_books": 197,
+    "dollars_at_alert_price_or_better_all_books": 177,
     "exact_line": true,
     "line": 165.5
    },
    "bet": "Over 165.5 (-110)",
    "book": "novig",
-   "checked_utc": "2026-11-18T12:30:18Z",
+   "checked_utc": "2026-11-18T12:40:15Z",
    "first": {
     "alert_line": 165.5,
     "alert_price": -110,
@@ -5191,7 +5759,7 @@
       "american": -142,
       "american_after_fee_qual": -142,
       "american_displayed": -133,
-      "dollars": 2855,
+      "dollars": 3244,
       "price": 0.57,
       "price_after_fee": 0.5872,
       "price_after_fee_qual": 0.5872
@@ -5200,7 +5768,7 @@
       "american": -148,
       "american_after_fee_qual": -148,
       "american_displayed": -138,
-      "dollars": 110,
+      "dollars": 212,
       "price": 0.58,
       "price_after_fee": 0.5971,
       "price_after_fee_qual": 0.5971
@@ -5295,8 +5863,8 @@
     "buy_levels": [
      {
       "american": -108,
-      "contracts": 37974,
-      "dollars": 197,
+      "contracts": 33974,
+      "dollars": 177,
       "price": 0.52
      },
      {
@@ -5342,8 +5910,8 @@
       "price": 0.99
      }
     ],
-    "dollars_at_alert_price_or_better": 197,
-    "dollars_at_best": 197,
+    "dollars_at_alert_price_or_better": 177,
+    "dollars_at_best": 177,
     "exact_line": true,
     "market_id": "01a1ec41-1581-7e43-918d-ca4a4d7e078b",
     "novig_label": "Over 165.5",
@@ -5352,7 +5920,7 @@
     "resting_bids_on_this_side_dollars": 2117,
     "status": "ok"
    },
-   "lead_min_now": 900,
+   "lead_min_now": 890,
    "polymarket_first": {
     "checked_utc": "2026-11-18T11:10:18Z",
     "status": "game_not_on_polymarket"
@@ -5427,9 +5995,9 @@
      {
       "american": -113,
       "american_after_fee": -115,
-      "dollars": 311,
+      "dollars": 273,
       "strike_id": "4e4f13f83ce76a782165ce4dc9d6e19b",
-      "to_win": 275
+      "to_win": 242
      },
      {
       "american": -114,
@@ -5475,7 +6043,7 @@
      }
     ],
     "dollars_at_alert_price_or_better": 0,
-    "dollars_at_best": 311,
+    "dollars_at_best": 273,
     "exact_line": true,
     "fee_on_winnings": 0.02,
     "market_name": "Total Points",
@@ -5490,7 +6058,7 @@
    "alert_book": "Hard Rock",
    "alert_key": "2026-11-18 06:00|CSU Fullerton Titans @ UCLA Bruins|UCLA Bruins -34.5 (-110)",
    "best_now": {
-    "american": -115,
+    "american": -113,
     "book": "novig",
     "dollars_at_alert_price_or_better_all_books": 0,
     "exact_line": true,
@@ -5498,7 +6066,7 @@
    },
    "bet": "UCLA Bruins -34.5 (-110)",
    "book": "novig",
-   "checked_utc": "2026-11-18T12:30:18Z",
+   "checked_utc": "2026-11-18T12:40:15Z",
    "first": {
     "alert_line": -34.5,
     "alert_price": -110,
@@ -5705,7 +6273,7 @@
       "american": -121,
       "american_after_fee_qual": -121,
       "american_displayed": -113,
-      "dollars": 552,
+      "dollars": 1330,
       "price": 0.53,
       "price_after_fee": 0.5474,
       "price_after_fee_qual": 0.5474
@@ -5714,7 +6282,7 @@
       "american": -126,
       "american_after_fee_qual": -126,
       "american_displayed": -117,
-      "dollars": 2435,
+      "dollars": 2481,
       "price": 0.54,
       "price_after_fee": 0.5574,
       "price_after_fee_qual": 0.5574
@@ -5723,7 +6291,7 @@
       "american": -131,
       "american_after_fee_qual": -131,
       "american_displayed": -122,
-      "dollars": 3876,
+      "dollars": 2917,
       "price": 0.55,
       "price_after_fee": 0.5673,
       "price_after_fee_qual": 0.5673
@@ -5786,14 +6354,14 @@
       "american": -183,
       "american_after_fee_qual": -183,
       "american_displayed": -170,
-      "dollars": 1096,
+      "dollars": 1033,
       "price": 0.63,
       "price_after_fee": 0.6463,
       "price_after_fee_qual": 0.6463
      }
     ],
     "dollars_at_alert_price_or_better": 0,
-    "dollars_at_best": 552,
+    "dollars_at_best": 1330,
     "exact_line": true,
     "kalshi_buy": [
      {
@@ -5813,18 +6381,24 @@
     "alert_line": -34.5,
     "alert_price": -110,
     "alert_price_prob": 0.5238,
-    "best_price": 0.535,
-    "best_price_american": -115,
+    "best_price": 0.53,
+    "best_price_american": -113,
     "buy_levels": [
      {
+      "american": -113,
+      "contracts": 412800,
+      "dollars": 2188,
+      "price": 0.53
+     },
+     {
       "american": -115,
-      "contracts": 24086,
-      "dollars": 129,
+      "contracts": 437013,
+      "dollars": 2338,
       "price": 0.535
      },
      {
       "american": -117,
-      "contracts": 34904,
+      "contracts": 34783,
       "dollars": 188,
       "price": 0.54
      },
@@ -5872,16 +6446,16 @@
      }
     ],
     "dollars_at_alert_price_or_better": 0,
-    "dollars_at_best": 129,
+    "dollars_at_best": 2188,
     "exact_line": true,
     "market_id": "01a1eb27-4721-7b93-a191-ca610f890cde",
     "novig_label": "UCLA -34.5",
     "novig_line": -34.5,
     "outcome_id": "01a1eb27-4721-7b93-a191-ca7e21f2adac",
-    "resting_bids_on_this_side_dollars": 971,
+    "resting_bids_on_this_side_dollars": 3434,
     "status": "ok"
    },
-   "lead_min_now": 900,
+   "lead_min_now": 890,
    "polymarket_first": {
     "checked_utc": "2026-11-18T11:10:18Z",
     "status": "game_not_on_polymarket"
@@ -5964,9 +6538,16 @@
    "prophetx_latest": {
     "alert_line": -34.5,
     "alert_price": -110,
-    "best_price_american": -119,
-    "best_price_american_displayed": -117,
+    "best_price_american": -118,
+    "best_price_american_displayed": -116,
     "buy_levels": [
+     {
+      "american": -116,
+      "american_after_fee": -118,
+      "dollars": 10,
+      "strike_id": "9549cc125403669e3b1bd8ace4217484",
+      "to_win": 55
+     },
      {
       "american": -117,
       "american_after_fee": -119,
@@ -5975,11 +6556,11 @@
       "to_win": 46
      },
      {
-      "american": -120,
-      "american_after_fee": -122,
+      "american": -119,
+      "american_after_fee": -121,
       "dollars": 71,
       "strike_id": "9549cc125403669e3b1bd8ace4217484",
-      "to_win": 59
+      "to_win": 95
      },
      {
       "american": -121,
@@ -5994,13 +6575,6 @@
       "dollars": 40,
       "strike_id": "9549cc125403669e3b1bd8ace4217484",
       "to_win": 32
-     },
-     {
-      "american": -127,
-      "american_after_fee": -130,
-      "dollars": 16,
-      "strike_id": "9549cc125403669e3b1bd8ace4217484",
-      "to_win": 12
      },
      {
       "american": -132,
@@ -6018,7 +6592,7 @@
      }
     ],
     "dollars_at_alert_price_or_better": 0,
-    "dollars_at_best": 54,
+    "dollars_at_best": 10,
     "exact_line": true,
     "fee_on_winnings": 0.02,
     "market_name": "Spread",
@@ -21677,5 +22251,5 @@
   }
  ],
  "note": "Exchange book check (FLAG ONLY) for sharp-monitor phone alerts with 2h+ lead. latest/first = Novig (public order books, no key); prophetx_latest/prophetx_first = ProphetX (read-only key; prices are AFTER its 2%% fee on winnings, displayed price kept as best_price_american_displayed): best_price_american, dollars_at_best and dollars_at_alert_price_or_better = amount you could bet at the alert price or better, buy_levels = the ladder. kalshi_latest/_first and polymarket_latest/_first: same fields (public books, no key), prices AFTER taker fees (Kalshi 0.07, Polymarket global 0.03 x P x (1-P) per contract unless gamma marks the market zero-fee; displayed price kept as best_price_american_displayed). Novig pregame: no fee. hardrock_latest/_first: Hard Rock sportsbook price and line via The Odds API (no order book; refreshed every 30 min). best_now = best gettable price across the books, plus total dollars at the alert price or better on books with the exact line. Novig fields: best_price = cheapest cost to BUY the alert side now (0-1, with American); dollars_at_alert_price_or_better = dollars you could buy at the alert's price or better on the same line; exact_line=false means Novig had no market at the alert's line and the nearest line is shown. resting_bids_on_this_side_dollars = others bidding the same side. 'first' = first check after the alert, 'latest' = this run. Novig orders are bids (verified Oct 21).",
- "updated_utc": "2026-11-18T12:30:18Z"
+ "updated_utc": "2026-11-18T12:40:15Z"
 }
