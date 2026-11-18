@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 18, 2:00 AM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 8.
+Updated Wed Nov 18, 2:10 AM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 9.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 18 2:10AM | NCAAB | Fresno St. vs San Jose St. | moneyline: San Jose St. | kalshi | $25k | -233 |  |  | +0.0c |  | pending |
 | Nov 18 2:00AM | NCAAB | Boston College vs Harvard | moneyline: Boston College | kalshi | $26k | -170 |  |  | +0.0c |  | pending |
 | Nov 18 1:50AM | NCAAB | VMI vs Longwood | moneyline: Longwood | kalshi | $25k | -257 |  |  | +0.0c |  | pending |
 | Nov 18 1:50AM | NCAAB | UNC Wilmington vs LIU | moneyline: UNC Wilmington | kalshi | $37k | -525 |  |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 11 4:11AM | TENNIS | Kecmanovic vs Rune | moneyline: Rune | kalshi | $53k | -245 |  |  | +1.0c |  | W |
 | Nov 11 2:43AM | NCAAB | Southern Indiana vs IU Indy | moneyline: IU Indy | kalshi | $148k | -270 |  |  | +4.0c |  | W |
 | Nov 11 2:43AM | NCAAB | USC vs California | moneyline: USC | kalshi | $220k | -335 |  |  | -2.0c |  | W |
-| Nov 11 2:43AM | NCAAB | Pacific vs Long Beach St. | moneyline: Pacific | kalshi | $177k | -233 |  |  | -2.0c |  | L |
