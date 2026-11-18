@@ -219,9 +219,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 10195.73,
-    "volume_24h_fp": 9895.2,
-    "volume_fp": 10291.78
+    "open_interest_fp": 10585.54,
+    "volume_24h_fp": 10396.91,
+    "volume_fp": 10681.59
    },
    "ex_stats_first": {
     "open_interest_fp": 8383.65,
@@ -508,6 +508,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Le Moyne",
@@ -573,6 +574,7 @@
     "volume_fp": 46843.19
    },
    "fade_price": 0.48,
+   "fade_units": 1.01,
    "first_seen_utc": "2026-11-17T23:30:20Z",
    "game": "Eastern Illinois vs Vanderbilt: Spread",
    "game_surge_books": [],
@@ -666,11 +668,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAMBSPREAD-26NOV17EIUVAN-VAN42"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settle_tries": 1,
+   "settled_utc": "2026-11-18T03:00:42Z",
    "sharp_agree": [
     "Eastern Illinois Panthers +42.5 (-115)"
    ],
@@ -689,7 +693,7 @@
     "Vanderbilt"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-17T23:30:20Z",
@@ -3208,6 +3212,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settle_tries": 1,
    "sharp_agree": [
     "Over 153.5 (-110)"
    ],
@@ -3564,6 +3569,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UT Arlington",
@@ -4157,6 +4163,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Rice",
@@ -5798,6 +5805,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UT Arlington",
@@ -6217,6 +6225,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.67,
    "clv_cents": -17.0,
    "confirmed_after_min": 10,
@@ -6367,6 +6376,7 @@
     "volume_fp": 1411.09
    },
    "fade_price": 0.48,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-17T14:40:29Z",
    "game": "Maryland-Eastern Shore vs DePaul: Spread",
    "game_surge_books": [
@@ -6463,11 +6473,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBSPREAD-26NOV17UMESDEP-DEP32"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settle_tries": 1,
+   "settled_utc": "2026-11-18T03:00:42Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "DePaul",
@@ -6484,7 +6496,7 @@
     "DePaul"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.86
   },
   {
    "alerted_utc": "2026-11-17T14:40:29Z",
@@ -7394,6 +7406,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Evansville",
