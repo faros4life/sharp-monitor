@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 17, 11:50 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 9.
+Updated Wed Nov 18, 12:00 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 8.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 327-203 (-27.91u flat) | rule met: 55-51
+**Record:** 328-203 (-27.63u flat) | rule met: 55-51
 
-**Fade (paper, betting against the print):** 178-292 (+31.41u flat, after fees)
+**Fade (paper, betting against the print):** 178-293 (+30.41u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -47,7 +47,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 17 9:40AM | NCAAB | Cleveland St. vs Xavier: Point Total | total: NOT Over 159.5 points | kalshi | $32k | -108 |  |  | +2.0c |  | W |
 | Nov 17 9:20AM | NCAAB | Green Bay vs West Florida | moneyline: Green Bay | kalshi | $57k | -257 |  |  | -6.0c |  | L |
 | Nov 17 7:10AM | NCAAB | Alabama St. vs UC Davis | moneyline: UC Davis | kalshi | $70k | -567 |  |  | +2.0c |  | L |
-| Nov 17 1:40AM | NCAAB | Seattle vs California Baptist | moneyline: Seattle | kalshi | $29k | -355 |  |  | -1.0c |  | pending |
+| Nov 17 1:40AM | NCAAB | Seattle vs California Baptist | moneyline: Seattle | kalshi | $29k | -355 |  |  | -1.0c |  | W |
 | Nov 17 1:40AM | NCAAB | Le Moyne vs Evansville | moneyline: Evansville | kalshi | $26k | -257 |  |  | +3.0c | yes | W |
 | Nov 17 1:30AM | NCAAB | Florida International vs UAB | moneyline: UAB | kalshi | $39k | -170 |  |  | +0.0c |  | W |
 | Nov 17 1:30AM | NCAAB | Central Michigan vs Dayton | moneyline: Dayton | kalshi | $36k | -567 |  |  | +4.0c | yes | W |
