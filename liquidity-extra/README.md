@@ -1,17 +1,17 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 18, 1:00 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 5.
+Updated Wed Nov 18, 1:10 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 4.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 330-204 (-27.46u flat) | rule met: 55-51
+**Record:** 330-205 (-28.46u flat) | rule met: 55-51
 
-**Fade (paper, betting against the print):** 179-295 (+32.66u flat, after fees)
+**Fade (paper, betting against the print):** 180-295 (+33.75u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 17 8:20PM | NCAAB | Kansas vs UNLV: Point Total | total: Over 157.5 points | kalshi | $26k | -113 |  |  | +1.0c | yes | W |
-| Nov 17 7:40PM | NCAAB | Montana St. vs Gonzaga: Spread | spread: Gonzaga wins by over 21.5 points | kalshi | $33k | -122 |  |  | +1.0c | yes | pending |
+| Nov 17 7:40PM | NCAAB | Montana St. vs Gonzaga: Spread | spread: Gonzaga wins by over 21.5 points | kalshi | $33k | -122 |  |  | +1.0c | yes | L |
 | Nov 17 7:40PM | NCAAB | Le Moyne vs Evansville: Spread | spread: NOT Evansville wins by over 7.5 points | kalshi | $27k | -104 |  |  | +0.0c |  | L |
 | Nov 17 6:40PM | NCAAB | Eastern Illinois vs Vanderbilt: Spread | spread: NOT Vanderbilt wins by over 41.5 points | kalshi | $29k | -113 |  | ✅ | +0.0c |  | L |
 | Nov 17 6:30PM | NCAAB | Bowling Green vs William & Mary: Point Total | total: Over 168.5 points | kalshi | $29k | -113 |  | ❌ | +0.0c |  | L |
