@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 17, 8:30 PM ET. This run: 0 new, 1 not confirmed, 2 pending. Open alerts: 43.
+Updated Tue Nov 17, 8:40 PM ET. This run: 0 new, 1 not confirmed, 1 pending. Open alerts: 42.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 307-189 (-29.91u flat) | rule met: 51-50
+**Record:** 307-190 (-30.91u flat) | rule met: 51-50
 
-**Fade (paper, betting against the print):** 164-272 (+30.30u flat, after fees)
+**Fade (paper, betting against the print):** 165-272 (+31.39u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -41,8 +41,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 17 11:10AM | NCAAB | Arkansas vs Indiana | moneyline: Indiana | kalshi | $29k | +104 | ✅ novig | ✅ | +5.0c | yes | pending |
 | Nov 17 10:40AM | NCAAB | UT Arlington vs Southern Miss | moneyline: UT Arlington | kalshi | $26k | +127 |  |  | +2.0c |  | pending |
 | Nov 17 10:40AM | NCAAB | Southern Illinois vs Liberty | moneyline: Southern Illinois | kalshi | $70k | -127 | ✅ novig |  | +0.0c |  | L |
-| Nov 17 10:30AM | NCAAB | Lipscomb vs Purdue: Spread | spread: Purdue wins by over 20.5 points | kalshi | $29k | -122 |  |  | +2.0c | yes | pending |
-| Nov 17 10:10AM | NCAAB | Bryant vs UMass | moneyline: UMass | kalshi | $29k | -525 |  |  | +7.0c | yes | pending |
+| Nov 17 10:30AM | NCAAB | Lipscomb vs Purdue: Spread | spread: Purdue wins by over 20.5 points | kalshi | $29k | -122 |  |  | +2.0c | yes | L |
+| Nov 17 10:10AM | NCAAB | Bryant vs UMass | moneyline: UMass | kalshi | $29k | -525 |  |  | +6.0c | yes | pending |
 | Nov 17 9:50AM | NCAAB | Maryland-Eastern Shore vs DePaul: Spread | spread: DePaul wins by over 31.5 points | kalshi | $33k | -113 |  |  | -8.0c | yes | pending |
 | Nov 17 9:40AM | NCAAB | Cleveland St. vs Xavier: Point Total | total: NOT Over 159.5 points | kalshi | $32k | -108 |  |  | +2.0c |  | pending |
 | Nov 17 9:20AM | NCAAB | Green Bay vs West Florida | moneyline: Green Bay | kalshi | $57k | -257 |  |  | -6.0c |  | pending |
