@@ -1,6 +1,194 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-18T09:40:26Z",
+   "base_depth": 234294,
+   "best_price": 0.625,
+   "best_price_american": -167,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.63,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-18",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -50044,
+     "new_this_side": 31409,
+     "other_side": 12074,
+     "other_side_all_levels": 122950,
+     "ratio": 2.3,
+     "this_side": 27551,
+     "this_side_all_levels": 264714
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "ND (0)",
+     "price": 0.625,
+     "this_side": 3763
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Notre Dame",
+     "price": 0.6324,
+     "this_side": 373
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 58947.15,
+    "volume_24h_fp": 58985.93,
+    "volume_fp": 59345.909999999996
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 17.98,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 359.98
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 58929.17,
+    "volume_24h_fp": 58985.93,
+    "volume_fp": 58985.93
+   },
+   "fade_price": 0.38,
+   "first_seen_utc": "2026-11-18T09:30:24Z",
+   "game": "Rutgers vs Notre Dame",
+   "game_surge_books": [],
+   "game_x": 1.73,
+   "key": "kalshi|KXNCAAMBGAME-26NOV18RUTGND|ml|1",
+   "lead_min": 560,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 31409,
+   "new_x": 0.66,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 58947.15,
+      "volume_24h_fp": 58985.93,
+      "volume_fp": 59345.909999999996
+     },
+     "game_normal": 152636,
+     "game_x": 1.73,
+     "normal": 47888,
+     "now": 264714,
+     "type": "ML",
+     "x": 5.53
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 624694.0,
+      "volume": 809084.0
+     },
+     "game_normal": 7996,
+     "game_x": 1.9,
+     "normal": 2983,
+     "now": 15164,
+     "type": "ML",
+     "x": 5.08
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 812,
+     "game_x": 0.71,
+     "normal": 453,
+     "now": 573,
+     "type": "ML",
+     "x": 1.27
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.63,
+   "price_american": -170,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.63,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -170
+    },
+    "betrivers": {
+     "point": null,
+     "price": -182
+    },
+    "bovada": {
+     "point": null,
+     "price": -175
+    },
+    "circasports": {
+     "point": null,
+     "price": -170
+    },
+    "draftkings": {
+     "point": null,
+     "price": -170
+    },
+    "fanatics": {
+     "point": null,
+     "price": -165
+    },
+    "fanduel": {
+     "point": null,
+     "price": -160
+    },
+    "kalshi": {
+     "point": null,
+     "price": -170
+    },
+    "novig": {
+     "point": null,
+     "price": -167
+    },
+    "polymarket": {
+     "point": null,
+     "price": -170
+    },
+    "prophetx": {
+     "point": null,
+     "price": -172
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -160
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV18RUTGND-ND"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Notre Dame",
+   "side_label": "Notre Dame",
+   "size_x": 5.53,
+   "start_source": "odds",
+   "start_utc": "2026-11-18T19:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "Rutgers",
+    "Notre Dame"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-18T07:40:26Z",
    "base_depth": 80160,
    "best_price": 0.7244,
@@ -52,9 +240,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 170.24,
+    "open_interest_fp": 186.12,
     "volume_24h_fp": 170.01999999999998,
-    "volume_fp": 170.45999999999998
+    "volume_fp": 186.34
    },
    "ex_stats_first": {
     "open_interest_fp": 99.76,
