@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 18, 1:10 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 16.
+Updated Wed Nov 18, 1:20 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 17.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 18 1:20PM | NCAAB | Binghamton vs Lafayette | moneyline: Lafayette | kalshi | $48k | -163 |  | ✅ | +0.0c |  | pending |
 | Nov 18 12:20PM | NCAAB | Kansas vs West Virginia | moneyline: Kansas | kalshi | $33k | -376 |  |  | +0.0c |  | pending |
 | Nov 18 10:10AM | NCAAB | UC Riverside vs San Diego | moneyline: San Diego | kalshi | $49k | -245 |  |  | +0.0c | yes | pending |
 | Nov 18 10:10AM | NCAAB | Purdue Fort Wayne vs Bradley | moneyline: Bradley | kalshi | $33k | -257 | ✅ novig |  | +1.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 11 12:37PM | NCAAB | Dartmouth vs University at Albany | moneyline: Dartmouth vs University | kalshi | $27k | -100 |  | ❌ | +0.0c |  | W |
 | Nov 11 11:22AM | NCAAB | Milwaukee vs Indiana St. | moneyline: Indiana St. | kalshi | $36k | -170 |  |  | +4.0c |  | L |
 | Nov 11 10:10AM | NCAAB | William & Mary vs Florida Atlantic | moneyline: Florida Atlantic | kalshi | $26k | -203 | ✅ novig |  | +0.0c |  | W |
-| Nov 11 10:10AM | NCAAB | Nevada vs UC Santa Barbara | moneyline: Nevada | kalshi | $32k | -100 | ✅ novig |  | +2.0c |  | L |
