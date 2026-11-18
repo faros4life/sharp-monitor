@@ -1,6 +1,191 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-18T07:00:27Z",
+   "base_depth": 65784,
+   "best_price": 0.63,
+   "best_price_american": -170,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.63,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-18",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 8658,
+     "new_this_side": 26163,
+     "other_side": 10930,
+     "other_side_all_levels": 53835,
+     "ratio": 1.9,
+     "this_side": 20289,
+     "this_side_all_levels": 120288
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "BC (0)",
+     "price": 0.63,
+     "this_side": 2003
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Boston College",
+     "price": 0.6377,
+     "this_side": 899
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 659.94,
+    "volume_24h_fp": 491.28,
+    "volume_fp": 667.94
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 12.37,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 12.37
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 647.5699999999999,
+    "volume_24h_fp": 491.28,
+    "volume_fp": 655.5699999999999
+   },
+   "fade_price": 0.38,
+   "first_seen_utc": "2026-11-18T06:50:16Z",
+   "game": "Boston College vs Harvard",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 2.03,
+   "key": "kalshi|KXNCAAMBGAME-26NOV18BCHARV|ml|0",
+   "lead_min": 1080,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 26163,
+   "new_x": 0.65,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 659.94,
+      "volume_24h_fp": 491.28,
+      "volume_fp": 667.94
+     },
+     "game_normal": 59199,
+     "game_x": 2.03,
+     "normal": 40493,
+     "now": 120288,
+     "type": "ML",
+     "x": 2.97
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 6784.0,
+      "volume": 6784.0
+     },
+     "game_normal": 1887,
+     "game_x": 1.18,
+     "normal": 2371,
+     "now": 2233,
+     "type": "ML",
+     "x": 0.94
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 576,
+     "game_x": 1.56,
+     "normal": 515,
+     "now": 899,
+     "type": "ML",
+     "x": 1.74
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.63,
+   "price_american": -170,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.63,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -180
+    },
+    "betrivers": {
+     "point": null,
+     "price": -195
+    },
+    "bovada": {
+     "point": null,
+     "price": -175
+    },
+    "circasports": {
+     "point": null,
+     "price": -165
+    },
+    "draftkings": {
+     "point": null,
+     "price": -170
+    },
+    "fanatics": {
+     "point": null,
+     "price": -175
+    },
+    "fanduel": {
+     "point": null,
+     "price": -172
+    },
+    "kalshi": {
+     "point": null,
+     "price": -170
+    },
+    "novig": {
+     "point": null,
+     "price": -170
+    },
+    "polymarket": {
+     "point": null,
+     "price": -170
+    },
+    "prophetx": {
+     "point": null,
+     "price": -176
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV18BCHARV-BC"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Boston College",
+   "side_label": "Boston College",
+   "size_x": 2.97,
+   "start_source": "odds",
+   "start_utc": "2026-11-19T01:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Boston College",
+    "Harvard"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-18T06:50:16Z",
    "base_depth": 49600,
    "best_price": 0.7,
@@ -50,6 +235,11 @@
     "open_interest_fp": 0.0,
     "volume_24h_fp": 0.0,
     "volume_fp": 0.0
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 74.68,
+    "volume_24h_fp": 69.68,
+    "volume_fp": 74.68
    },
    "ex_stats_first": {
     "open_interest_fp": 74.68,
@@ -205,6 +395,11 @@
     "open_interest_fp": 0.0,
     "volume_24h_fp": 0.0,
     "volume_fp": 0.0
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 256.03999999999996,
+    "volume_24h_fp": 79.51,
+    "volume_fp": 311.18
    },
    "ex_stats_first": {
     "open_interest_fp": 256.03999999999996,
@@ -411,6 +606,8 @@
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.73,
+   "price_after_15m": 0.7438,
+   "price_after_15m_book": "kalshi",
    "price_american": -270,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.73,
@@ -461,6 +658,7 @@
    "size_x": 1.91,
    "start_source": "odds",
    "start_utc": "2026-11-18T23:30:00Z",
+   "still_actionable": true,
    "surge_books": [],
    "teams": [
     "Samford",
