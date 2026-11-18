@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 18, 11:50 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 15.
+Updated Wed Nov 18, 12:00 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 15.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 18 10:10AM | NCAAB | UC Riverside vs San Diego | moneyline: San Diego | kalshi | $49k | -245 |  |  | +0.0c |  | pending |
+| Nov 18 10:10AM | NCAAB | UC Riverside vs San Diego | moneyline: San Diego | kalshi | $49k | -245 |  |  | +0.0c | yes | pending |
 | Nov 18 10:10AM | NCAAB | Purdue Fort Wayne vs Bradley | moneyline: Bradley | kalshi | $33k | -257 | ✅ novig |  | +1.0c |  | pending |
 | Nov 18 10:00AM | NCAAB | Louisiana vs San Francisco | moneyline: San Francisco | kalshi | $113k | -567 |  |  | +0.0c |  | pending |
 | Nov 18 4:40AM | NCAAB | Rutgers vs Notre Dame | moneyline: Notre Dame | kalshi | $31k | -170 |  |  | -3.0c | yes | pending |
