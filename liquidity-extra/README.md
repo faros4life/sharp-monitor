@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 17, 7:00 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 44.
+Updated Tue Nov 17, 7:10 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 43.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 306-186 (-27.89u flat) | rule met: 51-49
+**Record:** 307-186 (-26.91u flat) | rule met: 51-49
 
-**Fade (paper, betting against the print):** 161-271 (+28.29u flat, after fees)
+**Fade (paper, betting against the print):** 161-272 (+27.29u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -29,7 +29,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 17 3:21PM | NCAAB | Charlotte vs Davidson: Spread | spread: NOT Davidson wins by over 3.5 points | kalshi | $26k | -108 |  |  | +0.0c |  | pending |
 | Nov 17 3:21PM | NCAAB | Mississippi St. vs UCF | moneyline: UCF | kalshi | $38k | -100 | ✅ novig |  | +2.0c |  | pending |
 | Nov 17 3:21PM | NCAAB | Texas A&M-Corpus Christi vs Rice | moneyline: Rice | kalshi | $31k | -127 | ✅ novig |  | +0.0c | yes | pending |
-| Nov 17 2:50PM | NCAAB | Florida vs Notre Dame: Spread | spread: NOT Florida wins by over 15.5 points | kalshi | $31k | -100 |  |  | +5.0c | yes | pending |
+| Nov 17 2:50PM | NCAAB | Florida vs Notre Dame: Spread | spread: NOT Florida wins by over 15.5 points | kalshi | $31k | -100 |  |  | +5.0c | yes | W |
 | Nov 17 2:20PM | NCAAB | Arkansas vs Indiana: Point Total | total: NOT Over 153.5 points | kalshi | $26k | -104 |  | ✅ | +1.0c |  | pending |
 | Nov 17 1:20PM | NCAAB | Houston vs Rutgers: Spread | spread: NOT Houston wins by over 17.5 points | kalshi | $36k | -117 |  | ✅ | -1.0c |  | W |
 | Nov 17 12:00PM | NCAAB | Illinois vs Duke: Point Total | total: Over 167.5 points | kalshi | $42k | -100 | ✅ novig | ✅ | +0.0c | yes | pending |
