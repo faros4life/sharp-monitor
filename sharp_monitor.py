@@ -1843,9 +1843,27 @@ def run():
                         # never read as a bot play. UNITS-ONLY evidence - see agree_rules.hr1.
                         if hr1_ok:
                             hr1_sent = True   # the push below runs: notify() is selected whenever hr1_ok
+                            # Nov 18 (Peter): HR1's FIRST live push quoted Hard Rock Under 132.5 (-110) while Hard
+                            # Rock's board showed 129.5 (-105) two minutes later - a play that did not exist, with a
+                            # real stake attached. The line/price pairing is NOT the cause: each book contributes one
+                            # (point, price) tuple from its own main total and they are never mixed. So the FEED's
+                            # Hard Rock quote disagreed with Hard Rock's board, and nothing stored lets us say whether
+                            # it was stale or simply wrong. This records the quote we acted on, so the next mismatch
+                            # is provable instead of re-argued. Captures only; changes no eligibility and no push.
+                            a["hr1_quote"] = {"book": a.get("book"), "point": a.get("pt"), "price": a.get("price"),
+                                              "after_fee": net(a["price"], a["book"], cfg["label"]),
+                                              "sharp_line": a.get("pin_line"), "alert_utc": now_utc().strftime("%Y-%m-%dT%H:%M:%SZ"),
+                                              "other_books": [x[2] for x in (a.get("offers") or [])]}
+                            # Nov 18: the push now states the EXACT line this alert believes Hard Rock is showing, and
+                            # says to abandon the bet if the board disagrees. "bet only if this price is still there"
+                            # was not enough on 18 Nov: the board was 3 points away, which reads as a different market
+                            # rather than a moved price, and the instruction did not tell him to stop.
+                            _q = a.get("hr1_quote") or {}
                             label = (f"HR1 MANUAL BET at HARD ROCK: {a['text'].split(' at ')[0]}"
-                                     " | open Hard Rock, bet only if this price is still there; check the max it allows"
-                                     " | log it to Muse as source HR1")
+                                     f" | CHECK FIRST: Hard Rock's main number must be {_q.get('point')}"
+                                     f" at {_q.get('price')}. DO NOT BET if the board shows a different number -"
+                                     f" that is a bad quote, not a moved line. (sharp ref {_q.get('sharp_line')})"
+                                     " | check the max it allows | log it to Muse as source HR1")
                         # Nov 12 (Peter: "only actionable and live notifications", then "triggers ... on anything that
                         # goes live"): the phone gets the TRIGGER for every live (phase-1) play on ntfy AND Telegram, then
                         # the executor's LIVE PLAY and the fill. PAPER alerts stay muted (PUSH_SHARP_ALERTS=on unmutes them).
