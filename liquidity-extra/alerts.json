@@ -1,6 +1,415 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-18T15:10:30Z",
+   "base_depth": 96790,
+   "best_price": 0.72,
+   "best_price_american": -257,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.71,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-18",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 9956,
+     "new_this_side": 49198,
+     "other_side": 15228,
+     "other_side_all_levels": 30075,
+     "ratio": 5.5,
+     "this_side": 83130,
+     "this_side_all_levels": 146892
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "USD (0)",
+     "price": 0.72,
+     "this_side": 6134
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "San Diego",
+     "price": 0.7297,
+     "this_side": 895
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 1986.0800000000002,
+    "volume_24h_fp": 1979.0800000000002,
+    "volume_fp": 1986.0800000000002
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 10.89,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 1986.0800000000002,
+    "volume_24h_fp": 1968.19,
+    "volume_fp": 1986.0800000000002
+   },
+   "fade_price": 0.29,
+   "first_seen_utc": "2026-11-18T15:00:44Z",
+   "game": "UC Riverside vs San Diego",
+   "game_surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "game_x": 2.84,
+   "key": "kalshi|KXNCAAMBGAME-26NOV18UCRVUSD|ml|1",
+   "lead_min": 679,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 49198,
+   "new_x": 0.97,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 1986.0800000000002,
+      "volume_24h_fp": 1979.0800000000002,
+      "volume_fp": 1986.0800000000002
+     },
+     "game_normal": 51766,
+     "game_x": 2.84,
+     "normal": 50959,
+     "now": 146892,
+     "type": "ML",
+     "x": 2.88
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 618884.0,
+      "volume": 623225.0
+     },
+     "game_normal": 2310,
+     "game_x": 2.86,
+     "normal": 1850,
+     "now": 6601,
+     "type": "ML",
+     "x": 3.57
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 1608,
+     "game_x": 0.7,
+     "normal": 431,
+     "now": 1129,
+     "type": "ML",
+     "x": 2.62
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.71,
+   "price_american": -245,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.71,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -300
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -300
+    },
+    "betrivers": {
+     "point": null,
+     "price": -375
+    },
+    "betus": {
+     "point": null,
+     "price": -300
+    },
+    "bovada": {
+     "point": null,
+     "price": -300
+    },
+    "circasports": {
+     "point": null,
+     "price": -300
+    },
+    "draftkings": {
+     "point": null,
+     "price": -310
+    },
+    "fanatics": {
+     "point": null,
+     "price": -300
+    },
+    "fanduel": {
+     "point": null,
+     "price": -300
+    },
+    "kalshi": {
+     "point": null,
+     "price": -270
+    },
+    "lowvig": {
+     "point": null,
+     "price": -300
+    },
+    "novig": {
+     "point": null,
+     "price": -257
+    },
+    "polymarket": {
+     "point": null,
+     "price": -270
+    },
+    "prophetx": {
+     "point": null,
+     "price": -270
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -305
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV18UCRVUSD-USD"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "San Diego",
+   "side_label": "San Diego",
+   "size_x": 2.88,
+   "start_source": "odds",
+   "start_utc": "2026-11-19T02:30:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "UC Riverside",
+    "San Diego"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-18T15:10:30Z",
+   "base_depth": 84851,
+   "best_price": 0.72,
+   "best_price_american": -257,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.72,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-18",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 5357,
+     "new_this_side": 32970,
+     "other_side": 8555,
+     "other_side_all_levels": 24448,
+     "ratio": 5.2,
+     "this_side": 44240,
+     "this_side_all_levels": 119365
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "BRAD (0)",
+     "price": 0.72,
+     "this_side": 12194
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Bradley",
+     "price": 0.726,
+     "this_side": 1400
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 76.0,
+    "volume_24h_fp": 76.0,
+    "volume_fp": 76.0
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 76.0,
+    "volume_24h_fp": 76.0,
+    "volume_fp": 76.0
+   },
+   "fade_price": 0.28,
+   "first_seen_utc": "2026-11-18T15:00:44Z",
+   "game": "Purdue Fort Wayne vs Bradley",
+   "game_surge_books": [
+    "novig"
+   ],
+   "game_x": 1.39,
+   "key": "kalshi|KXNCAAMBGAME-26NOV18PFWBRAD|ml|1",
+   "lead_min": 589,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 32970,
+   "new_x": 0.65,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 76.0,
+      "volume_24h_fp": 76.0,
+      "volume_fp": 76.0
+     },
+     "game_normal": 85905,
+     "game_x": 1.39,
+     "normal": 50959,
+     "now": 119365,
+     "type": "ML",
+     "x": 2.34
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 76018.0,
+      "volume": 84150.0
+     },
+     "game_normal": 3932,
+     "game_x": 3.19,
+     "normal": 1850,
+     "now": 12547,
+     "type": "ML",
+     "x": 6.78
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 1480,
+     "game_x": 1.08,
+     "normal": 431,
+     "now": 1600,
+     "type": "ML",
+     "x": 3.71
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.72,
+   "price_american": -257,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.72,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -285
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -285
+    },
+    "betopenly": {
+     "point": null,
+     "price": -258
+    },
+    "betrivers": {
+     "point": null,
+     "price": -315
+    },
+    "betus": {
+     "point": null,
+     "price": -285
+    },
+    "bovada": {
+     "point": null,
+     "price": -275
+    },
+    "circasports": {
+     "point": null,
+     "price": -285
+    },
+    "draftkings": {
+     "point": null,
+     "price": -290
+    },
+    "fanatics": {
+     "point": null,
+     "price": -285
+    },
+    "fanduel": {
+     "point": null,
+     "price": -275
+    },
+    "kalshi": {
+     "point": null,
+     "price": -257
+    },
+    "lowvig": {
+     "point": null,
+     "price": -285
+    },
+    "novig": {
+     "point": null,
+     "price": -257
+    },
+    "polymarket": {
+     "point": null,
+     "price": -257
+    },
+    "prophetx": {
+     "point": null,
+     "price": -265
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV18PFWBRAD-BRAD"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Bradley",
+   "side_label": "Bradley",
+   "size_x": 2.34,
+   "start_source": "odds",
+   "start_utc": "2026-11-19T01:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Purdue Fort Wayne",
+    "Bradley"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-18T15:00:44Z",
    "base_depth": 52282,
    "best_price": 0.855,
@@ -38,6 +447,11 @@
     "open_interest_fp": 0.0,
     "volume_24h_fp": 0.0,
     "volume_fp": 0.0
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 1338.76,
+    "volume_24h_fp": 1131.1,
+    "volume_fp": 1342.37
    },
    "ex_stats_first": {
     "open_interest_fp": 1338.76,
@@ -216,9 +630,9 @@
     "volume_fp": 359.98
    },
    "ex_stats_close": {
-    "open_interest_fp": 88107.95000000001,
-    "volume_24h_fp": 87765.94,
-    "volume_fp": 88763.41
+    "open_interest_fp": 89660.5,
+    "volume_24h_fp": 90083.88,
+    "volume_fp": 90315.96
    },
    "ex_stats_first": {
     "open_interest_fp": 58929.17,
@@ -375,8 +789,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.69,
-   "clv_cents": -2.0,
+   "close_price": 0.67,
+   "clv_cents": -4.0,
    "confirmed_after_min": 10,
    "date": "2026-11-18",
    "depth_by_book": {
@@ -413,9 +827,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 786.76,
-    "volume_24h_fp": 756.1999999999999,
-    "volume_fp": 786.98
+    "open_interest_fp": 1574.9,
+    "volume_24h_fp": 1574.68,
+    "volume_fp": 1575.1200000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 99.76,
@@ -585,9 +999,9 @@
     "volume_fp": 47.4
    },
    "ex_stats_close": {
-    "open_interest_fp": 58507.729999999996,
-    "volume_24h_fp": 52441.7,
-    "volume_fp": 60978.4
+    "open_interest_fp": 60571.229999999996,
+    "volume_24h_fp": 54684.7,
+    "volume_fp": 63041.9
    },
    "ex_stats_first": {
     "open_interest_fp": 28121.41,
@@ -760,7 +1174,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 827.1899999999999,
-    "volume_24h_fp": 795.1899999999999,
+    "volume_24h_fp": 825.1899999999999,
     "volume_fp": 827.1899999999999
    },
    "ex_stats_first": {
@@ -953,7 +1367,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1210.76,
-    "volume_24h_fp": 999.0500000000001,
+    "volume_24h_fp": 1048.47,
     "volume_fp": 1218.76
    },
    "ex_stats_first": {
@@ -1146,9 +1560,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 189.16,
-    "volume_24h_fp": 182.16,
-    "volume_fp": 189.16
+    "open_interest_fp": 202.76999999999998,
+    "volume_24h_fp": 197.76999999999998,
+    "volume_fp": 202.76999999999998
    },
    "ex_stats_first": {
     "open_interest_fp": 74.68,
@@ -1309,9 +1723,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1311.8,
-    "volume_24h_fp": 921.6800000000001,
-    "volume_fp": 1367.4299999999998
+    "open_interest_fp": 1314.8200000000002,
+    "volume_24h_fp": 1138.78,
+    "volume_fp": 1370.45
    },
    "ex_stats_first": {
     "open_interest_fp": 256.03999999999996,
@@ -1457,9 +1871,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1034.81,
-    "volume_24h_fp": 919.02,
-    "volume_fp": 1034.81
+    "open_interest_fp": 1041.61,
+    "volume_24h_fp": 920.36,
+    "volume_fp": 1041.61
    },
    "ex_stats_first": {
     "open_interest_fp": 156.07999999999998,

@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 18, 10:00 AM ET. This run: 1 new, 0 not confirmed, 2 pending. Open alerts: 13.
+Updated Wed Nov 18, 10:10 AM ET. This run: 2 new, 0 not confirmed, 0 pending. Open alerts: 15.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,9 +10,11 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 18 10:10AM | NCAAB | UC Riverside vs San Diego | moneyline: San Diego | kalshi | $49k | -245 |  |  | +0.0c |  | pending |
+| Nov 18 10:10AM | NCAAB | Purdue Fort Wayne vs Bradley | moneyline: Bradley | kalshi | $33k | -257 | ✅ novig |  | +0.0c |  | pending |
 | Nov 18 10:00AM | NCAAB | Louisiana vs San Francisco | moneyline: San Francisco | kalshi | $113k | -567 |  |  | +0.0c |  | pending |
 | Nov 18 4:40AM | NCAAB | Rutgers vs Notre Dame | moneyline: Notre Dame | kalshi | $31k | -170 |  |  | -1.0c | yes | pending |
-| Nov 18 2:40AM | NCAAB | Florida Gulf Coast vs Florida Atlantic | moneyline: Florida Atlantic | kalshi | $27k | -245 |  |  | -2.0c | yes | pending |
+| Nov 18 2:40AM | NCAAB | Florida Gulf Coast vs Florida Atlantic | moneyline: Florida Atlantic | kalshi | $27k | -245 |  |  | -4.0c | yes | pending |
 | Nov 18 2:20AM | NCAAB | UConn vs Arizona | moneyline: Arizona | kalshi | $25k | -144 |  |  | +1.0c |  | pending |
 | Nov 18 2:10AM | NCAAB | Fresno St. vs San Jose St. | moneyline: San Jose St. | kalshi | $25k | -233 |  |  | +0.0c |  | pending |
 | Nov 18 2:00AM | NCAAB | Boston College vs Harvard | moneyline: Boston College | kalshi | $26k | -170 |  |  | +0.0c | yes | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 11 10:10AM | NCAAB | William & Mary vs Florida Atlantic | moneyline: Florida Atlantic | kalshi | $26k | -203 | ✅ novig |  | +0.0c |  | W |
 | Nov 11 10:10AM | NCAAB | Nevada vs UC Santa Barbara | moneyline: Nevada | kalshi | $32k | -100 | ✅ novig |  | +2.0c |  | L |
 | Nov 11 8:21AM | TENNIS | Sonego vs Tabilo | moneyline: Tabilo | kalshi | $223k | -194 |  |  | -13.0c |  | W |
-| Nov 11 7:59AM | TENNIS | Shevchenko vs Ruud | moneyline: Ruud | kalshi | $26k | -456 | ✅ novig |  | -1.0c |  | L |
-| Nov 11 4:56AM | TENNIS | Sabalenka vs Andreeva | moneyline: Sabalenka | kalshi | $160k | -104 |  |  | +1.0c | yes | L |
