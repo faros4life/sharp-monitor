@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 18, 10:25 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 36.
+Updated Wed Nov 18, 10:30 AM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 36.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -21,9 +21,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 18 7:36AM | NBA | Philadelphia vs Orlando | moneyline: Orlando | kalshi | $174k | +117 | ✅ novig | ❌ | +2.0c |  | pending |
 | Nov 18 3:45AM | NBA | Phoenix vs Sacramento: Spread | spread: NOT Phoenix wins by over 6.5 points | kalshi | $29k | -108 |  |  | -2.0c | yes | pending |
 | Nov 18 2:35AM | NBA | Phoenix vs Sacramento | moneyline: Phoenix | kalshi | $50k | -233 |  |  | +1.0c | yes | pending |
-| Nov 18 2:10AM | NCAAF | Rice vs Temple: Total Points | total: NOT Over 50.5 points | kalshi | $28k | +104 |  |  | -1.0c | yes | pending |
-| Nov 18 2:00AM | NBA | Washington Wizards @ Toronto Raptors | moneyline: WAS (0) | novig | $25k | +223 | ✅ kalshi |  | +0.0c | yes | pending |
-| Nov 18 1:55AM | NBA | Houston Rockets @ Indiana Pacers | moneyline: HOU (0) | novig | $36k | -270 | ✅ kalshi |  | +0.0c | yes | pending |
+| Nov 18 2:10AM | NCAAF | Rice vs Temple: Total Points | total: NOT Over 50.5 points | kalshi | $28k | +104 |  |  | -2.0c | yes | pending |
+| Nov 18 2:00AM | NBA | Washington Wizards @ Toronto Raptors | moneyline: WAS (0) | novig | $25k | +223 | ✅ kalshi |  | +0.5c | yes | pending |
+| Nov 18 1:55AM | NBA | Houston Rockets @ Indiana Pacers | moneyline: HOU (0) | novig | $36k | -270 | ✅ kalshi |  | +0.5c | yes | pending |
 | Nov 18 1:35AM | NBA | Utah vs Los Angeles L | moneyline: Los Angeles L | kalshi | $130k | -426 |  |  | -2.0c |  | pending |
 | Nov 18 12:40AM | NFL | Indianapolis vs Houston | moneyline: Houston | kalshi | $474k | -567 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 18 12:15AM | NBA | Washington vs Toronto: Total Points | total: Over 227.5 points | kalshi | $28k | -100 |  |  | +2.0c | yes | pending |
@@ -38,11 +38,11 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 17 9:10PM | NBA | Washington vs Toronto | moneyline: Toronto | kalshi | $42k | -213 |  |  | +2.0c |  | pending |
 | Nov 17 8:50PM | NBA | Philadelphia vs Orlando | moneyline: Philadelphia | kalshi | $55k | -122 |  |  | -2.0c | yes | pending |
 | Nov 17 8:35PM | NBA | Utah vs Los Angeles C: Total Points | total: NOT Over 227.5 points | kalshi | $49k | -108 |  |  | +0.0c | yes | L |
-| Nov 17 8:35PM | NBA | Houston vs Indiana | moneyline: Houston | kalshi | $117k | -223 |  |  | +4.0c |  | pending |
+| Nov 17 8:35PM | NBA | Houston vs Indiana | moneyline: Houston | kalshi | $117k | -223 |  |  | +5.0c |  | pending |
 | Nov 17 8:30PM | NCAAF | Central Michigan vs Buffalo: Spread | spread: NOT Buffalo wins by over 1.5 points | kalshi | $97k | -104 | ✅ novig |  | -4.0c | yes | pending |
 | Nov 17 8:20PM | NBA | Atlanta vs Oklahoma City | moneyline: Oklahoma City | kalshi | $109k | -257 |  |  | -2.0c |  | pending |
 | Nov 17 8:15PM | NBA | Golden State vs Dallas | moneyline: Dallas | kalshi | $104k | -186 |  |  | -1.0c |  | pending |
-| Nov 17 7:55PM | NBA | Chicago vs Brooklyn | moneyline: Brooklyn | kalshi | $77k | -138 |  |  | +0.0c | yes | pending |
+| Nov 17 7:55PM | NBA | Chicago vs Brooklyn | moneyline: Brooklyn | kalshi | $77k | -138 |  |  | -1.0c | yes | pending |
 | Nov 17 7:45PM | NBA | Portland Trail Blazers at Minnesota Timberwolves | moneyline: Minnesota Timberwolves | prophetx | $39k | -162 | ✅ kalshi,novig | ✅ | -0.6c |  | W |
 | Nov 17 7:45PM | NHL | Nashville vs Minnesota: Spread | spread: NOT Minnesota wins by over 1.5 goals | kalshi | $102k | -138 | ✅ novig |  | +0.0c | yes | L |
 | Nov 17 7:30PM | NBA | Portland Trail Blazers @ Minnesota Timberwolves | moneyline: MIN (0) | novig | $28k | -160 | ✅ kalshi,prophetx | ✅ | +0.0c |  | W |
