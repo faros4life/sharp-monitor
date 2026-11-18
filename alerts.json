@@ -1407,7 +1407,7 @@
   },
   {
    "alert_utc": "2026-11-18T12:35:35Z",
-   "beat_close": true,
+   "beat_close": false,
    "beat_true_close": null,
    "bet": "Miami Heat -12.5 (-108)",
    "book": "Novig",
@@ -1415,7 +1415,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+1 pts",
+   "clv": "-1 pts",
    "clv_conv_pts": null,
    "clv_pin_line": null,
    "clv_read_utc": null,
@@ -1470,6 +1470,78 @@
    "pricing_bettable": true,
    "result": null,
    "score": 79,
+   "sent_to_phone": true,
+   "sport": "NBA",
+   "start_utc": "2026-11-19T00:00:00Z",
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alert_utc": "2026-11-18T13:35:20Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "Milwaukee Bucks +12.5 (-116)",
+   "book": "ProphetX",
+   "book_key": "prophetx",
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+1 pts",
+   "clv_conv_pts": null,
+   "clv_pin_line": null,
+   "clv_read_utc": null,
+   "clv_skipped": null,
+   "clv_source": null,
+   "clv_verified": null,
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -3.1,
+   "executable_book": true,
+   "fade_book": "prophetx",
+   "fade_point": -12.5,
+   "fade_price": 109,
+   "fade_price_after_fee": 107,
+   "fade_units": null,
+   "final": null,
+   "floor_line": 12.0,
+   "game": "Milwaukee Bucks @ Miami Heat",
+   "grade": "B",
+   "hr1_eligible": false,
+   "hr1_pushed": false,
+   "kind": "spr",
+   "late": false,
+   "minutes_before_start": 625,
+   "point": 12.5,
+   "price": -116,
+   "price_after_fee": -118,
+   "prices_at_alert": {
+    "hardrockbet": {
+     "after_fee": -105,
+     "point": 11.5,
+     "price": -105
+    },
+    "kalshi": {
+     "after_fee": -107.3,
+     "point": 11.5,
+     "price": 100
+    },
+    "novig": {
+     "after_fee": 100,
+     "point": 11.5,
+     "price": 100
+    },
+    "prophetx": {
+     "after_fee": -118.4,
+     "point": 12.5,
+     "price": -116
+    }
+   },
+   "pricing_bettable": true,
+   "result": null,
+   "score": 64,
    "sent_to_phone": true,
    "sport": "NBA",
    "start_utc": "2026-11-19T00:00:00Z",
@@ -79565,6 +79637,31 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Milwaukee Bucks +12.5 (-116) at ProphetX [-118 after ProphetX fee]",
+   "bet": "Milwaukee Bucks +12.5 (-116)",
+   "bet_result": null,
+   "book": "ProphetX",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -3.1,
+   "final": null,
+   "game": "Milwaukee Bucks @ Miami Heat",
+   "grade": "B",
+   "late": false,
+   "minutes_before_start": 625,
+   "price": -116,
+   "price_after_fee": -118,
+   "pushed_to_phone": true,
+   "repeat": false,
+   "score": 64,
+   "sent_et": "2026-11-18 08:35",
+   "sport": "NBA",
+   "start_utc": "2026-11-19T00:00:00Z",
+   "why": "Pinnacle moved +12.5 -> +11.5; bet only at +12 or better (confirmed by BetOnline, Matchbook)"
+  },
   {
    "alert_text": "Over 153.5 (-125) at Hard Rock",
    "bet": "Over 153.5 (-125)",
