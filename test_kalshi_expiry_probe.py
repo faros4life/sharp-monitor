@@ -53,7 +53,18 @@ ve_fn = next(n for n in ast.walk(tree)
              if isinstance(n, ast.FunctionDef) and n.name == "venue_expiry")
 ve_names = {n.id for n in ast.walk(ve_fn) if isinstance(n, ast.Name)}
 check("venue_expiry touches only its own argument",
-      ve_names <= {"o", "k", "d", "tp"}, str(sorted(ve_names)))
+      ve_names <= {"o", "k", "d", "tp", "book_live"}, str(sorted(ve_names)))
+# ONE definition of "what did the venue store": the probe and the executor's live notification
+# must not be able to disagree about it.
+import book_live as _bl
+check("the probe delegates to book_live.kalshi_order_expiry",
+      "book_live.kalshi_order_expiry" in src)
+check("the executor's notification uses the same reader",
+      "book_live.kalshi_order_expiry" in open("executor.py").read())
+check("the reader returns (None, None) on a still-resting order with no expiry",
+      _bl.kalshi_order_expiry({"status": "resting"}) == (None, None))
+check("a null expiration is not read as an expiry",
+      _bl.kalshi_order_expiry({"expiration_time": None}) == (None, None))
 
 print("3. venue_expiry reads whichever spelling the venue returned")
 d, f = p.venue_expiry({"expiration_time": 1763500000})

@@ -449,6 +449,35 @@ def plan(levels, thr_american, stake, min_order=0.0, slip=0.0):
     return round(limit, 4), int(math.floor(min(stake, got) / limit + 1e-9))
 
 
+def kalshi_order_expiry(o):
+    """(datetime, field name) for the expiry KALSHI stored on an order, or (None, None).
+
+    Nov 18. The resting-bid notification printed "until None" because it read OUR placement record,
+    and the order journal's field projection had dropped expires_utc. That hole is fixed, but the
+    deeper rule stands: for a good_till_canceled order the only authority on when it stops being
+    fillable is the venue's own record. kalshi_place sends expiration_time; it does not read back
+    what Kalshi kept. Several spellings are tried because the field that matters is the one the
+    venue chose to return, and a genuinely absent expiry must not be confused with looking in the
+    wrong key. ONE definition, shared by the executor's notification and kalshi_expiry_probe.
+    """
+    from datetime import datetime, timezone
+    for k in ("expiration_time", "expiration_ts", "expires_at", "expiration",
+              "good_till_time", "expiration_time_unix"):
+        if k not in (o or {}):
+            continue
+        v = (o or {}).get(k)
+        if v is None or v == "":
+            continue
+        n = _num(v)
+        if n is not None and n > 1_000_000_000:
+            return datetime.fromtimestamp(n, timezone.utc), k
+        try:
+            return datetime.fromisoformat(str(v).replace("Z", "+00:00")), k
+        except Exception:
+            continue
+    return None, None
+
+
 def kalshi_cost_for(after_fee_prob, coef):
     """Pre-fee Kalshi cost c whose after-fee cost c + coef*c*(1-c) is <= after_fee_prob, rounded DOWN to the cent."""
     a, b = coef, -(1 + coef)

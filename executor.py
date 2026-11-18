@@ -4062,16 +4062,31 @@ def rest_bid(r):
                                                       lane_of(r))
         else:
             continue
-        res = dict(res, book=b, limit=lm.american(c), asked_stake=round(risk, 2), expires_utc=expire.strftime("%Y-%m-%dT%H:%M:%SZ"))
+        # Nov 18 (Peter: "why is kalshi getting resting bids, I thought novig was 1st choice").
+        # REST_BOOKS is ordered novig,kalshi and the bid goes to the FIRST book that clears its
+        # gates - so Kalshi winning means Novig was skipped. The reason was recorded in why_not,
+        # which is only RETURNED on the path where no book takes the bid at all (see the refused
+        # return at the end of this function). When a later book succeeded, the earlier skips were
+        # recorded nowhere, so the notification could not answer the question and neither could I
+        # without reading the code. Carried on the result now.
+        res = dict(res, book=b, limit=lm.american(c), asked_stake=round(risk, 2),
+                   expires_utc=expire.strftime("%Y-%m-%dT%H:%M:%SZ"),
+                   passed_over="; ".join(why_not) or None)
         if res.get("status") == "placed":   # Nov 11: durable row NOW; a resting bid outlives the run
             res["journaled"] = journal_order(r, res, is_rest=True, cid=(r.get("live") or {}).get("client_id"))
         name = BOOK_NAME.get(b, b)
         when = expire.astimezone(lm.ET).strftime("%I:%M %p ET")
         if res["status"] == "placed":
             got = res.get("filled_stake") or 0
+            # Nov 18: name the books ahead of this one that were passed over, and why. Novig is
+            # first in REST_BOOKS, so a Kalshi bid means Novig had no exact-line market or no
+            # resolved outcome - and until now that was invisible, which read as a routing change.
+            _po = (f"\nPassed over: {res.get('passed_over')}" if res.get("passed_over")
+                   else f"\n{name} is first in the resting order, so nothing was passed over.")
             _rb = (f"{lane_tag(r)}RESTING BID {name}: {p.get('bet')} at {lm.american(c):+d} (= the alert's {int(af):+d} after fees), "
                    f"${risk:,.2f}" + (f"; ${got:,.2f} filled right away" if got else "") + f". Cancels itself at {when}.\n"
-                   f"{p.get('sport')} {p.get('game')}\nSTOP on ntfy does NOT cancel it: cancel in the {name} app if needed.")
+                   f"{p.get('sport')} {p.get('game')}{_po}\n"
+                   f"STOP on ntfy does NOT cancel it: cancel in the {name} app if needed.")
             tg(_rb)
             # Nov 12 (Peter: "just tell me that resting bid went out ... and where"): ntfy too, same text, venue in the head
             push(f"RESTING BID OUT on {name}: " + (p.get("bet") or "")[:40], _rb, mirror=False)
@@ -4577,8 +4592,23 @@ def kalshi_rest_reports():
                 continue   # already reported for this fill amount (one batched search above)
             rem = lm.num(o.get("remaining_count_fp")) or lm.num(o.get("remaining_count")) or 0
             head = "KALSHI RESTING BID FILLED" if not rem else "KALSHI RESTING BID PARTIAL FILL"
+            # Nov 18 (Peter): the cutoff printed here is KALSHI'S, read back from this order, not
+            # the one we sent at placement. "We asked for an expiry" is not "the order expires" -
+            # the other transcoded venue silently turned a 3-minute order into a day order with a
+            # null good-till-time. If the venue reports no expiry on a still-resting order, say so
+            # loudly rather than printing a time from our own record: a resting bid with no venue
+            # cutoff can fill after the game has started, at a pregame number.
+            _vexp, _vfield = book_live.kalshi_order_expiry(o)
+            if rem and _vexp:
+                _until = (f"; {rem:g} still resting until "
+                          f"{_vexp.astimezone(lm.ET):%-I:%M %p} ET (Kalshi's own {_vfield})")
+            elif rem:
+                _until = (f"; {rem:g} still resting and KALSHI REPORTS NO EXPIRY on this order - "
+                          f"treat as potentially fillable past the cutoff and check it")
+            else:
+                _until = ""
             msg = (f"{head}: {row.get('key', '').replace('|', ' ')}\n{fc:g} contracts at the {lo.get('limit')} limit"
-                   + (f"; {rem:g} still resting until {lo.get('expires_utc')}" if rem else ""))
+                   + _until)
             push(head.title(), msg, mirror=False)
             tg(msg)
             try:
@@ -5161,6 +5191,17 @@ def journal_order(r, lo, is_rest=False, cid=None):
                    "asked_stake": lo.get("asked_stake") if lo.get("asked_stake") is not None else lo.get("asked"),
                    "filled_stake": lo.get("filled_stake"), "avg_price": lo.get("avg_price"),
                    "limit": lo.get("limit"), "resting": bool(is_rest or lo.get("resting")),
+                   # Nov 18 (Peter: "383.7 still resting until None"). This projection dropped
+                   # expires_utc, and for a resting bid the journal row is the one the registry
+                   # keeps - so the cutoff was absent from the record the notification reads, and
+                   # every resting-bid message printed "until None". rest_bid stamps expires_utc on
+                   # the dict passed in here, so one key was all that was missing. A readback of
+                   # both live orders at Kalshi confirmed the venue held the correct expiry, so
+                   # this was a reporting hole, not lost exposure - but a cutoff you cannot see is
+                   # a cutoff you cannot check, which is why it read as an exposure risk.
+                   # The Nov 17 note above records the same class of omission being fixed once
+                   # already; expires_utc was missed that round.
+                   "expires_utc": lo.get("expires_utc"),
                    # Nov 11: resolves the write-ahead intent row and makes the money count once
                    "client_id": cid or (r.get("live") or {}).get("client_id"), "intent": False}}
         send(f"Bets LIVE: order journal {book} {oid}",

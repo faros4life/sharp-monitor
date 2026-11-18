@@ -62,19 +62,10 @@ def tp(x):
 
 
 def venue_expiry(o):
-    """(datetime, which field) for whatever Kalshi stored, or (None, None).
-
-    Several spellings are tried because the field that matters is the one the VENUE chose to
-    return, not the one we sent. A missing expiry on a good_till_canceled order is the finding,
-    so it must not be confused with 'we looked in the wrong key'.
-    """
-    for k in ("expiration_time", "expiration_ts", "expires_at", "expiration",
-              "good_till_time", "expiration_time_unix"):
-        if k in (o or {}):
-            d = tp(o.get(k))
-            if d:
-                return d, k
-    return None, None
+    """Delegates to book_live.kalshi_order_expiry - ONE definition, shared with the executor's
+    resting-bid notification, so the probe and the live alert can never disagree about what the
+    venue stored."""
+    return book_live.kalshi_order_expiry(o)
 
 
 def main():
