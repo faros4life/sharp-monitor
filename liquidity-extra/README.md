@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 18, 9:10 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 22.
+Updated Wed Nov 18, 9:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 20.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 338-207 (-24.68u flat) | rule met: 59-53
+**Record:** 340-207 (-23.92u flat) | rule met: 60-53
 
-**Fade (paper, betting against the print):** 182-303 (+27.28u flat, after fees)
+**Fade (paper, betting against the print):** 182-305 (+25.28u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -24,7 +24,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 18 3:00PM | NCAAB | Florida @ Houston | moneyline: HOU (0) | novig | $25k | +104 | ✅ kalshi |  | -0.5c | yes | W |
 | Nov 18 3:00PM | NCAAB | Houston vs Florida: Spread | spread: NOT Florida wins by over 1.5 points | kalshi | $26k | -104 | ✅ novig |  | +0.0c | yes | W |
 | Nov 18 3:00PM | NCAAB | Houston vs Florida | moneyline: Houston | kalshi | $115k | +108 | ✅ novig |  | +0.0c | yes | W |
-| Nov 18 1:40PM | NCAAB | Morgan St. vs North Carolina A&T | moneyline: North Carolina A&T | kalshi | $48k | -300 | ✅ novig |  | +1.0c |  | pending |
+| Nov 18 1:40PM | NCAAB | Morgan St. vs North Carolina A&T | moneyline: North Carolina A&T | kalshi | $48k | -300 | ✅ novig |  | +1.0c |  | W |
 | Nov 18 1:20PM | NCAAB | Binghamton vs Lafayette | moneyline: Lafayette | kalshi | $48k | -163 |  | ✅ | +2.0c | yes | W |
 | Nov 18 12:20PM | NCAAB | Kansas vs West Virginia | moneyline: Kansas | kalshi | $33k | -376 |  |  | -6.0c |  | pending |
 | Nov 18 10:10AM | NCAAB | UC Riverside vs San Diego | moneyline: San Diego | kalshi | $49k | -245 |  |  | +1.0c | yes | pending |
@@ -35,7 +35,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 18 2:20AM | NCAAB | UConn vs Arizona | moneyline: Arizona | kalshi | $25k | -144 |  |  | +1.0c |  | pending |
 | Nov 18 2:10AM | NCAAB | Fresno St. vs San Jose St. | moneyline: San Jose St. | kalshi | $25k | -233 |  |  | +0.0c |  | pending |
 | Nov 18 2:00AM | NCAAB | Boston College vs Harvard | moneyline: Boston College | kalshi | $26k | -170 |  |  | -2.0c | yes | pending |
-| Nov 18 1:50AM | NCAAB | VMI vs Longwood | moneyline: Longwood | kalshi | $25k | -257 |  |  | +2.0c |  | pending |
+| Nov 18 1:50AM | NCAAB | VMI vs Longwood | moneyline: Longwood | kalshi | $25k | -257 |  |  | +2.0c |  | W |
 | Nov 18 1:50AM | NCAAB | UNC Wilmington vs LIU | moneyline: UNC Wilmington | kalshi | $37k | -525 |  |  | -3.0c |  | pending |
 | Nov 18 1:40AM | NCAAB | Samford vs USC Upstate | moneyline: Samford | kalshi | $28k | -270 |  |  | +1.0c | yes | pending |
 | Nov 17 8:20PM | NCAAB | Kansas vs UNLV: Point Total | total: Over 157.5 points | kalshi | $26k | -113 |  |  | +1.0c | yes | W |
