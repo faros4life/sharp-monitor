@@ -112,7 +112,11 @@ check("a failed ntfy push releases its token for the next pass", "registry.relea
 
 print("\n7. Repeated unchanged snapshots cannot spam the phone")
 check("the report token hashes status, filled qty and cost",
-      "_st(x) if canon else" in nr and "int(x.get('filled_qty') or 0)" in nr and "filled_cost" in nr)
+      "_st(x) if canon else" in nr and "fq_read(x))" in nr and "filled_cost" in nr)
+# Nov 19 (Peter, safeguard 2): an UNREADABLE quantity used to hash as 0, so an unknown row and a
+# confirmed zero minted the SAME token and whichever arrived second was dropped as a repeat.
+check("an unknown quantity hashes as unread, never as a confirmed zero",
+      "'unread'" in nr and "str(q) if k else" in nr)
 check("so an unchanged resting row mints the SAME token and stays claimed", "claimer.claim(tok)" in nr)
 check("while a quantity change mints a NEW one (PARTIAL -> FULL survives)", "_tk(x, False)" in nr)
 

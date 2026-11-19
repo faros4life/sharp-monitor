@@ -80,7 +80,11 @@ for fn, nm in ((ex.live_order, "live_order"), (ex.live_order_other, "live_order_
         ck(f"{nm} sends a lane note on {state}", f'lane_note(r, "{state}"' in s)
     ck(f"{nm} sends no bare tg() f-string for an order state",
        not re.search(r'tg\(f"\{lane_tag\(r\)\}(FILLED|NO FILL|LIVE ORDER ERROR)', s))
-ck("a REFUSAL is notified too", 'lane_note(r, "ORDER REFUSED"' in inspect.getsource(ex.live_order))
+# Nov 19 (Peter, safeguard 1): the head now says FAILED, which is true only here - a refusal
+# returns strictly BEFORE the venue POST, so non-submission is proven. An "error" keeps RESULT
+# UNKNOWN, because the order may or may not exist at the venue.
+ck("a REFUSAL is notified too",
+   'lane_note(r, "ORDER FAILED - REFUSED BEFORE SUBMISSION"' in inspect.getsource(ex.live_order))
 rb = inspect.getsource(ex.rest_bid)
 ck("resting bids are lane-labelled", "lane_tag(r)}RESTING BID" in rb)
 ck("resting errors are lane-labelled", "lane_tag(r)}RESTING BID ERROR" in rb)

@@ -107,8 +107,12 @@ check("unit_for(lane) supplies each lane's own stake, unchanged",
 print("\n7. Post-submission reporting is unchanged (item 4) and nothing is called filled early")
 nr = open("executor.py").read()
 check("RESTING is reported as its own outcome", "NOVIG RESTING (nothing filled yet)" in nr)
+# Nov 19: the quantity read moved behind fq_read(), which answers (known, qty) so a MISSING
+# quantity can no longer read as a confident zero. The guard this test protects is unchanged:
+# FILLED with an unconfirmed quantity still skips rather than claiming a fill.
 check("a fill is only claimed when the venue confirms quantity",
-      'if st == "FILLED" and not int(x.get("filled_qty") or 0)' in nr)
+      'if st == "FILLED" and not fq_read(x)[1]' in nr)
+check("and an unreadable quantity is UNKNOWN, not zero", ex.fq_read({"filled_qty": None}) == (False, 0))
 check("expiry is 30 minutes before the start", ex.REST_BEFORE_MIN == 30)
 check("and the bid is sized to expire at start - REST_BEFORE_MIN",
       "st - timedelta(minutes=REST_BEFORE_MIN)" in inspect.getsource(ex.rest_bid))

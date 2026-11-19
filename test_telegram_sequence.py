@@ -10,7 +10,9 @@ Scope is notification-only. No test here asserts anything about execution, sizin
 eligibility or risk, because nothing in Part 1 touches them.
 """
 import hashlib
+import io
 import re
+import tokenize
 
 import executor as ex
 
@@ -30,8 +32,8 @@ OTHER = {"play_key": "NBA|Los Angeles C vs San Antonio: Total Points|total|UNDER
 
 print("1. ITEM 1 - an unread fill is never called a no-fill")
 src = open("executor.py").read()
-check("the venue-confirmed branch is gated on fills_read",
-      src.count('if res.get("fills_read"):') >= 2)
+check("the venue-confirmed branch is gated on fills_read AND a readable quantity",
+      src.count('if res.get("fills_read") and res.get("filled_stake") is not None:') >= 2)
 check("NO FILL now claims only what the venue confirmed",
       "Venue confirms zero matched quantity" in src)
 check("the unread case says STATUS UNKNOWN - VERIFY", src.count('"STATUS UNKNOWN - VERIFY"') >= 2)
@@ -52,10 +54,10 @@ check("a play with no key says unavailable rather than inventing one",
 check("lane_note appends the ID line", 'out.append(f"ID: {play_id(p)}")' in src)
 
 print("3. ITEM 3 - TAKE orders get an ORDER stage")
-check("an ORDER SUBMITTED message exists", "ORDER SUBMITTED - TAKE on" in src)
+check("an ORDER ATTEMPT message exists", "ORDER ATTEMPT - PENDING - TAKE on" in src)
 check("it is sent before the venue call",
-      src.index("ORDER SUBMITTED - TAKE on") < src.index("res = book_live.kalshi_place("))
-check("it reports PENDING, not a fill", "status PENDING - the venue has not answered yet" in src)
+      src.index("ORDER ATTEMPT - PENDING - TAKE on") < src.index("res = book_live.kalshi_place("))
+check("it reports PENDING, not a fill", "status PENDING - this is an ATTEMPT" in src)
 check("it carries the play ID", 'f"ID: {play_id(p)}"' in src)
 check("a missing stake is named, not invented", "requested stake not recorded" in src)
 
@@ -109,20 +111,25 @@ def boom(*a, **k):
     raise RuntimeError("store unavailable")
 
 
+_en = ex.registry.enabled
 try:
-    ex.registry.claim_token = boom
+    # enabled() is False in this container, so claim_token was never reached and this test
+    # passed without exercising the failure at all. Force it on.
+    ex.registry.claim_token, ex.registry.enabled = boom, (lambda: True)
     check("an unreachable store still sends", ex.notify_once(PLAY, "FILLED", {"filled_stake": 1.0}))
 finally:
-    ex.registry.claim_token = real
+    ex.registry.claim_token, ex.registry.enabled = real, _en
+check("the test exercised the failure rather than the disabled path",
+      ex.registry.enabled() is False and ex.notify_once(PLAY, "x") is True)
 check("the claim is a notification write only - no fill, exposure or grading call",
       "claim_token" in src and "put_fills" not in src.split("def notify_once")[1].split("def ")[0])
 
 print("7. a notifier failure cannot change an order outcome (rule 8)")
-blk = src.split("ORDER SUBMITTED - TAKE on")[0].rsplit("try:", 1)[-1]
-check("the ORDER SUBMITTED send is wrapped", "except Exception" in
-      src.split("ORDER SUBMITTED - TAKE on")[1][:1200])
-check("its failure is logged, not raised",
-      "order-submitted notice failed" in src)
+check("the ORDER ATTEMPT send is wrapped", "except Exception" in
+      src.split("ORDER ATTEMPT - PENDING - TAKE on")[1][:1400])
+check("its failure is logged, not raised", "order-attempt notice failed" in src)
+check("the acceptance send is wrapped too and logged, not raised",
+      "order-acceptance notice failed" in src)
 
 print("8. regression fixtures - the two orders that caused this")
 src_code = "\n".join(l for l in src.splitlines() if not l.strip().startswith("#"))
@@ -133,7 +140,7 @@ check("LAC/SA: the same split applies to the live-order path, not only resting",
 
 print("9. novig_reports - the emitter that actually sent the bad message")
 check("NO FILL is no longer the else branch",
-      'elif st in ("CANCELED", "CANCELLED", "EXPIRED"):' in src)
+      'elif st in ("CANCELED", "CANCELLED", "EXPIRED") and _fq_known and fq == 0:' in src)
 check("an unrecognised or absent status reads STATUS UNKNOWN - VERIFY",
       '"NOVIG STATUS UNKNOWN - VERIFY"' in src)
 # Implicit string concatenation across source lines again - normalise before matching.
@@ -143,6 +150,119 @@ check("the confirmed case names the venue status",
 check("the requested amount is labelled requested, never matched",
       "requested" in src and "asked; nothing traded" not in src_code)
 check("an unknown status is never muted", "never muted" in src or "is the one that needs him" in src)
+
+print("10. SAFEGUARD 1 - an attempt is never reported as acceptance")
+check("the pre-call message calls itself an ATTEMPT, not a submission",
+      "ORDER ATTEMPT - PENDING - TAKE on" in src and "ORDER SUBMITTED" not in src_code)
+check("it says outright the venue may never have received it",
+      "may never \nhave received it" in src or "may never" in src_flat)
+check("acceptance is reported separately", "acceptance is reported separately below" in src_flat)
+check("acceptance is gated on status placed, nothing weaker",
+      'if res.get("status") == "placed":\n        try:\n            # Novig' in src)
+check("and it is emitted AFTER the venue call, not before",
+      src.index('_acc = "ORDER DISPATCHED') > src.index("res = book_live.novig_place("))
+check("the venue id is the evidence it cites", "venue answered the order with id" in src_flat)
+
+print("   placed does not mean the same thing at every venue")
+check("the Novig runner case is split out by sent_to_runner and a missing venue id",
+      '_runner = bool(res.get("sent_to_runner")) and not res.get("venue_order_id")' in src)
+check("that case does NOT claim acceptance",
+      "ORDER DISPATCHED - ACCEPTANCE NOT YET KNOWN" in src and "This is NOT acceptance" in src_flat)
+check("Polymarket US acceptance is receipt only - that venue rewrites terms silently",
+      "Acceptance is receipt only" in src_flat)
+
+print("   FAILED is said only where non-submission is proven")
+check("the refused head carries it in both venue paths",
+      src.count('"ORDER FAILED - REFUSED BEFORE SUBMISSION"') >= 2)
+check("FAILED is never used for any other state",
+      all("REFUSED BEFORE SUBMISSION" in l for l in src.splitlines() if "ORDER FAILED" in l
+          and not l.strip().startswith("#")),
+      [l.strip() for l in src.splitlines() if "ORDER FAILED" in l and "REFUSED BEFORE" not in l
+       and not l.strip().startswith("#")][:2])
+check("an error keeps RESULT UNKNOWN - it may or may not exist at the venue",
+      src.count("the order may or may not exist at the venue") >= 2
+      and "ORDER ERROR" in src)
+
+print("11. SAFEGUARD 2 - a missing fill quantity is UNKNOWN, never zero")
+check("the raw quantity is tested for readability before use",
+      "_fq_known, fq = fq_read(x)" in src)
+# src_code only strips "#" lines, and the pattern also appears inside fq_read's own docstring
+# explaining what it replaced - which a line test read as the pattern still being live. Strip
+# comments AND string literals, so only real callers can match.
+src_bare = "".join(
+    ("" if tk.type in (tokenize.COMMENT, tokenize.STRING) else tk.string) + " "
+    for tk in tokenize.generate_tokens(io.StringIO(src).readline))
+check("the old coercion of a missing quantity to zero is gone from every CALLER",
+      'int ( x . get ( "filled_qty" ) or 0 )'.replace(" ", "") not in src_bare.replace(" ", ""),
+      src_bare.count("filled_qty"))
+check("one shared reader, so a new caller cannot reintroduce it", "def fq_read(x)" in src)
+check("it answers unknown for a missing quantity", ex.fq_read({}) == (False, 0))
+check("and unknown for an unreadable one, instead of raising",
+      ex.fq_read({"filled_qty": "not a number"}) == (False, 0))
+check("a read zero is known-zero, which is a different thing",
+      ex.fq_read({"filled_qty": 0}) == (True, 0))
+check("a read quantity comes back as itself", ex.fq_read({"filled_qty": "250"}) == (True, 250))
+
+print("   the two sites that CLAIMED a no-fill from an unreadable quantity")
+check("the expiry synthesiser now requires a readable quantity before writing its note",
+      "or not _k or _q" in src)
+check("its note is the claim being guarded",
+      "nothing filled as of the last read" in src_flat)
+check("the report token canonicalises to NOFILL only on a READ zero",
+      "if _k and not _q and st not in" in src)
+check("and an unknown quantity no longer shares a token with a confirmed zero",
+      "'unread'" in src and "str(q) if k else" in src)
+check("NO FILL needs an authoritative cancel/expire AND a read zero",
+      src.count('and _fq_known and fq == 0') >= 2)
+check("the no-fill body cites the venue's own confirmation",
+      "venue confirms \nzero matched quantity" in src or "venue confirms" in src_flat.lower())
+check("both live-order paths require a readable filled_stake",
+      src.count('if res.get("fills_read") and res.get("filled_stake") is not None:') >= 2)
+
+print("12. SAFEGUARD 3 - the claim fails open, loudly, and never blocks a correction")
+real2, log_len, en2 = ex.registry.claim_token, len(ex.LOG), ex.registry.enabled
+try:
+    ex.registry.claim_token, ex.registry.enabled = boom, (lambda: True)
+    sent = ex.notify_once(PLAY, "FILLED", {"filled_stake": 203.50})
+finally:
+    ex.registry.claim_token, ex.registry.enabled = real2, en2
+logged = [l for l in ex.LOG[log_len:] if "notify claim unavailable" in l]
+check("an unreachable store sends rather than risking silence", sent)
+check("and the failure is LOGGED as a notification-state failure", bool(logged), ex.LOG[log_len:])
+check("the log names it as a notify-claim problem, not an order problem",
+      bool(logged) and "notify" in logged[0] and "silence" in logged[0])
+
+body = src.split("def notify_once")[1].split("\ndef ")[0]
+for forbidden in ("put_fills", "add_bot_order", "_place(", "void_intent", "mark_handled",
+                  "EXPO", "journal_order", "tg(", "push("):
+    check(f"notify_once cannot touch execution or send: no {forbidden}", forbidden not in body)
+
+print("   a seen UNKNOWN must not swallow the later FILLED")
+seen = set()
+
+
+def one_shot(tok):
+    if tok in seen:
+        return False
+    seen.add(tok)
+    return True
+
+
+real3, real_en = ex.registry.claim_token, ex.registry.enabled
+try:
+    ex.registry.claim_token, ex.registry.enabled = one_shot, (lambda: True)
+    u1 = ex.notify_once(PLAY, "STATUS UNKNOWN", {"order_id": "abc", "filled_stake": None})
+    u2 = ex.notify_once(PLAY, "STATUS UNKNOWN", {"order_id": "abc", "filled_stake": None})
+    f1 = ex.notify_once(PLAY, "FILLED", {"order_id": "abc", "filled_stake": 203.50})
+    f2 = ex.notify_once(PLAY, "FILLED", {"order_id": "abc", "filled_stake": 203.50})
+    p1 = ex.notify_once(PLAY, "FILLED", {"order_id": "abc", "filled_stake": 100.00})
+finally:
+    ex.registry.claim_token, ex.registry.enabled = real3, real_en
+check("the first UNKNOWN sends", u1)
+check("the repeat is suppressed", not u2)
+check("the later FILLED still sends - the correction is not blocked", f1)
+check("the repeated FILLED is suppressed", not f2)
+check("a partial at a different amount is its own message", p1)
 
 print()
 if fails:

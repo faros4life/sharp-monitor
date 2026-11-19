@@ -280,6 +280,17 @@ def notify_once(p, head, res=None):
         return True
 
 
+def fq_read(x):
+    """(known, quantity) for a venue row's filled quantity. Nov 19 (Peter, safeguard 2): "Null,
+    missing or unreadable fill quantity is UNKNOWN." `int(x.get("filled_qty") or 0)` answered a
+    MISSING quantity with a confident 0, which then satisfied every "nothing filled" test below it
+    - and raised on a non-numeric value, which would have killed the whole report. One reader so a
+    new caller cannot quietly reintroduce either."""
+    raw = (x or {}).get("filled_qty")
+    n = lm.num(raw) if raw is not None else None
+    return (n is not None), (int(n) if n is not None else 0)
+
+
 def notify_tok(p, head, res=None):
     """The dedupe token for ONE notification state of one play.
 
@@ -3864,7 +3875,8 @@ def live_order(r):
         void_intent(lv.get("client_id"), "prophetx", res.get("reason"),
                     key=p.get("play_key") or derive_key(p) or "")
         if refusal_first(r, res.get("reason")):
-            tg_push("ORDER REFUSED", lane_note(r, "ORDER REFUSED", res, "prophetx", limit, extra=str(res.get("reason"))[:200]))
+            tg_push("ORDER FAILED", lane_note(r, "ORDER FAILED - REFUSED BEFORE SUBMISSION", res, "prophetx",
+                                               limit, extra=str(res.get("reason"))[:200]))
     if res["status"] == "placed":
         fs, ap = res.get("filled_stake") or 0, res.get("avg_price")
         if fs and ap:
@@ -3875,7 +3887,7 @@ def live_order(r):
             # Nov 19 (Peter, item 1): same split as the other venue path. The old head said NO
             # FILL and then appended "Fill read failed" - the headline asserted a fact the body
             # retracted, and the headline is what reaches the lock screen.
-            if res.get("fills_read"):
+            if res.get("fills_read") and res.get("filled_stake") is not None:
                 _n, _h = lane_note(r, "NO FILL", res, "prophetx", limit,
                                    extra="Venue confirms zero matched quantity at this price."), "NO FILL"
             else:
@@ -3980,21 +3992,22 @@ def live_order_other(r):
     # changes no value.
     try:
         _sub = "\n".join(x for x in [
-            f"{lane_tag(r)}ORDER SUBMITTED - TAKE on {name}",
+            f"{lane_tag(r)}ORDER ATTEMPT - PENDING - TAKE on {name}",
             f"{p.get('sport') or ''} {p.get('game') or ''}".strip(),
             bet_text(r, lv.get("line"), limit_am) or (p.get("bet") or ""),
             f"requested ${float(lv['risk']):,.2f} at limit {int(limit_am):+d}" if lv.get("risk") is not None
             else f"limit {int(limit_am):+d}; requested stake not recorded",
-            "status PENDING - the venue has not answered yet",
+            "status PENDING - this is an ATTEMPT. The venue has not answered and may never "
+            "have received it; acceptance is reported separately below.",
             f"submitted {datetime.now(timezone.utc).astimezone(lm.ET):%-I:%M:%S %p} ET",
             f"ID: {play_id(p)}",
         ] if x)
-        if notify_once(p, "ORDER SUBMITTED", {"order_id": "", "filled_stake": None}):
+        if notify_once(p, "ORDER ATTEMPT", {"order_id": "", "filled_stake": None}):
             tg(_sub)
-            push(f"{lane_tag(r)}ORDER SUBMITTED on {name}: " + (p.get("bet") or "")[:40],
+            push(f"{lane_tag(r)}ORDER ATTEMPT on {name}: " + (p.get("bet") or "")[:40],
                  _sub, mirror=False)
     except Exception as _sx:   # a notifier must never change an order outcome (Peter, rule 8)
-        LOG.append(f"order-submitted notice failed: {type(_sx).__name__}")
+        LOG.append(f"order-attempt notice failed: {type(_sx).__name__}")
     if book == "kalshi":
         kb = ids.get("kalshi_buy") or []
         if len(kb) != 1:
@@ -4011,6 +4024,44 @@ def live_order_other(r):
     else:
         return refuse_untransmitted(r, f"no live order code for {name}", book=book)
     res = dict(res, book=book)
+    # Nov 19 (Peter, safeguard 1): "ORDER ACCEPTED or ORDER FAILED as supported by actual
+    # evidence." The three venue outcomes are NOT symmetrical and must not be flattened into one
+    # head, so only the case that had NO closing message gets one here:
+    #   placed  -> closed below. What "placed" proves differs BY VENUE, see the split.
+    #   refused -> novig_place / kalshi_place / pmus_place each return "refused" strictly BEFORE
+    #              their own POST, so nothing reached the venue. Proven non-submission, and the
+    #              only state where FAILED is a true word. Its existing ORDER REFUSED message
+    #              (deduped per play and reason) carries that, renamed below rather than doubled.
+    #   error   -> the call broke. book_live's own words: the order "may or may not exist at the
+    #              venue". FAILED there would assert non-submission we cannot support - the same
+    #              false claim as the NO FILL this work removed - so the existing ORDER ERROR
+    #              message, which already says RESULT UNKNOWN, stands unchanged.
+    if res.get("status") == "placed":
+        try:
+            # Novig: order_id is a LOCALLY generated client id and venue_order_id is None - the
+            # order was handed to the home runner and the venue has not answered. Calling that
+            # acceptance would be the same unsupported claim. Kalshi and Polymarket US return oid
+            # from the venue's own response to the POST, so there acceptance is evidenced.
+            _runner = bool(res.get("sent_to_runner")) and not res.get("venue_order_id")
+            _acc = "ORDER DISPATCHED - ACCEPTANCE NOT YET KNOWN" if _runner else "ORDER ACCEPTED"
+            _why = ("handed to the home runner for placement; the venue has not answered yet and "
+                    "no venue order id exists. This is NOT acceptance - the fill or status "
+                    "message follows." if _runner else
+                    "venue answered the order with id " + str(res.get("order_id") or "none")
+                    + (". Acceptance is receipt only: this venue rewrites terms silently, so the "
+                       "price and time-in-force are not confirmed by it" if book == "polymarket_us" else ""))
+            _am = "\n".join(x for x in [
+                f"{lane_tag(r)}{_acc} - {name}",
+                f"{p.get('sport') or ''} {p.get('game') or ''}".strip(),
+                bet_text(r, lv.get("line"), limit_am) or (p.get("bet") or ""),
+                _why,
+                f"ID: {play_id(p)}",
+            ] if x)
+            if notify_once(p, _acc, res):
+                tg(_am)
+                push(f"{lane_tag(r)}{_acc} on {name}: " + (p.get("bet") or "")[:40], _am, mirror=False)
+        except Exception as _ax:   # rule 8: a notifier cannot change an order outcome
+            LOG.append(f"order-acceptance notice failed: {type(_ax).__name__}")
     if res.get("status") == "refused":
         # Nov 12 (Peter/Muse): THE CASE THAT COST TWO PLAYS TODAY. novig_place(), kalshi_place() and
         # pmus_place() each return "refused" strictly BEFORE their own POST - the EXEC_NOVIG_SUBMIT
@@ -4022,7 +4073,8 @@ def live_order_other(r):
         # Nov 12 (Peter, Telegram audit): a refusal from the venue layer (Novig paused, preflight, thin depth)
         # used to be silent on every venue except ProphetX. One message per play and reason.
         try:
-            tg_push("ORDER REFUSED", lane_note(r, "ORDER REFUSED", res, book, limit_am, extra=str(res.get("reason"))[:200]))
+            tg_push("ORDER FAILED", lane_note(r, "ORDER FAILED - REFUSED BEFORE SUBMISSION", res, book,
+                                               limit_am, extra=str(res.get("reason"))[:200]))
         except Exception as e:
             LOG.append(f"refusal notify failed: {e}")
     if res["status"] == "placed" and res.get("sent_to_runner"):
@@ -4049,7 +4101,10 @@ def live_order_other(r):
             # this was the normal case, not an edge. NO FILL is now reserved for a venue-confirmed
             # cancel or expiry with zero matched quantity; an unread fill says so and says what to
             # do about it.
-            if res.get("fills_read"):
+            # Nov 19 (Peter, safeguard 2): the read having SUCCEEDED is not enough - the quantity
+            # it returned must be a reported zero. filled_stake None means nothing was reported,
+            # which is UNKNOWN, not zero.
+            if res.get("fills_read") and res.get("filled_stake") is not None:
                 _n, _h = lane_note(r, "NO FILL", res, book, limit_am,
                                    extra="Venue confirms zero matched quantity at this price."), "NO FILL"
             else:
@@ -4652,7 +4707,13 @@ def novig_reports():
     def _expire(x):
         try:
             st0 = str(x.get("status") or "").upper()
-            if str(x.get("tif") or "").upper() != "GTT" or int(x.get("filled_qty") or 0) or st0 not in ("OPEN", "PENDING", "SENT", "UNKNOWN"):
+            _k, _q = fq_read(x)
+            # Nov 19 (Peter, safeguard 2): this branch SYNTHESISES an EXPIRED status whose note
+            # says "nothing filled as of the last read". With an unreadable quantity that note
+            # asserts a no-fill from no evidence, so an unknown quantity leaves the row alone and
+            # it reports as STATUS UNKNOWN instead. Fail closed.
+            if (str(x.get("tif") or "").upper() != "GTT" or not _k or _q
+                    or st0 not in ("OPEN", "PENDING", "SENT", "UNKNOWN")):
                 return x
             fmt_ = "%Y-%m-%dT%H:%M:%S"
             placed = datetime.strptime(str(x["placed_utc"])[:19], fmt_).replace(tzinfo=timezone.utc)
@@ -4675,7 +4736,7 @@ def novig_reports():
     # batching, so the remaining cost was the connection and the search themselves.
     def _final(x):
         st = str(x.get("status") or "?").upper()
-        fq = int(x.get("filled_qty") or 0)
+        fq = fq_read(x)[1]   # unknown defers (returns False below), which is what it already did
         if st in ("PENDING", "SENT", "UNKNOWN") and not fq:
             return False
         if st == "FILLED" and not fq:
@@ -4726,13 +4787,19 @@ def novig_reports():
             EXPIRED, then CANCELED, then CANCELLED. Same outcome, different token = the same NO FILL sent
             twice (11:13 and 11:21). Every final nothing-filled state is one outcome."""
             st = str(x.get("status") or "?").upper()
-            if not int(x.get("filled_qty") or 0) and st not in ("OPEN", "PENDING", "SENT", "UNKNOWN", "REFUSED", "REJECTED", "FILLED"):
+            # Nov 19 (Peter, safeguard 2 + "dedupe must not suppress a correction"): an unreadable
+            # quantity used to canonicalise to NOFILL, so an UNKNOWN row and a genuinely confirmed
+            # no-fill shared one token - and whichever arrived second was suppressed as a repeat.
+            # Only a READ zero is a no-fill; an unknown keeps its own status and its own token.
+            _k, _q = fq_read(x)
+            if _k and not _q and st not in ("OPEN", "PENDING", "SENT", "UNKNOWN", "REFUSED", "REJECTED", "FILLED"):
                 return "NOFILL"
             return st
         def _tk(x, canon=True):
             return "xnvr" + hashlib.sha1(
                 f"{x.get('client_id')}|{_st(x) if canon else str(x.get('status') or '?').upper()}|"
-                f"{int(x.get('filled_qty') or 0)}|{x.get('filled_cost')}".encode()).hexdigest()[:12]
+                f"{(lambda k, q: str(q) if k else 'unread')(*fq_read(x))}|"
+                f"{x.get('filled_cost')}".encode()).hexdigest()[:12]
         claimer = ReportClaim(M, [_tk(x, c) for x in cand for c in (True, False)])
         _lanes = lane_lookup([x.get('play_key') for x in cand])
         # Nov 12 (Peter): record client_id -> Novig order id the first time a result row carries
@@ -4762,11 +4829,16 @@ def novig_reports():
                 LOG.append(f"fill outcomes not stored: {str(ex)[:50]}")
         for x in cand:
             st = str(x.get("status") or "?").upper()
-            if st in ("PENDING", "SENT", "UNKNOWN") and not int(x.get("filled_qty") or 0):
+            if st in ("PENDING", "SENT", "UNKNOWN") and not fq_read(x)[1]:
                 continue   # not final yet: report when it settles (the home PC re-reads every 5 min)
-            if st == "FILLED" and not int(x.get("filled_qty") or 0):
+            if st == "FILLED" and not fq_read(x)[1]:
                 continue   # status says filled but the amount isn't confirmed yet (old-format record): never say "no fill"
-            c, q, fq = lm.num(x.get("price")) or 0, int(x.get("qty") or 0), int(x.get("filled_qty") or 0)
+            c, q = lm.num(x.get("price")) or 0, int(x.get("qty") or 0)
+            # Nov 19 (Peter, safeguard 2): "Null, missing or unreadable fill quantity is UNKNOWN."
+            # `int(x.get("filled_qty") or 0)` silently turned a MISSING quantity into a reported
+            # zero, which then satisfied "cumulative zero matched" and could produce NO FILL. The
+            # raw value is kept so the two states stay distinguishable.
+            _fq_known, fq = fq_read(x)
             cost = x.get("filled_cost")
             tok = _tk(x)
             if not claimer.claim(tok):
@@ -4786,7 +4858,9 @@ def novig_reports():
                 head = "NOVIG PARTIAL FILL"
             elif st == "OPEN":
                 head = "NOVIG RESTING (nothing filled yet)"
-            elif st in ("CANCELED", "CANCELLED", "EXPIRED"):
+            elif st in ("CANCELED", "CANCELLED", "EXPIRED") and _fq_known and fq == 0:
+                # BOTH are required: an authoritative terminal status AND a filled quantity the
+                # venue actually reported as zero. Either one alone is not evidence of a no-fill.
                 head = "NOVIG NO FILL"
             else:
                 # Nov 19 (Peter, item 1). THIS is the branch that sent "[BOARD V3] NOVIG NO FILL
@@ -4815,8 +4889,8 @@ def novig_reports():
                 pay = fq / 100
                 msg += (f"\n{fq:,} of {q:,} contracts: ${(cost if cost is not None else fq * c / 100):,.2f} to pay ${pay:,.2f}"
                         + (f" (avg {lm.american(ap):+d})" if ap else ""))
-            elif st in ("CANCELED", "CANCELLED", "EXPIRED"):
-                msg += (f"\nlimit {lm.american(c):+d}, ${q * c / 100:,.2f} asked; venue confirms "
+            elif st in ("CANCELED", "CANCELLED", "EXPIRED") and _fq_known and fq == 0:
+                msg += (f"\nlimit {lm.american(c):+d}, ${q * c / 100:,.2f} requested; venue confirms "
                         f"zero matched quantity ({st})")
             elif st not in ("REFUSED", "REJECTED"):
                 # The amount asked is what we REQUESTED - never presented as what matched.
