@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 19, 5:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 27.
+Updated Thu Nov 19, 5:30 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 26.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 354-212 (-21.56u flat) | rule met: 62-54
+**Record:** 355-212 (-21.28u flat) | rule met: 63-54
 
-**Fade (paper, betting against the print):** 187-319 (+20.58u flat, after fees)
+**Fade (paper, betting against the print):** 187-320 (+19.58u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -18,14 +18,14 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 19 4:10PM | NCAAB | Utah Tech vs Washington: Spread | spread: NOT Washington wins by over 17.5 points | kalshi | $32k | -108 |  | ✅ | +0.0c |  | pending |
 | Nov 19 4:10PM | NCAAB | UTEP vs New Mexico St. | moneyline: UTEP | kalshi | $30k | +113 | ✅ novig |  | +0.0c |  | pending |
 | Nov 19 4:10PM | NCAAB | UC Santa Barbara vs Pepperdine | moneyline: Pepperdine | kalshi | $49k | +117 |  |  | +0.0c |  | pending |
-| Nov 19 4:10PM | NCAAB | Tulane vs Louisiana Tech | moneyline: Tulane | kalshi | $43k | +117 |  | ❌ | +1.0c |  | pending |
+| Nov 19 4:10PM | NCAAB | Tulane vs Louisiana Tech | moneyline: Tulane | kalshi | $43k | +117 |  | ❌ | +0.0c |  | pending |
 | Nov 19 4:10PM | NCAAB | Charleston vs Drake | moneyline: Charleston | kalshi | $38k | +113 |  | ❌ | +0.0c |  | pending |
 | Nov 19 4:00PM | NCAAB | Robert Morris vs Toledo: Spread | spread: Toledo wins by over 7.5 points | kalshi | $31k | -100 |  | ✅ | +0.0c |  | pending |
 | Nov 19 4:00PM | NCAAB | Northeastern vs Butler: Spread | spread: NOT Butler wins by over 15.5 points | kalshi | $35k | +108 |  |  | +0.0c |  | pending |
 | Nov 19 2:30PM | NCAAB | Wisconsin vs Seton Hall | moneyline: Wisconsin | kalshi | $115k | -194 | ✅ novig | ✅ | +1.0c |  | pending |
 | Nov 19 2:30PM | NCAAB | Little Rock vs Jacksonville | moneyline: Little Rock | kalshi | $39k | +117 | ✅ novig | ✅ | +1.0c |  | pending |
 | Nov 19 2:30PM | NCAAB | Charleston vs Drake | moneyline: Drake | kalshi | $39k | -113 |  | ✅ | +0.0c |  | pending |
-| Nov 19 2:20PM | NCAAB | West Virginia @ Florida | moneyline: FLA (0) | novig | $36k | -355 | ✅ kalshi,prophetx | ❌ | +0.0c |  | pending |
+| Nov 19 2:20PM | NCAAB | West Virginia @ Florida | moneyline: FLA (0) | novig | $36k | -355 | ✅ kalshi,prophetx | ❌ | +0.0c |  | W |
 | Nov 19 12:20PM | NCAAB | Florida vs West Virginia: Spread | spread: Florida wins by over 7.5 points | kalshi | $30k | -108 |  | ❌ | +1.0c | yes | W |
 | Nov 19 12:10PM | NCAAB | Houston vs Kansas | moneyline: Houston | kalshi | $34k | -138 | ✅ novig |  | +3.0c |  | pending |
 | Nov 19 12:10PM | NCAAB | Georgia Southern vs Houston Christian | moneyline: Houston Christian | kalshi | $40k | -150 | ✅ novig | ✅ | +1.0c |  | pending |
