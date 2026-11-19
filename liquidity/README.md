@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 19, 11:10 AM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 33.
+Updated Thu Nov 19, 11:15 AM ET. This run: 2 new, 0 not confirmed, 0 pending. Open alerts: 35.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 19 11:15AM | NCAAF | Rice vs Temple: Spread | spread: Temple wins by over 2.5 points | kalshi | $48k | -108 | ✅ novig |  | +0.0c |  | pending |
+| Nov 19 11:15AM | NHL | New York I vs Winnipeg | moneyline: Winnipeg | kalshi | $29k | -104 |  |  | +0.0c |  | pending |
 | Nov 19 10:35AM | NHL | Edmonton vs Tampa Bay | moneyline: Tampa Bay | kalshi | $30k | -133 | ✅ novig |  | +0.0c |  | pending |
 | Nov 19 10:25AM | NBA | Los Angeles C vs San Antonio: Spread | spread: NOT San Antonio wins by over 15.5 points | kalshi | $29k | -104 | ✅ novig | ❌ | +0.0c |  | pending |
 | Nov 19 10:05AM | NBA | Los Angeles C vs San Antonio: Total Points | total: NOT Over 225.5 points | kalshi | $35k | -100 | ✅ novig | ✅ | +1.0c |  | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 16 6:20PM | NBA | Orlando Magic @ Boston Celtics | moneyline: BOS (0) | novig | $39k | -335 | ✅ kalshi,prophetx | ❌ | -0.5c |  | L |
 | Nov 16 6:05PM | NBA | Orlando Magic at Boston Celtics | moneyline: Boston Celtics | prophetx | $29k | -340 | ✅ kalshi,novig | ❌ | -0.5c | yes | L |
 | Nov 16 5:35PM | NBA | Portland vs Minnesota: Spread | spread: NOT Minnesota wins by over 2.5 points | kalshi | $30k | -104 | ✅ novig |  | +2.0c | yes | L |
-| Nov 16 4:40PM | NBA | Phoenix vs Denver: Total Points | total: NOT Over 230.5 points | kalshi | $34k | -100 |  | ❌ | +0.0c |  | W |
-| Nov 16 4:35PM | NFL | Los Angeles C vs Baltimore: Total Points | total: Over 39.5 points | kalshi | $132k | -100 | ✅ novig,prophetx |  | +0.0c | yes | W |
