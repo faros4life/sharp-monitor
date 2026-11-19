@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 18, 10:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 11.
+Updated Wed Nov 18, 10:30 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 10.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 346-210 (-23.32u flat) | rule met: 62-54
+**Record:** 347-210 (-22.73u flat) | rule met: 62-54
 
-**Fade (paper, betting against the print):** 185-311 (+26.72u flat, after fees)
+**Fade (paper, betting against the print):** 185-312 (+25.72u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -34,7 +34,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 18 2:40AM | NCAAB | Florida Gulf Coast vs Florida Atlantic | moneyline: Florida Atlantic | kalshi | $27k | -245 |  |  | -2.0c | yes | W |
 | Nov 18 2:20AM | NCAAB | UConn vs Arizona | moneyline: Arizona | kalshi | $25k | -144 |  |  | +1.0c |  | pending |
 | Nov 18 2:10AM | NCAAB | Fresno St. vs San Jose St. | moneyline: San Jose St. | kalshi | $25k | -233 |  |  | +0.0c |  | pending |
-| Nov 18 2:00AM | NCAAB | Boston College vs Harvard | moneyline: Boston College | kalshi | $26k | -170 |  |  | -2.0c | yes | pending |
+| Nov 18 2:00AM | NCAAB | Boston College vs Harvard | moneyline: Boston College | kalshi | $26k | -170 |  |  | -2.0c | yes | W |
 | Nov 18 1:50AM | NCAAB | VMI vs Longwood | moneyline: Longwood | kalshi | $25k | -257 |  |  | +2.0c |  | W |
 | Nov 18 1:50AM | NCAAB | UNC Wilmington vs LIU | moneyline: UNC Wilmington | kalshi | $37k | -525 |  |  | -3.0c |  | L |
 | Nov 18 1:40AM | NCAAB | Samford vs USC Upstate | moneyline: Samford | kalshi | $28k | -270 |  |  | +1.0c | yes | pending |
