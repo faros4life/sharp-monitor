@@ -1,6 +1,590 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-19T13:30:18Z",
+   "base_depth": 48256,
+   "best_price": 0.45,
+   "best_price_american": 122,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.45,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-19",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 5205,
+     "new_this_side": 32345,
+     "other_side": 45469,
+     "other_side_all_levels": 65426,
+     "ratio": 1.1,
+     "this_side": 50919,
+     "this_side_all_levels": 86189
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "MIN -1.5 (1.5)",
+     "price": 0.45,
+     "this_side": 2383
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 4781.35,
+    "volume_24h_fp": 4579.6,
+    "volume_fp": 4833.6
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 4781.35,
+    "volume_24h_fp": 4579.6,
+    "volume_fp": 4833.6
+   },
+   "fade_price": 0.56,
+   "first_seen_utc": "2026-11-19T13:25:41Z",
+   "game": "Minnesota vs Calgary: Spread",
+   "game_surge_books": [],
+   "game_x": 1.92,
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNHLSPREAD-26NOV19MINCGY-MIN2\"}",
+   "lead_min": 690,
+   "league": "NHL",
+   "line": -1.5,
+   "market": "spread",
+   "new_money": 32345,
+   "new_x": 1.51,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 4781.35,
+      "volume_24h_fp": 4579.6,
+      "volume_fp": 4833.6
+     },
+     "game_normal": 44891,
+     "game_x": 1.92,
+     "normal": 21444,
+     "now": 86189,
+     "type": "SPREAD",
+     "x": 4.02
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 103664.0,
+      "volume": 121430.0
+     },
+     "game_normal": 7018,
+     "game_x": 1.15,
+     "normal": 3729,
+     "now": 8102,
+     "type": "SPREAD",
+     "x": 2.17
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.45,
+   "price_american": 122,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.45,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -1.5,
+     "price": 105
+    },
+    "betonlineag": {
+     "point": -1.5,
+     "price": 115
+    },
+    "betopenly": {
+     "point": -1.5,
+     "price": 128
+    },
+    "betrivers": {
+     "point": -1.5,
+     "price": 112
+    },
+    "betus": {
+     "point": -1.5,
+     "price": 115
+    },
+    "bovada": {
+     "point": -1.5,
+     "price": 117
+    },
+    "circasports": {
+     "point": -1.5,
+     "price": 115
+    },
+    "draftkings": {
+     "point": -1.5,
+     "price": 114
+    },
+    "fanatics": {
+     "point": -1.5,
+     "price": 115
+    },
+    "fanduel": {
+     "point": -1.5,
+     "price": 124
+    },
+    "kalshi": {
+     "point": -1.5,
+     "price": 122
+    },
+    "lowvig": {
+     "point": -1.5,
+     "price": 115
+    },
+    "mybookieag": {
+     "point": -1.5,
+     "price": 116
+    },
+    "novig": {
+     "point": -1.5,
+     "price": 122
+    },
+    "polymarket": {
+     "point": -1.5,
+     "price": 122
+    },
+    "prophetx": {
+     "point": -1.5,
+     "price": 121
+    },
+    "williamhill_us": {
+     "point": -1.5,
+     "price": 116
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLSPREAD-26NOV19MINCGY-MIN2"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Minnesota",
+   "side_label": "Minnesota wins by over 1.5 goals",
+   "size_x": 4.02,
+   "start_source": "odds",
+   "start_utc": "2026-11-20T01:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "Minnesota",
+    "Calgary"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-19T13:30:18Z",
+   "base_depth": 33397,
+   "best_price": 0.375,
+   "best_price_american": 167,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.38,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-19",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 679,
+     "new_this_side": 35073,
+     "other_side": 52664,
+     "other_side_all_levels": 58113,
+     "ratio": 1.0,
+     "this_side": 54431,
+     "this_side_all_levels": 68470
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "CBJ -1.5 (1.5)",
+     "price": 0.375,
+     "this_side": 6735
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 707.95,
+    "volume_24h_fp": 706.95,
+    "volume_fp": 707.95
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 707.95,
+    "volume_24h_fp": 706.95,
+    "volume_fp": 707.95
+   },
+   "fade_price": 0.63,
+   "first_seen_utc": "2026-11-19T13:25:41Z",
+   "game": "Columbus vs Chicago: Spread",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 2.04,
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNHLSPREAD-26NOV19CBJCHI-CBJ2\"}",
+   "lead_min": 690,
+   "league": "NHL",
+   "line": -1.5,
+   "market": "spread",
+   "new_money": 35073,
+   "new_x": 1.64,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 707.95,
+      "volume_24h_fp": 706.95,
+      "volume_fp": 707.95
+     },
+     "game_normal": 33590,
+     "game_x": 2.04,
+     "normal": 21444,
+     "now": 68470,
+     "type": "SPREAD",
+     "x": 3.19
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 349791.0,
+      "volume": 349948.0
+     },
+     "game_normal": 5634,
+     "game_x": 1.22,
+     "normal": 3729,
+     "now": 6852,
+     "type": "SPREAD",
+     "x": 1.84
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.38,
+   "price_american": 163,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.38,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -1.5,
+     "price": 140
+    },
+    "betonlineag": {
+     "point": -1.5,
+     "price": 160
+    },
+    "betopenly": {
+     "point": -1.5,
+     "price": 155
+    },
+    "betrivers": {
+     "point": -1.5,
+     "price": 155
+    },
+    "betus": {
+     "point": -1.5,
+     "price": 160
+    },
+    "bovada": {
+     "point": -1.5,
+     "price": 160
+    },
+    "circasports": {
+     "point": -1.5,
+     "price": 163
+    },
+    "draftkings": {
+     "point": -1.5,
+     "price": 164
+    },
+    "fanatics": {
+     "point": -1.5,
+     "price": 155
+    },
+    "fanduel": {
+     "point": -1.5,
+     "price": 158
+    },
+    "kalshi": {
+     "point": -1.5,
+     "price": 163
+    },
+    "lowvig": {
+     "point": -1.5,
+     "price": 160
+    },
+    "mybookieag": {
+     "point": -1.5,
+     "price": 151
+    },
+    "novig": {
+     "point": -1.5,
+     "price": 167
+    },
+    "polymarket": {
+     "point": -1.5,
+     "price": 163
+    },
+    "prophetx": {
+     "point": -1.5,
+     "price": 164
+    },
+    "williamhill_us": {
+     "point": -1.5,
+     "price": 160
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLSPREAD-26NOV19CBJCHI-CBJ2"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Columbus",
+   "side_label": "Columbus wins by over 1.5 goals",
+   "size_x": 3.19,
+   "start_source": "odds",
+   "start_utc": "2026-11-20T01:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Columbus",
+    "Chicago"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-19T13:30:18Z",
+   "base_depth": 86011,
+   "best_price": 0.63,
+   "best_price_american": -170,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.63,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-19",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 2729,
+     "new_this_side": 61842,
+     "other_side": 31300,
+     "other_side_all_levels": 44329,
+     "ratio": 3.6,
+     "this_side": 112659,
+     "this_side_all_levels": 164906
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "VAN +1.5 (-1.5)",
+     "price": 0.63,
+     "this_side": 15513
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 1066.48,
+    "volume_24h_fp": 1013.86,
+    "volume_fp": 1077.48
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 1066.48,
+    "volume_24h_fp": 1013.86,
+    "volume_fp": 1077.48
+   },
+   "fade_price": 0.38,
+   "first_seen_utc": "2026-11-19T13:25:41Z",
+   "game": "Vancouver vs Seattle: Spread",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 2.19,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26NOV19VANSEA-SEA2\"}",
+   "lead_min": 800,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 61842,
+   "new_x": 2.88,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 1066.48,
+      "volume_24h_fp": 1013.86,
+      "volume_fp": 1077.48
+     },
+     "game_normal": 75206,
+     "game_x": 2.19,
+     "normal": 21444,
+     "now": 164906,
+     "type": "SPREAD",
+     "x": 7.69
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 89075.0,
+      "volume": 99796.0
+     },
+     "game_normal": 9100,
+     "game_x": 1.78,
+     "normal": 3729,
+     "now": 16174,
+     "type": "SPREAD",
+     "x": 4.34
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.63,
+   "price_american": -170,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.63,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -165
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -173
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -168
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -177
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -175
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -172
+    },
+    "circasports": {
+     "point": 1.5,
+     "price": -170
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -180
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -180
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -188
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -170
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -173
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -177
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -170
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": -170
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -166
+    },
+    "williamhill_us": {
+     "point": 1.5,
+     "price": -173
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLSPREAD-26NOV19VANSEA-SEA2"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Vancouver",
+   "side_label": "NOT Seattle wins by over 1.5 goals",
+   "size_x": 7.69,
+   "start_source": "odds",
+   "start_utc": "2026-11-20T02:50:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "Vancouver",
+    "Seattle"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-19T13:15:44Z",
    "base_depth": 86150,
    "best_price": 0.8016,
@@ -14,8 +598,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.79,
-   "clv_cents": 0.0,
+   "close_price": 0.78,
+   "clv_cents": -1.0,
    "confirmed_after_min": 5,
    "date": "2026-11-19",
    "depth_by_book": {
@@ -46,9 +630,9 @@
     "volume_fp": 3.3
    },
    "ex_stats_close": {
-    "open_interest_fp": 12117.6,
+    "open_interest_fp": 12317.6,
     "volume_24h_fp": 9935.3,
-    "volume_fp": 13587.170000000002
+    "volume_fp": 13789.170000000002
    },
    "ex_stats_first": {
     "open_interest_fp": 10828.01,
@@ -137,8 +721,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.56,
-   "clv_cents": -1.0,
+   "close_price": 0.57,
+   "clv_cents": 0.0,
    "confirmed_after_min": 4,
    "date": "2026-11-19",
    "depth_by_book": {
@@ -808,9 +1392,9 @@
     "volume_fp": 4612.2
    },
    "ex_stats_close": {
-    "open_interest_fp": 73076.61,
+    "open_interest_fp": 73193.67,
     "volume_24h_fp": 56853.52,
-    "volume_fp": 85276.74
+    "volume_fp": 85393.8
    },
    "ex_stats_first": {
     "open_interest_fp": 63691.62,
@@ -963,8 +1547,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 4.0,
+   "close_price": 0.55,
+   "clv_cents": 6.0,
    "confirmed_after_min": 5,
    "date": "2026-11-19",
    "depth_by_book": {
@@ -995,9 +1579,9 @@
     "volume_fp": 14.71
    },
    "ex_stats_close": {
-    "open_interest_fp": 21743.24,
+    "open_interest_fp": 22013.51,
     "volume_24h_fp": 30738.43,
-    "volume_fp": 30760.35
+    "volume_fp": 31061.67
    },
    "ex_stats_first": {
     "open_interest_fp": 17192.54,
@@ -1200,9 +1784,9 @@
     "volume_fp": 0.15
    },
    "ex_stats_close": {
-    "open_interest_fp": 148274.12,
+    "open_interest_fp": 148302.88,
     "volume_24h_fp": 148146.15000000002,
-    "volume_fp": 149495.80000000002
+    "volume_fp": 149524.56
    },
    "ex_stats_first": {
     "open_interest_fp": 4984.200000000001,
@@ -1424,9 +2008,9 @@
     "volume_fp": 1.41
    },
    "ex_stats_close": {
-    "open_interest_fp": 12147.75,
+    "open_interest_fp": 13015.98,
     "volume_24h_fp": 8086.43,
-    "volume_fp": 12572.130000000001
+    "volume_fp": 13440.36
    },
    "ex_stats_first": {
     "open_interest_fp": 9645.029999999999,
@@ -1647,9 +2231,9 @@
     "volume_fp": 55.5
    },
    "ex_stats_close": {
-    "open_interest_fp": 78610.78,
+    "open_interest_fp": 78614.78,
     "volume_24h_fp": 21350.420000000002,
-    "volume_fp": 82047.32
+    "volume_fp": 82051.32
    },
    "ex_stats_first": {
     "open_interest_fp": 76914.06,
@@ -1860,9 +2444,9 @@
     "volume_fp": 13.69
    },
    "ex_stats_close": {
-    "open_interest_fp": 16375.150000000001,
+    "open_interest_fp": 17075.79,
     "volume_24h_fp": 12940.52,
-    "volume_fp": 17216.62
+    "volume_fp": 17917.260000000002
    },
    "ex_stats_first": {
     "open_interest_fp": 14529.41,
@@ -2510,9 +3094,9 @@
     "volume_fp": 16.94
    },
    "ex_stats_close": {
-    "open_interest_fp": 17146.059999999998,
+    "open_interest_fp": 17163.059999999998,
     "volume_24h_fp": 13978.7,
-    "volume_fp": 17581.739999999998
+    "volume_fp": 17598.739999999998
    },
    "ex_stats_first": {
     "open_interest_fp": 9305.86,
@@ -2720,9 +3304,9 @@
     "volume_fp": 1024.01
    },
    "ex_stats_close": {
-    "open_interest_fp": 167600.91999999998,
+    "open_interest_fp": 168104.97,
     "volume_24h_fp": 167977.40000000002,
-    "volume_fp": 183115.01
+    "volume_fp": 183619.06
    },
    "ex_stats_first": {
     "open_interest_fp": 98561.39,
@@ -2933,9 +3517,9 @@
     "volume_fp": 122.97
    },
    "ex_stats_close": {
-    "open_interest_fp": 45805.630000000005,
+    "open_interest_fp": 45887.0,
     "volume_24h_fp": 46553.229999999996,
-    "volume_fp": 51632.729999999996
+    "volume_fp": 51714.100000000006
    },
    "ex_stats_first": {
     "open_interest_fp": 9742.49,
@@ -3073,8 +3657,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.68,
-   "clv_cents": -8.0,
+   "close_price": 0.69,
+   "clv_cents": -7.0,
    "confirmed_after_min": 6,
    "date": "2026-11-19",
    "depth_by_book": {
@@ -3099,9 +3683,9 @@
     "volume_fp": 67.78
    },
    "ex_stats_close": {
-    "open_interest_fp": 111089.04000000001,
+    "open_interest_fp": 111661.69,
     "volume_24h_fp": 114946.31,
-    "volume_fp": 117847.68
+    "volume_fp": 118457.72
    },
    "ex_stats_first": {
     "open_interest_fp": 15654.580000000002,
@@ -4515,9 +5099,9 @@
     "volume_fp": 1468.36
    },
    "ex_stats_close": {
-    "open_interest_fp": 167600.91999999998,
+    "open_interest_fp": 168104.97,
     "volume_24h_fp": 167977.40000000002,
-    "volume_fp": 183115.01
+    "volume_fp": 183619.06
    },
    "ex_stats_first": {
     "open_interest_fp": 19529.760000000002,
@@ -8468,9 +9052,9 @@
     "volume_fp": 10.05
    },
    "ex_stats_close": {
-    "open_interest_fp": 34869.28,
+    "open_interest_fp": 34870.24,
     "volume_24h_fp": 35113.520000000004,
-    "volume_fp": 35971.39
+    "volume_fp": 35972.35
    },
    "ex_stats_first": {
     "open_interest_fp": 22559.61,
@@ -14292,9 +14876,9 @@
     "volume_fp": 495.15
    },
    "ex_stats_close": {
-    "open_interest_fp": 1656870.9700000002,
+    "open_interest_fp": 1664193.77,
     "volume_24h_fp": 984108.82,
-    "volume_fp": 1925800.87
+    "volume_fp": 1933141.29
    },
    "ex_stats_first": {
     "open_interest_fp": 743658.74,
