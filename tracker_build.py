@@ -1012,18 +1012,39 @@ def read_manual_and_bot():
         # Both halves must come from the store, or neither: bot_keys() falls back to an IMAP scan
         # when the store has no rows, and it would be handed M=None here. Checking rows() first
         # means the call below is guaranteed to return from the store without touching Gmail.
-        if registry.enabled() and registry.manual_complete() and (registry.rows() or None):
+        # Nov 19: this used to print one "store not usable (no claim, empty, or a note without its
+        # sent date)" for four different causes with four different remedies, so when the step
+        # started timing out again there was no way to tell which had regressed - exactly the
+        # merged-counter trap. Each condition now names itself. The control flow is unchanged:
+        # any one of them still falls back to Gmail.
+        _why = None
+        if not registry.enabled():
+            _why = "registry disabled"
+        elif not registry.manual_complete():
+            _why = "the store does not claim the window (manual_complete False)"
+        elif not (registry.rows() or None):
+            _why = "the store has no ledger rows"
+        if _why is None:
             _st = registry.manual_notes()
-            if _st is not None and _st and all(str((n or {}).get("_sent") or "") for n in _st):
-                man = [_row(n, n.get("_sent")) for n in _st]
-                keys = bot_keys(None, days=2)   # store-first; rows() above proves it needs no IMAP
-                IMAP_T["manual (private store)"] = 0
-                print(f"manual notes: {len(man)} row(s) from the private store - no Gmail scan", flush=True)
-                LOG["manual"] = f"ok {len(man)} (store)"
-                LOG["bot_keys"] = f"ok {len(keys)}"
-                return man, keys
-            print("manual notes: store not usable (no claim, empty, or a note without its sent "
-                  "date) - reading Gmail", flush=True)
+            if _st is None:
+                _why = "manual_notes() returned None"
+            elif not _st:
+                _why = "manual_notes() returned 0 notes"
+            else:
+                _undated = sum(1 for n in _st if not str((n or {}).get("_sent") or ""))
+                if _undated:
+                    _why = (f"{_undated} of {len(_st)} note(s) carry no _sent date - the mirror "
+                            f"has not re-snapshotted them yet")
+        if _why is None:
+            man = [_row(n, n.get("_sent")) for n in _st]
+            keys = bot_keys(None, days=2)   # store-first; rows() above proves it needs no IMAP
+            IMAP_T["manual (private store)"] = 0
+            print(f"manual notes: {len(man)} row(s) from the private store - no Gmail scan", flush=True)
+            LOG["manual"] = f"ok {len(man)} (store)"
+            LOG["bot_keys"] = f"ok {len(keys)}"
+            return man, keys
+        print(f"manual notes: store not usable - {_why} - reading Gmail (~8 min)", flush=True)
+        LOG["manual_store_miss"] = _why
     except Exception as _e:
         print(f"manual notes: store read failed ({type(_e).__name__}) - reading Gmail", flush=True)
 
