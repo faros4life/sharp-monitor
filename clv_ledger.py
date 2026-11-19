@@ -87,6 +87,8 @@ MAX_TRIES = 8
 # and no stored figure changes either way.
 SELECTION_MODE = (os.environ.get("CLV_SELECTION_MODE", "") or "off").strip().lower() == "on"
 MAX_HIST = 60        # free history calls per run
+BACKLOG_AFTER_DAYS = 3   # Nov 19: older than this is historical recovery, not today's grading
+BACKLOG_MAX = 40         # historical rows offered per run - bounded so recovery cannot starve new fills
 CALLS = []
 STATS = {"billable": 0, "free": 0}
 
@@ -1250,6 +1252,40 @@ def novig_at(b, f, nm_pm, mkmap, when, lg):
     return None
 
 
+def grading_queue(pend, now):
+    """Nov 19 (Peter: separate new fills from historical recovery, and process new fills first).
+
+    st["bets"] iterates in FIRST-SEEN order, so the OLDEST rows were served first and spent the
+    MAX_HIST free history calls (~8 s each) before today's fills were ever reached. The Nov 18
+    game_start recovery made 353 old rows scorable at once, so a fill placed tonight could wait days
+    for a call. That is starvation, not slowness: the run can finish on time and still not grade
+    today.
+
+    Returns (ordered pend, one log line). This changes ORDER and BATCH SIZE only. No row is dropped
+    from the store, no row is marked done, no CLV is estimated, and nothing here touches a trading
+    rule - a deferred row is simply offered again next run.
+    """
+    old = datetime.min.replace(tzinfo=timezone.utc)
+
+    def row_t(kr):
+        sn = kr[1].get("snap") or {}
+        return tp(sn.get("game_start")) or tp(sn.get("placed")) or tp(kr[1].get("first_seen"))
+
+    fresh, backlog = [], []
+    for kr in pend:
+        t = row_t(kr)
+        (fresh if t and t > now - timedelta(days=BACKLOG_AFTER_DAYS) else backlog).append(kr)
+    fresh.sort(key=lambda kr: row_t(kr) or old, reverse=True)
+    # Least-tried, then least-recently-tried: the backlog ROTATES. Sorting by date alone would
+    # re-offer the same head every run and never reach the tail - the rows most in need of a retry
+    # are exactly the ones that have had fewest.
+    backlog.sort(key=lambda kr: (kr[1].get("tries", 0), tp(kr[1].get("last_try")) or old))
+    served = backlog[:BACKLOG_MAX]
+    return fresh + served, (f"grading queue: {len(fresh)} new (<={BACKLOG_AFTER_DAYS}d), "
+                            f"{len(backlog)} backlog, {len(served)} served this run, "
+                            f"{len(backlog) - len(served)} deferred to a later run")
+
+
 # ------------------------------------------------------------------ ESPN fill
 def _espn_days(t0):
     """The scoreboard dates a bet at t0 could sit on: its own ET date and the one before - a late game
@@ -1737,6 +1773,9 @@ def main():
         if rec.get("done"):
             continue
         pend.append((k, rec))
+    pend, _q = grading_queue(pend, now)
+    LG_LOG.append(_q)
+
     need = {}
     # Stage 4 (Peter, Nov 13): the newest fixture the cache holds per league. A pending game that
     # starts after it was never offered to the matcher at all, which is a FETCH question and the
@@ -1792,8 +1831,9 @@ def main():
     hist = {}
     new_scored = 0
     for k, rec in pend:
-        s = rec["snap"]
-        lg = s.get("league")
+        rec["last_try"] = iso(now)   # Nov 19: what rotates the backlog. Stamped on every row REACHED,
+        s = rec["snap"]              # including ones that fall out below, so the queue cannot stall
+        lg = s.get("league")         # on a head that is skipped for the same reason every run.
         if lg not in SCORE_SPORT:
             rec["tries"] = rec.get("tries", 0) + 1
             rec["why"] = f"league {lg or 'unknown'} not covered"
@@ -2185,6 +2225,11 @@ def main():
     json.dump(tb.enc(st), open(STATE, "w"))
     print(f"CLV ledger: bets {len(st['bets'])}, scored {len(scored)} (+{new_scored}), "
           f"calls billable {STATS['billable']} free {STATS['free']}")   # counts only
+    # Nov 19 (Peter: add runtime and backlog counters so we can prove later reports are faster).
+    # history calls used against the per-run cap, and how much ungraded work is still queued.
+    _ungraded = sum(1 for _r in st["bets"].values() if _r.get("clv") is None and not _r.get("done"))
+    print(f"CLV ledger work: history calls {len(hist)}/{MAX_HIST}, "
+          f"ungraded backlog {_ungraded}, runtime {int((time.time() - _T0[0]) if _T0[0] else 0)}s", flush=True)
     print("CLV ledger Phase 1 provenance (counts only): "
           + (", ".join(f"{k} {v}" for k, v in sorted(PROV.items())) or "none this run"), flush=True)
 
