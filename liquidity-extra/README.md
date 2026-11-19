@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 18, 10:30 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 10.
+Updated Wed Nov 18, 10:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 9.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 347-210 (-22.73u flat) | rule met: 62-54
+**Record:** 348-210 (-22.39u flat) | rule met: 62-54
 
-**Fade (paper, betting against the print):** 185-312 (+25.72u flat, after fees)
+**Fade (paper, betting against the print):** 185-313 (+24.72u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -37,7 +37,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 18 2:00AM | NCAAB | Boston College vs Harvard | moneyline: Boston College | kalshi | $26k | -170 |  |  | -2.0c | yes | W |
 | Nov 18 1:50AM | NCAAB | VMI vs Longwood | moneyline: Longwood | kalshi | $25k | -257 |  |  | +2.0c |  | W |
 | Nov 18 1:50AM | NCAAB | UNC Wilmington vs LIU | moneyline: UNC Wilmington | kalshi | $37k | -525 |  |  | -3.0c |  | L |
-| Nov 18 1:40AM | NCAAB | Samford vs USC Upstate | moneyline: Samford | kalshi | $28k | -270 |  |  | +1.0c | yes | pending |
+| Nov 18 1:40AM | NCAAB | Samford vs USC Upstate | moneyline: Samford | kalshi | $28k | -270 |  |  | +1.0c | yes | W |
 | Nov 17 8:20PM | NCAAB | Kansas vs UNLV: Point Total | total: Over 157.5 points | kalshi | $26k | -113 |  |  | +1.0c | yes | W |
 | Nov 17 7:40PM | NCAAB | Montana St. vs Gonzaga: Spread | spread: Gonzaga wins by over 21.5 points | kalshi | $33k | -122 |  |  | +1.0c | yes | L |
 | Nov 17 7:40PM | NCAAB | Le Moyne vs Evansville: Spread | spread: NOT Evansville wins by over 7.5 points | kalshi | $27k | -104 |  |  | +0.0c |  | L |
