@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 19, 12:10 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 25.
+Updated Thu Nov 19, 12:15 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 21.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1697-1326 (-35.63u flat) | rule met: 1002-795
+**Record:** 1700-1327 (-33.50u flat) | rule met: 1003-795
 
-**Fade (paper, betting against the print):** 1060-1424 (-205.63u flat, after fees)
+**Fade (paper, betting against the print):** 1061-1427 (-207.49u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -18,9 +18,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 18 9:36PM | NBA | Utah Jazz @ Los Angeles Lakers | moneyline: LAL (0) | novig | $28k | -488 | ✅ kalshi,prophetx | ✅ | +0.0c |  | pending |
 | Nov 18 9:25PM | NBA | Utah vs Los Angeles L: Total Points | total: NOT Over 229.5 points | kalshi | $34k | -100 | ✅ novig | ✅ | +2.0c | yes | pending |
 | Nov 18 8:35PM | NHL | Colorado vs Utah: Total Goals | total: Over 6.5 goals scored | kalshi | $89k | +108 |  |  | +0.0c | yes | pending |
-| Nov 18 8:05PM | NBA | New York vs Minnesota | moneyline: New York | kalshi | $34k | +108 |  |  | +5.0c | yes | pending |
+| Nov 18 8:05PM | NBA | New York vs Minnesota | moneyline: New York | kalshi | $34k | +108 |  |  | +4.0c | yes | pending |
 | Nov 18 7:50PM | NBA | Atlanta vs Oklahoma City: Total Points | total: Over 229.5 points | kalshi | $38k | -104 | ✅ novig,prophetx |  | -1.0c | yes | L |
-| Nov 18 7:40PM | NBA | Boston vs Denver | moneyline: Boston | kalshi | $103k | -127 |  |  | +0.0c | yes | pending |
+| Nov 18 7:40PM | NBA | Boston vs Denver | moneyline: Boston | kalshi | $103k | -127 |  |  | +0.0c | yes | L |
 | Nov 18 7:24PM | NBA | Chicago vs Brooklyn: Total Points | total: NOT Over 238.5 points | kalshi | $42k | +104 | ✅ novig | ✅ | +0.0c | yes | L |
 | Nov 18 6:55PM | NBA | Philadelphia 76ers @ Orlando Magic | moneyline: ORL (0) | novig | $30k | -178 | ✅ kalshi,prophetx | ✅ | +0.0c |  | L |
 | Nov 18 6:55PM | NBA | Philadelphia vs Orlando: Spread | spread: Orlando wins by over 4.5 points | kalshi | $178k | -100 | ✅ novig | ✅ | +0.0c |  | L |
@@ -32,7 +32,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 18 6:00PM | NBA | Memphis Grizzlies at Cleveland Cavaliers | moneyline: Cleveland Cavaliers | prophetx | $50k | -178 | ✅ kalshi,novig |  | -1.6c | yes | L |
 | Nov 18 6:00PM | NBA | Memphis Grizzlies @ Cleveland Cavaliers | moneyline: CLE (0) | novig | $48k | -170 | ✅ kalshi,prophetx |  | -1.0c |  | L |
 | Nov 18 5:55PM | NBA | Houston vs Indiana: Spread | spread: NOT Houston wins by over 8.5 points | kalshi | $65k | -100 | ✅ prophetx | ❌ | +2.0c |  | L |
-| Nov 18 5:45PM | NBA | Boston vs Denver | moneyline: Denver | kalshi | $128k | +122 | ✅ novig |  | +0.0c | yes | pending |
+| Nov 18 5:45PM | NBA | Boston vs Denver | moneyline: Denver | kalshi | $128k | +122 | ✅ novig |  | +0.0c | yes | W |
 | Nov 18 5:40PM | NBA | Philadelphia vs Orlando: Spread | spread: NOT Orlando wins by over 1.5 points | kalshi | $30k | -113 |  | ✅ | -13.0c | yes | W |
 | Nov 18 5:35PM | NBA | Chicago vs Brooklyn: Spread | spread: Brooklyn wins by over 1.5 points | kalshi | $31k | -100 | ✅ novig | ❌ | +1.0c |  | L |
 | Nov 18 5:10PM | NBA | Chicago Bulls @ Brooklyn Nets | moneyline: CHI (0) | novig | $27k | +113 | ✅ kalshi |  | -0.5c | yes | W |
@@ -44,7 +44,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 18 12:25PM | NBA | Milwaukee Bucks @ Miami Heat | moneyline: MIA (0) | novig | $33k | -567 | ✅ kalshi | ✅ | +0.0c |  | W |
 | Nov 18 12:06PM | NBA | Milwaukee vs Miami: Spread | spread: Miami wins by over 11.5 points | kalshi | $46k | -104 | ✅ novig | ✅ | +2.0c | yes | L |
 | Nov 18 12:06PM | NHL | Montreal vs New Jersey: Spread | spread: NOT New Jersey wins by over 1.5 goals | kalshi | $29k | -163 | ✅ novig |  | +0.0c | yes | W |
-| Nov 18 12:06PM | NBA | Boston vs Denver: Spread | spread: NOT Boston wins by over 2.5 points | kalshi | $26k | -100 |  |  | +1.0c |  | pending |
+| Nov 18 12:06PM | NBA | Boston vs Denver: Spread | spread: NOT Boston wins by over 2.5 points | kalshi | $26k | -100 |  |  | +1.0c |  | W |
 | Nov 18 12:00PM | NBA | Milwaukee vs Miami | moneyline: Miami | kalshi | $146k | -567 | ✅ novig | ✅ | +1.0c | yes | W |
 | Nov 18 11:36AM | NBA | Chicago vs Brooklyn | moneyline: Chicago | kalshi | $77k | +127 | ✅ prophetx |  | +3.0c |  | W |
 | Nov 18 11:10AM | NBA | Washington vs Toronto: Total Points | total: NOT Over 227.5 points | kalshi | $58k | -108 |  |  | +6.0c | yes | W |
@@ -54,7 +54,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 18 9:25AM | NHL | Boston vs Detroit: Total Goals | total: NOT Over 5.5 goals scored | kalshi | $29k | +117 |  |  | +0.0c |  | W |
 | Nov 18 9:25AM | NHL | Colorado vs Utah | moneyline: Utah | kalshi | $35k | -104 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 18 9:20AM | NBA | Philadelphia vs Orlando: Total Points | total: Over 221.5 points | kalshi | $34k | -104 |  |  | -6.0c | yes | W |
-| Nov 18 9:20AM | NBA | Boston vs Denver: Total Points | total: NOT Over 222.5 points | kalshi | $37k | -104 |  | ❌ | +6.0c |  | pending |
+| Nov 18 9:20AM | NBA | Boston vs Denver: Total Points | total: NOT Over 222.5 points | kalshi | $37k | -104 |  | ❌ | +6.0c |  | W |
 | Nov 18 9:05AM | NCAAF | Central Michigan vs Buffalo: Spread | spread: Buffalo wins by over 2.5 points | kalshi | $41k | -100 | ✅ novig | ✅ | +2.0c |  | W |
 | Nov 18 8:55AM | NBA | Phoenix vs Sacramento: Spread | spread: Phoenix wins by over 6.5 points | kalshi | $31k | -104 |  | ✅ | +3.0c |  | pending |
 | Nov 18 7:36AM | NCAAF | Central Michigan vs Buffalo | moneyline: Buffalo | kalshi | $120k | -113 |  |  | +4.0c |  | W |
