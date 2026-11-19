@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 19, 5:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 27.
+Updated Thu Nov 19, 5:10 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 27.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -23,7 +23,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 19 4:00PM | NCAAB | Robert Morris vs Toledo: Spread | spread: Toledo wins by over 7.5 points | kalshi | $31k | -100 |  | ✅ | +0.0c |  | pending |
 | Nov 19 4:00PM | NCAAB | Northeastern vs Butler: Spread | spread: NOT Butler wins by over 15.5 points | kalshi | $35k | +108 |  |  | +0.0c |  | pending |
 | Nov 19 2:30PM | NCAAB | Wisconsin vs Seton Hall | moneyline: Wisconsin | kalshi | $115k | -194 | ✅ novig | ✅ | +1.0c |  | pending |
-| Nov 19 2:30PM | NCAAB | Little Rock vs Jacksonville | moneyline: Little Rock | kalshi | $39k | +117 | ✅ novig | ✅ | +0.0c |  | pending |
+| Nov 19 2:30PM | NCAAB | Little Rock vs Jacksonville | moneyline: Little Rock | kalshi | $39k | +117 | ✅ novig | ✅ | +1.0c |  | pending |
 | Nov 19 2:30PM | NCAAB | Charleston vs Drake | moneyline: Drake | kalshi | $39k | -113 |  | ✅ | +0.0c |  | pending |
 | Nov 19 2:20PM | NCAAB | West Virginia @ Florida | moneyline: FLA (0) | novig | $36k | -355 | ✅ kalshi,prophetx | ❌ | +0.0c |  | pending |
 | Nov 19 12:20PM | NCAAB | Florida vs West Virginia: Spread | spread: Florida wins by over 7.5 points | kalshi | $30k | -108 |  | ❌ | +1.0c | yes | W |
