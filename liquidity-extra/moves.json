@@ -1,6 +1,50 @@
 {
  "moves": [
   {
+   "alerted_utc": "2026-11-19T21:50:17Z",
+   "bar": false,
+   "best_price": 0.4977,
+   "best_price_book": "prophetx",
+   "book": "novig",
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "date": "2026-11-19",
+   "dir": "DROP",
+   "ex_stats": {
+    "openInterest": 1382901.0,
+    "volume": 1393099.0
+   },
+   "first_play": true,
+   "game": "Kansas @ Houston",
+   "key": "novig|{\"market_id\": \"01a1f23b-d624-71e3-b8ce-732d654a662e\", \"outcome_id\": \"01a1f23b-d624-71e3-b8ce-733797ccfa6d\"}",
+   "lead_min": 370,
+   "league": "NCAAB",
+   "league_x": 1.16,
+   "line": 151.5,
+   "market": "total",
+   "normal_4h": 4388,
+   "now": 2072,
+   "other_side_now": 1971,
+   "paper_only": true,
+   "price": 0.5,
+   "price_american": -100,
+   "ref": {
+    "market_id": "01a1f23b-d624-71e3-b8ce-732d654a662e",
+    "outcome_id": "01a1f23b-d624-71e3-b8ce-733797ccfa6d"
+   },
+   "result": null,
+   "side": "OVER",
+   "side_label": "Over 151.5 (151.5)",
+   "side_raw": "OVER",
+   "start_utc": "2026-11-20T04:00:00Z",
+   "teams": [
+    "Kansas",
+    "Houston"
+   ],
+   "units_flat": null,
+   "x": 0.47
+  },
+  {
    "alerted_utc": "2026-11-19T21:40:22Z",
    "bar": false,
    "best_price": 0.6168,
@@ -11,6 +55,11 @@
    "date": "2026-11-20",
    "dir": "RAISE",
    "ex_stats": {
+    "open_interest_fp": 3271.7000000000003,
+    "volume_24h_fp": 2796.33,
+    "volume_fp": 3706.2400000000002
+   },
+   "ex_stats_close": {
     "open_interest_fp": 3271.7000000000003,
     "volume_24h_fp": 2796.33,
     "volume_fp": 3706.2400000000002
@@ -51,14 +100,19 @@
    "best_price": 0.232,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.22,
-   "clv_cents": 0.0,
+   "close_price": 0.24,
+   "clv_cents": 2.0,
    "date": "2026-11-20",
    "dir": "RAISE",
    "ex_stats": {
     "open_interest_fp": 810.75,
     "volume_24h_fp": 345.18,
     "volume_fp": 810.75
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 1155.55,
+    "volume_24h_fp": 345.18,
+    "volume_fp": 1155.55
    },
    "first_play": true,
    "game": "Georgia vs Georgia Tech",
@@ -96,11 +150,16 @@
    "best_price": 0.4673,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.45,
-   "clv_cents": 0.0,
+   "close_price": 0.44,
+   "clv_cents": -1.0,
    "date": "2026-11-20",
    "dir": "RAISE",
    "ex_stats": {
+    "open_interest_fp": 3.0,
+    "volume_24h_fp": 1.0,
+    "volume_fp": 3.0
+   },
+   "ex_stats_close": {
     "open_interest_fp": 3.0,
     "volume_24h_fp": 1.0,
     "volume_fp": 3.0
@@ -141,11 +200,16 @@
    "best_price": 0.2424,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.23,
-   "clv_cents": 0.0,
+   "close_price": 0.25,
+   "clv_cents": 2.0,
    "date": "2026-11-20",
    "dir": "RAISE",
    "ex_stats": {
+    "open_interest_fp": 48.74,
+    "volume_24h_fp": 33.15,
+    "volume_fp": 48.74
+   },
+   "ex_stats_close": {
     "open_interest_fp": 48.74,
     "volume_24h_fp": 33.15,
     "volume_fp": 48.74
@@ -186,8 +250,8 @@
    "best_price": 0.5175,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.49,
+   "clv_cents": -1.0,
    "date": "2026-11-20",
    "dir": "RAISE",
    "ex_stats": {
@@ -197,7 +261,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 25.45,
-    "volume_24h_fp": 22.09,
+    "volume_24h_fp": 22.45,
     "volume_fp": 25.45
    },
    "first_play": true,
@@ -213,6 +277,8 @@
    "other_side_now": 8389,
    "paper_only": true,
    "price": 0.5,
+   "price_after_15m": 0.5075,
+   "price_after_15m_book": "kalshi",
    "price_american": -100,
    "ref": {
     "kalshi_side": "yes",
@@ -223,6 +289,7 @@
    "side_label": "Western Kentucky",
    "side_raw": 0,
    "start_utc": "2026-11-21T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Western Kentucky",
     "Richmond"
@@ -247,7 +314,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 25.45,
-    "volume_24h_fp": 22.09,
+    "volume_24h_fp": 22.45,
     "volume_fp": 25.45
    },
    "first_play": true,
@@ -263,6 +330,8 @@
    "other_side_now": 6764,
    "paper_only": true,
    "price": 0.53,
+   "price_after_15m": 0.535,
+   "price_after_15m_book": "novig",
    "price_american": -113,
    "ref": {
     "kalshi_side": "yes",
@@ -273,6 +342,7 @@
    "side_label": "Richmond",
    "side_raw": 1,
    "start_utc": "2026-11-21T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Western Kentucky",
     "Richmond"
@@ -313,6 +383,8 @@
    "other_side_now": 6288,
    "paper_only": true,
    "price": 0.67,
+   "price_after_15m": 0.65,
+   "price_after_15m_book": "novig",
    "price_american": -203,
    "ref": {
     "kalshi_side": "yes",
@@ -323,6 +395,7 @@
    "side_label": "Iona",
    "side_raw": 1,
    "start_utc": "2026-11-21T03:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Kansas City",
     "Iona"
@@ -336,8 +409,8 @@
    "best_price": 0.4168,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.41,
-   "clv_cents": 1.0,
+   "close_price": 0.4,
+   "clv_cents": 0.0,
    "date": "2026-11-20",
    "dir": "RAISE",
    "ex_stats": {
@@ -347,7 +420,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 4.0,
-    "volume_24h_fp": 0.0,
+    "volume_24h_fp": 4.0,
     "volume_fp": 4.0
    },
    "first_play": true,
@@ -363,6 +436,8 @@
    "other_side_now": 9608,
    "paper_only": true,
    "price": 0.4,
+   "price_after_15m": 0.4,
+   "price_after_15m_book": "novig",
    "price_american": 150,
    "ref": {
     "kalshi_side": "yes",
@@ -373,6 +448,7 @@
    "side_label": "Monmouth",
    "side_raw": 0,
    "start_utc": "2026-11-21T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Monmouth",
     "Princeton"
@@ -397,7 +473,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 4.0,
-    "volume_24h_fp": 0.0,
+    "volume_24h_fp": 4.0,
     "volume_fp": 4.0
    },
    "first_play": true,
@@ -413,6 +489,8 @@
    "other_side_now": 5293,
    "paper_only": true,
    "price": 0.64,
+   "price_after_15m": 0.6365,
+   "price_after_15m_book": "kalshi",
    "price_american": -178,
    "ref": {
     "kalshi_side": "yes",
@@ -423,6 +501,7 @@
    "side_label": "Princeton",
    "side_raw": 1,
    "start_utc": "2026-11-21T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Monmouth",
     "Princeton"
@@ -542,8 +621,8 @@
    "best_price": 0.3352,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.32,
-   "clv_cents": 0.0,
+   "close_price": 0.31,
+   "clv_cents": -1.0,
    "date": "2026-11-20",
    "dir": "RAISE",
    "ex_stats": {
@@ -605,9 +684,9 @@
     "volume_fp": 131.19
    },
    "ex_stats_close": {
-    "open_interest_fp": 211.86,
+    "open_interest_fp": 285.5,
     "volume_24h_fp": 138.04000000000002,
-    "volume_fp": 211.86
+    "volume_fp": 285.5
    },
    "first_play": true,
    "game": "Northwestern vs Virginia Tech",
@@ -818,7 +897,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 76.03999999999999,
-    "volume_24h_fp": 75.71000000000001,
+    "volume_24h_fp": 76.03999999999999,
     "volume_fp": 76.03999999999999
    },
    "first_play": true,
@@ -871,7 +950,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 76.03999999999999,
-    "volume_24h_fp": 75.71000000000001,
+    "volume_24h_fp": 76.03999999999999,
     "volume_fp": 76.03999999999999
    },
    "first_play": true,
@@ -1030,7 +1109,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 137.75,
-    "volume_24h_fp": 36.99,
+    "volume_24h_fp": 43.71,
     "volume_fp": 137.75
    },
    "first_play": true,
@@ -1082,9 +1161,9 @@
     "volume_fp": 7611.58
    },
    "ex_stats_close": {
-    "open_interest_fp": 8054.91,
-    "volume_24h_fp": 7937.99,
-    "volume_fp": 8054.91
+    "open_interest_fp": 8105.860000000001,
+    "volume_24h_fp": 8054.91,
+    "volume_fp": 8105.860000000001
    },
    "first_play": false,
    "game": "UTEP vs New Mexico St.",
@@ -1178,8 +1257,8 @@
    "best_price": 0.5525,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5455,
-   "clv_cents": -0.2,
+   "close_price": 0.5434,
+   "clv_cents": -0.4,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": null,
@@ -1372,9 +1451,9 @@
     "volume_fp": 1796.32
    },
    "ex_stats_close": {
-    "open_interest_fp": 2581.85,
-    "volume_24h_fp": 2116.71,
-    "volume_fp": 2581.85
+    "open_interest_fp": 2587.42,
+    "volume_24h_fp": 2581.85,
+    "volume_fp": 2587.42
    },
    "first_play": false,
    "game": "UTEP vs New Mexico St.: Point Total",
@@ -1425,9 +1504,9 @@
     "volume_fp": 1796.32
    },
    "ex_stats_close": {
-    "open_interest_fp": 2581.85,
-    "volume_24h_fp": 2116.71,
-    "volume_fp": 2581.85
+    "open_interest_fp": 2587.42,
+    "volume_24h_fp": 2581.85,
+    "volume_fp": 2587.42
    },
    "first_play": false,
    "game": "UTEP vs New Mexico St.: Point Total",
@@ -1468,8 +1547,8 @@
    "best_price": 0.8112,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.8,
-   "clv_cents": 0.0,
+   "close_price": 0.79,
+   "clv_cents": -1.0,
    "date": "2026-11-20",
    "dir": "RAISE",
    "ex_stats": {
@@ -1478,9 +1557,9 @@
     "volume_fp": 410.75
    },
    "ex_stats_close": {
-    "open_interest_fp": 810.75,
+    "open_interest_fp": 1155.55,
     "volume_24h_fp": 345.18,
-    "volume_fp": 810.75
+    "volume_fp": 1155.55
    },
    "first_play": true,
    "game": "Georgia vs Georgia Tech",
@@ -1627,8 +1706,8 @@
    "best_price": 0.3965,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.4,
-   "clv_cents": 2.0,
+   "close_price": 0.41,
+   "clv_cents": 3.0,
    "date": "2026-11-20",
    "dir": "RAISE",
    "ex_stats": {
@@ -1637,9 +1716,9 @@
     "volume_fp": 501.65999999999997
    },
    "ex_stats_close": {
-    "open_interest_fp": 583.9499999999999,
-    "volume_24h_fp": 274.54,
-    "volume_fp": 583.9499999999999
+    "open_interest_fp": 631.5,
+    "volume_24h_fp": 281.73,
+    "volume_fp": 631.5
    },
    "first_play": true,
    "game": "Iowa vs Xavier",
@@ -1680,8 +1759,8 @@
    "best_price": 0.6561,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.62,
-   "clv_cents": -2.0,
+   "close_price": 0.6,
+   "clv_cents": -4.0,
    "date": "2026-11-20",
    "dir": "RAISE",
    "ex_stats": {
@@ -1690,9 +1769,9 @@
     "volume_fp": 501.65999999999997
    },
    "ex_stats_close": {
-    "open_interest_fp": 583.9499999999999,
-    "volume_24h_fp": 274.54,
-    "volume_fp": 583.9499999999999
+    "open_interest_fp": 631.5,
+    "volume_24h_fp": 281.73,
+    "volume_fp": 631.5
    },
    "first_play": true,
    "game": "Iowa vs Xavier",
@@ -1786,8 +1865,8 @@
    "best_price": 0.3455,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.35,
-   "clv_cents": 2.0,
+   "close_price": 0.37,
+   "clv_cents": 4.0,
    "date": "2026-11-20",
    "dir": "RAISE",
    "ex_stats": {
@@ -1892,8 +1971,8 @@
    "best_price": 0.6365,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.59,
-   "clv_cents": -3.0,
+   "close_price": 0.57,
+   "clv_cents": -5.0,
    "date": "2026-11-20",
    "dir": "RAISE",
    "ex_stats": {
@@ -2009,7 +2088,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 167.68,
-    "volume_24h_fp": 148.72,
+    "volume_24h_fp": 167.68,
     "volume_fp": 167.68
    },
    "first_play": true,
@@ -2168,7 +2247,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 254.85,
-    "volume_24h_fp": 10.35,
+    "volume_24h_fp": 60.35,
     "volume_fp": 254.85
    },
    "first_play": true,
@@ -2210,8 +2289,8 @@
    "best_price": 0.5872,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.57,
-   "clv_cents": 0.0,
+   "close_price": 0.56,
+   "clv_cents": -1.0,
    "date": "2026-11-20",
    "dir": "RAISE",
    "ex_stats": {
@@ -2221,7 +2300,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 254.85,
-    "volume_24h_fp": 10.35,
+    "volume_24h_fp": 60.35,
     "volume_fp": 254.85
    },
    "first_play": true,
@@ -2380,7 +2459,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1278.68,
-    "volume_24h_fp": 57.17,
+    "volume_24h_fp": 57.47,
     "volume_fp": 1284.68
    },
    "first_play": true,
@@ -2667,8 +2746,8 @@
    "best_price": 0.5971,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.6,
-   "clv_cents": 2.0,
+   "close_price": 0.61,
+   "clv_cents": 3.0,
    "date": "2026-11-20",
    "dir": "RAISE",
    "ex_stats": {
@@ -2678,7 +2757,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 181.09,
-    "volume_24h_fp": 180.77,
+    "volume_24h_fp": 181.09,
     "volume_fp": 181.09
    },
    "first_play": true,
@@ -2729,8 +2808,8 @@
     "volume": 2605831.0
    },
    "ex_stats_close": {
-    "openInterest": 2499227.0,
-    "volume": 2836618.0
+    "openInterest": 2499584.0,
+    "volume": 2837332.0
    },
    "first_play": false,
    "game": "Stetson @ Louisville",
@@ -3265,8 +3344,8 @@
     "volume": 3698479.0
    },
    "ex_stats_close": {
-    "openInterest": 4067692.0,
-    "volume": 4885142.0
+    "openInterest": 4098460.0,
+    "volume": 4915910.0
    },
    "first_play": false,
    "game": "Texas A&M @ TCU",
@@ -3360,8 +3439,8 @@
    "best_price": 0.8112,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.8,
-   "clv_cents": 0.0,
+   "close_price": 0.79,
+   "clv_cents": -1.0,
    "date": "2026-11-20",
    "dir": "DROP",
    "ex_stats": {
@@ -3370,9 +3449,9 @@
     "volume_fp": 406.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 810.75,
+    "open_interest_fp": 1155.55,
     "volume_24h_fp": 345.18,
-    "volume_fp": 810.75
+    "volume_fp": 1155.55
    },
    "first_play": true,
    "game": "Georgia vs Georgia Tech",
@@ -3505,8 +3584,8 @@
    "best_price": 0.505,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5025,
-   "clv_cents": -0.7,
+   "close_price": 0.5074,
+   "clv_cents": -0.2,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": null,
@@ -3796,8 +3875,8 @@
    "best_price": 0.5288,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5305,
-   "clv_cents": 0.7,
+   "close_price": 0.5283,
+   "clv_cents": 0.4,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": null,
@@ -3888,8 +3967,8 @@
    "best_price": 0.52,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.495,
-   "clv_cents": -2.5,
+   "close_price": 0.5,
+   "clv_cents": -2.0,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": {
@@ -3897,8 +3976,8 @@
     "volume": 892282.0
    },
    "ex_stats_close": {
-    "openInterest": 3773659.0,
-    "volume": 3975635.0
+    "openInterest": 4650784.0,
+    "volume": 4873325.0
    },
    "first_play": false,
    "game": "Kansas @ Houston",
@@ -3948,8 +4027,8 @@
     "volume": 892282.0
    },
    "ex_stats_close": {
-    "openInterest": 3773659.0,
-    "volume": 3975635.0
+    "openInterest": 4650784.0,
+    "volume": 4873325.0
    },
    "first_play": false,
    "game": "Kansas @ Houston",
@@ -4189,8 +4268,8 @@
    "best_price": 0.542,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5902,
-   "clv_cents": 5.3,
+   "close_price": 0.5868,
+   "clv_cents": 5.0,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": null,
@@ -4295,8 +4374,8 @@
     "volume": 420085.0
    },
    "ex_stats_close": {
-    "openInterest": 1361792.0,
-    "volume": 1383147.0
+    "openInterest": 1373792.0,
+    "volume": 1395147.0
    },
    "first_play": false,
    "game": "Little Rock @ Jacksonville",
@@ -4688,8 +4767,8 @@
     "volume": 463272.0
    },
    "ex_stats_close": {
-    "openInterest": 536708.0,
-    "volume": 710183.0
+    "openInterest": 564817.0,
+    "volume": 738292.0
    },
    "first_play": true,
    "game": "Sacramento State @ Stanford",
@@ -4739,8 +4818,8 @@
     "volume": 1873664.0
    },
    "ex_stats_close": {
-    "openInterest": 4067692.0,
-    "volume": 4885142.0
+    "openInterest": 4098460.0,
+    "volume": 4915910.0
    },
    "first_play": false,
    "game": "Texas A&M @ TCU",
@@ -4790,8 +4869,8 @@
     "volume": 1873664.0
    },
    "ex_stats_close": {
-    "openInterest": 4067692.0,
-    "volume": 4885142.0
+    "openInterest": 4098460.0,
+    "volume": 4915910.0
    },
    "first_play": false,
    "game": "Texas A&M @ TCU",
@@ -5038,8 +5117,8 @@
    "best_price": 0.8,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.81,
-   "clv_cents": 1.0,
+   "close_price": 0.805,
+   "clv_cents": 0.5,
    "date": "2026-11-20",
    "dir": "DROP",
    "ex_stats": {
@@ -5047,8 +5126,8 @@
     "volume": 1609124.0
    },
    "ex_stats_close": {
-    "openInterest": 1726289.0,
-    "volume": 2400418.0
+    "openInterest": 1731167.0,
+    "volume": 2405296.0
    },
    "first_play": true,
    "game": "Flavio Cobolli @ Carlos Alcaraz N/A",
@@ -5742,8 +5821,8 @@
    "best_price": 0.5026,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.4926,
-   "clv_cents": -0.5,
+   "close_price": 0.4785,
+   "clv_cents": -1.9,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": null,
@@ -5797,8 +5876,8 @@
     "volume": 197491.0
    },
    "ex_stats_close": {
-    "openInterest": 1212602.0,
-    "volume": 1435511.0
+    "openInterest": 1226325.0,
+    "volume": 1505234.0
    },
    "first_play": true,
    "game": "Montana State @ High Point",
@@ -6604,8 +6683,8 @@
    "best_price": 0.5673,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.55,
-   "clv_cents": 0.0,
+   "close_price": 0.54,
+   "clv_cents": -1.0,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": {
@@ -6614,9 +6693,9 @@
     "volume_fp": 2891.03
    },
    "ex_stats_close": {
-    "open_interest_fp": 135698.16,
-    "volume_24h_fp": 106152.05,
-    "volume_fp": 163456.67
+    "open_interest_fp": 173677.71,
+    "volume_24h_fp": 149817.61,
+    "volume_fp": 238946.35
    },
    "first_play": false,
    "game": "Notre Dame vs Auburn: Spread",
@@ -6667,9 +6746,9 @@
     "volume_fp": 2891.03
    },
    "ex_stats_close": {
-    "open_interest_fp": 135698.16,
-    "volume_24h_fp": 106152.05,
-    "volume_fp": 163456.67
+    "open_interest_fp": 173677.71,
+    "volume_24h_fp": 149817.61,
+    "volume_fp": 238946.35
    },
    "first_play": false,
    "game": "Notre Dame vs Auburn: Spread",
@@ -6765,8 +6844,8 @@
     "volume": 687702.0
    },
    "ex_stats_close": {
-    "openInterest": 1196179.0,
-    "volume": 1702430.0
+    "openInterest": 1207246.0,
+    "volume": 1725577.0
    },
    "first_play": false,
    "game": "Tarleton State @ USC",
@@ -7117,8 +7196,8 @@
     "volume": 361651.0
    },
    "ex_stats_close": {
-    "openInterest": 1588830.0,
-    "volume": 1694978.0
+    "openInterest": 1623682.0,
+    "volume": 1730153.0
    },
    "first_play": true,
    "game": "Oregon State @ Oregon",
@@ -7159,8 +7238,8 @@
    "best_price": 0.505,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.525,
-   "clv_cents": 2.0,
+   "close_price": 0.52,
+   "clv_cents": 1.5,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": {
@@ -7168,8 +7247,8 @@
     "volume": 361651.0
    },
    "ex_stats_close": {
-    "openInterest": 1588830.0,
-    "volume": 1694978.0
+    "openInterest": 1623682.0,
+    "volume": 1730153.0
    },
    "first_play": true,
    "game": "Oregon State @ Oregon",
@@ -7219,8 +7298,8 @@
     "volume": 12380.0
    },
    "ex_stats_close": {
-    "openInterest": 837395.0,
-    "volume": 1796407.0
+    "openInterest": 837735.0,
+    "volume": 1796747.0
    },
    "first_play": false,
    "game": "Southern Utah @ Texas",
@@ -7270,8 +7349,8 @@
     "volume": 12380.0
    },
    "ex_stats_close": {
-    "openInterest": 837395.0,
-    "volume": 1796407.0
+    "openInterest": 837735.0,
+    "volume": 1796747.0
    },
    "first_play": false,
    "game": "Southern Utah @ Texas",
@@ -7345,7 +7424,7 @@
     "outcome_id": "01a1f23b-ce25-7892-ac80-c9e7ca1ca218"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "UNDER",
    "side_label": "Under 147.5 (147.5)",
    "side_raw": "UNDER",
@@ -7364,8 +7443,8 @@
    "best_price": 0.51,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5,
-   "clv_cents": -0.5,
+   "close_price": 0.5122,
+   "clv_cents": 0.7,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": null,
@@ -7614,8 +7693,8 @@
    "best_price": 0.49,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.485,
-   "clv_cents": -0.5,
+   "close_price": 0.48,
+   "clv_cents": -1.0,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": {
@@ -7623,8 +7702,8 @@
     "volume": 844990.0
    },
    "ex_stats_close": {
-    "openInterest": 2317588.0,
-    "volume": 2530449.0
+    "openInterest": 2333105.0,
+    "volume": 2545966.0
    },
    "first_play": false,
    "game": "Buffalo @ St. Bonaventure",
@@ -7834,7 +7913,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "OVER",
    "side_label": "over 147.5 (147.5)",
    "side_raw": "OVER",
@@ -7881,7 +7960,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "UNDER",
    "side_label": "under 147.5 (147.5)",
    "side_raw": "UNDER",
@@ -7909,8 +7988,8 @@
     "volume": 290372.0
    },
    "ex_stats_close": {
-    "openInterest": 536708.0,
-    "volume": 710183.0
+    "openInterest": 564817.0,
+    "volume": 738292.0
    },
    "first_play": false,
    "game": "Sacramento State @ Stanford",
@@ -7951,8 +8030,8 @@
    "best_price": 0.495,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.5,
-   "clv_cents": 0.5,
+   "close_price": 0.515,
+   "clv_cents": 2.0,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": {
@@ -7960,8 +8039,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 145422.0,
-    "volume": 236639.0
+    "openInterest": 4822694.0,
+    "volume": 5541120.0
    },
    "first_play": false,
    "game": "Auburn @ Notre Dame",
@@ -8081,7 +8160,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "West Virginia",
    "side_label": "West Virginia +9.5 (+9.5)",
    "side_raw": 0,
@@ -8100,8 +8179,8 @@
    "best_price": 0.5,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.525,
-   "clv_cents": 2.5,
+   "close_price": 0.53,
+   "clv_cents": 3.0,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": {
@@ -8160,8 +8239,8 @@
     "volume": 152553.0
    },
    "ex_stats_close": {
-    "openInterest": 219169.0,
-    "volume": 364285.0
+    "openInterest": 252973.0,
+    "volume": 405108.0
    },
    "first_play": false,
    "game": "Southeast Missouri State @ St. Thomas-Minnesota",
@@ -8212,9 +8291,9 @@
     "volume_fp": 6910.16
    },
    "ex_stats_close": {
-    "open_interest_fp": 9624.51,
+    "open_interest_fp": 9817.74,
     "volume_24h_fp": 11487.06,
-    "volume_fp": 11487.06
+    "volume_fp": 11680.29
    },
    "first_play": false,
    "game": "Georgia Southern vs Houston Christian: Spread",
@@ -8413,9 +8492,9 @@
     "volume_fp": 273.69
    },
    "ex_stats_close": {
-    "open_interest_fp": 824.46,
-    "volume_24h_fp": 889.92,
-    "volume_fp": 909.24
+    "open_interest_fp": 843.41,
+    "volume_24h_fp": 909.24,
+    "volume_fp": 928.19
    },
    "first_play": false,
    "game": "Southern Miss vs Grambling St.: Spread",
@@ -8466,9 +8545,9 @@
     "volume_fp": 1275.56
    },
    "ex_stats_close": {
-    "open_interest_fp": 45710.03999999999,
-    "volume_24h_fp": 45685.61,
-    "volume_fp": 45792.57
+    "open_interest_fp": 45695.45,
+    "volume_24h_fp": 45720.96000000001,
+    "volume_fp": 45817.78
    },
    "first_play": false,
    "game": "Maine vs Quinnipiac",
@@ -8662,9 +8741,9 @@
     "volume_fp": 273.69
    },
    "ex_stats_close": {
-    "open_interest_fp": 824.46,
-    "volume_24h_fp": 889.92,
-    "volume_fp": 909.24
+    "open_interest_fp": 843.41,
+    "volume_24h_fp": 909.24,
+    "volume_fp": 928.19
    },
    "first_play": false,
    "game": "Southern Miss vs Grambling St.: Spread",
@@ -8715,9 +8794,9 @@
     "volume_fp": 603.94
    },
    "ex_stats_close": {
-    "open_interest_fp": 1619.08,
+    "open_interest_fp": 1717.6,
     "volume_24h_fp": 1898.61,
-    "volume_fp": 1898.61
+    "volume_fp": 1997.13
    },
    "first_play": false,
    "game": "Montana St. vs High Point: Point Total",
@@ -8866,8 +8945,8 @@
     "volume": 320988.0
    },
    "ex_stats_close": {
-    "openInterest": 1703191.0,
-    "volume": 2026001.0
+    "openInterest": 1708399.0,
+    "volume": 2031209.0
    },
    "first_play": false,
    "game": "Southern Mississippi @ Grambling",
@@ -8918,7 +8997,7 @@
    },
    "ex_stats_close": {
     "openInterest": 2808603.0,
-    "volume": 3928132.0
+    "volume": 3948295.0
    },
    "first_play": true,
    "game": "Georgia Southern @ Houston Christian",
@@ -8968,8 +9047,8 @@
     "volume": 17019.0
    },
    "ex_stats_close": {
-    "openInterest": 2432804.0,
-    "volume": 3217795.0
+    "openInterest": 2434652.0,
+    "volume": 3249676.0
    },
    "first_play": true,
    "game": "Maine @ Quinnipiac",
@@ -9019,8 +9098,8 @@
     "volume": 17019.0
    },
    "ex_stats_close": {
-    "openInterest": 2432804.0,
-    "volume": 3217795.0
+    "openInterest": 2434652.0,
+    "volume": 3249676.0
    },
    "first_play": false,
    "game": "Maine @ Quinnipiac",
@@ -9200,8 +9279,8 @@
    "best_price": 0.51,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5935,
-   "clv_cents": 8.9,
+   "close_price": 0.5726,
+   "clv_cents": 6.8,
    "date": "2026-11-19",
    "dir": "DROP",
    "ex_stats": null,
@@ -9246,8 +9325,8 @@
    "best_price": 0.52,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.525,
-   "clv_cents": 0.5,
+   "close_price": 0.51,
+   "clv_cents": -1.0,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": {
@@ -9255,8 +9334,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 145422.0,
-    "volume": 236639.0
+    "openInterest": 4822694.0,
+    "volume": 5541120.0
    },
    "first_play": false,
    "game": "Auburn @ Notre Dame",
@@ -9399,7 +9478,7 @@
    },
    "ex_stats_close": {
     "openInterest": 4586794.0,
-    "volume": 5453596.0
+    "volume": 5459031.0
    },
    "first_play": true,
    "game": "VCU @ Santa Clara",
@@ -9440,8 +9519,8 @@
    "best_price": 0.48,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.465,
-   "clv_cents": -1.5,
+   "close_price": 0.47,
+   "clv_cents": -1.0,
    "date": "2026-11-19",
    "dir": "DROP",
    "ex_stats": {
@@ -9449,8 +9528,8 @@
     "volume": 1016104.0
    },
    "ex_stats_close": {
-    "openInterest": 1412105.0,
-    "volume": 1661816.0
+    "openInterest": 1466874.0,
+    "volume": 1728073.0
    },
    "first_play": true,
    "game": "Oregon State @ Oregon",
@@ -9500,8 +9579,8 @@
     "volume": 1016104.0
    },
    "ex_stats_close": {
-    "openInterest": 1412105.0,
-    "volume": 1661816.0
+    "openInterest": 1466874.0,
+    "volume": 1728073.0
    },
    "first_play": true,
    "game": "Oregon State @ Oregon",
@@ -9551,8 +9630,8 @@
     "volume": 321238.0
    },
    "ex_stats_close": {
-    "openInterest": 1053739.0,
-    "volume": 1308803.0
+    "openInterest": 1077476.0,
+    "volume": 1332540.0
    },
    "first_play": true,
    "game": "UC Santa Barbara @ Pepperdine",
@@ -9602,8 +9681,8 @@
     "volume": 321238.0
    },
    "ex_stats_close": {
-    "openInterest": 1053739.0,
-    "volume": 1308803.0
+    "openInterest": 1077476.0,
+    "volume": 1332540.0
    },
    "first_play": false,
    "game": "UC Santa Barbara @ Pepperdine",
@@ -9653,8 +9732,8 @@
     "volume": 910628.0
    },
    "ex_stats_close": {
-    "openInterest": 3966366.0,
-    "volume": 5509868.0
+    "openInterest": 3967261.0,
+    "volume": 5510763.0
    },
    "first_play": false,
    "game": "Seton Hall @ Wisconsin",
@@ -9704,8 +9783,8 @@
     "volume": 910628.0
    },
    "ex_stats_close": {
-    "openInterest": 3966366.0,
-    "volume": 5509868.0
+    "openInterest": 3967261.0,
+    "volume": 5510763.0
    },
    "first_play": true,
    "game": "Seton Hall @ Wisconsin",
@@ -9755,8 +9834,8 @@
     "volume": 1513190.0
    },
    "ex_stats_close": {
-    "openInterest": 3557674.0,
-    "volume": 5181831.0
+    "openInterest": 3669368.0,
+    "volume": 5477865.0
    },
    "first_play": false,
    "game": "Texas A&M @ TCU",
@@ -9806,8 +9885,8 @@
     "volume": 1513190.0
    },
    "ex_stats_close": {
-    "openInterest": 3557674.0,
-    "volume": 5181831.0
+    "openInterest": 3669368.0,
+    "volume": 5477865.0
    },
    "first_play": false,
    "game": "Texas A&M @ TCU",
@@ -9857,8 +9936,8 @@
     "volume": 2774486.0
    },
    "ex_stats_close": {
-    "openInterest": 4098373.0,
-    "volume": 4613308.0
+    "openInterest": 4119840.0,
+    "volume": 4634775.0
    },
    "first_play": true,
    "game": "Tulane @ Louisiana Tech",
@@ -9908,8 +9987,8 @@
     "volume": 2774486.0
    },
    "ex_stats_close": {
-    "openInterest": 4098373.0,
-    "volume": 4613308.0
+    "openInterest": 4119840.0,
+    "volume": 4634775.0
    },
    "first_play": false,
    "game": "Tulane @ Louisiana Tech",
@@ -9959,8 +10038,8 @@
     "volume": 103767.0
    },
    "ex_stats_close": {
-    "openInterest": 817827.0,
-    "volume": 891020.0
+    "openInterest": 829854.0,
+    "volume": 903047.0
    },
    "first_play": false,
    "game": "Robert Morris @ Toledo",
@@ -10010,8 +10089,8 @@
     "volume": 103767.0
    },
    "ex_stats_close": {
-    "openInterest": 817827.0,
-    "volume": 891020.0
+    "openInterest": 829854.0,
+    "volume": 903047.0
    },
    "first_play": false,
    "game": "Robert Morris @ Toledo",
@@ -10061,8 +10140,8 @@
     "volume": 107510.0
    },
    "ex_stats_close": {
-    "openInterest": 3215696.0,
-    "volume": 4304486.0
+    "openInterest": 3479135.0,
+    "volume": 4567925.0
    },
    "first_play": false,
    "game": "Murray State @ North Carolina State",
@@ -10207,8 +10286,8 @@
     "volume": 253955.0
    },
    "ex_stats_close": {
-    "openInterest": 1361792.0,
-    "volume": 1383147.0
+    "openInterest": 1373792.0,
+    "volume": 1395147.0
    },
    "first_play": false,
    "game": "Little Rock @ Jacksonville",
@@ -10258,8 +10337,8 @@
     "volume": 253955.0
    },
    "ex_stats_close": {
-    "openInterest": 1361792.0,
-    "volume": 1383147.0
+    "openInterest": 1373792.0,
+    "volume": 1395147.0
    },
    "first_play": false,
    "game": "Little Rock @ Jacksonville",
@@ -10310,9 +10389,9 @@
     "volume_fp": 136.75
    },
    "ex_stats_close": {
-    "open_interest_fp": 8937.39,
-    "volume_24h_fp": 7006.22,
-    "volume_fp": 9090.72
+    "open_interest_fp": 9765.16,
+    "volume_24h_fp": 7155.42,
+    "volume_fp": 10172.69
    },
    "first_play": false,
    "game": "Rutgers vs UNLV: Spread",
@@ -10363,9 +10442,9 @@
     "volume_fp": 136.75
    },
    "ex_stats_close": {
-    "open_interest_fp": 8937.39,
-    "volume_24h_fp": 7006.22,
-    "volume_fp": 9090.72
+    "open_interest_fp": 9765.16,
+    "volume_24h_fp": 7155.42,
+    "volume_fp": 10172.69
    },
    "first_play": false,
    "game": "Rutgers vs UNLV: Spread",
@@ -10415,8 +10494,8 @@
     "volume": 769388.0
    },
    "ex_stats_close": {
-    "openInterest": 1726289.0,
-    "volume": 2400418.0
+    "openInterest": 1731167.0,
+    "volume": 2405296.0
    },
    "first_play": true,
    "game": "Flavio Cobolli @ Carlos Alcaraz N/A",
@@ -10556,8 +10635,8 @@
    "best_price": 0.51,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.53,
-   "clv_cents": 2.0,
+   "close_price": 0.52,
+   "clv_cents": 1.0,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": {
@@ -10565,8 +10644,8 @@
     "volume": 37852.0
    },
    "ex_stats_close": {
-    "openInterest": 5561429.0,
-    "volume": 6305070.0
+    "openInterest": 6660914.0,
+    "volume": 7673310.0
    },
    "first_play": false,
    "game": "Auburn @ Notre Dame",
@@ -10607,8 +10686,8 @@
    "best_price": 0.505,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.475,
-   "clv_cents": -3.0,
+   "close_price": 0.485,
+   "clv_cents": -2.0,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": {
@@ -10616,8 +10695,8 @@
     "volume": 37852.0
    },
    "ex_stats_close": {
-    "openInterest": 5561429.0,
-    "volume": 6305070.0
+    "openInterest": 6660914.0,
+    "volume": 7673310.0
    },
    "first_play": false,
    "game": "Auburn @ Notre Dame",
@@ -10711,8 +10790,8 @@
    "best_price": 0.6,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.6124,
-   "clv_cents": 1.2,
+   "close_price": 0.6183,
+   "clv_cents": 1.8,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": null,
@@ -10757,8 +10836,8 @@
    "best_price": 0.405,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.4,
-   "clv_cents": -1.0,
+   "close_price": 0.3876,
+   "clv_cents": -2.2,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": null,
@@ -10836,7 +10915,7 @@
     "outcome_id": "01a1f23b-ce24-79f0-8563-f44ffd6a8234"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "Florida",
    "side_label": "FLA (0)",
    "side_raw": 1,
@@ -11193,8 +11272,8 @@
    "best_price": 0.435,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.3937,
-   "clv_cents": -5.5,
+   "close_price": 0.3968,
+   "clv_cents": -5.2,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": null,
@@ -11285,8 +11364,8 @@
    "best_price": 0.79,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.77,
-   "clv_cents": -2.0,
+   "close_price": 0.785,
+   "clv_cents": -0.5,
    "date": "2026-11-20",
    "dir": "RAISE",
    "ex_stats": {
@@ -11336,8 +11415,8 @@
    "best_price": 0.415,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.395,
-   "clv_cents": -2.0,
+   "close_price": 0.385,
+   "clv_cents": -3.0,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": {
@@ -11345,8 +11424,8 @@
     "volume": 66184.0
    },
    "ex_stats_close": {
-    "openInterest": 13933586.0,
-    "volume": 17879842.0
+    "openInterest": 21236779.0,
+    "volume": 25364638.0
    },
    "first_play": false,
    "game": "Auburn @ Notre Dame",
@@ -11672,9 +11751,9 @@
     "volume_fp": 18.94
    },
    "ex_stats_close": {
-    "open_interest_fp": 13810.56,
+    "open_interest_fp": 14187.31,
     "volume_24h_fp": 13810.58,
-    "volume_fp": 13810.58
+    "volume_fp": 14187.33
    },
    "first_play": true,
    "game": "Georgia Southern vs Houston Christian: Point Total",
@@ -11775,8 +11854,8 @@
     "volume": 226443.0
    },
    "ex_stats_close": {
-    "openInterest": 1703191.0,
-    "volume": 2026001.0
+    "openInterest": 1708399.0,
+    "volume": 2031209.0
    },
    "first_play": false,
    "game": "Southern Mississippi @ Grambling",
@@ -11827,7 +11906,7 @@
    },
    "ex_stats_close": {
     "openInterest": 2808603.0,
-    "volume": 3928132.0
+    "volume": 3948295.0
    },
    "first_play": false,
    "game": "Georgia Southern @ Houston Christian",
@@ -11915,8 +11994,8 @@
    "best_price": 0.51,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5935,
-   "clv_cents": 8.9,
+   "close_price": 0.5726,
+   "clv_cents": 6.8,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": null,
@@ -12114,8 +12193,8 @@
    "best_price": 0.5574,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.47,
-   "clv_cents": -7.0,
+   "close_price": 0.49,
+   "clv_cents": -5.0,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": {
@@ -12124,9 +12203,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 4596.36,
-    "volume_24h_fp": 5497.3,
-    "volume_fp": 5532.56
+    "open_interest_fp": 5496.17,
+    "volume_24h_fp": 5532.56,
+    "volume_fp": 6432.37
    },
    "first_play": false,
    "game": "Tulane vs Louisiana Tech: Spread",
@@ -12167,8 +12246,8 @@
    "best_price": 0.475,
    "best_price_book": "novig",
    "book": "kalshi",
-   "close_price": 0.54,
-   "clv_cents": 6.0,
+   "close_price": 0.52,
+   "clv_cents": 4.0,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": {
@@ -12177,9 +12256,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 4596.36,
-    "volume_24h_fp": 5497.3,
-    "volume_fp": 5532.56
+    "open_interest_fp": 5496.17,
+    "volume_24h_fp": 5532.56,
+    "volume_fp": 6432.37
    },
    "first_play": false,
    "game": "Tulane vs Louisiana Tech: Spread",
@@ -12452,7 +12531,7 @@
     "outcome_id": "01a1f23b-ce25-7892-ac80-ca1316c35557"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "UNDER",
    "side_label": "Under 149.5 (149.5)",
    "side_raw": "UNDER",
@@ -12504,7 +12583,7 @@
     "outcome_id": "01a1f23b-ce25-7892-ac80-ca00b8f0e2b1"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "OVER",
    "side_label": "Over 149.5 (149.5)",
    "side_raw": "OVER",
@@ -12586,9 +12665,9 @@
     "volume_fp": 185.56
    },
    "ex_stats_close": {
-    "open_interest_fp": 1619.08,
+    "open_interest_fp": 1717.6,
     "volume_24h_fp": 1898.61,
-    "volume_fp": 1898.61
+    "volume_fp": 1997.13
    },
    "first_play": false,
    "game": "Montana St. vs High Point: Point Total",
@@ -12629,8 +12708,8 @@
    "best_price": 0.6017,
    "best_price_book": "prophetx",
    "book": "kalshi",
-   "close_price": 0.5,
-   "clv_cents": -9.0,
+   "close_price": 0.49,
+   "clv_cents": -10.0,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": {
@@ -12640,7 +12719,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 11793.55,
-    "volume_24h_fp": 12394.51,
+    "volume_24h_fp": 12419.05,
     "volume_fp": 12419.05
    },
    "first_play": false,
@@ -12692,9 +12771,9 @@
     "volume_fp": 287.04
    },
    "ex_stats_close": {
-    "open_interest_fp": 44775.86,
-    "volume_24h_fp": 35128.28,
-    "volume_fp": 50271.46
+    "open_interest_fp": 72573.63,
+    "volume_24h_fp": 46755.42,
+    "volume_fp": 82874.75
    },
    "first_play": false,
    "game": "Notre Dame vs Auburn: Spread",
@@ -12735,8 +12814,8 @@
    "best_price": 0.825,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.7917,
-   "clv_cents": -5.2,
+   "close_price": 0.7938,
+   "clv_cents": -5.0,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": null,
@@ -12781,8 +12860,8 @@
    "best_price": 0.43,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.465,
-   "clv_cents": 3.5,
+   "close_price": 0.47,
+   "clv_cents": 4.0,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": {
@@ -12790,8 +12869,8 @@
     "volume": 97810.0
    },
    "ex_stats_close": {
-    "openInterest": 2080749.0,
-    "volume": 2201356.0
+    "openInterest": 2112364.0,
+    "volume": 2254416.0
    },
    "first_play": false,
    "game": "Little Rock @ Jacksonville",
@@ -12841,8 +12920,8 @@
     "volume": 970.0
    },
    "ex_stats_close": {
-    "openInterest": 536708.0,
-    "volume": 710183.0
+    "openInterest": 564817.0,
+    "volume": 738292.0
    },
    "first_play": false,
    "game": "Sacramento State @ Stanford",
@@ -13144,8 +13223,8 @@
     "volume": 2566.0
    },
    "ex_stats_close": {
-    "openInterest": 1761899.0,
-    "volume": 1824314.0
+    "openInterest": 1771799.0,
+    "volume": 1834214.0
    },
    "first_play": false,
    "game": "UNLV @ Rutgers",
@@ -13195,8 +13274,8 @@
     "volume": 2566.0
    },
    "ex_stats_close": {
-    "openInterest": 1761899.0,
-    "volume": 1824314.0
+    "openInterest": 1771799.0,
+    "volume": 1834214.0
    },
    "first_play": false,
    "game": "UNLV @ Rutgers",
@@ -13375,8 +13454,8 @@
    "best_price": 0.4774,
    "best_price_book": "kalshi",
    "book": "prophetx",
-   "close_price": 0.4425,
-   "clv_cents": -5.2,
+   "close_price": 0.4237,
+   "clv_cents": -7.1,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": null,
@@ -13505,7 +13584,7 @@
     "outcome_id": "01a1f23b-ce25-7892-ac80-c8b8e6e3ceb1"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "Florida",
    "side_label": "FLA -9.5 (-9.5)",
    "side_raw": 1,
@@ -13557,7 +13636,7 @@
     "outcome_id": "01a1f23b-ce24-79f0-8563-f42194dabbf7"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "UNDER",
    "side_label": "Under 148.5 (148.5)",
    "side_raw": "UNDER",
@@ -13609,7 +13688,7 @@
     "outcome_id": "01a1f23b-ce24-79f0-8563-f417ea1e1ce5"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "OVER",
    "side_label": "Over 148.5 (148.5)",
    "side_raw": "OVER",
@@ -13688,8 +13767,8 @@
     "volume": 15147.0
    },
    "ex_stats_close": {
-    "openInterest": 2080749.0,
-    "volume": 2201356.0
+    "openInterest": 2112364.0,
+    "volume": 2254416.0
    },
    "first_play": false,
    "game": "Little Rock @ Jacksonville",
@@ -13836,8 +13915,8 @@
     "volume": 645304.0
    },
    "ex_stats_close": {
-    "openInterest": 1726289.0,
-    "volume": 2400418.0
+    "openInterest": 1731167.0,
+    "volume": 2405296.0
    },
    "first_play": true,
    "game": "Flavio Cobolli @ Carlos Alcaraz N/A",
@@ -13878,8 +13957,8 @@
    "best_price": 0.595,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.61,
-   "clv_cents": 1.5,
+   "close_price": 0.62,
+   "clv_cents": 2.5,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": {
@@ -13887,8 +13966,8 @@
     "volume": 34000.0
    },
    "ex_stats_close": {
-    "openInterest": 13933586.0,
-    "volume": 17879842.0
+    "openInterest": 21236779.0,
+    "volume": 25364638.0
    },
    "first_play": false,
    "game": "Auburn @ Notre Dame",
@@ -14026,8 +14105,8 @@
    "best_price": 0.8494,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.84,
-   "clv_cents": 0.0,
+   "close_price": 0.85,
+   "clv_cents": 1.0,
    "date": "2026-11-20",
    "dir": "RAISE",
    "ex_stats": {
@@ -14036,9 +14115,9 @@
     "volume_fp": 103.22999999999999
    },
    "ex_stats_close": {
-    "open_interest_fp": 211.86,
+    "open_interest_fp": 285.5,
     "volume_24h_fp": 138.04000000000002,
-    "volume_fp": 211.86
+    "volume_fp": 285.5
    },
    "first_play": true,
    "game": "Northwestern vs Virginia Tech",
@@ -14533,8 +14612,8 @@
    "best_price": 0.595,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.6124,
-   "clv_cents": -1.7,
+   "close_price": 0.6183,
+   "clv_cents": -1.1,
    "date": "2026-11-19",
    "dir": "DROP",
    "ex_stats": null,
@@ -14699,7 +14778,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "OVER",
    "side_label": "over 147.5 (147.5)",
    "side_raw": "OVER",
@@ -14764,8 +14843,8 @@
    "best_price": 0.415,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.4,
-   "clv_cents": -5.9,
+   "close_price": 0.3876,
+   "clv_cents": -7.1,
    "date": "2026-11-19",
    "dir": "DROP",
    "ex_stats": null,
@@ -14959,9 +15038,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 13810.56,
+    "open_interest_fp": 14187.31,
     "volume_24h_fp": 13810.58,
-    "volume_fp": 13810.58
+    "volume_fp": 14187.33
    },
    "first_play": false,
    "game": "Georgia Southern vs Houston Christian: Point Total",
@@ -15145,8 +15224,8 @@
    "best_price": 0.74,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.71,
-   "clv_cents": -3.0,
+   "close_price": 0.715,
+   "clv_cents": -2.5,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": {
@@ -15288,8 +15367,8 @@
    "best_price": 0.6365,
    "best_price_book": "kalshi",
    "book": "prophetx",
-   "close_price": 0.569,
-   "clv_cents": -8.4,
+   "close_price": 0.5868,
+   "clv_cents": -6.6,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": null,
@@ -15499,7 +15578,7 @@
    "ex_stats_close": {
     "open_interest_fp": 14338.77,
     "volume_24h_fp": 15293.91,
-    "volume_fp": 15293.91
+    "volume_fp": 15299.8
    },
    "first_play": true,
    "game": "Tulane vs Louisiana Tech: Point Total",
@@ -15673,7 +15752,7 @@
     "outcome_id": "01a1f23b-ce24-79f0-8563-f68eaf4313fe"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "OVER",
    "side_label": "Over 153.5 (153.5)",
    "side_raw": "OVER",
@@ -15703,7 +15782,7 @@
    "ex_stats_close": {
     "open_interest_fp": 14338.77,
     "volume_24h_fp": 15293.91,
-    "volume_fp": 15293.91
+    "volume_fp": 15299.8
    },
    "first_play": false,
    "game": "Tulane vs Louisiana Tech: Point Total",
@@ -16086,8 +16165,8 @@
    "best_price": 0.485,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.515,
-   "clv_cents": 3.0,
+   "close_price": 0.52,
+   "clv_cents": 3.5,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": {
@@ -16095,8 +16174,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 777944.0,
-    "volume": 849213.0
+    "openInterest": 797950.0,
+    "volume": 876719.0
    },
    "first_play": true,
    "game": "Maine @ Quinnipiac",
@@ -16301,8 +16380,8 @@
     "volume": 5459.0
    },
    "ex_stats_close": {
-    "openInterest": 2015172.0,
-    "volume": 2141208.0
+    "openInterest": 2032412.0,
+    "volume": 2158448.0
    },
    "first_play": false,
    "game": "UNLV @ Rutgers",
@@ -16352,8 +16431,8 @@
     "volume": 5459.0
    },
    "ex_stats_close": {
-    "openInterest": 2015172.0,
-    "volume": 2141208.0
+    "openInterest": 2032412.0,
+    "volume": 2158448.0
    },
    "first_play": false,
    "game": "UNLV @ Rutgers",
@@ -16493,8 +16572,8 @@
    "best_price": 0.76,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.77,
-   "clv_cents": 1.0,
+   "close_price": 0.785,
+   "clv_cents": 2.5,
    "date": "2026-11-20",
    "dir": "DROP",
    "ex_stats": {
@@ -16825,7 +16904,7 @@
     "outcome_id": "01a1f23b-ce25-7892-ac80-c8b8e6e3ceb1"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "Florida",
    "side_label": "FLA -9.5 (-9.5)",
    "side_raw": 1,
@@ -16854,9 +16933,9 @@
     "volume_fp": 33.86
    },
    "ex_stats_close": {
-    "open_interest_fp": 4881.65,
-    "volume_24h_fp": 5531.57,
-    "volume_fp": 6063.48
+    "open_interest_fp": 4965.04,
+    "volume_24h_fp": 6063.48,
+    "volume_fp": 6154.81
    },
    "first_play": false,
    "game": "Southeast Missouri St. vs St. Thomas: Point Total",
@@ -16930,7 +17009,7 @@
     "outcome_id": "01a1f204-3973-79e0-9867-d8610c93a571"
    },
    "result": null,
-   "settle_tries": 17,
+   "settle_tries": 18,
    "side": "Harold Mayot Round of 16",
    "side_label": "H. Mayot (0)",
    "side_raw": 1,
@@ -16949,8 +17028,8 @@
    "best_price": 0.455,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.465,
-   "clv_cents": 1.0,
+   "close_price": 0.47,
+   "clv_cents": 1.5,
    "date": "2026-11-19",
    "dir": "DROP",
    "ex_stats": {
@@ -16958,8 +17037,8 @@
     "volume": 14300.0
    },
    "ex_stats_close": {
-    "openInterest": 2080749.0,
-    "volume": 2201356.0
+    "openInterest": 2112364.0,
+    "volume": 2254416.0
    },
    "first_play": false,
    "game": "Little Rock @ Jacksonville",
@@ -17307,9 +17386,9 @@
     "volume_fp": 33.86
    },
    "ex_stats_close": {
-    "open_interest_fp": 4881.65,
-    "volume_24h_fp": 5531.57,
-    "volume_fp": 6063.48
+    "open_interest_fp": 4965.04,
+    "volume_24h_fp": 6063.48,
+    "volume_fp": 6154.81
    },
    "first_play": false,
    "game": "Southeast Missouri St. vs St. Thomas: Point Total",
@@ -17711,8 +17790,8 @@
     "volume": 14300.0
    },
    "ex_stats_close": {
-    "openInterest": 2080749.0,
-    "volume": 2201356.0
+    "openInterest": 2112364.0,
+    "volume": 2254416.0
    },
    "first_play": false,
    "game": "Little Rock @ Jacksonville",
@@ -18120,9 +18199,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 824.46,
-    "volume_24h_fp": 889.92,
-    "volume_fp": 909.24
+    "open_interest_fp": 843.41,
+    "volume_24h_fp": 909.24,
+    "volume_fp": 928.19
    },
    "first_play": false,
    "game": "Southern Miss vs Grambling St.: Spread",
@@ -18173,9 +18252,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 824.46,
-    "volume_24h_fp": 889.92,
-    "volume_fp": 909.24
+    "open_interest_fp": 843.41,
+    "volume_24h_fp": 909.24,
+    "volume_fp": 928.19
    },
    "first_play": false,
    "game": "Southern Miss vs Grambling St.: Spread",
@@ -18226,9 +18305,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 13810.56,
+    "open_interest_fp": 14187.31,
     "volume_24h_fp": 13810.58,
-    "volume_fp": 13810.58
+    "volume_fp": 14187.33
    },
    "first_play": false,
    "game": "Georgia Southern vs Houston Christian: Point Total",
@@ -18279,9 +18358,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 13810.56,
+    "open_interest_fp": 14187.31,
     "volume_24h_fp": 13810.58,
-    "volume_fp": 13810.58
+    "volume_fp": 14187.33
    },
    "first_play": false,
    "game": "Georgia Southern vs Houston Christian: Point Total",
@@ -18322,8 +18401,8 @@
    "best_price": 0.44,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.3937,
-   "clv_cents": -6.1,
+   "close_price": 0.3968,
+   "clv_cents": -5.8,
    "date": "2026-11-19",
    "dir": "DROP",
    "ex_stats": null,
@@ -18447,7 +18526,7 @@
     "outcome_id": "01a1f23b-ce25-7892-ac80-c8cb03265d84"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "West Virginia",
    "side_label": "WVU +9.5 (-9.5)",
    "side_raw": 0,
@@ -18477,7 +18556,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 11187.76,
-    "volume_24h_fp": 10751.76,
+    "volume_24h_fp": 11287.76,
     "volume_fp": 11287.76
    },
    "first_play": false,
@@ -18530,7 +18609,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 11187.76,
-    "volume_24h_fp": 10751.76,
+    "volume_24h_fp": 11287.76,
     "volume_fp": 11287.76
    },
    "first_play": true,
@@ -18688,9 +18767,9 @@
     "volume_fp": 6.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 8321.01,
-    "volume_24h_fp": 8069.79,
-    "volume_fp": 8321.01
+    "open_interest_fp": 9521.94,
+    "volume_24h_fp": 8321.01,
+    "volume_fp": 9521.94
    },
    "first_play": false,
    "game": "UC Santa Barbara vs Pepperdine: Spread",
@@ -18741,9 +18820,9 @@
     "volume_fp": 6.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 8321.01,
-    "volume_24h_fp": 8069.79,
-    "volume_fp": 8321.01
+    "open_interest_fp": 9521.94,
+    "volume_24h_fp": 8321.01,
+    "volume_fp": 9521.94
    },
    "first_play": false,
    "game": "UC Santa Barbara vs Pepperdine: Spread",
@@ -18901,7 +18980,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1153.47,
-    "volume_24h_fp": 1126.77,
+    "volume_24h_fp": 1202.4,
     "volume_fp": 1202.4
    },
    "first_play": false,
@@ -18954,7 +19033,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1153.47,
-    "volume_24h_fp": 1126.77,
+    "volume_24h_fp": 1202.4,
     "volume_fp": 1202.4
    },
    "first_play": true,
@@ -19112,9 +19191,9 @@
     "volume_fp": 429.07
    },
    "ex_stats_close": {
-    "open_interest_fp": 9624.51,
+    "open_interest_fp": 9817.74,
     "volume_24h_fp": 11487.06,
-    "volume_fp": 11487.06
+    "volume_fp": 11680.29
    },
    "first_play": false,
    "game": "Georgia Southern vs Houston Christian: Spread",
@@ -19165,9 +19244,9 @@
     "volume_fp": 429.07
    },
    "ex_stats_close": {
-    "open_interest_fp": 9624.51,
+    "open_interest_fp": 9817.74,
     "volume_24h_fp": 11487.06,
-    "volume_fp": 11487.06
+    "volume_fp": 11680.29
    },
    "first_play": false,
    "game": "Georgia Southern vs Houston Christian: Spread",
@@ -19218,9 +19297,9 @@
     "volume_fp": 5834.92
    },
    "ex_stats_close": {
-    "open_interest_fp": 8040.47,
-    "volume_24h_fp": 10008.47,
-    "volume_fp": 10018.13
+    "open_interest_fp": 8048.19,
+    "volume_24h_fp": 10018.13,
+    "volume_fp": 10025.85
    },
    "first_play": true,
    "game": "Charleston vs Drake: Point Total",
@@ -19589,9 +19668,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1619.08,
+    "open_interest_fp": 1717.6,
     "volume_24h_fp": 1898.61,
-    "volume_fp": 1898.61
+    "volume_fp": 1997.13
    },
    "first_play": false,
    "game": "Montana St. vs High Point: Point Total",
@@ -19642,9 +19721,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1619.08,
+    "open_interest_fp": 1717.6,
     "volume_24h_fp": 1898.61,
-    "volume_fp": 1898.61
+    "volume_fp": 1997.13
    },
    "first_play": false,
    "game": "Montana St. vs High Point: Point Total",
@@ -19907,9 +19986,9 @@
     "volume_fp": 25.41
    },
    "ex_stats_close": {
-    "open_interest_fp": 40598.79,
-    "volume_24h_fp": 40370.69,
-    "volume_fp": 41051.47
+    "open_interest_fp": 40604.4,
+    "volume_24h_fp": 41051.47,
+    "volume_fp": 41057.08
    },
    "first_play": false,
    "game": "Buffalo vs St. Bonaventure: Spread",
@@ -19960,9 +20039,9 @@
     "volume_fp": 25.41
    },
    "ex_stats_close": {
-    "open_interest_fp": 40598.79,
-    "volume_24h_fp": 40370.69,
-    "volume_fp": 41051.47
+    "open_interest_fp": 40604.4,
+    "volume_24h_fp": 41051.47,
+    "volume_fp": 41057.08
    },
    "first_play": false,
    "game": "Buffalo vs St. Bonaventure: Spread",
@@ -20123,9 +20202,9 @@
     "volume_fp": 267.07
    },
    "ex_stats_close": {
-    "open_interest_fp": 7114.34,
-    "volume_24h_fp": 7295.82,
-    "volume_fp": 7296.15
+    "open_interest_fp": 8789.01,
+    "volume_24h_fp": 7296.15,
+    "volume_fp": 9004.58
    },
    "first_play": true,
    "game": "Rutgers vs UNLV",
@@ -20176,9 +20255,9 @@
     "volume_fp": 267.07
    },
    "ex_stats_close": {
-    "open_interest_fp": 7114.34,
-    "volume_24h_fp": 7295.82,
-    "volume_fp": 7296.15
+    "open_interest_fp": 8789.01,
+    "volume_24h_fp": 7296.15,
+    "volume_fp": 9004.58
    },
    "first_play": true,
    "game": "Rutgers vs UNLV",
@@ -20219,8 +20298,8 @@
    "best_price": 0.42,
    "best_price_book": "novig",
    "book": "kalshi",
-   "close_price": 0.4,
-   "clv_cents": -3.0,
+   "close_price": 0.39,
+   "clv_cents": -4.0,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": {
@@ -20229,9 +20308,9 @@
     "volume_fp": 652.6
    },
    "ex_stats_close": {
-    "open_interest_fp": 340694.97,
-    "volume_24h_fp": 270654.99,
-    "volume_fp": 371762.16000000003
+    "open_interest_fp": 505852.55000000005,
+    "volume_24h_fp": 350169.22,
+    "volume_fp": 541848.51
    },
    "first_play": true,
    "game": "Notre Dame vs Auburn",
@@ -20282,9 +20361,9 @@
     "volume_fp": 652.6
    },
    "ex_stats_close": {
-    "open_interest_fp": 340694.97,
-    "volume_24h_fp": 270654.99,
-    "volume_fp": 371762.16000000003
+    "open_interest_fp": 505852.55000000005,
+    "volume_24h_fp": 350169.22,
+    "volume_fp": 541848.51
    },
    "first_play": true,
    "game": "Notre Dame vs Auburn",
@@ -20399,7 +20478,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "West Virginia",
    "side_label": "West Virginia",
    "side_raw": 0,
@@ -20446,7 +20525,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "Florida",
    "side_label": "Florida",
    "side_raw": 1,
@@ -20618,8 +20697,8 @@
    "best_price": 0.325,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.23,
-   "clv_cents": -8.0,
+   "close_price": 0.25,
+   "clv_cents": -6.0,
    "date": "2026-11-20",
    "dir": "DROP",
    "ex_stats": {
@@ -20704,7 +20783,7 @@
     "outcome_id": "01a1f23b-ce25-7892-ac80-c8cb03265d84"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "West Virginia",
    "side_label": "WVU +9.5 (-9.5)",
    "side_raw": 0,
@@ -21077,9 +21156,9 @@
     "volume_fp": 267.07
    },
    "ex_stats_close": {
-    "open_interest_fp": 7114.34,
-    "volume_24h_fp": 7295.82,
-    "volume_fp": 7296.15
+    "open_interest_fp": 8789.01,
+    "volume_24h_fp": 7296.15,
+    "volume_fp": 9004.58
    },
    "first_play": true,
    "game": "Rutgers vs UNLV",
@@ -21120,8 +21199,8 @@
    "best_price": 0.53,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.535,
-   "clv_cents": 0.5,
+   "close_price": 0.54,
+   "clv_cents": 1.0,
    "date": "2026-11-20",
    "dir": "DROP",
    "ex_stats": {
@@ -21171,8 +21250,8 @@
    "best_price": 0.62,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.5,
-   "clv_cents": -12.0,
+   "close_price": 0.505,
+   "clv_cents": -11.5,
    "date": "2026-11-20",
    "dir": "DROP",
    "ex_stats": {
@@ -21355,7 +21434,7 @@
     "outcome_id": "01a1f23b-ce25-7892-ac80-c95453a6f410"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "West Virginia",
    "side_label": "WVU +5.5 (-5.5)",
    "side_raw": 0,
@@ -21489,9 +21568,9 @@
     "volume_fp": 3.2
    },
    "ex_stats_close": {
-    "open_interest_fp": 6059.44,
-    "volume_24h_fp": 6218.06,
-    "volume_fp": 6330.65
+    "open_interest_fp": 6262.09,
+    "volume_24h_fp": 6330.65,
+    "volume_fp": 6533.3
    },
    "first_play": true,
    "game": "Maine vs Quinnipiac: Point Total",
@@ -21542,9 +21621,9 @@
     "volume_fp": 3.2
    },
    "ex_stats_close": {
-    "open_interest_fp": 6059.44,
-    "volume_24h_fp": 6218.06,
-    "volume_fp": 6330.65
+    "open_interest_fp": 6262.09,
+    "volume_24h_fp": 6330.65,
+    "volume_fp": 6533.3
    },
    "first_play": false,
    "game": "Maine vs Quinnipiac: Point Total",
@@ -21595,9 +21674,9 @@
     "volume_fp": 220.75
    },
    "ex_stats_close": {
-    "open_interest_fp": 45710.03999999999,
-    "volume_24h_fp": 45685.61,
-    "volume_fp": 45792.57
+    "open_interest_fp": 45695.45,
+    "volume_24h_fp": 45720.96000000001,
+    "volume_fp": 45817.78
    },
    "first_play": false,
    "game": "Maine vs Quinnipiac",
@@ -21647,8 +21726,8 @@
     "volume": 114949.0
    },
    "ex_stats_close": {
-    "openInterest": 5572508.0,
-    "volume": 7200763.0
+    "openInterest": 5638958.0,
+    "volume": 7367426.0
    },
    "first_play": false,
    "game": "Kansas @ Houston",
@@ -21851,8 +21930,8 @@
     "volume": 114949.0
    },
    "ex_stats_close": {
-    "openInterest": 5572508.0,
-    "volume": 7200763.0
+    "openInterest": 5638958.0,
+    "volume": 7367426.0
    },
    "first_play": true,
    "game": "Kansas @ Houston",
@@ -22164,9 +22243,9 @@
     "volume_fp": 1.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 452.01,
-    "volume_24h_fp": 418.5,
-    "volume_fp": 453.01
+    "open_interest_fp": 1137.16,
+    "volume_24h_fp": 453.01,
+    "volume_fp": 1138.16
    },
    "first_play": false,
    "game": "Maine vs Quinnipiac: Point Total",
@@ -22207,8 +22286,8 @@
    "best_price": 0.6069,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.51,
-   "clv_cents": -8.0,
+   "close_price": 0.52,
+   "clv_cents": -7.0,
    "date": "2026-11-19",
    "dir": "DROP",
    "ex_stats": {
@@ -22218,8 +22297,8 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 40237.55,
-    "volume_24h_fp": 39306.96,
-    "volume_fp": 49833.29
+    "volume_24h_fp": 49833.29,
+    "volume_fp": 50603.48
    },
    "first_play": true,
    "game": "Montana St. vs High Point: Spread",
@@ -22260,8 +22339,8 @@
    "best_price": 0.6659,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.5,
-   "clv_cents": -15.0,
+   "close_price": 0.49,
+   "clv_cents": -16.0,
    "date": "2026-11-19",
    "dir": "DROP",
    "ex_stats": {
@@ -22271,8 +22350,8 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 40237.55,
-    "volume_24h_fp": 39306.96,
-    "volume_fp": 49833.29
+    "volume_24h_fp": 49833.29,
+    "volume_fp": 50603.48
    },
    "first_play": false,
    "game": "Montana St. vs High Point: Spread",
@@ -22430,7 +22509,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1693.5,
-    "volume_24h_fp": 1702.64,
+    "volume_24h_fp": 1785.02,
     "volume_fp": 1785.02
    },
    "first_play": false,
@@ -22505,7 +22584,7 @@
     "outcome_id": "01a1f23b-ce24-79f0-8563-f44ffd6a8234"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "Florida",
    "side_label": "FLA (0)",
    "side_raw": 1,
@@ -22740,7 +22819,7 @@
    "ex_stats_close": {
     "open_interest_fp": 14338.77,
     "volume_24h_fp": 15293.91,
-    "volume_fp": 15293.91
+    "volume_fp": 15299.8
    },
    "first_play": false,
    "game": "Tulane vs Louisiana Tech: Point Total",
@@ -22793,7 +22872,7 @@
    "ex_stats_close": {
     "open_interest_fp": 14338.77,
     "volume_24h_fp": 15293.91,
-    "volume_fp": 15293.91
+    "volume_fp": 15299.8
    },
    "first_play": true,
    "game": "Tulane vs Louisiana Tech: Point Total",
@@ -22918,7 +22997,7 @@
     "outcome_id": "01a1f23b-ce24-79f0-8563-f454eeaf4d9a"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "West Virginia",
    "side_label": "WVU (0)",
    "side_raw": 0,
@@ -22937,8 +23016,8 @@
    "best_price": 0.51,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5495,
-   "clv_cents": 4.4,
+   "close_price": 0.5475,
+   "clv_cents": 4.2,
    "date": "2026-11-19",
    "dir": "DROP",
    "ex_stats": null,
@@ -23496,9 +23575,9 @@
     "volume_fp": 221.57
    },
    "ex_stats_close": {
-    "open_interest_fp": 19181.37,
-    "volume_24h_fp": 19678.58,
-    "volume_fp": 19700.58
+    "open_interest_fp": 19730.53,
+    "volume_24h_fp": 19700.58,
+    "volume_fp": 21387.18
    },
    "first_play": false,
    "game": "Southern Utah vs Texas: Spread",
@@ -23549,9 +23628,9 @@
     "volume_fp": 221.57
    },
    "ex_stats_close": {
-    "open_interest_fp": 19181.37,
-    "volume_24h_fp": 19678.58,
-    "volume_fp": 19700.58
+    "open_interest_fp": 19730.53,
+    "volume_24h_fp": 19700.58,
+    "volume_fp": 21387.18
    },
    "first_play": true,
    "game": "Southern Utah vs Texas: Spread",
@@ -23655,9 +23734,9 @@
     "volume_fp": 21.52
    },
    "ex_stats_close": {
-    "open_interest_fp": 13759.8,
+    "open_interest_fp": 13763.52,
     "volume_24h_fp": 14571.86,
-    "volume_fp": 14571.86
+    "volume_fp": 14575.58
    },
    "first_play": false,
    "game": "Southeast Missouri St. vs St. Thomas: Spread",
@@ -23708,9 +23787,9 @@
     "volume_fp": 5834.92
    },
    "ex_stats_close": {
-    "open_interest_fp": 8040.47,
-    "volume_24h_fp": 10008.47,
-    "volume_fp": 10018.13
+    "open_interest_fp": 8048.19,
+    "volume_24h_fp": 10018.13,
+    "volume_fp": 10025.85
    },
    "first_play": true,
    "game": "Charleston vs Drake: Point Total",
@@ -23761,9 +23840,9 @@
     "volume_fp": 1.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 452.01,
-    "volume_24h_fp": 418.5,
-    "volume_fp": 453.01
+    "open_interest_fp": 1137.16,
+    "volume_24h_fp": 453.01,
+    "volume_fp": 1138.16
    },
    "first_play": false,
    "game": "Maine vs Quinnipiac: Point Total",
@@ -23814,9 +23893,9 @@
     "volume_fp": 416.35
    },
    "ex_stats_close": {
-    "open_interest_fp": 6339.64,
-    "volume_24h_fp": 7065.79,
-    "volume_fp": 7165.79
+    "open_interest_fp": 6448.21,
+    "volume_24h_fp": 7165.79,
+    "volume_fp": 7274.36
    },
    "first_play": false,
    "game": "Little Rock vs Jacksonville: Spread",
@@ -23867,9 +23946,9 @@
     "volume_fp": 416.35
    },
    "ex_stats_close": {
-    "open_interest_fp": 6339.64,
-    "volume_24h_fp": 7065.79,
-    "volume_fp": 7165.79
+    "open_interest_fp": 6448.21,
+    "volume_24h_fp": 7165.79,
+    "volume_fp": 7274.36
    },
    "first_play": false,
    "game": "Little Rock vs Jacksonville: Spread",
@@ -23910,8 +23989,8 @@
    "best_price": 0.5076,
    "best_price_book": "prophetx",
    "book": "kalshi",
-   "close_price": 0.51,
-   "clv_cents": 1.0,
+   "close_price": 0.52,
+   "clv_cents": 2.0,
    "date": "2026-11-19",
    "dir": "DROP",
    "ex_stats": {
@@ -23921,7 +24000,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 11793.55,
-    "volume_24h_fp": 12394.51,
+    "volume_24h_fp": 12419.05,
     "volume_fp": 12419.05
    },
    "first_play": false,
@@ -23973,9 +24052,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2904.91,
-    "volume_24h_fp": 2902.33,
-    "volume_fp": 2904.91
+    "open_interest_fp": 3163.76,
+    "volume_24h_fp": 2904.91,
+    "volume_fp": 3163.76
    },
    "first_play": false,
    "game": "NC St. vs Murray St.: Spread",
@@ -24026,9 +24105,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2904.91,
-    "volume_24h_fp": 2902.33,
-    "volume_fp": 2904.91
+    "open_interest_fp": 3163.76,
+    "volume_24h_fp": 2904.91,
+    "volume_fp": 3163.76
    },
    "first_play": false,
    "game": "NC St. vs Murray St.: Spread",
@@ -24177,8 +24256,8 @@
    "best_price": 0.2216,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.22,
-   "clv_cents": 1.0,
+   "close_price": 0.24,
+   "clv_cents": 3.0,
    "date": "2026-11-20",
    "dir": "DROP",
    "ex_stats": {
@@ -24187,9 +24266,9 @@
     "volume_fp": 383.68
    },
    "ex_stats_close": {
-    "open_interest_fp": 810.75,
+    "open_interest_fp": 1155.55,
     "volume_24h_fp": 345.18,
-    "volume_fp": 810.75
+    "volume_fp": 1155.55
    },
    "first_play": true,
    "game": "Georgia vs Georgia Tech",
@@ -24346,9 +24425,9 @@
     "volume_fp": 832.88
    },
    "ex_stats_close": {
-    "open_interest_fp": 24449.129999999997,
-    "volume_24h_fp": 24391.09,
-    "volume_fp": 24534.72
+    "open_interest_fp": 24518.32,
+    "volume_24h_fp": 24399.45,
+    "volume_fp": 24603.909999999996
    },
    "first_play": true,
    "game": "UC Santa Barbara vs Pepperdine",
@@ -24399,9 +24478,9 @@
     "volume_fp": 832.88
    },
    "ex_stats_close": {
-    "open_interest_fp": 24449.129999999997,
-    "volume_24h_fp": 24391.09,
-    "volume_fp": 24534.72
+    "open_interest_fp": 24518.32,
+    "volume_24h_fp": 24399.45,
+    "volume_fp": 24603.909999999996
    },
    "first_play": false,
    "game": "UC Santa Barbara vs Pepperdine",
@@ -24453,7 +24532,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 7930.099999999999,
-    "volume_24h_fp": 1940.27,
+    "volume_24h_fp": 7927.099999999999,
     "volume_fp": 7930.099999999999
    },
    "first_play": true,
@@ -24506,7 +24585,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 7930.099999999999,
-    "volume_24h_fp": 1940.27,
+    "volume_24h_fp": 7927.099999999999,
     "volume_fp": 7930.099999999999
    },
    "first_play": false,
@@ -24559,7 +24638,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 16404.36,
-    "volume_24h_fp": 17617.86,
+    "volume_24h_fp": 17618.17,
     "volume_fp": 17625.68
    },
    "first_play": false,
@@ -24612,7 +24691,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 16404.36,
-    "volume_24h_fp": 17617.86,
+    "volume_24h_fp": 17618.17,
     "volume_fp": 17625.68
    },
    "first_play": true,
@@ -24664,9 +24743,9 @@
     "volume_fp": 869.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 14648.859999999999,
-    "volume_24h_fp": 17691.22,
-    "volume_fp": 17898.86
+    "open_interest_fp": 14848.32,
+    "volume_24h_fp": 17788.54,
+    "volume_fp": 18098.32
    },
    "first_play": false,
    "game": "Tulane vs Louisiana Tech",
@@ -24717,9 +24796,9 @@
     "volume_fp": 869.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 14648.859999999999,
-    "volume_24h_fp": 17691.22,
-    "volume_fp": 17898.86
+    "open_interest_fp": 14848.32,
+    "volume_24h_fp": 17788.54,
+    "volume_fp": 18098.32
    },
    "first_play": false,
    "game": "Tulane vs Louisiana Tech",
@@ -24770,9 +24849,9 @@
     "volume_fp": 1979.0500000000002
    },
    "ex_stats_close": {
-    "open_interest_fp": 42571.28,
-    "volume_24h_fp": 46630.78,
-    "volume_fp": 46998.34
+    "open_interest_fp": 44372.009999999995,
+    "volume_24h_fp": 46787.04,
+    "volume_fp": 48799.07
    },
    "first_play": false,
    "game": "Charleston vs Drake",
@@ -24823,9 +24902,9 @@
     "volume_fp": 1979.0500000000002
    },
    "ex_stats_close": {
-    "open_interest_fp": 42571.28,
-    "volume_24h_fp": 46630.78,
-    "volume_fp": 46998.34
+    "open_interest_fp": 44372.009999999995,
+    "volume_24h_fp": 46787.04,
+    "volume_fp": 48799.07
    },
    "first_play": false,
    "game": "Charleston vs Drake",
@@ -24876,9 +24955,9 @@
     "volume_fp": 422.78999999999996
    },
    "ex_stats_close": {
-    "open_interest_fp": 4032.64,
-    "volume_24h_fp": 4039.99,
-    "volume_fp": 4041.34
+    "open_interest_fp": 4109.25,
+    "volume_24h_fp": 4040.34,
+    "volume_fp": 4117.95
    },
    "first_play": true,
    "game": "Southern Miss vs Grambling St.",
@@ -24929,9 +25008,9 @@
     "volume_fp": 422.78999999999996
    },
    "ex_stats_close": {
-    "open_interest_fp": 4032.64,
-    "volume_24h_fp": 4039.99,
-    "volume_fp": 4041.34
+    "open_interest_fp": 4109.25,
+    "volume_24h_fp": 4040.34,
+    "volume_fp": 4117.95
    },
    "first_play": true,
    "game": "Southern Miss vs Grambling St.",
@@ -24982,9 +25061,9 @@
     "volume_fp": 60.33
    },
    "ex_stats_close": {
-    "open_interest_fp": 13720.24,
-    "volume_24h_fp": 14114.94,
-    "volume_fp": 14263.81
+    "open_interest_fp": 13745.490000000002,
+    "volume_24h_fp": 14263.81,
+    "volume_fp": 14289.06
    },
    "first_play": true,
    "game": "Little Rock vs Jacksonville",
@@ -25035,9 +25114,9 @@
     "volume_fp": 60.33
    },
    "ex_stats_close": {
-    "open_interest_fp": 13720.24,
-    "volume_24h_fp": 14114.94,
-    "volume_fp": 14263.81
+    "open_interest_fp": 13745.490000000002,
+    "volume_24h_fp": 14263.81,
+    "volume_fp": 14289.06
    },
    "first_play": true,
    "game": "Little Rock vs Jacksonville",
@@ -25088,9 +25167,9 @@
     "volume_fp": 66.63
    },
    "ex_stats_close": {
-    "open_interest_fp": 32569.129999999997,
-    "volume_24h_fp": 27612.23,
-    "volume_fp": 32714.129999999997
+    "open_interest_fp": 32572.65,
+    "volume_24h_fp": 32706.65,
+    "volume_fp": 32717.65
    },
    "first_play": false,
    "game": "Robert Morris vs Toledo",
@@ -25141,9 +25220,9 @@
     "volume_fp": 66.63
    },
    "ex_stats_close": {
-    "open_interest_fp": 32569.129999999997,
-    "volume_24h_fp": 27612.23,
-    "volume_fp": 32714.129999999997
+    "open_interest_fp": 32572.65,
+    "volume_24h_fp": 32706.65,
+    "volume_fp": 32717.65
    },
    "first_play": false,
    "game": "Robert Morris vs Toledo",
@@ -25194,9 +25273,9 @@
     "volume_fp": 220.75
    },
    "ex_stats_close": {
-    "open_interest_fp": 45710.03999999999,
-    "volume_24h_fp": 45685.61,
-    "volume_fp": 45792.57
+    "open_interest_fp": 45695.45,
+    "volume_24h_fp": 45720.96000000001,
+    "volume_fp": 45817.78
    },
    "first_play": false,
    "game": "Maine vs Quinnipiac",
@@ -25248,7 +25327,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 16163.21,
-    "volume_24h_fp": 16139.76,
+    "volume_24h_fp": 16225.039999999999,
     "volume_fp": 16271.689999999999
    },
    "first_play": false,
@@ -25301,7 +25380,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 16163.21,
-    "volume_24h_fp": 16139.76,
+    "volume_24h_fp": 16225.039999999999,
     "volume_fp": 16271.689999999999
    },
    "first_play": true,
@@ -25376,7 +25455,7 @@
     "outcome_id": "01a1f204-3973-79e0-9867-d8610c93a571"
    },
    "result": null,
-   "settle_tries": 17,
+   "settle_tries": 18,
    "side": "Harold Mayot Round of 16",
    "side_label": "H. Mayot (0)",
    "side_raw": 1,
@@ -25554,8 +25633,8 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 13909.1,
-    "volume_24h_fp": 17993.7,
-    "volume_fp": 18093.7
+    "volume_24h_fp": 18093.7,
+    "volume_fp": 18098.7
    },
    "first_play": false,
    "game": "Tarleton St. vs USC: Spread",
@@ -25607,8 +25686,8 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 13909.1,
-    "volume_24h_fp": 17993.7,
-    "volume_fp": 18093.7
+    "volume_24h_fp": 18093.7,
+    "volume_fp": 18098.7
    },
    "first_play": false,
    "game": "Tarleton St. vs USC: Spread",
@@ -25712,9 +25791,9 @@
     "volume_fp": 33.86
    },
    "ex_stats_close": {
-    "open_interest_fp": 4881.65,
-    "volume_24h_fp": 5531.57,
-    "volume_fp": 6063.48
+    "open_interest_fp": 4965.04,
+    "volume_24h_fp": 6063.48,
+    "volume_fp": 6154.81
    },
    "first_play": true,
    "game": "Southeast Missouri St. vs St. Thomas: Point Total",
@@ -25765,9 +25844,9 @@
     "volume_fp": 33.86
    },
    "ex_stats_close": {
-    "open_interest_fp": 4881.65,
-    "volume_24h_fp": 5531.57,
-    "volume_fp": 6063.48
+    "open_interest_fp": 4965.04,
+    "volume_24h_fp": 6063.48,
+    "volume_fp": 6154.81
    },
    "first_play": true,
    "game": "Southeast Missouri St. vs St. Thomas: Point Total",
@@ -25818,9 +25897,9 @@
     "volume_fp": 21.52
    },
    "ex_stats_close": {
-    "open_interest_fp": 13759.8,
+    "open_interest_fp": 13763.52,
     "volume_24h_fp": 14571.86,
-    "volume_fp": 14571.86
+    "volume_fp": 14575.58
    },
    "first_play": true,
    "game": "Southeast Missouri St. vs St. Thomas: Spread",
@@ -25871,9 +25950,9 @@
     "volume_fp": 478.43
    },
    "ex_stats_close": {
-    "open_interest_fp": 20585.79,
-    "volume_24h_fp": 19676.33,
-    "volume_fp": 21822.08
+    "open_interest_fp": 20933.68,
+    "volume_24h_fp": 21822.08,
+    "volume_fp": 22169.97
    },
    "first_play": true,
    "game": "Charleston vs Drake: Spread",
@@ -25925,8 +26004,8 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 13027.03,
-    "volume_24h_fp": 13234.23,
-    "volume_fp": 13717.32
+    "volume_24h_fp": 13717.32,
+    "volume_fp": 14103.79
    },
    "first_play": true,
    "game": "Little Rock vs Jacksonville: Point Total",
@@ -25967,8 +26046,8 @@
    "best_price": 0.5474,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.5,
-   "clv_cents": -3.0,
+   "close_price": 0.49,
+   "clv_cents": -4.0,
    "date": "2026-11-19",
    "dir": "DROP",
    "ex_stats": {
@@ -25978,8 +26057,8 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 13027.03,
-    "volume_24h_fp": 13234.23,
-    "volume_fp": 13717.32
+    "volume_24h_fp": 13717.32,
+    "volume_fp": 14103.79
    },
    "first_play": true,
    "game": "Little Rock vs Jacksonville: Point Total",
@@ -26030,9 +26109,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 8058.42,
+    "open_interest_fp": 8256.09,
     "volume_24h_fp": 8058.42,
-    "volume_fp": 8058.42
+    "volume_fp": 8257.09
    },
    "first_play": true,
    "game": "Robert Morris vs Toledo: Point Total",
@@ -26083,9 +26162,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 8058.42,
+    "open_interest_fp": 8256.09,
     "volume_24h_fp": 8058.42,
-    "volume_fp": 8058.42
+    "volume_fp": 8257.09
    },
    "first_play": true,
    "game": "Robert Morris vs Toledo: Point Total",
@@ -26136,9 +26215,9 @@
     "volume_fp": 2044.79
    },
    "ex_stats_close": {
-    "open_interest_fp": 10595.16,
+    "open_interest_fp": 10648.19,
     "volume_24h_fp": 11941.44,
-    "volume_fp": 11941.44
+    "volume_fp": 11994.47
    },
    "first_play": false,
    "game": "Robert Morris vs Toledo: Spread",
@@ -26189,9 +26268,9 @@
     "volume_fp": 2044.79
    },
    "ex_stats_close": {
-    "open_interest_fp": 10595.16,
+    "open_interest_fp": 10648.19,
     "volume_24h_fp": 11941.44,
-    "volume_fp": 11941.44
+    "volume_fp": 11994.47
    },
    "first_play": true,
    "game": "Robert Morris vs Toledo: Spread",
@@ -26503,7 +26582,7 @@
     "outcome_id": "01a1f204-3973-79e0-9867-d87fcc2ab5e7"
    },
    "result": null,
-   "settle_tries": 17,
+   "settle_tries": 18,
    "side": "Hugo Gaston",
    "side_label": "H. Gaston (0)",
    "side_raw": 0,
@@ -26883,8 +26962,8 @@
    "best_price": 0.5872,
    "best_price_book": "kalshi",
    "book": "novig",
-   "close_price": 0.5,
-   "clv_cents": -9.0,
+   "close_price": 0.495,
+   "clv_cents": -9.5,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": {
@@ -26892,8 +26971,8 @@
     "volume": 47145.0
    },
    "ex_stats_close": {
-    "openInterest": 1212602.0,
-    "volume": 1435511.0
+    "openInterest": 1226325.0,
+    "volume": 1505234.0
    },
    "first_play": false,
    "game": "Montana State @ High Point",
@@ -27098,9 +27177,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 9234.17,
+    "open_interest_fp": 9573.94,
     "volume_24h_fp": 13156.14,
-    "volume_fp": 13156.14
+    "volume_fp": 13495.91
    },
    "first_play": false,
    "game": "Oregon vs Oregon St.: Point Total",
@@ -27151,9 +27230,9 @@
     "volume_fp": 865.14
    },
    "ex_stats_close": {
-    "open_interest_fp": 14648.859999999999,
-    "volume_24h_fp": 17691.22,
-    "volume_fp": 17898.86
+    "open_interest_fp": 14848.32,
+    "volume_24h_fp": 17788.54,
+    "volume_fp": 18098.32
    },
    "first_play": false,
    "game": "Tulane vs Louisiana Tech",
@@ -27227,7 +27306,7 @@
     "outcome_id": "01a1f204-3973-79e0-9867-d87fcc2ab5e7"
    },
    "result": null,
-   "settle_tries": 17,
+   "settle_tries": 18,
    "side": "Hugo Gaston",
    "side_label": "H. Gaston (0)",
    "side_raw": 0,
@@ -27557,9 +27636,9 @@
     "volume_fp": 844.8199999999999
    },
    "ex_stats_close": {
-    "open_interest_fp": 14648.859999999999,
-    "volume_24h_fp": 17691.22,
-    "volume_fp": 17898.86
+    "open_interest_fp": 14848.32,
+    "volume_24h_fp": 17788.54,
+    "volume_fp": 18098.32
    },
    "first_play": false,
    "game": "Tulane vs Louisiana Tech",
@@ -27610,9 +27689,9 @@
     "volume_fp": 1968.2199999999998
    },
    "ex_stats_close": {
-    "open_interest_fp": 42571.28,
-    "volume_24h_fp": 46630.78,
-    "volume_fp": 46998.34
+    "open_interest_fp": 44372.009999999995,
+    "volume_24h_fp": 46787.04,
+    "volume_fp": 48799.07
    },
    "first_play": false,
    "game": "Charleston vs Drake",
@@ -27852,9 +27931,9 @@
     "volume_fp": 5834.92
    },
    "ex_stats_close": {
-    "open_interest_fp": 8040.47,
-    "volume_24h_fp": 10008.47,
-    "volume_fp": 10018.13
+    "open_interest_fp": 8048.19,
+    "volume_24h_fp": 10018.13,
+    "volume_fp": 10025.85
    },
    "first_play": false,
    "game": "Charleston vs Drake: Point Total",
@@ -27905,9 +27984,9 @@
     "volume_fp": 5834.92
    },
    "ex_stats_close": {
-    "open_interest_fp": 8040.47,
-    "volume_24h_fp": 10008.47,
-    "volume_fp": 10018.13
+    "open_interest_fp": 8048.19,
+    "volume_24h_fp": 10018.13,
+    "volume_fp": 10025.85
    },
    "first_play": false,
    "game": "Charleston vs Drake: Point Total",
@@ -27948,8 +28027,8 @@
    "best_price": 0.4874,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.51,
-   "clv_cents": 4.0,
+   "close_price": 0.52,
+   "clv_cents": 5.0,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": {
@@ -27959,8 +28038,8 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 40237.55,
-    "volume_24h_fp": 39306.96,
-    "volume_fp": 49833.29
+    "volume_24h_fp": 49833.29,
+    "volume_fp": 50603.48
    },
    "first_play": true,
    "game": "Montana St. vs High Point: Spread",
@@ -28001,8 +28080,8 @@
    "best_price": 0.5772,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.5,
-   "clv_cents": -6.0,
+   "close_price": 0.49,
+   "clv_cents": -7.0,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": {
@@ -28012,8 +28091,8 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 40237.55,
-    "volume_24h_fp": 39306.96,
-    "volume_fp": 49833.29
+    "volume_24h_fp": 49833.29,
+    "volume_fp": 50603.48
    },
    "first_play": false,
    "game": "Montana St. vs High Point: Spread",
@@ -28100,8 +28179,8 @@
    "best_price": 0.485,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.4975,
-   "clv_cents": -1.9,
+   "close_price": 0.5,
+   "clv_cents": -1.7,
    "date": "2026-11-19",
    "dir": "DROP",
    "ex_stats": null,
@@ -28660,7 +28739,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 2095.34,
-    "volume_24h_fp": 2325.61,
+    "volume_24h_fp": 2327.03,
     "volume_fp": 2327.03
    },
    "first_play": true,
@@ -28713,7 +28792,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 2095.34,
-    "volume_24h_fp": 2325.61,
+    "volume_24h_fp": 2327.03,
     "volume_fp": 2327.03
    },
    "first_play": true,
@@ -28766,7 +28845,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 7930.099999999999,
-    "volume_24h_fp": 1940.27,
+    "volume_24h_fp": 7927.099999999999,
     "volume_fp": 7930.099999999999
    },
    "first_play": false,
@@ -28818,9 +28897,9 @@
     "volume_fp": 60.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 32569.129999999997,
-    "volume_24h_fp": 27612.23,
-    "volume_fp": 32714.129999999997
+    "open_interest_fp": 32572.65,
+    "volume_24h_fp": 32706.65,
+    "volume_fp": 32717.65
    },
    "first_play": false,
    "game": "Robert Morris vs Toledo",
@@ -29363,9 +29442,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 8058.42,
+    "open_interest_fp": 8256.09,
     "volume_24h_fp": 8058.42,
-    "volume_fp": 8058.42
+    "volume_fp": 8257.09
    },
    "first_play": false,
    "game": "Robert Morris vs Toledo: Point Total",
@@ -29416,9 +29495,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 8058.42,
+    "open_interest_fp": 8256.09,
     "volume_24h_fp": 8058.42,
-    "volume_fp": 8058.42
+    "volume_fp": 8257.09
    },
    "first_play": false,
    "game": "Robert Morris vs Toledo: Point Total",
@@ -29575,9 +29654,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 40598.79,
-    "volume_24h_fp": 40370.69,
-    "volume_fp": 41051.47
+    "open_interest_fp": 40604.4,
+    "volume_24h_fp": 41051.47,
+    "volume_fp": 41057.08
    },
    "first_play": false,
    "game": "Buffalo vs St. Bonaventure: Spread",
@@ -29628,9 +29707,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 40598.79,
-    "volume_24h_fp": 40370.69,
-    "volume_fp": 41051.47
+    "open_interest_fp": 40604.4,
+    "volume_24h_fp": 41051.47,
+    "volume_fp": 41057.08
    },
    "first_play": false,
    "game": "Buffalo vs St. Bonaventure: Spread",
@@ -29681,9 +29760,9 @@
     "volume_fp": 229.06
    },
    "ex_stats_close": {
-    "open_interest_fp": 5150.71,
-    "volume_24h_fp": 5403.73,
-    "volume_fp": 5554.46
+    "open_interest_fp": 5289.25,
+    "volume_24h_fp": 5554.46,
+    "volume_fp": 5693.0
    },
    "first_play": false,
    "game": "NC St. vs Murray St.: Point Total",
@@ -29734,9 +29813,9 @@
     "volume_fp": 229.06
    },
    "ex_stats_close": {
-    "open_interest_fp": 5150.71,
-    "volume_24h_fp": 5403.73,
-    "volume_fp": 5554.46
+    "open_interest_fp": 5289.25,
+    "volume_24h_fp": 5554.46,
+    "volume_fp": 5693.0
    },
    "first_play": false,
    "game": "NC St. vs Murray St.: Point Total",
@@ -29787,9 +29866,9 @@
     "volume_fp": 9.85
    },
    "ex_stats_close": {
-    "open_interest_fp": 15654.69,
-    "volume_24h_fp": 16219.23,
-    "volume_fp": 16256.44
+    "open_interest_fp": 15659.69,
+    "volume_24h_fp": 16256.44,
+    "volume_fp": 16261.44
    },
    "first_play": false,
    "game": "Utah Tech vs Washington: Spread",
@@ -29840,9 +29919,9 @@
     "volume_fp": 9.85
    },
    "ex_stats_close": {
-    "open_interest_fp": 15654.69,
-    "volume_24h_fp": 16219.23,
-    "volume_fp": 16256.44
+    "open_interest_fp": 15659.69,
+    "volume_24h_fp": 16256.44,
+    "volume_fp": 16261.44
    },
    "first_play": false,
    "game": "Utah Tech vs Washington: Spread",
@@ -29893,9 +29972,9 @@
     "volume_fp": 3658.93
    },
    "ex_stats_close": {
-    "open_interest_fp": 8495.95,
-    "volume_24h_fp": 8852.47,
-    "volume_fp": 9022.34
+    "open_interest_fp": 8615.89,
+    "volume_24h_fp": 9016.86,
+    "volume_fp": 9142.28
    },
    "first_play": true,
    "game": "Texas A&M vs TCU: Point Total",
@@ -29946,9 +30025,9 @@
     "volume_fp": 3658.93
    },
    "ex_stats_close": {
-    "open_interest_fp": 8495.95,
-    "volume_24h_fp": 8852.47,
-    "volume_fp": 9022.34
+    "open_interest_fp": 8615.89,
+    "volume_24h_fp": 9016.86,
+    "volume_fp": 9142.28
    },
    "first_play": true,
    "game": "Texas A&M vs TCU: Point Total",
@@ -30000,7 +30079,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1153.47,
-    "volume_24h_fp": 1126.77,
+    "volume_24h_fp": 1202.4,
     "volume_fp": 1202.4
    },
    "first_play": true,
@@ -30053,7 +30132,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1153.47,
-    "volume_24h_fp": 1126.77,
+    "volume_24h_fp": 1202.4,
     "volume_fp": 1202.4
    },
    "first_play": true,
@@ -30105,9 +30184,9 @@
     "volume_fp": 616.99
    },
    "ex_stats_close": {
-    "open_interest_fp": 7360.57,
-    "volume_24h_fp": 8269.17,
-    "volume_fp": 8333.88
+    "open_interest_fp": 8671.78,
+    "volume_24h_fp": 8333.88,
+    "volume_fp": 9679.69
    },
    "first_play": false,
    "game": "Texas A&M vs TCU: Spread",
@@ -30148,8 +30227,8 @@
    "best_price": 0.4975,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.48,
-   "clv_cents": 0.0,
+   "close_price": 0.49,
+   "clv_cents": 1.0,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": {
@@ -30158,9 +30237,9 @@
     "volume_fp": 616.99
    },
    "ex_stats_close": {
-    "open_interest_fp": 7360.57,
-    "volume_24h_fp": 8269.17,
-    "volume_fp": 8333.88
+    "open_interest_fp": 8671.78,
+    "volume_24h_fp": 8333.88,
+    "volume_fp": 9679.69
    },
    "first_play": false,
    "game": "Texas A&M vs TCU: Spread",
@@ -30211,9 +30290,9 @@
     "volume_fp": 221.57
    },
    "ex_stats_close": {
-    "open_interest_fp": 19181.37,
-    "volume_24h_fp": 19678.58,
-    "volume_fp": 19700.58
+    "open_interest_fp": 19730.53,
+    "volume_24h_fp": 19700.58,
+    "volume_fp": 21387.18
    },
    "first_play": false,
    "game": "Southern Utah vs Texas: Spread",
@@ -30264,9 +30343,9 @@
     "volume_fp": 221.57
    },
    "ex_stats_close": {
-    "open_interest_fp": 19181.37,
-    "volume_24h_fp": 19678.58,
-    "volume_fp": 19700.58
+    "open_interest_fp": 19730.53,
+    "volume_24h_fp": 19700.58,
+    "volume_fp": 21387.18
    },
    "first_play": false,
    "game": "Southern Utah vs Texas: Spread",
@@ -30317,9 +30396,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 13759.8,
+    "open_interest_fp": 13763.52,
     "volume_24h_fp": 14571.86,
-    "volume_fp": 14571.86
+    "volume_fp": 14575.58
    },
    "first_play": false,
    "game": "Southeast Missouri St. vs St. Thomas: Spread",
@@ -30370,9 +30449,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 13759.8,
+    "open_interest_fp": 13763.52,
     "volume_24h_fp": 14571.86,
-    "volume_fp": 14571.86
+    "volume_fp": 14575.58
    },
    "first_play": false,
    "game": "Southeast Missouri St. vs St. Thomas: Spread",
@@ -30635,9 +30714,9 @@
     "volume_fp": 1.82
    },
    "ex_stats_close": {
-    "open_interest_fp": 6059.44,
-    "volume_24h_fp": 6218.06,
-    "volume_fp": 6330.65
+    "open_interest_fp": 6262.09,
+    "volume_24h_fp": 6330.65,
+    "volume_fp": 6533.3
    },
    "first_play": true,
    "game": "Maine vs Quinnipiac: Point Total",
@@ -30688,9 +30767,9 @@
     "volume_fp": 1.82
    },
    "ex_stats_close": {
-    "open_interest_fp": 6059.44,
-    "volume_24h_fp": 6218.06,
-    "volume_fp": 6330.65
+    "open_interest_fp": 6262.09,
+    "volume_24h_fp": 6330.65,
+    "volume_fp": 6533.3
    },
    "first_play": true,
    "game": "Maine vs Quinnipiac: Point Total",
@@ -30792,9 +30871,9 @@
     "volume_fp": 50.26
    },
    "ex_stats_close": {
-    "open_interest_fp": 40271.84,
+    "open_interest_fp": 41146.72,
     "volume_24h_fp": 40818.22,
-    "volume_fp": 40818.22
+    "volume_fp": 41693.1
    },
    "first_play": false,
    "game": "VCU vs Santa Clara: Spread",
@@ -30845,9 +30924,9 @@
     "volume_fp": 50.26
    },
    "ex_stats_close": {
-    "open_interest_fp": 40271.84,
+    "open_interest_fp": 41146.72,
     "volume_24h_fp": 40818.22,
-    "volume_fp": 40818.22
+    "volume_fp": 41693.1
    },
    "first_play": false,
    "game": "VCU vs Santa Clara: Spread",
@@ -31100,8 +31179,8 @@
    "best_price": 0.4874,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.51,
-   "clv_cents": 4.0,
+   "close_price": 0.52,
+   "clv_cents": 5.0,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": {
@@ -31111,7 +31190,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 11793.55,
-    "volume_24h_fp": 12394.51,
+    "volume_24h_fp": 12419.05,
     "volume_fp": 12419.05
    },
    "first_play": true,
@@ -31163,9 +31242,9 @@
     "volume_fp": 644.48
    },
    "ex_stats_close": {
-    "open_interest_fp": 53196.07,
-    "volume_24h_fp": 48556.6,
-    "volume_fp": 56346.36
+    "open_interest_fp": 57038.86,
+    "volume_24h_fp": 49380.42,
+    "volume_fp": 60189.15
    },
    "first_play": false,
    "game": "NC St. vs Murray St.: Spread",
@@ -31216,9 +31295,9 @@
     "volume_fp": 644.48
    },
    "ex_stats_close": {
-    "open_interest_fp": 53196.07,
-    "volume_24h_fp": 48556.6,
-    "volume_fp": 56346.36
+    "open_interest_fp": 57038.86,
+    "volume_24h_fp": 49380.42,
+    "volume_fp": 60189.15
    },
    "first_play": false,
    "game": "NC St. vs Murray St.: Spread",
@@ -31269,9 +31348,9 @@
     "volume_fp": 3886.63
    },
    "ex_stats_close": {
-    "open_interest_fp": 29270.739999999998,
-    "volume_24h_fp": 31488.57,
-    "volume_fp": 32303.16
+    "open_interest_fp": 30041.32,
+    "volume_24h_fp": 31897.03,
+    "volume_fp": 33180.149999999994
    },
    "first_play": false,
    "game": "VCU vs Santa Clara",
@@ -31322,9 +31401,9 @@
     "volume_fp": 3886.63
    },
    "ex_stats_close": {
-    "open_interest_fp": 29270.739999999998,
-    "volume_24h_fp": 31488.57,
-    "volume_fp": 32303.16
+    "open_interest_fp": 30041.32,
+    "volume_24h_fp": 31897.03,
+    "volume_fp": 33180.149999999994
    },
    "first_play": false,
    "game": "VCU vs Santa Clara",
@@ -31375,9 +31454,9 @@
     "volume_fp": 787.1199999999999
    },
    "ex_stats_close": {
-    "open_interest_fp": 24449.129999999997,
-    "volume_24h_fp": 24391.09,
-    "volume_fp": 24534.72
+    "open_interest_fp": 24518.32,
+    "volume_24h_fp": 24399.45,
+    "volume_fp": 24603.909999999996
    },
    "first_play": false,
    "game": "UC Santa Barbara vs Pepperdine",
@@ -31428,9 +31507,9 @@
     "volume_fp": 787.1199999999999
    },
    "ex_stats_close": {
-    "open_interest_fp": 24449.129999999997,
-    "volume_24h_fp": 24391.09,
-    "volume_fp": 24534.72
+    "open_interest_fp": 24518.32,
+    "volume_24h_fp": 24399.45,
+    "volume_fp": 24603.909999999996
    },
    "first_play": false,
    "game": "UC Santa Barbara vs Pepperdine",
@@ -31481,9 +31560,9 @@
     "volume_fp": 880.3499999999999
    },
    "ex_stats_close": {
-    "open_interest_fp": 6251.74,
-    "volume_24h_fp": 6032.2300000000005,
-    "volume_fp": 7048.5
+    "open_interest_fp": 6272.96,
+    "volume_24h_fp": 6586.0599999999995,
+    "volume_fp": 7069.719999999999
    },
    "first_play": false,
    "game": "Wisconsin vs Seton Hall",
@@ -31534,9 +31613,9 @@
     "volume_fp": 4903.360000000001
    },
    "ex_stats_close": {
-    "open_interest_fp": 66140.93,
-    "volume_24h_fp": 69667.66,
-    "volume_fp": 73421.24
+    "open_interest_fp": 73276.29,
+    "volume_24h_fp": 70616.47,
+    "volume_fp": 80556.6
    },
    "first_play": false,
    "game": "Texas A&M vs TCU",
@@ -31588,7 +31667,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 16404.36,
-    "volume_24h_fp": 17617.86,
+    "volume_24h_fp": 17618.17,
     "volume_fp": 17625.68
    },
    "first_play": false,
@@ -31640,9 +31719,9 @@
     "volume_fp": 3689.71
    },
    "ex_stats_close": {
-    "open_interest_fp": 43365.17,
-    "volume_24h_fp": 50230.520000000004,
-    "volume_fp": 52549.43
+    "open_interest_fp": 49069.91,
+    "volume_24h_fp": 50629.09,
+    "volume_fp": 58254.17
    },
    "first_play": false,
    "game": "NC St. vs Murray St.",
@@ -31693,9 +31772,9 @@
     "volume_fp": 3689.71
    },
    "ex_stats_close": {
-    "open_interest_fp": 43365.17,
-    "volume_24h_fp": 50230.520000000004,
-    "volume_fp": 52549.43
+    "open_interest_fp": 49069.91,
+    "volume_24h_fp": 50629.09,
+    "volume_fp": 58254.17
    },
    "first_play": false,
    "game": "NC St. vs Murray St.",
@@ -31880,8 +31959,8 @@
    "best_price": 0.495,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.525,
-   "clv_cents": 3.0,
+   "close_price": 0.53,
+   "clv_cents": 3.5,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": {
@@ -31889,8 +31968,8 @@
     "volume": 54376.0
    },
    "ex_stats_close": {
-    "openInterest": 2317588.0,
-    "volume": 2530449.0
+    "openInterest": 2333105.0,
+    "volume": 2545966.0
    },
    "first_play": true,
    "game": "Buffalo @ St. Bonaventure",
@@ -32207,7 +32286,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 88.31,
-    "volume_24h_fp": 9.31,
+    "volume_24h_fp": 88.31,
     "volume_fp": 88.31
    },
    "first_play": false,
@@ -32260,7 +32339,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 88.31,
-    "volume_24h_fp": 9.31,
+    "volume_24h_fp": 88.31,
     "volume_fp": 88.31
    },
    "first_play": false,
@@ -32418,9 +32497,9 @@
     "volume_fp": 16.03
    },
    "ex_stats_close": {
-    "open_interest_fp": 7248.54,
-    "volume_24h_fp": 8170.86,
-    "volume_fp": 8295.86
+    "open_interest_fp": 7292.6,
+    "volume_24h_fp": 8295.86,
+    "volume_fp": 8339.92
    },
    "first_play": true,
    "game": "UMBC vs Ohio St.: Spread",
@@ -32471,9 +32550,9 @@
     "volume_fp": 389.03
    },
    "ex_stats_close": {
-    "open_interest_fp": 6339.64,
-    "volume_24h_fp": 7065.79,
-    "volume_fp": 7165.79
+    "open_interest_fp": 6448.21,
+    "volume_24h_fp": 7165.79,
+    "volume_fp": 7274.36
    },
    "first_play": false,
    "game": "Little Rock vs Jacksonville: Spread",
@@ -32524,9 +32603,9 @@
     "volume_fp": 389.03
    },
    "ex_stats_close": {
-    "open_interest_fp": 6339.64,
-    "volume_24h_fp": 7065.79,
-    "volume_fp": 7165.79
+    "open_interest_fp": 6448.21,
+    "volume_24h_fp": 7165.79,
+    "volume_fp": 7274.36
    },
    "first_play": false,
    "game": "Little Rock vs Jacksonville: Spread",
@@ -32630,9 +32709,9 @@
     "volume_fp": 880.3499999999999
    },
    "ex_stats_close": {
-    "open_interest_fp": 6251.74,
-    "volume_24h_fp": 6032.2300000000005,
-    "volume_fp": 7048.5
+    "open_interest_fp": 6272.96,
+    "volume_24h_fp": 6586.0599999999995,
+    "volume_fp": 7069.719999999999
    },
    "first_play": false,
    "game": "Wisconsin vs Seton Hall",
@@ -32683,9 +32762,9 @@
     "volume_fp": 422.78999999999996
    },
    "ex_stats_close": {
-    "open_interest_fp": 4032.64,
-    "volume_24h_fp": 4039.99,
-    "volume_fp": 4041.34
+    "open_interest_fp": 4109.25,
+    "volume_24h_fp": 4040.34,
+    "volume_fp": 4117.95
    },
    "first_play": true,
    "game": "Southern Miss vs Grambling St.",
@@ -32736,9 +32815,9 @@
     "volume_fp": 422.78999999999996
    },
    "ex_stats_close": {
-    "open_interest_fp": 4032.64,
-    "volume_24h_fp": 4039.99,
-    "volume_fp": 4041.34
+    "open_interest_fp": 4109.25,
+    "volume_24h_fp": 4040.34,
+    "volume_fp": 4117.95
    },
    "first_play": true,
    "game": "Southern Miss vs Grambling St.",
@@ -32789,9 +32868,9 @@
     "volume_fp": 39.6
    },
    "ex_stats_close": {
-    "open_interest_fp": 13720.24,
-    "volume_24h_fp": 14114.94,
-    "volume_fp": 14263.81
+    "open_interest_fp": 13745.490000000002,
+    "volume_24h_fp": 14263.81,
+    "volume_fp": 14289.06
    },
    "first_play": false,
    "game": "Little Rock vs Jacksonville",
@@ -32842,9 +32921,9 @@
     "volume_fp": 39.6
    },
    "ex_stats_close": {
-    "open_interest_fp": 13720.24,
-    "volume_24h_fp": 14114.94,
-    "volume_fp": 14263.81
+    "open_interest_fp": 13745.490000000002,
+    "volume_24h_fp": 14263.81,
+    "volume_fp": 14289.06
    },
    "first_play": true,
    "game": "Little Rock vs Jacksonville",
@@ -32885,8 +32964,8 @@
    "best_price": 0.4168,
    "best_price_book": "kalshi",
    "book": "prophetx",
-   "close_price": 0.4673,
-   "clv_cents": 1.7,
+   "close_price": 0.4651,
+   "clv_cents": 1.5,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": null,
@@ -32941,9 +33020,9 @@
     "volume_fp": 6.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 8321.01,
-    "volume_24h_fp": 8069.79,
-    "volume_fp": 8321.01
+    "open_interest_fp": 9521.94,
+    "volume_24h_fp": 8321.01,
+    "volume_fp": 9521.94
    },
    "first_play": false,
    "game": "UC Santa Barbara vs Pepperdine: Spread",
@@ -32995,8 +33074,8 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 13027.03,
-    "volume_24h_fp": 13234.23,
-    "volume_fp": 13717.32
+    "volume_24h_fp": 13717.32,
+    "volume_fp": 14103.79
    },
    "first_play": true,
    "game": "Little Rock vs Jacksonville: Point Total",
@@ -33037,8 +33116,8 @@
    "best_price": 0.5375,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.5,
-   "clv_cents": -2.0,
+   "close_price": 0.49,
+   "clv_cents": -3.0,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": {
@@ -33048,8 +33127,8 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 13027.03,
-    "volume_24h_fp": 13234.23,
-    "volume_fp": 13717.32
+    "volume_24h_fp": 13717.32,
+    "volume_fp": 14103.79
    },
    "first_play": true,
    "game": "Little Rock vs Jacksonville: Point Total",
@@ -33550,9 +33629,9 @@
     "volume_fp": 16.03
    },
    "ex_stats_close": {
-    "open_interest_fp": 7248.54,
-    "volume_24h_fp": 8170.86,
-    "volume_fp": 8295.86
+    "open_interest_fp": 7292.6,
+    "volume_24h_fp": 8295.86,
+    "volume_fp": 8339.92
    },
    "first_play": true,
    "game": "UMBC vs Ohio St.: Spread",
@@ -34257,7 +34336,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 16404.36,
-    "volume_24h_fp": 17617.86,
+    "volume_24h_fp": 17618.17,
     "volume_fp": 17625.68
    },
    "first_play": true,
@@ -34447,9 +34526,9 @@
     "volume_fp": 19.22
    },
    "ex_stats_close": {
-    "open_interest_fp": 1384.54,
+    "open_interest_fp": 1394.01,
     "volume_24h_fp": 1650.83,
-    "volume_fp": 1650.83
+    "volume_fp": 1660.3
    },
    "first_play": true,
    "game": "VCU vs Santa Clara: Point Total",
@@ -34646,7 +34725,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1693.5,
-    "volume_24h_fp": 1702.64,
+    "volume_24h_fp": 1785.02,
     "volume_fp": 1785.02
    },
    "first_play": false,
@@ -34699,7 +34778,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1693.5,
-    "volume_24h_fp": 1702.64,
+    "volume_24h_fp": 1785.02,
     "volume_fp": 1785.02
    },
    "first_play": false,
@@ -34853,9 +34932,9 @@
     "volume_fp": 6.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 8321.01,
-    "volume_24h_fp": 8069.79,
-    "volume_fp": 8321.01
+    "open_interest_fp": 9521.94,
+    "volume_24h_fp": 8321.01,
+    "volume_fp": 9521.94
    },
    "first_play": true,
    "game": "UC Santa Barbara vs Pepperdine: Spread",
@@ -34906,9 +34985,9 @@
     "volume_fp": 1807.58
    },
    "ex_stats_close": {
-    "open_interest_fp": 14264.96,
-    "volume_24h_fp": 14548.46,
-    "volume_fp": 14620.22
+    "open_interest_fp": 14840.66,
+    "volume_24h_fp": 14575.37,
+    "volume_fp": 15195.92
    },
    "first_play": true,
    "game": "Oregon vs Oregon St.: Spread",
@@ -34959,9 +35038,9 @@
     "volume_fp": 1807.58
    },
    "ex_stats_close": {
-    "open_interest_fp": 14264.96,
-    "volume_24h_fp": 14548.46,
-    "volume_fp": 14620.22
+    "open_interest_fp": 14840.66,
+    "volume_24h_fp": 14575.37,
+    "volume_fp": 15195.92
    },
    "first_play": true,
    "game": "Oregon vs Oregon St.: Spread",
@@ -35012,9 +35091,9 @@
     "volume_fp": 265.3
    },
    "ex_stats_close": {
-    "open_interest_fp": 31206.47,
-    "volume_24h_fp": 29065.9,
-    "volume_fp": 31391.37
+    "open_interest_fp": 33150.85,
+    "volume_24h_fp": 31207.31,
+    "volume_fp": 33335.75
    },
    "first_play": true,
    "game": "Oregon vs Oregon St.",
@@ -35249,9 +35328,9 @@
     "volume_fp": 3345.33
    },
    "ex_stats_close": {
-    "open_interest_fp": 66140.93,
-    "volume_24h_fp": 69667.66,
-    "volume_fp": 73421.24
+    "open_interest_fp": 73276.29,
+    "volume_24h_fp": 70616.47,
+    "volume_fp": 80556.6
    },
    "first_play": false,
    "game": "Texas A&M vs TCU",
@@ -35543,9 +35622,9 @@
     "volume_fp": 62.15
    },
    "ex_stats_close": {
-    "open_interest_fp": 20585.79,
-    "volume_24h_fp": 19676.33,
-    "volume_fp": 21822.08
+    "open_interest_fp": 20933.68,
+    "volume_24h_fp": 21822.08,
+    "volume_fp": 22169.97
    },
    "first_play": false,
    "game": "Charleston vs Drake: Spread",
@@ -35596,9 +35675,9 @@
     "volume_fp": 62.15
    },
    "ex_stats_close": {
-    "open_interest_fp": 20585.79,
-    "volume_24h_fp": 19676.33,
-    "volume_fp": 21822.08
+    "open_interest_fp": 20933.68,
+    "volume_24h_fp": 21822.08,
+    "volume_fp": 22169.97
    },
    "first_play": false,
    "game": "Charleston vs Drake: Spread",
@@ -35649,9 +35728,9 @@
     "volume_fp": 1151.8600000000001
    },
    "ex_stats_close": {
-    "open_interest_fp": 42571.28,
-    "volume_24h_fp": 46630.78,
-    "volume_fp": 46998.34
+    "open_interest_fp": 44372.009999999995,
+    "volume_24h_fp": 46787.04,
+    "volume_fp": 48799.07
    },
    "first_play": false,
    "game": "Charleston vs Drake",
@@ -36269,9 +36348,9 @@
     "volume_fp": 1873.51
    },
    "ex_stats_close": {
-    "open_interest_fp": 10595.16,
+    "open_interest_fp": 10648.19,
     "volume_24h_fp": 11941.44,
-    "volume_fp": 11941.44
+    "volume_fp": 11994.47
    },
    "first_play": false,
    "game": "Robert Morris vs Toledo: Spread",
@@ -36322,9 +36401,9 @@
     "volume_fp": 1873.51
    },
    "ex_stats_close": {
-    "open_interest_fp": 10595.16,
+    "open_interest_fp": 10648.19,
     "volume_24h_fp": 11941.44,
-    "volume_fp": 11941.44
+    "volume_fp": 11994.47
    },
    "first_play": false,
    "game": "Robert Morris vs Toledo: Spread",
@@ -36610,8 +36689,8 @@
    "best_price": 0.505,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.4975,
-   "clv_cents": -1.7,
+   "close_price": 0.5,
+   "clv_cents": -1.5,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": null,
@@ -36992,8 +37071,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 2202314.0,
-    "volume": 2388301.0
+    "openInterest": 2203314.0,
+    "volume": 2389301.0
    },
    "first_play": true,
    "game": "Charleston @ Drake",
@@ -37095,9 +37174,9 @@
     "volume_fp": 125.06
    },
    "ex_stats_close": {
-    "open_interest_fp": 45710.03999999999,
-    "volume_24h_fp": 45685.61,
-    "volume_fp": 45792.57
+    "open_interest_fp": 45695.45,
+    "volume_24h_fp": 45720.96000000001,
+    "volume_fp": 45817.78
    },
    "first_play": true,
    "game": "Maine vs Quinnipiac",
@@ -37149,7 +37228,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 16163.21,
-    "volume_24h_fp": 16139.76,
+    "volume_24h_fp": 16225.039999999999,
     "volume_fp": 16271.689999999999
    },
    "first_play": true,
@@ -37338,8 +37417,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 3359364.0,
-    "volume": 3908120.0
+    "openInterest": 3363993.0,
+    "volume": 3912749.0
    },
    "first_play": true,
    "game": "UTEP @ New Mexico State",
@@ -37389,8 +37468,8 @@
     "volume": 399538.0
    },
    "ex_stats_close": {
-    "openInterest": 4098373.0,
-    "volume": 4613308.0
+    "openInterest": 4119840.0,
+    "volume": 4634775.0
    },
    "first_play": true,
    "game": "Tulane @ Louisiana Tech",
@@ -37578,8 +37657,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 2202314.0,
-    "volume": 2388301.0
+    "openInterest": 2203314.0,
+    "volume": 2389301.0
    },
    "first_play": true,
    "game": "Charleston @ Drake",
@@ -37629,8 +37708,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 2202314.0,
-    "volume": 2388301.0
+    "openInterest": 2203314.0,
+    "volume": 2389301.0
    },
    "first_play": true,
    "game": "Charleston @ Drake",
@@ -38011,8 +38090,8 @@
    "best_price": 0.5148,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.4762,
-   "clv_cents": -3.4,
+   "close_price": 0.4831,
+   "clv_cents": -2.7,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": null,
@@ -38158,8 +38237,8 @@
     "volume": 197100.0
    },
    "ex_stats_close": {
-    "openInterest": 2086471.0,
-    "volume": 2629385.0
+    "openInterest": 2089412.0,
+    "volume": 2632326.0
    },
    "first_play": false,
    "game": "Robert Morris @ Toledo",
@@ -38209,8 +38288,8 @@
     "volume": 197100.0
    },
    "ex_stats_close": {
-    "openInterest": 2086471.0,
-    "volume": 2629385.0
+    "openInterest": 2089412.0,
+    "volume": 2632326.0
    },
    "first_play": false,
    "game": "Robert Morris @ Toledo",
@@ -38260,8 +38339,8 @@
     "volume": 26109.0
    },
    "ex_stats_close": {
-    "openInterest": 5370098.0,
-    "volume": 6857184.0
+    "openInterest": 5740358.0,
+    "volume": 7250613.0
    },
    "first_play": false,
    "game": "Murray State @ North Carolina State",
@@ -38335,7 +38414,7 @@
     "outcome_id": "01a1ed4c-425c-72e2-9bdb-4c03fda62d06"
    },
    "result": null,
-   "settle_tries": 20,
+   "settle_tries": 21,
    "side": "Zdenek Kolar",
    "side_label": "Z. Kolar (0)",
    "side_raw": 0,
@@ -38387,7 +38466,7 @@
     "outcome_id": "01a1ef71-2cee-7ce2-bbca-a43b0a93bf5f"
    },
    "result": null,
-   "settle_tries": 10,
+   "settle_tries": 11,
    "side": "P. Herbert (0)",
    "side_label": "P. Herbert (0)",
    "side_raw": null,
@@ -38628,7 +38707,7 @@
     "outcome_id": "01a1f031-f906-7410-a8a1-03acbf619d0e"
    },
    "result": null,
-   "settle_tries": 17,
+   "settle_tries": 18,
    "side": "Sebastian Dominko Round of 16",
    "side_label": "S. Dominko (0)",
    "side_raw": 1,
@@ -38833,7 +38912,7 @@
     "outcome_id": "01a1f031-f906-7410-a8a1-03b8f0114cb7"
    },
    "result": null,
-   "settle_tries": 17,
+   "settle_tries": 18,
    "side": "Gavin Young",
    "side_label": "G. Young (0)",
    "side_raw": 0,
@@ -39078,7 +39157,7 @@
     "outcome_id": "01a1ef71-2cee-7ce2-bbca-a44ed0a61412"
    },
    "result": null,
-   "settle_tries": 10,
+   "settle_tries": 11,
    "side": "Zsombor Piros",
    "side_label": "Z. Piros (0)",
    "side_raw": 0,
@@ -39131,7 +39210,7 @@
     "outcome_id": "01a1f031-f664-78d1-9f3a-1d139f410912"
    },
    "result": null,
-   "settle_tries": 16,
+   "settle_tries": 17,
    "side": "Louis Wessels Round of 16",
    "side_label": "L. Wessels (0)",
    "side_raw": 1,
@@ -39160,7 +39239,7 @@
    },
    "ex_stats_close": {
     "openInterest": 4586794.0,
-    "volume": 5453596.0
+    "volume": 5459031.0
    },
    "first_play": true,
    "game": "VCU @ Santa Clara",
@@ -39210,8 +39289,8 @@
     "volume": 9866.0
    },
    "ex_stats_close": {
-    "openInterest": 3215696.0,
-    "volume": 4304486.0
+    "openInterest": 3479135.0,
+    "volume": 4567925.0
    },
    "first_play": true,
    "game": "Murray State @ North Carolina State",
@@ -39465,8 +39544,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 3557674.0,
-    "volume": 5181831.0
+    "openInterest": 3669368.0,
+    "volume": 5477865.0
    },
    "first_play": true,
    "game": "Texas A&M @ TCU",
@@ -39567,8 +39646,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 3359364.0,
-    "volume": 3908120.0
+    "openInterest": 3363993.0,
+    "volume": 3912749.0
    },
    "first_play": true,
    "game": "UTEP @ New Mexico State",
@@ -39643,7 +39722,7 @@
     "outcome_id": "01a1f031-f664-78d1-9f3a-1d239cd61158"
    },
    "result": null,
-   "settle_tries": 16,
+   "settle_tries": 17,
    "side": "James Kent Trotter",
    "side_label": "J. Trotter (0)",
    "side_raw": 0,
@@ -39671,8 +39750,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 1053739.0,
-    "volume": 1308803.0
+    "openInterest": 1077476.0,
+    "volume": 1332540.0
    },
    "first_play": true,
    "game": "UC Santa Barbara @ Pepperdine",
@@ -39722,8 +39801,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 1053739.0,
-    "volume": 1308803.0
+    "openInterest": 1077476.0,
+    "volume": 1332540.0
    },
    "first_play": true,
    "game": "UC Santa Barbara @ Pepperdine",
@@ -39773,8 +39852,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 3557674.0,
-    "volume": 5181831.0
+    "openInterest": 3669368.0,
+    "volume": 5477865.0
    },
    "first_play": true,
    "game": "Texas A&M @ TCU",
@@ -39875,8 +39954,8 @@
     "volume": 10000.0
    },
    "ex_stats_close": {
-    "openInterest": 4098373.0,
-    "volume": 4613308.0
+    "openInterest": 4119840.0,
+    "volume": 4634775.0
    },
    "first_play": true,
    "game": "Tulane @ Louisiana Tech",
@@ -39926,8 +40005,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 2120627.0,
-    "volume": 2658643.0
+    "openInterest": 2127674.0,
+    "volume": 2665690.0
    },
    "first_play": true,
    "game": "Charleston @ Drake",
@@ -39977,8 +40056,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 2120627.0,
-    "volume": 2658643.0
+    "openInterest": 2127674.0,
+    "volume": 2665690.0
    },
    "first_play": true,
    "game": "Charleston @ Drake",
@@ -40028,8 +40107,8 @@
     "volume": 660.0
    },
    "ex_stats_close": {
-    "openInterest": 817827.0,
-    "volume": 891020.0
+    "openInterest": 829854.0,
+    "volume": 903047.0
    },
    "first_play": true,
    "game": "Robert Morris @ Toledo",
@@ -40080,7 +40159,7 @@
    },
    "ex_stats_close": {
     "openInterest": 4586794.0,
-    "volume": 5453596.0
+    "volume": 5459031.0
    },
    "first_play": true,
    "game": "VCU @ Santa Clara",
@@ -40121,8 +40200,8 @@
    "best_price": 0.44,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.465,
-   "clv_cents": 2.5,
+   "close_price": 0.47,
+   "clv_cents": 3.0,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": {
@@ -40130,8 +40209,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 1412105.0,
-    "volume": 1661816.0
+    "openInterest": 1466874.0,
+    "volume": 1728073.0
    },
    "first_play": true,
    "game": "Oregon State @ Oregon",
@@ -40181,8 +40260,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 1412105.0,
-    "volume": 1661816.0
+    "openInterest": 1466874.0,
+    "volume": 1728073.0
    },
    "first_play": true,
    "game": "Oregon State @ Oregon",
@@ -40232,8 +40311,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 3966366.0,
-    "volume": 5509868.0
+    "openInterest": 3967261.0,
+    "volume": 5510763.0
    },
    "first_play": true,
    "game": "Seton Hall @ Wisconsin",
@@ -40283,8 +40362,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 3966366.0,
-    "volume": 5509868.0
+    "openInterest": 3967261.0,
+    "volume": 5510763.0
    },
    "first_play": true,
    "game": "Seton Hall @ Wisconsin",
@@ -40334,8 +40413,8 @@
     "volume": 660.0
    },
    "ex_stats_close": {
-    "openInterest": 817827.0,
-    "volume": 891020.0
+    "openInterest": 829854.0,
+    "volume": 903047.0
    },
    "first_play": true,
    "game": "Robert Morris @ Toledo",
@@ -40487,8 +40566,8 @@
     "volume": 8200.0
    },
    "ex_stats_close": {
-    "openInterest": 3215696.0,
-    "volume": 4304486.0
+    "openInterest": 3479135.0,
+    "volume": 4567925.0
    },
    "first_play": true,
    "game": "Murray State @ North Carolina State",
@@ -40563,7 +40642,7 @@
     "outcome_id": "01a1f031-f664-78d1-9f3a-1d139f410912"
    },
    "result": null,
-   "settle_tries": 16,
+   "settle_tries": 17,
    "side": "Louis Wessels Round of 16",
    "side_label": "L. Wessels (0)",
    "side_raw": 1,
@@ -40667,7 +40746,7 @@
     "outcome_id": "01a1f031-f664-78d1-9f3a-1d239cd61158"
    },
    "result": null,
-   "settle_tries": 16,
+   "settle_tries": 17,
    "side": "James Kent Trotter",
    "side_label": "J. Trotter (0)",
    "side_raw": 0,
@@ -40719,7 +40798,7 @@
     "outcome_id": "01a1ed4c-425c-72e2-9bdb-4bf901f961e0"
    },
    "result": null,
-   "settle_tries": 20,
+   "settle_tries": 21,
    "side": "Oriol Roca",
    "side_label": "O. Roca-Batalla (0)",
    "side_raw": 1,
@@ -40772,7 +40851,7 @@
     "outcome_id": "01a1f031-f906-7410-a8a1-03acbf619d0e"
    },
    "result": null,
-   "settle_tries": 23,
+   "settle_tries": 24,
    "side": "Sebastian Dominko Round of 16",
    "side_label": "S. Dominko (0)",
    "side_raw": 1,
@@ -40876,7 +40955,7 @@
     "outcome_id": "01a1f031-f906-7410-a8a1-03b8f0114cb7"
    },
    "result": null,
-   "settle_tries": 23,
+   "settle_tries": 24,
    "side": "Gavin Young",
    "side_label": "G. Young (0)",
    "side_raw": 0,
@@ -40929,7 +41008,7 @@
     "outcome_id": "01a1ed14-ac54-7891-a134-f690c90f4b47"
    },
    "result": null,
-   "settle_tries": 23,
+   "settle_tries": 24,
    "side": "Hynek Barton",
    "side_label": "H. Barton (0)",
    "side_raw": 0,
@@ -41405,7 +41484,7 @@
     "outcome_id": "01a1ec8b-79ed-7bd2-a51c-364a6e0a103e"
    },
    "result": null,
-   "settle_tries": 107,
+   "settle_tries": 108,
    "side": "UNDER",
    "side_label": "Under 153.5 (153.5)",
    "side_raw": "UNDER",
@@ -41457,7 +41536,7 @@
     "outcome_id": "01a1ec8b-79ed-7bd2-a51c-363d4f46bbaa"
    },
    "result": null,
-   "settle_tries": 107,
+   "settle_tries": 108,
    "side": "OVER",
    "side_label": "Over 153.5 (153.5)",
    "side_raw": "OVER",
@@ -41867,7 +41946,7 @@
     "outcome_id": "01a1ef71-2cb3-7c83-8130-4bbb009eb5d9"
    },
    "result": null,
-   "settle_tries": 50,
+   "settle_tries": 51,
    "side": "SoonWoo Kwon",
    "side_label": "S. Kwon (0)",
    "side_raw": 0,
@@ -42429,7 +42508,7 @@
     "outcome_id": "01a1ec8b-79ec-7b13-947d-c82182e7e356"
    },
    "result": null,
-   "settle_tries": 107,
+   "settle_tries": 108,
    "side": "Bethune Cookman",
    "side_label": "BCU +24.5 (-24.5)",
    "side_raw": 0,
@@ -42481,7 +42560,7 @@
     "outcome_id": "01a1ec8b-79ec-7b13-947d-c81f8aa1d44d"
    },
    "result": null,
-   "settle_tries": 107,
+   "settle_tries": 108,
    "side": "Creighton",
    "side_label": "Creighton -24.5 (-24.5)",
    "side_raw": 1,
@@ -42587,7 +42666,7 @@
     "outcome_id": "01a1ec8b-79ed-7bd2-a51c-327cd0e00bca"
    },
    "result": null,
-   "settle_tries": 113,
+   "settle_tries": 114,
    "side": "GWEB +2.5 (2.5)",
    "side_label": "GWEB +2.5 (2.5)",
    "side_raw": null,
@@ -42855,7 +42934,7 @@
     "outcome_id": "01a1ec88-7f3a-7932-a70f-64093cf3b02b"
    },
    "result": null,
-   "settle_tries": 113,
+   "settle_tries": 114,
    "side": "Arkansas Pine Bluff",
    "side_label": "UAPB +28.5 (-28.5)",
    "side_raw": 0,
@@ -42907,7 +42986,7 @@
     "outcome_id": "01a1ec88-7f3a-7932-a70f-63f1a5291daa"
    },
    "result": null,
-   "settle_tries": 113,
+   "settle_tries": 114,
    "side": "ARST -28.5 (-28.5)",
    "side_label": "ARST -28.5 (-28.5)",
    "side_raw": null,
@@ -43003,7 +43082,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 116,
+   "settle_tries": 117,
    "side": "Texas Tech",
    "side_label": "Texas Tech -35.5 (-35.5)",
    "side_raw": 1,
@@ -43055,7 +43134,7 @@
     "outcome_id": "01a1ef71-2cb3-7c83-8130-4ba489b83d3c"
    },
    "result": null,
-   "settle_tries": 50,
+   "settle_tries": 51,
    "side": "Matthew William Donald Round of 16",
    "side_label": "M. Donald (0)",
    "side_raw": 1,
@@ -43161,7 +43240,7 @@
     "outcome_id": "01a1ef71-2cee-7ce2-bbca-a44ed0a61412"
    },
    "result": null,
-   "settle_tries": 10,
+   "settle_tries": 11,
    "side": "Zsombor Piros",
    "side_label": "Z. Piros (0)",
    "side_raw": 0,
@@ -43213,7 +43292,7 @@
     "outcome_id": "01a1ef71-2cee-7ce2-bbca-a43b0a93bf5f"
    },
    "result": null,
-   "settle_tries": 10,
+   "settle_tries": 11,
    "side": "P. Herbert (0)",
    "side_label": "P. Herbert (0)",
    "side_raw": null,
@@ -43569,7 +43648,7 @@
     "outcome_id": "01a1ed14-abf6-7cb2-a24e-83ddc9c22284"
    },
    "result": null,
-   "settle_tries": 23,
+   "settle_tries": 24,
    "side": "Stefan Kozlov Round of 16",
    "side_label": "S. Kozlov (0)",
    "side_raw": 1,
@@ -44127,7 +44206,7 @@
     "outcome_id": "01a1ed14-abb5-7fc0-86f1-060a009a7577"
    },
    "result": null,
-   "settle_tries": 23,
+   "settle_tries": 24,
    "side": "Geoffrey Blancaneaux",
    "side_label": "G. Blancaneaux (0)",
    "side_raw": 0,
@@ -44622,7 +44701,7 @@
     "outcome_id": "01a1ed4c-425c-72e2-9bdb-4bf901f961e0"
    },
    "result": null,
-   "settle_tries": 20,
+   "settle_tries": 21,
    "side": "Oriol Roca",
    "side_label": "O. Roca-Batalla (0)",
    "side_raw": 1,
@@ -45426,7 +45505,7 @@
     "outcome_id": "01a1ec70-f789-7872-91be-ee01a48c7263"
    },
    "result": null,
-   "settle_tries": 116,
+   "settle_tries": 117,
    "side": "UNDER",
    "side_label": "Under 157.5 (157.5)",
    "side_raw": "UNDER",
@@ -45983,7 +46062,7 @@
     "outcome_id": "01a1ec8c-268a-7583-a5ea-96a631a2dd56"
    },
    "result": null,
-   "settle_tries": 113,
+   "settle_tries": 114,
    "side": "UNDER",
    "side_label": "Under 162.5 (162.5)",
    "side_raw": "UNDER",
@@ -46035,7 +46114,7 @@
     "outcome_id": "01a1ec8c-268a-7583-a5ea-96951fb22707"
    },
    "result": null,
-   "settle_tries": 113,
+   "settle_tries": 114,
    "side": "OVER",
    "side_label": "Over 162.5 (162.5)",
    "side_raw": "OVER",
@@ -46701,7 +46780,7 @@
     "outcome_id": "01a1ec70-f789-7872-91be-edf7630da755"
    },
    "result": null,
-   "settle_tries": 116,
+   "settle_tries": 117,
    "side": "OVER",
    "side_label": "Over 157.5 (157.5)",
    "side_raw": "OVER",
@@ -46901,7 +46980,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 107,
+   "settle_tries": 108,
    "side": "Creighton",
    "side_label": "Creighton -24.5 (-24.5)",
    "side_raw": 1,
@@ -47267,7 +47346,7 @@
     "outcome_id": "01a1ec8c-24c1-7ed2-a797-31e649f35563"
    },
    "result": null,
-   "settle_tries": 116,
+   "settle_tries": 117,
    "side": "New Orleans",
    "side_label": "New Orleans +35.5 (-35.5)",
    "side_raw": 0,
@@ -47368,7 +47447,7 @@
     "outcome_id": "01a1ef03-ee85-7ac3-bad9-d5cff484a1de"
    },
    "result": null,
-   "settle_tries": 50,
+   "settle_tries": 51,
    "side": "Borna Gojo Round of 16",
    "side_label": "B. Gojo (0)",
    "side_raw": 1,
@@ -47471,7 +47550,7 @@
     "outcome_id": "01a1e938-00fb-7430-bfe2-87434826ea80"
    },
    "result": null,
-   "settle_tries": 100,
+   "settle_tries": 101,
    "side": "Taro Daniel",
    "side_label": "T. Daniel (0)",
    "side_raw": 0,
@@ -48228,7 +48307,7 @@
     "outcome_id": "01a1ec8c-24c1-7ed2-a797-31d78d67b177"
    },
    "result": null,
-   "settle_tries": 116,
+   "settle_tries": 117,
    "side": "Texas Tech",
    "side_label": "TTU -35.5 (-35.5)",
    "side_raw": 1,
@@ -49607,7 +49686,7 @@
     "outcome_id": "01a1ebaf-de79-7a60-9285-80252adbdf41"
    },
    "result": null,
-   "settle_tries": 32,
+   "settle_tries": 33,
    "side": "Valeriya Strakhova Round of 16",
    "side_label": "V. Strakhova (0)",
    "side_raw": 1,
@@ -49654,7 +49733,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 101,
+   "settle_tries": 102,
    "side": "San Francisco",
    "side_label": "San Francisco -10.5 (-10.5)",
    "side_raw": 1,
@@ -49953,7 +50032,7 @@
     "outcome_id": "01a1ebaf-e75b-7d82-b1a1-30c0bbe49c89"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "Alexander Zverev N/A",
    "side_label": "A. Zverev (0)",
    "side_raw": 1,
@@ -50006,7 +50085,7 @@
     "outcome_id": "01a1ee42-eaa8-7250-847f-33327acd3d4c"
    },
    "result": null,
-   "settle_tries": 100,
+   "settle_tries": 101,
    "side": "Yi Zhou",
    "side_label": "Y. Zhou (0)",
    "side_raw": 0,
@@ -50102,7 +50181,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 101,
+   "settle_tries": 102,
    "side": "UL Lafayette",
    "side_label": "UL Lafayette",
    "side_raw": 0,
@@ -50155,7 +50234,7 @@
     "outcome_id": "01a1eab9-18e2-7d30-a85c-58bb67ac263e"
    },
    "result": null,
-   "settle_tries": 29,
+   "settle_tries": 30,
    "side": "Irene Burillo Escorihuela",
    "side_label": "I. Burillo Escorihuela (0)",
    "side_raw": 0,
@@ -50208,7 +50287,7 @@
     "outcome_id": "01a1ebaf-de79-7a60-9285-803e50a8dbf1"
    },
    "result": null,
-   "settle_tries": 32,
+   "settle_tries": 33,
    "side": "Veronika Erjavec",
    "side_label": "V. Erjavec (0)",
    "side_raw": 0,
@@ -50255,7 +50334,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 116,
+   "settle_tries": 117,
    "side": "New Orleans",
    "side_label": "New Orleans +35.5 (+35.5)",
    "side_raw": 0,
@@ -51436,7 +51515,7 @@
     "outcome_id": "01a1ed14-ac97-72e2-aab1-6fe834c712e6"
    },
    "result": null,
-   "settle_tries": 20,
+   "settle_tries": 21,
    "side": "Henrique Rocha Round of 16",
    "side_label": "H. Rocha (0)",
    "side_raw": 1,
@@ -51489,7 +51568,7 @@
     "outcome_id": "01a1ed14-ad09-72a2-bd93-ca4790f8def1"
    },
    "result": null,
-   "settle_tries": 20,
+   "settle_tries": 21,
    "side": "Juan Manuel La Serna",
    "side_label": "J. La serna (0)",
    "side_raw": 0,
@@ -51541,7 +51620,7 @@
     "outcome_id": "01a1eb26-55fc-7642-8e99-6bf13df896db"
    },
    "result": null,
-   "settle_tries": 23,
+   "settle_tries": 24,
    "side": "Alastair Gray",
    "side_label": "A. Gray (0)",
    "side_raw": 0,
@@ -51594,7 +51673,7 @@
     "outcome_id": "01a1ed14-abb5-7fc0-86f1-060a009a7577"
    },
    "result": null,
-   "settle_tries": 23,
+   "settle_tries": 24,
    "side": "Geoffrey Blancaneaux",
    "side_label": "G. Blancaneaux (0)",
    "side_raw": 0,
@@ -51647,7 +51726,7 @@
     "outcome_id": "01a1ed14-ac54-7891-a134-f6886b76195c"
    },
    "result": null,
-   "settle_tries": 23,
+   "settle_tries": 24,
    "side": "Aidan Mayo Round of 16",
    "side_label": "A. Mayo (0)",
    "side_raw": 1,
@@ -51700,7 +51779,7 @@
     "outcome_id": "01a1ee42-ea5f-75d3-8b86-3c06c10de5d5"
    },
    "result": null,
-   "settle_tries": 100,
+   "settle_tries": 101,
    "side": "Billy Harris Round of 16",
    "side_label": "B. Harris (0)",
    "side_raw": 1,
@@ -52244,7 +52323,7 @@
     "outcome_id": "01a1ec8b-79ec-7b13-947d-c8e3b5f2757c"
    },
    "result": null,
-   "settle_tries": 107,
+   "settle_tries": 108,
    "side": "Bethune Cookman",
    "side_label": "BCU +23.5 (-23.5)",
    "side_raw": 0,
@@ -53240,7 +53319,7 @@
     "outcome_id": "01a1eb26-5cd1-7db3-89d2-3d8f3b04b4a0"
    },
    "result": null,
-   "settle_tries": 59,
+   "settle_tries": 60,
    "side": "Sascha Gueymard Wayenburg Round of 16",
    "side_label": "S. Gueymard Wayenburg (0)",
    "side_raw": 1,
@@ -54366,7 +54445,7 @@
     "outcome_id": "01a1ed67-a782-7aa0-9cee-d4fe6ee9a40b"
    },
    "result": null,
-   "settle_tries": 23,
+   "settle_tries": 24,
    "side": "Liam Draxl",
    "side_label": "L. Draxl (0)",
    "side_raw": 0,
@@ -54413,7 +54492,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 113,
+   "settle_tries": 114,
    "side": "UNDER",
    "side_label": "under 160.5 (160.5)",
    "side_raw": "UNDER",
@@ -55666,7 +55745,7 @@
     "outcome_id": "01a1ec8b-79ed-7bd2-a51c-32899d510d61"
    },
    "result": null,
-   "settle_tries": 113,
+   "settle_tries": 114,
    "side": "UNCG -2.5 (2.5)",
    "side_label": "UNCG -2.5 (2.5)",
    "side_raw": null,
@@ -55765,7 +55844,7 @@
     "outcome_id": "01a1ec8b-79ec-7b13-947d-c7324a303882"
    },
    "result": null,
-   "settle_tries": 113,
+   "settle_tries": 114,
    "side": "UNDER",
    "side_label": "Under 148.5 (148.5)",
    "side_raw": "UNDER",
@@ -55817,7 +55896,7 @@
     "outcome_id": "01a1ec8b-79ec-7b13-947d-c723ffe3f4ab"
    },
    "result": null,
-   "settle_tries": 113,
+   "settle_tries": 114,
    "side": "OVER",
    "side_label": "Over 148.5 (148.5)",
    "side_raw": "OVER",
@@ -56184,7 +56263,7 @@
     "outcome_id": "01a1ed14-ac54-7891-a134-f690c90f4b47"
    },
    "result": null,
-   "settle_tries": 23,
+   "settle_tries": 24,
    "side": "Hynek Barton",
    "side_label": "H. Barton (0)",
    "side_raw": 0,
@@ -56236,7 +56315,7 @@
     "outcome_id": "01a1eb27-0512-7c40-a5cb-2d0d42a2079a"
    },
    "result": null,
-   "settle_tries": 29,
+   "settle_tries": 30,
    "side": "Carole Monnet",
    "side_label": "C. Monnet (0)",
    "side_raw": 0,
@@ -56289,7 +56368,7 @@
     "outcome_id": "01a1ea4a-e457-7ab3-97b1-b49f8a8d57ae"
    },
    "result": null,
-   "settle_tries": 50,
+   "settle_tries": 51,
    "side": "Stefano Travaglia",
    "side_label": "S. Travaglia (0)",
    "side_raw": 0,
@@ -56537,7 +56616,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 116,
+   "settle_tries": 117,
    "side": "Texas Tech",
    "side_label": "Texas Tech -35.5 (-35.5)",
    "side_raw": 1,
@@ -56843,7 +56922,7 @@
     "outcome_id": "01a1ec8c-24c1-7ed2-a797-31e649f35563"
    },
    "result": null,
-   "settle_tries": 116,
+   "settle_tries": 117,
    "side": "New Orleans",
    "side_label": "New Orleans +35.5 (-35.5)",
    "side_raw": 0,
@@ -56895,7 +56974,7 @@
     "outcome_id": "01a1ec8c-24c1-7ed2-a797-31d78d67b177"
    },
    "result": null,
-   "settle_tries": 116,
+   "settle_tries": 117,
    "side": "Texas Tech",
    "side_label": "TTU -35.5 (-35.5)",
    "side_raw": 1,
@@ -58814,7 +58893,7 @@
     "outcome_id": "01a1ee42-ea5f-75d3-8b86-3c16dce1370e"
    },
    "result": null,
-   "settle_tries": 100,
+   "settle_tries": 101,
    "side": "Max Schoenhaus",
    "side_label": "M. Schoenhaus (0)",
    "side_raw": 0,
@@ -58867,7 +58946,7 @@
     "outcome_id": "01a1ee42-eaa8-7250-847f-332a85a3d7b9"
    },
    "result": null,
-   "settle_tries": 100,
+   "settle_tries": 101,
    "side": "Yu Hsiou Hsu Round of 16",
    "side_label": "Y. Hsu (0)",
    "side_raw": 1,
@@ -59214,7 +59293,7 @@
     "outcome_id": "01a1ec8c-268a-7583-a5ea-92e3f73599a2"
    },
    "result": null,
-   "settle_tries": 113,
+   "settle_tries": 114,
    "side": "UNDER",
    "side_label": "Under 160.5 (160.5)",
    "side_raw": "UNDER",
@@ -59523,7 +59602,7 @@
     "outcome_id": "01a1ec8b-79ec-7b13-947d-c7324a303882"
    },
    "result": null,
-   "settle_tries": 113,
+   "settle_tries": 114,
    "side": "UNDER",
    "side_label": "Under 148.5 (148.5)",
    "side_raw": "UNDER",
@@ -59575,7 +59654,7 @@
     "outcome_id": "01a1ec8b-79ec-7b13-947d-c723ffe3f4ab"
    },
    "result": null,
-   "settle_tries": 113,
+   "settle_tries": 114,
    "side": "OVER",
    "side_label": "Over 148.5 (148.5)",
    "side_raw": "OVER",
@@ -60189,7 +60268,7 @@
     "outcome_id": "01a1ec8b-79ec-7b13-947d-c8e3b5f2757c"
    },
    "result": null,
-   "settle_tries": 107,
+   "settle_tries": 108,
    "side": "Bethune Cookman",
    "side_label": "BCU +23.5 (-23.5)",
    "side_raw": 0,
@@ -60547,7 +60626,7 @@
     "outcome_id": "01a1ebe7-2c3f-7e72-b50b-cf5668a7699a"
    },
    "result": null,
-   "settle_tries": 23,
+   "settle_tries": 24,
    "side": "Andres Martin",
    "side_label": "A. Martin (0)",
    "side_raw": 0,
@@ -60908,7 +60987,7 @@
     "outcome_id": "01a1ec70-fa6a-7ce3-a042-de7dff1dd0ec"
    },
    "result": null,
-   "settle_tries": 113,
+   "settle_tries": 114,
    "side": "OVER",
    "side_label": "Over 151.5 (151.5)",
    "side_raw": "OVER",
@@ -61318,7 +61397,7 @@
     "outcome_id": "01a1ec8b-79ed-7bd2-a51c-327cd0e00bca"
    },
    "result": null,
-   "settle_tries": 113,
+   "settle_tries": 114,
    "side": "GWEB +2.5 (2.5)",
    "side_label": "GWEB +2.5 (2.5)",
    "side_raw": null,
@@ -61640,7 +61719,7 @@
     "outcome_id": "01a1ebaf-e75b-7d82-b1a1-30c0bbe49c89"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "Alexander Zverev N/A",
    "side_label": "A. Zverev (0)",
    "side_raw": 1,
@@ -61692,7 +61771,7 @@
     "outcome_id": "01a1ebaf-e71e-7480-b50b-ae0d8d75fc7f"
    },
    "result": null,
-   "settle_tries": 41,
+   "settle_tries": 42,
    "side": "Rafael Jodar",
    "side_label": "R. Jodar (0)",
    "side_raw": 0,
@@ -61744,7 +61823,7 @@
     "outcome_id": "01a1ebaf-e71e-7480-b50b-adfb695733b4"
    },
    "result": null,
-   "settle_tries": 41,
+   "settle_tries": 42,
    "side": "Ben Shelton N/A",
    "side_label": "B. Shelton (0)",
    "side_raw": 1,
@@ -62519,7 +62598,7 @@
     "outcome_id": "01a1ebaf-e75b-7d82-b1a1-30de5060dca2"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "A. Fils (0)",
    "side_label": "A. Fils (0)",
    "side_raw": null,
@@ -62571,7 +62650,7 @@
     "outcome_id": "01a1eb26-55fc-7642-8e99-6bf13df896db"
    },
    "result": null,
-   "settle_tries": 23,
+   "settle_tries": 24,
    "side": "Alastair Gray",
    "side_label": "A. Gray (0)",
    "side_raw": 0,
@@ -63538,7 +63617,7 @@
     "outcome_id": "01a1ed14-abb5-7fc0-86f1-05f9539a0815"
    },
    "result": null,
-   "settle_tries": 23,
+   "settle_tries": 24,
    "side": "Harry Wendelken Round of 16",
    "side_label": "H. Wendelken (0)",
    "side_raw": 1,
@@ -65717,7 +65796,7 @@
     "outcome_id": "01a1ed67-a782-7aa0-9cee-d4e3d1b2cd2c"
    },
    "result": null,
-   "settle_tries": 23,
+   "settle_tries": 24,
    "side": "Daniel Milavsky Round of 16",
    "side_label": "D. Milavsky (0)",
    "side_raw": 1,
@@ -65764,7 +65843,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 116,
+   "settle_tries": 117,
    "side": "OVER",
    "side_label": "over 151.5 (151.5)",
    "side_raw": "OVER",
@@ -65811,7 +65890,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 116,
+   "settle_tries": 117,
    "side": "UNDER",
    "side_label": "under 151.5 (151.5)",
    "side_raw": "UNDER",
@@ -66393,7 +66472,7 @@
     "outcome_id": "01a1ec70-f789-7872-91be-ed914fe96baf"
    },
    "result": null,
-   "settle_tries": 116,
+   "settle_tries": 117,
    "side": "OVER",
    "side_label": "Over 151.5 (151.5)",
    "side_raw": "OVER",
@@ -67201,7 +67280,7 @@
     "outcome_id": "01a1ec70-f789-7872-91be-edabb8579d07"
    },
    "result": null,
-   "settle_tries": 116,
+   "settle_tries": 117,
    "side": "UNDER",
    "side_label": "Under 151.5 (151.5)",
    "side_raw": "UNDER",
@@ -67944,7 +68023,7 @@
     "outcome_id": "01a1ec88-7f3a-7932-a70f-63d5c1a716ec"
    },
    "result": null,
-   "settle_tries": 113,
+   "settle_tries": 114,
    "side": "Arkansas Pine Bluff",
    "side_label": "UAPB +25.5 (-25.5)",
    "side_raw": 0,
@@ -68213,7 +68292,7 @@
     "outcome_id": "01a1eb78-ecd5-7101-accd-5f0c286ebb74"
    },
    "result": null,
-   "settle_tries": 59,
+   "settle_tries": 60,
    "side": "Kyrian Jacquet",
    "side_label": "K. Jacquet (0)",
    "side_raw": 0,
@@ -69198,7 +69277,7 @@
     "outcome_id": "01a1ed14-ad09-72a2-bd93-ca355c0a8475"
    },
    "result": null,
-   "settle_tries": 20,
+   "settle_tries": 21,
    "side": "Franco Roncadelli Round of 16",
    "side_label": "F. Roncadelli (0)",
    "side_raw": 1,
@@ -69447,7 +69526,7 @@
     "outcome_id": "01a1ec70-fa6a-7ce3-a042-df08aaf6645c"
    },
    "result": null,
-   "settle_tries": 113,
+   "settle_tries": 114,
    "side": "OVER",
    "side_label": "Over 144.5 (144.5)",
    "side_raw": "OVER",
@@ -70671,7 +70750,7 @@
     "outcome_id": "01a1ed14-a706-7b41-a3ee-7d6455d6bd50"
    },
    "result": null,
-   "settle_tries": 115,
+   "settle_tries": 116,
    "side": "Darwin Blanch Round of 16",
    "side_label": "D. Blanch (0)",
    "side_raw": 1,
@@ -70724,7 +70803,7 @@
     "outcome_id": "01a1ecde-1aa2-7683-a75f-09411eef7ee8"
    },
    "result": null,
-   "settle_tries": 154,
+   "settle_tries": 155,
    "side": "Shunsuke Mitsui",
    "side_label": "S. Mitsui (0)",
    "side_raw": 0,
@@ -70776,7 +70855,7 @@
     "outcome_id": "01a1e7ee-a5e4-7f13-9f3a-e5c4d4cbf08d"
    },
    "result": null,
-   "settle_tries": 168,
+   "settle_tries": 169,
    "side": "James Kent Trotter Round of 32",
    "side_label": "J. Trotter (0)",
    "side_raw": 1,
@@ -70931,7 +71010,7 @@
     "outcome_id": "01a1ec8b-79ed-7bd2-a51c-32899d510d61"
    },
    "result": null,
-   "settle_tries": 113,
+   "settle_tries": 114,
    "side": "UNCG -2.5 (2.5)",
    "side_label": "UNCG -2.5 (2.5)",
    "side_raw": null,
@@ -71199,7 +71278,7 @@
     "outcome_id": "01a1ed4c-425c-72e2-9bdb-4c03fda62d06"
    },
    "result": null,
-   "settle_tries": 20,
+   "settle_tries": 21,
    "side": "Zdenek Kolar",
    "side_label": "Z. Kolar (0)",
    "side_raw": 0,
@@ -71252,7 +71331,7 @@
     "outcome_id": "01a1ed67-a782-7aa0-9cee-d4fe6ee9a40b"
    },
    "result": null,
-   "settle_tries": 23,
+   "settle_tries": 24,
    "side": "Liam Draxl",
    "side_label": "L. Draxl (0)",
    "side_raw": 0,
@@ -71305,7 +71384,7 @@
     "outcome_id": "01a1ed67-a782-7aa0-9cee-d4e3d1b2cd2c"
    },
    "result": null,
-   "settle_tries": 23,
+   "settle_tries": 24,
    "side": "Daniel Milavsky Round of 16",
    "side_label": "D. Milavsky (0)",
    "side_raw": 1,
@@ -72108,7 +72187,7 @@
     "outcome_id": "01a1ebaf-e75b-7d82-b1a1-30de5060dca2"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "A. Fils (0)",
    "side_label": "A. Fils (0)",
    "side_raw": null,
@@ -72160,7 +72239,7 @@
     "outcome_id": "01a1ebaf-e71e-7480-b50b-adfb695733b4"
    },
    "result": null,
-   "settle_tries": 41,
+   "settle_tries": 42,
    "side": "Ben Shelton N/A",
    "side_label": "B. Shelton (0)",
    "side_raw": 1,
@@ -73022,7 +73101,7 @@
     "outcome_id": "01a1ecc2-d6d5-7ca2-a83c-26c2c185fe1f"
    },
    "result": null,
-   "settle_tries": 113,
+   "settle_tries": 114,
    "side": "UNCG (0)",
    "side_label": "UNCG (0)",
    "side_raw": null,
@@ -73074,7 +73153,7 @@
     "outcome_id": "01a1ecc2-d6d5-7ca2-a83c-26bb67cbf2f3"
    },
    "result": null,
-   "settle_tries": 113,
+   "settle_tries": 114,
    "side": "GWEB (0)",
    "side_label": "GWEB (0)",
    "side_raw": null,
@@ -74909,7 +74988,7 @@
     "outcome_id": "01a1ec8b-79ec-7b13-947d-c8d7cc6bb9f7"
    },
    "result": null,
-   "settle_tries": 107,
+   "settle_tries": 108,
    "side": "Creighton",
    "side_label": "Creighton -23.5 (-23.5)",
    "side_raw": 1,
@@ -75015,7 +75094,7 @@
     "outcome_id": "01a1ec70-fa6a-7ce3-a042-de8240de92b1"
    },
    "result": null,
-   "settle_tries": 113,
+   "settle_tries": 114,
    "side": "UNDER",
    "side_label": "Under 151.5 (151.5)",
    "side_raw": "UNDER",
@@ -75333,7 +75412,7 @@
     "outcome_id": "01a1ed14-a58f-79f2-baed-ad632e3ab090"
    },
    "result": null,
-   "settle_tries": 138,
+   "settle_tries": 139,
    "side": "Tristan Boyer",
    "side_label": "T. Boyer (0)",
    "side_raw": 0,
@@ -75440,7 +75519,7 @@
     "outcome_id": "01a1ebe7-2c3f-7e72-b50b-cf4971c2e2b0"
    },
    "result": null,
-   "settle_tries": 23,
+   "settle_tries": 24,
    "side": "Jordan Lee Round of 16",
    "side_label": "J. Lee (0)",
    "side_raw": 1,
@@ -75492,7 +75571,7 @@
     "outcome_id": "01a1ed14-abf6-7cb2-a24e-83e65dd721a3"
    },
    "result": null,
-   "settle_tries": 23,
+   "settle_tries": 24,
    "side": "Vignesh Gogineni",
    "side_label": "V. Gogineni (0)",
    "side_raw": 0,
@@ -75962,7 +76041,7 @@
     "outcome_id": "01a1ed14-ac97-72e2-aab1-6fe834c712e6"
    },
    "result": null,
-   "settle_tries": 20,
+   "settle_tries": 21,
    "side": "Henrique Rocha Round of 16",
    "side_label": "H. Rocha (0)",
    "side_raw": 1,
@@ -76015,7 +76094,7 @@
     "outcome_id": "01a1ed14-ad09-72a2-bd93-ca4790f8def1"
    },
    "result": null,
-   "settle_tries": 20,
+   "settle_tries": 21,
    "side": "Juan Manuel La Serna",
    "side_label": "J. La serna (0)",
    "side_raw": 0,
@@ -76067,7 +76146,7 @@
     "outcome_id": "01a1eb26-55fc-7642-8e99-6be8e258358f"
    },
    "result": null,
-   "settle_tries": 23,
+   "settle_tries": 24,
    "side": "Bor Artnak Round of 16",
    "side_label": "B. Artnak (0)",
    "side_raw": 1,
@@ -76120,7 +76199,7 @@
     "outcome_id": "01a1ed14-abb5-7fc0-86f1-05f9539a0815"
    },
    "result": null,
-   "settle_tries": 23,
+   "settle_tries": 24,
    "side": "Harry Wendelken Round of 16",
    "side_label": "H. Wendelken (0)",
    "side_raw": 1,
@@ -76172,7 +76251,7 @@
     "outcome_id": "01a1ed14-abf6-7cb2-a24e-83ddc9c22284"
    },
    "result": null,
-   "settle_tries": 23,
+   "settle_tries": 24,
    "side": "Stefan Kozlov Round of 16",
    "side_label": "S. Kozlov (0)",
    "side_raw": 1,
@@ -76225,7 +76304,7 @@
     "outcome_id": "01a1ed14-ac54-7891-a134-f6886b76195c"
    },
    "result": null,
-   "settle_tries": 23,
+   "settle_tries": 24,
    "side": "Aidan Mayo Round of 16",
    "side_label": "A. Mayo (0)",
    "side_raw": 1,
@@ -76278,7 +76357,7 @@
     "outcome_id": "01a1ea4a-e457-7ab3-97b1-b4816a869ae5"
    },
    "result": null,
-   "settle_tries": 50,
+   "settle_tries": 51,
    "side": "Dalibor Svrcina Round of 16",
    "side_label": "D. Svrcina (0)",
    "side_raw": 1,
@@ -76331,7 +76410,7 @@
     "outcome_id": "01a1ead4-cbd2-7a40-91e8-7f24c5967f86"
    },
    "result": null,
-   "settle_tries": 50,
+   "settle_tries": 51,
    "side": "Alexander Ritschard Round of 16",
    "side_label": "A. Ritschard (0)",
    "side_raw": 1,
@@ -76384,7 +76463,7 @@
     "outcome_id": "01a1eb26-5cd1-7db3-89d2-3d98793cc39e"
    },
    "result": null,
-   "settle_tries": 59,
+   "settle_tries": 60,
    "side": "Arthur Nagel",
    "side_label": "A. Nagel (0)",
    "side_raw": 0,
@@ -76437,7 +76516,7 @@
     "outcome_id": "01a1eb78-ecd5-7101-accd-5eff8ec67547"
    },
    "result": null,
-   "settle_tries": 59,
+   "settle_tries": 60,
    "side": "Luca Nardi Round of 16",
    "side_label": "L. Nardi (0)",
    "side_raw": 1,
@@ -76490,7 +76569,7 @@
     "outcome_id": "01a1eb27-03df-77b3-b581-829408715c21"
    },
    "result": null,
-   "settle_tries": 170,
+   "settle_tries": 171,
    "side": "Rebeka Masarova Round of 16",
    "side_label": "R. Masarova (0)",
    "side_raw": 1,
@@ -76699,7 +76778,7 @@
     "outcome_id": "01a1ec70-f789-7872-91be-ef54e4fca454"
    },
    "result": null,
-   "settle_tries": 116,
+   "settle_tries": 117,
    "side": "UNDER",
    "side_label": "Under 147.5 (147.5)",
    "side_raw": "UNDER",
@@ -76801,7 +76880,7 @@
     "outcome_id": "01a1ecde-1aa2-7683-a75f-09310438beec"
    },
    "result": null,
-   "settle_tries": 154,
+   "settle_tries": 155,
    "side": "Aidan McHugh Round of 16",
    "side_label": "A. McHugh (0)",
    "side_raw": 1,
@@ -76853,7 +76932,7 @@
     "outcome_id": "01a1ec70-fa2c-7b92-98f6-0103fd72da18"
    },
    "result": null,
-   "settle_tries": 113,
+   "settle_tries": 114,
    "side": "OVER",
    "side_label": "Over 161.5 (161.5)",
    "side_raw": "OVER",
@@ -77068,7 +77147,7 @@
     "outcome_id": "01a1ebe7-2c3f-7e72-b50b-cf5668a7699a"
    },
    "result": null,
-   "settle_tries": 23,
+   "settle_tries": 24,
    "side": "Andres Martin",
    "side_label": "A. Martin (0)",
    "side_raw": 0,
@@ -77121,7 +77200,7 @@
     "outcome_id": "01a1ead4-cbd2-7a40-91e8-7f39941a498d"
    },
    "result": null,
-   "settle_tries": 50,
+   "settle_tries": 51,
    "side": "Otto Virtanen",
    "side_label": "O. Virtanen (0)",
    "side_raw": 0,
@@ -77173,7 +77252,7 @@
     "outcome_id": "01a1eb5d-5b13-7373-9ec4-7affc6f38a8b"
    },
    "result": null,
-   "settle_tries": 168,
+   "settle_tries": 169,
    "side": "Kaylan Bigun",
    "side_label": "K. Bigun (0)",
    "side_raw": 0,
@@ -77655,7 +77734,7 @@
     "outcome_id": "01a1ed14-ad09-72a2-bd93-ca355c0a8475"
    },
    "result": null,
-   "settle_tries": 20,
+   "settle_tries": 21,
    "side": "Franco Roncadelli Round of 16",
    "side_label": "F. Roncadelli (0)",
    "side_raw": 1,
@@ -78058,7 +78137,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 116,
+   "settle_tries": 117,
    "side": "New Orleans",
    "side_label": "New Orleans +34.5 (+34.5)",
    "side_raw": 0,
@@ -79410,7 +79489,7 @@
     "outcome_id": "01a1ed14-a706-7b41-a3ee-7d7033fca5d1"
    },
    "result": null,
-   "settle_tries": 115,
+   "settle_tries": 116,
    "side": "Samir Banerjee",
    "side_label": "S. Banerjee (0)",
    "side_raw": 0,
@@ -79990,7 +80069,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 116,
+   "settle_tries": 117,
    "side": "OVER",
    "side_label": "over 153.5 (153.5)",
    "side_raw": "OVER",
@@ -80091,7 +80170,7 @@
     "outcome_id": "01a1ec70-fa2c-7b92-98f6-00e49a04db71"
    },
    "result": null,
-   "settle_tries": 113,
+   "settle_tries": 114,
    "side": "UNDER",
    "side_label": "Under 157.5 (157.5)",
    "side_raw": "UNDER",
@@ -80143,7 +80222,7 @@
     "outcome_id": "01a1ec70-fa2c-7b92-98f6-00dd2fa8844d"
    },
    "result": null,
-   "settle_tries": 113,
+   "settle_tries": 114,
    "side": "OVER",
    "side_label": "Over 157.5 (157.5)",
    "side_raw": "OVER",
@@ -80848,7 +80927,7 @@
     "outcome_id": "01a1ed14-abf6-7cb2-a24e-83e65dd721a3"
    },
    "result": null,
-   "settle_tries": 23,
+   "settle_tries": 24,
    "side": "Vignesh Gogineni",
    "side_label": "V. Gogineni (0)",
    "side_raw": 0,
@@ -80901,7 +80980,7 @@
     "outcome_id": "01a1ed14-a58f-79f2-baed-ad5d53449d14"
    },
    "result": null,
-   "settle_tries": 138,
+   "settle_tries": 139,
    "side": "Genaro Alberto Olivieri Round of 16",
    "side_label": "G. Olivieri (0)",
    "side_raw": 1,
@@ -80953,7 +81032,7 @@
     "outcome_id": "01a1e66d-ab4a-7cd2-90b5-171df5fda131"
    },
    "result": null,
-   "settle_tries": 147,
+   "settle_tries": 148,
    "side": "Flavio Cobolli N/A",
    "side_label": "F. Cobolli (0)",
    "side_raw": 1,
@@ -81266,7 +81345,7 @@
     "outcome_id": "01a1ebe7-2c3f-7e72-b50b-cf4971c2e2b0"
    },
    "result": null,
-   "settle_tries": 23,
+   "settle_tries": 24,
    "side": "Jordan Lee Round of 16",
    "side_label": "J. Lee (0)",
    "side_raw": 1,
@@ -81318,7 +81397,7 @@
     "outcome_id": "01a1ebaf-e71e-7480-b50b-ae0d8d75fc7f"
    },
    "result": null,
-   "settle_tries": 41,
+   "settle_tries": 42,
    "side": "Rafael Jodar",
    "side_label": "R. Jodar (0)",
    "side_raw": 0,
@@ -81371,7 +81450,7 @@
     "outcome_id": "01a1ea4a-e457-7ab3-97b1-b49f8a8d57ae"
    },
    "result": null,
-   "settle_tries": 50,
+   "settle_tries": 51,
    "side": "Stefano Travaglia",
    "side_label": "S. Travaglia (0)",
    "side_raw": 0,
@@ -81424,7 +81503,7 @@
     "outcome_id": "01a1ea4a-e457-7ab3-97b1-b4816a869ae5"
    },
    "result": null,
-   "settle_tries": 50,
+   "settle_tries": 51,
    "side": "Dalibor Svrcina Round of 16",
    "side_label": "D. Svrcina (0)",
    "side_raw": 1,
@@ -81477,7 +81556,7 @@
     "outcome_id": "01a1ead4-cbd2-7a40-91e8-7f24c5967f86"
    },
    "result": null,
-   "settle_tries": 50,
+   "settle_tries": 51,
    "side": "Alexander Ritschard Round of 16",
    "side_label": "A. Ritschard (0)",
    "side_raw": 1,
@@ -81530,7 +81609,7 @@
     "outcome_id": "01a1eb26-5cd1-7db3-89d2-3d98793cc39e"
    },
    "result": null,
-   "settle_tries": 59,
+   "settle_tries": 60,
    "side": "Arthur Nagel",
    "side_label": "A. Nagel (0)",
    "side_raw": 0,
@@ -81583,7 +81662,7 @@
     "outcome_id": "01a1eb78-ecd5-7101-accd-5f0c286ebb74"
    },
    "result": null,
-   "settle_tries": 59,
+   "settle_tries": 60,
    "side": "Kyrian Jacquet",
    "side_label": "K. Jacquet (0)",
    "side_raw": 0,
@@ -81636,7 +81715,7 @@
     "outcome_id": "01a1eb78-ecd5-7101-accd-5eff8ec67547"
    },
    "result": null,
-   "settle_tries": 59,
+   "settle_tries": 60,
    "side": "Luca Nardi Round of 16",
    "side_label": "L. Nardi (0)",
    "side_raw": 1,
@@ -81689,7 +81768,7 @@
     "outcome_id": "01a1ecde-1aa2-7683-a75f-09411eef7ee8"
    },
    "result": null,
-   "settle_tries": 154,
+   "settle_tries": 155,
    "side": "Shunsuke Mitsui",
    "side_label": "S. Mitsui (0)",
    "side_raw": 0,
@@ -81785,7 +81864,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 113,
+   "settle_tries": 114,
    "side": "OVER",
    "side_label": "over 163.5 (163.5)",
    "side_raw": "OVER",
@@ -81832,7 +81911,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 113,
+   "settle_tries": 114,
    "side": "UNDER",
    "side_label": "under 163.5 (163.5)",
    "side_raw": "UNDER",
@@ -81992,7 +82071,7 @@
     "outcome_id": "01a1ec8b-79ed-7bd2-a51c-361d9f1aadce"
    },
    "result": null,
-   "settle_tries": 107,
+   "settle_tries": 108,
    "side": "UNDER",
    "side_label": "Under 151.5 (151.5)",
    "side_raw": "UNDER",
@@ -82044,7 +82123,7 @@
     "outcome_id": "01a1ec8b-79ed-7bd2-a51c-360dd2721e41"
    },
    "result": null,
-   "settle_tries": 107,
+   "settle_tries": 108,
    "side": "OVER",
    "side_label": "Over 151.5 (151.5)",
    "side_raw": "OVER",
@@ -82911,7 +82990,7 @@
     "outcome_id": "01a1ec8b-79ec-7b13-947d-c97ddb16d684"
    },
    "result": null,
-   "settle_tries": 113,
+   "settle_tries": 114,
    "side": "UNCG -3.5 (3.5)",
    "side_label": "UNCG -3.5 (3.5)",
    "side_raw": null,
@@ -85198,7 +85277,7 @@
     "outcome_id": "01a1eca7-a1c9-77d3-b505-00823edb2f11"
    },
    "result": null,
-   "settle_tries": 107,
+   "settle_tries": 108,
    "side": "UNDER",
    "side_label": "Under 144.5 (144.5)",
    "side_raw": "UNDER",
@@ -88213,7 +88292,7 @@
     "outcome_id": "01a1ec8b-79ec-7b13-947d-c6c44716e36a"
    },
    "result": null,
-   "settle_tries": 113,
+   "settle_tries": 114,
    "side": "OVER",
    "side_label": "Over 150.5 (150.5)",
    "side_raw": "OVER",
@@ -91165,7 +91244,7 @@
     "outcome_id": "01a1ecc2-d6d5-7ca2-a83c-26c2c185fe1f"
    },
    "result": null,
-   "settle_tries": 113,
+   "settle_tries": 114,
    "side": "UNCG (0)",
    "side_label": "UNCG (0)",
    "side_raw": null,
@@ -91566,7 +91645,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 116,
+   "settle_tries": 117,
    "side": "Texas Tech",
    "side_label": "Texas Tech -34.5 (-34.5)",
    "side_raw": 1,
@@ -92653,7 +92732,7 @@
     "outcome_id": "01a1ec8b-79ec-7b13-947d-c8d7cc6bb9f7"
    },
    "result": null,
-   "settle_tries": 107,
+   "settle_tries": 108,
    "side": "Creighton",
    "side_label": "Creighton -23.5 (-23.5)",
    "side_raw": 1,
@@ -92867,7 +92946,7 @@
     "outcome_id": "01a1ec88-7f3a-7932-a70f-63c15b02ac8f"
    },
    "result": null,
-   "settle_tries": 113,
+   "settle_tries": 114,
    "side": "ARST -25.5 (-25.5)",
    "side_label": "ARST -25.5 (-25.5)",
    "side_raw": null,
@@ -92919,7 +92998,7 @@
     "outcome_id": "01a1ec8c-24c1-7ed2-a797-2cd1c49c189f"
    },
    "result": null,
-   "settle_tries": 116,
+   "settle_tries": 117,
    "side": "New Orleans",
    "side_label": "New Orleans +34.5 (-34.5)",
    "side_raw": 0,
@@ -95705,7 +95784,7 @@
     "outcome_id": "01a1ecc2-d6d5-7ca2-a83c-26bb67cbf2f3"
    },
    "result": null,
-   "settle_tries": 113,
+   "settle_tries": 114,
    "side": "GWEB (0)",
    "side_label": "GWEB (0)",
    "side_raw": null,
@@ -97705,7 +97784,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 107,
+   "settle_tries": 108,
    "side": "Bethune Cookman",
    "side_label": "Bethune Cookman +23.5 (+23.5)",
    "side_raw": 0,
@@ -97752,7 +97831,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 107,
+   "settle_tries": 108,
    "side": "Creighton",
    "side_label": "Creighton -23.5 (-23.5)",
    "side_raw": 1,
@@ -98100,7 +98179,7 @@
     "outcome_id": "01a1ec88-7f3a-7932-a70f-63d5c1a716ec"
    },
    "result": null,
-   "settle_tries": 113,
+   "settle_tries": 114,
    "side": "Arkansas Pine Bluff",
    "side_label": "UAPB +25.5 (-25.5)",
    "side_raw": 0,
@@ -103281,7 +103360,7 @@
     "outcome_id": "01a1eb41-cc89-7541-80d4-986921fd3e0e"
    },
    "result": null,
-   "settle_tries": 165,
+   "settle_tries": 166,
    "side": "Matheus Pucinelli De Almeida Round of 16",
    "side_label": "M. Pucinelli De Almeida (0)",
    "side_raw": 1,
@@ -103333,7 +103412,7 @@
     "outcome_id": "01a1eb5d-5adb-70d2-b022-a8b83434142d"
    },
    "result": null,
-   "settle_tries": 168,
+   "settle_tries": 169,
    "side": "Raphael Perot",
    "side_label": "R. Perot (0)",
    "side_raw": 0,
@@ -107200,7 +107279,7 @@
     "outcome_id": "01a1ead4-c6c2-7f61-b5a0-b37b51a0bf39"
    },
    "result": null,
-   "settle_tries": 122,
+   "settle_tries": 123,
    "side": "Maks Kasnikowski Round of 16",
    "side_label": "M. Kasnikowski (0)",
    "side_raw": 1,
@@ -107837,7 +107916,7 @@
     "outcome_id": "01a1eb41-cc89-7541-80d4-987170ebe9ec"
    },
    "result": null,
-   "settle_tries": 165,
+   "settle_tries": 166,
    "side": "Juan Carlos Prado Angelo",
    "side_label": "J. Prado Angelo (0)",
    "side_raw": 0,
@@ -109560,7 +109639,7 @@
     "outcome_id": "01a1e66d-ab4a-7cd2-90b5-172a907b9039"
    },
    "result": null,
-   "settle_tries": 147,
+   "settle_tries": 148,
    "side": "Frances Tiafoe",
    "side_label": "F. Tiafoe (0)",
    "side_raw": 0,
@@ -110543,7 +110622,7 @@
     "outcome_id": "01a1eb27-03df-77b3-b581-82a4d07b9867"
    },
    "result": null,
-   "settle_tries": 170,
+   "settle_tries": 171,
    "side": "Polona Hercog",
    "side_label": "P. Hercog (0)",
    "side_raw": 0,
@@ -110595,7 +110674,7 @@
     "outcome_id": "01a1e66d-aae2-7303-80a8-eb9c9ba9a406"
    },
    "result": null,
-   "settle_tries": 186,
+   "settle_tries": 187,
    "side": "Carlos Alcaraz N/A",
    "side_label": "C. Alcaraz (0)",
    "side_raw": 1,
@@ -110905,7 +110984,7 @@
     "outcome_id": "01a1ea9c-d1b2-7a22-a9da-ef1ebef9a475"
    },
    "result": null,
-   "settle_tries": 163,
+   "settle_tries": 164,
    "side": "Nadia Podoroska",
    "side_label": "Nadia Podoroska (0)",
    "side_raw": 0,
@@ -111586,7 +111665,7 @@
     "outcome_id": "01a1eb0b-8eef-7470-930f-49911af632ab"
    },
    "result": null,
-   "settle_tries": 147,
+   "settle_tries": 148,
    "side": "Jack Kennedy Round of 16",
    "side_label": "J. Kennedy (0)",
    "side_raw": 1,
@@ -113281,7 +113360,7 @@
     "outcome_id": "01a1eb5d-5adb-70d2-b022-a8aa9786c084"
    },
    "result": null,
-   "settle_tries": 168,
+   "settle_tries": 169,
    "side": "Spencer Johnson Round of 16",
    "side_label": "S. Johnson (0)",
    "side_raw": 1,
@@ -113831,7 +113910,7 @@
     "outcome_id": "01a1e9dc-bbb7-7840-b6e0-7e51214162c6"
    },
    "result": null,
-   "settle_tries": 188,
+   "settle_tries": 189,
    "side": "Jurij Rodionov Round of 16",
    "side_label": "J. Rodionov (0)",
    "side_raw": 1,
@@ -113935,7 +114014,7 @@
     "outcome_id": "01a1eb0b-8eef-7470-930f-49a27c8156a6"
    },
    "result": null,
-   "settle_tries": 147,
+   "settle_tries": 148,
    "side": "Lui Maxted",
    "side_label": "L. Maxted (0)",
    "side_raw": 0,
@@ -114096,7 +114175,7 @@
     "outcome_id": "01a1eb41-cc2c-7953-a1b9-e6959878eac0"
    },
    "result": null,
-   "settle_tries": 126,
+   "settle_tries": 127,
    "side": "Elmer Moller Round of 16",
    "side_label": "E. Moller (0)",
    "side_raw": 1,
@@ -114149,7 +114228,7 @@
     "outcome_id": "01a1eb0b-8eef-7470-930f-49a27c8156a6"
    },
    "result": null,
-   "settle_tries": 147,
+   "settle_tries": 148,
    "side": "Lui Maxted",
    "side_label": "L. Maxted (0)",
    "side_raw": 0,
@@ -114202,7 +114281,7 @@
     "outcome_id": "01a1eb0b-8eef-7470-930f-49911af632ab"
    },
    "result": null,
-   "settle_tries": 147,
+   "settle_tries": 148,
    "side": "Jack Kennedy Round of 16",
    "side_label": "J. Kennedy (0)",
    "side_raw": 1,
@@ -114254,7 +114333,7 @@
     "outcome_id": "01a1eb41-cc89-7541-80d4-987170ebe9ec"
    },
    "result": null,
-   "settle_tries": 165,
+   "settle_tries": 166,
    "side": "Juan Carlos Prado Angelo",
    "side_label": "J. Prado Angelo (0)",
    "side_raw": 0,
@@ -114306,7 +114385,7 @@
     "outcome_id": "01a1eb5d-5b13-7373-9ec4-7ae53fce45e2"
    },
    "result": null,
-   "settle_tries": 168,
+   "settle_tries": 169,
    "side": "Sebastian Dominko Round of 32",
    "side_label": "S. Dominko (0)",
    "side_raw": 1,
@@ -114413,7 +114492,7 @@
     "outcome_id": "01a1eb41-cc2c-7953-a1b9-e6a5ad85c33c"
    },
    "result": null,
-   "settle_tries": 126,
+   "settle_tries": 127,
    "side": "Gonzalo Bueno",
    "side_label": "G. Bueno (0)",
    "side_raw": 0,
@@ -114466,7 +114545,7 @@
     "outcome_id": "01a1eb41-cc2c-7953-a1b9-e6959878eac0"
    },
    "result": null,
-   "settle_tries": 126,
+   "settle_tries": 127,
    "side": "Elmer Moller Round of 16",
    "side_label": "E. Moller (0)",
    "side_raw": 1,
@@ -114519,7 +114598,7 @@
     "outcome_id": "01a1eb26-5674-7cc1-8311-d8e314dce722"
    },
    "result": null,
-   "settle_tries": 158,
+   "settle_tries": 159,
    "side": "Alex Barrena",
    "side_label": "A. Barrena (0)",
    "side_raw": 0,
@@ -114572,7 +114651,7 @@
     "outcome_id": "01a1eb26-5674-7cc1-8311-d8d76c0e6ce0"
    },
    "result": null,
-   "settle_tries": 158,
+   "settle_tries": 159,
    "side": "Felipe Meligeni Alves Round of 16",
    "side_label": "F. Meligeni Alves (0)",
    "side_raw": 1,
@@ -114733,7 +114812,7 @@
     "outcome_id": "01a1eb41-cc2c-7953-a1b9-e6a5ad85c33c"
    },
    "result": null,
-   "settle_tries": 126,
+   "settle_tries": 127,
    "side": "Gonzalo Bueno",
    "side_label": "G. Bueno (0)",
    "side_raw": 0,
@@ -114786,7 +114865,7 @@
     "outcome_id": "01a1eb26-5674-7cc1-8311-d8e314dce722"
    },
    "result": null,
-   "settle_tries": 158,
+   "settle_tries": 159,
    "side": "Alex Barrena",
    "side_label": "A. Barrena (0)",
    "side_raw": 0,
@@ -114838,7 +114917,7 @@
     "outcome_id": "01a1ead4-c6c2-7f61-b5a0-b386e84026d5"
    },
    "result": null,
-   "settle_tries": 122,
+   "settle_tries": 123,
    "side": "Duncan Chan",
    "side_label": "D. Chan (0)",
    "side_raw": 0,
@@ -114891,7 +114970,7 @@
     "outcome_id": "01a1eb26-5674-7cc1-8311-d8d76c0e6ce0"
    },
    "result": null,
-   "settle_tries": 158,
+   "settle_tries": 159,
    "side": "Felipe Meligeni Alves Round of 16",
    "side_label": "F. Meligeni Alves (0)",
    "side_raw": 1,
@@ -114944,7 +115023,7 @@
     "outcome_id": "01a1ea66-1cd6-7383-955f-ef0bcb1dfb65"
    },
    "result": null,
-   "settle_tries": 155,
+   "settle_tries": 156,
    "side": "Nikoloz Basilashvili Round of 16",
    "side_label": "N. Basilashvili (0)",
    "side_raw": 1,
@@ -114997,7 +115076,7 @@
     "outcome_id": "01a1eb26-55fc-7642-8e99-6be8e258358f"
    },
    "result": null,
-   "settle_tries": 168,
+   "settle_tries": 169,
    "side": "Bor Artnak Round of 16",
    "side_label": "B. Artnak (0)",
    "side_raw": 1,
@@ -115103,7 +115182,7 @@
     "outcome_id": "01a1ead4-c6c2-7f61-b5a0-b37b51a0bf39"
    },
    "result": null,
-   "settle_tries": 122,
+   "settle_tries": 123,
    "side": "Maks Kasnikowski Round of 16",
    "side_label": "M. Kasnikowski (0)",
    "side_raw": 1,
@@ -115475,7 +115554,7 @@
     "outcome_id": "01a1ea66-1cd6-7383-955f-ef1a006bc030"
    },
    "result": null,
-   "settle_tries": 155,
+   "settle_tries": 156,
    "side": "Francesco Passaro",
    "side_label": "F. Passaro (0)",
    "side_raw": 0,
@@ -115527,7 +115606,7 @@
     "outcome_id": "01a1e9dc-bbb7-7840-b6e0-7e51214162c6"
    },
    "result": null,
-   "settle_tries": 188,
+   "settle_tries": 189,
    "side": "Jurij Rodionov Round of 16",
    "side_label": "J. Rodionov (0)",
    "side_raw": 1,
@@ -115579,7 +115658,7 @@
     "outcome_id": "01a1ead4-c6c2-7f61-b5a0-b386e84026d5"
    },
    "result": null,
-   "settle_tries": 122,
+   "settle_tries": 123,
    "side": "Duncan Chan",
    "side_label": "D. Chan (0)",
    "side_raw": 0,
@@ -115631,7 +115710,7 @@
     "outcome_id": "01a1e66d-ab4a-7cd2-90b5-171df5fda131"
    },
    "result": null,
-   "settle_tries": 147,
+   "settle_tries": 148,
    "side": "Flavio Cobolli N/A",
    "side_label": "F. Cobolli (0)",
    "side_raw": 1,
@@ -115787,7 +115866,7 @@
     "outcome_id": "01a1ea66-1cd6-7383-955f-ef0bcb1dfb65"
    },
    "result": null,
-   "settle_tries": 155,
+   "settle_tries": 156,
    "side": "Nikoloz Basilashvili Round of 16",
    "side_label": "N. Basilashvili (0)",
    "side_raw": 1,
@@ -115840,7 +115919,7 @@
     "outcome_id": "01a1ea9c-d1b2-7a22-a9da-ef00ee8c54b0"
    },
    "result": null,
-   "settle_tries": 174,
+   "settle_tries": 175,
    "side": "Leyre Romero Gormaz Round of 16",
    "side_label": "L. Romero Gormaz (0)",
    "side_raw": 1,
@@ -115892,7 +115971,7 @@
     "outcome_id": "01a1e58d-fb42-7c00-9d2f-39f04acae9b5"
    },
    "result": null,
-   "settle_tries": 234,
+   "settle_tries": 235,
    "side": "West Virginia",
    "side_label": "WVU +1.5 (1.5)",
    "side_raw": 1,
@@ -115944,7 +116023,7 @@
     "outcome_id": "01a1e841-25e7-7023-bda3-05ba66c9c0f0"
    },
    "result": null,
-   "settle_tries": 107,
+   "settle_tries": 108,
    "side": "Kasidit Samrej",
    "side_label": "K. Samrej (0)",
    "side_raw": 0,
@@ -115996,7 +116075,7 @@
     "outcome_id": "01a1e841-25e7-7023-bda3-05adb50d7c03"
    },
    "result": null,
-   "settle_tries": 107,
+   "settle_tries": 108,
    "side": "Luca Staeheli Round of 16",
    "side_label": "L. Staeheli (0)",
    "side_raw": 1,
@@ -116048,7 +116127,7 @@
     "outcome_id": "01a1e8ca-bb6c-7cb1-a56f-ea4371955a25"
    },
    "result": null,
-   "settle_tries": 107,
+   "settle_tries": 108,
    "side": "Keegan Smith",
    "side_label": "K. Smith (0)",
    "side_raw": 0,
@@ -116100,7 +116179,7 @@
     "outcome_id": "01a1e8ca-bb6c-7cb1-a56f-ea39378f654b"
    },
    "result": null,
-   "settle_tries": 107,
+   "settle_tries": 108,
    "side": "Benjamin Hassan Round of 16",
    "side_label": "B. Hassan (0)",
    "side_raw": 1,
@@ -116153,7 +116232,7 @@
     "outcome_id": "01a1e938-00fb-7430-bfe2-873a13b50635"
    },
    "result": null,
-   "settle_tries": 107,
+   "settle_tries": 108,
    "side": "Masamichi Imamura Round of 16",
    "side_label": "M. Imamura (0)",
    "side_raw": 1,
@@ -116205,7 +116284,7 @@
     "outcome_id": "01a1e96e-f7c0-7042-91a2-be7fa541d0d7"
    },
    "result": null,
-   "settle_tries": 107,
+   "settle_tries": 108,
    "side": "Rio Noguchi",
    "side_label": "R. Noguchi (0)",
    "side_raw": 0,
@@ -116257,7 +116336,7 @@
     "outcome_id": "01a1e96e-f7c0-7042-91a2-be6d5b4a6aab"
    },
    "result": null,
-   "settle_tries": 107,
+   "settle_tries": 108,
    "side": "Jay Dylan Hara Friend Round of 16",
    "side_label": "J. Hara Friend (0)",
    "side_raw": 1,
@@ -116309,7 +116388,7 @@
     "outcome_id": "01a1e877-abe8-7082-adf8-098bc315a893"
    },
    "result": null,
-   "settle_tries": 126,
+   "settle_tries": 127,
    "side": "Li Tu",
    "side_label": "L. Tu (0)",
    "side_raw": 0,
@@ -116361,7 +116440,7 @@
     "outcome_id": "01a1e877-abe8-7082-adf8-097746c1a488"
    },
    "result": null,
-   "settle_tries": 126,
+   "settle_tries": 127,
    "side": "Isaac Becroft Round of 16",
    "side_label": "I. Becroft (0)",
    "side_raw": 1,
@@ -116413,7 +116492,7 @@
     "outcome_id": "01a1e937-ff8c-7460-9459-c36a35dea39b"
    },
    "result": null,
-   "settle_tries": 126,
+   "settle_tries": 127,
    "side": "Christian Langmo Round of 16",
    "side_label": "C. Langmo (0)",
    "side_raw": 1,
@@ -116465,7 +116544,7 @@
     "outcome_id": "01a1ea14-330b-78c2-aec3-f0b76a3a934b"
    },
    "result": null,
-   "settle_tries": 188,
+   "settle_tries": 189,
    "side": "Jacob Fearnley",
    "side_label": "J. Fearnley (0)",
    "side_raw": 0,
@@ -116517,7 +116596,7 @@
     "outcome_id": "01a1ea14-330b-78c2-aec3-f0a58a943895"
    },
    "result": null,
-   "settle_tries": 188,
+   "settle_tries": 189,
    "side": "Laslo Djere Round of 16",
    "side_label": "L. Djere (0)",
    "side_raw": 1,
@@ -116569,7 +116648,7 @@
     "outcome_id": "01a1e652-d859-78c0-84e7-cf429eabefea"
    },
    "result": null,
-   "settle_tries": 195,
+   "settle_tries": 196,
    "side": "Andrea Guerrieri Round of 16",
    "side_label": "A. Guerrieri (0)",
    "side_raw": 1,
@@ -116621,7 +116700,7 @@
     "outcome_id": "01a1e9c3-98e4-74c3-8e1f-8e40138908f5"
    },
    "result": null,
-   "settle_tries": 195,
+   "settle_tries": 196,
    "side": "Lorenzo Giustino Round of 16",
    "side_label": "L. Giustino (0)",
    "side_raw": 1,
@@ -116674,7 +116753,7 @@
     "outcome_id": "01a1e877-a899-7ca1-a7bb-e12509af1a2c"
    },
    "result": null,
-   "settle_tries": 245,
+   "settle_tries": 246,
    "side": "Hiroki Moriya",
    "side_label": "H. Moriya (0)",
    "side_raw": 0,
@@ -116727,7 +116806,7 @@
     "outcome_id": "01a1e877-a899-7ca1-a7bb-e11e2c186eec"
    },
    "result": null,
-   "settle_tries": 245,
+   "settle_tries": 246,
    "side": "Dhakshineswar Suresh Round of 16",
    "side_label": "D. Suresh (0)",
    "side_raw": 1,
@@ -117834,7 +117913,7 @@
     "outcome_id": "01a1ea66-1cd6-7383-955f-ef1a006bc030"
    },
    "result": null,
-   "settle_tries": 155,
+   "settle_tries": 156,
    "side": "Francesco Passaro",
    "side_label": "F. Passaro (0)",
    "side_raw": 0,
@@ -118964,7 +119043,7 @@
     "outcome_id": "01a1ea14-330b-78c2-aec3-f0b76a3a934b"
    },
    "result": null,
-   "settle_tries": 188,
+   "settle_tries": 189,
    "side": "Jacob Fearnley",
    "side_label": "J. Fearnley (0)",
    "side_raw": 0,
@@ -119310,7 +119389,7 @@
     "outcome_id": "01a1e58d-fb42-7c00-9d2f-39d49831d4cb"
    },
    "result": null,
-   "settle_tries": 234,
+   "settle_tries": 235,
    "side": "UNDER",
    "side_label": "Under 145.5 (145.5)",
    "side_raw": "UNDER",
@@ -119362,7 +119441,7 @@
     "outcome_id": "01a1e58d-fb42-7c00-9d2f-39c590ed4d37"
    },
    "result": null,
-   "settle_tries": 234,
+   "settle_tries": 235,
    "side": "OVER",
    "side_label": "Over 145.5 (145.5)",
    "side_raw": "OVER",
@@ -119740,7 +119819,7 @@
     "outcome_id": "01a1e7ee-a620-7592-9a6f-b0e4a317e355"
    },
    "result": null,
-   "settle_tries": 168,
+   "settle_tries": 169,
    "side": "Abdullah Shelbayh Round of 32",
    "side_label": "A. Shelbayh (0)",
    "side_raw": 1,
@@ -119793,7 +119872,7 @@
     "outcome_id": "01a1e7ee-a661-7db3-9c81-ce53ebe031e6"
    },
    "result": null,
-   "settle_tries": 168,
+   "settle_tries": 169,
    "side": "Ozan Baris",
    "side_label": "O. Baris (0)",
    "side_raw": 0,
@@ -119845,7 +119924,7 @@
     "outcome_id": "01a1e9dc-bbb7-7840-b6e0-7e6d22ca3bec"
    },
    "result": null,
-   "settle_tries": 188,
+   "settle_tries": 189,
    "side": "Nicolai Budkov Kjaer",
    "side_label": "N. Budkov Kjaer (0)",
    "side_raw": 0,
@@ -120614,7 +120693,7 @@
     "outcome_id": "01a1e937-ff8c-7460-9459-c36a35dea39b"
    },
    "result": null,
-   "settle_tries": 126,
+   "settle_tries": 127,
    "side": "Christian Langmo Round of 16",
    "side_label": "C. Langmo (0)",
    "side_raw": 1,
@@ -120666,7 +120745,7 @@
     "outcome_id": "01a1ea14-330b-78c2-aec3-f0a58a943895"
    },
    "result": null,
-   "settle_tries": 188,
+   "settle_tries": 189,
    "side": "Laslo Djere Round of 16",
    "side_label": "L. Djere (0)",
    "side_raw": 1,
@@ -121719,7 +121798,7 @@
     "outcome_id": "01a1e9dc-bbb7-7840-b6e0-7e6d22ca3bec"
    },
    "result": null,
-   "settle_tries": 188,
+   "settle_tries": 189,
    "side": "Nicolai Budkov Kjaer",
    "side_label": "N. Budkov Kjaer (0)",
    "side_raw": 0,
@@ -121919,7 +121998,7 @@
     "outcome_id": "01a1e5ad-6526-7732-88c8-81c50115dea0"
    },
    "result": null,
-   "settle_tries": 174,
+   "settle_tries": 175,
    "side": "Guiomar Maristany Zuleta De Reales Round of 16",
    "side_label": "G. Maristany Zuleta De Reales (0)",
    "side_raw": 1,
@@ -122422,7 +122501,7 @@
     "outcome_id": "01a1e652-d859-78c0-84e7-cf429eabefea"
    },
    "result": null,
-   "settle_tries": 195,
+   "settle_tries": 196,
    "side": "Andrea Guerrieri Round of 16",
    "side_label": "A. Guerrieri (0)",
    "side_raw": 1,
@@ -122474,7 +122553,7 @@
     "outcome_id": "01a1e9c3-98e4-74c3-8e1f-8e5a345ccfe7"
    },
    "result": null,
-   "settle_tries": 195,
+   "settle_tries": 196,
    "side": "Svyatoslav Gulin",
    "side_label": "S. Gulin (0)",
    "side_raw": 0,
@@ -123269,7 +123348,7 @@
     "outcome_id": "01a1e96e-f7c0-7042-91a2-be6d5b4a6aab"
    },
    "result": null,
-   "settle_tries": 107,
+   "settle_tries": 108,
    "side": "Jay Dylan Hara Friend Round of 16",
    "side_label": "J. Hara Friend (0)",
    "side_raw": 1,
@@ -123588,7 +123667,7 @@
     "outcome_id": "01a1e96e-f7c0-7042-91a2-be7fa541d0d7"
    },
    "result": null,
-   "settle_tries": 107,
+   "settle_tries": 108,
    "side": "Rio Noguchi",
    "side_label": "R. Noguchi (0)",
    "side_raw": 0,
@@ -123640,7 +123719,7 @@
     "outcome_id": "01a1e937-ff8c-7460-9459-c37a89a3e562"
    },
    "result": null,
-   "settle_tries": 126,
+   "settle_tries": 127,
    "side": "Florian Broska",
    "side_label": "F. Broska (0)",
    "side_raw": 0,
@@ -123912,7 +123991,7 @@
     "outcome_id": "01a1e937-ffd0-7182-86a4-b6ba0523617a"
    },
    "result": null,
-   "settle_tries": 126,
+   "settle_tries": 127,
    "side": "Alafia ayeni",
    "side_label": "A. ayeni (0)",
    "side_raw": 0,
@@ -124354,7 +124433,7 @@
     "outcome_id": "01a1e58d-fb42-7c00-9d2f-39ae4e4a2f82"
    },
    "result": null,
-   "settle_tries": 234,
+   "settle_tries": 235,
    "side": "UNDER",
    "side_label": "Under 144.5 (144.5)",
    "side_raw": "UNDER",
@@ -124568,7 +124647,7 @@
     "outcome_id": "01a1e8ca-bb6c-7cb1-a56f-ea39378f654b"
    },
    "result": null,
-   "settle_tries": 107,
+   "settle_tries": 108,
    "side": "Benjamin Hassan Round of 16",
    "side_label": "B. Hassan (0)",
    "side_raw": 1,
@@ -125562,7 +125641,7 @@
     "outcome_id": "01a1e58d-fb42-7c00-9d2f-399dbc880f46"
    },
    "result": null,
-   "settle_tries": 234,
+   "settle_tries": 235,
    "side": "OVER",
    "side_label": "Over 144.5 (144.5)",
    "side_raw": "OVER",
@@ -125880,7 +125959,7 @@
     "outcome_id": "01a1e7ee-a661-7db3-9c81-ce46d6a35fcf"
    },
    "result": null,
-   "settle_tries": 168,
+   "settle_tries": 169,
    "side": "Oliver Tarvet Round of 16",
    "side_label": "O. Tarvet (0)",
    "side_raw": 1,
@@ -127364,7 +127443,7 @@
     "outcome_id": "01a1e58d-fb42-7c00-9d2f-3a03ea50136e"
    },
    "result": null,
-   "settle_tries": 234,
+   "settle_tries": 235,
    "side": "Auburn",
    "side_label": "AUB -1.5 (1.5)",
    "side_raw": 0,
@@ -127786,7 +127865,7 @@
     "outcome_id": "01a1e938-00fb-7430-bfe2-873a13b50635"
    },
    "result": null,
-   "settle_tries": 107,
+   "settle_tries": 108,
    "side": "Masamichi Imamura Round of 16",
    "side_label": "M. Imamura (0)",
    "side_raw": 1,
@@ -127838,7 +127917,7 @@
     "outcome_id": "01a1e937-ff8c-7460-9459-c37a89a3e562"
    },
    "result": null,
-   "settle_tries": 126,
+   "settle_tries": 127,
    "side": "Florian Broska",
    "side_label": "F. Broska (0)",
    "side_raw": 0,
@@ -127891,7 +127970,7 @@
     "outcome_id": "01a1e937-ffd0-7182-86a4-b6ba0523617a"
    },
    "result": null,
-   "settle_tries": 126,
+   "settle_tries": 127,
    "side": "Alafia ayeni",
    "side_label": "A. ayeni (0)",
    "side_raw": 0,
@@ -127944,7 +128023,7 @@
     "outcome_id": "01a1e938-0089-7cd1-9f25-c7d91bd6998d"
    },
    "result": null,
-   "settle_tries": 126,
+   "settle_tries": 127,
    "side": "Moerani Bouzige",
    "side_label": "M. Bouzige (0)",
    "side_raw": 0,
@@ -128787,7 +128866,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 234,
+   "settle_tries": 235,
    "side": "Auburn",
    "side_label": "Auburn",
    "side_raw": 0,
@@ -129506,7 +129585,7 @@
     "outcome_id": "01a1e8ca-bb6c-7cb1-a56f-ea4371955a25"
    },
    "result": null,
-   "settle_tries": 107,
+   "settle_tries": 108,
    "side": "Keegan Smith",
    "side_label": "K. Smith (0)",
    "side_raw": 0,
@@ -133051,7 +133130,7 @@
     "outcome_id": "01a1e841-25e7-7023-bda3-05ba66c9c0f0"
    },
    "result": null,
-   "settle_tries": 107,
+   "settle_tries": 108,
    "side": "Kasidit Samrej",
    "side_label": "K. Samrej (0)",
    "side_raw": 0,
@@ -133104,7 +133183,7 @@
     "outcome_id": "01a1e7ee-a620-7592-9a6f-b0f93c321aff"
    },
    "result": null,
-   "settle_tries": 168,
+   "settle_tries": 169,
    "side": "Kaylan Bigun",
    "side_label": "K. Bigun (0)",
    "side_raw": 0,
@@ -133157,7 +133236,7 @@
     "outcome_id": "01a1e7ee-a661-7db3-9c81-ce46d6a35fcf"
    },
    "result": null,
-   "settle_tries": 168,
+   "settle_tries": 169,
    "side": "Oliver Tarvet Round of 16",
    "side_label": "O. Tarvet (0)",
    "side_raw": 1,
@@ -133210,7 +133289,7 @@
     "outcome_id": "01a1e877-a899-7ca1-a7bb-e11e2c186eec"
    },
    "result": null,
-   "settle_tries": 245,
+   "settle_tries": 246,
    "side": "Dhakshineswar Suresh Round of 16",
    "side_label": "D. Suresh (0)",
    "side_raw": 1,
@@ -134532,7 +134611,7 @@
     "outcome_id": "01a1e5c8-ffde-7350-918d-d443825adffa"
    },
    "result": null,
-   "settle_tries": 204,
+   "settle_tries": 205,
    "side": "Clement Tabur Round of 16",
    "side_label": "C. Tabur (0)",
    "side_raw": 1,
@@ -134584,7 +134663,7 @@
     "outcome_id": "01a1e592-978a-7122-83b9-df99d72eaf32"
    },
    "result": null,
-   "settle_tries": 234,
+   "settle_tries": 235,
    "side": "Auburn",
    "side_label": "AUB (0)",
    "side_raw": 0,
@@ -134636,7 +134715,7 @@
     "outcome_id": "01a1e592-978a-7122-83b9-df8b85e8f8ae"
    },
    "result": null,
-   "settle_tries": 234,
+   "settle_tries": 235,
    "side": "West Virginia",
    "side_label": "WVU (0)",
    "side_raw": 1,
@@ -136805,7 +136884,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 234,
+   "settle_tries": 235,
    "side": "West Virginia",
    "side_label": "West Virginia",
    "side_raw": 1,
@@ -138756,7 +138835,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 234,
+   "settle_tries": 235,
    "side": "OVER",
    "side_label": "over 143.5 (143.5)",
    "side_raw": "OVER",
@@ -138803,7 +138882,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 234,
+   "settle_tries": 235,
    "side": "UNDER",
    "side_label": "under 143.5 (143.5)",
    "side_raw": "UNDER",
@@ -139521,7 +139600,7 @@
     "outcome_id": "01a1e58d-fb42-7c00-9d2f-3ac1be167944"
    },
    "result": null,
-   "settle_tries": 234,
+   "settle_tries": 235,
    "side": "Auburn",
    "side_label": "AUB -4.5 (4.5)",
    "side_raw": 0,
@@ -139728,7 +139807,7 @@
     "outcome_id": "01a1e66d-aae2-7303-80a8-eba33bf62d05"
    },
    "result": null,
-   "settle_tries": 186,
+   "settle_tries": 187,
    "side": "Daniil Medvedev",
    "side_label": "D. Medvedev (0)",
    "side_raw": 0,
@@ -140035,7 +140114,7 @@
     "outcome_id": "01a1e66d-ab4a-7cd2-90b5-172a907b9039"
    },
    "result": null,
-   "settle_tries": 147,
+   "settle_tries": 148,
    "side": "Frances Tiafoe",
    "side_label": "F. Tiafoe (0)",
    "side_raw": 0,
@@ -140087,7 +140166,7 @@
     "outcome_id": "01a1e66d-aae2-7303-80a8-eb9c9ba9a406"
    },
    "result": null,
-   "settle_tries": 186,
+   "settle_tries": 187,
    "side": "Carlos Alcaraz N/A",
    "side_label": "C. Alcaraz (0)",
    "side_raw": 1,
@@ -142479,7 +142558,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 234,
+   "settle_tries": 235,
    "side": "Auburn",
    "side_label": "Auburn",
    "side_raw": 0,
@@ -142581,7 +142660,7 @@
     "outcome_id": "01a1e877-a899-7ca1-a7bb-e12509af1a2c"
    },
    "result": null,
-   "settle_tries": 245,
+   "settle_tries": 246,
    "side": "Hiroki Moriya",
    "side_label": "H. Moriya (0)",
    "side_raw": 0,
@@ -144046,7 +144125,7 @@
     "outcome_id": "01a1e877-abe8-7082-adf8-098bc315a893"
    },
    "result": null,
-   "settle_tries": 126,
+   "settle_tries": 127,
    "side": "Li Tu",
    "side_label": "L. Tu (0)",
    "side_raw": 0,
@@ -144098,7 +144177,7 @@
     "outcome_id": "01a1e877-abe8-7082-adf8-097746c1a488"
    },
    "result": null,
-   "settle_tries": 126,
+   "settle_tries": 127,
    "side": "Isaac Becroft Round of 16",
    "side_label": "I. Becroft (0)",
    "side_raw": 1,
@@ -145745,7 +145824,7 @@
     "outcome_id": "01a1e841-25e7-7023-bda3-05adb50d7c03"
    },
    "result": null,
-   "settle_tries": 107,
+   "settle_tries": 108,
    "side": "Luca Staeheli Round of 16",
    "side_label": "L. Staeheli (0)",
    "side_raw": 1,
@@ -145798,7 +145877,7 @@
     "outcome_id": "01a1e7ee-a5e4-7f13-9f3a-e5dc66821437"
    },
    "result": null,
-   "settle_tries": 174,
+   "settle_tries": 175,
    "side": "Joshua Charlton",
    "side_label": "J. Charlton (0)",
    "side_raw": 0,
@@ -145850,7 +145929,7 @@
     "outcome_id": "01a1e652-d859-78c0-84e7-cf5e679eac43"
    },
    "result": null,
-   "settle_tries": 195,
+   "settle_tries": 196,
    "side": "Toby Samuel",
    "side_label": "T. Samuel (0)",
    "side_raw": 0,
@@ -146779,7 +146858,7 @@
     "outcome_id": "01a1e7ee-a620-7592-9a6f-b0f93c321aff"
    },
    "result": null,
-   "settle_tries": 168,
+   "settle_tries": 169,
    "side": "Kaylan Bigun",
    "side_label": "K. Bigun (0)",
    "side_raw": 0,
@@ -146832,7 +146911,7 @@
     "outcome_id": "01a1e7ee-a620-7592-9a6f-b0e4a317e355"
    },
    "result": null,
-   "settle_tries": 168,
+   "settle_tries": 169,
    "side": "Abdullah Shelbayh Round of 32",
    "side_label": "A. Shelbayh (0)",
    "side_raw": 1,
@@ -146885,7 +146964,7 @@
     "outcome_id": "01a1e7ee-a661-7db3-9c81-ce53ebe031e6"
    },
    "result": null,
-   "settle_tries": 168,
+   "settle_tries": 169,
    "side": "Ozan Baris",
    "side_label": "O. Baris (0)",
    "side_raw": 0,
@@ -147149,7 +147228,7 @@
     "outcome_id": "01a1e5ad-d454-7511-b238-defb40abdb29"
    },
    "result": null,
-   "settle_tries": 204,
+   "settle_tries": 205,
    "side": "Matthew William Donald",
    "side_label": "M. Donald (0)",
    "side_raw": 0,
@@ -149100,7 +149179,7 @@
     "outcome_id": "01a1e5c8-ffde-7350-918d-d459d5e12415"
    },
    "result": null,
-   "settle_tries": 204,
+   "settle_tries": 205,
    "side": "Inaki Montes-De La Torre",
    "side_label": "I. Montes-De La Torre (0)",
    "side_raw": 0,
@@ -149926,7 +150005,7 @@
     "outcome_id": "01a1e58d-fb42-7c00-9d2f-3ac1be167944"
    },
    "result": null,
-   "settle_tries": 234,
+   "settle_tries": 235,
    "side": "Auburn",
    "side_label": "AUB -4.5 (4.5)",
    "side_raw": 0,
@@ -150791,7 +150870,7 @@
     "outcome_id": "01a1e7ee-a5e4-7f13-9f3a-e5dc66821437"
    },
    "result": null,
-   "settle_tries": 174,
+   "settle_tries": 175,
    "side": "Joshua Charlton",
    "side_label": "J. Charlton (0)",
    "side_raw": 0,
@@ -150844,7 +150923,7 @@
     "outcome_id": "01a1e5ad-d454-7511-b238-dee1fb095f1a"
    },
    "result": null,
-   "settle_tries": 204,
+   "settle_tries": 205,
    "side": "Pedro Martinez Round of 32",
    "side_label": "P. Martinez (0)",
    "side_raw": 1,
@@ -152701,7 +152780,7 @@
     "outcome_id": "01a1e652-d859-78c0-84e7-cf5e679eac43"
    },
    "result": null,
-   "settle_tries": 195,
+   "settle_tries": 196,
    "side": "Toby Samuel",
    "side_label": "T. Samuel (0)",
    "side_raw": 0,
@@ -152754,7 +152833,7 @@
     "outcome_id": "01a1e5ad-d454-7511-b238-dee1fb095f1a"
    },
    "result": null,
-   "settle_tries": 204,
+   "settle_tries": 205,
    "side": "Pedro Martinez Round of 32",
    "side_label": "P. Martinez (0)",
    "side_raw": 1,
@@ -152807,7 +152886,7 @@
     "outcome_id": "01a1e5c8-ffde-7350-918d-d443825adffa"
    },
    "result": null,
-   "settle_tries": 204,
+   "settle_tries": 205,
    "side": "Clement Tabur Round of 16",
    "side_label": "C. Tabur (0)",
    "side_raw": 1,
@@ -153543,7 +153622,7 @@
     "outcome_id": "01a1e5ad-d454-7511-b238-defb40abdb29"
    },
    "result": null,
-   "settle_tries": 204,
+   "settle_tries": 205,
    "side": "Matthew William Donald",
    "side_label": "M. Donald (0)",
    "side_raw": 0,
@@ -153596,7 +153675,7 @@
     "outcome_id": "01a1e5c8-ffde-7350-918d-d459d5e12415"
    },
    "result": null,
-   "settle_tries": 204,
+   "settle_tries": 205,
    "side": "Inaki Montes-De La Torre",
    "side_label": "I. Montes-De La Torre (0)",
    "side_raw": 0,
@@ -153648,7 +153727,7 @@
     "outcome_id": "01a1e592-978a-7122-83b9-df99d72eaf32"
    },
    "result": null,
-   "settle_tries": 234,
+   "settle_tries": 235,
    "side": "Auburn",
    "side_label": "AUB (0)",
    "side_raw": 0,
@@ -153700,7 +153779,7 @@
     "outcome_id": "01a1e592-978a-7122-83b9-df8b85e8f8ae"
    },
    "result": null,
-   "settle_tries": 234,
+   "settle_tries": 235,
    "side": "West Virginia",
    "side_label": "WVU (0)",
    "side_raw": 1,
