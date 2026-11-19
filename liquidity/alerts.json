@@ -52,9 +52,9 @@
     "volume_fp": 0.7
    },
    "ex_stats_close": {
-    "open_interest_fp": 840.0699999999999,
+    "open_interest_fp": 840.1700000000001,
     "volume_24h_fp": 564.33,
-    "volume_fp": 855.25
+    "volume_fp": 855.3499999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 839.37,
@@ -634,6 +634,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.52,
    "clv_cents": 2.0,
    "confirmed_after_min": 5,
@@ -792,7 +793,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-19T03:10:15Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26NOV18UTALAL-230"
@@ -839,6 +841,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.48,
    "clv_cents": 0.0,
    "confirmed_after_min": 5,
@@ -1083,9 +1086,9 @@
     "volume_fp": 1468.36
    },
    "ex_stats_close": {
-    "open_interest_fp": 24381.71,
+    "open_interest_fp": 24794.43,
     "volume_24h_fp": 23119.879999999997,
-    "volume_fp": 31098.75
+    "volume_fp": 31511.47
    },
    "ex_stats_first": {
     "open_interest_fp": 19529.760000000002,
@@ -3229,7 +3232,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [
     "Atlanta Hawks +7.5 (-115)"
@@ -4765,7 +4768,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Chicago Bulls",
@@ -4799,6 +4802,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.56,
    "clv_cents": 6.0,
    "confirmed_after_min": 5,
@@ -4941,7 +4945,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-19T03:10:15Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26NOV18UTALAL-232"
@@ -5015,9 +5020,9 @@
     "volume_fp": 10.05
    },
    "ex_stats_close": {
-    "open_interest_fp": 30038.170000000002,
+    "open_interest_fp": 30042.07,
     "volume_24h_fp": 30195.5,
-    "volume_fp": 30659.69
+    "volume_fp": 30663.59
    },
    "ex_stats_first": {
     "open_interest_fp": 22559.61,
@@ -5788,7 +5793,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [
     "New Orleans Pelicans +7.5 (-115)"
@@ -6439,7 +6444,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Montreal",
@@ -7163,6 +7168,7 @@
     "volume_fp": 30913.28
    },
    "fade_price": 0.49,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-18T16:05:55Z",
    "game": "Washington vs Toronto: Total Points",
    "game_surge_books": [
@@ -7287,12 +7293,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26NOV18WASTOR-228"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 8,
+   "settle_tries": 9,
+   "settled_utc": "2026-11-19T03:10:15Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -7309,7 +7316,7 @@
     "Toronto"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.92
   },
   {
    "alerted_utc": "2026-11-18T15:55:44Z",
@@ -7490,7 +7497,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [
     "Buffalo Bulls -1.5 (-112)"
@@ -7672,7 +7679,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 14,
+   "settle_tries": 15,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UMass",
@@ -7854,7 +7861,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 14,
+   "settle_tries": 15,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -8053,7 +8060,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -8087,6 +8094,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.51,
    "clv_cents": 0.0,
    "confirmed_after_min": 5,
@@ -8864,7 +8872,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [
     "Buffalo Bulls -1.5 (-112)"
    ],
@@ -9297,7 +9305,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Buffalo",
@@ -10354,7 +10362,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Washington Wizards",
@@ -10613,6 +10621,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.82,
    "clv_cents": 1.0,
    "confirmed_after_min": 5,
@@ -10791,9 +10800,9 @@
     "volume_fp": 495.15
    },
    "ex_stats_close": {
-    "open_interest_fp": 1236138.65,
+    "open_interest_fp": 1238160.44,
     "volume_24h_fp": 653149.31,
-    "volume_fp": 1448740.47
+    "volume_fp": 1454040.3599999999
    },
    "ex_stats_first": {
     "open_interest_fp": 743658.74,
@@ -11012,6 +11021,7 @@
     "volume_fp": 19.15
    },
    "fade_price": 0.52,
+   "fade_units": 0.86,
    "first_seen_utc": "2026-11-18T05:10:14Z",
    "game": "Washington vs Toronto: Total Points",
    "game_surge_books": [
@@ -11142,12 +11152,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBATOTAL-26NOV18WASTOR-228"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 8,
+   "settle_tries": 9,
+   "settled_utc": "2026-11-19T03:10:15Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -11162,7 +11173,7 @@
     "Toronto"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-18T04:30:16Z",
@@ -11302,7 +11313,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Detroit",
@@ -11694,7 +11705,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Boston",
@@ -11908,7 +11919,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New Jersey",
@@ -12565,7 +12576,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Detroit",
@@ -13606,7 +13617,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Central Michigan",
@@ -13799,7 +13810,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Oklahoma City",
@@ -13916,7 +13927,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Dallas",
@@ -22237,7 +22248,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Buffalo",
@@ -24898,7 +24909,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 14,
+   "settle_tries": 15,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UMass",
@@ -29713,7 +29724,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
