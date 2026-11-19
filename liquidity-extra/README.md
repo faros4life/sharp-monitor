@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 19, 1:00 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 5.
+Updated Thu Nov 19, 1:10 AM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 5.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 19 1:00AM | NCAAB | Florida vs West Virginia | moneyline: Florida | kalshi | $63k | -355 |  |  | +0.0c |  | pending |
+| Nov 19 1:00AM | NCAAB | Florida vs West Virginia | moneyline: Florida | kalshi | $63k | -355 |  |  | +4.0c |  | pending |
 | Nov 18 8:50PM | NCAAB | UConn vs Arizona: Spread | spread: NOT Arizona wins by over 3.5 points | kalshi | $36k | -108 |  |  | -2.0c | yes | L |
 | Nov 18 6:40PM | NCAAB | Howard vs Duquesne | moneyline: Duquesne | kalshi | $29k | -213 | ✅ novig |  | -1.0c |  | W |
 | Nov 18 5:50PM | NCAAB | Kansas vs West Virginia: Spread | spread: NOT Kansas wins by over 8.5 points | kalshi | $58k | -122 |  | ✅ | +2.0c | yes | W |
