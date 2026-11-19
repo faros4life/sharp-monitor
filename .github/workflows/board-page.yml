@@ -87,6 +87,25 @@ jobs:
           # value. That path is tested and was verified reading "on" from run 43354325748.
           EXEC_NOVIG_SUBMIT: ${{ vars.EXEC_NOVIG_SUBMIT }}
         run: python -u health_build.py
+      # Nov 19 (Peter): /dash/ returned 404 for days and it was never the dashboard's fault. Pages is
+      # served from the ACTIONS source, and this is the only workflow that publishes - it uploads
+      # `site` alone. clv-dashboard commits its page to dash/index.html at the repo ROOT, which is
+      # never in that artifact, so the URL could not resolve however many times the dashboard ran.
+      # It worked until ~Nov 16, before Pages moved to the Actions source.
+      #
+      # Copying the committed page in is additive: it adds a path to the artifact and changes
+      # nothing the board itself publishes. continue-on-error for the same reason as the health
+      # page above - the dashboard must never be the thing that stops the board publishing.
+      - name: Include the committed /dash/ page in the Pages artifact
+        continue-on-error: true
+        run: |
+          if [ -f dash/index.html ]; then
+            mkdir -p site/dash
+            cp dash/index.html site/dash/index.html
+            echo "dash page included: $(wc -c < site/dash/index.html) bytes"
+          else
+            echo "no dash/index.html committed; nothing to include"
+          fi
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
