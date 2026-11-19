@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 19, 3:50 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 48.
+Updated Thu Nov 19, 3:55 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 48.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -15,7 +15,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 19 2:40PM | NFL | Indianapolis Colts at Houston Texans | moneyline: Houston Texans | prophetx | $34k | -560 | ✅ kalshi,novig |  | +0.2c | yes | pending |
 | Nov 19 2:40PM | NBA | Golden State vs Memphis: Spread | spread: NOT Memphis wins by over 5.5 points | kalshi | $41k | -100 | ✅ novig,prophetx | ✅ | +0.0c |  | pending |
 | Nov 19 1:50PM | NHL | Anaheim vs Colorado: Total Goals | total: Over 6.5 goals scored | kalshi | $28k | -117 | ✅ novig |  | +0.0c |  | pending |
-| Nov 19 1:40PM | NHL | Buffalo vs Washington: Total Goals | total: Over 6.5 goals scored | kalshi | $60k | -117 | ✅ novig |  | +0.0c |  | pending |
+| Nov 19 1:40PM | NHL | Buffalo vs Washington: Total Goals | total: Over 6.5 goals scored | kalshi | $60k | -117 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 19 1:35PM | NHL | St. Louis vs Pittsburgh | moneyline: St. Louis | kalshi | $45k | -104 | ✅ novig |  | +1.0c |  | pending |
 | Nov 19 1:30PM | NHL | Columbus vs Chicago: Spread | spread: NOT Columbus wins by over 1.5 goals | kalshi | $42k | -170 | ✅ novig |  | +1.0c |  | pending |
 | Nov 19 1:10PM | NHL | Buffalo vs Washington: Spread | spread: NOT Washington wins by over 1.5 goals | kalshi | $38k | -194 | ✅ novig |  | -1.0c |  | pending |
@@ -28,7 +28,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 19 10:35AM | NHL | Edmonton vs Tampa Bay | moneyline: Tampa Bay | kalshi | $30k | -133 | ✅ novig |  | +0.0c |  | pending |
 | Nov 19 10:25AM | NBA | Los Angeles C vs San Antonio: Spread | spread: NOT San Antonio wins by over 15.5 points | kalshi | $29k | -104 | ✅ novig | ❌ | +0.0c |  | pending |
 | Nov 19 10:05AM | NBA | Los Angeles C vs San Antonio: Total Points | total: NOT Over 225.5 points | kalshi | $35k | -100 | ✅ novig | ✅ | +3.0c |  | pending |
-| Nov 19 9:40AM | NBA | Golden State vs Memphis: Total Points | total: NOT Over 225.5 points | kalshi | $43k | +104 | ✅ prophetx |  | +5.0c | yes | pending |
+| Nov 19 9:40AM | NBA | Golden State vs Memphis: Total Points | total: NOT Over 225.5 points | kalshi | $43k | +104 | ✅ prophetx |  | +4.0c | yes | pending |
 | Nov 19 8:50AM | NBA | Golden State vs Memphis: Spread | spread: NOT Memphis wins by over 6.5 points | kalshi | $32k | -108 | ✅ novig |  | +2.0c |  | pending |
 | Nov 19 8:30AM | NHL | Minnesota vs Calgary: Spread | spread: Minnesota wins by over 1.5 goals | kalshi | $32k | +122 |  |  | +1.0c | yes | pending |
 | Nov 19 8:30AM | NHL | Columbus vs Chicago: Spread | spread: Columbus wins by over 1.5 goals | kalshi | $35k | +163 |  |  | -1.0c | yes | pending |
