@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 19, 10:10 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 31.
+Updated Thu Nov 19, 10:15 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 31.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,13 +10,13 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 19 10:05AM | NBA | Los Angeles C vs San Antonio: Total Points | total: NOT Over 225.5 points | kalshi | $35k | -100 | ✅ novig | ✅ | +0.0c |  | pending |
+| Nov 19 10:05AM | NBA | Los Angeles C vs San Antonio: Total Points | total: NOT Over 225.5 points | kalshi | $35k | -100 | ✅ novig | ✅ | +1.0c |  | pending |
 | Nov 19 9:40AM | NBA | Golden State vs Memphis: Total Points | total: NOT Over 225.5 points | kalshi | $43k | +104 | ✅ prophetx |  | +0.0c |  | pending |
 | Nov 19 8:50AM | NBA | Golden State vs Memphis: Spread | spread: NOT Memphis wins by over 6.5 points | kalshi | $32k | -108 | ✅ novig |  | -1.0c |  | pending |
 | Nov 19 8:30AM | NHL | Minnesota vs Calgary: Spread | spread: Minnesota wins by over 1.5 goals | kalshi | $32k | +122 |  |  | +0.0c | yes | pending |
 | Nov 19 8:30AM | NHL | Columbus vs Chicago: Spread | spread: Columbus wins by over 1.5 goals | kalshi | $35k | +163 |  |  | +0.0c |  | pending |
 | Nov 19 8:30AM | NHL | Vancouver vs Seattle: Spread | spread: NOT Seattle wins by over 1.5 goals | kalshi | $62k | -170 | ✅ novig |  | +0.0c |  | pending |
-| Nov 19 8:15AM | NCAAF | Southeastern Louisiana vs Nicholls St. | moneyline: Southeastern Louisiana | kalshi | $33k | -376 |  |  | +0.0c |  | pending |
+| Nov 19 8:15AM | NCAAF | Southeastern Louisiana vs Nicholls St. | moneyline: Southeastern Louisiana | kalshi | $33k | -376 |  |  | -1.0c |  | pending |
 | Nov 19 8:10AM | NHL | Buffalo vs Washington | moneyline: Washington | kalshi | $30k | -133 | ✅ novig |  | +0.0c |  | pending |
 | Nov 19 7:45AM | NHL | Columbus vs Chicago | moneyline: Columbus | kalshi | $27k | -144 | ✅ novig |  | +1.0c | yes | pending |
 | Nov 19 7:40AM | NHL | Edmonton vs Tampa Bay: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $28k | -122 | ✅ novig |  | +0.0c |  | pending |
