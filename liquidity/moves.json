@@ -1,6 +1,51 @@
 {
  "moves": [
   {
+   "alerted_utc": "2026-11-19T03:45:53Z",
+   "bar": false,
+   "best_price": 0.5075,
+   "best_price_book": "kalshi",
+   "book": "kalshi",
+   "close_price": 0.49,
+   "clv_cents": 0.0,
+   "date": "2026-11-19",
+   "dir": "DROP",
+   "ex_stats": {
+    "open_interest_fp": 28314.48,
+    "volume_24h_fp": 26756.199999999997,
+    "volume_fp": 35332.21
+   },
+   "first_play": true,
+   "game": "New York vs Minnesota",
+   "key": "kalshi|KXNBAGAME-26NOV19NYKMIN|ml|0",
+   "lead_min": 1454,
+   "league": "NBA",
+   "league_x": 0.11,
+   "line": null,
+   "market": "moneyline",
+   "normal_4h": 56187,
+   "now": 26704,
+   "other_side_now": 25437,
+   "paper_only": true,
+   "price": 0.49,
+   "price_american": 104,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26NOV19NYKMIN-NYK"
+   },
+   "result": null,
+   "side": "New York",
+   "side_label": "New York",
+   "side_raw": 0,
+   "start_utc": "2026-11-20T04:00:00Z",
+   "teams": [
+    "New York",
+    "Minnesota"
+   ],
+   "units_flat": null,
+   "x": 0.48
+  },
+  {
    "alerted_utc": "2026-11-19T03:40:14Z",
    "bar": false,
    "best_price": 0.5375,
@@ -14,6 +59,11 @@
     "open_interest_fp": 28065.59,
     "volume_24h_fp": 25465.96,
     "volume_fp": 35072.159999999996
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 28314.48,
+    "volume_24h_fp": 26756.199999999997,
+    "volume_fp": 35332.21
    },
    "first_play": true,
    "game": "New York vs Minnesota",
@@ -51,8 +101,8 @@
    "best_price": 0.47,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.4831,
-   "clv_cents": 0.0,
+   "close_price": 0.4854,
+   "clv_cents": 0.2,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": null,
@@ -69,6 +119,8 @@
    "other_side_now": 2375,
    "paper_only": true,
    "price": 0.4831,
+   "price_after_15m": 0.47,
+   "price_after_15m_book": "novig",
    "price_american": 107,
    "ref": {
     "line": 6.5,
@@ -81,6 +133,7 @@
    "side_label": "over 6.5 (6.5)",
    "side_raw": "OVER",
    "start_utc": "2026-11-20T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Los Angeles Kings",
     "Toronto Maple Leafs"
@@ -112,6 +165,8 @@
    "other_side_now": 2266,
    "paper_only": true,
    "price": 0.5305,
+   "price_after_15m": 0.535,
+   "price_after_15m_book": "novig",
    "price_american": -113,
    "ref": {
     "line": 6.5,
@@ -124,6 +179,7 @@
    "side_label": "under 6.5 (6.5)",
    "side_raw": "UNDER",
    "start_utc": "2026-11-20T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Los Angeles Kings",
     "Toronto Maple Leafs"
@@ -155,6 +211,8 @@
    "other_side_now": 2326,
    "paper_only": true,
    "price": 0.5192,
+   "price_after_15m": 0.5242,
+   "price_after_15m_book": "prophetx",
    "price_american": -108,
    "ref": {
     "line": 6.0,
@@ -167,6 +225,7 @@
    "side_label": "over 6 (6)",
    "side_raw": "OVER",
    "start_utc": "2026-11-20T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "New York Islanders",
     "Winnipeg Jets"
@@ -189,8 +248,8 @@
     "volume": 172496.0
    },
    "ex_stats_close": {
-    "openInterest": 191978.0,
-    "volume": 191978.0
+    "openInterest": 393590.0,
+    "volume": 393590.0
    },
    "first_play": false,
    "game": "Philadelphia Flyers @ Ottawa Senators",
@@ -241,9 +300,9 @@
     "volume_fp": 7033.27
    },
    "ex_stats_close": {
-    "open_interest_fp": 7765.62,
-    "volume_24h_fp": 5921.38,
-    "volume_fp": 9390.79
+    "open_interest_fp": 7804.280000000001,
+    "volume_24h_fp": 6316.200000000001,
+    "volume_fp": 9429.45
    },
    "first_play": true,
    "game": "Portland vs Milwaukee",
@@ -551,9 +610,9 @@
     "volume_fp": 25849.19
    },
    "ex_stats_close": {
-    "open_interest_fp": 28065.59,
-    "volume_24h_fp": 25465.96,
-    "volume_fp": 35072.159999999996
+    "open_interest_fp": 28314.48,
+    "volume_24h_fp": 26756.199999999997,
+    "volume_fp": 35332.21
    },
    "first_play": true,
    "game": "New York vs Minnesota",
@@ -1323,8 +1382,8 @@
    "best_price": 0.5075,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.41,
-   "clv_cents": -8.0,
+   "close_price": 0.44,
+   "clv_cents": -5.0,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": {
@@ -1531,8 +1590,8 @@
     "volume": 1783969.0
    },
    "ex_stats_close": {
-    "openInterest": 7902156.0,
-    "volume": 8358316.0
+    "openInterest": 7931114.0,
+    "volume": 8387274.0
    },
    "first_play": false,
    "game": "Indianapolis Colts @ Houston Texans",
@@ -1582,8 +1641,8 @@
     "volume": 1783969.0
    },
    "ex_stats_close": {
-    "openInterest": 7902156.0,
-    "volume": 8358316.0
+    "openInterest": 7931114.0,
+    "volume": 8387274.0
    },
    "first_play": true,
    "game": "Indianapolis Colts @ Houston Texans",
@@ -1735,8 +1794,8 @@
     "volume": 44187411.0
    },
    "ex_stats_close": {
-    "openInterest": 57070025.0,
-    "volume": 62099801.0
+    "openInterest": 57372637.0,
+    "volume": 62402413.0
    },
    "first_play": true,
    "game": "Indianapolis Colts @ Houston Texans",
@@ -2180,8 +2239,8 @@
    "best_price": 0.43,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.43,
-   "clv_cents": 0.0,
+   "close_price": 0.425,
+   "clv_cents": -0.5,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": {
@@ -2189,8 +2248,8 @@
     "volume": 39501.0
    },
    "ex_stats_close": {
-    "openInterest": 173156.0,
-    "volume": 224904.0
+    "openInterest": 208668.0,
+    "volume": 303180.0
    },
    "first_play": false,
    "game": "Edmonton Oilers @ Tampa Bay Lightning",
@@ -2240,8 +2299,8 @@
     "volume": 39501.0
    },
    "ex_stats_close": {
-    "openInterest": 173156.0,
-    "volume": 224904.0
+    "openInterest": 208668.0,
+    "volume": 303180.0
    },
    "first_play": false,
    "game": "Edmonton Oilers @ Tampa Bay Lightning",
@@ -2495,8 +2554,8 @@
     "volume": 2111.0
    },
    "ex_stats_close": {
-    "openInterest": 90419.0,
-    "volume": 90419.0
+    "openInterest": 114809.0,
+    "volume": 114809.0
    },
    "first_play": false,
    "game": "Vancouver Canucks @ Seattle Kraken",
@@ -2546,8 +2605,8 @@
     "volume": 2111.0
    },
    "ex_stats_close": {
-    "openInterest": 90419.0,
-    "volume": 90419.0
+    "openInterest": 114809.0,
+    "volume": 114809.0
    },
    "first_play": false,
    "game": "Vancouver Canucks @ Seattle Kraken",
@@ -2690,8 +2749,8 @@
    "best_price": 0.665,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.675,
-   "clv_cents": 1.0,
+   "close_price": 0.68,
+   "clv_cents": 1.5,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": {
@@ -2699,8 +2758,8 @@
     "volume": 8995.0
    },
    "ex_stats_close": {
-    "openInterest": 93505.0,
-    "volume": 96394.0
+    "openInterest": 163794.0,
+    "volume": 166882.0
    },
    "first_play": false,
    "game": "Minnesota Wild @ Calgary Flames",
@@ -2741,8 +2800,8 @@
    "best_price": 0.34,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.33,
-   "clv_cents": -1.0,
+   "close_price": 0.325,
+   "clv_cents": -1.5,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": {
@@ -2750,8 +2809,8 @@
     "volume": 8995.0
    },
    "ex_stats_close": {
-    "openInterest": 93505.0,
-    "volume": 96394.0
+    "openInterest": 163794.0,
+    "volume": 166882.0
    },
    "first_play": false,
    "game": "Minnesota Wild @ Calgary Flames",
@@ -3223,7 +3282,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "Golden State Warriors",
    "side_label": "Golden State Warriors +5.5 (+5.5)",
    "side_raw": 0,
@@ -3270,7 +3329,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "Dallas Mavericks",
    "side_label": "Dallas Mavericks -5.5 (-5.5)",
    "side_raw": 1,
@@ -3349,8 +3408,8 @@
     "volume": 1407.0
    },
    "ex_stats_close": {
-    "openInterest": 25192.0,
-    "volume": 25192.0
+    "openInterest": 27439.0,
+    "volume": 27439.0
    },
    "first_play": false,
    "game": "Minnesota Wild @ Calgary Flames",
@@ -3400,8 +3459,8 @@
     "volume": 1407.0
    },
    "ex_stats_close": {
-    "openInterest": 25192.0,
-    "volume": 25192.0
+    "openInterest": 27439.0,
+    "volume": 27439.0
    },
    "first_play": false,
    "game": "Minnesota Wild @ Calgary Flames",
@@ -4087,7 +4146,7 @@
     "outcome_id": "01a1eb78-bac7-7db3-9531-34edbf798010"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "OVER",
    "side_label": "Over 227.5 (227.5)",
    "side_raw": "OVER",
@@ -4612,7 +4671,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "Detroit Pistons",
    "side_label": "Detroit Pistons",
    "side_raw": 0,
@@ -5048,8 +5107,8 @@
     "volume": 4400.0
    },
    "ex_stats_close": {
-    "openInterest": 191978.0,
-    "volume": 191978.0
+    "openInterest": 393590.0,
+    "volume": 393590.0
    },
    "first_play": false,
    "game": "Philadelphia Flyers @ Ottawa Senators",
@@ -5099,8 +5158,8 @@
     "volume": 4400.0
    },
    "ex_stats_close": {
-    "openInterest": 191978.0,
-    "volume": 191978.0
+    "openInterest": 393590.0,
+    "volume": 393590.0
    },
    "first_play": false,
    "game": "Philadelphia Flyers @ Ottawa Senators",
@@ -6014,9 +6073,9 @@
     "volume_fp": 63.62
    },
    "ex_stats_close": {
-    "open_interest_fp": 63.62,
-    "volume_24h_fp": 1.0,
-    "volume_fp": 63.62
+    "open_interest_fp": 67.62,
+    "volume_24h_fp": 15.0,
+    "volume_fp": 77.62
    },
    "first_play": false,
    "game": "Vancouver vs Seattle: Spread",
@@ -6067,9 +6126,9 @@
     "volume_fp": 63.62
    },
    "ex_stats_close": {
-    "open_interest_fp": 63.62,
-    "volume_24h_fp": 1.0,
-    "volume_fp": 63.62
+    "open_interest_fp": 67.62,
+    "volume_24h_fp": 15.0,
+    "volume_fp": 77.62
    },
    "first_play": false,
    "game": "Vancouver vs Seattle: Spread",
@@ -6332,9 +6391,9 @@
     "volume_fp": 3580.79
    },
    "ex_stats_close": {
-    "open_interest_fp": 5120.67,
-    "volume_24h_fp": 2833.36,
-    "volume_fp": 5363.0599999999995
+    "open_interest_fp": 5120.87,
+    "volume_24h_fp": 2853.46,
+    "volume_fp": 5363.26
    },
    "first_play": true,
    "game": "Dallas vs Vegas",
@@ -6561,7 +6620,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "New Orleans Pelicans",
    "side_label": "New Orleans Pelicans +6.5 (+6.5)",
    "side_raw": 1,
@@ -6697,7 +6756,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1114.39,
-    "volume_24h_fp": 982.28,
+    "volume_24h_fp": 1003.28,
     "volume_fp": 1131.64
    },
    "first_play": false,
@@ -6750,7 +6809,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1114.39,
-    "volume_24h_fp": 982.28,
+    "volume_24h_fp": 1003.28,
     "volume_fp": 1131.64
    },
    "first_play": false,
@@ -6859,9 +6918,9 @@
     "volume_fp": 3568.0299999999997
    },
    "ex_stats_close": {
-    "open_interest_fp": 5120.67,
-    "volume_24h_fp": 2833.36,
-    "volume_fp": 5363.0599999999995
+    "open_interest_fp": 5120.87,
+    "volume_24h_fp": 2853.46,
+    "volume_fp": 5363.26
    },
    "first_play": true,
    "game": "Dallas vs Vegas",
@@ -6913,7 +6972,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 2013.8799999999999,
-    "volume_24h_fp": 932.23,
+    "volume_24h_fp": 941.6,
     "volume_fp": 2032.5
    },
    "first_play": true,
@@ -6966,7 +7025,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 2013.8799999999999,
-    "volume_24h_fp": 932.23,
+    "volume_24h_fp": 941.6,
     "volume_fp": 2032.5
    },
    "first_play": true,
@@ -7091,7 +7150,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "Detroit Pistons",
    "side_label": "Detroit Pistons -7 (-7)",
    "side_raw": 0,
@@ -7143,7 +7202,7 @@
     "outcome_id": "01a1eb78-bac4-7682-bead-fc3d41126f00"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "Dallas Mavericks",
    "side_label": "DAL -4.5 (-4.5)",
    "side_raw": 1,
@@ -7349,7 +7408,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "Detroit Pistons",
    "side_label": "Detroit Pistons -6.5 (-6.5)",
    "side_raw": 0,
@@ -7379,7 +7438,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 935.25,
-    "volume_24h_fp": 646.89,
+    "volume_24h_fp": 654.87,
     "volume_fp": 950.43
    },
    "first_play": true,
@@ -7432,7 +7491,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 6177.37,
-    "volume_24h_fp": 3962.0499999999997,
+    "volume_24h_fp": 3969.38,
     "volume_fp": 6566.58
    },
    "first_play": true,
@@ -7484,9 +7543,9 @@
     "volume_fp": 4357.21
    },
    "ex_stats_close": {
-    "open_interest_fp": 7864.69,
-    "volume_24h_fp": 4429.42,
-    "volume_fp": 8049.21
+    "open_interest_fp": 7898.66,
+    "volume_24h_fp": 4470.74,
+    "volume_fp": 8083.18
    },
    "first_play": false,
    "game": "Montreal vs Carolina",
@@ -7537,9 +7596,9 @@
     "volume_fp": 4357.21
    },
    "ex_stats_close": {
-    "open_interest_fp": 7864.69,
-    "volume_24h_fp": 4429.42,
-    "volume_fp": 8049.21
+    "open_interest_fp": 7898.66,
+    "volume_24h_fp": 4470.74,
+    "volume_fp": 8083.18
    },
    "first_play": false,
    "game": "Montreal vs Carolina",
@@ -7590,9 +7649,9 @@
     "volume_fp": 1584.5
    },
    "ex_stats_close": {
-    "open_interest_fp": 2806.58,
-    "volume_24h_fp": 1843.43,
-    "volume_fp": 3008.5299999999997
+    "open_interest_fp": 2816.58,
+    "volume_24h_fp": 1853.6,
+    "volume_fp": 3018.5299999999997
    },
    "first_play": false,
    "game": "Buffalo vs Washington",
@@ -7795,7 +7854,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 5617.0,
-    "volume_24h_fp": 2520.58,
+    "volume_24h_fp": 2520.8,
     "volume_fp": 5708.07
    },
    "first_play": false,
@@ -7848,7 +7907,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 10990.75,
-    "volume_24h_fp": 6178.42,
+    "volume_24h_fp": 5707.6,
     "volume_fp": 11172.68
    },
    "first_play": false,
@@ -7900,9 +7959,9 @@
     "volume_fp": 1527.3300000000002
    },
    "ex_stats_close": {
-    "open_interest_fp": 2806.58,
-    "volume_24h_fp": 1843.43,
-    "volume_fp": 3008.5299999999997
+    "open_interest_fp": 2816.58,
+    "volume_24h_fp": 1853.6,
+    "volume_fp": 3018.5299999999997
    },
    "first_play": true,
    "game": "Buffalo vs Washington",
@@ -8130,7 +8189,7 @@
     "outcome_id": "01a1eb78-bac7-7db3-9531-372a18d936d3"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "Oklahoma City Thunder",
    "side_label": "OKC -6.5 (-6.5)",
    "side_raw": 1,
@@ -8213,7 +8272,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 6177.37,
-    "volume_24h_fp": 3962.0499999999997,
+    "volume_24h_fp": 3969.38,
     "volume_fp": 6566.58
    },
    "first_play": false,
@@ -8584,7 +8643,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 5617.0,
-    "volume_24h_fp": 2520.58,
+    "volume_24h_fp": 2520.8,
     "volume_fp": 5708.07
    },
    "first_play": true,
@@ -8637,7 +8696,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 10990.75,
-    "volume_24h_fp": 6178.42,
+    "volume_24h_fp": 5707.6,
     "volume_fp": 11172.68
    },
    "first_play": true,
@@ -8690,7 +8749,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1818.22,
-    "volume_24h_fp": 1934.99,
+    "volume_24h_fp": 1942.97,
     "volume_fp": 2688.0
    },
    "first_play": true,
@@ -8743,7 +8802,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 866.19,
-    "volume_24h_fp": 691.77,
+    "volume_24h_fp": 651.76,
     "volume_fp": 898.34
    },
    "first_play": false,
@@ -8795,9 +8854,9 @@
     "volume_fp": 4490.83
    },
    "ex_stats_close": {
-    "open_interest_fp": 30904.85,
-    "volume_24h_fp": 31078.95,
-    "volume_fp": 31526.37
+    "open_interest_fp": 30964.71,
+    "volume_24h_fp": 31089.15,
+    "volume_fp": 31586.23
    },
    "first_play": true,
    "game": "Los Angeles vs Toronto",
@@ -8902,7 +8961,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1818.22,
-    "volume_24h_fp": 1934.99,
+    "volume_24h_fp": 1942.97,
     "volume_fp": 2688.0
    },
    "first_play": false,
@@ -8954,9 +9013,9 @@
     "volume_fp": 4490.83
    },
    "ex_stats_close": {
-    "open_interest_fp": 30904.85,
-    "volume_24h_fp": 31078.95,
-    "volume_fp": 31526.37
+    "open_interest_fp": 30964.71,
+    "volume_24h_fp": 31089.15,
+    "volume_fp": 31586.23
    },
    "first_play": true,
    "game": "Los Angeles vs Toronto",
@@ -9059,7 +9118,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 866.19,
-    "volume_24h_fp": 691.77,
+    "volume_24h_fp": 651.76,
     "volume_fp": 898.34
    },
    "first_play": true,
@@ -9417,9 +9476,9 @@
     "volume_fp": 989.1800000000001
    },
    "ex_stats_close": {
-    "open_interest_fp": 2086.3,
-    "volume_24h_fp": 1720.1499999999999,
-    "volume_fp": 2110.59
+    "open_interest_fp": 2091.98,
+    "volume_24h_fp": 1568.79,
+    "volume_fp": 2116.27
    },
    "first_play": true,
    "game": "St. Louis vs Pittsburgh",
@@ -9889,7 +9948,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 935.25,
-    "volume_24h_fp": 646.89,
+    "volume_24h_fp": 654.87,
     "volume_fp": 950.43
    },
    "first_play": false,
@@ -10321,7 +10380,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "Oklahoma City Thunder",
    "side_label": "Oklahoma City Thunder",
    "side_raw": 1,
@@ -10455,9 +10514,9 @@
     "volume_fp": 950.2
    },
    "ex_stats_close": {
-    "open_interest_fp": 2086.3,
-    "volume_24h_fp": 1720.1499999999999,
-    "volume_fp": 2110.59
+    "open_interest_fp": 2091.98,
+    "volume_24h_fp": 1568.79,
+    "volume_fp": 2116.27
    },
    "first_play": true,
    "game": "St. Louis vs Pittsburgh",
@@ -10969,7 +11028,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "OVER",
    "side_label": "over 228 (228)",
    "side_raw": "OVER",
@@ -11016,7 +11075,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "UNDER",
    "side_label": "under 228 (228)",
    "side_raw": "UNDER",
@@ -11482,8 +11541,8 @@
    "best_price": 0.5051,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5238,
-   "clv_cents": 2.4,
+   "close_price": 0.5215,
+   "clv_cents": 2.1,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": null,
@@ -12291,9 +12350,9 @@
     "volume_fp": 124324.95
    },
    "ex_stats_close": {
-    "open_interest_fp": 145585.91,
-    "volume_24h_fp": 26327.94,
-    "volume_fp": 149244.84
+    "open_interest_fp": 145688.98,
+    "volume_24h_fp": 26380.2,
+    "volume_fp": 149347.91
    },
    "first_play": true,
    "game": "Indianapolis vs Houston: Total Points",
@@ -12344,9 +12403,9 @@
     "volume_fp": 124324.95
    },
    "ex_stats_close": {
-    "open_interest_fp": 145585.91,
-    "volume_24h_fp": 26327.94,
-    "volume_fp": 149244.84
+    "open_interest_fp": 145688.98,
+    "volume_24h_fp": 26380.2,
+    "volume_fp": 149347.91
    },
    "first_play": true,
    "game": "Indianapolis vs Houston: Total Points",
@@ -12415,7 +12474,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "Detroit Pistons",
    "side_label": "Detroit Pistons -7.5 (-7.5)",
    "side_raw": 0,
@@ -12462,7 +12521,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "New Orleans Pelicans",
    "side_label": "New Orleans Pelicans +7.5 (+7.5)",
    "side_raw": 1,
@@ -12509,7 +12568,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "OVER",
    "side_label": "over 228 (228)",
    "side_raw": "OVER",
@@ -12863,7 +12922,7 @@
     "outcome_id": "01a1eb78-bac6-7d11-9613-4b9de0aa2baf"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "OVER",
    "side_label": "Over 227.5 (227.5)",
    "side_raw": "OVER",
@@ -13718,7 +13777,7 @@
     "outcome_id": "01a1eb78-bac5-74f2-9be5-d243ab4c6959"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "New Orleans Pelicans",
    "side_label": "NOP +7.5 (7.5)",
    "side_raw": 1,
@@ -14613,7 +14672,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "UNDER",
    "side_label": "under 228 (228)",
    "side_raw": "UNDER",
@@ -14715,7 +14774,7 @@
     "outcome_id": "01a1eb78-bac7-7db3-9531-373e99aa1e76"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "Atlanta Hawks",
    "side_label": "ATL +6.5 (-6.5)",
    "side_raw": 0,
@@ -14767,7 +14826,7 @@
     "outcome_id": "01a1eb78-bac5-74f2-9be5-d25cffb105a9"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "Detroit Pistons",
    "side_label": "DET -7.5 (7.5)",
    "side_raw": 0,
@@ -15753,8 +15812,8 @@
    "best_price": 0.4774,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.4,
-   "clv_cents": -6.0,
+   "close_price": 0.39,
+   "clv_cents": -7.0,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": {
@@ -16742,7 +16801,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "Atlanta Hawks",
    "side_label": "Atlanta Hawks +7 (+7)",
    "side_raw": 0,
@@ -16789,7 +16848,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "Oklahoma City Thunder",
    "side_label": "Oklahoma City Thunder -7 (-7)",
    "side_raw": 1,
@@ -17495,7 +17554,7 @@
     "outcome_id": "01a1ec39-8c20-7693-873a-c94eb4c40a92"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "Atlanta Hawks",
    "side_label": "ATL (0)",
    "side_raw": 0,
@@ -17547,7 +17606,7 @@
     "outcome_id": "01a1ecf9-de33-7350-a75a-457c5a020a15"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "New Orleans Pelicans",
    "side_label": "NOP (0)",
    "side_raw": 1,
@@ -18740,7 +18799,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "Atlanta Hawks",
    "side_label": "Atlanta Hawks",
    "side_raw": 0,
@@ -18891,7 +18950,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "Detroit Pistons",
    "side_label": "Detroit Pistons -7 (-7)",
    "side_raw": 0,
@@ -18938,7 +18997,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "New Orleans Pelicans",
    "side_label": "New Orleans Pelicans +7 (+7)",
    "side_raw": 1,
@@ -20340,7 +20399,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "Oklahoma City Thunder",
    "side_label": "Oklahoma City Thunder -7 (-7)",
    "side_raw": 1,
@@ -20582,7 +20641,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "Detroit Pistons",
    "side_label": "Detroit Pistons",
    "side_raw": 0,
@@ -20629,7 +20688,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "New Orleans Pelicans",
    "side_label": "New Orleans Pelicans",
    "side_raw": 1,
@@ -20681,7 +20740,7 @@
     "outcome_id": "01a1ecf9-de33-7350-a75a-458f4c5d0782"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "Detroit Pistons",
    "side_label": "DET (0)",
    "side_raw": 0,
@@ -20833,7 +20892,7 @@
     "outcome_id": "01a1eb78-bac7-7db3-9531-34fa5ddcc708"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "UNDER",
    "side_label": "Under 227.5 (227.5)",
    "side_raw": "UNDER",
@@ -20885,7 +20944,7 @@
     "outcome_id": "01a1eb78-bac7-7db3-9531-34edbf798010"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "OVER",
    "side_label": "Over 227.5 (227.5)",
    "side_raw": "OVER",
@@ -21097,7 +21156,7 @@
     "outcome_id": "01a1ec39-8c20-7693-873a-c94eb4c40a92"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "Atlanta Hawks",
    "side_label": "ATL (0)",
    "side_raw": 0,
@@ -22088,7 +22147,7 @@
     "outcome_id": "01a1ec39-8c20-7693-873a-c93c22af580e"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "Oklahoma City Thunder",
    "side_label": "OKC (0)",
    "side_raw": 1,
@@ -22297,7 +22356,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "UNDER",
    "side_label": "under 228 (228)",
    "side_raw": "UNDER",
@@ -22620,7 +22679,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "Atlanta Hawks",
    "side_label": "Atlanta Hawks",
    "side_raw": 0,
@@ -22773,7 +22832,7 @@
     "outcome_id": "01a1eb78-bac7-7db3-9531-352b6555550a"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "UNDER",
    "side_label": "Under 228.5 (228.5)",
    "side_raw": "UNDER",
@@ -22825,7 +22884,7 @@
     "outcome_id": "01a1eb78-bac7-7db3-9531-3519ca43b7de"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "OVER",
    "side_label": "Over 228.5 (228.5)",
    "side_raw": "OVER",
@@ -23488,7 +23547,7 @@
     "outcome_id": "01a1eb78-bac7-7db3-9531-372a18d936d3"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "Oklahoma City Thunder",
    "side_label": "OKC -6.5 (-6.5)",
    "side_raw": 1,
@@ -24950,7 +25009,7 @@
     "outcome_id": "01a1ec39-8c20-7693-873a-c93c22af580e"
    },
    "result": null,
-   "settle_tries": 9,
+   "settle_tries": 10,
    "side": "Oklahoma City Thunder",
    "side_label": "OKC (0)",
    "side_raw": 1,
