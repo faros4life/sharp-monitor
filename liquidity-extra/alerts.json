@@ -1,6 +1,367 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-19T21:00:27Z",
+   "base_depth": 44159,
+   "best_price": 0.5,
+   "best_price_american": -100,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-19",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 4290,
+     "new_this_side": 30558,
+     "other_side": 15878,
+     "other_side_all_levels": 42877,
+     "ratio": 3.3,
+     "this_side": 51912,
+     "this_side_all_levels": 75550
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "TOL -7.5 (-7.5)",
+     "price": 0.5,
+     "this_side": 5794
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 10590.33,
+    "volume_24h_fp": 11936.61,
+    "volume_fp": 11936.61
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 100.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 10590.33,
+    "volume_24h_fp": 11836.61,
+    "volume_fp": 11936.61
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-11-19T20:50:21Z",
+   "game": "Robert Morris vs Toledo: Spread",
+   "game_surge_books": [],
+   "game_x": 1.72,
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAMBSPREAD-26NOV19RMUTOL-TOL8\"}",
+   "lead_min": 180,
+   "league": "NCAAB",
+   "line": -7.5,
+   "market": "spread",
+   "new_money": 30558,
+   "new_x": 1.19,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 10590.33,
+      "volume_24h_fp": 11936.61,
+      "volume_fp": 11936.61
+     },
+     "game_normal": 43810,
+     "game_x": 1.72,
+     "normal": 25633,
+     "now": 75550,
+     "type": "SPREAD",
+     "x": 2.95
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 2081368.0,
+      "volume": 2624282.0
+     },
+     "game_normal": 5320,
+     "game_x": 1.24,
+     "normal": 1588,
+     "now": 6606,
+     "type": "SPREAD",
+     "x": 4.16
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -7.5,
+     "price": -102
+    },
+    "betonlineag": {
+     "point": -7.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": -7.5,
+     "price": 107
+    },
+    "betrivers": {
+     "point": -7.5,
+     "price": -115
+    },
+    "betus": {
+     "point": -7.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": -7.5,
+     "price": -105
+    },
+    "circasports": {
+     "point": -6.5,
+     "price": -115
+    },
+    "draftkings": {
+     "point": -7.5,
+     "price": -102
+    },
+    "fanatics": {
+     "point": -7.5,
+     "price": -105
+    },
+    "fanduel": {
+     "point": -6.5,
+     "price": -115
+    },
+    "kalshi": {
+     "point": -7.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": -7.0,
+     "price": -106
+    },
+    "novig": {
+     "point": -7.5,
+     "price": 100
+    },
+    "polymarket": {
+     "point": -7.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": -6.5,
+     "price": -125
+    },
+    "williamhill_us": {
+     "point": -7.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBSPREAD-26NOV19RMUTOL-TOL8"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [
+    "Toledo Rockets -6.5 (-115)"
+   ],
+   "sharp_oppose": [],
+   "side": "Toledo",
+   "side_label": "Toledo wins by over 7.5 points",
+   "size_x": 2.95,
+   "start_source": "odds",
+   "start_utc": "2026-11-20T00:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "Robert Morris",
+    "Toledo"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-19T21:00:27Z",
+   "base_depth": 46281,
+   "best_price": 0.4858,
+   "best_price_american": 106,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.48,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-19",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 6166,
+     "new_this_side": 34669,
+     "other_side": 18160,
+     "other_side_all_levels": 57192,
+     "ratio": 2.6,
+     "this_side": 47604,
+     "this_side_all_levels": 82280
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 16034.88,
+    "volume_24h_fp": 16508.13,
+    "volume_fp": 16518.18
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 981.7,
+    "volume_fp": 10.05
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 16034.88,
+    "volume_24h_fp": 15526.43,
+    "volume_fp": 16508.13
+   },
+   "fade_price": 0.53,
+   "first_seen_utc": "2026-11-19T20:50:21Z",
+   "game": "Northeastern vs Butler: Spread",
+   "game_surge_books": [],
+   "game_x": 1.81,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAMBSPREAD-26NOV19NEBUT-BUT16\"}",
+   "lead_min": 180,
+   "league": "NCAAB",
+   "line": 15.5,
+   "market": "spread",
+   "new_money": 34669,
+   "new_x": 1.35,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 16034.88,
+      "volume_24h_fp": 16508.13,
+      "volume_fp": 16518.18
+     },
+     "game_normal": 45544,
+     "game_x": 1.81,
+     "normal": 25633,
+     "now": 82280,
+     "type": "SPREAD",
+     "x": 3.21
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.48,
+   "price_american": 108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.48,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 16.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": 16.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 16.0,
+     "price": 103
+    },
+    "betrivers": {
+     "point": 16.5,
+     "price": -115
+    },
+    "betus": {
+     "point": 16.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 16.0,
+     "price": -105
+    },
+    "circasports": {
+     "point": 16.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 16.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": 16.5,
+     "price": -115
+    },
+    "fanduel": {
+     "point": 16.5,
+     "price": -118
+    },
+    "kalshi": {
+     "point": 15.5,
+     "price": 108
+    },
+    "lowvig": {
+     "point": 16.0,
+     "price": -106
+    },
+    "novig": {
+     "point": 16.5,
+     "price": -106
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": -4900
+    },
+    "prophetx": {
+     "point": 16.5,
+     "price": -112
+    },
+    "williamhill_us": {
+     "point": 16.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAMBSPREAD-26NOV19NEBUT-BUT16"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Northeastern",
+   "side_label": "NOT Butler wins by over 15.5 points",
+   "size_x": 3.21,
+   "start_source": "odds",
+   "start_utc": "2026-11-20T00:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Northeastern",
+    "Butler"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-19T19:30:27Z",
    "base_depth": 277956,
    "best_price": 0.67,
@@ -52,9 +413,9 @@
     "volume_fp": 64.2
    },
    "ex_stats_close": {
-    "open_interest_fp": 5207.54,
-    "volume_24h_fp": 5535.82,
-    "volume_fp": 6004.3
+    "open_interest_fp": 5227.02,
+    "volume_24h_fp": 5607.04,
+    "volume_fp": 6023.78
    },
    "ex_stats_first": {
     "open_interest_fp": 4822.360000000001,
@@ -269,9 +630,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 12719.869999999999,
-    "volume_24h_fp": 13246.439999999999,
-    "volume_fp": 13255.439999999999
+    "open_interest_fp": 13122.4,
+    "volume_24h_fp": 13255.439999999999,
+    "volume_fp": 13664.970000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 12478.439999999999,
@@ -446,8 +807,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 1.0,
+   "close_price": 0.53,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-19",
    "depth_by_book": {
@@ -478,9 +839,9 @@
     "volume_fp": 30.49
    },
    "ex_stats_close": {
-    "open_interest_fp": 37143.12,
-    "volume_24h_fp": 37600.5,
-    "volume_fp": 37845.64
+    "open_interest_fp": 42230.54,
+    "volume_24h_fp": 37722.78,
+    "volume_fp": 46657.6
    },
    "ex_stats_first": {
     "open_interest_fp": 35498.91,
@@ -1102,9 +1463,9 @@
     "volume_fp": 461.27
    },
    "ex_stats_close": {
-    "open_interest_fp": 89723.69,
-    "volume_24h_fp": 86900.57999999999,
-    "volume_fp": 91409.65
+    "open_interest_fp": 91336.70999999999,
+    "volume_24h_fp": 90098.83,
+    "volume_fp": 93022.67000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 50331.25,
@@ -1315,9 +1676,9 @@
     "volume_fp": 1725.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 16191.349999999999,
-    "volume_24h_fp": 17347.1,
-    "volume_fp": 17412.67
+    "open_interest_fp": 16362.079999999998,
+    "volume_24h_fp": 17405.16,
+    "volume_fp": 17583.4
    },
    "ex_stats_first": {
     "open_interest_fp": 5761.5199999999995,
@@ -1720,9 +2081,9 @@
     "volume_fp": 13.44
    },
    "ex_stats_close": {
-    "open_interest_fp": 22367.8,
-    "volume_24h_fp": 22430.989999999998,
-    "volume_fp": 22512.8
+    "open_interest_fp": 22380.94,
+    "volume_24h_fp": 22505.32,
+    "volume_fp": 22525.94
    },
    "ex_stats_first": {
     "open_interest_fp": 896.99,
@@ -1933,9 +2294,9 @@
     "volume_fp": 74.59
    },
    "ex_stats_close": {
-    "open_interest_fp": 158600.53,
-    "volume_24h_fp": 173438.09,
-    "volume_fp": 183859.66
+    "open_interest_fp": 164375.72,
+    "volume_24h_fp": 182251.37,
+    "volume_fp": 189682.40999999997
    },
    "ex_stats_first": {
     "open_interest_fp": 18492.68,
@@ -2143,7 +2504,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1899.54,
-    "volume_24h_fp": 1889.51,
+    "volume_24h_fp": 1896.54,
     "volume_fp": 1899.54
    },
    "ex_stats_first": {
@@ -2321,7 +2682,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 45514.36,
-    "volume_24h_fp": 45497.22,
+    "volume_24h_fp": 45512.96,
     "volume_fp": 45584.57
    },
    "ex_stats_first": {
@@ -2457,9 +2818,9 @@
     "volume_fp": 3.45
    },
    "ex_stats_close": {
-    "open_interest_fp": 15191.91,
-    "volume_24h_fp": 15233.03,
-    "volume_fp": 15300.39
+    "open_interest_fp": 15198.64,
+    "volume_24h_fp": 15253.74,
+    "volume_fp": 15307.119999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 352.46000000000004,
