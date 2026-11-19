@@ -1,6 +1,415 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-19T17:10:21Z",
+   "base_depth": 280308,
+   "best_price": 0.58,
+   "best_price_american": -138,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.58,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-19",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 2499,
+     "new_this_side": 33749,
+     "other_side": 48261,
+     "other_side_all_levels": 229229,
+     "ratio": 2.8,
+     "this_side": 137216,
+     "this_side_all_levels": 373051
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "HOU (0)",
+     "price": 0.58,
+     "this_side": 14422
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Houston",
+     "price": 0.5868,
+     "this_side": 1446
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 50792.520000000004,
+    "volume_24h_fp": 50765.15,
+    "volume_fp": 51432.5
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 461.27,
+    "volume_24h_fp": 4176.62,
+    "volume_fp": 461.27
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 50331.25,
+    "volume_24h_fp": 46588.53,
+    "volume_fp": 50971.229999999996
+   },
+   "fade_price": 0.43,
+   "first_seen_utc": "2026-11-19T17:00:28Z",
+   "game": "Houston vs Kansas",
+   "game_surge_books": [
+    "novig"
+   ],
+   "game_x": 1.47,
+   "key": "kalshi|KXNCAAMBGAME-26NOV19HOUKU|ml|0",
+   "lead_min": 650,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 33749,
+   "new_x": 4.99,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 50792.520000000004,
+      "volume_24h_fp": 50765.15,
+      "volume_fp": 51432.5
+     },
+     "game_normal": 252922,
+     "game_x": 1.47,
+     "normal": 6760,
+     "now": 373051,
+     "type": "ML",
+     "x": 55.18
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 3693373.0,
+      "volume": 4855112.0
+     },
+     "game_normal": 12235,
+     "game_x": 2.02,
+     "normal": 2871,
+     "now": 24666,
+     "type": "ML",
+     "x": 8.59
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 1520,
+     "game_x": 1.1,
+     "normal": 706,
+     "now": 1674,
+     "type": "ML",
+     "x": 2.37
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.58,
+   "price_american": -138,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.57,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -140
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -155
+    },
+    "betrivers": {
+     "point": null,
+     "price": -159
+    },
+    "betus": {
+     "point": null,
+     "price": -155
+    },
+    "bovada": {
+     "point": null,
+     "price": -130
+    },
+    "circasports": {
+     "point": null,
+     "price": -150
+    },
+    "draftkings": {
+     "point": null,
+     "price": -148
+    },
+    "fanatics": {
+     "point": null,
+     "price": -145
+    },
+    "fanduel": {
+     "point": null,
+     "price": -142
+    },
+    "kalshi": {
+     "point": null,
+     "price": -138
+    },
+    "lowvig": {
+     "point": null,
+     "price": -155
+    },
+    "novig": {
+     "point": null,
+     "price": -141
+    },
+    "polymarket": {
+     "point": null,
+     "price": -144
+    },
+    "prophetx": {
+     "point": null,
+     "price": -142
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -150
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV19HOUKU-HOU"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Houston",
+   "side_label": "Houston",
+   "size_x": 55.18,
+   "start_source": "odds",
+   "start_utc": "2026-11-20T04:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Houston",
+    "Kansas"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-19T17:10:21Z",
+   "base_depth": 121147,
+   "best_price": 0.605,
+   "best_price_american": -153,
+   "best_price_book": "novig",
+   "bid_improved": true,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.6,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-19",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 7717,
+     "new_this_side": 40121,
+     "other_side": 20841,
+     "other_side_all_levels": 80427,
+     "ratio": 4.1,
+     "this_side": 85703,
+     "this_side_all_levels": 181654
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "HCU (0)",
+     "price": 0.605,
+     "this_side": 16951
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Houston Christian",
+     "price": 0.6094,
+     "this_side": 1009
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 6923.629999999999,
+    "volume_24h_fp": 5991.12,
+    "volume_fp": 7723.629999999999
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 1162.11,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 1725.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 5761.5199999999995,
+    "volume_24h_fp": 5991.12,
+    "volume_fp": 5998.629999999999
+   },
+   "fade_price": 0.4,
+   "first_seen_utc": "2026-11-19T17:00:28Z",
+   "game": "Georgia Southern vs Houston Christian",
+   "game_surge_books": [],
+   "game_x": 1.8,
+   "key": "kalshi|KXNCAAMBGAME-26NOV19GASOHCU|ml|1",
+   "lead_min": 470,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 40121,
+   "new_x": 5.94,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 6923.629999999999,
+      "volume_24h_fp": 5991.12,
+      "volume_fp": 7723.629999999999
+     },
+     "game_normal": 100924,
+     "game_x": 1.8,
+     "normal": 6760,
+     "now": 181654,
+     "type": "ML",
+     "x": 26.87
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 2495386.0,
+      "volume": 3529611.0
+     },
+     "game_normal": 13504,
+     "game_x": 1.94,
+     "normal": 2871,
+     "now": 26148,
+     "type": "ML",
+     "x": 9.11
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 1178,
+     "game_x": 1.03,
+     "normal": 706,
+     "now": 1209,
+     "type": "ML",
+     "x": 1.71
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.6,
+   "price_american": -150,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.6,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -160
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -160
+    },
+    "betopenly": {
+     "point": null,
+     "price": -148
+    },
+    "betrivers": {
+     "point": null,
+     "price": -175
+    },
+    "bovada": {
+     "point": null,
+     "price": -160
+    },
+    "circasports": {
+     "point": null,
+     "price": -155
+    },
+    "draftkings": {
+     "point": null,
+     "price": -155
+    },
+    "fanatics": {
+     "point": null,
+     "price": -155
+    },
+    "fanduel": {
+     "point": null,
+     "price": -150
+    },
+    "kalshi": {
+     "point": null,
+     "price": -150
+    },
+    "lowvig": {
+     "point": null,
+     "price": -160
+    },
+    "novig": {
+     "point": null,
+     "price": -153
+    },
+    "polymarket": {
+     "point": null,
+     "price": -156
+    },
+    "prophetx": {
+     "point": null,
+     "price": -156
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -165
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV19GASOHCU-HCU"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [
+    "Houston Christian Huskies -2.5 (-125)"
+   ],
+   "sharp_oppose": [],
+   "side": "Houston Christian",
+   "side_label": "Houston Christian",
+   "size_x": 26.87,
+   "start_source": "odds",
+   "start_utc": "2026-11-20T01:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "Georgia Southern",
+    "Houston Christian"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-19T15:30:24Z",
    "base_depth": 86868,
    "best_price": 0.51,
@@ -46,9 +455,9 @@
     "volume_fp": 11441.35
    },
    "ex_stats_close": {
-    "open_interest_fp": 68012.16,
-    "volume_24h_fp": 77983.74,
-    "volume_fp": 80699.58
+    "open_interest_fp": 68170.99,
+    "volume_24h_fp": 80699.58,
+    "volume_fp": 80956.93
    },
    "ex_stats_first": {
     "open_interest_fp": 18027.99,
@@ -245,9 +654,9 @@
     "volume_fp": 13.44
    },
    "ex_stats_close": {
-    "open_interest_fp": 6174.139999999999,
-    "volume_24h_fp": 6158.28,
-    "volume_fp": 6174.139999999999
+    "open_interest_fp": 6207.139999999999,
+    "volume_24h_fp": 6164.91,
+    "volume_fp": 6207.139999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 896.99,
@@ -458,9 +867,9 @@
     "volume_fp": 74.59
    },
    "ex_stats_close": {
-    "open_interest_fp": 39352.42,
-    "volume_24h_fp": 40057.95,
-    "volume_fp": 40889.17
+    "open_interest_fp": 40905.69,
+    "volume_24h_fp": 40864.13,
+    "volume_fp": 42442.44
    },
    "ex_stats_first": {
     "open_interest_fp": 18492.68,
@@ -668,7 +1077,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 274.97,
-    "volume_24h_fp": 180.25,
+    "volume_24h_fp": 271.97,
     "volume_fp": 274.97
    },
    "ex_stats_first": {
@@ -845,9 +1254,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 22741.38,
-    "volume_24h_fp": 17150.760000000002,
-    "volume_fp": 22741.38
+    "open_interest_fp": 27361.38,
+    "volume_24h_fp": 22141.710000000003,
+    "volume_fp": 27361.38
    },
    "ex_stats_first": {
     "open_interest_fp": 203.85000000000002,
@@ -982,9 +1391,9 @@
     "volume_fp": 3.45
    },
    "ex_stats_close": {
-    "open_interest_fp": 2080.87,
-    "volume_24h_fp": 2087.38,
-    "volume_fp": 2143.55
+    "open_interest_fp": 2154.97,
+    "volume_24h_fp": 2098.07,
+    "volume_fp": 2217.65
    },
    "ex_stats_first": {
     "open_interest_fp": 352.46000000000004,
@@ -1157,9 +1566,9 @@
     "volume_fp": 455.27
    },
    "ex_stats_close": {
-    "open_interest_fp": 167707.6,
-    "volume_24h_fp": 176954.2,
-    "volume_fp": 183859.40000000002
+    "open_interest_fp": 173811.9,
+    "volume_24h_fp": 183557.01,
+    "volume_fp": 191502.09
    },
    "ex_stats_first": {
     "open_interest_fp": 5143.63,
