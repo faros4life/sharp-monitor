@@ -64,7 +64,7 @@ class FakeM:
         return ("OK", [(b"hdr", raw_for(k))])
 
 
-def run(uids, cache, fail_on=None, uidvalidity=b"777", subject="Bets LIVE: order"):
+def run(uids, cache, fail_on=None, uidvalidity=b"777", subject="Bets LIVE: order", max_new=None):
     M = FakeM(uids, fail_on, uidvalidity)
     real = (cl.ex.imap_open, cl.ex.gsearch, cl.ex.imap_close, cl.ex.body_text)
     cl.ex.imap_open = lambda: M
@@ -80,7 +80,7 @@ def run(uids, cache, fail_on=None, uidvalidity=b"777", subject="Bets LIVE: order
         M.uid = lambda cmd, uid, spec, _r=M_raw, _M=M: (_M.fetched.append(
             uid.decode() if isinstance(uid, bytes) else str(uid)), ("OK", [(b"h", _r)]))[1]
     try:
-        return cl.bot_novig_orders(cache=cache), M
+        return cl.bot_novig_orders(cache=cache, max_new=max_new), M
     finally:
         cl.ex.imap_open, cl.ex.gsearch, cl.ex.imap_close, cl.ex.body_text = real
 
@@ -145,6 +145,32 @@ ok("the caller says plainly that a failed read is not zero fills",
    "NOT evidence of zero fills" in caller and "NOT read as zero fills" in caller)
 ok("the caller still records the error for the ledger's error tail",
    'novig orders:' in caller and "errors" in caller)
+
+# ------------------------------------------------------------------ 5. the per-run fetch cap
+# Peter, Nov 19: "Limit uncached email fetches per run so a timeout cannot repeatedly restart a full
+# 1,902-message download. Save cache progress between batches so completed work survives."
+capped = {}
+(outc, notec), Mc = run([b"1", b"2", b"3", b"4", b"5"], capped, max_new=2)
+ok("a cold cache fetches only the capped number", Mc.fetched == ["1", "2"], Mc.fetched)
+ok("...and says the read is capped, not clean", notec and "capped at 2" in notec, notec)
+ok("...naming how many are still uncached", notec and "3 still uncached" in notec, notec)
+ok("a deferred UID is NOT cached as empty - it is simply not yet read",
+   sorted(capped["uids"]) == ["1", "2"], sorted(capped["uids"]))
+ok("the capped run still returns the orders it did parse", len(outc) == 2, len(outc))
+
+(outc2, _), Mc2 = run([b"1", b"2", b"3", b"4", b"5"], capped, max_new=2)
+ok("the next run resumes where it stopped - progress survived", Mc2.fetched == ["3", "4"], Mc2.fetched)
+ok("...and never re-fetches what is already cached", "1" not in Mc2.fetched and "2" not in Mc2.fetched)
+(outc3, notec3), Mc3 = run([b"1", b"2", b"3", b"4", b"5"], capped, max_new=2)
+ok("a cold cache converges to complete over successive runs",
+   Mc3.fetched == ["5"] and len(outc3) == 5 and notec3 is None, (Mc3.fetched, len(outc3), notec3))
+(outc4, _), Mc4 = run([b"1", b"2", b"3", b"4", b"5"], capped, max_new=2)
+ok("once full, a run fetches nothing at all", Mc4.fetched == [], Mc4.fetched)
+
+ok("the cap defaults to a bounded constant, not unlimited",
+   isinstance(cl.MAX_NEW_MAIL, int) and 0 < cl.MAX_NEW_MAIL < 2000, cl.MAX_NEW_MAIL)
+ok("the cap is small enough to finish well inside the 60-minute timeout at ~0.73 s a message",
+   cl.MAX_NEW_MAIL * 0.73 < 1800, cl.MAX_NEW_MAIL * 0.73)
 
 print(("FAILED: " + ", ".join(FAILED)) if FAILED else "ALL PASS")
 print(f"{TOTAL - len(FAILED)} passed, {len(FAILED)} failed")

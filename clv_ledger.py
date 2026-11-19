@@ -1145,7 +1145,10 @@ def close_for(b, f, pm, mkmap, start, lg):
 
 
 # ------------------------------------------------------------------ bot Novig orders (stale check)
-def bot_novig_orders(days=45, cache=None):
+MAX_NEW_MAIL = 600   # Nov 19: uncached "Bets LIVE:" fetches per run (~0.73 s each, so ~7 min)
+
+
+def bot_novig_orders(days=45, cache=None, max_new=None):
     """Bot Novig orders from its own 'Bets LIVE:' ledger rows: decision time, price used, line.
 
     Returns (orders, note) - note is None on a clean read, else why the read is PARTIAL.
@@ -1176,11 +1179,20 @@ def bot_novig_orders(days=45, cache=None):
         cache.setdefault("uidvalidity", uv)
         rows_by_uid = cache.setdefault("uids", {})
         uids = ex.gsearch(M, f'subject:"Bets LIVE:" newer_than:{days}d')
-        fetched = 0
+        cap = MAX_NEW_MAIL if max_new is None else max_new
+        fetched, deferred = 0, 0
         for uid in uids:
             key = uid.decode() if isinstance(uid, bytes) else str(uid)
             if key in rows_by_uid:                       # parsed on an earlier run; the message cannot have changed
                 out.extend(rows_by_uid[key])
+                continue
+            if fetched >= cap:
+                # Nov 19 (Peter: a timeout must not repeatedly restart a full 1,902-message
+                # download). Each run fetches a bounded slice and then stops, so the run always
+                # reaches its save stage and the messages it DID parse persist. The rest are taken
+                # on later runs; a cold cache fills over a few runs instead of risking a kill that
+                # saves nothing and starts over.
+                deferred += 1
                 continue
             try:
                 parsed = _bot_live_rows(M, uid, em)
@@ -1195,6 +1207,9 @@ def bot_novig_orders(days=45, cache=None):
             del rows_by_uid[gone]      # outside the 45-day window: bounded, not unbounded growth
         cache["fetched_last_run"] = fetched
         cache["seen_last_run"] = len(uids)
+        cache["deferred_last_run"] = deferred
+        if deferred and not note:
+            note = f"capped at {fetched} new message(s) this run; {deferred} still uncached"
     finally:
         ex.imap_close(M)
     return out, note
