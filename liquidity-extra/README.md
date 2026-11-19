@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 19, 6:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 27.
+Updated Thu Nov 19, 6:30 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 27.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -13,9 +13,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 19 5:40PM | NCAAB | Oregon vs Oregon St. | moneyline: NOT Oregon | kalshi | $30k | +113 |  |  | +0.0c |  | pending |
 | Nov 19 4:50PM | NCAAB | Notre Dame vs Auburn: Spread | spread: NOT Auburn wins by over 4.5 points | kalshi | $71k | -117 |  |  | +0.0c | yes | pending |
 | Nov 19 4:20PM | NCAAB | Wisconsin vs Seton Hall: Spread | spread: NOT Wisconsin wins by over 5.5 points | kalshi | $36k | -108 |  | ❌ | +1.0c | yes | pending |
-| Nov 19 4:20PM | NCAAB | Tarleton St. vs USC: Spread | spread: NOT USC wins by over 27.5 points | kalshi | $30k | -100 |  | ❌ | +0.0c |  | pending |
+| Nov 19 4:20PM | NCAAB | Tarleton St. vs USC: Spread | spread: NOT USC wins by over 27.5 points | kalshi | $30k | -100 |  | ❌ | +1.0c |  | pending |
 | Nov 19 4:20PM | NCAAB | VCU vs Santa Clara | moneyline: Santa Clara | kalshi | $30k | -117 |  |  | +0.0c |  | pending |
-| Nov 19 4:10PM | NCAAB | Southeast Missouri St. vs St. Thomas: Spread | spread: St. Thomas wins by over 6.5 points | kalshi | $26k | -108 |  |  | +0.0c |  | pending |
+| Nov 19 4:10PM | NCAAB | Southeast Missouri St. vs St. Thomas: Spread | spread: St. Thomas wins by over 6.5 points | kalshi | $26k | -108 |  |  | +1.0c |  | pending |
 | Nov 19 4:10PM | NCAAB | Utah Tech vs Washington: Spread | spread: NOT Washington wins by over 17.5 points | kalshi | $32k | -108 |  | ✅ | +2.0c | yes | pending |
 | Nov 19 4:10PM | NCAAB | UTEP vs New Mexico St. | moneyline: UTEP | kalshi | $30k | +113 | ✅ novig |  | +0.0c |  | pending |
 | Nov 19 4:10PM | NCAAB | UC Santa Barbara vs Pepperdine | moneyline: Pepperdine | kalshi | $49k | +117 |  |  | +0.0c |  | pending |
