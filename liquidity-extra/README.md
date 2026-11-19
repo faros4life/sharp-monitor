@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 19, 6:00 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 8.
+Updated Thu Nov 19, 6:10 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 8.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -11,7 +11,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 19 5:10AM | NCAAB | Southeast Missouri St. vs St. Thomas | moneyline: St. Thomas | kalshi | $27k | -285 |  |  | +0.0c |  | pending |
-| Nov 19 1:20AM | NCAAB | Maine vs Quinnipiac | moneyline: Quinnipiac | kalshi | $36k | -488 |  |  | -1.0c | yes | pending |
+| Nov 19 1:20AM | NCAAB | Maine vs Quinnipiac | moneyline: Quinnipiac | kalshi | $36k | -488 |  |  | +0.0c | yes | pending |
 | Nov 19 1:20AM | NCAAB | Buffalo vs St. Bonaventure | moneyline: St. Bonaventure | kalshi | $31k | -567 |  |  | +0.0c | yes | pending |
 | Nov 19 1:00AM | NCAAB | Florida vs West Virginia | moneyline: Florida | kalshi | $63k | -355 |  |  | +3.0c |  | pending |
 | Nov 18 8:50PM | NCAAB | UConn vs Arizona: Spread | spread: NOT Arizona wins by over 3.5 points | kalshi | $36k | -108 |  |  | -2.0c | yes | L |
