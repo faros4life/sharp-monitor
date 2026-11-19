@@ -71,7 +71,15 @@ ok("the live gate reads the reconciled figure", 'book_live.set_exposure(NONPX["t
 ok("the exposure loop calls the reconciler", "reconciled_amount(lo, _amt, is_rest)" in src)
 ok("the venue index is loaded once per read", 'VENUE["idx"], VENUE["why"] = nvr.load_venue()' in src)
 ok("the log reports the evidence state, counts only",
-   "exposure reconciliation: venue evidence" in src and "no dollars in a public log" in src)
+   "exposure reconciliation: {_state}" in src and "no dollars in a public log" in src)
+# Nov 18: the three states must be distinguishable in the log. "not attempted" (no gate evaluation
+# this pass) reading the same as a failed load is the no-op that looks like success.
+ok("the log distinguishes not-attempted from LOADED from FAILED",
+   all(t in src for t in ('"not attempted"', '"LOADED"', '"FAILED"')))
+ok("the initial state says NOT ATTEMPTED, not 'not loaded'",
+   'NOT ATTEMPTED (no risk-gate evaluation this run)' in src and '"why": "not loaded"' not in src)
+ok("a real load failure reports its own reason", 'return (None, None), f"orders snapshot: {e1}"'
+   in open("novig_reconcile.py").read())
 
 NOVENUE = {"idx": (None, None)}
 _was = ex.VENUE["idx"]

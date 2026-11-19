@@ -215,7 +215,10 @@ def log_report():
           f"floor basis {pf.floor_coef()}, maker {pf.maker()})")
     # Nov 18: the exposure reconciliation, counts only - no dollars in a public log. "venue evidence"
     # says whether the Novig snapshots were readable at all; without them nothing is released.
-    print(f"exposure reconciliation: venue evidence {VENUE['why']}; "
+    _ve = VENUE["why"]
+    _state = ("not attempted" if _ve.startswith("NOT ATTEMPTED")
+              else "LOADED" if _ve.startswith("ok") else "FAILED")
+    print(f"exposure reconciliation: {_state} - {_ve}; "
           f"legs released {VENUE['released']}, adjusted to actual fill {VENUE['adjusted']}")
     if QSTAT:
         print("venue opportunity (counts only; no dollars - liquidity is a multiple of the stake):")
@@ -3345,7 +3348,12 @@ NONPX_SHADOW = {"today": 0.0, "released": 0, "undated_kept": 0, "undated_amt_leg
 # Nov 18 (Peter: "Fix and activate the daily risk calculation"). ACTIVE. The venue index for the run,
 # loaded once in bot_orders(); (None, None) means NO EVIDENCE and every leg keeps the registry's own
 # figure. A read failure must never release a dollar.
-VENUE = {"idx": (None, None), "why": "not loaded", "released": 0, "adjusted": 0, "raw": 0.0}
+# "why" starts as NOT ATTEMPTED and is overwritten the moment bot_orders() tries to load. That
+# distinction matters in the log: a pass with no live play never evaluates the risk gate at all, and
+# reading that as a failed load - or a failed load as "nothing to do" - is exactly the no-op that
+# looks like success. A real failure reports its own reason from load_venue().
+VENUE = {"idx": (None, None), "why": "NOT ATTEMPTED (no risk-gate evaluation this run)",
+         "released": 0, "adjusted": 0, "raw": 0.0}
 
 
 def reconciled_amount(lo, amt, is_rest):
