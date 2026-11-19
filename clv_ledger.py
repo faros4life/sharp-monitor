@@ -1145,37 +1145,89 @@ def close_for(b, f, pm, mkmap, start, lg):
 
 
 # ------------------------------------------------------------------ bot Novig orders (stale check)
-def bot_novig_orders(days=45):
-    """Bot Novig orders from its own 'Bets LIVE:' ledger rows: decision time, price used, line."""
+def bot_novig_orders(days=45, cache=None):
+    """Bot Novig orders from its own 'Bets LIVE:' ledger rows: decision time, price used, line.
+
+    Returns (orders, note) - note is None on a clean read, else why the read is PARTIAL.
+
+    Nov 19 (Peter: the ledger spent 807 s here; eliminate repeated retrieval). This searched 45 days
+    of "Bets LIVE:" mail and FETCHed every match in full, every run - the executor sends one of those
+    per pass, so the same thousands of messages were re-downloaded serially each time. That was 95%
+    of the ledger's runtime and it is what aborted mid-read.
+
+    An IMAP message is immutable once delivered, so a UID parsed once never needs fetching again.
+    Only UIDs absent from the cache are fetched. The cache is keyed inside UIDVALIDITY and dropped
+    whole if the server changes it, because UIDs are only unique within one UIDVALIDITY.
+
+    A failed read NEVER yields an empty result: whatever the cache holds is returned with a note
+    saying the read was partial. Missing data is not evidence of zero fills.
+    """
     import email as em
-    out = []
+    out, note = [], None
+    cache = cache if cache is not None else {}
     M = ex.imap_open()
     try:
-        for uid in ex.gsearch(M, f'subject:"Bets LIVE:" newer_than:{days}d'):
-            typ, d = M.uid("FETCH", uid, "(RFC822)")
-            if typ != "OK" or not d or not d[0]:
-                continue
-            raw = d[0][1]
-            subj = str(em.header.make_header(em.header.decode_header(em.message_from_bytes(raw).get("Subject") or "")))
-            if not subj.startswith("Bets LIVE:"):
-                continue
-            txt = ex.body_text(raw)
-            i = txt.rfind("LEDGER (machine-readable")
-            if i < 0:
+        try:
+            uv = (M.response("UIDVALIDITY")[1] or [b""])[0].decode() or ""
+        except Exception:
+            uv = ""
+        if uv and cache.get("uidvalidity") not in (None, uv):
+            cache.clear()          # UIDs are only unique within a UIDVALIDITY - a change invalidates every key
+        cache.setdefault("uidvalidity", uv)
+        rows_by_uid = cache.setdefault("uids", {})
+        uids = ex.gsearch(M, f'subject:"Bets LIVE:" newer_than:{days}d')
+        fetched = 0
+        for uid in uids:
+            key = uid.decode() if isinstance(uid, bytes) else str(uid)
+            if key in rows_by_uid:                       # parsed on an earlier run; the message cannot have changed
+                out.extend(rows_by_uid[key])
                 continue
             try:
-                rows, _ = json.JSONDecoder().raw_decode(txt[txt.index("[", i):])
-            except Exception:
-                continue
-            for r in rows:
-                for lo in [r.get("live_order") or {}, r.get("live_rest") or {}] + [x or {} for x in r.get("live_more") or []]:
-                    if lo.get("status") != "placed" or not lo.get("order_id"):
-                        continue
-                    out.append({"order_id": str(lo["order_id"]), "book": lo.get("book") or "prophetx", "key": r.get("key"), "decided_utc": r.get("decided_utc"),
-                                "line": r.get("live_px_line"), "price": r.get("live_px_price_after_fee"),
-                                "nv_at_decision": ((r.get("books_at_decision") or {}).get("novig") or {})})
+                parsed = _bot_live_rows(M, uid, em)
+            except Exception as e:                       # a dropped connection stops the sweep, it does not empty it
+                note = f"partial read after {fetched} new message(s): {type(e).__name__}"
+                break
+            fetched += 1
+            rows_by_uid[key] = parsed
+            out.extend(parsed)
+        live = {u.decode() if isinstance(u, bytes) else str(u) for u in uids}
+        for gone in [k for k in rows_by_uid if k not in live]:
+            del rows_by_uid[gone]      # outside the 45-day window: bounded, not unbounded growth
+        cache["fetched_last_run"] = fetched
+        cache["seen_last_run"] = len(uids)
     finally:
         ex.imap_close(M)
+    return out, note
+
+
+def _bot_live_rows(M, uid, em):
+    """The orders carried by ONE 'Bets LIVE:' message. The parsing is unchanged; it is lifted out of
+    bot_novig_orders so the caller can cache the result per UID and never fetch that message again.
+    Each former `continue` (skip this message) becomes an empty return for this message."""
+    out = []
+    typ, d = M.uid("FETCH", uid, "(RFC822)")
+    if typ != "OK" or not d or not d[0]:
+        return out
+    raw = d[0][1]
+    subj = str(em.header.make_header(em.header.decode_header(em.message_from_bytes(raw).get("Subject") or "")))
+    if not subj.startswith("Bets LIVE:"):
+        return out          # IMAP SUBJECT search is a SUBSTRING match - re-check the real header prefix
+    txt = ex.body_text(raw)
+    i = txt.rfind("LEDGER (machine-readable")
+    if i < 0:
+        return out
+    try:
+        rows, _ = json.JSONDecoder().raw_decode(txt[txt.index("[", i):])
+    except Exception:
+        return out
+    for r in rows:
+        for lo in [r.get("live_order") or {}, r.get("live_rest") or {}] + [x or {} for x in r.get("live_more") or []]:
+            if lo.get("status") != "placed" or not lo.get("order_id"):
+                continue
+            out.append({"order_id": str(lo["order_id"]), "book": lo.get("book") or "prophetx", "key": r.get("key"),
+                        "decided_utc": r.get("decided_utc"),
+                        "line": r.get("live_px_line"), "price": r.get("live_px_price_after_fee"),
+                        "nv_at_decision": ((r.get("books_at_decision") or {}).get("novig") or {})})
     return out
 
 
@@ -1304,18 +1356,36 @@ def espn_fill(st, now, max_days=50):   # Nov 4: was 12 - older bets' dates were 
     every league, or failed is never marked done, so unresolved rows stay eligible for retry - which is the whole
     point of the recovery path."""
     todo, skipped = [], 0
+    # Nov 19 (Peter: report the 349 stuck rows by exclusion reason - exhausted tries, outside the
+    # date window, missing usable dates, or other). Counting only: no counter is reset, no lookup is
+    # started, nothing about the guards below changes. The run that printed "0 to try" gave no reason.
+    why = collections.Counter()
     for k, rec in st["bets"].items():
         s = rec["snap"]
-        if s.get("game_start") or rec.get("espn_tries", 0) >= 6:   # Nov 4: 3 more tries for rows stuck under the old 12-day window
+        if s.get("game_start"):
+            continue                      # already pinned to a game; not part of the stuck set
+        if rec.get("espn_tries", 0) >= 6:   # Nov 4: 3 more tries for rows stuck under the old 12-day window
+            why["tries exhausted (>=6)"] += 1
             continue
         t0 = tp(s.get("settled")) or tp(s.get("placed")) or tp(rec.get("first_seen"))
-        if t0 and t0 > now - timedelta(days=45):
-            done = set(rec.get("espn_done") or [])
-            want = {d for d in _espn_days(t0) if d.strftime("%Y%m%d") not in done}
-            if not want:          # every date this row could sit on is settled and did not match it
-                skipped += 1
-                continue
-            todo.append((k, rec, t0, want))
+        if not t0:
+            why["no usable date (no settled, placed or first_seen)"] += 1
+            continue
+        if t0 <= now - timedelta(days=45):
+            why["outside the 45-day window"] += 1
+            continue
+        done = set(rec.get("espn_done") or [])
+        want = {d for d in _espn_days(t0) if d.strftime("%Y%m%d") not in done}
+        if not want:          # every date this row could sit on is settled and did not match it
+            why["already checked against settled dates"] += 1
+            skipped += 1
+            continue
+        why["queued for a lookup"] += 1
+        todo.append((k, rec, t0, want))
+    LG_LOG.append("stuck rows (no game_start) by exclusion reason: "
+                  + (", ".join(f"{k} {v}" for k, v in sorted(why.items())) or "none"))
+    print("CLV ledger stuck rows by reason (counts only): "
+          + (", ".join(f"{k} {v}" for k, v in sorted(why.items())) or "none"), flush=True)
     if not todo:
         LG_LOG.append(f"espn fill: 0 to try, {skipped} skipped as already checked")
         return
@@ -1671,11 +1741,23 @@ def main():
     _stage("bot novig orders")
     # 2) bot Novig orders for the stale check
     nvo, fills = [], []
+    _uid_cache = st.setdefault("bot_live_uids", {})
     try:
-        fills = [x for x in (order_as_bet(o) for o in bot_novig_orders()) if x]
+        _orders, _note = bot_novig_orders(cache=_uid_cache)
+        fills = [x for x in (order_as_bet(o) for o in _orders) if x]
         nvo = [x for x in fills if x.get("book") == "novig" and (tp(x.get("decided_utc")) or now) > now - timedelta(days=10)]
+        if _note:
+            # Peter, Nov 19: never treat a timeout or a missing read as zero fills. The cached
+            # evidence still stands; say the read was partial and carry on with what we hold.
+            st.setdefault("errors", []).append(f"{iso(now)} novig orders: {_note}")
+            print(f"bot Novig orders: PARTIAL READ - {_note}. Cached evidence retained, NOT read as zero fills.", flush=True)
     except Exception as e:
         st.setdefault("errors", []).append(f"{iso(now)} novig orders: {type(e).__name__}")
+        print(f"bot Novig orders: READ FAILED ({type(e).__name__}). No fill evidence added this run; "
+              f"this is NOT evidence of zero fills.", flush=True)
+    print(f"bot Novig orders: {len(fills)} order(s) from {_uid_cache.get('seen_last_run', 0)} message(s); "
+          f"{_uid_cache.get('fetched_last_run', 0)} newly fetched, "
+          f"{max(_uid_cache.get('seen_last_run', 0) - _uid_cache.get('fetched_last_run', 0), 0)} served from cache", flush=True)
     # Nov 2 (Peter, "you have bot fills"): a bet whose price the tracker lost (Novig losses) takes the bot's own fill price
     for k, rec in st["bets"].items():
         s = rec["snap"]
