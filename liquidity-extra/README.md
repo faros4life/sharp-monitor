@@ -1,22 +1,22 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 18, 9:30 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 19.
+Updated Wed Nov 18, 9:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 17.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 341-207 (-23.57u flat) | rule met: 61-53
+**Record:** 343-207 (-22.19u flat) | rule met: 62-53
 
-**Fade (paper, betting against the print):** 182-306 (+24.28u flat, after fees)
+**Fade (paper, betting against the print):** 182-308 (+22.28u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 18 8:50PM | NCAAB | UConn vs Arizona: Spread | spread: NOT Arizona wins by over 3.5 points | kalshi | $36k | -108 |  |  | -2.0c | yes | pending |
-| Nov 18 6:40PM | NCAAB | Howard vs Duquesne | moneyline: Duquesne | kalshi | $29k | -213 | ✅ novig |  | -1.0c |  | pending |
+| Nov 18 6:40PM | NCAAB | Howard vs Duquesne | moneyline: Duquesne | kalshi | $29k | -213 | ✅ novig |  | -1.0c |  | W |
 | Nov 18 5:50PM | NCAAB | Kansas vs West Virginia: Spread | spread: NOT Kansas wins by over 8.5 points | kalshi | $58k | -122 |  | ✅ | +2.0c | yes | pending |
 | Nov 18 4:50PM | NCAAB | Vermont vs Yale | moneyline: Yale | kalshi | $71k | -285 | ✅ novig | ✅ | +2.0c |  | W |
 | Nov 18 4:50PM | NCAAB | Detroit Mercy vs Eastern Michigan | moneyline: Eastern Michigan | kalshi | $31k | -567 | ✅ novig |  | +0.0c | yes | W |
 | Nov 18 4:10PM | NCAAB | Kansas vs West Virginia: Spread | spread: Kansas wins by over 8.5 points | kalshi | $27k | +113 |  | ❌ | -3.0c | yes | pending |
-| Nov 18 4:10PM | NCAAB | Northern Illinois vs Marquette: Spread | spread: NOT Marquette wins by over 27.5 points | kalshi | $41k | -113 |  | ✅ | +2.0c | yes | pending |
+| Nov 18 4:10PM | NCAAB | Northern Illinois vs Marquette: Spread | spread: NOT Marquette wins by over 27.5 points | kalshi | $41k | -113 |  | ✅ | +2.0c | yes | W |
 | Nov 18 4:10PM | NCAAB | IU Indy vs Penn St.: Spread | spread: NOT Penn St. wins by over 16.5 points | kalshi | $30k | -100 |  |  | +1.0c | yes | W |
 | Nov 18 4:10PM | NCAAB | Cornell vs Syracuse: Spread | spread: NOT Syracuse wins by over 19.5 points | kalshi | $38k | -122 |  | ✅ | +1.0c | yes | pending |
 | Nov 18 3:40PM | NCAAB | Houston vs Florida | moneyline: Florida | kalshi | $93k | -108 | ✅ novig,prophetx |  | +0.0c | yes | L |
