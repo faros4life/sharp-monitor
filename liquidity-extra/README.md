@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 19, 4:10 PM ET. This run: 6 new, 0 not confirmed, 3 pending. Open alerts: 26.
+Updated Thu Nov 19, 4:20 PM ET. This run: 3 new, 0 not confirmed, 0 pending. Open alerts: 29.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 19 4:20PM | NCAAB | Wisconsin vs Seton Hall: Spread | spread: NOT Wisconsin wins by over 5.5 points | kalshi | $36k | -108 |  | ❌ | +0.0c |  | pending |
+| Nov 19 4:20PM | NCAAB | Tarleton St. vs USC: Spread | spread: NOT USC wins by over 27.5 points | kalshi | $30k | -100 |  | ❌ | +0.0c |  | pending |
+| Nov 19 4:20PM | NCAAB | VCU vs Santa Clara | moneyline: Santa Clara | kalshi | $30k | -117 |  |  | +0.0c |  | pending |
 | Nov 19 4:10PM | NCAAB | Southeast Missouri St. vs St. Thomas: Spread | spread: St. Thomas wins by over 6.5 points | kalshi | $26k | -108 |  |  | +0.0c |  | pending |
 | Nov 19 4:10PM | NCAAB | Utah Tech vs Washington: Spread | spread: NOT Washington wins by over 17.5 points | kalshi | $32k | -108 |  | ✅ | +0.0c |  | pending |
 | Nov 19 4:10PM | NCAAB | UTEP vs New Mexico St. | moneyline: UTEP | kalshi | $30k | +113 | ✅ novig |  | +0.0c |  | pending |
@@ -207,6 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 13 4:00PM | NCAAB | Sam Houston vs Illinois: Point Total | total: NOT Over 170.5 points | kalshi | $36k | -108 |  | ✅ | -2.0c | yes | L |
 | Nov 13 4:00PM | NCAAB | Milwaukee vs TCU: Point Total | total: NOT Over 155.5 points | kalshi | $31k | -104 |  | ✅ | +1.0c | yes | W |
 | Nov 13 3:50PM | NCAAB | Southern Miss vs Texas St.: Point Total | total: NOT Over 138.5 points | kalshi | $38k | +104 |  |  | +3.0c | yes | L |
-| Nov 13 3:30PM | NCAAB | DePaul vs Northwestern | moneyline: DePaul | kalshi | $82k | +104 | ✅ novig |  | +1.0c |  | W |
-| Nov 13 2:30PM | NCAAB | Cleveland St. vs West Florida | moneyline: West Florida | kalshi | $38k | -100 | ✅ novig |  | +4.0c |  | L |
-| Nov 13 12:40PM | NCAAB | East Texas A&M vs Portland | moneyline: Portland | kalshi | $95k | -300 |  |  | -1.0c |  | L |
