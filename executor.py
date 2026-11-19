@@ -255,6 +255,67 @@ def pid(play_key):
     return "xpid" + hashlib.sha1((RULES + "|" + play_key).encode()).hexdigest()[:12]
 
 
+def notify_once(p, head, res=None):
+    """True when THIS run owns the send for this play's current notification state.
+
+    Nov 19 (Peter, A): "use the existing ReportClaim mechanism ... writes only notification
+    tokens/state and does not alter execution, fills, exposure, risk or grading." registry's
+    claim_token is that mechanism - an atomic read-modify-write under a sha lock on the
+    notification store, which is what stopped 27 Kalshi fills going out 70+ times on 11 Nov.
+
+    The token carries the STATE (see notify_tok), so this suppresses a repeated poll or a workflow
+    restart and NEVER suppresses a correction: STATUS UNKNOWN and a later FILLED are different
+    tokens and both send.
+
+    FAILS OPEN, deliberately. If the store cannot answer, this returns True and the message goes
+    out. Being told twice is the right failure for money information; being told nothing is not -
+    the same choice live_play_alert already makes when its map is unavailable.
+    """
+    try:
+        if not registry.enabled():
+            return True
+        return bool(registry.claim_token(notify_tok(p, head, res)))
+    except Exception as ex:
+        LOG.append(f"notify claim unavailable ({type(ex).__name__}) - sending rather than risking silence")
+        return True
+
+
+def notify_tok(p, head, res=None):
+    """The dedupe token for ONE notification state of one play.
+
+    Nov 19 (Peter): "Each meaningful state transition should generate one notification. Repeated
+    polls or workflow restarts must not generate duplicate messages. A later partial fill, full
+    fill or confirmed cancellation must still produce its own update." And: a correction must
+    never be suppressed - an order reported STATUS UNKNOWN that later confirms FILLED has to send.
+
+    So the token carries the STATE, not just the play: head, order id and the filled amount. Two
+    polls of an unchanged order build the same token and the second is suppressed; UNKNOWN ->
+    FILLED, or PARTIAL $100 -> FULL $206, build different tokens and both send. This is the same
+    rule ReportClaim already uses for Kalshi fills ("only a byte-identical repeat collides"),
+    applied to the order path rather than re-invented beside it.
+    """
+    res = res or {}
+    fs = res.get("filled_stake")
+    state = "|".join([play_id(p), str(head or ""), str(res.get("order_id") or ""),
+                      "unread" if fs is None else f"{float(fs):.2f}"])
+    return "xntf" + hashlib.sha1(state.encode()).hexdigest()[:12]
+
+
+def play_id(p):
+    """The one id that ties a play's whole notification thread together, or 'unavailable'.
+
+    Nov 19 (Peter): "Every message must carry the same unique play ID so the entire lifecycle is
+    linked." It is pid() over the play's own key - the token the run already uses for dedupe - so
+    the id on the phone is the id in the registry. Peter's standing rule that missing information
+    is named rather than invented applies here too: no key means no id, never a made-up one.
+    """
+    try:
+        k = (p or {}).get("play_key") or derive_key(p or {}) or ""
+        return pid(k) if k else "unavailable"
+    except Exception:
+        return "unavailable"
+
+
 # Nov 12 (Peter: "eliminate the 832-second live_guards delay"). MEASURED on run 43311690235:
 # live_guards took 832.2s of a 1012-second pass while bot_orders' own brackets INSIDE it read 2.6s
 # (Gmail) and 0.2s (private store). The registry work was never the cost - the connection around it
@@ -1466,6 +1527,11 @@ def lane_note(r, head, res=None, book=None, limit=None, extra=""):
     out.append(f"order {oid}" if oid else "order id: none")
     if extra:
         out.append(extra)
+    # Nov 19 (Peter, item 2): the SAME play id on every message of a play's life, so TRIGGER,
+    # ORDER, FILL and GRADE can be read as one thread. pid() already exists and is already the
+    # dedupe token, so this adds an identifier rather than inventing one. A play with no key gets
+    # "ID: unavailable" - never a fabricated id.
+    out.append(f"ID: {play_id(p)}")
     return "\n".join(x for x in out if x)
 
 
@@ -3806,13 +3872,23 @@ def live_order(r):
             _n, _h = lane_note(r, "FILLED", res, "prophetx", limit,
                                extra="Send STOP on ntfy to pause."), "FILLED"
         else:
-            _n, _h = lane_note(r, "NO FILL", res, "prophetx", limit,
-                               extra="Fill-or-kill got nothing at this price or better."
-                                     + ("" if res.get("fills_read") else " Fill read failed: check My Trades.")), "NO FILL"
+            # Nov 19 (Peter, item 1): same split as the other venue path. The old head said NO
+            # FILL and then appended "Fill read failed" - the headline asserted a fact the body
+            # retracted, and the headline is what reaches the lock screen.
+            if res.get("fills_read"):
+                _n, _h = lane_note(r, "NO FILL", res, "prophetx", limit,
+                                   extra="Venue confirms zero matched quantity at this price."), "NO FILL"
+            else:
+                _n, _h = lane_note(
+                    r, "STATUS UNKNOWN - VERIFY", res, "prophetx", limit,
+                    extra=("The venue fill read FAILED, so whether this matched is UNKNOWN.\n"
+                           "This is NOT a no-fill - check My Trades before acting on it.")), "STATUS UNKNOWN"
         # Nov 12 (Peter, only live + actionable): ntfy says exactly what Telegram says (it used to be a shorter
         # "PLACED:" restatement, even when nothing filled). Nov 12 (Peter: "no fill i dont need"): a NO FILL is
         # not sent to either channel; it is still journaled and returned to the run below.
-        if _h == "FILLED" or not res.get("fills_read"):   # fill unreadable = outcome unknown, so say it
+        # Nov 19 (Peter, A): one notification per real state transition. The token carries the
+        # state, so a repeated poll or a restart is suppressed while UNKNOWN -> FILLED still sends.
+        if (_h == "FILLED" or not res.get("fills_read")) and notify_once(p, _h, res):
             tg(_n)
             push(f"{_h}: " + bet_text(r, lv["line"], limit)[:60], _n, mirror=False)
     elif res["status"] == "error":
@@ -3896,6 +3972,29 @@ def live_order_other(r):
         return refuse_untransmitted(r, f"{name} ladder can't cover ${MIN_TAKE:.0f}+ at the alert number (have ${stake:.2f})", book=book)
     limit_am = lm.american(limit_cost)
     label = f"{p.get('sport')} {p.get('game')} | {bet_text(r, lv['line'], limit_am)}"
+    # Nov 19 (Peter, item 3): a TAKE order had no ORDER stage at all - the thread jumped from the
+    # LIVE PLAY trigger straight to a fill or a non-fill, so there was no record on the phone of
+    # what was actually attempted, at what price, for how much. The resting lane has always had
+    # this message; takes did not. Sent BEFORE the venue call, so an order that errors or hangs is
+    # still one Peter saw go out. Notification only: it reads what the plan already decided and
+    # changes no value.
+    try:
+        _sub = "\n".join(x for x in [
+            f"{lane_tag(r)}ORDER SUBMITTED - TAKE on {name}",
+            f"{p.get('sport') or ''} {p.get('game') or ''}".strip(),
+            bet_text(r, lv.get("line"), limit_am) or (p.get("bet") or ""),
+            f"requested ${float(lv['risk']):,.2f} at limit {int(limit_am):+d}" if lv.get("risk") is not None
+            else f"limit {int(limit_am):+d}; requested stake not recorded",
+            "status PENDING - the venue has not answered yet",
+            f"submitted {datetime.now(timezone.utc).astimezone(lm.ET):%-I:%M:%S %p} ET",
+            f"ID: {play_id(p)}",
+        ] if x)
+        if notify_once(p, "ORDER SUBMITTED", {"order_id": "", "filled_stake": None}):
+            tg(_sub)
+            push(f"{lane_tag(r)}ORDER SUBMITTED on {name}: " + (p.get("bet") or "")[:40],
+                 _sub, mirror=False)
+    except Exception as _sx:   # a notifier must never change an order outcome (Peter, rule 8)
+        LOG.append(f"order-submitted notice failed: {type(_sx).__name__}")
     if book == "kalshi":
         kb = ids.get("kalshi_buy") or []
         if len(kb) != 1:
@@ -3942,9 +4041,26 @@ def live_order_other(r):
             _n, _h = lane_note(r, "FILLED", res, book, limit_am,
                                extra="Send STOP on ntfy to pause."), "FILLED"
         else:
-            _n, _h = lane_note(r, "NO FILL", res, book, limit_am,
-                               extra="Fill-or-kill got nothing at this price or better."), "NO FILL"
-        if _h == "FILLED" or not res.get("fills_read"):   # Nov 12 (Peter: "no fill i dont need"): a confirmed NO FILL goes to neither channel; an unreadable fill still does
+            # Nov 19 (Peter, item 1). This branch is reached when no filled stake was read - which
+            # is TWO states with opposite meanings, and the old message asserted the wrong one.
+            # "NO FILL ... got nothing at this price or better" went out on 19 Nov for a Novig
+            # order that had MATCHED $203.50 at 2.00x, because the fill READ had failed, not
+            # because nothing traded. 0 of 29 Novig placements since 12 Nov have a fill read, so
+            # this was the normal case, not an edge. NO FILL is now reserved for a venue-confirmed
+            # cancel or expiry with zero matched quantity; an unread fill says so and says what to
+            # do about it.
+            if res.get("fills_read"):
+                _n, _h = lane_note(r, "NO FILL", res, book, limit_am,
+                                   extra="Venue confirms zero matched quantity at this price."), "NO FILL"
+            else:
+                _n, _h = lane_note(
+                    r, "STATUS UNKNOWN - VERIFY", res, book, limit_am,
+                    extra=("The venue fill read FAILED, so whether this matched is UNKNOWN.\n"
+                           "This is NOT a no-fill - the order may be filled or resting. "
+                           f"Check the {name} app before acting on it.")), "STATUS UNKNOWN"
+        # Nov 12 (Peter: "no fill i dont need"): a confirmed NO FILL goes to neither channel; an
+        # unreadable fill still does. Nov 19 (Peter, A): and only once per state transition.
+        if (_h == "FILLED" or not res.get("fills_read")) and notify_once(p, _h, res):
             tg(_n)
             push(f"{_h}: " + bet_text(r, lv["line"], limit_am)[:60], _n, mirror=False)
     elif res["status"] == "error":
@@ -4670,10 +4786,22 @@ def novig_reports():
                 head = "NOVIG PARTIAL FILL"
             elif st == "OPEN":
                 head = "NOVIG RESTING (nothing filled yet)"
-            else:
+            elif st in ("CANCELED", "CANCELLED", "EXPIRED"):
                 head = "NOVIG NO FILL"
+            else:
+                # Nov 19 (Peter, item 1). THIS is the branch that sent "[BOARD V3] NOVIG NO FILL
+                # ... $205.53 asked; nothing traded" for an order that had MATCHED $203.50 at
+                # 2.00x. NO FILL was the ELSE: any status this reporter did not recognise - an
+                # empty one included - became a positive claim that nothing traded. A no-fill is
+                # now only what the venue confirms terminal with zero matched (CANCELED,
+                # CANCELLED, EXPIRED); everything else says the status is unknown and asks for a
+                # check. 0 of 29 Novig placements since 12 Nov carry a fill read, so this was the
+                # ordinary path through here, not a corner.
+                head = "NOVIG STATUS UNKNOWN - VERIFY"
             # an immediate fill-or-kill NO FILL is muted; a RESTING (GTT) bid that expires unfilled is still reported
             # once (its outcome, Nov 12 audit), since that is the end of a bid he was told went out
+            # A confirmed zero-fill fill-or-kill stays muted (Peter, 12 Nov: "no fill i dont
+            # need"). An UNKNOWN status is never muted: it is the one that needs him to look.
             _mute_nofill = head == "NOVIG NO FILL" and x.get("tif") != "GTT"
             # Nov 13 (Peter, requirement 2): the lane and the venue order id were missing from every
             # Novig fill report - the Utah/Houston RESTING message carried neither, so a report could
@@ -4687,8 +4815,15 @@ def novig_reports():
                 pay = fq / 100
                 msg += (f"\n{fq:,} of {q:,} contracts: ${(cost if cost is not None else fq * c / 100):,.2f} to pay ${pay:,.2f}"
                         + (f" (avg {lm.american(ap):+d})" if ap else ""))
+            elif st in ("CANCELED", "CANCELLED", "EXPIRED"):
+                msg += (f"\nlimit {lm.american(c):+d}, ${q * c / 100:,.2f} asked; venue confirms "
+                        f"zero matched quantity ({st})")
             elif st not in ("REFUSED", "REJECTED"):
-                msg += f"\nlimit {lm.american(c):+d}, ${q * c / 100:,.2f} asked; nothing traded"
+                # The amount asked is what we REQUESTED - never presented as what matched.
+                msg += (f"\nlimit {lm.american(c):+d}, ${q * c / 100:,.2f} requested"
+                        f"\nSTATUS UNKNOWN: the venue did not report a usable status"
+                        f"{' (' + str(st) + ')' if st else ''}, so whether this matched is NOT known."
+                        f"\nThis is NOT a no-fill. Check the Novig app before acting on it.")
             if x.get("tif") == "GTT" and st == "OPEN":
                 msg += "\nResting until 30 min before the start (cancel in the Novig app if needed)."
             if x.get("_exp_note"):

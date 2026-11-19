@@ -1896,13 +1896,35 @@ def run():
                             # rather than a moved price, and the instruction did not tell him to stop.
                             _q = a.get("hr1_quote") or {}
                             _unv = (a.get("hr1_verify_status") == "unverified")
+                            # Nov 19 (Peter, item 4). Three corrections, wording only - HR1 stays
+                            # manual-only and no order code touches it (HR1 appears nowhere in
+                            # executor.py).
+                            #  * the confirming book is NAMED when there is one, instead of the
+                            #    message being silent about corroboration unless it is missing.
+                            #  * other books' numbers are marked CONTEXT ONLY so a nearby line on
+                            #    a different number cannot read as price verification.
+                            #  * "log it to Muse as source HR1" is gone: Peter took Muse out of
+                            #    the betting project on 12 Nov. There is no inbound Telegram
+                            #    handler in this repo - no getUpdates, no webhook - so a "reply
+                            #    CONFIRMED" instruction would be one nothing could receive or
+                            #    record. It says to record it through the approved tracking
+                            #    process instead, and an alert is never itself a bet.
+                            _conf = a.get("hr1_confirm_book")
+                            _ctx = a.get("hr1_other_lines")
                             label = (("[HR1 - MANUAL - UNVERIFIED] no other book sits on this number, so the price "
                                       "is NOT corroborated - check the board carefully. " if _unv else "")
                                      + f"HR1 MANUAL BET at HARD ROCK: {a['text'].split(' at ')[0]}"
-                                     f" | CHECK FIRST: Hard Rock's main number must be {_q.get('point')}"
+                                     f" | TRIGGER SOURCE: Hard Rock"
+                                     + (f" | CONFIRMING BOOK: {_conf}" if _conf and not _unv
+                                        else " | CONFIRMING BOOK: none on this exact line - UNVERIFIED")
+                                     + (f" | other books (CONTEXT ONLY, not price verification): {_ctx}" if _ctx else "")
+                                     + f" | CHECK HARD ROCK LIVE BOARD. DO NOT BET UNLESS THE EXACT HR LINE AND"
+                                     f" PRICE ARE AVAILABLE: the main number must be {_q.get('point')}"
                                      f" at {_q.get('price')}. DO NOT BET if the board shows a different number -"
                                      f" that is a bad quote, not a moved line. (sharp ref {_q.get('sharp_line')})"
-                                     " | check the max it allows | log it to Muse as source HR1")
+                                     " | check the max it allows"
+                                     " | THIS IS AN ALERT, NOT A BET: if you place it, record it through the"
+                                     " approved tracking process - nothing here records it for you")
                         # Nov 12 (Peter: "only actionable and live notifications", then "triggers ... on anything that
                         # goes live"): the phone gets the TRIGGER for every live (phase-1) play on ntfy AND Telegram, then
                         # the executor's LIVE PLAY and the fill. PAPER alerts stay muted (PUSH_SHARP_ALERTS=on unmutes them).
