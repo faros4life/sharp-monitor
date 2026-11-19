@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 19, 8:35 AM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 28.
+Updated Thu Nov 19, 8:40 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 28.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -28,7 +28,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 19 1:30AM | NCAAF | Rice vs Temple | moneyline: Temple | kalshi | $53k | -133 |  |  | +0.0c | yes | pending |
 | Nov 19 1:30AM | NBA | New York vs Minnesota | moneyline: Minnesota | kalshi | $90k | +108 |  |  | +2.0c | yes | pending |
 | Nov 18 11:56PM | NBA | Portland vs Milwaukee | moneyline: Portland | kalshi | $249k | -355 |  |  | +2.0c |  | pending |
-| Nov 18 11:46PM | NBA | Golden State vs Memphis | moneyline: Memphis | kalshi | $71k | -317 |  |  | -7.0c |  | pending |
+| Nov 18 11:46PM | NBA | Golden State vs Memphis | moneyline: Memphis | kalshi | $71k | -317 |  |  | -8.0c |  | pending |
 | Nov 18 11:20PM | NFL | Indianapolis Colts @ Houston Texans | moneyline: HOU (0) | novig | $25k | -567 | ✅ kalshi |  | +0.5c | yes | pending |
 | Nov 18 9:55PM | NHL | Vancouver vs Seattle | moneyline: Seattle | kalshi | $30k | -170 |  |  | -3.0c | yes | pending |
 | Nov 18 9:50PM | NBA | Phoenix vs Sacramento: Total Points | total: Over 227.5 points | kalshi | $33k | +104 |  | ✅ | +0.0c |  | W |
