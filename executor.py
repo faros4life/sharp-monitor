@@ -286,9 +286,93 @@ def fq_read(x):
     MISSING quantity with a confident 0, which then satisfied every "nothing filled" test below it
     - and raised on a non-numeric value, which would have killed the whole report. One reader so a
     new caller cannot quietly reintroduce either."""
-    raw = (x or {}).get("filled_qty")
+    x = x or {}
+    if x.get("fill_read") is False:
+        return False, 0          # the runner says outright that it could not read the fill
+    raw = x.get("filled_qty")
     n = lm.num(raw) if raw is not None else None
     return (n is not None), (int(n) if n is not None else 0)
+
+
+STALE_UNKNOWN_MIN = 10.0   # a fill-or-kill settles in seconds; a GTT is handled by _expire
+
+
+def stale_unknown(x):
+    """True when this row has NO read fill and is too old to still be settling.
+
+    Nov 19 (Peter, priority 2: "Unknown, pending and expired-but-unverified orders must not
+    silently disappear"). Two guards used to drop exactly these rows:
+
+      _final()  - "is any record final?" gates the WHOLE report. It answers False for a
+                  PENDING/SENT/UNKNOWN row with no read fill, so on a day when every Novig row is
+                  unknown - which is the current state, 0 of 29 with a fill read - the reporter
+                  returned before building a single message. Not a wrong message: no message.
+      the loop  - skipped the same rows individually.
+
+    Both exist for a good reason: a row that is seconds old is genuinely still in flight and
+    reporting it would spam the phone every five minutes. So the test is AGE, not status. Past
+    STALE_UNKNOWN_MIN an unresolved money event is exactly what Peter needs to see, and the report
+    token carries the state, so it goes out once and not once per pass.
+    """
+    x = x or {}
+    if fq_read(x)[0]:
+        return False                      # the fill WAS read; the normal paths handle it
+    if x.get("_unresolved"):
+        return True                       # expiry has passed with the quantity unread
+    t = x.get("updated_utc") or x.get("placed_utc")
+    try:
+        when = datetime.fromisoformat(str(t).strip().replace("Z", "+00:00"))
+    except Exception:
+        return True                       # no usable timestamp: report rather than drop it
+    if not when.tzinfo:
+        when = when.replace(tzinfo=timezone.utc)
+    return (datetime.now(timezone.utc) - when).total_seconds() / 60.0 >= STALE_UNKNOWN_MIN
+
+
+def novig_head(x):
+    """The ONE head for a Novig snapshot row, so the reporter cannot grow a second opinion.
+
+    Nov 19 (Peter, PRIORITY 1). The states and what each one requires:
+      REFUSED / REJECTED  - the venue refused the request; nothing was placed.
+      FILLED              - a read quantity that covers the whole order.
+      PARTIAL FILL        - a read quantity above zero.
+      RESTING             - status OPEN. "nothing filled yet" only when the zero is PROVEN;
+                            otherwise the head says the matched quantity is not confirmed.
+      NO FILL             - BOTH an authoritative terminal status (CANCELED/CANCELLED/EXPIRED)
+                            AND a zero the venue actually reported. Either alone is not evidence.
+      STATUS UNKNOWN      - everything else, including an unread quantity and an unrecognised or
+                            empty status. This was previously the ELSE for NO FILL, which is how
+                            "[BOARD V3] NOVIG NO FILL ... nothing traded" went out on an order that
+                            had MATCHED $203.50: any status the reporter did not recognise became a
+                            positive claim that nothing traded.
+    """
+    st = str(x.get("status") or "?").upper()
+    q, fq = int(x.get("qty") or 0), fq_read(x)[1]
+    if st in ("REFUSED", "REJECTED"):
+        return f"NOVIG {st}"
+    if q and fq >= q:
+        return "NOVIG FILLED"
+    if fq > 0:
+        return "NOVIG PARTIAL FILL"
+    if st == "OPEN":
+        return ("NOVIG RESTING (nothing filled yet)" if fq_zero_proven(x)
+                else "NOVIG RESTING - MATCHED QUANTITY NOT CONFIRMED")
+    if st in ("CANCELED", "CANCELLED", "EXPIRED") and fq_zero_proven(x):
+        return "NOVIG NO FILL"
+    return "NOVIG STATUS UNKNOWN - VERIFY"
+
+
+def fq_zero_proven(x):
+    """True only when a ZERO matched quantity on this row is backed by an actual venue read.
+
+    Nov 19 (Peter: "an unknown fill can never become a confirmed zero"). The asymmetry is the
+    point: a POSITIVE quantity needs no flag, because nothing but a read can produce one, while a
+    ZERO is exactly what a failed read used to look like. So a zero is believed only with
+    fill_read True. Rows written before that flag existed therefore never claim a no-fill - they
+    report STATUS UNKNOWN, which is the honest answer for a row whose fill was never provably read.
+    """
+    k, q = fq_read(x)
+    return bool(k and q == 0 and (x or {}).get("fill_read") is True)
 
 
 def notify_tok(p, head, res=None):
@@ -1315,8 +1399,12 @@ def lane_from_key(k):
     return LANE_NAME.get(head, LANE_NAME["rules"])
 
 
-def lane_lookup(play_keys):
-    """{unprefixed key: LANE NAME} resolved from the registry.
+def lane_lookup(play_keys, with_keys=False):
+    """{unprefixed key: LANE NAME} resolved from the registry, or (names, full_keys) with with_keys.
+
+    Nov 19: with_keys also returns {unprefixed key: the FULL lane-prefixed key}, which the delayed
+    Novig report needs to compute the same play id the trigger and order stages use. It is opt-in
+    because the one-argument contract is relied on by callers outside this module.
 
     Nov 13 (Peter, "STILL SAYS PHASE 1"). lane_from_key cannot work on a Novig fill report, and my
     earlier fix that used it was wrong for a reason the key itself hides: book_live.novig_place
@@ -1330,13 +1418,14 @@ def lane_lookup(play_keys):
     guessed: the caller then falls back to the default, which is the honest answer.
     """
     want = {lane_strip(str(k)) for k in play_keys if k}
+    _empty = ({}, {}) if with_keys else {}
     if not want or not registry.enabled():
-        return {}
+        return _empty
     try:
         rs = registry.rows() or []
     except Exception:
-        return {}
-    found, clash = {}, set()
+        return _empty
+    found, keys, clash = {}, {}, set()
     for r in rs:
         k = str(r.get("key") or "")
         base = lane_strip(k)
@@ -1348,7 +1437,9 @@ def lane_lookup(play_keys):
         if found.get(base, LANE_NAME[head]) != LANE_NAME[head]:
             clash.add(base)
         found[base] = LANE_NAME[head]
-    return {k: v for k, v in found.items() if k not in clash}
+        keys[base] = k                     # Nov 19: the FULL lane-prefixed key, for the play id
+    names = {k: v for k, v in found.items() if k not in clash}
+    return (names, {k: v for k, v in keys.items() if k not in clash}) if with_keys else names
 
 
 def lane_of(r):
@@ -4708,11 +4799,7 @@ def novig_reports():
         try:
             st0 = str(x.get("status") or "").upper()
             _k, _q = fq_read(x)
-            # Nov 19 (Peter, safeguard 2): this branch SYNTHESISES an EXPIRED status whose note
-            # says "nothing filled as of the last read". With an unreadable quantity that note
-            # asserts a no-fill from no evidence, so an unknown quantity leaves the row alone and
-            # it reports as STATUS UNKNOWN instead. Fail closed.
-            if (str(x.get("tif") or "").upper() != "GTT" or not _k or _q
+            if (str(x.get("tif") or "").upper() != "GTT" or _q
                     or st0 not in ("OPEN", "PENDING", "SENT", "UNKNOWN")):
                 return x
             fmt_ = "%Y-%m-%dT%H:%M:%S"
@@ -4722,7 +4809,19 @@ def novig_reports():
                 return x
             last = datetime.strptime(str(x.get("updated_utc") or x["placed_utc"])[:19], fmt_).replace(tzinfo=timezone.utc)
             gap = (exp - last).total_seconds() / 60
-            note = (f"Resting bid expired {exp.astimezone(lm.ET).strftime('%-I:%M %p')} ET with nothing filled as of the last read "
+            # Nov 19 (Peter): my first attempt at this returned x unchanged when the quantity was
+            # unreadable. That was worse, not better: the row kept status OPEN and reported
+            # "RESTING (nothing filled yet)" on a bid whose expiry had PASSED - two claims it could
+            # not support - or, at PENDING/UNKNOWN, was dropped by the not-final guard and said
+            # NOTHING at all about a live money event. An expiry that has passed with an unread
+            # fill is its own state: report it, and report it as unresolved.
+            when = exp.astimezone(lm.ET).strftime('%-I:%M %p')
+            if not _k:
+                return dict(x, status="UNKNOWN", _unresolved=True, _exp_note=(
+                    f"Resting bid's expiry passed at {when} ET and the matched quantity could NOT "
+                    f"be read ({x.get('fill_read_why') or 'no reason recorded'}), so whether any of "
+                    "it filled is UNKNOWN. It is NOT confirmed unfilled. Check the Novig app."))
+            note = (f"Resting bid expired {when} ET with nothing filled as of the last read "
                     + (f"({gap:.0f} min before expiry)." if gap >= 0 else "(read after expiry)."))
             return dict(x, status="EXPIRED", _exp_note=note)
         except Exception:
@@ -4736,11 +4835,12 @@ def novig_reports():
     # batching, so the remaining cost was the connection and the search themselves.
     def _final(x):
         st = str(x.get("status") or "?").upper()
-        fq = fq_read(x)[1]   # unknown defers (returns False below), which is what it already did
+        fq = fq_read(x)[1]
         if st in ("PENDING", "SENT", "UNKNOWN") and not fq:
-            return False
+            return stale_unknown(x)       # young = still settling; stale = an unresolved event
         if st == "FILLED" and not fq:
-            return False
+            # the venue says FILLED and we do not know how much. Silence was the old answer.
+            return stale_unknown(x)
         return True
     # Nov 12 (Peter, item 5: "eliminate unnecessary Gmail reads from Novig fill reporting without
     # losing notifications"). The guard below asked "is any record FINAL?" when the question it
@@ -4801,7 +4901,7 @@ def novig_reports():
                 f"{(lambda k, q: str(q) if k else 'unread')(*fq_read(x))}|"
                 f"{x.get('filled_cost')}".encode()).hexdigest()[:12]
         claimer = ReportClaim(M, [_tk(x, c) for x in cand for c in (True, False)])
-        _lanes = lane_lookup([x.get('play_key') for x in cand])
+        _lanes, _lkeys = lane_lookup([x.get('play_key') for x in cand], with_keys=True)
         # Nov 12 (Peter): record client_id -> Novig order id the first time a result row carries
         # both. This is the only place the two ids meet: novig_place returns a local uuid4 because
         # Novig's id does not exist at dispatch time, and fills carry Novig's id. Without the
@@ -4829,16 +4929,16 @@ def novig_reports():
                 LOG.append(f"fill outcomes not stored: {str(ex)[:50]}")
         for x in cand:
             st = str(x.get("status") or "?").upper()
-            if st in ("PENDING", "SENT", "UNKNOWN") and not fq_read(x)[1]:
+            if (st in ("PENDING", "SENT", "UNKNOWN") and not fq_read(x)[1]
+                    and not stale_unknown(x)):
                 continue   # not final yet: report when it settles (the home PC re-reads every 5 min)
-            if st == "FILLED" and not fq_read(x)[1]:
-                continue   # status says filled but the amount isn't confirmed yet (old-format record): never say "no fill"
+            if st == "FILLED" and not fq_read(x)[1] and not stale_unknown(x):
+                continue   # status says filled but the amount isn't confirmed yet; reported once stale
             c, q = lm.num(x.get("price")) or 0, int(x.get("qty") or 0)
-            # Nov 19 (Peter, safeguard 2): "Null, missing or unreadable fill quantity is UNKNOWN."
-            # `int(x.get("filled_qty") or 0)` silently turned a MISSING quantity into a reported
-            # zero, which then satisfied "cumulative zero matched" and could produce NO FILL. The
-            # raw value is kept so the two states stay distinguishable.
-            _fq_known, fq = fq_read(x)
+            # Nov 19 (Peter, PRIORITY 1): "Null, missing or unreadable fill quantity is UNKNOWN."
+            # fq_read answers (known, qty) and fq_zero_proven says whether a ZERO here is backed by
+            # a read. fq alone can never distinguish them, which is what made the bug invisible.
+            fq = fq_read(x)[1]
             cost = x.get("filled_cost")
             tok = _tk(x)
             if not claimer.claim(tok):
@@ -4850,28 +4950,7 @@ def novig_reports():
                     continue
                 claimer.sent(_tk(x, False))
             ap = lm.num(x.get("avg_price"))
-            if st in ("REFUSED", "REJECTED"):
-                head = f"NOVIG {st}"
-            elif q and fq >= q:
-                head = "NOVIG FILLED"
-            elif fq > 0:
-                head = "NOVIG PARTIAL FILL"
-            elif st == "OPEN":
-                head = "NOVIG RESTING (nothing filled yet)"
-            elif st in ("CANCELED", "CANCELLED", "EXPIRED") and _fq_known and fq == 0:
-                # BOTH are required: an authoritative terminal status AND a filled quantity the
-                # venue actually reported as zero. Either one alone is not evidence of a no-fill.
-                head = "NOVIG NO FILL"
-            else:
-                # Nov 19 (Peter, item 1). THIS is the branch that sent "[BOARD V3] NOVIG NO FILL
-                # ... $205.53 asked; nothing traded" for an order that had MATCHED $203.50 at
-                # 2.00x. NO FILL was the ELSE: any status this reporter did not recognise - an
-                # empty one included - became a positive claim that nothing traded. A no-fill is
-                # now only what the venue confirms terminal with zero matched (CANCELED,
-                # CANCELLED, EXPIRED); everything else says the status is unknown and asks for a
-                # check. 0 of 29 Novig placements since 12 Nov carry a fill read, so this was the
-                # ordinary path through here, not a corner.
-                head = "NOVIG STATUS UNKNOWN - VERIFY"
+            head = novig_head(x)
             # an immediate fill-or-kill NO FILL is muted; a RESTING (GTT) bid that expires unfilled is still reported
             # once (its outcome, Nov 12 audit), since that is the end of a bid he was told went out
             # A confirmed zero-fill fill-or-kill stays muted (Peter, 12 Nov: "no fill i dont
@@ -4885,21 +4964,51 @@ def novig_reports():
             # The registry carries the lane; the runner's play_key does not (see lane_lookup).
             _base = lane_strip(str(x.get('play_key') or ''))
             msg = f"[{_lanes.get(_base) or lane_from_key(x.get('play_key'))}] {head}: {x.get('label') or ''}"
+            # Nov 19 (Peter, priority 3): "Trigger, order, delayed fill and final grade must share
+            # the same actual play ID." This message carried the VENUE order id and no xpid at all,
+            # so a delayed fill could not be tied to the trigger that caused it. pid() is computed
+            # from the LANE-PREFIXED key, and the runner's row carries the key WITHOUT its prefix
+            # (see lane_lookup) - so hashing the row's own key would have produced a different id
+            # for the same play. The prefixed key comes back from the same registry pass that
+            # resolves the lane, and when it cannot be resolved the id says so instead of guessing.
+            _fullkey = _lkeys.get(_base)
+            msg += f"\nID: {pid(_fullkey) if _fullkey else 'unavailable (lane not resolved)'}"
+            # Nov 19 (Peter): the body is derived from the HEAD, not from a second set of status
+            # tests. My Part 1 edit re-derived them and the two disagreed: a confirmed-OPEN resting
+            # bid got the head "RESTING" and then the body "STATUS UNKNOWN: the venue did not
+            # report a usable status (OPEN)" - OPEN is a perfectly usable status, and a message
+            # whose body contradicts its own headline is the thing this whole task is about.
+            # One producer, so they cannot drift apart again.
+            _asked_line = f"\nlimit {lm.american(c):+d}, ${q * c / 100:,.2f} requested"
             if fq > 0:
                 pay = fq / 100
                 msg += (f"\n{fq:,} of {q:,} contracts: ${(cost if cost is not None else fq * c / 100):,.2f} to pay ${pay:,.2f}"
                         + (f" (avg {lm.american(ap):+d})" if ap else ""))
-            elif st in ("CANCELED", "CANCELLED", "EXPIRED") and _fq_known and fq == 0:
-                msg += (f"\nlimit {lm.american(c):+d}, ${q * c / 100:,.2f} requested; venue confirms "
-                        f"zero matched quantity ({st})")
-            elif st not in ("REFUSED", "REJECTED"):
-                # The amount asked is what we REQUESTED - never presented as what matched.
-                msg += (f"\nlimit {lm.american(c):+d}, ${q * c / 100:,.2f} requested"
-                        f"\nSTATUS UNKNOWN: the venue did not report a usable status"
-                        f"{' (' + str(st) + ')' if st else ''}, so whether this matched is NOT known."
-                        f"\nThis is NOT a no-fill. Check the Novig app before acting on it.")
-            if x.get("tif") == "GTT" and st == "OPEN":
+            elif head == "NOVIG NO FILL":
+                msg += (_asked_line + f"; venue confirms zero matched quantity ({st})"
+                        + (f", read from the {x['fill_read_src']}" if x.get("fill_read_src") else ""))
+            elif st == "OPEN":
+                msg += _asked_line + ("; nothing matched as of the last read" if fq_zero_proven(x)
+                                      else "; whether any of it has matched is NOT confirmed")
+            elif st in ("REFUSED", "REJECTED"):
+                pass          # nothing was placed; the reason line below carries the detail
+            elif st in ("CANCELED", "CANCELLED", "EXPIRED"):
+                # terminal status, but the zero is not proven - the two halves of the no-fill test
+                msg += (_asked_line + f"\nThe venue reports {st}, but NO read confirms the matched"
+                        " quantity, so whether any of it filled is UNKNOWN."
+                        "\nThis is NOT a no-fill. Check the Novig app before acting on it.")
+            else:
+                msg += (_asked_line
+                        + "\nSTATUS UNKNOWN: the venue did not report a usable status"
+                        + (f" ({st})" if st else "")
+                        + ", so whether this matched is NOT known."
+                        "\nThis is NOT a no-fill. Check the Novig app before acting on it.")
+            if x.get("tif") == "GTT" and st == "OPEN" and not x.get("_unresolved"):
                 msg += "\nResting until 30 min before the start (cancel in the Novig app if needed)."
+            if not fq_read(x)[0]:
+                msg += ("\nMATCHED QUANTITY NOT READ"
+                        + (f" ({x['fill_read_why']})" if x.get("fill_read_why") else "")
+                        + " - this is NOT a confirmed no-fill.")
             if x.get("_exp_note"):
                 msg += "\n" + x["_exp_note"]
             if x.get("error"):

@@ -122,10 +122,26 @@ check("while a quantity change mints a NEW one (PARTIAL -> FULL survives)", "_tk
 
 print("\n8. Every message identifies lane, venue, bet, price and fill status")
 check("lane", "lane_from_key(x.get('play_key'))" in nr)
-check("venue, in the head", 'head = "NOVIG' in nr or "NOVIG FILLED" in nr)
+# Nov 19: the head chain moved out of novig_reports into novig_head() so it could be tested
+# directly (and so the body could stop re-deriving it). Asserted on the function, not on a source
+# slice that no longer contains it.
+check("venue, in the head", "head = novig_head(x)" in nr and all(
+    ex.novig_head(dict(d, qty=100)).startswith("NOVIG") for d in (
+        {"status": "FILLED", "filled_qty": 100, "fill_read": True},
+        {"status": "OPEN", "filled_qty": 0, "fill_read": True},
+        {"status": "CANCELED", "filled_qty": 0, "fill_read": True},
+        {"status": "REFUSED", "filled_qty": 0, "fill_read": True},
+        {"status": "", "filled_qty": None, "fill_read": False})))
 check("bet and game, from the label", "x.get('label')" in nr)
 check("price and size when filled", "contracts: $" in nr and "avg " in nr)
-check("limit and asked size when nothing traded", "nothing traded" in nr)
+# Nov 19 (Peter): this asserted the literal "nothing traded" - the false claim that went out on a
+# MATCHED order. The requirement it was protecting is that the limit and the size we ASKED for are
+# still stated when no fill is reported; the claim about what traded is what had to go.
+check("limit and asked size are stated when no fill is reported",
+      "requested" in nr and "lm.american(c)" in nr)
+check("and the message never says anything traded unless a quantity was read",
+      "nothing traded" not in "\n".join(
+          l for l in nr.splitlines() if not l.strip().startswith("#")))
 check("the venue order id", "Novig order id:" in nr)
 
 ex.urllib.request.urlopen = _real_open
