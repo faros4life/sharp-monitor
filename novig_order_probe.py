@@ -79,20 +79,49 @@ def main():
         return 0
     say("")
 
+    # /v3/orders/{id} is NOT readable with a read-only key - novig_live_order.order_state signs
+    # with the TRADING key, which this job is deliberately not given, and clv_link_recon already
+    # records the same thing. The first version of this probe called it anyway and got
+    # NovigReadError on all 28 orders while the fills endpoint answered fine; 28 unreadable orders
+    # was never the likely reading - the endpoint was. The portfolio LIST is the read-only route.
+    PORTFOLIO, PORT_OK = {}, False
+    try:
+        od = nv.get("/v3/portfolio/orders", {"limit": 200})
+        items = []
+        for v in ((od or {}).values() if isinstance(od, dict) else [od]):
+            if isinstance(v, list):
+                items += v
+            elif isinstance(v, dict):
+                items.append(v)
+        if isinstance(od, list):
+            items = od
+        for it in items:
+            if isinstance(it, dict):
+                i = str(it.get("id") or it.get("orderId") or it.get("order_id") or "")
+                if i:
+                    PORTFOLIO[i] = it
+        PORT_OK = True
+        say(f"/v3/portfolio/orders returned {len(PORTFOLIO)} order(s) to match against")
+    except Exception as ex:
+        say(f"/v3/portfolio/orders UNREADABLE ({type(ex).__name__}: {str(ex)[:70]}) - every order "
+            f"below is UNRESOLVED for that reason alone, which is a fact about the READ, not "
+            f"about the orders")
+    say("")
+
     rows, unresolved = [], 0
     for oid, (row, lo, fld) in sorted(want.items(), key=lambda kv: str(kv[1][0].get("decided_utc") or "")):
         key = str(row.get("key") or "").replace("|", " ")[:50]
         status, filled_qty = None, None
-        try:
-            o = nv.get(f"/v3/orders/{oid}") or {}
-            o = o.get("order") or o
+        o = PORTFOLIO.get(oid)
+        if o is None:
+            why = "not in /v3/portfolio/orders" + ("" if PORT_OK else " (that list could not be read)")
+            say(f"  UNREADABLE {oid[:12]} {key:<50} {why}")
+        else:
             status = str(o.get("status") or "").upper() or None
             try:    # Novig: a partly filled order stays OPEN, so remaining is what decides
                 filled_qty = int(o["qty"]) - int(o["remaining"])
             except (KeyError, TypeError, ValueError):
                 filled_qty = None
-        except Exception as ex:
-            say(f"  UNREADABLE {oid[:12]} {key:<50} order read raised {type(ex).__name__}")
         c = None
         try:
             fl = nv.get("/v3/portfolio/fills", {"limit": 100}) or {}
