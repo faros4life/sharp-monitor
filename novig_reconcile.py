@@ -30,12 +30,26 @@ from datetime import datetime, timezone
 
 RELEASABLE = ("CANCELED", "REJECTED", "REFUSED", "CANCELLED")
 # Nov 19 (Peter): the four RELEASABLE statuses do NOT all prove a zero the same way, and treating
-# them alike broke the exposure tests in both directions. REFUSED and REJECTED mean the request was
-# turned away at submission - nothing was ever placed, so zero is certain from the STATUS ALONE and
-# needs no fill read. CANCELED and EXPIRED are different: an order can partially fill and THEN be
-# cancelled or expire, so for those a zero has to be read from the venue before it can release
-# money. Requiring a read for all four would count phantom risk for orders that never existed.
-NEVER_PLACED = ("REFUSED", "REJECTED")
+# them alike is wrong in both directions.
+#
+# REFUSED is authoritative BY CONSTRUCTION. Traced: every refusal in book_live.novig_place returns
+# strictly before its dispatch POST, and the runner's own "refused" is its initial status, set only
+# when there is no trading key or the inputs fail the hard limits. Nothing was ever sent, so zero is
+# certain from the status alone and needs no fill read. Requiring one would reserve phantom risk for
+# orders that never existed.
+#
+# REJECTED is NOT (Peter, 19 Nov: "Do not equate an ambiguous HTTP response with proven
+# non-submission"). It has three producers: the venue's own status via order_state, which is
+# authoritative; a POST code the runner has proven means the request was declined to process; and -
+# on every row written by the runner DEPLOYED today - ANY non-2xx at all, including a 5xx or a
+# transport failure, neither of which proves the order was not accepted. A 409 is the sharp case: on
+# a POST carrying our clientId it classically means an order with that id already exists, so an
+# earlier attempt landed. Releasing on that would free money sitting at the venue. So REJECTED
+# releases only when the zero is PROVEN; without proof it is UNKNOWN and stays reserved.
+#
+# CANCELED and EXPIRED also need a proven zero, for a different reason: an order can partially fill
+# and THEN be cancelled or expire.
+NEVER_PLACED = ("REFUSED",)
 FILLED, PARTIAL, OPEN, TERMINAL, UNKNOWN = ("FILLED", "PARTIALLY FILLED", "OPEN",
                                             "TERMINAL ZERO FILL", "UNKNOWN")
 

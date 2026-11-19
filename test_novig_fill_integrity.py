@@ -90,23 +90,48 @@ by_legacy = {"c": {"client_id": "c", "status": "CANCELED", "qty": 20553, "price"
 cls3, ev3 = nvr.classify({"order_id": "c", "asked_stake": 205.53}, by_legacy, {})
 check("a pre-flag zero is NOT released", cls3 == nvr.UNKNOWN, cls3)
 
-print("\n6b. REFUSED/REJECTED prove their own zero - nothing was ever placed")
-for st_ in ("REFUSED", "REJECTED"):
+print("\n6b. REFUSED proves its own zero - it was never submitted")
+for st_ in ("REFUSED",):
     by_np = {"c": {"client_id": "c", "status": st_, "qty": 20553, "price": 0.50,
                    "filled_qty": None, "fill_read": False}}
     c_, e_ = nvr.classify({"order_id": "c", "asked_stake": 205.53}, by_np, {})
     check(f"{st_} with an UNREAD fill still releases (it was never placed)", c_ == nvr.TERMINAL, c_)
     check(f"{st_} counts nothing", nvr.exposure_for({"asked_stake": 205.53}, c_, e_) == 0.0)
-by_np_f = {"c": {"client_id": "c", "status": "REJECTED", "qty": 20553, "price": 0.50,
+# superseded 19 Nov: REJECTED used to release here too. It no longer does without proof - see 6c.
+by_np_f = {"c": {"client_id": "c", "status": "REFUSED", "qty": 20553, "price": 0.50,
                  "filled_qty": 500, "fill_read": True}}
 c_, e_ = nvr.classify({"order_id": "c", "asked_stake": 205.53}, by_np_f, {})
-check("but a REJECTED row showing a positive fill is NOT released", c_ != nvr.TERMINAL, c_)
+check("but a REFUSED row showing a positive fill is NOT released", c_ != nvr.TERMINAL, c_)
 for st_ in ("CANCELED", "EXPIRED"):
     by_c = {"c": {"client_id": "c", "status": st_, "qty": 20553, "price": 0.50,
                   "filled_qty": None, "fill_read": False}}
     c_, e_ = nvr.classify({"order_id": "c", "asked_stake": 205.53}, by_c, {})
     check(f"{st_} with an unread fill is NOT released - it may have filled first",
           c_ == nvr.UNKNOWN, c_)
+
+print("\n6c. REJECTED needs a proven zero; REFUSED does not (Peter, 19 Nov)")
+# REFUSED is pre-submission by construction in BOTH repos - traced: every book_live.novig_place
+# refusal returns before its dispatch POST, and the runner's "refused" is its initial status.
+for fr in (True, False, None):
+    row = {"client_id": "c", "status": "REFUSED", "qty": 20553, "price": 0.50, "filled_qty": 0}
+    if fr is not None:
+        row["fill_read"] = fr
+    c_, e_ = nvr.classify({"order_id": "c", "asked_stake": 205.53}, {"c": row}, {})
+    check(f"REFUSED releases with fill_read={fr}", c_ == nvr.TERMINAL, c_)
+# REJECTED can come from an ambiguous HTTP code. The runner DEPLOYED today writes it for ANY
+# non-2xx, including a 5xx or a transport failure, and a 409 can mean an earlier attempt landed.
+rej_proven = {"client_id": "c", "status": "REJECTED", "qty": 20553, "price": 0.50,
+              "filled_qty": 0, "fill_read": True, "fill_read_src": "not submitted"}
+c_, e_ = nvr.classify({"order_id": "c", "asked_stake": 205.53}, {"c": rej_proven}, {})
+check("REJECTED with a PROVEN zero releases", c_ == nvr.TERMINAL, c_)
+rej_legacy = {k: v for k, v in rej_proven.items() if k not in ("fill_read", "fill_read_src")}
+c_, e_ = nvr.classify({"order_id": "c", "asked_stake": 205.53}, {"c": rej_legacy}, {})
+check("REJECTED with an UNPROVEN zero does NOT release", c_ == nvr.UNKNOWN, c_)
+check("and its exposure stays reserved in full",
+      nvr.exposure_for({"asked_stake": 205.53, "filled_stake": 0.0}, c_, e_) == 205.53)
+c_, e_ = nvr.classify({"order_id": "c", "asked_stake": 205.53},
+                      {"c": dict(rej_legacy, filled_qty=None)}, {})
+check("REJECTED with an unread quantity does NOT release", c_ == nvr.UNKNOWN, c_)
 
 print("\n7. READER - the head for every state")
 def row(**kw):
