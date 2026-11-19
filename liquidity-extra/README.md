@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 18, 11:30 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 8.
+Updated Wed Nov 18, 11:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 7.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 349-210 (-21.97u flat) | rule met: 62-54
+**Record:** 350-210 (-21.58u flat) | rule met: 62-54
 
-**Fade (paper, betting against the print):** 185-314 (+23.72u flat, after fees)
+**Fade (paper, betting against the print):** 185-315 (+22.72u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -27,7 +27,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 18 1:40PM | NCAAB | Morgan St. vs North Carolina A&T | moneyline: North Carolina A&T | kalshi | $48k | -300 | ✅ novig |  | +1.0c |  | W |
 | Nov 18 1:20PM | NCAAB | Binghamton vs Lafayette | moneyline: Lafayette | kalshi | $48k | -163 |  | ✅ | +2.0c | yes | W |
 | Nov 18 12:20PM | NCAAB | Kansas vs West Virginia | moneyline: Kansas | kalshi | $33k | -376 |  |  | -6.0c |  | W |
-| Nov 18 10:10AM | NCAAB | UC Riverside vs San Diego | moneyline: San Diego | kalshi | $49k | -245 |  |  | +1.0c | yes | pending |
+| Nov 18 10:10AM | NCAAB | UC Riverside vs San Diego | moneyline: San Diego | kalshi | $49k | -245 |  |  | +1.0c | yes | W |
 | Nov 18 10:10AM | NCAAB | Purdue Fort Wayne vs Bradley | moneyline: Bradley | kalshi | $33k | -257 | ✅ novig |  | +1.0c |  | L |
 | Nov 18 10:00AM | NCAAB | Louisiana vs San Francisco | moneyline: San Francisco | kalshi | $113k | -567 |  |  | +0.0c |  | pending |
 | Nov 18 4:40AM | NCAAB | Rutgers vs Notre Dame | moneyline: Notre Dame | kalshi | $31k | -170 |  |  | -4.0c | yes | W |
