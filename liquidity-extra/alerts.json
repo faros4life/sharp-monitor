@@ -1,6 +1,169 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-19T06:00:24Z",
+   "base_depth": 21569,
+   "best_price": 0.792,
+   "best_price_american": -381,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.78,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-19",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -8,
+     "new_this_side": 63293,
+     "other_side": 427,
+     "other_side_all_levels": 3982,
+     "ratio": 110.4,
+     "this_side": 47151,
+     "this_side_all_levels": 118316
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "FLA (0)",
+     "price": 0.805,
+     "this_side": 82
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 5598.9,
+    "volume_24h_fp": 5918.049999999999,
+    "volume_fp": 6885.200000000001
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 455.27,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 455.27
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 5143.63,
+    "volume_24h_fp": 5918.049999999999,
+    "volume_fp": 6429.93
+   },
+   "fade_price": 0.21,
+   "first_seen_utc": "2026-11-19T05:50:20Z",
+   "game": "Florida vs West Virginia",
+   "game_surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "game_x": 13.91,
+   "key": "kalshi|KXNCAAMBGAME-26NOV19FLAWVU|ml|0",
+   "lead_min": 810,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 63293,
+   "new_x": 1.84,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 5598.9,
+      "volume_24h_fp": 5918.049999999999,
+      "volume_fp": 6885.200000000001
+     },
+     "game_normal": 8505,
+     "game_x": 13.91,
+     "normal": 34306,
+     "now": 118316,
+     "type": "ML",
+     "x": 3.45
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 11471.0,
+      "volume": 11531.0
+     },
+     "game_normal": 116,
+     "game_x": 3.65,
+     "normal": 2377,
+     "now": 424,
+     "type": "ML",
+     "x": 0.18
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.78,
+   "price_american": -355,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.78,
+   "prices_by_book": {
+    "betonlineag": {
+     "point": null,
+     "price": -405
+    },
+    "betopenly": {
+     "point": null,
+     "price": -375
+    },
+    "circasports": {
+     "point": null,
+     "price": -405
+    },
+    "draftkings": {
+     "point": null,
+     "price": -410
+    },
+    "fanatics": {
+     "point": null,
+     "price": -425
+    },
+    "fanduel": {
+     "point": null,
+     "price": -450
+    },
+    "kalshi": {
+     "point": null,
+     "price": -400
+    },
+    "lowvig": {
+     "point": null,
+     "price": -405
+    },
+    "novig": {
+     "point": null,
+     "price": -413
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV19FLAWVU-FLA"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Florida",
+   "side_label": "Florida",
+   "size_x": 3.45,
+   "start_source": "odds",
+   "start_utc": "2026-11-19T19:30:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Florida",
+    "West Virginia"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-19T01:50:29Z",
    "base_depth": 115160,
    "best_price": 0.5375,
