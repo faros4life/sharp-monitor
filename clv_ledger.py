@@ -1360,6 +1360,37 @@ def _espn_days(t0):
     return {(t0 - timedelta(days=dd)).astimezone(ET).replace(hour=12, minute=0, second=0, microsecond=0) for dd in (0, 1)}
 
 
+def apply_settled_amounts(snap, b):
+    """Prefer a SETTLED row's own stake and payout over the frozen first-seen pair. Returns the
+    fields replaced, for counting.
+
+    Nov 19 (Peter, proved against Novig's own settlement record on two R1 selections): the ledger
+    freezes the first-seen stake/to_pay, which come from the OPEN row and can be a PARTIAL fill,
+    while profit is refreshed from the settled row's pnl. One row, two bases. Novig held
+    cost 1.079u / payout 2.075u / pnl 0.996u - payout minus cost equal to pnl to the cent - while
+    the ledger held 0.616u / 1.185u / 0.996u. The units were RIGHT and the ROI denominator was
+    understated, so R1's ROI read high and the payout ceiling read low.
+
+    A settled row's own stake and payout are final, so they win when present. The guard matters:
+    a settlement row DROPS the stake for losses, which is why the first-seen value is kept as the
+    fallback and is never deleted - it is preserved under <field>_first_seen so the original record
+    survives and the substitution is auditable. Nothing here touches sizing, pricing, risk controls
+    or any live-betting path; it corrects what a settled row REPORTS, not what was bet.
+    """
+    done = []
+    if not (b.get("result") and b.get("settled")):
+        return done                      # not settled: the first-seen pair stands
+    for f in ("stake", "to_pay"):
+        v = b.get(f)
+        if v in (None, "") or snap.get(f) == v:
+            continue                     # missing on the settled row -> keep first-seen
+        snap.setdefault(f + "_first_seen", snap.get(f))
+        snap[f] = v
+        snap[f + "_src"] = "settled row"
+        done.append(f)
+    return done
+
+
 def espn_fill(st, now, max_days=50):   # Nov 4: was 12 - older bets' dates were never fetched, so they used up their tries
     """Settled tracker rows the tracker never pinned to a game: match them on ESPN (free) within 36 h of the settle
     or placed time, and take league, start and teams from there. At most max_days scoreboard dates per run.
@@ -1741,6 +1772,8 @@ def main():
                 snap[f] = b[f]
         if b.get("result"):
             snap["result"] = b["result"]
+        for _f in apply_settled_amounts(snap, b):
+            PROV["settled_amount_" + _f] += 1
         # Stage 3 (Peter, Nov 13): capture profit so ROI is computable at all. The snapshot has
         # always taken stake and to_pay but never profit, so profit summed to zero across the
         # whole ledger and any ROI figure built from it was a fabricated +0.00% - which is how the
