@@ -1,0 +1,53 @@
+name: novig-fill-audit
+
+# Peter, 19 Nov 2026: how many Novig placements since 12 Nov are missing confirmed fill
+# information, split into confirmed fills, confirmed unfilled and unreadable, with the grading,
+# CLV and P/L gaps named.
+#
+# READ-ONLY BY CONSTRUCTION: no venue client is imported, no OddsPapi key is passed, no mailbox is
+# touched (the private registry carries the order rows, so Peter's no-email rule is respected),
+# and the only file written is audit/novig_fill_audit.json. The test asserts all of that from the
+# parsed AST and runs first.
+
+on:
+  workflow_dispatch:
+    inputs:
+      from:
+        description: "Earliest placement date to audit (YYYY-MM-DD)"
+        required: false
+        type: string
+        default: "2026-11-12"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: novig-fill-audit
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Prove the audit cannot write, trade or mail
+        run: python -u test_novig_fill_audit.py
+      - name: Audit
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
+          AUDIT_FROM: ${{ inputs.from || '2026-11-12' }}
+        run: python -u novig_fill_audit.py
+      - name: Guard - nothing was modified
+        if: always()
+        run: |
+          git status --porcelain -uno > "$RUNNER_TEMP/d" || true
+          if [ -s "$RUNNER_TEMP/d" ]; then
+            echo "FAIL: the audit modified tracked files:"; cat "$RUNNER_TEMP/d"; exit 1
+          fi
+          echo "clean"
