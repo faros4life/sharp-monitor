@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 19, 2:35 PM ET. This run: 0 new, 0 not confirmed, 3 pending. Open alerts: 44.
+Updated Thu Nov 19, 2:40 PM ET. This run: 2 new, 0 not confirmed, 2 pending. Open alerts: 46.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 19 2:40PM | NFL | Indianapolis Colts at Houston Texans | moneyline: Houston Texans | prophetx | $34k | -560 | ✅ kalshi,novig |  | +0.0c |  | pending |
+| Nov 19 2:40PM | NBA | Golden State vs Memphis: Spread | spread: NOT Memphis wins by over 5.5 points | kalshi | $41k | -100 | ✅ novig,prophetx | ✅ | +0.0c |  | pending |
 | Nov 19 1:50PM | NHL | Anaheim vs Colorado: Total Goals | total: Over 6.5 goals scored | kalshi | $28k | -117 | ✅ novig |  | +0.0c |  | pending |
 | Nov 19 1:40PM | NHL | Buffalo vs Washington: Total Goals | total: Over 6.5 goals scored | kalshi | $60k | -117 | ✅ novig |  | +0.0c |  | pending |
 | Nov 19 1:35PM | NHL | St. Louis vs Pittsburgh | moneyline: St. Louis | kalshi | $45k | -104 | ✅ novig |  | +0.0c |  | pending |
@@ -40,7 +42,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 19 5:20AM | NCAAF | Clemson vs Duke | moneyline: Duke | kalshi | $103k | -488 | ✅ novig |  | +0.0c |  | pending |
 | Nov 19 5:10AM | NHL | Montreal vs Carolina | moneyline: Carolina | kalshi | $32k | -245 |  |  | +4.0c |  | pending |
 | Nov 19 5:05AM | NCAAF | New Mexico vs Wyoming | moneyline: New Mexico | kalshi | $148k | -270 |  |  | +1.0c |  | pending |
-| Nov 19 4:00AM | NBA | Portland Trail Blazers @ Milwaukee Bucks | moneyline: POR (0) | novig | $31k | -400 |  |  | +1.0c | yes | pending |
+| Nov 19 4:00AM | NBA | Portland Trail Blazers @ Milwaukee Bucks | moneyline: POR (0) | novig | $31k | -400 |  |  | +2.0c | yes | pending |
 | Nov 19 1:30AM | NCAAF | Rice vs Temple | moneyline: Temple | kalshi | $53k | -133 |  |  | +0.0c | yes | pending |
 | Nov 19 1:30AM | NBA | New York vs Minnesota | moneyline: Minnesota | kalshi | $90k | +108 |  |  | +2.0c | yes | pending |
 | Nov 18 11:56PM | NBA | Portland vs Milwaukee | moneyline: Portland | kalshi | $249k | -355 |  |  | +4.0c |  | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 16 8:10PM | NFL | Los Angeles Chargers at Baltimore Ravens | moneyline: Baltimore Ravens | prophetx | $146k | -205 | ✅ kalshi,novig |  | +0.0c |  | L |
 | Nov 16 8:10PM | NFL | Los Angeles C vs Baltimore: Total Points | total: NOT Over 39.5 points | kalshi | $189k | -104 | ✅ novig,prophetx |  | +0.0c | yes | L |
 | Nov 16 8:10PM | NBA | New York vs Toronto | moneyline: New York | kalshi | $87k | -144 |  |  | -3.0c |  | W |
-| Nov 16 8:05PM | NBA | Detroit vs San Antonio | moneyline: San Antonio | kalshi | $82k | -317 |  |  | +3.0c |  | L |
-| Nov 16 7:50PM | NBA | Golden State vs New Orleans: Total Points | total: Over 223.5 points | kalshi | $37k | -100 |  | ❌ | +0.0c | yes | L |
