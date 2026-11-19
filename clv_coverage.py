@@ -162,6 +162,44 @@ def classify_missing(r, st, alt, hc_has):
 
 
 
+def payout_ceiling(ss):
+    """(max winnable profit, stake, ok) for a set of fill snaps; ok is False when any fill does not
+    carry its own payout, so the caller withholds the check rather than guessing.
+
+    Nov 19 (Peter, confirmed): "Plus-money wins can legitimately produce profit greater than the
+    stake." The old invariant asserted |P/L| <= risked, which is false at plus money - a 1.00u stake
+    at +150 returns 1.50u of PROFIT - and Peter's sizing risks a full unit at plus money, so a
+    legitimate R1 winner tripped a check that was wrong rather than data that was bad. The
+    dashboard's own recomputation of that lane's P/L and ROI both agreed, which is what showed the
+    figures were sound and the bound was not.
+
+    The ceiling comes from each bet's OWN verified numbers, to_pay - stake. No odds are inferred
+    here, and no sizing or P/L calculation is touched - this only bounds what a published figure
+    may be.
+    """
+    stake, win, ok = 0.0, 0.0, True
+    for x in ss:
+        st, tp_ = x.get("stake"), x.get("to_pay")
+        stake += st or 0.0
+        if st is None or tp_ is None:
+            ok = False
+            continue
+        win += max(float(tp_) - float(st), 0.0)
+    return (win if ok else None), stake, ok
+
+
+def within_payout_bounds(units, risked_u, max_win_u, tol=0.011):
+    """A realised P/L in units can be no worse than everything staked and no better than what the
+    bets could actually pay. Either bound is skipped when its input is unknown, never assumed."""
+    if units is None:
+        return True
+    if risked_u is not None and units < -(risked_u + tol):
+        return False
+    if max_win_u is not None and units > max_win_u + tol:
+        return False
+    return True
+
+
 def build_lane_resolver(reg):
     """Return lane_for(selection_key, observation) -> the ONE provable lane, or None.
 

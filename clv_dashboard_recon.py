@@ -141,11 +141,15 @@ for L in B["B_lanes"]["lanes"]:
     ck(f"{L['name']}: units/ROI same sign, or withheld as UNVERIFIED/UNAVAILABLE",
        (u is None and r is None) or (u is not None and r is not None and
         (abs(u) < 1e-9 or (u > 0) == (r > 0))), f"status {cum.get('fin_status')}")
-    ck(f"{L['name']}: |P/L| never exceeds settled risked units",
-       u is None or k_ is None or abs(u) <= k_ + 0.011)
+    # Nov 19: the LOSS half of the old invariant is true and kept. The WIN half asserted that
+    # profit can never exceed stake, which is false at plus money; it is replaced by the bets'
+    # own payout ceiling below, where the per-fill snaps are in hand.
+    ck(f"{L['name']}: a loss never exceeds the settled risked units",
+       u is None or k_ is None or u >= -(k_ + 0.011))
     ck(f"{L['name']}: ROI never below -100%", r is None or r >= -100.0001)
     # (b) independent recomputation from raw snaps for lane selections that join to a confirmed fill
     prof = stk = 0.0; nconf = nset = nopen = nbad = 0
+    maxwin, pay_known, over = 0.0, True, []
     for k, o in obs.items():
         if lane_for(k, o) != L["lane"] or not fill_join(k, o):
             continue
@@ -163,8 +167,28 @@ for L in B["B_lanes"]["lanes"]:
             nbad += 1
             continue
         nset += 1; prof += tp; stk += stake
+        _w, _s2, _okp = cov.payout_ceiling(ss)
+        if _okp:
+            maxwin += _w
+            if unit and tp > _w + 0.01:      # this ONE selection paid more than it could
+                over.append((k, round(stake / unit, 2), round(_w / unit, 2), round(tp / unit, 2),
+                             "/".join(sorted(res))))
+        else:
+            pay_known = False
     print(f"     {L['name']}: confirmed selections {nconf}, settled {nset}, open/unsettled {nopen}, "
           f"contradictory {nbad}")
+    _ceil_u = (maxwin / unit) if (unit and pay_known and nset) else None
+    if _ceil_u is not None:
+        print(f"     {L['name']}: payout bounds in units - risked {stk / unit:.2f}, "
+              f"max winnable {_ceil_u:.2f}, realised {prof / unit:.2f}")
+        ck(f"{L['name']}: P/L within the bets' own payout bounds",
+           cov.within_payout_bounds(u, k_, _ceil_u),
+           f"units {u}, risked {k_}, ceiling {round(_ceil_u, 2)}")
+    elif nset:
+        print(f"     {L['name']}: payout ceiling NOT CHECKED - a settled fill carries no to_pay")
+    for _k, _st_u, _c_u, _got_u, _res in over:
+        print(f"     {L['name']}: OVER ITS OWN PAYOUT - {_k} | staked {_st_u}u, could pay {_c_u}u, "
+              f"realised {_got_u}u, result {_res}")
     ck(f"{L['name']}: dashboard confirmed-fill count matches",
        cum.get("fin_n") in (nconf, None) or cum.get("fin_n") == nconf, f"{cum.get('fin_n')} vs {nconf}")
     if nbad == 0 and nset and unit and stk:
