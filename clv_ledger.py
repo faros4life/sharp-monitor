@@ -1251,27 +1251,45 @@ def novig_at(b, f, nm_pm, mkmap, when, lg):
 
 
 # ------------------------------------------------------------------ ESPN fill
+def _espn_days(t0):
+    """The scoreboard dates a bet at t0 could sit on: its own ET date and the one before - a late game
+    settles after midnight ET."""
+    return {(t0 - timedelta(days=dd)).astimezone(ET).replace(hour=12, minute=0, second=0, microsecond=0) for dd in (0, 1)}
+
+
 def espn_fill(st, now, max_days=50):   # Nov 4: was 12 - older bets' dates were never fetched, so they used up their tries
     """Settled tracker rows the tracker never pinned to a game: match them on ESPN (free) within 36 h of the settle
-    or placed time, and take league, start and teams from there. At most max_days scoreboard dates per run."""
-    todo = []
+    or placed time, and take league, start and teams from there. At most max_days scoreboard dates per run.
+
+    Nov 19 (Peter: the same historical data was being looked up every run). A row carries espn_done - the dates it has
+    already been matched against a VERIFIED COMPLETE slate (every league read, all games terminal, date in the past).
+    Such a date can never produce a new game, so re-reading it for that row is pure waste; the row's remaining dates
+    are all that gets fetched, and a row with none left is skipped. A date that came back incomplete, empty across
+    every league, or failed is never marked done, so unresolved rows stay eligible for retry - which is the whole
+    point of the recovery path."""
+    todo, skipped = [], 0
     for k, rec in st["bets"].items():
         s = rec["snap"]
         if s.get("game_start") or rec.get("espn_tries", 0) >= 6:   # Nov 4: 3 more tries for rows stuck under the old 12-day window
             continue
         t0 = tp(s.get("settled")) or tp(s.get("placed")) or tp(rec.get("first_seen"))
         if t0 and t0 > now - timedelta(days=45):
-            todo.append((k, rec, t0))
+            done = set(rec.get("espn_done") or [])
+            want = {d for d in _espn_days(t0) if d.strftime("%Y%m%d") not in done}
+            if not want:          # every date this row could sit on is settled and did not match it
+                skipped += 1
+                continue
+            todo.append((k, rec, t0, want))
     if not todo:
+        LG_LOG.append(f"espn fill: 0 to try, {skipped} skipped as already checked")
         return
-    def _days(t0):
-        return {(t0 - timedelta(days=dd)).astimezone(ET).replace(hour=12, minute=0, second=0, microsecond=0) for dd in (0, 1)}
-    days = sorted(set().union(*(_days(t0) for _, _, t0 in todo)), reverse=True)[:max_days]
-    games = tb.espn_games(days)
-    got = set(days)
-    for k, rec, t0 in todo:
+    days = sorted(set().union(*(w for _, _, _, w in todo)), reverse=True)[:max_days]
+    complete = set()
+    games = tb.espn_games(days, complete=complete)
+    got, filled, marked = set(days), 0, 0
+    for k, rec, t0, want in todo:
         s = rec["snap"]
-        if not _days(t0) <= got:   # Nov 4: this bet's dates weren't fetched this run - don't count it as a failed try
+        if not want <= got:   # Nov 4: this bet's dates weren't fetched this run - don't count it as a failed try
             continue
         g = tb.match_game(s, games, t0)
         if g and len(g["teams"]) == 2:
@@ -1280,8 +1298,15 @@ def espn_fill(st, now, max_days=50):   # Nov 4: was 12 - older bets' dates were 
             s["game_start"] = g["start"]
             s["teams"] = [{"name": a["full"]}, {"name": h["full"]}]
             s["espn_filled"] = True
+            filled += 1
         else:
             rec["espn_tries"] = rec.get("espn_tries", 0) + 1
+            shut = sorted({d.strftime("%Y%m%d") for d in want} & complete)
+            if shut:          # checked against a slate that can never change again - never re-read it for this row
+                rec["espn_done"] = sorted(set(rec.get("espn_done") or []) | set(shut))
+                marked += 1
+    LG_LOG.append(f"espn fill: {len(todo)} rows, {len(days)} dates read, {len(complete)} settled, "
+                  f"{filled} filled, {marked} closed out, {skipped} skipped as already checked")
 
 
 # ------------------------------------------------------------------ lanes (Nov 2, Peter: ntfy trades and Street Value separate)

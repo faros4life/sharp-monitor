@@ -165,51 +165,90 @@ def _espn_get(url):
         return None
 
 
-def espn_games(days, leagues=None):
+def _espn_terminal(ev):
+    """A game whose state can no longer change: final, or postponed/cancelled - ESPN files both of
+    those under state 'post'. 'pre' or 'in' means the slate is still moving."""
+    stt = (ev.get("status") or {}).get("type") or {}
+    return bool(stt.get("completed")) or stt.get("state") == "post"
+
+
+def espn_verified(data, d, now_et=None):
+    """Nov 19 (Peter: only verified complete historical scoreboards may be treated as settled -
+    incomplete or failed responses must stay eligible for retries). All three required:
+      - well formed: a dict carrying an 'events' LIST. A failed fetch is None and a truncated one
+        carries no 'events', so neither can ever qualify;
+      - the date is strictly before today in ET, so the slate cannot still gain or move a game;
+      - every event on it is terminal.
+    Emptiness is deliberately NOT judged here: an empty slate is well formed and vacuously terminal,
+    which is also what a silent upstream glitch looks like, so espn_games additionally requires a
+    game somewhere on the date before reporting it complete."""
+    if not isinstance(data, dict):
+        return False
+    evs = data.get("events")
+    if not isinstance(evs, list):
+        return False
+    if d.strftime("%Y%m%d") >= (now_et or datetime.now(ET)).strftime("%Y%m%d"):
+        return False
+    return all(_espn_terminal(ev) for ev in evs)
+
+
+def espn_games(days, leagues=None, complete=None):
+    """complete: optional set, filled with the '%Y%m%d' dates whose slate is settled for good -
+    every league job for that date came back verified complete AND the date has at least one game
+    somewhere. A caller that has already matched a row against such a date never needs to fetch it
+    again. Only populated on a full sweep: with a `leagues` filter the other leagues were not read,
+    so nothing can be said about the date as a whole."""
     from concurrent.futures import ThreadPoolExecutor
-    jobs = []
+    jobs = []           # (league, url, date key, date)
     for lg, path in LEAGUES.items():
         if leagues and lg not in leagues:
             continue
         for d in days:
-            url = f"https://site.api.espn.com/apis/site/v2/sports/{path}/scoreboard?dates={d.strftime('%Y%m%d')}&limit=400"
+            dk = d.strftime("%Y%m%d")
+            url = f"https://site.api.espn.com/apis/site/v2/sports/{path}/scoreboard?dates={dk}&limit=400"
             if lg == "NCAAF":
                 url += "&groups=80"
-            jobs.append((lg, url))
+            jobs.append((lg, url, dk, d))
             # Nov 6 (Peter: a UCLA row had no ESPN feed and so could not auto-settle). ESPN's
             # college-basketball scoreboard returns a PARTIAL slate without a groups filter, the
             # way college football needs groups=80. groups=50 is Division I. This is an EXTRA
             # fetch merged with the default, never a replacement, so coverage can only grow -
             # and the merge below dedupes on the ESPN event id, so a game in both costs nothing.
             if lg == "NCAAB":
-                jobs.append((lg, url + "&groups=50"))
+                jobs.append((lg, url + "&groups=50", dk, d))
     with ThreadPoolExecutor(max_workers=8) as pool:   # Nov 2 (Peter: tracker too slow): fetch the scoreboards in parallel
         got = list(pool.map(lambda j: _espn_get(j[1]), jobs))
+    now_et = datetime.now(ET)
     games, seen_ids = [], set()
-    for (lg, url), data in zip(jobs, got):
-        if True:
-            if data is None:
-                continue
-            for ev in data.get("events") or []:
-                if ev.get("id") is not None:        # one game, one row, however many feeds carry it
-                    if (lg, ev["id"]) in seen_ids:
-                        continue
-                    seen_ids.add((lg, ev["id"]))
-                comp = (ev.get("competitions") or [{}])[0]
-                teams = []
-                for c in comp.get("competitors") or []:
-                    t = c.get("team") or {}
-                    names = " ".join(str(t.get(k) or "") for k in ("displayName", "shortDisplayName", "name", "location", "abbreviation"))
-                    teams.append({"home": c.get("homeAway") == "home", "names": names, "toks": toks(names),
-                                  "abbr": (t.get("abbreviation") or "").lower(), "score": num(c.get("score")) or 0,
-                                  "short": t.get("shortDisplayName") or t.get("displayName") or "",
-                                  "full": t.get("displayName") or t.get("shortDisplayName") or ""})
-                st = (ev.get("status") or {}).get("type") or {}
-                games.append({"league": lg, "id": ev.get("id"), "start": ev.get("date"), "teams": teams,
-                              "state": st.get("state"), "detail": st.get("shortDetail") or st.get("detail") or "",
-                              "final": bool(st.get("completed")), "period": (ev.get("status") or {}).get("period"),
-                              "clock": (ev.get("status") or {}).get("displayClock")})
-    LOG["espn"] = f"ok {len(games)}"
+    settled, on_date = {}, {}      # date key -> every job verified / games seen, any league
+    for (lg, url, dk, d), data in zip(jobs, got):
+        settled[dk] = settled.get(dk, True) and espn_verified(data, d, now_et)
+        on_date.setdefault(dk, 0)
+        if data is None:
+            continue
+        for ev in data.get("events") or []:
+            on_date[dk] += 1                    # does the DATE have a card? counted before the dedupe,
+            if ev.get("id") is not None:        # or a repeated id would make a real date look empty
+                if (lg, ev["id"]) in seen_ids:  # one game, one row, however many feeds carry it
+                    continue
+                seen_ids.add((lg, ev["id"]))
+            comp = (ev.get("competitions") or [{}])[0]
+            teams = []
+            for c in comp.get("competitors") or []:
+                t = c.get("team") or {}
+                names = " ".join(str(t.get(k) or "") for k in ("displayName", "shortDisplayName", "name", "location", "abbreviation"))
+                teams.append({"home": c.get("homeAway") == "home", "names": names, "toks": toks(names),
+                              "abbr": (t.get("abbreviation") or "").lower(), "score": num(c.get("score")) or 0,
+                              "short": t.get("shortDisplayName") or t.get("displayName") or "",
+                              "full": t.get("displayName") or t.get("shortDisplayName") or ""})
+            st = (ev.get("status") or {}).get("type") or {}
+            games.append({"league": lg, "id": ev.get("id"), "start": ev.get("date"), "teams": teams,
+                          "state": st.get("state"), "detail": st.get("shortDetail") or st.get("detail") or "",
+                          "final": bool(st.get("completed")), "period": (ev.get("status") or {}).get("period"),
+                          "clock": (ev.get("status") or {}).get("displayClock")})
+    if complete is not None and not leagues:
+        complete.update(dk for dk, okd in settled.items() if okd and on_date.get(dk))
+    LOG["espn"] = f"ok {len(games)} ({len(jobs)} reads, {sum(1 for v in settled.values() if v)} dates settled)"
     return games
 
 
