@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 19, 2:20 PM ET. This run: 1 new, 0 not confirmed, 3 pending. Open alerts: 15.
+Updated Thu Nov 19, 2:30 PM ET. This run: 3 new, 0 not confirmed, 0 pending. Open alerts: 18.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 19 2:30PM | NCAAB | Wisconsin vs Seton Hall | moneyline: Wisconsin | kalshi | $115k | -194 | ✅ novig | ✅ | +0.0c |  | pending |
+| Nov 19 2:30PM | NCAAB | Little Rock vs Jacksonville | moneyline: Little Rock | kalshi | $39k | +117 | ✅ novig | ✅ | +0.0c |  | pending |
+| Nov 19 2:30PM | NCAAB | Charleston vs Drake | moneyline: Drake | kalshi | $39k | -113 |  | ✅ | +0.0c |  | pending |
 | Nov 19 2:20PM | NCAAB | West Virginia @ Florida | moneyline: FLA (0) | novig | $36k | -355 | ✅ kalshi,prophetx | ❌ | +0.0c |  | pending |
 | Nov 19 12:20PM | NCAAB | Florida vs West Virginia: Spread | spread: Florida wins by over 7.5 points | kalshi | $30k | -108 |  | ❌ | +1.0c | yes | pending |
 | Nov 19 12:10PM | NCAAB | Houston vs Kansas | moneyline: Houston | kalshi | $34k | -138 | ✅ novig |  | +3.0c |  | pending |
@@ -207,6 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 13 10:00AM | NCAAB | Marist vs Lehigh | moneyline: Lehigh | kalshi | $69k | -117 |  |  | +4.0c |  | W |
 | Nov 13 9:50AM | NCAAB | Pittsburgh vs Butler | moneyline: Butler | kalshi | $35k | -144 |  |  | +1.0c |  | L |
 | Nov 13 9:40AM | NCAAB | Columbia vs Bucknell | moneyline: Columbia | kalshi | $41k | -213 |  |  | +0.0c |  | W |
-| Nov 13 9:30AM | NCAAB | Virginia vs Maryland | moneyline: Virginia | kalshi | $68k | -223 |  |  | +1.0c |  | W |
-| Nov 13 2:24AM | NCAAB | Southern Miss vs Texas St. | moneyline: Texas St. | kalshi | $46k | -567 |  |  | +0.0c |  | W |
-| Nov 13 2:24AM | NCAAB | Mississippi St. vs Xavier | moneyline: Xavier | kalshi | $26k | -156 |  |  | +1.0c |  | W |
