@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 19, 4:30 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 29.
+Updated Thu Nov 19, 4:40 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 26.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 352-211 (-21.76u flat) | rule met: 62-54
+**Record:** 354-212 (-21.56u flat) | rule met: 62-54
 
-**Fade (paper, betting against the print):** 186-317 (+21.65u flat, after fees)
+**Fade (paper, betting against the print):** 187-319 (+20.58u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -25,16 +25,16 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 19 2:30PM | NCAAB | Little Rock vs Jacksonville | moneyline: Little Rock | kalshi | $39k | +117 | ✅ novig | ✅ | +0.0c |  | pending |
 | Nov 19 2:30PM | NCAAB | Charleston vs Drake | moneyline: Drake | kalshi | $39k | -113 |  | ✅ | +0.0c |  | pending |
 | Nov 19 2:20PM | NCAAB | West Virginia @ Florida | moneyline: FLA (0) | novig | $36k | -355 | ✅ kalshi,prophetx | ❌ | +0.0c |  | pending |
-| Nov 19 12:20PM | NCAAB | Florida vs West Virginia: Spread | spread: Florida wins by over 7.5 points | kalshi | $30k | -108 |  | ❌ | +1.0c | yes | pending |
+| Nov 19 12:20PM | NCAAB | Florida vs West Virginia: Spread | spread: Florida wins by over 7.5 points | kalshi | $30k | -108 |  | ❌ | +1.0c | yes | W |
 | Nov 19 12:10PM | NCAAB | Houston vs Kansas | moneyline: Houston | kalshi | $34k | -138 | ✅ novig |  | +3.0c |  | pending |
 | Nov 19 12:10PM | NCAAB | Georgia Southern vs Houston Christian | moneyline: Houston Christian | kalshi | $40k | -150 | ✅ novig | ✅ | +1.0c |  | pending |
-| Nov 19 10:30AM | NCAAB | Florida vs West Virginia: Spread | spread: NOT Florida wins by over 8.5 points | kalshi | $31k | -108 |  | ✅ | +2.0c |  | pending |
+| Nov 19 10:30AM | NCAAB | Florida vs West Virginia: Spread | spread: NOT Florida wins by over 8.5 points | kalshi | $31k | -108 |  | ✅ | +2.0c |  | L |
 | Nov 19 10:10AM | NCAAB | Robert Morris vs Toledo | moneyline: Toledo | kalshi | $29k | -257 | ✅ novig |  | +2.0c |  | pending |
 | Nov 19 10:10AM | NCAAB | Notre Dame vs Auburn | moneyline: Auburn | kalshi | $56k | -150 | ✅ novig |  | +1.0c |  | pending |
 | Nov 19 5:10AM | NCAAB | Southeast Missouri St. vs St. Thomas | moneyline: St. Thomas | kalshi | $27k | -285 |  |  | -1.0c |  | pending |
 | Nov 19 1:20AM | NCAAB | Maine vs Quinnipiac | moneyline: Quinnipiac | kalshi | $36k | -488 |  |  | -4.0c | yes | pending |
 | Nov 19 1:20AM | NCAAB | Buffalo vs St. Bonaventure | moneyline: St. Bonaventure | kalshi | $31k | -567 |  |  | +2.0c | yes | pending |
-| Nov 19 1:00AM | NCAAB | Florida vs West Virginia | moneyline: Florida | kalshi | $63k | -355 |  |  | +0.0c |  | pending |
+| Nov 19 1:00AM | NCAAB | Florida vs West Virginia | moneyline: Florida | kalshi | $63k | -355 |  |  | +0.0c |  | W |
 | Nov 18 8:50PM | NCAAB | UConn vs Arizona: Spread | spread: NOT Arizona wins by over 3.5 points | kalshi | $36k | -108 |  |  | -2.0c | yes | L |
 | Nov 18 6:40PM | NCAAB | Howard vs Duquesne | moneyline: Duquesne | kalshi | $29k | -213 | ✅ novig |  | -1.0c |  | W |
 | Nov 18 5:50PM | NCAAB | Kansas vs West Virginia: Spread | spread: NOT Kansas wins by over 8.5 points | kalshi | $58k | -122 |  | ✅ | +2.0c | yes | W |
