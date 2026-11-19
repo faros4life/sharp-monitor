@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 18, 9:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 24.
+Updated Wed Nov 18, 9:10 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 22.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 337-206 (-24.06u flat) | rule met: 59-52
+**Record:** 338-207 (-24.68u flat) | rule met: 59-53
 
-**Fade (paper, betting against the print):** 181-302 (+27.76u flat, after fees)
+**Fade (paper, betting against the print):** 182-303 (+27.28u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -20,7 +20,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 18 4:10PM | NCAAB | IU Indy vs Penn St.: Spread | spread: NOT Penn St. wins by over 16.5 points | kalshi | $30k | -100 |  |  | +1.0c | yes | W |
 | Nov 18 4:10PM | NCAAB | Cornell vs Syracuse: Spread | spread: NOT Syracuse wins by over 19.5 points | kalshi | $38k | -122 |  | ✅ | +1.0c | yes | pending |
 | Nov 18 3:40PM | NCAAB | Houston vs Florida | moneyline: Florida | kalshi | $93k | -108 | ✅ novig,prophetx |  | +0.0c | yes | L |
-| Nov 18 3:10PM | NCAAB | Furman vs Radford | moneyline: Radford | kalshi | $43k | +170 | ✅ novig |  | +0.0c |  | pending |
+| Nov 18 3:10PM | NCAAB | Furman vs Radford | moneyline: Radford | kalshi | $43k | +170 | ✅ novig |  | +0.0c |  | L |
 | Nov 18 3:00PM | NCAAB | Florida @ Houston | moneyline: HOU (0) | novig | $25k | +104 | ✅ kalshi |  | -0.5c | yes | W |
 | Nov 18 3:00PM | NCAAB | Houston vs Florida: Spread | spread: NOT Florida wins by over 1.5 points | kalshi | $26k | -104 | ✅ novig |  | +0.0c | yes | W |
 | Nov 18 3:00PM | NCAAB | Houston vs Florida | moneyline: Houston | kalshi | $115k | +108 | ✅ novig |  | +0.0c | yes | W |
@@ -31,7 +31,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 18 10:10AM | NCAAB | Purdue Fort Wayne vs Bradley | moneyline: Bradley | kalshi | $33k | -257 | ✅ novig |  | +1.0c |  | pending |
 | Nov 18 10:00AM | NCAAB | Louisiana vs San Francisco | moneyline: San Francisco | kalshi | $113k | -567 |  |  | +0.0c |  | pending |
 | Nov 18 4:40AM | NCAAB | Rutgers vs Notre Dame | moneyline: Notre Dame | kalshi | $31k | -170 |  |  | -4.0c | yes | W |
-| Nov 18 2:40AM | NCAAB | Florida Gulf Coast vs Florida Atlantic | moneyline: Florida Atlantic | kalshi | $27k | -245 |  |  | -2.0c | yes | pending |
+| Nov 18 2:40AM | NCAAB | Florida Gulf Coast vs Florida Atlantic | moneyline: Florida Atlantic | kalshi | $27k | -245 |  |  | -2.0c | yes | W |
 | Nov 18 2:20AM | NCAAB | UConn vs Arizona | moneyline: Arizona | kalshi | $25k | -144 |  |  | +1.0c |  | pending |
 | Nov 18 2:10AM | NCAAB | Fresno St. vs San Jose St. | moneyline: San Jose St. | kalshi | $25k | -233 |  |  | +0.0c |  | pending |
 | Nov 18 2:00AM | NCAAB | Boston College vs Harvard | moneyline: Boston College | kalshi | $26k | -170 |  |  | -2.0c | yes | pending |
