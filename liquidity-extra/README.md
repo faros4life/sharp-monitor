@@ -1,17 +1,17 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 18, 7:20 PM ET. This run: 0 new, 1 not confirmed, 1 pending. Open alerts: 27.
+Updated Wed Nov 18, 7:30 PM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 26.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 333-206 (-26.84u flat) | rule met: 57-52
+**Record:** 334-206 (-25.80u flat) | rule met: 58-52
 
-**Fade (paper, betting against the print):** 181-298 (+31.76u flat, after fees)
+**Fade (paper, betting against the print):** 181-299 (+30.76u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 18 6:40PM | NCAAB | Howard vs Duquesne | moneyline: Duquesne | kalshi | $29k | -213 | ✅ novig |  | -1.0c |  | pending |
-| Nov 18 5:50PM | NCAAB | Kansas vs West Virginia: Spread | spread: NOT Kansas wins by over 8.5 points | kalshi | $58k | -122 |  | ✅ | +2.0c |  | pending |
+| Nov 18 5:50PM | NCAAB | Kansas vs West Virginia: Spread | spread: NOT Kansas wins by over 8.5 points | kalshi | $58k | -122 |  | ✅ | +2.0c | yes | pending |
 | Nov 18 4:50PM | NCAAB | Vermont vs Yale | moneyline: Yale | kalshi | $71k | -285 | ✅ novig | ✅ | +2.0c |  | pending |
 | Nov 18 4:50PM | NCAAB | Detroit Mercy vs Eastern Michigan | moneyline: Eastern Michigan | kalshi | $31k | -567 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 18 4:10PM | NCAAB | Kansas vs West Virginia: Spread | spread: Kansas wins by over 8.5 points | kalshi | $27k | +113 |  | ❌ | -3.0c | yes | pending |
@@ -20,7 +20,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 18 4:10PM | NCAAB | Cornell vs Syracuse: Spread | spread: NOT Syracuse wins by over 19.5 points | kalshi | $38k | -122 |  | ✅ | +1.0c | yes | pending |
 | Nov 18 3:40PM | NCAAB | Houston vs Florida | moneyline: Florida | kalshi | $93k | -108 | ✅ novig,prophetx |  | +0.0c | yes | L |
 | Nov 18 3:10PM | NCAAB | Furman vs Radford | moneyline: Radford | kalshi | $43k | +170 | ✅ novig |  | +0.0c |  | pending |
-| Nov 18 3:00PM | NCAAB | Florida @ Houston | moneyline: HOU (0) | novig | $25k | +104 | ✅ kalshi |  | -0.5c | yes | pending |
+| Nov 18 3:00PM | NCAAB | Florida @ Houston | moneyline: HOU (0) | novig | $25k | +104 | ✅ kalshi |  | -0.5c | yes | W |
 | Nov 18 3:00PM | NCAAB | Houston vs Florida: Spread | spread: NOT Florida wins by over 1.5 points | kalshi | $26k | -104 | ✅ novig |  | +0.0c | yes | W |
 | Nov 18 3:00PM | NCAAB | Houston vs Florida | moneyline: Houston | kalshi | $115k | +108 | ✅ novig |  | +0.0c | yes | W |
 | Nov 18 1:40PM | NCAAB | Morgan St. vs North Carolina A&T | moneyline: North Carolina A&T | kalshi | $48k | -300 | ✅ novig |  | +1.0c |  | pending |
@@ -32,7 +32,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 18 4:40AM | NCAAB | Rutgers vs Notre Dame | moneyline: Notre Dame | kalshi | $31k | -170 |  |  | -4.0c | yes | W |
 | Nov 18 2:40AM | NCAAB | Florida Gulf Coast vs Florida Atlantic | moneyline: Florida Atlantic | kalshi | $27k | -245 |  |  | -2.0c | yes | pending |
 | Nov 18 2:20AM | NCAAB | UConn vs Arizona | moneyline: Arizona | kalshi | $25k | -144 |  |  | +2.0c |  | pending |
-| Nov 18 2:10AM | NCAAB | Fresno St. vs San Jose St. | moneyline: San Jose St. | kalshi | $25k | -233 |  |  | +1.0c |  | pending |
+| Nov 18 2:10AM | NCAAB | Fresno St. vs San Jose St. | moneyline: San Jose St. | kalshi | $25k | -233 |  |  | +0.0c |  | pending |
 | Nov 18 2:00AM | NCAAB | Boston College vs Harvard | moneyline: Boston College | kalshi | $26k | -170 |  |  | -2.0c | yes | pending |
 | Nov 18 1:50AM | NCAAB | VMI vs Longwood | moneyline: Longwood | kalshi | $25k | -257 |  |  | +2.0c |  | pending |
 | Nov 18 1:50AM | NCAAB | UNC Wilmington vs LIU | moneyline: UNC Wilmington | kalshi | $37k | -525 |  |  | -3.0c |  | pending |
