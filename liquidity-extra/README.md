@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 19, 10:00 AM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 8.
+Updated Thu Nov 19, 10:10 AM ET. This run: 2 new, 0 not confirmed, 0 pending. Open alerts: 10.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 19 10:10AM | NCAAB | Robert Morris vs Toledo | moneyline: Toledo | kalshi | $29k | -257 | ✅ novig |  | +0.0c |  | pending |
+| Nov 19 10:10AM | NCAAB | Notre Dame vs Auburn | moneyline: Auburn | kalshi | $56k | -150 | ✅ novig |  | +0.0c |  | pending |
 | Nov 19 5:10AM | NCAAB | Southeast Missouri St. vs St. Thomas | moneyline: St. Thomas | kalshi | $27k | -285 |  |  | +0.0c |  | pending |
 | Nov 19 1:20AM | NCAAB | Maine vs Quinnipiac | moneyline: Quinnipiac | kalshi | $36k | -488 |  |  | +0.0c | yes | pending |
 | Nov 19 1:20AM | NCAAB | Buffalo vs St. Bonaventure | moneyline: St. Bonaventure | kalshi | $31k | -567 |  |  | +1.0c | yes | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 13 1:58AM | NCAAB | Southeast Missouri St. vs Middle Tennessee | moneyline: Middle Tennessee | kalshi | $30k | -203 |  |  | +0.0c |  | W |
 | Nov 13 1:58AM | NCAAB | Iona vs Hofstra | moneyline: Hofstra | kalshi | $28k | -270 |  |  | +0.0c |  | W |
 | Nov 13 1:58AM | NCAAB | Appalachian St. vs Charlotte | moneyline: Charlotte | kalshi | $31k | -317 |  |  | +0.0c |  | L |
-| Nov 12 5:50PM | TENNIS | Pegula vs Noskova | moneyline: Pegula | kalshi | $813k | -138 |  |  | -10.0c |  | W |
-| Nov 12 2:03PM | TENNIS | Pegula vs Noskova | moneyline: Noskova | kalshi | $62k | -117 | ✅ novig |  | +3.0c | yes | L |
