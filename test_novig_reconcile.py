@@ -35,6 +35,9 @@ ORDERS = {"orders": [
      "filled_qty": 0, "qty": "75000", "price": "0.5198", "placed_utc": "2026-11-14T01:00:00Z"},
     {"order_id": "0002-VENUE", "client_id": "5ab5d4ad-CLIENT", "status": "REJECTED",
      "filled_qty": 0, "qty": "40000", "price": "0.51", "placed_utc": "2026-11-15T01:00:00Z"},
+    {"order_id": "0002b-VENUE", "client_id": "rejected-proven", "status": "REJECTED",
+     "filled_qty": 0, "fill_read": True, "fill_read_src": "not submitted", "qty": "40000",
+     "price": "0.51", "placed_utc": "2026-11-15T01:00:00Z"},
     {"order_id": "0003-VENUE", "client_id": "partial-CLIENT", "status": "CANCELED",
      "filled_qty": 5000, "qty": "20000", "price": "0.50", "placed_utc": "2026-11-16T01:00:00Z"},
     {"order_id": "0004-VENUE", "client_id": "cancel-nofill-but-filled", "status": "CANCELED",
@@ -60,7 +63,12 @@ ok("a leg with no identifier is UNKNOWN, never released",
 cases = [("fa7a84cb-CLIENT", nr.OPEN, "venue OPEN"),
          ("18aefa75-CLIENT", nr.FILLED, "venue FILLED"),
          ("d24d0e03-CLIENT", nr.TERMINAL, "refused, zero filled, no fill record"),
-         ("5ab5d4ad-CLIENT", nr.TERMINAL, "REJECTED, zero filled, no fill record"),
+         # Nov 19 (Peter): tightened. REJECTED is NOT authoritative on its own - the runner
+         # deployed until today wrote it for ANY non-2xx, including a 5xx or a transport failure,
+         # and a 409 can mean an earlier attempt already landed. Without proof of a read it is
+         # UNKNOWN and stays reserved. REFUSED (above) is unchanged: pre-submission by construction.
+         ("5ab5d4ad-CLIENT", nr.UNKNOWN, "REJECTED, zero filled, but the zero is UNPROVEN"),
+         ("rejected-proven", nr.TERMINAL, "REJECTED with a zero the venue read"),
          ("partial-CLIENT", nr.PARTIAL, "CANCELED after a partial fill"),
          ("cancel-nofill-but-filled", nr.UNKNOWN, "CANCELED at zero BUT a fill record exists")]
 for cid, want, why in cases:

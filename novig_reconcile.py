@@ -29,6 +29,27 @@ what the venue says about it, never by how old it is.
 from datetime import datetime, timezone
 
 RELEASABLE = ("CANCELED", "REJECTED", "REFUSED", "CANCELLED")
+# Nov 19 (Peter): the four RELEASABLE statuses do NOT all prove a zero the same way, and treating
+# them alike is wrong in both directions.
+#
+# REFUSED is authoritative BY CONSTRUCTION. Traced: every refusal in book_live.novig_place returns
+# strictly before its dispatch POST, and the runner's own "refused" is its initial status, set only
+# when there is no trading key or the inputs fail the hard limits. Nothing was ever sent, so zero is
+# certain from the status alone and needs no fill read. Requiring one would reserve phantom risk for
+# orders that never existed.
+#
+# REJECTED is NOT (Peter, 19 Nov: "Do not equate an ambiguous HTTP response with proven
+# non-submission"). It has three producers: the venue's own status via order_state, which is
+# authoritative; a POST code the runner has proven means the request was declined to process; and -
+# on every row written by the runner DEPLOYED today - ANY non-2xx at all, including a 5xx or a
+# transport failure, neither of which proves the order was not accepted. A 409 is the sharp case: on
+# a POST carrying our clientId it classically means an order with that id already exists, so an
+# earlier attempt landed. Releasing on that would free money sitting at the venue. So REJECTED
+# releases only when the zero is PROVEN; without proof it is UNKNOWN and stays reserved.
+#
+# CANCELED and EXPIRED also need a proven zero, for a different reason: an order can partially fill
+# and THEN be cancelled or expire.
+NEVER_PLACED = ("REFUSED",)
 FILLED, PARTIAL, OPEN, TERMINAL, UNKNOWN = ("FILLED", "PARTIALLY FILLED", "OPEN",
                                             "TERMINAL ZERO FILL", "UNKNOWN")
 
@@ -80,18 +101,42 @@ def classify(leg, by_cid, fills_by_cid):
         # REQUIREMENT 6: a missing API result is NOT proof of zero fills.
         return UNKNOWN, {"why": "no venue record for this client id", "client_id": cid}
     st = str(v.get("status") or "").upper()
-    fq = float(v.get("filled_qty") or 0)
+    # Nov 19 (Peter, PRIORITY 1): `float(v.get("filled_qty") or 0)` turned an UNREAD fill into a
+    # confident 0, and the RELEASABLE test below then returned TERMINAL - which releases the
+    # exposure. This module's own docstring says "Never releases on a missing record" and
+    # "REQUIREMENT 6: a missing API result is NOT proof of zero fills"; that held for a MISSING
+    # record but not for a PRESENT record carrying an unread quantity. A zero now has to be proven:
+    # fill_read True, or (for rows written before that flag existed) a positive quantity, which
+    # could only have come from a read. Unproven -> UNKNOWN -> the leg keeps its full commitment.
+    _fqv = v.get("filled_qty")
+    try:
+        _fqn = None if _fqv is None else float(_fqv)
+    except (TypeError, ValueError):
+        _fqn = None
+    fq_known = _fqn is not None and v.get("fill_read") is not False
+    fq = _fqn if fq_known else 0.0
+    zero_proven = fq_known and fq == 0.0 and v.get("fill_read") is True
     qty = float(v.get("qty") or 0)
     ev = {"client_id": cid, "venue_order_id": v.get("order_id"), "venue_status": v.get("status"),
           "filled_qty": fq, "qty": qty, "filled_usd": usd(fq, v.get("price")),
           "asked_usd": usd(qty, v.get("price")), "fill_records": len(fills_by_cid.get(cid) or []),
           "placed_utc": v.get("placed_utc")}
+    ev["fill_read"] = v.get("fill_read")
+    ev["fill_read_why"] = v.get("fill_read_why")
+    if st in NEVER_PLACED and not fq and not (fills_by_cid.get(cid) or []):
+        return TERMINAL, ev           # never placed: zero is certain without a fill read
+    if not fq_known:
+        ev["why"] = f"fill quantity not read ({v.get('fill_read_why') or 'no reason recorded'})"
+        return UNKNOWN, ev            # OPEN or terminal, an unread fill is never a releasable zero
     if st == "OPEN":
         return (PARTIAL if 0 < fq < qty else OPEN), ev
     if fq > 0:
         return (FILLED if (st == "FILLED" and fq >= qty) else PARTIAL), ev
-    if st in RELEASABLE and fq == 0 and not (fills_by_cid.get(cid) or []):
+    if st in RELEASABLE and zero_proven and not (fills_by_cid.get(cid) or []):
         return TERMINAL, ev
+    if st in RELEASABLE and fq == 0 and not zero_proven:
+        ev["why"] = ("cancelled or expired with a zero that no read confirms - an order can fill "
+                     "and THEN cancel or expire, so this is not released")
     return UNKNOWN, ev
 
 
@@ -107,6 +152,11 @@ def exposure_for(leg, cls, ev):
     registry_amt = (max(float(fs or 0), asked) if (leg.get("resting") or fs is None) else float(fs))
     if cls == TERMINAL:
         return 0.0
+    if cls == UNKNOWN:
+        # Nov 19 (Peter: "Preserve conservative exposure treatment when fill status is unknown").
+        # registry_amt trusts leg["filled_stake"], and a 0.0 there may itself be the fabricated
+        # zero this fix exists to remove. Unknown keeps the WHOLE commitment, never a bare zero.
+        return max(float(fs or 0), asked)
     if cls in (FILLED, PARTIAL) and ev.get("filled_usd") is not None:
         return float(ev["filled_usd"])
     if cls == OPEN:

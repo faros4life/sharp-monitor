@@ -9,6 +9,7 @@ normal path, not an edge case.
 Scope is notification-only. No test here asserts anything about execution, sizing, routing,
 eligibility or risk, because nothing in Part 1 touches them.
 """
+import ast
 import hashlib
 import io
 import re
@@ -133,14 +134,32 @@ check("the acceptance send is wrapped too and logged, not raised",
 
 print("8. regression fixtures - the two orders that caused this")
 src_code = "\n".join(l for l in src.splitlines() if not l.strip().startswith("#"))
+# Nov 19: src_code strips "#" lines but not docstrings, and novig_head's docstring quotes the old
+# false message while explaining its removal. The requirement is that no EMITTED string says it, so
+# this now walks the AST and checks every string literal that is not a docstring.
+_tree = ast.parse(src)
+# every docstring in the file, collected FIRST. Walking from each scope and comparing against that
+# scope's own docstring does not work: the Module walk re-visits every nested function's docstring,
+# where the comparison value is the MODULE docstring, so none of them get excluded.
+_docs = {d for _n in ast.walk(_tree)
+         if isinstance(_n, (ast.Module, ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef))
+         for d in [ast.get_docstring(_n, clean=False)] if d}
+_emit = [_c.value for _c in ast.walk(_tree)
+         if isinstance(_c, ast.Constant) and isinstance(_c.value, str) and _c.value not in _docs]
 check("GS/MEM: no emitter can print 'nothing traded' for an unknown status",
-      "nothing traded" not in src_code, [l for l in src_code.splitlines() if "nothing traded" in l][:1])
+      not [t for t in _emit if "nothing traded" in t], [t for t in _emit if "nothing traded" in t][:1])
+check("and the head for an unknown status asks for a check instead",
+      ex.novig_head({"status": "", "qty": 100, "filled_qty": None, "fill_read": False})
+      == "NOVIG STATUS UNKNOWN - VERIFY")
 check("LAC/SA: the same split applies to the live-order path, not only resting",
       src.count("The venue fill read FAILED") >= 2)
 
 print("9. novig_reports - the emitter that actually sent the bad message")
+# Nov 19: the head chain moved into novig_head(), so this is asserted on behaviour.
 check("NO FILL is no longer the else branch",
-      'elif st in ("CANCELED", "CANCELLED", "EXPIRED") and _fq_known and fq == 0:' in src)
+      'if st in ("CANCELED", "CANCELLED", "EXPIRED") and fq_zero_proven(x):' in src
+      and ex.novig_head({"status": "WEIRD", "qty": 100, "filled_qty": 0, "fill_read": True})
+      == "NOVIG STATUS UNKNOWN - VERIFY")
 check("an unrecognised or absent status reads STATUS UNKNOWN - VERIFY",
       '"NOVIG STATUS UNKNOWN - VERIFY"' in src)
 # Implicit string concatenation across source lines again - normalise before matching.
@@ -185,7 +204,11 @@ check("an error keeps RESULT UNKNOWN - it may or may not exist at the venue",
 
 print("11. SAFEGUARD 2 - a missing fill quantity is UNKNOWN, never zero")
 check("the raw quantity is tested for readability before use",
-      "_fq_known, fq = fq_read(x)" in src)
+      "fq = fq_read(x)[1]" in src and "def fq_zero_proven(x)" in src)
+check("and a ZERO additionally needs proof that it was read",
+      ex.fq_zero_proven({"filled_qty": 0, "fill_read": True}) is True
+      and ex.fq_zero_proven({"filled_qty": 0}) is False
+      and ex.fq_zero_proven({"filled_qty": None, "fill_read": False}) is False)
 # src_code only strips "#" lines, and the pattern also appears inside fq_read's own docstring
 # explaining what it replaced - which a line test read as the pattern still being live. Strip
 # comments AND string literals, so only real callers can match.
@@ -204,8 +227,11 @@ check("a read zero is known-zero, which is a different thing",
 check("a read quantity comes back as itself", ex.fq_read({"filled_qty": "250"}) == (True, 250))
 
 print("   the two sites that CLAIMED a no-fill from an unreadable quantity")
-check("the expiry synthesiser now requires a readable quantity before writing its note",
-      "or not _k or _q" in src)
+# Nov 19 (PRIORITY 1): the first version of this returned the row UNCHANGED when the quantity was
+# unreadable, which reported a bid whose expiry had passed as still RESTING, or dropped it in
+# silence. It now produces its own unresolved state.
+check("the expiry synthesiser marks an unreadable quantity unresolved rather than claiming",
+      '_unresolved=True' in src and "could NOT " in src)
 check("its note is the claim being guarded",
       "nothing filled as of the last read" in src_flat)
 check("the report token canonicalises to NOFILL only on a READ zero",
@@ -213,7 +239,11 @@ check("the report token canonicalises to NOFILL only on a READ zero",
 check("and an unknown quantity no longer shares a token with a confirmed zero",
       "'unread'" in src and "str(q) if k else" in src)
 check("NO FILL needs an authoritative cancel/expire AND a read zero",
-      src.count('and _fq_known and fq == 0') >= 2)
+      src.count("fq_zero_proven(x)") >= 2
+      and ex.novig_head({"status": "CANCELED", "qty": 100, "filled_qty": 0, "fill_read": True})
+      == "NOVIG NO FILL"
+      and ex.novig_head({"status": "CANCELED", "qty": 100, "filled_qty": 0})
+      == "NOVIG STATUS UNKNOWN - VERIFY")
 check("the no-fill body cites the venue's own confirmation",
       "venue confirms \nzero matched quantity" in src or "venue confirms" in src_flat.lower())
 check("both live-order paths require a readable filled_stake",

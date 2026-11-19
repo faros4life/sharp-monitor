@@ -101,14 +101,22 @@ finally:
 import novig_reconcile as _nvr
 _ORD = {"orders": [{"order_id": "V1", "client_id": "C1", "status": "FILLED", "filled_qty": 18200,
                     "qty": "18200", "price": "0.525"},
+                   # Nov 19 (Peter): a REJECTED zero now has to be PROVEN to release - the runner
+                   # deployed until today wrote REJECTED for any non-2xx, a 5xx included, and a 409
+                   # can mean an earlier attempt landed. V3 is the unproven twin.
                    {"order_id": "V2", "client_id": "C2", "status": "REJECTED", "filled_qty": 0,
+                    "fill_read": True, "fill_read_src": "not submitted",
+                    "qty": "40000", "price": "0.51"},
+                   {"order_id": "V3", "client_id": "C3", "status": "REJECTED", "filled_qty": 0,
                     "qty": "40000", "price": "0.51"}]}
 _was = ex.VENUE["idx"]
 try:
     ex.VENUE["idx"] = _nvr.venue_index(_ORD, {"fills": []})
     ok("a filled novig leg counts the ACTUAL fill, not the ask",
        ex.reconciled_amount({"book": "novig", "order_id": "C1", "asked_stake": 96.0}, 96.0, True)[0] == 95.55)
-    ok("a rejected novig leg with zero fills counts nothing",
+    ok("an UNPROVEN rejected novig leg stays reserved in full",
+       ex.reconciled_amount({"book": "novig", "order_id": "C3", "asked_stake": 204.0}, 204.0, False)[0] == 204.0)
+    ok("a rejected novig leg with a PROVEN zero counts nothing",
        ex.reconciled_amount({"book": "novig", "order_id": "C2", "asked_stake": 204.0}, 204.0, True)[0] == 0.0)
     ok("a novig leg the venue has never heard of keeps its figure",
        ex.reconciled_amount({"book": "novig", "order_id": "GHOST", "asked_stake": 389.85}, 389.85, True)
