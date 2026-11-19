@@ -22,7 +22,16 @@ concurrency:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    # Nov 19 (Peter: "fix it asap get me clv"). 40 -> 60. Six consecutive runs were killed at 40
+    # minutes with "Terminate orphan process: pid (python)" - the timeout tell, not concurrency,
+    # which under cancel-in-progress: false drops the QUEUED run and never the running one. The last
+    # good run used 32m05s of python; the killed ones reached 38m36s. No Python changed between them
+    # (82 commits, all scheduled data updates), so the WORK grew - consistent with the Nov 18
+    # game_start recovery making more of the 353 stuck rows scorable. This job runs about every two
+    # hours, so a 60-minute ceiling cannot collide with the next firing the way liquidity-extra's
+    # would on its 10-minute schedule. The _stage() timings added in the same commit are what will
+    # say where the time actually goes; raising this alone would only hide the next increase.
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

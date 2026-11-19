@@ -1537,7 +1537,23 @@ def lane_stats(rows):
     return f"n {n}, avg CLV {100 * avg:+.2f}%, beat close {beat}/{n}"
 
 
+_T0 = [None]
+
+
+def _stage(name):
+    """Seconds since the run began, printed at each stage boundary. Nov 19 (Peter): six consecutive
+    runs were killed at the 40-minute timeout and left NO trace of where the time went - this script
+    prints nothing until it finishes, so even the successful runs were a 32-minute black box. Timing
+    only: no counts of money, no bet text. Without this the next growth is diagnosed by guessing,
+    which is exactly how the liquidity-extra league list went wrong."""
+    import time as _t
+    if _T0[0] is None:
+        _T0[0] = _t.time()
+    print(f"  [stage] {name:<34} t+{_t.time() - _T0[0]:6.1f}s", flush=True)
+
+
 def main():
+    _stage("start")
     global SIDE_EV
     SIDE_EV = load_side_evidence()   # 16 Nov: registry-verified sides for line-only Polymarket rows (read-only)
     SIDE_LOG[f"evidence: venue links {len(SIDE_EV[0])}, ledger orders {len(SIDE_EV[1])}"] += 1
@@ -1555,6 +1571,7 @@ def main():
         tracker = tb.dec(json.load(open(tb.STATE))).get("bets") or {}
     except Exception:
         tracker = {}
+    _stage("capture tracker rows")
     # 1) capture: keep each bet's first-seen price/stake/payout (a later settlement row can drop them for losses)
     for k, b in tracker.items():
         rec = st["bets"].setdefault(k, {"first_seen": iso(now)})
@@ -1590,6 +1607,7 @@ def main():
         espn_fill(st, now)
     except Exception as e:
         st.setdefault("errors", []).append(f"{iso(now)} espn fill: {type(e).__name__}")
+    _stage("bot novig orders")
     # 2) bot Novig orders for the stale check
     nvo, fills = [], []
     try:
@@ -1669,6 +1687,7 @@ def main():
             SIDE_LOG["reopened"] += 1
     print(f"CLV ledger verified-side recovery (counts only): {dict(SIDE_LOG) or 'none'}", flush=True)
     print(f"CLV ledger NCAAB reopen (counts only): {ncaab_reopen(st, now)}", flush=True)
+    _stage("league fixture list")
     # 3) which leagues need fixtures
     pend = []
     for k, rec in st["bets"].items():
@@ -1743,6 +1762,7 @@ def main():
             fetched.add(lg)
     for _ln in FX_LOG:
         print(f"fixtures: {_ln}", flush=True)
+    _stage("SCORE (history calls)")
     # 4) score: free history calls, one per fixture and book
     hist = {}
     new_scored = 0
@@ -1890,6 +1910,7 @@ def main():
             rec["why"] = why or "no price on the bet"
             if rec["tries"] >= MAX_TRIES or (why and ("not parsed" in why or "not comparable" in why or "far from" in why)) or not d:
                 rec["done"] = True
+    _stage("report build")
     # 5) report
     # Nov 5 (Peter): the doubt marker is STICKY. A row found doubtful is written with fixture_doubt
     # and stays out of every figure even after its fixture leaves the cache, so neither expiry nor a
@@ -2127,6 +2148,7 @@ def main():
         st["emailed"] = today
         if alert:
             st["alerted"] = today
+    _stage("save + trim")
     # 6) save (encrypted), trim
     cut = iso(now - timedelta(days=60))
     st["bets"] = {k: v for k, v in st["bets"].items() if (v.get("first_seen") or "") >= cut}
