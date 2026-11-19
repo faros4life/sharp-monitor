@@ -1,0 +1,53 @@
+name: novig-order-probe
+
+# Peter, 19 Nov 2026: "verify the order first, including whether it remains open, partially filled,
+# canceled or fully filled ... The $205.53 should remain unresolved exposure until the venue
+# confirms the order status."
+#
+# READ-ONLY BY CONSTRUCTION:
+#   * permissions: contents: read - this job cannot push.
+#   * novig_order_probe.py has no POST/PUT/PATCH/DELETE and calls no place or cancel function;
+#     test_novig_order_probe.py asserts that from the parsed AST and runs BEFORE the probe is
+#     handed a key.
+#   * It uses the dedicated READ key through novig_signed, which has no write code path at all and
+#     refuses to run unless the key's own scope reads back as read-only. The trading key is never
+#     given to this job, so the guarantee is in the CREDENTIAL as well as the code.
+#   * Nothing is cancelled even if an order is found open past its cutoff; that needs Peter's yes.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: novig-order-probe
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Prove the probe has no write path before giving it a trading key
+        run: python -u test_novig_order_probe.py
+      - name: Read the order status back from Novig
+        env:
+          NOVIG_READ_KEY_ID: ${{ secrets.NOVIG_READ_KEY_ID }}
+          NOVIG_READ_KEY_PEM: ${{ secrets.NOVIG_READ_KEY_PEM }}
+          REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+        run: python -u novig_order_probe.py
+      - name: Guard - nothing was modified
+        if: always()
+        run: |
+          git status --porcelain -uno > "$RUNNER_TEMP/d" || true
+          if [ -s "$RUNNER_TEMP/d" ]; then
+            echo "FAIL: the probe modified tracked files:"; cat "$RUNNER_TEMP/d"; exit 1
+          fi
+          echo "clean: no tracked file modified"
