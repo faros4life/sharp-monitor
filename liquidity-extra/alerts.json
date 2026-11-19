@@ -1,6 +1,182 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-19T10:10:33Z",
+   "base_depth": 13725,
+   "best_price": 0.7442,
+   "best_price_american": -291,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.74,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-19",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 6952,
+     "new_this_side": 27004,
+     "other_side": 4802,
+     "other_side_all_levels": 11376,
+     "ratio": 4.4,
+     "this_side": 21210,
+     "this_side_all_levels": 51696
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "St. Thomas-Minnesota",
+     "price": 0.7403,
+     "this_side": 1065
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 68.92,
+    "volume_24h_fp": 65.92,
+    "volume_fp": 68.92
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 68.92,
+    "volume_24h_fp": 65.92,
+    "volume_fp": 68.92
+   },
+   "fade_price": 0.28,
+   "first_seen_utc": "2026-11-19T10:00:25Z",
+   "game": "Southeast Missouri St. vs St. Thomas",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 2.12,
+   "key": "kalshi|KXNCAAMBGAME-26NOV19SEMOUST|ml|1",
+   "lead_min": 889,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 27004,
+   "new_x": 1.99,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 68.92,
+      "volume_24h_fp": 65.92,
+      "volume_fp": 68.92
+     },
+     "game_normal": 24360,
+     "game_x": 2.12,
+     "normal": 13542,
+     "now": 51696,
+     "type": "ML",
+     "x": 3.82
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 1054,
+     "game_x": 1.39,
+     "normal": 499,
+     "now": 1465,
+     "type": "ML",
+     "x": 2.93
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.74,
+   "price_american": -285,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.74,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -300
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -290
+    },
+    "betrivers": {
+     "point": null,
+     "price": -375
+    },
+    "bovada": {
+     "point": null,
+     "price": -300
+    },
+    "circasports": {
+     "point": null,
+     "price": -290
+    },
+    "draftkings": {
+     "point": null,
+     "price": -305
+    },
+    "fanatics": {
+     "point": null,
+     "price": -300
+    },
+    "fanduel": {
+     "point": null,
+     "price": -300
+    },
+    "kalshi": {
+     "point": null,
+     "price": -285
+    },
+    "lowvig": {
+     "point": null,
+     "price": -290
+    },
+    "novig": {
+     "point": null,
+     "price": -277
+    },
+    "polymarket": {
+     "point": null,
+     "price": -285
+    },
+    "prophetx": {
+     "point": null,
+     "price": -285
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV19SEMOUST-UST"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "St. Thomas",
+   "side_label": "St. Thomas",
+   "size_x": 3.82,
+   "start_source": "odds",
+   "start_utc": "2026-11-20T01:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "prophetx"
+   ],
+   "teams": [
+    "Southeast Missouri St.",
+    "St. Thomas"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-19T06:20:20Z",
    "base_depth": 42410,
    "best_price": 0.8399,
@@ -320,8 +496,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.82,
-   "clv_cents": 4.0,
+   "close_price": 0.81,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-11-19",
    "depth_by_book": {
@@ -352,9 +528,9 @@
     "volume_fp": 455.27
    },
    "ex_stats_close": {
-    "open_interest_fp": 14322.89,
-    "volume_24h_fp": 15854.099999999999,
-    "volume_fp": 15855.099999999999
+    "open_interest_fp": 15384.599999999999,
+    "volume_24h_fp": 16916.809999999998,
+    "volume_fp": 16916.809999999998
    },
    "ex_stats_first": {
     "open_interest_fp": 5143.63,
