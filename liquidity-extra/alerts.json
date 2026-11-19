@@ -1,6 +1,217 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-19T19:20:31Z",
+   "base_depth": 101835,
+   "best_price": 0.78,
+   "best_price_american": -355,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.78,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-19",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Florida",
+     "price": 0.78,
+     "this_side": 470895
+    },
+    "novig": {
+     "new_other_side": -5345,
+     "new_this_side": 36388,
+     "other_side": 15266,
+     "other_side_all_levels": 17567,
+     "ratio": 8.3,
+     "this_side": 127025,
+     "this_side_all_levels": 139798
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Florida",
+     "price": 0.7802,
+     "this_side": 15185
+    }
+   },
+   "ex_stats_alert": {
+    "openInterest": 19416227.0,
+    "volume": 23843383.0
+   },
+   "ex_stats_change": {
+    "openInterest": 240248.0,
+    "volume": 425647.0
+   },
+   "ex_stats_first": {
+    "openInterest": 19175979.0,
+    "volume": 23417736.0
+   },
+   "fade_price": 0.225,
+   "first_seen_utc": "2026-11-19T19:10:18Z",
+   "game": "West Virginia @ Florida",
+   "game_surge_books": [
+    "novig",
+    "prophetx"
+   ],
+   "game_x": 2.75,
+   "key": "novig|{\"market_id\": \"01a1f23b-ce24-79f0-8563-f43e0d1fe3c0\", \"outcome_id\": \"01a1f23b-ce24-79f0-8563-f44ffd6a8234\"}",
+   "lead_min": 9,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 36388,
+   "new_x": 8.78,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 362133.36,
+      "volume_24h_fp": 405560.31,
+      "volume_fp": 415665.89
+     },
+     "game_normal": 827358,
+     "game_x": 1.16,
+     "normal": 6104,
+     "now": 955809,
+     "type": "ML",
+     "x": 156.6
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 19416227.0,
+      "volume": 23843383.0
+     },
+     "game_normal": 50840,
+     "game_x": 2.75,
+     "normal": 4144,
+     "now": 139798,
+     "type": "ML",
+     "x": 33.73
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 7757,
+     "game_x": 2.38,
+     "normal": 896,
+     "now": 18499,
+     "type": "ML",
+     "x": 20.64
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.78,
+   "price_american": -355,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.78,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -350
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -370
+    },
+    "betopenly": {
+     "point": null,
+     "price": -332
+    },
+    "betrivers": {
+     "point": null,
+     "price": -345
+    },
+    "betus": {
+     "point": null,
+     "price": -360
+    },
+    "bovada": {
+     "point": null,
+     "price": -420
+    },
+    "circasports": {
+     "point": null,
+     "price": -360
+    },
+    "draftkings": {
+     "point": null,
+     "price": -380
+    },
+    "fanatics": {
+     "point": null,
+     "price": -375
+    },
+    "fanduel": {
+     "point": null,
+     "price": -385
+    },
+    "kalshi": {
+     "point": null,
+     "price": -355
+    },
+    "lowvig": {
+     "point": null,
+     "price": -370
+    },
+    "novig": {
+     "point": null,
+     "price": -355
+    },
+    "polymarket": {
+     "point": null,
+     "price": -355
+    },
+    "prophetx": {
+     "point": null,
+     "price": -355
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -355
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a1f23b-ce24-79f0-8563-f43e0d1fe3c0",
+    "outcome_id": "01a1f23b-ce24-79f0-8563-f44ffd6a8234"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "West Virginia Mountaineers +8.5 (-110)",
+    "West Virginia Mountaineers +9.5 (-110)"
+   ],
+   "side": "Florida",
+   "side_label": "FLA (0)",
+   "size_x": 33.73,
+   "start_source": "odds",
+   "start_utc": "2026-11-19T19:30:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "West Virginia",
+    "Florida"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-19T17:20:18Z",
    "base_depth": 150578,
    "best_price": 0.515,
@@ -52,9 +263,9 @@
     "volume_fp": 4537.63
    },
    "ex_stats_close": {
-    "open_interest_fp": 133396.75,
-    "volume_24h_fp": 124366.07,
-    "volume_fp": 164858.54
+    "open_interest_fp": 169531.02,
+    "volume_24h_fp": 204268.29,
+    "volume_fp": 210704.84
    },
    "ex_stats_first": {
     "open_interest_fp": 35123.69,
@@ -271,9 +482,9 @@
     "volume_fp": 461.27
    },
    "ex_stats_close": {
-    "open_interest_fp": 71401.22,
-    "volume_24h_fp": 70950.14,
-    "volume_fp": 72230.17
+    "open_interest_fp": 72435.24,
+    "volume_24h_fp": 72729.27,
+    "volume_fp": 73264.19
    },
    "ex_stats_first": {
     "open_interest_fp": 50331.25,
@@ -484,9 +695,9 @@
     "volume_fp": 1725.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 15728.919999999998,
-    "volume_24h_fp": 16942.73,
-    "volume_fp": 16950.24
+    "open_interest_fp": 15736.89,
+    "volume_24h_fp": 16950.7,
+    "volume_fp": 16958.21
    },
    "ex_stats_first": {
     "open_interest_fp": 5761.5199999999995,
@@ -690,9 +901,9 @@
     "volume_fp": 11441.35
    },
    "ex_stats_close": {
-    "open_interest_fp": 161657.84,
-    "volume_24h_fp": 171853.73,
-    "volume_fp": 196898.91
+    "open_interest_fp": 183013.53,
+    "volume_24h_fp": 215385.47,
+    "volume_fp": 219596.8
    },
    "ex_stats_first": {
     "open_interest_fp": 18027.99,
@@ -889,9 +1100,9 @@
     "volume_fp": 13.44
    },
    "ex_stats_close": {
-    "open_interest_fp": 16790.559999999998,
-    "volume_24h_fp": 16928.08,
-    "volume_fp": 16935.559999999998
+    "open_interest_fp": 16856.91,
+    "volume_24h_fp": 16994.43,
+    "volume_fp": 17001.91
    },
    "ex_stats_first": {
     "open_interest_fp": 896.99,
@@ -1102,9 +1313,9 @@
     "volume_fp": 74.59
    },
    "ex_stats_close": {
-    "open_interest_fp": 74138.89,
-    "volume_24h_fp": 84071.79000000001,
-    "volume_fp": 85502.84
+    "open_interest_fp": 77123.04,
+    "volume_24h_fp": 88567.44,
+    "volume_fp": 88615.73999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 18492.68,
@@ -1311,9 +1522,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 851.13,
-    "volume_24h_fp": 848.13,
-    "volume_fp": 851.13
+    "open_interest_fp": 918.3399999999999,
+    "volume_24h_fp": 915.3399999999999,
+    "volume_fp": 918.3399999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 68.92,
@@ -1490,7 +1701,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 39474.07,
-    "volume_24h_fp": 39178.07,
+    "volume_24h_fp": 39463.85999999999,
     "volume_fp": 39534.28
    },
    "ex_stats_first": {
@@ -1627,7 +1838,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 10886.77,
-    "volume_24h_fp": 10895.88,
+    "volume_24h_fp": 10916.089999999998,
     "volume_fp": 10961.57
    },
    "ex_stats_first": {
@@ -1801,9 +2012,9 @@
     "volume_fp": 455.27
    },
    "ex_stats_close": {
-    "open_interest_fp": 326652.87,
-    "volume_24h_fp": 350444.65,
-    "volume_fp": 376394.03
+    "open_interest_fp": 362133.36,
+    "volume_24h_fp": 405560.31,
+    "volume_fp": 415665.89
    },
    "ex_stats_first": {
     "open_interest_fp": 5143.63,
