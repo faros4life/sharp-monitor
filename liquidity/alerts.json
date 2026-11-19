@@ -1,6 +1,170 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-19T04:56:02Z",
+   "base_depth": 60931,
+   "best_price": 0.765,
+   "best_price_american": -326,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.78,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-11-19",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 46590,
+     "new_this_side": 249240,
+     "other_side": 4680,
+     "other_side_all_levels": 67727,
+     "ratio": 1.7,
+     "this_side": 7969,
+     "this_side_all_levels": 308086
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "POR (0)",
+     "price": 0.765,
+     "this_side": 203
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 9865.46,
+    "volume_24h_fp": 8461.7,
+    "volume_fp": 11631.689999999999
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 122.97,
+    "volume_24h_fp": 182.92,
+    "volume_fp": 122.97
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 9742.49,
+    "volume_24h_fp": 8278.779999999999,
+    "volume_fp": 11508.720000000001
+   },
+   "fade_price": 0.24,
+   "first_seen_utc": "2026-11-19T04:50:16Z",
+   "game": "Portland vs Milwaukee",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 5.85,
+   "key": "kalshi|KXNBAGAME-26NOV19PORMIL|ml|0",
+   "lead_min": 1204,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 249240,
+   "new_x": 1.47,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 9865.46,
+      "volume_24h_fp": 8461.7,
+      "volume_fp": 11631.689999999999
+     },
+     "game_normal": 52689,
+     "game_x": 5.85,
+     "normal": 169747,
+     "now": 308086,
+     "type": "ML",
+     "x": 1.81
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 0.0,
+      "volume": 0.0
+     },
+     "game_normal": null,
+     "game_x": null,
+     "normal": 29308,
+     "now": 266,
+     "type": "ML",
+     "x": 0.01
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.78,
+   "price_american": -355,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.77,
+   "prices_by_book": {
+    "betopenly": {
+     "point": null,
+     "price": -334
+    },
+    "betrivers": {
+     "point": null,
+     "price": -375
+    },
+    "draftkings": {
+     "point": null,
+     "price": -369
+    },
+    "fanduel": {
+     "point": null,
+     "price": -360
+    },
+    "kalshi": {
+     "point": null,
+     "price": -355
+    },
+    "limitless": {
+     "point": null,
+     "price": -357
+    },
+    "novig": {
+     "point": null,
+     "price": -335
+    },
+    "polymarket": {
+     "point": null,
+     "price": -335
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -335
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -355
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26NOV19PORMIL-POR"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Portland",
+   "side_label": "Portland",
+   "size_x": 1.81,
+   "start_source": "odds",
+   "start_utc": "2026-11-20T01:00:00Z",
+   "surge_books": [],
+   "teams": [
+    "Portland",
+    "Milwaukee"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-19T04:46:05Z",
    "base_depth": 46304,
    "best_price": 0.7728,
@@ -40,9 +204,9 @@
     "volume_fp": 67.78
    },
    "ex_stats_close": {
-    "open_interest_fp": 15813.949999999999,
-    "volume_24h_fp": 15854.529999999999,
-    "volume_fp": 17457.21
+    "open_interest_fp": 16242.74,
+    "volume_24h_fp": 16013.9,
+    "volume_fp": 17886.0
    },
    "ex_stats_first": {
     "open_interest_fp": 15654.580000000002,
@@ -188,7 +352,7 @@
    },
    "ex_stats_close": {
     "openInterest": 61308083.0,
-    "volume": 66338504.0
+    "volume": 66349837.0
    },
    "ex_stats_first": {
     "openInterest": 61164919.0,
@@ -1438,9 +1602,9 @@
     "volume_fp": 1468.36
    },
    "ex_stats_close": {
-    "open_interest_fp": 34727.630000000005,
-    "volume_24h_fp": 30095.379999999997,
-    "volume_fp": 43384.149999999994
+    "open_interest_fp": 34986.2,
+    "volume_24h_fp": 32894.66,
+    "volume_fp": 43662.42
    },
    "ex_stats_first": {
     "open_interest_fp": 19529.760000000002,
@@ -1944,7 +2108,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Boston",
@@ -4497,7 +4661,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Denver",
@@ -5382,9 +5546,9 @@
     "volume_fp": 10.05
    },
    "ex_stats_close": {
-    "open_interest_fp": 31170.66,
-    "volume_24h_fp": 31340.03,
-    "volume_fp": 31863.11
+    "open_interest_fp": 31265.23,
+    "volume_24h_fp": 31339.66,
+    "volume_fp": 31957.68
    },
    "ex_stats_first": {
     "open_interest_fp": 22559.61,
@@ -7013,7 +7177,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Denver",
@@ -9045,7 +9209,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [
     "Over 221.5 (-110)"
@@ -11185,9 +11349,9 @@
     "volume_fp": 495.15
    },
    "ex_stats_close": {
-    "open_interest_fp": 1303036.0699999998,
-    "volume_24h_fp": 682062.0,
-    "volume_fp": 1524043.32
+    "open_interest_fp": 1304432.36,
+    "volume_24h_fp": 685526.8899999999,
+    "volume_fp": 1525439.61
    },
    "ex_stats_first": {
     "open_interest_fp": 743658.74,
