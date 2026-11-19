@@ -1,6 +1,205 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-19T04:20:14Z",
+   "base_depth": 64187,
+   "best_price": 0.85,
+   "best_price_american": -567,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.85,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-19",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Houston",
+     "price": 0.85,
+     "this_side": 3659298
+    },
+    "novig": {
+     "new_other_side": -1408,
+     "new_this_side": 25197,
+     "other_side": 43185,
+     "other_side_all_levels": 43188,
+     "ratio": 2.0,
+     "this_side": 84824,
+     "this_side_all_levels": 89392
+    }
+   },
+   "ex_stats_alert": {
+    "openInterest": 61164919.0,
+    "volume": 66195340.0
+   },
+   "ex_stats_change": {
+    "openInterest": 0.0,
+    "volume": 0.0
+   },
+   "ex_stats_first": {
+    "openInterest": 61164919.0,
+    "volume": 66195340.0
+   },
+   "fade_price": 0.155,
+   "first_seen_utc": "2026-11-19T04:15:43Z",
+   "game": "Indianapolis Colts @ Houston Texans",
+   "game_surge_books": [],
+   "game_x": 1.48,
+   "key": "novig|{\"market_id\": \"01a1c9ea-d65a-7d30-bf13-2ea51e1ee9e6\", \"outcome_id\": \"01a1c9ea-d65a-7d30-bf13-2eb31e9f70db\"}",
+   "lead_min": 1255,
+   "league": "NFL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 25197,
+   "new_x": 0.59,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 1290448.0699999998,
+      "volume_24h_fp": 686076.9400000001,
+      "volume_fp": 1510444.2200000002
+     },
+     "game_normal": 4661700,
+     "game_x": 1.04,
+     "normal": 4286304,
+     "now": 4870408,
+     "type": "ML",
+     "x": 1.14
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 61164919.0,
+      "volume": 66195340.0
+     },
+     "game_normal": 60553,
+     "game_x": 1.48,
+     "normal": 43002,
+     "now": 89392,
+     "type": "ML",
+     "x": 2.08
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.85,
+   "price_american": -567,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.85,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -700
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -735
+    },
+    "betopenly": {
+     "point": null,
+     "price": -600
+    },
+    "betrivers": {
+     "point": null,
+     "price": -770
+    },
+    "betus": {
+     "point": null,
+     "price": -750
+    },
+    "bovada": {
+     "point": null,
+     "price": -725
+    },
+    "circasports": {
+     "point": null,
+     "price": -710
+    },
+    "draftkings": {
+     "point": null,
+     "price": -700
+    },
+    "fanatics": {
+     "point": null,
+     "price": -750
+    },
+    "fanduel": {
+     "point": null,
+     "price": -800
+    },
+    "kalshi": {
+     "point": null,
+     "price": -567
+    },
+    "limitless": {
+     "point": null,
+     "price": -614
+    },
+    "lowvig": {
+     "point": null,
+     "price": -735
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -847
+    },
+    "novig": {
+     "point": null,
+     "price": -567
+    },
+    "polymarket": {
+     "point": null,
+     "price": -567
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -545
+    },
+    "prophetx": {
+     "point": null,
+     "price": -570
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -750
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a1c9ea-d65a-7d30-bf13-2ea51e1ee9e6",
+    "outcome_id": "01a1c9ea-d65a-7d30-bf13-2eb31e9f70db"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Houston Texans",
+   "side_label": "HOU (0)",
+   "size_x": 2.08,
+   "start_source": "odds",
+   "start_utc": "2026-11-20T01:15:00Z",
+   "surge_books": [
+    "novig"
+   ],
+   "teams": [
+    "Indianapolis Colts",
+    "Houston Texans"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-19T02:55:41Z",
    "base_depth": 58719,
    "best_price": 0.62,
@@ -52,9 +251,9 @@
     "volume_fp": 0.7
    },
    "ex_stats_close": {
-    "open_interest_fp": 935.25,
+    "open_interest_fp": 961.79,
     "volume_24h_fp": 654.87,
-    "volume_fp": 950.43
+    "volume_fp": 976.97
    },
    "ex_stats_first": {
     "open_interest_fp": 839.37,
@@ -1089,9 +1288,9 @@
     "volume_fp": 1468.36
    },
    "ex_stats_close": {
-    "open_interest_fp": 30130.25,
+    "open_interest_fp": 30606.83,
     "volume_24h_fp": 27276.309999999998,
-    "volume_fp": 38230.31
+    "volume_fp": 38706.89
    },
    "ex_stats_first": {
     "open_interest_fp": 19529.760000000002,
@@ -1595,7 +1794,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Boston",
@@ -4148,7 +4347,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Denver",
@@ -6664,7 +6863,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Denver",
@@ -8696,7 +8895,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [
     "Over 221.5 (-110)"
@@ -10836,9 +11035,9 @@
     "volume_fp": 495.15
    },
    "ex_stats_close": {
-    "open_interest_fp": 1288227.56,
+    "open_interest_fp": 1290448.0699999998,
     "volume_24h_fp": 686076.9400000001,
-    "volume_fp": 1507537.9700000002
+    "volume_fp": 1510444.2200000002
    },
    "ex_stats_first": {
     "open_interest_fp": 743658.74,

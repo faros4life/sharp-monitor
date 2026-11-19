@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 18, 11:15 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 22.
+Updated Wed Nov 18, 11:20 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 23.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 18 11:20PM | NFL | Indianapolis Colts @ Houston Texans | moneyline: HOU (0) | novig | $25k | -567 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 18 9:55PM | NHL | Vancouver vs Seattle | moneyline: Seattle | kalshi | $30k | -170 |  |  | +0.0c |  | pending |
 | Nov 18 9:50PM | NBA | Phoenix vs Sacramento: Total Points | total: Over 227.5 points | kalshi | $33k | +104 |  | ✅ | +0.0c |  | pending |
 | Nov 18 9:36PM | NBA | Utah Jazz @ Los Angeles Lakers | moneyline: LAL (0) | novig | $28k | -488 | ✅ kalshi,prophetx | ✅ | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 16 9:55AM | NBA | Portland vs Minnesota: Total Points | total: Over 226.5 points | kalshi | $27k | -108 |  |  | +3.0c | yes | L |
 | Nov 16 9:20AM | NBA | Phoenix vs Denver: Total Points | total: Over 228.5 points | kalshi | $29k | -108 |  |  | +4.0c | yes | L |
 | Nov 16 9:20AM | NBA | Philadelphia vs Brooklyn: Total Points | total: Over 224.5 points | kalshi | $32k | -113 |  |  | +5.0c | yes | W |
-| Nov 16 9:20AM | NBA | Phoenix vs Denver: Spread | spread: Denver wins by over 9.5 points | kalshi | $40k | -108 | ✅ novig | ❌ | +1.0c | yes | L |
