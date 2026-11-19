@@ -1,6 +1,213 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-19T02:55:41Z",
+   "base_depth": 58719,
+   "best_price": 0.62,
+   "best_price_american": -163,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.63,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-19",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 5549,
+     "new_this_side": 30046,
+     "other_side": 36951,
+     "other_side_all_levels": 43763,
+     "ratio": 1.2,
+     "this_side": 45604,
+     "this_side_all_levels": 88867
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "SEA (0)",
+     "price": 0.62,
+     "this_side": 8404
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Seattle Kraken",
+     "price": 0.6599,
+     "this_side": 59
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 840.0699999999999,
+    "volume_24h_fp": 563.63,
+    "volume_fp": 855.25
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.7,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.7
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 839.37,
+    "volume_24h_fp": 563.63,
+    "volume_fp": 854.55
+   },
+   "fade_price": 0.38,
+   "first_seen_utc": "2026-11-19T02:50:15Z",
+   "game": "Vancouver vs Seattle",
+   "game_surge_books": [],
+   "game_x": 1.8,
+   "key": "kalshi|KXNHLGAME-26NOV19VANSEA|ml|1",
+   "lead_min": 1434,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 30046,
+   "new_x": 0.68,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 840.0699999999999,
+      "volume_24h_fp": 563.63,
+      "volume_fp": 855.25
+     },
+     "game_normal": 49399,
+     "game_x": 1.8,
+     "normal": 43995,
+     "now": 88867,
+     "type": "ML",
+     "x": 2.02
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 66901.0,
+      "volume": 66901.0
+     },
+     "game_normal": 5833,
+     "game_x": 1.61,
+     "normal": 6005,
+     "now": 9373,
+     "type": "ML",
+     "x": 1.56
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": null,
+     "game_x": null,
+     "normal": 3776,
+     "now": 69,
+     "type": "ML",
+     "x": 0.02
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.63,
+   "price_american": -170,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.63,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -185
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -170
+    },
+    "betrivers": {
+     "point": null,
+     "price": -177
+    },
+    "betus": {
+     "point": null,
+     "price": -170
+    },
+    "bovada": {
+     "point": null,
+     "price": -177
+    },
+    "circasports": {
+     "point": null,
+     "price": -165
+    },
+    "draftkings": {
+     "point": null,
+     "price": -185
+    },
+    "fanatics": {
+     "point": null,
+     "price": -180
+    },
+    "fanduel": {
+     "point": null,
+     "price": -176
+    },
+    "kalshi": {
+     "point": null,
+     "price": -170
+    },
+    "lowvig": {
+     "point": null,
+     "price": -170
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -177
+    },
+    "novig": {
+     "point": null,
+     "price": -163
+    },
+    "polymarket": {
+     "point": null,
+     "price": -163
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -170
+    },
+    "prophetx": {
+     "point": null,
+     "price": -194
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -190
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26NOV19VANSEA-SEA"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Seattle",
+   "side_label": "Seattle",
+   "size_x": 2.02,
+   "start_source": "odds",
+   "start_utc": "2026-11-20T02:50:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Vancouver",
+    "Seattle"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-19T02:50:15Z",
    "base_depth": 211388,
    "best_price": 0.4928,
@@ -38,6 +245,11 @@
     "open_interest_fp": 3334.8,
     "volume_24h_fp": 0.0,
     "volume_fp": 4512.49
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 34102.34,
+    "volume_24h_fp": 37929.63,
+    "volume_fp": 43231.97
    },
    "ex_stats_first": {
     "open_interest_fp": 25469.14,
@@ -229,8 +441,8 @@
     "volume": 71112.0
    },
    "ex_stats_close": {
-    "openInterest": 14139997.0,
-    "volume": 17248982.0
+    "openInterest": 15376503.0,
+    "volume": 18532709.0
    },
    "ex_stats_first": {
     "openInterest": 13445979.0,
@@ -287,6 +499,8 @@
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.83,
+   "price_after_15m": 0.83,
+   "price_after_15m_book": "novig",
    "price_american": -488,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.83,
@@ -390,6 +604,7 @@
    "size_x": 1.65,
    "start_source": "odds",
    "start_utc": "2026-11-19T03:00:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi"
    ],
@@ -446,9 +661,9 @@
     "volume_fp": 875.27
    },
    "ex_stats_close": {
-    "open_interest_fp": 60094.41,
-    "volume_24h_fp": 37600.4,
-    "volume_fp": 67480.27
+    "open_interest_fp": 76395.99,
+    "volume_24h_fp": 67480.27,
+    "volume_fp": 83947.79
    },
    "ex_stats_first": {
     "open_interest_fp": 23003.69,
@@ -657,9 +872,9 @@
     "volume_fp": 235.28
    },
    "ex_stats_close": {
-    "open_interest_fp": 40906.28,
-    "volume_24h_fp": 43014.95,
-    "volume_fp": 49275.6
+    "open_interest_fp": 40979.28,
+    "volume_24h_fp": 48796.56,
+    "volume_fp": 49615.89
    },
    "ex_stats_first": {
     "open_interest_fp": 19390.19,
@@ -837,8 +1052,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 2.0,
+   "close_price": 0.51,
+   "clv_cents": 3.0,
    "confirmed_after_min": 5,
    "date": "2026-11-19",
    "depth_by_book": {
@@ -863,9 +1078,9 @@
     "volume_fp": 1468.36
    },
    "ex_stats_close": {
-    "open_interest_fp": 23637.41,
-    "volume_24h_fp": 23382.97,
-    "volume_fp": 30126.59
+    "open_interest_fp": 23672.32,
+    "volume_24h_fp": 22804.49,
+    "volume_fp": 30163.68
    },
    "ex_stats_first": {
     "open_interest_fp": 19529.760000000002,
@@ -1437,6 +1652,7 @@
     "volume_fp": 23774.23
    },
    "fade_price": 0.52,
+   "fade_units": 0.86,
    "first_seen_utc": "2026-11-19T00:20:29Z",
    "game": "Chicago vs Brooklyn: Total Points",
    "game_surge_books": [
@@ -1557,14 +1773,15 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26NOV18CHIBKN-239"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
+   "settled_utc": "2026-11-19T02:55:41Z",
    "sharp_agree": [
     "Under 239.5 (-104)"
    ],
@@ -1585,7 +1802,7 @@
     "Brooklyn"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-18T23:55:38Z",
@@ -1787,7 +2004,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [
     "Orlando Magic -2.5 (-123)",
     "Orlando Magic -1.5 (-113)",
@@ -2585,7 +2802,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [
     "Orlando Magic -1.5 (-113)",
     "Orlando Magic +1.5 (-115)"
@@ -3219,7 +3436,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Cleveland Cavaliers",
@@ -3447,7 +3664,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Cleveland Cavaliers",
@@ -4183,6 +4400,7 @@
     "volume_fp": 56052.56
    },
    "fade_price": 0.51,
+   "fade_units": 0.9,
    "first_seen_utc": "2026-11-18T22:30:18Z",
    "game": "Chicago vs Brooklyn: Spread",
    "game_surge_books": [
@@ -4302,14 +4520,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBASPREAD-26NOV18CHIBKN-BKN2"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
+   "settled_utc": "2026-11-19T02:55:41Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Chicago Bulls +2.5 (-115)"
@@ -4326,7 +4545,7 @@
     "Brooklyn"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-18T22:10:15Z",
@@ -4528,7 +4747,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Chicago Bulls",
@@ -4562,8 +4781,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": 5.0,
+   "close_price": 0.56,
+   "clv_cents": 6.0,
    "confirmed_after_min": 5,
    "date": "2026-11-18",
    "depth_by_book": {
@@ -4588,9 +4807,9 @@
     "volume_fp": 38.64
    },
    "ex_stats_close": {
-    "open_interest_fp": 23294.5,
-    "volume_24h_fp": 28006.81,
-    "volume_fp": 28845.51
+    "open_interest_fp": 23475.21,
+    "volume_24h_fp": 28845.51,
+    "volume_fp": 29026.22
    },
    "ex_stats_first": {
     "open_interest_fp": 7501.65,
@@ -4778,9 +4997,9 @@
     "volume_fp": 10.05
    },
    "ex_stats_close": {
-    "open_interest_fp": 29675.07,
-    "volume_24h_fp": 29919.52,
-    "volume_fp": 30296.59
+    "open_interest_fp": 29785.3,
+    "volume_24h_fp": 29889.370000000003,
+    "volume_fp": 30406.82
    },
    "ex_stats_first": {
     "open_interest_fp": 22559.61,
@@ -5124,7 +5343,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [
     "Under 236.5 (-118)"
    ],
@@ -5204,6 +5423,7 @@
     "volume_fp": 9775.24
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-18T18:10:15Z",
    "game": "Chicago vs Brooklyn: Spread",
    "game_surge_books": [],
@@ -5322,14 +5542,15 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26NOV18CHIBKN-BKN3"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
+   "settled_utc": "2026-11-19T02:55:41Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Chicago",
@@ -5344,7 +5565,7 @@
     "Brooklyn"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.98
   },
   {
    "alerted_utc": "2026-11-18T17:50:15Z",
@@ -5755,7 +5976,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [
     "Miami Heat -12.5 (-108)"
    ],
@@ -5980,7 +6201,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [
     "Miami Heat -12.5 (-108)"
    ],
@@ -6190,7 +6411,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Montreal",
@@ -6607,7 +6828,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [
     "Miami Heat -12.5 (-108)"
    ],
@@ -6694,6 +6915,7 @@
     "volume_fp": 35874.36
    },
    "fade_price": 0.57,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-18T16:30:19Z",
    "game": "Chicago vs Brooklyn",
    "game_surge_books": [],
@@ -6828,14 +7050,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26NOV18CHIBKN-CHI"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "prophetx"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
+   "settled_utc": "2026-11-19T02:55:41Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Chicago",
@@ -6852,7 +7075,7 @@
     "Brooklyn"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.25
   },
   {
    "alerted_utc": "2026-11-18T16:10:18Z",
@@ -7039,7 +7262,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -7237,7 +7460,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [
     "Buffalo Bulls -1.5 (-112)"
@@ -7419,7 +7642,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UMass",
@@ -7601,7 +7824,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -7800,7 +8023,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -7872,9 +8095,9 @@
     "volume_fp": 17.05
    },
    "ex_stats_close": {
-    "open_interest_fp": 274139.27999999997,
-    "volume_24h_fp": 266388.95,
-    "volume_fp": 289256.57
+    "open_interest_fp": 290413.14,
+    "volume_24h_fp": 284627.0,
+    "volume_fp": 305563.33
    },
    "ex_stats_first": {
     "open_interest_fp": 35673.92,
@@ -8611,7 +8834,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [
     "Buffalo Bulls -1.5 (-112)"
    ],
@@ -8684,9 +8907,9 @@
     "volume_fp": 38.64
    },
    "ex_stats_close": {
-    "open_interest_fp": 30802.01,
-    "volume_24h_fp": 31327.01,
-    "volume_fp": 32050.68
+    "open_interest_fp": 31007.16,
+    "volume_24h_fp": 31992.44,
+    "volume_fp": 32348.54
    },
    "ex_stats_first": {
     "open_interest_fp": 18794.66,
@@ -9044,7 +9267,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Buffalo",
@@ -9338,9 +9561,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 30802.01,
-    "volume_24h_fp": 31327.01,
-    "volume_fp": 32050.68
+    "open_interest_fp": 31007.16,
+    "volume_24h_fp": 31992.44,
+    "volume_fp": 32348.54
    },
    "ex_stats_first": {
     "open_interest_fp": 970.85,
@@ -9547,9 +9770,9 @@
     "volume_fp": 157.75
    },
    "ex_stats_close": {
-    "open_interest_fp": 155406.68,
-    "volume_24h_fp": 132869.08000000002,
-    "volume_fp": 163505.19
+    "open_interest_fp": 175164.21000000002,
+    "volume_24h_fp": 154645.16999999998,
+    "volume_fp": 183914.28999999998
    },
    "ex_stats_first": {
     "open_interest_fp": 9897.99,
@@ -10101,7 +10324,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Washington Wizards",
@@ -10323,7 +10546,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Houston Rockets",
@@ -10383,9 +10606,9 @@
     "volume_fp": 575.54
    },
    "ex_stats_close": {
-    "open_interest_fp": 730937.54,
-    "volume_24h_fp": 697758.48,
-    "volume_fp": 781995.44
+    "open_interest_fp": 779337.29,
+    "volume_24h_fp": 765960.65,
+    "volume_fp": 832689.1499999999
    },
    "ex_stats_first": {
     "open_interest_fp": 27779.59,
@@ -10535,9 +10758,9 @@
     "volume_fp": 495.15
    },
    "ex_stats_close": {
-    "open_interest_fp": 1226322.19,
-    "volume_24h_fp": 645836.03,
-    "volume_fp": 1438689.88
+    "open_interest_fp": 1229247.1400000001,
+    "volume_24h_fp": 649515.4400000001,
+    "volume_fp": 1441684.81
    },
    "ex_stats_first": {
     "open_interest_fp": 743658.74,
@@ -10891,7 +11114,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -11113,6 +11336,7 @@
     "volume_fp": 176.26
    },
    "fade_price": 0.52,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-18T04:05:44Z",
    "game": "Chicago vs Brooklyn: Total Points",
    "game_surge_books": [],
@@ -11215,12 +11439,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBATOTAL-26NOV18CHIBKN-239"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 5,
+   "settle_tries": 6,
+   "settled_utc": "2026-11-19T02:55:41Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -11235,7 +11460,7 @@
     "Brooklyn"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.97
   },
   {
    "alerted_utc": "2026-11-18T04:05:44Z",
@@ -11435,7 +11660,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Boston",
@@ -11649,7 +11874,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New Jersey",
@@ -12306,7 +12531,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Detroit",
@@ -12594,7 +12819,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Toronto",
@@ -13345,7 +13570,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Central Michigan",
@@ -13735,6 +13960,7 @@
     "volume_fp": 4510.54
    },
    "fade_price": 0.43,
+   "fade_units": 1.24,
    "first_seen_utc": "2026-11-18T00:50:14Z",
    "game": "Chicago vs Brooklyn",
    "game_surge_books": [
@@ -13848,12 +14074,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26NOV18CHIBKN-BKN"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 5,
+   "settle_tries": 6,
+   "settled_utc": "2026-11-19T02:55:41Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Brooklyn",
@@ -13870,7 +14097,7 @@
     "Brooklyn"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-18T00:45:48Z",
@@ -21972,7 +22199,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Buffalo",
@@ -24633,7 +24860,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UMass",
@@ -29448,7 +29675,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
