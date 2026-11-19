@@ -1249,6 +1249,80 @@
    "units_flat": null
   },
   {
+   "alert_utc": "2026-11-19T16:20:23Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "Over 6 (-113)",
+   "book": "ProphetX",
+   "book_key": "prophetx",
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+0.5 pts",
+   "clv_conv_pts": null,
+   "clv_pin_line": null,
+   "clv_read_utc": null,
+   "clv_skipped": null,
+   "clv_source": null,
+   "clv_verified": null,
+   "confirm": "yes",
+   "confirmed_by": [
+    "Matchbook"
+   ],
+   "edge_pct": 2.1,
+   "executable_book": true,
+   "fade_book": "prophetx",
+   "fade_point": 6.0,
+   "fade_price": 109,
+   "fade_price_after_fee": 107,
+   "fade_units": null,
+   "final": null,
+   "floor_line": 6.0,
+   "game": "Minnesota Wild @ Calgary Flames",
+   "grade": "B",
+   "hr1_eligible": false,
+   "hr1_pushed": false,
+   "hr1_verified": null,
+   "hr1_verify_status": null,
+   "hr1_verify_why": null,
+   "kind": "tot",
+   "late": false,
+   "minutes_before_start": 520,
+   "point": 6.0,
+   "price": -113,
+   "price_after_fee": -115,
+   "prices_at_alert": {
+    "hardrockbet": {
+     "after_fee": 105,
+     "point": 6.5,
+     "price": 105
+    },
+    "kalshi": {
+     "after_fee": 109.1,
+     "point": 6.5,
+     "price": 117
+    },
+    "novig": {
+     "after_fee": 111,
+     "point": 6.5,
+     "price": 111
+    },
+    "prophetx": {
+     "after_fee": -117.0,
+     "point": 6.0,
+     "price": -113
+    }
+   },
+   "pricing_bettable": true,
+   "result": null,
+   "score": 63,
+   "sent_to_phone": true,
+   "sport": "NHL",
+   "start_utc": "2026-11-20T01:00:00Z",
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alert_utc": "2026-11-19T04:15:19Z",
    "beat_close": true,
    "beat_true_close": null,
@@ -1467,7 +1541,7 @@
   },
   {
    "alert_utc": "2026-11-19T13:15:20Z",
-   "beat_close": true,
+   "beat_close": false,
    "beat_true_close": null,
    "bet": "St. Bonaventure Bonnies -11.5 (-105)",
    "book": "Hard Rock",
@@ -1475,7 +1549,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+1 pts",
+   "clv": "+0 pts",
    "clv_conv_pts": null,
    "clv_pin_line": null,
    "clv_read_utc": null,
@@ -1767,7 +1841,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+1 pts",
+   "clv": "+1.5 pts",
    "clv_conv_pts": null,
    "clv_pin_line": null,
    "clv_read_utc": null,
@@ -91828,6 +91902,54 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Over 6 (-113) at ProphetX [-115 after ProphetX fee]",
+   "bet": "Over 6 (-113)",
+   "bet_result": null,
+   "book": "ProphetX",
+   "confirmed_by": [
+    "Matchbook"
+   ],
+   "edge_pct": 2.1,
+   "final": null,
+   "game": "Minnesota Wild @ Calgary Flames",
+   "grade": "B",
+   "late": false,
+   "minutes_before_start": 520,
+   "price": -113,
+   "price_after_fee": -115,
+   "pushed_to_phone": true,
+   "repeat": false,
+   "score": 63,
+   "sent_et": "2026-11-19 11:20",
+   "sport": "NHL",
+   "start_utc": "2026-11-20T01:00:00Z",
+   "why": "Pinnacle total moved 6 -> 6.5; bet only at 6 or better (confirmed by Matchbook)"
+  },
+  {
+   "alert_text": "West Virginia Mountaineers +8.5 (-110) at Hard Rock (also: ProphetX)",
+   "bet": "West Virginia Mountaineers +8.5 (-110)",
+   "bet_result": null,
+   "book": "Hard Rock",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -0.8,
+   "final": null,
+   "game": "Florida Gators @ West Virginia Mountaineers",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 190,
+   "price": -110,
+   "price_after_fee": -110,
+   "pushed_to_phone": false,
+   "repeat": true,
+   "score": 75,
+   "sent_et": "2026-11-19 11:20",
+   "sport": "NCAAB",
+   "start_utc": "2026-11-19T19:30:00Z",
+   "why": "Pinnacle moved +9 -> +8; bet only at +8.5 or better (confirmed by BetOnline)"
+  },
   {
    "alert_text": "Over 5.5 (-130) at Hard Rock (also: Kalshi)",
    "bet": "Over 5.5 (-130)",
