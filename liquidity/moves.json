@@ -1,6 +1,139 @@
 {
  "moves": [
   {
+   "alerted_utc": "2026-11-19T09:10:20Z",
+   "bar": true,
+   "best_price": 0.49,
+   "best_price_book": "novig",
+   "book": "novig",
+   "close_price": 0.49,
+   "clv_cents": 0.0,
+   "date": "2026-11-19",
+   "dir": "RAISE",
+   "ex_stats": {
+    "openInterest": 110375.0,
+    "volume": 114095.0
+   },
+   "first_play": false,
+   "game": "Portland Trail Blazers @ Milwaukee Bucks",
+   "key": "novig|{\"market_id\": \"01a1f210-adb1-7930-ab71-edfdfb596521\", \"outcome_id\": \"01a1f210-adb1-7930-ab71-ee1ac2d1960b\"}",
+   "lead_min": 950,
+   "league": "NBA",
+   "league_x": 0.54,
+   "line": -10.5,
+   "market": "spread",
+   "normal_4h": 395,
+   "now": 2177,
+   "other_side_now": 1881,
+   "paper_only": true,
+   "price": 0.49,
+   "price_american": 104,
+   "ref": {
+    "market_id": "01a1f210-adb1-7930-ab71-edfdfb596521",
+    "outcome_id": "01a1f210-adb1-7930-ab71-ee1ac2d1960b"
+   },
+   "result": null,
+   "side": "Portland Trail Blazers",
+   "side_label": "POR -10.5 (10.5)",
+   "side_raw": 0,
+   "start_utc": "2026-11-20T01:00:00Z",
+   "teams": [
+    "Portland Trail Blazers",
+    "Milwaukee Bucks"
+   ],
+   "units_flat": null,
+   "x": 5.51
+  },
+  {
+   "alerted_utc": "2026-11-19T09:10:20Z",
+   "bar": false,
+   "best_price": 0.515,
+   "best_price_book": "novig",
+   "book": "novig",
+   "close_price": 0.515,
+   "clv_cents": 0.0,
+   "date": "2026-11-19",
+   "dir": "RAISE",
+   "ex_stats": {
+    "openInterest": 110375.0,
+    "volume": 114095.0
+   },
+   "first_play": false,
+   "game": "Portland Trail Blazers @ Milwaukee Bucks",
+   "key": "novig|{\"market_id\": \"01a1f210-adb1-7930-ab71-edfdfb596521\", \"outcome_id\": \"01a1f210-adb1-7930-ab71-ee0c50e4ee02\"}",
+   "lead_min": 950,
+   "league": "NBA",
+   "league_x": 0.47,
+   "line": 10.5,
+   "market": "spread",
+   "normal_4h": 800,
+   "now": 1881,
+   "other_side_now": 2177,
+   "paper_only": true,
+   "price": 0.515,
+   "price_american": -106,
+   "ref": {
+    "market_id": "01a1f210-adb1-7930-ab71-edfdfb596521",
+    "outcome_id": "01a1f210-adb1-7930-ab71-ee0c50e4ee02"
+   },
+   "result": null,
+   "side": "Milwaukee Bucks",
+   "side_label": "MIL +10.5 (10.5)",
+   "side_raw": 1,
+   "start_utc": "2026-11-20T01:00:00Z",
+   "teams": [
+    "Portland Trail Blazers",
+    "Milwaukee Bucks"
+   ],
+   "units_flat": null,
+   "x": 2.35
+  },
+  {
+   "alerted_utc": "2026-11-19T09:10:20Z",
+   "bar": false,
+   "best_price": 0.5311,
+   "best_price_book": "prophetx",
+   "book": "kalshi",
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "date": "2026-11-19",
+   "dir": "DROP",
+   "ex_stats": {
+    "open_interest_fp": 155975.88,
+    "volume_24h_fp": 36497.86,
+    "volume_fp": 160215.73
+   },
+   "first_play": false,
+   "game": "Indianapolis vs Houston: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLTOTAL-26NOV19INDHOU-45\"}",
+   "lead_min": 965,
+   "league": "NFL",
+   "league_x": 0.46,
+   "line": 44.5,
+   "market": "total",
+   "normal_4h": 294845,
+   "now": 131849,
+   "other_side_now": 171762,
+   "paper_only": true,
+   "price": 0.52,
+   "price_american": -108,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNFLTOTAL-26NOV19INDHOU-45"
+   },
+   "result": null,
+   "side": "UNDER",
+   "side_label": "NOT Over 44.5 points",
+   "side_raw": "UNDER",
+   "start_utc": "2026-11-20T01:15:00Z",
+   "teams": [
+    "Indianapolis",
+    "Houston"
+   ],
+   "units_flat": null,
+   "x": 0.45
+  },
+  {
    "alerted_utc": "2026-11-19T09:05:47Z",
    "bar": false,
    "best_price": 0.45,
@@ -11,6 +144,11 @@
    "date": "2026-11-19",
    "dir": "DROP",
    "ex_stats": {
+    "open_interest_fp": 7328.38,
+    "volume_24h_fp": 3832.0099999999998,
+    "volume_fp": 7514.13
+   },
+   "ex_stats_close": {
     "open_interest_fp": 7328.38,
     "volume_24h_fp": 3832.0099999999998,
     "volume_fp": 7514.13
@@ -188,8 +326,8 @@
    "best_price": 0.5026,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5392,
-   "clv_cents": 4.2,
+   "close_price": 0.537,
+   "clv_cents": 4.0,
    "date": "2026-11-19",
    "dir": "DROP",
    "ex_stats": null,
@@ -423,8 +561,8 @@
    "best_price": 0.5,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5074,
-   "clv_cents": -1.9,
+   "close_price": 0.5025,
+   "clv_cents": -2.4,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": null,
@@ -515,8 +653,8 @@
    "best_price": 0.495,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5536,
-   "clv_cents": 5.1,
+   "close_price": 0.5516,
+   "clv_cents": 4.9,
    "date": "2026-11-19",
    "dir": "DROP",
    "ex_stats": null,
@@ -612,8 +750,8 @@
    "best_price": 0.5,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.495,
-   "clv_cents": -0.5,
+   "close_price": 0.5,
+   "clv_cents": 0.0,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": {
@@ -769,8 +907,8 @@
    "best_price": 0.78,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.8113,
-   "clv_cents": 1.8,
+   "close_price": 0.8095,
+   "clv_cents": 1.6,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": null,
@@ -1829,8 +1967,8 @@
    "best_price": 0.52,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5327,
-   "clv_cents": 0.9,
+   "close_price": 0.5349,
+   "clv_cents": 1.1,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": null,
@@ -1875,8 +2013,8 @@
    "best_price": 0.49,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.4854,
-   "clv_cents": -1.2,
+   "close_price": 0.4717,
+   "clv_cents": -2.6,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": null,
@@ -2208,8 +2346,8 @@
    "best_price": 0.5219,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5215,
-   "clv_cents": 0.5,
+   "close_price": 0.5192,
+   "clv_cents": 0.2,
    "date": "2026-11-20",
    "dir": "DROP",
    "ex_stats": null,
@@ -4265,8 +4403,8 @@
    "best_price": 0.23,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.2041,
-   "clv_cents": -2.8,
+   "close_price": 0.2083,
+   "clv_cents": -2.4,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": null,
@@ -5743,8 +5881,8 @@
    "best_price": 0.775,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.805,
-   "clv_cents": 3.0,
+   "close_price": 0.8,
+   "clv_cents": 2.5,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": {
@@ -6049,8 +6187,8 @@
    "best_price": 0.55,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.555,
-   "clv_cents": 0.5,
+   "close_price": 0.55,
+   "clv_cents": 0.0,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": {
@@ -6202,8 +6340,8 @@
    "best_price": 0.43,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.4405,
-   "clv_cents": 0.4,
+   "close_price": 0.4386,
+   "clv_cents": 0.2,
    "date": "2026-11-19",
    "dir": "DROP",
    "ex_stats": null,
@@ -6646,8 +6784,8 @@
    "best_price": 0.5,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5098,
-   "clv_cents": -3.6,
+   "close_price": 0.5074,
+   "clv_cents": -3.8,
    "date": "2026-11-19",
    "dir": "DROP",
    "ex_stats": null,
@@ -6988,8 +7126,8 @@
    "best_price": 0.47,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.4739,
-   "clv_cents": -2.4,
+   "close_price": 0.4717,
+   "clv_cents": -2.6,
    "date": "2026-11-19",
    "dir": "DROP",
    "ex_stats": null,
@@ -7310,8 +7448,8 @@
    "best_price": 0.5355,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5392,
-   "clv_cents": 0.9,
+   "close_price": 0.537,
+   "clv_cents": 0.7,
    "date": "2026-11-19",
    "dir": "DROP",
    "ex_stats": null,
@@ -7356,8 +7494,8 @@
    "best_price": 0.4881,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.4831,
-   "clv_cents": 0.0,
+   "close_price": 0.4808,
+   "clv_cents": -0.2,
    "date": "2026-11-19",
    "dir": "DROP",
    "ex_stats": null,
@@ -7402,8 +7540,8 @@
    "best_price": 0.535,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5455,
-   "clv_cents": -2.0,
+   "close_price": 0.5434,
+   "clv_cents": -2.2,
    "date": "2026-11-19",
    "dir": "DROP",
    "ex_stats": null,
@@ -8280,8 +8418,8 @@
    "best_price": 0.51,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.495,
-   "clv_cents": -1.0,
+   "close_price": 0.4926,
+   "clv_cents": -1.2,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": null,
@@ -9009,8 +9147,8 @@
    "best_price": 0.525,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5455,
-   "clv_cents": 1.3,
+   "close_price": 0.5434,
+   "clv_cents": 1.1,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": null,
@@ -9958,8 +10096,8 @@
    "best_price": 0.47,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.4831,
-   "clv_cents": 0.0,
+   "close_price": 0.4808,
+   "clv_cents": -0.2,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": null,
@@ -10261,7 +10399,7 @@
    },
    "ex_stats_close": {
     "openInterest": 491074.0,
-    "volume": 552450.0
+    "volume": 552673.0
    },
    "first_play": false,
    "game": "Anaheim Ducks @ Colorado Avalanche",
@@ -10556,8 +10694,8 @@
    "best_price": 0.505,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5122,
-   "clv_cents": 0.5,
+   "close_price": 0.5098,
+   "clv_cents": 0.2,
    "date": "2026-11-19",
    "dir": "DROP",
    "ex_stats": null,
@@ -11349,8 +11487,8 @@
    "best_price": 0.5,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5122,
-   "clv_cents": 0.5,
+   "close_price": 0.5098,
+   "clv_cents": 0.2,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": null,
@@ -11453,8 +11591,8 @@
     "volume": 1783969.0
    },
    "ex_stats_close": {
-    "openInterest": 9267556.0,
-    "volume": 9955808.0
+    "openInterest": 9267952.0,
+    "volume": 9956204.0
    },
    "first_play": false,
    "game": "Indianapolis Colts @ Houston Texans",
@@ -11504,8 +11642,8 @@
     "volume": 1783969.0
    },
    "ex_stats_close": {
-    "openInterest": 9267556.0,
-    "volume": 9955808.0
+    "openInterest": 9267952.0,
+    "volume": 9956204.0
    },
    "first_play": true,
    "game": "Indianapolis Colts @ Houston Texans",
@@ -11952,8 +12090,8 @@
    "best_price": 0.465,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.455,
-   "clv_cents": -1.0,
+   "close_price": 0.46,
+   "clv_cents": -0.5,
    "date": "2026-11-19",
    "dir": "RAISE",
    "ex_stats": {
@@ -12523,7 +12661,7 @@
    },
    "ex_stats_close": {
     "openInterest": 491074.0,
-    "volume": 552450.0
+    "volume": 552673.0
    },
    "first_play": false,
    "game": "Anaheim Ducks @ Colorado Avalanche",
@@ -12574,7 +12712,7 @@
    },
    "ex_stats_close": {
     "openInterest": 491074.0,
-    "volume": 552450.0
+    "volume": 552673.0
    },
    "first_play": false,
    "game": "Anaheim Ducks @ Colorado Avalanche",
@@ -13434,8 +13572,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 781.0,
-    "volume": 781.0
+    "openInterest": 12718.0,
+    "volume": 12718.0
    },
    "first_play": false,
    "game": "Philadelphia Flyers @ Ottawa Senators",
@@ -13842,8 +13980,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 781.0,
-    "volume": 781.0
+    "openInterest": 12718.0,
+    "volume": 12718.0
    },
    "first_play": false,
    "game": "Philadelphia Flyers @ Ottawa Senators",
@@ -14576,8 +14714,8 @@
     "volume": 10415.0
    },
    "ex_stats_close": {
-    "openInterest": 200541.0,
-    "volume": 204581.0
+    "openInterest": 200796.0,
+    "volume": 204836.0
    },
    "first_play": false,
    "game": "St. Louis Blues @ Pittsburgh Penguins",
@@ -14627,8 +14765,8 @@
     "volume": 10415.0
    },
    "ex_stats_close": {
-    "openInterest": 200541.0,
-    "volume": 204581.0
+    "openInterest": 200796.0,
+    "volume": 204836.0
    },
    "first_play": false,
    "game": "St. Louis Blues @ Pittsburgh Penguins",
