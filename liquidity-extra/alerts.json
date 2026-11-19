@@ -1,6 +1,176 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-19T01:50:29Z",
+   "base_depth": 115160,
+   "best_price": 0.5375,
+   "best_price_american": -116,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-18",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 7142,
+     "new_this_side": 35869,
+     "other_side": 71830,
+     "other_side_all_levels": 171413,
+     "ratio": 1.2,
+     "this_side": 89194,
+     "this_side_all_levels": 188419
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 254710.33,
+    "volume_24h_fp": 295924.72,
+    "volume_fp": 327150.98
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 22100.24,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 27563.12
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 232610.09,
+    "volume_24h_fp": 295924.72,
+    "volume_fp": 299587.86
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-19T01:40:22Z",
+   "game": "UConn vs Arizona: Spread",
+   "game_surge_books": [],
+   "game_x": 1.59,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAMBSPREAD-26NOV18CONNARIZ-ARIZ4\"}",
+   "lead_min": 15,
+   "league": "NCAAB",
+   "line": 3.5,
+   "market": "spread",
+   "new_money": 35869,
+   "new_x": 1.27,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 254710.33,
+      "volume_24h_fp": 295924.72,
+      "volume_fp": 327150.98
+     },
+     "game_normal": 118475,
+     "game_x": 1.59,
+     "normal": 28317,
+     "now": 188419,
+     "type": "SPREAD",
+     "x": 6.65
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 2.5,
+     "price": -102
+    },
+    "betonlineag": {
+     "point": 2.5,
+     "price": -107
+    },
+    "betopenly": {
+     "point": 3.5,
+     "price": -103
+    },
+    "betrivers": {
+     "point": 3.5,
+     "price": -109
+    },
+    "betus": {
+     "point": 3.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 3.5,
+     "price": -115
+    },
+    "circasports": {
+     "point": 3.0,
+     "price": -120
+    },
+    "draftkings": {
+     "point": 3.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": 3.5,
+     "price": -115
+    },
+    "fanduel": {
+     "point": 3.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 3.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 3.0,
+     "price": -101
+    },
+    "novig": {
+     "point": 3.5,
+     "price": -106
+    },
+    "polymarket": {
+     "point": 25.5,
+     "price": -99900
+    },
+    "prophetx": {
+     "point": 3.5,
+     "price": -105
+    },
+    "williamhill_us": {
+     "point": 3.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAMBSPREAD-26NOV18CONNARIZ-ARIZ4"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UConn",
+   "side_label": "NOT Arizona wins by over 3.5 points",
+   "size_x": 6.65,
+   "start_source": "odds",
+   "start_utc": "2026-11-19T02:05:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "UConn",
+    "Arizona"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-18T23:40:21Z",
    "base_depth": 134565,
    "best_price": 0.675,
@@ -782,7 +952,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Eastern Michigan",
@@ -3662,9 +3832,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 9409.89,
+    "open_interest_fp": 9663.69,
     "volume_24h_fp": 9339.22,
-    "volume_fp": 9556.65
+    "volume_fp": 9810.45
    },
    "ex_stats_first": {
     "open_interest_fp": 1338.76,
@@ -4219,9 +4389,9 @@
     "volume_fp": 47.4
    },
    "ex_stats_close": {
-    "open_interest_fp": 451773.26,
+    "open_interest_fp": 505525.57,
     "volume_24h_fp": 436428.92000000004,
-    "volume_fp": 462505.66000000003
+    "volume_fp": 516309.13
    },
    "ex_stats_first": {
     "open_interest_fp": 28121.41,
@@ -4393,9 +4563,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 9111.93,
+    "open_interest_fp": 9768.02,
     "volume_24h_fp": 9063.52,
-    "volume_fp": 9146.52
+    "volume_fp": 9802.61
    },
    "ex_stats_first": {
     "open_interest_fp": 93.55000000000001,
@@ -5202,7 +5372,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Samford",

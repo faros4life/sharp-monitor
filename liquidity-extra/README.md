@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 18, 8:40 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 25.
+Updated Wed Nov 18, 8:50 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 26.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 18 8:50PM | NCAAB | UConn vs Arizona: Spread | spread: NOT Arizona wins by over 3.5 points | kalshi | $36k | -108 |  |  | +0.0c |  | pending |
 | Nov 18 6:40PM | NCAAB | Howard vs Duquesne | moneyline: Duquesne | kalshi | $29k | -213 | ✅ novig |  | -1.0c |  | pending |
 | Nov 18 5:50PM | NCAAB | Kansas vs West Virginia: Spread | spread: NOT Kansas wins by over 8.5 points | kalshi | $58k | -122 |  | ✅ | +2.0c | yes | pending |
 | Nov 18 4:50PM | NCAAB | Vermont vs Yale | moneyline: Yale | kalshi | $71k | -285 | ✅ novig | ✅ | +2.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 12 10:02AM | TENNIS | Musetti vs Humbert | moneyline: Musetti | kalshi | $37k | -186 | ✅ novig |  | -1.0c |  | W |
 | Nov 12 1:31AM | NCAAB | Western Michigan vs Purdue Fort Wayne | moneyline: Western Michigan | kalshi | $27k | -144 |  |  | -5.0c | yes | W |
 | Nov 12 1:31AM | NCAAB | West Florida vs Alabama A&M | moneyline: Alabama A&M | kalshi | $51k | -300 |  |  | -11.0c | yes | W |
-| Nov 12 1:31AM | NCAAB | UC Riverside vs San Jose St. | moneyline: San Jose St. | kalshi | $43k | -285 |  |  | +3.0c | yes | L |
