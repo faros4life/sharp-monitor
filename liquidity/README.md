@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 19, 5:15 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 16.
+Updated Thu Nov 19, 5:20 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 17.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 19 5:20AM | NCAAF | Clemson vs Duke | moneyline: Duke | kalshi | $103k | -488 | ✅ novig |  | +0.0c |  | pending |
 | Nov 19 5:10AM | NHL | Montreal vs Carolina | moneyline: Carolina | kalshi | $32k | -245 |  |  | +0.0c |  | pending |
 | Nov 19 5:05AM | NCAAF | New Mexico vs Wyoming | moneyline: New Mexico | kalshi | $148k | -270 |  |  | +0.0c |  | pending |
 | Nov 19 4:00AM | NBA | Portland Trail Blazers @ Milwaukee Bucks | moneyline: POR (0) | novig | $31k | -400 |  |  | -0.5c | yes | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 16 12:50PM | NBA | Golden State vs New Orleans: Spread | spread: Golden State wins by over 3.5 points | kalshi | $36k | -100 |  | ✅ | +0.0c | yes | L |
 | Nov 16 12:30PM | NBA | Philadelphia vs Brooklyn: Total Points | total: Over 226.5 points | kalshi | $28k | +104 |  | ✅ | +6.0c | yes | W |
 | Nov 16 12:20PM | NFL | Los Angeles Chargers @ Baltimore Ravens | spread: LAC +4.5 (-4.5) | novig | $49k | +102 |  |  | +0.0c |  | W |
-| Nov 16 12:15PM | NBA | Houston vs Miami: Spread | spread: Houston wins by over 2.5 points | kalshi | $37k | -108 |  | ✅ | -6.0c | yes | L |
