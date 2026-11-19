@@ -171,8 +171,16 @@ for L in B["B_lanes"]["lanes"]:
         if _okp:
             maxwin += _w
             if unit and tp > _w + 0.01:      # this ONE selection paid more than it could
+                # Nov 19 (Peter): "Verify those two selections against actual fills." The selection
+                # totals alone cannot say WHICH fill is wrong, so each member fill is printed with
+                # its own stake, payout and profit. Units only - no currency, this log is public.
+                legs = [(round((x.get("stake") or 0) / unit, 3),
+                         round((x.get("to_pay") or 0) / unit, 3),
+                         round((x.get("profit") or 0) / unit, 3),
+                         str(x.get("result") or "?"),
+                         str(x.get("book") or "?")) for x in ss]
                 over.append((k, round(stake / unit, 2), round(_w / unit, 2), round(tp / unit, 2),
-                             "/".join(sorted(res))))
+                             "/".join(sorted(res)), len(ss), legs))
         else:
             pay_known = False
     print(f"     {L['name']}: confirmed selections {nconf}, settled {nset}, open/unsettled {nopen}, "
@@ -186,9 +194,12 @@ for L in B["B_lanes"]["lanes"]:
            f"units {u}, risked {k_}, ceiling {round(_ceil_u, 2)}")
     elif nset:
         print(f"     {L['name']}: payout ceiling NOT CHECKED - a settled fill carries no to_pay")
-    for _k, _st_u, _c_u, _got_u, _res in over:
+    for _k, _st_u, _c_u, _got_u, _res, _n, _legs in over:
         print(f"     {L['name']}: OVER ITS OWN PAYOUT - {_k} | staked {_st_u}u, could pay {_c_u}u, "
-              f"realised {_got_u}u, result {_res}")
+              f"realised {_got_u}u, result {_res}, fills {_n}")
+        for _i, (_s_u, _p_u, _pr_u, _r, _bk) in enumerate(_legs, 1):
+            print(f"         fill {_i}/{_n} [{_bk}] stake {_s_u}u, to_pay {_p_u}u "
+                  f"(max win {round(max(_p_u - _s_u, 0), 3)}u), profit {_pr_u}u, result {_r}")
     ck(f"{L['name']}: dashboard confirmed-fill count matches",
        cum.get("fin_n") in (nconf, None) or cum.get("fin_n") == nconf, f"{cum.get('fin_n')} vs {nconf}")
     if nbad == 0 and nset and unit and stk:
