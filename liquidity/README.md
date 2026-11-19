@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 19, 2:25 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 13.
+Updated Thu Nov 19, 2:30 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 13.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -11,7 +11,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 19 1:30AM | NCAAF | Rice vs Temple | moneyline: Temple | kalshi | $53k | -133 |  |  | +0.0c |  | pending |
-| Nov 19 1:30AM | NBA | New York vs Minnesota | moneyline: Minnesota | kalshi | $90k | +108 |  |  | +0.0c |  | pending |
+| Nov 19 1:30AM | NBA | New York vs Minnesota | moneyline: Minnesota | kalshi | $90k | +108 |  |  | +1.0c |  | pending |
 | Nov 18 11:56PM | NBA | Portland vs Milwaukee | moneyline: Portland | kalshi | $249k | -355 |  |  | +0.0c |  | pending |
 | Nov 18 11:46PM | NBA | Golden State vs Memphis | moneyline: Memphis | kalshi | $71k | -317 |  |  | -1.0c |  | pending |
 | Nov 18 11:20PM | NFL | Indianapolis Colts @ Houston Texans | moneyline: HOU (0) | novig | $25k | -567 | ✅ kalshi |  | +0.0c |  | pending |
