@@ -1015,47 +1015,72 @@ def read_manual_and_bot():
     # on. Requiring it on EVERY note means this path engages only once the mirror actually carries
     # it - it sequences itself, and a missing date sends the run back to Gmail rather than quietly
     # dropping the field.
+    # Nov 19 (Peter): "Make the private store the sole source for the board's manual notes. Remove
+    # the Gmail fallback from the board's production path." There is no Gmail path here any more.
+    #
+    # What was wrong was not the mirror lying. registry.MANUAL_DAYS is 3 - the window that bounds
+    # what the EXECUTOR applies to MANUAL_HELD, where it gates live bets - and this asked that
+    # three-day store for ten days of notes. With no manual notes sent in three days the store
+    # answered, truthfully, with none; this read that as "unusable" and fell back to an IMAP scan
+    # that took 474s of the step's 540s budget. bets-board was killed at the 9-minute timeout on
+    # 24 of its last 25 runs, skipping Build the board and the frozen call log every time.
+    #
+    # The executor now also mirrors the BOARD's own window (registry.MANUAL_BOARD_DAYS) in the same
+    # pass, fail-closed: any gap invalidates the claim rather than asserting one. So the question
+    # here is only whether that snapshot is readable and claims the window.
+    #
+    # An EMPTY but claimed window is a real answer meaning "no manual notes in these ten days", and
+    # is used as such - manual_board_notes() returns None, never [], when the store cannot be read,
+    # so the two are distinguishable. Unreadable or unclaimed is STALE: rows are not invented, and
+    # the absence is never reported as zero bets.
     try:
         import registry           # same local-import style bot_keys() uses
-        # Both halves must come from the store, or neither: bot_keys() falls back to an IMAP scan
-        # when the store has no rows, and it would be handed M=None here. Checking rows() first
-        # means the call below is guaranteed to return from the store without touching Gmail.
-        # Nov 19: this used to print one "store not usable (no claim, empty, or a note without its
-        # sent date)" for four different causes with four different remedies, so when the step
-        # started timing out again there was no way to tell which had regressed - exactly the
-        # merged-counter trap. Each condition now names itself. The control flow is unchanged:
-        # any one of them still falls back to Gmail.
         _why = None
         if not registry.enabled():
             _why = "registry disabled"
-        elif not registry.manual_complete():
-            _why = "the store does not claim the window (manual_complete False)"
-        elif not (registry.rows() or None):
-            _why = "the store has no ledger rows"
-        if _why is None:
-            _st = registry.manual_notes()
+        elif not registry.manual_board_complete():
+            _why = (f"the store does not claim the {registry.MANUAL_BOARD_DAYS}d board window "
+                    f"(manual_board_complete False)")
+        else:
+            _st = registry.manual_board_notes()
             if _st is None:
-                _why = "manual_notes() returned None"
-            elif not _st:
-                _why = "manual_notes() returned 0 notes"
+                _why = "manual_board_notes() returned None (store unreadable)"
             else:
                 _undated = sum(1 for n in _st if not str((n or {}).get("_sent") or ""))
                 if _undated:
-                    _why = (f"{_undated} of {len(_st)} note(s) carry no _sent date - the mirror "
-                            f"has not re-snapshotted them yet")
+                    _why = f"{_undated} of {len(_st)} note(s) carry no _sent date"
         if _why is None:
             man = [_row(n, n.get("_sent")) for n in _st]
-            keys = bot_keys(None, days=2)   # store-first; rows() above proves it needs no IMAP
+            keys = bot_keys(None, days=2)   # store-first; no IMAP
             IMAP_T["manual (private store)"] = 0
-            print(f"manual notes: {len(man)} row(s) from the private store - no Gmail scan", flush=True)
+            print(f"manual notes: {len(man)} row(s) from the private store over "
+                  f"{registry.MANUAL_BOARD_DAYS}d - no Gmail", flush=True)
             LOG["manual"] = f"ok {len(man)} (store)"
+            LOG["manual_source"] = "COMPLETE (store)"
             LOG["bot_keys"] = f"ok {len(keys)}"
             return man, keys
-        print(f"manual notes: store not usable - {_why} - reading Gmail (~8 min)", flush=True)
-        LOG["manual_store_miss"] = _why
     except Exception as _e:
-        print(f"manual notes: store read failed ({type(_e).__name__}) - reading Gmail", flush=True)
+        _why = f"store read raised ({type(_e).__name__})"
 
+    # No fallback. The board reports the source as unusable and carries on, so Build the board and
+    # the frozen call log still run - a missing source must not cost the whole job, and must not be
+    # reported as "no manual bets".
+    try:
+        keys = bot_keys(None, days=2)
+    except Exception:
+        keys = set()
+    IMAP_T["manual (private store)"] = 0
+    print(f"manual notes: SOURCE UNAVAILABLE - {_why}. No rows are shown for this source; they are "
+          f"UNREAD, not absent. No Gmail read is attempted.", flush=True)
+    LOG["manual"] = f"STALE 0 (store unusable: {_why})"
+    LOG["manual_source"] = "UNAVAILABLE"
+    LOG["bot_keys"] = f"ok {len(keys)}"
+    return [], keys
+
+
+def _retired_gmail_manual_scan():
+    """Retired Nov 19. Kept only so the IMAP constants below still have a referent in history;
+    nothing calls this, and the board has no Gmail path."""
     t0 = _t.time()
     M = ex.imap_open()
     IMAP_T["login+select"] = round(_t.time() - t0)

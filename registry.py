@@ -544,6 +544,71 @@ def put_manual(notes):
     return _commit(merge)
 
 
+# Nov 19 (Peter): the BOARD's window, which is not the executor's. MANUAL_DAYS bounds what
+# read_manual() applies to MANUAL_HELD and must not change - it decides which manual positions
+# gate a live bet. tracker_build needs ten days, asked a three-day store for it, got a truthful
+# empty answer for days 0-3, read that as "store unusable" and fell back to an eight-minute Gmail
+# scan every run. So the board gets its own snapshot over its own window, written by the same
+# pass, with its own completeness claim. Nothing here is read by the executor.
+MANUAL_BOARD_DAYS = 10
+
+
+def put_manual_board(notes):
+    """Whole-window snapshot for the board, replacing what was stored - same rule and the same
+    reason as put_manual(): Peter can correct or delete a note, and an additive mirror would keep
+    a deleted one alive. Order preserved."""
+    keep = [n for n in (notes or []) if isinstance(n, dict)]
+
+    def merge(d):
+        d["manual_board"] = keep
+    return _commit(merge)
+
+
+def manual_board_notes():
+    """The board's mirrored notes. None - never [] - when the store cannot be read, so the caller
+    can tell "unreadable" from "genuinely no notes in the window"."""
+    d = load()
+    return None if d is None else list(d.get("manual_board") or [])
+
+
+def set_manual_board_complete():
+    """Claim the board window as fully read, as of now."""
+    def merge(d):
+        meta = d.setdefault("meta", {})
+        meta["man_board_complete_through"] = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+        meta["man_board_complete_at"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    return _commit(merge)
+
+
+def invalidate_manual_board():
+    """Drop the claim. A partial window proves nothing, so it must not look complete."""
+    def merge(d):
+        meta = d.setdefault("meta", {})
+        meta.pop("man_board_complete_through", None)
+        meta.pop("man_board_complete_at", None)
+    return _commit(merge)
+
+
+def manual_board_complete(now=None):
+    """Same two-part rule as manual_complete(), tested against MANUAL_BOARD_DAYS."""
+    d = load()
+    if d is None:
+        return False
+    meta = d.get("meta") or {}
+    cut = (datetime.now(timezone.utc) - timedelta(days=MANUAL_BOARD_DAYS)).strftime("%Y-%m-%d")
+    if str(meta.get("man_board_complete_through") or "") < cut:
+        return False
+    stamp = str(meta.get("man_board_complete_at") or "")
+    if not stamp:
+        return False
+    try:
+        at = datetime.fromisoformat(stamp.replace("Z", "+00:00"))
+    except Exception:
+        return False
+    age = ((now or datetime.now(timezone.utc)) - at).total_seconds()
+    return 0 <= age <= FRESH_MIN * 60
+
+
 def manual_complete(now=None):
     """Same two-part rule as is_complete() and tokens_complete(), tested against MANUAL_DAYS: the
     snapshot covers the manual window AND the claim was refreshed inside FRESH_MIN. One failed

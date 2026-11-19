@@ -694,6 +694,86 @@ def _apply_manual(d, held):
         held.setdefault(ok_, "conflict")
 
 
+def _mirror_manual_board(M):
+    """Mirror the BOARD's wider manual window into the private store. Live accounting untouched.
+
+    Nov 19 (Peter: "Make the private store the sole source for the board's manual notes. Remove
+    the Gmail fallback from the board's production path.").
+
+    WHY A SEPARATE PASS AND NOT A WIDER MANUAL_DAYS. MANUAL_DAYS bounds what read_manual() applies
+    to MANUAL_HELD, and MANUAL_HELD gates live bets: widening it would change which manual
+    positions block a play. That is a live-money behaviour change and this is not the task for it.
+    So read_manual() above is untouched - same window, same notes, same MANUAL_HELD - and this
+    does its own SEARCH over the board's window purely to write the snapshot the board reads.
+
+    tracker_build asked a three-day store for a ten-day answer, got a truthful empty result and
+    fell back to an eight-minute Gmail scan on every bets-board run, which killed the job at the
+    nine-minute timeout 24 times in 25.
+
+    Fail-closed, exactly as _mirror_manual does: any gap at all - a failed SEARCH, a failed FETCH,
+    a note that did not parse - invalidates the claim instead of asserting one. An empty window is
+    NOT a gap; it is a complete window that happens to hold nothing, and the board is entitled to
+    know that rather than re-reading Gmail to discover it.
+
+    Counts only in the log. Never raises: the board degrades to STALE, it does not break."""
+    if not registry.enabled():
+        return
+    try:
+        since = (datetime.now(timezone.utc)
+                 - timedelta(days=registry.MANUAL_BOARD_DAYS)).strftime("%d-%b-%Y")
+        typ, data = M.uid("SEARCH", None, "SUBJECT", '"Bets manual"', "SINCE", since)
+        if typ != "OK":
+            registry.invalidate_manual_board()
+            LOG.append("manual board mirror: SEARCH failed, claim invalidated")
+            return
+        uids, notes, partial = (data[0].split() if data and data[0] else []), [], False
+        for uid in uids:
+            typ, data = M.uid("FETCH", uid, "(RFC822)")
+            if typ != "OK" or not data or not data[0]:
+                partial = True
+                continue
+            _msg = email.message_from_bytes(data[0][1])
+            subj = str(email.header.make_header(email.header.decode_header(_msg.get("Subject") or "")))
+            if not subj.startswith("Bets manual"):
+                continue           # IMAP SUBJECT is a substring match: confirm the real prefix
+            try:
+                _sent_iso = email.utils.parsedate_to_datetime(_msg.get("Date")).astimezone(
+                    timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+            except Exception:
+                _sent_iso = ""
+            for line in body_text(data[0][1]).splitlines():
+                m = re.match(r"\s*MANUAL:\s*(\{.*\})\s*$", line)
+                if not m:
+                    continue
+                try:
+                    d = json.loads(m.group(1))
+                except Exception:
+                    partial = True   # a note that did not parse is a note not accounted for
+                    continue
+                # The board uses _sent as the row's `placed` date, which bounds which game a bet
+                # can be on. A note without it must not be presented as a complete row.
+                if not _sent_iso:
+                    partial = True
+                    continue
+                notes.append(dict(d, _sent=_sent_iso))
+        if partial:
+            registry.invalidate_manual_board()
+            LOG.append(f"manual board mirror: window partial, claim invalidated ({len(notes)} parsed)")
+            return
+        if not registry.put_manual_board(notes):
+            registry.invalidate_manual_board()
+            LOG.append("manual board mirror: write failed, claim invalidated")
+            return
+        registry.set_manual_board_complete()
+        LOG.append(f"manual board mirror: {len(notes)} note(s) over {registry.MANUAL_BOARD_DAYS}d, complete")
+    except Exception as ex:
+        try:
+            registry.invalidate_manual_board()
+        except Exception:
+            pass
+        LOG.append(f"manual board mirror: failed ({type(ex).__name__}), claim invalidated")
+
+
 def _mirror_manual(notes, partial):
     """Phase 1 (Nov 12, Peter): mirror the manual window into the private store and SHADOW-COMPARE.
 
@@ -809,6 +889,7 @@ def read_manual(M):
             notes.append(d)
             _apply_manual(d, MANUAL_HELD)
     _mirror_manual(notes, partial)
+    _mirror_manual_board(M)
     # Nov 12 (Peter): the caller must be able to tell a fully-read window from a gap. `partial` is
     # already the honest answer - a failed SEARCH, a failed FETCH or a note that did not parse - and
     # it was being thrown away, which is how an unreadable window became "no manual holds".
