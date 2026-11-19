@@ -830,6 +830,14 @@ def read_novig():
 
 
 IMAP_CACHE = {"v": None, "b": {}, "m": {}}   # Nov 2: parsed emails by Gmail UID, kept in the encrypted state (fetch each once)
+# Nov 19 (Peter): "Put a strict time bound on the Gmail fallback. It must never consume the entire
+# board job." The step budget is 9 minutes; the four venue reads take ~12s, and the commit, board
+# and frozen-call-log steps after it take ~7s. So the scan may have a large slice and still leave
+# the job room to finish. A run that is KILLED skips "Commit lane log and encrypted tracker state",
+# which is where IMAP_CACHE is persisted - so every killed run threw away the fetches it had just
+# paid for and the next run started from nothing again. That is the loop that made this permanent:
+# bounding the scan lets the state commit, and each run then fetches only what is still missing.
+MANUAL_IMAP_BUDGET_S = float(os.environ.get("MANUAL_IMAP_BUDGET_S") or "240")
 IMAP_T = {}   # seconds per IMAP step (log only)
 
 
@@ -1058,7 +1066,13 @@ def read_manual_and_bot():
         keys = bot_keys(M, days=2)   # Nov 2 (Peter: tracker too slow): indexed Gmail search, not a 6-minute IMAP scan;
         # older bot bets keep their stored 'bot' tag (see prev source below)
         t0 = _t.time()
-        for uid in ex.gsearch(M, 'subject:"Bets manual" newer_than:10d'):
+        _uids = list(ex.gsearch(M, 'subject:"Bets manual" newer_than:10d'))
+        _seen, _stopped = 0, None
+        for uid in _uids:
+            if _t.time() - t0 > MANUAL_IMAP_BUDGET_S:
+                _stopped = _seen
+                break
+            _seen += 1
             u = uid.decode() if isinstance(uid, bytes) else str(uid)
             if u not in IMAP_CACHE["m"] or not any(x.startswith("@DATE ") for x in IMAP_CACHE["m"][u]):
                 typ, data = M.uid("FETCH", uid, "(RFC822)")
@@ -1084,7 +1098,20 @@ def read_manual_and_bot():
         IMAP_T["manual"] = round(_t.time() - t0)
     finally:
         ex.imap_close(M)
-    LOG["manual"] = f"ok {len(man)}"
+    if _stopped is None:
+        LOG["manual"] = f"ok {len(man)}"
+        LOG["manual_source"] = "COMPLETE"
+    else:
+        # NOT "zero manual notes" and NOT a complete list: an unknown number were never read.
+        # Say so loudly and in the structured log, so nothing downstream can read the short list
+        # as "Peter placed fewer bets".
+        LOG["manual"] = f"STALE {len(man)} of >= {len(_uids)} note email(s)"
+        LOG["manual_source"] = "INCOMPLETE"
+        LOG["manual_budget_s"] = MANUAL_IMAP_BUDGET_S
+        print(f"manual notes: SOURCE INCOMPLETE - read {_stopped} of {len(_uids)} note email(s) "
+              f"before the {MANUAL_IMAP_BUDGET_S:.0f}s budget; the rest are UNREAD, not absent. "
+              f"The fetched ones are cached, so the next run resumes where this stopped.",
+              flush=True)
     LOG["bot_keys"] = f"ok {len(keys)}"
     return man, keys
 
