@@ -40,6 +40,7 @@ try:   # Nov 11: fee-model stamp for the ledger's fee_basis (logging only; never
 except Exception:
     FEE_MODEL = None
 import agree_rules
+import novig_reconcile as nvr
 import pmus_fee as pf
 import lane2   # Nov 4: Lane 2 LOW-limit sharp alerts, DRY RUN ONLY (Peter 4:01 PM "no live play")
 import positions
@@ -212,6 +213,10 @@ def log_report():
     # actually computed. Coefficients only: no stake, balance, price or bet text.
     print(f"PMUS fee model: {pf.MODEL} (taker {pf.taker()}, gate {PMUS_QUAL_FEE}, "
           f"floor basis {pf.floor_coef()}, maker {pf.maker()})")
+    # Nov 18: the exposure reconciliation, counts only - no dollars in a public log. "venue evidence"
+    # says whether the Novig snapshots were readable at all; without them nothing is released.
+    print(f"exposure reconciliation: venue evidence {VENUE['why']}; "
+          f"legs released {VENUE['released']}, adjusted to actual fill {VENUE['adjusted']}")
     if QSTAT:
         print("venue opportunity (counts only; no dollars - liquidity is a multiple of the stake):")
         for _b in sorted({k[0] for k in QSTAT}):
@@ -3146,20 +3151,13 @@ def _account_rows(rows, graded, ids, seen_oids, _intents, _confirmed):
                 fs = lo.get("filled_stake")   # fill-or-kill: what filled (unknown = all asked); resting: all asked
                 _amt = (max(float(fs or 0), float(lo.get("asked_stake") or 0)) if (is_rest or fs is None)
                         else float(fs))
-                NONPX["today"] += _amt
-                # Nov 18: the corrected figure, computed in parallel and READ BY NOTHING. A released
-                # leg must be provably dead with an explicit zero fill, so the shadow can only ever be
-                # LOWER than or equal to the live number by rows that are not exposure at all.
-                try:
-                    if exposure_terminal(lo):
-                        NONPX_SHADOW["released"] += 1
-                    else:
-                        NONPX_SHADOW["today"] += _amt
-                        if d_et is None:
-                            NONPX_SHADOW["undated_kept"] += 1
-                            NONPX_SHADOW["undated_amt_legs"] += 1
-                except Exception:
-                    NONPX_SHADOW["today"] += _amt
+                _use, _why = reconciled_amount(lo, _amt, is_rest)
+                NONPX["today"] += _use
+                VENUE["raw"] += _amt          # what the pre-Nov-18 calculation would have said
+                if _use == 0.0 and _amt > 0:
+                    VENUE["released"] += 1
+                elif _use != _amt:
+                    VENUE["adjusted"] += 1
 
 
 def bot_orders(M, days=4):
@@ -3169,6 +3167,8 @@ def bot_orders(M, days=4):
     a header re-check, so dry-run emails (whose body says 'WOULD GO LIVE') are never read as live ones."""
     NONPX["today"] = 0.0
     NONPX_SHADOW.update(today=0.0, released=0, undated_kept=0, undated_amt_legs=0)
+    VENUE.update(released=0, adjusted=0, raw=0.0)
+    VENUE["idx"], VENUE["why"] = nvr.load_venue()
     # Nov 1 (Peter, "1a"): a non-ProphetX bot bet whose game is already graded in the feed no longer counts as lost:
     # a WIN or PUSH frees its money for the daily stop, a LOSS counts in full, ungraded still counts in full (safe side).
     graded = {}
@@ -3342,6 +3342,41 @@ NONPX = {"today": 0.0}   # Oct 28: bot dollars risked today on books other than 
 # undated row is released only when B's terminal test proves it dead, so genuine prior-day outstanding
 # exposure is preserved. The rest need an independent fill reconciliation, not a date heuristic.
 NONPX_SHADOW = {"today": 0.0, "released": 0, "undated_kept": 0, "undated_amt_legs": 0}
+# Nov 18 (Peter: "Fix and activate the daily risk calculation"). ACTIVE. The venue index for the run,
+# loaded once in bot_orders(); (None, None) means NO EVIDENCE and every leg keeps the registry's own
+# figure. A read failure must never release a dollar.
+VENUE = {"idx": (None, None), "why": "not loaded", "released": 0, "adjusted": 0, "raw": 0.0}
+
+
+def reconciled_amount(lo, amt, is_rest):
+    """(dollars to count, reason). The five rules, applied to one leg.
+
+    1 filled    -> the ACTUAL filled amount from the venue, not the ask
+    2 open      -> the whole outstanding commitment
+    3 confirmed cancelled / rejected / expired with ZERO fills -> nothing
+    4 unknown   -> the registry's own figure, unchanged
+    5 settled   -> untouched here; the grading skip above already removes wins and pushes
+
+    Unknown includes every failure mode: no venue index, no record for this leg, a status that is not
+    conclusive, or any exception. Those all return `amt`, so the gate can only ever be as strict as
+    it was before - which is the one direction a risk gate may fail in.
+    """
+    try:
+        book = (lo.get("book") or "").strip().lower()
+        if book in ("novig", "novig.us"):
+            by, fb = VENUE["idx"]
+            if by is None:
+                return amt, "no venue evidence"
+            cls, ev = nvr.classify(dict(lo, resting=is_rest), by, fb)
+            if cls == nvr.UNKNOWN:
+                return amt, "unknown at the venue"
+            got = float(nvr.exposure_for(dict(lo, resting=is_rest), cls, ev))
+            return (got if got <= amt else amt), cls          # never ABOVE the old figure
+        if exposure_terminal(lo):
+            return 0.0, "expired with an explicit zero fill"
+        return amt, "registry figure"
+    except Exception as ex:
+        return amt, f"reconciliation failed ({str(ex)[:30]})"
 
 
 def exposure_terminal(lo):

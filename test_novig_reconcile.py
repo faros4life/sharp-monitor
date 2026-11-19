@@ -119,8 +119,14 @@ ok("an UNKNOWN leg produces no patch at all",
 
 # ---------------------------------------------------------------- 6. nothing is wired in
 exr = open("executor.py").read()
-ok("executor does not import the reconciler", "import novig_reconcile" not in exr)
-ok("the live gate still reads NONPX", 'book_live.set_exposure(NONPX["today"])' in exr)
+# Nov 18: ACTIVATED by Peter. These assertions previously pinned the module as NOT wired in; they now
+# pin the opposite, and the safety property that replaces inertness - every failure path in the
+# caller keeps the registry's figure, so a bad read cannot release money.
+ok("executor imports the reconciler", "import novig_reconcile as nvr" in exr)
+ok("the live gate reads the reconciled figure", 'book_live.set_exposure(NONPX["today"])' in exr)
+ok("the caller falls back to the registry figure when there is no evidence",
+   'return amt, "no venue evidence"' in exr)
+ok("the caller never counts MORE than the pre-fix figure", "got if got <= amt else amt" in exr)
 # Checked on the IMPORT LINES, not the prose: the first version scanned the whole source and failed
 # on the docstring, which necessarily discusses the registry. Same over-blunt grep as earlier today.
 _src = open("novig_reconcile.py").read()

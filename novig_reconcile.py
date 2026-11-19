@@ -139,3 +139,37 @@ def apply_patch(leg, patch):
             continue                       # original audit fields are immutable here
         out[k] = v
     return out
+
+# ---------------------------------------------------------------- live loading (Peter, Nov 18: activate)
+SNAP_ORDERS = "snapshot/novig_orders.json"
+SNAP_FILLS = "snapshot/novig_fills.json"
+
+
+def load_venue(reg=None):
+    """((by_client_id, fills_by_client_id), why) from the runner's snapshots, or ((None, None), why).
+
+    FAILS CLOSED BY CONTRACT. Every caller must treat a None index as "no evidence" and count the
+    registry's own figure unchanged - never as "nothing filled". A read failure must not be able to
+    release a single dollar, which is the whole reason this returns a reason string instead of an
+    empty pair of dicts.
+    """
+    try:
+        if reg is None:
+            import registry as reg
+        if not reg.enabled():
+            return (None, None), "registry disabled"
+        o, e1 = reg.read_json(SNAP_ORDERS)
+        if o is None:
+            return (None, None), f"orders snapshot: {e1}"
+        f, e2 = reg.read_json(SNAP_FILLS)
+        if f is None:
+            return (None, None), f"fills snapshot: {e2}"
+        if not (f or {}).get("complete"):
+            return (None, None), "fills snapshot not marked complete"
+        by, fb = venue_index(o, f)
+        if not by:
+            return (None, None), "orders snapshot held no client ids"
+        return (by, fb), f"ok ({len(by)} orders, {sum(len(v) for v in fb.values())} fills)"
+    except Exception as ex:
+        return (None, None), f"load failed: {str(ex)[:60]}"
+

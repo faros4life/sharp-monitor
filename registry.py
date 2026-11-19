@@ -101,6 +101,29 @@ def _fetch():
     return data, r.get("sha")
 
 
+def read_json(path, timeout=15):
+    """Any JSON file in the registry repo, read-only. (data, None) or (None, reason).
+
+    Nov 18 (Peter): the Novig venue snapshots (snapshot/novig_orders.json, snapshot/novig_fills.json)
+    live in this same private repo and are written by the home runner. The exposure reconciliation
+    reads them through the credential that already exists rather than opening a second path to the
+    venue. A failure returns a REASON, never an empty document: the caller must be able to tell
+    "no orders" from "could not read", because the second one must release nothing.
+    """
+    if not token():
+        return None, "no registry token"
+    try:
+        st, r = _call("GET", f"{API}/repos/{REPO}/contents/{path}", timeout=timeout)
+    except Exception as ex:
+        return None, f"call failed: {str(ex)[:60]}"
+    if st != 200 or not isinstance(r, dict) or not isinstance(r.get("content"), str):
+        return None, f"http {st}"
+    try:
+        return json.loads(base64.b64decode(r["content"]).decode()), None
+    except Exception as ex:
+        return None, f"unparseable: {str(ex)[:40]}"
+
+
 def _cutoff():
     return (datetime.now(timezone.utc) - timedelta(days=KEEP_DAYS)).strftime("%Y-%m-%d")
 

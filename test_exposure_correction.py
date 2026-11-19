@@ -62,22 +62,54 @@ for unknown in (None, "", "0", "unknown", [], {}):
     ok(f"filled_stake {unknown!r} is treated as UNKNOWN, not zero",
        ex.exposure_terminal({"expires_utc": PAST, "filled_stake": unknown}) is False)
 
-# ---------------------------------------------------------------- 3. the shadow is INERT
+# ---------------------------------------------------------------- 3. ACTIVE (Peter, Nov 18)
+# This was an inert shadow until Peter approved activation. The assertions that pinned its inertness
+# are gone on purpose; what replaces them is the property that matters once it IS live: the gate can
+# only ever get STRICTER or stay the same, and every failure path keeps the registry's figure.
 src = open("executor.py").read()
-ok("the live gate still reads NONPX, not the shadow",
-   'book_live.set_exposure(NONPX["today"])' in src)
-# Every appearance of the shadow total must be an increment. A single READ would mean the corrected
-# number had reached a decision, which is exactly what is not approved yet. (The first version of this
-# assertion was arithmetic on counts and was simply wrong - it failed on correct code.)
-_reads = [ln.strip() for ln in src.splitlines()
-          if 'NONPX_SHADOW["today"]' in ln and '+=' not in ln]
-ok("the shadow total is only ever incremented, never read", not _reads, _reads)
-ok("the shadow is incremented in both the normal and the fallback branch",
-   src.count('NONPX_SHADOW["today"] +=') == 2, src.count('NONPX_SHADOW["today"] +='))
-ok("set_exposure is never called with the shadow", "set_exposure(NONPX_SHADOW" not in src)
-ok("the shadow cannot raise into the exposure loop", "except Exception:\n                    NONPX_SHADOW" in src)
-ok("the shadow is reset each run alongside the live figure",
-   "NONPX_SHADOW.update(today=0.0" in src)
+ok("the live gate reads the reconciled figure", 'book_live.set_exposure(NONPX["today"])' in src)
+ok("the exposure loop calls the reconciler", "reconciled_amount(lo, _amt, is_rest)" in src)
+ok("the venue index is loaded once per read", 'VENUE["idx"], VENUE["why"] = nvr.load_venue()' in src)
+ok("the log reports the evidence state, counts only",
+   "exposure reconciliation: venue evidence" in src and "no dollars in a public log" in src)
+
+NOVENUE = {"idx": (None, None)}
+_was = ex.VENUE["idx"]
+try:
+    ex.VENUE["idx"] = (None, None)
+    ok("no venue evidence keeps the registry figure, releases nothing",
+       ex.reconciled_amount({"book": "novig", "asked_stake": 214.0}, 214.0, True) == (214.0, "no venue evidence"))
+    ok("a non-novig leg with no terminal proof keeps its figure",
+       ex.reconciled_amount({"book": "kalshi", "asked_stake": 99.0}, 99.0, True)[0] == 99.0)
+    ok("a malformed leg keeps its figure", ex.reconciled_amount(None, 50.0, True)[0] == 50.0)
+    ok("an expired kalshi leg with an explicit zero fill is released",
+       ex.reconciled_amount({"book": "kalshi", "expires_utc": PAST, "filled_stake": 0.0}, 223.21, True)[0] == 0.0)
+    ok("an expired kalshi leg with UNKNOWN fill is NOT released",
+       ex.reconciled_amount({"book": "kalshi", "expires_utc": PAST, "filled_stake": None,
+                             "asked_stake": 223.21}, 223.21, True)[0] == 223.21)
+finally:
+    ex.VENUE["idx"] = _was
+
+import novig_reconcile as _nvr
+_ORD = {"orders": [{"order_id": "V1", "client_id": "C1", "status": "FILLED", "filled_qty": 18200,
+                    "qty": "18200", "price": "0.525"},
+                   {"order_id": "V2", "client_id": "C2", "status": "REJECTED", "filled_qty": 0,
+                    "qty": "40000", "price": "0.51"}]}
+_was = ex.VENUE["idx"]
+try:
+    ex.VENUE["idx"] = _nvr.venue_index(_ORD, {"fills": []})
+    ok("a filled novig leg counts the ACTUAL fill, not the ask",
+       ex.reconciled_amount({"book": "novig", "order_id": "C1", "asked_stake": 96.0}, 96.0, True)[0] == 95.55)
+    ok("a rejected novig leg with zero fills counts nothing",
+       ex.reconciled_amount({"book": "novig", "order_id": "C2", "asked_stake": 204.0}, 204.0, True)[0] == 0.0)
+    ok("a novig leg the venue has never heard of keeps its figure",
+       ex.reconciled_amount({"book": "novig", "order_id": "GHOST", "asked_stake": 389.85}, 389.85, True)
+       == (389.85, "unknown at the venue"))
+    # the one-way property: reconciliation may lower the figure, never raise it
+    ok("the reconciled figure can never EXCEED the pre-fix figure",
+       ex.reconciled_amount({"book": "novig", "order_id": "C1", "asked_stake": 96.0}, 10.0, True)[0] <= 10.0)
+finally:
+    ex.VENUE["idx"] = _was
 
 # ---------------------------------------------------------------- 4. the safety property
 def _amt(lo, is_rest):
@@ -105,8 +137,14 @@ ok("an unknown-fill expired leg keeps its FULL asked stake (requirement 3)",
 # so the refusal that started this investigation was correct under BOTH calculations. Pinning the
 # property rather than the figures: a correction that drops below the limit must come from released
 # legs alone, never from a looser rule.
-ok("the measured correction still exceeds the $3,000 stop", 3699.80 > 3000.0)
-ok("the correction is bounded by the released legs", round(3923.01 - 3699.80, 2) == 223.21)
+# Measured on the 18 Nov snapshot through the ACTIVE path: 3,923.01 -> 2,744.68, which is BELOW the
+# 3,000 stop. Activation therefore changes a real decision, and that was Peter's call to make, not a
+# tidy-up. The released legs: Brooklyn 389.85 and Philadelphia 204.00 (venue rejected/refused),
+# Milwaukee 360.00 (the runner refused it before it reached Novig), Kalshi 223.21 (expired, zero
+# filled), plus 1.27 of asked-versus-filled across four filled legs.
+ok("the measured correction is 1,178.33", round(3923.01 - 2744.68, 2) == 1178.33)
+ok("the released legs account for all but the fill adjustments",
+   round(1178.33 - (389.85 + 204.00 + 360.00 + 223.21), 2) == 1.27)
 ok("the stop itself is untouched", ex.px_live.DAILY_STOP == 3000.0, ex.px_live.DAILY_STOP)
 ok("the exposure date filter is unchanged in the live path",
    'd_et in (None, datetime.now(lm.ET).date())' in src)
