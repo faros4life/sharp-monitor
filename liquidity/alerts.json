@@ -1,6 +1,222 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-19T09:00:20Z",
+   "base_depth": 8645,
+   "best_price": 0.8,
+   "best_price_american": -400,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.8,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-19",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Portland",
+     "price": 0.81,
+     "this_side": 6397
+    },
+    "novig": {
+     "new_other_side": -681,
+     "new_this_side": 30925,
+     "other_side": 679,
+     "other_side_all_levels": 908,
+     "ratio": 39.3,
+     "this_side": 26687,
+     "this_side_all_levels": 33895
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Portland Trail Blazers",
+     "price": 0.8095,
+     "this_side": 6161
+    }
+   },
+   "ex_stats_alert": {
+    "openInterest": 5951940.0,
+    "volume": 6085570.0
+   },
+   "ex_stats_change": {
+    "openInterest": 968955.0,
+    "volume": 968955.0
+   },
+   "ex_stats_first": {
+    "openInterest": 4982985.0,
+    "volume": 5116615.0
+   },
+   "fade_price": 0.205,
+   "first_seen_utc": "2026-11-19T08:55:47Z",
+   "game": "Portland Trail Blazers @ Milwaukee Bucks",
+   "game_surge_books": [
+    "novig",
+    "prophetx"
+   ],
+   "game_x": 3.36,
+   "key": "novig|{\"market_id\": \"01a1f220-5740-79f1-aeae-e4c8e2275a16\", \"outcome_id\": \"01a1f220-5740-79f1-aeae-e4e269bd7cd6\"}",
+   "lead_min": 960,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 30925,
+   "new_x": 2.98,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 30532.07,
+      "volume_24h_fp": 28378.940000000002,
+      "volume_fp": 32694.71
+     },
+     "game_normal": 300629,
+     "game_x": 0.87,
+     "normal": 41571,
+     "now": 260794,
+     "type": "ML",
+     "x": 6.27
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 5951940.0,
+      "volume": 6085570.0
+     },
+     "game_normal": 10098,
+     "game_x": 3.36,
+     "normal": 10371,
+     "now": 33895,
+     "type": "ML",
+     "x": 3.27
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 3239,
+     "game_x": 2.19,
+     "normal": 3968,
+     "now": 7084,
+     "type": "ML",
+     "x": 1.79
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.8,
+   "price_american": -400,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.8,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -425
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -400
+    },
+    "betopenly": {
+     "point": null,
+     "price": -325
+    },
+    "betrivers": {
+     "point": null,
+     "price": -375
+    },
+    "betus": {
+     "point": null,
+     "price": -400
+    },
+    "bovada": {
+     "point": null,
+     "price": -420
+    },
+    "circasports": {
+     "point": null,
+     "price": -425
+    },
+    "draftkings": {
+     "point": null,
+     "price": -405
+    },
+    "fanatics": {
+     "point": null,
+     "price": -400
+    },
+    "fanduel": {
+     "point": null,
+     "price": -400
+    },
+    "kalshi": {
+     "point": null,
+     "price": -426
+    },
+    "limitless": {
+     "point": null,
+     "price": -459
+    },
+    "lowvig": {
+     "point": null,
+     "price": -395
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -391
+    },
+    "novig": {
+     "point": null,
+     "price": -400
+    },
+    "polymarket": {
+     "point": null,
+     "price": -376
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -376
+    },
+    "prophetx": {
+     "point": null,
+     "price": -425
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -420
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a1f220-5740-79f1-aeae-e4c8e2275a16",
+    "outcome_id": "01a1f220-5740-79f1-aeae-e4e269bd7cd6"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Portland Trail Blazers",
+   "side_label": "POR (0)",
+   "size_x": 3.27,
+   "start_source": "odds",
+   "start_utc": "2026-11-20T01:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "Portland Trail Blazers",
+    "Milwaukee Bucks"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-19T06:30:16Z",
    "base_depth": 449240,
    "best_price": 0.57,
@@ -792,7 +1008,7 @@
    },
    "ex_stats_close": {
     "openInterest": 63418802.0,
-    "volume": 70036178.0
+    "volume": 70073596.0
    },
    "ex_stats_first": {
     "openInterest": 61164919.0,
