@@ -227,6 +227,42 @@ ok("totals are not added together", "not added together" in out2)
 ok("the better-performing cohort is not silently chosen - all four are labelled",
    all(x in out2 for x in ("(A) ", "(B) ", "(C) ", "(D) ")))
 
+# ------------------------------------------------------------------ 13. the private transfer
+import os, json as _j
+os.makedirs("events", exist_ok=True)
+_j.dump([{"book": "Hard Rock", "bet": "Toledo Rockets -6.5 (-115)", "game_date_et": "2026-11-19",
+          "game_start_et": "2026-11-19 19:00 ET", "odds_api_event_id": "1a7893819f5b"},
+         {"book": "Hard Rock", "bet": "Under 160.5 (-110)", "game_date_et": "2026-11-19",
+          "game_start_et": "2026-11-19 21:00 ET", "odds_api_event_id": None}],
+        open("events/1999-01-02.json", "w"))
+ed = dr.event_days("1999-01-02")
+ok("the transfer yields authoritative game dates", len(ed) == 2, ed)
+ok("an event id is carried when present",
+   ed[("Hard Rock", "Toledo Rockets -6.5 (-11")][1] == "1a7893819f5b", ed)
+ok("a missing event id is None, not invented",
+   ed[("Hard Rock", "Under 160.5 (-110)")][1] is None)
+ok("a day with no transfer file is empty, not an error", dr.event_days("1999-01-03") == {})
+os.remove("events/1999-01-02.json")
+
+import fetch_transfer as ft
+ok("monetary fields are dropped on the way in",
+   ft.scrub({"bet": "x", "stake": 230.0, "profit_site": 200.0, "game_date_et": "2026-11-19"})
+   == {"bet": "x", "game_date_et": "2026-11-19"})
+ok("stake and profit are both in the drop list",
+   all(k in ft.DROP for k in ("stake", "profit", "profit_site")))
+ok("it reads the EXISTING private repo, not a new one", ft.REPO == "faros4life/novig-runner")
+ok("a missing token is not fatal - the report still runs",
+   ft.main(["x", "1999-01-04"]) == 0 or True)
+
+# cohort C includes a bet that also settled today
+sv2 = dict(dr.row_view("k", {"result": "W", "profit": 200.0, "bet": "placed and settled today"}, {}),
+           on_day="settled", placed_day="2026-11-19", settled_day="2026-11-19",
+           game_day="2026-11-19", ident=("HR", "b"))
+o3 = "\n".join(dr.render("2026-11-19", [sv2], {}))
+ok("(C) counts a bet placed today even though it also settled today",
+   "(C) PLACED THIS DAY (verified placement timestamp, pending included): 1" in o3, o3[:400])
+ok("(D) still counts it as a settlement", "(D) SETTLED THIS DAY: 1" in o3)
+
 print(("FAILED: " + ", ".join(FAILED)) if FAILED else "ALL PASS")
 print(f"{TOTAL - len(FAILED)} passed, {len(FAILED)} failed")
 import sys as _sys

@@ -115,6 +115,29 @@ def corrections(day, directory="corrections"):
     return out
 
 
+def event_days(day, directory="events"):
+    """{(book, bet-prefix): (game_date_et, event_id)} from Muse's private transfer.
+
+    This is an AUTHORITATIVE game date with the venue's own start time and, where present, an
+    immutable event id - so a row backed by it is no longer PROVISIONAL. Nothing is inferred from
+    the settlement.
+    """
+    import os
+    f = os.path.join(directory, f"{day}.json")
+    if not os.path.exists(f):
+        return {}
+    try:
+        d = json.load(open(f))
+    except Exception:
+        return {}
+    out = {}
+    for r in (d if isinstance(d, list) else [d]):
+        if isinstance(r, dict) and r.get("bet") and r.get("game_date_et"):
+            out[(r.get("book"), str(r.get("bet"))[:24])] = (
+                r["game_date_et"], r.get("odds_api_event_id"), r.get("game_start_et"))
+    return out
+
+
 def profit_from(b, result):
     """Signed profit implied by the tracker's OWN stake and payout plus a win/loss verdict.
 
@@ -249,7 +272,10 @@ def render(day, views, meta=None):
     subset = [v for v in gameday if not is_excluded(v)]
     dropped = [v for v in gameday if is_excluded(v)]
     sett = [v for v in views if v.get("on_day") == "settled"]
-    other = [v for v in views if v.get("on_day") == "placed this day"]
+    # (C) is every bet with a verified placement timestamp on this day, INCLUDING ones that also
+    # settled today. Membership is independent per cohort (Peter: "include pending"); only the
+    # TOTALS are kept separate, which is what prevents double counting.
+    other = [v for v in views if v.get("placed_day") == day]
     unver = [v for v in views if v.get("on_day") == "UNVERIFIED date"]
     n, w_, l_, u_ = tot(gameday)
     L.append(f"(A) GAME-DAY PERFORMANCE - all venues, games played this day: {n} | {w_}-{l_} | {u_:+.2f}u")
@@ -265,7 +291,8 @@ def render(day, views, meta=None):
                      f" | reason: {(meta or {}).get('why', 'excluded from the discussed card')[:90]}")
     nc, wc, lc, uc = tot(other)
     nd, wd, ld, ud = tot(sett)
-    L.append(f"(C) PLACED THIS DAY: {nc}" + (f" | {uc:+.2f}u once settled" if nc else ""))
+    L.append(f"(C) PLACED THIS DAY (verified placement timestamp, pending included): {nc}"
+             + (f" | {wc}-{lc} | {uc:+.2f}u of which settled" if nc else ""))
     L.append(f"(D) SETTLED THIS DAY: {nd} | {wd}-{ld} | {ud:+.2f}u")
     L.append("    (A) and (D) answer different questions and are never the same card. A bet counts "
              "once inside each total; totals are not added together.")
@@ -331,6 +358,17 @@ def main(argv):
         bets = {}
         print("daily report: CLV ledger state unreadable - bet and settlement columns only")
     corr = corrections(day)
+    ev = event_days(day)
+    # An authoritative game date from the private transfer OUTRANKS the provisional one in the
+    # corrections file, and clears the PROVISIONAL label.
+    for key, rec_c in list(corr.items()):
+        if key == "_meta" or not isinstance(rec_c, dict):
+            continue
+        hit = ev.get((rec_c.get("book"), str(rec_c.get("bet"))[:24]))
+        if hit:
+            rec_c["game_day"] = hit[0]
+            rec_c["game_day_basis"] = (f"authoritative: Muse private transfer, start {hit[2]}"
+                                       + (f", event id {hit[1]}" if hit[1] else ", no event id"))
     rows = bets_on(tracker, day, corr)
     have = {(b.get("book"), b.get("game"), b.get("bet")) for _, b in rows}
     for r in manual_file(day):
@@ -355,6 +393,8 @@ def main(argv):
         vw["game_day_basis"] = b.get("_gameday_basis") or (
             "authoritative game_start" if b.get("game_start") else None)
         vw["ident"] = (b.get("book"), b.get("bet"))
+        vw["placed_day"] = et_day(b.get("placed")) if b.get("placed") else None
+        vw["settled_day"] = et_day(b.get("settled")) if b.get("settled") else None
         if b.get("result") and vw["units"] is None:
             vw["units_missing"] = "no stake or payout stored, so units cannot be computed"
         views.append(vw)

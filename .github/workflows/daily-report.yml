@@ -40,6 +40,13 @@ jobs:
           if [ "${{ github.event_name }}" = "schedule" ] && [ "$H" != "08" ]; then
             echo "ET hour $H - not the 8am ET firing; skipping"; echo "skip=1" >> $GITHUB_OUTPUT
           fi
+      - name: pull Muse's private transfer (existing route, existing token)
+        if: steps.gate.outputs.skip != '1'
+        continue-on-error: true
+        env:
+          REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
+        run: python3 fetch_transfer.py ${{ inputs.day || '' }}
+
       - name: report
         if: steps.gate.outputs.skip != '1'
         env:
