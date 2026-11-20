@@ -1,23 +1,24 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 20, 1:00 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 8.
+Updated Fri Nov 20, 1:10 AM ET. This run: 1 new, 0 not confirmed, 4 pending. Open alerts: 7.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 368-221 (-19.69u flat) | rule met: 66-58
+**Record:** 368-223 (-21.69u flat) | rule met: 66-58
 
-**Fade (paper, betting against the print):** 196-333 (+19.59u flat, after fees)
+**Fade (paper, betting against the print):** 198-333 (+21.58u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 20 1:10AM | NCAAB | UAB vs George Washington | moneyline: George Washington | kalshi | $39k | -456 |  |  | +0.0c |  | pending |
 | Nov 19 7:40PM | NCAAB | Wisconsin vs Seton Hall: Point Total | total: NOT Over 138.5 points | kalshi | $26k | -104 | ✅ novig |  | +0.0c | yes | L |
 | Nov 19 6:40PM | NCAAB | Southern Utah vs Texas: Spread | spread: NOT Texas wins by over 35.5 points | kalshi | $36k | -104 |  | ✅ | +0.0c |  | W |
 | Nov 19 6:40PM | NCAAB | Houston vs Kansas: Spread | spread: NOT Houston wins by over 3.5 points | kalshi | $29k | +104 |  |  | +4.0c | yes | pending |
 | Nov 19 5:40PM | NCAAB | Oregon vs Oregon St. | moneyline: NOT Oregon | kalshi | $30k | +113 |  |  | +0.0c |  | W |
 | Nov 19 4:50PM | NCAAB | Notre Dame vs Auburn: Spread | spread: NOT Auburn wins by over 4.5 points | kalshi | $71k | -117 |  |  | +0.0c | yes | W |
 | Nov 19 4:20PM | NCAAB | Wisconsin vs Seton Hall: Spread | spread: NOT Wisconsin wins by over 5.5 points | kalshi | $36k | -108 |  | ❌ | +1.0c | yes | W |
-| Nov 19 4:20PM | NCAAB | Tarleton St. vs USC: Spread | spread: NOT USC wins by over 27.5 points | kalshi | $30k | -100 |  | ❌ | -2.0c |  | pending |
-| Nov 19 4:20PM | NCAAB | VCU vs Santa Clara | moneyline: Santa Clara | kalshi | $30k | -117 |  |  | +0.0c |  | pending |
+| Nov 19 4:20PM | NCAAB | Tarleton St. vs USC: Spread | spread: NOT USC wins by over 27.5 points | kalshi | $30k | -100 |  | ❌ | -2.0c |  | L |
+| Nov 19 4:20PM | NCAAB | VCU vs Santa Clara | moneyline: Santa Clara | kalshi | $30k | -117 |  |  | +0.0c |  | L |
 | Nov 19 4:10PM | NCAAB | Southeast Missouri St. vs St. Thomas: Spread | spread: St. Thomas wins by over 6.5 points | kalshi | $26k | -108 |  |  | +1.0c |  | W |
 | Nov 19 4:10PM | NCAAB | Utah Tech vs Washington: Spread | spread: NOT Washington wins by over 17.5 points | kalshi | $32k | -108 |  | ✅ | +2.0c | yes | W |
 | Nov 19 4:10PM | NCAAB | UTEP vs New Mexico St. | moneyline: UTEP | kalshi | $30k | +113 | ✅ novig |  | +0.0c |  | W |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 13 7:30PM | NCAAB | UNC Greensboro vs Cornell | moneyline: Cornell | kalshi | $27k | -233 | ✅ novig |  | -13.0c | yes | pending |
 | Nov 13 5:50PM | NCAAB | Northern Iowa vs Michigan St.: Point Total | total: Over 154.5 points | kalshi | $27k | -108 |  | ✅ | -1.0c |  | W |
 | Nov 13 5:50PM | NCAAB | Stanford vs UNLV | moneyline: UNLV | kalshi | $27k | +104 |  |  | +0.0c |  | W |
-| Nov 13 5:50PM | NCAAB | Arizona vs Auburn | moneyline: Auburn | kalshi | $45k | +127 | ✅ novig | ❌ | +2.0c | yes | L |

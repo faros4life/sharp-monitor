@@ -1,6 +1,144 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-20T06:10:19Z",
+   "base_depth": 50684,
+   "best_price": 0.81,
+   "best_price_american": -426,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.82,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-20",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 511,
+     "new_this_side": 38769,
+     "other_side": 2149,
+     "other_side_all_levels": 7895,
+     "ratio": 5.5,
+     "this_side": 11816,
+     "this_side_all_levels": 83471
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "GW (0)",
+     "price": 0.81,
+     "this_side": 546
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "George Washington",
+     "price": 0.8165,
+     "this_side": 159
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 8506.49,
+    "volume_24h_fp": 8564.619999999999,
+    "volume_fp": 8564.619999999999
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 739.79,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 8506.49,
+    "volume_24h_fp": 7824.83,
+    "volume_fp": 8564.619999999999
+   },
+   "fade_price": 0.2,
+   "first_seen_utc": "2026-11-20T06:00:26Z",
+   "game": "UAB vs George Washington",
+   "game_surge_books": [],
+   "game_x": 1.97,
+   "key": "kalshi|KXNCAAMBGAME-26NOV20UABGW|ml|1",
+   "lead_min": 770,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 38769,
+   "new_x": 3.56,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 8506.49,
+      "volume_24h_fp": 8564.619999999999,
+      "volume_fp": 8564.619999999999
+     },
+     "game_normal": 42274,
+     "game_x": 1.97,
+     "normal": 10903,
+     "now": 83471,
+     "type": "ML",
+     "x": 7.66
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 26536.0,
+      "volume": 29660.0
+     },
+     "game_normal": 708,
+     "game_x": 1.47,
+     "normal": 1608,
+     "now": 1042,
+     "type": "ML",
+     "x": 0.65
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 226,
+     "game_x": 0.7,
+     "normal": 395,
+     "now": 159,
+     "type": "ML",
+     "x": 0.4
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.82,
+   "price_american": -456,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.82,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV20UABGW-GW"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "George Washington",
+   "side_label": "George Washington",
+   "size_x": 7.66,
+   "start_source": "prophetx",
+   "start_utc": "2026-11-20T19:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "UAB",
+    "George Washington"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-20T00:40:21Z",
    "base_depth": 106905,
    "best_price": 0.51,
@@ -578,7 +716,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Kansas",
@@ -1150,6 +1288,7 @@
     "volume_fp": 17697.93
    },
    "fade_price": 0.51,
+   "fade_units": 0.9,
    "first_seen_utc": "2026-11-19T21:10:21Z",
    "game": "Tarleton St. vs USC: Spread",
    "game_surge_books": [],
@@ -1259,12 +1398,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAMBSPREAD-26NOV19TARLUSC-USC28"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 1,
+   "settle_tries": 2,
+   "settled_utc": "2026-11-20T06:10:19Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "USC Trojans -26.5 (-105)"
@@ -1283,7 +1423,7 @@
     "USC"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-19T21:20:34Z",
@@ -1347,6 +1487,7 @@
     "volume_fp": 31263.57
    },
    "fade_price": 0.46,
+   "fade_units": 1.09,
    "first_seen_utc": "2026-11-19T21:10:21Z",
    "game": "VCU vs Santa Clara",
    "game_surge_books": [],
@@ -1469,12 +1610,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV19VCUSCU-SCU"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 4,
+   "settle_tries": 5,
+   "settled_utc": "2026-11-20T06:10:19Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Santa Clara",
@@ -1493,7 +1635,7 @@
     "Santa Clara"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-19T21:10:21Z",
@@ -4320,7 +4462,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Houston",
