@@ -4524,6 +4524,79 @@ def pmus_rest_sweep(now):
     return done
 
 
+# Nov 20 (Peter, PRIORITY 1): CROSS-VENUE COMMITTED RISK.
+#
+# CONFIRMED INCIDENT. New Mexico -7.5 was taken on ProphetX for $110 at 9:11 and then RESTED on
+# Novig for the full unit at 9:12, filling $237.60 - $347.60 against a $234 intended stake, 49%
+# over, both legs the same game, side and line.
+#
+# Why the existing guards did not stop it. Duplicate protection worked: the lane-stripped claim
+# blocked a second run. rest_bid() reduces to a remainder only through r["live"]["rest_risk"],
+# which is THIS run's live result - and this run's live leg was a Novig order REFUSED on a failed
+# pre-order write, so there was no fill to subtract and it rested the whole unit. The ProphetX
+# fill belonged to the earlier run, which had already completed and RELEASED its claim, so
+# submission_held() saw nothing. The guard covers a claim still held; it cannot see a fill that
+# finished.
+#
+# So the remainder must come from what is RECORDED against the play, across venues and across
+# runs, not from one run's view of its own leg.
+#
+# FAIL CLOSED, deliberately. A leg counts at max(filled, asked): an order that was placed but
+# whose fill is unknown reserves its full asked stake, because treating an unread fill as zero is
+# the same error that produced the fabricated no-fills. Only a leg that demonstrably never
+# reached the venue counts as nothing. If the store cannot be read at all, the caller refuses -
+# an unknown exposure must never size a new order.
+_NEVER_SUBMITTED = ("refused", "void", "dry")
+
+
+def committed_risk(pkey, rows_=None):
+    """(risk_committed, why) for one lane-stripped play key, across every venue and run.
+
+    why is None when the figure is trustworthy; a string when it is not, and then the caller must
+    refuse rather than size against it. Money identity is the client id, falling back to the order
+    id, so the write-ahead intent row and the confirmed row for one order count ONCE - the same
+    rule the daily stop uses."""
+    try:
+        rows_ = registry.rows() if rows_ is None else rows_
+    except Exception as ex:
+        return None, f"order rows unreadable ({type(ex).__name__})"
+    if rows_ is None:
+        return None, "order rows unavailable"
+    seen, total = set(), 0.0
+    for row in rows_ or []:
+        if not isinstance(row, dict):
+            continue
+        rkey = row.get("key") or ""
+        if (lane_strip(rkey) or rkey) != pkey:
+            continue
+        legs = [row.get("live_order") or {}, row.get("live_rest") or {}]
+        legs += [x or {} for x in (row.get("live_more") or [])]
+        for lo in legs:
+            if not lo:
+                continue
+            st = str(lo.get("status") or "").lower()
+            if st in _NEVER_SUBMITTED:
+                continue                      # never reached the venue: reserves nothing
+            ident = str(lo.get("client_id") or lo.get("order_id") or "")
+            if not ident:
+                # A placed leg we cannot identify cannot be deduped, and double-counting it would
+                # be wrong in the loose direction on a later run. Refuse instead of guessing.
+                return None, "a recorded order leg carries no client or order id"
+            if ident in seen:
+                continue
+            seen.add(ident)
+            asked, filled = lo.get("asked_stake"), lo.get("filled_stake")
+            try:
+                a = float(asked) if asked is not None else None
+                f = float(filled) if filled is not None else None
+            except (TypeError, ValueError):
+                return None, "a recorded order leg carries an unreadable stake"
+            if a is None and f is None:
+                return None, "a recorded order leg carries no stake at all"
+            total += max(f or 0.0, a or 0.0)   # unknown fill reserves the full ask
+    return round(total, 2), None
+
+
 def rest_bid(r):
     """Rest ONE bid at the alert's after-fee number (no 2c extra) on the first REST_BOOKS book that lists the exact
     alert line: Kalshi (good-till-cancelled with an expiry) or Novig (GTT on the home PC). Same unit, cap, STOP and
@@ -4592,6 +4665,24 @@ def rest_bid(r):
             return {"status": "refused", "reason": "another run is already posting this resting bid"}
     except Exception as _ex:
         return {"status": "refused", "reason": f"no durable resting claim ({str(_ex)[:60]}) - no submission"}
+    # The claim is held from here, so this computation and the order that follows it are the only
+    # pair in flight for this play: another run refuses above rather than racing this remainder.
+    _committed, _cwhy = committed_risk(_pkey)
+    if _cwhy:
+        registry.release_submission(_rkey, REST_CID)
+        return {"status": "refused",
+                "reason": f"cross-venue committed risk could not be established ({_cwhy}) - "
+                          f"resting a unit could exceed the intended stake (fail closed)"}
+    _intended, _remaining = risk, round(risk - _committed, 2)
+    if _remaining <= 0:
+        registry.release_submission(_rkey, REST_CID)
+        return {"status": "refused",
+                "reason": f"${_committed:,.2f} already committed on this play across venues, at or "
+                          f"above the ${_intended:,.2f} intended stake - nothing left to rest"}
+    if _remaining < risk:
+        risk = _remaining
+        LOG.append(f"resting bid trimmed to ${risk:,.2f}: ${_committed:,.2f} already committed "
+                   f"across venues against ${_intended:,.2f} intended")
     rest_pre_alert(r, risk, expire, REST_BOOKS)
     why_not = []
     for b in REST_BOOKS:
