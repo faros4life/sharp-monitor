@@ -38,6 +38,17 @@ def et_day(iso_ts):
     return t.astimezone(tb.ET).strftime("%Y-%m-%d")
 
 
+def game_day_of(b):
+    """THE game day for a bet, in one place.
+
+    Precedence: a corrections entry, then an authoritative transfer event record, then the
+    tracker's own game_start. Two copies of this existed - the day filter preferred the event
+    record while the cohort view still used the tracker's game_start - so Houston was admitted to
+    Nov 19 and then excluded from the Nov 19 game-day total. One definition, as CLAUDE.md says.
+    """
+    return b.get("_gameday") or b.get("_gameday_ev") or et_day(b.get("game_start"))
+
+
 def bets_on(tracker, day, corr=None):
     """Keys of tracker rows BELONGING to the given ET day, newest first, settled or not.
 
@@ -73,7 +84,7 @@ def bets_on(tracker, day, corr=None):
         days = {et_day(b.get(f)) for f in ("settled", "placed") if b.get(f)}
         # An event-record date, backed by an immutable event id, outranks the tracker's own
         # game_start. The disagreement is reported, never hidden.
-        gd = b.get("_gameday") or b.get("_gameday_ev") or et_day(b.get("game_start"))
+        gd = game_day_of(b)
         if day not in days and gd != day:
             continue
         fp = (b.get("book"), b.get("game"), b.get("bet"), b.get("placed"), b.get("stake"))
@@ -447,7 +458,7 @@ def main(argv):
         vw["result_src"] = b.get("result_src")
         vw["received_at"] = b.get("received_at")
         vw["score"] = b.get("score")
-        vw["game_day"] = b.get("_gameday") or et_day(b.get("game_start"))
+        vw["game_day"] = game_day_of(b)
         vw["game_day_basis"] = b.get("_gameday_basis") or b.get("_gameday_basis_ev") or (
             "authoritative game_start" if b.get("game_start") else None)
         vw["ident"] = (b.get("book"), b.get("bet"))

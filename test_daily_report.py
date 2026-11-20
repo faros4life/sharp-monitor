@@ -321,6 +321,21 @@ ok("...and it counts in (A)",
 ok("...while (C) and (D) exclude it", "(C) PLACED THIS DAY (verified placement timestamp, pending included): 0" in o5
    and "(D) SETTLED THIS DAY: 0" in o5, o5[:500])
 
+# ------------------------------------------------------------------ 16. one game-day definition
+ok("a corrections date wins", dr.game_day_of({"_gameday": "2026-11-19",
+                                              "_gameday_ev": "2026-11-18",
+                                              "game_start": "2026-11-15T18:00:00Z"}) == "2026-11-19")
+ok("an event record beats the tracker's own game_start",
+   dr.game_day_of({"_gameday_ev": "2026-11-19", "game_start": "2026-11-15T18:00:00Z"}) == "2026-11-19")
+ok("the tracker's game_start is the fallback",
+   dr.game_day_of({"game_start": "2026-11-20T01:15:00Z"}) == "2026-11-19")
+ok("nothing stored gives None", dr.game_day_of({}) is None)
+hb = {"game_start": "2026-11-15T18:00:00Z", "_gameday_ev": "2026-11-19", "result": "W",
+      "profit": 274.77, "bet": "Houston Texans -10.5", "book": "ProphetX",
+      "settled": "2026-11-16T05:00:00Z"}
+ok("the day filter and the cohort now agree on Houston",
+   len(dr.bets_on({"h": hb}, "2026-11-19")) == 1 and dr.game_day_of(hb) == "2026-11-19")
+
 print(("FAILED: " + ", ".join(FAILED)) if FAILED else "ALL PASS")
 print(f"{TOTAL - len(FAILED)} passed, {len(FAILED)} failed")
 import sys as _sys
