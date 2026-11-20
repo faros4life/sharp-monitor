@@ -1,6 +1,191 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-20T02:55:39Z",
+   "base_depth": 240815,
+   "best_price": 0.635,
+   "best_price_american": -174,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.62,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-20",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -1940,
+     "new_this_side": 39346,
+     "other_side": 3122,
+     "other_side_all_levels": 132199,
+     "ratio": 18.0,
+     "this_side": 56136,
+     "this_side_all_levels": 285801
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "PHX (0)",
+     "price": 0.635,
+     "this_side": 1078
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Phoenix Suns",
+     "price": 0.6503,
+     "this_side": 20
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 17499.28,
+    "volume_24h_fp": 24487.83,
+    "volume_fp": 25500.18
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 1.72,
+    "volume_24h_fp": 25.62,
+    "volume_fp": 17.43
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 17497.56,
+    "volume_24h_fp": 24462.21,
+    "volume_fp": 25482.75
+   },
+   "fade_price": 0.38,
+   "first_seen_utc": "2026-11-20T02:50:14Z",
+   "game": "Phoenix vs Utah",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 5.82,
+   "key": "kalshi|KXNBAGAME-26NOV20PHXUTA|ml|0",
+   "lead_min": 1414,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 39346,
+   "new_x": 0.71,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 17499.28,
+      "volume_24h_fp": 24487.83,
+      "volume_fp": 25500.18
+     },
+     "game_normal": 49125,
+     "game_x": 5.82,
+     "normal": 55692,
+     "now": 285801,
+     "type": "ML",
+     "x": 5.13
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 0.0,
+      "volume": 0.0
+     },
+     "game_normal": null,
+     "game_x": null,
+     "normal": 7092,
+     "now": 1412,
+     "type": "ML",
+     "x": 0.2
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 10,
+     "game_x": 1.95,
+     "normal": 1965,
+     "now": 20,
+     "type": "ML",
+     "x": 0.01
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.62,
+   "price_american": -163,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.62,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -180
+    },
+    "betrivers": {
+     "point": null,
+     "price": -190
+    },
+    "draftkings": {
+     "point": null,
+     "price": -180
+    },
+    "fanduel": {
+     "point": null,
+     "price": -172
+    },
+    "kalshi": {
+     "point": null,
+     "price": -163
+    },
+    "limitless": {
+     "point": null,
+     "price": -175
+    },
+    "novig": {
+     "point": null,
+     "price": -186
+    },
+    "polymarket": {
+     "point": null,
+     "price": -170
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -170
+    },
+    "prophetx": {
+     "point": null,
+     "price": -186
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -175
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26NOV20PHXUTA-PHX"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Phoenix",
+   "side_label": "Phoenix",
+   "size_x": 5.13,
+   "start_source": "odds",
+   "start_utc": "2026-11-21T02:30:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Phoenix",
+    "Utah"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-20T02:50:14Z",
    "base_depth": 195763,
    "best_price": 0.515,
@@ -50,6 +235,11 @@
     "open_interest_fp": 1523.49,
     "volume_24h_fp": 0.0,
     "volume_fp": 2594.36
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 46691.03,
+    "volume_24h_fp": 54164.81,
+    "volume_fp": 57239.42
    },
    "ex_stats_first": {
     "open_interest_fp": 43150.05,
@@ -259,6 +449,11 @@
     "volume_24h_fp": 0.0,
     "volume_fp": 242.06
    },
+   "ex_stats_close": {
+    "open_interest_fp": 14086.72,
+    "volume_24h_fp": 11456.76,
+    "volume_fp": 15773.61
+   },
    "ex_stats_first": {
     "open_interest_fp": 13869.9,
     "volume_24h_fp": 11431.27,
@@ -446,9 +641,9 @@
     "volume_fp": 152.87
    },
    "ex_stats_close": {
-    "open_interest_fp": 9857.59,
-    "volume_24h_fp": 10427.59,
-    "volume_fp": 11353.580000000002
+    "open_interest_fp": 9978.68,
+    "volume_24h_fp": 10569.41,
+    "volume_fp": 11474.67
    },
    "ex_stats_first": {
     "open_interest_fp": 9612.619999999999,
@@ -508,6 +703,8 @@
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.57,
+   "price_after_15m": 0.565,
+   "price_after_15m_book": "novig",
    "price_american": -133,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.57,
@@ -578,6 +775,7 @@
    "size_x": 5.6,
    "start_source": "odds",
    "start_utc": "2026-11-21T01:00:00Z",
+   "still_actionable": false,
    "surge_books": [
     "kalshi"
    ],
@@ -640,9 +838,9 @@
     "volume_fp": 15.13
    },
    "ex_stats_close": {
-    "open_interest_fp": 10902.34,
-    "volume_24h_fp": 11251.63,
-    "volume_fp": 12062.73
+    "open_interest_fp": 11073.17,
+    "volume_24h_fp": 11320.09,
+    "volume_fp": 12233.560000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 10849.27,
@@ -838,9 +1036,9 @@
     "volume_fp": 50.19
    },
    "ex_stats_close": {
-    "open_interest_fp": 18517.98,
-    "volume_24h_fp": 23192.89,
-    "volume_fp": 24545.61
+    "open_interest_fp": 18524.09,
+    "volume_24h_fp": 23507.559999999998,
+    "volume_fp": 24585.72
    },
    "ex_stats_first": {
     "open_interest_fp": 18004.91,
@@ -1857,9 +2055,9 @@
     "volume_fp": 152.03
    },
    "ex_stats_close": {
-    "open_interest_fp": 13025.599999999999,
-    "volume_24h_fp": 13484.33,
-    "volume_fp": 14205.470000000001
+    "open_interest_fp": 13042.48,
+    "volume_24h_fp": 13633.11,
+    "volume_fp": 14222.349999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 11276.99,
@@ -2167,7 +2365,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [
     "Over 51.5 (-115)"
@@ -3043,9 +3241,9 @@
     "volume_fp": 200.46
    },
    "ex_stats_close": {
-    "open_interest_fp": 17676.55,
-    "volume_24h_fp": 18111.940000000002,
-    "volume_fp": 19823.77
+    "open_interest_fp": 17676.69,
+    "volume_24h_fp": 18305.05,
+    "volume_fp": 19823.91
    },
    "ex_stats_first": {
     "open_interest_fp": 11441.71,
@@ -5258,7 +5456,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Carolina Hurricanes",
@@ -5752,9 +5950,9 @@
     "volume_fp": 133.63
    },
    "ex_stats_close": {
-    "open_interest_fp": 409113.69,
-    "volume_24h_fp": 198626.11,
-    "volume_fp": 419858.41000000003
+    "open_interest_fp": 824845.3700000001,
+    "volume_24h_fp": 414636.01,
+    "volume_fp": 836384.62
    },
    "ex_stats_first": {
     "open_interest_fp": 85655.57,
@@ -7620,7 +7818,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Edmonton",
@@ -8047,7 +8245,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Toronto",
@@ -8474,7 +8672,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Temple",
@@ -8918,7 +9116,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Tampa Bay",
@@ -10519,7 +10717,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Southeastern Louisiana",
@@ -11170,7 +11368,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -12075,9 +12273,9 @@
     "volume_fp": 55.5
    },
    "ex_stats_close": {
-    "open_interest_fp": 99730.19,
-    "volume_24h_fp": 31550.44,
-    "volume_fp": 104711.26000000001
+    "open_interest_fp": 100098.47,
+    "volume_24h_fp": 31416.02,
+    "volume_fp": 105079.54000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 76914.06,
@@ -12509,8 +12707,8 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 22753.93,
-    "volume_24h_fp": 8104.700000000001,
-    "volume_fp": 27386.57
+    "volume_24h_fp": 8132.3099999999995,
+    "volume_fp": 27386.92
    },
    "ex_stats_first": {
     "open_interest_fp": 17771.73,
@@ -13085,7 +13283,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Temple",
@@ -19030,7 +19228,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Los Angeles",
@@ -24070,7 +24268,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
