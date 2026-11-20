@@ -413,7 +413,7 @@ def main(argv):
     for v, (k, b) in zip(views, rows):
         if v["v1"] is not None or not snaps or ss is None:
             continue
-        for sn in snaps:
+        for sn in sorted(snaps, key=ss.rank):      # our own line first, then freshest
             try:
                 if not ss.matches(sn, b, day):
                     continue

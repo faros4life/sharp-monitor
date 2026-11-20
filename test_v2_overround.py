@@ -217,6 +217,25 @@ ok("record_v2 persists the four ages on a moved row", rec3.get("ts_ages") == [2.
 ok("the spec records the timestamp confound and the correction",
    "was wrong and is corrected here" in open("v2_validation_spec.md").read())
 
+# ---------------------------------------------------------------- 11. snapshot matching
+import snapshot_source as ss
+bet_os = {"league": "NCAAB", "game": "UMBC Retrievers @ Ohio State Buckeyes", "bet": "Under 158.5 (-115)"}
+bet_or = {"league": "NCAAB", "game": "Oregon State Beavers @ Oregon Ducks", "bet": "Under 160.5 (-110)"}
+snap_os = {"day": "2026-11-19", "league": "NCAAB", "game": "UMBC Retrievers @ Ohio State Buckeyes",
+           "market": "total", "side": "UNDER", "line": 155.5, "line_type": "main", "t_minus_min": 12}
+ok("a snapshot matches its OWN game", ss.matches(snap_os, bet_os, "2026-11-19"))
+ok("a snapshot NEVER matches another game's bet - the wrong-game CLV bug",
+   not ss.matches(snap_os, bet_or, "2026-11-19"))
+ok("a far-away total on the same game is refused",
+   not ss.matches(dict(snap_os, line=139.5), bet_os, "2026-11-19"))
+ok("the wrong side is refused", not ss.matches(dict(snap_os, side="OVER"), bet_os, "2026-11-19"))
+ok("the wrong day is refused", not ss.matches(snap_os, bet_os, "2026-11-18"))
+ok("the wrong league is refused", not ss.matches(dict(snap_os, league="NBA"), bet_os, "2026-11-19"))
+ok("a same-line quote outranks a main-line one",
+   ss.rank({"line_type": "alt_our_line", "t_minus_min": 4}) < ss.rank({"line_type": "main", "t_minus_min": 4}))
+ok("among same types, fresher wins",
+   ss.rank({"line_type": "main", "t_minus_min": 4}) < ss.rank({"line_type": "main", "t_minus_min": 12}))
+
 print(("FAILED: " + ", ".join(FAILED)) if FAILED else "ALL PASS")
 print(f"{TOTAL - len(FAILED)} passed, {len(FAILED)} failed")
 import sys as _sys

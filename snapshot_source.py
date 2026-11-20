@@ -73,10 +73,37 @@ def matches(snap, b, day):
     pz = cl.parsed(b)
     if not pz:
         return False
+    # THE GAME MUST MATCH. Without this, a total's side is only OVER/UNDER, so every NCAAB under
+    # on a date matched every NCAAB total snapshot - Ohio State's 155.5 was attached to Oregon's
+    # 160.5 bet and to a Kalshi 139.5 bet, producing a CLV from another game's quote. Two shared
+    # tokens is the same bar fixture_match uses; one shared word is how "Michigan" put a Senate
+    # market on a football game.
+    if len(tb.toks(str(snap.get("game"))) & tb.toks(str(b.get("game")))) < 2:
+        return False
     if mk == "total":
         want = (snap.get("side") or "").upper()
-        return want in ("OVER", "UNDER") and want == str(pz[1]).upper()
+        if want not in ("OVER", "UNDER") or want != str(pz[1]).upper():
+            return False
+        # ...and the snapshot must be about a comparable number, not any total on the slate.
+        try:
+            return abs(float(snap.get("line")) - float(pz[2])) <= 6.0
+        except Exception:
+            return False
     return bool(tb.toks(str(snap.get("side"))) & tb.toks(str(pz[1])))
+
+
+def rank(snap):
+    """Sort key: a quote AT OUR OWN LINE beats a main-line quote, and fresher beats older.
+
+    An alt_our_line record needs no model conversion at all, so it is strictly better evidence
+    than a main-line snapshot that has to be walked across numbers.
+    """
+    same_line = 0 if str(snap.get("line_type")) == "alt_our_line" else 1
+    try:
+        age = float(snap.get("t_minus_min"))
+    except Exception:
+        age = 999.0
+    return (same_line, age)
 
 
 def movement(snap, b):
