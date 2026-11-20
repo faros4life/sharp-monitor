@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 20, 12:55 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 33.
+Updated Fri Nov 20, 1:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 33.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -19,7 +19,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 20 10:50AM | NCAAF | Oregon vs Michigan St.: Spread | spread: Oregon wins by over 17.5 points | kalshi | $33k | -108 |  |  | +0.0c |  | pending |
 | Nov 20 10:43AM | NBA | Sacramento vs Los Angeles L: Total Points | total: Over 228.5 points | kalshi | $34k | -104 | ✅ novig,prophetx | ❌ | +2.0c |  | pending |
 | Nov 20 10:30AM | NBA | Toronto vs Detroit: Spread | spread: Detroit wins by over 6.5 points | kalshi | $57k | -108 | ✅ novig |  | +0.0c |  | pending |
-| Nov 20 8:45AM | NCAAF | Iowa State @ UCF | moneyline: ISU (0) | novig | $31k | -100 | ✅ kalshi,prophetx |  | +2.0c |  | pending |
+| Nov 20 8:45AM | NCAAF | Iowa State @ UCF | moneyline: ISU (0) | novig | $31k | -100 | ✅ kalshi,prophetx |  | +1.5c |  | pending |
 | Nov 20 8:45AM | NCAAF | Texas A&M vs Oklahoma | moneyline: Oklahoma | kalshi | $86k | -257 | ✅ novig |  | +0.0c |  | pending |
 | Nov 20 8:00AM | NCAAF | Clemson vs Duke: Spread | spread: NOT Duke wins by over 13.5 points | kalshi | $35k | -104 |  |  | +3.0c |  | pending |
 | Nov 20 7:53AM | NCAAF | Iowa St. vs UCF: Spread | spread: NOT UCF wins by over 1.5 points | kalshi | $96k | -113 |  |  | +2.0c |  | pending |
