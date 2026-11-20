@@ -378,6 +378,43 @@ ok("a different bet is never grouped with it",
    dr.merge_summaries([("w1", hr(210.0, "n")), ("w2", hr(105.0, "n")),
                        ("x", hr(315.0, "csv", bet="SMU -20.5 (-105)"))]) == {})
 
+# ------------------------------------------------------------------ 19. combined same-side exposure
+nm = [("px", {"book": "ProphetX", "source": "Peter", "game": "New Mexico at Wyoming",
+              "bet": "New Mexico -7.5", "stake": 200.0, "league": "NCAAF"}),
+      ("nv", {"book": "Novig", "source": "bot", "game": "New Mexico @ Wyoming",
+              "bet": "UNM -7.5", "stake": 237.60, "league": "NCAAF"})]
+g = dr.same_side_exposure(nm)
+ok("the same side on two venues is grouped despite UNM vs New Mexico",
+   len(g) == 1 and len(g[0]) == 2, g)
+ok("a settled leg is not exposure",
+   dr.same_side_exposure([nm[0], ("nv", dict(nm[1][1], result="W"))]) == [])
+opp = [nm[0], ("nv", dict(nm[1][1], bet="Wyoming +7.5"))]
+ok("the OPPOSITE side is not grouped as combined exposure", dr.same_side_exposure(opp) == [], opp)
+ok("a different game is not grouped",
+   dr.same_side_exposure([nm[0], ("nv", dict(nm[1][1], game="Utah at Colorado"))]) == [])
+one_book = [nm[0], ("p2", dict(nm[0][1]))]
+ok("two legs on the SAME venue are not flagged as multi-venue", dr.same_side_exposure(one_book) == [])
+tot = [("a", {"book": "Novig", "source": "bot", "game": "Sacramento Kings @ Los Angeles Lakers",
+              "bet": "Over 228.5", "stake": 200.0}),
+       ("b", {"book": "ProphetX", "source": "Peter", "game": "Sacramento Kings at Los Angeles Lakers",
+              "bet": "Over 228.5", "stake": 100.0})]
+ok("totals group on the same number and direction", len(dr.same_side_exposure(tot)) == 1,
+   dr.same_side_exposure(tot))
+# KNOWN LIMITATION, recorded rather than hidden: the game match is token-based, so a venue that
+# abbreviates ('SAC @ LAL') will NOT group with one that spells the teams out. Combined exposure
+# across such a pair is missed, and this test exists so the gap is visible if it ever matters.
+abbrev = [("a", dict(tot[0][1], game="SAC @ LAL")), tot[1]]
+ok("KNOWN GAP: an abbreviated game name does not group with a spelled-out one",
+   dr.same_side_exposure(abbrev) == [], dr.same_side_exposure(abbrev))
+ok("Over against Under is not the same side",
+   dr.same_side_exposure([tot[0], ("b", dict(tot[1][1], bet="Under 228.5"))]) == [])
+
+uvw = dict(dr.row_view("k", {"bet": "x"}, {}), on_day="UNVERIFIED date", game_day=None,
+           ident=("Novig", "x"))
+o7 = "\n".join(dr.render("2026-11-20", [uvw], {}))
+ok("open positions with no placement timestamp are counted and flagged",
+   "carry NO authenticated placement timestamp" in o7 and "understated" in o7, o7[:400])
+
 print(("FAILED: " + ", ".join(FAILED)) if FAILED else "ALL PASS")
 print(f"{TOTAL - len(FAILED)} passed, {len(FAILED)} failed")
 import sys as _sys

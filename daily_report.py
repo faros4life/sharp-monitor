@@ -74,6 +74,59 @@ def merge_summaries(rows):
     return out
 
 
+def same_side_exposure(rows):
+    """OPEN positions that sit on the SAME side of the same game across more than one venue.
+
+    Peter, Nov 20: New Mexico -7.5 is held on ProphetX (his own) and on Novig (the bot's). They are
+    not duplicates to delete - they are separate wagers that can both lose - so the question is
+    whether the combined risk is accounted for. The bot's daily stop counts its own orders through
+    its registry, so a hand-placed leg on another venue does not register against it.
+
+    Grouping is by GAME (Jaccard >= 0.6 on the token sets, since 'UNM' and 'New Mexico' share no
+    tokens while the game names match), market type and the SIGNED line - on one game, the same
+    signed handicap, or the same Over/Under at the same number, is the same side. Only unsettled
+    rows count: a settled bet is no longer exposure.
+    """
+    import tracker_build as _tb
+    live = []
+    for k, b in rows:
+        if b.get("result"):
+            continue
+        pz = cl_parsed(b)
+        if not pz:
+            continue
+        live.append((k, b, pz))
+    groups, used = [], set()
+    for i, (k, b, pz) in enumerate(live):
+        if k in used:
+            continue
+        g = [(k, b, pz)]
+        used.add(k)
+        for k2, b2, pz2 in live[i + 1:]:
+            if k2 in used or pz2[0] != pz[0]:
+                continue
+            ta, tb2 = _tb.toks(b.get("game")), _tb.toks(b2.get("game"))
+            if not ta or not tb2 or len(ta & tb2) / len(ta | tb2) < 0.6:
+                continue
+            if pz[0] == "total" and (str(pz[1]).upper() != str(pz2[1]).upper()):
+                continue
+            if pz[2] is None or pz2[2] is None or abs(float(pz[2]) - float(pz2[2])) > 1e-9:
+                continue
+            g.append((k2, b2, pz2))
+            used.add(k2)
+        if len({str(x[1].get("book")) for x in g}) > 1:
+            groups.append(g)
+    return groups
+
+
+def cl_parsed(b):
+    try:
+        import clv_ledger as _cl
+        return _cl.parsed(b)
+    except Exception:
+        return None
+
+
 def game_day_of(b):
     """THE game day for a bet, in one place.
 
@@ -299,6 +352,7 @@ def pct(x):
 
 
 L_SUMMARY = []
+L_ROWS = []
 
 
 def render(day, views, meta=None):
@@ -379,6 +433,21 @@ def render(day, views, meta=None):
     snap_prov = [v for v in gameday if (v.get("snap") or {}).get("clv") is not None
                  and not (v.get("snap") or {}).get("certified")]
     unavail = [v for v in gameday if v["v1"] is None and (v.get("snap") or {}).get("clv") is None]
+    expo = same_side_exposure(L_ROWS)
+    if expo:
+        L.append(f"!! COMBINED EXPOSURE: {len(expo)} open position(s) held on the SAME side of the "
+                 f"same game across MORE THAN ONE venue. Not duplicates - separate wagers that can "
+                 f"both lose. The bot's daily stop counts only its own orders.")
+        for g in expo:
+            books = ", ".join(f"{x[1].get('book')} [{x[1].get('source')}]" for x in g)
+            u = sum((num(x[1].get("stake")) or 0) / UNIT for x in g)
+            L.append(f"   {g[0][1].get('game')} | {g[0][1].get('bet')} | {len(g)} legs on {books}"
+                     + (f" | combined {u:.2f}u at risk" if u else " | stake not stored on every leg"))
+    nover = [v for v in views if v.get("on_day") == "UNVERIFIED date"]
+    if nover:
+        L.append(f"!! {len(nover)} open position(s) carry NO authenticated placement timestamp, so "
+                 f"they are EXCLUDED from the placed-day count above - today's placed total is "
+                 f"understated by that many")
     for _m in L_SUMMARY:
         L.append(f"!! {_m}")
     L.append(f"CLV SAME-LINE COVERAGE: {len(v1_cert) + len(snap_cert)}/{len(gameday)}"
@@ -495,6 +564,7 @@ def main(argv):
         if (r.get("book"), r.get("game"), r.get("bet")) not in have:
             rows.append((r.get("id") or f"manual|{r.get('bet')}", dict(r, _manual=True)))
     summaries = merge_summaries(rows)
+    L_ROWS[:] = [(k, b) for k, b in rows if k not in summaries]
     views = []
     for k, b in rows:
         if k in summaries:
