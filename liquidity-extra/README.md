@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 20, 3:00 PM ET. This run: 0 new, 0 not confirmed, 3 pending. Open alerts: 29.
+Updated Fri Nov 20, 3:10 PM ET. This run: 3 new, 0 not confirmed, 4 pending. Open alerts: 32.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 20 3:10PM | NCAAB | Iowa vs Xavier: Spread | spread: NOT Xavier wins by over 3.5 points | kalshi | $45k | -104 |  |  | +0.0c |  | pending |
+| Nov 20 3:10PM | NCAAB | Kansas City vs Iona | moneyline: Iona | kalshi | $48k | -178 | ✅ novig |  | +0.0c |  | pending |
+| Nov 20 3:10PM | NCAAB | Dayton vs Utah | moneyline: Dayton | kalshi | $33k | +108 |  |  | +0.0c |  | pending |
 | Nov 20 2:50PM | NCAAB | Northwestern vs Virginia Tech: Point Total | total: Over 142.5 points | kalshi | $48k | -104 |  | ❌ | +0.0c |  | pending |
 | Nov 20 1:50PM | NCAAB | UAB vs George Washington: Point Total | total: Over 151.5 points | kalshi | $38k | +104 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 20 1:30PM | NCAAB | Saint Louis vs Saint Mary's | moneyline: Saint Mary's | kalshi | $25k | -117 |  | ❌ | +0.0c |  | pending |
@@ -207,6 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 10:00AM | NCAAB | Brown vs Siena: Spread | spread: NOT Siena wins by over 11.5 points | kalshi | $34k | -122 |  |  | +5.0c | yes | W |
 | Nov 14 9:10AM | NCAAB | St. Thomas vs Army: Spread | spread: NOT St. Thomas wins by over 7.5 points | kalshi | $34k | +104 |  |  | +9.0c |  | W |
 | Nov 14 9:10AM | NCAAB | West Georgia vs Charleston Southern | moneyline: Charleston Southern | kalshi | $40k | -186 |  |  | -2.0c | yes | W |
-| Nov 14 9:10AM | NCAAB | Central Michigan vs Northern Kentucky | moneyline: Northern Kentucky | kalshi | $80k | -163 | ✅ novig |  | -1.0c | yes | L |
-| Nov 14 9:00AM | NCAAB | UT Rio Grande Valley vs UT Arlington | moneyline: UT Arlington | kalshi | $42k | -186 |  |  | +1.0c | yes | W |
-| Nov 14 9:00AM | NCAAB | Cincinnati vs Dayton | moneyline: Cincinnati | kalshi | $58k | -257 | ✅ novig |  | -1.0c |  | W |
