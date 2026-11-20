@@ -150,7 +150,7 @@
   },
   {
    "alert_utc": "2026-11-20T11:00:29Z",
-   "beat_close": true,
+   "beat_close": false,
    "beat_true_close": null,
    "bet": "Under 229.5 (-110)",
    "book": "Hard Rock",
@@ -158,7 +158,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+1 pts",
+   "clv": "+0 pts",
    "clv_conv_pts": null,
    "clv_pin_line": null,
    "clv_read_utc": null,
@@ -1243,6 +1243,81 @@
    "sport": "NBA",
    "start_utc": "2026-11-21T01:00:00Z",
    "top25": null,
+   "units_flat": null
+  },
+  {
+   "alert_utc": "2026-11-20T16:10:23Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "Under 44.5 (-115)",
+   "book": "Hard Rock",
+   "book_key": "hardrockbet",
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+0.5 pts",
+   "clv_conv_pts": null,
+   "clv_pin_line": null,
+   "clv_read_utc": null,
+   "clv_skipped": null,
+   "clv_source": null,
+   "clv_verified": null,
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -3.8,
+   "executable_book": true,
+   "fade_book": "prophetx",
+   "fade_point": 44.5,
+   "fade_price": 115,
+   "fade_price_after_fee": 113,
+   "fade_units": null,
+   "final": null,
+   "floor_line": 44.5,
+   "game": "Oregon Ducks @ Michigan State Spartans",
+   "grade": "B",
+   "hr1_eligible": false,
+   "hr1_pushed": false,
+   "hr1_verified": null,
+   "hr1_verify_status": null,
+   "hr1_verify_why": null,
+   "kind": "tot",
+   "late": false,
+   "minutes_before_start": 530,
+   "point": 44.5,
+   "price": -115,
+   "price_after_fee": -115,
+   "prices_at_alert": {
+    "hardrockbet": {
+     "after_fee": -115,
+     "point": 44.5,
+     "price": -115
+    },
+    "kalshi": {
+     "after_fee": -107.3,
+     "point": 43.5,
+     "price": 100
+    },
+    "novig": {
+     "after_fee": 102,
+     "point": 43.5,
+     "price": 102
+    },
+    "prophetx": {
+     "after_fee": -119.4,
+     "point": 44.5,
+     "price": -117
+    }
+   },
+   "pricing_bettable": true,
+   "result": null,
+   "score": 71,
+   "sent_to_phone": true,
+   "sport": "NCAAF",
+   "start_utc": "2026-11-21T01:00:00Z",
+   "top25": true,
    "units_flat": null
   },
   {
@@ -96672,6 +96747,31 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Under 44.5 (-115) at Hard Rock (also: ProphetX)",
+   "bet": "Under 44.5 (-115)",
+   "bet_result": null,
+   "book": "Hard Rock",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -3.8,
+   "final": null,
+   "game": "Oregon Ducks @ Michigan State Spartans",
+   "grade": "B",
+   "late": false,
+   "minutes_before_start": 530,
+   "price": -115,
+   "price_after_fee": -115,
+   "pushed_to_phone": true,
+   "repeat": false,
+   "score": 71,
+   "sent_et": "2026-11-20 11:10",
+   "sport": "NCAAF",
+   "start_utc": "2026-11-21T01:00:00Z",
+   "why": "Pinnacle total moved 45 -> 44; bet only at 44.5 or better (confirmed by BetOnline, Matchbook)"
+  },
   {
    "alert_text": "Under 147.5 (-113) at Kalshi [-121 after Kalshi fee] (also: ProphetX, Novig)",
    "bet": "Under 147.5 (-113)",
