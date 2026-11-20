@@ -71,7 +71,9 @@ def bets_on(tracker, day, corr=None):
         # (ChatGPT/Peter, Nov 20). Day membership rests on an authenticated placed or settled
         # timestamp only; game_start no longer admits a row to a day.
         days = {et_day(b.get(f)) for f in ("settled", "placed") if b.get(f)}
-        gd = b.get("_gameday") or et_day(b.get("game_start")) or b.get("_gameday_ev")
+        # An event-record date, backed by an immutable event id, outranks the tracker's own
+        # game_start. The disagreement is reported, never hidden.
+        gd = b.get("_gameday") or b.get("_gameday_ev") or et_day(b.get("game_start"))
         if day not in days and gd != day:
             continue
         fp = (b.get("book"), b.get("game"), b.get("bet"), b.get("placed"), b.get("stake"))
@@ -287,6 +289,10 @@ def render(day, views, meta=None):
     n, w_, l_, u_ = tot(gameday)
     L.append(f"(A) GAME-DAY PERFORMANCE - all venues, games played this day: {n} | {w_}-{l_} | {u_:+.2f}u")
     prov = [v for v in gameday if str(v.get("game_day_basis") or "").startswith("PROVISIONAL")]
+    conf = [v for v in gameday if v.get("gameday_conflict")]
+    if conf:
+        L.append(f"    {len(conf)} row(s) had a game-date disagreement between the tracker and the "
+                 f"verified event record - each is printed in full on its row")
     L.append(f"    game-day verification: {n - len(prov)}/{n} authoritative, {len(prov)} PROVISIONAL"
              + (" (no immutable event id yet - see the note at the end)" if prov else ""))
     if excl:
@@ -337,6 +343,8 @@ def render(day, views, meta=None):
                      + (f" | email receipt kept separately: {v['received_at']}" if v.get("received_at") else "")
                      + (f" | final {v['score']}" if v.get("score") else "")
                      + " | tracker_build, MANUAL_HELD and live gating untouched")
+        if v.get("gameday_conflict"):
+            L.append(f"    !! {v['gameday_conflict']}")
         if v.get("placed_day") or v.get("settled_day") or v.get("game_day"):
             L.append(f"    dates ET: placed {v.get('placed_day') or '-'} | settled "
                      f"{v.get('settled_day') or '-'} | game {v.get('game_day') or '-'}"
@@ -387,14 +395,25 @@ def main(argv):
     import tracker_build as _tb
     by_game = ev.get("_by_game") or {}
     for _k, _b in (tracker or {}).items():
-        if _b.get("game_start") or not _b.get("game"):
+        if not _b.get("game"):
             continue
         for g, val in by_game.items():
-            if len(_tb.toks(g) & _tb.toks(_b.get("game"))) >= 2:
-                _b["_gameday_ev"] = val[0]
-                _b["_gameday_basis_ev"] = (f"authoritative: transfer metadata, start {val[2]}"
-                                           + (f", event id {val[1]}" if val[1] else ""))
-                break
+            if len(_tb.toks(g) & _tb.toks(_b.get("game"))) < 2:
+                continue
+            own = et_day(_b.get("game_start")) if _b.get("game_start") else None
+            _b["_gameday_ev"] = val[0]
+            _b["_gameday_basis_ev"] = (f"authoritative: transfer event record, start {val[2]}"
+                                       + (f", event id {val[1]}" if val[1] else ""))
+            # Peter, Nov 20: do NOT blindly overwrite the tracker's date. Where the two disagree,
+            # the report SHOWS both, with the tracker's raw timestamp so the cause is visible, and
+            # states which one it used. Where they agree, nothing is said.
+            if own and own != val[0]:
+                _b["_gameday_conflict"] = (
+                    f"GAME DATE DISAGREEMENT: tracker {own} (from game_start "
+                    f"{_b.get('game_start')}) vs transfer {val[0]} (start {val[2]}"
+                    + (f", event id {val[1]}" if val[1] else "") + "). Using the verified event "
+                    "record; the tracker row is left untouched.")
+            break
     rows = bets_on(tracker, day, corr)
     have = {(b.get("book"), b.get("game"), b.get("bet")) for _, b in rows}
     for r in manual_file(day):
@@ -419,6 +438,8 @@ def main(argv):
         vw["game_day_basis"] = b.get("_gameday_basis") or b.get("_gameday_basis_ev") or (
             "authoritative game_start" if b.get("game_start") else None)
         vw["ident"] = (b.get("book"), b.get("bet"))
+        vw["gameday_conflict"] = b.get("_gameday_conflict")
+        vw["tracker_game_start"] = b.get("game_start")
         vw["placed_day"] = et_day(b.get("placed")) if b.get("placed") else None
         vw["settled_day"] = et_day(b.get("settled")) if b.get("settled") else None
         if b.get("result") and vw["units"] is None:

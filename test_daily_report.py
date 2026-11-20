@@ -276,6 +276,23 @@ ok("(C) counts a bet placed today even though it also settled today",
    "(C) PLACED THIS DAY (verified placement timestamp, pending included): 1" in o3, o3[:400])
 ok("(D) still counts it as a settlement", "(D) SETTLED THIS DAY: 1" in o3)
 
+# ------------------------------------------------------------------ 14. date disagreement is shown
+cv = dr.row_view("k", {"result": "W", "profit": 280.38, "bet": "Houston Texans -10.5"}, {})
+cv.update(on_day="settled", game_day="2026-11-19", ident=("ProphetX", "Houston Texans -10.5"),
+          settled_day="2026-11-20", placed_day="2026-11-16",
+          game_day_basis="authoritative: transfer event record, start 2026-11-19 20:15 ET, event id 66f9e83c",
+          gameday_conflict="GAME DATE DISAGREEMENT: tracker 2026-11-20 (from game_start "
+                           "2026-11-20T01:15:00Z) vs transfer 2026-11-19 (start 2026-11-19 20:15 ET, "
+                           "event id 66f9e83c). Using the verified event record; the tracker row is "
+                           "left untouched.")
+o4 = "\n".join(dr.render("2026-11-19", [cv], {}))
+ok("a game-date disagreement is printed in full on the row", "GAME DATE DISAGREEMENT" in o4)
+ok("...showing the tracker's raw timestamp so the cause is visible", "game_start 2026-11-20T01:15:00Z" in o4)
+ok("...and saying the tracker row was not touched", "tracker row is left untouched" in o4)
+ok("the header counts the disagreements", "1 row(s) had a game-date disagreement" in o4, o4[:400])
+ok("the disputed bet still lands in (A) on the event record's date",
+   "(A) GAME-DAY PERFORMANCE - all venues, games played this day: 1 | 1-0 | +1.40u" in o4, o4[:300])
+
 print(("FAILED: " + ", ".join(FAILED)) if FAILED else "ALL PASS")
 print(f"{TOTAL - len(FAILED)} passed, {len(FAILED)} failed")
 import sys as _sys
