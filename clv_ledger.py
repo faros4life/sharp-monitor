@@ -32,6 +32,7 @@ SIDE_EV = ({}, [])
 SIDE_LOG = collections.Counter()
 import executor as ex
 import sharp_monitor as sm
+import line_value as lv
 import tracker_build as tb
 
 BASE = "https://api.oddspapi.io/v4"
@@ -1249,7 +1250,12 @@ def record_v2(rec, c, d):
     v2_derived marks a MODEL-DERIVED fair. It is not a directly observed same-line close and must
     never be reported as certified same-line CLV.
     """
-    if not c or d is None or c.get("v2_p") is None:
+    if not c or d is None:
+        return False
+    if c.get("v2_p") is None:
+        if c.get("v2_why"):
+            rec["v2_unsupported"] = c["v2_why"]      # named, never substituted with a generic value
+            V2STAT["UNSUPPORTED: " + str(c["v2_why"])] += 1
         return False
     rec["clv_v2"] = round(c["v2_p"] * d - 1, 4)
     rec["close_p_v2"] = round(c["v2_p"], 4)
@@ -1263,23 +1269,41 @@ def record_v2(rec, c, d):
 
 
 def fair_from_main(p_main, main_line, want, better, lab, kind):
-    """The fair win chance AT OUR NUMBER, derived from Pinnacle's MAIN line.
+    """The fair win chance AT OUR NUMBER, moved from Pinnacle's MAIN line using the REGISTERED
+    landing masses in line_value.py. Returns (p, None) or (None, reason) - never a silent value.
 
-    Nov 19 (Peter): "The line moved my way, it should get CLV credit. The CLV is not at my number."
-    It was read at the number - but off the ALT quote that survives there once the line moves.
-    Pinnacle prices alts with heavier and uneven juice, and novig_p strips vig assuming it is even,
-    so an alt's fair understates the side holding the better number. That biases exactly the plays
-    that moved our way: seven plays on Nov 19 all beat the closing number and all scored negative,
-    which no market verdict explains.
+    Nov 20 (Peter's calculation audit). The first version called sharp_monitor.half_point_value,
+    whose number_mass substitutes a generic default for any number absent from its table
+    (`NFL_MARGIN.get(k, .015)`) and uses a flat constant for EVERY NBA/NCAAB number (.03/.025/.022).
+    Roughly 142 of 222 rows rested on a placeholder, and it extrapolated 3.5-4 points - the largest
+    CLV swings in the whole sample. line_value.py already held the vetted table: measured NFL rows
+    from nflverse with n and se, MIN_N 200, published estimates labelled as such, NO pooled
+    fallback, and a hard refusal to extrapolate more than 1 point from the line.
 
-    The main line is the liquid, properly priced quote, so the fair at our number is the main line's
-    fair moved across the intervening numbers by the half-point model - the same model already used
-    when Pinnacle has no quote at our number at all. `better` is True when our number is the easier
-    side of the main line; the value is added then and subtracted otherwise, so a favourable move
-    can only ever increase our fair chance.
+    So every number crossed must have a registered row, and the move must stay inside that 1-point
+    rule; otherwise the conversion is UNSUPPORTED and no V2 is written for that row. Only landing
+    MASS is summed here - never cents, never a probability credit. Each whole number contributes in
+    two half-steps, so a multi-point move picks up every interval crossed with its push mass.
     """
-    v = sm.half_point_value(lab, kind, min(main_line, want), max(main_line, want), main_line)
-    return min(max(p_main + (v if better else -v), .01), .99)
+    mtype = "spread" if kind == "spr" else "total"
+    a, b = (abs(float(main_line)), abs(float(want))) if mtype == "spread" else (float(main_line), float(want))
+    lo, hi = sorted((a, b))
+    v, x = 0.0, lo
+    guard = 0
+    while x < hi - 1e-9:
+        guard += 1
+        if guard > 200:
+            return None, "move too large to walk"
+        nxt = x + 0.5
+        k = nxt if abs(nxt - round(nxt)) < 1e-9 else x
+        try:
+            v += lv._mass(lab, mtype, int(round(k)), main_line) / 2
+        except lv.Unsupported as u:
+            return None, f"{u.args[0] if u.args else 'unsupported'}"
+        except Exception as e_:
+            return None, f"mass lookup failed: {type(e_).__name__}"
+        x = nxt
+    return min(max(p_main + (v if better else -v), .01), .99), None
 
 
 def close_for(b, f, pm, mkmap, start, lg):
@@ -1348,11 +1372,12 @@ def close_for(b, f, pm, mkmap, start, lg):
             _p1v = exact[1] if over else 1 - exact[1]
             _at_main = abs(exact[0] - main[0]) < 1e-9
             _ppt, _po = main[0], main[1]
-            _p2v = _p1v if _at_main else fair_from_main(
+            _p2v, _v2why = (_p1v, None) if _at_main else fair_from_main(
                 _po if over else 1 - _po, _ppt, want, (want < _ppt) if over else (want > _ppt), lab, "tot")
             return {"p": _p1v, "how": "own line", "age_min": round(exact[2]),
                     "at_main": _at_main, "main_line": _ppt, "our_line": want,
-                    "v2_p": _p2v, "v2_how": "own line" if _at_main else f"own line (from main {_ppt:g})"}, None
+                    "v2_p": _p2v, "v2_why": _v2why,
+                    "v2_how": "own line" if _at_main else f"own line (from main {_ppt:g})"}, None
         ppt, po = main[0], main[1]
         if abs(want - ppt) > max(1.5, 0.03 * ppt):   # Nov 2: 'Over 5.5' scored on an NBA total = wrong league/market
             return None, "bet line far from Pinnacle's main line (wrong league or market?)"
@@ -1375,11 +1400,12 @@ def close_for(b, f, pm, mkmap, start, lg):
         _at_main = abs(exact[0] - main[0]) < 1e-9
         _hp, _pm1 = main[0], main[1]
         _mine = _hp if side == "1" else -_hp
-        _p2v = _p1v if _at_main else fair_from_main(
+        _p2v, _v2why = (_p1v, None) if _at_main else fair_from_main(
             _pm1 if side == "1" else 1 - _pm1, _mine, want, want > _mine, lab, "spr")
         return {"p": _p1v, "how": "own line", "age_min": round(exact[2]),
                 "at_main": _at_main, "main_line": _mine, "our_line": want,
-                "v2_p": _p2v, "v2_how": "own line" if _at_main else f"own line (from main {_mine:+g})"}, None
+                "v2_p": _p2v, "v2_why": _v2why,
+                "v2_how": "own line" if _at_main else f"own line (from main {_mine:+g})"}, None
     if lg == "NHL":
         return None, "puck line at a different number: not comparable"
     hp, p1 = main[0], main[1]

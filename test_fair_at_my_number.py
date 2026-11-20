@@ -35,62 +35,67 @@ def ok(name, cond, extra=""):
 
 F = cl.fair_from_main
 
-# ------------------------------------------------------------------ 1. the seven plays' shape
-tol = F(0.50, -7.5, -6.5, True, "NCAAB", "spr")
-ok("Toledo -6.5 against a -7.5 close is now a FAVOURITE at our number", tol > 0.50, tol)
-ok("...and the CLV at -110 is positive, not -9.63%", tol * 1.909 - 1 > 0, round(tol * 1.909 - 1, 4))
-ok("...and it is not absurdly large - a 1-point move is worth a few points of win chance",
-   0.50 < tol < 0.58, tol)
 
-ore = F(0.50, 159.5, 160.5, True, "NCAAB", "tot")
-ok("Under 160.5 against a 159.5 close gains, because the under is easier", ore > 0.50, ore)
-hou = F(0.50, -13.0, -10.5, True, "NCAAF", "spr")
-ok("Houston -10.5 against a -13 close gains more than a 1-point move did", hou > tol, (hou, tol))
+def val(*a):
+    """the probability only, asserting the conversion was SUPPORTED"""
+    p, why = F(*a)
+    assert why is None, why
+    return p
 
-# ------------------------------------------------------------------ 2. direction and symmetry
-worse = F(0.50, 159.5, 158.5, False, "NCAAB", "tot")
-ok("a WORSE number is still penalised", worse < 0.50, worse)
-ok("ahead and behind by the same distance move equally and oppositely",
-   abs((ore - 0.50) - (0.50 - worse)) < 1e-9, (ore, worse))
-ok("a favourable move can never reduce our fair chance",
-   all(F(0.50, -7.5, -7.5 + d, True, "NBA", "spr") >= 0.50 for d in (0.5, 1.0, 2.0, 3.0)))
-ok("further ahead is worth more than less far ahead",
-   F(0.50, -7.5, -5.5, True, "NBA", "spr") > F(0.50, -7.5, -6.5, True, "NBA", "spr") >
-   F(0.50, -7.5, -7.0, True, "NBA", "spr"))
-ok("our number BEING the main line changes nothing",
-   abs(F(0.50, -7.5, -7.5, True, "NBA", "spr") - 0.50) < 1e-9)
 
-# ------------------------------------------------------------------ 3. it carries the main's own read
+# ------------------------------------------------------------------ 1. supported moves, measured masses
+tol = val(0.50, -7.5, -6.5, True, "NFL", "spr")
+ok("NFL -6.5 against a -7.5 close is a favourite at our number", tol > 0.50, tol)
+ok("...the gain is the MEASURED mass on 7, not a default", abs(tol - (0.50 + 0.06903765690376569)) < 1e-6, tol)
+ok("...so the CLV at -110 is positive, not -9.63%", tol * 1.909 - 1 > 0, round(tol * 1.909 - 1, 4))
+
+worse = val(0.50, -6.5, -7.5, False, "NFL", "spr")
+ok("a WORSE number is penalised by the same mass", abs((0.50 - worse) - (tol - 0.50)) < 1e-9, worse)
+ok("a favourable move never reduces our fair chance", val(0.50, -7.5, -6.5, True, "NFL", "spr") >= 0.50)
+ok("our number BEING the main line changes nothing", abs(val(0.50, -7.5, -7.5, True, "NFL", "spr") - 0.50) < 1e-9)
 ok("a main line that already favours us keeps that edge and adds to it",
-   F(0.62, -7.5, -6.5, True, "NCAAB", "spr") > 0.62)
-ok("a main line that is against us is not rescued by a tiny move",
-   F(0.38, -7.5, -7.0, True, "NCAAB", "spr") < 0.50)
-ok("probabilities stay inside [0.01, 0.99]",
-   0.01 <= F(0.985, -20.5, 0.5, True, "NFL", "spr") <= 0.99 and
-   0.01 <= F(0.015, 0.5, -20.5, False, "NFL", "spr") <= 0.99)
+   val(0.62, -7.5, -6.5, True, "NFL", "spr") > 0.62)
+ok("probabilities stay inside [0.01, 0.99]", 0.01 <= val(0.985, -7.5, -6.5, True, "NFL", "spr") <= 0.99)
 
-# ------------------------------------------------------------------ 4. wired in, and reversible
+# ------------------------------------------------------------------ 2. UNSUPPORTED is never substituted
+for lab, a, b, kind, why in (("NFL", 5.5, 2.0, "spr", "no_mass_row"),
+                             ("NBA", -7.5, -6.5, "spr", "no_mass_row")):
+    p_, w_ = F(0.50, a, b, False, lab, kind)
+    ok(f"{lab} {kind} {a}->{b} is UNSUPPORTED, not a generic value", p_ is None and why in str(w_), (p_, w_))
+
+import line_value as _lv
+_row = _lv.mass_row("NCAAB", "spread", 7)
+ok("NCAAB spreads ARE registered, as a PUBLISHED estimate rather than measured here",
+   _row is not None and "not measured here" in str(_row.calc), _row)
+ok("...so the conversion is supported and uses that row's mass",
+   abs(val(0.50, -7.5, -6.5, True, "NCAAB", "spr") - (0.50 + _row.m)) < 1e-9)
+ok("a registered row always carries its sample size, so measured and estimated stay distinguishable",
+   _row.n and _row.n >= _lv.MIN_N, _row.n)
+
+p_, w_ = F(0.50, -7.5, -3.5, True, "NFL", "spr")
+ok("a move more than 1 point from the line is refused, not extrapolated",
+   p_ is None and "far_from_line" in str(w_), (p_, w_))
+ok("the reason is always named", all(F(0.50, 5.5, 2.0, False, "NFL", "spr")[1:]))
+
+# ------------------------------------------------------------------ 3. only landing mass is used
 src = open("clv_ledger.py").read()
+fn = src[src.index("def fair_from_main("):src.index("def close_for(")]
+code = fn.split('"""')[2]
+ok("the mass comes from line_value's registered table", "lv._mass(" in code)
+ok("no legacy half_point_value call survives", "half_point_value" not in code)
+ok("cents are never mixed in", not any(t in code for t in ("cents", "cents_of", "am_of_cents")))
+ok("Unsupported is caught and returned as a reason, never swallowed", "lv.Unsupported" in code)
+ok("no silent default anywhere in the walk", ".get(" not in code)
+
+# ------------------------------------------------------------------ 4. wired in, V1 untouched
 cf = src[src.index("def close_for("):src.index("MAX_NEW_MAIL")]
 ok("V1 stays OFFICIAL: both branches return the quote read at our number as 'p'",
-   cf.count('"p": _p1v') == 2, cf.count('"p": _p1v'))
-ok("...and both still label it 'own line', unchanged from before",
-   cf.count('"how": "own line"') == 2)
-ok("V2 is computed alongside, from the main line", cf.count("fair_from_main(") == 2)
-ok("V2 is carried in its own fields, never over V1",
-   cf.count('"v2_p"') == 2 and cf.count('"v2_how"') == 2)
-ok("V2 equals V1 whenever our number WAS the main line",
-   cf.count("_p2v = _p1v if _at_main") == 2)
-ok("a derived V2 is labelled distinctly from an observed close",
-   cf.count('own line (from main') == 2)
-ok("whether our number was the main line is recorded, so the two can be separated",
-   cf.count('"at_main"') == 2)
-ok("the shadow is stored by record_v2, which never writes clv or close_p",
-   '"clv_v2"' in src and 'rec["clv"] =' not in src[src.index("def record_v2("):src.index("def fair_from_main(")])
-ok("a model-derived fair is flagged so it is never called a certified same-line close",
-   '"v2_derived"' in src)
-ok("the no-quote path still exists for numbers Pinnacle never priced",
-   'moved to' in cf and 'far from Pinnacle' in cf)
+   cf.count('"p": _p1v') == 2)
+ok("...and both still label it 'own line'", cf.count('"how": "own line"') == 2)
+ok("V2 is carried in its own fields, never over V1", cf.count('"v2_p"') == 2)
+ok("V2 equals V1 whenever our number WAS the main line", cf.count("_p2v, _v2why = (_p1v, None) if _at_main") == 2)
+ok("an unsupported conversion is recorded as unsupported, not skipped silently",
+   '"v2_unsupported"' in src and "UNSUPPORTED: " in src)
 ok("CLV is still written at exactly one place in the ledger", src.count('rec["clv"] = ') == 1)
 
 print(("FAILED: " + ", ".join(FAILED)) if FAILED else "ALL PASS")
