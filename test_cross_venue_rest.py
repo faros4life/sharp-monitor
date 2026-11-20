@@ -123,6 +123,59 @@ check("two different order ids in the real shape both count", c == 348.00, f"{c}
 check("which is the incident's combined exposure, from production-shaped records",
       c > 234.00)
 
+print("\n6c. ONE ORDER KEEPS ITS MAXIMUM, whatever order the records arrive in")
+# Nov 20 (Peter, PR #9 review): a `seen` set let the FIRST record of an order win, so an intent
+# row recording a smaller amount ahead of the confirmed row would UNDERCOUNT exposure - the
+# direction that places money. Every record of one order is now grouped and the group keeps its
+# maximum, and grouping is by any SHARED identity because the two id fields do not co-occur.
+small = row(order=leg(asked=110.00, filled=None, cid="k1", oid="K1"))
+large = row(order=leg(asked=238.00, filled=237.60, cid="k1", oid="K1"))
+c_fwd, _ = ex.committed_risk(KEY, rows_=[small, large])
+c_rev, _ = ex.committed_risk(KEY, rows_=[large, small])
+check("the larger record wins when it arrives second", c_fwd == 238.00, f"{c_fwd}")
+check("REVERSED record order gives the identical answer", c_rev == c_fwd, f"{c_rev} vs {c_fwd}")
+check("and it is NOT the first record's smaller figure", c_fwd != 110.00)
+
+print("   differing FILLED amounts for one order:")
+f1 = row(order=leg(asked=238.00, filled=100.00, cid="k2", oid="K2"))
+f2 = row(order=leg(asked=238.00, filled=237.60, cid="k2", oid="K2"))
+c, _ = ex.committed_risk(KEY, rows_=[f2, f1])
+check("the maximum exposure is retained, not the last seen", c == 238.00, f"{c}")
+o1 = row(order=leg(asked=None, filled=100.00, cid="k3", oid="K3"))
+o2 = row(order=leg(asked=None, filled=237.60, cid="k3", oid="K3"))
+c, _ = ex.committed_risk(KEY, rows_=[o1, o2])
+check("with no ask recorded, the larger fill wins", c == 237.60, f"{c}")
+
+print("   MIXED identities: the same order seen under different id fields:")
+by_cid = row(order={"status": "placed", "client_id": "mix-1", "asked_stake": 110.00,
+                    "filled_stake": 110.00, "book": "prophetx"})
+by_oid = row(order={"status": "placed", "order_id": "MIX1", "asked_stake": 238.00,
+                    "filled_stake": 237.60, "book": "prophetx"})
+bridge = row(order={"status": "placed", "client_id": "mix-1", "order_id": "MIX1",
+                    "asked_stake": 238.00, "filled_stake": 237.60, "book": "prophetx"})
+c_nobridge, _ = ex.committed_risk(KEY, rows_=[by_cid, by_oid])
+check("with nothing linking them they are two orders (cannot be known otherwise)",
+      c_nobridge == 348.00, f"{c_nobridge}")
+c_bridge, _ = ex.committed_risk(KEY, rows_=[by_cid, by_oid, bridge])
+check("a record carrying BOTH ids merges them into one order", c_bridge == 238.00, f"{c_bridge}")
+c_bridge_rev, _ = ex.committed_risk(KEY, rows_=[bridge, by_oid, by_cid])
+check("and the merge is order-independent", c_bridge_rev == c_bridge,
+      f"{c_bridge_rev} vs {c_bridge}")
+
+print("   MISSING identity still fails closed, in any position:")
+anon = row(order=leg(status="placed", asked=110.0, cid="", oid=""))
+for label, rows_ in (("first", [anon, large]), ("last", [large, anon])):
+    c, why = ex.committed_risk(KEY, rows_=rows_)
+    check(f"an unidentifiable leg {label} refuses", c is None and why, str(why)[:44])
+
+print("   three records of one order, shuffled:")
+import itertools
+trio = [row(order=leg(asked=110.0, filled=None, cid="t1", oid="T1")),
+        row(order=leg(asked=238.0, filled=120.0, cid="t1", oid="T1")),
+        row(order=leg(asked=238.0, filled=237.6, cid="t1", oid="T1"))]
+vals = {ex.committed_risk(KEY, rows_=list(p))[0] for p in itertools.permutations(trio)}
+check("every ordering gives the same maximum", vals == {238.00}, str(vals))
+
 print("\n7. RESTING LEGS AND live_more COUNT TOO")
 r = row(rest=leg(asked=238.00, filled=237.60, book="novig", cid="r1", oid="R1"))
 c, _ = ex.committed_risk(KEY, rows_=[r])

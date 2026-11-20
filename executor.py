@@ -4569,7 +4569,18 @@ def committed_risk(pkey, rows_=None):
         return None, f"order rows unreadable ({type(ex).__name__})"
     if rows_ is None:
         return None, "order rows unavailable"
-    seen, total = set(), 0.0
+    # Nov 20 (Peter, PR #9 review): a `seen` set skipped later records of the same order, so the
+    # FIRST one encountered won. Rows do not arrive in any guaranteed order, so an intent row
+    # recording $110 ahead of the confirmed row recording $238 would have undercounted exposure by
+    # $128 - and undercounting is the direction that places money.
+    #
+    # Instead every record of one order is GROUPED and the group keeps its MAXIMUM. Grouping is by
+    # any shared identity, not by one chosen field, because the two identities do not co-occur: the
+    # stored projection carries order_id and no client_id, while a Gmail-parsed row carries the
+    # client id, and a write-ahead intent may have a client id before the venue has issued an order
+    # id. Keying on either field alone would split those records apart and count the same order
+    # twice. So legs that share EITHER id are merged, and the result is order-independent.
+    groups, by_id = [], {}          # groups[i] = [exposure, ...]; by_id maps an id to its group
     for row in rows_ or []:
         if not isinstance(row, dict):
             continue
@@ -4584,14 +4595,11 @@ def committed_risk(pkey, rows_=None):
             st = str(lo.get("status") or "").lower()
             if st in _NEVER_SUBMITTED:
                 continue                      # never reached the venue: reserves nothing
-            ident = str(lo.get("client_id") or lo.get("order_id") or "")
-            if not ident:
-                # A placed leg we cannot identify cannot be deduped, and double-counting it would
-                # be wrong in the loose direction on a later run. Refuse instead of guessing.
+            ids = {str(lo.get(k)) for k in ("client_id", "order_id") if lo.get(k)}
+            if not ids:
+                # A placed leg we cannot identify cannot be grouped, so it would either double
+                # count or hide. Refuse instead of guessing.
                 return None, "a recorded order leg carries no client or order id"
-            if ident in seen:
-                continue
-            seen.add(ident)
             asked, filled = lo.get("asked_stake"), lo.get("filled_stake")
             try:
                 a = float(asked) if asked is not None else None
@@ -4600,7 +4608,23 @@ def committed_risk(pkey, rows_=None):
                 return None, "a recorded order leg carries an unreadable stake"
             if a is None and f is None:
                 return None, "a recorded order leg carries no stake at all"
-            total += max(f or 0.0, a or 0.0)   # unknown fill reserves the full ask
+            exposure = max(f or 0.0, a or 0.0)   # unknown fill reserves the full ask
+            hit = sorted({by_id[i] for i in ids if i in by_id})
+            if not hit:
+                gi = len(groups)
+                groups.append(exposure)
+            else:
+                gi = hit[0]
+                groups[gi] = max(groups[gi], exposure)
+                for other in hit[1:]:            # this leg bridges two groups: merge them
+                    groups[gi] = max(groups[gi], groups[other])
+                    groups[other] = None
+                    for k, v in list(by_id.items()):
+                        if v == other:
+                            by_id[k] = gi
+            for i in ids:
+                by_id[i] = gi
+    total = sum(g for g in groups if g is not None)
     return round(total, 2), None
 
 
