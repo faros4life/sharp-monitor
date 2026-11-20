@@ -454,7 +454,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+2.5 pts",
+   "clv": "+1.5 pts",
    "clv_conv_pts": null,
    "clv_pin_line": null,
    "clv_read_utc": null,
@@ -3591,6 +3591,80 @@
    "units_flat": null
   },
   {
+   "alert_utc": "2026-11-20T20:00:33Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "Under 161.5 (-110)",
+   "book": "Hard Rock",
+   "book_key": "hardrockbet",
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+1 pts",
+   "clv_conv_pts": null,
+   "clv_pin_line": null,
+   "clv_read_utc": null,
+   "clv_skipped": null,
+   "clv_source": null,
+   "clv_verified": null,
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -1.6,
+   "executable_book": true,
+   "fade_book": "prophetx",
+   "fade_point": 161.5,
+   "fade_price": 109,
+   "fade_price_after_fee": 107,
+   "fade_units": null,
+   "final": null,
+   "floor_line": 161.0,
+   "game": "Murray St Racers @ Wisconsin Badgers",
+   "grade": "A",
+   "hr1_eligible": true,
+   "hr1_pushed": true,
+   "hr1_verified": true,
+   "hr1_verify_status": "verified",
+   "hr1_verify_why": null,
+   "kind": "tot",
+   "late": false,
+   "minutes_before_start": 239,
+   "point": 161.5,
+   "price": -110,
+   "price_after_fee": -110,
+   "prices_at_alert": {
+    "hardrockbet": {
+     "after_fee": -110,
+     "point": 161.5,
+     "price": -110
+    },
+    "kalshi": {
+     "after_fee": 100.7,
+     "point": 159.5,
+     "price": 108
+    },
+    "novig": {
+     "after_fee": -102,
+     "point": 160.5,
+     "price": -102
+    },
+    "prophetx": {
+     "after_fee": -120.4,
+     "point": 161.5,
+     "price": -118
+    }
+   },
+   "pricing_bettable": true,
+   "result": null,
+   "score": 78,
+   "sent_to_phone": false,
+   "sport": "NCAAB",
+   "start_utc": "2026-11-21T00:00:00Z",
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alert_utc": "2026-11-20T15:00:29Z",
    "beat_close": true,
    "beat_true_close": null,
@@ -4871,8 +4945,8 @@
    "fade_point": 153.5,
    "fade_price": -110,
    "fade_price_after_fee": -110,
-   "fade_units": null,
-   "final": null,
+   "fade_units": 0.91,
+   "final": "GB 63, FSU 87",
    "floor_line": 155.5,
    "game": "Green Bay Phoenix @ Florida St Seminoles",
    "grade": "A",
@@ -4910,13 +4984,13 @@
     }
    },
    "pricing_bettable": true,
-   "result": null,
+   "result": "L",
    "score": 83,
    "sent_to_phone": false,
    "sport": "NCAAB",
    "start_utc": "2026-11-20T17:00:00Z",
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alert_utc": "2026-11-20T16:15:36Z",
@@ -4945,8 +5019,8 @@
    "fade_point": -22.5,
    "fade_price": 111,
    "fade_price_after_fee": 111,
-   "fade_units": null,
-   "final": null,
+   "fade_units": 1.11,
+   "final": "GB 63, FSU 87",
    "floor_line": 22.5,
    "game": "Green Bay Phoenix @ Florida St Seminoles",
    "grade": "A",
@@ -4979,13 +5053,13 @@
     }
    },
    "pricing_bettable": true,
-   "result": null,
+   "result": "L",
    "score": 80,
    "sent_to_phone": false,
    "sport": "NCAAB",
    "start_utc": "2026-11-20T17:00:00Z",
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alert_utc": "2026-11-19T13:25:17Z",
@@ -97914,6 +97988,30 @@
  ],
  "all_alerts": [
   {
+   "alert_text": "Under 161.5 (-110) at Hard Rock (also: ProphetX)",
+   "bet": "Under 161.5 (-110)",
+   "bet_result": null,
+   "book": "Hard Rock",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -1.6,
+   "final": null,
+   "game": "Murray St Racers @ Wisconsin Badgers",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 239,
+   "price": -110,
+   "price_after_fee": -110,
+   "pushed_to_phone": false,
+   "repeat": false,
+   "score": 78,
+   "sent_et": "2026-11-20 15:00",
+   "sport": "NCAAB",
+   "start_utc": "2026-11-21T00:00:00Z",
+   "why": "Pinnacle total moved 162.5 -> 160.5; bet only at 161 or better (confirmed by BetOnline)"
+  },
+  {
    "alert_text": "Under 43.5 (-111) at ProphetX [-113 after ProphetX fee] (also: Hard Rock)",
    "bet": "Under 43.5 (-111)",
    "bet_result": null,
@@ -98375,13 +98473,13 @@
   {
    "alert_text": "Green Bay Phoenix +22.5 (-110) at Hard Rock (also: ProphetX, Novig)",
    "bet": "Green Bay Phoenix +22.5 (-110)",
-   "bet_result": null,
+   "bet_result": "L",
    "book": "Hard Rock",
    "confirmed_by": [
     "BetOnline"
    ],
    "edge_pct": -0.7,
-   "final": null,
+   "final": "GB 63, FSU 87",
    "game": "Green Bay Phoenix @ Florida St Seminoles",
    "grade": "A",
    "late": true,
@@ -99698,13 +99796,13 @@
   {
    "alert_text": "Over 153.5 (-110) at Hard Rock (also: ProphetX, Novig, Kalshi)",
    "bet": "Over 153.5 (-110)",
-   "bet_result": null,
+   "bet_result": "L",
    "book": "Hard Rock",
    "confirmed_by": [
     "BetOnline"
    ],
    "edge_pct": 6.0,
-   "final": null,
+   "final": "GB 63, FSU 87",
    "game": "Green Bay Phoenix @ Florida St Seminoles",
    "grade": "A",
    "late": false,
