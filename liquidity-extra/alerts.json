@@ -1,6 +1,188 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-20T13:40:20Z",
+   "base_depth": 99590,
+   "best_price": 0.7474,
+   "best_price_american": -296,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.74,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-20",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 212,
+     "new_this_side": 49199,
+     "other_side": 11367,
+     "other_side_all_levels": 28257,
+     "ratio": 5.9,
+     "this_side": 66540,
+     "this_side_all_levels": 148110
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Mississippi State",
+     "price": 0.7436,
+     "this_side": 3113
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 1308.6599999999999,
+    "volume_24h_fp": 1321.08,
+    "volume_fp": 1321.08
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 1308.6599999999999,
+    "volume_24h_fp": 1321.08,
+    "volume_fp": 1321.08
+   },
+   "fade_price": 0.27,
+   "first_seen_utc": "2026-11-20T13:30:35Z",
+   "game": "Tulsa vs Mississippi St.",
+   "game_surge_books": [
+    "prophetx"
+   ],
+   "game_x": 1.59,
+   "key": "kalshi|KXNCAAMBGAME-26NOV20TLSAMSST|ml|1",
+   "lead_min": 650,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 49199,
+   "new_x": 2.01,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 1308.6599999999999,
+      "volume_24h_fp": 1321.08,
+      "volume_fp": 1321.08
+     },
+     "game_normal": 92880,
+     "game_x": 1.59,
+     "normal": 24523,
+     "now": 148110,
+     "type": "ML",
+     "x": 6.04
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 1253,
+     "game_x": 2.81,
+     "normal": 391,
+     "now": 3515,
+     "type": "ML",
+     "x": 9.0
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.74,
+   "price_american": -285,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.74,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -325
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -315
+    },
+    "betrivers": {
+     "point": null,
+     "price": -305
+    },
+    "betus": {
+     "point": null,
+     "price": -315
+    },
+    "bovada": {
+     "point": null,
+     "price": -320
+    },
+    "circasports": {
+     "point": null,
+     "price": -310
+    },
+    "draftkings": {
+     "point": null,
+     "price": -325
+    },
+    "fanatics": {
+     "point": null,
+     "price": -320
+    },
+    "fanduel": {
+     "point": null,
+     "price": -320
+    },
+    "kalshi": {
+     "point": null,
+     "price": -300
+    },
+    "lowvig": {
+     "point": null,
+     "price": -315
+    },
+    "novig": {
+     "point": null,
+     "price": -285
+    },
+    "polymarket": {
+     "point": null,
+     "price": -300
+    },
+    "prophetx": {
+     "point": null,
+     "price": -290
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV20TLSAMSST-MSST"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [
+    "Mississippi St Bulldogs -6.5 (-110)"
+   ],
+   "sharp_oppose": [],
+   "side": "Mississippi St.",
+   "side_label": "Mississippi St.",
+   "size_x": 6.04,
+   "start_source": "odds",
+   "start_utc": "2026-11-21T00:30:00Z",
+   "surge_books": [
+    "kalshi",
+    "prophetx"
+   ],
+   "teams": [
+    "Tulsa",
+    "Mississippi St."
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-20T08:20:20Z",
    "base_depth": 77116,
    "best_price": 0.7631,
@@ -192,9 +374,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2131.82,
+    "open_interest_fp": 2173.35,
     "volume_24h_fp": 1725.58,
-    "volume_fp": 2131.82
+    "volume_fp": 2173.35
    },
    "ex_stats_first": {
     "open_interest_fp": 2096.22,
@@ -366,9 +548,9 @@
     "volume_fp": 1.34
    },
    "ex_stats_close": {
-    "open_interest_fp": 5623.97,
+    "open_interest_fp": 5630.6900000000005,
     "volume_24h_fp": 5516.5199999999995,
-    "volume_fp": 5627.24
+    "volume_fp": 5633.96
    },
    "ex_stats_first": {
     "open_interest_fp": 1100.72,
@@ -549,9 +731,9 @@
     "volume_fp": 15.28
    },
    "ex_stats_close": {
-    "open_interest_fp": 2737.67,
+    "open_interest_fp": 3072.7799999999997,
     "volume_24h_fp": 2634.44,
-    "volume_fp": 2737.67
+    "volume_fp": 3093.96
    },
    "ex_stats_first": {
     "open_interest_fp": 904.91,
@@ -743,9 +925,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1076.12,
+    "open_interest_fp": 1078.23,
     "volume_24h_fp": 1135.81,
-    "volume_fp": 1148.44
+    "volume_fp": 1150.55
    },
    "ex_stats_first": {
     "open_interest_fp": 484.48,
@@ -946,9 +1128,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 7507.74,
+    "open_interest_fp": 7509.64,
     "volume_24h_fp": 7455.11,
-    "volume_fp": 7507.74
+    "volume_fp": 7509.64
    },
    "ex_stats_first": {
     "open_interest_fp": 5219.6,
@@ -1299,9 +1481,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1067.09,
+    "open_interest_fp": 1083.33,
     "volume_24h_fp": 1048.31,
-    "volume_fp": 1067.09
+    "volume_fp": 1083.33
    },
    "ex_stats_first": {
     "open_interest_fp": 129.55,
@@ -1486,9 +1668,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 292.3,
+    "open_interest_fp": 297.3,
     "volume_24h_fp": 206.94,
-    "volume_fp": 292.3
+    "volume_fp": 297.3
    },
    "ex_stats_first": {
     "open_interest_fp": 198.32,
@@ -1671,9 +1853,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 11905.380000000001,
+    "open_interest_fp": 11916.82,
     "volume_24h_fp": 12443.470000000001,
-    "volume_fp": 12475.6
+    "volume_fp": 12487.04
    },
    "ex_stats_first": {
     "open_interest_fp": 8506.49,
