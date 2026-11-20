@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 20, 1:10 AM ET. This run: 1 new, 0 not confirmed, 4 pending. Open alerts: 7.
+Updated Fri Nov 20, 1:20 AM ET. This run: 4 new, 0 not confirmed, 0 pending. Open alerts: 11.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,10 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 20 1:20AM | NCAAB | Western Michigan vs Mount St. Mary's | moneyline: Western Michigan | kalshi | $26k | -335 |  |  | +0.0c |  | pending |
+| Nov 20 1:20AM | NCAAB | Southeastern Louisiana vs Kennesaw St. | moneyline: Kennesaw St. | kalshi | $33k | -567 |  |  | +0.0c |  | pending |
+| Nov 20 1:20AM | NCAAB | Bellarmine vs Eastern Kentucky | moneyline: Eastern Kentucky | kalshi | $25k | -317 |  |  | +0.0c |  | pending |
+| Nov 20 1:20AM | NCAAB | Alabama St. vs Fresno St. | moneyline: Fresno St. | kalshi | $31k | -456 |  |  | +0.0c |  | pending |
 | Nov 20 1:10AM | NCAAB | UAB vs George Washington | moneyline: George Washington | kalshi | $39k | -456 |  |  | +0.0c |  | pending |
 | Nov 19 7:40PM | NCAAB | Wisconsin vs Seton Hall: Point Total | total: NOT Over 138.5 points | kalshi | $26k | -104 | ✅ novig |  | +0.0c | yes | L |
 | Nov 19 6:40PM | NCAAB | Southern Utah vs Texas: Spread | spread: NOT Texas wins by over 35.5 points | kalshi | $36k | -104 |  | ✅ | +0.0c |  | W |
@@ -206,7 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 13 10:10PM | NCAAB | Loyola Chicago vs Colorado St. | moneyline: Colorado St. | kalshi | $41k | -426 |  |  | -3.0c | yes | L |
 | Nov 13 8:30PM | NCAAB | Stanford vs UNLV | moneyline: Stanford | kalshi | $29k | -108 | ✅ novig,prophetx |  | +0.0c | yes | L |
 | Nov 13 8:20PM | NCAAB | Arizona vs Auburn | moneyline: Arizona | kalshi | $33k | -122 | ✅ novig | ✅ | +0.0c |  | W |
-| Nov 13 7:40PM | NCAAB | UIC vs Saint Mary's: Spread | spread: Saint Mary's wins by over 5.5 points | kalshi | $41k | -122 |  |  | +1.0c | yes | W |
-| Nov 13 7:30PM | NCAAB | UNC Greensboro vs Cornell | moneyline: Cornell | kalshi | $27k | -233 | ✅ novig |  | -13.0c | yes | pending |
-| Nov 13 5:50PM | NCAAB | Northern Iowa vs Michigan St.: Point Total | total: Over 154.5 points | kalshi | $27k | -108 |  | ✅ | -1.0c |  | W |
-| Nov 13 5:50PM | NCAAB | Stanford vs UNLV | moneyline: UNLV | kalshi | $27k | +104 |  |  | +0.0c |  | W |
