@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 20, 2:10 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 39.
+Updated Fri Nov 20, 2:15 PM ET. This run: 2 new, 0 not confirmed, 1 pending. Open alerts: 41.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,17 +10,19 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 20 2:15PM | NCAAF | Syracuse vs Boston College: Spread | spread: Syracuse wins by over 2.5 points | kalshi | $48k | -113 | ✅ novig |  | +0.0c |  | pending |
+| Nov 20 2:15PM | NCAAF | Colorado vs Cincinnati: Spread | spread: NOT Cincinnati wins by over 3.5 points | kalshi | $95k | -113 | ✅ novig |  | +0.0c |  | pending |
 | Nov 20 1:40PM | NBA | Orlando vs Brooklyn: Spread | spread: NOT Orlando wins by over 6.5 points | kalshi | $25k | +104 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 20 1:40PM | NBA | Charlotte vs Atlanta: Spread | spread: NOT Atlanta wins by over 7.5 points | kalshi | $37k | -108 | ✅ novig | ✅ | +0.0c |  | pending |
 | Nov 20 1:25PM | NCAAF | Clemson vs Duke: Total Points | total: Over 39.5 points | kalshi | $29k | -122 |  |  | +1.0c |  | pending |
 | Nov 20 1:20PM | NCAAF | Vanderbilt vs Florida: Spread | spread: NOT Florida wins by over 13.5 points | kalshi | $38k | -104 |  |  | +0.0c |  | pending |
-| Nov 20 1:15PM | NCAAF | Iowa St. vs UCF: Spread | spread: NOT Iowa St. wins by over 1.5 points | kalshi | $40k | -104 | ✅ novig | ❌ | +0.0c | yes | pending |
+| Nov 20 1:15PM | NCAAF | Iowa St. vs UCF: Spread | spread: NOT Iowa St. wins by over 1.5 points | kalshi | $40k | -104 | ✅ novig | ❌ | -1.0c | yes | pending |
 | Nov 20 1:10PM | NCAAF | Clemson vs Duke: Spread | spread: Duke wins by over 11.5 points | kalshi | $126k | -108 |  |  | +0.0c |  | pending |
 | Nov 20 12:55PM | NCAAF | New Mexico vs Wyoming: Spread | spread: New Mexico wins by over 9.5 points | kalshi | $36k | -100 | ✅ novig | ✅ | +1.0c | yes | pending |
 | Nov 20 12:40PM | NCAAF | Clemson @ Duke | moneyline: DUKE (0) | novig | $25k | -456 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Nov 20 12:20PM | NCAAF | Iowa St. vs UCF: Total Points | total: Over 49.5 points | kalshi | $39k | +104 |  |  | +0.0c |  | pending |
 | Nov 20 11:16AM | NBA | Orlando vs Brooklyn: Spread | spread: Orlando wins by over 6.5 points | kalshi | $36k | -100 | ✅ novig |  | +2.0c |  | pending |
-| Nov 20 10:55AM | NBA | Indiana vs Cleveland: Total Points | total: Over 232.5 points | kalshi | $42k | -117 |  |  | +3.0c | yes | pending |
+| Nov 20 10:55AM | NBA | Indiana vs Cleveland: Total Points | total: Over 232.5 points | kalshi | $42k | -117 |  |  | +2.0c | yes | pending |
 | Nov 20 10:50AM | NBA | Charlotte Hornets @ Atlanta Hawks | moneyline: ATL (0) | novig | $201k | -223 | ✅ kalshi,prophetx | ✅ | +0.5c | yes | pending |
 | Nov 20 10:50AM | NCAAF | Oregon vs Michigan St.: Spread | spread: Oregon wins by over 17.5 points | kalshi | $33k | -108 |  |  | +0.0c |  | pending |
 | Nov 20 10:43AM | NBA | Sacramento vs Los Angeles L: Total Points | total: Over 228.5 points | kalshi | $34k | -104 | ✅ novig,prophetx | ❌ | +2.0c |  | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 17 1:00PM | NHL | Washington vs Tampa Bay: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $58k | -104 | ✅ novig |  | +0.0c |  | L |
 | Nov 17 12:55PM | NHL | Washington vs Tampa Bay: Spread | spread: Tampa Bay wins by over 1.5 goals | kalshi | $43k | +163 | ✅ novig |  | -2.0c | yes | W |
 | Nov 17 12:35PM | NCAAF | Miami (OH) vs Kent St.: Total Points | total: Over 44.5 points | kalshi | $134k | -108 |  |  | +2.0c | yes | L |
-| Nov 17 11:55AM | NHL | Washington Capitals @ Tampa Bay Lightning | spread: TBL -1.5 (-1.5) | novig | $56k | +167 | ✅ kalshi |  | -2.0c | yes | W |
-| Nov 17 11:40AM | NHL | Buffalo vs Philadelphia | moneyline: Philadelphia | kalshi | $90k | +117 | ✅ prophetx |  | +0.0c | yes | W |
