@@ -3360,6 +3360,36 @@
      "poss": 98.16
     }
    }
+  },
+  "401910020": {
+   "start": "2026-11-20T01:00Z",
+   "teams": {
+    "Portland Trail Blazers": {
+     "pts": 124.0,
+     "opp": 114.0,
+     "poss": 105.75999999999999
+    },
+    "Milwaukee Bucks": {
+     "pts": 114.0,
+     "opp": 124.0,
+     "poss": 105.75999999999999
+    }
+   }
+  },
+  "401910022": {
+   "start": "2026-11-20T01:00Z",
+   "teams": {
+    "LA Clippers": {
+     "pts": 112.0,
+     "opp": 124.0,
+     "poss": 107.30000000000001
+    },
+    "San Antonio Spurs": {
+     "pts": 124.0,
+     "opp": 112.0,
+     "poss": 107.30000000000001
+    }
+   }
   }
  },
  "games": {
@@ -7773,9 +7803,12 @@
       "market_id": "01a1f20e-63f2-7950-a270-f40bae2cb5cd"
      },
      "clv_c": -1.66,
-     "clv_v_excl": "close read 345 min before tip (> 60)"
+     "clv_v_excl": "close read 345 min before tip (> 60)",
+     "result": "L",
+     "units": -1.0
     }
-   }
+   },
+   "final": 238.0
   },
   "401910021": {
    "home": "Minnesota Timberwolves",
@@ -7852,253 +7885,319 @@
       "excluded": "no open Novig total at 225"
      },
      "clv_c": -1.41,
-     "clv_v_excl": "no open Novig total at 225"
+     "clv_v_excl": "no open Novig total at 225",
+     "result": "W",
+     "units": 0.9803921568627451
     }
-   }
+   },
+   "final": 236.0
   },
   "401909305": {
    "home": "Atlanta Hawks",
    "away": "Charlotte Hornets",
-   "start": "2026-11-21T00:00Z"
+   "start": "2026-11-21T00:00Z",
+   "close": {
+    "line": 219.5,
+    "over": -108,
+    "under": -106,
+    "read_utc": "2026-11-20T03:40:25Z",
+    "mins_before": 1220
+   }
   },
   "401909306": {
    "home": "Brooklyn Nets",
    "away": "Orlando Magic",
-   "start": "2026-11-21T00:30Z"
+   "start": "2026-11-21T00:30Z",
+   "close": {
+    "line": 222.0,
+    "over": -109,
+    "under": -105,
+    "read_utc": "2026-11-20T03:40:25Z",
+    "mins_before": 1250
+   }
   },
   "401909307": {
    "home": "Cleveland Cavaliers",
    "away": "Indiana Pacers",
-   "start": "2026-11-21T00:30Z"
+   "start": "2026-11-21T00:30Z",
+   "close": {
+    "line": 234.5,
+    "over": -106,
+    "under": -108,
+    "read_utc": "2026-11-20T03:40:25Z",
+    "mins_before": 1250
+   }
   },
   "401909308": {
    "home": "Detroit Pistons",
    "away": "Toronto Raptors",
-   "start": "2026-11-21T00:30Z"
+   "start": "2026-11-21T00:30Z",
+   "close": {
+    "line": 215.0,
+    "over": -108,
+    "under": -106,
+    "read_utc": "2026-11-20T03:40:25Z",
+    "mins_before": 1250
+   }
   },
   "401909309": {
    "home": "Chicago Bulls",
    "away": "Washington Wizards",
-   "start": "2026-11-21T01:00Z"
+   "start": "2026-11-21T01:00Z",
+   "close": {
+    "line": 241.0,
+    "over": -106,
+    "under": -108,
+    "read_utc": "2026-11-20T03:40:25Z",
+    "mins_before": 1280
+   }
   },
   "401909310": {
    "home": "Oklahoma City Thunder",
    "away": "New Orleans Pelicans",
-   "start": "2026-11-21T01:00Z"
+   "start": "2026-11-21T01:00Z",
+   "close": {
+    "line": 228.5,
+    "over": -112,
+    "under": -102,
+    "read_utc": "2026-11-20T03:40:25Z",
+    "mins_before": 1280
+   }
   },
   "401909311": {
    "home": "Utah Jazz",
    "away": "Phoenix Suns",
-   "start": "2026-11-21T02:30Z"
+   "start": "2026-11-21T02:30Z",
+   "close": {
+    "line": 228.0,
+    "over": -106,
+    "under": -108,
+    "read_utc": "2026-11-20T03:40:25Z",
+    "mins_before": 1370
+   }
   },
   "401909312": {
    "home": "Denver Nuggets",
    "away": "Houston Rockets",
-   "start": "2026-11-21T03:00Z"
+   "start": "2026-11-21T03:00Z",
+   "close": {
+    "line": 225.0,
+    "over": -108,
+    "under": -106,
+    "read_utc": "2026-11-20T03:40:25Z",
+    "mins_before": 1400
+   }
   },
   "401909313": {
    "home": "Los Angeles Lakers",
    "away": "Sacramento Kings",
-   "start": "2026-11-21T03:00Z"
+   "start": "2026-11-21T03:00Z",
+   "close": {
+    "line": 231.0,
+    "over": -107,
+    "under": -107,
+    "read_utc": "2026-11-20T03:40:25Z",
+    "mins_before": 1400
+   }
   }
  },
  "ratings": {
   "_lg": {
-   "pace": 102.256875,
-   "rtg": 111.15214921804943,
-   "games": 224
+   "pace": 102.29469026548672,
+   "rtg": 111.15292448504668,
+   "games": 226
   },
   "Boston Celtics": {
    "gp": 10,
-   "pace": 99.2384375,
-   "ortg": 112.9446050600744,
-   "drtg": 107.17657346581125
+   "pace": 99.25734513274335,
+   "ortg": 112.94499269357301,
+   "drtg": 107.17696109930986
   },
   "Detroit Pistons": {
    "gp": 10,
-   "pace": 102.07443749999999,
-   "ortg": 112.64630583424358,
-   "drtg": 109.4075824801039
+   "pace": 102.09334513274337,
+   "ortg": 112.64669346774221,
+   "drtg": 109.40797011360252
   },
   "Philadelphia 76ers": {
    "gp": 10,
-   "pace": 101.1114375,
-   "ortg": 114.59614143174443,
-   "drtg": 113.34571628719529
+   "pace": 101.13034513274337,
+   "ortg": 114.59652906524306,
+   "drtg": 113.3461039206939
   },
   "New York Knicks": {
    "gp": 10,
-   "pace": 99.0834375,
-   "ortg": 112.55657716350288,
-   "drtg": 107.96894292306914
+   "pace": 99.10234513274335,
+   "ortg": 112.5569647970015,
+   "drtg": 107.96933055656775
   },
   "Oklahoma City Thunder": {
    "gp": 10,
-   "pace": 102.1954375,
-   "ortg": 111.43406509211556,
-   "drtg": 109.08421097889175
+   "pace": 102.21434513274336,
+   "ortg": 111.4344527256142,
+   "drtg": 109.08459861239038
   },
   "San Antonio Spurs": {
    "gp": 10,
-   "pace": 100.9744375,
-   "ortg": 114.40727470532131,
-   "drtg": 107.63642047428974
+   "pace": 101.20634513274337,
+   "ortg": 114.30716001914692,
+   "drtg": 107.46523349244842
   },
   "Atlanta Hawks": {
    "gp": 10,
-   "pace": 104.3294375,
-   "ortg": 110.32128616519847,
-   "drtg": 110.13331977358929
+   "pace": 104.34834513274336,
+   "ortg": 110.3216737986971,
+   "drtg": 110.13370740708791
   },
   "Orlando Magic": {
    "gp": 10,
-   "pace": 100.4994375,
-   "ortg": 111.42870064455164,
-   "drtg": 111.32742661728867
+   "pace": 100.51834513274336,
+   "ortg": 111.42908827805027,
+   "drtg": 111.3278142507873
   },
   "Milwaukee Bucks": {
    "gp": 10,
-   "pace": 101.4064375,
-   "ortg": 107.73606506210558,
-   "drtg": 114.84653087220146
+   "pace": 101.41734513274335,
+   "ortg": 107.89394782040279,
+   "drtg": 114.25957344204592
   },
   "Washington Wizards": {
    "gp": 10,
-   "pace": 102.4034375,
-   "ortg": 109.64725939693305,
-   "drtg": 115.49806388254981
+   "pace": 102.42234513274336,
+   "ortg": 109.64764703043167,
+   "drtg": 115.49845151604845
   },
   "Minnesota Timberwolves": {
    "gp": 10,
-   "pace": 102.4514375,
-   "ortg": 110.1325112943315,
-   "drtg": 106.86886731404975
+   "pace": 102.47034513274336,
+   "ortg": 110.13289892783013,
+   "drtg": 106.86925494754837
   },
   "Miami Heat": {
    "gp": 10,
-   "pace": 103.3554375,
-   "ortg": 115.07595015232607,
-   "drtg": 112.73042006252578
+   "pace": 103.37434513274337,
+   "ortg": 115.0763377858247,
+   "drtg": 112.73080769602441
   },
   "Charlotte Hornets": {
    "gp": 10,
-   "pace": 100.1314375,
-   "ortg": 105.8791172798816,
-   "drtg": 111.7971222999824
+   "pace": 100.15034513274335,
+   "ortg": 105.87950491338023,
+   "drtg": 111.79750993348102
   },
   "Brooklyn Nets": {
    "gp": 10,
-   "pace": 101.40143749999999,
-   "ortg": 110.02876293078788,
-   "drtg": 113.9075845646669
+   "pace": 101.42034513274336,
+   "ortg": 110.02915056428651,
+   "drtg": 113.90797219816554
   },
   "Chicago Bulls": {
    "gp": 10,
-   "pace": 104.00843749999999,
-   "ortg": 111.55186886015937,
-   "drtg": 113.53749669677056
+   "pace": 104.02734513274336,
+   "ortg": 111.55225649365799,
+   "drtg": 113.53788433026918
   },
   "Toronto Raptors": {
    "gp": 10,
-   "pace": 100.8044375,
-   "ortg": 110.73349469115693,
-   "drtg": 113.40077869147902
+   "pace": 100.82334513274336,
+   "ortg": 110.73388232465555,
+   "drtg": 113.40116632497765
   },
   "Utah Jazz": {
    "gp": 10,
-   "pace": 102.2964375,
-   "ortg": 108.73429849895592,
-   "drtg": 111.4215248904506
+   "pace": 102.31534513274336,
+   "ortg": 108.73468613245456,
+   "drtg": 111.42191252394923
   },
   "Memphis Grizzlies": {
    "gp": 10,
-   "pace": 102.15243749999999,
-   "ortg": 115.69484224778294,
-   "drtg": 112.16709060149884
+   "pace": 102.17134513274337,
+   "ortg": 115.69522988128156,
+   "drtg": 112.16747823499747
   },
   "Indiana Pacers": {
    "gp": 10,
-   "pace": 101.8344375,
-   "ortg": 109.71167986284084,
-   "drtg": 112.17687135891624
+   "pace": 101.85334513274336,
+   "ortg": 109.71206749633946,
+   "drtg": 112.17725899241486
   },
   "New Orleans Pelicans": {
    "gp": 10,
-   "pace": 102.6094375,
-   "ortg": 110.35356533375813,
-   "drtg": 116.66657401657314
+   "pace": 102.62834513274336,
+   "ortg": 110.35395296725675,
+   "drtg": 116.66696165007176
   },
   "Dallas Mavericks": {
    "gp": 10,
-   "pace": 101.9414375,
-   "ortg": 110.43408338630613,
-   "drtg": 111.56568356736216
+   "pace": 101.96034513274336,
+   "ortg": 110.43447101980475,
+   "drtg": 111.56607120086078
   },
   "Houston Rockets": {
    "gp": 10,
-   "pace": 100.1204375,
-   "ortg": 114.76941229681047,
-   "drtg": 111.04431432163085
+   "pace": 100.13934513274336,
+   "ortg": 114.76979993030909,
+   "drtg": 111.04470195512948
   },
   "Golden State Warriors": {
    "gp": 10,
-   "pace": 101.7884375,
-   "ortg": 110.00757875430699,
-   "drtg": 111.14259651980245
+   "pace": 101.80734513274336,
+   "ortg": 110.00796638780561,
+   "drtg": 111.14298415330107
   },
   "Los Angeles Lakers": {
    "gp": 10,
-   "pace": 103.16943749999999,
-   "ortg": 114.32782803420871,
-   "drtg": 110.86901671236632
+   "pace": 103.18834513274336,
+   "ortg": 114.32821566770733,
+   "drtg": 110.86940434586495
   },
   "Phoenix Suns": {
    "gp": 10,
-   "pace": 101.7504375,
-   "ortg": 112.32017796329757,
-   "drtg": 110.98676561293605
+   "pace": 101.76934513274335,
+   "ortg": 112.32056559679619,
+   "drtg": 110.98715324643467
   },
   "Portland Trail Blazers": {
    "gp": 10,
-   "pace": 102.3354375,
-   "ortg": 111.57427797965764,
-   "drtg": 109.18202692023218
+   "pace": 102.48034513274337,
+   "ortg": 112.02163396441763,
+   "drtg": 110.21967421143222
   },
   "Sacramento Kings": {
    "gp": 10,
-   "pace": 102.35843750000001,
-   "ortg": 108.13317006090838,
-   "drtg": 114.23311150147055
+   "pace": 102.37734513274336,
+   "ortg": 108.13355769440702,
+   "drtg": 114.23349913496918
   },
   "LA Clippers": {
    "gp": 10,
-   "pace": 102.05143749999999,
-   "ortg": 110.36467700872623,
-   "drtg": 114.53764403737733
+   "pace": 102.55034513274336,
+   "ortg": 111.06933230847281,
+   "drtg": 115.00879109492496
   },
   "Cleveland Cavaliers": {
    "gp": 10,
-   "pace": 101.41443749999999,
-   "ortg": 113.54449524299838,
-   "drtg": 113.49477961638263
+   "pace": 101.43334513274337,
+   "ortg": 113.54488287649701,
+   "drtg": 113.49516724988126
   },
   "Denver Nuggets": {
    "gp": 10,
-   "pace": 100.8344375,
-   "ortg": 112.51085109476085,
-   "drtg": 110.59961301485097
+   "pace": 100.85334513274336,
+   "ortg": 112.51123872825947,
+   "drtg": 110.6000006483496
   }
  },
- "updated_utc": "2026-11-20T03:28:22Z",
+ "updated_utc": "2026-11-20T03:47:39Z",
  "summary": [
-  "NBA TOTALS MODEL (paper), forward from 2026-11-02, updated 2026-11-20T03:28:22Z",
+  "NBA TOTALS MODEL (paper), forward from 2026-11-02, updated 2026-11-20T03:47:39Z",
   "Games posted: 134 | with Pinnacle reference: 130 | late posts: 7 | sightings: 63 (first read at 60)",
-  "  ALL      n 63 | Pinnacle CLV -1.53c (n=63) | 30-30 -1.77u",
-  "  3.0-3.9  n 15 | Pinnacle CLV -1.54c (n=15) | 5-8 -3.38u",
-  "  4.0+     n 48 | Pinnacle CLV -1.53c (n=48) | 25-22 +1.61u",
-  "  Overs    n 43 | Pinnacle CLV -1.53c (n=43) | 21-21 -1.06u",
-  "  Unders   n 20 | Pinnacle CLV -1.54c (n=20) | 9-9 -0.71u",
-  "Calibration (same 128 games): our MAE 13.89 | Pinnacle 6h MAE 12.96 | gap +0.92 (stop if > +1.0 at the read)",
+  "  ALL      n 63 | Pinnacle CLV -1.53c (n=63) | 31-31 -1.79u",
+  "  3.0-3.9  n 15 | Pinnacle CLV -1.54c (n=15) | 6-8 -2.40u",
+  "  4.0+     n 48 | Pinnacle CLV -1.53c (n=48) | 25-23 +0.61u",
+  "  Overs    n 43 | Pinnacle CLV -1.53c (n=43) | 22-21 -0.08u",
+  "  Unders   n 20 | Pinnacle CLV -1.54c (n=20) | 9-10 -1.71u",
+  "Calibration (same 130 games): our MAE 13.83 | Pinnacle 6h MAE 12.91 | gap +0.92 (stop if > +1.0 at the read)",
   "FORWARD CANDIDATE: NBA REG T-6h at NOVIG (paper; verified same-line Pinnacle close; unique games)",
   "  sightings since logging started 34 | with a Novig quote 23 | qualifying (verified CLV) 0 of 100 needed",
   "  ALL n 0 | FIT n 0 | CHECK n 0 | bar: not met",
