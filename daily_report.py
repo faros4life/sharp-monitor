@@ -206,13 +206,19 @@ def main(argv):
             rec["_manual"] = True
         views.append(row_view(k, b, rec))
     # SECOND-PRIORITY evidence, only where the certified close is absent.
+    # A silent except here would be the worst failure available: the report would look complete
+    # while every snapshot was quietly dropped. It says so instead.
+    ss, snaps = None, []
     try:
         import snapshot_source as ss
         snaps, _bad = ss.load()
-    except Exception:
-        snaps = []
+        if _bad:
+            print(f"daily report: {_bad} snapshot file(s) unreadable and skipped", flush=True)
+    except Exception as e:
+        print(f"daily report: snapshot source UNAVAILABLE ({type(e).__name__}: {e}) - "
+              f"certified rows only, no provisional CLV this run", flush=True)
     for v, (k, b) in zip(views, rows):
-        if v["v1"] is not None or not snaps:
+        if v["v1"] is not None or not snaps or ss is None:
             continue
         for sn in snaps:
             try:
