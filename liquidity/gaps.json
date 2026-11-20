@@ -2,126 +2,6 @@
  "note": "PAPER ONLY (Oct 25; persistence added Oct 26): opposite sides of the same game/market/line on two different exchanges whose combined cost after fees is under $1 (Kalshi/Novig/ProphetX; Polymarket here is the global book, excluded). edge_pct = locked profit per $ staked at first sight; max/last_edge_pct while open. size_est = smaller leg's near-price depth (UPPER BOUND). first/last_seen_utc, scans_seen, lifetime_min = how long the gap stayed open (scan-interval resolution; a 1-scan gap may be a feed artifact). scan_sec = seconds from run start to this save, the most the two legs' reads can be apart. Measurement only: never alerted, never bet.",
  "gaps": [
   {
-   "seen_utc": "2026-11-06T16:00:18Z",
-   "league": "NCAAF",
-   "game": "Western Kentucky @ Middle Tennessee",
-   "market": "total",
-   "line": 53.5,
-   "edge_pct": 6.6,
-   "total_cost": 0.9381,
-   "size_est": 96,
-   "legs": [
-    {
-     "book": "novig",
-     "side": "Under 53.5 (53.5)",
-     "price": 0.52,
-     "cost_after_fee": 0.52
-    },
-    {
-     "book": "prophetx",
-     "side": "over 53.5 (53.5)",
-     "price": 0.4132,
-     "cost_after_fee": 0.4181
-    }
-   ],
-   "first_seen_utc": "2026-11-06T16:00:18Z",
-   "last_seen_utc": "2026-11-06T16:00:18Z",
-   "scans_seen": 1,
-   "max_edge_pct": 6.6,
-   "scan_sec": 301,
-   "lifetime_min": 0
-  },
-  {
-   "seen_utc": "2026-11-06T16:00:18Z",
-   "league": "NCAAF",
-   "game": "Rice @ North Texas",
-   "market": "total",
-   "line": 64.5,
-   "edge_pct": 0.61,
-   "total_cost": 0.9939,
-   "size_est": 456,
-   "legs": [
-    {
-     "book": "novig",
-     "side": "Over 64.5 (64.5)",
-     "price": 0.515,
-     "cost_after_fee": 0.515
-    },
-    {
-     "book": "prophetx",
-     "side": "under 64.5 (64.5)",
-     "price": 0.4739,
-     "cost_after_fee": 0.4789
-    }
-   ],
-   "first_seen_utc": "2026-11-06T16:00:18Z",
-   "last_seen_utc": "2026-11-06T16:00:18Z",
-   "scans_seen": 1,
-   "max_edge_pct": 0.61,
-   "scan_sec": 301,
-   "lifetime_min": 0
-  },
-  {
-   "seen_utc": "2026-11-06T16:00:18Z",
-   "league": "NCAAF",
-   "game": "Rhode Island @ New Hampshire",
-   "market": "moneyline",
-   "line": null,
-   "edge_pct": 5.36,
-   "total_cost": 0.9491,
-   "size_est": 2,
-   "legs": [
-    {
-     "book": "novig",
-     "side": "URI (0)",
-     "price": 0.655,
-     "cost_after_fee": 0.655
-    },
-    {
-     "book": "prophetx",
-     "side": "New Haven College",
-     "price": 0.2899,
-     "cost_after_fee": 0.2941
-    }
-   ],
-   "first_seen_utc": "2026-11-06T16:00:18Z",
-   "last_seen_utc": "2026-11-06T16:00:18Z",
-   "scans_seen": 1,
-   "max_edge_pct": 5.36,
-   "scan_sec": 301,
-   "lifetime_min": 0
-  },
-  {
-   "seen_utc": "2026-11-06T16:00:18Z",
-   "league": "NCAAF",
-   "game": "Western Kentucky @ Middle Tennessee",
-   "market": "moneyline",
-   "line": null,
-   "edge_pct": 26.94,
-   "total_cost": 0.7878,
-   "size_est": 4643,
-   "legs": [
-    {
-     "book": "novig",
-     "side": "MTSU (0)",
-     "price": 0.45,
-     "cost_after_fee": 0.45
-    },
-    {
-     "book": "prophetx",
-     "side": "Kentucky",
-     "price": 0.3333,
-     "cost_after_fee": 0.3378
-    }
-   ],
-   "first_seen_utc": "2026-11-06T16:00:18Z",
-   "last_seen_utc": "2026-11-06T16:00:18Z",
-   "scans_seen": 1,
-   "max_edge_pct": 26.94,
-   "scan_sec": 301,
-   "lifetime_min": 0
-  },
-  {
    "seen_utc": "2026-11-06T16:50:12Z",
    "league": "NCAAF",
    "game": "Western Kentucky @ Middle Tennessee",
@@ -6143,11 +6023,11 @@
     }
    ],
    "first_seen_utc": "2026-11-20T05:00:19Z",
-   "last_seen_utc": "2026-11-20T15:55:45Z",
-   "scans_seen": 219,
+   "last_seen_utc": "2026-11-20T16:00:26Z",
+   "scans_seen": 220,
    "max_edge_pct": 42.17,
    "scan_sec": 229,
-   "lifetime_min": 655,
+   "lifetime_min": 660,
    "last_edge_pct": 39.76,
    "last_size_est": 838
   },
