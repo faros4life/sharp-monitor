@@ -12,7 +12,7 @@
    },
    "bet": "USC Trojans -26.5 (-105)",
    "book": "novig",
-   "checked_utc": "2026-11-20T01:40:14Z",
+   "checked_utc": "2026-11-20T01:50:15Z",
    "first": {
     "alert_line": -26.5,
     "alert_price": -105,
@@ -246,7 +246,7 @@
       "american": -121,
       "american_after_fee_qual": -121,
       "american_displayed": -113,
-      "dollars": 6618,
+      "dollars": 6661,
       "price": 0.53,
       "price_after_fee": 0.5474,
       "price_after_fee_qual": 0.5474
@@ -291,7 +291,7 @@
       "american": -148,
       "american_after_fee_qual": -148,
       "american_displayed": -138,
-      "dollars": 2810,
+      "dollars": 2797,
       "price": 0.58,
       "price_after_fee": 0.5971,
       "price_after_fee_qual": 0.5971
@@ -374,10 +374,10 @@
     "novig_label": "USC -26.5",
     "novig_line": -26.5,
     "outcome_id": "01a1f04d-07bd-7120-8e6e-479b7bb9037a",
-    "resting_bids_on_this_side_dollars": 1919,
+    "resting_bids_on_this_side_dollars": 1970,
     "status": "ok"
    },
-   "lead_min_now": 140,
+   "lead_min_now": 130,
    "polymarket_first": {
     "checked_utc": "2026-11-19T13:30:16Z",
     "status": "game_not_on_polymarket"
@@ -450,9 +450,9 @@
       "to_win": 64
      },
      {
-      "american": -132,
-      "american_after_fee": -135,
-      "dollars": 1763,
+      "american": -129,
+      "american_after_fee": -132,
+      "dollars": 1723,
       "strike_id": "6fe8cb88bc3e5ec27cd4a86ae55e709f",
       "to_win": 1335
      },
@@ -469,13 +469,6 @@
       "dollars": 50,
       "strike_id": "6fe8cb88bc3e5ec27cd4a86ae55e709f",
       "to_win": 36
-     },
-     {
-      "american": -150,
-      "american_after_fee": -153,
-      "dollars": 219,
-      "strike_id": "6fe8cb88bc3e5ec27cd4a86ae55e709f",
-      "to_win": 146
      }
     ],
     "dollars_at_alert_price_or_better": 0,
@@ -25045,5 +25038,5 @@
   }
  ],
  "note": "Exchange book check (FLAG ONLY) for sharp-monitor phone alerts with 2h+ lead. latest/first = Novig (public order books, no key); prophetx_latest/prophetx_first = ProphetX (read-only key; prices are AFTER its 2%% fee on winnings, displayed price kept as best_price_american_displayed): best_price_american, dollars_at_best and dollars_at_alert_price_or_better = amount you could bet at the alert price or better, buy_levels = the ladder. kalshi_latest/_first and polymarket_latest/_first: same fields (public books, no key), prices AFTER taker fees (Kalshi 0.07, Polymarket global 0.03 x P x (1-P) per contract unless gamma marks the market zero-fee; displayed price kept as best_price_american_displayed). Novig pregame: no fee. hardrock_latest/_first: Hard Rock sportsbook price and line via The Odds API (no order book; refreshed every 30 min). best_now = best gettable price across the books, plus total dollars at the alert price or better on books with the exact line. Novig fields: best_price = cheapest cost to BUY the alert side now (0-1, with American); dollars_at_alert_price_or_better = dollars you could buy at the alert's price or better on the same line; exact_line=false means Novig had no market at the alert's line and the nearest line is shown. resting_bids_on_this_side_dollars = others bidding the same side. 'first' = first check after the alert, 'latest' = this run. Novig orders are bids (verified Oct 21).",
- "updated_utc": "2026-11-20T01:40:14Z"
+ "updated_utc": "2026-11-20T01:50:15Z"
 }
