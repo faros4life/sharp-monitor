@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 20, 1:30 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 11.
+Updated Fri Nov 20, 1:40 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 9.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 368-223 (-21.69u flat) | rule met: 66-58
+**Record:** 369-224 (-21.97u flat) | rule met: 67-58
 
-**Fade (paper, betting against the print):** 198-333 (+21.58u flat, after fees)
+**Fade (paper, betting against the print):** 199-334 (+21.44u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -17,7 +17,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 20 1:10AM | NCAAB | UAB vs George Washington | moneyline: George Washington | kalshi | $39k | -456 |  |  | +0.0c |  | pending |
 | Nov 19 7:40PM | NCAAB | Wisconsin vs Seton Hall: Point Total | total: NOT Over 138.5 points | kalshi | $26k | -104 | ✅ novig |  | +0.0c | yes | L |
 | Nov 19 6:40PM | NCAAB | Southern Utah vs Texas: Spread | spread: NOT Texas wins by over 35.5 points | kalshi | $36k | -104 |  | ✅ | +0.0c |  | W |
-| Nov 19 6:40PM | NCAAB | Houston vs Kansas: Spread | spread: NOT Houston wins by over 3.5 points | kalshi | $29k | +104 |  |  | +4.0c | yes | pending |
+| Nov 19 6:40PM | NCAAB | Houston vs Kansas: Spread | spread: NOT Houston wins by over 3.5 points | kalshi | $29k | +104 |  |  | +4.0c | yes | L |
 | Nov 19 5:40PM | NCAAB | Oregon vs Oregon St. | moneyline: NOT Oregon | kalshi | $30k | +113 |  |  | +0.0c |  | W |
 | Nov 19 4:50PM | NCAAB | Notre Dame vs Auburn: Spread | spread: NOT Auburn wins by over 4.5 points | kalshi | $71k | -117 |  |  | +0.0c | yes | W |
 | Nov 19 4:20PM | NCAAB | Wisconsin vs Seton Hall: Spread | spread: NOT Wisconsin wins by over 5.5 points | kalshi | $36k | -108 |  | ❌ | +1.0c | yes | W |
@@ -36,7 +36,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 19 2:30PM | NCAAB | Charleston vs Drake | moneyline: Drake | kalshi | $39k | -113 |  | ✅ | +0.0c |  | W |
 | Nov 19 2:20PM | NCAAB | West Virginia @ Florida | moneyline: FLA (0) | novig | $36k | -355 | ✅ kalshi,prophetx | ❌ | +0.0c |  | W |
 | Nov 19 12:20PM | NCAAB | Florida vs West Virginia: Spread | spread: Florida wins by over 7.5 points | kalshi | $30k | -108 |  | ❌ | +1.0c | yes | W |
-| Nov 19 12:10PM | NCAAB | Houston vs Kansas | moneyline: Houston | kalshi | $34k | -138 | ✅ novig |  | +1.0c |  | pending |
+| Nov 19 12:10PM | NCAAB | Houston vs Kansas | moneyline: Houston | kalshi | $34k | -138 | ✅ novig |  | +1.0c |  | W |
 | Nov 19 12:10PM | NCAAB | Georgia Southern vs Houston Christian | moneyline: Houston Christian | kalshi | $40k | -150 | ✅ novig | ✅ | +2.0c |  | L |
 | Nov 19 10:30AM | NCAAB | Florida vs West Virginia: Spread | spread: NOT Florida wins by over 8.5 points | kalshi | $31k | -108 |  | ✅ | +2.0c |  | L |
 | Nov 19 10:10AM | NCAAB | Robert Morris vs Toledo | moneyline: Toledo | kalshi | $29k | -257 | ✅ novig |  | +2.0c |  | W |
