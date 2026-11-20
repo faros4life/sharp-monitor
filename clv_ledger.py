@@ -33,6 +33,7 @@ SIDE_LOG = collections.Counter()
 import executor as ex
 import sharp_monitor as sm
 import line_value as lv
+import v2_overround as vo2
 import tracker_build as tb
 
 BASE = "https://api.oddspapi.io/v4"
@@ -1217,6 +1218,33 @@ def v2_backfill(st, hist, mkmap, now, max_rows=80):
     return done, miss
 
 
+def v2_calibration(st):
+    """The PRE-REGISTERED calibration screen (v2_validation_spec.md), Peter Nov 20.
+
+    Read-only on state: builds rows from what is already stored and hands them to v2_overround.
+    Spends nothing - no history fetch, no API call - because the two-sided quotes were captured by
+    close_for at the same tick it read the fairs from.
+
+    A moved row missing either quote pair, or missing a line, is passed through as UNRECOVERABLE.
+    It is never estimated and never counted as agreement, per the spec.
+    """
+    rows = []
+    for rec in (st.get("bets") or {}).values():
+        if rec.get("clv_v2") is None or not rec.get("v2_derived"):
+            continue                       # not scored under V2, or V2 == V1: no signal either way
+        a, m = rec.get("alt_px"), rec.get("main_px")
+        if not (a and m and len(a) == 2 and len(m) == 2) \
+                or rec.get("our_line") is None or rec.get("main_line") is None:
+            rows.append({})                # unrecoverable - counted, never filled in
+            continue
+        rows.append({"league": (rec.get("snap") or {}).get("league") or "?",
+                     "our_line": rec["our_line"], "main_line": rec["main_line"],
+                     "v2_p": rec.get("close_p_v2"),
+                     "alt_a": a[0], "alt_b": a[1], "main_a": m[0], "main_b": m[1],
+                     "better": rec.get("v2_better")})
+    return vo2.report(vo2.analyze(rows))
+
+
 def v2_report(st):
     """V1 vs V2 across every row that carries both. Counts, units and percentages only."""
     both = [r for r in st["bets"].values() if r.get("clv") is not None and r.get("clv_v2") is not None]
@@ -1316,6 +1344,12 @@ def record_v2(rec, c, d):
     rec["v2_derived"] = not c.get("at_main", True)
     rec["v2_method"] = V2_METHOD
     rec["v2_src"] = c.get("v2_src") or []
+    if not c.get("at_main", True) and c.get("alt_px") and c.get("main_px"):
+        # The OBSERVED two-sided quotes behind both fairs, held side first, same closing tick.
+        # Stored only for moved rows: at-main rows are V2 == V1 and carry no calibration signal.
+        rec["alt_px"] = [round(float(x), 4) for x in c["alt_px"]]
+        rec["main_px"] = [round(float(x), 4) for x in c["main_px"]]
+        rec["v2_better"] = bool(c.get("v2_better"))
     if c.get("main_line") is not None:
         rec["main_line"] = c["main_line"]
     if c.get("our_line") is not None:
@@ -1416,7 +1450,10 @@ def close_for(b, f, pm, mkmap, start, lg):
         if age > FRESH_MIN:
             continue
         pa = novig_p(tw[a_id][0], tw[b_id][0])   # P(team 1 covers hcap) or P(over hcap)
-        cands.append((hcap, pa, age, min(tw[a_id][2], tw[b_id][2])))
+        # [4] and [5] are the RAW two-sided decimals behind pa, kept so the alt's overround and
+        # its margin allocation stay measurable. Same two_way call, so both lines are read at
+        # the SAME closing tick by construction - not matched up afterwards by timestamp.
+        cands.append((hcap, pa, age, min(tw[a_id][2], tw[b_id][2]), tw[a_id][0], tw[b_id][0]))
     if not cands:
         return None, f"no Pinnacle {typ} close"
     # Pinnacle's main line carries its biggest limit (alt lines are capped lower); ties: the most even price
@@ -1431,10 +1468,14 @@ def close_for(b, f, pm, mkmap, start, lg):
             _p1v = exact[1] if over else 1 - exact[1]
             _at_main = abs(exact[0] - main[0]) < 1e-9
             _ppt, _po = main[0], main[1]
+            _bet = (want < _ppt) if over else (want > _ppt)
             _p2v, _v2why, _v2src = (_p1v, None, ["observed at our number"]) if _at_main else fair_from_main(
-                _po if over else 1 - _po, _ppt, want, (want < _ppt) if over else (want > _ppt), lab, "tot")
+                _po if over else 1 - _po, _ppt, want, _bet, lab, "tot")
+            _apx = (exact[4], exact[5]) if over else (exact[5], exact[4])   # held side first
+            _mpx = (main[4], main[5]) if over else (main[5], main[4])
             return {"p": _p1v, "how": "own line", "age_min": round(exact[2]),
                     "at_main": _at_main, "main_line": _ppt, "our_line": want,
+                    "alt_px": _apx, "main_px": _mpx, "v2_better": _bet,
                     "v2_p": _p2v, "v2_why": _v2why, "v2_src": _v2src,
                     "v2_how": "own line" if _at_main else f"own line (from main {_ppt:g})"}, None
         ppt, po = main[0], main[1]
@@ -1459,10 +1500,14 @@ def close_for(b, f, pm, mkmap, start, lg):
         _at_main = abs(exact[0] - main[0]) < 1e-9
         _hp, _pm1 = main[0], main[1]
         _mine = _hp if side == "1" else -_hp
+        _bet = want > _mine
         _p2v, _v2why, _v2src = (_p1v, None, ["observed at our number"]) if _at_main else fair_from_main(
-            _pm1 if side == "1" else 1 - _pm1, _mine, want, want > _mine, lab, "spr")
+            _pm1 if side == "1" else 1 - _pm1, _mine, want, _bet, lab, "spr")
+        _apx = (exact[4], exact[5]) if side == "1" else (exact[5], exact[4])   # held side first
+        _mpx = (main[4], main[5]) if side == "1" else (main[5], main[4])
         return {"p": _p1v, "how": "own line", "age_min": round(exact[2]),
                 "at_main": _at_main, "main_line": _mine, "our_line": want,
+                "alt_px": _apx, "main_px": _mpx, "v2_better": _bet,
                 "v2_p": _p2v, "v2_why": _v2why, "v2_src": _v2src,
                 "v2_how": "own line" if _at_main else f"own line (from main {_mine:+g})"}, None
     if lg == "NHL":
@@ -2448,7 +2493,7 @@ def main():
         retire_legacy_v2(st)
         restore_our_line(st)
         _bd, _bm = v2_backfill(st, hist, mkmap, now)
-        for _ln in v2_report(st) + v2_validation(st):
+        for _ln in v2_report(st) + v2_validation(st) + v2_calibration(st):
             print(f"V2 shadow: {_ln}" if not _ln.startswith("V2") else _ln, flush=True)
     except Exception as _ve:
         print(f"V2 shadow: backfill/report failed ({type(_ve).__name__}) - V1 untouched", flush=True)
