@@ -10,6 +10,7 @@ No dollar figures: units only, at UNIT per unit, per the repo rule that logs car
 No API calls, no paid credits, no writes, nothing touching a live trading path.
 """
 import json
+import os
 import sys
 from datetime import datetime, timedelta
 
@@ -37,17 +38,46 @@ def et_day(iso_ts):
     return t.astimezone(tb.ET).strftime("%Y-%m-%d")
 
 
-def settled_on(tracker, day):
-    """Keys of tracker rows that SETTLED on the given ET day, newest first."""
-    out = []
+def bets_on(tracker, day):
+    """Keys of tracker rows BELONGING to the given ET day, newest first, settled or not.
+
+    Nov 20 (Peter, relayed): "report every previous-day actual bet each morning, even when the
+    final close or V2 is missing." Selecting on the SETTLE date alone dropped a bet placed
+    yesterday that had not settled, which is exactly a row you need to see. A row counts for the
+    day if it was PLACED or SETTLED or its GAME started on it; an unsettled row is reported with
+    its result blank rather than hidden.
+    """
+    out, seen = [], set()
     for k, b in (tracker or {}).items():
-        if not b.get("result"):
+        days = {et_day(b.get(f)) for f in ("settled", "placed", "game_start") if b.get(f)}
+        if day not in days:
             continue
-        d = et_day(b.get("settled") or b.get("game_start"))
-        if d == day:
-            out.append((k, b))
-    out.sort(key=lambda kb: str(kb[1].get("settled") or ""), reverse=True)
+        fp = (b.get("book"), b.get("game"), b.get("bet"), b.get("placed"), b.get("stake"))
+        if fp in seen:
+            continue            # the same fill reaching us twice is one bet, not two
+        seen.add(fp)
+        out.append((k, b))
+    out.sort(key=lambda kb: str(kb[1].get("settled") or kb[1].get("placed") or ""), reverse=True)
     return out
+
+
+def manual_file(day, directory="manual"):
+    """Bets Peter entered elsewhere (Muse) that the tracker has no row for, from manual/<day>.json.
+
+    REPORTING ONLY. These rows never reach tracker_build, so they cannot touch the executor's
+    MANUAL_HELD gating or any live path - that wiring needs Peter's explicit yes and is not done
+    here. Their purpose is that a hand-placed bet still appears in the morning report with its
+    result and price instead of vanishing.
+    """
+    import os
+    f = os.path.join(directory, f"{day}.json")
+    if not os.path.exists(f):
+        return []
+    try:
+        d = json.load(open(f))
+    except Exception:
+        return []
+    return [r for r in (d if isinstance(d, list) else [d]) if isinstance(r, dict)]
 
 
 def units(b):
@@ -90,6 +120,13 @@ def row_view(k, b, rec):
         v["close_at_our_line"] = "fair stored, raw quote not kept for this row"
     if mn and len(mn) == 2:
         v["close_main"] = am(mn[0])
+    # Nov 20 (Peter): resolve the half-point main-line difference WITHOUT changing CLV. The ledger
+    # picks the candidate with the BIGGEST LIMIT as the main line; another source may pick the one
+    # an API labels main, or the most even price. Printing which rule produced our number is the
+    # diagnostic; no score is touched by it.
+    v["main_rule"] = "biggest Pinnacle limit" if v["main_line"] is not None else None
+    v["src"] = ("certified Pinnacle close" if v["v1"] is not None else
+                "MANUAL FILE (not in the tracker)" if rec.get("_manual") else "unavailable")
     if v["v2"] is None:
         v["v2_missing"] = (rec.get("v2_unsupported") or
                            ("V2 == V1 (our number was the main line)" if rec.get("at_main")
@@ -123,6 +160,15 @@ def render(day, views):
         L.append(f"    result {v['result']} {('%+.2fu' % v['units']) if v['units'] is not None else '(no settled figure)'}"
                  f" | paid {v['paid'] if v['paid'] is not None else '-'}"
                  f" | our line {v['our_line'] if v['our_line'] is not None else '-'}")
+        if v.get("snap"):
+            sn = v["snap"]
+            L.append(f"    SNAPSHOT ({sn['label']}): line {sn['line']} @ our side {sn['price_our']} /"
+                     f" other {sn['price_other']}, captured T-{sn['t_minus']} min"
+                     + (f" | movement {sn['movement']:+g} pts our way" if sn.get("movement") is not None else "")
+                     + (f" | PROVISIONAL CLV {pct(sn['clv'])}" if sn.get("clv") is not None
+                        else f" | no provisional CLV ({sn['why']})"))
+        L.append(f"    source: {v.get('src')}"
+                 + (f" | main line chosen by {v['main_rule']}" if v.get("main_rule") else ""))
         L.append(f"    Pinnacle close: main line {v['main_line'] if v['main_line'] is not None else '-'}"
                  f" @ {v['close_main'] if v['close_main'] is not None else '-'}"
                  f" | at our line {v['close_at_our_line'] if v['close_at_our_line'] is not None else '-'}"
@@ -148,8 +194,58 @@ def main(argv):
     except Exception:
         bets = {}
         print("daily report: CLV ledger state unreadable - bet and settlement columns only")
-    views = [row_view(k, b, bets.get(k)) for k, b in settled_on(tracker, day)]
-    print("\n".join(render(day, views)), flush=True)
+    rows = bets_on(tracker, day)
+    have = {(b.get("book"), b.get("game"), b.get("bet")) for _, b in rows}
+    for r in manual_file(day):
+        if (r.get("book"), r.get("game"), r.get("bet")) not in have:
+            rows.append((r.get("id") or f"manual|{r.get('bet')}", dict(r, _manual=True)))
+    views = []
+    for k, b in rows:
+        rec = dict(bets.get(k) or {})
+        if b.get("_manual"):
+            rec["_manual"] = True
+        views.append(row_view(k, b, rec))
+    # SECOND-PRIORITY evidence, only where the certified close is absent.
+    try:
+        import snapshot_source as ss
+        snaps, _bad = ss.load()
+    except Exception:
+        snaps = []
+    for v, (k, b) in zip(views, rows):
+        if v["v1"] is not None or not snaps:
+            continue
+        for sn in snaps:
+            try:
+                if not ss.matches(sn, b, day):
+                    continue
+                clv, why = ss.provisional_clv(sn, b)
+            except Exception:
+                continue
+            v["snap"] = {"label": ss.LABEL, "line": sn.get("line"),
+                         "price_our": sn.get("price_our", "-"), "price_other": sn.get("price_other", "-"),
+                         "t_minus": sn.get("t_minus_min", "?"), "movement": ss.movement(sn, b),
+                         "clv": clv, "why": why}
+            if clv is not None:
+                v["src"] = "verified snapshot (PROVISIONAL, not certified)"
+            break
+    body = "\n".join(render(day, views))
+    print(body, flush=True)
+    if os.environ.get("REPORT_EMAIL") == "1":
+        try:
+            import executor as ex
+            import smtplib
+            from email.mime.text import MIMEText
+            user, pw, to = ex.gmail()
+            m = MIMEText(body, "plain", "utf-8")
+            m["Subject"] = f"Bets DAILY REPORT {day}"
+            m["From"], m["To"] = user, to
+            with smtplib.SMTP_SSL("smtp.gmail.com", 465, timeout=60) as sv:
+                sv.login(user, pw)
+                sv.sendmail(user, [to], m.as_string())
+            print("daily report: emailed", flush=True)
+        except Exception as e:
+            print(f"daily report: email FAILED ({type(e).__name__}) - the report above still stands",
+                  flush=True)
     return 0
 
 

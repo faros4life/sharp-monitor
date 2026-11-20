@@ -12,7 +12,11 @@ on:
         required: false
         type: string
   schedule:
-    - cron: "37 13 * * *"   # 8:37 AM ET, after the tracker's real-plays recap lands
+    # Cron is UTC and does not know DST, so ONE cron drifts an hour in March (Peter, Nov 20).
+    # Both fire; the guard below keeps whichever is 08:xx ET and exits the other, so the report
+    # lands at 8:37 AM ET all year instead of 8:37 in winter and 9:37 in summer.
+    - cron: "37 12 * * *"
+    - cron: "37 13 * * *"
 
 concurrency:
   group: daily-report
@@ -27,7 +31,19 @@ jobs:
       - uses: actions/setup-python@v5
         with: {python-version: "3.11"}
       - run: pip install --quiet cryptography
+      - name: skip unless it is the 8am ET hour (scheduled runs only)
+        id: gate
+        run: |
+          H=$(TZ=America/New_York date +%H)
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "$H" != "08" ]; then
+            echo "ET hour $H - not the 8am ET firing; skipping"; echo "skip=1" >> $GITHUB_OUTPUT
+          fi
       - name: report
+        if: steps.gate.outputs.skip != '1'
         env:
           TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          REPORT_EMAIL: "1"
         run: python3 daily_report.py ${{ inputs.day }}

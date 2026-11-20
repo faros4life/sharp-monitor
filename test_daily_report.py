@@ -35,12 +35,13 @@ trk = {
     "c": {"result": "W", "settled": "2026-11-20T18:00:00Z", "profit": 100.0, "bet": "today"},
     "d": {"settled": "2026-11-20T02:00:00Z", "bet": "still open"},
 }
-got = dr.settled_on(trk, "2026-11-19")
+got = dr.bets_on(trk, "2026-11-19")
+gk = [k for k, _ in got]
 ok("a game settling after midnight UTC still belongs to the ET day it was played",
-   [k for k, _ in got] == ["a", "b"], [k for k, _ in got])
-ok("an unsettled row is excluded", "d" not in [k for k, _ in got])
-ok("another ET day is excluded", "c" not in [k for k, _ in got])
-ok("newest first", [k for k, _ in got][0] == "a")
+   "a" in gk and "b" in gk, gk)
+ok("an UNSETTLED row on that day is now reported, not dropped (Peter, Nov 20)", "d" in gk, gk)
+ok("another ET day is excluded", "c" not in gk)
+ok("newest first", gk[0] == "a", gk)
 
 # ------------------------------------------------------------------ 3. units, never dollars
 ok("units come from the venue's own settled figure", dr.units({"profit": 200.0}) == 1.0)
@@ -94,6 +95,40 @@ ok("the report says a dash is a field we do not hold", "a field we do not hold" 
 empty = "\n".join(dr.render("2026-11-19", []))
 ok("a day with nothing settled says so rather than printing an empty table",
    "No settled bets recorded" in empty)
+
+# ------------------------------------------------------------------ 7. day selection keeps unsettled bets
+trk2 = {"p": {"placed": "2026-11-20T01:00:00Z", "bet": "placed yesterday, not settled"},
+        "s": {"result": "W", "settled": "2026-11-20T02:00:00Z", "profit": 100.0, "bet": "settled"},
+        "x": {"placed": "2026-11-22T01:00:00Z", "bet": "another day"}}
+keys = [k for k, _ in dr.bets_on(trk2, "2026-11-19")]
+ok("a bet PLACED yesterday but not settled is still reported", "p" in keys, keys)
+ok("a settled bet is reported", "s" in keys)
+ok("another day is excluded", "x" not in keys)
+dupe = {"a": {"result": "W", "settled": "2026-11-20T02:00:00Z", "profit": 1.0, "book": "HR",
+              "game": "G", "bet": "B", "placed": "P", "stake": 100},
+        "b": {"result": "W", "settled": "2026-11-20T02:00:00Z", "profit": 1.0, "book": "HR",
+              "game": "G", "bet": "B", "placed": "P", "stake": 100}}
+ok("the same fill arriving twice counts once", len(dr.bets_on(dupe, "2026-11-19")) == 1,
+   len(dr.bets_on(dupe, "2026-11-19")))
+
+# ------------------------------------------------------------------ 8. source priority is explicit
+vc = dr.row_view("k", b, {"clv": 0.03})
+ok("a certified close is labelled as such", vc["src"] == "certified Pinnacle close", vc["src"])
+vm = dr.row_view("k", b, {"_manual": True})
+ok("a manual-file row says it is not in the tracker",
+   vm["src"] == "MANUAL FILE (not in the tracker)", vm["src"])
+vu = dr.row_view("k", b, {})
+ok("neither source is labelled unavailable, not blank", vu["src"] == "unavailable")
+ok("the main-line rule is named whenever a main line is shown",
+   dr.row_view("k", b, {"clv": 0.0, "main_line": 224.5})["main_rule"] == "biggest Pinnacle limit")
+ok("...and absent when there is no main line", dr.row_view("k", b, {})["main_rule"] is None)
+
+# ------------------------------------------------------------------ 9. the manual file is reporting-only
+src = open("daily_report.py").read()
+mf = src[src.index("def manual_file("):src.index("def units(")] if "def units(" in src else src[src.index("def manual_file("):]
+ok("the manual file is documented as never reaching the executor's gating",
+   "MANUAL_HELD" in mf and "explicit yes" in mf)
+ok("a missing manual file is not an error", dr.manual_file("1999-01-01") == [])
 
 print(("FAILED: " + ", ".join(FAILED)) if FAILED else "ALL PASS")
 print(f"{TOTAL - len(FAILED)} passed, {len(FAILED)} failed")
