@@ -1,6 +1,80 @@
 {
  "alerts": [
   {
+   "alert_utc": "2026-11-20T04:06:07Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "Over 215.5 (-110)",
+   "book": "Hard Rock",
+   "book_key": "hardrockbet",
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+1 pts",
+   "clv_conv_pts": null,
+   "clv_pin_line": null,
+   "clv_read_utc": null,
+   "clv_skipped": null,
+   "clv_source": null,
+   "clv_verified": null,
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -1.2,
+   "executable_book": true,
+   "fade_book": "prophetx",
+   "fade_point": 215.5,
+   "fade_price": 105,
+   "fade_price_after_fee": 103,
+   "fade_units": null,
+   "final": null,
+   "floor_line": 216.0,
+   "game": "Toronto Raptors @ Detroit Pistons",
+   "grade": "A",
+   "hr1_eligible": false,
+   "hr1_pushed": false,
+   "hr1_verified": null,
+   "hr1_verify_status": null,
+   "hr1_verify_why": null,
+   "kind": "tot",
+   "late": false,
+   "minutes_before_start": 1224,
+   "point": 215.5,
+   "price": -110,
+   "price_after_fee": -110,
+   "prices_at_alert": {
+    "hardrockbet": {
+     "after_fee": -110,
+     "point": 215.5,
+     "price": -110
+    },
+    "kalshi": {
+     "after_fee": -115.8,
+     "point": 215.5,
+     "price": -108
+    },
+    "novig": {
+     "after_fee": -7592,
+     "point": 243.5,
+     "price": -7592
+    },
+    "prophetx": {
+     "after_fee": -114.3,
+     "point": 215.5,
+     "price": -112
+    }
+   },
+   "pricing_bettable": true,
+   "result": null,
+   "score": 79,
+   "sent_to_phone": true,
+   "sport": "NBA",
+   "start_utc": "2026-11-21T00:30:00Z",
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alert_utc": "2026-11-20T03:40:24Z",
    "beat_close": true,
    "beat_true_close": null,
@@ -93000,6 +93074,30 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Over 215.5 (-110) at Hard Rock (also: ProphetX, Kalshi)",
+   "bet": "Over 215.5 (-110)",
+   "bet_result": null,
+   "book": "Hard Rock",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -1.2,
+   "final": null,
+   "game": "Toronto Raptors @ Detroit Pistons",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 1224,
+   "price": -110,
+   "price_after_fee": -110,
+   "pushed_to_phone": true,
+   "repeat": false,
+   "score": 79,
+   "sent_et": "2026-11-19 23:06",
+   "sport": "NBA",
+   "start_utc": "2026-11-21T00:30:00Z",
+   "why": "Pinnacle total moved 215 -> 216.5; bet only at 216 or better (confirmed by BetOnline)"
+  },
   {
    "alert_text": "Atlanta Hawks -5.5 (-110) at Hard Rock (also: ProphetX, Kalshi)",
    "bet": "Atlanta Hawks -5.5 (-110)",
