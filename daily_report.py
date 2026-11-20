@@ -74,6 +74,42 @@ def merge_summaries(rows):
     return out
 
 
+def game_key(game):
+    """Canonical identity for a game: the set of full team names, via nba_names - the one map the
+    fixture matcher already uses. Returns None when fewer than two teams resolve.
+
+    Peter, Nov 20: 'SAC @ LAL' and 'Sacramento Kings @ Los Angeles Lakers' must resolve to the same
+    game through a consistent team-identity mapping, not through looser text matching that risks
+    grouping unrelated games.
+    """
+    import re as _re
+    import nba_names as nn
+    parts = [p.strip() for p in _re.split(r"\s+(?:@|at|vs\.?|v)\s+", str(game or ""), flags=_re.I)
+             if p.strip()]
+    if len(parts) != 2:
+        return None
+    full = [nn.full(p) for p in parts]
+    # A short token the map could not resolve is not an identity - fall back rather than guess.
+    if any(len(p) <= 3 and f == p for p, f in zip(parts, full)):
+        return None
+    if len(set(full)) != 2:
+        return None
+    return frozenset(full)
+
+
+def same_game(a, b):
+    """Same game by canonical team identity where both sides resolve; token overlap only as a
+    documented fallback for leagues the map does not cover (NCAAF, NCAAB)."""
+    import tracker_build as _tb
+    ka, kb = game_key(a), game_key(b)
+    if ka and kb:
+        return ka == kb
+    ta, tb2 = _tb.toks(a), _tb.toks(b)
+    if not ta or not tb2:
+        return False
+    return len(ta & tb2) / len(ta | tb2) >= 0.6
+
+
 def same_side_exposure(rows):
     """OPEN positions that sit on the SAME side of the same game across more than one venue.
 
@@ -105,8 +141,7 @@ def same_side_exposure(rows):
         for k2, b2, pz2 in live[i + 1:]:
             if k2 in used or pz2[0] != pz[0]:
                 continue
-            ta, tb2 = _tb.toks(b.get("game")), _tb.toks(b2.get("game"))
-            if not ta or not tb2 or len(ta & tb2) / len(ta | tb2) < 0.6:
+            if not same_game(b.get("game"), b2.get("game")):
                 continue
             if pz[0] == "total" and (str(pz[1]).upper() != str(pz2[1]).upper()):
                 continue

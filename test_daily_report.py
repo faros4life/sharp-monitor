@@ -400,12 +400,34 @@ tot = [("a", {"book": "Novig", "source": "bot", "game": "Sacramento Kings @ Los 
               "bet": "Over 228.5", "stake": 100.0})]
 ok("totals group on the same number and direction", len(dr.same_side_exposure(tot)) == 1,
    dr.same_side_exposure(tot))
-# KNOWN LIMITATION, recorded rather than hidden: the game match is token-based, so a venue that
-# abbreviates ('SAC @ LAL') will NOT group with one that spells the teams out. Combined exposure
-# across such a pair is missed, and this test exists so the gap is visible if it ever matters.
+# FIXED Nov 20 (Peter): canonical team identity, not looser text matching.
 abbrev = [("a", dict(tot[0][1], game="SAC @ LAL")), tot[1]]
-ok("KNOWN GAP: an abbreviated game name does not group with a spelled-out one",
-   dr.same_side_exposure(abbrev) == [], dr.same_side_exposure(abbrev))
+ok("an abbreviated game name NOW groups with a spelled-out one via nba_names",
+   len(dr.same_side_exposure(abbrev)) == 1, dr.same_side_exposure(abbrev))
+ok("SAC @ LAL and the full names are the same canonical game",
+   dr.game_key("SAC @ LAL") == dr.game_key("Sacramento Kings @ Los Angeles Lakers"),
+   (dr.game_key("SAC @ LAL"), dr.game_key("Sacramento Kings @ Los Angeles Lakers")))
+ok("the key is the set of full team names",
+   dr.game_key("SAC @ LAL") == frozenset({"Sacramento Kings", "Los Angeles Lakers"}))
+ok("'at' and 'vs' separators work too",
+   dr.game_key("SAC at LAL") == dr.game_key("SAC vs LAL") == dr.game_key("SAC @ LAL"))
+ok("a DIFFERENT game is never the same key",
+   dr.game_key("SAC @ LAL") != dr.game_key("SAC @ GSW"))
+ok("unrelated games are not grouped by the canonical path",
+   not dr.same_game("SAC @ LAL", "BOS @ MIA"))
+ok("an unresolvable short token falls back rather than guessing",
+   dr.game_key("XYZ @ ABC") is None, dr.game_key("XYZ @ ABC"))
+ok("a one-sided string is not a game key", dr.game_key("Sacramento Kings") is None)
+ok("NCAAF still matches by tokens, the documented fallback",
+   dr.same_game("New Mexico at Wyoming", "New Mexico @ Wyoming"))
+ok("...and NCAAF unrelated games still do not match",
+   not dr.same_game("New Mexico at Wyoming", "Utah at Colorado"))
+import nba_names as _nn
+ok("the abbreviation map is ADDITIVE - full names still resolve to themselves",
+   _nn.full("Sacramento Kings") == "Sacramento Kings"
+   and _nn.full("sacramento") == "Sacramento Kings"
+   and _nn.full("kings") == "Sacramento Kings")
+ok("an unknown name is still returned unchanged", _nn.full("Wyoming Cowboys") == "Wyoming Cowboys")
 ok("Over against Under is not the same side",
    dr.same_side_exposure([tot[0], ("b", dict(tot[1][1], bet="Under 228.5"))]) == [])
 

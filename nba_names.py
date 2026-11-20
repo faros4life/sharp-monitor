@@ -39,6 +39,22 @@ FULL = {
     "toronto": "Toronto Raptors", "raptors": "Toronto Raptors",
     "utah": "Utah Jazz", "jazz": "Utah Jazz",
     "washington": "Washington Wizards", "wizards": "Washington Wizards",
+    # Nov 20 (Peter): venue tickers. "SAC @ LAL" and "Sacramento Kings @ Los Angeles Lakers" must
+    # resolve to the SAME game through this one map, rather than by loosening text matching -
+    # which risks grouping unrelated games. ADDITIVE ONLY: every key below previously fell through
+    # full() and came back unchanged, so nothing that already resolved can change.
+    "atl": "Atlanta Hawks", "bos": "Boston Celtics", "bkn": "Brooklyn Nets", "bro": "Brooklyn Nets",
+    "cha": "Charlotte Hornets", "chi": "Chicago Bulls", "cle": "Cleveland Cavaliers",
+    "dal": "Dallas Mavericks", "den": "Denver Nuggets", "det": "Detroit Pistons",
+    "gsw": "Golden State Warriors", "gs": "Golden State Warriors", "hou": "Houston Rockets",
+    "ind": "Indiana Pacers", "lac": "Los Angeles Clippers", "lal": "Los Angeles Lakers",
+    "mem": "Memphis Grizzlies", "mia": "Miami Heat", "mil": "Milwaukee Bucks",
+    "min": "Minnesota Timberwolves", "nop": "New Orleans Pelicans", "no": "New Orleans Pelicans",
+    "nyk": "New York Knicks", "ny": "New York Knicks", "okc": "Oklahoma City Thunder",
+    "orl": "Orlando Magic", "phi": "Philadelphia 76ers", "phx": "Phoenix Suns",
+    "phe": "Phoenix Suns", "por": "Portland Trail Blazers", "sac": "Sacramento Kings",
+    "sas": "San Antonio Spurs", "sa": "San Antonio Spurs", "tor": "Toronto Raptors",
+    "uta": "Utah Jazz", "was": "Washington Wizards", "wsh": "Washington Wizards",
 }
 
 
