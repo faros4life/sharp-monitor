@@ -236,12 +236,25 @@ _j.dump([{"book": "Hard Rock", "bet": "Toledo Rockets -6.5 (-115)", "game_date_e
           "game_start_et": "2026-11-19 21:00 ET", "odds_api_event_id": None}],
         open("events/1999-01-02.json", "w"))
 ed = dr.event_days("1999-01-02")
-ok("the transfer yields authoritative game dates", len(ed) == 2, ed)
+ok("the transfer yields authoritative game dates",
+   len([k for k in ed if k != "_by_game"]) == 2, ed)
+ok("a game-name index is built for metadata-only entries", "_by_game" in ed)
 ok("an event id is carried when present",
    ed[("Hard Rock", "Toledo Rockets -6.5 (-11")][1] == "1a7893819f5b", ed)
 ok("a missing event id is None, not invented",
    ed[("Hard Rock", "Under 160.5 (-110)")][1] is None)
 ok("a day with no transfer file is empty, not an error", dr.event_days("1999-01-03") == {})
+import json as _j2, os as _os2
+_j2.dump([{"game": "Indianapolis Colts @ Houston Texans", "game_date_et": "2026-11-19",
+           "game_start_et": "2026-11-19 20:15 ET",
+           "odds_api_event_id": "66f9e83cf025d58acee12bce18661fb3", "metadata_only": True}],
+         open("events/1999-01-05.json", "w"))
+ed2 = dr.event_days("1999-01-05")
+ok("a metadata-only entry indexes by game and carries its event id",
+   ed2["_by_game"]["Indianapolis Colts @ Houston Texans"][1] == "66f9e83cf025d58acee12bce18661fb3", ed2)
+ok("...and creates no bet of its own",
+   not [k for k in ed2 if k != "_by_game"], list(ed2))
+_os2.remove("events/1999-01-05.json")
 os.remove("events/1999-01-02.json")
 
 import fetch_transfer as ft

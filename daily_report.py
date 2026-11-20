@@ -71,7 +71,7 @@ def bets_on(tracker, day, corr=None):
         # (ChatGPT/Peter, Nov 20). Day membership rests on an authenticated placed or settled
         # timestamp only; game_start no longer admits a row to a day.
         days = {et_day(b.get(f)) for f in ("settled", "placed") if b.get(f)}
-        gd = b.get("_gameday") or et_day(b.get("game_start"))
+        gd = b.get("_gameday") or et_day(b.get("game_start")) or b.get("_gameday_ev")
         if day not in days and gd != day:
             continue
         fp = (b.get("book"), b.get("game"), b.get("bet"), b.get("placed"), b.get("stake"))
@@ -131,10 +131,17 @@ def event_days(day, directory="events"):
     except Exception:
         return {}
     out = {}
+    out["_by_game"] = {}
     for r in (d if isinstance(d, list) else [d]):
-        if isinstance(r, dict) and r.get("bet") and r.get("game_date_et"):
-            out[(r.get("book"), str(r.get("bet"))[:24])] = (
-                r["game_date_et"], r.get("odds_api_event_id"), r.get("game_start_et"))
+        if not isinstance(r, dict) or not r.get("game_date_et"):
+            continue
+        val = (r["game_date_et"], r.get("odds_api_event_id"), r.get("game_start_et"))
+        if r.get("bet"):
+            out[(r.get("book"), str(r.get("bet"))[:24])] = val
+        if r.get("game"):
+            # A metadata-only entry supplies a game date for a bet ALREADY in the tracker. It is
+            # never turned into a bet of its own.
+            out["_by_game"][r["game"]] = val
     return out
 
 
@@ -375,6 +382,19 @@ def main(argv):
             rec_c["game_day"] = hit[0]
             rec_c["game_day_basis"] = (f"authoritative: Muse private transfer, start {hit[2]}"
                                        + (f", event id {hit[1]}" if hit[1] else ", no event id"))
+    # Authoritative game dates for tracker rows that carry none, matched on the game name from
+    # the transfer. Two shared tokens, the same bar the snapshot matcher uses.
+    import tracker_build as _tb
+    by_game = ev.get("_by_game") or {}
+    for _k, _b in (tracker or {}).items():
+        if _b.get("game_start") or not _b.get("game"):
+            continue
+        for g, val in by_game.items():
+            if len(_tb.toks(g) & _tb.toks(_b.get("game"))) >= 2:
+                _b["_gameday_ev"] = val[0]
+                _b["_gameday_basis_ev"] = (f"authoritative: transfer metadata, start {val[2]}"
+                                           + (f", event id {val[1]}" if val[1] else ""))
+                break
     rows = bets_on(tracker, day, corr)
     have = {(b.get("book"), b.get("game"), b.get("bet")) for _, b in rows}
     for r in manual_file(day):
@@ -396,7 +416,7 @@ def main(argv):
         vw["received_at"] = b.get("received_at")
         vw["score"] = b.get("score")
         vw["game_day"] = b.get("_gameday") or et_day(b.get("game_start"))
-        vw["game_day_basis"] = b.get("_gameday_basis") or (
+        vw["game_day_basis"] = b.get("_gameday_basis") or b.get("_gameday_basis_ev") or (
             "authoritative game_start" if b.get("game_start") else None)
         vw["ident"] = (b.get("book"), b.get("bet"))
         vw["placed_day"] = et_day(b.get("placed")) if b.get("placed") else None

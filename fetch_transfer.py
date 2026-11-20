@@ -44,12 +44,16 @@ def main(argv):
         print(f"transfer: NOT read ({type(e).__name__}) - report continues without it", flush=True)
         return 0
     snaps = [scrub(s) for s in (d.get("pinnacle_snapshots") or [])]
-    events = [scrub(b) for b in (d.get("manual_bets") or [])]
+    # extra_events are METADATA ONLY - authoritative game dates for bets already in the tracker.
+    # They are never turned into bets; they only supply a game date the tracker lacks.
+    events = [scrub(b) for b in (d.get("manual_bets") or [])] + \
+             [dict(scrub(b), metadata_only=True) for b in (d.get("extra_events") or [])]
     os.makedirs("snapshots", exist_ok=True)
     os.makedirs("events", exist_ok=True)
     json.dump(snaps, open(f"snapshots/{day}.json", "w"))
     json.dump(events, open(f"events/{day}.json", "w"))
-    print(f"transfer: {len(snaps)} snapshot(s), {len(events)} event record(s) for {day}"
+    print(f"transfer: {len(snaps)} snapshot(s), {len(events)} event record(s) "
+          f"({len(d.get('extra_events') or [])} metadata-only) for {day}"
           f" (monetary fields dropped)", flush=True)
     return 0
 
