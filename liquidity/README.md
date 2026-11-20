@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 20, 1:10 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 16.
+Updated Fri Nov 20, 1:15 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 16.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -24,7 +24,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 19 7:55PM | NBA | New York Knicks @ Minnesota Timberwolves | spread: NYK -1.5 (1.5) | novig | $28k | +102 | ✅ kalshi | ❌ | +0.0c |  | W |
 | Nov 19 7:55PM | NBA | New York vs Minnesota: Spread | spread: New York wins by over 1.5 points | kalshi | $70k | -100 | ✅ novig | ❌ | +0.0c | yes | W |
 | Nov 19 7:40PM | NHL | Columbus vs Chicago: Total Goals | total: Over 6.5 goals scored | kalshi | $55k | +117 |  |  | +0.0c | yes | L |
-| Nov 19 7:35PM | NBA | Indiana vs Cleveland | moneyline: Cleveland | kalshi | $49k | -213 |  |  | +4.0c |  | pending |
+| Nov 19 7:35PM | NBA | Indiana vs Cleveland | moneyline: Cleveland | kalshi | $49k | -213 |  |  | +3.0c |  | pending |
 | Nov 19 7:20PM | NCAAF | Rice vs Temple: Total Points | total: NOT Over 51.5 points | kalshi | $177k | +108 |  | ❌ | +0.0c | yes | L |
 | Nov 19 7:10PM | NFL | Indianapolis Colts @ Houston Texans | spread: IND +12.5 (-12.5) | novig | $30k | -104 |  |  | -0.5c | yes | L |
 | Nov 19 7:10PM | NHL | Columbus vs Chicago: Total Goals | total: Over 5.5 goals scored | kalshi | $62k | -122 | ✅ novig |  | +3.0c | yes | W |
