@@ -38,8 +38,9 @@ F = cl.fair_from_main
 
 def val(*a):
     """the probability only, asserting the conversion was SUPPORTED"""
-    p, why = F(*a)
+    p, why, src = F(*a)
     assert why is None, why
+    assert isinstance(src, list), "provenance is always a list"
     return p
 
 
@@ -60,7 +61,7 @@ ok("probabilities stay inside [0.01, 0.99]", 0.01 <= val(0.985, -7.5, -6.5, True
 # ------------------------------------------------------------------ 2. UNSUPPORTED is never substituted
 for lab, a, b, kind, why in (("NFL", 5.5, 2.0, "spr", "no_mass_row"),
                              ("NBA", -7.5, -6.5, "spr", "no_mass_row")):
-    p_, w_ = F(0.50, a, b, False, lab, kind)
+    p_, w_, _s = F(0.50, a, b, False, lab, kind)
     ok(f"{lab} {kind} {a}->{b} is UNSUPPORTED, not a generic value", p_ is None and why in str(w_), (p_, w_))
 
 import line_value as _lv
@@ -72,10 +73,13 @@ ok("...so the conversion is supported and uses that row's mass",
 ok("a registered row always carries its sample size, so measured and estimated stay distinguishable",
    _row.n and _row.n >= _lv.MIN_N, _row.n)
 
-p_, w_ = F(0.50, -7.5, -3.5, True, "NFL", "spr")
+p_, w_, _s = F(0.50, -7.5, -3.5, True, "NFL", "spr")
 ok("a move more than 1 point from the line is refused, not extrapolated",
    p_ is None and "far_from_line" in str(w_), (p_, w_))
-ok("the reason is always named", all(F(0.50, 5.5, 2.0, False, "NFL", "spr")[1:]))
+ok("the reason is always named", F(0.50, 5.5, 2.0, False, "NFL", "spr")[1])
+ok("a supported conversion names the registered rows it crossed",
+   F(0.50, -7.5, -6.5, True, "NFL", "spr")[2] == ["NFL spread 7"],
+   F(0.50, -7.5, -6.5, True, "NFL", "spr")[2])
 
 # ------------------------------------------------------------------ 3. only landing mass is used
 src = open("clv_ledger.py").read()
@@ -93,7 +97,8 @@ ok("V1 stays OFFICIAL: both branches return the quote read at our number as 'p'"
    cf.count('"p": _p1v') == 2)
 ok("...and both still label it 'own line'", cf.count('"how": "own line"') == 2)
 ok("V2 is carried in its own fields, never over V1", cf.count('"v2_p"') == 2)
-ok("V2 equals V1 whenever our number WAS the main line", cf.count("_p2v, _v2why = (_p1v, None) if _at_main") == 2)
+ok("V2 equals V1 whenever our number WAS the main line",
+   cf.count('_p2v, _v2why, _v2src = (_p1v, None, ["observed at our number"]) if _at_main') == 2)
 ok("an unsupported conversion is recorded as unsupported, not skipped silently",
    '"v2_unsupported"' in src and "UNSUPPORTED: " in src)
 ok("CLV is still written at exactly one place in the ledger", src.count('rec["clv"] = ') == 1)
