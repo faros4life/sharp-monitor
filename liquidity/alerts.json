@@ -51,6 +51,11 @@
     "volume_24h_fp": 25.62,
     "volume_fp": 17.43
    },
+   "ex_stats_close": {
+    "open_interest_fp": 17514.99,
+    "volume_24h_fp": 24487.83,
+    "volume_fp": 25515.89
+   },
    "ex_stats_first": {
     "open_interest_fp": 17497.56,
     "volume_24h_fp": 24462.21,
@@ -450,9 +455,9 @@
     "volume_fp": 242.06
    },
    "ex_stats_close": {
-    "open_interest_fp": 14086.72,
+    "open_interest_fp": 14118.150000000001,
     "volume_24h_fp": 11456.76,
-    "volume_fp": 15773.61
+    "volume_fp": 15805.04
    },
    "ex_stats_first": {
     "open_interest_fp": 13869.9,
@@ -838,9 +843,9 @@
     "volume_fp": 15.13
    },
    "ex_stats_close": {
-    "open_interest_fp": 11073.17,
+    "open_interest_fp": 11080.67,
     "volume_24h_fp": 11320.09,
-    "volume_fp": 12233.560000000001
+    "volume_fp": 12241.060000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 10849.27,
@@ -1036,9 +1041,9 @@
     "volume_fp": 50.19
    },
    "ex_stats_close": {
-    "open_interest_fp": 18524.09,
+    "open_interest_fp": 18523.75,
     "volume_24h_fp": 23507.559999999998,
-    "volume_fp": 24585.72
+    "volume_fp": 24658.5
    },
    "ex_stats_first": {
     "open_interest_fp": 18004.91,
@@ -1583,6 +1588,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [
     "Minnesota Timberwolves +1.5 (-108)"
@@ -1784,6 +1790,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [
     "Minnesota Timberwolves +1.5 (-108)"
@@ -1987,6 +1994,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -2017,8 +2025,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.69,
-   "clv_cents": 1.0,
+   "close_price": 0.7,
+   "clv_cents": 2.0,
    "confirmed_after_min": 5,
    "date": "2026-11-20",
    "depth_by_book": {
@@ -2055,9 +2063,9 @@
     "volume_fp": 152.03
    },
    "ex_stats_close": {
-    "open_interest_fp": 13042.48,
+    "open_interest_fp": 13390.5,
     "volume_24h_fp": 13633.11,
-    "volume_fp": 14222.349999999999
+    "volume_fp": 14570.369999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 11276.99,
@@ -2365,7 +2373,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [
     "Over 51.5 (-115)"
@@ -2762,6 +2770,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -2946,6 +2955,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [
     "Under 226.5 (-110)"
@@ -3168,6 +3178,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [
     "Golden State Warriors +6.5 (-115)"
@@ -3241,9 +3252,9 @@
     "volume_fp": 200.46
    },
    "ex_stats_close": {
-    "open_interest_fp": 17676.69,
+    "open_interest_fp": 17718.04,
     "volume_24h_fp": 18305.05,
-    "volume_fp": 19823.91
+    "volume_fp": 19885.260000000002
    },
    "ex_stats_first": {
     "open_interest_fp": 11441.71,
@@ -4635,6 +4646,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [
     "Minnesota Timberwolves +1.5 (-108)"
@@ -5240,6 +5252,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Calgary",
@@ -5314,10 +5327,12 @@
     "volume": 17205985.0
    },
    "fade_price": 0.25,
+   "fade_units": 3.0,
    "first_seen_utc": "2026-11-19T21:35:57Z",
    "game": "Montreal Canadiens @ Carolina Hurricanes",
    "game_surge_books": [],
    "game_x": 1.72,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1ef5d-767e-7253-9645-42364b7c9edd\", \"outcome_id\": \"01a1ef5d-767e-7253-9645-4244ae625c2b\"}",
    "lead_min": 140,
    "league": "NHL",
@@ -5448,7 +5463,7 @@
     "market_id": "01a1ef5d-767e-7253-9645-42364b7c9edd",
     "outcome_id": "01a1ef5d-767e-7253-9645-4244ae625c2b"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -5456,7 +5471,8 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 12,
+   "settle_tries": 13,
+   "settled_utc": "2026-11-20T03:00:21Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Carolina Hurricanes",
@@ -5475,7 +5491,7 @@
     "Carolina Hurricanes"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-19T21:05:44Z",
@@ -6536,6 +6552,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [
     "Golden State Warriors +6.5 (-115)"
    ],
@@ -7409,6 +7426,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Chicago",
@@ -7818,7 +7836,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Edmonton",
@@ -8104,6 +8122,7 @@
     "volume_fp": 43300.56
    },
    "fade_price": 0.49,
+   "fade_units": 0.97,
    "first_seen_utc": "2026-11-19T17:25:46Z",
    "game": "Los Angeles vs Toronto",
    "game_surge_books": [],
@@ -8238,14 +8257,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26NOV19LATOR-TOR"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 12,
+   "settle_tries": 13,
+   "settled_utc": "2026-11-20T03:00:21Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Toronto",
@@ -8260,7 +8280,7 @@
     "Toronto"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-19T17:05:41Z",
@@ -8672,7 +8692,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Temple",
@@ -9116,7 +9136,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Tampa Bay",
@@ -9336,6 +9356,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [
     "San Antonio Spurs -15.5 (-104)"
@@ -9544,6 +9565,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [
     "Under 226.5 (-104)"
    ],
@@ -9770,6 +9792,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -9975,6 +9998,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Golden State",
@@ -10177,6 +10201,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Minnesota",
@@ -10382,6 +10407,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Columbus",
@@ -10717,7 +10743,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 12,
+   "settle_tries": 13,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Southeastern Louisiana",
@@ -11162,6 +11188,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Columbus",
@@ -11368,7 +11395,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -11752,6 +11779,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -12201,6 +12229,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Minnesota",
@@ -12273,9 +12302,9 @@
     "volume_fp": 55.5
    },
    "ex_stats_close": {
-    "open_interest_fp": 100098.47,
+    "open_interest_fp": 100248.14,
     "volume_24h_fp": 31416.02,
-    "volume_fp": 105079.54000000001
+    "volume_fp": 105281.36
    },
    "ex_stats_first": {
     "open_interest_fp": 76914.06,
@@ -12706,9 +12735,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 22753.93,
+    "open_interest_fp": 22773.83,
     "volume_24h_fp": 8132.3099999999995,
-    "volume_fp": 27386.92
+    "volume_fp": 27406.82
    },
    "ex_stats_first": {
     "open_interest_fp": 17771.73,
@@ -13069,6 +13098,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Portland Trail Blazers",
@@ -13283,7 +13313,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Temple",
@@ -13502,6 +13532,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Minnesota",
@@ -13677,6 +13708,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Portland",
@@ -13824,6 +13856,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Memphis",
@@ -19114,6 +19147,7 @@
     "volume_fp": 23072.75
    },
    "fade_price": 0.52,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-18T19:30:20Z",
    "game": "Los Angeles vs Toronto",
    "game_surge_books": [],
@@ -19223,12 +19257,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26NOV19LATOR-LA"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 12,
+   "settle_tries": 13,
+   "settled_utc": "2026-11-20T03:00:21Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Los Angeles",
@@ -19245,7 +19280,7 @@
     "Toronto"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.04
   },
   {
    "alerted_utc": "2026-11-18T18:15:46Z",
@@ -24268,7 +24303,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
