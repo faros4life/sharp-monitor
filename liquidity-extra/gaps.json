@@ -2,36 +2,6 @@
  "note": "PAPER ONLY (Oct 25; persistence added Oct 26): opposite sides of the same game/market/line on two different exchanges whose combined cost after fees is under $1 (Kalshi/Novig/ProphetX; Polymarket here is the global book, excluded). edge_pct = locked profit per $ staked at first sight; max/last_edge_pct while open. size_est = smaller leg's near-price depth (UPPER BOUND). first/last_seen_utc, scans_seen, lifetime_min = how long the gap stayed open (scan-interval resolution; a 1-scan gap may be a feed artifact). scan_sec = seconds from run start to this save, the most the two legs' reads can be apart. Measurement only: never alerted, never bet.",
  "gaps": [
   {
-   "seen_utc": "2026-11-06T21:20:17Z",
-   "league": "NCAAB",
-   "game": "Boston University @ Brown",
-   "market": "total",
-   "line": 145.5,
-   "edge_pct": 2.51,
-   "total_cost": 0.9755,
-   "size_est": 40,
-   "legs": [
-    {
-     "book": "novig",
-     "side": "Under 145.5 (145.5)",
-     "price": 0.52,
-     "cost_after_fee": 0.52
-    },
-    {
-     "book": "prophetx",
-     "side": "over 145.5 (145.5)",
-     "price": 0.4505,
-     "cost_after_fee": 0.4555
-    }
-   ],
-   "first_seen_utc": "2026-11-06T21:20:17Z",
-   "last_seen_utc": "2026-11-06T21:20:17Z",
-   "scans_seen": 1,
-   "max_edge_pct": 2.51,
-   "scan_sec": 435,
-   "lifetime_min": 0
-  },
-  {
    "seen_utc": "2026-11-06T21:40:16Z",
    "league": "NCAAB",
    "game": "St. Thomas vs Minnesota: Point Total",
