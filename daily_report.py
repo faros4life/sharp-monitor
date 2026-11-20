@@ -330,6 +330,13 @@ def render(day, views, meta=None):
     if nou:
         L.append(f"!! {len(nou)} settled row(s) have no units: {nou[0]['units_missing']}")
     scored = [v for v in views if v["v1"] is not None]
+    cert = [v for v in views if (v.get("snap") or {}).get("certified")]
+    prov = [v for v in views if (v.get("snap") or {}).get("clv") is not None
+            and not (v.get("snap") or {}).get("certified")]
+    L.append(f"CLV: certified SAME-LINE {len(cert)}/{len(gameday)} of the game-day card"
+             f" | provisional converted {len(prov)} | unavailable "
+             f"{len([v for v in gameday if v['v1'] is None and (v.get('snap') or {}).get('clv') is None])}"
+             " (never counted as zero)")
     L.append(f"V1 CLV on {len(scored)}/{len(views)}"
              + (f", mean {sum(v['v1'] for v in scored) / len(scored) * 100:+.2f}%" if scored else "")
              + f" | V2 on {sum(1 for v in views if v['v2'] is not None)}/{len(views)}")
@@ -496,7 +503,10 @@ def main(argv):
                          "t_minus": sn.get("t_minus_min", "?"), "movement": ss.movement(sn, b),
                          "clv": clv, "why": why}
             if clv is not None:
-                v["src"] = "verified snapshot (PROVISIONAL, not certified)"
+                v["snap"]["certified"] = str(why or "").startswith("SAME-LINE")
+                v["src"] = ("verified snapshot, SAME-LINE (no model conversion)"
+                            if v["snap"]["certified"] else
+                            "verified snapshot, PROVISIONAL converted")
             break
     body = "\n".join(render(day, views, corr.get("_meta")))
     print(body, flush=True)

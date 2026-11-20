@@ -102,6 +102,19 @@ def matches(snap, b, day):
     return bool(tb.toks(str(snap.get("side"))) & tb.toks(str(pz[1])))
 
 
+def certification(snap, rows_used):
+    """How strong this CLV is: a quote AT OUR OWN LINE with no conversion is SAME-LINE; anything
+    walked from the main line across registered rows is PROVISIONAL CONVERTED.
+
+    Kept distinct on purpose (Peter, Nov 20). A same-line snapshot needs no model at all, so it is
+    the strongest evidence available short of our own certified ledger close. It is still a
+    snapshot, not the official V1 close, and never replaces it.
+    """
+    if str(snap.get("line_type")) == "alt_our_line" and not rows_used:
+        return "SAME-LINE (snapshot, no model conversion)"
+    return "PROVISIONAL CONVERTED (walked from the main line)"
+
+
 def rank(snap):
     """Sort key: a quote AT OUR OWN LINE beats a main-line quote, and fresher beats older.
 
@@ -162,5 +175,5 @@ def provisional_clv(snap, b):
     p, why, src = cl.fair_from_main(p_snap, sl, wl, mv > 0, b.get("league"), "spr" if mk == "spread" else "tot")
     if p is None:
         return None, f"no supported conversion: {why}"
-    return round(p * d - 1, 4), (f"{label_for(snap)}; rows used "
-                                 f"{', '.join(src) or 'none - quoted at our own line'}")
+    return round(p * d - 1, 4), (f"{certification(snap, src)}; {label_for(snap)}"
+                                 + (f"; rows used {', '.join(src)}" if src else ""))

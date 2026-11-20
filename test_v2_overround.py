@@ -236,6 +236,34 @@ ok("a same-line quote outranks a main-line one",
 ok("among same types, fresher wins",
    ss.rank({"line_type": "main", "t_minus_min": 4}) < ss.rank({"line_type": "main", "t_minus_min": 12}))
 
+# ---------------------------------------------------------------- 12. certification + real quotes
+ok("a same-line quote with no conversion is SAME-LINE",
+   ss.certification({"line_type": "alt_our_line"}, []).startswith("SAME-LINE"))
+ok("a same-line record that still needed rows is NOT certified",
+   ss.certification({"line_type": "alt_our_line"}, ["NCAAB spread 7"]).startswith("PROVISIONAL"))
+ok("a main-line quote is always PROVISIONAL CONVERTED",
+   ss.certification({"line_type": "main"}, []).startswith("PROVISIONAL"))
+
+def devig_clv(our_am, other_am, paid_am):
+    """Independent check of the approved method: proportional de-vig, then fair x our payout - 1."""
+    def dec(a):
+        return 1 + (a / 100.0 if a > 0 else 100.0 / -a)
+    p = vo.devig_proportional(dec(our_am), dec(other_am))
+    return round((p * dec(paid_am) - 1) * 100, 2)
+
+ok("St Bonaventure -11.5: -115/-103 against our -105 gives +0.19%",
+   devig_clv(-115, -103, -105) == 0.19, devig_clv(-115, -103, -105))
+ok("Oregon U160.5: -112/-110 against our -110 gives -4.14%",
+   devig_clv(-112, -110, -110) == -4.14, devig_clv(-112, -110, -110))
+ok("Texans -10.5: -134/+118 against our -114 gives +4.23%",
+   devig_clv(-134, 118, -114) == 4.23, devig_clv(-134, 118, -114))
+ok("GSW U225.5: -114/-102 against our +100 gives +2.68%",
+   devig_clv(-114, -102, 100) == 2.68, devig_clv(-114, -102, 100))
+ok("LAC U226.5: -130/+111 against our -108 gives +4.76%",
+   devig_clv(-130, 111, -108) == 4.76, devig_clv(-130, 111, -108))
+ok("Toledo -6.5: -124/+104 against our -115 gives -0.85%",
+   devig_clv(-124, 104, -115) == -0.85, devig_clv(-124, 104, -115))
+
 print(("FAILED: " + ", ".join(FAILED)) if FAILED else "ALL PASS")
 print(f"{TOTAL - len(FAILED)} passed, {len(FAILED)} failed")
 import sys as _sys
