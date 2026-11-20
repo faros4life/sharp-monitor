@@ -1,6 +1,400 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-20T02:50:14Z",
+   "base_depth": 195763,
+   "best_price": 0.515,
+   "best_price_american": -106,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-19",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 9840,
+     "new_this_side": 32719,
+     "other_side": 116727,
+     "other_side_all_levels": 169757,
+     "ratio": 1.3,
+     "this_side": 150003,
+     "this_side_all_levels": 234088
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 5.5 (5.5)",
+     "price": 0.515,
+     "this_side": 19056
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "under 5.5 (5.5)",
+     "price": 0.5122,
+     "this_side": 16512
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 44673.54,
+    "volume_24h_fp": 13311.05,
+    "volume_fp": 54176.46
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 1523.49,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 2594.36
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 43150.05,
+    "volume_24h_fp": 13311.05,
+    "volume_fp": 51582.1
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-11-20T02:45:41Z",
+   "game": "Dallas vs Vegas: Total Goals",
+   "game_surge_books": [],
+   "game_x": 1.19,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLTOTAL-26NOV19DALVGK-6\"}",
+   "lead_min": 10,
+   "league": "NHL",
+   "line": 5.5,
+   "market": "total",
+   "new_money": 32719,
+   "new_x": 0.21,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 44673.54,
+      "volume_24h_fp": 13311.05,
+      "volume_fp": 54176.46
+     },
+     "game_normal": 196941,
+     "game_x": 1.19,
+     "normal": 155009,
+     "now": 234088,
+     "type": "UNDER",
+     "x": 1.51
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 2426873.0,
+      "volume": 2734151.0
+     },
+     "game_normal": 19179,
+     "game_x": 1.11,
+     "normal": 19230,
+     "now": 21265,
+     "type": "UNDER",
+     "x": 1.11
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 13823,
+     "game_x": 1.19,
+     "normal": 10837,
+     "now": 16512,
+     "type": "UNDER",
+     "x": 1.52
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 5.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": 5.5,
+     "price": -112
+    },
+    "betopenly": {
+     "point": 5.5,
+     "price": -104
+    },
+    "betrivers": {
+     "point": 5.5,
+     "price": 100
+    },
+    "betus": {
+     "point": 5.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 5.5,
+     "price": -110
+    },
+    "circasports": {
+     "point": 5.5,
+     "price": -120
+    },
+    "draftkings": {
+     "point": 5.5,
+     "price": -112
+    },
+    "fanatics": {
+     "point": 5.5,
+     "price": -115
+    },
+    "fanduel": {
+     "point": 5.5,
+     "price": -115
+    },
+    "kalshi": {
+     "point": 5.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 5.5,
+     "price": -112
+    },
+    "mybookieag": {
+     "point": 5.5,
+     "price": -113
+    },
+    "novig": {
+     "point": 5.5,
+     "price": -106
+    },
+    "polymarket": {
+     "point": 5.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 5.5,
+     "price": -104
+    },
+    "williamhill_us": {
+     "point": 5.5,
+     "price": -109
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLTOTAL-26NOV19DALVGK-6"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 5.5 goals scored",
+   "size_x": 1.51,
+   "start_source": "odds",
+   "start_utc": "2026-11-20T03:00:00Z",
+   "surge_books": [],
+   "teams": [
+    "Dallas",
+    "Vegas"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-20T02:50:14Z",
+   "base_depth": 83813,
+   "best_price": 0.815,
+   "best_price_american": -441,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.82,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-20",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 28631,
+     "new_this_side": 234080,
+     "other_side": 6962,
+     "other_side_all_levels": 57586,
+     "ratio": 1.1,
+     "this_side": 7643,
+     "this_side_all_levels": 324171
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "OKC (0)",
+     "price": 0.815,
+     "this_side": 1512
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Oklahoma City Thunder",
+     "price": 0.8485,
+     "this_side": 595
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 14111.96,
+    "volume_24h_fp": 11431.27,
+    "volume_fp": 15696.53
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 242.06,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 242.06
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 13869.9,
+    "volume_24h_fp": 11431.27,
+    "volume_fp": 15454.470000000001
+   },
+   "fade_price": 0.19,
+   "first_seen_utc": "2026-11-20T02:45:41Z",
+   "game": "New Orleans vs Oklahoma City",
+   "game_surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "game_x": 4.59,
+   "key": "kalshi|KXNBAGAME-26NOV20NOPOKC|ml|1",
+   "lead_min": 1330,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 234080,
+   "new_x": 4.32,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 14111.96,
+      "volume_24h_fp": 11431.27,
+      "volume_fp": 15696.53
+     },
+     "game_normal": 70567,
+     "game_x": 4.59,
+     "normal": 54147,
+     "now": 324171,
+     "type": "ML",
+     "x": 5.99
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 100.0,
+      "volume": 100.0
+     },
+     "game_normal": 395,
+     "game_x": 4.01,
+     "normal": 7352,
+     "now": 1587,
+     "type": "ML",
+     "x": 0.22
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": null,
+     "game_x": null,
+     "normal": 2035,
+     "now": 595,
+     "type": "ML",
+     "x": 0.29
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.82,
+   "price_american": -456,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.82,
+   "prices_by_book": {
+    "betrivers": {
+     "point": null,
+     "price": -530
+    },
+    "draftkings": {
+     "point": null,
+     "price": -499
+    },
+    "fanduel": {
+     "point": null,
+     "price": -510
+    },
+    "kalshi": {
+     "point": null,
+     "price": -456
+    },
+    "limitless": {
+     "point": null,
+     "price": -510
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -526
+    },
+    "novig": {
+     "point": null,
+     "price": -441
+    },
+    "polymarket": {
+     "point": null,
+     "price": -456
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -456
+    },
+    "prophetx": {
+     "point": null,
+     "price": -560
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -480
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26NOV20NOPOKC-OKC"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Oklahoma City",
+   "side_label": "Oklahoma City",
+   "size_x": 5.99,
+   "start_source": "odds",
+   "start_utc": "2026-11-21T01:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "New Orleans",
+    "Oklahoma City"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-20T02:35:50Z",
    "base_depth": 217930,
    "best_price": 0.56,
@@ -52,9 +446,9 @@
     "volume_fp": 152.87
    },
    "ex_stats_close": {
-    "open_interest_fp": 9718.77,
+    "open_interest_fp": 9857.59,
     "volume_24h_fp": 10427.59,
-    "volume_fp": 11214.76
+    "volume_fp": 11353.580000000002
    },
    "ex_stats_first": {
     "open_interest_fp": 9612.619999999999,
@@ -246,9 +640,9 @@
     "volume_fp": 15.13
    },
    "ex_stats_close": {
-    "open_interest_fp": 10865.37,
+    "open_interest_fp": 10902.34,
     "volume_24h_fp": 11251.63,
-    "volume_fp": 12025.759999999998
+    "volume_fp": 12062.73
    },
    "ex_stats_first": {
     "open_interest_fp": 10849.27,
@@ -444,9 +838,9 @@
     "volume_fp": 50.19
    },
    "ex_stats_close": {
-    "open_interest_fp": 18444.8,
+    "open_interest_fp": 18517.98,
     "volume_24h_fp": 23192.89,
-    "volume_fp": 24472.43
+    "volume_fp": 24545.61
    },
    "ex_stats_first": {
     "open_interest_fp": 18004.91,
@@ -1425,8 +1819,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.7,
-   "clv_cents": 2.0,
+   "close_price": 0.69,
+   "clv_cents": 1.0,
    "confirmed_after_min": 5,
    "date": "2026-11-20",
    "depth_by_book": {
@@ -1463,9 +1857,9 @@
     "volume_fp": 152.03
    },
    "ex_stats_close": {
-    "open_interest_fp": 13019.45,
+    "open_interest_fp": 13025.599999999999,
     "volume_24h_fp": 13484.33,
-    "volume_fp": 14199.32
+    "volume_fp": 14205.470000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 11276.99,
@@ -1773,7 +2167,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [
     "Over 51.5 (-115)"
@@ -2649,9 +3043,9 @@
     "volume_fp": 200.46
    },
    "ex_stats_close": {
-    "open_interest_fp": 17645.71,
+    "open_interest_fp": 17676.55,
     "volume_24h_fp": 18111.940000000002,
-    "volume_fp": 19792.93
+    "volume_fp": 19823.77
    },
    "ex_stats_first": {
     "open_interest_fp": 11441.71,
@@ -2858,6 +3252,7 @@
     "volume_fp": 5641.27
    },
    "fade_price": 0.48,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-19T23:45:55Z",
    "game": "Montreal vs Carolina: Total Goals",
    "game_surge_books": [],
@@ -2986,14 +3381,15 @@
     "kalshi_side": "no",
     "market_ticker": "KXNHLTOTAL-26NOV19MTLCAR-7"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
+   "settled_utc": "2026-11-20T02:50:14Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -3009,7 +3405,7 @@
     "Carolina"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.94
   },
   {
    "alerted_utc": "2026-11-19T23:30:16Z",
@@ -4311,6 +4707,7 @@
     "volume_fp": 11274.57
    },
    "fade_price": 0.37,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-19T23:05:43Z",
    "game": "Philadelphia vs Ottawa: Spread",
    "game_surge_books": [],
@@ -4432,14 +4829,15 @@
     "kalshi_side": "no",
     "market_ticker": "KXNHLSPREAD-26NOV19PHIOTT-OTT2"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
+   "settled_utc": "2026-11-20T02:50:14Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Philadelphia",
@@ -4456,7 +4854,7 @@
     "Ottawa"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.56
   },
   {
    "alerted_utc": "2026-11-19T22:05:48Z",
@@ -4860,7 +5258,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Carolina Hurricanes",
@@ -4937,6 +5335,7 @@
     "volume_fp": 33492.89
    },
    "fade_price": 0.46,
+   "fade_units": 1.09,
    "first_seen_utc": "2026-11-19T21:00:26Z",
    "game": "Montreal vs Carolina: Spread",
    "game_surge_books": [],
@@ -5058,14 +5457,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLSPREAD-26NOV19MTLCAR-CAR2"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
+   "settled_utc": "2026-11-20T02:50:14Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Carolina",
@@ -5080,7 +5480,7 @@
     "Carolina"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-19T20:50:17Z",
@@ -5352,9 +5752,9 @@
     "volume_fp": 133.63
    },
    "ex_stats_close": {
-    "open_interest_fp": 195396.3,
+    "open_interest_fp": 409113.69,
     "volume_24h_fp": 198626.11,
-    "volume_fp": 206141.02
+    "volume_fp": 419858.41000000003
    },
    "ex_stats_first": {
     "open_interest_fp": 85655.57,
@@ -6240,6 +6640,7 @@
     "volume_fp": 1157.37
    },
    "fade_price": 0.47,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-19T18:35:48Z",
    "game": "Buffalo vs Washington: Total Goals",
    "game_surge_books": [],
@@ -6371,14 +6772,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLTOTAL-26NOV19BUFWSH-7"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
+   "settled_utc": "2026-11-20T02:50:14Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -6396,7 +6798,7 @@
     "Washington"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.85
   },
   {
    "alerted_utc": "2026-11-19T18:35:48Z",
@@ -6885,6 +7287,7 @@
     "volume_fp": 512.38
    },
    "fade_price": 0.35,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-19T18:05:46Z",
    "game": "Buffalo vs Washington: Spread",
    "game_surge_books": [],
@@ -7003,14 +7406,15 @@
     "kalshi_side": "no",
     "market_ticker": "KXNHLSPREAD-26NOV19BUFWSH-WSH2"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
+   "settled_utc": "2026-11-20T02:50:14Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Buffalo",
@@ -7028,7 +7432,7 @@
     "Washington"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.52
   },
   {
    "alerted_utc": "2026-11-19T17:56:04Z",
@@ -7216,7 +7620,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Edmonton",
@@ -7643,7 +8047,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Toronto",
@@ -7722,6 +8126,7 @@
     "volume_fp": 160640.05
    },
    "fade_price": 0.59,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-19T17:00:23Z",
    "game": "Philadelphia vs Ottawa",
    "game_surge_books": [],
@@ -7856,14 +8261,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26NOV19PHIOTT-PHI"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "prophetx"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
+   "settled_utc": "2026-11-20T02:50:14Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Philadelphia",
@@ -7880,7 +8286,7 @@
     "Ottawa"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.38
   },
   {
    "alerted_utc": "2026-11-19T16:15:59Z",
@@ -8068,7 +8474,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Temple",
@@ -8512,7 +8918,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Tampa Bay",
@@ -10113,7 +10519,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Southeastern Louisiana",
@@ -10193,6 +10599,7 @@
     "volume_fp": 4510.01
    },
    "fade_price": 0.45,
+   "fade_units": 1.14,
    "first_seen_utc": "2026-11-19T13:06:02Z",
    "game": "Buffalo vs Washington",
    "game_surge_books": [],
@@ -10327,14 +10734,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26NOV19BUFWSH-WSH"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
+   "settled_utc": "2026-11-20T02:50:14Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Washington",
@@ -10353,7 +10761,7 @@
     "Washington"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-19T12:45:39Z",
@@ -10762,7 +11170,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -11226,6 +11634,7 @@
     "volume_fp": 5856.13
    },
    "fade_price": 0.38,
+   "fade_units": 1.52,
    "first_seen_utc": "2026-11-19T10:45:39Z",
    "game": "Philadelphia vs Ottawa",
    "game_surge_books": [
@@ -11362,14 +11771,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26NOV19PHIOTT-OTT"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
+   "settled_utc": "2026-11-20T02:50:14Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Ottawa",
@@ -11387,7 +11797,7 @@
     "Ottawa"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-19T10:50:14Z",
@@ -11665,9 +12075,9 @@
     "volume_fp": 55.5
    },
    "ex_stats_close": {
-    "open_interest_fp": 99698.04999999999,
+    "open_interest_fp": 99730.19,
     "volume_24h_fp": 31550.44,
-    "volume_fp": 104663.17000000001
+    "volume_fp": 104711.26000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 76914.06,
@@ -11888,6 +12298,7 @@
     "volume_fp": 15324.880000000001
    },
    "fade_price": 0.29,
+   "fade_units": 2.29,
    "first_seen_utc": "2026-11-19T10:05:36Z",
    "game": "Montreal vs Carolina",
    "game_surge_books": [],
@@ -12022,12 +12433,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26NOV19MTLCAR-CAR"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 10,
+   "settle_tries": 11,
+   "settled_utc": "2026-11-20T02:50:14Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Carolina",
@@ -12042,7 +12454,7 @@
     "Carolina"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-19T10:05:36Z",
@@ -12098,7 +12510,7 @@
    "ex_stats_close": {
     "open_interest_fp": 22753.93,
     "volume_24h_fp": 8104.700000000001,
-    "volume_fp": 27358.96
+    "volume_fp": 27386.57
    },
    "ex_stats_first": {
     "open_interest_fp": 17771.73,
@@ -12673,7 +13085,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Temple",
@@ -18618,7 +19030,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Los Angeles",
@@ -23658,7 +24070,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
