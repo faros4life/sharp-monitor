@@ -2,36 +2,6 @@
  "note": "PAPER ONLY (Oct 25; persistence added Oct 26): opposite sides of the same game/market/line on two different exchanges whose combined cost after fees is under $1 (Kalshi/Novig/ProphetX; Polymarket here is the global book, excluded). edge_pct = locked profit per $ staked at first sight; max/last_edge_pct while open. size_est = smaller leg's near-price depth (UPPER BOUND). first/last_seen_utc, scans_seen, lifetime_min = how long the gap stayed open (scan-interval resolution; a 1-scan gap may be a feed artifact). scan_sec = seconds from run start to this save, the most the two legs' reads can be apart. Measurement only: never alerted, never bet.",
  "gaps": [
   {
-   "seen_utc": "2026-11-06T14:20:11Z",
-   "league": "NCAAF",
-   "game": "Rhode Island @ New Hampshire",
-   "market": "moneyline",
-   "line": null,
-   "edge_pct": 0.53,
-   "total_cost": 0.9947,
-   "size_est": 158,
-   "legs": [
-    {
-     "book": "novig",
-     "side": "UNH (0)",
-     "price": 0.355,
-     "cost_after_fee": 0.355
-    },
-    {
-     "book": "prophetx",
-     "side": "Long Island University",
-     "price": 0.635,
-     "cost_after_fee": 0.6397
-    }
-   ],
-   "first_seen_utc": "2026-11-06T14:20:11Z",
-   "last_seen_utc": "2026-11-06T14:20:11Z",
-   "scans_seen": 1,
-   "max_edge_pct": 0.53,
-   "scan_sec": 267,
-   "lifetime_min": 0
-  },
-  {
    "seen_utc": "2026-11-06T15:20:11Z",
    "league": "NCAAF",
    "game": "Western Kentucky @ Middle Tennessee",
@@ -6233,11 +6203,11 @@
     }
    ],
    "first_seen_utc": "2026-11-20T05:00:19Z",
-   "last_seen_utc": "2026-11-20T14:15:49Z",
-   "scans_seen": 197,
+   "last_seen_utc": "2026-11-20T14:20:18Z",
+   "scans_seen": 198,
    "max_edge_pct": 42.17,
    "scan_sec": 229,
-   "lifetime_min": 556,
+   "lifetime_min": 560,
    "last_edge_pct": 40.75,
    "last_size_est": 172
   },
