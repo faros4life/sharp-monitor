@@ -53,6 +53,9 @@ def bets_on(tracker, day, corr=None):
         c = corr.get((b.get("book"), b.get("game"), b.get("bet")))
         if c:
             b = dict(b)
+            b["_gameday"] = c.get("game_day")
+            b["_gameday_basis"] = c.get("game_day_basis")
+        if c:
             if c.get("placed_actual"):
                 b["placed"], b["placed_src"] = c["placed_actual"], "corrected: real placement time"
                 b["received_at"] = c.get("received_at")
@@ -68,7 +71,8 @@ def bets_on(tracker, day, corr=None):
         # (ChatGPT/Peter, Nov 20). Day membership rests on an authenticated placed or settled
         # timestamp only; game_start no longer admits a row to a day.
         days = {et_day(b.get(f)) for f in ("settled", "placed") if b.get(f)}
-        if day not in days:
+        gd = b.get("_gameday") or et_day(b.get("game_start"))
+        if day not in days and gd != day:
             continue
         fp = (b.get("book"), b.get("game"), b.get("bet"), b.get("placed"), b.get("stake"))
         if fp in seen:
@@ -99,10 +103,15 @@ def corrections(day, directory="corrections"):
         d = json.load(open(f))
     except Exception:
         return {}
-    out = {}
+    out, meta = {}, {}
     for r in (d if isinstance(d, list) else [d]):
-        if isinstance(r, dict) and r.get("bet"):
+        if not isinstance(r, dict):
+            continue
+        if r.get("_meta"):
+            meta = r
+        elif r.get("bet"):
             out[(r.get("book"), r.get("game"), r.get("bet"))] = r
+    out["_meta"] = meta
     return out
 
 
@@ -210,7 +219,7 @@ def pct(x):
     return "-" if x is None else f"{x * 100:+.2f}%"
 
 
-def render(day, views):
+def render(day, views, meta=None):
     L = [f"SETTLED BETS - {day} (ET). Units at 1u = {UNIT:.0f}; no dollar figures by design.",
          "Read-only projection of stored records. A dash is a field we do not hold, with its reason.",
          ""]
@@ -226,13 +235,40 @@ def render(day, views):
     # Two cohorts, never mixed (Peter, Nov 20): what SETTLED this day carries the day's P&L;
     # what was PLACED this day is the day's action. A bet in both cohorts is counted once, in
     # settlements, and appears in the placed list marked so.
+    def tot(rs):
+        u = sum(v["units"] or 0 for v in rs)
+        w = sum(1 for v in rs if str(v["result"]).upper().startswith("W"))
+        l = sum(1 for v in rs if str(v["result"]).upper().startswith("L"))
+        return len(rs), w, l, u
+
+    gameday = [v for v in views if v.get("game_day") == day]
+    excl = (meta or {}).get("subset_exclude") or []
+    def is_excluded(v):
+        return any(all(str(v["ident"][i] or "").startswith(str(e.get(k) or ""))
+                       for i, k in ((0, "book"), (1, "bet")) if e.get(k)) for e in excl)
+    subset = [v for v in gameday if not is_excluded(v)]
+    dropped = [v for v in gameday if is_excluded(v)]
     sett = [v for v in views if v.get("on_day") == "settled"]
-    other = [v for v in views if v.get("on_day") != "settled"]
+    other = [v for v in views if v.get("on_day") == "placed this day"]
     unver = [v for v in views if v.get("on_day") == "UNVERIFIED date"]
-    w = sum(v["units"] or 0 for v in sett)
-    won = sum(1 for v in sett if str(v["result"]).upper().startswith("W"))
-    lost = sum(1 for v in sett if str(v["result"]).upper().startswith("L"))
-    L.append(f"SETTLED THIS DAY: {len(sett)} | {won}-{lost} | {w:+.2f}u")
+    n, w_, l_, u_ = tot(gameday)
+    L.append(f"(A) GAME-DAY PERFORMANCE - all venues, games played this day: {n} | {w_}-{l_} | {u_:+.2f}u")
+    prov = [v for v in gameday if str(v.get("game_day_basis") or "").startswith("PROVISIONAL")]
+    L.append(f"    game-day verification: {n - len(prov)}/{n} authoritative, {len(prov)} PROVISIONAL"
+             + (" (no immutable event id yet - see the note at the end)" if prov else ""))
+    if excl:
+        ns, ws, ls, us = tot(subset)
+        L.append(f"(B) {(meta or {}).get('subset_label') or 'subset'}: {ns} | {ws}-{ls} | {us:+.2f}u")
+        for v in dropped:
+            L.append(f"    OTHER SETTLED BET - in (A), not in the (B) subset: {v['bet']} | {v['book']}"
+                     f" | game day {v.get('game_day') or 'unknown'} | {('%+.2fu' % v['units']) if v['units'] is not None else '-'}"
+                     f" | reason: {(meta or {}).get('why', 'excluded from the discussed card')[:90]}")
+    nc, wc, lc, uc = tot(other)
+    nd, wd, ld, ud = tot(sett)
+    L.append(f"(C) PLACED THIS DAY: {nc}" + (f" | {uc:+.2f}u once settled" if nc else ""))
+    L.append(f"(D) SETTLED THIS DAY: {nd} | {wd}-{ld} | {ud:+.2f}u")
+    L.append("    (A) and (D) answer different questions and are never the same card. A bet counts "
+             "once inside each total; totals are not added together.")
     if other:
         L.append(f"PLACED THIS DAY, settling later or still open: {len(other)}"
                  f" - NOT counted in the units above")
@@ -315,6 +351,10 @@ def main(argv):
         vw["result_src"] = b.get("result_src")
         vw["received_at"] = b.get("received_at")
         vw["score"] = b.get("score")
+        vw["game_day"] = b.get("_gameday") or et_day(b.get("game_start"))
+        vw["game_day_basis"] = b.get("_gameday_basis") or (
+            "authoritative game_start" if b.get("game_start") else None)
+        vw["ident"] = (b.get("book"), b.get("bet"))
         if b.get("result") and vw["units"] is None:
             vw["units_missing"] = "no stake or payout stored, so units cannot be computed"
         views.append(vw)
@@ -347,7 +387,7 @@ def main(argv):
             if clv is not None:
                 v["src"] = "verified snapshot (PROVISIONAL, not certified)"
             break
-    body = "\n".join(render(day, views))
+    body = "\n".join(render(day, views, corr.get("_meta")))
     print(body, flush=True)
     if os.environ.get("REPORT_EMAIL") == "1":
         try:

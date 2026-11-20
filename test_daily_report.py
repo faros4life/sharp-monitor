@@ -87,7 +87,7 @@ ok("both CLVs are shown when held", v6["v1"] == 0.01 and v6["v2"] == -0.02)
 lines = "\n".join(dr.render("2026-11-19", [v, v2, v6]))
 ok("no dollar figure can reach the output", "$" not in lines)
 ok("the header states the unit and that dollars are omitted", "1u = 200" in lines and "no dollar" in lines)
-ok("the record and units total are shown", "SETTLED THIS DAY:" in lines and "u" in lines)
+ok("the record and units total are shown", "(D) SETTLED THIS DAY:" in lines and "u" in lines)
 ok("V1 coverage is reported as a fraction, not implied", "V1 CLV on 2/3" in lines, lines[:400])
 ok("a missing field prints its reason", "not in the CLV ledger" in lines)
 ok("an absent value prints as a dash", " - " in lines or "-" in lines)
@@ -135,10 +135,10 @@ sv = dict(dr.row_view("k", {"result": "W", "profit": 200.0, "bet": "settled toda
 pv = dict(dr.row_view("k", {"result": "W", "profit": 400.0, "bet": "placed today, settled later"}, {}),
           on_day="placed this day")
 out = "\n".join(dr.render("2026-11-19", [sv, pv]))
-ok("the day's units count ONLY what settled that day",
-   "SETTLED THIS DAY: 1 | 1-0 | +1.00u" in out, out[:300])
+ok("the day's settled units count ONLY what settled that day",
+   "(D) SETTLED THIS DAY: 1 | 1-0 | +1.00u" in out, out[:400])
 ok("a bet placed that day but settled elsewhere is shown, not counted",
-   "PLACED THIS DAY, settling later" in out and "NOT counted in the units above" in out)
+   "(C) PLACED THIS DAY" in out and "(D) SETTLED THIS DAY" in out)
 ok("every row states why it is on this day", out.count("<settled>") == 1 and out.count("<placed this day>") == 1)
 ok("an empty day no longer says 'settled'", "No bets recorded" in "\n".join(dr.render("2026-11-19", [])))
 
@@ -151,12 +151,15 @@ ok("a push is zero", dr.profit_from({"stake": 100.0, "to_pay": 200.0}, "P") == 0
 ok("no stake means no units", dr.profit_from({}, "L") is None)
 
 cf = dr.corrections("2026-11-19")
-ok("the Nov 19 corrections file loads four records", len(cf) == 4, len(cf))
+ok("the Nov 19 corrections file loads four records",
+   len([k for k in cf if k != "_meta"]) == 4, len(cf))
 ok("it carries NO money - the repo stays free of stakes and dollars",
-   not any(k in r for r in cf.values() for k in ("stake", "profit", "to_pay", "payout", "units")),
-   [k for r in cf.values() for k in r])
+   not any(k in r for kk, r in cf.items() if kk != "_meta"
+           for k in ("stake", "profit", "to_pay", "payout", "units")),
+   [k for kk, r in cf.items() if kk != "_meta" for k in r])
 ok("every record states the real placement time and keeps the receipt separately",
-   all(r.get("placed_actual") and r.get("received_at") for r in cf.values()))
+   all(r.get("placed_actual") and r.get("received_at")
+       for k, r in cf.items() if k != "_meta"))
 
 trkc = {"h": {"book": "Hard Rock", "game": "Robert Morris Colonials @ Toledo Rockets",
               "bet": "Toledo Rockets -6.5 (-115)", "placed": "2026-11-20T13:54:00Z",
@@ -172,9 +175,11 @@ ok("an uncorrected tracker keeps the receipt day", len(dr.bets_on(trkc, "2026-11
 
 # GAME_START must never admit a row to a day
 gs = {"g": {"game_start": "2026-11-20T02:00:00Z", "bet": "game that day, no placed/settled"}}
-ok("game_start alone never places a bet on a day", dr.bets_on(gs, "2026-11-19") == [])
-ok("a row with neither placed nor settled on the day is simply absent",
-   dr.bets_on(gs, "2026-11-20") == [])
+ok("game_start admits a row to its GAME day, which cohort (A) needs",
+   len(dr.bets_on(gs, "2026-11-19")) == 1, dr.bets_on(gs, "2026-11-19"))
+ok("...but game_start is NEVER the placement identity: that row reads UNVERIFIED",
+   dr.row_view("g", gs["g"], {}) is not None)
+ok("a game on another day is still excluded", dr.bets_on(gs, "2026-11-18") == [])
 
 # the two cohorts and the correction banner
 sv = dict(dr.row_view("k", {"result": "W", "profit": 200.0, "bet": "x"}, {}), on_day="settled",
@@ -183,13 +188,44 @@ sv = dict(dr.row_view("k", {"result": "W", "profit": 200.0, "bet": "x"}, {}), on
 pv = dict(dr.row_view("k", {"result": "", "bet": "y"}, {}), on_day="placed this day")
 uv = dict(dr.row_view("k", {"bet": "z"}, {}), on_day="UNVERIFIED date")
 out = "\n".join(dr.render("2026-11-19", [sv, pv, uv]))
-ok("settlements carry the day's units", "SETTLED THIS DAY: 1 | 1-0 | +1.00u" in out, out[:200])
-ok("placed-this-day is a separate cohort, not counted", "PLACED THIS DAY, settling later" in out)
+ok("settlements carry the day's units", "(D) SETTLED THIS DAY: 1 | 1-0 | +1.00u" in out, out[:400])
+ok("placed-this-day is a separate cohort, not counted", "(C) PLACED THIS DAY" in out)
 ok("an unverified placement date is flagged conspicuously", "UNVERIFIED date, never inferred" in out)
 ok("the correction is disclosed on the row", "REPORTING CORRECTION:" in out)
 ok("...naming that live gating was untouched", "MANUAL_HELD and live gating untouched" in out)
 ok("...and keeping the receipt time visible", "email receipt kept separately" in out)
 ok("the final score is shown as the outcome evidence", "final Robert Morris 76, Toledo 83" in out)
+
+# ------------------------------------------------------------------ 12. the four labelled cohorts
+cf2 = dr.corrections("2026-11-19")
+meta = cf2.get("_meta") or {}
+ok("the corrections file carries subset meta", bool(meta.get("subset_exclude")), meta)
+ok("every record marks its game day PROVISIONAL until an event id exists",
+   all(str(r.get("game_day_basis", "")).startswith("PROVISIONAL")
+       for k, r in cf2.items() if k != "_meta"))
+
+def mk(bet, book, units, result, gd="2026-11-19", basis="PROVISIONAL - x"):
+    v = dr.row_view("k", {"bet": bet, "book": book, "result": result,
+                          "profit": (units or 0) * 200.0}, {})
+    v.update(on_day="settled", game_day=gd, game_day_basis=basis, ident=(book, bet))
+    return v
+
+rows = [mk("Toledo Rockets -6.5", "Hard Rock", 1.00, "W"),
+        mk("NOT Over 139.5 points", "Kalshi", -0.12, "L"),
+        mk("Under 226.5", "Novig", -1.08, "L", basis="authoritative game_start")]
+out2 = "\n".join(dr.render("2026-11-19", rows, meta))
+ok("(A) the all-venues game-day card is primary and INCLUDES Kalshi",
+   "(A) GAME-DAY PERFORMANCE" in out2 and "3 | 1-2 | -0.20u" in out2, out2[:500])
+ok("(B) the seven-play subset is shown beside it, excluding Kalshi",
+   "(B) seven-play card discussed with Peter on Nov 20: 2 | 1-1 | -0.08u" in out2, out2[:700])
+ok("Kalshi is never silently dropped - it is named with its reason",
+   "OTHER SETTLED BET - in (A), not in the (B) subset" in out2 and "Kalshi" in out2)
+ok("game-day verification coverage is reported", "game-day verification: 1/3 authoritative, 2 PROVISIONAL" in out2,
+   [l for l in out2.splitlines() if "verification" in l])
+ok("(A) and (D) are explicitly different questions", "never the same card" in out2)
+ok("totals are not added together", "not added together" in out2)
+ok("the better-performing cohort is not silently chosen - all four are labelled",
+   all(x in out2 for x in ("(A) ", "(B) ", "(C) ", "(D) ")))
 
 print(("FAILED: " + ", ".join(FAILED)) if FAILED else "ALL PASS")
 print(f"{TOTAL - len(FAILED)} passed, {len(FAILED)} failed")
