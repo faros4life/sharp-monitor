@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 20, 10:20 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 16.
+Updated Fri Nov 20, 10:30 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 16.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -14,9 +14,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 20 8:40AM | NCAAB | Tulsa vs Mississippi St. | moneyline: Mississippi St. | kalshi | $49k | -285 |  | ✅ | +0.0c |  | pending |
 | Nov 20 3:20AM | NCAAB | Western Illinois vs University at Albany | moneyline: Albany | kalshi | $143k | -300 |  |  | -2.0c |  | pending |
 | Nov 20 3:20AM | NCAAB | Georgia vs Georgia Tech | moneyline: Georgia | kalshi | $75k | -335 |  |  | +0.0c |  | pending |
-| Nov 20 3:20AM | NCAAB | South Dakota St. vs Idaho St. | moneyline: South Dakota St. | kalshi | $138k | -270 |  |  | -2.0c |  | pending |
+| Nov 20 3:20AM | NCAAB | South Dakota St. vs Idaho St. | moneyline: South Dakota St. | kalshi | $138k | -270 |  |  | -3.0c |  | pending |
 | Nov 20 3:20AM | NCAAB | Northwestern vs Virginia Tech | moneyline: Virginia Tech | kalshi | $165k | -567 |  |  | +0.0c |  | pending |
-| Nov 20 3:20AM | NCAAB | Delaware vs Cal State Northridge | moneyline: Cal State Northridge | kalshi | $134k | -245 |  |  | +3.0c |  | pending |
+| Nov 20 3:20AM | NCAAB | Delaware vs Cal State Northridge | moneyline: Cal State Northridge | kalshi | $134k | -245 |  |  | +4.0c |  | pending |
 | Nov 20 1:20AM | NCAAB | Western Michigan vs Mount St. Mary's | moneyline: Western Michigan | kalshi | $26k | -335 |  |  | -3.0c |  | pending |
 | Nov 20 1:20AM | NCAAB | Southeastern Louisiana vs Kennesaw St. | moneyline: Kennesaw St. | kalshi | $33k | -567 |  |  | +2.0c |  | pending |
 | Nov 20 1:20AM | NCAAB | Bellarmine vs Eastern Kentucky | moneyline: Eastern Kentucky | kalshi | $25k | -317 |  |  | +2.0c |  | pending |
