@@ -1,6 +1,404 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-20T12:49:57Z",
+   "base_depth": 195330,
+   "best_price": 0.525,
+   "best_price_american": -111,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.53,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 4,
+   "date": "2026-11-20",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 10971,
+     "new_this_side": 95555,
+     "other_side": 101436,
+     "other_side_all_levels": 186806,
+     "ratio": 1.5,
+     "this_side": 151924,
+     "this_side_all_levels": 287333
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "ISU +1.5 (-1.5)",
+     "price": 0.525,
+     "this_side": 11578
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 130121.5,
+    "volume_24h_fp": 14819.19,
+    "volume_fp": 132920.33
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 130121.5,
+    "volume_24h_fp": 14819.19,
+    "volume_fp": 132920.33
+   },
+   "fade_price": 0.48,
+   "first_seen_utc": "2026-11-20T12:45:46Z",
+   "game": "Iowa St. vs UCF: Spread",
+   "game_surge_books": [],
+   "game_x": 1.54,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26NOV20ISUUCF-UCF2\"}",
+   "lead_min": 610,
+   "league": "NCAAF",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 95555,
+   "new_x": 1.08,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 130121.5,
+      "volume_24h_fp": 14819.19,
+      "volume_fp": 132920.33
+     },
+     "game_normal": 186991,
+     "game_x": 1.54,
+     "normal": 88195,
+     "now": 287333,
+     "type": "SPREAD",
+     "x": 3.26
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 5503340.0,
+      "volume": 6702297.0
+     },
+     "game_normal": 11446,
+     "game_x": 1.13,
+     "normal": 4187,
+     "now": 12965,
+     "type": "SPREAD",
+     "x": 3.1
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.53,
+   "price_american": -113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.53,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 1.0,
+     "price": -114
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -110
+    },
+    "betus": {
+     "point": 1.0,
+     "price": -115
+    },
+    "bovada": {
+     "point": 1.0,
+     "price": -115
+    },
+    "circasports": {
+     "point": 2.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -108
+    },
+    "fanatics": {
+     "point": 1.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -113
+    },
+    "lowvig": {
+     "point": 1.0,
+     "price": -110
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -111
+    },
+    "polymarket": {
+     "point": -0.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -108
+    },
+    "williamhill_us": {
+     "point": 1.5,
+     "price": -107
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFSPREAD-26NOV20ISUUCF-UCF2"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Iowa St.",
+   "side_label": "NOT UCF wins by over 1.5 points",
+   "size_x": 3.26,
+   "start_source": "odds",
+   "start_utc": "2026-11-20T23:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "Iowa St.",
+    "UCF"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-20T12:49:57Z",
+   "base_depth": 899296,
+   "best_price": 0.485,
+   "best_price_american": 106,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.48,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 4,
+   "date": "2026-11-20",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -45624,
+     "new_this_side": 128303,
+     "other_side": 468270,
+     "other_side_all_levels": 1006549,
+     "ratio": 1.3,
+     "this_side": 593158,
+     "this_side_all_levels": 1139159
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "ISU (0)",
+     "price": 0.485,
+     "this_side": 17682
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Iowa State",
+     "price": 0.4831,
+     "this_side": 13803
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 275417.35,
+    "volume_24h_fp": 81709.52,
+    "volume_fp": 281542.21
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 244.27,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 244.27
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 275173.08,
+    "volume_24h_fp": 81709.52,
+    "volume_fp": 281297.94
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-11-20T12:45:46Z",
+   "game": "Iowa St. vs UCF",
+   "game_surge_books": [],
+   "game_x": 1.37,
+   "key": "kalshi|KXNCAAFGAME-26NOV20ISUUCF|ml|0",
+   "lead_min": 610,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 128303,
+   "new_x": 4.9,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 275417.35,
+      "volume_24h_fp": 81709.52,
+      "volume_fp": 281542.21
+     },
+     "game_normal": 831367,
+     "game_x": 1.37,
+     "normal": 26169,
+     "now": 1139159,
+     "type": "ML",
+     "x": 43.53
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 9859398.0,
+      "volume": 13152918.0
+     },
+     "game_normal": 22249,
+     "game_x": 1.19,
+     "normal": 4163,
+     "now": 26372,
+     "type": "ML",
+     "x": 6.34
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 7336,
+     "game_x": 1.88,
+     "normal": 1523,
+     "now": 13803,
+     "type": "ML",
+     "x": 9.06
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.48,
+   "price_american": 108,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.48,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 100
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -105
+    },
+    "betrivers": {
+     "point": null,
+     "price": -103
+    },
+    "betus": {
+     "point": null,
+     "price": -105
+    },
+    "bovada": {
+     "point": null,
+     "price": -103
+    },
+    "circasports": {
+     "point": null,
+     "price": 110
+    },
+    "draftkings": {
+     "point": null,
+     "price": 105
+    },
+    "fanatics": {
+     "point": null,
+     "price": 100
+    },
+    "fanduel": {
+     "point": null,
+     "price": 102
+    },
+    "kalshi": {
+     "point": null,
+     "price": 108
+    },
+    "lowvig": {
+     "point": null,
+     "price": -105
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 102
+    },
+    "novig": {
+     "point": null,
+     "price": 106
+    },
+    "polymarket": {
+     "point": null,
+     "price": 108
+    },
+    "prophetx": {
+     "point": null,
+     "price": 107
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 107
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26NOV20ISUUCF-ISU"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Iowa St.",
+   "side_label": "Iowa St.",
+   "size_x": 43.53,
+   "start_source": "odds",
+   "start_utc": "2026-11-20T23:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Iowa St.",
+    "UCF"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-20T11:20:19Z",
    "base_depth": 27127,
    "best_price": 0.32,
@@ -879,7 +1277,7 @@
    "ex_stats_close": {
     "open_interest_fp": 27344.62,
     "volume_24h_fp": 29431.16,
-    "volume_fp": 29431.16
+    "volume_fp": 29437.31
    },
    "ex_stats_first": {
     "open_interest_fp": 670.49,
@@ -1080,9 +1478,9 @@
     "volume_fp": 121.97
    },
    "ex_stats_close": {
-    "open_interest_fp": 56614.3,
+    "open_interest_fp": 56994.75,
     "volume_24h_fp": 55722.66,
-    "volume_fp": 63660.45
+    "volume_fp": 64219.8
    },
    "ex_stats_first": {
     "open_interest_fp": 24393.629999999997,
@@ -1262,8 +1660,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": -3.0,
+   "close_price": 0.53,
+   "clv_cents": -2.0,
    "confirmed_after_min": 6,
    "date": "2026-11-20",
    "depth_by_book": {
@@ -1300,9 +1698,9 @@
     "volume_fp": 21987.49
    },
    "ex_stats_close": {
-    "open_interest_fp": 98778.13,
+    "open_interest_fp": 98922.97,
     "volume_24h_fp": 98711.14,
-    "volume_fp": 104039.5
+    "volume_fp": 104184.34
    },
    "ex_stats_first": {
     "open_interest_fp": 14461.99,
@@ -1511,9 +1909,9 @@
     "volume_fp": 17.43
    },
    "ex_stats_close": {
-    "open_interest_fp": 56735.64,
+    "open_interest_fp": 56802.78,
     "volume_24h_fp": 51007.479999999996,
-    "volume_fp": 65836.2
+    "volume_fp": 65903.34
    },
    "ex_stats_first": {
     "open_interest_fp": 17497.56,
@@ -1920,9 +2318,9 @@
     "volume_fp": 242.06
    },
    "ex_stats_close": {
-    "open_interest_fp": 75856.15,
+    "open_interest_fp": 76012.25,
     "volume_24h_fp": 69031.61,
-    "volume_fp": 82251.8
+    "volume_fp": 82409.09
    },
    "ex_stats_first": {
     "open_interest_fp": 13869.9,
@@ -2114,9 +2512,9 @@
     "volume_fp": 152.87
    },
    "ex_stats_close": {
-    "open_interest_fp": 56614.3,
+    "open_interest_fp": 56994.75,
     "volume_24h_fp": 55722.66,
-    "volume_fp": 63660.45
+    "volume_fp": 64219.8
    },
    "ex_stats_first": {
     "open_interest_fp": 9612.619999999999,
@@ -2311,9 +2709,9 @@
     "volume_fp": 15.13
    },
    "ex_stats_close": {
-    "open_interest_fp": 57293.58,
+    "open_interest_fp": 57302.88,
     "volume_24h_fp": 54852.630000000005,
-    "volume_fp": 60639.05
+    "volume_fp": 60648.350000000006
    },
    "ex_stats_first": {
     "open_interest_fp": 10849.27,
@@ -2509,9 +2907,9 @@
     "volume_fp": 50.19
    },
    "ex_stats_close": {
-    "open_interest_fp": 42753.81,
+    "open_interest_fp": 42765.21,
     "volume_24h_fp": 45484.31,
-    "volume_fp": 50061.729999999996
+    "volume_fp": 50073.13
    },
    "ex_stats_first": {
     "open_interest_fp": 18004.91,
@@ -3503,8 +3901,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.7,
-   "clv_cents": 2.0,
+   "close_price": 0.71,
+   "clv_cents": 3.0,
    "confirmed_after_min": 5,
    "date": "2026-11-20",
    "depth_by_book": {
@@ -3541,9 +3939,9 @@
     "volume_fp": 152.03
    },
    "ex_stats_close": {
-    "open_interest_fp": 29363.35,
+    "open_interest_fp": 29517.730000000003,
     "volume_24h_fp": 26268.82,
-    "volume_fp": 31170.739999999998
+    "volume_fp": 31572.660000000003
    },
    "ex_stats_first": {
     "open_interest_fp": 11276.99,
@@ -4743,9 +5141,9 @@
     "volume_fp": 200.46
    },
    "ex_stats_close": {
-    "open_interest_fp": 54010.78,
+    "open_interest_fp": 54218.92,
     "volume_24h_fp": 53779.38,
-    "volume_fp": 60088.26
+    "volume_fp": 60297.83
    },
    "ex_stats_first": {
     "open_interest_fp": 11441.71,
@@ -13861,9 +14259,9 @@
     "volume_fp": 55.5
    },
    "ex_stats_close": {
-    "open_interest_fp": 141386.9,
+    "open_interest_fp": 141697.85,
     "volume_24h_fp": 62610.76,
-    "volume_fp": 147740.49
+    "volume_fp": 148051.44
    },
    "ex_stats_first": {
     "open_interest_fp": 76914.06,
@@ -14294,9 +14692,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 31106.2,
+    "open_interest_fp": 31194.64,
     "volume_24h_fp": 13889.65,
-    "volume_fp": 37077.270000000004
+    "volume_fp": 37167.03
    },
    "ex_stats_first": {
     "open_interest_fp": 17771.73,
