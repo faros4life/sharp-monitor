@@ -1,0 +1,45 @@
+name: fixture-export
+
+# Exports ledger fixture identity + raw close evidence for Muse's backfill and drops it in the
+# private transfer folder. Muse asked for fixture_id + game + start (so it matches on ID, not team
+# name) and the per-row tick ages + raw side prices. NO MONEY in the file by design. Read-only on
+# the ledger; no live path, no CLV change.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 13 * * *"
+
+concurrency:
+  group: fixture-export
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install -q cryptography
+      - name: build the export
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+        run: python3 fixture_export.py claude_fixtures.json
+      - name: drop it in the private transfer folder
+        continue-on-error: true
+        env:
+          REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
+        run: |
+          set -e
+          D=$(TZ=America/New_York date +%F)
+          git clone --depth 1 "https://x-access-token:${REGISTRY_TOKEN}@github.com/faros4life/novig-runner" pr
+          mkdir -p pr/muse_transfers
+          cp claude_fixtures.json "pr/muse_transfers/claude_fixtures_${D}.json"
+          cd pr
+          git -c user.name=claude -c user.email=noreply@anthropic.com \
+              commit -am "claude fixture export ${D}" --allow-empty -q || true
+          git add muse_transfers/claude_fixtures_${D}.json
+          git -c user.name=claude -c user.email=noreply@anthropic.com \
+              commit -m "claude fixture export ${D}" -q
+          git push -q && echo "dropped claude_fixtures_${D}.json in muse_transfers/"
