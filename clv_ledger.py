@@ -1052,6 +1052,26 @@ def novig_p(a, b):
     return ia / (ia + ib)
 
 
+def fair_from_main(p_main, main_line, want, better, lab, kind):
+    """The fair win chance AT OUR NUMBER, derived from Pinnacle's MAIN line.
+
+    Nov 19 (Peter): "The line moved my way, it should get CLV credit. The CLV is not at my number."
+    It was read at the number - but off the ALT quote that survives there once the line moves.
+    Pinnacle prices alts with heavier and uneven juice, and novig_p strips vig assuming it is even,
+    so an alt's fair understates the side holding the better number. That biases exactly the plays
+    that moved our way: seven plays on Nov 19 all beat the closing number and all scored negative,
+    which no market verdict explains.
+
+    The main line is the liquid, properly priced quote, so the fair at our number is the main line's
+    fair moved across the intervening numbers by the half-point model - the same model already used
+    when Pinnacle has no quote at our number at all. `better` is True when our number is the easier
+    side of the main line; the value is added then and subtracted otherwise, so a favourable move
+    can only ever increase our fair chance.
+    """
+    v = sm.half_point_value(lab, kind, min(main_line, want), max(main_line, want), main_line)
+    return min(max(p_main + (v if better else -v), .01), .99)
+
+
 def close_for(b, f, pm, mkmap, start, lg):
     """Pinnacle close fair win chance for the held side, plus how it was read."""
     # Nov 14 (Peter, priority 1): the same guards the shared basis applies. A politics market is
@@ -1111,8 +1131,23 @@ def close_for(b, f, pm, mkmap, start, lg):
     if typ == "totals":
         want, over = pz[2], pz[1] == "OVER"
         exact = next((c for c in cands if abs(c[0] - want) < 1e-9), None)
-        if exact:
+        if exact and abs(exact[0] - main[0]) < 1e-9:
             return {"p": exact[1] if over else 1 - exact[1], "how": "own line", "age_min": round(exact[2])}, None
+        if exact:
+            # Nov 19 (Peter): "the line moved my way, it should get CLV credit. The CLV is not at my
+            # number." It was read AT the number - but off the ALT quote that survives there once the
+            # line moves. Pinnacle prices alts with heavier and UNEVEN juice, and novig_p strips vig
+            # assuming it sits evenly, so the alt's fair understates the side holding the better
+            # number - biased against exactly the plays that moved our way. Seven plays on Nov 19 all
+            # beat the close and all scored negative, which is not a market verdict.
+            # The fair at our number is now derived from the MAIN line, the liquid properly-priced
+            # quote, converted with the same half-point model used below. The alt's own fair is kept
+            # on the row as alt_p so the size of the bias stays measurable and this is reversible.
+            ppt, po = main[0], main[1]
+            return {"p": fair_from_main(po if over else 1 - po, ppt, want,
+                                        (want < ppt) if over else (want > ppt), lab, "tot"),
+                    "how": f"own line (from main {ppt:g})", "age_min": round(main[2]),
+                    "alt_p": round(exact[1] if over else 1 - exact[1], 4)}, None
         ppt, po = main[0], main[1]
         if abs(want - ppt) > max(1.5, 0.03 * ppt):   # Nov 2: 'Over 5.5' scored on an NBA total = wrong league/market
             return None, "bet line far from Pinnacle's main line (wrong league or market?)"
@@ -1129,9 +1164,18 @@ def close_for(b, f, pm, mkmap, start, lg):
         side, want = ("2" if side == "1" else "1"), -want
     t1_line = want if side == "1" else -want          # the same bet stated as team 1's handicap
     exact = next((c for c in cands if abs(c[0] - t1_line) < 1e-9), None)
-    if exact:
+    if exact and abs(exact[0] - main[0]) < 1e-9:
         p1 = exact[1]
         return {"p": p1 if side == "1" else 1 - p1, "how": "own line", "age_min": round(exact[2])}, None
+    if exact:
+        # Same correction as totals above: our number survives only as an ALT once the line moves,
+        # and the alt's no-vig fair is biased against the side holding the better number.
+        _hp, _p1 = main[0], main[1]
+        _mine = _hp if side == "1" else -_hp
+        return {"p": fair_from_main(_p1 if side == "1" else 1 - _p1, _mine, want,
+                                    want > _mine, lab, "spr"),
+                "how": f"own line (from main {_mine:+g})", "age_min": round(main[2]),
+                "alt_p": round(exact[1] if side == "1" else 1 - exact[1], 4)}, None
     if lg == "NHL":
         return None, "puck line at a different number: not comparable"
     hp, p1 = main[0], main[1]
