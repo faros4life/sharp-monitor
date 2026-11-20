@@ -1773,7 +1773,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+0.5 pts",
+   "clv": "+1 pts",
    "clv_conv_pts": null,
    "clv_pin_line": null,
    "clv_read_utc": null,
@@ -2630,6 +2630,80 @@
    "pricing_bettable": true,
    "result": null,
    "score": 78,
+   "sent_to_phone": false,
+   "sport": "NCAAB",
+   "start_utc": "2026-11-21T00:00:00Z",
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alert_utc": "2026-11-20T15:50:32Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "Over 132.5 (-110)",
+   "book": "ProphetX",
+   "book_key": "prophetx",
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+1 pts",
+   "clv_conv_pts": null,
+   "clv_pin_line": null,
+   "clv_read_utc": null,
+   "clv_skipped": null,
+   "clv_source": null,
+   "clv_verified": null,
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -0.9,
+   "executable_book": true,
+   "fade_book": "prophetx",
+   "fade_point": 132.5,
+   "fade_price": 101,
+   "fade_price_after_fee": -101,
+   "fade_units": null,
+   "final": null,
+   "floor_line": 133.0,
+   "game": "Niagara Purple Eagles @ Delaware St Hornets",
+   "grade": "B",
+   "hr1_eligible": false,
+   "hr1_pushed": false,
+   "hr1_verified": null,
+   "hr1_verify_status": null,
+   "hr1_verify_why": null,
+   "kind": "tot",
+   "late": false,
+   "minutes_before_start": 489,
+   "point": 132.5,
+   "price": -110,
+   "price_after_fee": -112,
+   "prices_at_alert": {
+    "hardrockbet": {
+     "after_fee": -115,
+     "point": 132.5,
+     "price": -115
+    },
+    "kalshi": {
+     "after_fee": -111.5,
+     "point": 133.5,
+     "price": -104
+    },
+    "novig": {
+     "after_fee": -102,
+     "point": 133.5,
+     "price": -102
+    },
+    "prophetx": {
+     "after_fee": -112.2,
+     "point": 132.5,
+     "price": -110
+    }
+   },
+   "pricing_bettable": true,
+   "result": null,
+   "score": 73,
    "sent_to_phone": false,
    "sport": "NCAAB",
    "start_utc": "2026-11-21T00:00:00Z",
@@ -96302,6 +96376,30 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Over 132.5 (-110) at ProphetX [-112 after ProphetX fee] (also: Hard Rock)",
+   "bet": "Over 132.5 (-110)",
+   "bet_result": null,
+   "book": "ProphetX",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -0.9,
+   "final": null,
+   "game": "Niagara Purple Eagles @ Delaware St Hornets",
+   "grade": "B",
+   "late": false,
+   "minutes_before_start": 489,
+   "price": -110,
+   "price_after_fee": -112,
+   "pushed_to_phone": false,
+   "repeat": false,
+   "score": 73,
+   "sent_et": "2026-11-20 10:50",
+   "sport": "NCAAB",
+   "start_utc": "2026-11-21T00:00:00Z",
+   "why": "Pinnacle total moved 131.5 -> 133.5; bet only at 133 or better (confirmed by BetOnline)"
+  },
   {
    "alert_text": "Richmond Spiders -0.5 (-109) at ProphetX [-111 after ProphetX fee]",
    "bet": "Richmond Spiders -0.5 (-109)",
