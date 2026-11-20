@@ -87,7 +87,7 @@ def row_view(k, b, rec):
     if alt and len(alt) == 2:
         v["close_at_our_line"] = am(alt[0])
     elif rec.get("close_p") is not None and rec.get("how") == "own line":
-        v["close_at_our_line"] = "at our line (fair stored, raw quote not kept for this row)"
+        v["close_at_our_line"] = "fair stored, raw quote not kept for this row"
     if mn and len(mn) == 2:
         v["close_main"] = am(mn[0])
     if v["v2"] is None:
