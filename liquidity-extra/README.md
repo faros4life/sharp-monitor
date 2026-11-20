@@ -1,19 +1,19 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 19, 11:10 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 11.
+Updated Thu Nov 19, 11:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 10.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 366-220 (-20.89u flat) | rule met: 65-58
+**Record:** 367-220 (-19.84u flat) | rule met: 65-58
 
-**Fade (paper, betting against the print):** 195-331 (+20.83u flat, after fees)
+**Fade (paper, betting against the print):** 195-332 (+19.83u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 19 7:40PM | NCAAB | Wisconsin vs Seton Hall: Point Total | total: NOT Over 138.5 points | kalshi | $26k | -104 | ✅ novig |  | +0.0c | yes | L |
 | Nov 19 6:40PM | NCAAB | Southern Utah vs Texas: Spread | spread: NOT Texas wins by over 35.5 points | kalshi | $36k | -104 |  | ✅ | +0.0c |  | W |
 | Nov 19 6:40PM | NCAAB | Houston vs Kansas: Spread | spread: NOT Houston wins by over 3.5 points | kalshi | $29k | +104 |  |  | +4.0c | yes | pending |
-| Nov 19 5:40PM | NCAAB | Oregon vs Oregon St. | moneyline: NOT Oregon | kalshi | $30k | +113 |  |  | +0.0c |  | pending |
+| Nov 19 5:40PM | NCAAB | Oregon vs Oregon St. | moneyline: NOT Oregon | kalshi | $30k | +113 |  |  | +0.0c |  | W |
 | Nov 19 4:50PM | NCAAB | Notre Dame vs Auburn: Spread | spread: NOT Auburn wins by over 4.5 points | kalshi | $71k | -117 |  |  | +0.0c | yes | W |
 | Nov 19 4:20PM | NCAAB | Wisconsin vs Seton Hall: Spread | spread: NOT Wisconsin wins by over 5.5 points | kalshi | $36k | -108 |  | ❌ | +1.0c | yes | W |
 | Nov 19 4:20PM | NCAAB | Tarleton St. vs USC: Spread | spread: NOT USC wins by over 27.5 points | kalshi | $30k | -100 |  | ❌ | -2.0c |  | pending |
