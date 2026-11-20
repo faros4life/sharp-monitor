@@ -130,5 +130,17 @@ ok("the manual file is documented as never reaching the executor's gating",
    "MANUAL_HELD" in mf and "explicit yes" in mf)
 ok("a missing manual file is not an error", dr.manual_file("1999-01-01") == [])
 
+# ------------------------------------------------------------------ 10. the day's units are SETTLED-only
+sv = dict(dr.row_view("k", {"result": "W", "profit": 200.0, "bet": "settled today"}, {}), on_day="settled")
+pv = dict(dr.row_view("k", {"result": "W", "profit": 400.0, "bet": "placed today, settled later"}, {}),
+          on_day="placed this day")
+out = "\n".join(dr.render("2026-11-19", [sv, pv]))
+ok("the day's units count ONLY what settled that day",
+   "SETTLED THIS DAY: 1 | 1-0 | +1.00u" in out, out[:300])
+ok("a bet placed that day but settled elsewhere is shown, not counted",
+   "ALSO SHOWN" in out and "NOT counted in the units above" in out)
+ok("every row states why it is on this day", out.count("<settled>") == 1 and out.count("<placed this day>") == 1)
+ok("an empty day no longer says 'settled'", "No bets recorded" in "\n".join(dr.render("2026-11-19", [])))
+
 print(("FAILED: " + ", ".join(FAILED)) if FAILED else "ALL PASS")
 print(f"{TOTAL - len(FAILED)} passed, {len(FAILED)} failed")

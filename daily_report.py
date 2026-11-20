@@ -144,19 +144,31 @@ def render(day, views):
          "Read-only projection of stored records. A dash is a field we do not hold, with its reason.",
          ""]
     if not views:
-        L.append("No settled bets recorded for that ET day.")
+        L.append("No bets recorded for that ET day.")
         return L
-    w = sum(v["units"] or 0 for v in views)
-    won = sum(1 for v in views if str(v["result"]).upper().startswith("W"))
-    lost = sum(1 for v in views if str(v["result"]).upper().startswith("L"))
-    L.append(f"{len(views)} settled | {won}-{lost} | {w:+.2f}u")
+    # Nov 20 (Peter): "an older bet settling yesterday shouldn't read as yesterday's action."
+    # The day's RESULT is only what SETTLED that day - that is when the money moved. Bets PLACED
+    # that day which settle later are listed too, per the requirement to report every bet, but
+    # they are counted separately and never folded into the day's units. Earlier today this
+    # report totalled both together, so a bet placed Nov 16 and settled Nov 19 was counted in
+    # Nov 16's units. That was wrong and is what this split fixes.
+    sett = [v for v in views if v.get("on_day") == "settled"]
+    other = [v for v in views if v.get("on_day") != "settled"]
+    w = sum(v["units"] or 0 for v in sett)
+    won = sum(1 for v in sett if str(v["result"]).upper().startswith("W"))
+    lost = sum(1 for v in sett if str(v["result"]).upper().startswith("L"))
+    L.append(f"SETTLED THIS DAY: {len(sett)} | {won}-{lost} | {w:+.2f}u")
+    if other:
+        L.append(f"ALSO SHOWN (placed or game this day, settled elsewhere or still open): {len(other)}"
+                 f" - NOT counted in the units above")
     scored = [v for v in views if v["v1"] is not None]
     L.append(f"V1 CLV on {len(scored)}/{len(views)}"
              + (f", mean {sum(v['v1'] for v in scored) / len(scored) * 100:+.2f}%" if scored else "")
              + f" | V2 on {sum(1 for v in views if v['v2'] is not None)}/{len(views)}")
     L.append("")
     for v in views:
-        L.append(f"{v['bet']} | {v['league']} {v['book']} [{v['lane']}] | {v['game']}")
+        L.append(f"{v['bet']} | {v['league']} {v['book']} [{v['lane']}] | {v['game']}"
+                 + f"   <{v.get('on_day') or 'on this day'}>")
         L.append(f"    result {v['result']} {('%+.2fu' % v['units']) if v['units'] is not None else '(no settled figure)'}"
                  f" | paid {v['paid'] if v['paid'] is not None else '-'}"
                  f" | our line {v['our_line'] if v['our_line'] is not None else '-'}")
@@ -204,7 +216,12 @@ def main(argv):
         rec = dict(bets.get(k) or {})
         if b.get("_manual"):
             rec["_manual"] = True
-        views.append(row_view(k, b, rec))
+        vw = row_view(k, b, rec)
+        # WHY this bet is on this day - so a row can never be silently counted on two days.
+        vw["on_day"] = ("settled" if et_day(b.get("settled")) == day
+                        else "placed this day" if et_day(b.get("placed")) == day
+                        else "game this day")
+        views.append(vw)
     # SECOND-PRIORITY evidence, only where the certified close is absent.
     # A silent except here would be the worst failure available: the report would look complete
     # while every snapshot was quietly dropped. It says so instead.
