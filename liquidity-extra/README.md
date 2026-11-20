@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 19, 11:30 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 10.
+Updated Thu Nov 19, 11:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 8.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 367-220 (-19.84u flat) | rule met: 65-58
+**Record:** 368-221 (-19.69u flat) | rule met: 66-58
 
-**Fade (paper, betting against the print):** 195-332 (+19.83u flat, after fees)
+**Fade (paper, betting against the print):** 196-333 (+19.59u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -20,8 +20,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 19 4:20PM | NCAAB | VCU vs Santa Clara | moneyline: Santa Clara | kalshi | $30k | -117 |  |  | +0.0c |  | pending |
 | Nov 19 4:10PM | NCAAB | Southeast Missouri St. vs St. Thomas: Spread | spread: St. Thomas wins by over 6.5 points | kalshi | $26k | -108 |  |  | +1.0c |  | W |
 | Nov 19 4:10PM | NCAAB | Utah Tech vs Washington: Spread | spread: NOT Washington wins by over 17.5 points | kalshi | $32k | -108 |  | ✅ | +2.0c | yes | W |
-| Nov 19 4:10PM | NCAAB | UTEP vs New Mexico St. | moneyline: UTEP | kalshi | $30k | +113 | ✅ novig |  | +0.0c |  | pending |
-| Nov 19 4:10PM | NCAAB | UC Santa Barbara vs Pepperdine | moneyline: Pepperdine | kalshi | $49k | +117 |  |  | +0.0c |  | pending |
+| Nov 19 4:10PM | NCAAB | UTEP vs New Mexico St. | moneyline: UTEP | kalshi | $30k | +113 | ✅ novig |  | +0.0c |  | W |
+| Nov 19 4:10PM | NCAAB | UC Santa Barbara vs Pepperdine | moneyline: Pepperdine | kalshi | $49k | +117 |  |  | +0.0c |  | L |
 | Nov 19 4:10PM | NCAAB | Tulane vs Louisiana Tech | moneyline: Tulane | kalshi | $43k | +117 |  | ❌ | +1.0c | yes | L |
 | Nov 19 4:10PM | NCAAB | Charleston vs Drake | moneyline: Charleston | kalshi | $38k | +113 |  | ❌ | +0.0c |  | L |
 | Nov 19 4:00PM | NCAAB | Robert Morris vs Toledo: Spread | spread: Toledo wins by over 7.5 points | kalshi | $31k | -100 |  | ✅ | +1.0c |  | L |
