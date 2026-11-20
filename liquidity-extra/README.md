@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 19, 10:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 15.
+Updated Thu Nov 19, 10:30 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 15.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -31,7 +31,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 19 2:30PM | NCAAB | Charleston vs Drake | moneyline: Drake | kalshi | $39k | -113 |  | ✅ | +0.0c |  | W |
 | Nov 19 2:20PM | NCAAB | West Virginia @ Florida | moneyline: FLA (0) | novig | $36k | -355 | ✅ kalshi,prophetx | ❌ | +0.0c |  | W |
 | Nov 19 12:20PM | NCAAB | Florida vs West Virginia: Spread | spread: Florida wins by over 7.5 points | kalshi | $30k | -108 |  | ❌ | +1.0c | yes | W |
-| Nov 19 12:10PM | NCAAB | Houston vs Kansas | moneyline: Houston | kalshi | $34k | -138 | ✅ novig |  | +3.0c |  | pending |
+| Nov 19 12:10PM | NCAAB | Houston vs Kansas | moneyline: Houston | kalshi | $34k | -138 | ✅ novig |  | +2.0c |  | pending |
 | Nov 19 12:10PM | NCAAB | Georgia Southern vs Houston Christian | moneyline: Houston Christian | kalshi | $40k | -150 | ✅ novig | ✅ | +2.0c |  | L |
 | Nov 19 10:30AM | NCAAB | Florida vs West Virginia: Spread | spread: NOT Florida wins by over 8.5 points | kalshi | $31k | -108 |  | ✅ | +2.0c |  | L |
 | Nov 19 10:10AM | NCAAB | Robert Morris vs Toledo | moneyline: Toledo | kalshi | $29k | -257 | ✅ novig |  | +2.0c |  | W |
