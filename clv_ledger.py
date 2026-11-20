@@ -1052,6 +1052,98 @@ def novig_p(a, b):
     return ia / (ia + ib)
 
 
+def v2_backfill(st, hist, mkmap, now, max_rows=80):
+    """Compute the SHADOW V2 close for rows already scored under V1 (Peter, Nov 20, approved).
+
+    A SEPARATE pass on purpose. The V1 scoring loop writes tries, why and done on a dozen early-exit
+    paths; threading an already-scored row back through it risks corrupting the official number. This
+    pass can only ever call record_v2, so V1's clv, close_p, how, scored, tries, done and every
+    settlement field are unreachable from here. Its own failures are counted on v2_tries, a V2 field.
+
+    Bounded twice: at most max_rows a run, and never beyond the run's shared MAX_HIST history budget,
+    which the V1 scorer has first call on. /historical-odds is a FREE path, so this spends no credits.
+    A row whose close cannot be read is left with no V2 at all and counted - never recorded as scored.
+    """
+    todo = [(k, r) for k, r in st["bets"].items()
+            if r.get("clv") is not None and r.get("clv_v2") is None
+            and r.get("v2_tries", 0) < 3 and r.get("fixture")]
+    todo.sort(key=lambda kr: str(kr[1].get("scored") or ""), reverse=True)   # newest first
+    done = miss = reused = 0
+    for k, rec in todo[:max_rows]:
+        s_ = rec.get("snap") or {}
+        fid = rec.get("fixture")
+        f = (st.get("fixtures") or {}).get(fid) or ALT_FX.get(fid)
+        if not f:
+            rec["v2_tries"] = rec.get("v2_tries", 0) + 1
+            miss += 1
+            continue
+        start = tp(f.get("start")) or tp(s_.get("game_start"))
+        bk = "novig.us" if str(k).startswith("nvo|") else "pinnacle"
+        if (fid, bk) not in hist:
+            if len(hist) >= MAX_HIST:
+                continue                      # out of budget: try again next run, nothing recorded
+            try:
+                import hist_cache as hc
+                hist[(fid, bk)] = hc.get_hist(fid, ["pinnacle"], start)
+                if isinstance(hist[(fid, bk)], dict) and hist[(fid, bk)].get("_error"):
+                    hist[(fid, bk)] = api("/historical-odds", False, fixtureId=fid, bookmakers=bk)
+            except Exception:
+                try:
+                    hist[(fid, bk)] = api("/historical-odds", False, fixtureId=fid, bookmakers=bk)
+                except Exception as e_:
+                    rec["v2_tries"] = rec.get("v2_tries", 0) + 1
+                    miss += 1
+                    continue
+        else:
+            reused += 1
+        try:
+            c, _why = close_for(s_, f, book_markets(hist[(fid, bk)], "pinnacle"), mkmap,
+                                start, s_.get("league"))
+            d = eff_dec(s_)
+        except Exception:
+            c, d = None, None
+        if record_v2(rec, c, d):
+            done += 1
+        else:
+            rec["v2_tries"] = rec.get("v2_tries", 0) + 1
+            miss += 1
+    V2STAT["backfilled this run"] += done
+    V2STAT["backfill could not read a close"] += miss
+    V2STAT["backfill reused history already in hand"] += reused
+    V2STAT["backfill still to do"] = max(len(todo) - done, 0)
+    return done, miss
+
+
+def v2_report(st):
+    """V1 vs V2 across every row that carries both. Counts, units and percentages only."""
+    both = [r for r in st["bets"].values() if r.get("clv") is not None and r.get("clv_v2") is not None]
+    if not both:
+        return ["V2 shadow: no row carries both V1 and V2 yet"]
+    moved = [r for r in both if r.get("v2_derived")]
+    same = len(both) - len(moved)
+    L = [f"V2 shadow: {len(both)} row(s) carry both; {same} identical (our number WAS the main line), "
+         f"{len(moved)} model-derived (the line moved)"]
+    if moved:
+        d = [r["clv_v2"] - r["clv"] for r in moved]
+        L.append(f"V2 on the moved rows: mean V1 {100 * sum(r['clv'] for r in moved) / len(moved):+.2f}%, "
+                 f"mean V2 {100 * sum(r['clv_v2'] for r in moved) / len(moved):+.2f}%, "
+                 f"mean change {100 * sum(d) / len(d):+.2f}%")
+        big = sorted(moved, key=lambda r: abs(r["clv_v2"] - r["clv"]), reverse=True)[:5]
+        for r in big:
+            L.append(f"  largest change: {str((r.get('snap') or {}).get('bet'))[:28]} | "
+                     f"V1 {100 * r['clv']:+.2f}% -> V2 {100 * r['clv_v2']:+.2f}% | {r.get('how_v2')}")
+    for tag, sel in (("ALL", both), ("bot", [r for r in both if str((r.get("snap") or {}).get("source") or "").lower().startswith("bot")])):
+        if not sel:
+            continue
+        sel = sorted(sel, key=lambda r: str(r.get("scored") or ""))[-50:]
+        L.append(f"rolling {len(sel)} {tag}: V1 {100 * sum(r['clv'] for r in sel) / len(sel):+.2f}%, "
+                 f"V2 {100 * sum(r['clv_v2'] for r in sel) / len(sel):+.2f}%, "
+                 f"derived in window {sum(1 for r in sel if r.get('v2_derived'))}, "
+                 f"kill-switch V1 {'FIRES' if sum(r['clv'] for r in sel) < 0 else 'clear'}, "
+                 f"V2 {'FIRES' if sum(r['clv_v2'] for r in sel) < 0 else 'clear'}")
+    return L
+
+
 def record_v2(rec, c, d):
     """Store the SHADOW V2 close alongside V1, never over it (Peter, Nov 19: "Keep V1 as the official
     CLV. Run V2 alongside it - shadow only").
@@ -2172,6 +2264,14 @@ def main():
             rec["why"] = why or "no price on the bet"
             if rec["tries"] >= MAX_TRIES or (why and ("not parsed" in why or "not comparable" in why or "far from" in why)) or not d:
                 rec["done"] = True
+    try:
+        _bd, _bm = v2_backfill(st, hist, mkmap, now)
+        for _ln in v2_report(st):
+            print(f"V2 shadow: {_ln}" if not _ln.startswith("V2") else _ln, flush=True)
+    except Exception as _ve:
+        print(f"V2 shadow: backfill/report failed ({type(_ve).__name__}) - V1 untouched", flush=True)
+    print("V2 shadow counters (counts only): "
+          + (", ".join(f"{k} {v}" for k, v in sorted(V2STAT.items())) or "none"), flush=True)
     _stage("report build")
     # 5) report
     # Nov 5 (Peter): the doubt marker is STICKY. A row found doubtful is written with fixture_doubt
