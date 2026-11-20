@@ -158,6 +158,29 @@ The US venue's order API is gRPC-transcoded and **silently rewrites what it acce
 optional; the id-only route returns code 3. Never `/v1/orders/open/cancel` — that is cancel-ALL and
 would kill Peter's own resting orders.
 
+## A green-looking shell chain is not a green suite
+
+Written Nov 20, 2026, the same day it shipped a failing commit.
+
+`timeout 900 python3 run_tests.py 2>&1 | tail -3 && git commit ... && git push` takes its exit
+status from **`tail`**, which succeeds whatever the runner did. `fd59805e` was committed and pushed
+with `test_fair_at_my_number.py` failing, and the transcript looked normal because the failure text
+scrolled by above a successful commit line. Either `set -o pipefail`, or redirect to a file, capture
+`$?` and branch on it. Never gate a commit on a pipeline whose last stage is a pager or a filter.
+
+## `git push origin main` does not push HEAD
+
+The working branch in this container is **`push`**, and a stale local `main` (203 ahead, 5697 behind
+origin/main) still exists. `git push origin main` therefore pushes that ancient ref and is rejected
+as non-fast-forward, while `git pull --rebase origin main` rebases `push` and never moves local
+`main` - so the retry loop is infinite and every rejection reads as "someone else pushed first".
+
+I blamed the remote five times in a row for a fault in my own refspec, which is the rule at the top
+of this file: **suspect the instrument, and prefer the explanation closest to what you just typed.**
+A bot-commit repo makes the wrong explanation permanently plausible, which is what makes it
+dangerous. Push with an explicit refspec - `git push origin HEAD:main` - and if a push is rejected
+twice, run `git status -b` and `git branch -vv` before theorising about the remote.
+
 ## Infrastructure quirks
 
 - `git push` works; the GitHub REST contents-write API, GraphQL, the Actions caches API and the
