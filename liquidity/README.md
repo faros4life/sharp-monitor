@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 19, 8:40 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 69.
+Updated Thu Nov 19, 8:45 PM ET. This run: 0 new, 1 not confirmed, 1 pending. Open alerts: 69.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -19,19 +19,19 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 19 7:10PM | NHL | Columbus vs Chicago: Total Goals | total: Over 5.5 goals scored | kalshi | $62k | -122 | ✅ novig |  | +3.0c | yes | pending |
 | Nov 19 7:10PM | NBA | Golden State vs Memphis: Total Points | total: Over 225.5 points | kalshi | $237k | +104 |  | ❌ | +0.0c | yes | pending |
 | Nov 19 7:10PM | NBA | Golden State vs Memphis: Spread | spread: Memphis wins by over 5.5 points | kalshi | $35k | -104 | ✅ novig,prophetx | ❌ | -2.0c | yes | pending |
-| Nov 19 7:05PM | NBA | Charlotte vs Atlanta | moneyline: Atlanta | kalshi | $45k | -186 |  |  | +1.0c |  | pending |
+| Nov 19 7:05PM | NBA | Charlotte vs Atlanta | moneyline: Atlanta | kalshi | $45k | -186 |  |  | +0.0c |  | pending |
 | Nov 19 6:50PM | NHL | Montreal vs Carolina: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $62k | -113 | ✅ novig |  | -1.0c |  | pending |
 | Nov 19 6:30PM | NHL | New York I vs Winnipeg: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $36k | -104 | ✅ novig |  | +0.0c |  | pending |
 | Nov 19 6:30PM | NHL | St. Louis vs Pittsburgh: Spread | spread: NOT St. Louis wins by over 1.5 goals | kalshi | $51k | -233 |  |  | +0.0c | yes | pending |
 | Nov 19 6:30PM | NHL | New York I vs Winnipeg: Spread | spread: NOT Winnipeg wins by over 1.5 goals | kalshi | $68k | -233 | ✅ novig |  | +0.0c |  | pending |
-| Nov 19 6:30PM | NHL | Vancouver vs Seattle | moneyline: Vancouver | kalshi | $103k | +150 |  |  | +1.0c |  | pending |
+| Nov 19 6:30PM | NHL | Vancouver vs Seattle | moneyline: Vancouver | kalshi | $103k | +150 |  |  | +0.0c |  | pending |
 | Nov 19 6:25PM | NBA | New York Knicks @ Minnesota Timberwolves | moneyline: NYK (0) | novig | $37k | -104 | ✅ kalshi,prophetx | ❌ | +1.0c |  | pending |
 | Nov 19 6:15PM | NFL | Indianapolis Colts @ Houston Texans | spread: HOU -12.5 (-12.5) | novig | $28k | -102 | ✅ prophetx |  | -0.5c | yes | pending |
 | Nov 19 6:10PM | NHL | Philadelphia vs Ottawa: Spread | spread: NOT Ottawa wins by over 1.5 goals | kalshi | $42k | -178 | ✅ novig |  | +0.0c |  | pending |
 | Nov 19 5:05PM | NHL | Minnesota vs Calgary: Spread | spread: NOT Minnesota wins by over 1.5 goals | kalshi | $29k | -117 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 19 4:40PM | NHL | Montreal Canadiens @ Carolina Hurricanes | moneyline: CAR (0) | novig | $38k | -308 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Nov 19 4:05PM | NHL | Montreal vs Carolina: Spread | spread: Carolina wins by over 1.5 goals | kalshi | $30k | -122 | ✅ novig |  | +0.0c |  | pending |
-| Nov 19 3:50PM | NHL | Vancouver Canucks @ Seattle Kraken | moneyline: SEA (0) | novig | $30k | -156 | ✅ kalshi |  | -1.0c | yes | pending |
+| Nov 19 3:50PM | NHL | Vancouver Canucks @ Seattle Kraken | moneyline: SEA (0) | novig | $30k | -156 | ✅ kalshi |  | -1.5c | yes | pending |
 | Nov 19 2:45PM | NHL | Dallas vs Vegas | moneyline: Vegas | kalshi | $48k | -108 | ✅ novig |  | +1.0c |  | pending |
 | Nov 19 2:40PM | NFL | Indianapolis Colts at Houston Texans | moneyline: Houston Texans | prophetx | $34k | -560 | ✅ kalshi,novig |  | +1.1c | yes | pending |
 | Nov 19 2:40PM | NBA | Golden State vs Memphis: Spread | spread: NOT Memphis wins by over 5.5 points | kalshi | $41k | -100 | ✅ novig,prophetx | ✅ | +2.0c |  | pending |
