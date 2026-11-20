@@ -26,6 +26,8 @@ jobs:
         env:
           TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
         run: python3 fixture_export.py claude_fixtures.json
+      - name: build the registered strategy list
+        run: python3 registry_export.py claude_registry.json
       - name: drop it in the private transfer folder
         continue-on-error: true
         env:
@@ -36,10 +38,11 @@ jobs:
           git clone --depth 1 "https://x-access-token:${REGISTRY_TOKEN}@github.com/faros4life/novig-runner" pr
           mkdir -p pr/muse_transfers
           cp claude_fixtures.json "pr/muse_transfers/claude_fixtures_${D}.json"
+          cp claude_registry.json "pr/muse_transfers/claude_registry_${D}.json"
           cd pr
           git -c user.name=claude -c user.email=noreply@anthropic.com \
               commit -am "claude fixture export ${D}" --allow-empty -q || true
-          git add muse_transfers/claude_fixtures_${D}.json
+          git add muse_transfers/claude_fixtures_${D}.json muse_transfers/claude_registry_${D}.json
           git -c user.name=claude -c user.email=noreply@anthropic.com \
               commit -m "claude fixture export ${D}" -q
-          git push -q && echo "dropped claude_fixtures_${D}.json in muse_transfers/"
+          git push -q && echo "dropped claude_fixtures_${D}.json and claude_registry_${D}.json in muse_transfers/"
