@@ -14,8 +14,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": 0.0,
+   "close_price": 0.54,
+   "clv_cents": -1.0,
    "confirmed_after_min": 6,
    "date": "2026-11-20",
    "depth_by_book": {
@@ -52,9 +52,9 @@
     "volume_fp": 21987.49
    },
    "ex_stats_close": {
-    "open_interest_fp": 37044.96,
+    "open_interest_fp": 38047.86,
     "volume_24h_fp": 36355.53,
-    "volume_fp": 37972.56
+    "volume_fp": 39026.96
    },
    "ex_stats_first": {
     "open_interest_fp": 14461.99,
@@ -260,9 +260,9 @@
     "volume_fp": 17.43
    },
    "ex_stats_close": {
-    "open_interest_fp": 17839.510000000002,
+    "open_interest_fp": 18260.64,
     "volume_24h_fp": 25024.48,
-    "volume_fp": 26096.61
+    "volume_fp": 26517.739999999998
    },
    "ex_stats_first": {
     "open_interest_fp": 17497.56,
@@ -666,9 +666,9 @@
     "volume_fp": 242.06
    },
    "ex_stats_close": {
-    "open_interest_fp": 14784.82,
+    "open_interest_fp": 16419.03,
     "volume_24h_fp": 12195.5,
-    "volume_fp": 16474.100000000002
+    "volume_fp": 18108.31
    },
    "ex_stats_first": {
     "open_interest_fp": 13869.9,
@@ -860,9 +860,9 @@
     "volume_fp": 152.87
    },
    "ex_stats_close": {
-    "open_interest_fp": 11006.52,
+    "open_interest_fp": 11895.52,
     "volume_24h_fp": 11676.86,
-    "volume_fp": 12572.349999999999
+    "volume_fp": 13461.35
    },
    "ex_stats_first": {
     "open_interest_fp": 9612.619999999999,
@@ -1057,9 +1057,9 @@
     "volume_fp": 15.13
    },
    "ex_stats_close": {
-    "open_interest_fp": 12584.93,
+    "open_interest_fp": 13157.4,
     "volume_24h_fp": 12791.140000000001,
-    "volume_fp": 13903.45
+    "volume_fp": 14475.92
    },
    "ex_stats_first": {
     "open_interest_fp": 10849.27,
@@ -1255,9 +1255,9 @@
     "volume_fp": 50.19
    },
    "ex_stats_close": {
-    "open_interest_fp": 19624.72,
+    "open_interest_fp": 20389.42,
     "volume_24h_fp": 24329.92,
-    "volume_fp": 25872.370000000003
+    "volume_fp": 26678.949999999997
    },
    "ex_stats_first": {
     "open_interest_fp": 18004.91,
@@ -1802,7 +1802,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [
     "Minnesota Timberwolves +1.5 (-108)"
@@ -2084,6 +2084,7 @@
     "volume_fp": 5004.25
    },
    "fade_price": 0.55,
+   "fade_units": 0.76,
    "first_seen_utc": "2026-11-20T00:35:41Z",
    "game": "Columbus vs Chicago: Total Goals",
    "game_surge_books": [
@@ -2205,12 +2206,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLTOTAL-26NOV19CBJCHI-7"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 7,
+   "settle_tries": 8,
+   "settled_utc": "2026-11-20T03:35:35Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -2225,7 +2227,7 @@
     "Chicago"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-20T00:35:41Z",
@@ -2279,9 +2281,9 @@
     "volume_fp": 152.03
    },
    "ex_stats_close": {
-    "open_interest_fp": 13502.07,
+    "open_interest_fp": 14322.16,
     "volume_24h_fp": 13787.05,
-    "volume_fp": 14797.82
+    "volume_fp": 15617.91
    },
    "ex_stats_first": {
     "open_interest_fp": 11276.99,
@@ -2589,7 +2591,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 12,
+   "settle_tries": 13,
    "sharp_agree": [],
    "sharp_oppose": [
     "Over 51.5 (-115)"
@@ -2784,7 +2786,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Indianapolis Colts",
@@ -2858,6 +2860,7 @@
     "volume_fp": 6152.93
    },
    "fade_price": 0.46,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-20T00:05:57Z",
    "game": "Columbus vs Chicago: Total Goals",
    "game_surge_books": [],
@@ -2980,14 +2983,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLTOTAL-26NOV19CBJCHI-6"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
+   "settled_utc": "2026-11-20T03:35:35Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -3002,7 +3006,7 @@
     "Chicago"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.82
   },
   {
    "alerted_utc": "2026-11-20T00:10:16Z",
@@ -3055,6 +3059,7 @@
     "volume_fp": 57419.7
    },
    "fade_price": 0.52,
+   "fade_units": 0.86,
    "first_seen_utc": "2026-11-20T00:05:57Z",
    "game": "Golden State vs Memphis: Total Points",
    "game_surge_books": [
@@ -3167,12 +3172,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBATOTAL-26NOV19GSWMEM-226"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 7,
+   "settle_tries": 8,
+   "settled_utc": "2026-11-20T03:35:35Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Under 226.5 (-110)"
@@ -3191,7 +3197,7 @@
     "Memphis"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-20T00:10:16Z",
@@ -3256,6 +3262,7 @@
     "volume_fp": 83598.11
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-20T00:05:57Z",
    "game": "Golden State vs Memphis: Spread",
    "game_surge_books": [],
@@ -3387,7 +3394,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBASPREAD-26NOV19GSWMEM-MEM6"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -3395,7 +3402,8 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
+   "settled_utc": "2026-11-20T03:35:35Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Golden State Warriors +6.5 (-115)"
@@ -3415,7 +3423,7 @@
     "Memphis"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.96
   },
   {
    "alerted_utc": "2026-11-20T00:05:57Z",
@@ -3431,8 +3439,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.66,
-   "clv_cents": 1.0,
+   "close_price": 0.67,
+   "clv_cents": 2.0,
    "confirmed_after_min": 6,
    "date": "2026-11-20",
    "depth_by_book": {
@@ -3469,9 +3477,9 @@
     "volume_fp": 200.46
    },
    "ex_stats_close": {
-    "open_interest_fp": 19437.53,
+    "open_interest_fp": 19814.75,
     "volume_24h_fp": 18767.699999999997,
-    "volume_fp": 21728.88
+    "volume_fp": 22206.65
    },
    "ex_stats_first": {
     "open_interest_fp": 11441.71,
@@ -4863,7 +4871,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [
     "Minnesota Timberwolves +1.5 (-108)"
@@ -5062,7 +5070,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Houston Texans",
@@ -5470,7 +5478,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Calgary",
@@ -6548,7 +6556,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Houston Texans",
@@ -6631,6 +6639,7 @@
     "volume_fp": 5714.8
    },
    "fade_price": 0.51,
+   "fade_units": 0.9,
    "first_seen_utc": "2026-11-19T19:35:45Z",
    "game": "Golden State vs Memphis: Spread",
    "game_surge_books": [
@@ -6763,7 +6772,7 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26NOV19GSWMEM-MEM6"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -6771,7 +6780,8 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
+   "settled_utc": "2026-11-20T03:35:35Z",
    "sharp_agree": [
     "Golden State Warriors +6.5 (-115)"
    ],
@@ -6790,7 +6800,7 @@
     "Memphis"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-19T18:50:15Z",
@@ -7516,6 +7526,7 @@
     "volume_fp": 2119.38
    },
    "fade_price": 0.38,
+   "fade_units": 1.52,
    "first_seen_utc": "2026-11-19T18:25:46Z",
    "game": "Columbus vs Chicago: Spread",
    "game_surge_books": [],
@@ -7638,14 +7649,15 @@
     "kalshi_side": "no",
     "market_ticker": "KXNHLSPREAD-26NOV19CBJCHI-CBJ2"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
+   "settled_utc": "2026-11-20T03:35:35Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Chicago",
@@ -7663,7 +7675,7 @@
     "Chicago"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-19T18:10:16Z",
@@ -8913,7 +8925,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 13,
+   "settle_tries": 14,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Temple",
@@ -9441,6 +9453,7 @@
     "volume_fp": 4400.73
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-19T15:20:14Z",
    "game": "Los Angeles C vs San Antonio: Spread",
    "game_surge_books": [],
@@ -9572,14 +9585,15 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26NOV19LACSAS-SAS16"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
+   "settled_utc": "2026-11-20T03:35:35Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "San Antonio Spurs -15.5 (-104)"
@@ -9599,7 +9613,7 @@
     "San Antonio"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.98
   },
   {
    "alerted_utc": "2026-11-19T15:05:43Z",
@@ -9658,6 +9672,7 @@
     "volume_fp": 34441.23
    },
    "fade_price": 0.52,
+   "fade_units": 0.86,
    "first_seen_utc": "2026-11-19T15:00:24Z",
    "game": "Los Angeles C vs San Antonio: Total Points",
    "game_surge_books": [
@@ -9781,14 +9796,15 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26NOV19LACSAS-226"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
+   "settled_utc": "2026-11-20T03:35:35Z",
    "sharp_agree": [
     "Under 226.5 (-104)"
    ],
@@ -9809,7 +9825,7 @@
     "San Antonio"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-19T14:40:14Z",
@@ -9874,6 +9890,7 @@
     "volume_fp": 27257.95
    },
    "fade_price": 0.52,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-19T14:35:39Z",
    "game": "Golden State vs Memphis: Total Points",
    "game_surge_books": [
@@ -10008,14 +10025,15 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26NOV19GSWMEM-226"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "prophetx"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
+   "settled_utc": "2026-11-20T03:35:35Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -10032,7 +10050,7 @@
     "Memphis"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.0
   },
   {
    "alerted_utc": "2026-11-19T13:50:24Z",
@@ -10091,6 +10109,7 @@
     "volume_fp": 14454.61
    },
    "fade_price": 0.49,
+   "fade_units": 0.97,
    "first_seen_utc": "2026-11-19T13:45:48Z",
    "game": "Golden State vs Memphis: Spread",
    "game_surge_books": [
@@ -10214,14 +10233,15 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26NOV19GSWMEM-MEM7"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
+   "settled_utc": "2026-11-20T03:35:35Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Golden State",
@@ -10238,7 +10258,7 @@
     "Memphis"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-19T13:30:18Z",
@@ -10424,7 +10444,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Minnesota",
@@ -10501,6 +10521,7 @@
     "volume_fp": 707.95
    },
    "fade_price": 0.63,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-19T13:25:41Z",
    "game": "Columbus vs Chicago: Spread",
    "game_surge_books": [
@@ -10625,12 +10646,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLSPREAD-26NOV19CBJCHI-CBJ2"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 7,
+   "settle_tries": 8,
+   "settled_utc": "2026-11-20T03:35:35Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Columbus",
@@ -10647,7 +10669,7 @@
     "Chicago"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.67
   },
   {
    "alerted_utc": "2026-11-19T13:30:18Z",
@@ -11275,6 +11297,7 @@
     "volume_fp": 3510.9300000000003
    },
    "fade_price": 0.4,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-19T12:40:14Z",
    "game": "Columbus vs Chicago",
    "game_surge_books": [],
@@ -11406,14 +11429,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26NOV19CBJCHI-CBJ"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
+   "settled_utc": "2026-11-20T03:35:35Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Columbus",
@@ -11432,7 +11456,7 @@
     "Chicago"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.65
   },
   {
    "alerted_utc": "2026-11-19T12:40:14Z",
@@ -11808,7 +11832,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Indianapolis",
@@ -12459,7 +12483,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Minnesota",
@@ -12532,9 +12556,9 @@
     "volume_fp": 55.5
    },
    "ex_stats_close": {
-    "open_interest_fp": 101459.89,
+    "open_interest_fp": 102261.43000000001,
     "volume_24h_fp": 31614.46,
-    "volume_fp": 106660.16
+    "volume_fp": 107461.7
    },
    "ex_stats_first": {
     "open_interest_fp": 76914.06,
@@ -12967,7 +12991,7 @@
    "ex_stats_close": {
     "open_interest_fp": 22787.1,
     "volume_24h_fp": 8124.870000000001,
-    "volume_fp": 27627.32
+    "volume_fp": 27662.550000000003
    },
    "ex_stats_first": {
     "open_interest_fp": 17771.73,
@@ -13328,7 +13352,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Portland Trail Blazers",
@@ -13543,7 +13567,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 13,
+   "settle_tries": 14,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Temple",
@@ -13840,6 +13864,7 @@
     "volume_fp": 11508.720000000001
    },
    "fade_price": 0.24,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-19T04:50:16Z",
    "game": "Portland vs Milwaukee",
    "game_surge_books": [
@@ -13935,12 +13960,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26NOV19PORMIL-POR"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 7,
+   "settle_tries": 8,
+   "settled_utc": "2026-11-20T03:35:35Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Portland",
@@ -13955,7 +13981,7 @@
     "Milwaukee"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.31
   },
   {
    "alerted_utc": "2026-11-19T04:46:05Z",
@@ -14296,7 +14322,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Houston Texans",
@@ -24538,7 +24564,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 13,
+   "settle_tries": 14,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -25345,7 +25371,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Houston",
