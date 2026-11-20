@@ -1,18 +1,19 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 20, 6:30 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 31.
+Updated Fri Nov 20, 6:40 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 31.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 375-227 (-20.75u flat) | rule met: 69-58
+**Record:** 375-228 (-21.75u flat) | rule met: 69-59
 
-**Fade (paper, betting against the print):** 202-340 (+22.47u flat, after fees)
+**Fade (paper, betting against the print):** 203-340 (+23.48u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 20 6:40PM | NCAAB | UT Arlington vs Northwestern St. | moneyline: UT Arlington | kalshi | $58k | -163 |  |  | +0.0c |  | pending |
 | Nov 20 6:30PM | NCAAB | Coastal Carolina vs Tennessee: Spread | spread: NOT Tennessee wins by over 26.5 points | kalshi | $29k | -117 |  | ✅ | +0.0c |  | pending |
 | Nov 20 5:20PM | NCAAB | Saint Joseph's vs Drexel | moneyline: Saint Joseph's | kalshi | $33k | -170 |  |  | +1.0c |  | pending |
-| Nov 20 3:30PM | NCAAB | Rhode Island vs Liberty | moneyline: Rhode Island | kalshi | $37k | -108 | ✅ novig | ❌ | +1.0c |  | pending |
+| Nov 20 3:30PM | NCAAB | Rhode Island vs Liberty | moneyline: Rhode Island | kalshi | $37k | -108 | ✅ novig | ❌ | +1.0c |  | L |
 | Nov 20 3:20PM | NCAAB | Sam Houston vs Boise St.: Spread | spread: NOT Boise St. wins by over 11.5 points | kalshi | $33k | +108 |  |  | +0.0c |  | pending |
 | Nov 20 3:20PM | NCAAB | Marshall vs North Carolina: Spread | spread: NOT North Carolina wins by over 17.5 points | kalshi | $32k | +113 |  |  | +1.0c |  | pending |
 | Nov 20 3:20PM | NCAAB | UAB vs George Washington | moneyline: UAB | kalshi | $101k | -245 |  |  | -19.0c | yes | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 12:10PM | NCAAB | Louisiana Tech vs Nicholls St. | moneyline: Nicholls St. | kalshi | $33k | -104 |  |  | +0.0c | yes | W |
 | Nov 14 12:00PM | NCAAB | LSU vs Gonzaga: Point Total | total: NOT Over 160.5 points | kalshi | $28k | -100 |  |  | +1.0c | yes | L |
 | Nov 14 12:00PM | NCAAB | Manhattan vs Le Moyne | moneyline: Le Moyne | kalshi | $73k | -122 |  |  | +0.0c |  | W |
-| Nov 14 12:00PM | NCAAB | Drexel vs Maine | moneyline: Drexel | kalshi | $87k | -156 |  |  | +0.0c | yes | W |
