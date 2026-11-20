@@ -1052,6 +1052,30 @@ def novig_p(a, b):
     return ia / (ia + ib)
 
 
+def record_v2(rec, c, d):
+    """Store the SHADOW V2 close alongside V1, never over it (Peter, Nov 19: "Keep V1 as the official
+    CLV. Run V2 alongside it - shadow only").
+
+    V1 reads the no-vig fair off whatever quote sits at our number. Once the line moves, that quote
+    is a deep ALT, and Pinnacle's alt juice is heavier and uneven while novig_p strips vig assuming
+    it is even - which biases the fair against the side holding the better number. V2 derives the
+    fair at our number from the MAIN line instead. They are IDENTICAL whenever our number was the
+    main line, so V2 differs only on rows where the line actually moved.
+
+    v2_derived marks a MODEL-DERIVED fair. It is not a directly observed same-line close and must
+    never be reported as certified same-line CLV.
+    """
+    if not c or d is None or c.get("v2_p") is None:
+        return False
+    rec["clv_v2"] = round(c["v2_p"] * d - 1, 4)
+    rec["close_p_v2"] = round(c["v2_p"], 4)
+    rec["how_v2"] = c.get("v2_how")
+    rec["v2_derived"] = not c.get("at_main", True)
+    if c.get("main_line") is not None:
+        rec["main_line"] = c["main_line"]
+    return True
+
+
 def fair_from_main(p_main, main_line, want, better, lab, kind):
     """The fair win chance AT OUR NUMBER, derived from Pinnacle's MAIN line.
 
@@ -1131,23 +1155,18 @@ def close_for(b, f, pm, mkmap, start, lg):
     if typ == "totals":
         want, over = pz[2], pz[1] == "OVER"
         exact = next((c for c in cands if abs(c[0] - want) < 1e-9), None)
-        if exact and abs(exact[0] - main[0]) < 1e-9:
-            return {"p": exact[1] if over else 1 - exact[1], "how": "own line", "age_min": round(exact[2])}, None
         if exact:
-            # Nov 19 (Peter): "the line moved my way, it should get CLV credit. The CLV is not at my
-            # number." It was read AT the number - but off the ALT quote that survives there once the
-            # line moves. Pinnacle prices alts with heavier and UNEVEN juice, and novig_p strips vig
-            # assuming it sits evenly, so the alt's fair understates the side holding the better
-            # number - biased against exactly the plays that moved our way. Seven plays on Nov 19 all
-            # beat the close and all scored negative, which is not a market verdict.
-            # The fair at our number is now derived from the MAIN line, the liquid properly-priced
-            # quote, converted with the same half-point model used below. The alt's own fair is kept
-            # on the row as alt_p so the size of the bias stays measurable and this is reversible.
-            ppt, po = main[0], main[1]
-            return {"p": fair_from_main(po if over else 1 - po, ppt, want,
-                                        (want < ppt) if over else (want > ppt), lab, "tot"),
-                    "how": f"own line (from main {ppt:g})", "age_min": round(main[2]),
-                    "alt_p": round(exact[1] if over else 1 - exact[1], 4)}, None
+            # V1 stays OFFICIAL (Peter, Nov 19): the fair is read off the quote at our number, as it
+            # always was. V2 is computed alongside as a SHADOW and never replaces it here. They
+            # differ only when our number is an ALT - i.e. only when the line moved.
+            _p1v = exact[1] if over else 1 - exact[1]
+            _at_main = abs(exact[0] - main[0]) < 1e-9
+            _ppt, _po = main[0], main[1]
+            _p2v = _p1v if _at_main else fair_from_main(
+                _po if over else 1 - _po, _ppt, want, (want < _ppt) if over else (want > _ppt), lab, "tot")
+            return {"p": _p1v, "how": "own line", "age_min": round(exact[2]),
+                    "at_main": _at_main, "main_line": _ppt,
+                    "v2_p": _p2v, "v2_how": "own line" if _at_main else f"own line (from main {_ppt:g})"}, None
         ppt, po = main[0], main[1]
         if abs(want - ppt) > max(1.5, 0.03 * ppt):   # Nov 2: 'Over 5.5' scored on an NBA total = wrong league/market
             return None, "bet line far from Pinnacle's main line (wrong league or market?)"
@@ -1164,18 +1183,17 @@ def close_for(b, f, pm, mkmap, start, lg):
         side, want = ("2" if side == "1" else "1"), -want
     t1_line = want if side == "1" else -want          # the same bet stated as team 1's handicap
     exact = next((c for c in cands if abs(c[0] - t1_line) < 1e-9), None)
-    if exact and abs(exact[0] - main[0]) < 1e-9:
-        p1 = exact[1]
-        return {"p": p1 if side == "1" else 1 - p1, "how": "own line", "age_min": round(exact[2])}, None
     if exact:
-        # Same correction as totals above: our number survives only as an ALT once the line moves,
-        # and the alt's no-vig fair is biased against the side holding the better number.
-        _hp, _p1 = main[0], main[1]
+        # V1 official, V2 shadow - see the totals branch above.
+        _p1v = exact[1] if side == "1" else 1 - exact[1]
+        _at_main = abs(exact[0] - main[0]) < 1e-9
+        _hp, _pm1 = main[0], main[1]
         _mine = _hp if side == "1" else -_hp
-        return {"p": fair_from_main(_p1 if side == "1" else 1 - _p1, _mine, want,
-                                    want > _mine, lab, "spr"),
-                "how": f"own line (from main {_mine:+g})", "age_min": round(main[2]),
-                "alt_p": round(exact[1] if side == "1" else 1 - exact[1], 4)}, None
+        _p2v = _p1v if _at_main else fair_from_main(
+            _pm1 if side == "1" else 1 - _pm1, _mine, want, want > _mine, lab, "spr")
+        return {"p": _p1v, "how": "own line", "age_min": round(exact[2]),
+                "at_main": _at_main, "main_line": _mine,
+                "v2_p": _p2v, "v2_how": "own line" if _at_main else f"own line (from main {_mine:+g})"}, None
     if lg == "NHL":
         return None, "puck line at a different number: not comparable"
     hp, p1 = main[0], main[1]
@@ -1758,6 +1776,7 @@ def lane_stats(rows):
     return f"n {n}, avg CLV {100 * avg:+.2f}%, beat close {beat}/{n}"
 
 
+V2STAT = collections.Counter()   # Nov 19: shadow-V2 coverage, counts only
 _T0 = [None]
 
 
@@ -2122,6 +2141,10 @@ def main():
             rec["how"], rec["age_min"], rec["scored"] = c["how"], c["age_min"], iso(now)
             rec.pop("why", None)
             new_scored += 1
+            if record_v2(rec, c, d):
+                V2STAT["scored with a shadow V2"] += 1
+                if rec.get("v2_derived"):
+                    V2STAT["V2 differs: our number was an ALT at close"] += 1
             try:
                 PROV[stamp_entry(rec, s, c, start, now)] += 1
             except Exception as _pe:   # never costs the score, but never silent either (review R1)

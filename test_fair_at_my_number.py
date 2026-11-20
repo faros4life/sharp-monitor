@@ -72,13 +72,23 @@ ok("probabilities stay inside [0.01, 0.99]",
 # ------------------------------------------------------------------ 4. wired in, and reversible
 src = open("clv_ledger.py").read()
 cf = src[src.index("def close_for("):src.index("MAX_NEW_MAIL")]
-ok("the totals alt branch derives from the main line", 'fair_from_main(po if over else 1 - po' in cf)
-ok("the spreads alt branch derives from the main line", 'fair_from_main(_p1 if side == "1"' in cf)
-ok("a read AT the main line is untouched and still labelled 'own line'",
+ok("V1 stays OFFICIAL: both branches return the quote read at our number as 'p'",
+   cf.count('"p": _p1v') == 2, cf.count('"p": _p1v'))
+ok("...and both still label it 'own line', unchanged from before",
    cf.count('"how": "own line"') == 2)
-ok("an alt-derived read is labelled distinctly", cf.count('own line (from main') == 2)
-ok("the alt's own fair is retained on the row, so the bias stays measurable",
-   cf.count('"alt_p"') == 2)
+ok("V2 is computed alongside, from the main line", cf.count("fair_from_main(") == 2)
+ok("V2 is carried in its own fields, never over V1",
+   cf.count('"v2_p"') == 2 and cf.count('"v2_how"') == 2)
+ok("V2 equals V1 whenever our number WAS the main line",
+   cf.count("_p2v = _p1v if _at_main") == 2)
+ok("a derived V2 is labelled distinctly from an observed close",
+   cf.count('own line (from main') == 2)
+ok("whether our number was the main line is recorded, so the two can be separated",
+   cf.count('"at_main"') == 2)
+ok("the shadow is stored by record_v2, which never writes clv or close_p",
+   '"clv_v2"' in src and 'rec["clv"] =' not in src[src.index("def record_v2("):src.index("def fair_from_main(")])
+ok("a model-derived fair is flagged so it is never called a certified same-line close",
+   '"v2_derived"' in src)
 ok("the no-quote path still exists for numbers Pinnacle never priced",
    'moved to' in cf and 'far from Pinnacle' in cf)
 ok("CLV is still written at exactly one place in the ledger", src.count('rec["clv"] = ') == 1)
