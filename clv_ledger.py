@@ -1053,6 +1053,33 @@ def novig_p(a, b):
     return ia / (ia + ib)
 
 
+def retire_legacy_v2(st):
+    """Mark every V2 produced by the LEGACY method INVALID and clear it so it is recomputed.
+
+    Nov 20 (Peter): the first V2 used sharp_monitor.half_point_value, which substitutes a generic
+    default for any number absent from its table and a flat constant for every NBA/NCAAB number.
+    Those figures must not appear in current reporting, but they are kept for audit: the values move
+    to legacy_v2 with an explicit INVALID status, and the live V2 fields are cleared so the backfill
+    recomputes them on the registered tables.
+
+    A row is legacy exactly when it carries a V2 but no v2_method stamp. V1 is neither read nor
+    written here, and our_line / main_line stay - those are facts about the bet, not the method.
+    """
+    n = 0
+    for rec in st.get("bets", {}).values():
+        if rec.get("clv_v2") is None or rec.get("v2_method"):
+            continue
+        rec["legacy_v2"] = {"status": "INVALID - LEGACY METHOD (placeholder masses, unbounded extrapolation)",
+                            "clv_v2": rec.get("clv_v2"), "close_p_v2": rec.get("close_p_v2"),
+                            "how_v2": rec.get("how_v2"), "v2_derived": rec.get("v2_derived")}
+        for f in ("clv_v2", "close_p_v2", "how_v2", "v2_derived", "v2_unsupported"):
+            rec.pop(f, None)
+        n += 1
+    if n:
+        V2STAT["legacy V2 retired as INVALID and queued for recompute"] += n
+    return n
+
+
 def restore_our_line(st):
     """Fill our_line on rows that got V2 before the field existed (Peter, Nov 20, approved).
 
@@ -1193,11 +1220,23 @@ def v2_backfill(st, hist, mkmap, now, max_rows=80):
 def v2_report(st):
     """V1 vs V2 across every row that carries both. Counts, units and percentages only."""
     both = [r for r in st["bets"].values() if r.get("clv") is not None and r.get("clv_v2") is not None]
+    L0 = []
+    uns = collections.Counter()
+    for r in st["bets"].values():
+        if r.get("v2_unsupported"):
+            uns[f"{(r.get('snap') or {}).get('league') or '?'}: {r['v2_unsupported']}"] += 1
+    if uns:
+        L0.append("V2 UNSUPPORTED by league and reason (left unscored, never substituted): "
+                 + ", ".join(f"{k} x{v}" for k, v in sorted(uns.items())))
+    legacy = sum(1 for r in st["bets"].values() if r.get("legacy_v2"))
+    if legacy:
+        L0.append(f"legacy V2 held for audit, marked INVALID and excluded from every figure here: {legacy}")
+
     if not both:
-        return ["V2 shadow: no row carries both V1 and V2 yet"]
+        return L0 + ["V2 shadow: no row carries both V1 and V2 yet - the unsupported counts above are the result"]
     moved = [r for r in both if r.get("v2_derived")]
     same = len(both) - len(moved)
-    L = [f"V2 shadow: {len(both)} row(s) carry both; {same} identical (our number WAS the main line), "
+    L = L0 + [f"V2 shadow: {len(both)} row(s) carry both; {same} identical (our number WAS the main line), "
          f"{len(moved)} model-derived (the line moved)"]
     if moved:
         d = [r["clv_v2"] - r["clv"] for r in moved]
@@ -1225,15 +1264,29 @@ def v2_report(st):
     if kn:
         L.append("V2 moved rows by league, distance and football key numbers crossed: "
                  + ", ".join(f"{k} x{v}" for k, v in sorted(kn.items())))
-    for tag, sel in (("ALL", both), ("bot", [r for r in both if str((r.get("snap") or {}).get("source") or "").lower().startswith("bot")])):
-        if not sel:
+    # Peter, item 7: never present a partial V2 sample as the complete rolling-50. The window is
+    # the last 50 rows V1 actually scored; V2 is reported only over the part of it V2 covers, with
+    # that coverage stated. V1's kill-switch is the official one and is read on the full window.
+    scored = [r for r in st["bets"].values() if r.get("clv") is not None]
+    for tag, pop in (("ALL", scored),
+                     ("bot", [r for r in scored
+                              if str((r.get("snap") or {}).get("source") or "").lower().startswith("bot")])):
+        win = sorted(pop, key=lambda r: str(r.get("scored") or ""))[-50:]
+        if not win:
             continue
-        sel = sorted(sel, key=lambda r: str(r.get("scored") or ""))[-50:]
-        L.append(f"rolling {len(sel)} {tag}: V1 {100 * sum(r['clv'] for r in sel) / len(sel):+.2f}%, "
-                 f"V2 {100 * sum(r['clv_v2'] for r in sel) / len(sel):+.2f}%, "
-                 f"derived in window {sum(1 for r in sel if r.get('v2_derived'))}, "
-                 f"kill-switch V1 {'FIRES' if sum(r['clv'] for r in sel) < 0 else 'clear'}, "
-                 f"V2 {'FIRES' if sum(r['clv_v2'] for r in sel) < 0 else 'clear'}")
+        cov = [r for r in win if r.get("clv_v2") is not None]
+        v1m = 100 * sum(r["clv"] for r in win) / len(win)
+        line = (f"rolling {len(win)} {tag} (V1 window, OFFICIAL): V1 {v1m:+.2f}%, "
+                f"kill-switch V1 {'FIRES' if v1m < 0 else 'clear'}")
+        if cov:
+            v1c = 100 * sum(r["clv"] for r in cov) / len(cov)
+            v2c = 100 * sum(r["clv_v2"] for r in cov) / len(cov)
+            line += (f" | V2 covers {len(cov)}/{len(win)} of that window: on those same bets "
+                     f"V1 {v1c:+.2f}% vs V2 {v2c:+.2f}%"
+                     f" - PARTIAL SAMPLE, not a rolling-{len(win)} V2 figure")
+        else:
+            line += " | V2 covers 0 of that window: no V2 comparison is possible"
+        L.append(line)
     return L
 
 
@@ -1261,6 +1314,8 @@ def record_v2(rec, c, d):
     rec["close_p_v2"] = round(c["v2_p"], 4)
     rec["how_v2"] = c.get("v2_how")
     rec["v2_derived"] = not c.get("at_main", True)
+    rec["v2_method"] = V2_METHOD
+    rec["v2_src"] = c.get("v2_src") or []
     if c.get("main_line") is not None:
         rec["main_line"] = c["main_line"]
     if c.get("our_line") is not None:
@@ -1286,6 +1341,7 @@ def fair_from_main(p_main, main_line, want, better, lab, kind):
     two half-steps, so a multi-point move picks up every interval crossed with its push mass.
     """
     mtype = "spread" if kind == "spr" else "total"
+    used = []
     a, b = (abs(float(main_line)), abs(float(want))) if mtype == "spread" else (float(main_line), float(want))
     lo, hi = sorted((a, b))
     v, x = 0.0, lo
@@ -1293,17 +1349,20 @@ def fair_from_main(p_main, main_line, want, better, lab, kind):
     while x < hi - 1e-9:
         guard += 1
         if guard > 200:
-            return None, "move too large to walk"
+            return None, "move too large to walk", []
         nxt = x + 0.5
         k = nxt if abs(nxt - round(nxt)) < 1e-9 else x
         try:
-            v += lv._mass(lab, mtype, int(round(k)), main_line) / 2
+            _k = int(round(k))
+            v += lv._mass(lab, mtype, _k, main_line) / 2
+            if f"{lab} {mtype} {_k}" not in used:
+                used.append(f"{lab} {mtype} {_k}")
         except lv.Unsupported as u:
-            return None, f"{u.args[0] if u.args else 'unsupported'}"
+            return None, f"{u.args[0] if u.args else 'unsupported'}", []
         except Exception as e_:
-            return None, f"mass lookup failed: {type(e_).__name__}"
+            return None, f"mass lookup failed: {type(e_).__name__}", []
         x = nxt
-    return min(max(p_main + (v if better else -v), .01), .99), None
+    return min(max(p_main + (v if better else -v), .01), .99), None, used
 
 
 def close_for(b, f, pm, mkmap, start, lg):
@@ -1372,11 +1431,11 @@ def close_for(b, f, pm, mkmap, start, lg):
             _p1v = exact[1] if over else 1 - exact[1]
             _at_main = abs(exact[0] - main[0]) < 1e-9
             _ppt, _po = main[0], main[1]
-            _p2v, _v2why = (_p1v, None) if _at_main else fair_from_main(
+            _p2v, _v2why, _v2src = (_p1v, None, ["observed at our number"]) if _at_main else fair_from_main(
                 _po if over else 1 - _po, _ppt, want, (want < _ppt) if over else (want > _ppt), lab, "tot")
             return {"p": _p1v, "how": "own line", "age_min": round(exact[2]),
                     "at_main": _at_main, "main_line": _ppt, "our_line": want,
-                    "v2_p": _p2v, "v2_why": _v2why,
+                    "v2_p": _p2v, "v2_why": _v2why, "v2_src": _v2src,
                     "v2_how": "own line" if _at_main else f"own line (from main {_ppt:g})"}, None
         ppt, po = main[0], main[1]
         if abs(want - ppt) > max(1.5, 0.03 * ppt):   # Nov 2: 'Over 5.5' scored on an NBA total = wrong league/market
@@ -1400,11 +1459,11 @@ def close_for(b, f, pm, mkmap, start, lg):
         _at_main = abs(exact[0] - main[0]) < 1e-9
         _hp, _pm1 = main[0], main[1]
         _mine = _hp if side == "1" else -_hp
-        _p2v, _v2why = (_p1v, None) if _at_main else fair_from_main(
+        _p2v, _v2why, _v2src = (_p1v, None, ["observed at our number"]) if _at_main else fair_from_main(
             _pm1 if side == "1" else 1 - _pm1, _mine, want, want > _mine, lab, "spr")
         return {"p": _p1v, "how": "own line", "age_min": round(exact[2]),
                 "at_main": _at_main, "main_line": _mine, "our_line": want,
-                "v2_p": _p2v, "v2_why": _v2why,
+                "v2_p": _p2v, "v2_why": _v2why, "v2_src": _v2src,
                 "v2_how": "own line" if _at_main else f"own line (from main {_mine:+g})"}, None
     if lg == "NHL":
         return None, "puck line at a different number: not comparable"
@@ -1988,6 +2047,7 @@ def lane_stats(rows):
     return f"n {n}, avg CLV {100 * avg:+.2f}%, beat close {beat}/{n}"
 
 
+V2_METHOD = "line_value MASS (registered rows, no fallback, <=1pt from line)"
 V2STAT = collections.Counter()   # Nov 19: shadow-V2 coverage, counts only
 _T0 = [None]
 
@@ -2385,6 +2445,7 @@ def main():
             if rec["tries"] >= MAX_TRIES or (why and ("not parsed" in why or "not comparable" in why or "far from" in why)) or not d:
                 rec["done"] = True
     try:
+        retire_legacy_v2(st)
         restore_our_line(st)
         _bd, _bm = v2_backfill(st, hist, mkmap, now)
         for _ln in v2_report(st) + v2_validation(st):

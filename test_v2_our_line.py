@@ -89,6 +89,39 @@ ok("thin football data refuses a key-number conclusion", "NOT ENOUGH FOOTBALL" i
 ok("an empty set says so rather than printing a figure",
    "no model-derived row" in "\n".join(cl.v2_validation({"bets": {}})))
 
+
+# ------------------------------------------------------------------ 6. legacy retirement + partial-sample honesty
+st5 = {"bets": {
+    "old": {"clv": -0.05, "clv_v2": 0.09, "close_p_v2": 0.55, "how_v2": "own line (from main -7.5)",
+            "v2_derived": True, "our_line": -6.5, "main_line": -7.5, "scored": "2026-11-18T01:00Z",
+            "snap": {"bet": "IND -2.5", "league": "NBA", "source": "bot"}},
+    "new": {"clv": 0.02, "clv_v2": 0.03, "v2_method": cl.V2_METHOD, "scored": "2026-11-19T01:00Z",
+            "snap": {"bet": "PSU -10.5", "league": "NFL", "source": "bot"}}}}
+n = cl.retire_legacy_v2(st5)
+old_r = st5["bets"]["old"]
+ok("a V2 with no method stamp is retired as legacy", n == 1, n)
+ok("...its values are preserved for audit", old_r["legacy_v2"]["clv_v2"] == 0.09)
+ok("...explicitly marked INVALID", "INVALID" in old_r["legacy_v2"]["status"])
+ok("...and cleared from the live fields so it is recomputed", "clv_v2" not in old_r)
+ok("...while V1 is untouched", old_r["clv"] == -0.05)
+ok("...and the bet's own facts survive", old_r["our_line"] == -6.5 and old_r["main_line"] == -7.5)
+ok("a V2 carrying the current method stamp is left alone", st5["bets"]["new"]["clv_v2"] == 0.03)
+ok("retiring twice is a no-op", cl.retire_legacy_v2(st5) == 0)
+
+st6 = {"bets": {f"r{i}": {"clv": -0.01, "scored": f"2026-11-1{i%9}T01:00Z",
+                          "snap": {"source": "bot", "league": "NBA"}} for i in range(12)}}
+st6["bets"]["r0"]["clv_v2"] = 0.05
+rep = "\n".join(cl.v2_report(st6))
+ok("a partial V2 window is labelled PARTIAL SAMPLE, never a rolling figure", "PARTIAL SAMPLE" in rep, rep[:160])
+ok("...and states the coverage fraction", "V2 covers 1/" in rep, rep[:200])
+ok("the official kill-switch is read on the full V1 window", "kill-switch V1" in rep)
+st7 = {"bets": {"u": {"clv": -0.01, "v2_unsupported": "no_mass_row: NBA spread 7",
+                      "snap": {"league": "NBA", "source": "bot"}, "scored": "2026-11-19T01:00Z"}}}
+rep7 = "\n".join(cl.v2_report(st7))
+ok("unsupported conversions are reported by league and reason",
+   "UNSUPPORTED by league" in rep7 and "NBA" in rep7 and "no_mass_row" in rep7)
+ok("...and say they were left unscored, never substituted", "never substituted" in rep7)
+
 print(("FAILED: " + ", ".join(FAILED)) if FAILED else "ALL PASS")
 print(f"{TOTAL - len(FAILED)} passed, {len(FAILED)} failed")
 raise SystemExit(1 if FAILED else 0)
