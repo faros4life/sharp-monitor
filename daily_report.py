@@ -56,6 +56,8 @@ def bets_on(tracker, day, corr=None):
             if c.get("placed_actual"):
                 b["placed"], b["placed_src"] = c["placed_actual"], "corrected: real placement time"
                 b["received_at"] = c.get("received_at")
+            if c.get("settled_actual") and not b.get("settled"):
+                b["settled"], b["settled_src"] = c["settled_actual"], "corrected: venue settle time"
             if c.get("result") and not b.get("result"):
                 b["result"], b["result_src"] = c["result"], "corrected: venue outcome"
                 pf = profit_from(b, c["result"])
@@ -260,7 +262,8 @@ def render(day, views):
                         else f" | no provisional CLV ({sn['why']})"))
         if v.get("placed_src") or v.get("result_src"):
             L.append("    REPORTING CORRECTION: "
-                     + "; ".join(x for x in (v.get("placed_src"), v.get("result_src")) if x)
+                     + "; ".join(x for x in (v.get("placed_src"), v.get("settled_src"),
+                                                 v.get("result_src")) if x)
                      + (f" | email receipt kept separately: {v['received_at']}" if v.get("received_at") else "")
                      + (f" | final {v['score']}" if v.get("score") else "")
                      + " | tracker_build, MANUAL_HELD and live gating untouched")
@@ -308,6 +311,7 @@ def main(argv):
                         else "placed this day" if et_day(b.get("placed")) == day
                         else "UNVERIFIED date")
         vw["placed_src"] = b.get("placed_src")
+        vw["settled_src"] = b.get("settled_src")
         vw["result_src"] = b.get("result_src")
         vw["received_at"] = b.get("received_at")
         vw["score"] = b.get("score")
