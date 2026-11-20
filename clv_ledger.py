@@ -1052,6 +1052,81 @@ def novig_p(a, b):
     return ia / (ia + ib)
 
 
+def restore_our_line(st):
+    """Fill our_line on rows that got V2 before the field existed (Peter, Nov 20, approved).
+
+    One ledger run (44711290833, 09:30 UTC) carried the V2 backfill but predated the our_line commit
+    by a push ordering of about forty seconds, and backfilled 79 rows without it. Those rows hold
+    clv_v2, so the backfill skips them forever and they can never acquire the field on their own.
+
+    Restored from the ROW'S OWN snap.bet through the same parser the scorer uses - the verified
+    original bet record, not a re-derivation from market data and not an estimate. Mirrors close_for
+    exactly, including the negated line for a NO / short side. Writes one V2 field; every V1 value
+    and audit record is untouched.
+    """
+    fixed = failed = 0
+    for rec in st.get("bets", {}).values():
+        if rec.get("clv_v2") is None or rec.get("our_line") is not None:
+            continue
+        pz = parsed(rec.get("snap") or {})
+        if not pz or pz[2] is None:
+            failed += 1
+            continue
+        want = pz[2]
+        if len(pz) > 3 and pz[3]:          # NO / short side: the other team at the mirrored number
+            want = -want
+        rec["our_line"] = want
+        fixed += 1
+    if fixed or failed:
+        V2STAT["our_line restored from the bet text"] += fixed
+        V2STAT["our_line unrecoverable (bet text has no line)"] += failed
+    return fixed, failed
+
+
+def v2_validation(st):
+    """V2's derived fair against the ACTUAL observed Pinnacle quote at our number.
+
+    close_p is the fair implied by the real alt quote; close_p_v2 is the model's derivation from the
+    main line. Their signed difference is the only independent test we have - a better-looking CLV
+    proves nothing, because the correction can only ever move the side holding the better number in
+    one direction.
+    """
+    rows = [r for r in st.get("bets", {}).values()
+            if r.get("v2_derived") and r.get("close_p") is not None and r.get("close_p_v2") is not None]
+    if not rows:
+        return ["V2 validation: no model-derived row carries both an observed and a derived close"]
+    def stats(sel):
+        g = sorted(100 * (r["close_p_v2"] - r["close_p"]) for r in sel)
+        n = len(g)
+        mean = sum(g) / n
+        sd = (sum((x - mean) ** 2 for x in g) / n) ** 0.5 if n > 1 else 0.0
+        return f"n {n}, mean {mean:+.2f} pts, sd {sd:.2f}, min {g[0]:+.2f}, max {g[-1]:+.2f}"
+    L = [f"V2 validation (derived minus observed Pinnacle, probability points): {stats(rows)}"]
+    far = [r for r in rows if r.get("our_line") is not None and r.get("main_line") is not None
+           and abs(abs(r["our_line"]) - abs(r["main_line"])) >= 3.0]
+    near = [r for r in rows if r.get("our_line") is not None and r.get("main_line") is not None
+            and abs(abs(r["our_line"]) - abs(r["main_line"])) < 3.0]
+    if near:
+        L.append(f"  moves under 3 pts: {stats(near)}")
+    if far:
+        L.append(f"  moves of 3+ pts (the biggest extrapolation): {stats(far)}")
+    fb = [r for r in rows if str((r.get("snap") or {}).get("league")) in ("NFL", "NCAAF")
+          and r.get("our_line") is not None and r.get("main_line") is not None]
+    cross = [r for r in fb if any(min(abs(r["our_line"]), abs(r["main_line"])) < n <= max(abs(r["our_line"]), abs(r["main_line"]))
+                                  for n in (3, 7, 10, 14))]
+    if cross:
+        L.append(f"  NFL/NCAAF moves CROSSING a key number (3/7/10/14): {stats(cross)}")
+    if len(fb) - len(cross) > 0:
+        L.append(f"  NFL/NCAAF moves NOT crossing one: {stats([r for r in fb if r not in cross])}")
+    if len(fb) < 8:
+        L.append(f"  NOT ENOUGH FOOTBALL to judge key numbers: only {len(fb)} moved NFL/NCAAF row(s). "
+                 f"No key-number conclusion is drawn from this.")
+    no_line = sum(1 for r in st.get("bets", {}).values() if r.get("v2_derived") and r.get("our_line") is None)
+    if no_line:
+        L.append(f"  UNSUPPORTED: {no_line} derived row(s) still carry no our_line and are excluded from every bucket above")
+    return L
+
+
 def v2_backfill(st, hist, mkmap, now, max_rows=80):
     """Compute the SHADOW V2 close for rows already scored under V1 (Peter, Nov 20, approved).
 
@@ -2284,8 +2359,9 @@ def main():
             if rec["tries"] >= MAX_TRIES or (why and ("not parsed" in why or "not comparable" in why or "far from" in why)) or not d:
                 rec["done"] = True
     try:
+        restore_our_line(st)
         _bd, _bm = v2_backfill(st, hist, mkmap, now)
-        for _ln in v2_report(st):
+        for _ln in v2_report(st) + v2_validation(st):
             print(f"V2 shadow: {_ln}" if not _ln.startswith("V2") else _ln, flush=True)
     except Exception as _ve:
         print(f"V2 shadow: backfill/report failed ({type(_ve).__name__}) - V1 untouched", flush=True)
