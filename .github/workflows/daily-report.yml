@@ -1,0 +1,33 @@
+name: daily-report
+
+# One-screen report of SETTLED bets for an ET day: what we paid, what Pinnacle closed at, the
+# result in units, and V1/V2 CLV where they exist. Peter, Nov 20: reporting actual bets must NOT
+# wait on the V2 research backfill, so this is deliberately independent of clv-ledger. It is
+# READ-ONLY: no API calls, no credits, no writes, no live-trading path. Logs carry units only.
+on:
+  workflow_dispatch:
+    inputs:
+      day:
+        description: "ET day as YYYY-MM-DD (blank = yesterday ET)"
+        required: false
+        type: string
+  schedule:
+    - cron: "37 13 * * *"   # 8:37 AM ET, after the tracker's real-plays recap lands
+
+concurrency:
+  group: daily-report
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install --quiet cryptography
+      - name: report
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+        run: python3 daily_report.py ${{ inputs.day }}
