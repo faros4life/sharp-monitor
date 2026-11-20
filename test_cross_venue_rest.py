@@ -97,6 +97,32 @@ diff = row(order=leg(asked=110.00, filled=110.00, cid="other-cid", oid="OTHER"))
 c, _ = ex.committed_risk(KEY, rows_=[confirmed, diff])
 check("two genuinely different orders both count", c == 220.00, f"{c}")
 
+print("\n6b. THE REAL STORED SHAPE carries order_id and NO client_id")
+# executor's registry projection writes only status/reason/book/order_id/asked_stake/limit/
+# filled_stake/avg_price (or expires_utc). It has no client_id at all - the daily stop's
+# "money identity is the CLIENT ID" holds for Gmail-parsed rows, not for these. So the order id
+# is what actually dedupes stored rows, and these cases use that shape exactly.
+def stored(book="prophetx", oid="O1", asked=None, filled=None, status="placed", expires=None):
+    d = {"status": status, "reason": None, "book": book, "order_id": oid,
+         "asked_stake": asked, "limit": -117, "filled_stake": filled, "avg_price": None}
+    if expires:
+        d["expires_utc"] = expires
+    return d
+
+s1 = row(order=stored(oid="PX9", asked=110.00, filled=110.00))
+c, why = ex.committed_risk(KEY, rows_=[s1])
+check("a stored leg with no client_id is still counted", c == 110.00 and why is None, f"{c} {why}")
+dup = row(order=stored(oid="PX9", asked=110.00, filled=None))
+c, _ = ex.committed_risk(KEY, rows_=[s1, dup])
+check("the same order id across two rows counts ONCE", c == 110.00, f"{c}")
+two = row(order=stored(oid="PX9", asked=110.00, filled=110.00),
+          rest=stored(book="novig", oid="NV9", asked=238.00, filled=237.60,
+                      expires="2026-11-21T01:30:00Z"))
+c, _ = ex.committed_risk(KEY, rows_=[two])
+check("two different order ids in the real shape both count", c == 348.00, f"{c}")
+check("which is the incident's combined exposure, from production-shaped records",
+      c > 234.00)
+
 print("\n7. RESTING LEGS AND live_more COUNT TOO")
 r = row(rest=leg(asked=238.00, filled=237.60, book="novig", cid="r1", oid="R1"))
 c, _ = ex.committed_risk(KEY, rows_=[r])
@@ -153,6 +179,117 @@ check("and BEFORE the pre-alert, so the announced number is the final one",
 check("the existing rest_risk trim is still applied",
       'r["live"]["rest_risk"]' in src)
 check("duplicate protection is untouched", "submission_held(_pkey)" in src)
+
+# ==============================================================================================
+print("\n10. INTEGRATION: the amount that actually reaches the venue")
+# Drives the real rest_bid() and captures the stake handed to book_live.novig_place(), because
+# committed_risk() arithmetic being right is not the same as the submitted order being right.
+# Nov 20: Peter's review caught exactly this gap - the first patch subtracted committed risk from
+# the ALREADY-trimmed rest_risk, so intended $234 with $110 filled would have rested $14, not $124.
+import types
+from datetime import datetime, timedelta, timezone
+
+SUBMITTED = {}
+
+
+def _run_rest_bid(rows, rest_risk=None, unit_price=-117):
+    """Call the production rest_bid() with the venue stubbed; return (result, submitted_cost)."""
+    SUBMITTED.clear()
+    start = datetime.now(timezone.utc) + timedelta(hours=6)
+    play = {"sport": "NCAAF", "game": "New Mexico Lobos @ Wyoming Cowboys",
+            "bet": "New Mexico Lobos -7.5 (-117)", "play_key": "r1|" + KEY,
+            "start_utc": start.strftime("%Y-%m-%dT%H:%M:%SZ")}
+    live = {"lane": "r1", "client_id": "this-run"}
+    if rest_risk is not None:
+        live["rest_risk"] = rest_risk
+    r = {"play": play, "entry": {"price_after_fee": unit_price}, "live": live,
+         "books": {"novig": {"status": "ok", "exact_line": True, "line": -7.5, "alert_line": -7.5,
+                             "outcome_id": "OC1",
+                             "buy_levels": [{"price": 0.50, "size": 100000}]}}}
+
+    reg = types.SimpleNamespace(
+        enabled=lambda: True,
+        rows=lambda: rows,
+        submission_held=lambda k: None,
+        claim_submission=lambda k, c: True,
+        release_submission=lambda k, c: True)
+
+    def fake_novig_place(outcome_id, cost, qty, label, ms, key):
+        SUBMITTED["cost"] = cost
+        SUBMITTED["qty"] = qty
+        SUBMITTED["dollars"] = round(qty / 100.0 * cost, 2)
+        return {"status": "placed", "order_id": "NEW1", "book": "novig", "asked_stake": SUBMITTED["dollars"]}
+
+    # executor.gmail() raises SystemExit when credentials are absent, and the resting path
+    # notifies after a placement - stub the notifiers so this exercises SIZING, nothing else.
+    saved = (ex.registry, ex.REST_BOOKS, ex.book_live.novig_place, ex.live_guards,
+             ex.rest_pre_alert, ex.journal_latch_why, ex.novig_grid_floor,
+             ex.gmail, ex.send, ex.push, ex.tg_push)
+    try:
+        ex.gmail = lambda: ("u", "p", "t")
+        ex.send = lambda *a, **k: None
+        ex.push = lambda *a, **k: None
+        ex.tg_push = lambda *a, **k: None
+        ex.registry = reg
+        ex.REST_BOOKS = ("novig",)
+        ex.book_live.novig_place = fake_novig_place
+        ex.live_guards = lambda: (True, "")
+        ex.rest_pre_alert = lambda *a, **k: None
+        ex.journal_latch_why = lambda: None
+        ex.novig_grid_floor = lambda p_star, levels: 0.50
+        res = ex.rest_bid(r)
+    finally:
+        (ex.registry, ex.REST_BOOKS, ex.book_live.novig_place, ex.live_guards,
+         ex.rest_pre_alert, ex.journal_latch_why, ex.novig_grid_floor,
+         ex.gmail, ex.send, ex.push, ex.tg_push) = saved
+    return res, SUBMITTED.get("dollars")
+
+
+_unit, _ = ex.live_stake(-117, ex.unit_for("r1"))
+print(f"   intended unit at -117 = ${_unit:,.2f}")
+
+print("   a) the incident: $110 filled on ProphetX, no rest_risk on this run (the refused leg)")
+res, got = _run_rest_bid([px])
+check("an order was submitted", res and res.get("status") == "placed", str(res)[:50])
+check(f"it rests intended - committed, not the full unit", got == round(_unit - 110.00, 2),
+      f"submitted ${got} vs expected ${round(_unit - 110.00, 2)}")
+check("and NOT the full unit that caused the incident", got != _unit)
+
+print("   b) THE DOUBLE-SUBTRACTION Peter caught: rest_risk set AND committed risk present")
+res, got = _run_rest_bid([px], rest_risk=round(_unit - 110.00, 2))
+check("the same amount is rested, not the fill subtracted twice",
+      got == round(_unit - 110.00, 2),
+      f"submitted ${got}; double-subtracted would be ${round(_unit - 220.00, 2)}")
+check("the two constraints combine as a ceiling, not a second subtraction",
+      got != round(_unit - 220.00, 2))
+
+print("   c) rest_risk tighter than the cross-venue allowance still wins")
+res, got = _run_rest_bid([px], rest_risk=40.00)
+check("the smaller of the two ceilings is used", got == 40.00, f"submitted ${got}")
+
+print("   d) nothing committed: the full unit rests, exactly as before this change")
+res, got = _run_rest_bid([])
+check("unchanged behaviour when nothing is committed", got == round(_unit, 2), f"${got}")
+
+print("   e) already at or above the intended stake: NOTHING is submitted")
+big = row(order=leg(asked=400.00, filled=400.00, cid="b1", oid="B1"))
+res, got = _run_rest_bid([big])
+check("refused", res.get("status") == "refused", str(res.get("reason"))[:54])
+check("and no order reached the venue", got is None and not SUBMITTED)
+
+print("   f) FAIL CLOSED on an unresolved/unidentifiable outstanding order")
+bad = row(order=leg(status="placed", asked=110.0, cid="", oid=""))
+res, got = _run_rest_bid([bad])
+check("refused rather than sized against an unknown", res.get("status") == "refused",
+      str(res.get("reason"))[:54])
+check("and nothing was submitted", got is None and not SUBMITTED)
+
+print("   g) FAIL CLOSED on an UNKNOWN fill: the ask is reserved, not treated as zero")
+unknown = row(order=leg(status="placed", asked=100.00, filled=None, cid="u9", oid="U9"))
+res, got = _run_rest_bid([unknown])
+check("the unread order reserves its ask, so only the remainder rests",
+      got == round(_unit - 100.00, 2), f"submitted ${got}")
+check("it was not treated as a zero fill", got != round(_unit, 2))
 
 print()
 if fails:

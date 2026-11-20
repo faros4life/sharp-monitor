@@ -4553,9 +4553,16 @@ def committed_risk(pkey, rows_=None):
     """(risk_committed, why) for one lane-stripped play key, across every venue and run.
 
     why is None when the figure is trustworthy; a string when it is not, and then the caller must
-    refuse rather than size against it. Money identity is the client id, falling back to the order
-    id, so the write-ahead intent row and the confirmed row for one order count ONCE - the same
-    rule the daily stop uses."""
+    refuse rather than size against it.
+
+    IDENTITY, checked against the real record shapes rather than assumed. The daily stop dedupes on
+    the CLIENT id ("the money identity is the CLIENT ID when there is one"), but the projection
+    that writes live_order / live_rest / live_more into the registry carries only
+    status, reason, book, order_id, asked_stake, limit, filled_stake and avg_price / expires_utc -
+    no client_id at all. Rows parsed from the Gmail ledger do carry one. So the client id is
+    preferred where it exists and the ORDER id is what actually dedupes stored rows, which is the
+    field those rows always carry for a leg that reached a venue. A placed leg with neither is
+    unidentifiable, cannot be deduped, and refuses."""
     try:
         rows_ = registry.rows() if rows_ is None else rows_
     except Exception as ex:
@@ -4619,6 +4626,12 @@ def rest_bid(r):
         return {"status": "refused", "reason": "alert after-fee price unknown (fail closed)"}
     p_star = american_to_prob(int(af))
     risk, _ = live_stake(int(af), unit_for((r.get("live") or {}).get("lane")))
+    _unit_risk = risk            # the INTENDED total for one unit, before any remainder trim.
+    # Nov 20 (Peter caught this in review): the cross-venue remainder below must be measured from
+    # THIS figure, not from the already-trimmed `risk`. rest_risk is itself intended-minus-filled,
+    # so subtracting committed risk from it again removes the same fill twice: intended $234 with
+    # $110 filled gives rest_risk $124, and $124 - $110 would have rested $14 instead of $124.
+    # The two constraints are both CEILINGS on the same intended total, so they combine with min().
     if (r.get("live") or {}).get("rest_risk"):   # Oct 31: only the unfilled part of a partial fill
         risk = min(risk, float(r["live"]["rest_risk"]))
     g_ok, g_why = live_guards()
@@ -4673,16 +4686,16 @@ def rest_bid(r):
         return {"status": "refused",
                 "reason": f"cross-venue committed risk could not be established ({_cwhy}) - "
                           f"resting a unit could exceed the intended stake (fail closed)"}
-    _intended, _remaining = risk, round(risk - _committed, 2)
-    if _remaining <= 0:
+    _allowed = round(_unit_risk - _committed, 2)      # ceiling from the UNTRIMMED intended total
+    if _allowed <= 0:
         registry.release_submission(_rkey, REST_CID)
         return {"status": "refused",
                 "reason": f"${_committed:,.2f} already committed on this play across venues, at or "
-                          f"above the ${_intended:,.2f} intended stake - nothing left to rest"}
-    if _remaining < risk:
-        risk = _remaining
+                          f"above the ${_unit_risk:,.2f} intended stake - nothing left to rest"}
+    if _allowed < risk:                               # a ceiling, never a second subtraction
+        risk = _allowed
         LOG.append(f"resting bid trimmed to ${risk:,.2f}: ${_committed:,.2f} already committed "
-                   f"across venues against ${_intended:,.2f} intended")
+                   f"across venues against ${_unit_risk:,.2f} intended")
     rest_pre_alert(r, risk, expire, REST_BOOKS)
     why_not = []
     for b in REST_BOOKS:
