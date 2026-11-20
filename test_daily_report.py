@@ -336,6 +336,23 @@ hb = {"game_start": "2026-11-15T18:00:00Z", "_gameday_ev": "2026-11-19", "result
 ok("the day filter and the cohort now agree on Houston",
    len(dr.bets_on({"h": hb}, "2026-11-19")) == 1 and dr.game_day_of(hb) == "2026-11-19")
 
+# ------------------------------------------------------------------ 17. same-line coverage counts both
+r1 = dr.row_view("k", {"bet": "a", "result": "W", "profit": 200.0}, {"clv": 0.0292})
+r1.update(on_day="settled", game_day="2026-11-19", ident=("ProphetX", "a"))
+r2 = dr.row_view("k", {"bet": "b", "result": "W", "profit": 200.0}, {})
+r2.update(on_day="settled", game_day="2026-11-19", ident=("HR", "b"),
+          snap={"label": "x", "line": -6.5, "price_our": -124, "price_other": 104,
+                "t_minus": 4, "movement": 0, "clv": -0.0085, "why": "SAME-LINE ...",
+                "certified": True})
+r3 = dr.row_view("k", {"bet": "c", "result": "L", "profit": -115.0}, {})
+r3.update(on_day="settled", game_day="2026-11-19", ident=("HR", "c"))
+o6 = "\n".join(dr.render("2026-11-19", [r1, r2, r3], {}))
+ok("coverage adds certified V1 closes to same-line snapshots",
+   "CLV SAME-LINE COVERAGE: 2/3 = 1 certified V1 ledger close + 1 same-line snapshot" in o6,
+   [l for l in o6.splitlines() if "COVERAGE" in l])
+ok("an unavailable row is counted as unavailable, not zero",
+   "UNAVAILABLE 1 (never counted as zero)" in o6)
+
 print(("FAILED: " + ", ".join(FAILED)) if FAILED else "ALL PASS")
 print(f"{TOTAL - len(FAILED)} passed, {len(FAILED)} failed")
 import sys as _sys

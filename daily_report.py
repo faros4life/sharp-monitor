@@ -333,10 +333,17 @@ def render(day, views, meta=None):
     cert = [v for v in views if (v.get("snap") or {}).get("certified")]
     prov = [v for v in views if (v.get("snap") or {}).get("clv") is not None
             and not (v.get("snap") or {}).get("certified")]
-    L.append(f"CLV: certified SAME-LINE {len(cert)}/{len(gameday)} of the game-day card"
-             f" | provisional converted {len(prov)} | unavailable "
-             f"{len([v for v in gameday if v['v1'] is None and (v.get('snap') or {}).get('clv') is None])}"
-             " (never counted as zero)")
+    # Same-line coverage is V1's own certified closes PLUS same-line snapshots. Counting only the
+    # snapshots read 3/7 and hid the three rows that already carry a certified ledger close.
+    v1_cert = [v for v in gameday if v["v1"] is not None]
+    snap_cert = [v for v in gameday if (v.get("snap") or {}).get("certified")]
+    snap_prov = [v for v in gameday if (v.get("snap") or {}).get("clv") is not None
+                 and not (v.get("snap") or {}).get("certified")]
+    unavail = [v for v in gameday if v["v1"] is None and (v.get("snap") or {}).get("clv") is None]
+    L.append(f"CLV SAME-LINE COVERAGE: {len(v1_cert) + len(snap_cert)}/{len(gameday)}"
+             f" = {len(v1_cert)} certified V1 ledger close + {len(snap_cert)} same-line snapshot"
+             f" | provisional converted {len(snap_prov)}"
+             f" | UNAVAILABLE {len(unavail)} (never counted as zero)")
     L.append(f"V1 CLV on {len(scored)}/{len(views)}"
              + (f", mean {sum(v['v1'] for v in scored) / len(scored) * 100:+.2f}%" if scored else "")
              + f" | V2 on {sum(1 for v in views if v['v2'] is not None)}/{len(views)}")
