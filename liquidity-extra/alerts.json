@@ -1,6 +1,363 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-20T18:00:37Z",
+   "base_depth": 164772,
+   "best_price": 0.515,
+   "best_price_american": -106,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.53,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-20",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -1953,
+     "new_this_side": 43970,
+     "other_side": 28111,
+     "other_side_all_levels": 136506,
+     "ratio": 3.2,
+     "this_side": 90952,
+     "this_side_all_levels": 210591
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "NU +11.5 (11.5)",
+     "price": 0.515,
+     "this_side": 7323
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 18731.34,
+    "volume_24h_fp": 18656.26,
+    "volume_fp": 19143.39
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 487.13,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 487.13
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 18244.21,
+    "volume_24h_fp": 18656.26,
+    "volume_fp": 18656.26
+   },
+   "fade_price": 0.48,
+   "first_seen_utc": "2026-11-20T17:50:19Z",
+   "game": "Northwestern vs Virginia Tech: Spread",
+   "game_surge_books": [
+    "novig"
+   ],
+   "game_x": 1.64,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAMBSPREAD-26NOV20NWVT-VT12\"}",
+   "lead_min": 119,
+   "league": "NCAAB",
+   "line": 11.5,
+   "market": "spread",
+   "new_money": 43970,
+   "new_x": 2.72,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 18731.34,
+      "volume_24h_fp": 18656.26,
+      "volume_fp": 19143.39
+     },
+     "game_normal": 128734,
+     "game_x": 1.64,
+     "normal": 16152,
+     "now": 210591,
+     "type": "SPREAD",
+     "x": 13.04
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 4054612.0,
+      "volume": 4418176.0
+     },
+     "game_normal": 3016,
+     "game_x": 2.51,
+     "normal": 1487,
+     "now": 7576,
+     "type": "SPREAD",
+     "x": 5.09
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.53,
+   "price_american": -113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.53,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 11.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 11.5,
+     "price": -112
+    },
+    "betopenly": {
+     "point": 11.5,
+     "price": -101
+    },
+    "betrivers": {
+     "point": 10.5,
+     "price": -104
+    },
+    "betus": {
+     "point": 11.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 11.5,
+     "price": -110
+    },
+    "circasports": {
+     "point": 11.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 11.5,
+     "price": -112
+    },
+    "fanatics": {
+     "point": 11.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 11.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 11.5,
+     "price": -113
+    },
+    "lowvig": {
+     "point": 11.5,
+     "price": -108
+    },
+    "novig": {
+     "point": 11.5,
+     "price": -106
+    },
+    "polymarket": {
+     "point": -2.5,
+     "price": -9900
+    },
+    "prophetx": {
+     "point": 11.5,
+     "price": -109
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAMBSPREAD-26NOV20NWVT-VT12"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Northwestern",
+   "side_label": "NOT Virginia Tech wins by over 11.5 points",
+   "size_x": 13.04,
+   "start_source": "odds",
+   "start_utc": "2026-11-20T20:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "Northwestern",
+    "Virginia Tech"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-20T18:00:37Z",
+   "base_depth": 34735,
+   "best_price": 0.4812,
+   "best_price_american": 108,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.48,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-20",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 7974,
+     "new_this_side": 35193,
+     "other_side": 10352,
+     "other_side_all_levels": 37541,
+     "ratio": 3.9,
+     "this_side": 40509,
+     "this_side_all_levels": 67312
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 3952.42,
+    "volume_24h_fp": 3952.42,
+    "volume_fp": 3952.42
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 3952.42,
+    "volume_24h_fp": 3952.42,
+    "volume_fp": 3952.42
+   },
+   "fade_price": 0.53,
+   "first_seen_utc": "2026-11-20T17:50:19Z",
+   "game": "Central Michigan vs Pittsburgh: Spread",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 2.27,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAMBSPREAD-26NOV20CMUPITT-PITT21\"}",
+   "lead_min": 359,
+   "league": "NCAAB",
+   "line": 20.5,
+   "market": "spread",
+   "new_money": 35193,
+   "new_x": 2.18,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 3952.42,
+      "volume_24h_fp": 3952.42,
+      "volume_fp": 3952.42
+     },
+     "game_normal": 29590,
+     "game_x": 2.27,
+     "normal": 16152,
+     "now": 67312,
+     "type": "SPREAD",
+     "x": 4.17
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.48,
+   "price_american": 108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.48,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 21.5,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": 21.5,
+     "price": -110
+    },
+    "betrivers": {
+     "point": 21.5,
+     "price": -109
+    },
+    "betus": {
+     "point": 21.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 21.5,
+     "price": -110
+    },
+    "circasports": {
+     "point": 22.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 21.5,
+     "price": -105
+    },
+    "fanatics": {
+     "point": 21.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 21.5,
+     "price": -102
+    },
+    "kalshi": {
+     "point": 20.5,
+     "price": 108
+    },
+    "lowvig": {
+     "point": 21.5,
+     "price": -106
+    },
+    "novig": {
+     "point": 21.5,
+     "price": -104
+    },
+    "polymarket": {
+     "point": 20.5,
+     "price": 113
+    },
+    "prophetx": {
+     "point": 21.5,
+     "price": -107
+    },
+    "williamhill_us": {
+     "point": 21.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAMBSPREAD-26NOV20CMUPITT-PITT21"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [
+    "Central Michigan Chippewas +22.5 (-118)"
+   ],
+   "sharp_oppose": [],
+   "side": "Central Michigan",
+   "side_label": "NOT Pittsburgh wins by over 20.5 points",
+   "size_x": 4.17,
+   "start_source": "odds",
+   "start_utc": "2026-11-21T00:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Central Michigan",
+    "Pittsburgh"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-20T17:40:20Z",
    "base_depth": 99493,
    "best_price": 0.485,
@@ -46,9 +403,9 @@
     "volume_fp": 363.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 39046.58,
+    "open_interest_fp": 39324.63,
     "volume_24h_fp": 40265.31,
-    "volume_fp": 40283.54
+    "volume_fp": 40561.59
    },
    "ex_stats_first": {
     "open_interest_fp": 38013.81,
@@ -99,6 +456,8 @@
    "norm_ready_books": 2,
    "paper_only": false,
    "price": 0.49,
+   "price_after_15m": 0.4881,
+   "price_after_15m_book": "prophetx",
    "price_american": 104,
    "price_rule": "ok",
    "price_when_first_seen": 0.49,
@@ -120,6 +479,7 @@
    "size_x": 8.31,
    "start_source": "novig",
    "start_utc": "2026-11-20T19:00:00Z",
+   "still_actionable": false,
    "surge_books": [
     "kalshi",
     "novig"
@@ -230,6 +590,8 @@
    "norm_ready_books": 2,
    "paper_only": false,
    "price": 0.51,
+   "price_after_15m": 0.515,
+   "price_after_15m_book": "novig",
    "price_american": -104,
    "price_rule": "ok",
    "price_when_first_seen": 0.51,
@@ -310,6 +672,7 @@
    "size_x": 8.73,
    "start_source": "odds",
    "start_utc": "2026-11-20T22:00:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi",
     "novig"
@@ -400,6 +763,8 @@
    "norm_ready_books": 1,
    "paper_only": false,
    "price": 0.46,
+   "price_after_15m": 0.4774,
+   "price_after_15m_book": "kalshi",
    "price_american": 117,
    "price_rule": "ok",
    "price_when_first_seen": 0.46,
@@ -484,6 +849,7 @@
    "size_x": 8.49,
    "start_source": "odds",
    "start_utc": "2026-11-20T23:00:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi"
    ],
@@ -762,9 +1128,9 @@
     "volume_fp": 112.55
    },
    "ex_stats_close": {
-    "open_interest_fp": 37044.18,
+    "open_interest_fp": 37372.43,
     "volume_24h_fp": 35952.18,
-    "volume_fp": 37693.33
+    "volume_fp": 38021.58
    },
    "ex_stats_first": {
     "open_interest_fp": 35489.53,
@@ -1181,9 +1547,9 @@
     "volume_fp": 76.31
    },
    "ex_stats_close": {
-    "open_interest_fp": 10841.74,
+    "open_interest_fp": 10843.31,
     "volume_24h_fp": 10792.49,
-    "volume_fp": 10871.73
+    "volume_fp": 10873.3
    },
    "ex_stats_first": {
     "open_interest_fp": 2375.3199999999997,
@@ -1553,9 +1919,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 12900.76,
+    "open_interest_fp": 13148.49,
     "volume_24h_fp": 13025.66,
-    "volume_fp": 13029.85
+    "volume_fp": 13277.58
    },
    "ex_stats_first": {
     "open_interest_fp": 3487.16,
@@ -1705,9 +2071,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2881.05,
+    "open_interest_fp": 2960.17,
     "volume_24h_fp": 2474.81,
-    "volume_fp": 2881.05
+    "volume_fp": 2960.17
    },
    "ex_stats_first": {
     "open_interest_fp": 2096.22,
@@ -1879,9 +2245,9 @@
     "volume_fp": 1.34
    },
    "ex_stats_close": {
-    "open_interest_fp": 8678.619999999999,
+    "open_interest_fp": 8711.23,
     "volume_24h_fp": 8595.33,
-    "volume_fp": 8723.9
+    "volume_fp": 8756.51
    },
    "ex_stats_first": {
     "open_interest_fp": 1100.72,
@@ -2062,9 +2428,9 @@
     "volume_fp": 15.28
    },
    "ex_stats_close": {
-    "open_interest_fp": 10605.75,
+    "open_interest_fp": 10671.93,
     "volume_24h_fp": 10528.99,
-    "volume_fp": 10656.66
+    "volume_fp": 10722.84
    },
    "ex_stats_first": {
     "open_interest_fp": 904.91,
@@ -2256,9 +2622,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 22304.68,
+    "open_interest_fp": 22305.989999999998,
     "volume_24h_fp": 22415.98,
-    "volume_fp": 22442.29
+    "volume_fp": 22443.6
    },
    "ex_stats_first": {
     "open_interest_fp": 484.48,
@@ -2459,9 +2825,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 18124.329999999998,
+    "open_interest_fp": 23293.15,
     "volume_24h_fp": 18184.079999999998,
-    "volume_fp": 18225.71
+    "volume_fp": 23394.53
    },
    "ex_stats_first": {
     "open_interest_fp": 5219.6,
@@ -2812,9 +3178,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 43639.91,
+    "open_interest_fp": 43679.91,
     "volume_24h_fp": 43726.740000000005,
-    "volume_fp": 43739.97
+    "volume_fp": 43779.97
    },
    "ex_stats_first": {
     "open_interest_fp": 129.55,
@@ -2999,9 +3365,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 11800.51,
+    "open_interest_fp": 11801.72,
     "volume_24h_fp": 11715.15,
-    "volume_fp": 11800.51
+    "volume_fp": 11801.72
    },
    "ex_stats_first": {
     "open_interest_fp": 198.32,
@@ -3184,9 +3550,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 57821.61,
+    "open_interest_fp": 57940.409999999996,
     "volume_24h_fp": 55779.41,
-    "volume_fp": 60065.18
+    "volume_fp": 60183.98
    },
    "ex_stats_first": {
     "open_interest_fp": 8506.49,
