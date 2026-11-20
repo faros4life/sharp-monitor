@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 20, 12:10 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 19.
+Updated Fri Nov 20, 12:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 19.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -12,7 +12,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 20 12:10PM | NCAAB | Temple vs Middle Tennessee | moneyline: Temple | kalshi | $70k | -150 | ✅ novig | ❌ | +0.0c |  | pending |
 | Nov 20 12:00PM | NCAAB | Kentucky vs Indiana | moneyline: Indiana | kalshi | $35k | -156 | ✅ novig |  | +0.0c |  | pending |
-| Nov 20 11:50AM | NCAAB | South Carolina St. vs The Citadel | moneyline: The Citadel | kalshi | $43k | -138 | ✅ novig |  | +0.0c |  | pending |
+| Nov 20 11:50AM | NCAAB | South Carolina St. vs The Citadel | moneyline: The Citadel | kalshi | $43k | -138 | ✅ novig |  | +1.0c |  | pending |
 | Nov 20 10:20AM | NCAAB | Mercyhurst vs Canisius | moneyline: Mercyhurst | kalshi | $40k | -138 |  |  | +4.0c |  | pending |
 | Nov 20 8:40AM | NCAAB | Tulsa vs Mississippi St. | moneyline: Mississippi St. | kalshi | $49k | -285 |  | ✅ | +0.0c |  | pending |
 | Nov 20 3:20AM | NCAAB | Western Illinois vs University at Albany | moneyline: Albany | kalshi | $143k | -300 |  |  | -3.0c |  | pending |
