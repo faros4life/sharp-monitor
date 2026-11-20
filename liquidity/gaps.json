@@ -2,66 +2,6 @@
  "note": "PAPER ONLY (Oct 25; persistence added Oct 26): opposite sides of the same game/market/line on two different exchanges whose combined cost after fees is under $1 (Kalshi/Novig/ProphetX; Polymarket here is the global book, excluded). edge_pct = locked profit per $ staked at first sight; max/last_edge_pct while open. size_est = smaller leg's near-price depth (UPPER BOUND). first/last_seen_utc, scans_seen, lifetime_min = how long the gap stayed open (scan-interval resolution; a 1-scan gap may be a feed artifact). scan_sec = seconds from run start to this save, the most the two legs' reads can be apart. Measurement only: never alerted, never bet.",
  "gaps": [
   {
-   "seen_utc": "2026-11-06T17:40:11Z",
-   "league": "NCAAF",
-   "game": "Western Kentucky @ Middle Tennessee",
-   "market": "total",
-   "line": 53.5,
-   "edge_pct": 7.56,
-   "total_cost": 0.9297,
-   "size_est": 89,
-   "legs": [
-    {
-     "book": "novig",
-     "side": "Under 53.5 (53.5)",
-     "price": 0.515,
-     "cost_after_fee": 0.515
-    },
-    {
-     "book": "prophetx",
-     "side": "over 53.5 (53.5)",
-     "price": 0.4098,
-     "cost_after_fee": 0.4147
-    }
-   ],
-   "first_seen_utc": "2026-11-06T17:40:11Z",
-   "last_seen_utc": "2026-11-06T17:40:11Z",
-   "scans_seen": 1,
-   "max_edge_pct": 7.56,
-   "scan_sec": 289,
-   "lifetime_min": 0
-  },
-  {
-   "seen_utc": "2026-11-06T17:40:11Z",
-   "league": "NCAAF",
-   "game": "Western Kentucky @ Middle Tennessee",
-   "market": "moneyline",
-   "line": null,
-   "edge_pct": 25.85,
-   "total_cost": 0.7946,
-   "size_est": 7580,
-   "legs": [
-    {
-     "book": "novig",
-     "side": "MTSU (0)",
-     "price": 0.45,
-     "cost_after_fee": 0.45
-    },
-    {
-     "book": "prophetx",
-     "side": "Kentucky",
-     "price": 0.3401,
-     "cost_after_fee": 0.3446
-    }
-   ],
-   "first_seen_utc": "2026-11-06T17:40:11Z",
-   "last_seen_utc": "2026-11-06T17:40:11Z",
-   "scans_seen": 1,
-   "max_edge_pct": 25.85,
-   "scan_sec": 289,
-   "lifetime_min": 0
-  },
-  {
    "seen_utc": "2026-11-06T18:51:43Z",
    "league": "NCAAF",
    "game": "Western Kentucky @ Middle Tennessee",
@@ -5963,11 +5903,11 @@
     }
    ],
    "first_seen_utc": "2026-11-20T05:00:19Z",
-   "last_seen_utc": "2026-11-20T17:35:44Z",
-   "scans_seen": 246,
+   "last_seen_utc": "2026-11-20T17:40:18Z",
+   "scans_seen": 247,
    "max_edge_pct": 42.17,
    "scan_sec": 229,
-   "lifetime_min": 755,
+   "lifetime_min": 760,
    "last_edge_pct": 40.75,
    "last_size_est": 838
   },
