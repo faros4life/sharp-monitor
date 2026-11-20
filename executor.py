@@ -4608,6 +4608,17 @@ def committed_risk(pkey, rows_=None):
                 return None, "a recorded order leg carries an unreadable stake"
             if a is None and f is None:
                 return None, "a recorded order leg carries no stake at all"
+            # Nov 20 (Peter): float() accepts "nan" and "inf", and NaN is the dangerous one -
+            # every comparison with it is False, so a NaN exposure would slide past a
+            # `remaining <= 0` guard and reach the venue as a quantity. Reject anything that is
+            # not a finite, non-negative number, here rather than downstream.
+            for _v in (a, f):
+                if _v is None:
+                    continue
+                if not math.isfinite(_v):
+                    return None, "a recorded order leg carries a non-finite stake (NaN or inf)"
+                if _v < 0:
+                    return None, "a recorded order leg carries a negative stake"
             exposure = max(f or 0.0, a or 0.0)   # unknown fill reserves the full ask
             hit = sorted({by_id[i] for i in ids if i in by_id})
             if not hit:
@@ -4657,7 +4668,20 @@ def rest_bid(r):
     # $110 filled gives rest_risk $124, and $124 - $110 would have rested $14 instead of $124.
     # The two constraints are both CEILINGS on the same intended total, so they combine with min().
     if (r.get("live") or {}).get("rest_risk"):   # Oct 31: only the unfilled part of a partial fill
-        risk = min(risk, float(r["live"]["rest_risk"]))
+        # Nov 20 (Peter): validate before using it. min(234.0, nan) returns 234.0 - every
+        # comparison with NaN is False, so a NaN remainder is not an error here, it is SILENTLY
+        # IGNORED and the full unit rests. That is the no-op that looks like success. A remainder
+        # we cannot read must stop the bid, not vanish from it.
+        try:
+            _rr = float(r["live"]["rest_risk"])
+        except (TypeError, ValueError):
+            return {"status": "refused",
+                    "reason": "the partial-fill remainder is unreadable (fail closed)"}
+        if not (math.isfinite(_rr) and _rr >= 0):
+            return {"status": "refused",
+                    "reason": f"the partial-fill remainder is not a finite non-negative number "
+                              f"({_rr!r}) - fail closed"}
+        risk = min(risk, _rr)
     g_ok, g_why = live_guards()
     if not g_ok:
         return {"status": "refused", "reason": g_why}
@@ -4710,7 +4734,24 @@ def rest_bid(r):
         return {"status": "refused",
                 "reason": f"cross-venue committed risk could not be established ({_cwhy}) - "
                           f"resting a unit could exceed the intended stake (fail closed)"}
+    # Nothing non-finite or negative may reach a venue. Checked on the inputs AND on the computed
+    # remainder, because an arithmetic result can be non-finite even when both inputs are fine.
+    if not (math.isfinite(_committed) and _committed >= 0):
+        registry.release_submission(_rkey, REST_CID)
+        return {"status": "refused",
+                "reason": "committed risk is not a finite non-negative number (fail closed)"}
+    if not (math.isfinite(_unit_risk) and _unit_risk > 0):
+        registry.release_submission(_rkey, REST_CID)
+        return {"status": "refused",
+                "reason": "the intended unit stake is not a finite positive number (fail closed)"}
     _allowed = round(_unit_risk - _committed, 2)      # ceiling from the UNTRIMMED intended total
+    # Defence in depth: with both inputs validated above this cannot currently trigger, and no
+    # test can reach it. It stays because the requirement is that no non-finite remainder ever
+    # reaches a venue, and a future change to either input must not be able to slip past.
+    if not math.isfinite(_allowed):
+        registry.release_submission(_rkey, REST_CID)
+        return {"status": "refused",
+                "reason": "the remaining allowable risk is not a finite number (fail closed)"}
     if _allowed <= 0:
         registry.release_submission(_rkey, REST_CID)
         return {"status": "refused",
@@ -4720,6 +4761,13 @@ def rest_bid(r):
         risk = _allowed
         LOG.append(f"resting bid trimmed to ${risk:,.2f}: ${_committed:,.2f} already committed "
                    f"across venues against ${_unit_risk:,.2f} intended")
+    # The last gate before any venue is touched. Also unreachable today - every input to `risk`
+    # is validated above - and also kept deliberately: this is the single line that guarantees
+    # what reaches novig_place is a finite positive number, whatever future path sets `risk`.
+    if not (math.isfinite(risk) and risk > 0):
+        registry.release_submission(_rkey, REST_CID)
+        return {"status": "refused",
+                "reason": f"resting stake is not a finite positive number ({risk!r}) - fail closed"}
     rest_pre_alert(r, risk, expire, REST_BOOKS)
     why_not = []
     for b in REST_BOOKS:

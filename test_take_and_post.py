@@ -56,7 +56,16 @@ rw = inspect.getsource(ex.rest_wanted)
 check("rest_wanted rests only the unfilled part", 'lv["rest_risk"] = rem' in rw)
 check("and computes it from confirmed fills too", "sum(_got(x) for x in allo)" in rw)
 rb = inspect.getsource(ex.rest_bid)
-check("rest_bid never rests more than that remainder", 'min(risk, float(r["live"]["rest_risk"]))' in rb)
+# Nov 20: this pinned the literal expression min(risk, float(r["live"]["rest_risk"])). That
+# expression was rewritten when the remainder gained a finite/non-negative guard - min(234.0, nan)
+# returns 234.0, so a NaN remainder used to be silently ignored rather than refused. The property
+# is unchanged and is what is asserted now: rest_bid reads that remainder and applies it as a
+# CEILING on the stake. Behavioural proof that a tighter remainder wins lives in
+# test_cross_venue_rest section 10c, which asserts the dollars handed to the venue.
+check("rest_bid reads the partial-fill remainder", 'r["live"]["rest_risk"]' in rb)
+check("rest_bid never rests more than that remainder", "risk = min(risk, _rr)" in rb)
+check("and refuses rather than ignoring an unusable remainder",
+      "the partial-fill remainder is not a finite non-negative number" in rb)
 
 print("\n4. Fills + resting exposure can never exceed the intended stake (rule 4)")
 TARGET = 200.0

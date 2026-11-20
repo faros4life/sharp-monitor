@@ -344,6 +344,46 @@ check("the unread order reserves its ask, so only the remainder rests",
       got == round(_unit - 100.00, 2), f"submitted ${got}")
 check("it was not treated as a zero fill", got != round(_unit, 2))
 
+print("\n11. NUMERICAL SAFETY: nothing non-finite or negative may reach a venue")
+# Nov 20 (Peter): float() happily parses "nan" and "inf". NaN is the dangerous one - every
+# comparison with it is False, so a NaN exposure slips past a "remaining <= 0" guard and arrives
+# at the venue as a quantity. These assert on what reaches novig_place, not just on the return.
+import math as _math
+
+print("   a) committed_risk rejects them at the source:")
+for label, val in (("NaN asked", float("nan")), ("+inf asked", float("inf")),
+                   ("-inf asked", float("-inf")), ("negative asked", -110.0)):
+    c, why = ex.committed_risk(KEY, rows_=[row(order=leg(asked=val, cid="n1", oid="N1"))])
+    check(f"{label} refuses", c is None and bool(why), str(why)[:46])
+for label, val in (("NaN filled", float("nan")), ("inf filled", float("inf")),
+                   ("negative filled", -5.0)):
+    c, why = ex.committed_risk(KEY, rows_=[row(order=leg(asked=110.0, filled=val,
+                                                          cid="n2", oid="N2"))])
+    check(f"{label} refuses", c is None and bool(why), str(why)[:46])
+c, why = ex.committed_risk(KEY, rows_=[row(order=leg(asked="nan", cid="n3", oid="N3"))])
+check("the STRING 'nan' refuses too (float() parses it)", c is None and bool(why), str(why)[:46])
+c, why = ex.committed_risk(KEY, rows_=[row(order=leg(asked="inf", cid="n4", oid="N4"))])
+check("the string 'inf' refuses too", c is None and bool(why), str(why)[:46])
+check("a normal stake is still accepted",
+      ex.committed_risk(KEY, rows_=[row(order=leg(asked=110.0, cid="ok", oid="OK"))])[0] == 110.0)
+
+print("   b) INTEGRATION: no venue call is made for any of them")
+for label, val in (("NaN", float("nan")), ("inf", float("inf")), ("negative", -110.0)):
+    res, got = _run_rest_bid([row(order=leg(asked=val, cid=f"i-{label}", oid=f"I{label}"))])
+    check(f"{label} stake: refused", res.get("status") == "refused", str(res.get("reason"))[:48])
+    check(f"{label} stake: novig_place was NEVER called", got is None and not SUBMITTED)
+
+print("   c) a NaN arriving as rest_risk cannot reach the venue either")
+res, got = _run_rest_bid([], rest_risk=float("nan"))
+check("refused before dispatch", res.get("status") == "refused", str(res.get("reason"))[:48])
+check("and nothing was submitted", got is None and not SUBMITTED)
+
+print("   d) whatever is submitted on the good path is finite and positive")
+res, got = _run_rest_bid([px])
+check("the incident's remainder is a finite positive number",
+      got is not None and _math.isfinite(got) and got > 0, f"${got}")
+check("and it is still exactly $124.00 - the calculation is unchanged", got == 124.00, f"${got}")
+
 print()
 if fails:
     print(f"FAILED {len(fails)}: " + "; ".join(fails))
