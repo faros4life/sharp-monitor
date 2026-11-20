@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 20, 1:00 PM ET. This run: 2 new, 0 not confirmed, 1 pending. Open alerts: 24.
+Updated Fri Nov 20, 1:10 PM ET. This run: 1 new, 0 not confirmed, 2 pending. Open alerts: 25.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 20 1:10PM | NCAAB | Western Kentucky vs Richmond | moneyline: Western Kentucky | kalshi | $30k | -104 | ✅ novig | ❌ | +0.0c |  | pending |
 | Nov 20 1:00PM | NCAAB | Northwestern vs Virginia Tech: Spread | spread: NOT Virginia Tech wins by over 11.5 points | kalshi | $44k | -113 |  |  | +0.0c |  | pending |
 | Nov 20 1:00PM | NCAAB | Central Michigan vs Pittsburgh: Spread | spread: NOT Pittsburgh wins by over 20.5 points | kalshi | $35k | +108 |  | ✅ | +0.0c |  | pending |
 | Nov 20 12:40PM | NCAAB | UAB vs George Washington: Spread | spread: NOT George Washington wins by over 8.5 points | kalshi | $33k | +104 |  |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 7:40AM | NCAAB | UMBC vs Towson | moneyline: Towson | kalshi | $46k | -525 |  |  | -1.0c |  | W |
 | Nov 14 7:40AM | NCAAB | Portland St. vs San Francisco | moneyline: San Francisco | kalshi | $51k | -567 |  |  | -5.0c | yes | L |
 | Nov 14 7:40AM | NCAAB | Howard vs Davidson | moneyline: Davidson | kalshi | $37k | -426 |  |  | +3.0c |  | L |
-| Nov 14 7:40AM | NCAAB | Brown vs Siena | moneyline: Siena | kalshi | $62k | -567 |  |  | -2.0c |  | W |
