@@ -398,7 +398,16 @@ def main(argv):
         if not _b.get("game"):
             continue
         for g, val in by_game.items():
-            if len(_tb.toks(g) & _tb.toks(_b.get("game"))) < 2:
+            # Two shared tokens was far too loose: it tied Houston's event record to bets from
+            # Nov 15, Nov 1 and Oct 31. Game names must be near-identical, so this requires
+            # Jaccard similarity >= 0.6 on the token sets - "Indianapolis Colts at Houston Texans"
+            # against "Indianapolis Colts @ Houston Texans" scores 1.0, an unrelated game scores
+            # far below - and at least two shared tokens as a floor.
+            ta, tbk = _tb.toks(g), _tb.toks(_b.get("game"))
+            inter = ta & tbk
+            if len(inter) < 2 or not ta or not tbk:
+                continue
+            if len(inter) / len(ta | tbk) < 0.6:
                 continue
             own = et_day(_b.get("game_start")) if _b.get("game_start") else None
             _b["_gameday_ev"] = val[0]
@@ -426,8 +435,12 @@ def main(argv):
             rec["_manual"] = True
         vw = row_view(k, b, rec)
         # WHY this bet is on this day - so a row can never be silently counted on two days.
+        # UNVERIFIED means we hold NO authenticated placement or settlement timestamp at all -
+        # not merely that neither falls on this day. A bet present only by its game date is
+        # labelled as such, which is accurate and was previously mislabelled UNVERIFIED.
         vw["on_day"] = ("settled" if et_day(b.get("settled")) == day
                         else "placed this day" if et_day(b.get("placed")) == day
+                        else "game this day" if (b.get("placed") or b.get("settled"))
                         else "UNVERIFIED date")
         vw["placed_src"] = b.get("placed_src")
         vw["settled_src"] = b.get("settled_src")

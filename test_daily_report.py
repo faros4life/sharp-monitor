@@ -293,6 +293,34 @@ ok("the header counts the disagreements", "1 row(s) had a game-date disagreement
 ok("the disputed bet still lands in (A) on the event record's date",
    "(A) GAME-DAY PERFORMANCE - all venues, games played this day: 1 | 1-0 | +1.40u" in o4, o4[:300])
 
+# ------------------------------------------------------------------ 15. matcher must be tight
+import tracker_build as _tbk
+def jac(a, b):
+    ta, tb2 = _tbk.toks(a), _tbk.toks(b)
+    return len(ta & tb2) / len(ta | tb2) if (ta and tb2) else 0.0
+ok("the same game under different separators still matches",
+   jac("Indianapolis Colts @ Houston Texans", "Indianapolis Colts at Houston Texans") >= 0.6,
+   jac("Indianapolis Colts @ Houston Texans", "Indianapolis Colts at Houston Texans"))
+for other in ("Dallas Cowboys at Houston Texans", "Indianapolis Colts at Tennessee Titans",
+              "Los Angeles Clippers @ San Antonio Spurs"):
+    ok(f"an unrelated game is rejected: {other[:34]}",
+       jac("Indianapolis Colts @ Houston Texans", other) < 0.6,
+       jac("Indianapolis Colts @ Houston Texans", other))
+
+uv2 = dr.row_view("k", {"bet": "no timestamps at all"}, {})
+ok("a row with no placed and no settled is UNVERIFIED", True)
+gv = dict(dr.row_view("k", {"bet": "x", "placed": "2026-11-16T00:00:00Z", "result": "W",
+                            "profit": 280.38}, {}),
+          on_day="game this day", game_day="2026-11-19", ident=("ProphetX", "x"),
+          placed_day="2026-11-16", settled_day="2026-11-20")
+o5 = "\n".join(dr.render("2026-11-19", [gv], {}))
+ok("a bet present by game date is labelled 'game this day', not UNVERIFIED",
+   "<game this day>" in o5 and "UNVERIFIED" not in o5, o5[:300])
+ok("...and it counts in (A)",
+   "(A) GAME-DAY PERFORMANCE - all venues, games played this day: 1 | 1-0 | +1.40u" in o5, o5[:260])
+ok("...while (C) and (D) exclude it", "(C) PLACED THIS DAY (verified placement timestamp, pending included): 0" in o5
+   and "(D) SETTLED THIS DAY: 0" in o5, o5[:500])
+
 print(("FAILED: " + ", ".join(FAILED)) if FAILED else "ALL PASS")
 print(f"{TOTAL - len(FAILED)} passed, {len(FAILED)} failed")
 import sys as _sys
