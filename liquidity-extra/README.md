@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 20, 9:20 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 15.
+Updated Fri Nov 20, 9:25 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 15.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -11,7 +11,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 20 8:40AM | NCAAB | Tulsa vs Mississippi St. | moneyline: Mississippi St. | kalshi | $49k | -285 |  | ✅ | +0.0c |  | pending |
-| Nov 20 3:20AM | NCAAB | Western Illinois vs University at Albany | moneyline: Albany | kalshi | $143k | -300 |  |  | -1.0c |  | pending |
+| Nov 20 3:20AM | NCAAB | Western Illinois vs University at Albany | moneyline: Albany | kalshi | $143k | -300 |  |  | -2.0c |  | pending |
 | Nov 20 3:20AM | NCAAB | Georgia vs Georgia Tech | moneyline: Georgia | kalshi | $75k | -335 |  |  | +0.0c |  | pending |
 | Nov 20 3:20AM | NCAAB | South Dakota St. vs Idaho St. | moneyline: South Dakota St. | kalshi | $138k | -270 |  |  | -1.0c |  | pending |
 | Nov 20 3:20AM | NCAAB | Northwestern vs Virginia Tech | moneyline: Virginia Tech | kalshi | $165k | -567 |  |  | +0.0c |  | pending |
