@@ -2,66 +2,6 @@
  "note": "PAPER ONLY (Oct 25; persistence added Oct 26): opposite sides of the same game/market/line on two different exchanges whose combined cost after fees is under $1 (Kalshi/Novig/ProphetX; Polymarket here is the global book, excluded). edge_pct = locked profit per $ staked at first sight; max/last_edge_pct while open. size_est = smaller leg's near-price depth (UPPER BOUND). first/last_seen_utc, scans_seen, lifetime_min = how long the gap stayed open (scan-interval resolution; a 1-scan gap may be a feed artifact). scan_sec = seconds from run start to this save, the most the two legs' reads can be apart. Measurement only: never alerted, never bet.",
  "gaps": [
   {
-   "seen_utc": "2026-11-06T07:40:31Z",
-   "league": "NCAAF",
-   "game": "Western Kentucky @ Middle Tennessee",
-   "market": "total",
-   "line": 53.5,
-   "edge_pct": 5.42,
-   "total_cost": 0.9486,
-   "size_est": 29,
-   "legs": [
-    {
-     "book": "novig",
-     "side": "Under 53.5 (53.5)",
-     "price": 0.52,
-     "cost_after_fee": 0.52
-    },
-    {
-     "book": "prophetx",
-     "side": "over 53.5 (53.5)",
-     "price": 0.4237,
-     "cost_after_fee": 0.4286
-    }
-   ],
-   "first_seen_utc": "2026-11-06T07:40:31Z",
-   "last_seen_utc": "2026-11-06T07:40:31Z",
-   "scans_seen": 1,
-   "max_edge_pct": 5.42,
-   "scan_sec": 260,
-   "lifetime_min": 0
-  },
-  {
-   "seen_utc": "2026-11-06T07:40:31Z",
-   "league": "NCAAF",
-   "game": "Western Kentucky @ Middle Tennessee",
-   "market": "moneyline",
-   "line": null,
-   "edge_pct": 26.2,
-   "total_cost": 0.7924,
-   "size_est": 4730,
-   "legs": [
-    {
-     "book": "novig",
-     "side": "MTSU (0)",
-     "price": 0.46,
-     "cost_after_fee": 0.46
-    },
-    {
-     "book": "prophetx",
-     "side": "Kentucky",
-     "price": 0.3279,
-     "cost_after_fee": 0.3324
-    }
-   ],
-   "first_seen_utc": "2026-11-06T07:40:31Z",
-   "last_seen_utc": "2026-11-06T07:40:31Z",
-   "scans_seen": 1,
-   "max_edge_pct": 26.2,
-   "scan_sec": 260,
-   "lifetime_min": 0
-  },
-  {
    "seen_utc": "2026-11-06T09:20:40Z",
    "league": "NCAAF",
    "game": "Western Kentucky @ Middle Tennessee",
@@ -6539,11 +6479,11 @@
     }
    ],
    "first_seen_utc": "2026-11-20T05:00:19Z",
-   "last_seen_utc": "2026-11-20T07:40:14Z",
-   "scans_seen": 62,
+   "last_seen_utc": "2026-11-20T07:45:45Z",
+   "scans_seen": 64,
    "max_edge_pct": 42.17,
    "scan_sec": 229,
-   "lifetime_min": 160,
+   "lifetime_min": 165,
    "last_edge_pct": 42.17,
    "last_size_est": 155
   },
@@ -6571,11 +6511,11 @@
     }
    ],
    "first_seen_utc": "2026-11-20T05:05:40Z",
-   "last_seen_utc": "2026-11-20T07:40:14Z",
-   "scans_seen": 25,
+   "last_seen_utc": "2026-11-20T07:45:45Z",
+   "scans_seen": 26,
    "max_edge_pct": 10.57,
    "scan_sec": 227,
-   "lifetime_min": 155,
+   "lifetime_min": 160,
    "last_edge_pct": 10.2,
    "last_size_est": 252
   },
@@ -6603,11 +6543,11 @@
     }
    ],
    "first_seen_utc": "2026-11-20T05:05:40Z",
-   "last_seen_utc": "2026-11-20T07:40:14Z",
-   "scans_seen": 30,
+   "last_seen_utc": "2026-11-20T07:45:45Z",
+   "scans_seen": 31,
    "max_edge_pct": 3.01,
    "scan_sec": 227,
-   "lifetime_min": 155,
+   "lifetime_min": 160,
    "last_edge_pct": 3.01,
    "last_size_est": 0
   },
@@ -6635,11 +6575,11 @@
     }
    ],
    "first_seen_utc": "2026-11-20T05:05:40Z",
-   "last_seen_utc": "2026-11-20T07:40:14Z",
-   "scans_seen": 29,
+   "last_seen_utc": "2026-11-20T07:45:45Z",
+   "scans_seen": 30,
    "max_edge_pct": 20.19,
    "scan_sec": 227,
-   "lifetime_min": 155,
+   "lifetime_min": 160,
    "last_edge_pct": 20.19,
    "last_size_est": 0
   },
@@ -6733,6 +6673,36 @@
    "scans_seen": 1,
    "max_edge_pct": 37.02,
    "scan_sec": 200,
+   "lifetime_min": 0
+  },
+  {
+   "seen_utc": "2026-11-20T07:45:45Z",
+   "league": "NCAAF",
+   "game": "Southern Illinois @ North Dakota",
+   "market": "total",
+   "line": 49.5,
+   "edge_pct": 12.91,
+   "total_cost": 0.8857,
+   "size_est": 57,
+   "legs": [
+    {
+     "book": "novig",
+     "side": "Under 49.5 (49.5)",
+     "price": 0.505,
+     "cost_after_fee": 0.505
+    },
+    {
+     "book": "prophetx",
+     "side": "over 49.5 (49.5)",
+     "price": 0.3759,
+     "cost_after_fee": 0.3807
+    }
+   ],
+   "first_seen_utc": "2026-11-20T07:45:45Z",
+   "last_seen_utc": "2026-11-20T07:45:45Z",
+   "scans_seen": 1,
+   "max_edge_pct": 12.91,
+   "scan_sec": 185,
    "lifetime_min": 0
   }
  ]
