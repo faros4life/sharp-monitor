@@ -38,6 +38,42 @@ def et_day(iso_ts):
     return t.astimezone(tb.ET).strftime("%Y-%m-%d")
 
 
+def merge_summaries(rows):
+    """Keys of rows that are a MERGED SUMMARY of sibling wagers, not wagers themselves.
+
+    Peter's ruling, Nov 20: for a same-exchange multi-fill the ORIGINAL wagers are authoritative
+    and the merged CSV row is a summary that must never be counted again. SMU +20.5 was two Hard
+    Rock wagers, 210 and 105, which the CSV merges into one 315 row - counting all three reads 525
+    of exposure where 315 was wagered.
+
+    A row is a summary only when it sits on the SAME book, game and bet as two or more siblings
+    AND its stake equals their sum to the cent AND it arrived by a different ingestion path
+    (different source tag). All three conditions, because arithmetic alone would mis-flag a third
+    genuine wager that happens to equal the other two, and under-counting exposure is as wrong as
+    over-counting it. Nothing is deleted: the row is excluded from the report's totals and said so.
+    """
+    groups = {}
+    for k, b in rows:
+        groups.setdefault((b.get("book"), b.get("game"), b.get("bet")), []).append((k, b))
+    out = {}
+    for _g, members in groups.items():
+        if len(members) < 3:
+            continue
+        for k, b in members:
+            st = num(b.get("stake"))
+            sibs = [(k2, b2) for k2, b2 in members if k2 != k and num(b2.get("stake")) is not None]
+            if st is None or len(sibs) < 2:
+                continue
+            tot = sum(num(b2.get("stake")) for _k2, b2 in sibs)
+            same_path = any((b2.get("source") or "") == (b.get("source") or "") for _k2, b2 in sibs)
+            if abs(tot - st) < 0.01 and not same_path:
+                out[k] = (f"MERGE SUMMARY EXCLUDED: this row's stake equals the sum of "
+                          f"{len(sibs)} sibling wagers on the same book, game and bet, and it "
+                          f"arrived by a different path. The original wagers are authoritative "
+                          f"(Peter, Nov 20); this summary is not counted again.")
+    return out
+
+
 def game_day_of(b):
     """THE game day for a bet, in one place.
 
@@ -262,6 +298,9 @@ def pct(x):
     return "-" if x is None else f"{x * 100:+.2f}%"
 
 
+L_SUMMARY = []
+
+
 def render(day, views, meta=None):
     L = [f"SETTLED BETS - {day} (ET). Units at 1u = {UNIT:.0f}; no dollar figures by design.",
          "Read-only projection of stored records. A dash is a field we do not hold, with its reason.",
@@ -340,6 +379,8 @@ def render(day, views, meta=None):
     snap_prov = [v for v in gameday if (v.get("snap") or {}).get("clv") is not None
                  and not (v.get("snap") or {}).get("certified")]
     unavail = [v for v in gameday if v["v1"] is None and (v.get("snap") or {}).get("clv") is None]
+    for _m in L_SUMMARY:
+        L.append(f"!! {_m}")
     L.append(f"CLV SAME-LINE COVERAGE: {len(v1_cert) + len(snap_cert)}/{len(gameday)}"
              f" = {len(v1_cert)} certified V1 ledger close + {len(snap_cert)} same-line snapshot"
              f" | provisional converted {len(snap_prov)}"
@@ -453,8 +494,12 @@ def main(argv):
     for r in manual_file(day):
         if (r.get("book"), r.get("game"), r.get("bet")) not in have:
             rows.append((r.get("id") or f"manual|{r.get('bet')}", dict(r, _manual=True)))
+    summaries = merge_summaries(rows)
     views = []
     for k, b in rows:
+        if k in summaries:
+            L_SUMMARY.append(summaries[k] + f" | {b.get('book')} {b.get('bet')}")
+            continue
         rec = dict(bets.get(k) or {})
         if b.get("_manual"):
             rec["_manual"] = True

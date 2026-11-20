@@ -353,6 +353,31 @@ ok("coverage adds certified V1 closes to same-line snapshots",
 ok("an unavailable row is counted as unavailable, not zero",
    "UNAVAILABLE 1 (never counted as zero)" in o6)
 
+# ------------------------------------------------------------------ 18. merged CSV summary excluded
+def hr(stake, src, bet="SMU +20.5 (-105)"):
+    return {"book": "Hard Rock", "game": "SMU @ X", "bet": bet, "stake": stake, "source": src,
+            "result": "W", "profit": stake, "placed": "2026-11-17T18:00:00Z"}
+smu = [("w1", hr(210.0, "Peter (Hard Rock note)")),
+       ("w2", hr(105.0, "Peter (Hard Rock note)")),
+       ("csv", hr(315.0, "csv export"))]
+ms = dr.merge_summaries(smu)
+ok("the merged CSV row is identified as a summary", list(ms) == ["csv"], list(ms))
+ok("neither original wager is flagged", "w1" not in ms and "w2" not in ms)
+ok("the exclusion names Peter's ruling and the reason",
+   "original wagers are authoritative" in ms["csv"] and "not counted again" in ms["csv"])
+ok("210 + 105 = 315, so exposure reads 315 and never 525",
+   sum(b["stake"] for k, b in smu if k not in ms) == 315.0)
+
+same = [("a", hr(105.0, "Peter (Hard Rock note)")),
+        ("b", hr(105.0, "Peter (Hard Rock note)")),
+        ("c", hr(210.0, "Peter (Hard Rock note)"))]
+ok("a third GENUINE wager on the same path is NOT dropped - under-counting is as wrong as over",
+   dr.merge_summaries(same) == {}, dr.merge_summaries(same))
+ok("two wagers with no summary are left alone", dr.merge_summaries(smu[:2]) == {})
+ok("a different bet is never grouped with it",
+   dr.merge_summaries([("w1", hr(210.0, "n")), ("w2", hr(105.0, "n")),
+                       ("x", hr(315.0, "csv", bet="SMU -20.5 (-105)"))]) == {})
+
 print(("FAILED: " + ", ".join(FAILED)) if FAILED else "ALL PASS")
 print(f"{TOTAL - len(FAILED)} passed, {len(FAILED)} failed")
 import sys as _sys
