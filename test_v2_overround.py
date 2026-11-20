@@ -219,3 +219,5 @@ ok("the spec records the timestamp confound and the correction",
 
 print(("FAILED: " + ", ".join(FAILED)) if FAILED else "ALL PASS")
 print(f"{TOTAL - len(FAILED)} passed, {len(FAILED)} failed")
+import sys as _sys
+_sys.exit(1 if FAILED else 0)   # a soft assertion failure MUST fail the build, not print and pass

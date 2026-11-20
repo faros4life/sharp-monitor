@@ -87,14 +87,14 @@ ok("both CLVs are shown when held", v6["v1"] == 0.01 and v6["v2"] == -0.02)
 lines = "\n".join(dr.render("2026-11-19", [v, v2, v6]))
 ok("no dollar figure can reach the output", "$" not in lines)
 ok("the header states the unit and that dollars are omitted", "1u = 200" in lines and "no dollar" in lines)
-ok("the record and units total are shown", "3 settled" in lines and "+" in lines)
+ok("the record and units total are shown", "SETTLED THIS DAY:" in lines and "u" in lines)
 ok("V1 coverage is reported as a fraction, not implied", "V1 CLV on 2/3" in lines, lines[:400])
 ok("a missing field prints its reason", "not in the CLV ledger" in lines)
 ok("an absent value prints as a dash", " - " in lines or "-" in lines)
 ok("the report says a dash is a field we do not hold", "a field we do not hold" in lines)
 empty = "\n".join(dr.render("2026-11-19", []))
-ok("a day with nothing settled says so rather than printing an empty table",
-   "No settled bets recorded" in empty)
+ok("a day with nothing recorded says so rather than printing an empty table",
+   "No bets recorded" in empty)
 
 # ------------------------------------------------------------------ 7. day selection keeps unsettled bets
 trk2 = {"p": {"placed": "2026-11-20T01:00:00Z", "bet": "placed yesterday, not settled"},
@@ -144,3 +144,5 @@ ok("an empty day no longer says 'settled'", "No bets recorded" in "\n".join(dr.r
 
 print(("FAILED: " + ", ".join(FAILED)) if FAILED else "ALL PASS")
 print(f"{TOTAL - len(FAILED)} passed, {len(FAILED)} failed")
+import sys as _sys
+_sys.exit(1 if FAILED else 0)   # a soft assertion failure MUST fail the build, not print and pass

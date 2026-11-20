@@ -105,4 +105,6 @@ ok("CLV is still written at exactly one place in the ledger", src.count('rec["cl
 
 print(("FAILED: " + ", ".join(FAILED)) if FAILED else "ALL PASS")
 print(f"{TOTAL - len(FAILED)} passed, {len(FAILED)} failed")
+import sys as _sys
+_sys.exit(1 if FAILED else 0)   # a soft assertion failure MUST fail the build, not print and pass
 raise SystemExit(1 if FAILED else 0)
