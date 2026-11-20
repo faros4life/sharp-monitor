@@ -2,66 +2,6 @@
  "note": "PAPER ONLY (Oct 25; persistence added Oct 26): opposite sides of the same game/market/line on two different exchanges whose combined cost after fees is under $1 (Kalshi/Novig/ProphetX; Polymarket here is the global book, excluded). edge_pct = locked profit per $ staked at first sight; max/last_edge_pct while open. size_est = smaller leg's near-price depth (UPPER BOUND). first/last_seen_utc, scans_seen, lifetime_min = how long the gap stayed open (scan-interval resolution; a 1-scan gap may be a feed artifact). scan_sec = seconds from run start to this save, the most the two legs' reads can be apart. Measurement only: never alerted, never bet.",
  "gaps": [
   {
-   "seen_utc": "2026-11-06T13:01:29Z",
-   "league": "NCAAF",
-   "game": "Western Kentucky @ Middle Tennessee",
-   "market": "total",
-   "line": 53.5,
-   "edge_pct": 6.6,
-   "total_cost": 0.9381,
-   "size_est": 83,
-   "legs": [
-    {
-     "book": "novig",
-     "side": "Under 53.5 (53.5)",
-     "price": 0.52,
-     "cost_after_fee": 0.52
-    },
-    {
-     "book": "prophetx",
-     "side": "over 53.5 (53.5)",
-     "price": 0.4132,
-     "cost_after_fee": 0.4181
-    }
-   ],
-   "first_seen_utc": "2026-11-06T13:01:29Z",
-   "last_seen_utc": "2026-11-06T13:01:29Z",
-   "scans_seen": 1,
-   "max_edge_pct": 6.6,
-   "scan_sec": 256,
-   "lifetime_min": 0
-  },
-  {
-   "seen_utc": "2026-11-06T13:01:29Z",
-   "league": "NCAAF",
-   "game": "Western Kentucky @ Middle Tennessee",
-   "market": "moneyline",
-   "line": null,
-   "edge_pct": 25.34,
-   "total_cost": 0.7978,
-   "size_est": 4608,
-   "legs": [
-    {
-     "book": "novig",
-     "side": "MTSU (0)",
-     "price": 0.46,
-     "cost_after_fee": 0.46
-    },
-    {
-     "book": "prophetx",
-     "side": "Kentucky",
-     "price": 0.3333,
-     "cost_after_fee": 0.3378
-    }
-   ],
-   "first_seen_utc": "2026-11-06T13:01:29Z",
-   "last_seen_utc": "2026-11-06T13:01:29Z",
-   "scans_seen": 1,
-   "max_edge_pct": 25.34,
-   "scan_sec": 256,
-   "lifetime_min": 0
-  },
-  {
    "seen_utc": "2026-11-06T13:11:25Z",
    "league": "NCAAF",
    "game": "Rhode Island @ New Hampshire",
@@ -6323,11 +6263,11 @@
     }
    ],
    "first_seen_utc": "2026-11-20T05:00:19Z",
-   "last_seen_utc": "2026-11-20T13:00:24Z",
-   "scans_seen": 172,
+   "last_seen_utc": "2026-11-20T13:06:01Z",
+   "scans_seen": 174,
    "max_edge_pct": 42.17,
    "scan_sec": 229,
-   "lifetime_min": 480,
+   "lifetime_min": 486,
    "last_edge_pct": 39.76,
    "last_size_est": 172
   },
@@ -6355,11 +6295,11 @@
     }
    ],
    "first_seen_utc": "2026-11-20T05:05:40Z",
-   "last_seen_utc": "2026-11-20T13:00:24Z",
-   "scans_seen": 70,
+   "last_seen_utc": "2026-11-20T13:06:01Z",
+   "scans_seen": 71,
    "max_edge_pct": 10.93,
    "scan_sec": 227,
-   "lifetime_min": 475,
+   "lifetime_min": 480,
    "last_edge_pct": 10.2,
    "last_size_est": 87
   },
@@ -6387,11 +6327,11 @@
     }
    ],
    "first_seen_utc": "2026-11-20T05:05:40Z",
-   "last_seen_utc": "2026-11-20T13:00:24Z",
-   "scans_seen": 79,
+   "last_seen_utc": "2026-11-20T13:06:01Z",
+   "scans_seen": 80,
    "max_edge_pct": 3.01,
    "scan_sec": 227,
-   "lifetime_min": 475,
+   "lifetime_min": 480,
    "last_edge_pct": 2.77,
    "last_size_est": 0
   },
@@ -6419,11 +6359,11 @@
     }
    ],
    "first_seen_utc": "2026-11-20T05:05:40Z",
-   "last_seen_utc": "2026-11-20T13:00:24Z",
-   "scans_seen": 76,
+   "last_seen_utc": "2026-11-20T13:06:01Z",
+   "scans_seen": 77,
    "max_edge_pct": 20.19,
    "scan_sec": 227,
-   "lifetime_min": 475,
+   "lifetime_min": 480,
    "last_edge_pct": 20.19,
    "last_size_est": 0
   },
@@ -6761,11 +6701,11 @@
     }
    ],
    "first_seen_utc": "2026-11-20T11:55:39Z",
-   "last_seen_utc": "2026-11-20T13:00:24Z",
-   "scans_seen": 10,
+   "last_seen_utc": "2026-11-20T13:06:01Z",
+   "scans_seen": 11,
    "max_edge_pct": 13.28,
    "scan_sec": 193,
-   "lifetime_min": 65,
+   "lifetime_min": 70,
    "last_edge_pct": 12.54,
    "last_size_est": 52
   },
