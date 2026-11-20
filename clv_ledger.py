@@ -1131,7 +1131,24 @@ def v2_report(st):
         big = sorted(moved, key=lambda r: abs(r["clv_v2"] - r["clv"]), reverse=True)[:5]
         for r in big:
             L.append(f"  largest change: {str((r.get('snap') or {}).get('bet'))[:28]} | "
-                     f"V1 {100 * r['clv']:+.2f}% -> V2 {100 * r['clv_v2']:+.2f}% | {r.get('how_v2')}")
+                     f"our line {r.get('our_line')} vs close main {r.get('main_line')} | "
+                     f"paid {r.get('eff_am')} vs close fair {r.get('close_am')} (V1) "
+                     f"/ {tb.p_to_american(r['close_p_v2']) if r.get('close_p_v2') else '?'} (V2) | "
+                     f"V1 {100 * r['clv']:+.2f}% -> V2 {100 * r['clv_v2']:+.2f}%")
+    kn = collections.Counter()
+    for r in moved:
+        ol, ml = r.get("our_line"), r.get("main_line")
+        lg_ = str((r.get("snap") or {}).get("league") or "?")
+        if ol is None or ml is None:
+            kn["no line pair recorded"] += 1
+            continue
+        lo, hi = sorted((abs(ol), abs(ml)))
+        crossed = [n for n in (3, 7, 10, 14) if lo < n <= hi] if lg_ in ("NFL", "NCAAF") else []
+        kn[f"{lg_} move {abs(round(hi - lo, 1))} pts"
+           + (f", crosses {'/'.join(map(str, crossed))}" if crossed else "")] += 1
+    if kn:
+        L.append("V2 moved rows by league, distance and football key numbers crossed: "
+                 + ", ".join(f"{k} x{v}" for k, v in sorted(kn.items())))
     for tag, sel in (("ALL", both), ("bot", [r for r in both if str((r.get("snap") or {}).get("source") or "").lower().startswith("bot")])):
         if not sel:
             continue
@@ -1165,6 +1182,8 @@ def record_v2(rec, c, d):
     rec["v2_derived"] = not c.get("at_main", True)
     if c.get("main_line") is not None:
         rec["main_line"] = c["main_line"]
+    if c.get("our_line") is not None:
+        rec["our_line"] = c["our_line"]      # our number, so line-vs-main and key numbers are checkable
     return True
 
 
@@ -1257,7 +1276,7 @@ def close_for(b, f, pm, mkmap, start, lg):
             _p2v = _p1v if _at_main else fair_from_main(
                 _po if over else 1 - _po, _ppt, want, (want < _ppt) if over else (want > _ppt), lab, "tot")
             return {"p": _p1v, "how": "own line", "age_min": round(exact[2]),
-                    "at_main": _at_main, "main_line": _ppt,
+                    "at_main": _at_main, "main_line": _ppt, "our_line": want,
                     "v2_p": _p2v, "v2_how": "own line" if _at_main else f"own line (from main {_ppt:g})"}, None
         ppt, po = main[0], main[1]
         if abs(want - ppt) > max(1.5, 0.03 * ppt):   # Nov 2: 'Over 5.5' scored on an NBA total = wrong league/market
@@ -1284,7 +1303,7 @@ def close_for(b, f, pm, mkmap, start, lg):
         _p2v = _p1v if _at_main else fair_from_main(
             _pm1 if side == "1" else 1 - _pm1, _mine, want, want > _mine, lab, "spr")
         return {"p": _p1v, "how": "own line", "age_min": round(exact[2]),
-                "at_main": _at_main, "main_line": _mine,
+                "at_main": _at_main, "main_line": _mine, "our_line": want,
                 "v2_p": _p2v, "v2_how": "own line" if _at_main else f"own line (from main {_mine:+g})"}, None
     if lg == "NHL":
         return None, "puck line at a different number: not comparable"
