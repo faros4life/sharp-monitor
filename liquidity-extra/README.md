@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 20, 12:30 PM ET. This run: 0 new, 0 not confirmed, 3 pending. Open alerts: 19.
+Updated Fri Nov 20, 12:40 PM ET. This run: 3 new, 0 not confirmed, 0 pending. Open alerts: 22.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 20 12:40PM | NCAAB | UAB vs George Washington: Spread | spread: NOT George Washington wins by over 8.5 points | kalshi | $33k | +104 |  |  | +0.0c |  | pending |
+| Nov 20 12:40PM | NCAAB | Manhattan vs Miami (FL): Spread | spread: NOT Miami (FL) wins by over 36.5 points | kalshi | $45k | -104 |  | ✅ | +0.0c |  | pending |
+| Nov 20 12:40PM | NCAAB | Delaware vs Cal State Northridge: Spread | spread: NOT Cal State Northridge wins by over 6.5 points | kalshi | $34k | +117 |  | ❌ | +0.0c |  | pending |
 | Nov 20 12:10PM | NCAAB | Temple vs Middle Tennessee | moneyline: Temple | kalshi | $70k | -150 | ✅ novig | ❌ | +0.0c |  | pending |
 | Nov 20 12:00PM | NCAAB | Kentucky vs Indiana | moneyline: Indiana | kalshi | $35k | -156 | ✅ novig |  | +0.0c |  | pending |
 | Nov 20 11:50AM | NCAAB | South Carolina St. vs The Citadel | moneyline: The Citadel | kalshi | $43k | -138 | ✅ novig |  | +1.0c |  | pending |
@@ -207,6 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 7:40AM | NCAAB | Brown vs Siena | moneyline: Siena | kalshi | $62k | -567 |  |  | -2.0c |  | W |
 | Nov 14 7:30AM | NCAAB | Colorado vs Providence | moneyline: Providence | kalshi | $30k | -567 |  |  | +0.0c |  | W |
 | Nov 14 5:40AM | NCAAB | NJIT vs Fairfield | moneyline: Fairfield | kalshi | $26k | -525 |  |  | +3.0c | yes | W |
-| Nov 14 3:50AM | NCAAB | Wofford vs Queens University | moneyline: Queens University | kalshi | $26k | -300 |  |  | -4.0c | yes | W |
-| Nov 14 1:50AM | NCAAB | Northern Colorado vs South Dakota St. | moneyline: South Dakota St. | kalshi | $33k | -163 |  |  | -4.0c | yes | W |
-| Nov 14 1:50AM | NCAAB | USC Upstate vs Campbell | moneyline: Campbell | kalshi | $33k | -300 |  |  | +6.0c | yes | W |
