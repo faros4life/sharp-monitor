@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 20, 1:10 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 34.
+Updated Fri Nov 20, 1:15 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 35.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 20 1:15PM | NCAAF | Iowa St. vs UCF: Spread | spread: NOT Iowa St. wins by over 1.5 points | kalshi | $40k | -104 | ✅ novig | ❌ | +0.0c |  | pending |
 | Nov 20 1:10PM | NCAAF | Clemson vs Duke: Spread | spread: Duke wins by over 11.5 points | kalshi | $126k | -108 |  |  | +0.0c |  | pending |
 | Nov 20 12:55PM | NCAAF | New Mexico vs Wyoming: Spread | spread: New Mexico wins by over 9.5 points | kalshi | $36k | -100 | ✅ novig | ✅ | +0.0c | yes | pending |
 | Nov 20 12:40PM | NCAAF | Clemson @ Duke | moneyline: DUKE (0) | novig | $25k | -456 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 17 11:30AM | NHL | Los Angeles vs Boston: Total Goals | total: Over 5.5 goals scored | kalshi | $34k | -122 |  |  | +2.0c |  | L |
 | Nov 17 11:30AM | NHL | Los Angeles vs Boston: Spread | spread: NOT Boston wins by over 1.5 goals | kalshi | $92k | -178 | ✅ novig |  | -1.0c |  | W |
 | Nov 17 11:15AM | NCAAF | Central Michigan vs Buffalo: Spread | spread: Buffalo wins by over 1.5 points | kalshi | $26k | +104 |  |  | +5.0c | yes | W |
-| Nov 17 11:10AM | NHL | Ottawa vs Winnipeg: Total Goals | total: NOT Over 5.5 goals scored | kalshi | $26k | +117 | ✅ novig |  | +1.0c | yes | W |
