@@ -4524,6 +4524,121 @@ def pmus_rest_sweep(now):
     return done
 
 
+# Nov 20 (Peter, PRIORITY 1): CROSS-VENUE COMMITTED RISK.
+#
+# CONFIRMED INCIDENT. New Mexico -7.5 was taken on ProphetX for $110 at 9:11 and then RESTED on
+# Novig for the full unit at 9:12, filling $237.60 - $347.60 against a $234 intended stake, 49%
+# over, both legs the same game, side and line.
+#
+# Why the existing guards did not stop it. Duplicate protection worked: the lane-stripped claim
+# blocked a second run. rest_bid() reduces to a remainder only through r["live"]["rest_risk"],
+# which is THIS run's live result - and this run's live leg was a Novig order REFUSED on a failed
+# pre-order write, so there was no fill to subtract and it rested the whole unit. The ProphetX
+# fill belonged to the earlier run, which had already completed and RELEASED its claim, so
+# submission_held() saw nothing. The guard covers a claim still held; it cannot see a fill that
+# finished.
+#
+# So the remainder must come from what is RECORDED against the play, across venues and across
+# runs, not from one run's view of its own leg.
+#
+# FAIL CLOSED, deliberately. A leg counts at max(filled, asked): an order that was placed but
+# whose fill is unknown reserves its full asked stake, because treating an unread fill as zero is
+# the same error that produced the fabricated no-fills. Only a leg that demonstrably never
+# reached the venue counts as nothing. If the store cannot be read at all, the caller refuses -
+# an unknown exposure must never size a new order.
+_NEVER_SUBMITTED = ("refused", "void", "dry")
+
+
+def committed_risk(pkey, rows_=None):
+    """(risk_committed, why) for one lane-stripped play key, across every venue and run.
+
+    why is None when the figure is trustworthy; a string when it is not, and then the caller must
+    refuse rather than size against it.
+
+    IDENTITY, checked against the real record shapes rather than assumed. The daily stop dedupes on
+    the CLIENT id ("the money identity is the CLIENT ID when there is one"), but the projection
+    that writes live_order / live_rest / live_more into the registry carries only
+    status, reason, book, order_id, asked_stake, limit, filled_stake and avg_price / expires_utc -
+    no client_id at all. Rows parsed from the Gmail ledger do carry one. So the client id is
+    preferred where it exists and the ORDER id is what actually dedupes stored rows, which is the
+    field those rows always carry for a leg that reached a venue. A placed leg with neither is
+    unidentifiable, cannot be deduped, and refuses."""
+    try:
+        rows_ = registry.rows() if rows_ is None else rows_
+    except Exception as ex:
+        return None, f"order rows unreadable ({type(ex).__name__})"
+    if rows_ is None:
+        return None, "order rows unavailable"
+    # Nov 20 (Peter, PR #9 review): a `seen` set skipped later records of the same order, so the
+    # FIRST one encountered won. Rows do not arrive in any guaranteed order, so an intent row
+    # recording $110 ahead of the confirmed row recording $238 would have undercounted exposure by
+    # $128 - and undercounting is the direction that places money.
+    #
+    # Instead every record of one order is GROUPED and the group keeps its MAXIMUM. Grouping is by
+    # any shared identity, not by one chosen field, because the two identities do not co-occur: the
+    # stored projection carries order_id and no client_id, while a Gmail-parsed row carries the
+    # client id, and a write-ahead intent may have a client id before the venue has issued an order
+    # id. Keying on either field alone would split those records apart and count the same order
+    # twice. So legs that share EITHER id are merged, and the result is order-independent.
+    groups, by_id = [], {}          # groups[i] = [exposure, ...]; by_id maps an id to its group
+    for row in rows_ or []:
+        if not isinstance(row, dict):
+            continue
+        rkey = row.get("key") or ""
+        if (lane_strip(rkey) or rkey) != pkey:
+            continue
+        legs = [row.get("live_order") or {}, row.get("live_rest") or {}]
+        legs += [x or {} for x in (row.get("live_more") or [])]
+        for lo in legs:
+            if not lo:
+                continue
+            st = str(lo.get("status") or "").lower()
+            if st in _NEVER_SUBMITTED:
+                continue                      # never reached the venue: reserves nothing
+            ids = {str(lo.get(k)) for k in ("client_id", "order_id") if lo.get(k)}
+            if not ids:
+                # A placed leg we cannot identify cannot be grouped, so it would either double
+                # count or hide. Refuse instead of guessing.
+                return None, "a recorded order leg carries no client or order id"
+            asked, filled = lo.get("asked_stake"), lo.get("filled_stake")
+            try:
+                a = float(asked) if asked is not None else None
+                f = float(filled) if filled is not None else None
+            except (TypeError, ValueError):
+                return None, "a recorded order leg carries an unreadable stake"
+            if a is None and f is None:
+                return None, "a recorded order leg carries no stake at all"
+            # Nov 20 (Peter): float() accepts "nan" and "inf", and NaN is the dangerous one -
+            # every comparison with it is False, so a NaN exposure would slide past a
+            # `remaining <= 0` guard and reach the venue as a quantity. Reject anything that is
+            # not a finite, non-negative number, here rather than downstream.
+            for _v in (a, f):
+                if _v is None:
+                    continue
+                if not math.isfinite(_v):
+                    return None, "a recorded order leg carries a non-finite stake (NaN or inf)"
+                if _v < 0:
+                    return None, "a recorded order leg carries a negative stake"
+            exposure = max(f or 0.0, a or 0.0)   # unknown fill reserves the full ask
+            hit = sorted({by_id[i] for i in ids if i in by_id})
+            if not hit:
+                gi = len(groups)
+                groups.append(exposure)
+            else:
+                gi = hit[0]
+                groups[gi] = max(groups[gi], exposure)
+                for other in hit[1:]:            # this leg bridges two groups: merge them
+                    groups[gi] = max(groups[gi], groups[other])
+                    groups[other] = None
+                    for k, v in list(by_id.items()):
+                        if v == other:
+                            by_id[k] = gi
+            for i in ids:
+                by_id[i] = gi
+    total = sum(g for g in groups if g is not None)
+    return round(total, 2), None
+
+
 def rest_bid(r):
     """Rest ONE bid at the alert's after-fee number (no 2c extra) on the first REST_BOOKS book that lists the exact
     alert line: Kalshi (good-till-cancelled with an expiry) or Novig (GTT on the home PC). Same unit, cap, STOP and
@@ -4546,8 +4661,27 @@ def rest_bid(r):
         return {"status": "refused", "reason": "alert after-fee price unknown (fail closed)"}
     p_star = american_to_prob(int(af))
     risk, _ = live_stake(int(af), unit_for((r.get("live") or {}).get("lane")))
+    _unit_risk = risk            # the INTENDED total for one unit, before any remainder trim.
+    # Nov 20 (Peter caught this in review): the cross-venue remainder below must be measured from
+    # THIS figure, not from the already-trimmed `risk`. rest_risk is itself intended-minus-filled,
+    # so subtracting committed risk from it again removes the same fill twice: intended $234 with
+    # $110 filled gives rest_risk $124, and $124 - $110 would have rested $14 instead of $124.
+    # The two constraints are both CEILINGS on the same intended total, so they combine with min().
     if (r.get("live") or {}).get("rest_risk"):   # Oct 31: only the unfilled part of a partial fill
-        risk = min(risk, float(r["live"]["rest_risk"]))
+        # Nov 20 (Peter): validate before using it. min(234.0, nan) returns 234.0 - every
+        # comparison with NaN is False, so a NaN remainder is not an error here, it is SILENTLY
+        # IGNORED and the full unit rests. That is the no-op that looks like success. A remainder
+        # we cannot read must stop the bid, not vanish from it.
+        try:
+            _rr = float(r["live"]["rest_risk"])
+        except (TypeError, ValueError):
+            return {"status": "refused",
+                    "reason": "the partial-fill remainder is unreadable (fail closed)"}
+        if not (math.isfinite(_rr) and _rr >= 0):
+            return {"status": "refused",
+                    "reason": f"the partial-fill remainder is not a finite non-negative number "
+                              f"({_rr!r}) - fail closed"}
+        risk = min(risk, _rr)
     g_ok, g_why = live_guards()
     if not g_ok:
         return {"status": "refused", "reason": g_why}
@@ -4592,6 +4726,48 @@ def rest_bid(r):
             return {"status": "refused", "reason": "another run is already posting this resting bid"}
     except Exception as _ex:
         return {"status": "refused", "reason": f"no durable resting claim ({str(_ex)[:60]}) - no submission"}
+    # The claim is held from here, so this computation and the order that follows it are the only
+    # pair in flight for this play: another run refuses above rather than racing this remainder.
+    _committed, _cwhy = committed_risk(_pkey)
+    if _cwhy:
+        registry.release_submission(_rkey, REST_CID)
+        return {"status": "refused",
+                "reason": f"cross-venue committed risk could not be established ({_cwhy}) - "
+                          f"resting a unit could exceed the intended stake (fail closed)"}
+    # Nothing non-finite or negative may reach a venue. Checked on the inputs AND on the computed
+    # remainder, because an arithmetic result can be non-finite even when both inputs are fine.
+    if not (math.isfinite(_committed) and _committed >= 0):
+        registry.release_submission(_rkey, REST_CID)
+        return {"status": "refused",
+                "reason": "committed risk is not a finite non-negative number (fail closed)"}
+    if not (math.isfinite(_unit_risk) and _unit_risk > 0):
+        registry.release_submission(_rkey, REST_CID)
+        return {"status": "refused",
+                "reason": "the intended unit stake is not a finite positive number (fail closed)"}
+    _allowed = round(_unit_risk - _committed, 2)      # ceiling from the UNTRIMMED intended total
+    # Defence in depth: with both inputs validated above this cannot currently trigger, and no
+    # test can reach it. It stays because the requirement is that no non-finite remainder ever
+    # reaches a venue, and a future change to either input must not be able to slip past.
+    if not math.isfinite(_allowed):
+        registry.release_submission(_rkey, REST_CID)
+        return {"status": "refused",
+                "reason": "the remaining allowable risk is not a finite number (fail closed)"}
+    if _allowed <= 0:
+        registry.release_submission(_rkey, REST_CID)
+        return {"status": "refused",
+                "reason": f"${_committed:,.2f} already committed on this play across venues, at or "
+                          f"above the ${_unit_risk:,.2f} intended stake - nothing left to rest"}
+    if _allowed < risk:                               # a ceiling, never a second subtraction
+        risk = _allowed
+        LOG.append(f"resting bid trimmed to ${risk:,.2f}: ${_committed:,.2f} already committed "
+                   f"across venues against ${_unit_risk:,.2f} intended")
+    # The last gate before any venue is touched. Also unreachable today - every input to `risk`
+    # is validated above - and also kept deliberately: this is the single line that guarantees
+    # what reaches novig_place is a finite positive number, whatever future path sets `risk`.
+    if not (math.isfinite(risk) and risk > 0):
+        registry.release_submission(_rkey, REST_CID)
+        return {"status": "refused",
+                "reason": f"resting stake is not a finite positive number ({risk!r}) - fail closed"}
     rest_pre_alert(r, risk, expire, REST_BOOKS)
     why_not = []
     for b in REST_BOOKS:

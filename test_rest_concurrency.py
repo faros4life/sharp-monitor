@@ -128,8 +128,24 @@ check("then takes the resting claim", 0 < i_claim < i_loop)
 check("both happen BEFORE the venue loop", i_claim < i_loop)
 check("a disabled registry refuses rather than posting unprotected",
       "no durable store for the resting submission claim" in src)
-check("the release sits on the all-refused exit only",
-      src.find("registry.release_submission(_rkey, REST_CID)") > i_loop)
+# Nov 20: this asserted there was exactly ONE release, by finding the first one after the venue
+# loop. The property that matters is not the count but WHERE: requirement 5 permits a release only
+# where non-submission is PROVEN. The all-refused exit proves it because a placed or error result
+# returns above; a refusal BEFORE rest_pre_alert and the venue loop proves it because no venue has
+# been touched yet. The cross-venue committed-risk refusals (Nov 20) are the second kind. A release
+# anywhere between the pre-alert and the all-refused exit would NOT be proven and must still fail.
+i_prealert = src.find("rest_pre_alert(r, risk, expire, REST_BOOKS)")
+i_allrefused = src.find("# EVERY book refused, so no venue received an order")
+_rel, _at = "registry.release_submission(_rkey, REST_CID)", []
+_i = src.find(_rel)
+while _i != -1:
+    _at.append(_i)
+    _i = src.find(_rel, _i + 1)
+check(f"every claim release ({len(_at)} site(s)) is where non-submission is proven",
+      bool(_at) and all(i < i_prealert or i > i_allrefused for i in _at))
+check("at least one release is the all-refused exit", any(i > i_loop for i in _at))
+check("no release sits between the pre-alert and the all-refused exit",
+      not any(i_prealert < i < i_allrefused for i in _at))
 check("every enabled resting venue shares that one path", 'for b in REST_BOOKS:' in src)
 check("and all three lanes reach it through the same branch", "if rest_wanted(r):" in src)
 
