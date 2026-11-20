@@ -330,6 +330,12 @@ def render(day, views, meta=None):
                      + (f" | email receipt kept separately: {v['received_at']}" if v.get("received_at") else "")
                      + (f" | final {v['score']}" if v.get("score") else "")
                      + " | tracker_build, MANUAL_HELD and live gating untouched")
+        if v.get("placed_day") or v.get("settled_day") or v.get("game_day"):
+            L.append(f"    dates ET: placed {v.get('placed_day') or '-'} | settled "
+                     f"{v.get('settled_day') or '-'} | game {v.get('game_day') or '-'}"
+                     + ("   !! GAME AFTER SETTLEMENT - one of these timestamps is wrong"
+                        if (v.get("game_day") and v.get("settled_day")
+                            and v["game_day"] > v["settled_day"]) else ""))
         L.append(f"    source: {v.get('src')}"
                  + (f" | main line chosen by {v['main_rule']}" if v.get("main_rule") else ""))
         L.append(f"    Pinnacle close: main line {v['main_line'] if v['main_line'] is not None else '-'}"
@@ -420,7 +426,7 @@ def main(argv):
                 clv, why = ss.provisional_clv(sn, b)
             except Exception:
                 continue
-            v["snap"] = {"label": ss.LABEL, "line": sn.get("line"),
+            v["snap"] = {"label": ss.label_for(sn), "line": sn.get("line"),
                          "price_our": sn.get("price_our", "-"), "price_other": sn.get("price_other", "-"),
                          "t_minus": sn.get("t_minus_min", "?"), "movement": ss.movement(sn, b),
                          "clv": clv, "why": why}

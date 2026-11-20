@@ -29,7 +29,17 @@ import clv_ledger as cl          # fair_from_main and am_to_dec: one implementat
 import tracker_build as tb
 
 DIR = "snapshots"
-LABEL = "Pinnacle T-12 SNAPSHOT (provisional, not a certified close)"
+LABEL = "Pinnacle SNAPSHOT (provisional, not a certified close)"
+
+
+def label_for(snap):
+    """The label with this record's ACTUAL age and kind - a T-4 same-line quote must not be
+    printed as 'T-12', which the fixed string was doing."""
+    kind = ("at our own line" if str(snap.get("line_type")) == "alt_our_line" else "main line")
+    t = snap.get("t_minus_min")
+    return (f"Pinnacle SNAPSHOT {kind}, T-{t} min"
+            if t is not None else f"Pinnacle SNAPSHOT {kind}, age unknown") + \
+           " (provisional, not a certified close)"
 
 
 def load(directory=DIR):
@@ -152,4 +162,5 @@ def provisional_clv(snap, b):
     p, why, src = cl.fair_from_main(p_snap, sl, wl, mv > 0, b.get("league"), "spr" if mk == "spread" else "tot")
     if p is None:
         return None, f"no supported conversion: {why}"
-    return round(p * d - 1, 4), f"{LABEL}; rows used {', '.join(src) or 'none (same line)'}"
+    return round(p * d - 1, 4), (f"{label_for(snap)}; rows used "
+                                 f"{', '.join(src) or 'none - quoted at our own line'}")
