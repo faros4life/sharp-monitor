@@ -38,7 +38,7 @@ def et_day(iso_ts):
     return t.astimezone(tb.ET).strftime("%Y-%m-%d")
 
 
-def bets_on(tracker, day):
+def bets_on(tracker, day, corr=None):
     """Keys of tracker rows BELONGING to the given ET day, newest first, settled or not.
 
     Nov 20 (Peter, relayed): "report every previous-day actual bet each morning, even when the
@@ -48,8 +48,24 @@ def bets_on(tracker, day):
     its result blank rather than hidden.
     """
     out, seen = [], set()
+    corr = corr or {}
     for k, b in (tracker or {}).items():
-        days = {et_day(b.get(f)) for f in ("settled", "placed", "game_start") if b.get(f)}
+        c = corr.get((b.get("book"), b.get("game"), b.get("bet")))
+        if c:
+            b = dict(b)
+            if c.get("placed_actual"):
+                b["placed"], b["placed_src"] = c["placed_actual"], "corrected: real placement time"
+                b["received_at"] = c.get("received_at")
+            if c.get("result") and not b.get("result"):
+                b["result"], b["result_src"] = c["result"], "corrected: venue outcome"
+                pf = profit_from(b, c["result"])
+                if pf is not None:
+                    b["profit"] = pf
+                b["score"] = c.get("score")
+        # GAME_START is informational and is NEVER an identity for the placement date
+        # (ChatGPT/Peter, Nov 20). Day membership rests on an authenticated placed or settled
+        # timestamp only; game_start no longer admits a row to a day.
+        days = {et_day(b.get(f)) for f in ("settled", "placed") if b.get(f)}
         if day not in days:
             continue
         fp = (b.get("book"), b.get("game"), b.get("bet"), b.get("placed"), b.get("stake"))
@@ -59,6 +75,59 @@ def bets_on(tracker, day):
         out.append((k, b))
     out.sort(key=lambda kb: str(kb[1].get("settled") or kb[1].get("placed") or ""), reverse=True)
     return out
+
+
+def corrections(day, directory="corrections"):
+    """REPORTING-LAYER corrections for a day, from corrections/<day>.json. Approved by Peter Nov 20.
+
+    Nothing here touches tracker_build, MANUAL_HELD, the three-day window, duplicate protection or
+    any execution or risk path - the correction is applied when the report is rendered and nowhere
+    else. Nor does the file carry money: it holds only public facts (the real placement time, the
+    email receipt time kept separately, the win/loss and the final score). Units are computed from
+    the stake and price the tracker already stores, so no stake or dollar figure enters this repo.
+
+    Why it is needed: tracker_build takes `placed` from the note's email receipt, so the four Hard
+    Rock bets re-sent on Nov 20 were stamped Nov 20 although they were placed Nov 19.
+    """
+    import os
+    f = os.path.join(directory, f"{day}.json")
+    if not os.path.exists(f):
+        return {}
+    try:
+        d = json.load(open(f))
+    except Exception:
+        return {}
+    out = {}
+    for r in (d if isinstance(d, list) else [d]):
+        if isinstance(r, dict) and r.get("bet"):
+            out[(r.get("book"), r.get("game"), r.get("bet"))] = r
+    return out
+
+
+def profit_from(b, result):
+    """Signed profit implied by the tracker's OWN stake and payout plus a win/loss verdict.
+
+    The verdict is a public fact; the money comes from records already held. Nothing is invented:
+    if the row lacks a stake, or a payout on a win, this returns None and the report says so.
+    """
+    st, tp_ = num(b.get("stake")), num(b.get("to_pay"))
+    r = str(result or "").upper()[:1]
+    if st is None:
+        return None
+    if r == "L":
+        return -st
+    if r == "W":
+        return None if tp_ is None else round(tp_ - st, 2)
+    if r == "P":
+        return 0.0
+    return None
+
+
+def num(x):
+    try:
+        return float(x)
+    except Exception:
+        return None
 
 
 def manual_file(day, directory="manual"):
@@ -152,15 +221,25 @@ def render(day, views):
     # they are counted separately and never folded into the day's units. Earlier today this
     # report totalled both together, so a bet placed Nov 16 and settled Nov 19 was counted in
     # Nov 16's units. That was wrong and is what this split fixes.
+    # Two cohorts, never mixed (Peter, Nov 20): what SETTLED this day carries the day's P&L;
+    # what was PLACED this day is the day's action. A bet in both cohorts is counted once, in
+    # settlements, and appears in the placed list marked so.
     sett = [v for v in views if v.get("on_day") == "settled"]
     other = [v for v in views if v.get("on_day") != "settled"]
+    unver = [v for v in views if v.get("on_day") == "UNVERIFIED date"]
     w = sum(v["units"] or 0 for v in sett)
     won = sum(1 for v in sett if str(v["result"]).upper().startswith("W"))
     lost = sum(1 for v in sett if str(v["result"]).upper().startswith("L"))
     L.append(f"SETTLED THIS DAY: {len(sett)} | {won}-{lost} | {w:+.2f}u")
     if other:
-        L.append(f"ALSO SHOWN (placed or game this day, settled elsewhere or still open): {len(other)}"
+        L.append(f"PLACED THIS DAY, settling later or still open: {len(other)}"
                  f" - NOT counted in the units above")
+    if unver:
+        L.append(f"!! {len(unver)} row(s) carry NO authenticated placement timestamp - shown as "
+                 f"UNVERIFIED date, never inferred from the event or the settlement")
+    nou = [v for v in views if v.get("units_missing")]
+    if nou:
+        L.append(f"!! {len(nou)} settled row(s) have no units: {nou[0]['units_missing']}")
     scored = [v for v in views if v["v1"] is not None]
     L.append(f"V1 CLV on {len(scored)}/{len(views)}"
              + (f", mean {sum(v['v1'] for v in scored) / len(scored) * 100:+.2f}%" if scored else "")
@@ -179,6 +258,12 @@ def render(day, views):
                      + (f" | movement {sn['movement']:+g} pts our way" if sn.get("movement") is not None else "")
                      + (f" | PROVISIONAL CLV {pct(sn['clv'])}" if sn.get("clv") is not None
                         else f" | no provisional CLV ({sn['why']})"))
+        if v.get("placed_src") or v.get("result_src"):
+            L.append("    REPORTING CORRECTION: "
+                     + "; ".join(x for x in (v.get("placed_src"), v.get("result_src")) if x)
+                     + (f" | email receipt kept separately: {v['received_at']}" if v.get("received_at") else "")
+                     + (f" | final {v['score']}" if v.get("score") else "")
+                     + " | tracker_build, MANUAL_HELD and live gating untouched")
         L.append(f"    source: {v.get('src')}"
                  + (f" | main line chosen by {v['main_rule']}" if v.get("main_rule") else ""))
         L.append(f"    Pinnacle close: main line {v['main_line'] if v['main_line'] is not None else '-'}"
@@ -206,7 +291,8 @@ def main(argv):
     except Exception:
         bets = {}
         print("daily report: CLV ledger state unreadable - bet and settlement columns only")
-    rows = bets_on(tracker, day)
+    corr = corrections(day)
+    rows = bets_on(tracker, day, corr)
     have = {(b.get("book"), b.get("game"), b.get("bet")) for _, b in rows}
     for r in manual_file(day):
         if (r.get("book"), r.get("game"), r.get("bet")) not in have:
@@ -220,7 +306,13 @@ def main(argv):
         # WHY this bet is on this day - so a row can never be silently counted on two days.
         vw["on_day"] = ("settled" if et_day(b.get("settled")) == day
                         else "placed this day" if et_day(b.get("placed")) == day
-                        else "game this day")
+                        else "UNVERIFIED date")
+        vw["placed_src"] = b.get("placed_src")
+        vw["result_src"] = b.get("result_src")
+        vw["received_at"] = b.get("received_at")
+        vw["score"] = b.get("score")
+        if b.get("result") and vw["units"] is None:
+            vw["units_missing"] = "no stake or payout stored, so units cannot be computed"
         views.append(vw)
     # SECOND-PRIORITY evidence, only where the certified close is absent.
     # A silent except here would be the worst failure available: the report would look complete

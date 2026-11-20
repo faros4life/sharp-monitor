@@ -138,9 +138,58 @@ out = "\n".join(dr.render("2026-11-19", [sv, pv]))
 ok("the day's units count ONLY what settled that day",
    "SETTLED THIS DAY: 1 | 1-0 | +1.00u" in out, out[:300])
 ok("a bet placed that day but settled elsewhere is shown, not counted",
-   "ALSO SHOWN" in out and "NOT counted in the units above" in out)
+   "PLACED THIS DAY, settling later" in out and "NOT counted in the units above" in out)
 ok("every row states why it is on this day", out.count("<settled>") == 1 and out.count("<placed this day>") == 1)
 ok("an empty day no longer says 'settled'", "No bets recorded" in "\n".join(dr.render("2026-11-19", [])))
+
+# ------------------------------------------------------------------ 11. reporting-layer corrections
+ok("profit on a loss is minus the stake", dr.profit_from({"stake": 105.0}, "L") == -105.0)
+ok("profit on a win is payout minus stake", dr.profit_from({"stake": 230.0, "to_pay": 430.0}, "W") == 200.0)
+ok("a win with no stored payout yields None, never a guess",
+   dr.profit_from({"stake": 230.0}, "W") is None)
+ok("a push is zero", dr.profit_from({"stake": 100.0, "to_pay": 200.0}, "P") == 0.0)
+ok("no stake means no units", dr.profit_from({}, "L") is None)
+
+cf = dr.corrections("2026-11-19")
+ok("the Nov 19 corrections file loads four records", len(cf) == 4, len(cf))
+ok("it carries NO money - the repo stays free of stakes and dollars",
+   not any(k in r for r in cf.values() for k in ("stake", "profit", "to_pay", "payout", "units")),
+   [k for r in cf.values() for k in r])
+ok("every record states the real placement time and keeps the receipt separately",
+   all(r.get("placed_actual") and r.get("received_at") for r in cf.values()))
+
+trkc = {"h": {"book": "Hard Rock", "game": "Robert Morris Colonials @ Toledo Rockets",
+              "bet": "Toledo Rockets -6.5 (-115)", "placed": "2026-11-20T13:54:00Z",
+              "stake": 230.0, "to_pay": 430.0, "league": "NCAAB", "source": "Peter (Hard Rock note)"}}
+got19 = dr.bets_on(trkc, "2026-11-19", cf)
+ok("a corrected bet moves to the day it was actually PLACED", len(got19) == 1, len(got19))
+ok("...and is no longer on the receipt day", len(dr.bets_on(trkc, "2026-11-20", cf)) == 0)
+b19 = got19[0][1]
+ok("the corrected row gains the venue outcome", b19.get("result") == "W")
+ok("units come from the tracker's own stake and payout", b19.get("profit") == 200.0, b19.get("profit"))
+ok("the receipt time is preserved, not overwritten", b19.get("received_at") == "2026-11-20T13:54:00Z")
+ok("an uncorrected tracker keeps the receipt day", len(dr.bets_on(trkc, "2026-11-20", {})) == 1)
+
+# GAME_START must never admit a row to a day
+gs = {"g": {"game_start": "2026-11-20T02:00:00Z", "bet": "game that day, no placed/settled"}}
+ok("game_start alone never places a bet on a day", dr.bets_on(gs, "2026-11-19") == [])
+ok("a row with neither placed nor settled on the day is simply absent",
+   dr.bets_on(gs, "2026-11-20") == [])
+
+# the two cohorts and the correction banner
+sv = dict(dr.row_view("k", {"result": "W", "profit": 200.0, "bet": "x"}, {}), on_day="settled",
+          placed_src="corrected: real placement time", result_src="corrected: venue outcome",
+          received_at="2026-11-20T13:54:00Z", score="Robert Morris 76, Toledo 83")
+pv = dict(dr.row_view("k", {"result": "", "bet": "y"}, {}), on_day="placed this day")
+uv = dict(dr.row_view("k", {"bet": "z"}, {}), on_day="UNVERIFIED date")
+out = "\n".join(dr.render("2026-11-19", [sv, pv, uv]))
+ok("settlements carry the day's units", "SETTLED THIS DAY: 1 | 1-0 | +1.00u" in out, out[:200])
+ok("placed-this-day is a separate cohort, not counted", "PLACED THIS DAY, settling later" in out)
+ok("an unverified placement date is flagged conspicuously", "UNVERIFIED date, never inferred" in out)
+ok("the correction is disclosed on the row", "REPORTING CORRECTION:" in out)
+ok("...naming that live gating was untouched", "MANUAL_HELD and live gating untouched" in out)
+ok("...and keeping the receipt time visible", "email receipt kept separately" in out)
+ok("the final score is shown as the outcome evidence", "final Robert Morris 76, Toledo 83" in out)
 
 print(("FAILED: " + ", ".join(FAILED)) if FAILED else "ALL PASS")
 print(f"{TOTAL - len(FAILED)} passed, {len(FAILED)} failed")
