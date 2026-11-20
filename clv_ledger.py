@@ -1218,6 +1218,21 @@ def v2_backfill(st, hist, mkmap, now, max_rows=80):
     return done, miss
 
 
+def _ts_ages(start, alt_ts, main_ts):
+    """Minutes before kick for the four prices, held side first, or None if any is unreadable.
+
+    These are four INDEPENDENT last-ticks at or before kick, not one quote. History stores
+    CHANGES, so an older tick can simply mean the price never moved - but it can equally mean the
+    line was pulled, which is exactly how the Novig stale check caught an 83-hour-old -16667.
+    Reported either way; the reader decides.
+    """
+    try:
+        return [max((start - t).total_seconds() / 60.0, 0.0)
+                for t in (alt_ts[0], alt_ts[1], main_ts[0], main_ts[1])]
+    except Exception:
+        return None
+
+
 def v2_calibration(st):
     """The PRE-REGISTERED calibration screen (v2_validation_spec.md), Peter Nov 20.
 
@@ -1241,7 +1256,7 @@ def v2_calibration(st):
                      "our_line": rec["our_line"], "main_line": rec["main_line"],
                      "v2_p": rec.get("close_p_v2"),
                      "alt_a": a[0], "alt_b": a[1], "main_a": m[0], "main_b": m[1],
-                     "better": rec.get("v2_better")})
+                     "better": rec.get("v2_better"), "ts_ages": rec.get("ts_ages")})
     return vo2.report(vo2.analyze(rows))
 
 
@@ -1350,6 +1365,14 @@ def record_v2(rec, c, d):
         rec["alt_px"] = [round(float(x), 4) for x in c["alt_px"]]
         rec["main_px"] = [round(float(x), 4) for x in c["main_px"]]
         rec["v2_better"] = bool(c.get("v2_better"))
+        if c.get("ts_ages"):
+            # Minutes BEFORE kick for each of the four prices, held side first:
+            # [alt held, alt other, main held, main other]. two_way takes each outcome's last tick
+            # at or before start INDEPENDENTLY, so these four are NOT one simultaneous quote. The
+            # spread between them is a confound on the overround comparison - a stale alt quote
+            # would widen the alt overround and look exactly like alt vig - so it is MEASURED, not
+            # assumed away. FRESH_MIN only bounds the OLDER side of a line, at 24h.
+            rec["ts_ages"] = [round(float(x), 1) for x in c["ts_ages"]]
     if c.get("main_line") is not None:
         rec["main_line"] = c["main_line"]
     if c.get("our_line") is not None:
@@ -1453,7 +1476,8 @@ def close_for(b, f, pm, mkmap, start, lg):
         # [4] and [5] are the RAW two-sided decimals behind pa, kept so the alt's overround and
         # its margin allocation stay measurable. Same two_way call, so both lines are read at
         # the SAME closing tick by construction - not matched up afterwards by timestamp.
-        cands.append((hcap, pa, age, min(tw[a_id][2], tw[b_id][2]), tw[a_id][0], tw[b_id][0]))
+        cands.append((hcap, pa, age, min(tw[a_id][2], tw[b_id][2]), tw[a_id][0], tw[b_id][0],
+                      tw[a_id][1], tw[b_id][1]))
     if not cands:
         return None, f"no Pinnacle {typ} close"
     # Pinnacle's main line carries its biggest limit (alt lines are capped lower); ties: the most even price
@@ -1473,9 +1497,12 @@ def close_for(b, f, pm, mkmap, start, lg):
                 _po if over else 1 - _po, _ppt, want, _bet, lab, "tot")
             _apx = (exact[4], exact[5]) if over else (exact[5], exact[4])   # held side first
             _mpx = (main[4], main[5]) if over else (main[5], main[4])
+            _ats = (exact[6], exact[7]) if over else (exact[7], exact[6])
+            _mts = (main[6], main[7]) if over else (main[7], main[6])
             return {"p": _p1v, "how": "own line", "age_min": round(exact[2]),
                     "at_main": _at_main, "main_line": _ppt, "our_line": want,
                     "alt_px": _apx, "main_px": _mpx, "v2_better": _bet,
+                    "ts_ages": _ts_ages(start, _ats, _mts),
                     "v2_p": _p2v, "v2_why": _v2why, "v2_src": _v2src,
                     "v2_how": "own line" if _at_main else f"own line (from main {_ppt:g})"}, None
         ppt, po = main[0], main[1]
@@ -1505,9 +1532,12 @@ def close_for(b, f, pm, mkmap, start, lg):
             _pm1 if side == "1" else 1 - _pm1, _mine, want, _bet, lab, "spr")
         _apx = (exact[4], exact[5]) if side == "1" else (exact[5], exact[4])   # held side first
         _mpx = (main[4], main[5]) if side == "1" else (main[5], main[4])
+        _ats = (exact[6], exact[7]) if side == "1" else (exact[7], exact[6])
+        _mts = (main[6], main[7]) if side == "1" else (main[7], main[6])
         return {"p": _p1v, "how": "own line", "age_min": round(exact[2]),
                 "at_main": _at_main, "main_line": _mine, "our_line": want,
                 "alt_px": _apx, "main_px": _mpx, "v2_better": _bet,
+                "ts_ages": _ts_ages(start, _ats, _mts),
                 "v2_p": _p2v, "v2_why": _v2why, "v2_src": _v2src,
                 "v2_how": "own line" if _at_main else f"own line (from main {_mine:+g})"}, None
     if lg == "NHL":

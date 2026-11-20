@@ -28,6 +28,7 @@ MIN_N_SUBGROUP = 20
 GAP_SIGNED_MAX = 1.0
 GAP_ABS_MAX = 2.0
 GAP_OUTLIER = 3.0
+TS_TIGHT = 15.0     # minutes: the four prices count as near-simultaneous within this spread
 
 
 def overround(da, db):
@@ -59,6 +60,18 @@ def margin_share_a(da, db):
     if o <= 0:
         return None
     return (1.0 / da - devig_proportional(da, db)) / o
+
+
+def ts_spread(ts_ages):
+    """Minutes between the OLDEST and NEWEST of the four prices, or None if not recorded.
+
+    The four quotes are independent last-ticks at or before kick, NOT one simultaneous reading.
+    A wide spread is a confound on the overround comparison: a stale alt quote widens the alt
+    overround and is indistinguishable, in the number alone, from genuine alt vig.
+    """
+    if not ts_ages or len(ts_ages) != 4 or any(x is None for x in ts_ages):
+        return None
+    return max(ts_ages) - min(ts_ages)
 
 
 def crosses_key(our_line, main_line, league):
@@ -137,7 +150,8 @@ def analyze(rows):
     and reported, never estimated and never counted as agreement.
     """
     out = {"gap_prop": [], "gap_even": [], "or_main": [], "or_alt": [], "or_diff": [],
-           "margin_share_a": [], "unrecoverable": 0, "by": {}, "rows": []}
+           "margin_share_a": [], "unrecoverable": 0, "by": {}, "rows": [],
+           "ts_spread": [], "gap_prop_tight": [], "or_diff_tight": [], "ts_missing": 0}
     for r in rows:
         if not all(r.get(k) for k in ("alt_a", "alt_b", "main_a", "main_b")) or r.get("v2_p") is None:
             out["unrecoverable"] += 1
@@ -167,8 +181,17 @@ def analyze(rows):
                    else ("football, no key number crossed" if lg in FOOTBALL else None))):
             if b:
                 out["by"].setdefault(b, []).append(gp)
+        sp = ts_spread(r.get("ts_ages"))
+        if sp is None:
+            out["ts_missing"] += 1
+        else:
+            out["ts_spread"].append(sp)
+            if sp <= TS_TIGHT:
+                out["gap_prop_tight"].append(gp)
+                out["or_diff_tight"].append(or_a - or_m)
         out["rows"].append(dict(r, gap_prop=gp, gap_even=ge, or_alt=or_a, or_main=or_m,
-                                mkt_prop=mkt_prop, mkt_even=mkt_even, margin_share_a=share))
+                                mkt_prop=mkt_prop, mkt_even=mkt_even, margin_share_a=share,
+                                ts_spread=sp))
     return out
 
 
@@ -201,6 +224,30 @@ def report(res):
                      f"(proportional de-vig forces this to equal that side's fair chance)")
         L.append("  a higher alt overround alone does NOT prove V2 is right - it shows alts carry "
                  "more margin, not that V2's size or allocation of the correction is correct")
+    if res.get("ts_spread"):
+        sp = sorted(res["ts_spread"])
+        n = len(sp)
+        med = sp[n // 2] if n % 2 else (sp[n // 2 - 1] + sp[n // 2]) / 2
+        tight = sum(1 for x in sp if x <= TS_TIGHT)
+        L.append(f"  TIMESTAMP SPREAD of the four prices (independent last-ticks, NOT one quote): "
+                 f"median {med:.0f} min, mean {sum(sp) / n:.0f} min, max {sp[-1]:.0f} min; "
+                 f"within {TS_TIGHT:.0f} min {tight}/{n}")
+        ts = summarize(res["gap_prop_tight"])
+        if ts.get("n"):
+            tv, twhy = verdict(ts)
+            od = res["or_diff_tight"]
+            L.append(f"  SENSITIVITY on near-simultaneous rows only (spread <= {TS_TIGHT:.0f} min): "
+                     f"n {ts['n']}, mean {ts['mean']:+.2f}pp, 95% CI "
+                     f"[{ts['ci_lo']:+.2f}, {ts['ci_hi']:+.2f}]pp -> {tv}"
+                     + (f" ({twhy})" if tv != "PASS" else "")
+                     + (f"; alt-minus-main overround {sum(od) / len(od):+.2%}" if od else ""))
+            L.append("  if the full-sample and near-simultaneous results disagree, the overround gap "
+                     "is contaminated by STALENESS, not evidence of alt vig")
+        else:
+            L.append(f"  SENSITIVITY: no row has all four prices within {TS_TIGHT:.0f} min - the "
+                     f"overround comparison cannot be separated from staleness on this sample")
+    if res.get("ts_missing"):
+        L.append(f"  rows with no timestamps recorded (scored before the capture landed): {res['ts_missing']}")
     L.append(f"  unrecoverable rows (no two-sided quote held, never estimated): {res['unrecoverable']}")
     for b in sorted(res["by"]):
         s = summarize(res["by"][b])

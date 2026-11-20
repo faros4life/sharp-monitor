@@ -170,5 +170,52 @@ ok("v2_calibration counts the unrecoverable moved rows and skips at-main and V1-
 ok("one recoverable row is far too thin to pass", "INCONCLUSIVE" in lines)
 ok("v2_calibration never reports a dollar figure", "$" not in lines)
 
+# ---------------------------------------------------------------- 9. the timestamp confound
+from datetime import datetime, timedelta, timezone
+ok("ts_spread is oldest minus newest", vo.ts_spread([5.0, 7.0, 2.0, 40.0]) == 38.0)
+ok("a simultaneous reading has zero spread", vo.ts_spread([3.0] * 4) == 0.0)
+for bad in (None, [], [1.0, 2.0], [1.0, 2.0, 3.0, None]):
+    ok(f"unrecorded timestamps {bad} give None, never 0", vo.ts_spread(bad) is None)
+
+base = dict(league="NFL", our_line=-7.5, main_line=-6.5, v2_p=0.52,
+            alt_a=1 / 0.85, alt_b=1 / 0.19, main_a=1 / 0.52, main_b=1 / 0.52, better=True)
+r = vo.analyze([dict(base, ts_ages=[2.0, 3.0, 1.0, 4.0]),      # tight
+                dict(base, ts_ages=[2.0, 3.0, 1.0, 600.0]),    # stale alt/main mix
+                dict(base)])                                   # no timestamps
+ok("the tight row feeds the sensitivity subset, the wide one does not",
+   len(r["gap_prop_tight"]) == 1 and len(r["ts_spread"]) == 2, (r["gap_prop_tight"], r["ts_spread"]))
+ok("a row with no timestamps is counted, not treated as simultaneous", r["ts_missing"] == 1)
+ok("a missing-timestamp row is still scored for the main screen", len(r["gap_prop"]) == 3)
+lines9 = "\n".join(vo.report(r))
+ok("the report prints the timestamp spread and says they are not one quote",
+   "TIMESTAMP SPREAD" in lines9 and "NOT one quote" in lines9)
+ok("the report runs the near-simultaneous sensitivity check", "SENSITIVITY on near-simultaneous" in lines9)
+ok("the report warns that a disagreement means STALENESS, not alt vig",
+   "contaminated by STALENESS" in lines9)
+ok("the report names how many rows lack timestamps", "no timestamps recorded" in lines9)
+no_tight = vo.report(vo.analyze([dict(base, ts_ages=[2.0, 3.0, 1.0, 600.0])]))
+ok("with no near-simultaneous row the report says staleness cannot be separated",
+   any("cannot be separated from staleness" in x for x in no_tight), no_tight)
+
+# ---------------------------------------------------------------- 10. the ledger capture
+src2 = open("clv_ledger.py").read()
+cf2 = src2[src2.index("def close_for("):src2.index("MAX_NEW_MAIL")]
+ok("the tick timestamps are captured alongside the prices", "tw[a_id][1], tw[b_id][1]" in cf2)
+ok("both exact branches record ts_ages", cf2.count('"ts_ages": _ts_ages(start,') == 2)
+ok("the held side is first for timestamps too", cf2.count("_ats = (exact[6], exact[7])") == 2)
+st_ = datetime(2026, 11, 20, 20, 0, tzinfo=timezone.utc)
+ages = cl._ts_ages(st_, (st_ - timedelta(minutes=2), st_ - timedelta(minutes=3)),
+                   (st_ - timedelta(minutes=1), st_ - timedelta(minutes=90)))
+ok("_ts_ages gives minutes before kick, held side first", ages == [2.0, 3.0, 1.0, 90.0], ages)
+ok("_ts_ages never returns a negative age",
+   cl._ts_ages(st_, (st_ + timedelta(minutes=5), st_), (st_, st_))[0] == 0.0)
+ok("an unreadable timestamp yields None, not a guess", cl._ts_ages(st_, (None, None), (None, None)) is None)
+rec3 = {}
+cl.record_v2(rec3, {"v2_p": 0.52, "at_main": False, "v2_better": True, "alt_px": (1.9, 2.1),
+                    "main_px": (1.95, 1.95), "ts_ages": [2.0, 3.0, 1.0, 90.0]}, 2.0)
+ok("record_v2 persists the four ages on a moved row", rec3.get("ts_ages") == [2.0, 3.0, 1.0, 90.0], rec3)
+ok("the spec records the timestamp confound and the correction",
+   "was wrong and is corrected here" in open("v2_validation_spec.md").read())
+
 print(("FAILED: " + ", ".join(FAILED)) if FAILED else "ALL PASS")
 print(f"{TOTAL - len(FAILED)} passed, {len(FAILED)} failed")

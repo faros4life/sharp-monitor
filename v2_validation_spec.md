@@ -53,6 +53,25 @@ between the two sides. A higher alt overround on its own does NOT prove V2 is co
 shows only that alts carry more margin, not that V2's size or allocation of the correction is
 right.
 
+## Timestamp confound (added 2026-11-20, still BEFORE any result was computed)
+
+The four prices are NOT one simultaneous quote. `two_way` takes each outcome's last tick at or
+before kick INDEPENDENTLY, so the alt pair and the main pair - and the two sides within each
+pair - can carry different timestamps. `FRESH_MIN` bounds only the OLDER side of a line, at 24
+hours. An earlier note in this work claimed the four came from one tick "by construction"; that
+was wrong and is corrected here.
+
+This matters because a STALE alt quote widens the alt overround and is indistinguishable, in the
+number alone, from genuine alt vig. History stores CHANGES, so an old tick can mean the price
+simply never moved - but it can equally mean the line was pulled, which is how the Novig stale
+check caught an 83-hour-old -16667.
+
+Required, therefore: report the spread between the oldest and newest of the four prices (median,
+mean, max, and how many rows fall within 15 minutes), and report the calibration screen AGAIN on
+near-simultaneous rows only, as a sensitivity check. If the full sample and the near-simultaneous
+subset disagree, the overround gap is contaminated by staleness and is NOT evidence of alt vig.
+Wide-spread rows are reported, never silently dropped.
+
 ## Interpretation limits - binding
 
 - A positive V2-minus-V1 gap is NOT proof of asymmetric vig.
