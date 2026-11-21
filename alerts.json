@@ -963,7 +963,7 @@
   },
   {
    "alert_utc": "2026-11-21T18:00:44Z",
-   "beat_close": true,
+   "beat_close": false,
    "beat_true_close": null,
    "bet": "Under 228.5 (-115)",
    "book": "ProphetX",
@@ -971,7 +971,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+1 pts",
+   "clv": "+0 pts",
    "clv_conv_pts": null,
    "clv_pin_line": null,
    "clv_read_utc": null,
@@ -1104,6 +1104,81 @@
    "pricing_bettable": true,
    "result": null,
    "score": 79,
+   "sent_to_phone": true,
+   "sport": "NBA",
+   "start_utc": "2026-11-22T01:00:00Z",
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alert_utc": "2026-11-21T20:20:28Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "Over 227.5 (-111)",
+   "book": "ProphetX",
+   "book_key": "prophetx",
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+1 pts",
+   "clv_conv_pts": null,
+   "clv_pin_line": null,
+   "clv_read_utc": null,
+   "clv_skipped": null,
+   "clv_source": null,
+   "clv_verified": null,
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -1.7,
+   "executable_book": true,
+   "fade_book": "prophetx",
+   "fade_point": 227.5,
+   "fade_price": 109,
+   "fade_price_after_fee": 107,
+   "fade_units": null,
+   "final": null,
+   "floor_line": 228.0,
+   "game": "New Orleans Pelicans @ San Antonio Spurs",
+   "grade": "B",
+   "hr1_eligible": false,
+   "hr1_pushed": false,
+   "hr1_verified": null,
+   "hr1_verify_status": null,
+   "hr1_verify_why": null,
+   "kind": "tot",
+   "late": false,
+   "minutes_before_start": 280,
+   "point": 227.5,
+   "price": -111,
+   "price_after_fee": -113,
+   "prices_at_alert": {
+    "hardrockbet": {
+     "after_fee": -115,
+     "point": 227.5,
+     "price": -115
+    },
+    "kalshi": {
+     "after_fee": -103.1,
+     "point": 229.5,
+     "price": 104
+    },
+    "novig": {
+     "after_fee": -102,
+     "point": 228.5,
+     "price": -102
+    },
+    "prophetx": {
+     "after_fee": -113.3,
+     "point": 227.5,
+     "price": -111
+    }
+   },
+   "pricing_bettable": true,
+   "result": null,
+   "score": 71,
    "sent_to_phone": true,
    "sport": "NBA",
    "start_utc": "2026-11-22T01:00:00Z",
@@ -6956,8 +7031,8 @@
    "fade_point": 57.5,
    "fade_price": 116,
    "fade_price_after_fee": 114,
-   "fade_units": null,
-   "final": null,
+   "fade_units": 1.14,
+   "final": "COLO 28, CIN 35",
    "floor_line": 57.0,
    "game": "Colorado Buffaloes @ Cincinnati Bearcats",
    "grade": "A",
@@ -6995,13 +7070,13 @@
     }
    },
    "pricing_bettable": true,
-   "result": null,
+   "result": "L",
    "score": 81,
    "sent_to_phone": false,
    "sport": "NCAAF",
    "start_utc": "2026-11-21T17:00:00Z",
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alert_utc": "2026-11-21T13:50:34Z",
@@ -7105,8 +7180,8 @@
    "fade_point": 2.5,
    "fade_price": 111,
    "fade_price_after_fee": 111,
-   "fade_units": null,
-   "final": null,
+   "fade_units": 1.11,
+   "final": "NU 17, MINN 20",
    "floor_line": -2.5,
    "game": "Northwestern Wildcats @ Minnesota Golden Gophers",
    "grade": "B",
@@ -7144,13 +7219,13 @@
     }
    },
    "pricing_bettable": true,
-   "result": null,
+   "result": "L",
    "score": 70,
    "sent_to_phone": false,
    "sport": "NCAAF",
    "start_utc": "2026-11-21T17:00:00Z",
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alert_utc": "2026-11-21T14:55:29Z",
@@ -105955,6 +106030,31 @@
  ],
  "all_alerts": [
   {
+   "alert_text": "Over 227.5 (-111) at ProphetX [-113 after ProphetX fee] (also: Hard Rock)",
+   "bet": "Over 227.5 (-111)",
+   "bet_result": null,
+   "book": "ProphetX",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -1.7,
+   "final": null,
+   "game": "New Orleans Pelicans @ San Antonio Spurs",
+   "grade": "B",
+   "late": false,
+   "minutes_before_start": 280,
+   "price": -111,
+   "price_after_fee": -113,
+   "pushed_to_phone": true,
+   "repeat": false,
+   "score": 71,
+   "sent_et": "2026-11-21 15:20",
+   "sport": "NBA",
+   "start_utc": "2026-11-22T01:00:00Z",
+   "why": "Pinnacle total moved 226.5 -> 228.5; bet only at 228 or better (confirmed by BetOnline, Matchbook)"
+  },
+  {
    "alert_text": "Troy Trojans +8.5 (+100) at Kalshi [-107 after Kalshi fee] (also: Hard Rock, ProphetX)",
    "bet": "Troy Trojans +8.5 (+100)",
    "bet_result": null,
@@ -107908,14 +108008,14 @@
   {
    "alert_text": "Northwestern Wildcats -2.5 (-112) at ProphetX [-114 after ProphetX fee] (also: Hard Rock, Novig, Kalshi)",
    "bet": "Northwestern Wildcats -2.5 (-112)",
-   "bet_result": null,
+   "bet_result": "L",
    "book": "ProphetX",
    "confirmed_by": [
     "BetOnline",
     "Matchbook"
    ],
    "edge_pct": -0.2,
-   "final": null,
+   "final": "NU 17, MINN 20",
    "game": "Northwestern Wildcats @ Minnesota Golden Gophers",
    "grade": "B",
    "late": false,
@@ -108270,14 +108370,14 @@
   {
    "alert_text": "Under 57.5 (-110) at Hard Rock (also: ProphetX)",
    "bet": "Under 57.5 (-110)",
-   "bet_result": null,
+   "bet_result": "L",
    "book": "Hard Rock",
    "confirmed_by": [
     "BetOnline",
     "Matchbook"
    ],
    "edge_pct": -1.6,
-   "final": null,
+   "final": "COLO 28, CIN 35",
    "game": "Colorado Buffaloes @ Cincinnati Bearcats",
    "grade": "A",
    "late": false,
