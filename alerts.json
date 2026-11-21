@@ -71,7 +71,7 @@
   },
   {
    "alert_utc": "2026-11-21T11:00:41Z",
-   "beat_close": true,
+   "beat_close": false,
    "beat_true_close": null,
    "bet": "Under 229.5 (-117)",
    "book": "ProphetX",
@@ -79,7 +79,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+1.5 pts",
+   "clv": "+0 pts",
    "clv_conv_pts": null,
    "clv_pin_line": null,
    "clv_read_utc": null,
@@ -137,6 +137,81 @@
    "pricing_bettable": true,
    "result": null,
    "score": 74,
+   "sent_to_phone": true,
+   "sport": "NBA",
+   "start_utc": "2026-11-22T01:00:00Z",
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alert_utc": "2026-11-21T11:50:32Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "Over 228.5 (-115)",
+   "book": "Hard Rock",
+   "book_key": "hardrockbet",
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+1 pts",
+   "clv_conv_pts": null,
+   "clv_pin_line": null,
+   "clv_read_utc": null,
+   "clv_skipped": null,
+   "clv_source": null,
+   "clv_verified": null,
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -3.3,
+   "executable_book": true,
+   "fade_book": "kalshi",
+   "fade_point": 228.5,
+   "fade_price": 108,
+   "fade_price_after_fee": 101,
+   "fade_units": null,
+   "final": null,
+   "floor_line": 229.0,
+   "game": "Los Angeles Clippers @ Dallas Mavericks",
+   "grade": "B",
+   "hr1_eligible": false,
+   "hr1_pushed": false,
+   "hr1_verified": null,
+   "hr1_verify_status": null,
+   "hr1_verify_why": null,
+   "kind": "tot",
+   "late": false,
+   "minutes_before_start": 789,
+   "point": 228.5,
+   "price": -115,
+   "price_after_fee": -115,
+   "prices_at_alert": {
+    "hardrockbet": {
+     "after_fee": -115,
+     "point": 228.5,
+     "price": -115
+    },
+    "kalshi": {
+     "after_fee": -125.5,
+     "point": 228.5,
+     "price": -117
+    },
+    "novig": {
+     "after_fee": -150,
+     "point": 234.5,
+     "price": -150
+    },
+    "prophetx": {
+     "after_fee": -106.1,
+     "point": 229.5,
+     "price": -104
+    }
+   },
+   "pricing_bettable": true,
+   "result": null,
+   "score": 69,
    "sent_to_phone": true,
    "sport": "NBA",
    "start_utc": "2026-11-22T01:00:00Z",
@@ -99592,6 +99667,31 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Over 228.5 (-115) at Hard Rock (also: Kalshi)",
+   "bet": "Over 228.5 (-115)",
+   "bet_result": null,
+   "book": "Hard Rock",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -3.3,
+   "final": null,
+   "game": "Los Angeles Clippers @ Dallas Mavericks",
+   "grade": "B",
+   "late": false,
+   "minutes_before_start": 789,
+   "price": -115,
+   "price_after_fee": -115,
+   "pushed_to_phone": true,
+   "repeat": false,
+   "score": 69,
+   "sent_et": "2026-11-21 06:50",
+   "sport": "NBA",
+   "start_utc": "2026-11-22T01:00:00Z",
+   "why": "Pinnacle total moved 228 -> 229.5; bet only at 229 or better (confirmed by BetOnline, Matchbook)"
+  },
   {
    "alert_text": "Under 229.5 (-117) at ProphetX [-119 after ProphetX fee] (also: Hard Rock, Novig, Kalshi)",
    "bet": "Under 229.5 (-117)",
