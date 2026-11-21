@@ -1,6 +1,158 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-21T18:25:43Z",
+   "base_depth": 120606,
+   "best_price": 0.5333,
+   "best_price_american": -114,
+   "best_price_book": "prophetx",
+   "bid_improved": true,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.53,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-21",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -12298,
+     "new_this_side": 107911,
+     "other_side": 24546,
+     "other_side_all_levels": 109359,
+     "ratio": 5.8,
+     "this_side": 143238,
+     "this_side_all_levels": 229932
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 54638.27,
+    "volume_24h_fp": 59841.16,
+    "volume_fp": 61399.23
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 1251.4,
+    "volume_24h_fp": 44011.05,
+    "volume_fp": 1307.21
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 53386.87,
+    "volume_24h_fp": 15830.11,
+    "volume_fp": 60092.02
+   },
+   "fade_price": 0.48,
+   "first_seen_utc": "2026-11-21T18:20:21Z",
+   "game": "Chattanooga vs Alabama: Spread",
+   "game_surge_books": [],
+   "game_x": 1.7,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26NOV21CHATALA-ALA49\"}",
+   "lead_min": 34,
+   "league": "NCAAF",
+   "line": 48.5,
+   "market": "spread",
+   "new_money": 107911,
+   "new_x": 6.43,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 54638.27,
+      "volume_24h_fp": 59841.16,
+      "volume_fp": 61399.23
+     },
+     "game_normal": 135327,
+     "game_x": 1.7,
+     "normal": 16795,
+     "now": 229932,
+     "type": "SPREAD",
+     "x": 13.69
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.53,
+   "price_american": -113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 47.0,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 46.5,
+     "price": -110
+    },
+    "betrivers": {
+     "point": 47.5,
+     "price": -112
+    },
+    "bovada": {
+     "point": 46.5,
+     "price": -108
+    },
+    "draftkings": {
+     "point": 46.5,
+     "price": -108
+    },
+    "fanatics": {
+     "point": 47.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 47.5,
+     "price": -110
+    },
+    "lowvig": {
+     "point": 46.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 47.5,
+     "price": -141
+    },
+    "prophetx": {
+     "point": 47.5,
+     "price": -106
+    },
+    "williamhill_us": {
+     "point": 46.5,
+     "price": -109
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFSPREAD-26NOV21CHATALA-ALA49"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [
+    "Chattanooga Mocs +48.5 (-106)"
+   ],
+   "sharp_oppose": [],
+   "side": "Chattanooga",
+   "side_label": "NOT Alabama wins by over 48.5 points",
+   "size_x": 13.69,
+   "start_source": "odds",
+   "start_utc": "2026-11-21T19:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Chattanooga",
+    "Alabama"
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-21T17:55:47Z",
    "base_depth": 33994,
    "best_price": 0.8319,
@@ -229,8 +381,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.86,
-   "clv_cents": 4.0,
+   "close_price": 0.84,
+   "clv_cents": 2.0,
    "confirmed_after_min": 6,
    "date": "2026-11-21",
    "depth_by_book": {
@@ -255,9 +407,9 @@
     "volume_fp": 4873.14
    },
    "ex_stats_close": {
-    "open_interest_fp": 136817.06,
-    "volume_24h_fp": 169284.3,
-    "volume_fp": 191359.49
+    "open_interest_fp": 140824.61,
+    "volume_24h_fp": 196848.37,
+    "volume_fp": 200670.21000000002
    },
    "ex_stats_first": {
     "open_interest_fp": 88797.65,
@@ -376,9 +528,9 @@
     "volume_fp": 112.06
    },
    "ex_stats_close": {
-    "open_interest_fp": 47611.259999999995,
-    "volume_24h_fp": 46955.46,
-    "volume_fp": 47754.26
+    "open_interest_fp": 47617.49,
+    "volume_24h_fp": 46962.93,
+    "volume_fp": 47760.490000000005
    },
    "ex_stats_first": {
     "open_interest_fp": 47451.69,
@@ -576,7 +728,7 @@
    },
    "ex_stats_close": {
     "openInterest": 15826635.0,
-    "volume": 19320016.0
+    "volume": 19551128.0
    },
    "ex_stats_first": {
     "openInterest": 14916960.0,
@@ -1920,8 +2072,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.89,
-   "clv_cents": 10.0,
+   "close_price": 0.86,
+   "clv_cents": 7.0,
    "confirmed_after_min": 5,
    "date": "2026-11-21",
    "depth_by_book": {
@@ -1946,9 +2098,9 @@
     "volume_fp": 1695.62
    },
    "ex_stats_close": {
-    "open_interest_fp": 71135.23999999999,
-    "volume_24h_fp": 72627.81,
-    "volume_fp": 84904.88999999998
+    "open_interest_fp": 70706.8,
+    "volume_24h_fp": 83859.5,
+    "volume_fp": 86575.65
    },
    "ex_stats_first": {
     "open_interest_fp": 12370.39,
@@ -2213,8 +2365,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.45,
-   "clv_cents": -15.0,
+   "close_price": 0.59,
+   "clv_cents": -1.0,
    "confirmed_after_min": 5,
    "date": "2026-11-21",
    "depth_by_book": {
@@ -2245,9 +2397,9 @@
     "volume_fp": 61.59
    },
    "ex_stats_close": {
-    "open_interest_fp": 32353.0,
-    "volume_24h_fp": 16332.939999999999,
-    "volume_fp": 34215.39
+    "open_interest_fp": 32830.61,
+    "volume_24h_fp": 20797.6,
+    "volume_fp": 36780.09
    },
    "ex_stats_first": {
     "open_interest_fp": 26927.519999999997,
@@ -3044,9 +3196,9 @@
     "volume_fp": 0.86
    },
    "ex_stats_close": {
-    "open_interest_fp": 6234.83,
-    "volume_24h_fp": 6663.18,
-    "volume_fp": 7109.77
+    "open_interest_fp": 6307.67,
+    "volume_24h_fp": 6908.41,
+    "volume_fp": 7182.610000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 980.5999999999999,
@@ -3376,7 +3528,7 @@
    },
    "ex_stats_close": {
     "openInterest": 12174247.0,
-    "volume": 16670010.0
+    "volume": 16671710.0
    },
    "ex_stats_first": {
     "openInterest": 7990556.0,
@@ -6174,8 +6326,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.66,
-   "clv_cents": 0.5,
+   "close_price": 0.655,
+   "clv_cents": 0.0,
    "confirmed_after_min": 5,
    "date": "2026-11-21",
    "depth_by_book": {
@@ -6198,8 +6350,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 18321178.0,
-    "volume": 25098490.0
+    "openInterest": 18407513.0,
+    "volume": 25184825.0
    },
    "ex_stats_first": {
     "openInterest": 14836112.0,
@@ -6681,7 +6833,7 @@
    },
    "ex_stats_close": {
     "openInterest": 10263373.0,
-    "volume": 13823152.0
+    "volume": 13827152.0
    },
    "ex_stats_first": {
     "openInterest": 6985273.0,
@@ -9151,8 +9303,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.17,
-   "clv_cents": -11.0,
+   "close_price": 0.13,
+   "clv_cents": -15.0,
    "confirmed_after_min": 5,
    "date": "2026-11-21",
    "depth_by_book": {
@@ -9177,9 +9329,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 14696.2,
-    "volume_24h_fp": 14170.59,
-    "volume_fp": 16215.0
+    "open_interest_fp": 15113.580000000002,
+    "volume_24h_fp": 15476.61,
+    "volume_fp": 16651.82
    },
    "ex_stats_first": {
     "open_interest_fp": 1292.42,
@@ -10752,9 +10904,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 41402.58,
-    "volume_24h_fp": 29046.41,
-    "volume_fp": 42529.45
+    "open_interest_fp": 41468.97,
+    "volume_24h_fp": 29181.82,
+    "volume_fp": 42595.84
    },
    "ex_stats_first": {
     "open_interest_fp": 19607.2,
@@ -19560,9 +19712,9 @@
     "volume_fp": 17.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 118388.61,
-    "volume_24h_fp": 93219.08,
-    "volume_fp": 123076.19
+    "open_interest_fp": 119011.91,
+    "volume_24h_fp": 94815.25,
+    "volume_fp": 123699.49
    },
    "ex_stats_first": {
     "open_interest_fp": 25031.65,
