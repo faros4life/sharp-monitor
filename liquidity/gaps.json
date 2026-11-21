@@ -2,198 +2,6 @@
  "note": "PAPER ONLY (Oct 25; persistence added Oct 26): opposite sides of the same game/market/line on two different exchanges whose combined cost after fees is under $1 (Kalshi/Novig/ProphetX; Polymarket here is the global book, excluded). edge_pct = locked profit per $ staked at first sight; max/last_edge_pct while open. size_est = smaller leg's near-price depth (UPPER BOUND). first/last_seen_utc, scans_seen, lifetime_min = how long the gap stayed open (scan-interval resolution; a 1-scan gap may be a feed artifact). scan_sec = seconds from run start to this save, the most the two legs' reads can be apart. Measurement only: never alerted, never bet.",
  "gaps": [
   {
-   "seen_utc": "2026-11-07T10:22:11Z",
-   "league": "NCAAF",
-   "game": "Kentucky @ Tennessee",
-   "market": "moneyline",
-   "line": null,
-   "edge_pct": 26.18,
-   "total_cost": 0.7925,
-   "size_est": 8210,
-   "legs": [
-    {
-     "book": "novig",
-     "side": "UK (0)",
-     "price": 0.345,
-     "cost_after_fee": 0.345
-    },
-    {
-     "book": "prophetx",
-     "side": "Middle Tennessee",
-     "price": 0.4425,
-     "cost_after_fee": 0.4475
-    }
-   ],
-   "first_seen_utc": "2026-11-07T10:22:11Z",
-   "last_seen_utc": "2026-11-07T20:10:21Z",
-   "scans_seen": 33,
-   "max_edge_pct": 26.5,
-   "scan_sec": 554,
-   "lifetime_min": 588,
-   "last_edge_pct": 23.66,
-   "last_size_est": 8023
-  },
-  {
-   "seen_utc": "2026-11-07T16:53:40Z",
-   "league": "NCAAF",
-   "game": "Kentucky @ Tennessee",
-   "market": "total",
-   "line": 49.5,
-   "edge_pct": 8.86,
-   "total_cost": 0.9186,
-   "size_est": 163,
-   "legs": [
-    {
-     "book": "novig",
-     "side": "Over 49.5 (49.5)",
-     "price": 0.49,
-     "cost_after_fee": 0.49
-    },
-    {
-     "book": "prophetx",
-     "side": "under 49.5 (49.5)",
-     "price": 0.4237,
-     "cost_after_fee": 0.4286
-    }
-   ],
-   "first_seen_utc": "2026-11-07T16:53:40Z",
-   "last_seen_utc": "2026-11-07T20:10:21Z",
-   "scans_seen": 11,
-   "max_edge_pct": 8.86,
-   "scan_sec": 590,
-   "lifetime_min": 197,
-   "last_edge_pct": 8.68,
-   "last_size_est": 271
-  },
-  {
-   "seen_utc": "2026-11-07T18:12:58Z",
-   "league": "NCAAF",
-   "game": "Western Kentucky @ Middle Tennessee",
-   "market": "moneyline",
-   "line": null,
-   "edge_pct": 22.56,
-   "total_cost": 0.8159,
-   "size_est": 69538,
-   "legs": [
-    {
-     "book": "novig",
-     "side": "MTSU (0)",
-     "price": 0.45,
-     "cost_after_fee": 0.45
-    },
-    {
-     "book": "kalshi",
-     "side": "Kentucky",
-     "price": 0.35,
-     "cost_after_fee": 0.3659
-    }
-   ],
-   "first_seen_utc": "2026-11-07T18:12:58Z",
-   "last_seen_utc": "2026-11-07T20:10:21Z",
-   "scans_seen": 7,
-   "max_edge_pct": 23.32,
-   "scan_sec": 580,
-   "lifetime_min": 117,
-   "last_edge_pct": 22.56,
-   "last_size_est": 40249
-  },
-  {
-   "seen_utc": "2026-11-07T18:12:58Z",
-   "league": "NCAAF",
-   "game": "Western Kentucky at Middle Tennessee",
-   "market": "moneyline",
-   "line": null,
-   "edge_pct": 21.74,
-   "total_cost": 0.8214,
-   "size_est": 12088,
-   "legs": [
-    {
-     "book": "prophetx",
-     "side": "Middle Tennessee",
-     "price": 0.4505,
-     "cost_after_fee": 0.4555
-    },
-    {
-     "book": "kalshi",
-     "side": "Kentucky",
-     "price": 0.35,
-     "cost_after_fee": 0.3659
-    }
-   ],
-   "first_seen_utc": "2026-11-07T18:12:58Z",
-   "last_seen_utc": "2026-11-07T20:20:12Z",
-   "scans_seen": 8,
-   "max_edge_pct": 22.06,
-   "scan_sec": 580,
-   "lifetime_min": 127,
-   "last_edge_pct": 20.85,
-   "last_size_est": 13996
-  },
-  {
-   "seen_utc": "2026-11-07T19:51:04Z",
-   "league": "NCAAF",
-   "game": "Western Kentucky @ Middle Tennessee",
-   "market": "total",
-   "line": 53.5,
-   "edge_pct": 8.71,
-   "total_cost": 0.9199,
-   "size_est": 258,
-   "legs": [
-    {
-     "book": "novig",
-     "side": "Under 53.5 (53.5)",
-     "price": 0.515,
-     "cost_after_fee": 0.515
-    },
-    {
-     "book": "prophetx",
-     "side": "over 53.5 (53.5)",
-     "price": 0.4,
-     "cost_after_fee": 0.4049
-    }
-   ],
-   "first_seen_utc": "2026-11-07T19:51:04Z",
-   "last_seen_utc": "2026-11-07T20:10:21Z",
-   "scans_seen": 2,
-   "max_edge_pct": 8.71,
-   "scan_sec": 588,
-   "lifetime_min": 19,
-   "last_edge_pct": 8.71,
-   "last_size_est": 243
-  },
-  {
-   "seen_utc": "2026-11-07T19:51:04Z",
-   "league": "NCAAF",
-   "game": "Western Kentucky @ Middle Tennessee",
-   "market": "moneyline",
-   "line": null,
-   "edge_pct": 25.45,
-   "total_cost": 0.7971,
-   "size_est": 16340,
-   "legs": [
-    {
-     "book": "novig",
-     "side": "MTSU (0)",
-     "price": 0.45,
-     "cost_after_fee": 0.45
-    },
-    {
-     "book": "prophetx",
-     "side": "Kentucky",
-     "price": 0.3425,
-     "cost_after_fee": 0.3471
-    }
-   ],
-   "first_seen_utc": "2026-11-07T19:51:04Z",
-   "last_seen_utc": "2026-11-07T20:10:21Z",
-   "scans_seen": 2,
-   "max_edge_pct": 25.45,
-   "scan_sec": 588,
-   "lifetime_min": 19,
-   "last_edge_pct": 25.45,
-   "last_size_est": 17225
-  },
-  {
    "seen_utc": "2026-11-07T19:51:04Z",
    "league": "NCAAF",
    "game": "Kentucky @ Tennessee",
@@ -6711,13 +6519,13 @@
     }
    ],
    "first_seen_utc": "2026-11-21T11:10:31Z",
-   "last_seen_utc": "2026-11-21T20:10:17Z",
-   "scans_seen": 79,
+   "last_seen_utc": "2026-11-21T20:20:17Z",
+   "scans_seen": 81,
    "max_edge_pct": 90.15,
    "scan_sec": 217,
-   "lifetime_min": 540,
-   "last_edge_pct": 9.06,
-   "last_size_est": 2629
+   "lifetime_min": 550,
+   "last_edge_pct": 11.37,
+   "last_size_est": 6181
   },
   {
    "seen_utc": "2026-11-21T11:15:38Z",
@@ -7757,13 +7565,13 @@
     }
    ],
    "first_seen_utc": "2026-11-21T18:30:21Z",
-   "last_seen_utc": "2026-11-21T20:10:17Z",
-   "scans_seen": 11,
+   "last_seen_utc": "2026-11-21T20:20:17Z",
+   "scans_seen": 12,
    "max_edge_pct": 8.89,
    "scan_sec": 203,
-   "lifetime_min": 100,
-   "last_edge_pct": 7.82,
-   "last_size_est": 250
+   "lifetime_min": 110,
+   "last_edge_pct": 5.46,
+   "last_size_est": 199
   },
   {
    "seen_utc": "2026-11-21T18:30:21Z",
@@ -7821,13 +7629,13 @@
     }
    ],
    "first_seen_utc": "2026-11-21T18:30:21Z",
-   "last_seen_utc": "2026-11-21T20:10:17Z",
-   "scans_seen": 14,
+   "last_seen_utc": "2026-11-21T20:20:17Z",
+   "scans_seen": 15,
    "max_edge_pct": 19.36,
    "scan_sec": 203,
-   "lifetime_min": 100,
-   "last_edge_pct": 9.0,
-   "last_size_est": 932
+   "lifetime_min": 110,
+   "last_edge_pct": 5.5,
+   "last_size_est": 1517
   },
   {
    "seen_utc": "2026-11-21T18:30:21Z",
@@ -7853,13 +7661,13 @@
     }
    ],
    "first_seen_utc": "2026-11-21T18:30:21Z",
-   "last_seen_utc": "2026-11-21T20:10:17Z",
-   "scans_seen": 14,
+   "last_seen_utc": "2026-11-21T20:20:17Z",
+   "scans_seen": 15,
    "max_edge_pct": 24.19,
    "scan_sec": 203,
-   "lifetime_min": 100,
-   "last_edge_pct": 5.7,
-   "last_size_est": 101
+   "lifetime_min": 110,
+   "last_edge_pct": 3.51,
+   "last_size_est": 370
   },
   {
    "seen_utc": "2026-11-21T18:30:21Z",
@@ -8043,13 +7851,13 @@
     }
    ],
    "first_seen_utc": "2026-11-21T19:11:07Z",
-   "last_seen_utc": "2026-11-21T20:10:17Z",
-   "scans_seen": 7,
+   "last_seen_utc": "2026-11-21T20:20:17Z",
+   "scans_seen": 8,
    "max_edge_pct": 38.01,
    "scan_sec": 274,
-   "lifetime_min": 59,
-   "last_edge_pct": 34.1,
-   "last_size_est": 577
+   "lifetime_min": 69,
+   "last_edge_pct": 28.63,
+   "last_size_est": 845
   },
   {
    "seen_utc": "2026-11-21T19:11:07Z",
@@ -8107,13 +7915,13 @@
     }
    ],
    "first_seen_utc": "2026-11-21T19:11:07Z",
-   "last_seen_utc": "2026-11-21T20:10:17Z",
-   "scans_seen": 7,
+   "last_seen_utc": "2026-11-21T20:20:17Z",
+   "scans_seen": 8,
    "max_edge_pct": 38.01,
    "scan_sec": 274,
-   "lifetime_min": 59,
-   "last_edge_pct": 34.1,
-   "last_size_est": 577
+   "lifetime_min": 69,
+   "last_edge_pct": 28.63,
+   "last_size_est": 845
   },
   {
    "seen_utc": "2026-11-21T19:20:21Z",
@@ -8261,11 +8069,13 @@
     }
    ],
    "first_seen_utc": "2026-11-21T19:50:41Z",
-   "last_seen_utc": "2026-11-21T19:50:41Z",
-   "scans_seen": 1,
+   "last_seen_utc": "2026-11-21T20:20:17Z",
+   "scans_seen": 2,
    "max_edge_pct": 33.87,
    "scan_sec": 269,
-   "lifetime_min": 0
+   "lifetime_min": 30,
+   "last_edge_pct": 7.32,
+   "last_size_est": 600
   },
   {
    "seen_utc": "2026-11-21T19:50:41Z",
@@ -8291,11 +8101,13 @@
     }
    ],
    "first_seen_utc": "2026-11-21T19:50:41Z",
-   "last_seen_utc": "2026-11-21T19:50:41Z",
-   "scans_seen": 1,
+   "last_seen_utc": "2026-11-21T20:20:17Z",
+   "scans_seen": 2,
    "max_edge_pct": 32.64,
    "scan_sec": 269,
-   "lifetime_min": 0
+   "lifetime_min": 30,
+   "last_edge_pct": 6.01,
+   "last_size_est": 600
   }
  ]
 }
