@@ -1113,7 +1113,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+2.5 pts",
+   "clv": "+2 pts",
    "clv_conv_pts": null,
    "clv_pin_line": null,
    "clv_read_utc": null,
@@ -2657,7 +2657,7 @@
    "close_fair_prob": 0.5339,
    "close_read_mins_before": 15,
    "close_value_pct": -0.2,
-   "clv": "+1 pts",
+   "clv": "+2 pts",
    "clv_conv_pts": 1.0,
    "clv_pin_line": 36.5,
    "clv_read_utc": "2026-11-21T00:45:17Z",
@@ -2714,6 +2714,80 @@
    "sport": "NCAAB",
    "start_utc": "2026-11-21T01:00:00Z",
    "top25": true,
+   "units_flat": null
+  },
+  {
+   "alert_utc": "2026-11-21T00:50:24Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "Under 146.5 (-123)",
+   "book": "ProphetX",
+   "book_key": "prophetx",
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+1.5 pts",
+   "clv_conv_pts": null,
+   "clv_pin_line": null,
+   "clv_read_utc": null,
+   "clv_skipped": null,
+   "clv_source": null,
+   "clv_verified": null,
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -5.0,
+   "executable_book": true,
+   "fade_book": "prophetx",
+   "fade_point": 146.5,
+   "fade_price": 117,
+   "fade_price_after_fee": 115,
+   "fade_units": null,
+   "final": null,
+   "floor_line": 145.5,
+   "game": "South Alabama Jaguars @ SMU Mustangs",
+   "grade": "B",
+   "hr1_eligible": false,
+   "hr1_pushed": false,
+   "hr1_verified": null,
+   "hr1_verify_status": null,
+   "hr1_verify_why": null,
+   "kind": "tot",
+   "late": true,
+   "minutes_before_start": 10,
+   "point": 146.5,
+   "price": -123,
+   "price_after_fee": -126,
+   "prices_at_alert": {
+    "hardrockbet": {
+     "after_fee": -110,
+     "point": 145.5,
+     "price": -110
+    },
+    "kalshi": {
+     "after_fee": -111.5,
+     "point": 144.5,
+     "price": -104
+    },
+    "novig": {
+     "after_fee": -106,
+     "point": 144.5,
+     "price": -106
+    },
+    "prophetx": {
+     "after_fee": -125.5,
+     "point": 146.5,
+     "price": -123
+    }
+   },
+   "pricing_bettable": true,
+   "result": null,
+   "score": 60,
+   "sent_to_phone": false,
+   "sport": "NCAAB",
+   "start_utc": "2026-11-21T01:00:00Z",
+   "top25": false,
    "units_flat": null
   },
   {
@@ -98910,6 +98984,30 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Under 146.5 (-123) at ProphetX [-126 after ProphetX fee] (also: Hard Rock)",
+   "bet": "Under 146.5 (-123)",
+   "bet_result": null,
+   "book": "ProphetX",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -5.0,
+   "final": null,
+   "game": "South Alabama Jaguars @ SMU Mustangs",
+   "grade": "B",
+   "late": true,
+   "minutes_before_start": 10,
+   "price": -123,
+   "price_after_fee": -126,
+   "pushed_to_phone": false,
+   "repeat": false,
+   "score": 60,
+   "sent_et": "2026-11-20 19:50",
+   "sport": "NCAAB",
+   "start_utc": "2026-11-21T01:00:00Z",
+   "why": "Pinnacle total moved 146.5 -> 145; bet only at 145.5 or better (confirmed by BetOnline)"
+  },
   {
    "alert_text": "Miss Valley St Delta Devils +37.5 (-115) at Hard Rock",
    "bet": "Miss Valley St Delta Devils +37.5 (-115)",
