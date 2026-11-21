@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 21, 1:35 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 78.
+Updated Sat Nov 21, 1:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 78.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -11,7 +11,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 21 1:30PM | NFL | New Orleans Saints @ Chicago Bears | moneyline: CHI (0) | novig | $27k | -545 |  |  | +0.0c |  | pending |
-| Nov 21 1:25PM | NCAAF | Chattanooga vs Alabama: Spread | spread: NOT Alabama wins by over 48.5 points | kalshi | $108k | -113 |  | ✅ | +0.0c | yes | pending |
+| Nov 21 1:25PM | NCAAF | Chattanooga vs Alabama: Spread | spread: NOT Alabama wins by over 48.5 points | kalshi | $108k | -113 |  | ✅ | +1.0c | yes | pending |
 | Nov 21 12:55PM | NBA | Milwaukee Bucks at Philadelphia 76ers | moneyline: Philadelphia 76ers | prophetx | $28k | -485 | ✅ kalshi,novig | ❌ | +0.0c |  | pending |
 | Nov 21 12:55PM | NCAAF | Penn vs Princeton | moneyline: Penn | kalshi | $104k | -456 |  |  | +6.0c |  | pending |
 | Nov 21 12:55PM | NCAAF | Missouri St. vs Jacksonville St. | moneyline: Jacksonville St. | kalshi | $243k | -376 | ✅ prophetx |  | +0.0c | yes | pending |
@@ -30,7 +30,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 11:30AM | NCAAF | East Carolina @ Army | moneyline: ARMY (0) | novig | $47k | -190 | ✅ kalshi | ❌ | +0.0c |  | pending |
 | Nov 21 11:30AM | NCAAF | LIU vs Robert Morris | moneyline: Robert Morris | kalshi | $26k | -127 |  |  | +11.0c | yes | pending |
 | Nov 21 11:15AM | NCAAF | BYU @ Kansas | spread: BYU -4.5 (4.5) | novig | $55k | -104 | ✅ kalshi |  | -0.5c |  | pending |
-| Nov 21 11:15AM | NCAAF | Iowa @ Illinois | moneyline: IOWA (0) | novig | $26k | -308 | ✅ prophetx |  | +0.0c |  | pending |
+| Nov 21 11:15AM | NCAAF | Iowa @ Illinois | moneyline: IOWA (0) | novig | $26k | -308 | ✅ prophetx |  | +0.5c |  | pending |
 | Nov 21 11:15AM | NCAAF | North Carolina vs Virginia: Spread | spread: North Carolina wins by over 1.5 points | kalshi | $74k | -100 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 21 11:05AM | NCAAF | Vanderbilt at Florida | spread: Vanderbilt +13.5 (+13.5) | prophetx | $29k | +105 | ✅ novig |  | -0.9c | yes | pending |
 | Nov 21 11:00AM | NCAAF | Ohio State @ Nebraska | moneyline: OSU (0) | novig | $44k | -167 | ✅ prophetx |  | +0.5c | yes | pending |
@@ -61,7 +61,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 5:10AM | NCAAF | Dayton vs Presbyterian | moneyline: Dayton | kalshi | $29k | -488 |  |  | +0.0c | yes | pending |
 | Nov 21 4:35AM | NCAAF | Ohio St. vs Nebraska: Total Points | total: Over 42.5 points | kalshi | $112k | +104 |  |  | +1.0c |  | pending |
 | Nov 21 3:50AM | NCAAF | Charleston Southern vs Eastern Illinois | moneyline: Eastern Illinois | kalshi | $42k | -117 | ✅ novig |  | +4.0c | yes | pending |
-| Nov 21 3:30AM | NCAAF | University at Albany vs North Carolina A&T | moneyline: University | kalshi | $28k | +257 |  |  | -17.0c | yes | pending |
+| Nov 21 3:30AM | NCAAF | University at Albany vs North Carolina A&T | moneyline: University | kalshi | $28k | +257 |  |  | -18.0c | yes | pending |
 | Nov 21 3:20AM | NCAAF | BYU vs Kansas: Total Points | total: NOT Over 47.5 points | kalshi | $29k | -104 |  |  | +1.0c | yes | pending |
 | Nov 21 2:50AM | NCAAF | Vanderbilt vs Florida: Total Points | total: NOT Over 47.5 points | kalshi | $30k | -117 |  |  | -5.0c | yes | pending |
 | Nov 21 2:25AM | NCAAF | Lehigh vs Lafayette | moneyline: Lehigh | kalshi | $28k | -426 |  |  | +2.0c | yes | pending |
