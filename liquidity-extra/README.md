@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 21, 5:41 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 26.
+Updated Sat Nov 21, 5:50 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 25.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 403-243 (-18.89u flat) | rule met: 75-62
+**Record:** 403-244 (-19.89u flat) | rule met: 75-63
 
-**Fade (paper, betting against the print):** 218-368 (+16.67u flat, after fees)
+**Fade (paper, betting against the print):** 219-368 (+18.33u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -26,7 +26,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 11:20AM | NCAAB | New Mexico vs Wichita St. | moneyline: New Mexico | kalshi | $44k | -127 |  | ✅ | +0.0c |  | L |
 | Nov 21 10:50AM | NCAAB | Winthrop vs Wofford | moneyline: Wofford | kalshi | $61k | -233 | ✅ novig |  | +1.0c | yes | pending |
 | Nov 21 10:50AM | NCAAB | Gardner-Webb vs VMI | moneyline: VMI | kalshi | $46k | -355 | ✅ novig | ❌ | -1.0c |  | pending |
-| Nov 21 10:50AM | NCAAB | UT Rio Grande Valley vs Austin Peay | moneyline: Austin Peay | kalshi | $45k | -186 | ✅ novig |  | +4.0c |  | pending |
+| Nov 21 10:50AM | NCAAB | UT Rio Grande Valley vs Austin Peay | moneyline: Austin Peay | kalshi | $45k | -186 | ✅ novig |  | +4.0c |  | L |
 | Nov 21 10:50AM | NCAAB | Northern Illinois vs Bowling Green | moneyline: Bowling Green | kalshi | $61k | -203 | ✅ novig |  | +0.0c |  | L |
 | Nov 21 10:50AM | NCAAB | Texas A&M-Corpus Christi vs Oral Roberts | moneyline: Oral Roberts | kalshi | $35k | -133 | ✅ novig | ✅ | +2.0c |  | pending |
 | Nov 21 10:40AM | NCAAB | New Orleans vs Texas Southern | moneyline: New Orleans | kalshi | $41k | +113 | ✅ novig | ✅ | +1.0c |  | pending |
