@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 21, 2:45 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 24.
+Updated Sat Nov 21, 2:50 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 25.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,11 +10,12 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 21 2:50AM | NCAAF | Vanderbilt vs Florida: Total Points | total: NOT Over 47.5 points | kalshi | $30k | -117 |  |  | +0.0c |  | pending |
 | Nov 21 2:25AM | NCAAF | Lehigh vs Lafayette | moneyline: Lehigh | kalshi | $28k | -426 |  |  | +0.0c |  | pending |
 | Nov 21 2:25AM | NCAAF | The Citadel vs Western Carolina | moneyline: Western Carolina | kalshi | $34k | -488 |  |  | +0.0c |  | pending |
-| Nov 21 2:05AM | NCAAF | Memphis vs Navy: Spread | spread: Memphis wins by over 2.5 points | kalshi | $38k | -104 |  |  | +1.0c |  | pending |
+| Nov 21 2:05AM | NCAAF | Memphis vs Navy: Spread | spread: Memphis wins by over 2.5 points | kalshi | $38k | -104 |  |  | +0.0c |  | pending |
 | Nov 21 2:05AM | NBA | Milwaukee vs Philadelphia | moneyline: Philadelphia | kalshi | $59k | -567 | ✅ novig |  | -1.0c |  | pending |
-| Nov 21 12:15AM | NCAAF | Memphis vs Navy: Spread | spread: NOT Memphis wins by over 2.5 points | kalshi | $30k | -100 | ✅ novig |  | -1.0c |  | pending |
+| Nov 21 12:15AM | NCAAF | Memphis vs Navy: Spread | spread: NOT Memphis wins by over 2.5 points | kalshi | $30k | -100 | ✅ novig |  | +0.0c |  | pending |
 | Nov 21 12:00AM | NCAAF | Memphis vs Navy: Total Points | total: Over 67.5 points | kalshi | $36k | -100 |  |  | +0.0c |  | pending |
 | Nov 20 11:50PM | NCAAF | Texas A&M vs Oklahoma: Spread | spread: NOT Oklahoma wins by over 7.5 points | kalshi | $50k | -117 |  |  | +0.0c |  | pending |
 | Nov 20 11:25PM | NCAAF | Ohio St. vs Nebraska: Spread | spread: NOT Ohio St. wins by over 3.5 points | kalshi | $138k | -100 |  |  | +0.0c | yes | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 17 7:55PM | NBA | Chicago vs Brooklyn | moneyline: Brooklyn | kalshi | $77k | -138 |  |  | -4.0c | yes | L |
 | Nov 17 7:45PM | NBA | Portland Trail Blazers at Minnesota Timberwolves | moneyline: Minnesota Timberwolves | prophetx | $39k | -162 | ✅ kalshi,novig | ✅ | -0.6c |  | W |
 | Nov 17 7:45PM | NHL | Nashville vs Minnesota: Spread | spread: NOT Minnesota wins by over 1.5 goals | kalshi | $102k | -138 | ✅ novig |  | +0.0c | yes | L |
-| Nov 17 7:30PM | NBA | Portland Trail Blazers @ Minnesota Timberwolves | moneyline: MIN (0) | novig | $28k | -160 | ✅ kalshi,prophetx | ✅ | +0.0c |  | W |
