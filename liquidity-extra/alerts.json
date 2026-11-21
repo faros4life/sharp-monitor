@@ -1,6 +1,197 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-21T19:10:20Z",
+   "base_depth": 27852,
+   "best_price": 0.49,
+   "best_price_american": 104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.48,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-21",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 4190,
+     "new_this_side": 29640,
+     "other_side": 7653,
+     "other_side_all_levels": 38152,
+     "ratio": 6.7,
+     "this_side": 50989,
+     "this_side_all_levels": 65518
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 151.5 (151.5)",
+     "price": 0.49,
+     "this_side": 9511
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 2791.1,
+    "volume_24h_fp": 2791.1,
+    "volume_fp": 2791.1
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.06,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 2791.1,
+    "volume_24h_fp": 2791.04,
+    "volume_fp": 2791.1
+   },
+   "fade_price": 0.53,
+   "first_seen_utc": "2026-11-21T19:00:26Z",
+   "game": "St. Thomas vs Milwaukee: Point Total",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 2.5,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAMBTOTAL-26NOV21USTMILW-152\"}",
+   "lead_min": 50,
+   "league": "NCAAB",
+   "line": 151.5,
+   "market": "total",
+   "new_money": 29640,
+   "new_x": 2.71,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 2791.1,
+      "volume_24h_fp": 2791.1,
+      "volume_fp": 2791.1
+     },
+     "game_normal": 26186,
+     "game_x": 2.5,
+     "normal": 10923,
+     "now": 65518,
+     "type": "UNDER",
+     "x": 6.0
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 3428.0,
+      "volume": 3428.0
+     },
+     "game_normal": null,
+     "game_x": null,
+     "normal": 1444,
+     "now": 10160,
+     "type": "UNDER",
+     "x": 7.04
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.48,
+   "price_american": 108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.48,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 152.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": 152.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 152.0,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 151.5,
+     "price": -115
+    },
+    "betus": {
+     "point": 152.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 152.0,
+     "price": -110
+    },
+    "circasports": {
+     "point": 152.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 152.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": 152.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 152.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 151.5,
+     "price": 108
+    },
+    "lowvig": {
+     "point": 152.0,
+     "price": -108
+    },
+    "novig": {
+     "point": 151.5,
+     "price": 104
+    },
+    "polymarket": {
+     "point": 182.5,
+     "price": -9900
+    },
+    "prophetx": {
+     "point": 152.5,
+     "price": -109
+    },
+    "williamhill_us": {
+     "point": 152.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAMBTOTAL-26NOV21USTMILW-152"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 151.5 points",
+   "size_x": 6.0,
+   "start_source": "odds",
+   "start_utc": "2026-11-21T20:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "St. Thomas",
+    "Milwaukee"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-21T18:20:21Z",
    "base_depth": 50180,
    "best_price": 0.5,
@@ -653,9 +844,9 @@
     "volume_fp": 116.02
    },
    "ex_stats_close": {
-    "open_interest_fp": 12366.84,
-    "volume_24h_fp": 9978.62,
-    "volume_fp": 12719.310000000001
+    "open_interest_fp": 12589.470000000001,
+    "volume_24h_fp": 9992.19,
+    "volume_fp": 12941.94
    },
    "ex_stats_first": {
     "open_interest_fp": 10744.060000000001,
@@ -1049,9 +1240,9 @@
     "volume_fp": 2.65
    },
    "ex_stats_close": {
-    "open_interest_fp": 738.02,
-    "volume_24h_fp": 660.8399999999999,
-    "volume_fp": 742.22
+    "open_interest_fp": 738.29,
+    "volume_24h_fp": 661.1099999999999,
+    "volume_fp": 742.49
    },
    "ex_stats_first": {
     "open_interest_fp": 449.18,
@@ -1673,7 +1864,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 16414.690000000002,
-    "volume_24h_fp": 10934.23,
+    "volume_24h_fp": 16312.02,
     "volume_fp": 16414.690000000002
    },
    "ex_stats_first": {
@@ -1879,9 +2070,9 @@
     "volume_fp": 17.83
    },
    "ex_stats_close": {
-    "open_interest_fp": 15027.97,
-    "volume_24h_fp": 17892.35,
-    "volume_fp": 17924.19
+    "open_interest_fp": 15028.32,
+    "volume_24h_fp": 17892.42,
+    "volume_fp": 17924.54
    },
    "ex_stats_first": {
     "open_interest_fp": 14372.97,
@@ -2701,9 +2892,9 @@
     "volume_fp": 20.62
    },
    "ex_stats_close": {
-    "open_interest_fp": 790.24,
+    "open_interest_fp": 829.8,
     "volume_24h_fp": 78.17,
-    "volume_fp": 799.42
+    "volume_fp": 838.98
    },
    "ex_stats_first": {
     "open_interest_fp": 736.8,
@@ -2913,7 +3104,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 18049.010000000002,
-    "volume_24h_fp": 17892.91,
+    "volume_24h_fp": 18031.59,
     "volume_fp": 18061.010000000002
    },
    "ex_stats_first": {
@@ -3783,7 +3974,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 9213.33,
-    "volume_24h_fp": 9149.99,
+    "volume_24h_fp": 9193.05,
     "volume_fp": 9216.05
    },
    "ex_stats_first": {
@@ -3957,9 +4148,9 @@
     "volume_fp": 1575.15
    },
    "ex_stats_close": {
-    "open_interest_fp": 9627.39,
-    "volume_24h_fp": 9463.3,
-    "volume_fp": 9696.67
+    "open_interest_fp": 10011.84,
+    "volume_24h_fp": 9613.3,
+    "volume_fp": 10081.119999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 867.8299999999999,
@@ -8606,7 +8797,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 130,
+   "settle_tries": 131,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Daniil Medvedev N/A",

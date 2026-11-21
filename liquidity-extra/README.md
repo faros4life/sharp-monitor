@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 21, 2:00 PM ET. This run: 0 new, 1 not confirmed, 2 pending. Open alerts: 33.
+Updated Sat Nov 21, 2:10 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 34.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 21 2:10PM | NCAAB | St. Thomas vs Milwaukee: Point Total | total: NOT Over 151.5 points | kalshi | $30k | +108 |  |  | +0.0c |  | pending |
 | Nov 21 1:20PM | NCAAB | Northern Illinois vs Bowling Green: Point Total | total: NOT Over 147.5 points | kalshi | $37k | -100 | ✅ novig | ❌ | +0.0c |  | pending |
 | Nov 21 12:20PM | NCAAB | Charleston Southern vs Mercer | moneyline: Mercer | kalshi | $49k | -355 | ✅ novig |  | +0.0c |  | pending |
 | Nov 21 11:30AM | NCAAB | Morehead St. vs Elon: Spread | spread: NOT Elon wins by over 12.5 points | kalshi | $38k | -122 |  | ✅ | +1.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 15 12:30PM | NCAAB | Baylor vs Texas | moneyline: Texas | kalshi | $39k | -150 | ✅ novig | ❌ | +1.0c |  | W |
 | Nov 15 12:20PM | NCAAB | William & Mary vs Michigan: Point Total | total: Over 165.5 points | kalshi | $25k | -127 |  |  | +5.0c | yes | W |
 | Nov 15 12:00PM | NCAAB | Creighton vs Iowa | moneyline: Iowa | kalshi | $33k | -178 | ✅ novig | ✅ | -1.0c |  | L |
-| Nov 15 11:20AM | NCAAB | Baylor vs Texas: Spread | spread: Texas wins by over 2.5 points | kalshi | $30k | -117 |  | ❌ | +1.0c |  | W |
