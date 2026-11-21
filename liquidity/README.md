@@ -1,16 +1,16 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 21, 6:15 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 45.
+Updated Sat Nov 21, 6:20 PM ET. This run: 1 new, 0 not confirmed, 2 pending. Open alerts: 44.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1803-1412 (-38.16u flat) | rule met: 1052-845
+**Record:** 1803-1413 (-39.16u flat) | rule met: 1052-845
 
-**Fade (paper, betting against the print):** 1146-1530 (-198.71u flat, after fees)
+**Fade (paper, betting against the print):** 1147-1530 (-197.65u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 21 6:15PM | NHL | Philadelphia vs Montreal: Total Goals | total: Over 5.5 goals scored | kalshi | $35k | -122 | ✅ novig |  | +0.0c |  | pending |
+| Nov 21 6:20PM | NHL | Philadelphia vs Montreal: Total Goals | total: Over 5.5 goals scored | kalshi | $35k | -122 | ✅ novig |  | +0.0c |  | pending |
 | Nov 21 6:10PM | NHL | New Jersey vs St. Louis: Spread | spread: NOT New Jersey wins by over 1.5 goals | kalshi | $25k | -194 | ✅ novig |  | +0.0c |  | pending |
 | Nov 21 5:55PM | NCAAF | Arkansas State @ Louisiana Tech | moneyline: LT (0) | novig | $26k | -545 | ✅ kalshi,prophetx | ✅ | +0.0c |  | pending |
 | Nov 21 5:55PM | NHL | Washington vs Boston: Total Goals | total: Over 6.5 goals scored | kalshi | $30k | -113 |  |  | -1.0c |  | pending |
@@ -54,7 +54,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 12:40PM | NCAAF | Houston vs West Virginia: Spread | spread: Houston wins by over 6.5 points | kalshi | $82k | -100 |  | ❌ | +0.0c | yes | L |
 | Nov 21 12:35PM | NCAAF | Utah @ TCU | moneyline: UTAH (0) | novig | $41k | -308 | ✅ prophetx | ✅ | +0.0c |  | pending |
 | Nov 21 12:35PM | NHL | Edmonton vs Carolina: Spread | spread: Carolina wins by over 1.5 goals | kalshi | $42k | +127 | ✅ novig |  | +0.0c |  | W |
-| Nov 21 12:25PM | NCAAF | Coastal Carolina @ Louisiana | spread: CCU +10.5 (-10.5) | novig | $29k | -108 |  |  | -0.5c |  | pending |
+| Nov 21 12:25PM | NCAAF | Coastal Carolina @ Louisiana | spread: CCU +10.5 (-10.5) | novig | $29k | -108 |  |  | -0.5c |  | L |
 | Nov 21 12:25PM | NCAAF | North Carolina State @ Florida State | moneyline: FSU (0) | novig | $27k | -365 | ✅ prophetx |  | +0.0c | yes | pending |
 | Nov 21 12:10PM | NCAAF | Cornell vs Columbia | moneyline: Cornell | kalshi | $31k | -376 |  |  | -52.0c | yes | L |
 | Nov 21 12:00PM | NCAAF | Houston vs West Virginia: Total Points | total: NOT Over 72.5 points | kalshi | $39k | -104 |  |  | +3.0c | yes | W |
