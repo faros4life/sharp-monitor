@@ -1,6 +1,204 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-21T17:20:23Z",
+   "base_depth": 91003,
+   "best_price": 0.78,
+   "best_price_american": -355,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.78,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-21",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 6007,
+     "new_this_side": 48808,
+     "other_side": 22344,
+     "other_side_all_levels": 29108,
+     "ratio": 3.2,
+     "this_side": 72494,
+     "this_side_all_levels": 130972
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "MER (0)",
+     "price": 0.78,
+     "this_side": 22902
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Mercer",
+     "price": 0.7826,
+     "this_side": 1041
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 163.51999999999998,
+    "volume_24h_fp": 118.31,
+    "volume_fp": 163.51999999999998
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 163.51999999999998,
+    "volume_24h_fp": 118.31,
+    "volume_fp": 163.51999999999998
+   },
+   "fade_price": 0.22,
+   "first_seen_utc": "2026-11-21T17:10:21Z",
+   "game": "Charleston Southern vs Mercer",
+   "game_surge_books": [],
+   "game_x": 1.69,
+   "key": "kalshi|KXNCAAMBGAME-26NOV21CHSOMER|ml|1",
+   "lead_min": 400,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 48808,
+   "new_x": 1.66,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 163.51999999999998,
+      "volume_24h_fp": 118.31,
+      "volume_fp": 163.51999999999998
+     },
+     "game_normal": 77552,
+     "game_x": 1.69,
+     "normal": 29352,
+     "now": 130972,
+     "type": "ML",
+     "x": 4.46
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 1769302.0,
+      "volume": 2006602.0
+     },
+     "game_normal": 30505,
+     "game_x": 1.17,
+     "normal": 5935,
+     "now": 35619,
+     "type": "ML",
+     "x": 6.0
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 841,
+     "game_x": 1.24,
+     "normal": 907,
+     "now": 1041,
+     "type": "ML",
+     "x": 1.15
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.78,
+   "price_american": -355,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.78,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -425
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -415
+    },
+    "betrivers": {
+     "point": null,
+     "price": -435
+    },
+    "bovada": {
+     "point": null,
+     "price": -435
+    },
+    "circasports": {
+     "point": null,
+     "price": -400
+    },
+    "draftkings": {
+     "point": null,
+     "price": -425
+    },
+    "fanatics": {
+     "point": null,
+     "price": -425
+    },
+    "fanduel": {
+     "point": null,
+     "price": -430
+    },
+    "kalshi": {
+     "point": null,
+     "price": -355
+    },
+    "lowvig": {
+     "point": null,
+     "price": -415
+    },
+    "novig": {
+     "point": null,
+     "price": -355
+    },
+    "polymarket": {
+     "point": null,
+     "price": -376
+    },
+    "prophetx": {
+     "point": null,
+     "price": -360
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -420
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV21CHSOMER-MER"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Mercer",
+   "side_label": "Mercer",
+   "size_x": 4.46,
+   "start_source": "odds",
+   "start_utc": "2026-11-22T00:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "Charleston Southern",
+    "Mercer"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-21T16:30:27Z",
    "base_depth": 38719,
    "best_price": 0.5484,
@@ -40,9 +238,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2440.54,
+    "open_interest_fp": 2449.35,
     "volume_24h_fp": 2440.54,
-    "volume_fp": 2440.54
+    "volume_fp": 2449.35
    },
    "ex_stats_first": {
     "open_interest_fp": 2422.92,
@@ -230,9 +428,9 @@
     "volume_fp": 116.02
    },
    "ex_stats_close": {
-    "open_interest_fp": 11651.240000000002,
-    "volume_24h_fp": 9266.11,
-    "volume_fp": 11952.579999999998
+    "open_interest_fp": 11715.83,
+    "volume_24h_fp": 9374.87,
+    "volume_fp": 12017.17
    },
    "ex_stats_first": {
     "open_interest_fp": 10744.060000000001,
@@ -440,7 +638,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 2900.5,
-    "volume_24h_fp": 2984.23,
+    "volume_24h_fp": 3030.74,
     "volume_fp": 3030.74
    },
    "ex_stats_first": {
@@ -626,9 +824,9 @@
     "volume_fp": 2.65
    },
    "ex_stats_close": {
-    "open_interest_fp": 597.3900000000001,
-    "volume_24h_fp": 387.28000000000003,
-    "volume_fp": 601.59
+    "open_interest_fp": 604.7,
+    "volume_24h_fp": 520.21,
+    "volume_fp": 608.9000000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 449.18,
@@ -827,9 +1025,9 @@
     "volume_fp": 567.86
    },
    "ex_stats_close": {
-    "open_interest_fp": 39706.22,
-    "volume_24h_fp": 40507.35,
-    "volume_fp": 42198.479999999996
+    "open_interest_fp": 39901.75,
+    "volume_24h_fp": 41203.33,
+    "volume_fp": 42394.01
    },
    "ex_stats_first": {
     "open_interest_fp": 36043.3,
@@ -1041,7 +1239,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 727.0600000000001,
-    "volume_24h_fp": 632.93,
+    "volume_24h_fp": 708.25,
     "volume_fp": 727.0600000000001
    },
    "ex_stats_first": {
@@ -1211,8 +1409,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.78,
-   "clv_cents": 0.0,
+   "close_price": 0.77,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-21",
    "depth_by_book": {
@@ -1656,9 +1854,9 @@
     "volume_fp": 510.59
    },
    "ex_stats_close": {
-    "open_interest_fp": 1939.01,
+    "open_interest_fp": 1958.1100000000001,
     "volume_24h_fp": 1882.67,
-    "volume_fp": 1941.4099999999999
+    "volume_fp": 1960.51
    },
    "ex_stats_first": {
     "open_interest_fp": 503.17999999999995,
@@ -1865,9 +2063,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1815.83,
+    "open_interest_fp": 1827.0099999999998,
     "volume_24h_fp": 1724.26,
-    "volume_fp": 1815.83
+    "volume_fp": 1827.0099999999998
    },
    "ex_stats_first": {
     "open_interest_fp": 1114.22,
@@ -2075,9 +2273,9 @@
     "volume_fp": 41.52
    },
    "ex_stats_close": {
-    "open_interest_fp": 10638.38,
-    "volume_24h_fp": 6856.75,
-    "volume_fp": 11036.560000000001
+    "open_interest_fp": 10678.58,
+    "volume_24h_fp": 10974.060000000001,
+    "volume_fp": 11076.76
    },
    "ex_stats_first": {
     "open_interest_fp": 6471.38,
@@ -2489,9 +2687,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 17792.82,
-    "volume_24h_fp": 17774.399999999998,
-    "volume_fp": 17804.82
+    "open_interest_fp": 17815.38,
+    "volume_24h_fp": 17775.399999999998,
+    "volume_fp": 17827.38
    },
    "ex_stats_first": {
     "open_interest_fp": 4714.16,
@@ -2691,7 +2889,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 6807.18,
-    "volume_24h_fp": 6001.74,
+    "volume_24h_fp": 6635.360000000001,
     "volume_fp": 6953.33
    },
    "ex_stats_first": {
@@ -3051,7 +3249,7 @@
    },
    "ex_stats_close": {
     "openInterest": 2303282.0,
-    "volume": 2304388.0
+    "volume": 2308735.0
    },
    "ex_stats_first": {
     "openInterest": 541534.0,
@@ -3357,7 +3555,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 9163.96,
-    "volume_24h_fp": 9042.18,
+    "volume_24h_fp": 9143.68,
     "volume_fp": 9166.68
    },
    "ex_stats_first": {
@@ -3531,9 +3729,9 @@
     "volume_fp": 1575.15
    },
    "ex_stats_close": {
-    "open_interest_fp": 6625.719999999999,
-    "volume_24h_fp": 6569.7,
-    "volume_fp": 6668.07
+    "open_interest_fp": 7307.429999999999,
+    "volume_24h_fp": 6584.7,
+    "volume_fp": 7349.78
    },
    "ex_stats_first": {
     "open_interest_fp": 867.8299999999999,
@@ -3656,9 +3854,9 @@
     "volume_fp": 740.16
    },
    "ex_stats_close": {
-    "open_interest_fp": 12184.91,
-    "volume_24h_fp": 12340.560000000001,
-    "volume_fp": 12542.42
+    "open_interest_fp": 12297.77,
+    "volume_24h_fp": 12369.95,
+    "volume_fp": 12661.93
    },
    "ex_stats_first": {
     "open_interest_fp": 1627.0500000000002,
@@ -3867,9 +4065,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2859.73,
+    "open_interest_fp": 2970.93,
     "volume_24h_fp": 5333.879999999999,
-    "volume_fp": 5336.879999999999
+    "volume_fp": 5448.08
    },
    "ex_stats_first": {
     "open_interest_fp": 2079.19,
@@ -4608,9 +4806,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 631.99,
+    "open_interest_fp": 652.49,
     "volume_24h_fp": 619.5999999999999,
-    "volume_fp": 631.99
+    "volume_fp": 652.49
    },
    "ex_stats_first": {
     "open_interest_fp": 232.24,
@@ -4792,9 +4990,9 @@
     "volume_fp": 23.86
    },
    "ex_stats_close": {
-    "open_interest_fp": 5761.5599999999995,
+    "open_interest_fp": 6461.5599999999995,
     "volume_24h_fp": 5682.12,
-    "volume_fp": 5761.5599999999995
+    "volume_fp": 6461.5599999999995
    },
    "ex_stats_first": {
     "open_interest_fp": 158.03,
@@ -4992,9 +5190,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 9263.48,
-    "volume_24h_fp": 6858.88,
-    "volume_fp": 9444.28
+    "open_interest_fp": 20445.33,
+    "volume_24h_fp": 9444.28,
+    "volume_fp": 20626.13
    },
    "ex_stats_first": {
     "open_interest_fp": 268.07,
@@ -8177,7 +8375,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 119,
+   "settle_tries": 120,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Daniil Medvedev N/A",
