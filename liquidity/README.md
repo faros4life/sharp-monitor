@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 21, 12:50 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 21.
+Updated Sat Nov 21, 12:55 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 21.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -21,7 +21,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 20 8:55PM | NCAAF | New Mexico vs Wyoming: Spread | spread: NOT New Mexico wins by over 9.5 points | kalshi | $172k | -100 |  | ❌ | +0.0c | yes | W |
 | Nov 20 7:40PM | NBA | New Orleans Pelicans @ Oklahoma City Thunder | moneyline: OKC (0) | novig | $27k | -426 | ✅ kalshi,prophetx | ✅ | +0.0c |  | W |
 | Nov 20 7:25PM | NBA | New Orleans vs Oklahoma City: Spread | spread: Oklahoma City wins by over 10.5 points | kalshi | $31k | -108 | ✅ novig | ✅ | +0.0c | yes | L |
-| Nov 20 7:05PM | NCAAF | BYU vs Kansas: Spread | spread: NOT BYU wins by over 5.5 points | kalshi | $33k | +104 | ✅ novig,prophetx |  | +1.0c | yes | pending |
+| Nov 20 7:05PM | NCAAF | BYU vs Kansas: Spread | spread: NOT BYU wins by over 5.5 points | kalshi | $33k | +104 | ✅ novig,prophetx |  | +2.0c | yes | pending |
 | Nov 20 6:50PM | NBA | New Orleans vs Oklahoma City: Total Points | total: Over 229.5 points | kalshi | $28k | +104 |  | ✅ | +1.0c | yes | W |
 | Nov 20 6:35PM | NBA | Orlando vs Brooklyn: Total Points | total: NOT Over 223.5 points | kalshi | $41k | -104 | ✅ prophetx | ✅ | +1.0c | yes | L |
 | Nov 20 6:20PM | NCAAF | New Mexico vs Wyoming: Total Points | total: NOT Over 37.5 points | kalshi | $63k | +104 | ✅ novig |  | -2.0c | yes | L |
@@ -31,7 +31,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 20 4:50PM | NCAAF | UTEP vs Air Force: Total Points | total: NOT Over 48.5 points | kalshi | $35k | -104 | ✅ novig,prophetx | ✅ | -2.0c |  | L |
 | Nov 20 4:00PM | NBA | Washington vs Chicago: Total Points | total: Over 238.5 points | kalshi | $42k | +104 | ✅ novig | ❌ | +0.0c | yes | L |
 | Nov 20 3:35PM | NCAAF | New Mexico @ Wyoming | moneyline: UNM (0) | novig | $34k | -317 | ✅ kalshi,prophetx | ✅ | +2.0c |  | W |
-| Nov 20 3:20PM | NCAAF | BYU vs Kansas: Spread | spread: BYU wins by over 5.5 points | kalshi | $28k | -108 | ✅ novig |  | -1.0c | yes | pending |
+| Nov 20 3:20PM | NCAAF | BYU vs Kansas: Spread | spread: BYU wins by over 5.5 points | kalshi | $28k | -108 | ✅ novig |  | -2.0c | yes | pending |
 | Nov 20 3:20PM | NCAAF | Iowa St. vs UCF | moneyline: UCF | kalshi | $503k | +108 | ✅ prophetx | ❌ | -1.0c | yes | W |
 | Nov 20 2:45PM | NCAAF | UTEP vs Air Force: Spread | spread: Air Force wins by over 21.5 points | kalshi | $55k | -100 |  |  | +0.0c | yes | W |
 | Nov 20 2:25PM | NCAAF | Memphis vs Navy | moneyline: Memphis | kalshi | $31k | -138 | ✅ novig |  | -1.0c |  | pending |
