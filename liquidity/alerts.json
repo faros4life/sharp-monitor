@@ -1,6 +1,195 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-21T05:00:21Z",
+   "base_depth": 65072,
+   "best_price": 0.5,
+   "best_price_american": -100,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-21",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 10036,
+     "new_this_side": 36444,
+     "other_side": 65540,
+     "other_side_all_levels": 93624,
+     "ratio": 1.2,
+     "this_side": 77375,
+     "this_side_all_levels": 103489
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "Over 67.5 (67.5)",
+     "price": 0.5,
+     "this_side": 13195
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 10461.05,
+    "volume_24h_fp": 10248.75,
+    "volume_fp": 10720.22
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 10461.05,
+    "volume_24h_fp": 10248.75,
+    "volume_fp": 10720.22
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-11-21T04:55:40Z",
+   "game": "Memphis vs Navy: Total Points",
+   "game_surge_books": [],
+   "game_x": 1.4,
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFTOTAL-26NOV21MEMNAVY-68\"}",
+   "lead_min": 720,
+   "league": "NCAAF",
+   "line": 67.5,
+   "market": "total",
+   "new_money": 36444,
+   "new_x": 0.81,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 10461.05,
+      "volume_24h_fp": 10248.75,
+      "volume_fp": 10720.22
+     },
+     "game_normal": 73717,
+     "game_x": 1.4,
+     "normal": 44862,
+     "now": 103489,
+     "type": "OVER",
+     "x": 2.31
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 1349295.0,
+      "volume": 1602270.0
+     },
+     "game_normal": 17236,
+     "game_x": 1.22,
+     "normal": 2340,
+     "now": 21109,
+     "type": "OVER",
+     "x": 9.02
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 67.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 67.5,
+     "price": -110
+    },
+    "betrivers": {
+     "point": 67.5,
+     "price": -112
+    },
+    "betus": {
+     "point": 67.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 67.5,
+     "price": -108
+    },
+    "circasports": {
+     "point": 67.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 67.5,
+     "price": -108
+    },
+    "fanatics": {
+     "point": 67.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 66.5,
+     "price": -115
+    },
+    "kalshi": {
+     "point": 67.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": 67.5,
+     "price": -108
+    },
+    "mybookieag": {
+     "point": 67.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 67.5,
+     "price": 100
+    },
+    "polymarket": {
+     "point": 35.5,
+     "price": -9900
+    },
+    "prophetx": {
+     "point": 66.5,
+     "price": -110
+    },
+    "williamhill_us": {
+     "point": 67.5,
+     "price": -109
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFTOTAL-26NOV21MEMNAVY-68"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "OVER",
+   "side_label": "Over 67.5 points",
+   "size_x": 2.31,
+   "start_source": "odds",
+   "start_utc": "2026-11-21T17:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "Memphis",
+    "Navy"
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-21T04:50:17Z",
    "base_depth": 273254,
    "best_price": 0.5484,
@@ -221,9 +410,9 @@
     "volume_fp": 323.97
    },
    "ex_stats_close": {
-    "open_interest_fp": 260430.53,
+    "open_interest_fp": 264611.64,
     "volume_24h_fp": 234890.16,
-    "volume_fp": 263708.23
+    "volume_fp": 274460.42
    },
    "ex_stats_first": {
     "open_interest_fp": 256316.55,
@@ -347,7 +536,8 @@
      "price": -114
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-21T05:00:21Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26NOV21OSUNEB-OSU4"
@@ -420,8 +610,8 @@
     "volume": 84157.0
    },
    "ex_stats_close": {
-    "openInterest": 6837329.0,
-    "volume": 7678271.0
+    "openInterest": 8696879.0,
+    "volume": 9587821.0
    },
    "ex_stats_first": {
     "openInterest": 6543408.0,
@@ -629,9 +819,9 @@
     "volume_fp": 108.44
    },
    "ex_stats_close": {
-    "open_interest_fp": 26668.18,
+    "open_interest_fp": 26691.11,
     "volume_24h_fp": 21734.129999999997,
-    "volume_fp": 29570.1
+    "volume_fp": 29593.03
    },
    "ex_stats_first": {
     "open_interest_fp": 24911.089999999997,
@@ -1180,7 +1370,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Phoenix Suns",
@@ -1376,7 +1566,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 12,
+   "settle_tries": 13,
    "sharp_agree": [],
    "sharp_oppose": [
     "New Mexico Lobos -9.5 (-110)",
@@ -1856,8 +2046,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 2.0,
+   "close_price": 0.5,
+   "clv_cents": 1.0,
    "confirmed_after_min": 5,
    "date": "2026-11-21",
    "depth_by_book": {
@@ -1894,9 +2084,9 @@
     "volume_fp": 112.02
    },
    "ex_stats_close": {
-    "open_interest_fp": 299607.85,
+    "open_interest_fp": 301089.93,
     "volume_24h_fp": 292896.81,
-    "volume_fp": 310655.71
+    "volume_fp": 312139.72
    },
    "ex_stats_first": {
     "open_interest_fp": 40876.55,
@@ -2672,7 +2862,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 12,
+   "settle_tries": 13,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -3308,6 +3498,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Denver Nuggets",
@@ -3956,7 +4147,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 12,
+   "settle_tries": 13,
    "sharp_agree": [
     "New Mexico Lobos -7.5 (-117)"
    ],
@@ -4025,9 +4216,9 @@
     "volume_fp": 1.86
    },
    "ex_stats_close": {
-    "open_interest_fp": 299607.85,
+    "open_interest_fp": 301089.93,
     "volume_24h_fp": 292896.81,
-    "volume_fp": 310655.71
+    "volume_fp": 312139.72
    },
    "ex_stats_first": {
     "open_interest_fp": 32041.54,
@@ -4653,9 +4844,9 @@
     "volume_fp": 213.2
    },
    "ex_stats_close": {
-    "open_interest_fp": 40875.78,
+    "open_interest_fp": 41013.91,
     "volume_24h_fp": 23266.66,
-    "volume_fp": 42137.4
+    "volume_fp": 42275.53
    },
    "ex_stats_first": {
     "open_interest_fp": 24140.129999999997,
@@ -4862,9 +5053,9 @@
     "volume_fp": 1545.89
    },
    "ex_stats_close": {
-    "open_interest_fp": 68687.12,
+    "open_interest_fp": 69775.53,
     "volume_24h_fp": 53529.5,
-    "volume_fp": 73500.83
+    "volume_fp": 74589.24
    },
    "ex_stats_first": {
     "open_interest_fp": 36568.82,
@@ -5262,9 +5453,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 117784.73,
+    "open_interest_fp": 118652.31,
     "volume_24h_fp": 113953.58,
-    "volume_fp": 118308.16
+    "volume_fp": 119175.74
    },
    "ex_stats_first": {
     "open_interest_fp": 6037.99,
@@ -6083,9 +6274,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 9768.45,
+    "open_interest_fp": 9786.45,
     "volume_24h_fp": 3784.58,
-    "volume_fp": 11692.37
+    "volume_fp": 11710.37
    },
    "ex_stats_first": {
     "open_interest_fp": 6676.11,
@@ -6826,7 +7017,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 12,
+   "settle_tries": 13,
    "sharp_agree": [
     "New Mexico Lobos -7.5 (-117)"
    ],
@@ -8311,6 +8502,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [
     "Under 229.5 (-110)"
@@ -8811,9 +9003,9 @@
     "volume_fp": 17.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 44124.53999999999,
+    "open_interest_fp": 44343.869999999995,
     "volume_24h_fp": 24673.07,
-    "volume_fp": 48300.729999999996
+    "volume_fp": 48520.06
    },
    "ex_stats_first": {
     "open_interest_fp": 25031.65,
@@ -9672,9 +9864,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 24589.769999999997,
+    "open_interest_fp": 24598.39,
     "volume_24h_fp": 15587.56,
-    "volume_fp": 25107.940000000002
+    "volume_fp": 25116.56
    },
    "ex_stats_first": {
     "open_interest_fp": 9470.58,
@@ -9884,9 +10076,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 24589.769999999997,
+    "open_interest_fp": 24598.39,
     "volume_24h_fp": 15587.56,
-    "volume_fp": 25107.940000000002
+    "volume_fp": 25116.56
    },
    "ex_stats_first": {
     "open_interest_fp": 9470.58,
@@ -10244,6 +10436,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Sacramento",
@@ -11075,6 +11268,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Denver",
@@ -11269,7 +11463,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Phoenix",
@@ -24101,7 +24295,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 12,
+   "settle_tries": 13,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New Mexico",
