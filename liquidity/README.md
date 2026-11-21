@@ -1,19 +1,19 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 21, 12:05 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 30.
+Updated Sat Nov 21, 12:10 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 29.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1758-1379 (-39.93u flat) | rule met: 1032-827
+**Record:** 1759-1379 (-39.36u flat) | rule met: 1032-827
 
-**Fade (paper, betting against the print):** 1113-1485 (-194.07u flat, after fees)
+**Fade (paper, betting against the print):** 1113-1486 (-195.07u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 21 12:00AM | NCAAF | Memphis vs Navy: Total Points | total: Over 67.5 points | kalshi | $36k | -100 |  |  | +0.0c |  | pending |
 | Nov 20 11:50PM | NCAAF | Texas A&M vs Oklahoma: Spread | spread: NOT Oklahoma wins by over 7.5 points | kalshi | $50k | -117 |  |  | +0.0c |  | pending |
 | Nov 20 11:25PM | NCAAF | Ohio St. vs Nebraska: Spread | spread: NOT Ohio St. wins by over 3.5 points | kalshi | $138k | -100 |  |  | +0.0c | yes | pending |
-| Nov 20 11:15PM | NCAAF | Ohio State @ Nebraska | spread: OSU -3.5 (3.5) | novig | $31k | -104 | ✅ kalshi |  | -1.0c |  | pending |
+| Nov 20 11:15PM | NCAAF | Ohio State @ Nebraska | spread: OSU -3.5 (3.5) | novig | $31k | -104 | ✅ kalshi |  | -1.0c | yes | pending |
 | Nov 20 11:15PM | NHL | Edmonton vs Carolina | moneyline: Carolina | kalshi | $40k | -178 | ✅ novig |  | +0.0c |  | pending |
 | Nov 20 11:05PM | NCAAF | North Texas vs Tulane: Spread | spread: NOT North Texas wins by over 6.5 points | kalshi | $31k | +108 |  | ❌ | +0.0c |  | pending |
 | Nov 20 9:10PM | NBA | Phoenix Suns @ Utah Jazz | moneyline: PHX (0) | novig | $30k | -174 | ✅ kalshi,prophetx |  | -0.5c |  | pending |
@@ -33,7 +33,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 20 3:20PM | NCAAF | BYU vs Kansas: Spread | spread: BYU wins by over 5.5 points | kalshi | $28k | -108 | ✅ novig |  | -1.0c | yes | pending |
 | Nov 20 3:20PM | NCAAF | Iowa St. vs UCF | moneyline: UCF | kalshi | $503k | +108 | ✅ prophetx | ❌ | -1.0c | yes | W |
 | Nov 20 2:45PM | NCAAF | UTEP vs Air Force: Spread | spread: Air Force wins by over 21.5 points | kalshi | $55k | -100 |  |  | +0.0c | yes | W |
-| Nov 20 2:25PM | NCAAF | Memphis vs Navy | moneyline: Memphis | kalshi | $31k | -138 | ✅ novig |  | +0.0c |  | pending |
+| Nov 20 2:25PM | NCAAF | Memphis vs Navy | moneyline: Memphis | kalshi | $31k | -138 | ✅ novig |  | -1.0c |  | pending |
 | Nov 20 2:20PM | NCAAF | Wake Forest vs Georgia Tech: Spread | spread: Wake Forest wins by over 20.5 points | kalshi | $39k | -100 | ✅ novig |  | +2.0c | yes | pending |
 | Nov 20 2:15PM | NCAAF | Syracuse vs Boston College: Spread | spread: Syracuse wins by over 2.5 points | kalshi | $48k | -113 | ✅ novig |  | +1.0c | yes | pending |
 | Nov 20 2:15PM | NCAAF | Colorado vs Cincinnati: Spread | spread: NOT Cincinnati wins by over 3.5 points | kalshi | $95k | -113 | ✅ novig |  | +1.0c |  | pending |
@@ -64,7 +64,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 19 11:55PM | NBA | Washington vs Chicago: Total Points | total: NOT Over 240.5 points | kalshi | $26k | -104 |  |  | +6.0c | yes | W |
 | Nov 19 11:30PM | NBA | Washington vs Chicago | moneyline: Washington | kalshi | $60k | +127 |  |  | +2.0c | yes | W |
 | Nov 19 10:25PM | NBA | Houston vs Denver | moneyline: Denver | kalshi | $61k | -122 |  |  | -6.0c |  | pending |
-| Nov 19 9:55PM | NBA | Phoenix vs Utah | moneyline: Phoenix | kalshi | $39k | -163 |  |  | +2.0c |  | pending |
+| Nov 19 9:55PM | NBA | Phoenix vs Utah | moneyline: Phoenix | kalshi | $39k | -163 |  |  | +2.0c |  | W |
 | Nov 19 9:50PM | NHL | Dallas vs Vegas: Total Goals | total: NOT Over 5.5 goals scored | kalshi | $33k | -108 | ✅ novig,prophetx |  | +0.0c |  | L |
 | Nov 19 9:50PM | NBA | New Orleans vs Oklahoma City | moneyline: Oklahoma City | kalshi | $234k | -456 |  |  | -1.0c |  | W |
 | Nov 19 9:35PM | NBA | Washington vs Chicago | moneyline: Chicago | kalshi | $43k | -133 |  |  | -2.0c |  | L |
