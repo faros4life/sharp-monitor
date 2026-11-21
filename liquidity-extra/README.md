@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 21, 11:20 AM ET. This run: 3 new, 0 not confirmed, 3 pending. Open alerts: 31.
+Updated Sat Nov 21, 11:30 AM ET. This run: 2 new, 1 not confirmed, 0 pending. Open alerts: 33.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 21 11:30AM | NCAAB | Morehead St. vs Elon: Spread | spread: NOT Elon wins by over 12.5 points | kalshi | $38k | -122 |  | ✅ | +0.0c |  | pending |
+| Nov 21 11:30AM | NCAAB | Michigan vs Villanova | moneyline: Villanova | kalshi | $34k | +163 | ✅ novig |  | +0.0c |  | pending |
 | Nov 21 11:20AM | NCAAB | Northern Illinois vs Bowling Green: Spread | spread: NOT Bowling Green wins by over 5.5 points | kalshi | $45k | -108 |  |  | +0.0c |  | pending |
 | Nov 21 11:20AM | NCAAB | San Diego vs UC Irvine | moneyline: UC Irvine | kalshi | $31k | -186 |  | ❌ | +0.0c |  | pending |
 | Nov 21 11:20AM | NCAAB | New Mexico vs Wichita St. | moneyline: New Mexico | kalshi | $44k | -127 |  | ✅ | +0.0c |  | pending |
@@ -22,7 +24,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 10:40AM | NCAAB | Northern Arizona vs Cal Poly | moneyline: Cal Poly | kalshi | $48k | -335 | ✅ novig |  | +0.0c |  | pending |
 | Nov 21 10:40AM | NCAAB | Bradley vs Pacific | moneyline: Pacific | kalshi | $39k | -400 | ✅ novig |  | +0.0c |  | pending |
 | Nov 21 10:20AM | NCAAB | Stony Brook vs Saint Peter's | moneyline: Stony Brook | kalshi | $26k | -203 |  |  | -1.0c |  | pending |
-| Nov 21 10:10AM | NCAAB | Northern Illinois vs Bowling Green: Point Total | total: NOT Over 149.5 points | kalshi | $27k | -113 |  | ❌ | +3.0c |  | pending |
+| Nov 21 10:10AM | NCAAB | Northern Illinois vs Bowling Green: Point Total | total: NOT Over 149.5 points | kalshi | $27k | -113 |  | ❌ | +4.0c |  | pending |
 | Nov 21 9:40AM | NCAAB | Radford @ Chattanooga | moneyline: UTC (0) | novig | $37k | -335 |  |  | +1.0c |  | pending |
 | Nov 21 9:40AM | NCAAB | USC Upstate vs UNC Greensboro | moneyline: UNC Greensboro | kalshi | $69k | -257 |  |  | +0.0c |  | pending |
 | Nov 21 9:40AM | NCAAB | Radford vs Chattanooga | moneyline: Chattanooga | kalshi | $46k | -335 |  |  | +1.0c |  | pending |
@@ -33,7 +35,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 1:30AM | NCAAB | Little Rock vs North Florida | moneyline: Little Rock | kalshi | $27k | -194 |  |  | +0.0c | yes | pending |
 | Nov 21 1:30AM | NCAAB | Siena vs Bucknell | moneyline: Siena | kalshi | $25k | -223 |  |  | +3.0c |  | pending |
 | Nov 21 1:30AM | NCAAB | Navy vs Rider | moneyline: Navy | kalshi | $27k | -203 |  |  | -2.0c | yes | pending |
-| Nov 21 1:30AM | NCAAB | Fordham vs Portland | moneyline: Fordham | kalshi | $29k | -223 |  |  | -2.0c |  | pending |
+| Nov 21 1:30AM | NCAAB | Fordham vs Portland | moneyline: Fordham | kalshi | $29k | -223 |  |  | -3.0c |  | pending |
 | Nov 21 1:30AM | NCAAB | Denver vs Eastern Michigan | moneyline: Eastern Michigan | kalshi | $28k | -285 |  |  | +1.0c | yes | pending |
 | Nov 21 1:30AM | NCAAB | Cornell vs Morgan St. | moneyline: Cornell | kalshi | $26k | -233 |  |  | +0.0c | yes | pending |
 | Nov 20 6:50PM | NCAAB | Georgia St. vs Jacksonville St. | moneyline: Jacksonville St. | kalshi | $27k | -113 |  | ✅ | +0.0c |  | W |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 15 11:20AM | NCAAB | Baylor vs Texas: Spread | spread: Texas wins by over 2.5 points | kalshi | $30k | -117 |  | ❌ | +1.0c |  | W |
 | Nov 15 10:30AM | NCAAB | Norfolk St. vs Georgia St.: Spread | spread: NOT Georgia St. wins by over 11.5 points | kalshi | $33k | +113 |  |  | +3.0c |  | L |
 | Nov 15 10:10AM | NCAAB | Norfolk St. vs Georgia St.: Point Total | total: NOT Over 144.5 points | kalshi | $28k | -100 |  |  | +3.0c | yes | W |
-| Nov 15 10:00AM | NCAAB | Niagara vs Iowa St.: Point Total | total: Over 143.5 points | kalshi | $32k | -100 |  |  | +1.0c |  | L |
-| Nov 15 4:20AM | TENNIS | Medvedev vs Cobolli | moneyline: Medvedev | kalshi | $66k | -335 |  |  | +1.0c |  | W |
