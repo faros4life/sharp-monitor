@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 21, 12:54 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 34.
+Updated Sat Nov 21, 1:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 33.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 394-236 (-16.88u flat) | rule met: 73-60
+**Record:** 395-236 (-16.50u flat) | rule met: 73-60
 
-**Fade (paper, betting against the print):** 211-359 (+16.43u flat, after fees)
+**Fade (paper, betting against the print):** 211-360 (+15.43u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -27,7 +27,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 10:20AM | NCAAB | Stony Brook vs Saint Peter's | moneyline: Stony Brook | kalshi | $26k | -203 |  |  | -1.0c |  | pending |
 | Nov 21 10:10AM | NCAAB | Northern Illinois vs Bowling Green: Point Total | total: NOT Over 149.5 points | kalshi | $27k | -113 |  | ❌ | +4.0c |  | pending |
 | Nov 21 9:40AM | NCAAB | Radford @ Chattanooga | moneyline: UTC (0) | novig | $37k | -335 |  |  | +1.0c |  | pending |
-| Nov 21 9:40AM | NCAAB | USC Upstate vs UNC Greensboro | moneyline: UNC Greensboro | kalshi | $69k | -257 |  |  | +0.0c |  | pending |
+| Nov 21 9:40AM | NCAAB | USC Upstate vs UNC Greensboro | moneyline: UNC Greensboro | kalshi | $69k | -257 |  |  | +0.0c |  | W |
 | Nov 21 9:40AM | NCAAB | Radford vs Chattanooga | moneyline: Chattanooga | kalshi | $46k | -335 |  |  | +1.0c |  | pending |
 | Nov 21 9:40AM | NCAAB | Penn vs La Salle | moneyline: La Salle | kalshi | $37k | -133 |  |  | +1.0c |  | pending |
 | Nov 21 9:40AM | NCAAB | Kent St. vs Cleveland St. | moneyline: Kent St. | kalshi | $45k | -150 | ✅ novig |  | +0.0c |  | pending |
