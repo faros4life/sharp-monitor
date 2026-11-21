@@ -34,14 +34,14 @@
    "status": "OPEN",
    "closed_utc": null,
    "plays": 111,
-   "resulted": 105,
-   "W": 54,
+   "resulted": 106,
+   "W": 55,
    "L": 49,
    "P": 2,
-   "units": -2.72,
-   "u_per_play": -0.026,
-   "true_close_value_pct": -2.12,
-   "true_close_n": 101
+   "units": -1.87,
+   "u_per_play": -0.018,
+   "true_close_value_pct": -2.11,
+   "true_close_n": 102
   },
   {
    "id": "hr_routed",
@@ -55,14 +55,14 @@
    "status": "ELIGIBLE at next review",
    "closed_utc": null,
    "plays": 173,
-   "resulted": 167,
+   "resulted": 168,
    "W": 93,
-   "L": 74,
+   "L": 75,
    "P": 0,
-   "units": 8.75,
-   "u_per_play": 0.052,
-   "true_close_value_pct": -1.05,
-   "true_close_n": 166
+   "units": 7.75,
+   "u_per_play": 0.046,
+   "true_close_value_pct": -1.03,
+   "true_close_n": 167
   },
   {
    "id": "hr_fade",
@@ -76,14 +76,14 @@
    "status": "CLOSED",
    "closed_utc": "2026-11-01T03:35:12Z",
    "plays": 173,
-   "resulted": 167,
+   "resulted": 168,
    "W": 93,
-   "L": 74,
+   "L": 75,
    "P": 0,
-   "units": -18.31,
-   "u_per_play": -0.11,
-   "true_close_value_pct": -1.05,
-   "true_close_n": 166
+   "units": -17.18,
+   "u_per_play": -0.102,
+   "true_close_value_pct": -1.03,
+   "true_close_n": 167
   },
   {
    "id": "pmg_routed",
@@ -118,14 +118,14 @@
    "status": "OPEN",
    "closed_utc": null,
    "plays": 163,
-   "resulted": 157,
+   "resulted": 158,
    "W": 82,
-   "L": 75,
+   "L": 76,
    "P": 0,
-   "units": -2.25,
-   "u_per_play": -0.014,
-   "true_close_value_pct": -0.59,
-   "true_close_n": 156
+   "units": -3.25,
+   "u_per_play": -0.021,
+   "true_close_value_pct": -0.58,
+   "true_close_n": 157
   },
   {
    "id": "combined",
@@ -139,14 +139,14 @@
    "status": "OPEN",
    "closed_utc": null,
    "plays": 203,
-   "resulted": 199,
-   "W": 100,
+   "resulted": 200,
+   "W": 101,
    "L": 99,
    "P": 0,
-   "units": -10.44,
-   "u_per_play": -0.052,
-   "true_close_value_pct": -2.23,
-   "true_close_n": 196
+   "units": -9.59,
+   "u_per_play": -0.048,
+   "true_close_value_pct": -2.22,
+   "true_close_n": 197
   },
   {
    "id": "worse_125",
@@ -180,7 +180,7 @@
    "kill_bar": ">= 30 resulted at <= -0.1u/play -> CLOSED",
    "status": "OPEN",
    "closed_utc": null,
-   "plays": 776,
+   "plays": 778,
    "resulted": 729,
    "W": 401,
    "L": 328,
@@ -767,16 +767,16 @@
   "status": "PAUSE LIVE"
  },
  "gaps": {
-  "gaps": 228,
-  "per_day": 20.7,
-  "edge_pct_median": 9.65,
+  "gaps": 234,
+  "per_day": 21.3,
+  "edge_pct_median": 10.84,
   "edge_pct_p90": 26.68,
-  "size_est_median_upper_bound": 547.0,
-  "seen_once_share": 0.34,
+  "size_est_median_upper_bound": 539.0,
+  "seen_once_share": 0.36,
   "lifetime_min_median": 30.0,
   "lived_10min_plus": 147,
-  "with_200_both_legs_upper_bound": 161,
-  "scan_sec_median": 228.0
+  "with_200_both_legs_upper_bound": 162,
+  "scan_sec_median": 227.0
  },
  "untimed": {
   "ntfy_evening": 0,
@@ -785,5 +785,5 @@
   "liq_evening": 0
  },
  "resulted_rule": "resulted = result W, L or P with a unit value (pushes count as 0u); liquidity artifacts excluded; pending and ungraded plays do not count",
- "updated_utc": "2026-11-21T04:30:26Z"
+ "updated_utc": "2026-11-21T04:40:24Z"
 }
