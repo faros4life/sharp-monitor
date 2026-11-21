@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 21, 8:35 AM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 38.
+Updated Sat Nov 21, 8:40 AM ET. This run: 2 new, 0 not confirmed, 0 pending. Open alerts: 40.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,12 +10,14 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 21 8:40AM | NCAAF | Wake Forest vs Georgia Tech: Spread | spread: Wake Forest wins by over 21.5 points | kalshi | $26k | +108 |  |  | +0.0c |  | pending |
+| Nov 21 8:40AM | NCAAF | Wagner vs Stonehill | moneyline: Stonehill | kalshi | $29k | -300 |  |  | +0.0c |  | pending |
 | Nov 21 8:30AM | NCAAF | Vanderbilt @ Florida | moneyline: FLA (0) | novig | $57k | -471 | ✅ prophetx |  | +0.0c |  | pending |
 | Nov 21 8:25AM | NBA | Milwaukee Bucks @ Philadelphia 76ers | moneyline: PHI (0) | novig | $25k | -506 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Nov 21 8:05AM | NCAAF | North Texas vs Tulane: Spread | spread: North Texas wins by over 6.5 points | kalshi | $83k | -117 |  | ✅ | +0.0c |  | pending |
 | Nov 21 8:00AM | NBA | Milwaukee vs Philadelphia: Total Points | total: Over 229.5 points | kalshi | $37k | -100 |  |  | +0.0c |  | pending |
 | Nov 21 7:30AM | NCAAF | East Carolina vs Army: Total Points | total: Over 46.5 points | kalshi | $33k | +104 |  |  | +0.0c | yes | pending |
-| Nov 21 6:15AM | NCAAF | Indiana @ Washington | spread: IND -7.5 (7.5) | novig | $25k | -102 |  |  | +0.5c |  | pending |
+| Nov 21 6:15AM | NCAAF | Indiana @ Washington | spread: IND -7.5 (7.5) | novig | $25k | -102 |  |  | +1.0c |  | pending |
 | Nov 21 5:20AM | NCAAF | Vanderbilt vs Florida: Total Points | total: Over 47.5 points | kalshi | $38k | +113 |  |  | +2.0c | yes | pending |
 | Nov 21 5:10AM | NCAAF | Marist vs Davidson | moneyline: Marist | kalshi | $29k | -400 |  |  | +0.0c | yes | pending |
 | Nov 21 5:10AM | NCAAF | Dayton vs Presbyterian | moneyline: Dayton | kalshi | $29k | -488 |  |  | +1.0c |  | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 17 11:30PM | NBA | Detroit vs New Orleans | moneyline: Detroit | kalshi | $97k | -245 |  |  | -8.0c |  | W |
 | Nov 17 11:10PM | NBA | Chicago vs Brooklyn: Total Points | total: Over 238.5 points | kalshi | $25k | +104 |  |  | +3.0c | yes | W |
 | Nov 17 11:05PM | NHL | Boston vs Detroit | moneyline: Boston | kalshi | $43k | -100 |  |  | +0.0c | yes | W |
-| Nov 17 10:40PM | NHL | Montreal vs New Jersey | moneyline: New Jersey | kalshi | $38k | -156 | ✅ novig |  | +0.0c | yes | L |
-| Nov 17 10:30PM | NBA | Charlotte Hornets at Los Angeles Lakers | moneyline: Los Angeles Lakers | prophetx | $34k | -270 | ✅ kalshi,novig |  | -0.4c | yes | W |
