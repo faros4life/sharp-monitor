@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 21, 1:20 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 34.
+Updated Sat Nov 21, 1:30 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 33.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 395-236 (-16.50u flat) | rule met: 73-60
+**Record:** 396-236 (-16.05u flat) | rule met: 73-60
 
-**Fade (paper, betting against the print):** 211-360 (+15.43u flat, after fees)
+**Fade (paper, betting against the print):** 211-361 (+14.43u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -35,7 +35,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 9:40AM | NCAAB | Brown vs Vermont | moneyline: Vermont | kalshi | $30k | -156 |  |  | +3.0c |  | pending |
 | Nov 21 9:30AM | NCAAB | Northeastern vs Stonehill | moneyline: Northeastern | kalshi | $26k | -300 |  |  | +3.0c |  | pending |
 | Nov 21 1:30AM | NCAAB | Little Rock vs North Florida | moneyline: Little Rock | kalshi | $27k | -194 |  |  | -1.0c | yes | pending |
-| Nov 21 1:30AM | NCAAB | Siena vs Bucknell | moneyline: Siena | kalshi | $25k | -223 |  |  | +3.0c |  | pending |
+| Nov 21 1:30AM | NCAAB | Siena vs Bucknell | moneyline: Siena | kalshi | $25k | -223 |  |  | +3.0c |  | W |
 | Nov 21 1:30AM | NCAAB | Navy vs Rider | moneyline: Navy | kalshi | $27k | -203 |  |  | -2.0c | yes | pending |
 | Nov 21 1:30AM | NCAAB | Fordham vs Portland | moneyline: Fordham | kalshi | $29k | -223 |  |  | -4.0c |  | pending |
 | Nov 21 1:30AM | NCAAB | Denver vs Eastern Michigan | moneyline: Eastern Michigan | kalshi | $28k | -285 |  |  | +1.0c | yes | pending |
