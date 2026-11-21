@@ -1,6 +1,216 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-21T20:35:51Z",
+   "base_depth": 2007071,
+   "best_price": 0.755,
+   "best_price_american": -308,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.76,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-21",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -4496,
+     "new_this_side": 158759,
+     "other_side": 280504,
+     "other_side_all_levels": 523225,
+     "ratio": 4.7,
+     "this_side": 1310181,
+     "this_side_all_levels": 2230607
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "UTAH (0)",
+     "price": 0.755,
+     "this_side": 144076
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Utah",
+     "price": 0.7531,
+     "this_side": 19714
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 280728.35,
+    "volume_24h_fp": 260654.82,
+    "volume_fp": 317394.26999999996
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 243.45,
+    "volume_24h_fp": 415.18,
+    "volume_fp": 324.65
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 280484.9,
+    "volume_24h_fp": 260239.64,
+    "volume_fp": 317069.62
+   },
+   "fade_price": 0.25,
+   "first_seen_utc": "2026-11-21T20:30:21Z",
+   "game": "Utah vs TCU",
+   "game_surge_books": [],
+   "game_x": 0.99,
+   "key": "kalshi|KXNCAAFGAME-26NOV21UTAHTCU|ml|0",
+   "lead_min": 324,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 158759,
+   "new_x": 3.26,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 280728.35,
+      "volume_24h_fp": 260654.82,
+      "volume_fp": 317394.26999999996
+     },
+     "game_normal": 2255620,
+     "game_x": 0.99,
+     "normal": 48660,
+     "now": 2230607,
+     "type": "ML",
+     "x": 45.84
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 9481858.0,
+      "volume": 10372305.0
+     },
+     "game_normal": 158710,
+     "game_x": 1.04,
+     "normal": 20834,
+     "now": 164564,
+     "type": "ML",
+     "x": 7.9
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 21614,
+     "game_x": 0.96,
+     "normal": 3017,
+     "now": 20850,
+     "type": "ML",
+     "x": 6.91
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.76,
+   "price_american": -317,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.76,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -325
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -350
+    },
+    "betopenly": {
+     "point": null,
+     "price": -298
+    },
+    "betrivers": {
+     "point": null,
+     "price": -385
+    },
+    "betus": {
+     "point": null,
+     "price": -330
+    },
+    "bovada": {
+     "point": null,
+     "price": -330
+    },
+    "circasports": {
+     "point": null,
+     "price": -330
+    },
+    "draftkings": {
+     "point": null,
+     "price": -325
+    },
+    "fanatics": {
+     "point": null,
+     "price": -340
+    },
+    "fanduel": {
+     "point": null,
+     "price": -330
+    },
+    "kalshi": {
+     "point": null,
+     "price": -317
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -370
+    },
+    "novig": {
+     "point": null,
+     "price": -308
+    },
+    "polymarket": {
+     "point": null,
+     "price": -300
+    },
+    "prophetx": {
+     "point": null,
+     "price": -305
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -335
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26NOV21UTAHTCU-UTAH"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [
+    "Utah Utes -7.5 (-111)"
+   ],
+   "sharp_oppose": [],
+   "side": "Utah",
+   "side_label": "Utah",
+   "size_x": 45.84,
+   "start_source": "odds",
+   "start_utc": "2026-11-22T02:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Utah",
+    "TCU"
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-21T20:10:17Z",
    "base_depth": 703692,
    "best_price": 0.5917,
@@ -46,9 +256,9 @@
     "volume_fp": 7.31
    },
    "ex_stats_close": {
-    "open_interest_fp": 21122.32,
-    "volume_24h_fp": 15200.68,
-    "volume_fp": 21446.54
+    "open_interest_fp": 21457.84,
+    "volume_24h_fp": 19472.68,
+    "volume_fp": 21782.06
    },
    "ex_stats_first": {
     "open_interest_fp": 16507.57,
@@ -1152,8 +1362,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 16453652.0,
-    "volume": 18469348.0
+    "openInterest": 16454277.0,
+    "volume": 18469973.0
    },
    "ex_stats_first": {
     "openInterest": 16199699.0,
@@ -1652,7 +1862,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [
     "Milwaukee Bucks +10.5 (-106)",
@@ -2386,7 +2596,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [
     "Milwaukee Bucks +10.5 (-106)",
@@ -2590,7 +2800,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [
     "West Virginia Mountaineers +7.5 (-115)"
@@ -2656,8 +2866,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 9481190.0,
-    "volume": 10371421.0
+    "openInterest": 9481858.0,
+    "volume": 10372305.0
    },
    "ex_stats_first": {
     "openInterest": 9473237.0,
@@ -2985,7 +3195,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Carolina",
@@ -3647,7 +3857,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -3680,8 +3890,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.79,
-   "clv_cents": 19.0,
+   "close_price": 0.51,
+   "clv_cents": -9.0,
    "confirmed_after_min": 5,
    "date": "2026-11-21",
    "depth_by_book": {
@@ -3712,9 +3922,9 @@
     "volume_fp": 61.59
    },
    "ex_stats_close": {
-    "open_interest_fp": 34078.75,
-    "volume_24h_fp": 28349.6,
-    "volume_fp": 43589.369999999995
+    "open_interest_fp": 34483.42,
+    "volume_24h_fp": 29701.71,
+    "volume_fp": 44202.49
    },
    "ex_stats_first": {
     "open_interest_fp": 26927.519999999997,
@@ -4244,7 +4454,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "BYU",
@@ -4787,7 +4997,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "BYU",
@@ -5189,7 +5399,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "North Carolina",
@@ -5254,10 +5464,12 @@
    "ex_stats_change": null,
    "ex_stats_first": null,
    "fade_price": 0.5146,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-21T16:00:22Z",
    "game": "Vanderbilt at Florida",
    "game_surge_books": [],
    "game_x": 1.93,
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 13.5, \"px_event\": 1704742245, \"px_market\": 223, \"side\": \"0\"}",
    "lead_min": 54,
    "league": "NCAAF",
@@ -5387,14 +5599,15 @@
     "px_market": 223,
     "side": "0"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
+   "settled_utc": "2026-11-21T20:35:51Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Vanderbilt",
@@ -5413,7 +5626,7 @@
     "Florida"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 1.03
   },
   {
    "alerted_utc": "2026-11-21T16:00:22Z",
@@ -5592,7 +5805,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Ohio State",
@@ -5798,7 +6011,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Liberty",
@@ -6431,7 +6644,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Navy",
@@ -6636,7 +6849,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [
     "Over 66.5 (-113)"
@@ -6925,10 +7138,12 @@
     "volume_fp": 61865.49
    },
    "fade_price": 0.5,
+   "fade_units": 0.93,
    "first_seen_utc": "2026-11-21T15:15:46Z",
    "game": "Vanderbilt vs Florida: Spread",
    "game_surge_books": [],
    "game_x": 1.18,
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26NOV21VANFLA-FLA14\"}",
    "lead_min": 100,
    "league": "NCAAF",
@@ -7056,12 +7271,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26NOV21VANFLA-FLA14"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 10,
+   "settle_tries": 11,
+   "settled_utc": "2026-11-21T20:35:51Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Florida",
@@ -7080,7 +7296,7 @@
     "Florida"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-21T15:20:17Z",
@@ -7244,7 +7460,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [
     "West Virginia Mountaineers +7.5 (-115)"
    ],
@@ -7445,7 +7661,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Navy",
@@ -7517,12 +7733,14 @@
     "volume": 4321403.0
    },
    "fade_price": 0.505,
+   "fade_units": 0.98,
    "first_seen_utc": "2026-11-21T15:00:28Z",
    "game": "Wake Forest @ Georgia Tech",
    "game_surge_books": [
     "novig"
    ],
    "game_x": 2.28,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1dc79-04cb-7db1-9265-d28d33b4026f\", \"outcome_id\": \"01a1dc79-04cb-7db1-9265-d2ab098bbf14\"}",
    "lead_min": 114,
    "league": "NCAAF",
@@ -7632,14 +7850,15 @@
     "market_id": "01a1dc79-04cb-7db1-9265-d28d33b4026f",
     "outcome_id": "01a1dc79-04cb-7db1-9265-d2ab098bbf14"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi"
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
+   "settled_utc": "2026-11-21T20:35:51Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Wake Forest",
@@ -7657,7 +7876,7 @@
     "Georgia Tech"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-21T14:50:19Z",
@@ -8127,7 +8346,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UVA (0)",
@@ -8380,12 +8599,14 @@
     "volume_fp": 92517.17
    },
    "fade_price": 0.53,
+   "fade_units": 0.83,
    "first_seen_utc": "2026-11-21T13:35:57Z",
    "game": "Wake Forest vs Georgia Tech: Spread",
    "game_surge_books": [
     "novig"
    ],
    "game_x": 1.2,
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26NOV21WAKEGT-WAKE22\"}",
    "lead_min": 200,
    "league": "NCAAF",
@@ -8496,12 +8717,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26NOV21WAKEGT-WAKE22"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 10,
+   "settle_tries": 11,
+   "settled_utc": "2026-11-21T20:35:51Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Wake Forest",
@@ -8519,7 +8741,7 @@
     "Georgia Tech"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-21T13:40:18Z",
@@ -8726,10 +8948,12 @@
     "volume": 3746029.0
    },
    "fade_price": 0.18,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-21T13:25:38Z",
    "game": "Vanderbilt @ Florida",
    "game_surge_books": [],
    "game_x": 1.98,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1ddbd-7578-7cd3-b149-4ea02246395b\", \"outcome_id\": \"01a1ddbd-7578-7cd3-b149-4ebecdcfea2c\"}",
    "lead_min": 210,
    "league": "NCAAF",
@@ -8839,14 +9063,15 @@
     "market_id": "01a1ddbd-7578-7cd3-b149-4ea02246395b",
     "outcome_id": "01a1ddbd-7578-7cd3-b149-4ebecdcfea2c"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "prophetx"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
+   "settled_utc": "2026-11-21T20:35:51Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Florida",
@@ -8864,7 +9089,7 @@
     "Florida"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.21
   },
   {
    "alerted_utc": "2026-11-21T13:25:38Z",
@@ -9071,7 +9296,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Philadelphia 76ers",
@@ -9463,7 +9688,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -9909,10 +10134,12 @@
     "volume_fp": 7350.0
    },
    "fade_price": 0.54,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-21T10:15:39Z",
    "game": "Vanderbilt vs Florida: Total Points",
    "game_surge_books": [],
    "game_x": 1.2,
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFTOTAL-26NOV21VANFLA-48\"}",
    "lead_min": 400,
    "league": "NCAAF",
@@ -10019,12 +10246,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFTOTAL-26NOV21VANFLA-48"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 10,
+   "settle_tries": 11,
+   "settled_utc": "2026-11-21T20:35:51Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -10041,7 +10269,7 @@
     "Florida"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 1.11
   },
   {
    "alerted_utc": "2026-11-21T10:10:17Z",
@@ -10155,7 +10383,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Marist",
@@ -10304,7 +10532,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Dayton",
@@ -10489,7 +10717,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -10642,7 +10870,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Eastern Illinois",
@@ -10939,7 +11167,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -11009,10 +11237,12 @@
     "volume_fp": 6899.72
    },
    "fade_price": 0.47,
+   "fade_units": 1.05,
    "first_seen_utc": "2026-11-21T07:45:36Z",
    "game": "Vanderbilt vs Florida: Total Points",
    "game_surge_books": [],
    "game_x": 1.28,
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFTOTAL-26NOV21VANFLA-48\"}",
    "lead_min": 550,
    "league": "NCAAF",
@@ -11119,12 +11349,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFTOTAL-26NOV21VANFLA-48"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 10,
+   "settle_tries": 11,
+   "settled_utc": "2026-11-21T20:35:51Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -11141,7 +11372,7 @@
     "Florida"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-21T07:25:38Z",
@@ -11273,7 +11504,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Lehigh",
@@ -11409,7 +11640,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Western Carolina",
@@ -11607,7 +11838,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Memphis",
@@ -11831,7 +12062,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Philadelphia",
@@ -12028,7 +12259,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Navy",
@@ -12226,7 +12457,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -12608,7 +12839,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Nebraska",
@@ -12811,7 +13042,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Ohio State",
@@ -13031,7 +13262,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Carolina",
@@ -14308,7 +14539,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Kansas",
@@ -16441,7 +16672,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "BYU",
@@ -17078,7 +17309,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Memphis",
@@ -17156,10 +17387,12 @@
     "volume_fp": 38492.11
    },
    "fade_price": 0.51,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-20T19:15:49Z",
    "game": "Wake Forest vs Georgia Tech: Spread",
    "game_surge_books": [],
    "game_x": 1.22,
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26NOV21WAKEGT-WAKE21\"}",
    "lead_min": 1300,
    "league": "NCAAF",
@@ -17270,14 +17503,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26NOV21WAKEGT-WAKE21"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
+   "settled_utc": "2026-11-21T20:35:51Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Wake Forest",
@@ -17295,7 +17529,7 @@
     "Georgia Tech"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.98
   },
   {
    "alerted_utc": "2026-11-20T19:15:49Z",
@@ -17483,7 +17717,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Syracuse",
@@ -18386,10 +18620,12 @@
     "volume_fp": 8548.33
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-20T18:15:48Z",
    "game": "Vanderbilt vs Florida: Spread",
    "game_surge_books": [],
    "game_x": 1.13,
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26NOV21VANFLA-FLA14\"}",
    "lead_min": 1360,
    "league": "NCAAF",
@@ -18504,12 +18740,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26NOV21VANFLA-FLA14"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 10,
+   "settle_tries": 11,
+   "settled_utc": "2026-11-21T20:35:51Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Vanderbilt",
@@ -18527,7 +18764,7 @@
     "Florida"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.98
   },
   {
    "alerted_utc": "2026-11-20T18:15:48Z",
