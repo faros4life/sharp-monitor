@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 20, 9:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 59.
+Updated Fri Nov 20, 9:05 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 59.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 20 8:55PM | NCAAF | New Mexico vs Wyoming: Spread | spread: NOT New Mexico wins by over 9.5 points | kalshi | $172k | -100 |  | ❌ | +0.0c |  | pending |
+| Nov 20 8:55PM | NCAAF | New Mexico vs Wyoming: Spread | spread: NOT New Mexico wins by over 9.5 points | kalshi | $172k | -100 |  | ❌ | +0.0c | yes | pending |
 | Nov 20 7:40PM | NBA | New Orleans Pelicans @ Oklahoma City Thunder | moneyline: OKC (0) | novig | $27k | -426 | ✅ kalshi,prophetx | ✅ | +0.0c |  | pending |
 | Nov 20 7:25PM | NBA | New Orleans vs Oklahoma City: Spread | spread: Oklahoma City wins by over 10.5 points | kalshi | $31k | -108 | ✅ novig | ✅ | +0.0c | yes | pending |
 | Nov 20 7:05PM | NCAAF | BYU vs Kansas: Spread | spread: NOT BYU wins by over 5.5 points | kalshi | $33k | +104 | ✅ novig,prophetx |  | +2.0c | yes | pending |
@@ -43,7 +43,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 20 10:55AM | NBA | Indiana vs Cleveland: Total Points | total: Over 232.5 points | kalshi | $42k | -117 |  |  | +2.0c | yes | pending |
 | Nov 20 10:50AM | NBA | Charlotte Hornets @ Atlanta Hawks | moneyline: ATL (0) | novig | $201k | -223 | ✅ kalshi,prophetx | ✅ | +1.5c | yes | pending |
 | Nov 20 10:50AM | NCAAF | Oregon vs Michigan St.: Spread | spread: Oregon wins by over 17.5 points | kalshi | $33k | -108 |  |  | +5.0c | yes | pending |
-| Nov 20 10:43AM | NBA | Sacramento vs Los Angeles L: Total Points | total: Over 228.5 points | kalshi | $34k | -104 | ✅ novig,prophetx | ❌ | +2.0c |  | pending |
+| Nov 20 10:43AM | NBA | Sacramento vs Los Angeles L: Total Points | total: Over 228.5 points | kalshi | $34k | -104 | ✅ novig,prophetx | ❌ | +1.0c |  | pending |
 | Nov 20 10:30AM | NBA | Toronto vs Detroit: Spread | spread: Detroit wins by over 6.5 points | kalshi | $57k | -108 | ✅ novig |  | +0.0c |  | pending |
 | Nov 20 8:45AM | NCAAF | Iowa State @ UCF | moneyline: ISU (0) | novig | $31k | -100 | ✅ kalshi,prophetx |  | +3.5c |  | pending |
 | Nov 20 8:45AM | NCAAF | Texas A&M vs Oklahoma | moneyline: Oklahoma | kalshi | $86k | -257 | ✅ novig |  | +0.0c |  | pending |
