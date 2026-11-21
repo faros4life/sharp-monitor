@@ -1,15 +1,16 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 21, 4:00 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 36.
+Updated Sat Nov 21, 4:10 PM ET. This run: 1 new, 0 not confirmed, 2 pending. Open alerts: 36.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1788-1409 (-45.28u flat) | rule met: 1047-845
+**Record:** 1789-1409 (-45.05u flat) | rule met: 1047-845
 
-**Fade (paper, betting against the print):** 1143-1515 (-189.06u flat, after fees)
+**Fade (paper, betting against the print):** 1143-1516 (-190.06u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 21 4:10PM | NCAAF | Arizona vs Kansas St. | moneyline: Arizona | kalshi | $151k | -335 | ✅ novig,prophetx | ✅ | +0.0c |  | pending |
 | Nov 21 3:41PM | NCAAF | Utah vs TCU | moneyline: Utah | kalshi | $159k | -317 | ✅ novig,prophetx | ✅ | +0.0c |  | pending |
 | Nov 21 3:10PM | NCAAF | Georgia St. vs Marshall | moneyline: Marshall | kalshi | $97k | -144 | ✅ prophetx | ✅ | +0.0c | yes | pending |
 | Nov 21 3:01PM | NCAAF | NC St. vs Florida St. | moneyline: Florida St. | kalshi | $133k | -376 | ✅ novig,prophetx |  | +0.0c |  | pending |
@@ -64,7 +65,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 7:30AM | NCAAF | East Carolina vs Army: Total Points | total: Over 46.5 points | kalshi | $33k | +104 |  |  | +0.0c | yes | L |
 | Nov 21 6:15AM | NCAAF | Indiana @ Washington | spread: IND -7.5 (7.5) | novig | $25k | -102 |  |  | +0.5c |  | pending |
 | Nov 21 5:20AM | NCAAF | Vanderbilt vs Florida: Total Points | total: Over 47.5 points | kalshi | $38k | +113 |  |  | +5.0c | yes | W |
-| Nov 21 5:10AM | NCAAF | Marist vs Davidson | moneyline: Marist | kalshi | $29k | -400 |  |  | +2.0c | yes | pending |
+| Nov 21 5:10AM | NCAAF | Marist vs Davidson | moneyline: Marist | kalshi | $29k | -400 |  |  | +2.0c | yes | W |
 | Nov 21 5:10AM | NCAAF | Dayton vs Presbyterian | moneyline: Dayton | kalshi | $29k | -488 |  |  | +0.0c | yes | W |
 | Nov 21 4:35AM | NCAAF | Ohio St. vs Nebraska: Total Points | total: Over 42.5 points | kalshi | $112k | +104 |  |  | +1.0c |  | W |
 | Nov 21 3:50AM | NCAAF | Charleston Southern vs Eastern Illinois | moneyline: Eastern Illinois | kalshi | $42k | -117 | ✅ novig |  | +4.0c | yes | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 18 7:24PM | NBA | Chicago vs Brooklyn: Total Points | total: NOT Over 238.5 points | kalshi | $42k | +104 | ✅ novig | ✅ | +0.0c | yes | L |
 | Nov 18 6:55PM | NBA | Philadelphia 76ers @ Orlando Magic | moneyline: ORL (0) | novig | $30k | -178 | ✅ kalshi,prophetx | ✅ | +0.0c |  | L |
 | Nov 18 6:55PM | NBA | Philadelphia vs Orlando: Spread | spread: Orlando wins by over 4.5 points | kalshi | $178k | -100 | ✅ novig | ✅ | +0.0c |  | L |
-| Nov 18 6:45PM | NBA | Houston vs Indiana: Total Points | total: Over 224.5 points | kalshi | $35k | -108 |  | ✅ | +0.0c |  | L |
