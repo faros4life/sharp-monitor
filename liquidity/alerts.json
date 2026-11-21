@@ -1,6 +1,205 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-21T23:50:18Z",
+   "base_depth": 68730,
+   "best_price": 0.8388,
+   "best_price_american": -520,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.84,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 4,
+   "date": "2026-11-21",
+   "depth_by_book": {
+    "novig": {
+     "new_other_side": -12,
+     "new_this_side": 39911,
+     "other_side": 23990,
+     "other_side_all_levels": 25151,
+     "ratio": 3.6,
+     "this_side": 85728,
+     "this_side_all_levels": 108669
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Boston Celtics",
+     "price": 0.8361,
+     "this_side": 69295
+    }
+   },
+   "ex_stats_alert": {
+    "openInterest": 16195856.0,
+    "volume": 19803654.0
+   },
+   "ex_stats_change": {
+    "openInterest": 30422.0,
+    "volume": 30422.0
+   },
+   "ex_stats_first": {
+    "openInterest": 16165434.0,
+    "volume": 19773232.0
+   },
+   "fade_price": 0.165,
+   "first_seen_utc": "2026-11-21T23:45:49Z",
+   "game": "Boston Celtics @ Sacramento Kings",
+   "game_surge_books": [],
+   "game_x": 1.67,
+   "key": "novig|{\"market_id\": \"01a1fc51-5f4a-7e62-afdd-e2674af33f05\", \"outcome_id\": \"01a1fc51-5f4a-7e62-afdd-e280dc3caac9\"}",
+   "lead_min": 190,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 39911,
+   "new_x": 8.52,
+   "norm_by_book": {
+    "novig": {
+     "ex_stats": {
+      "openInterest": 16195856.0,
+      "volume": 19803654.0
+     },
+     "game_normal": 65075,
+     "game_x": 1.67,
+     "normal": 4684,
+     "now": 108669,
+     "type": "ML",
+     "x": 23.2
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 40549,
+     "game_x": 1.71,
+     "normal": 19652,
+     "now": 69295,
+     "type": "ML",
+     "x": 3.53
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.84,
+   "price_american": -525,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.84,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -625
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -600
+    },
+    "betopenly": {
+     "point": null,
+     "price": -675
+    },
+    "betrivers": {
+     "point": null,
+     "price": -625
+    },
+    "betus": {
+     "point": null,
+     "price": -600
+    },
+    "bovada": {
+     "point": null,
+     "price": -625
+    },
+    "circasports": {
+     "point": null,
+     "price": -590
+    },
+    "draftkings": {
+     "point": null,
+     "price": -600
+    },
+    "fanatics": {
+     "point": null,
+     "price": -600
+    },
+    "fanduel": {
+     "point": null,
+     "price": -600
+    },
+    "kalshi": {
+     "point": null,
+     "price": -525
+    },
+    "limitless": {
+     "point": null,
+     "price": -537
+    },
+    "lowvig": {
+     "point": null,
+     "price": -591
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -631
+    },
+    "novig": {
+     "point": null,
+     "price": -525
+    },
+    "polymarket": {
+     "point": null,
+     "price": -525
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -525
+    },
+    "prophetx": {
+     "point": null,
+     "price": -510
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -650
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a1fc51-5f4a-7e62-afdd-e2674af33f05",
+    "outcome_id": "01a1fc51-5f4a-7e62-afdd-e280dc3caac9"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Sacramento Kings +12.5 (-106)",
+    "Sacramento Kings +12.5 (-113)"
+   ],
+   "side": "Boston Celtics",
+   "side_label": "BOS (0)",
+   "size_x": 23.2,
+   "start_source": "odds",
+   "start_utc": "2026-11-22T03:00:00Z",
+   "surge_books": [
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Boston Celtics",
+    "Sacramento Kings"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-21T23:45:49Z",
    "base_depth": 180125,
    "best_price": 0.405,
@@ -44,6 +243,11 @@
     "open_interest_fp": 139.94,
     "volume_24h_fp": 0.0,
     "volume_fp": 139.94
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 6377.37,
+    "volume_24h_fp": 6423.14,
+    "volume_fp": 7252.06
    },
    "ex_stats_first": {
     "open_interest_fp": 6210.31,
@@ -236,6 +440,11 @@
     "open_interest_fp": 3809.71,
     "volume_24h_fp": 0.0,
     "volume_fp": 3809.71
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 27144.17,
+    "volume_24h_fp": 26023.84,
+    "volume_fp": 31350.4
    },
    "ex_stats_first": {
     "open_interest_fp": 22103.33,
@@ -434,9 +643,9 @@
     "volume_fp": 44.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1457.26,
+    "open_interest_fp": 3106.24,
     "volume_24h_fp": 606.3,
-    "volume_fp": 1457.26
+    "volume_fp": 3206.24
    },
    "ex_stats_first": {
     "open_interest_fp": 651.04,
@@ -639,9 +848,9 @@
     "volume_fp": 29472.95
    },
    "ex_stats_close": {
-    "open_interest_fp": 38603.18,
+    "open_interest_fp": 39218.46,
     "volume_24h_fp": 38090.56,
-    "volume_fp": 39163.11
+    "volume_fp": 39786.67
    },
    "ex_stats_first": {
     "open_interest_fp": 8625.55,
@@ -699,6 +908,8 @@
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.68,
+   "price_after_15m": 0.675,
+   "price_after_15m_book": "novig",
    "price_american": -213,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.68,
@@ -792,6 +1003,7 @@
    "size_x": 15.0,
    "start_source": "odds",
    "start_utc": "2026-11-22T00:00:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi",
     "novig",
@@ -850,9 +1062,9 @@
     "volume_fp": 1.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 4221.93,
+    "open_interest_fp": 4540.96,
     "volume_24h_fp": 4021.3,
-    "volume_fp": 4321.85
+    "volume_fp": 4640.88
    },
    "ex_stats_first": {
     "open_interest_fp": 884.2,
@@ -1472,9 +1684,9 @@
     "volume_fp": 2.01
    },
    "ex_stats_close": {
-    "open_interest_fp": 1384.71,
+    "open_interest_fp": 1617.26,
     "volume_24h_fp": 1250.99,
-    "volume_fp": 1427.18
+    "volume_fp": 1659.73
    },
    "ex_stats_first": {
     "open_interest_fp": 1029.36,
@@ -1681,9 +1893,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1188.69,
+    "open_interest_fp": 3169.35,
     "volume_24h_fp": 638.18,
-    "volume_fp": 1194.88
+    "volume_fp": 3175.54
    },
    "ex_stats_first": {
     "open_interest_fp": 556.52,
@@ -1889,9 +2101,9 @@
     "volume_fp": 375.79
    },
    "ex_stats_close": {
-    "open_interest_fp": 81788.48,
+    "open_interest_fp": 86871.93,
     "volume_24h_fp": 80190.11,
-    "volume_fp": 82832.44
+    "volume_fp": 87930.98
    },
    "ex_stats_first": {
     "open_interest_fp": 77704.94,
@@ -2110,9 +2322,9 @@
     "volume_fp": 706.89
    },
    "ex_stats_close": {
-    "open_interest_fp": 226208.65,
+    "open_interest_fp": 226654.71,
     "volume_24h_fp": 229771.61000000002,
-    "volume_fp": 237351.8
+    "volume_fp": 237797.86
    },
    "ex_stats_first": {
     "open_interest_fp": 213872.50999999998,
@@ -2334,9 +2546,9 @@
     "volume_fp": 153.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 115860.37,
+    "open_interest_fp": 116532.22,
     "volume_24h_fp": 53738.75,
-    "volume_fp": 116703.51999999999
+    "volume_fp": 117375.37
    },
    "ex_stats_first": {
     "open_interest_fp": 46567.71,
@@ -2922,8 +3134,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": 0.0,
+   "close_price": 0.48,
+   "clv_cents": -1.0,
    "confirmed_after_min": 5,
    "date": "2026-11-21",
    "depth_by_book": {
@@ -2960,9 +3172,9 @@
     "volume_fp": 16426.88
    },
    "ex_stats_close": {
-    "open_interest_fp": 1044585.4,
+    "open_interest_fp": 1057983.8399999999,
     "volume_24h_fp": 1007159.45,
-    "volume_fp": 1213313.08
+    "volume_fp": 1227915.81
    },
    "ex_stats_first": {
     "open_interest_fp": 675611.8300000001,
@@ -3154,8 +3366,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": 1.0,
+   "close_price": 0.54,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-21",
    "depth_by_book": {
@@ -3186,9 +3398,9 @@
     "volume_fp": 26.91
    },
    "ex_stats_close": {
-    "open_interest_fp": 2723.95,
+    "open_interest_fp": 2775.23,
     "volume_24h_fp": 2703.44,
-    "volume_fp": 2728.65
+    "volume_fp": 2779.93
    },
    "ex_stats_first": {
     "open_interest_fp": 2516.69,
@@ -4038,9 +4250,9 @@
     "volume_fp": 58.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 33115.509999999995,
+    "open_interest_fp": 33340.93,
     "volume_24h_fp": 28292.68,
-    "volume_fp": 33486.35
+    "volume_fp": 33711.770000000004
    },
    "ex_stats_first": {
     "open_interest_fp": 11781.470000000001,
@@ -6763,7 +6975,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [
     "Marshall Thundering Herd -2.5 (-111)"
    ],
@@ -6985,7 +7197,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 12,
+   "settle_tries": 13,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Florida St.",
@@ -7165,7 +7377,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 12,
+   "settle_tries": 13,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Michigan",
@@ -7471,7 +7683,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 12,
+   "settle_tries": 13,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "LSU",
@@ -7745,8 +7957,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 17066002.0,
-    "volume": 19101698.0
+    "openInterest": 17083635.0,
+    "volume": 19119331.0
    },
    "ex_stats_first": {
     "openInterest": 16199699.0,
@@ -8773,7 +8985,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 12,
+   "settle_tries": 13,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UCLA",
@@ -9970,7 +10182,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 12,
+   "settle_tries": 13,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Florida State",
@@ -14489,7 +14701,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 12,
+   "settle_tries": 13,
    "sharp_agree": [
     "Texas Tech Red Raiders -4.5 (-108)"
    ],
@@ -14980,7 +15192,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 12,
+   "settle_tries": 13,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Indiana",
@@ -16525,7 +16737,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 12,
+   "settle_tries": 13,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Indiana",
@@ -19132,7 +19344,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 9,
+   "settle_tries": 10,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas A&M",
@@ -28009,7 +28221,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 9,
+   "settle_tries": 10,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Oklahoma",
