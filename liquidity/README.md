@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 21, 12:40 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 22.
+Updated Sat Nov 21, 12:45 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 21.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1764-1382 (-39.08u flat) | rule met: 1034-830
+**Record:** 1765-1382 (-38.21u flat) | rule met: 1034-830
 
-**Fade (paper, betting against the print):** 1116-1491 (-197.41u flat, after fees)
+**Fade (paper, betting against the print):** 1116-1492 (-198.41u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -64,7 +64,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 19 11:55PM | NBA | Orlando vs Brooklyn: Spread | spread: Orlando wins by over 5.5 points | kalshi | $37k | -104 |  |  | +4.0c |  | L |
 | Nov 19 11:55PM | NBA | Washington vs Chicago: Total Points | total: NOT Over 240.5 points | kalshi | $26k | -104 |  |  | +6.0c | yes | W |
 | Nov 19 11:30PM | NBA | Washington vs Chicago | moneyline: Washington | kalshi | $60k | +127 |  |  | +2.0c | yes | W |
-| Nov 19 10:25PM | NBA | Houston vs Denver | moneyline: Denver | kalshi | $61k | -122 |  |  | -6.0c |  | pending |
+| Nov 19 10:25PM | NBA | Houston vs Denver | moneyline: Denver | kalshi | $61k | -122 |  |  | -6.0c |  | W |
 | Nov 19 9:55PM | NBA | Phoenix vs Utah | moneyline: Phoenix | kalshi | $39k | -163 |  |  | +2.0c |  | W |
 | Nov 19 9:50PM | NHL | Dallas vs Vegas: Total Goals | total: NOT Over 5.5 goals scored | kalshi | $33k | -108 | ✅ novig,prophetx |  | +0.0c |  | L |
 | Nov 19 9:50PM | NBA | New Orleans vs Oklahoma City | moneyline: Oklahoma City | kalshi | $234k | -456 |  |  | -1.0c |  | W |
