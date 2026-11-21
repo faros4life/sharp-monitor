@@ -1,6 +1,218 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-21T22:25:52Z",
+   "base_depth": 450736,
+   "best_price": 0.44,
+   "best_price_american": 127,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.44,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-21",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 12668,
+     "new_this_side": 55638,
+     "other_side": 244410,
+     "other_side_all_levels": 342545,
+     "ratio": 1.8,
+     "this_side": 429959,
+     "this_side_all_levels": 531830
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "BUF (0)",
+     "price": 0.44,
+     "this_side": 24198
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Buffalo Sabres",
+     "price": 0.4367,
+     "this_side": 17579
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 45065.81,
+    "volume_24h_fp": 41971.08,
+    "volume_fp": 45646.29
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 871.89,
+    "volume_24h_fp": 1904.3,
+    "volume_fp": 871.89
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 44193.92,
+    "volume_24h_fp": 40066.78,
+    "volume_fp": 44774.4
+   },
+   "fade_price": 0.57,
+   "first_seen_utc": "2026-11-21T22:20:26Z",
+   "game": "Buffalo vs Florida",
+   "game_surge_books": [],
+   "game_x": 1.19,
+   "key": "kalshi|KXNHLGAME-26NOV21BUFFLA|ml|0",
+   "lead_min": 34,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 55638,
+   "new_x": 0.11,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 45065.81,
+      "volume_24h_fp": 41971.08,
+      "volume_fp": 45646.29
+     },
+     "game_normal": 445476,
+     "game_x": 1.19,
+     "normal": 529201,
+     "now": 531830,
+     "type": "ML",
+     "x": 1.0
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 18234366.0,
+      "volume": 18721287.0
+     },
+     "game_normal": 27528,
+     "game_x": 1.03,
+     "normal": 17281,
+     "now": 28230,
+     "type": "ML",
+     "x": 1.63
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 12735,
+     "game_x": 1.41,
+     "normal": 10677,
+     "now": 17979,
+     "type": "ML",
+     "x": 1.68
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.44,
+   "price_american": 127,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.44,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 120
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 123
+    },
+    "betopenly": {
+     "point": null,
+     "price": 130
+    },
+    "betrivers": {
+     "point": null,
+     "price": 128
+    },
+    "betus": {
+     "point": null,
+     "price": 120
+    },
+    "bovada": {
+     "point": null,
+     "price": 127
+    },
+    "circasports": {
+     "point": null,
+     "price": 126
+    },
+    "draftkings": {
+     "point": null,
+     "price": 120
+    },
+    "fanatics": {
+     "point": null,
+     "price": 120
+    },
+    "fanduel": {
+     "point": null,
+     "price": 122
+    },
+    "kalshi": {
+     "point": null,
+     "price": 127
+    },
+    "lowvig": {
+     "point": null,
+     "price": 123
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 119
+    },
+    "novig": {
+     "point": null,
+     "price": 127
+    },
+    "polymarket": {
+     "point": null,
+     "price": 127
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 127
+    },
+    "prophetx": {
+     "point": null,
+     "price": 129
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 123
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26NOV21BUFFLA-BUF"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Buffalo",
+   "side_label": "Buffalo",
+   "size_x": 1.0,
+   "start_source": "odds",
+   "start_utc": "2026-11-21T23:00:00Z",
+   "surge_books": [],
+   "teams": [
+    "Buffalo",
+    "Florida"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-21T22:20:26Z",
    "base_depth": 333462,
    "best_price": 0.505,
@@ -44,6 +256,11 @@
     "open_interest_fp": 218.01,
     "volume_24h_fp": 0.0,
     "volume_fp": 218.01
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 5670.19,
+    "volume_24h_fp": 4831.36,
+    "volume_fp": 5756.66
    },
    "ex_stats_first": {
     "open_interest_fp": 4865.46,
@@ -239,6 +456,11 @@
     "open_interest_fp": 547.25,
     "volume_24h_fp": 0.0,
     "volume_fp": 547.25
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 60372.0,
+    "volume_24h_fp": 56101.25,
+    "volume_fp": 61760.52
    },
    "ex_stats_first": {
     "open_interest_fp": 58143.85,
@@ -441,9 +663,9 @@
     "volume_fp": 63.73
    },
    "ex_stats_close": {
-    "open_interest_fp": 26652.480000000003,
-    "volume_24h_fp": 20887.43,
-    "volume_fp": 28101.98
+    "open_interest_fp": 26687.45,
+    "volume_24h_fp": 20951.16,
+    "volume_fp": 28144.86
    },
    "ex_stats_first": {
     "open_interest_fp": 26588.75,
@@ -557,9 +779,9 @@
     "volume_fp": 83.41
    },
    "ex_stats_close": {
-    "open_interest_fp": 67819.81,
-    "volume_24h_fp": 56508.23,
-    "volume_fp": 69860.67
+    "open_interest_fp": 68621.48,
+    "volume_24h_fp": 57580.95,
+    "volume_fp": 70662.34
    },
    "ex_stats_first": {
     "open_interest_fp": 42969.93,
@@ -726,8 +948,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.805,
-   "clv_cents": -0.5,
+   "close_price": 0.8,
+   "clv_cents": -1.0,
    "confirmed_after_min": 4,
    "date": "2026-11-21",
    "depth_by_book": {
@@ -762,8 +984,8 @@
     "volume": 123.0
    },
    "ex_stats_close": {
-    "openInterest": 5044936.0,
-    "volume": 6582658.0
+    "openInterest": 5572349.0,
+    "volume": 7110276.0
    },
    "ex_stats_first": {
     "openInterest": 3594024.0,
@@ -970,9 +1192,9 @@
     "volume_fp": 885.91
    },
    "ex_stats_close": {
-    "open_interest_fp": 47736.92,
-    "volume_24h_fp": 46892.8,
-    "volume_fp": 56725.07
+    "open_interest_fp": 48411.99,
+    "volume_24h_fp": 47233.619999999995,
+    "volume_fp": 57400.14
    },
    "ex_stats_first": {
     "open_interest_fp": 17379.57,
@@ -1285,8 +1507,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.765,
-   "clv_cents": -0.5,
+   "close_price": 0.77,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-21",
    "depth_by_book": {
@@ -1534,9 +1756,9 @@
     "volume_fp": 2899.46
    },
    "ex_stats_close": {
-    "open_interest_fp": 289730.73,
-    "volume_24h_fp": 251534.53999999998,
-    "volume_fp": 298650.18
+    "open_interest_fp": 292264.03,
+    "volume_24h_fp": 252706.28,
+    "volume_fp": 301507.57
    },
    "ex_stats_first": {
     "open_interest_fp": 275100.7,
@@ -1750,9 +1972,9 @@
     "volume_fp": 2174.62
    },
    "ex_stats_close": {
-    "open_interest_fp": 306858.03,
-    "volume_24h_fp": 290833.28,
-    "volume_fp": 351333.09
+    "open_interest_fp": 308491.75,
+    "volume_24h_fp": 293789.89,
+    "volume_fp": 352966.81
    },
    "ex_stats_first": {
     "open_interest_fp": 280484.9,
@@ -2885,10 +3107,12 @@
     "volume_fp": 19794.73
    },
    "fade_price": 0.34,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-21T18:45:46Z",
    "game": "Middle Tennessee vs Sam Houston",
    "game_surge_books": [],
    "game_x": 1.35,
+   "graded_by": "espn",
    "key": "kalshi|KXNCAAFGAME-26NOV21MTUSHSU|ml|0",
    "lead_min": 10,
    "league": "NCAAF",
@@ -3009,14 +3233,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26NOV21MTUSHSU-MTU"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 16,
+   "settle_tries": 17,
+   "settled_utc": "2026-11-21T22:25:52Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Middle Tennessee",
@@ -3034,7 +3259,7 @@
     "Sam Houston"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.49
   },
   {
    "alerted_utc": "2026-11-21T18:30:21Z",
@@ -3903,7 +4128,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 16,
+   "settle_tries": 17,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Jacksonville St.",
@@ -4595,7 +4820,7 @@
    },
    "ex_stats_close": {
     "openInterest": 13283862.0,
-    "volume": 15247431.0
+    "volume": 15251431.0
    },
    "ex_stats_first": {
     "openInterest": 9473237.0,
@@ -5101,7 +5326,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Coastal Carolina",
@@ -6940,7 +7165,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Iowa",
