@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 20, 11:20 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 29.
+Updated Fri Nov 20, 11:25 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 30.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 20 11:25PM | NCAAF | Ohio St. vs Nebraska: Spread | spread: NOT Ohio St. wins by over 3.5 points | kalshi | $138k | -100 |  |  | +0.0c |  | pending |
 | Nov 20 11:15PM | NCAAF | Ohio State @ Nebraska | spread: OSU -3.5 (3.5) | novig | $31k | -104 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 20 11:15PM | NHL | Edmonton vs Carolina | moneyline: Carolina | kalshi | $40k | -178 | ✅ novig |  | +0.0c |  | pending |
 | Nov 20 11:05PM | NCAAF | North Texas vs Tulane: Spread | spread: NOT North Texas wins by over 6.5 points | kalshi | $31k | +108 |  | ❌ | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 17 7:05PM | NBA | Charlotte vs Los Angeles L: Total Points | total: NOT Over 222.5 points | kalshi | $88k | -104 | ✅ novig | ❌ | +2.0c | yes | L |
 | Nov 17 7:05PM | NBA | Memphis vs Cleveland | moneyline: Cleveland | kalshi | $45k | -186 |  |  | -3.0c |  | L |
 | Nov 17 6:50PM | NHL | Buffalo vs Philadelphia | moneyline: Buffalo | kalshi | $58k | -122 | ✅ novig |  | +0.0c | yes | L |
-| Nov 17 6:35PM | NBA | Utah Jazz at Los Angeles Clippers | moneyline: Los Angeles Clippers | prophetx | $31k | -215 | ✅ kalshi,novig |  | -1.0c |  | pending |
