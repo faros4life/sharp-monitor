@@ -1,4 +1,4 @@
-# Paper splits (updated 2026-11-21T03:15:25Z)
+# Paper splits (updated 2026-11-21T03:20:27Z)
 
 Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kill bar: 30+ resulted at -0.10u/play or worse closes a split.
 
@@ -18,19 +18,19 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 | Evening sends, ex-Hard Rock | scan | 2026-10-26 | 23-19-0 | +0.98 | +0.023 | -3.32 | OPEN |
 | Muted midday (11 AM-2 PM ET) | scan | 2026-10-26 | 96-83-0 | +2.23 | +0.012 | -0.04 | OPEN |
 | Liquidity totals, no sharp agree | scan | 2026-10-22 | 294-277-0 | +6.41 | +0.011 |  | OPEN |
-| Liquidity vs sharp (oppose) | scan | 2026-10-22 | 237-212-0 | -8.56 | -0.019 |  | CLOSED |
-| Liquidity spreads | scan | 2026-10-22 | 519-496-0 | -38.40 | -0.038 |  | CLOSED (by decision, 2026-10-27) |
+| Liquidity vs sharp (oppose) | scan | 2026-10-22 | 237-213-0 | -9.56 | -0.021 |  | CLOSED |
+| Liquidity spreads | scan | 2026-10-22 | 520-499-0 | -40.38 | -0.040 |  | CLOSED (by decision, 2026-10-27) |
 | Liquidity overnight (12-5 AM ET) | scan | 2026-10-26 | 162-107-0 | +0.05 | +0.000 |  | CLOSED |
-| Liquidity evening (5-8 PM ET) | scan | 2026-10-26 | 278-241-0 | -27.05 | -0.052 |  | CLOSED |
-| NBA liquidity totals (lane) | scan | 2026-10-28 | 130-107-0 | +18.18 | +0.077 |  | OPEN |
-| NBA liquidity totals - unders | scan | 2026-10-28 | 71-60-0 | +9.11 | +0.070 |  | OPEN |
+| Liquidity evening (5-8 PM ET) | scan | 2026-10-26 | 278-242-0 | -28.05 | -0.054 |  | CLOSED |
+| NBA liquidity totals (lane) | scan | 2026-10-28 | 130-108-0 | +17.18 | +0.072 |  | OPEN |
+| NBA liquidity totals - unders | scan | 2026-10-28 | 71-61-0 | +8.11 | +0.061 |  | OPEN |
 | NBA liquidity totals - no sharp tag | scan | 2026-10-28 | 65-53-0 | +9.40 | +0.080 |  | OPEN |
 | NBA liquidity totals - lead 4-12h | scan | 2026-10-28 | 72-48-0 | +21.66 | +0.180 |  | ELIGIBLE at next review |
-| NBA liquidity totals - $25-50k prints | scan | 2026-10-28 | 99-71-0 | +24.21 | +0.142 |  | ELIGIBLE at next review |
+| NBA liquidity totals - $25-50k prints | scan | 2026-10-28 | 99-72-0 | +23.21 | +0.136 |  | ELIGIBLE at next review |
 | NBA liquidity totals - evacuation | scan | 2026-10-28 | 37-40-0 | -4.29 | -0.056 |  | CLOSED |
-| NBA liquidity, price -129..-105 | scan | 2026-10-28 | 118-101-0 | +6.21 | +0.028 |  | OPEN |
+| NBA liquidity, price -129..-105 | scan | 2026-10-28 | 118-102-0 | +5.21 | +0.024 |  | OPEN |
 
-**All-history reference (every resulted play in the feed, not forward; read only):** Tier 2 core (paper) 28-26-0, -2.14u (-0.040/play); Evening sends, ex-Hard Rock 31-30-1, -3.34u (-0.054/play); Muted midday (11 AM-2 PM ET) 120-91-0, +14.83u (+0.070/play); Liquidity overnight (12-5 AM ET) 197-128-0, +4.66u (+0.014/play); Liquidity evening (5-8 PM ET) 326-298-0, -51.40u (-0.082/play)
+**All-history reference (every resulted play in the feed, not forward; read only):** Tier 2 core (paper) 28-26-0, -2.14u (-0.040/play); Evening sends, ex-Hard Rock 31-30-1, -3.34u (-0.054/play); Muted midday (11 AM-2 PM ET) 120-91-0, +14.83u (+0.070/play); Liquidity overnight (12-5 AM ET) 197-128-0, +4.66u (+0.014/play); Liquidity evening (5-8 PM ET) 326-299-0, -52.40u (-0.084/play)
 
 **Muted midday (11 AM-2 PM ET): breakdowns** (resulted plays only)
 
@@ -49,7 +49,7 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 
 **ProphetX tripwire:** 30/30 resulted, -0.106u/play - PAUSE LIVE.
 
-**Price gaps (measurement only):** {"gaps": 229, "per_day": 20.8, "edge_pct_median": 9.65, "edge_pct_p90": 26.68, "size_est_median_upper_bound": 552, "seen_once_share": 0.35, "lifetime_min_median": 25, "lived_10min_plus": 144, "with_200_both_legs_upper_bound": 162, "scan_sec_median": 229}
+**Price gaps (measurement only):** {"gaps": 230, "per_day": 20.9, "edge_pct_median": 9.65, "edge_pct_p90": 26.68, "size_est_median_upper_bound": 547.0, "seen_once_share": 0.35, "lifetime_min_median": 23.0, "lived_10min_plus": 146, "with_200_both_legs_upper_bound": 162, "scan_sec_median": 229.0}
 
 **Counting rules:** resulted = W, L or P with a unit value (pushes count, at 0u); liquidity artifacts excluded; pending/ungraded plays don't count. Times are America/New_York (DST-aware). Lead = start minus alert time. Streams: SENT (pushed), MUTED (logged, never pushed), LIVE (phase-1 subset of SENT), LIQ-MAIN, LIQ-EXTRA; paper = never bet. ALL PLAYS = every resulted play in a stream; GRADED ERA = Oct 20+ only.
 
