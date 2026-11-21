@@ -1,15 +1,16 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 21, 4:15 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 36.
+Updated Sat Nov 21, 4:20 PM ET. This run: 1 new, 0 not confirmed, 3 pending. Open alerts: 36.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1789-1409 (-45.05u flat) | rule met: 1047-845
+**Record:** 1790-1409 (-44.82u flat) | rule met: 1047-845
 
-**Fade (paper, betting against the print):** 1143-1516 (-190.06u flat, after fees)
+**Fade (paper, betting against the print):** 1143-1517 (-191.06u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 21 4:20PM | NCAAF | Arizona @ Kansas State | moneyline: ARIZ (0) | novig | $29k | -335 | ✅ kalshi,prophetx | ✅ | +0.0c |  | pending |
 | Nov 21 4:10PM | NCAAF | Arizona vs Kansas St. | moneyline: Arizona | kalshi | $151k | -335 | ✅ novig,prophetx | ✅ | +0.0c |  | pending |
 | Nov 21 3:41PM | NCAAF | Utah vs TCU | moneyline: Utah | kalshi | $159k | -317 | ✅ novig,prophetx | ✅ | +0.0c |  | pending |
 | Nov 21 3:10PM | NCAAF | Georgia St. vs Marshall | moneyline: Marshall | kalshi | $97k | -144 | ✅ prophetx | ✅ | +0.0c | yes | pending |
@@ -72,7 +73,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 3:30AM | NCAAF | University at Albany vs North Carolina A&T | moneyline: University | kalshi | $28k | +257 |  |  | -18.0c | yes | pending |
 | Nov 21 3:20AM | NCAAF | BYU vs Kansas: Total Points | total: NOT Over 47.5 points | kalshi | $29k | -104 |  |  | +1.0c | yes | L |
 | Nov 21 2:50AM | NCAAF | Vanderbilt vs Florida: Total Points | total: NOT Over 47.5 points | kalshi | $30k | -117 |  |  | -5.0c | yes | L |
-| Nov 21 2:25AM | NCAAF | Lehigh vs Lafayette | moneyline: Lehigh | kalshi | $28k | -426 |  |  | +2.0c | yes | pending |
+| Nov 21 2:25AM | NCAAF | Lehigh vs Lafayette | moneyline: Lehigh | kalshi | $28k | -426 |  |  | +2.0c | yes | W |
 | Nov 21 2:25AM | NCAAF | The Citadel vs Western Carolina | moneyline: Western Carolina | kalshi | $34k | -488 |  |  | +1.0c | yes | pending |
 | Nov 21 2:05AM | NCAAF | Memphis vs Navy: Spread | spread: Memphis wins by over 2.5 points | kalshi | $38k | -104 |  |  | -2.0c | yes | L |
 | Nov 21 2:05AM | NBA | Milwaukee vs Philadelphia | moneyline: Philadelphia | kalshi | $59k | -567 | ✅ novig |  | -1.0c | yes | W |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 18 7:40PM | NBA | Boston vs Denver | moneyline: Boston | kalshi | $103k | -127 |  |  | +0.0c | yes | L |
 | Nov 18 7:24PM | NBA | Chicago vs Brooklyn: Total Points | total: NOT Over 238.5 points | kalshi | $42k | +104 | ✅ novig | ✅ | +0.0c | yes | L |
 | Nov 18 6:55PM | NBA | Philadelphia 76ers @ Orlando Magic | moneyline: ORL (0) | novig | $30k | -178 | ✅ kalshi,prophetx | ✅ | +0.0c |  | L |
-| Nov 18 6:55PM | NBA | Philadelphia vs Orlando: Spread | spread: Orlando wins by over 4.5 points | kalshi | $178k | -100 | ✅ novig | ✅ | +0.0c |  | L |
