@@ -52,9 +52,9 @@
     "volume_fp": 2174.62
    },
    "ex_stats_close": {
-    "open_interest_fp": 285394.12,
+    "open_interest_fp": 291820.22,
     "volume_24h_fp": 264329.68,
-    "volume_fp": 322589.64
+    "volume_fp": 329015.74000000005
    },
    "ex_stats_first": {
     "open_interest_fp": 280484.9,
@@ -112,6 +112,8 @@
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.76,
+   "price_after_15m": 0.755,
+   "price_after_15m_book": "novig",
    "price_american": -317,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.76,
@@ -203,6 +205,7 @@
    "size_x": 45.87,
    "start_source": "odds",
    "start_utc": "2026-11-22T02:00:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi",
     "novig",
@@ -229,6 +232,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.59,
    "clv_cents": 0.0,
    "confirmed_after_min": 9,
@@ -384,7 +388,8 @@
      "price": -150
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-21T21:00:30Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26NOV21GASTMRSH-MRSH"
@@ -1310,6 +1315,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Middle Tennessee",
@@ -1654,6 +1660,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settle_tries": 1,
    "sharp_agree": [
     "Chattanooga Mocs +48.5 (-106)"
    ],
@@ -1719,12 +1726,14 @@
    "ex_stats_change": null,
    "ex_stats_first": null,
    "fade_price": 0.1724,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-21T17:50:17Z",
    "game": "Milwaukee Bucks at Philadelphia 76ers",
    "game_surge_books": [
     "prophetx"
    ],
    "game_x": 2.75,
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 0, \"px_event\": 1704772812, \"px_market\": 219, \"side\": \"1\"}",
    "lead_min": 4,
    "league": "NBA",
@@ -1859,7 +1868,7 @@
     "px_market": 219,
     "side": "1"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -1867,7 +1876,8 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
+   "settled_utc": "2026-11-21T21:00:30Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Milwaukee Bucks +10.5 (-106)",
@@ -1888,7 +1898,7 @@
     "Philadelphia 76ers"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.2
   },
   {
    "alerted_utc": "2026-11-21T17:55:47Z",
@@ -2187,6 +2197,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Jacksonville St.",
@@ -2460,6 +2471,7 @@
     "volume": 9667798.0
    },
    "fade_price": 0.515,
+   "fade_units": 0.94,
    "first_seen_utc": "2026-11-21T17:35:52Z",
    "game": "Milwaukee Bucks @ Philadelphia 76ers",
    "game_surge_books": [
@@ -2468,6 +2480,7 @@
     "prophetx"
    ],
    "game_x": 3.61,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1fb79-9b77-7e71-8627-7bebf3c0244c\", \"outcome_id\": \"01a1fb79-9b77-7e71-8627-7bfc3935ba5f\"}",
    "lead_min": 20,
    "league": "NBA",
@@ -2594,14 +2607,15 @@
     "market_id": "01a1fb79-9b77-7e71-8627-7bebf3c0244c",
     "outcome_id": "01a1fb79-9b77-7e71-8627-7bfc3935ba5f"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi"
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
+   "settled_utc": "2026-11-21T21:00:30Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Milwaukee Bucks +10.5 (-106)",
@@ -2623,7 +2637,7 @@
     "Philadelphia 76ers"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-21T17:40:19Z",
@@ -2805,7 +2819,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [
     "West Virginia Mountaineers +7.5 (-115)"
@@ -2871,8 +2885,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 9481858.0,
-    "volume": 10374445.0
+    "openInterest": 9567065.0,
+    "volume": 10459652.0
    },
    "ex_stats_first": {
     "openInterest": 9473237.0,
@@ -3072,6 +3086,7 @@
     "volume_fp": 9124.82
    },
    "fade_price": 0.57,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-21T17:30:22Z",
    "game": "Edmonton vs Carolina: Spread",
    "game_surge_books": [],
@@ -3193,14 +3208,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLSPREAD-26NOV21EDMCAR-CAR2"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
+   "settled_utc": "2026-11-21T21:00:30Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Carolina",
@@ -3217,7 +3233,7 @@
     "Carolina"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.3
   },
   {
    "alerted_utc": "2026-11-21T17:25:48Z",
@@ -3862,7 +3878,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -5281,10 +5297,12 @@
     "volume_fp": 2936.51
    },
    "fade_price": 0.52,
+   "fade_units": 0.86,
    "first_seen_utc": "2026-11-21T16:10:17Z",
    "game": "North Carolina vs Virginia: Spread",
    "game_surge_books": [],
    "game_x": 1.96,
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26NOV21UNCUVA-UNC2\"}",
    "lead_min": 74,
    "league": "NCAAF",
@@ -5403,14 +5421,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26NOV21UNCUVA-UNC2"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
+   "settled_utc": "2026-11-21T21:00:30Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "North Carolina",
@@ -5428,7 +5447,7 @@
     "Virginia"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-21T16:05:42Z",
@@ -6025,7 +6044,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Liberty",
@@ -7480,7 +7499,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [
     "West Virginia Mountaineers +7.5 (-115)"
    ],
@@ -8325,10 +8344,12 @@
     "volume": 7891326.0
    },
    "fade_price": 0.495,
+   "fade_units": 1.02,
    "first_seen_utc": "2026-11-21T13:45:45Z",
    "game": "North Carolina @ Virginia",
    "game_surge_books": [],
    "game_x": 1.57,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1de61-f575-70d2-a740-b0b8a43beb61\", \"outcome_id\": \"01a1de61-f575-70d2-a740-b0c2e8e3c2ce\"}",
    "lead_min": 220,
    "league": "NCAAF",
@@ -8364,12 +8385,13 @@
     "market_id": "01a1de61-f575-70d2-a740-b0b8a43beb61",
     "outcome_id": "01a1de61-f575-70d2-a740-b0c2e8e3c2ce"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 10,
+   "settle_tries": 11,
+   "settled_utc": "2026-11-21T21:00:30Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UVA (0)",
@@ -8386,7 +8408,7 @@
     "Virginia"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-21T13:50:28Z",
@@ -9171,10 +9193,12 @@
     "volume": 6395442.0
    },
    "fade_price": 0.175,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-21T13:20:21Z",
    "game": "Milwaukee Bucks @ Philadelphia 76ers",
    "game_surge_books": [],
    "game_x": 1.33,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1fb91-aa52-7891-be72-ecbf13856516\", \"outcome_id\": \"01a1fb91-aa52-7891-be72-eccd1f93b49a\"}",
    "lead_min": 274,
    "league": "NBA",
@@ -9310,7 +9334,7 @@
     "market_id": "01a1fb91-aa52-7891-be72-ecbf13856516",
     "outcome_id": "01a1fb91-aa52-7891-be72-eccd1f93b49a"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -9318,7 +9342,8 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
+   "settled_utc": "2026-11-21T21:00:30Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Philadelphia 76ers",
@@ -9335,7 +9360,7 @@
     "Philadelphia 76ers"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.2
   },
   {
    "alerted_utc": "2026-11-21T13:05:39Z",
@@ -10407,7 +10432,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Marist",
@@ -10898,7 +10923,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Eastern Illinois",
@@ -11535,7 +11560,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Lehigh",
@@ -11671,7 +11696,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Western Carolina",
@@ -13171,6 +13196,7 @@
     "volume_fp": 27810.73
    },
    "fade_price": 0.37,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-21T04:10:25Z",
    "game": "Edmonton vs Carolina",
    "game_surge_books": [],
@@ -13302,14 +13328,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26NOV21EDMCAR-CAR"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
+   "settled_utc": "2026-11-21T21:00:30Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Carolina",
@@ -13324,7 +13351,7 @@
     "Carolina"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.57
   },
   {
    "alerted_utc": "2026-11-21T04:05:46Z",
