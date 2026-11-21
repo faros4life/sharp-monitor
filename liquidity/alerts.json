@@ -1,6 +1,176 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-21T19:25:42Z",
+   "base_depth": 59077,
+   "best_price": 0.515,
+   "best_price_american": -106,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.515,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-21",
+   "depth_by_book": {
+    "novig": {
+     "new_other_side": -24644,
+     "new_this_side": 29005,
+     "other_side": 57225,
+     "other_side_all_levels": 58266,
+     "ratio": 1.5,
+     "this_side": 87615,
+     "this_side_all_levels": 87969
+    }
+   },
+   "ex_stats_alert": {
+    "openInterest": 20392433.0,
+    "volume": 25183375.0
+   },
+   "ex_stats_change": {
+    "openInterest": 61996.0,
+    "volume": 139912.0
+   },
+   "ex_stats_first": {
+    "openInterest": 20330437.0,
+    "volume": 25043463.0
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-11-21T19:20:21Z",
+   "game": "UCLA @ Michigan",
+   "game_surge_books": [],
+   "game_x": 1.54,
+   "key": "novig|{\"market_id\": \"01a1d355-3930-7412-b173-f96ba4cd48f4\", \"outcome_id\": \"01a1d355-3930-7412-b173-f97ef26c5ac6\"}",
+   "lead_min": 64,
+   "league": "NCAAF",
+   "line": 3.5,
+   "market": "spread",
+   "new_money": 29005,
+   "new_x": 5.44,
+   "norm_by_book": {
+    "novig": {
+     "ex_stats": {
+      "openInterest": 20392433.0,
+      "volume": 25183375.0
+     },
+     "game_normal": 57293,
+     "game_x": 1.54,
+     "normal": 5332,
+     "now": 87969,
+     "type": "SPREAD",
+     "x": 16.5
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.515,
+   "price_american": -106,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.515,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 3.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 3.5,
+     "price": -116
+    },
+    "betopenly": {
+     "point": 3.5,
+     "price": -101
+    },
+    "betrivers": {
+     "point": 4.0,
+     "price": -108
+    },
+    "betus": {
+     "point": 3.5,
+     "price": -115
+    },
+    "bovada": {
+     "point": 3.5,
+     "price": -112
+    },
+    "circasports": {
+     "point": 3.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 3.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": 3.5,
+     "price": -115
+    },
+    "fanduel": {
+     "point": 3.5,
+     "price": -108
+    },
+    "kalshi": {
+     "point": 3.5,
+     "price": -113
+    },
+    "lowvig": {
+     "point": 3.5,
+     "price": -112
+    },
+    "mybookieag": {
+     "point": 3.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 3.5,
+     "price": -106
+    },
+    "polymarket": {
+     "point": 3.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 3.5,
+     "price": -108
+    },
+    "williamhill_us": {
+     "point": 3.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a1d355-3930-7412-b173-f96ba4cd48f4",
+    "outcome_id": "01a1d355-3930-7412-b173-f97ef26c5ac6"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Michigan",
+   "side_label": "MICH +3.5 (3.5)",
+   "size_x": 16.5,
+   "start_source": "odds",
+   "start_utc": "2026-11-21T20:30:00Z",
+   "surge_books": [
+    "novig"
+   ],
+   "teams": [
+    "UCLA",
+    "Michigan"
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-21T19:20:21Z",
    "base_depth": 29858,
    "best_price": 0.5772,
@@ -14,8 +184,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.56,
-   "clv_cents": 0.0,
+   "close_price": 0.6,
+   "clv_cents": 4.0,
    "confirmed_after_min": 9,
    "date": "2026-11-21",
    "depth_by_book": {
@@ -38,6 +208,11 @@
     "open_interest_fp": -222.56,
     "volume_24h_fp": 0.0,
     "volume_fp": 8367.58
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 94883.70999999999,
+    "volume_24h_fp": 126993.16,
+    "volume_fp": 139423.13
    },
    "ex_stats_first": {
     "open_interest_fp": 87395.08,
@@ -151,8 +326,8 @@
     "volume": 700276.0
    },
    "ex_stats_close": {
-    "openInterest": 37640390.0,
-    "volume": 48100770.0
+    "openInterest": 37709446.0,
+    "volume": 48242222.0
    },
    "ex_stats_first": {
     "openInterest": 37179628.0,
@@ -1077,8 +1252,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.84,
-   "clv_cents": 2.0,
+   "close_price": 0.79,
+   "clv_cents": -3.0,
    "confirmed_after_min": 6,
    "date": "2026-11-21",
    "depth_by_book": {
@@ -1103,9 +1278,9 @@
     "volume_fp": 4873.14
    },
    "ex_stats_close": {
-    "open_interest_fp": 186668.07,
-    "volume_24h_fp": 290190.83999999997,
-    "volume_fp": 311962.88
+    "open_interest_fp": 187304.44,
+    "volume_24h_fp": 307741.17000000004,
+    "volume_fp": 318273.16000000003
    },
    "ex_stats_first": {
     "open_interest_fp": 88797.65,
@@ -1423,8 +1598,8 @@
     "volume": 163214.0
    },
    "ex_stats_close": {
-    "openInterest": 15947823.0,
-    "volume": 20073089.0
+    "openInterest": 15953017.0,
+    "volume": 20138834.0
    },
    "ex_stats_first": {
     "openInterest": 14916960.0,
@@ -2426,8 +2601,8 @@
     "volume": 4807.0
    },
    "ex_stats_close": {
-    "openInterest": 1226616.0,
-    "volume": 1810768.0
+    "openInterest": 1287539.0,
+    "volume": 1891814.0
    },
    "ex_stats_first": {
     "openInterest": 1132238.0,
@@ -2608,7 +2783,7 @@
    },
    "ex_stats_close": {
     "openInterest": 1460083.0,
-    "volume": 1636789.0
+    "volume": 1682243.0
    },
    "ex_stats_first": {
     "openInterest": 1401212.0,
@@ -2768,8 +2943,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.45,
-   "clv_cents": -34.0,
+   "close_price": 0.41,
+   "clv_cents": -38.0,
    "confirmed_after_min": 5,
    "date": "2026-11-21",
    "depth_by_book": {
@@ -2794,9 +2969,9 @@
     "volume_fp": 1695.62
    },
    "ex_stats_close": {
-    "open_interest_fp": 87172.52,
-    "volume_24h_fp": 117985.81,
-    "volume_fp": 129099.7
+    "open_interest_fp": 94883.70999999999,
+    "volume_24h_fp": 126993.16,
+    "volume_fp": 139423.13
    },
    "ex_stats_first": {
     "open_interest_fp": 12370.39,
@@ -3061,8 +3236,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": -6.0,
+   "close_price": 0.58,
+   "clv_cents": -2.0,
    "confirmed_after_min": 5,
    "date": "2026-11-21",
    "depth_by_book": {
@@ -3093,9 +3268,9 @@
     "volume_fp": 61.59
    },
    "ex_stats_close": {
-    "open_interest_fp": 33450.57,
-    "volume_24h_fp": 24918.54,
-    "volume_fp": 39140.95
+    "open_interest_fp": 33702.82,
+    "volume_24h_fp": 25514.949999999997,
+    "volume_fp": 39435.2
    },
    "ex_stats_first": {
     "open_interest_fp": 26927.519999999997,
@@ -3430,7 +3605,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [
     "North Texas Mean Green -6.5 (-113)"
    ],
@@ -3622,7 +3797,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "BYU",
@@ -3832,7 +4007,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [
     "East Carolina Pirates +5.5 (-104)"
@@ -3869,8 +4044,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.84,
-   "clv_cents": 28.0,
+   "close_price": 0.89,
+   "clv_cents": 33.0,
    "confirmed_after_min": 5,
    "date": "2026-11-21",
    "depth_by_book": {
@@ -3895,9 +4070,9 @@
     "volume_fp": 0.86
    },
    "ex_stats_close": {
-    "open_interest_fp": 7284.88,
-    "volume_24h_fp": 7391.09,
-    "volume_fp": 8474.21
+    "open_interest_fp": 7667.39,
+    "volume_24h_fp": 8250.68,
+    "volume_fp": 8923.49
    },
    "ex_stats_first": {
     "open_interest_fp": 980.5999999999999,
@@ -4162,7 +4337,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "BYU",
@@ -4227,8 +4402,8 @@
     "volume": 1324.0
    },
    "ex_stats_close": {
-    "openInterest": 19580012.0,
-    "volume": 26378509.0
+    "openInterest": 20080442.0,
+    "volume": 26912388.0
    },
    "ex_stats_first": {
     "openInterest": 7990556.0,
@@ -4768,7 +4943,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Vanderbilt",
@@ -4966,7 +5141,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Ohio State",
@@ -5376,7 +5551,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [
     "Northwestern Wildcats -2.5 (-112)"
    ],
@@ -5575,7 +5750,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [
     "North Texas Mean Green -6.5 (-113)"
    ],
@@ -5798,7 +5973,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Navy",
@@ -6003,7 +6178,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [
     "Over 66.5 (-113)"
@@ -6206,7 +6381,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -6425,7 +6600,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Florida",
@@ -6808,7 +6983,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Navy",
@@ -7002,7 +7177,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Wake Forest",
@@ -7061,7 +7236,7 @@
    },
    "ex_stats_close": {
     "openInterest": 20685752.0,
-    "volume": 27481366.0
+    "volume": 27498644.0
    },
    "ex_stats_first": {
     "openInterest": 14836112.0,
@@ -7377,7 +7552,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Northwestern",
@@ -7543,8 +7718,8 @@
     "volume": 2111.0
    },
    "ex_stats_close": {
-    "openInterest": 10794813.0,
-    "volume": 14535740.0
+    "openInterest": 10798926.0,
+    "volume": 14539853.0
    },
    "ex_stats_first": {
     "openInterest": 6985273.0,
@@ -7860,7 +8035,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Wake Forest",
@@ -8010,7 +8185,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Stonehill",
@@ -8202,7 +8377,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Florida",
@@ -8628,7 +8803,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [
     "North Texas Mean Green -6.5 (-113)"
    ],
@@ -8992,7 +9167,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -9372,7 +9547,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -9835,7 +10010,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -10021,8 +10196,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.27,
-   "clv_cents": -1.0,
+   "close_price": 0.22,
+   "clv_cents": -6.0,
    "confirmed_after_min": 5,
    "date": "2026-11-21",
    "depth_by_book": {
@@ -10047,9 +10222,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 19211.56,
-    "volume_24h_fp": 20279.18,
-    "volume_fp": 21281.32
+    "open_interest_fp": 19218.59,
+    "volume_24h_fp": 20363.59,
+    "volume_fp": 21288.350000000002
    },
    "ex_stats_first": {
     "open_interest_fp": 1292.42,
@@ -10283,7 +10458,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -10468,7 +10643,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -10949,7 +11124,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Memphis",
@@ -11369,7 +11544,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Navy",
@@ -11567,7 +11742,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -11627,9 +11802,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 47495.74,
-    "volume_24h_fp": 35291.26,
-    "volume_fp": 48710.56
+    "open_interest_fp": 48125.0,
+    "volume_24h_fp": 35285.88,
+    "volume_fp": 49339.82
    },
    "ex_stats_first": {
     "open_interest_fp": 19607.2,
@@ -11949,7 +12124,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Nebraska",
@@ -12152,7 +12327,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Ohio State",
@@ -12554,7 +12729,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [
     "North Texas Mean Green -6.5 (-113)"
@@ -13645,7 +13820,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Kansas",
@@ -15778,7 +15953,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "BYU",
@@ -16415,7 +16590,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Memphis",
@@ -16614,7 +16789,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Wake Forest",
@@ -16820,7 +16995,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Syracuse",
@@ -17023,7 +17198,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Colorado",
@@ -17843,7 +18018,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Vanderbilt",
@@ -20445,9 +20620,9 @@
     "volume_fp": 17.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 129583.45,
-    "volume_24h_fp": 103501.92,
-    "volume_fp": 134352.75
+    "open_interest_fp": 132916.01,
+    "volume_24h_fp": 105331.31,
+    "volume_fp": 137685.31
    },
    "ex_stats_first": {
     "open_interest_fp": 25031.65,
@@ -21448,7 +21623,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "East Carolina",
@@ -21663,7 +21838,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Army",
