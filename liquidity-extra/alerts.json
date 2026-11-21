@@ -14,6 +14,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.74,
    "clv_cents": -6.0,
    "confirmed_after_min": 10,
@@ -127,8 +128,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.43,
-   "clv_cents": 0.0,
+   "close_price": 0.45,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-21",
    "depth_by_book": {
@@ -153,9 +154,9 @@
     "volume_fp": 108.37
    },
    "ex_stats_close": {
-    "open_interest_fp": 23175.5,
-    "volume_24h_fp": 16504.82,
-    "volume_fp": 23445.079999999998
+    "open_interest_fp": 42214.08,
+    "volume_24h_fp": 22859.25,
+    "volume_fp": 42896.9
    },
    "ex_stats_first": {
     "open_interest_fp": 10776.26,
@@ -198,7 +199,8 @@
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.43,
    "prices_by_book": {},
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-21T21:00:26Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV21PENNLAS-PENN"
@@ -836,6 +838,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [
     "Over 149.5 (-110)"
@@ -911,7 +914,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 657.58,
-    "volume_24h_fp": 191.57999999999998,
+    "volume_24h_fp": 604.12,
     "volume_fp": 657.58
    },
    "ex_stats_first": {
@@ -1294,9 +1297,9 @@
     "volume_fp": 116.02
    },
    "ex_stats_close": {
-    "open_interest_fp": 19463.0,
-    "volume_24h_fp": 16963.79,
-    "volume_fp": 19887.18
+    "open_interest_fp": 26518.22,
+    "volume_24h_fp": 17030.059999999998,
+    "volume_fp": 27549.32
    },
    "ex_stats_first": {
     "open_interest_fp": 10744.060000000001,
@@ -1625,6 +1628,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Northern Illinois",
@@ -1690,9 +1694,9 @@
     "volume_fp": 2.65
    },
    "ex_stats_close": {
-    "open_interest_fp": 25955.04,
-    "volume_24h_fp": 25875.61,
-    "volume_fp": 25959.239999999998
+    "open_interest_fp": 25995.030000000002,
+    "volume_24h_fp": 25877.86,
+    "volume_fp": 25999.23
    },
    "ex_stats_first": {
     "open_interest_fp": 449.18,
@@ -1901,6 +1905,7 @@
     "volume_fp": 38397.83
    },
    "fade_price": 0.45,
+   "fade_units": 1.14,
    "first_seen_utc": "2026-11-21T16:10:20Z",
    "game": "New Mexico vs Wichita St.",
    "game_surge_books": [],
@@ -2023,11 +2028,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV21UNMWICH-UNM"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
+   "settled_utc": "2026-11-21T21:00:26Z",
    "sharp_agree": [
     "New Mexico Lobos -1.5 (-117)"
    ],
@@ -2050,7 +2057,7 @@
     "Wichita St."
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-21T15:50:22Z",
@@ -2104,9 +2111,9 @@
     "volume_fp": 5.58
    },
    "ex_stats_close": {
-    "open_interest_fp": 862.23,
-    "volume_24h_fp": 842.06,
-    "volume_fp": 862.23
+    "open_interest_fp": 2133.28,
+    "volume_24h_fp": 843.42,
+    "volume_fp": 2133.28
    },
    "ex_stats_first": {
     "open_interest_fp": 241.18,
@@ -2314,9 +2321,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 32541.75,
+    "open_interest_fp": 37920.81,
     "volume_24h_fp": 32447.58,
-    "volume_fp": 32554.370000000003
+    "volume_fp": 37933.43
    },
    "ex_stats_first": {
     "open_interest_fp": 5482.0599999999995,
@@ -2858,6 +2865,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Bowling Green",
@@ -3884,6 +3892,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Stony Brook",
@@ -4057,6 +4066,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [
     "Over 149.5 (-110)"
@@ -4115,8 +4125,8 @@
     "volume": 851.0
    },
    "ex_stats_close": {
-    "openInterest": 3402521.0,
-    "volume": 3436156.0
+    "openInterest": 3419886.0,
+    "volume": 3453521.0
    },
    "ex_stats_first": {
     "openInterest": 541534.0,
@@ -4573,8 +4583,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.58,
-   "clv_cents": 1.0,
+   "close_price": 0.57,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-21",
    "depth_by_book": {
@@ -4599,9 +4609,9 @@
     "volume_fp": 1575.15
    },
    "ex_stats_close": {
-    "open_interest_fp": 23175.5,
-    "volume_24h_fp": 16504.82,
-    "volume_fp": 23445.079999999998
+    "open_interest_fp": 42214.08,
+    "volume_24h_fp": 22859.25,
+    "volume_fp": 42896.9
    },
    "ex_stats_first": {
     "open_interest_fp": 867.8299999999999,
@@ -4644,7 +4654,8 @@
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.55,
    "prices_by_book": {},
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-21T21:00:26Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV21PENNLAS-LAS"
@@ -5122,9 +5133,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 7509.64,
+    "open_interest_fp": 7510.64,
     "volume_24h_fp": 7537.3099999999995,
-    "volume_fp": 7557.030000000001
+    "volume_fp": 7558.030000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 2031.68,
@@ -5426,6 +5437,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Little Rock",
@@ -5692,6 +5704,7 @@
     "volume_fp": 232.24
    },
    "fade_price": 0.33,
+   "fade_units": 1.89,
    "first_seen_utc": "2026-11-21T06:20:20Z",
    "game": "Navy vs Rider",
    "game_surge_books": [
@@ -5793,11 +5806,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV21NAVYRID-NAVY"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
+   "settled_utc": "2026-11-21T21:00:26Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Navy",
@@ -5812,7 +5827,7 @@
     "Rider"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-21T06:30:22Z",
@@ -5995,6 +6010,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Fordham",
@@ -6280,6 +6296,7 @@
     "volume_fp": 237.76999999999998
    },
    "fade_price": 0.31,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-21T06:20:20Z",
    "game": "Cornell vs Morgan St.",
    "game_surge_books": [],
@@ -6379,11 +6396,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV21CORMORG-COR"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
+   "settled_utc": "2026-11-21T21:00:26Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Cornell",
@@ -6398,7 +6417,7 @@
     "Morgan St."
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.45
   },
   {
    "alerted_utc": "2026-11-20T23:50:20Z",
@@ -9254,7 +9273,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 141,
+   "settle_tries": 142,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Daniil Medvedev N/A",
