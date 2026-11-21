@@ -1,6 +1,211 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-21T21:40:18Z",
+   "base_depth": 57576,
+   "best_price": 0.81,
+   "best_price_american": -426,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.81,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 4,
+   "date": "2026-11-21",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Louisville",
+     "price": 0.81,
+     "this_side": 460787
+    },
+    "novig": {
+     "new_other_side": 5707,
+     "new_this_side": 26898,
+     "other_side": 17078,
+     "other_side_all_levels": 18138,
+     "ratio": 4.1,
+     "this_side": 69737,
+     "this_side_all_levels": 84427
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Louisville",
+     "price": 0.8113,
+     "this_side": 12893
+    }
+   },
+   "ex_stats_alert": {
+    "openInterest": 3594147.0,
+    "volume": 3893808.0
+   },
+   "ex_stats_change": {
+    "openInterest": 123.0,
+    "volume": 123.0
+   },
+   "ex_stats_first": {
+    "openInterest": 3594024.0,
+    "volume": 3893685.0
+   },
+   "fade_price": 0.2,
+   "first_seen_utc": "2026-11-21T21:35:49Z",
+   "game": "Pittsburgh @ Louisville",
+   "game_surge_books": [],
+   "game_x": 1.55,
+   "key": "novig|{\"market_id\": \"01a1de61-e2b6-7450-8f4a-b5364e327fcc\", \"outcome_id\": \"01a1de61-e2b6-7450-8f4a-b544b682ebf7\"}",
+   "lead_min": 170,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 26898,
+   "new_x": 1.21,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 104387.51,
+      "volume_24h_fp": 102753.36,
+      "volume_fp": 109187.81
+     },
+     "game_normal": 1267866,
+     "game_x": 1.04,
+     "normal": 45919,
+     "now": 1317355,
+     "type": "ML",
+     "x": 28.69
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 3594147.0,
+      "volume": 3893808.0
+     },
+     "game_normal": 54502,
+     "game_x": 1.55,
+     "normal": 22165,
+     "now": 84427,
+     "type": "ML",
+     "x": 3.81
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 9157,
+     "game_x": 1.41,
+     "normal": 3726,
+     "now": 12893,
+     "type": "ML",
+     "x": 3.46
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.81,
+   "price_american": -426,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.81,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -475
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -460
+    },
+    "betrivers": {
+     "point": null,
+     "price": -560
+    },
+    "betus": {
+     "point": null,
+     "price": -460
+    },
+    "bovada": {
+     "point": null,
+     "price": -480
+    },
+    "circasports": {
+     "point": null,
+     "price": -450
+    },
+    "draftkings": {
+     "point": null,
+     "price": -485
+    },
+    "fanatics": {
+     "point": null,
+     "price": -475
+    },
+    "fanduel": {
+     "point": null,
+     "price": -480
+    },
+    "kalshi": {
+     "point": null,
+     "price": -426
+    },
+    "lowvig": {
+     "point": null,
+     "price": -460
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -506
+    },
+    "novig": {
+     "point": null,
+     "price": -413
+    },
+    "polymarket": {
+     "point": null,
+     "price": -426
+    },
+    "prophetx": {
+     "point": null,
+     "price": -430
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -500
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a1de61-e2b6-7450-8f4a-b5364e327fcc",
+    "outcome_id": "01a1de61-e2b6-7450-8f4a-b544b682ebf7"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Louisville",
+   "side_label": "LOU (0)",
+   "size_x": 3.81,
+   "start_source": "odds",
+   "start_utc": "2026-11-22T00:30:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Pittsburgh",
+    "Louisville"
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-21T21:25:51Z",
    "base_depth": 309253,
    "best_price": 0.8347,
@@ -46,9 +251,9 @@
     "volume_fp": 885.91
    },
    "ex_stats_close": {
-    "open_interest_fp": 21021.17,
+    "open_interest_fp": 21398.47,
     "volume_24h_fp": 9451.76,
-    "volume_fp": 21810.61
+    "volume_fp": 22187.91
    },
    "ex_stats_first": {
     "open_interest_fp": 17379.57,
@@ -233,9 +438,9 @@
     "volume_fp": 186.79
    },
    "ex_stats_close": {
-    "open_interest_fp": 15696.06,
-    "volume_24h_fp": 12808.67,
-    "volume_fp": 18693.3
+    "open_interest_fp": 17064.36,
+    "volume_24h_fp": 16842.63,
+    "volume_fp": 20841.66
    },
    "ex_stats_first": {
     "open_interest_fp": 12210.98,
@@ -394,8 +599,8 @@
     "volume": 29561.0
    },
    "ex_stats_close": {
-    "openInterest": 5970455.0,
-    "volume": 8442590.0
+    "openInterest": 5909255.0,
+    "volume": 8513920.0
    },
    "ex_stats_first": {
     "openInterest": 5947639.0,
@@ -607,9 +812,9 @@
     "volume_fp": 2899.46
    },
    "ex_stats_close": {
-    "open_interest_fp": 288943.76,
+    "open_interest_fp": 288971.32,
     "volume_24h_fp": 247264.21,
-    "volume_fp": 296200.76
+    "volume_fp": 296267.88
    },
    "ex_stats_first": {
     "open_interest_fp": 275100.7,
@@ -822,9 +1027,9 @@
     "volume_fp": 2174.62
    },
    "ex_stats_close": {
-    "open_interest_fp": 295805.93,
+    "open_interest_fp": 299519.98,
     "volume_24h_fp": 280591.66000000003,
-    "volume_fp": 340187.75
+    "volume_fp": 343901.80000000005
    },
    "ex_stats_first": {
     "open_interest_fp": 280484.9,
@@ -2085,7 +2290,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Middle Tennessee",
@@ -2143,8 +2348,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 16970527.0,
-    "volume": 19006223.0
+    "openInterest": 16970645.0,
+    "volume": 19006341.0
    },
    "ex_stats_first": {
     "openInterest": 16199699.0,
@@ -2430,7 +2635,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [
     "Chattanooga Mocs +48.5 (-106)"
    ],
@@ -2967,7 +3172,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Jacksonville St.",
@@ -5997,7 +6202,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Iowa",
