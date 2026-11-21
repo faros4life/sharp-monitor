@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 21, 3:30 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 35.
+Updated Sat Nov 21, 3:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 35.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 21 3:30PM | TENNIS | Zverev vs Medvedev | moneyline: Zverev | kalshi | $241k | -400 |  |  | +0.0c |  | pending |
+| Nov 21 3:30PM | TENNIS | Zverev vs Medvedev | moneyline: Zverev | kalshi | $241k | -400 |  |  | -5.0c |  | pending |
 | Nov 21 3:10PM | NCAAB | Penn vs La Salle | moneyline: Penn | kalshi | $28k | +133 |  |  | +0.0c |  | pending |
 | Nov 21 2:30PM | NCAAB | Middle Tennessee vs Indiana St. | moneyline: Middle Tennessee | kalshi | $56k | -127 | ✅ novig |  | +0.0c |  | pending |
 | Nov 21 2:10PM | NCAAB | St. Thomas vs Milwaukee: Point Total | total: NOT Over 151.5 points | kalshi | $30k | +108 |  |  | +1.0c | yes | pending |
@@ -21,14 +21,14 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 11:20AM | NCAAB | Northern Illinois vs Bowling Green: Spread | spread: NOT Bowling Green wins by over 5.5 points | kalshi | $45k | -108 |  |  | +0.0c |  | pending |
 | Nov 21 11:20AM | NCAAB | San Diego vs UC Irvine | moneyline: UC Irvine | kalshi | $31k | -186 |  | ❌ | +0.0c |  | pending |
 | Nov 21 11:20AM | NCAAB | New Mexico vs Wichita St. | moneyline: New Mexico | kalshi | $44k | -127 |  | ✅ | +0.0c |  | pending |
-| Nov 21 10:50AM | NCAAB | Winthrop vs Wofford | moneyline: Wofford | kalshi | $61k | -233 | ✅ novig |  | +1.0c |  | pending |
+| Nov 21 10:50AM | NCAAB | Winthrop vs Wofford | moneyline: Wofford | kalshi | $61k | -233 | ✅ novig |  | +1.0c | yes | pending |
 | Nov 21 10:50AM | NCAAB | Gardner-Webb vs VMI | moneyline: VMI | kalshi | $46k | -355 | ✅ novig | ❌ | -1.0c |  | pending |
 | Nov 21 10:50AM | NCAAB | UT Rio Grande Valley vs Austin Peay | moneyline: Austin Peay | kalshi | $45k | -186 | ✅ novig |  | +4.0c |  | pending |
 | Nov 21 10:50AM | NCAAB | Northern Illinois vs Bowling Green | moneyline: Bowling Green | kalshi | $61k | -203 | ✅ novig |  | +0.0c |  | pending |
 | Nov 21 10:50AM | NCAAB | Texas A&M-Corpus Christi vs Oral Roberts | moneyline: Oral Roberts | kalshi | $35k | -133 | ✅ novig | ✅ | +1.0c |  | pending |
 | Nov 21 10:40AM | NCAAB | New Orleans vs Texas Southern | moneyline: New Orleans | kalshi | $41k | +113 | ✅ novig | ✅ | +1.0c |  | pending |
 | Nov 21 10:40AM | NCAAB | Northern Arizona vs Cal Poly | moneyline: Cal Poly | kalshi | $48k | -335 | ✅ novig |  | +0.0c |  | pending |
-| Nov 21 10:40AM | NCAAB | Bradley vs Pacific | moneyline: Pacific | kalshi | $39k | -400 | ✅ novig |  | -1.0c |  | pending |
+| Nov 21 10:40AM | NCAAB | Bradley vs Pacific | moneyline: Pacific | kalshi | $39k | -400 | ✅ novig |  | +0.0c |  | pending |
 | Nov 21 10:20AM | NCAAB | Stony Brook vs Saint Peter's | moneyline: Stony Brook | kalshi | $26k | -203 |  |  | -1.0c |  | pending |
 | Nov 21 10:10AM | NCAAB | Northern Illinois vs Bowling Green: Point Total | total: NOT Over 149.5 points | kalshi | $27k | -113 |  | ❌ | +4.0c |  | pending |
 | Nov 21 9:40AM | NCAAB | Radford @ Chattanooga | moneyline: UTC (0) | novig | $37k | -335 |  |  | +1.0c |  | pending |
