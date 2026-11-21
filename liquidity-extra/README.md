@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 20, 11:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 11.
+Updated Fri Nov 20, 11:10 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 9.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 389-235 (-19.82u flat) | rule met: 73-59
+**Record:** 391-235 (-17.98u flat) | rule met: 73-59
 
-**Fade (paper, betting against the print):** 210-354 (+20.03u flat, after fees)
+**Fade (paper, betting against the print):** 210-356 (+18.03u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -16,9 +16,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 20 5:20PM | NCAAB | Saint Joseph's vs Drexel | moneyline: Saint Joseph's | kalshi | $33k | -170 |  |  | +1.0c |  | L |
 | Nov 20 3:30PM | NCAAB | Rhode Island vs Liberty | moneyline: Rhode Island | kalshi | $37k | -108 | ✅ novig | ❌ | +1.0c |  | L |
 | Nov 20 3:20PM | NCAAB | Sam Houston vs Boise St.: Spread | spread: NOT Boise St. wins by over 11.5 points | kalshi | $33k | +108 |  |  | +0.0c |  | pending |
-| Nov 20 3:20PM | NCAAB | Marshall vs North Carolina: Spread | spread: NOT North Carolina wins by over 17.5 points | kalshi | $32k | +113 |  |  | +1.0c |  | pending |
+| Nov 20 3:20PM | NCAAB | Marshall vs North Carolina: Spread | spread: NOT North Carolina wins by over 17.5 points | kalshi | $32k | +113 |  |  | +1.0c |  | W |
 | Nov 20 3:20PM | NCAAB | UAB vs George Washington | moneyline: UAB | kalshi | $101k | -245 |  |  | -19.0c | yes | W |
-| Nov 20 3:20PM | NCAAB | Cal State Bakersfield vs Idaho | moneyline: Idaho | kalshi | $47k | -127 |  |  | +0.0c |  | pending |
+| Nov 20 3:20PM | NCAAB | Cal State Bakersfield vs Idaho | moneyline: Idaho | kalshi | $47k | -127 |  |  | +0.0c |  | W |
 | Nov 20 3:10PM | NCAAB | Iowa vs Xavier: Spread | spread: NOT Xavier wins by over 3.5 points | kalshi | $45k | -104 |  |  | -1.0c |  | W |
 | Nov 20 3:10PM | NCAAB | Kansas City vs Iona | moneyline: Iona | kalshi | $48k | -178 | ✅ novig |  | +1.0c | yes | W |
 | Nov 20 3:10PM | NCAAB | Dayton vs Utah | moneyline: Dayton | kalshi | $33k | +108 |  |  | +2.0c |  | W |
