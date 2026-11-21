@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 21, 8:20 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 36.
+Updated Sat Nov 21, 8:25 AM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 37.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 21 8:25AM | NBA | Milwaukee Bucks @ Philadelphia 76ers | moneyline: PHI (0) | novig | $25k | -506 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Nov 21 8:05AM | NCAAF | North Texas vs Tulane: Spread | spread: North Texas wins by over 6.5 points | kalshi | $83k | -117 |  | ✅ | +0.0c |  | pending |
 | Nov 21 8:00AM | NBA | Milwaukee vs Philadelphia: Total Points | total: Over 229.5 points | kalshi | $37k | -100 |  |  | +0.0c |  | pending |
 | Nov 21 7:30AM | NCAAF | East Carolina vs Army: Total Points | total: Over 46.5 points | kalshi | $33k | +104 |  |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 17 10:40PM | NHL | Montreal vs New Jersey | moneyline: New Jersey | kalshi | $38k | -156 | ✅ novig |  | +0.0c | yes | L |
 | Nov 17 10:30PM | NBA | Charlotte Hornets at Los Angeles Lakers | moneyline: Los Angeles Lakers | prophetx | $34k | -270 | ✅ kalshi,novig |  | -0.4c | yes | W |
 | Nov 17 9:45PM | NBA | Charlotte vs Los Angeles L: Total Points | total: NOT Over 220.5 points | kalshi | $104k | -100 |  | ❌ | -1.0c | yes | L |
-| Nov 17 9:45PM | NHL | Boston vs Detroit | moneyline: Detroit | kalshi | $35k | -108 |  |  | -2.0c | yes | L |
