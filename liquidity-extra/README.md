@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 20, 9:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 17.
+Updated Fri Nov 20, 9:30 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 15.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 383-235 (-23.33u flat) | rule met: 71-59
+**Record:** 385-235 (-21.66u flat) | rule met: 72-59
 
-**Fade (paper, betting against the print):** 210-348 (+26.03u flat, after fees)
+**Fade (paper, betting against the print):** 210-350 (+24.03u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -19,7 +19,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 20 3:20PM | NCAAB | Marshall vs North Carolina: Spread | spread: NOT North Carolina wins by over 17.5 points | kalshi | $32k | +113 |  |  | +1.0c |  | pending |
 | Nov 20 3:20PM | NCAAB | UAB vs George Washington | moneyline: UAB | kalshi | $101k | -245 |  |  | -19.0c | yes | W |
 | Nov 20 3:20PM | NCAAB | Cal State Bakersfield vs Idaho | moneyline: Idaho | kalshi | $47k | -127 |  |  | +0.0c |  | pending |
-| Nov 20 3:10PM | NCAAB | Iowa vs Xavier: Spread | spread: NOT Xavier wins by over 3.5 points | kalshi | $45k | -104 |  |  | -1.0c |  | pending |
+| Nov 20 3:10PM | NCAAB | Iowa vs Xavier: Spread | spread: NOT Xavier wins by over 3.5 points | kalshi | $45k | -104 |  |  | -1.0c |  | W |
 | Nov 20 3:10PM | NCAAB | Kansas City vs Iona | moneyline: Iona | kalshi | $48k | -178 | ✅ novig |  | +1.0c | yes | W |
 | Nov 20 3:10PM | NCAAB | Dayton vs Utah | moneyline: Dayton | kalshi | $33k | +108 |  |  | +2.0c |  | W |
 | Nov 20 2:50PM | NCAAB | Northwestern vs Virginia Tech: Point Total | total: Over 142.5 points | kalshi | $48k | -104 |  | ❌ | +0.0c |  | W |
@@ -35,7 +35,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 20 12:40PM | NCAAB | Delaware vs Cal State Northridge: Spread | spread: NOT Cal State Northridge wins by over 6.5 points | kalshi | $34k | +117 |  | ❌ | +2.0c |  | W |
 | Nov 20 12:10PM | NCAAB | Temple vs Middle Tennessee | moneyline: Temple | kalshi | $70k | -150 | ✅ novig | ❌ | +0.0c |  | W |
 | Nov 20 12:00PM | NCAAB | Kentucky vs Indiana | moneyline: Indiana | kalshi | $35k | -156 | ✅ novig |  | -1.0c |  | pending |
-| Nov 20 11:50AM | NCAAB | South Carolina St. vs The Citadel | moneyline: The Citadel | kalshi | $43k | -138 | ✅ novig |  | +1.0c | yes | pending |
+| Nov 20 11:50AM | NCAAB | South Carolina St. vs The Citadel | moneyline: The Citadel | kalshi | $43k | -138 | ✅ novig |  | +1.0c | yes | W |
 | Nov 20 10:20AM | NCAAB | Mercyhurst vs Canisius | moneyline: Mercyhurst | kalshi | $40k | -138 |  |  | +5.0c |  | L |
 | Nov 20 8:40AM | NCAAB | Tulsa vs Mississippi St. | moneyline: Mississippi St. | kalshi | $49k | -285 |  | ✅ | +0.0c |  | pending |
 | Nov 20 3:20AM | NCAAB | Western Illinois vs University at Albany | moneyline: Albany | kalshi | $143k | -300 |  |  | -3.0c |  | W |
