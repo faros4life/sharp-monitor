@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 21, 3:50 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 28.
+Updated Sat Nov 21, 3:55 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 28.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -43,7 +43,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 20 3:20PM | NCAAF | Iowa St. vs UCF | moneyline: UCF | kalshi | $503k | +108 | ✅ prophetx | ❌ | -1.0c | yes | W |
 | Nov 20 2:45PM | NCAAF | UTEP vs Air Force: Spread | spread: Air Force wins by over 21.5 points | kalshi | $55k | -100 |  |  | +0.0c | yes | W |
 | Nov 20 2:25PM | NCAAF | Memphis vs Navy | moneyline: Memphis | kalshi | $31k | -138 | ✅ novig |  | -1.0c |  | pending |
-| Nov 20 2:20PM | NCAAF | Wake Forest vs Georgia Tech: Spread | spread: Wake Forest wins by over 20.5 points | kalshi | $39k | -100 | ✅ novig |  | +3.0c | yes | pending |
+| Nov 20 2:20PM | NCAAF | Wake Forest vs Georgia Tech: Spread | spread: Wake Forest wins by over 20.5 points | kalshi | $39k | -100 | ✅ novig |  | +4.0c | yes | pending |
 | Nov 20 2:15PM | NCAAF | Syracuse vs Boston College: Spread | spread: Syracuse wins by over 2.5 points | kalshi | $48k | -113 | ✅ novig |  | +1.0c | yes | pending |
 | Nov 20 2:15PM | NCAAF | Colorado vs Cincinnati: Spread | spread: NOT Cincinnati wins by over 3.5 points | kalshi | $95k | -113 | ✅ novig |  | +1.0c |  | pending |
 | Nov 20 1:40PM | NBA | Orlando vs Brooklyn: Spread | spread: NOT Orlando wins by over 6.5 points | kalshi | $25k | +104 | ✅ novig,prophetx |  | +1.0c | yes | W |
