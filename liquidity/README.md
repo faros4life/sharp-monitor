@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 21, 6:40 PM ET. This run: 1 new, 0 not confirmed, 2 pending. Open alerts: 46.
+Updated Sat Nov 21, 6:45 PM ET. This run: 2 new, 0 not confirmed, 1 pending. Open alerts: 48.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 21 6:45PM | NHL | Los Angeles vs Ottawa: Spread | spread: Ottawa wins by over 1.5 goals | kalshi | $56k | +150 |  |  | +0.0c |  | pending |
+| Nov 21 6:45PM | NBA | Memphis vs Minnesota: Total Points | total: NOT Over 228.5 points | kalshi | $134k | -100 | ✅ novig | ❌ | +0.0c |  | pending |
 | Nov 21 6:40PM | NHL | Columbus vs Toronto: Spread | spread: NOT Toronto wins by over 1.5 goals | kalshi | $67k | -233 | ✅ novig |  | +0.0c |  | pending |
 | Nov 21 6:33PM | NCAAF | UNLV vs San Jose St. | moneyline: UNLV | kalshi | $206k | -213 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 21 6:20PM | NHL | Philadelphia vs Montreal: Total Goals | total: Over 5.5 goals scored | kalshi | $35k | -122 | ✅ novig |  | +0.0c |  | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 19 9:40AM | NBA | Golden State vs Memphis: Total Points | total: NOT Over 225.5 points | kalshi | $43k | +104 | ✅ prophetx |  | +3.0c | yes | W |
 | Nov 19 8:50AM | NBA | Golden State vs Memphis: Spread | spread: NOT Memphis wins by over 6.5 points | kalshi | $32k | -108 | ✅ novig |  | +3.0c |  | L |
 | Nov 19 8:30AM | NHL | Minnesota vs Calgary: Spread | spread: Minnesota wins by over 1.5 goals | kalshi | $32k | +122 |  |  | +2.0c | yes | W |
-| Nov 19 8:30AM | NHL | Columbus vs Chicago: Spread | spread: Columbus wins by over 1.5 goals | kalshi | $35k | +163 |  |  | +0.0c | yes | W |
-| Nov 19 8:30AM | NHL | Vancouver vs Seattle: Spread | spread: NOT Seattle wins by over 1.5 goals | kalshi | $62k | -170 | ✅ novig |  | +0.0c | yes | L |

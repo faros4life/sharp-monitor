@@ -1,6 +1,394 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-21T23:45:49Z",
+   "base_depth": 180125,
+   "best_price": 0.405,
+   "best_price_american": 147,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.4,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-11-21",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -23581,
+     "new_this_side": 55551,
+     "other_side": 73247,
+     "other_side_all_levels": 150615,
+     "ratio": 2.4,
+     "this_side": 173017,
+     "this_side_all_levels": 235518
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "OTT -1.5 (-1.5)",
+     "price": 0.405,
+     "this_side": 23237
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 6350.25,
+    "volume_24h_fp": 6423.14,
+    "volume_fp": 7224.94
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 139.94,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 139.94
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 6210.31,
+    "volume_24h_fp": 6423.14,
+    "volume_fp": 7085.0
+   },
+   "fade_price": 0.61,
+   "first_seen_utc": "2026-11-21T23:40:18Z",
+   "game": "Los Angeles vs Ottawa: Spread",
+   "game_surge_books": [],
+   "game_x": 1.28,
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNHLSPREAD-26NOV21LAOTT-OTT2\"}",
+   "lead_min": 14,
+   "league": "NHL",
+   "line": -1.5,
+   "market": "spread",
+   "new_money": 55551,
+   "new_x": 0.43,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 6350.25,
+      "volume_24h_fp": 6423.14,
+      "volume_fp": 7224.94
+     },
+     "game_normal": 184126,
+     "game_x": 1.28,
+     "normal": 130088,
+     "now": 235518,
+     "type": "SPREAD",
+     "x": 1.81
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 566529.0,
+      "volume": 632331.0
+     },
+     "game_normal": 18510,
+     "game_x": 1.3,
+     "normal": 11932,
+     "now": 24086,
+     "type": "SPREAD",
+     "x": 2.02
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.4,
+   "price_american": 150,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.4,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -1.5,
+     "price": 140
+    },
+    "betonlineag": {
+     "point": -1.5,
+     "price": 145
+    },
+    "betopenly": {
+     "point": -1.5,
+     "price": 156
+    },
+    "betrivers": {
+     "point": -1.5,
+     "price": 128
+    },
+    "betus": {
+     "point": -1.5,
+     "price": 144
+    },
+    "bovada": {
+     "point": -1.5,
+     "price": 140
+    },
+    "circasports": {
+     "point": -1.5,
+     "price": 150
+    },
+    "draftkings": {
+     "point": -1.5,
+     "price": 145
+    },
+    "fanatics": {
+     "point": -1.5,
+     "price": 145
+    },
+    "fanduel": {
+     "point": -1.5,
+     "price": 148
+    },
+    "kalshi": {
+     "point": -1.5,
+     "price": 150
+    },
+    "lowvig": {
+     "point": -1.5,
+     "price": 145
+    },
+    "mybookieag": {
+     "point": -1.5,
+     "price": 144
+    },
+    "novig": {
+     "point": -1.5,
+     "price": 147
+    },
+    "polymarket": {
+     "point": -1.5,
+     "price": 150
+    },
+    "prophetx": {
+     "point": -1.5,
+     "price": 148
+    },
+    "williamhill_us": {
+     "point": -1.5,
+     "price": 145
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLSPREAD-26NOV21LAOTT-OTT2"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Ottawa",
+   "side_label": "Ottawa wins by over 1.5 goals",
+   "size_x": 1.81,
+   "start_source": "odds",
+   "start_utc": "2026-11-22T00:00:00Z",
+   "surge_books": [
+    "novig"
+   ],
+   "teams": [
+    "Los Angeles",
+    "Ottawa"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-21T23:45:49Z",
+   "base_depth": 170204,
+   "best_price": 0.4952,
+   "best_price_american": 102,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-11-21",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 5690,
+     "new_this_side": 133865,
+     "other_side": 56185,
+     "other_side_all_levels": 127364,
+     "ratio": 3.8,
+     "this_side": 212596,
+     "this_side_all_levels": 303057
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 228.5 (228.5)",
+     "price": 0.5,
+     "this_side": 15833
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 25913.04,
+    "volume_24h_fp": 26023.84,
+    "volume_fp": 29930.59
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 3809.71,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 3809.71
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 22103.33,
+    "volume_24h_fp": 26023.84,
+    "volume_fp": 26120.88
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-11-21T23:40:18Z",
+   "game": "Memphis vs Minnesota: Total Points",
+   "game_surge_books": [],
+   "game_x": null,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBATOTAL-26NOV21MEMMIN-229\"}",
+   "lead_min": 74,
+   "league": "NBA",
+   "line": 228.5,
+   "market": "total",
+   "new_money": 133865,
+   "new_x": 1.29,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 25913.04,
+      "volume_24h_fp": 26023.84,
+      "volume_fp": 29930.59
+     },
+     "game_normal": null,
+     "game_x": null,
+     "normal": 104063,
+     "now": 303057,
+     "type": "UNDER",
+     "x": 2.91
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 7961410.0,
+      "volume": 9804252.0
+     },
+     "game_normal": null,
+     "game_x": null,
+     "normal": 12562,
+     "now": 16379,
+     "type": "UNDER",
+     "x": 1.3
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 229.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 229.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 229.5,
+     "price": -102
+    },
+    "betrivers": {
+     "point": 228.5,
+     "price": -107
+    },
+    "betus": {
+     "point": 229.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 229.5,
+     "price": -110
+    },
+    "circasports": {
+     "point": 230.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 228.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 229.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 229.5,
+     "price": -114
+    },
+    "kalshi": {
+     "point": 228.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": 229.5,
+     "price": -107
+    },
+    "mybookieag": {
+     "point": 230.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 228.5,
+     "price": 100
+    },
+    "polymarket": {
+     "point": 228.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 229.5,
+     "price": -107
+    },
+    "williamhill_us": {
+     "point": 230.5,
+     "price": -115
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNBATOTAL-26NOV21MEMMIN-229"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Over 228.5 (-110)"
+   ],
+   "side": "UNDER",
+   "side_label": "NOT Over 228.5 points",
+   "size_x": 2.91,
+   "start_source": "odds",
+   "start_utc": "2026-11-22T01:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Memphis",
+    "Minnesota"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-21T23:40:18Z",
    "base_depth": 145158,
    "best_price": 0.695,
@@ -44,6 +432,11 @@
     "open_interest_fp": 44.0,
     "volume_24h_fp": 200.01,
     "volume_fp": 44.0
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 1457.26,
+    "volume_24h_fp": 606.3,
+    "volume_fp": 1457.26
    },
    "ex_stats_first": {
     "open_interest_fp": 651.04,
@@ -246,9 +639,9 @@
     "volume_fp": 29472.95
    },
    "ex_stats_close": {
-    "open_interest_fp": 38177.81,
+    "open_interest_fp": 38603.18,
     "volume_24h_fp": 38090.56,
-    "volume_fp": 38737.74
+    "volume_fp": 39163.11
    },
    "ex_stats_first": {
     "open_interest_fp": 8625.55,
@@ -457,9 +850,9 @@
     "volume_fp": 1.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 4121.46,
+    "open_interest_fp": 4221.93,
     "volume_24h_fp": 4021.3,
-    "volume_fp": 4221.38
+    "volume_fp": 4321.85
    },
    "ex_stats_first": {
     "open_interest_fp": 884.2,
@@ -659,9 +1052,9 @@
     "volume_fp": 774.74
    },
    "ex_stats_close": {
-    "open_interest_fp": 10152.28,
+    "open_interest_fp": 10201.79,
     "volume_24h_fp": 9849.83,
-    "volume_fp": 10272.77
+    "volume_fp": 10322.28
    },
    "ex_stats_first": {
     "open_interest_fp": 8478.99,
@@ -1079,9 +1472,9 @@
     "volume_fp": 2.01
    },
    "ex_stats_close": {
-    "open_interest_fp": 1365.71,
+    "open_interest_fp": 1384.71,
     "volume_24h_fp": 1250.99,
-    "volume_fp": 1408.18
+    "volume_fp": 1427.18
    },
    "ex_stats_first": {
     "open_interest_fp": 1029.36,
@@ -1288,9 +1681,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 743.95,
+    "open_interest_fp": 1188.69,
     "volume_24h_fp": 638.18,
-    "volume_fp": 750.14
+    "volume_fp": 1194.88
    },
    "ex_stats_first": {
     "open_interest_fp": 556.52,
@@ -1496,9 +1889,9 @@
     "volume_fp": 375.79
    },
    "ex_stats_close": {
-    "open_interest_fp": 81578.95999999999,
+    "open_interest_fp": 81788.48,
     "volume_24h_fp": 80190.11,
-    "volume_fp": 82622.92
+    "volume_fp": 82832.44
    },
    "ex_stats_first": {
     "open_interest_fp": 77704.94,
@@ -1717,9 +2110,9 @@
     "volume_fp": 706.89
    },
    "ex_stats_close": {
-    "open_interest_fp": 225566.5,
+    "open_interest_fp": 226208.65,
     "volume_24h_fp": 229771.61000000002,
-    "volume_fp": 236709.65
+    "volume_fp": 237351.8
    },
    "ex_stats_first": {
     "open_interest_fp": 213872.50999999998,
@@ -1941,9 +2334,9 @@
     "volume_fp": 153.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 100533.23999999999,
+    "open_interest_fp": 115860.37,
     "volume_24h_fp": 53738.75,
-    "volume_fp": 101376.39
+    "volume_fp": 116703.51999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 46567.71,
@@ -2567,9 +2960,9 @@
     "volume_fp": 16426.88
    },
    "ex_stats_close": {
-    "open_interest_fp": 875952.75,
+    "open_interest_fp": 1044585.4,
     "volume_24h_fp": 1007159.45,
-    "volume_fp": 1024398.33
+    "volume_fp": 1213313.08
    },
    "ex_stats_first": {
     "open_interest_fp": 675611.8300000001,
@@ -2793,9 +3186,9 @@
     "volume_fp": 26.91
    },
    "ex_stats_close": {
-    "open_interest_fp": 2703.44,
+    "open_interest_fp": 2723.95,
     "volume_24h_fp": 2703.44,
-    "volume_fp": 2708.14
+    "volume_fp": 2728.65
    },
    "ex_stats_first": {
     "open_interest_fp": 2516.69,
@@ -3645,9 +4038,9 @@
     "volume_fp": 58.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 29842.14,
+    "open_interest_fp": 33115.509999999995,
     "volume_24h_fp": 28292.68,
-    "volume_fp": 30182.8
+    "volume_fp": 33486.35
    },
    "ex_stats_first": {
     "open_interest_fp": 11781.470000000001,
@@ -6370,7 +6763,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [
     "Marshall Thundering Herd -2.5 (-111)"
    ],
@@ -6592,7 +6985,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Florida St.",
@@ -6772,7 +7165,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Michigan",
@@ -7078,7 +7471,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "LSU",
@@ -7352,8 +7745,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 17053502.0,
-    "volume": 19089198.0
+    "openInterest": 17066002.0,
+    "volume": 19101698.0
    },
    "ex_stats_first": {
     "openInterest": 16199699.0,
@@ -8380,7 +8773,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UCLA",
@@ -9577,7 +9970,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Florida State",
@@ -14096,7 +14489,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [
     "Texas Tech Red Raiders -4.5 (-108)"
    ],
@@ -14587,7 +14980,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Indiana",
@@ -16132,7 +16525,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Indiana",
@@ -18739,7 +19132,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas A&M",
@@ -27616,7 +28009,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Oklahoma",
