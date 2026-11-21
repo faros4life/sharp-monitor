@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 21, 6:00 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 43.
+Updated Sat Nov 21, 6:10 PM ET. This run: 1 new, 0 not confirmed, 2 pending. Open alerts: 44.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,9 +10,10 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 21 6:10PM | NHL | New Jersey vs St. Louis: Spread | spread: NOT New Jersey wins by over 1.5 goals | kalshi | $25k | -194 | ✅ novig |  | +0.0c |  | pending |
 | Nov 21 5:55PM | NCAAF | Arkansas State @ Louisiana Tech | moneyline: LT (0) | novig | $26k | -545 | ✅ kalshi,prophetx | ✅ | +0.0c |  | pending |
-| Nov 21 5:55PM | NHL | Washington vs Boston: Total Goals | total: Over 6.5 goals scored | kalshi | $30k | -113 |  |  | +0.0c |  | pending |
-| Nov 21 5:55PM | NHL | Vegas vs Winnipeg: Spread | spread: NOT Vegas wins by over 1.5 goals | kalshi | $27k | -213 | ✅ novig |  | +0.0c |  | pending |
+| Nov 21 5:55PM | NHL | Washington vs Boston: Total Goals | total: Over 6.5 goals scored | kalshi | $30k | -113 |  |  | -1.0c |  | pending |
+| Nov 21 5:55PM | NHL | Vegas vs Winnipeg: Spread | spread: NOT Vegas wins by over 1.5 goals | kalshi | $27k | -213 | ✅ novig |  | -1.0c |  | pending |
 | Nov 21 5:55PM | NHL | New York I vs Detroit | moneyline: New York I | kalshi | $165k | -133 | ✅ prophetx |  | +0.0c |  | pending |
 | Nov 21 5:55PM | NHL | New Jersey vs St. Louis | moneyline: New Jersey | kalshi | $491k | -138 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 21 5:55PM | NHL | Los Angeles vs Ottawa | moneyline: Ottawa | kalshi | $197k | -178 | ✅ novig,prophetx |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 19 8:15AM | NCAAF | Southeastern Louisiana vs Nicholls St. | moneyline: Southeastern Louisiana | kalshi | $33k | -376 |  |  | -1.0c |  | W |
 | Nov 19 8:10AM | NHL | Buffalo vs Washington | moneyline: Washington | kalshi | $30k | -133 | ✅ novig |  | +0.0c |  | L |
 | Nov 19 7:45AM | NHL | Columbus vs Chicago | moneyline: Columbus | kalshi | $27k | -144 | ✅ novig |  | +1.0c | yes | W |
-| Nov 19 7:40AM | NHL | Edmonton vs Tampa Bay: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $28k | -122 | ✅ novig |  | +1.0c | yes | W |
