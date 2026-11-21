@@ -1,6 +1,182 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-21T04:05:46Z",
+   "base_depth": 84491,
+   "best_price": 0.4858,
+   "best_price_american": 106,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.48,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-21",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 3970,
+     "new_this_side": 30740,
+     "other_side": 74854,
+     "other_side_all_levels": 103445,
+     "ratio": 1.3,
+     "this_side": 95115,
+     "this_side_all_levels": 114772
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 4277.53,
+    "volume_24h_fp": 1134.9,
+    "volume_fp": 4325.53
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 45.66,
+    "volume_24h_fp": 9.13,
+    "volume_fp": 45.66
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 4231.87,
+    "volume_24h_fp": 1125.77,
+    "volume_fp": 4279.87
+   },
+   "fade_price": 0.53,
+   "first_seen_utc": "2026-11-21T04:00:24Z",
+   "game": "North Texas vs Tulane: Spread",
+   "game_surge_books": [],
+   "game_x": 1.43,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26NOV21UNTTULN-UNT7\"}",
+   "lead_min": 774,
+   "league": "NCAAF",
+   "line": 6.5,
+   "market": "spread",
+   "new_money": 30740,
+   "new_x": 0.66,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 4277.53,
+      "volume_24h_fp": 1134.9,
+      "volume_fp": 4325.53
+     },
+     "game_normal": 80038,
+     "game_x": 1.43,
+     "normal": 46443,
+     "now": 114772,
+     "type": "SPREAD",
+     "x": 2.47
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.48,
+   "price_american": 108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.48,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 6.5,
+     "price": -108
+    },
+    "betonlineag": {
+     "point": 6.5,
+     "price": -107
+    },
+    "betopenly": {
+     "point": 7.0,
+     "price": -106
+    },
+    "betrivers": {
+     "point": 7.0,
+     "price": -117
+    },
+    "betus": {
+     "point": 6.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 7.0,
+     "price": -117
+    },
+    "circasports": {
+     "point": 6.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 6.5,
+     "price": -108
+    },
+    "fanatics": {
+     "point": 6.5,
+     "price": -105
+    },
+    "fanduel": {
+     "point": 6.5,
+     "price": -105
+    },
+    "kalshi": {
+     "point": 6.5,
+     "price": 108
+    },
+    "lowvig": {
+     "point": 6.5,
+     "price": -103
+    },
+    "mybookieag": {
+     "point": 6.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 6.5,
+     "price": 106
+    },
+    "polymarket": {
+     "point": -20.5,
+     "price": -4900
+    },
+    "prophetx": {
+     "point": 6.5,
+     "price": 108
+    },
+    "williamhill_us": {
+     "point": 6.5,
+     "price": -109
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFSPREAD-26NOV21UNTTULN-UNT7"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "North Texas Mean Green -6.5 (-113)"
+   ],
+   "side": "Tulane",
+   "side_label": "NOT North Texas wins by over 6.5 points",
+   "size_x": 2.47,
+   "start_source": "odds",
+   "start_utc": "2026-11-21T17:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "North Texas",
+    "Tulane"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-21T02:10:16Z",
    "base_depth": 73340,
    "best_price": 0.635,
@@ -399,7 +575,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [
     "New Mexico Lobos -9.5 (-110)",
@@ -917,9 +1093,9 @@
     "volume_fp": 112.02
    },
    "ex_stats_close": {
-    "open_interest_fp": 96597.58,
-    "volume_24h_fp": 82591.43,
-    "volume_fp": 99845.92
+    "open_interest_fp": 96774.91,
+    "volume_24h_fp": 83181.14,
+    "volume_fp": 100023.25
    },
    "ex_stats_first": {
     "open_interest_fp": 40876.55,
@@ -1695,7 +1871,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -1917,7 +2093,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Michigan St.",
@@ -2104,7 +2280,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 16,
+   "settle_tries": 17,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -2541,7 +2717,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [
     "Under 47.5 (-102)"
    ],
@@ -2970,7 +3146,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [
     "New Mexico Lobos -7.5 (-117)"
    ],
@@ -3039,9 +3215,9 @@
     "volume_fp": 1.86
    },
    "ex_stats_close": {
-    "open_interest_fp": 96597.58,
-    "volume_24h_fp": 82591.43,
-    "volume_fp": 99845.92
+    "open_interest_fp": 96774.91,
+    "volume_24h_fp": 83181.14,
+    "volume_fp": 100023.25
    },
    "ex_stats_first": {
     "open_interest_fp": 32041.54,
@@ -3592,7 +3768,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Air Force",
@@ -3664,9 +3840,9 @@
     "volume_fp": 213.2
    },
    "ex_stats_close": {
-    "open_interest_fp": 32851.880000000005,
-    "volume_24h_fp": 15392.41,
-    "volume_fp": 34107.54
+    "open_interest_fp": 32863.33,
+    "volume_24h_fp": 15473.189999999999,
+    "volume_fp": 34118.99
    },
    "ex_stats_first": {
     "open_interest_fp": 24140.129999999997,
@@ -3873,9 +4049,9 @@
     "volume_fp": 1545.89
    },
    "ex_stats_close": {
-    "open_interest_fp": 61511.77,
-    "volume_24h_fp": 46844.87,
-    "volume_fp": 66125.32
+    "open_interest_fp": 62047.86,
+    "volume_24h_fp": 47719.82,
+    "volume_fp": 66801.3
    },
    "ex_stats_first": {
     "open_interest_fp": 36568.82,
@@ -4069,9 +4245,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 67931.04,
+    "open_interest_fp": 68899.84,
     "volume_24h_fp": 64036.12,
-    "volume_fp": 68836.39
+    "volume_fp": 69805.19
    },
    "ex_stats_first": {
     "open_interest_fp": 5679.96,
@@ -4273,9 +4449,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 117423.25,
-    "volume_24h_fp": 113644.28,
-    "volume_fp": 117946.68
+    "open_interest_fp": 117501.44,
+    "volume_24h_fp": 113662.22,
+    "volume_fp": 118024.87
    },
    "ex_stats_first": {
     "open_interest_fp": 6037.99,
@@ -5026,7 +5202,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 16,
+   "settle_tries": 17,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -5091,9 +5267,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 8820.5,
-    "volume_24h_fp": 2933.48,
-    "volume_fp": 10744.35
+    "open_interest_fp": 8847.57,
+    "volume_24h_fp": 3028.86,
+    "volume_fp": 10771.49
    },
    "ex_stats_first": {
     "open_interest_fp": 6676.11,
@@ -5615,7 +5791,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 16,
+   "settle_tries": 17,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Duke",
@@ -5831,7 +6007,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [
     "New Mexico Lobos -7.5 (-117)"
    ],
@@ -6051,7 +6227,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 16,
+   "settle_tries": 17,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Duke",
@@ -7088,7 +7264,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Oregon",
@@ -7810,9 +7986,9 @@
     "volume_fp": 17.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 40547.53,
-    "volume_24h_fp": 20778.73,
-    "volume_fp": 44179.87
+    "open_interest_fp": 40597.990000000005,
+    "volume_24h_fp": 20860.97,
+    "volume_fp": 44230.33
    },
    "ex_stats_first": {
     "open_interest_fp": 25031.65,
@@ -8175,7 +8351,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 16,
+   "settle_tries": 17,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Clemson",
@@ -8668,9 +8844,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 12348.66,
-    "volume_24h_fp": 4942.79,
-    "volume_fp": 12798.94
+    "open_interest_fp": 12378.480000000001,
+    "volume_24h_fp": 4928.610000000001,
+    "volume_fp": 12828.76
    },
    "ex_stats_first": {
     "open_interest_fp": 9470.58,
@@ -8880,9 +9056,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 12348.66,
-    "volume_24h_fp": 4942.79,
-    "volume_fp": 12798.94
+    "open_interest_fp": 12378.480000000001,
+    "volume_24h_fp": 4928.610000000001,
+    "volume_fp": 12828.76
    },
    "ex_stats_first": {
     "open_interest_fp": 9470.58,
@@ -22660,7 +22836,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 16,
+   "settle_tries": 17,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Duke",
@@ -23093,7 +23269,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New Mexico",
