@@ -1,6 +1,218 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-21T23:33:42Z",
+   "base_depth": 697351,
+   "best_price": 0.675,
+   "best_price_american": -208,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.68,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 8,
+   "date": "2026-11-21",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 49076,
+     "new_this_side": 206040,
+     "other_side": 389777,
+     "other_side_all_levels": 531014,
+     "ratio": 1.5,
+     "this_side": 573471,
+     "this_side_all_levels": 912076
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "UNLV (0)",
+     "price": 0.675,
+     "this_side": 65175
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "UNLV",
+     "price": 0.6774,
+     "this_side": 27259
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 38098.5,
+    "volume_24h_fp": 37723.02,
+    "volume_fp": 38587.53
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 29472.95,
+    "volume_24h_fp": 29712.02,
+    "volume_fp": 29472.95
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 8625.55,
+    "volume_24h_fp": 8011.0,
+    "volume_fp": 9114.58
+   },
+   "fade_price": 0.33,
+   "first_seen_utc": "2026-11-21T23:25:52Z",
+   "game": "UNLV vs San Jose St.",
+   "game_surge_books": [],
+   "game_x": 1.23,
+   "key": "kalshi|KXNCAAFGAME-26NOV21UNLVSJSU|ml|0",
+   "lead_min": 26,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 206040,
+   "new_x": 3.39,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 38098.5,
+      "volume_24h_fp": 37723.02,
+      "volume_fp": 38587.53
+     },
+     "game_normal": 742991,
+     "game_x": 1.23,
+     "normal": 60824,
+     "now": 912076,
+     "type": "ML",
+     "x": 15.0
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 7685725.0,
+      "volume": 8635697.0
+     },
+     "game_normal": 69105,
+     "game_x": 1.1,
+     "normal": 29893,
+     "now": 75689,
+     "type": "ML",
+     "x": 2.53
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 18286,
+     "game_x": 1.49,
+     "normal": 5974,
+     "now": 27259,
+     "type": "ML",
+     "x": 4.56
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.68,
+   "price_american": -213,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.68,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -235
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -235
+    },
+    "betopenly": {
+     "point": null,
+     "price": -212
+    },
+    "betrivers": {
+     "point": null,
+     "price": -265
+    },
+    "betus": {
+     "point": null,
+     "price": -235
+    },
+    "bovada": {
+     "point": null,
+     "price": -225
+    },
+    "circasports": {
+     "point": null,
+     "price": -235
+    },
+    "draftkings": {
+     "point": null,
+     "price": -238
+    },
+    "fanatics": {
+     "point": null,
+     "price": -235
+    },
+    "fanduel": {
+     "point": null,
+     "price": -220
+    },
+    "kalshi": {
+     "point": null,
+     "price": -213
+    },
+    "lowvig": {
+     "point": null,
+     "price": -235
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -238
+    },
+    "novig": {
+     "point": null,
+     "price": -208
+    },
+    "polymarket": {
+     "point": null,
+     "price": -213
+    },
+    "prophetx": {
+     "point": null,
+     "price": -210
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -245
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26NOV21UNLVSJSU-UNLV"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNLV",
+   "side_label": "UNLV",
+   "size_x": 15.0,
+   "start_source": "odds",
+   "start_utc": "2026-11-22T00:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "UNLV",
+    "San Jose St."
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-21T23:20:37Z",
    "base_depth": 154002,
    "best_price": 0.545,
@@ -46,9 +258,9 @@
     "volume_fp": 1.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 902.2,
-    "volume_24h_fp": 872.38,
-    "volume_fp": 902.2
+    "open_interest_fp": 2699.85,
+    "volume_24h_fp": 890.38,
+    "volume_fp": 2699.85
    },
    "ex_stats_first": {
     "open_interest_fp": 884.2,
@@ -245,9 +457,9 @@
     "volume_fp": 774.74
    },
    "ex_stats_close": {
-    "open_interest_fp": 9437.04,
-    "volume_24h_fp": 9356.65,
-    "volume_fp": 9557.53
+    "open_interest_fp": 9720.91,
+    "volume_24h_fp": 9539.96,
+    "volume_fp": 9841.4
    },
    "ex_stats_first": {
     "open_interest_fp": 8478.99,
@@ -665,7 +877,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1302.9,
-    "volume_24h_fp": 1190.17,
+    "volume_24h_fp": 1195.18,
     "volume_fp": 1345.37
    },
    "ex_stats_first": {
@@ -1081,9 +1293,9 @@
     "volume_fp": 375.79
    },
    "ex_stats_close": {
-    "open_interest_fp": 80418.81,
-    "volume_24h_fp": 78359.25,
-    "volume_fp": 81462.77
+    "open_interest_fp": 81050.09,
+    "volume_24h_fp": 79274.04,
+    "volume_fp": 82094.05
    },
    "ex_stats_first": {
     "open_interest_fp": 77704.94,
@@ -1302,9 +1514,9 @@
     "volume_fp": 706.89
    },
    "ex_stats_close": {
-    "open_interest_fp": 221591.01,
-    "volume_24h_fp": 223946.94,
-    "volume_fp": 232734.16
+    "open_interest_fp": 223799.01,
+    "volume_24h_fp": 225909.27000000002,
+    "volume_fp": 234942.16
    },
    "ex_stats_first": {
     "open_interest_fp": 213872.50999999998,
@@ -1526,9 +1738,9 @@
     "volume_fp": 153.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 55227.549999999996,
-    "volume_24h_fp": 51333.21,
-    "volume_fp": 55572.51
+    "open_interest_fp": 56735.61,
+    "volume_24h_fp": 51837.32,
+    "volume_fp": 57080.57
    },
    "ex_stats_first": {
     "open_interest_fp": 46567.71,
@@ -2152,9 +2364,9 @@
     "volume_fp": 16426.88
    },
    "ex_stats_close": {
-    "open_interest_fp": 806869.36,
-    "volume_24h_fp": 877840.41,
-    "volume_fp": 953178.6100000001
+    "open_interest_fp": 841630.03,
+    "volume_24h_fp": 940441.42,
+    "volume_fp": 988424.41
    },
    "ex_stats_first": {
     "open_interest_fp": 675611.8300000001,
@@ -2378,9 +2590,9 @@
     "volume_fp": 26.91
    },
    "ex_stats_close": {
-    "open_interest_fp": 2549.75,
+    "open_interest_fp": 2585.44,
     "volume_24h_fp": 2549.75,
-    "volume_fp": 2554.45
+    "volume_fp": 2590.14
    },
    "ex_stats_first": {
     "open_interest_fp": 2516.69,
@@ -3230,9 +3442,9 @@
     "volume_fp": 58.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 26648.230000000003,
-    "volume_24h_fp": 23442.87,
-    "volume_fp": 26988.89
+    "open_interest_fp": 27679.1,
+    "volume_24h_fp": 25605.24,
+    "volume_fp": 28019.76
    },
    "ex_stats_first": {
     "open_interest_fp": 11781.470000000001,
@@ -5955,7 +6167,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [
     "Marshall Thundering Herd -2.5 (-111)"
    ],
@@ -6177,7 +6389,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 9,
+   "settle_tries": 10,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Florida St.",
@@ -6357,7 +6569,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 9,
+   "settle_tries": 10,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Michigan",
@@ -6663,7 +6875,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 9,
+   "settle_tries": 10,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "LSU",
@@ -7965,7 +8177,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 9,
+   "settle_tries": 10,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UCLA",
@@ -9162,7 +9374,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 9,
+   "settle_tries": 10,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Florida State",
@@ -13681,7 +13893,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 9,
+   "settle_tries": 10,
    "sharp_agree": [
     "Texas Tech Red Raiders -4.5 (-108)"
    ],
@@ -14172,7 +14384,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 9,
+   "settle_tries": 10,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Indiana",
@@ -15717,7 +15929,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 9,
+   "settle_tries": 10,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Indiana",
@@ -18324,7 +18536,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas A&M",
@@ -27201,7 +27413,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Oklahoma",
