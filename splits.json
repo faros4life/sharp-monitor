@@ -34,14 +34,14 @@
    "status": "OPEN",
    "closed_utc": null,
    "plays": 120,
-   "resulted": 109,
-   "W": 58,
+   "resulted": 110,
+   "W": 59,
    "L": 49,
    "P": 2,
-   "units": 0.69,
-   "u_per_play": 0.006,
-   "true_close_value_pct": -2.06,
-   "true_close_n": 105
+   "units": 1.56,
+   "u_per_play": 0.014,
+   "true_close_value_pct": -2.04,
+   "true_close_n": 106
   },
   {
    "id": "hr_routed",
@@ -118,14 +118,14 @@
    "status": "OPEN",
    "closed_utc": null,
    "plays": 171,
-   "resulted": 160,
+   "resulted": 161,
    "W": 84,
-   "L": 76,
+   "L": 77,
    "P": 0,
-   "units": -1.53,
-   "u_per_play": -0.01,
-   "true_close_value_pct": -0.62,
-   "true_close_n": 159
+   "units": -2.53,
+   "u_per_play": -0.016,
+   "true_close_value_pct": -0.59,
+   "true_close_n": 160
   },
   {
    "id": "combined",
@@ -139,14 +139,14 @@
    "status": "OPEN",
    "closed_utc": null,
    "plays": 214,
-   "resulted": 200,
-   "W": 101,
-   "L": 99,
+   "resulted": 202,
+   "W": 102,
+   "L": 100,
    "P": 0,
-   "units": -9.59,
+   "units": -9.66,
    "u_per_play": -0.048,
-   "true_close_value_pct": -2.22,
-   "true_close_n": 197
+   "true_close_value_pct": -2.17,
+   "true_close_n": 199
   },
   {
    "id": "worse_125",
@@ -181,14 +181,14 @@
    "status": "OPEN",
    "closed_utc": null,
    "plays": 819,
-   "resulted": 740,
-   "W": 405,
-   "L": 335,
+   "resulted": 742,
+   "W": 406,
+   "L": 336,
    "P": 0,
-   "units": 20.1,
+   "units": 19.98,
    "u_per_play": 0.027,
-   "true_close_value_pct": -1.09,
-   "true_close_n": 727
+   "true_close_value_pct": -1.08,
+   "true_close_n": 729
   },
   {
    "id": "fade_1224",
@@ -767,16 +767,16 @@
   "status": "PAUSE LIVE"
  },
  "gaps": {
-  "gaps": 240,
-  "per_day": 24.0,
-  "edge_pct_median": 15.67,
+  "gaps": 241,
+  "per_day": 24.1,
+  "edge_pct_median": 15.65,
   "edge_pct_p90": 27.88,
-  "size_est_median_upper_bound": 612.0,
+  "size_est_median_upper_bound": 610,
   "seen_once_share": 0.27,
-  "lifetime_min_median": 45.0,
+  "lifetime_min_median": 45,
   "lived_10min_plus": 172,
   "with_200_both_legs_upper_bound": 162,
-  "scan_sec_median": 214.5
+  "scan_sec_median": 215
  },
  "untimed": {
   "ntfy_evening": 0,
@@ -785,5 +785,5 @@
   "liq_evening": 0
  },
  "resulted_rule": "resulted = result W, L or P with a unit value (pushes count as 0u); liquidity artifacts excluded; pending and ungraded plays do not count",
- "updated_utc": "2026-11-21T20:55:24Z"
+ "updated_utc": "2026-11-21T21:00:44Z"
 }
