@@ -1,15 +1,16 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 21, 3:00 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 35.
+Updated Sat Nov 21, 3:10 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 35.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 396-236 (-16.05u flat) | rule met: 73-60
+**Record:** 397-236 (-15.71u flat) | rule met: 73-60
 
-**Fade (paper, betting against the print):** 211-361 (+14.43u flat, after fees)
+**Fade (paper, betting against the print):** 211-362 (+13.43u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 21 3:10PM | NCAAB | Penn vs La Salle | moneyline: Penn | kalshi | $28k | +133 |  |  | +0.0c |  | pending |
 | Nov 21 2:30PM | NCAAB | Middle Tennessee vs Indiana St. | moneyline: Middle Tennessee | kalshi | $56k | -127 | ✅ novig |  | +0.0c |  | pending |
 | Nov 21 2:10PM | NCAAB | St. Thomas vs Milwaukee: Point Total | total: NOT Over 151.5 points | kalshi | $30k | +108 |  |  | +1.0c | yes | pending |
 | Nov 21 1:20PM | NCAAB | Northern Illinois vs Bowling Green: Point Total | total: NOT Over 147.5 points | kalshi | $37k | -100 | ✅ novig | ❌ | +0.0c |  | pending |
@@ -40,7 +41,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 1:30AM | NCAAB | Siena vs Bucknell | moneyline: Siena | kalshi | $25k | -223 |  |  | +3.0c |  | W |
 | Nov 21 1:30AM | NCAAB | Navy vs Rider | moneyline: Navy | kalshi | $27k | -203 |  |  | -2.0c | yes | pending |
 | Nov 21 1:30AM | NCAAB | Fordham vs Portland | moneyline: Fordham | kalshi | $29k | -223 |  |  | -4.0c |  | pending |
-| Nov 21 1:30AM | NCAAB | Denver vs Eastern Michigan | moneyline: Eastern Michigan | kalshi | $28k | -285 |  |  | +1.0c | yes | pending |
+| Nov 21 1:30AM | NCAAB | Denver vs Eastern Michigan | moneyline: Eastern Michigan | kalshi | $28k | -285 |  |  | +1.0c | yes | W |
 | Nov 21 1:30AM | NCAAB | Cornell vs Morgan St. | moneyline: Cornell | kalshi | $26k | -233 |  |  | +0.0c | yes | pending |
 | Nov 20 6:50PM | NCAAB | Georgia St. vs Jacksonville St. | moneyline: Jacksonville St. | kalshi | $27k | -113 |  | ✅ | +0.0c |  | W |
 | Nov 20 6:40PM | NCAAB | UT Arlington vs Northwestern St. | moneyline: UT Arlington | kalshi | $58k | -163 |  |  | +0.0c |  | W |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 15 12:50PM | NCAAB | Purdue Fort Wayne vs Eastern Illinois: Point Total | total: NOT Over 144.5 points | kalshi | $29k | -100 |  |  | +2.0c | yes | L |
 | Nov 15 12:50PM | NCAAB | University at Albany vs Holy Cross: Spread | spread: NOT University at Albany wins by over 2.5 points | kalshi | $26k | +104 |  |  | +19.0c | yes | W |
 | Nov 15 12:30PM | NCAAB | Baylor vs Texas | moneyline: Texas | kalshi | $39k | -150 | ✅ novig | ❌ | +1.0c |  | W |
-| Nov 15 12:20PM | NCAAB | William & Mary vs Michigan: Point Total | total: Over 165.5 points | kalshi | $25k | -127 |  |  | +5.0c | yes | W |
