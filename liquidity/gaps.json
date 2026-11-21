@@ -2,622 +2,6 @@
  "note": "PAPER ONLY (Oct 25; persistence added Oct 26): opposite sides of the same game/market/line on two different exchanges whose combined cost after fees is under $1 (Kalshi/Novig/ProphetX; Polymarket here is the global book, excluded). edge_pct = locked profit per $ staked at first sight; max/last_edge_pct while open. size_est = smaller leg's near-price depth (UPPER BOUND). first/last_seen_utc, scans_seen, lifetime_min = how long the gap stayed open (scan-interval resolution; a 1-scan gap may be a feed artifact). scan_sec = seconds from run start to this save, the most the two legs' reads can be apart. Measurement only: never alerted, never bet.",
  "gaps": [
   {
-   "seen_utc": "2026-11-07T19:51:04Z",
-   "league": "NCAAF",
-   "game": "Kentucky @ Tennessee",
-   "market": "moneyline",
-   "line": null,
-   "edge_pct": 23.11,
-   "total_cost": 0.8123,
-   "size_est": 88350,
-   "legs": [
-    {
-     "book": "novig",
-     "side": "UK (0)",
-     "price": 0.345,
-     "cost_after_fee": 0.345
-    },
-    {
-     "book": "kalshi",
-     "side": "Middle Tennessee",
-     "price": 0.45,
-     "cost_after_fee": 0.4673
-    }
-   ],
-   "first_seen_utc": "2026-11-07T19:51:04Z",
-   "last_seen_utc": "2026-11-07T20:30:14Z",
-   "scans_seen": 3,
-   "max_edge_pct": 23.11,
-   "scan_sec": 588,
-   "lifetime_min": 39,
-   "last_edge_pct": 13.31,
-   "last_size_est": 78996
-  },
-  {
-   "seen_utc": "2026-11-07T19:51:04Z",
-   "league": "NCAAF",
-   "game": "Kentucky at Tennessee",
-   "market": "moneyline",
-   "line": null,
-   "edge_pct": 22.79,
-   "total_cost": 0.8144,
-   "size_est": 16340,
-   "legs": [
-    {
-     "book": "prophetx",
-     "side": "Kentucky",
-     "price": 0.3425,
-     "cost_after_fee": 0.3471
-    },
-    {
-     "book": "kalshi",
-     "side": "Middle Tennessee",
-     "price": 0.45,
-     "cost_after_fee": 0.4673
-    }
-   ],
-   "first_seen_utc": "2026-11-07T19:51:04Z",
-   "last_seen_utc": "2026-11-07T20:30:14Z",
-   "scans_seen": 4,
-   "max_edge_pct": 22.79,
-   "scan_sec": 588,
-   "lifetime_min": 39,
-   "last_edge_pct": 13.05,
-   "last_size_est": 14014
-  },
-  {
-   "seen_utc": "2026-11-07T20:10:21Z",
-   "league": "NCAAF",
-   "game": "Western Kentucky vs Middle Tennessee: Spread",
-   "market": "spread",
-   "line": -9.5,
-   "edge_pct": 18.39,
-   "total_cost": 0.8447,
-   "size_est": 275,
-   "legs": [
-    {
-     "book": "kalshi",
-     "side": "Middle Tennessee wins by over 9.5 points",
-     "price": 0.21,
-     "cost_after_fee": 0.2216
-    },
-    {
-     "book": "prophetx",
-     "side": "Kentucky +9.5 (+9.5)",
-     "price": 0.6183,
-     "cost_after_fee": 0.6231
-    }
-   ],
-   "first_seen_utc": "2026-11-07T20:10:21Z",
-   "last_seen_utc": "2026-11-07T20:30:14Z",
-   "scans_seen": 3,
-   "max_edge_pct": 18.39,
-   "scan_sec": 554,
-   "lifetime_min": 20,
-   "last_edge_pct": 14.55,
-   "last_size_est": 309
-  },
-  {
-   "seen_utc": "2026-11-07T20:10:21Z",
-   "league": "NCAAF",
-   "game": "Western Kentucky vs Middle Tennessee: Spread",
-   "market": "spread",
-   "line": -7.5,
-   "edge_pct": 19.89,
-   "total_cost": 0.8341,
-   "size_est": 453,
-   "legs": [
-    {
-     "book": "kalshi",
-     "side": "Middle Tennessee wins by over 7.5 points",
-     "price": 0.23,
-     "cost_after_fee": 0.2424
-    },
-    {
-     "book": "prophetx",
-     "side": "Kentucky +7.5 (+7.5)",
-     "price": 0.5868,
-     "cost_after_fee": 0.5917
-    }
-   ],
-   "first_seen_utc": "2026-11-07T20:10:21Z",
-   "last_seen_utc": "2026-11-07T20:30:14Z",
-   "scans_seen": 3,
-   "max_edge_pct": 19.89,
-   "scan_sec": 554,
-   "lifetime_min": 20,
-   "last_edge_pct": 12.89,
-   "last_size_est": 453
-  },
-  {
-   "seen_utc": "2026-11-07T20:10:21Z",
-   "league": "NCAAF",
-   "game": "Western Kentucky vs Middle Tennessee: Spread",
-   "market": "spread",
-   "line": -6.5,
-   "edge_pct": 22.84,
-   "total_cost": 0.8141,
-   "size_est": 19824,
-   "legs": [
-    {
-     "book": "kalshi",
-     "side": "Middle Tennessee wins by over 6.5 points",
-     "price": 0.28,
-     "cost_after_fee": 0.2941
-    },
-    {
-     "book": "novig",
-     "side": "UK +6.5 (-6.5)",
-     "price": 0.52,
-     "cost_after_fee": 0.52
-    }
-   ],
-   "first_seen_utc": "2026-11-07T20:10:21Z",
-   "last_seen_utc": "2026-11-07T20:30:14Z",
-   "scans_seen": 2,
-   "max_edge_pct": 22.84,
-   "scan_sec": 554,
-   "lifetime_min": 20,
-   "last_edge_pct": 18.34,
-   "last_size_est": 5377
-  },
-  {
-   "seen_utc": "2026-11-07T20:10:21Z",
-   "league": "NCAAF",
-   "game": "Western Kentucky vs Middle Tennessee: Spread",
-   "market": "spread",
-   "line": -6.5,
-   "edge_pct": 22.55,
-   "total_cost": 0.816,
-   "size_est": 3496,
-   "legs": [
-    {
-     "book": "kalshi",
-     "side": "Middle Tennessee wins by over 6.5 points",
-     "price": 0.28,
-     "cost_after_fee": 0.2941
-    },
-    {
-     "book": "prophetx",
-     "side": "Kentucky +6.5 (+6.5)",
-     "price": 0.5169,
-     "cost_after_fee": 0.5219
-    }
-   ],
-   "first_seen_utc": "2026-11-07T20:10:21Z",
-   "last_seen_utc": "2026-11-07T20:30:14Z",
-   "scans_seen": 3,
-   "max_edge_pct": 22.55,
-   "scan_sec": 554,
-   "lifetime_min": 20,
-   "last_edge_pct": 18.74,
-   "last_size_est": 3520
-  },
-  {
-   "seen_utc": "2026-11-07T20:10:21Z",
-   "league": "NCAAF",
-   "game": "Western Kentucky vs Middle Tennessee: Spread",
-   "market": "spread",
-   "line": -5.5,
-   "edge_pct": 26.01,
-   "total_cost": 0.7936,
-   "size_est": 6390,
-   "legs": [
-    {
-     "book": "kalshi",
-     "side": "Middle Tennessee wins by over 5.5 points",
-     "price": 0.3,
-     "cost_after_fee": 0.3147
-    },
-    {
-     "book": "prophetx",
-     "side": "Kentucky +5.5 (+5.5)",
-     "price": 0.4739,
-     "cost_after_fee": 0.4789
-    }
-   ],
-   "first_seen_utc": "2026-11-07T20:10:21Z",
-   "last_seen_utc": "2026-11-07T20:30:14Z",
-   "scans_seen": 3,
-   "max_edge_pct": 26.01,
-   "scan_sec": 554,
-   "lifetime_min": 20,
-   "last_edge_pct": 18.37,
-   "last_size_est": 4824
-  },
-  {
-   "seen_utc": "2026-11-07T20:10:21Z",
-   "league": "NCAAF",
-   "game": "Western Kentucky vs Middle Tennessee: Spread",
-   "market": "spread",
-   "line": -4.5,
-   "edge_pct": 23.26,
-   "total_cost": 0.8113,
-   "size_est": 1483,
-   "legs": [
-    {
-     "book": "kalshi",
-     "side": "Middle Tennessee wins by over 4.5 points",
-     "price": 0.33,
-     "cost_after_fee": 0.3455
-    },
-    {
-     "book": "prophetx",
-     "side": "Kentucky +4.5 (+4.5)",
-     "price": 0.4608,
-     "cost_after_fee": 0.4658
-    }
-   ],
-   "first_seen_utc": "2026-11-07T20:10:21Z",
-   "last_seen_utc": "2026-11-07T20:30:14Z",
-   "scans_seen": 3,
-   "max_edge_pct": 25.17,
-   "scan_sec": 554,
-   "lifetime_min": 20,
-   "last_edge_pct": 17.94,
-   "last_size_est": 595
-  },
-  {
-   "seen_utc": "2026-11-07T20:30:14Z",
-   "league": "NCAAF",
-   "game": "Western Kentucky vs Middle Tennessee: Spread",
-   "market": "spread",
-   "line": -11.5,
-   "edge_pct": 12.01,
-   "total_cost": 0.8928,
-   "size_est": 224,
-   "legs": [
-    {
-     "book": "kalshi",
-     "side": "Middle Tennessee wins by over 11.5 points",
-     "price": 0.21,
-     "cost_after_fee": 0.2216
-    },
-    {
-     "book": "prophetx",
-     "side": "Kentucky +11.5 (+11.5)",
-     "price": 0.6667,
-     "cost_after_fee": 0.6712
-    }
-   ],
-   "first_seen_utc": "2026-11-07T20:30:14Z",
-   "last_seen_utc": "2026-11-07T20:30:14Z",
-   "scans_seen": 1,
-   "max_edge_pct": 12.01,
-   "scan_sec": 525,
-   "lifetime_min": 0
-  },
-  {
-   "seen_utc": "2026-11-07T20:30:14Z",
-   "league": "NCAAF",
-   "game": "Western Kentucky vs Middle Tennessee: Spread",
-   "market": "spread",
-   "line": -10.5,
-   "edge_pct": 14.4,
-   "total_cost": 0.8741,
-   "size_est": 296,
-   "legs": [
-    {
-     "book": "kalshi",
-     "side": "Middle Tennessee wins by over 10.5 points",
-     "price": 0.21,
-     "cost_after_fee": 0.2216
-    },
-    {
-     "book": "prophetx",
-     "side": "Kentucky +10.5 (+10.5)",
-     "price": 0.6479,
-     "cost_after_fee": 0.6525
-    }
-   ],
-   "first_seen_utc": "2026-11-07T20:30:14Z",
-   "last_seen_utc": "2026-11-07T20:30:14Z",
-   "scans_seen": 1,
-   "max_edge_pct": 14.4,
-   "scan_sec": 525,
-   "lifetime_min": 0
-  },
-  {
-   "seen_utc": "2026-11-07T20:30:14Z",
-   "league": "NCAAF",
-   "game": "Western Kentucky vs Middle Tennessee: Total Points",
-   "market": "total",
-   "line": 41.5,
-   "edge_pct": 1.25,
-   "total_cost": 0.9877,
-   "size_est": 98,
-   "legs": [
-    {
-     "book": "kalshi",
-     "side": "NOT Over 41.5 points",
-     "price": 0.26,
-     "cost_after_fee": 0.2735
-    },
-    {
-     "book": "prophetx",
-     "side": "over 41.5 (41.5)",
-     "price": 0.7101,
-     "cost_after_fee": 0.7142
-    }
-   ],
-   "first_seen_utc": "2026-11-07T20:30:14Z",
-   "last_seen_utc": "2026-11-07T20:30:14Z",
-   "scans_seen": 1,
-   "max_edge_pct": 1.25,
-   "scan_sec": 525,
-   "lifetime_min": 0
-  },
-  {
-   "seen_utc": "2026-11-07T20:30:14Z",
-   "league": "NCAAF",
-   "game": "Western Kentucky vs Middle Tennessee: Total Points",
-   "market": "total",
-   "line": 44.5,
-   "edge_pct": 2.57,
-   "total_cost": 0.9749,
-   "size_est": 114,
-   "legs": [
-    {
-     "book": "kalshi",
-     "side": "NOT Over 44.5 points",
-     "price": 0.32,
-     "cost_after_fee": 0.3352
-    },
-    {
-     "book": "prophetx",
-     "side": "over 44.5 (44.5)",
-     "price": 0.635,
-     "cost_after_fee": 0.6397
-    }
-   ],
-   "first_seen_utc": "2026-11-07T20:30:14Z",
-   "last_seen_utc": "2026-11-07T20:30:14Z",
-   "scans_seen": 1,
-   "max_edge_pct": 2.57,
-   "scan_sec": 525,
-   "lifetime_min": 0
-  },
-  {
-   "seen_utc": "2026-11-07T20:30:14Z",
-   "league": "NCAAF",
-   "game": "Western Kentucky vs Middle Tennessee: Total Points",
-   "market": "total",
-   "line": 47.5,
-   "edge_pct": 2.73,
-   "total_cost": 0.9734,
-   "size_est": 135,
-   "legs": [
-    {
-     "book": "kalshi",
-     "side": "NOT Over 47.5 points",
-     "price": 0.4,
-     "cost_after_fee": 0.4168
-    },
-    {
-     "book": "prophetx",
-     "side": "over 47.5 (47.5)",
-     "price": 0.5516,
-     "cost_after_fee": 0.5566
-    }
-   ],
-   "first_seen_utc": "2026-11-07T20:30:14Z",
-   "last_seen_utc": "2026-11-07T20:30:14Z",
-   "scans_seen": 1,
-   "max_edge_pct": 2.73,
-   "scan_sec": 525,
-   "lifetime_min": 0
-  },
-  {
-   "seen_utc": "2026-11-07T20:30:14Z",
-   "league": "NCAAF",
-   "game": "Western Kentucky vs Middle Tennessee: Total Points",
-   "market": "total",
-   "line": 50.5,
-   "edge_pct": 4.44,
-   "total_cost": 0.9575,
-   "size_est": 313,
-   "legs": [
-    {
-     "book": "kalshi",
-     "side": "NOT Over 50.5 points",
-     "price": 0.47,
-     "cost_after_fee": 0.4874
-    },
-    {
-     "book": "prophetx",
-     "side": "over 50.5 (50.5)",
-     "price": 0.4651,
-     "cost_after_fee": 0.4701
-    }
-   ],
-   "first_seen_utc": "2026-11-07T20:30:14Z",
-   "last_seen_utc": "2026-11-07T20:30:14Z",
-   "scans_seen": 1,
-   "max_edge_pct": 4.44,
-   "scan_sec": 525,
-   "lifetime_min": 0
-  },
-  {
-   "seen_utc": "2026-11-07T20:30:14Z",
-   "league": "NCAAF",
-   "game": "Western Kentucky vs Middle Tennessee: Total Points",
-   "market": "total",
-   "line": 51.5,
-   "edge_pct": 4.05,
-   "total_cost": 0.9611,
-   "size_est": 198,
-   "legs": [
-    {
-     "book": "kalshi",
-     "side": "NOT Over 51.5 points",
-     "price": 0.5,
-     "cost_after_fee": 0.5175
-    },
-    {
-     "book": "prophetx",
-     "side": "over 51.5 (51.5)",
-     "price": 0.4386,
-     "cost_after_fee": 0.4436
-    }
-   ],
-   "first_seen_utc": "2026-11-07T20:30:14Z",
-   "last_seen_utc": "2026-11-07T20:30:14Z",
-   "scans_seen": 1,
-   "max_edge_pct": 4.05,
-   "scan_sec": 525,
-   "lifetime_min": 0
-  },
-  {
-   "seen_utc": "2026-11-07T20:30:14Z",
-   "league": "NCAAF",
-   "game": "Western Kentucky vs Middle Tennessee: Total Points",
-   "market": "total",
-   "line": 52.5,
-   "edge_pct": 3.2,
-   "total_cost": 0.969,
-   "size_est": 162,
-   "legs": [
-    {
-     "book": "kalshi",
-     "side": "NOT Over 52.5 points",
-     "price": 0.53,
-     "cost_after_fee": 0.5474
-    },
-    {
-     "book": "prophetx",
-     "side": "over 52.5 (52.5)",
-     "price": 0.4167,
-     "cost_after_fee": 0.4216
-    }
-   ],
-   "first_seen_utc": "2026-11-07T20:30:14Z",
-   "last_seen_utc": "2026-11-07T20:30:14Z",
-   "scans_seen": 1,
-   "max_edge_pct": 3.2,
-   "scan_sec": 525,
-   "lifetime_min": 0
-  },
-  {
-   "seen_utc": "2026-11-07T20:30:14Z",
-   "league": "NCAAF",
-   "game": "Western Kentucky vs Middle Tennessee: Total Points",
-   "market": "total",
-   "line": 53.5,
-   "edge_pct": 2.86,
-   "total_cost": 0.9722,
-   "size_est": 242,
-   "legs": [
-    {
-     "book": "kalshi",
-     "side": "NOT Over 53.5 points",
-     "price": 0.55,
-     "cost_after_fee": 0.5673
-    },
-    {
-     "book": "prophetx",
-     "side": "over 53.5 (53.5)",
-     "price": 0.4,
-     "cost_after_fee": 0.4049
-    }
-   ],
-   "first_seen_utc": "2026-11-07T20:30:14Z",
-   "last_seen_utc": "2026-11-07T20:30:14Z",
-   "scans_seen": 1,
-   "max_edge_pct": 2.86,
-   "scan_sec": 525,
-   "lifetime_min": 0
-  },
-  {
-   "seen_utc": "2026-11-07T20:30:14Z",
-   "league": "NCAAF",
-   "game": "Western Kentucky vs Middle Tennessee: Total Points",
-   "market": "total",
-   "line": 54.5,
-   "edge_pct": 3.32,
-   "total_cost": 0.9679,
-   "size_est": 133,
-   "legs": [
-    {
-     "book": "kalshi",
-     "side": "NOT Over 54.5 points",
-     "price": 0.57,
-     "cost_after_fee": 0.5872
-    },
-    {
-     "book": "prophetx",
-     "side": "over 54.5 (54.5)",
-     "price": 0.3759,
-     "cost_after_fee": 0.3807
-    }
-   ],
-   "first_seen_utc": "2026-11-07T20:30:14Z",
-   "last_seen_utc": "2026-11-07T20:30:14Z",
-   "scans_seen": 1,
-   "max_edge_pct": 3.32,
-   "scan_sec": 525,
-   "lifetime_min": 0
-  },
-  {
-   "seen_utc": "2026-11-07T20:30:14Z",
-   "league": "NCAAF",
-   "game": "Western Kentucky vs Middle Tennessee: Total Points",
-   "market": "total",
-   "line": 55.5,
-   "edge_pct": 0.9,
-   "total_cost": 0.9911,
-   "size_est": 240,
-   "legs": [
-    {
-     "book": "kalshi",
-     "side": "NOT Over 55.5 points",
-     "price": 0.61,
-     "cost_after_fee": 0.6267
-    },
-    {
-     "book": "prophetx",
-     "side": "over 55.5 (55.5)",
-     "price": 0.3597,
-     "cost_after_fee": 0.3644
-    }
-   ],
-   "first_seen_utc": "2026-11-07T20:30:14Z",
-   "last_seen_utc": "2026-11-07T20:30:14Z",
-   "scans_seen": 1,
-   "max_edge_pct": 0.9,
-   "scan_sec": 525,
-   "lifetime_min": 0
-  },
-  {
-   "seen_utc": "2026-11-07T20:30:14Z",
-   "league": "NCAAF",
-   "game": "Western Kentucky vs Middle Tennessee: Total Points",
-   "market": "total",
-   "line": 56.5,
-   "edge_pct": 0.92,
-   "total_cost": 0.9909,
-   "size_est": 223,
-   "legs": [
-    {
-     "book": "kalshi",
-     "side": "NOT Over 56.5 points",
-     "price": 0.63,
-     "cost_after_fee": 0.6463
-    },
-    {
-     "book": "prophetx",
-     "side": "over 56.5 (56.5)",
-     "price": 0.3401,
-     "cost_after_fee": 0.3446
-    }
-   ],
-   "first_seen_utc": "2026-11-07T20:30:14Z",
-   "last_seen_utc": "2026-11-07T20:30:14Z",
-   "scans_seen": 1,
-   "max_edge_pct": 0.92,
-   "scan_sec": 525,
-   "lifetime_min": 0
-  },
-  {
    "seen_utc": "2026-11-08T04:20:11Z",
    "league": "NBA",
    "game": "Utah Jazz @ Minnesota Timberwolves",
@@ -6519,11 +5903,11 @@
     }
    ],
    "first_seen_utc": "2026-11-21T11:10:31Z",
-   "last_seen_utc": "2026-11-21T20:20:17Z",
-   "scans_seen": 81,
+   "last_seen_utc": "2026-11-21T20:30:21Z",
+   "scans_seen": 83,
    "max_edge_pct": 90.15,
    "scan_sec": 217,
-   "lifetime_min": 550,
+   "lifetime_min": 560,
    "last_edge_pct": 11.37,
    "last_size_est": 6181
   },
@@ -7565,13 +6949,13 @@
     }
    ],
    "first_seen_utc": "2026-11-21T18:30:21Z",
-   "last_seen_utc": "2026-11-21T20:20:17Z",
-   "scans_seen": 12,
+   "last_seen_utc": "2026-11-21T20:30:21Z",
+   "scans_seen": 13,
    "max_edge_pct": 8.89,
    "scan_sec": 203,
-   "lifetime_min": 110,
+   "lifetime_min": 120,
    "last_edge_pct": 5.46,
-   "last_size_est": 199
+   "last_size_est": 238
   },
   {
    "seen_utc": "2026-11-21T18:30:21Z",
@@ -7629,11 +7013,11 @@
     }
    ],
    "first_seen_utc": "2026-11-21T18:30:21Z",
-   "last_seen_utc": "2026-11-21T20:20:17Z",
-   "scans_seen": 15,
+   "last_seen_utc": "2026-11-21T20:30:21Z",
+   "scans_seen": 16,
    "max_edge_pct": 19.36,
    "scan_sec": 203,
-   "lifetime_min": 110,
+   "lifetime_min": 120,
    "last_edge_pct": 5.5,
    "last_size_est": 1517
   },
@@ -7661,13 +7045,13 @@
     }
    ],
    "first_seen_utc": "2026-11-21T18:30:21Z",
-   "last_seen_utc": "2026-11-21T20:20:17Z",
-   "scans_seen": 15,
+   "last_seen_utc": "2026-11-21T20:30:21Z",
+   "scans_seen": 16,
    "max_edge_pct": 24.19,
    "scan_sec": 203,
-   "lifetime_min": 110,
+   "lifetime_min": 120,
    "last_edge_pct": 3.51,
-   "last_size_est": 370
+   "last_size_est": 373
   },
   {
    "seen_utc": "2026-11-21T18:30:21Z",
@@ -7851,13 +7235,13 @@
     }
    ],
    "first_seen_utc": "2026-11-21T19:11:07Z",
-   "last_seen_utc": "2026-11-21T20:20:17Z",
-   "scans_seen": 8,
+   "last_seen_utc": "2026-11-21T20:30:21Z",
+   "scans_seen": 9,
    "max_edge_pct": 38.01,
    "scan_sec": 274,
-   "lifetime_min": 69,
-   "last_edge_pct": 28.63,
-   "last_size_est": 845
+   "lifetime_min": 79,
+   "last_edge_pct": 25.25,
+   "last_size_est": 1155
   },
   {
    "seen_utc": "2026-11-21T19:11:07Z",
@@ -7915,13 +7299,13 @@
     }
    ],
    "first_seen_utc": "2026-11-21T19:11:07Z",
-   "last_seen_utc": "2026-11-21T20:20:17Z",
-   "scans_seen": 8,
+   "last_seen_utc": "2026-11-21T20:30:21Z",
+   "scans_seen": 9,
    "max_edge_pct": 38.01,
    "scan_sec": 274,
-   "lifetime_min": 69,
-   "last_edge_pct": 28.63,
-   "last_size_est": 845
+   "lifetime_min": 79,
+   "last_edge_pct": 25.25,
+   "last_size_est": 1155
   },
   {
    "seen_utc": "2026-11-21T19:20:21Z",
