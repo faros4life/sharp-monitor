@@ -14,8 +14,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.635,
-   "clv_cents": 0.0,
+   "close_price": 0.63,
+   "clv_cents": -0.5,
    "confirmed_after_min": 4,
    "date": "2026-11-20",
    "depth_by_book": {
@@ -50,8 +50,8 @@
     "volume": 42594.0
    },
    "ex_stats_close": {
-    "openInterest": 13482263.0,
-    "volume": 16850423.0
+    "openInterest": 15509074.0,
+    "volume": 19552902.0
    },
    "ex_stats_first": {
     "openInterest": 13407041.0,
@@ -108,6 +108,8 @@
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.635,
+   "price_after_15m": 0.63,
+   "price_after_15m_book": "novig",
    "price_american": -174,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.635,
@@ -209,6 +211,7 @@
    "size_x": 2.4,
    "start_source": "odds",
    "start_utc": "2026-11-21T02:30:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi",
     "novig",
@@ -906,9 +909,9 @@
     "volume_fp": 112.02
    },
    "ex_stats_close": {
-    "open_interest_fp": 91886.4,
-    "volume_24h_fp": 85576.72,
-    "volume_fp": 93943.13
+    "open_interest_fp": 92095.08,
+    "volume_24h_fp": 85697.39,
+    "volume_fp": 94151.81
    },
    "ex_stats_first": {
     "open_interest_fp": 40876.55,
@@ -2153,8 +2156,8 @@
     "volume": 1063.0
    },
    "ex_stats_close": {
-    "openInterest": 24929950.0,
-    "volume": 34457037.0
+    "openInterest": 25310207.0,
+    "volume": 34837294.0
    },
    "ex_stats_first": {
     "openInterest": 2176877.0,
@@ -3014,9 +3017,9 @@
     "volume_fp": 1.86
    },
    "ex_stats_close": {
-    "open_interest_fp": 91886.4,
-    "volume_24h_fp": 85576.72,
-    "volume_fp": 93943.13
+    "open_interest_fp": 92095.08,
+    "volume_24h_fp": 85697.39,
+    "volume_fp": 94151.81
    },
    "ex_stats_first": {
     "open_interest_fp": 32041.54,
@@ -3365,7 +3368,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 17,
+   "settle_tries": 18,
    "sharp_agree": [],
    "sharp_oppose": [
     "Iowa State Cyclones +1.5 (-115)",
@@ -3636,9 +3639,9 @@
     "volume_fp": 213.2
    },
    "ex_stats_close": {
-    "open_interest_fp": 30165.06,
-    "volume_24h_fp": 13034.419999999998,
-    "volume_fp": 31420.72
+    "open_interest_fp": 30382.45,
+    "volume_24h_fp": 13203.400000000001,
+    "volume_fp": 31638.11
    },
    "ex_stats_first": {
     "open_interest_fp": 24140.129999999997,
@@ -3845,9 +3848,9 @@
     "volume_fp": 1545.89
    },
    "ex_stats_close": {
-    "open_interest_fp": 51382.35,
+    "open_interest_fp": 51770.97,
     "volume_24h_fp": 35778.08,
-    "volume_fp": 53841.91
+    "volume_fp": 54230.53
    },
    "ex_stats_first": {
     "open_interest_fp": 36568.82,
@@ -4675,6 +4678,7 @@
     "volume_fp": 6661.53
    },
    "fade_price": 0.5,
+   "fade_units": 0.93,
    "first_seen_utc": "2026-11-20T18:35:55Z",
    "game": "Charlotte vs Atlanta: Spread",
    "game_surge_books": [],
@@ -4797,14 +4801,15 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26NOV20CHAATL-ATL8"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
+   "settled_utc": "2026-11-21T02:25:46Z",
    "sharp_agree": [
     "Charlotte Hornets +6.5 (-113)"
    ],
@@ -4825,7 +4830,7 @@
     "Atlanta"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-20T18:25:48Z",
@@ -5391,7 +5396,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 17,
+   "settle_tries": 18,
    "sharp_agree": [],
    "sharp_oppose": [
     "Iowa State Cyclones +1.5 (-115)",
@@ -6191,7 +6196,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 17,
+   "settle_tries": 18,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -6813,7 +6818,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [
     "Atlanta Hawks -5.5 (-110)"
    ],
@@ -7110,9 +7115,9 @@
     "volume_fp": 45.48
    },
    "ex_stats_close": {
-    "open_interest_fp": 23769.47,
-    "volume_24h_fp": 27746.78,
-    "volume_fp": 31198.81
+    "open_interest_fp": 31443.96,
+    "volume_24h_fp": 31456.81,
+    "volume_fp": 39134.92
    },
    "ex_stats_first": {
     "open_interest_fp": 4089.45,
@@ -7679,7 +7684,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 17,
+   "settle_tries": 18,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Iowa State",
@@ -7752,9 +7757,9 @@
     "volume_fp": 17.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 38151.59,
-    "volume_24h_fp": 16588.6,
-    "volume_fp": 39451.01
+    "open_interest_fp": 38200.619999999995,
+    "volume_24h_fp": 16564.870000000003,
+    "volume_fp": 39500.04
    },
    "ex_stats_first": {
     "open_interest_fp": 25031.65,
@@ -8316,7 +8321,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 17,
+   "settle_tries": 18,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Iowa St.",
@@ -8532,7 +8537,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 17,
+   "settle_tries": 18,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Iowa St.",
@@ -8605,9 +8610,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 11971.19,
-    "volume_24h_fp": 4561.22,
-    "volume_fp": 12406.56
+    "open_interest_fp": 11993.19,
+    "volume_24h_fp": 4752.89,
+    "volume_fp": 12428.56
    },
    "ex_stats_first": {
     "open_interest_fp": 9470.58,
@@ -8817,9 +8822,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 11971.19,
-    "volume_24h_fp": 4561.22,
-    "volume_fp": 12406.56
+    "open_interest_fp": 11993.19,
+    "volume_24h_fp": 4752.89,
+    "volume_fp": 12428.56
    },
    "ex_stats_first": {
     "open_interest_fp": 9470.58,
@@ -9031,9 +9036,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 47121.23,
-    "volume_24h_fp": 47368.75,
-    "volume_fp": 49523.05
+    "open_interest_fp": 48852.94,
+    "volume_24h_fp": 50489.23,
+    "volume_fp": 51254.76
    },
    "ex_stats_first": {
     "open_interest_fp": 3514.63,
@@ -9856,9 +9861,9 @@
     "volume_fp": 21987.49
    },
    "ex_stats_close": {
-    "open_interest_fp": 850224.43,
-    "volume_24h_fp": 919589.5800000001,
-    "volume_fp": 961761.65
+    "open_interest_fp": 867668.5900000001,
+    "volume_24h_fp": 949289.03,
+    "volume_fp": 979821.72
    },
    "ex_stats_first": {
     "open_interest_fp": 14461.99,
@@ -10067,9 +10072,9 @@
     "volume_fp": 17.43
    },
    "ex_stats_close": {
-    "open_interest_fp": 323692.26,
-    "volume_24h_fp": 292515.94999999995,
-    "volume_fp": 352563.44
+    "open_interest_fp": 331585.18,
+    "volume_24h_fp": 328246.57,
+    "volume_fp": 360564.49
    },
    "ex_stats_first": {
     "open_interest_fp": 17497.56,
