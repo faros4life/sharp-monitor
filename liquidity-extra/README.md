@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 21, 1:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 33.
+Updated Sat Nov 21, 1:10 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 33.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -11,7 +11,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 21 12:20PM | NCAAB | Charleston Southern vs Mercer | moneyline: Mercer | kalshi | $49k | -355 | ✅ novig |  | +0.0c |  | pending |
-| Nov 21 11:30AM | NCAAB | Morehead St. vs Elon: Spread | spread: NOT Elon wins by over 12.5 points | kalshi | $38k | -122 |  | ✅ | +0.0c |  | pending |
+| Nov 21 11:30AM | NCAAB | Morehead St. vs Elon: Spread | spread: NOT Elon wins by over 12.5 points | kalshi | $38k | -122 |  | ✅ | +1.0c |  | pending |
 | Nov 21 11:30AM | NCAAB | Michigan vs Villanova | moneyline: Villanova | kalshi | $34k | +163 | ✅ novig |  | +0.0c |  | pending |
 | Nov 21 11:20AM | NCAAB | Northern Illinois vs Bowling Green: Spread | spread: NOT Bowling Green wins by over 5.5 points | kalshi | $45k | -108 |  |  | +0.0c |  | pending |
 | Nov 21 11:20AM | NCAAB | San Diego vs UC Irvine | moneyline: UC Irvine | kalshi | $31k | -186 |  | ❌ | +0.0c |  | pending |
