@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 21, 5:30 PM ET. This run: 2 new, 0 not confirmed, 2 pending. Open alerts: 32.
+Updated Sat Nov 21, 5:35 PM ET. This run: 2 new, 0 not confirmed, 1 pending. Open alerts: 34.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,13 +10,15 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 21 5:35PM | NCAAF | Stanford vs California | moneyline: Stanford | kalshi | $177k | -133 | ✅ novig,prophetx |  | +0.0c |  | pending |
+| Nov 21 5:35PM | NCAAF | Arkansas St. vs Louisiana Tech | moneyline: Louisiana Tech | kalshi | $384k | -567 | ✅ novig,prophetx | ✅ | +0.0c |  | pending |
 | Nov 21 5:30PM | NHL | Vegas vs Winnipeg | moneyline: Vegas | kalshi | $56k | -122 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 21 5:30PM | NCAAF | Pittsburgh vs Louisville | moneyline: Louisville | kalshi | $119k | -426 | ✅ novig | ❌ | +0.0c |  | pending |
 | Nov 21 5:25PM | NHL | Buffalo vs Florida | moneyline: Buffalo | kalshi | $56k | +127 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 21 5:20PM | NCAAF | Arizona vs Kansas St.: Total Points | total: Over 53.5 points | kalshi | $58k | -104 | ✅ novig |  | +0.0c |  | pending |
 | Nov 21 5:20PM | NHL | Pittsburgh vs Nashville | moneyline: Pittsburgh | kalshi | $87k | +117 | ✅ novig,prophetx |  | +0.0c | yes | pending |
 | Nov 21 5:15PM | NCAAF | Hawai'i vs Nevada | moneyline: Nevada | kalshi | $131k | -245 |  |  | +0.0c |  | pending |
-| Nov 21 5:00PM | NCAAF | Maryland vs USC: Total Points | total: NOT Over 57.5 points | kalshi | $92k | -100 |  |  | +0.0c |  | pending |
+| Nov 21 5:00PM | NCAAF | Maryland vs USC: Total Points | total: NOT Over 57.5 points | kalshi | $92k | -100 |  |  | +3.0c |  | pending |
 | Nov 21 4:40PM | NCAAF | Pittsburgh @ Louisville | moneyline: LOU (0) | novig | $27k | -426 | ✅ kalshi,prophetx |  | -1.0c |  | pending |
 | Nov 21 4:25PM | NCAAF | Washington St. vs Texas St. | moneyline: Texas St. | kalshi | $431k | -488 | ✅ prophetx |  | +1.0c |  | pending |
 | Nov 21 4:25PM | NCAAF | South Alabama vs Southern Miss | moneyline: South Alabama | kalshi | $149k | -426 |  |  | -1.0c |  | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 19 1:30AM | NCAAF | Rice vs Temple | moneyline: Temple | kalshi | $53k | -133 |  |  | -1.0c | yes | L |
 | Nov 19 1:30AM | NBA | New York vs Minnesota | moneyline: Minnesota | kalshi | $90k | +108 |  |  | +0.0c | yes | L |
 | Nov 18 11:56PM | NBA | Portland vs Milwaukee | moneyline: Portland | kalshi | $249k | -355 |  |  | +0.0c |  | W |
-| Nov 18 11:46PM | NBA | Golden State vs Memphis | moneyline: Memphis | kalshi | $71k | -317 |  |  | -9.0c |  | W |
-| Nov 18 11:20PM | NFL | Indianapolis Colts @ Houston Texans | moneyline: HOU (0) | novig | $25k | -567 | ✅ kalshi |  | +0.0c | yes | W |
