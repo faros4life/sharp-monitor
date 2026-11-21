@@ -1,6 +1,198 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-21T01:55:51Z",
+   "base_depth": 779592,
+   "best_price": 0.485,
+   "best_price_american": 106,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-11-20",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -7359,
+     "new_this_side": 171905,
+     "other_side": 356814,
+     "other_side_all_levels": 534192,
+     "ratio": 1.5,
+     "this_side": 542780,
+     "this_side_all_levels": 951351
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "WYO +9.5 (9.5)",
+     "price": 0.485,
+     "this_side": 48797
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 1512704.23,
+    "volume_24h_fp": 1577951.53,
+    "volume_fp": 1583192.74
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 754.42,
+    "volume_24h_fp": 1417742.56,
+    "volume_fp": 5288.4
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 1511949.81,
+    "volume_24h_fp": 160208.97,
+    "volume_fp": 1577904.34
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-11-21T01:50:19Z",
+   "game": "New Mexico vs Wyoming: Spread",
+   "game_surge_books": [],
+   "game_x": 1.66,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26NOV20UNMWYO-UNM10\"}",
+   "lead_min": 4,
+   "league": "NCAAF",
+   "line": 9.5,
+   "market": "spread",
+   "new_money": 171905,
+   "new_x": 1.58,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 1512704.23,
+      "volume_24h_fp": 1577951.53,
+      "volume_fp": 1583192.74
+     },
+     "game_normal": 571457,
+     "game_x": 1.66,
+     "normal": 108726,
+     "now": 951351,
+     "type": "SPREAD",
+     "x": 8.75
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 15293562.0,
+      "volume": 22649068.0
+     },
+     "game_normal": 49381,
+     "game_x": 1.0,
+     "normal": 6204,
+     "now": 49397,
+     "type": "SPREAD",
+     "x": 7.96
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 10.0,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": 10.0,
+     "price": -112
+    },
+    "betopenly": {
+     "point": 10.5,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 10.0,
+     "price": -108
+    },
+    "betus": {
+     "point": 10.0,
+     "price": -112
+    },
+    "bovada": {
+     "point": 10.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 10.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": 10.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 10.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 9.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": 10.0,
+     "price": -108
+    },
+    "mybookieag": {
+     "point": 10.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 9.5,
+     "price": 106
+    },
+    "polymarket": {
+     "point": 9.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 9.5,
+     "price": 105
+    },
+    "williamhill_us": {
+     "point": 10.5,
+     "price": -113
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFSPREAD-26NOV20UNMWYO-UNM10"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "New Mexico Lobos -9.5 (-110)",
+    "New Mexico Lobos -7.5 (-117)"
+   ],
+   "side": "Wyoming",
+   "side_label": "NOT New Mexico wins by over 9.5 points",
+   "size_x": 8.75,
+   "start_source": "odds",
+   "start_utc": "2026-11-21T02:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "New Mexico",
+    "Wyoming"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-21T00:40:20Z",
    "base_depth": 81529,
    "best_price": 0.81,
@@ -488,9 +680,9 @@
     "volume_fp": 112.02
    },
    "ex_stats_close": {
-    "open_interest_fp": 91403.33,
-    "volume_24h_fp": 85179.37,
-    "volume_fp": 93306.42
+    "open_interest_fp": 91478.65,
+    "volume_24h_fp": 85297.25,
+    "volume_fp": 93410.17
    },
    "ex_stats_first": {
     "open_interest_fp": 40876.55,
@@ -1124,9 +1316,9 @@
     "volume_fp": 791.61
    },
    "ex_stats_close": {
-    "open_interest_fp": 1459293.09,
-    "volume_24h_fp": 158164.83,
-    "volume_fp": 1473901.97
+    "open_interest_fp": 1459555.67,
+    "volume_24h_fp": 1460353.59,
+    "volume_fp": 1474164.55
    },
    "ex_stats_first": {
     "open_interest_fp": 32807.79,
@@ -1733,8 +1925,8 @@
     "volume": 1063.0
    },
    "ex_stats_close": {
-    "openInterest": 21950680.0,
-    "volume": 30584179.0
+    "openInterest": 22282285.0,
+    "volume": 30915784.0
    },
    "ex_stats_first": {
     "openInterest": 2176877.0,
@@ -2348,8 +2540,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.775,
-   "clv_cents": 1.5,
+   "close_price": 0.78,
+   "clv_cents": 2.0,
    "confirmed_after_min": 5,
    "date": "2026-11-20",
    "depth_by_book": {
@@ -2384,8 +2576,8 @@
     "volume": 131.0
    },
    "ex_stats_close": {
-    "openInterest": 28503459.0,
-    "volume": 35067430.0
+    "openInterest": 29445655.0,
+    "volume": 36012236.0
    },
    "ex_stats_first": {
     "openInterest": 20680540.0,
@@ -2594,9 +2786,9 @@
     "volume_fp": 1.86
    },
    "ex_stats_close": {
-    "open_interest_fp": 91403.33,
-    "volume_24h_fp": 85179.37,
-    "volume_fp": 93306.42
+    "open_interest_fp": 91478.65,
+    "volume_24h_fp": 85297.25,
+    "volume_fp": 93410.17
    },
    "ex_stats_first": {
     "open_interest_fp": 32041.54,
@@ -2945,7 +3137,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [
     "Iowa State Cyclones +1.5 (-115)",
@@ -3216,9 +3408,9 @@
     "volume_fp": 213.2
    },
    "ex_stats_close": {
-    "open_interest_fp": 27967.42,
-    "volume_24h_fp": 11181.6,
-    "volume_fp": 29208.08
+    "open_interest_fp": 27997.8,
+    "volume_24h_fp": 11209.44,
+    "volume_fp": 29238.46
    },
    "ex_stats_first": {
     "open_interest_fp": 24140.129999999997,
@@ -3425,9 +3617,9 @@
     "volume_fp": 1545.89
    },
    "ex_stats_close": {
-    "open_interest_fp": 51188.07,
-    "volume_24h_fp": 35648.22,
-    "volume_fp": 53647.63
+    "open_interest_fp": 51294.22,
+    "volume_24h_fp": 35583.8,
+    "volume_fp": 53753.78
    },
    "ex_stats_first": {
     "open_interest_fp": 36568.82,
@@ -4970,7 +5162,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [
     "Iowa State Cyclones +1.5 (-115)",
@@ -5228,9 +5420,9 @@
     "volume_fp": 199.05
    },
    "ex_stats_close": {
-    "open_interest_fp": 1511949.81,
-    "volume_24h_fp": 160208.97,
-    "volume_fp": 1577904.34
+    "open_interest_fp": 1512704.23,
+    "volume_24h_fp": 1577951.53,
+    "volume_fp": 1583192.74
    },
    "ex_stats_first": {
     "open_interest_fp": 12550.2,
@@ -5769,7 +5961,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -6687,9 +6879,9 @@
     "volume_fp": 45.48
    },
    "ex_stats_close": {
-    "open_interest_fp": 19841.37,
+    "open_interest_fp": 20102.51,
     "volume_24h_fp": 27172.26,
-    "volume_fp": 27172.26
+    "volume_fp": 27443.18
    },
    "ex_stats_first": {
     "open_interest_fp": 4089.45,
@@ -7256,7 +7448,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Iowa State",
@@ -7329,9 +7521,9 @@
     "volume_fp": 17.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 36902.729999999996,
-    "volume_24h_fp": 14796.43,
-    "volume_fp": 38202.15
+    "open_interest_fp": 37109.54,
+    "volume_24h_fp": 15533.810000000001,
+    "volume_fp": 38408.96000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 25031.65,
@@ -7893,7 +8085,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Iowa St.",
@@ -8109,7 +8301,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Iowa St.",
@@ -8182,9 +8374,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 11702.65,
-    "volume_24h_fp": 4478.38,
-    "volume_fp": 12138.019999999999
+    "open_interest_fp": 11712.65,
+    "volume_24h_fp": 4500.3099999999995,
+    "volume_fp": 12148.02
    },
    "ex_stats_first": {
     "open_interest_fp": 9470.58,
@@ -8394,9 +8586,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 11702.65,
-    "volume_24h_fp": 4478.38,
-    "volume_fp": 12138.019999999999
+    "open_interest_fp": 11712.65,
+    "volume_24h_fp": 4500.3099999999995,
+    "volume_fp": 12148.02
    },
    "ex_stats_first": {
     "open_interest_fp": 9470.58,
@@ -8608,9 +8800,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 42731.08,
-    "volume_24h_fp": 43374.73,
-    "volume_fp": 44854.77
+    "open_interest_fp": 42998.2,
+    "volume_24h_fp": 44899.77,
+    "volume_fp": 45121.89
    },
    "ex_stats_first": {
     "open_interest_fp": 3514.63,
@@ -9433,9 +9625,9 @@
     "volume_fp": 21987.49
    },
    "ex_stats_close": {
-    "open_interest_fp": 762697.8099999999,
-    "volume_24h_fp": 833390.93,
-    "volume_fp": 866231.37
+    "open_interest_fp": 768505.18,
+    "volume_24h_fp": 853197.52,
+    "volume_fp": 872335.01
    },
    "ex_stats_first": {
     "open_interest_fp": 14461.99,
@@ -9644,9 +9836,9 @@
     "volume_fp": 17.43
    },
    "ex_stats_close": {
-    "open_interest_fp": 267776.57,
-    "volume_24h_fp": 248513.77000000002,
-    "volume_fp": 290351.03
+    "open_interest_fp": 274192.06,
+    "volume_24h_fp": 269341.99,
+    "volume_fp": 296857.45
    },
    "ex_stats_first": {
     "open_interest_fp": 17497.56,
@@ -22434,9 +22626,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 579745.63,
-    "volume_24h_fp": 559895.8,
-    "volume_fp": 610793.0
+    "open_interest_fp": 605619.99,
+    "volume_24h_fp": 585915.1299999999,
+    "volume_fp": 637324.17
    },
    "ex_stats_first": {
     "open_interest_fp": 17771.73,
