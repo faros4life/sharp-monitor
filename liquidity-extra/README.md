@@ -1,16 +1,16 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 20, 9:10 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 21.
+Updated Fri Nov 20, 9:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 17.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 381-233 (-22.50u flat) | rule met: 71-59
+**Record:** 383-235 (-23.33u flat) | rule met: 71-59
 
-**Fade (paper, betting against the print):** 208-346 (+24.40u flat, after fees)
+**Fade (paper, betting against the print):** 210-348 (+26.03u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 20 6:50PM | NCAAB | Georgia St. vs Jacksonville St. | moneyline: Jacksonville St. | kalshi | $27k | -113 |  | ✅ | +0.0c |  | pending |
+| Nov 20 6:50PM | NCAAB | Georgia St. vs Jacksonville St. | moneyline: Jacksonville St. | kalshi | $27k | -113 |  | ✅ | +0.0c |  | W |
 | Nov 20 6:40PM | NCAAB | UT Arlington vs Northwestern St. | moneyline: UT Arlington | kalshi | $58k | -163 |  |  | +0.0c |  | pending |
 | Nov 20 6:30PM | NCAAB | Coastal Carolina vs Tennessee: Spread | spread: NOT Tennessee wins by over 26.5 points | kalshi | $29k | -117 |  | ✅ | +1.0c |  | L |
 | Nov 20 5:20PM | NCAAB | Saint Joseph's vs Drexel | moneyline: Saint Joseph's | kalshi | $33k | -170 |  |  | +1.0c |  | L |
@@ -29,7 +29,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 20 1:20PM | NCAAB | NC St. vs Seton Hall | moneyline: NC St. | kalshi | $55k | -150 | ✅ novig |  | +2.0c |  | pending |
 | Nov 20 1:10PM | NCAAB | Western Kentucky vs Richmond | moneyline: Western Kentucky | kalshi | $30k | -104 | ✅ novig | ❌ | +0.0c |  | W |
 | Nov 20 1:00PM | NCAAB | Northwestern vs Virginia Tech: Spread | spread: NOT Virginia Tech wins by over 11.5 points | kalshi | $44k | -113 |  |  | -3.0c |  | L |
-| Nov 20 1:00PM | NCAAB | Central Michigan vs Pittsburgh: Spread | spread: NOT Pittsburgh wins by over 20.5 points | kalshi | $35k | +108 |  | ✅ | +1.0c |  | pending |
+| Nov 20 1:00PM | NCAAB | Central Michigan vs Pittsburgh: Spread | spread: NOT Pittsburgh wins by over 20.5 points | kalshi | $35k | +108 |  | ✅ | +1.0c |  | L |
 | Nov 20 12:40PM | NCAAB | UAB vs George Washington: Spread | spread: NOT George Washington wins by over 8.5 points | kalshi | $33k | +104 |  |  | +0.0c | yes | W |
 | Nov 20 12:40PM | NCAAB | Manhattan vs Miami (FL): Spread | spread: NOT Miami (FL) wins by over 36.5 points | kalshi | $45k | -104 |  | ✅ | -1.0c |  | L |
 | Nov 20 12:40PM | NCAAB | Delaware vs Cal State Northridge: Spread | spread: NOT Cal State Northridge wins by over 6.5 points | kalshi | $34k | +117 |  | ❌ | +2.0c |  | W |
@@ -43,9 +43,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 20 3:20AM | NCAAB | South Dakota St. vs Idaho St. | moneyline: South Dakota St. | kalshi | $138k | -270 |  |  | -4.0c |  | L |
 | Nov 20 3:20AM | NCAAB | Northwestern vs Virginia Tech | moneyline: Virginia Tech | kalshi | $165k | -567 |  |  | +1.0c |  | W |
 | Nov 20 3:20AM | NCAAB | Delaware vs Cal State Northridge | moneyline: Cal State Northridge | kalshi | $134k | -245 |  |  | +3.0c |  | L |
-| Nov 20 1:20AM | NCAAB | Western Michigan vs Mount St. Mary's | moneyline: Western Michigan | kalshi | $26k | -335 |  |  | -2.0c |  | pending |
+| Nov 20 1:20AM | NCAAB | Western Michigan vs Mount St. Mary's | moneyline: Western Michigan | kalshi | $26k | -335 |  |  | -2.0c |  | W |
 | Nov 20 1:20AM | NCAAB | Southeastern Louisiana vs Kennesaw St. | moneyline: Kennesaw St. | kalshi | $33k | -567 |  |  | +1.0c |  | W |
-| Nov 20 1:20AM | NCAAB | Bellarmine vs Eastern Kentucky | moneyline: Eastern Kentucky | kalshi | $25k | -317 |  |  | +1.0c |  | pending |
+| Nov 20 1:20AM | NCAAB | Bellarmine vs Eastern Kentucky | moneyline: Eastern Kentucky | kalshi | $25k | -317 |  |  | +1.0c |  | L |
 | Nov 20 1:20AM | NCAAB | Alabama St. vs Fresno St. | moneyline: Fresno St. | kalshi | $31k | -456 |  |  | +1.0c |  | pending |
 | Nov 20 1:10AM | NCAAB | UAB vs George Washington | moneyline: George Washington | kalshi | $39k | -456 |  |  | -2.0c | yes | L |
 | Nov 19 7:40PM | NCAAB | Wisconsin vs Seton Hall: Point Total | total: NOT Over 138.5 points | kalshi | $26k | -104 | ✅ novig |  | +0.0c | yes | L |
