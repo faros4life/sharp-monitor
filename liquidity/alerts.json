@@ -1,6 +1,407 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-21T22:20:26Z",
+   "base_depth": 333462,
+   "best_price": 0.505,
+   "best_price_american": -102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-21",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 5210,
+     "new_this_side": 58288,
+     "other_side": 170781,
+     "other_side_all_levels": 299532,
+     "ratio": 1.7,
+     "this_side": 284323,
+     "this_side_all_levels": 396919
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Over 53.5 (53.5)",
+     "price": 0.505,
+     "this_side": 40981
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 5083.47,
+    "volume_24h_fp": 4751.74,
+    "volume_fp": 5169.94
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 218.01,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 218.01
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 4865.46,
+    "volume_24h_fp": 4751.74,
+    "volume_fp": 4951.93
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-21T22:15:43Z",
+   "game": "Arizona vs Kansas St.: Total Points",
+   "game_surge_books": [
+    "novig"
+   ],
+   "game_x": 1.13,
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFTOTAL-26NOV21ARIZKSU-54\"}",
+   "lead_min": 100,
+   "league": "NCAAF",
+   "line": 53.5,
+   "market": "total",
+   "new_money": 58288,
+   "new_x": 7.21,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 5083.47,
+      "volume_24h_fp": 4751.74,
+      "volume_fp": 5169.94
+     },
+     "game_normal": 351543,
+     "game_x": 1.13,
+     "normal": 8085,
+     "now": 396919,
+     "type": "OVER",
+     "x": 49.09
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 13363987.0,
+      "volume": 14368645.0
+     },
+     "game_normal": 19776,
+     "game_x": 2.1,
+     "normal": 5454,
+     "now": 41546,
+     "type": "OVER",
+     "x": 7.62
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 53.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 53.5,
+     "price": -110
+    },
+    "betrivers": {
+     "point": 53.5,
+     "price": -112
+    },
+    "betus": {
+     "point": 53.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 53.5,
+     "price": -112
+    },
+    "draftkings": {
+     "point": 53.5,
+     "price": -112
+    },
+    "fanatics": {
+     "point": 53.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 53.5,
+     "price": -112
+    },
+    "kalshi": {
+     "point": 53.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 53.5,
+     "price": -108
+    },
+    "mybookieag": {
+     "point": 53.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 53.5,
+     "price": -102
+    },
+    "polymarket": {
+     "point": 53.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": 53.5,
+     "price": -107
+    },
+    "williamhill_us": {
+     "point": 53.5,
+     "price": -106
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFTOTAL-26NOV21ARIZKSU-54"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "OVER",
+   "side_label": "Over 53.5 points",
+   "size_x": 49.09,
+   "start_source": "odds",
+   "start_utc": "2026-11-22T00:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "Arizona",
+    "Kansas St."
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-21T22:20:26Z",
+   "base_depth": 308460,
+   "best_price": 0.465,
+   "best_price_american": 115,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.46,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-21",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -8466,
+     "new_this_side": 87056,
+     "other_side": 240627,
+     "other_side_all_levels": 401614,
+     "ratio": 1.2,
+     "this_side": 298360,
+     "this_side_all_levels": 407188
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "PIT (0)",
+     "price": 0.465,
+     "this_side": 21982
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Pittsburgh Penguins",
+     "price": 0.463,
+     "this_side": 13513
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 58691.1,
+    "volume_24h_fp": 52662.479999999996,
+    "volume_fp": 60079.62
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 547.25,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 547.25
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 58143.85,
+    "volume_24h_fp": 52662.479999999996,
+    "volume_fp": 59532.37
+   },
+   "fade_price": 0.55,
+   "first_seen_utc": "2026-11-21T22:15:43Z",
+   "game": "Pittsburgh vs Nashville",
+   "game_surge_books": [],
+   "game_x": 1.3,
+   "key": "kalshi|KXNHLGAME-26NOV21PITNSH|ml|0",
+   "lead_min": 40,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 87056,
+   "new_x": 0.16,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 58691.1,
+      "volume_24h_fp": 52662.479999999996,
+      "volume_fp": 60079.62
+     },
+     "game_normal": 312948,
+     "game_x": 1.3,
+     "normal": 532189,
+     "now": 407188,
+     "type": "ML",
+     "x": 0.77
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 12311996.0,
+      "volume": 13573108.0
+     },
+     "game_normal": 29334,
+     "game_x": 0.84,
+     "normal": 17261,
+     "now": 24586,
+     "type": "ML",
+     "x": 1.42
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 11907,
+     "game_x": 1.26,
+     "normal": 10596,
+     "now": 15013,
+     "type": "ML",
+     "x": 1.42
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.46,
+   "price_american": 117,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.45,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 115
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 114
+    },
+    "betopenly": {
+     "point": null,
+     "price": 120
+    },
+    "betrivers": {
+     "point": null,
+     "price": 123
+    },
+    "betus": {
+     "point": null,
+     "price": 105
+    },
+    "bovada": {
+     "point": null,
+     "price": 110
+    },
+    "circasports": {
+     "point": null,
+     "price": 115
+    },
+    "draftkings": {
+     "point": null,
+     "price": 110
+    },
+    "fanatics": {
+     "point": null,
+     "price": 110
+    },
+    "fanduel": {
+     "point": null,
+     "price": 112
+    },
+    "kalshi": {
+     "point": null,
+     "price": 117
+    },
+    "lowvig": {
+     "point": null,
+     "price": 114
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 109
+    },
+    "novig": {
+     "point": null,
+     "price": 113
+    },
+    "polymarket": {
+     "point": null,
+     "price": 113
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 117
+    },
+    "prophetx": {
+     "point": null,
+     "price": 116
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 111
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26NOV21PITNSH-PIT"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Pittsburgh",
+   "side_label": "Pittsburgh",
+   "size_x": 0.77,
+   "start_source": "odds",
+   "start_utc": "2026-11-21T23:00:00Z",
+   "surge_books": [],
+   "teams": [
+    "Pittsburgh",
+    "Nashville"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-21T22:15:43Z",
    "base_depth": 794827,
    "best_price": 0.7244,
@@ -38,6 +439,11 @@
     "open_interest_fp": 63.73,
     "volume_24h_fp": 82.93,
     "volume_fp": 63.73
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 26652.480000000003,
+    "volume_24h_fp": 20887.43,
+    "volume_fp": 28101.98
    },
    "ex_stats_first": {
     "open_interest_fp": 26588.75,
@@ -151,9 +557,9 @@
     "volume_fp": 83.41
    },
    "ex_stats_close": {
-    "open_interest_fp": 67477.72,
+    "open_interest_fp": 67819.81,
     "volume_24h_fp": 56508.23,
-    "volume_fp": 69518.58
+    "volume_fp": 69860.67
    },
    "ex_stats_first": {
     "open_interest_fp": 42969.93,
@@ -356,8 +762,8 @@
     "volume": 123.0
    },
    "ex_stats_close": {
-    "openInterest": 3607803.0,
-    "volume": 4009603.0
+    "openInterest": 5044936.0,
+    "volume": 6582658.0
    },
    "ex_stats_first": {
     "openInterest": 3594024.0,
@@ -564,9 +970,9 @@
     "volume_fp": 885.91
    },
    "ex_stats_close": {
-    "open_interest_fp": 47674.29,
+    "open_interest_fp": 47736.92,
     "volume_24h_fp": 46892.8,
-    "volume_fp": 56662.44
+    "volume_fp": 56725.07
    },
    "ex_stats_first": {
     "open_interest_fp": 17379.57,
@@ -1128,9 +1534,9 @@
     "volume_fp": 2899.46
    },
    "ex_stats_close": {
-    "open_interest_fp": 289526.5,
+    "open_interest_fp": 289730.73,
     "volume_24h_fp": 251534.53999999998,
-    "volume_fp": 297535.62
+    "volume_fp": 298650.18
    },
    "ex_stats_first": {
     "open_interest_fp": 275100.7,
@@ -1255,7 +1661,8 @@
      "price": -360
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-21T22:20:26Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26NOV21ARIZKSU-ARIZ"
@@ -1343,9 +1750,9 @@
     "volume_fp": 2174.62
    },
    "ex_stats_close": {
-    "open_interest_fp": 306310.63,
+    "open_interest_fp": 306858.03,
     "volume_24h_fp": 290833.28,
-    "volume_fp": 350782.55
+    "volume_fp": 351333.09
    },
    "ex_stats_first": {
     "open_interest_fp": 280484.9,
@@ -2609,7 +3016,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 15,
+   "settle_tries": 16,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Middle Tennessee",
@@ -3496,7 +3903,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 15,
+   "settle_tries": 16,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Jacksonville St.",
@@ -4187,8 +4594,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 13281714.0,
-    "volume": 15245283.0
+    "openInterest": 13283862.0,
+    "volume": 15247431.0
    },
    "ex_stats_first": {
     "openInterest": 9473237.0,
@@ -4694,7 +5101,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Coastal Carolina",
@@ -6533,7 +6940,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Iowa",
