@@ -1,6 +1,200 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-21T23:40:18Z",
+   "base_depth": 145158,
+   "best_price": 0.695,
+   "best_price_american": -228,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.7,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 7,
+   "date": "2026-11-21",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 16028,
+     "new_this_side": 67425,
+     "other_side": 53916,
+     "other_side_all_levels": 67742,
+     "ratio": 2.8,
+     "this_side": 152127,
+     "this_side_all_levels": 208652
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "CBJ +1.5 (-1.5)",
+     "price": 0.695,
+     "this_side": 42539
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 695.04,
+    "volume_24h_fp": 606.3,
+    "volume_fp": 695.04
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 44.0,
+    "volume_24h_fp": 200.01,
+    "volume_fp": 44.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 651.04,
+    "volume_24h_fp": 406.29,
+    "volume_fp": 651.04
+   },
+   "fade_price": 0.31,
+   "first_seen_utc": "2026-11-21T23:33:42Z",
+   "game": "Columbus vs Toronto: Spread",
+   "game_surge_books": [],
+   "game_x": 1.53,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26NOV21CBJTOR-TOR2\"}",
+   "lead_min": 20,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 67425,
+   "new_x": 0.52,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 695.04,
+      "volume_24h_fp": 606.3,
+      "volume_fp": 695.04
+     },
+     "game_normal": 136035,
+     "game_x": 1.53,
+     "normal": 129820,
+     "now": 208652,
+     "type": "SPREAD",
+     "x": 1.61
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 1001485.0,
+      "volume": 1029780.0
+     },
+     "game_normal": 24749,
+     "game_x": 1.73,
+     "normal": 11815,
+     "now": 42921,
+     "type": "SPREAD",
+     "x": 3.63
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.7,
+   "price_american": -233,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.7,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -235
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -242
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -222
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -278
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -240
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -240
+    },
+    "circasports": {
+     "point": 1.5,
+     "price": -250
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -250
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -255
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -250
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -233
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -242
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -244
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -228
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": -223
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -225
+    },
+    "williamhill_us": {
+     "point": 1.5,
+     "price": -240
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLSPREAD-26NOV21CBJTOR-TOR2"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Columbus",
+   "side_label": "NOT Toronto wins by over 1.5 goals",
+   "size_x": 1.61,
+   "start_source": "odds",
+   "start_utc": "2026-11-22T00:00:00Z",
+   "surge_books": [
+    "novig"
+   ],
+   "teams": [
+    "Columbus",
+    "Toronto"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-21T23:33:42Z",
    "base_depth": 697351,
    "best_price": 0.675,
@@ -50,6 +244,11 @@
     "open_interest_fp": 29472.95,
     "volume_24h_fp": 29712.02,
     "volume_fp": 29472.95
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 38177.81,
+    "volume_24h_fp": 38090.56,
+    "volume_fp": 38737.74
    },
    "ex_stats_first": {
     "open_interest_fp": 8625.55,
@@ -258,9 +457,9 @@
     "volume_fp": 1.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2699.85,
-    "volume_24h_fp": 890.38,
-    "volume_fp": 2699.85
+    "open_interest_fp": 4121.46,
+    "volume_24h_fp": 4021.3,
+    "volume_fp": 4221.38
    },
    "ex_stats_first": {
     "open_interest_fp": 884.2,
@@ -309,6 +508,8 @@
    "norm_ready_books": 2,
    "paper_only": false,
    "price": 0.55,
+   "price_after_15m": 0.55,
+   "price_after_15m_book": "novig",
    "price_american": -122,
    "price_rule": "ok",
    "price_when_first_seen": 0.55,
@@ -401,6 +602,7 @@
    "size_x": 1.34,
    "start_source": "odds",
    "start_utc": "2026-11-22T00:00:00Z",
+   "still_actionable": false,
    "surge_books": [
     "novig"
    ],
@@ -457,9 +659,9 @@
     "volume_fp": 774.74
    },
    "ex_stats_close": {
-    "open_interest_fp": 9720.91,
-    "volume_24h_fp": 9539.96,
-    "volume_fp": 9841.4
+    "open_interest_fp": 10152.28,
+    "volume_24h_fp": 9849.83,
+    "volume_fp": 10272.77
    },
    "ex_stats_first": {
     "open_interest_fp": 8478.99,
@@ -583,7 +785,8 @@
      "price": -200
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-21T23:40:18Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNHLSPREAD-26NOV21NJSTL-NJ2"
@@ -876,9 +1079,9 @@
     "volume_fp": 2.01
    },
    "ex_stats_close": {
-    "open_interest_fp": 1302.9,
-    "volume_24h_fp": 1195.18,
-    "volume_fp": 1345.37
+    "open_interest_fp": 1365.71,
+    "volume_24h_fp": 1250.99,
+    "volume_fp": 1408.18
    },
    "ex_stats_first": {
     "open_interest_fp": 1029.36,
@@ -1086,7 +1289,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 743.95,
-    "volume_24h_fp": 490.18,
+    "volume_24h_fp": 638.18,
     "volume_fp": 750.14
    },
    "ex_stats_first": {
@@ -1293,9 +1496,9 @@
     "volume_fp": 375.79
    },
    "ex_stats_close": {
-    "open_interest_fp": 81050.09,
-    "volume_24h_fp": 79274.04,
-    "volume_fp": 82094.05
+    "open_interest_fp": 81578.95999999999,
+    "volume_24h_fp": 80190.11,
+    "volume_fp": 82622.92
    },
    "ex_stats_first": {
     "open_interest_fp": 77704.94,
@@ -1514,9 +1717,9 @@
     "volume_fp": 706.89
    },
    "ex_stats_close": {
-    "open_interest_fp": 223799.01,
-    "volume_24h_fp": 225909.27000000002,
-    "volume_fp": 234942.16
+    "open_interest_fp": 225566.5,
+    "volume_24h_fp": 229771.61000000002,
+    "volume_fp": 236709.65
    },
    "ex_stats_first": {
     "open_interest_fp": 213872.50999999998,
@@ -1700,8 +1903,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.64,
-   "clv_cents": 0.0,
+   "close_price": 0.65,
+   "clv_cents": 1.0,
    "confirmed_after_min": 5,
    "date": "2026-11-21",
    "depth_by_book": {
@@ -1738,9 +1941,9 @@
     "volume_fp": 153.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 56735.61,
-    "volume_24h_fp": 51837.32,
-    "volume_fp": 57080.57
+    "open_interest_fp": 100533.23999999999,
+    "volume_24h_fp": 53738.75,
+    "volume_fp": 101376.39
    },
    "ex_stats_first": {
     "open_interest_fp": 46567.71,
@@ -2364,9 +2567,9 @@
     "volume_fp": 16426.88
    },
    "ex_stats_close": {
-    "open_interest_fp": 841630.03,
-    "volume_24h_fp": 940441.42,
-    "volume_fp": 988424.41
+    "open_interest_fp": 875952.75,
+    "volume_24h_fp": 1007159.45,
+    "volume_fp": 1024398.33
    },
    "ex_stats_first": {
     "open_interest_fp": 675611.8300000001,
@@ -2558,8 +2761,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 0.0,
+   "close_price": 0.55,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-21",
    "depth_by_book": {
@@ -2590,9 +2793,9 @@
     "volume_fp": 26.91
    },
    "ex_stats_close": {
-    "open_interest_fp": 2585.44,
-    "volume_24h_fp": 2549.75,
-    "volume_fp": 2590.14
+    "open_interest_fp": 2703.44,
+    "volume_24h_fp": 2703.44,
+    "volume_fp": 2708.14
    },
    "ex_stats_first": {
     "open_interest_fp": 2516.69,
@@ -3442,9 +3645,9 @@
     "volume_fp": 58.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 27679.1,
-    "volume_24h_fp": 25605.24,
-    "volume_fp": 28019.76
+    "open_interest_fp": 29842.14,
+    "volume_24h_fp": 28292.68,
+    "volume_fp": 30182.8
    },
    "ex_stats_first": {
     "open_interest_fp": 11781.470000000001,
@@ -6167,7 +6370,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [
     "Marshall Thundering Herd -2.5 (-111)"
    ],
@@ -6389,7 +6592,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Florida St.",
@@ -6569,7 +6772,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Michigan",
@@ -6875,7 +7078,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "LSU",
@@ -8177,7 +8380,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UCLA",
@@ -9374,7 +9577,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Florida State",
@@ -13893,7 +14096,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [
     "Texas Tech Red Raiders -4.5 (-108)"
    ],
@@ -14384,7 +14587,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Indiana",
@@ -15929,7 +16132,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Indiana",
@@ -18536,7 +18739,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas A&M",
@@ -27413,7 +27616,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Oklahoma",
