@@ -2,7 +2,7 @@
  "alerts": [
   {
    "alert_utc": "2026-11-21T13:40:26Z",
-   "beat_close": true,
+   "beat_close": false,
    "beat_true_close": null,
    "bet": "Under 148.5 (-120)",
    "book": "ProphetX",
@@ -10,7 +10,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+1 pts",
+   "clv": "+0 pts",
    "clv_conv_pts": null,
    "clv_pin_line": null,
    "clv_read_utc": null,
@@ -1186,7 +1186,7 @@
   },
   {
    "alert_utc": "2026-11-21T04:40:22Z",
-   "beat_close": true,
+   "beat_close": false,
    "beat_true_close": null,
    "bet": "New Mexico Lobos -1.5 (-117)",
    "book": "Kalshi",
@@ -1194,7 +1194,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+1 pts",
+   "clv": "+0 pts",
    "clv_conv_pts": null,
    "clv_pin_line": null,
    "clv_read_utc": null,
@@ -1469,6 +1469,80 @@
    "pricing_bettable": true,
    "result": null,
    "score": 70,
+   "sent_to_phone": false,
+   "sport": "NCAAB",
+   "start_utc": "2026-11-21T19:00:00Z",
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alert_utc": "2026-11-21T14:25:21Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "Wichita St Shockers +2.5 (-108)",
+   "book": "Novig",
+   "book_key": "novig",
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+1 pts",
+   "clv_conv_pts": null,
+   "clv_pin_line": null,
+   "clv_read_utc": null,
+   "clv_skipped": null,
+   "clv_source": null,
+   "clv_verified": null,
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -2.0,
+   "executable_book": true,
+   "fade_book": "novig",
+   "fade_point": -2.5,
+   "fade_price": 104,
+   "fade_price_after_fee": 104,
+   "fade_units": null,
+   "final": null,
+   "floor_line": 2.0,
+   "game": "New Mexico Lobos @ Wichita St Shockers",
+   "grade": "A",
+   "hr1_eligible": false,
+   "hr1_pushed": false,
+   "hr1_verified": null,
+   "hr1_verify_status": null,
+   "hr1_verify_why": null,
+   "kind": "spr",
+   "late": false,
+   "minutes_before_start": 275,
+   "point": 2.5,
+   "price": -108,
+   "price_after_fee": -108,
+   "prices_at_alert": {
+    "hardrockbet": {
+     "after_fee": -110,
+     "point": 2.5,
+     "price": -110
+    },
+    "kalshi": {
+     "after_fee": 100.7,
+     "point": 1.5,
+     "price": 108
+    },
+    "novig": {
+     "after_fee": -108,
+     "point": 2.5,
+     "price": -108
+    },
+    "prophetx": {
+     "after_fee": -115.3,
+     "point": 2.5,
+     "price": -113
+    }
+   },
+   "pricing_bettable": true,
+   "result": null,
+   "score": 80,
    "sent_to_phone": false,
    "sport": "NCAAB",
    "start_utc": "2026-11-21T19:00:00Z",
@@ -100775,6 +100849,30 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Wichita St Shockers +2.5 (-108) at Novig (also: Hard Rock, ProphetX)",
+   "bet": "Wichita St Shockers +2.5 (-108)",
+   "bet_result": null,
+   "book": "Novig",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -2.0,
+   "final": null,
+   "game": "New Mexico Lobos @ Wichita St Shockers",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 275,
+   "price": -108,
+   "price_after_fee": -108,
+   "pushed_to_phone": false,
+   "repeat": false,
+   "score": 80,
+   "sent_et": "2026-11-21 09:25",
+   "sport": "NCAAB",
+   "start_utc": "2026-11-21T19:00:00Z",
+   "why": "Pinnacle moved +2.5 -> +1.5; bet only at +2 or better (confirmed by BetOnline)"
+  },
   {
    "alert_text": "Under 135.5 (-110) at Hard Rock",
    "bet": "Under 135.5 (-110)",
