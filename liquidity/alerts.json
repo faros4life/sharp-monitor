@@ -1,6 +1,407 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-21T04:15:49Z",
+   "base_depth": 33034,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-21",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Ohio St. wins by over 3.5 points",
+     "price": 0.51,
+     "this_side": 402588
+    },
+    "novig": {
+     "new_other_side": 1843,
+     "new_this_side": 31047,
+     "other_side": 21308,
+     "other_side_all_levels": 22705,
+     "ratio": 2.4,
+     "this_side": 51636,
+     "this_side_all_levels": 65723
+    }
+   },
+   "ex_stats_alert": {
+    "openInterest": 6608961.0,
+    "volume": 7329300.0
+   },
+   "ex_stats_change": {
+    "openInterest": 65553.0,
+    "volume": 84157.0
+   },
+   "ex_stats_first": {
+    "openInterest": 6543408.0,
+    "volume": 7245143.0
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-21T04:10:25Z",
+   "game": "Ohio State @ Nebraska",
+   "game_surge_books": [
+    "novig"
+   ],
+   "game_x": 2.01,
+   "key": "novig|{\"market_id\": \"01a1d355-3700-7c12-bca8-d9e3772dca84\", \"outcome_id\": \"01a1d355-3700-7c12-bca8-da0b1a60ae9c\"}",
+   "lead_min": 763,
+   "league": "NCAAF",
+   "line": -3.5,
+   "market": "spread",
+   "new_money": 31047,
+   "new_x": 6.36,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 255783.63,
+      "volume_24h_fp": 231907.66,
+      "volume_fp": 259061.33
+     },
+     "game_normal": 453558,
+     "game_x": 1.27,
+     "normal": 43073,
+     "now": 574026,
+     "type": "SPREAD",
+     "x": 13.33
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 6608961.0,
+      "volume": 7329300.0
+     },
+     "game_normal": 32670,
+     "game_x": 2.01,
+     "normal": 4880,
+     "now": 65723,
+     "type": "SPREAD",
+     "x": 13.47
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -3.5,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": -3.0,
+     "price": -120
+    },
+    "betopenly": {
+     "point": -3.5,
+     "price": 100
+    },
+    "betrivers": {
+     "point": -3.5,
+     "price": -113
+    },
+    "betus": {
+     "point": -3.0,
+     "price": -120
+    },
+    "bovada": {
+     "point": -3.5,
+     "price": -110
+    },
+    "circasports": {
+     "point": -3.0,
+     "price": -120
+    },
+    "draftkings": {
+     "point": -3.5,
+     "price": -105
+    },
+    "fanatics": {
+     "point": -3.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": -3.5,
+     "price": -104
+    },
+    "kalshi": {
+     "point": -3.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": -3.0,
+     "price": -116
+    },
+    "mybookieag": {
+     "point": -3.0,
+     "price": -120
+    },
+    "novig": {
+     "point": -3.5,
+     "price": -104
+    },
+    "polymarket": {
+     "point": -3.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": -3.5,
+     "price": -101
+    },
+    "williamhill_us": {
+     "point": -3.5,
+     "price": -106
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a1d355-3700-7c12-bca8-d9e3772dca84",
+    "outcome_id": "01a1d355-3700-7c12-bca8-da0b1a60ae9c"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Ohio State",
+   "side_label": "OSU -3.5 (3.5)",
+   "size_x": 13.47,
+   "start_source": "odds",
+   "start_utc": "2026-11-21T16:59:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "Ohio State",
+    "Nebraska"
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-21T04:15:49Z",
+   "base_depth": 130905,
+   "best_price": 0.635,
+   "best_price_american": -174,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.64,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-21",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -460,
+     "new_this_side": 40005,
+     "other_side": 64915,
+     "other_side_all_levels": 95154,
+     "ratio": 1.9,
+     "this_side": 123746,
+     "this_side_all_levels": 177672
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "CAR (0)",
+     "price": 0.635,
+     "this_side": 19819
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Carolina Hurricanes",
+     "price": 0.6403,
+     "this_side": 2563
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 25019.53,
+    "volume_24h_fp": 21063.53,
+    "volume_fp": 27919.170000000002
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 108.44,
+    "volume_24h_fp": 86.41,
+    "volume_fp": 108.44
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 24911.089999999997,
+    "volume_24h_fp": 20977.12,
+    "volume_fp": 27810.73
+   },
+   "fade_price": 0.37,
+   "first_seen_utc": "2026-11-21T04:10:25Z",
+   "game": "Edmonton vs Carolina",
+   "game_surge_books": [],
+   "game_x": 1.36,
+   "key": "kalshi|KXNHLGAME-26NOV21EDMCAR|ml|1",
+   "lead_min": 824,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 40005,
+   "new_x": 0.12,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 25019.53,
+      "volume_24h_fp": 21063.53,
+      "volume_fp": 27919.170000000002
+     },
+     "game_normal": 130791,
+     "game_x": 1.36,
+     "normal": 329011,
+     "now": 177672,
+     "type": "ML",
+     "x": 0.54
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 507845.0,
+      "volume": 893821.0
+     },
+     "game_normal": 22196,
+     "game_x": 0.97,
+     "normal": 12832,
+     "now": 21449,
+     "type": "ML",
+     "x": 1.67
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 3217,
+     "game_x": 1.04,
+     "normal": 3182,
+     "now": 3348,
+     "type": "ML",
+     "x": 1.05
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.64,
+   "price_american": -178,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.64,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -190
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -190
+    },
+    "betrivers": {
+     "point": null,
+     "price": -180
+    },
+    "betus": {
+     "point": null,
+     "price": -190
+    },
+    "bovada": {
+     "point": null,
+     "price": -183
+    },
+    "circasports": {
+     "point": null,
+     "price": -184
+    },
+    "draftkings": {
+     "point": null,
+     "price": -180
+    },
+    "fanatics": {
+     "point": null,
+     "price": -190
+    },
+    "fanduel": {
+     "point": null,
+     "price": -184
+    },
+    "kalshi": {
+     "point": null,
+     "price": -178
+    },
+    "lowvig": {
+     "point": null,
+     "price": -190
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -179
+    },
+    "novig": {
+     "point": null,
+     "price": -174
+    },
+    "polymarket": {
+     "point": null,
+     "price": -170
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -178
+    },
+    "prophetx": {
+     "point": null,
+     "price": -178
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -179
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26NOV21EDMCAR-CAR"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Carolina",
+   "side_label": "Carolina",
+   "size_x": 0.54,
+   "start_source": "odds",
+   "start_utc": "2026-11-21T18:00:00Z",
+   "surge_books": [],
+   "teams": [
+    "Edmonton",
+    "Carolina"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-21T04:05:46Z",
    "base_depth": 84491,
    "best_price": 0.4858,
@@ -40,9 +441,9 @@
     "volume_fp": 45.66
    },
    "ex_stats_close": {
-    "open_interest_fp": 4277.53,
-    "volume_24h_fp": 1134.9,
-    "volume_fp": 4325.53
+    "open_interest_fp": 4279.35,
+    "volume_24h_fp": 1180.56,
+    "volume_fp": 4327.35
    },
    "ex_stats_first": {
     "open_interest_fp": 4231.87,
@@ -580,7 +981,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [
     "New Mexico Lobos -9.5 (-110)",
@@ -1098,9 +1499,9 @@
     "volume_fp": 112.02
    },
    "ex_stats_close": {
-    "open_interest_fp": 295437.16,
-    "volume_24h_fp": 83181.14,
-    "volume_fp": 298831.3
+    "open_interest_fp": 297573.98,
+    "volume_24h_fp": 281976.95,
+    "volume_fp": 301296.95
    },
    "ex_stats_first": {
     "open_interest_fp": 40876.55,
@@ -1876,7 +2277,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -2098,7 +2499,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 12,
+   "settle_tries": 13,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Michigan St.",
@@ -3157,7 +3558,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [
     "New Mexico Lobos -7.5 (-117)"
    ],
@@ -3226,9 +3627,9 @@
     "volume_fp": 1.86
    },
    "ex_stats_close": {
-    "open_interest_fp": 295437.16,
-    "volume_24h_fp": 83181.14,
-    "volume_fp": 298831.3
+    "open_interest_fp": 297573.98,
+    "volume_24h_fp": 281976.95,
+    "volume_fp": 301296.95
    },
    "ex_stats_first": {
     "open_interest_fp": 32041.54,
@@ -3854,9 +4255,9 @@
     "volume_fp": 213.2
    },
    "ex_stats_close": {
-    "open_interest_fp": 33395.96,
-    "volume_24h_fp": 15473.189999999999,
-    "volume_fp": 34651.619999999995
+    "open_interest_fp": 35306.61,
+    "volume_24h_fp": 16017.27,
+    "volume_fp": 36562.270000000004
    },
    "ex_stats_first": {
     "open_interest_fp": 24140.129999999997,
@@ -4063,9 +4464,9 @@
     "volume_fp": 1545.89
    },
    "ex_stats_close": {
-    "open_interest_fp": 62604.93,
-    "volume_24h_fp": 47719.82,
-    "volume_fp": 67358.37
+    "open_interest_fp": 62781.09,
+    "volume_24h_fp": 48769.62,
+    "volume_fp": 67534.53
    },
    "ex_stats_first": {
     "open_interest_fp": 36568.82,
@@ -4260,7 +4661,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 68971.6,
-    "volume_24h_fp": 64036.12,
+    "volume_24h_fp": 65076.68,
     "volume_fp": 69876.95
    },
    "ex_stats_first": {
@@ -4463,9 +4864,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 117501.44,
-    "volume_24h_fp": 113662.22,
-    "volume_fp": 118024.87
+    "open_interest_fp": 117511.69,
+    "volume_24h_fp": 113740.41,
+    "volume_fp": 118035.12
    },
    "ex_stats_first": {
     "open_interest_fp": 6037.99,
@@ -5284,9 +5685,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 9234.04,
-    "volume_24h_fp": 3028.86,
-    "volume_fp": 11157.96
+    "open_interest_fp": 9259.16,
+    "volume_24h_fp": 3467.59,
+    "volume_fp": 11183.08
    },
    "ex_stats_first": {
     "open_interest_fp": 6676.11,
@@ -6027,7 +6428,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [
     "New Mexico Lobos -7.5 (-117)"
    ],
@@ -7287,7 +7688,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 12,
+   "settle_tries": 13,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Oregon",
@@ -8009,9 +8410,9 @@
     "volume_fp": 17.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 40699.1,
-    "volume_24h_fp": 20860.97,
-    "volume_fp": 44331.44
+    "open_interest_fp": 41352.59,
+    "volume_24h_fp": 20989.39,
+    "volume_fp": 44984.93
    },
    "ex_stats_first": {
     "open_interest_fp": 25031.65,
@@ -8870,9 +9271,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 12564.68,
-    "volume_24h_fp": 4928.610000000001,
-    "volume_fp": 13067.94
+    "open_interest_fp": 12625.390000000001,
+    "volume_24h_fp": 5123.04,
+    "volume_fp": 13143.56
    },
    "ex_stats_first": {
     "open_interest_fp": 9470.58,
@@ -9082,9 +9483,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 12564.68,
-    "volume_24h_fp": 4928.610000000001,
-    "volume_fp": 13067.94
+    "open_interest_fp": 12625.390000000001,
+    "volume_24h_fp": 5123.04,
+    "volume_fp": 13143.56
    },
    "ex_stats_first": {
     "open_interest_fp": 9470.58,
@@ -23298,7 +23699,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New Mexico",
