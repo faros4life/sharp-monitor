@@ -1345,7 +1345,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+4.5 pts",
+   "clv": "+6.5 pts",
    "clv_conv_pts": null,
    "clv_pin_line": null,
    "clv_read_utc": null,
@@ -1420,7 +1420,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+1.5 pts",
+   "clv": "+4 pts",
    "clv_conv_pts": null,
    "clv_pin_line": null,
    "clv_read_utc": null,
@@ -2447,6 +2447,81 @@
    "sport": "NCAAB",
    "start_utc": "2026-11-22T00:00:00Z",
    "top25": false,
+   "units_flat": null
+  },
+  {
+   "alert_utc": "2026-11-21T22:45:33Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "USC Trojans -17.5 (-116)",
+   "book": "ProphetX",
+   "book_key": "prophetx",
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+1 pts",
+   "clv_conv_pts": null,
+   "clv_pin_line": null,
+   "clv_read_utc": null,
+   "clv_skipped": null,
+   "clv_source": null,
+   "clv_verified": null,
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -0.4,
+   "executable_book": true,
+   "fade_book": "prophetx",
+   "fade_point": 17.5,
+   "fade_price": 113,
+   "fade_price_after_fee": 111,
+   "fade_units": null,
+   "final": null,
+   "floor_line": -18.0,
+   "game": "Maryland Terrapins @ USC Trojans",
+   "grade": "B",
+   "hr1_eligible": false,
+   "hr1_pushed": false,
+   "hr1_verified": null,
+   "hr1_verify_status": null,
+   "hr1_verify_why": null,
+   "kind": "spr",
+   "late": true,
+   "minutes_before_start": 29,
+   "point": -17.5,
+   "price": -116,
+   "price_after_fee": -118,
+   "prices_at_alert": {
+    "hardrockbet": {
+     "after_fee": -110,
+     "point": -18.5,
+     "price": -110
+    },
+    "kalshi": {
+     "after_fee": 105.4,
+     "point": -20.5,
+     "price": 113
+    },
+    "novig": {
+     "after_fee": -104,
+     "point": -18.5,
+     "price": -104
+    },
+    "prophetx": {
+     "after_fee": -118.4,
+     "point": -17.5,
+     "price": -116
+    }
+   },
+   "pricing_bettable": true,
+   "result": null,
+   "score": 61,
+   "sent_to_phone": true,
+   "sport": "NCAAF",
+   "start_utc": "2026-11-21T23:15:00Z",
+   "top25": true,
    "units_flat": null
   },
   {
@@ -106478,6 +106553,56 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Under 214.5 (-108) at Novig (also: Kalshi)",
+   "bet": "Under 214.5 (-108)",
+   "bet_result": null,
+   "book": "Novig",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -0.3,
+   "final": null,
+   "game": "Portland Trail Blazers @ New York Knicks",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 104,
+   "price": -108,
+   "price_after_fee": -108,
+   "pushed_to_phone": false,
+   "repeat": true,
+   "score": 77,
+   "sent_et": "2026-11-21 17:45",
+   "sport": "NBA",
+   "start_utc": "2026-11-22T00:30:00Z",
+   "why": "Pinnacle total moved 216 -> 213.5; bet only at 214 or better (confirmed by BetOnline, Matchbook)"
+  },
+  {
+   "alert_text": "USC Trojans -17.5 (-116) at ProphetX [-118 after ProphetX fee]",
+   "bet": "USC Trojans -17.5 (-116)",
+   "bet_result": null,
+   "book": "ProphetX",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -0.4,
+   "final": null,
+   "game": "Maryland Terrapins @ USC Trojans",
+   "grade": "B",
+   "late": true,
+   "minutes_before_start": 29,
+   "price": -116,
+   "price_after_fee": -118,
+   "pushed_to_phone": true,
+   "repeat": false,
+   "score": 61,
+   "sent_et": "2026-11-21 17:45",
+   "sport": "NCAAF",
+   "start_utc": "2026-11-21T23:15:00Z",
+   "why": "Pinnacle moved -17.5 -> -18.5; bet only at -18 or better (confirmed by BetOnline, Matchbook)"
+  },
   {
    "alert_text": "Portland Trail Blazers +1.5 (-115) at Hard Rock (also: ProphetX)",
    "bet": "Portland Trail Blazers +1.5 (-115)",
