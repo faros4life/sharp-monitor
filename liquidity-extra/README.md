@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 21, 2:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 35.
+Updated Sat Nov 21, 2:50 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 35.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -35,7 +35,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 9:40AM | NCAAB | Penn vs La Salle | moneyline: La Salle | kalshi | $37k | -133 |  |  | +1.0c |  | pending |
 | Nov 21 9:40AM | NCAAB | Kent St. vs Cleveland St. | moneyline: Kent St. | kalshi | $45k | -150 | ✅ novig |  | +0.0c |  | pending |
 | Nov 21 9:40AM | NCAAB | Brown vs Vermont | moneyline: Vermont | kalshi | $30k | -156 |  |  | +3.0c |  | pending |
-| Nov 21 9:30AM | NCAAB | Northeastern vs Stonehill | moneyline: Northeastern | kalshi | $26k | -300 |  |  | +4.0c |  | pending |
+| Nov 21 9:30AM | NCAAB | Northeastern vs Stonehill | moneyline: Northeastern | kalshi | $26k | -300 |  |  | +5.0c |  | pending |
 | Nov 21 1:30AM | NCAAB | Little Rock vs North Florida | moneyline: Little Rock | kalshi | $27k | -194 |  |  | -1.0c | yes | pending |
 | Nov 21 1:30AM | NCAAB | Siena vs Bucknell | moneyline: Siena | kalshi | $25k | -223 |  |  | +3.0c |  | W |
 | Nov 21 1:30AM | NCAAB | Navy vs Rider | moneyline: Navy | kalshi | $27k | -203 |  |  | -2.0c | yes | pending |
