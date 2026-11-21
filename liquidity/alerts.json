@@ -1,6 +1,340 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-21T21:25:51Z",
+   "base_depth": 309253,
+   "best_price": 0.8347,
+   "best_price_american": -505,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.83,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-11-21",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 47276,
+     "new_this_side": 431216,
+     "other_side": 97528,
+     "other_side_all_levels": 146372,
+     "ratio": 5.3,
+     "this_side": 515628,
+     "this_side_all_levels": 736034
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Texas State",
+     "price": 0.8319,
+     "this_side": 20081
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 18265.48,
+    "volume_24h_fp": 8345.1,
+    "volume_fp": 18662.46
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 885.91,
+    "volume_24h_fp": 334.61,
+    "volume_fp": 885.91
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 17379.57,
+    "volume_24h_fp": 8010.49,
+    "volume_fp": 17776.55
+   },
+   "fade_price": 0.18,
+   "first_seen_utc": "2026-11-21T21:20:19Z",
+   "game": "Washington St. vs Texas St.",
+   "game_surge_books": [],
+   "game_x": null,
+   "key": "kalshi|KXNCAAFGAME-26NOV21WSUTXST|ml|1",
+   "lead_min": 94,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 431216,
+   "new_x": 9.53,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 18265.48,
+      "volume_24h_fp": 8345.1,
+      "volume_fp": 18662.46
+     },
+     "game_normal": null,
+     "game_x": null,
+     "normal": 45226,
+     "now": 736034,
+     "type": "ML",
+     "x": 16.27
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 14067,
+     "game_x": 1.43,
+     "normal": 3450,
+     "now": 20094,
+     "type": "ML",
+     "x": 5.82
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.83,
+   "price_american": -488,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.83,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -550
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -575
+    },
+    "betrivers": {
+     "point": null,
+     "price": -715
+    },
+    "betus": {
+     "point": null,
+     "price": -575
+    },
+    "bovada": {
+     "point": null,
+     "price": -550
+    },
+    "circasports": {
+     "point": null,
+     "price": -550
+    },
+    "draftkings": {
+     "point": null,
+     "price": -575
+    },
+    "fanatics": {
+     "point": null,
+     "price": -575
+    },
+    "fanduel": {
+     "point": null,
+     "price": -550
+    },
+    "kalshi": {
+     "point": null,
+     "price": -488
+    },
+    "lowvig": {
+     "point": null,
+     "price": -575
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -561
+    },
+    "novig": {
+     "point": null,
+     "price": -488
+    },
+    "polymarket": {
+     "point": null,
+     "price": -488
+    },
+    "prophetx": {
+     "point": null,
+     "price": -490
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -560
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26NOV21WSUTXST-TXST"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Texas St.",
+   "side_label": "Texas St.",
+   "size_x": 16.27,
+   "start_source": "odds",
+   "start_utc": "2026-11-21T23:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "prophetx"
+   ],
+   "teams": [
+    "Washington St.",
+    "Texas St."
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-21T21:25:51Z",
+   "base_depth": 100800,
+   "best_price": 0.8208,
+   "best_price_american": -458,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.81,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-11-21",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 11523,
+     "new_this_side": 149458,
+     "other_side": 21877,
+     "other_side_all_levels": 50113,
+     "ratio": 4.5,
+     "this_side": 98758,
+     "this_side_all_levels": 260959
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 12214.71,
+    "volume_24h_fp": 12808.67,
+    "volume_fp": 14847.130000000001
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 3.73,
+    "volume_24h_fp": 5661.38,
+    "volume_fp": 186.79
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 12210.98,
+    "volume_24h_fp": 7147.29,
+    "volume_fp": 14660.34
+   },
+   "fade_price": 0.2,
+   "first_seen_utc": "2026-11-21T21:20:19Z",
+   "game": "South Alabama vs Southern Miss",
+   "game_surge_books": [],
+   "game_x": 0.52,
+   "key": "kalshi|KXNCAAFGAME-26NOV21USAUSM|ml|0",
+   "lead_min": 154,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 149458,
+   "new_x": 3.3,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 12214.71,
+      "volume_24h_fp": 12808.67,
+      "volume_fp": 14847.130000000001
+     },
+     "game_normal": 500127,
+     "game_x": 0.52,
+     "normal": 45226,
+     "now": 260959,
+     "type": "ML",
+     "x": 5.77
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.81,
+   "price_american": -426,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.84,
+   "prices_by_book": {
+    "bovada": {
+     "point": null,
+     "price": -600
+    },
+    "draftkings": {
+     "point": null,
+     "price": -440
+    },
+    "fanatics": {
+     "point": null,
+     "price": -600
+    },
+    "fanduel": {
+     "point": null,
+     "price": -480
+    },
+    "kalshi": {
+     "point": null,
+     "price": -355
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -556
+    },
+    "novig": {
+     "point": null,
+     "price": -488
+    },
+    "polymarket": {
+     "point": null,
+     "price": -355
+    },
+    "prophetx": {
+     "point": null,
+     "price": -360
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -590
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26NOV21USAUSM-USA"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "South Alabama",
+   "side_label": "South Alabama",
+   "size_x": 5.77,
+   "start_source": "kalshi",
+   "start_utc": "2026-11-22T00:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "South Alabama",
+    "Southern Miss"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-21T21:20:19Z",
    "base_depth": 63248,
    "best_price": 0.7683,
@@ -48,6 +382,10 @@
    "ex_stats_change": {
     "openInterest": 22816.0,
     "volume": 29561.0
+   },
+   "ex_stats_close": {
+    "openInterest": 5970455.0,
+    "volume": 8442590.0
    },
    "ex_stats_first": {
     "openInterest": 5947639.0,
@@ -256,9 +594,9 @@
     "volume_fp": 2899.46
    },
    "ex_stats_close": {
-    "open_interest_fp": 280586.12,
-    "volume_24h_fp": 236409.99,
-    "volume_fp": 287723.03
+    "open_interest_fp": 282308.44,
+    "volume_24h_fp": 241822.8,
+    "volume_fp": 289449.45
    },
    "ex_stats_first": {
     "open_interest_fp": 275100.7,
@@ -316,6 +654,8 @@
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.77,
+   "price_after_15m": 0.7683,
+   "price_after_15m_book": "prophetx",
    "price_american": -335,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.76,
@@ -404,6 +744,7 @@
    "size_x": 33.73,
    "start_source": "odds",
    "start_utc": "2026-11-22T00:00:00Z",
+   "still_actionable": false,
    "surge_books": [
     "kalshi",
     "novig",
@@ -468,9 +809,9 @@
     "volume_fp": 2174.62
    },
    "ex_stats_close": {
-    "open_interest_fp": 295173.39,
-    "volume_24h_fp": 274123.07,
-    "volume_fp": 332627.71
+    "open_interest_fp": 296150.95,
+    "volume_24h_fp": 275939.57,
+    "volume_fp": 333605.27
    },
    "ex_stats_first": {
     "open_interest_fp": 280484.9,
@@ -1731,7 +2072,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Middle Tennessee",
@@ -1789,8 +2130,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 16483927.0,
-    "volume": 18499623.0
+    "openInterest": 16970527.0,
+    "volume": 19006223.0
    },
    "ex_stats_first": {
     "openInterest": 16199699.0,
@@ -2076,7 +2417,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [
     "Chattanooga Mocs +48.5 (-106)"
    ],
@@ -2613,7 +2954,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Jacksonville St.",
@@ -3112,10 +3453,12 @@
     "volume_fp": 223117.3
    },
    "fade_price": 0.51,
+   "fade_units": 0.9,
    "first_seen_utc": "2026-11-21T17:35:52Z",
    "game": "Houston vs West Virginia: Spread",
    "game_surge_books": [],
    "game_x": 1.47,
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26NOV21HOUWVU-HOU7\"}",
    "lead_min": 20,
    "league": "NCAAF",
@@ -3230,12 +3573,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26NOV21HOUWVU-HOU7"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 11,
+   "settle_tries": 12,
+   "settled_utc": "2026-11-21T21:25:51Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "West Virginia Mountaineers +7.5 (-115)"
@@ -3255,7 +3599,7 @@
     "West Virginia"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-21T17:35:52Z",
@@ -4183,10 +4527,12 @@
     "volume_fp": 60478.44
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-21T16:55:50Z",
    "game": "Houston vs West Virginia: Total Points",
    "game_surge_books": [],
    "game_x": 1.64,
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFTOTAL-26NOV21HOUWVU-73\"}",
    "lead_min": 60,
    "league": "NCAAF",
@@ -4289,12 +4635,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFTOTAL-26NOV21HOUWVU-73"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 11,
+   "settle_tries": 12,
+   "settled_utc": "2026-11-21T21:25:51Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -4311,7 +4658,7 @@
     "West Virginia"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.9
   },
   {
    "alerted_utc": "2026-11-21T17:00:22Z",
@@ -6331,10 +6678,12 @@
     "volume_fp": 14054.54
    },
    "fade_price": 0.51,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-21T15:50:18Z",
    "game": "Western Kentucky vs Liberty: Spread",
    "game_surge_books": [],
    "game_x": 1.61,
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26NOV21WKULIB-LIB18\"}",
    "lead_min": 124,
    "league": "NCAAF",
@@ -6453,14 +6802,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26NOV21WKULIB-LIB18"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
+   "settled_utc": "2026-11-21T21:25:51Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Liberty",
@@ -6478,7 +6828,7 @@
     "Liberty"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.98
   },
   {
    "alerted_utc": "2026-11-21T15:55:42Z",
@@ -7804,10 +8154,12 @@
     "volume_fp": 70922.91
    },
    "fade_price": 0.47,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-21T15:15:46Z",
    "game": "Houston vs West Virginia: Spread",
    "game_surge_books": [],
    "game_x": 1.2,
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26NOV21HOUWVU-HOU8\"}",
    "lead_min": 160,
    "league": "NCAAF",
@@ -7910,12 +8262,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26NOV21HOUWVU-HOU8"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 11,
+   "settle_tries": 12,
+   "settled_utc": "2026-11-21T21:25:51Z",
    "sharp_agree": [
     "West Virginia Mountaineers +7.5 (-115)"
    ],
@@ -7934,7 +8287,7 @@
     "West Virginia"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.85
   },
   {
    "alerted_utc": "2026-11-21T15:05:59Z",
@@ -11271,12 +11624,14 @@
     "volume_fp": 21616.14
    },
    "fade_price": 0.47,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-21T08:45:38Z",
    "game": "Charleston Southern vs Eastern Illinois",
    "game_surge_books": [
     "novig"
    ],
    "game_x": 1.85,
+   "graded_by": "espn",
    "key": "kalshi|KXNCAAFGAME-26NOV21CHSOEIU|ml|1",
    "lead_min": 550,
    "league": "NCAAF",
@@ -11335,14 +11690,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26NOV21CHSOEIU-EIU"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
+   "settled_utc": "2026-11-21T21:25:51Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Eastern Illinois",
@@ -11360,7 +11716,7 @@
     "Eastern Illinois"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.82
   },
   {
    "alerted_utc": "2026-11-21T08:30:19Z",
@@ -12058,12 +12414,14 @@
     "volume_fp": 686.9000000000001
    },
    "fade_price": 0.18,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-21T07:20:15Z",
    "game": "The Citadel vs Western Carolina",
    "game_surge_books": [
     "kalshi"
    ],
    "game_x": 2.29,
+   "graded_by": "espn",
    "key": "kalshi|KXNCAAFGAME-26NOV21CITWCU|ml|1",
    "lead_min": 634,
    "league": "NCAAF",
@@ -12113,12 +12471,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26NOV21CITWCU-WCU"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 11,
+   "settle_tries": 12,
+   "settled_utc": "2026-11-21T21:25:51Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Western Carolina",
@@ -12135,7 +12494,7 @@
     "Western Carolina"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.2
   },
   {
    "alerted_utc": "2026-11-21T07:05:35Z",
