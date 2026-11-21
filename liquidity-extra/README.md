@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 20, 7:30 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 30.
+Updated Fri Nov 20, 7:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 29.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 376-229 (-22.37u flat) | rule met: 69-59
+**Record:** 377-229 (-21.29u flat) | rule met: 69-59
 
-**Fade (paper, betting against the print):** 204-341 (+23.41u flat, after fees)
+**Fade (paper, betting against the print):** 204-342 (+22.41u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -21,7 +21,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 20 3:20PM | NCAAB | Cal State Bakersfield vs Idaho | moneyline: Idaho | kalshi | $47k | -127 |  |  | +0.0c |  | pending |
 | Nov 20 3:10PM | NCAAB | Iowa vs Xavier: Spread | spread: NOT Xavier wins by over 3.5 points | kalshi | $45k | -104 |  |  | -1.0c |  | pending |
 | Nov 20 3:10PM | NCAAB | Kansas City vs Iona | moneyline: Iona | kalshi | $48k | -178 | ✅ novig |  | +1.0c | yes | pending |
-| Nov 20 3:10PM | NCAAB | Dayton vs Utah | moneyline: Dayton | kalshi | $33k | +108 |  |  | +2.0c |  | pending |
+| Nov 20 3:10PM | NCAAB | Dayton vs Utah | moneyline: Dayton | kalshi | $33k | +108 |  |  | +2.0c |  | W |
 | Nov 20 2:50PM | NCAAB | Northwestern vs Virginia Tech: Point Total | total: Over 142.5 points | kalshi | $48k | -104 |  | ❌ | +0.0c |  | W |
 | Nov 20 1:50PM | NCAAB | UAB vs George Washington: Point Total | total: Over 151.5 points | kalshi | $38k | +104 | ✅ novig |  | +0.0c | yes | W |
 | Nov 20 1:30PM | NCAAB | Saint Louis vs Saint Mary's | moneyline: Saint Mary's | kalshi | $25k | -117 |  | ❌ | -1.0c |  | pending |
