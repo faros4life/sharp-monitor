@@ -1,17 +1,17 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 20, 9:30 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 15.
+Updated Fri Nov 20, 9:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 13.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 385-235 (-21.66u flat) | rule met: 72-59
+**Record:** 387-235 (-20.74u flat) | rule met: 72-59
 
-**Fade (paper, betting against the print):** 210-350 (+24.03u flat, after fees)
+**Fade (paper, betting against the print):** 210-352 (+22.03u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 20 6:50PM | NCAAB | Georgia St. vs Jacksonville St. | moneyline: Jacksonville St. | kalshi | $27k | -113 |  | ✅ | +0.0c |  | W |
-| Nov 20 6:40PM | NCAAB | UT Arlington vs Northwestern St. | moneyline: UT Arlington | kalshi | $58k | -163 |  |  | +0.0c |  | pending |
+| Nov 20 6:40PM | NCAAB | UT Arlington vs Northwestern St. | moneyline: UT Arlington | kalshi | $58k | -163 |  |  | +0.0c |  | W |
 | Nov 20 6:30PM | NCAAB | Coastal Carolina vs Tennessee: Spread | spread: NOT Tennessee wins by over 26.5 points | kalshi | $29k | -117 |  | ✅ | +1.0c |  | L |
 | Nov 20 5:20PM | NCAAB | Saint Joseph's vs Drexel | moneyline: Saint Joseph's | kalshi | $33k | -170 |  |  | +1.0c |  | L |
 | Nov 20 3:30PM | NCAAB | Rhode Island vs Liberty | moneyline: Rhode Island | kalshi | $37k | -108 | ✅ novig | ❌ | +1.0c |  | L |
@@ -37,7 +37,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 20 12:00PM | NCAAB | Kentucky vs Indiana | moneyline: Indiana | kalshi | $35k | -156 | ✅ novig |  | -1.0c |  | pending |
 | Nov 20 11:50AM | NCAAB | South Carolina St. vs The Citadel | moneyline: The Citadel | kalshi | $43k | -138 | ✅ novig |  | +1.0c | yes | W |
 | Nov 20 10:20AM | NCAAB | Mercyhurst vs Canisius | moneyline: Mercyhurst | kalshi | $40k | -138 |  |  | +5.0c |  | L |
-| Nov 20 8:40AM | NCAAB | Tulsa vs Mississippi St. | moneyline: Mississippi St. | kalshi | $49k | -285 |  | ✅ | +0.0c |  | pending |
+| Nov 20 8:40AM | NCAAB | Tulsa vs Mississippi St. | moneyline: Mississippi St. | kalshi | $49k | -285 |  | ✅ | +0.0c |  | W |
 | Nov 20 3:20AM | NCAAB | Western Illinois vs University at Albany | moneyline: Albany | kalshi | $143k | -300 |  |  | -3.0c |  | W |
 | Nov 20 3:20AM | NCAAB | Georgia vs Georgia Tech | moneyline: Georgia | kalshi | $75k | -335 |  |  | +0.0c |  | pending |
 | Nov 20 3:20AM | NCAAB | South Dakota St. vs Idaho St. | moneyline: South Dakota St. | kalshi | $138k | -270 |  |  | -4.0c |  | L |
