@@ -1,6 +1,213 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-21T19:30:23Z",
+   "base_depth": 114231,
+   "best_price": 0.555,
+   "best_price_american": -125,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.56,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-21",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 10099,
+     "new_this_side": 55922,
+     "other_side": 77828,
+     "other_side_all_levels": 152231,
+     "ratio": 0.6,
+     "this_side": 43490,
+     "this_side_all_levels": 157279
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "MTS (0)",
+     "price": 0.555,
+     "this_side": 16479
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Middle Tennessee",
+     "price": 0.5652,
+     "this_side": 3265
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 13721.09,
+    "volume_24h_fp": 1697.5900000000001,
+    "volume_fp": 13824.09
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 12126.5,
+    "volume_24h_fp": 28.0,
+    "volume_fp": 12126.5
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 1594.5900000000001,
+    "volume_24h_fp": 1669.5900000000001,
+    "volume_fp": 1697.5900000000001
+   },
+   "fade_price": 0.45,
+   "first_seen_utc": "2026-11-21T19:20:23Z",
+   "game": "Middle Tennessee vs Indiana St.",
+   "game_surge_books": [],
+   "game_x": 1.52,
+   "key": "kalshi|KXNCAAMBGAME-26NOV21MTUINST|ml|0",
+   "lead_min": 30,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 55922,
+   "new_x": 1.95,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 13721.09,
+      "volume_24h_fp": 1697.5900000000001,
+      "volume_fp": 13824.09
+     },
+     "game_normal": 103475,
+     "game_x": 1.52,
+     "normal": 28653,
+     "now": 157279,
+     "type": "ML",
+     "x": 5.49
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 1096748.0,
+      "volume": 1115455.0
+     },
+     "game_normal": 29048,
+     "game_x": 1.28,
+     "normal": 5764,
+     "now": 37071,
+     "type": "ML",
+     "x": 6.43
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 2828,
+     "game_x": 1.37,
+     "normal": 1143,
+     "now": 3865,
+     "type": "ML",
+     "x": 3.38
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.56,
+   "price_american": -127,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.56,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -145
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -145
+    },
+    "betopenly": {
+     "point": null,
+     "price": -138
+    },
+    "betrivers": {
+     "point": null,
+     "price": -134
+    },
+    "betus": {
+     "point": null,
+     "price": -145
+    },
+    "bovada": {
+     "point": null,
+     "price": -135
+    },
+    "circasports": {
+     "point": null,
+     "price": -140
+    },
+    "draftkings": {
+     "point": null,
+     "price": -142
+    },
+    "fanatics": {
+     "point": null,
+     "price": -140
+    },
+    "fanduel": {
+     "point": null,
+     "price": -134
+    },
+    "kalshi": {
+     "point": null,
+     "price": -127
+    },
+    "lowvig": {
+     "point": null,
+     "price": -145
+    },
+    "novig": {
+     "point": null,
+     "price": -125
+    },
+    "polymarket": {
+     "point": null,
+     "price": -133
+    },
+    "prophetx": {
+     "point": null,
+     "price": -130
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -135
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV21MTUINST-MTU"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Middle Tennessee",
+   "side_label": "Middle Tennessee",
+   "size_x": 5.49,
+   "start_source": "odds",
+   "start_utc": "2026-11-21T20:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Middle Tennessee",
+    "Indiana St."
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-21T19:10:20Z",
    "base_depth": 27852,
    "best_price": 0.49,
@@ -14,8 +221,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.48,
-   "clv_cents": 0.0,
+   "close_price": 0.49,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-21",
    "depth_by_book": {
@@ -46,9 +253,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2809.93,
-    "volume_24h_fp": 2791.1,
-    "volume_fp": 2809.93
+    "open_interest_fp": 2978.93,
+    "volume_24h_fp": 2809.93,
+    "volume_fp": 2978.93
    },
    "ex_stats_first": {
     "open_interest_fp": 2791.1,
@@ -99,6 +306,8 @@
    "norm_ready_books": 2,
    "paper_only": false,
    "price": 0.48,
+   "price_after_15m": 0.49,
+   "price_after_15m_book": "novig",
    "price_american": 108,
    "price_rule": "ok",
    "price_when_first_seen": 0.48,
@@ -168,7 +377,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-21T19:30:23Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNCAAMBTOTAL-26NOV21USTMILW-152"
@@ -185,6 +395,7 @@
    "size_x": 6.0,
    "start_source": "odds",
    "start_utc": "2026-11-21T20:00:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi",
     "novig"
@@ -849,9 +1060,9 @@
     "volume_fp": 116.02
    },
    "ex_stats_close": {
-    "open_interest_fp": 12901.23,
-    "volume_24h_fp": 10214.82,
-    "volume_fp": 13261.32
+    "open_interest_fp": 12966.54,
+    "volume_24h_fp": 10534.2,
+    "volume_fp": 13326.630000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 10744.060000000001,
@@ -1246,7 +1457,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 763.3,
-    "volume_24h_fp": 661.1099999999999,
+    "volume_24h_fp": 686.12,
     "volume_fp": 767.5
    },
    "ex_stats_first": {
@@ -1660,7 +1871,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 740.44,
-    "volume_24h_fp": 711.63,
+    "volume_24h_fp": 721.63,
     "volume_fp": 740.44
    },
    "ex_stats_first": {
@@ -1868,9 +2079,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 16408.38,
-    "volume_24h_fp": 16312.02,
-    "volume_fp": 16421.0
+    "open_interest_fp": 21786.17,
+    "volume_24h_fp": 16318.330000000002,
+    "volume_fp": 21798.79
    },
    "ex_stats_first": {
     "open_interest_fp": 5482.0599999999995,
@@ -2075,9 +2286,9 @@
     "volume_fp": 17.83
    },
    "ex_stats_close": {
-    "open_interest_fp": 15036.05,
-    "volume_24h_fp": 17892.77,
-    "volume_fp": 17971.27
+    "open_interest_fp": 15057.32,
+    "volume_24h_fp": 17939.5,
+    "volume_fp": 17992.54
    },
    "ex_stats_first": {
     "open_interest_fp": 14372.97,
@@ -3108,9 +3319,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 18965.07,
-    "volume_24h_fp": 18031.59,
-    "volume_fp": 18977.07
+    "open_interest_fp": 19366.67,
+    "volume_24h_fp": 18947.65,
+    "volume_fp": 19446.35
    },
    "ex_stats_first": {
     "open_interest_fp": 4714.16,
@@ -3669,8 +3880,8 @@
     "volume": 851.0
    },
    "ex_stats_close": {
-    "openInterest": 3304972.0,
-    "volume": 3338607.0
+    "openInterest": 3308994.0,
+    "volume": 3342629.0
    },
    "ex_stats_first": {
     "openInterest": 541534.0,
@@ -3979,7 +4190,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 9939.33,
-    "volume_24h_fp": 9193.05,
+    "volume_24h_fp": 9919.05,
     "volume_fp": 9942.05
    },
    "ex_stats_first": {
@@ -4154,7 +4365,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 10034.2,
-    "volume_24h_fp": 9997.75,
+    "volume_24h_fp": 10020.11,
     "volume_fp": 10103.48
    },
    "ex_stats_first": {
@@ -8802,7 +9013,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 132,
+   "settle_tries": 133,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Daniil Medvedev N/A",
