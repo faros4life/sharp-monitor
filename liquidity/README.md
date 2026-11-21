@@ -1,18 +1,20 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 21, 5:25 PM ET. This run: 1 new, 0 not confirmed, 2 pending. Open alerts: 31.
+Updated Sat Nov 21, 5:30 PM ET. This run: 2 new, 0 not confirmed, 2 pending. Open alerts: 32.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1800-1412 (-39.37u flat) | rule met: 1050-845
+**Record:** 1801-1412 (-39.12u flat) | rule met: 1051-845
 
-**Fade (paper, betting against the print):** 1146-1527 (-195.71u flat, after fees)
+**Fade (paper, betting against the print):** 1146-1528 (-196.71u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 21 5:30PM | NHL | Vegas vs Winnipeg | moneyline: Vegas | kalshi | $56k | -122 | ✅ novig,prophetx |  | +0.0c |  | pending |
+| Nov 21 5:30PM | NCAAF | Pittsburgh vs Louisville | moneyline: Louisville | kalshi | $119k | -426 | ✅ novig | ❌ | +0.0c |  | pending |
 | Nov 21 5:25PM | NHL | Buffalo vs Florida | moneyline: Buffalo | kalshi | $56k | +127 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 21 5:20PM | NCAAF | Arizona vs Kansas St.: Total Points | total: Over 53.5 points | kalshi | $58k | -104 | ✅ novig |  | +0.0c |  | pending |
-| Nov 21 5:20PM | NHL | Pittsburgh vs Nashville | moneyline: Pittsburgh | kalshi | $87k | +117 | ✅ novig,prophetx |  | +0.0c |  | pending |
+| Nov 21 5:20PM | NHL | Pittsburgh vs Nashville | moneyline: Pittsburgh | kalshi | $87k | +117 | ✅ novig,prophetx |  | +0.0c | yes | pending |
 | Nov 21 5:15PM | NCAAF | Hawai'i vs Nevada | moneyline: Nevada | kalshi | $131k | -245 |  |  | +0.0c |  | pending |
 | Nov 21 5:00PM | NCAAF | Maryland vs USC: Total Points | total: NOT Over 57.5 points | kalshi | $92k | -100 |  |  | +0.0c |  | pending |
 | Nov 21 4:40PM | NCAAF | Pittsburgh @ Louisville | moneyline: LOU (0) | novig | $27k | -426 | ✅ kalshi,prophetx |  | -1.0c |  | pending |
@@ -31,7 +33,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 1:25PM | NCAAF | Chattanooga vs Alabama: Spread | spread: NOT Alabama wins by over 48.5 points | kalshi | $108k | -113 |  | ✅ | +2.0c | yes | W |
 | Nov 21 12:55PM | NBA | Milwaukee Bucks at Philadelphia 76ers | moneyline: Philadelphia 76ers | prophetx | $28k | -485 | ✅ kalshi,novig | ❌ | +0.0c |  | W |
 | Nov 21 12:55PM | NCAAF | Penn vs Princeton | moneyline: Penn | kalshi | $104k | -456 |  |  | +14.0c |  | W |
-| Nov 21 12:55PM | NCAAF | Missouri St. vs Jacksonville St. | moneyline: Jacksonville St. | kalshi | $243k | -376 | ✅ prophetx |  | +1.0c | yes | pending |
+| Nov 21 12:55PM | NCAAF | Missouri St. vs Jacksonville St. | moneyline: Jacksonville St. | kalshi | $243k | -376 | ✅ prophetx |  | +1.0c | yes | W |
 | Nov 21 12:45PM | NCAAF | UCLA @ Michigan | moneyline: UCLA (0) | novig | $66k | -163 | ✅ prophetx |  | -0.5c | yes | pending |
 | Nov 21 12:40PM | NBA | Milwaukee Bucks @ Philadelphia 76ers | spread: PHI -11.5 (-11.5) | novig | $27k | +104 | ✅ kalshi | ❌ | +0.0c |  | L |
 | Nov 21 12:40PM | NCAAF | Houston vs West Virginia: Spread | spread: Houston wins by over 6.5 points | kalshi | $82k | -100 |  | ❌ | +0.0c | yes | L |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 18 11:56PM | NBA | Portland vs Milwaukee | moneyline: Portland | kalshi | $249k | -355 |  |  | +0.0c |  | W |
 | Nov 18 11:46PM | NBA | Golden State vs Memphis | moneyline: Memphis | kalshi | $71k | -317 |  |  | -9.0c |  | W |
 | Nov 18 11:20PM | NFL | Indianapolis Colts @ Houston Texans | moneyline: HOU (0) | novig | $25k | -567 | ✅ kalshi |  | +0.0c | yes | W |
-| Nov 18 9:55PM | NHL | Vancouver vs Seattle | moneyline: Seattle | kalshi | $30k | -170 |  |  | -3.0c | yes | W |
-| Nov 18 9:50PM | NBA | Phoenix vs Sacramento: Total Points | total: Over 227.5 points | kalshi | $33k | +104 |  | ✅ | +0.0c |  | W |
