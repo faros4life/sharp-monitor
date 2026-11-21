@@ -1,21 +1,22 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 21, 4:50 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 27.
+Updated Sat Nov 21, 5:00 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 27.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 402-242 (-18.69u flat) | rule met: 74-62
+**Record:** 402-243 (-19.69u flat) | rule met: 74-62
 
-**Fade (paper, betting against the print):** 217-367 (+16.84u flat, after fees)
+**Fade (paper, betting against the print):** 218-367 (+17.67u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 21 5:00PM | NCAAB | Michigan @ Villanova | moneyline: MICH (0) | novig | $26k | -153 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Nov 21 4:40PM | NCAAB | Michigan vs Villanova | moneyline: Michigan | kalshi | $49k | -150 |  |  | +0.0c |  | pending |
 | Nov 21 4:10PM | NCAAB | Air Force vs UTSA: Point Total | total: NOT Over 172.5 points | kalshi | $32k | +108 |  | ❌ | +0.0c |  | pending |
 | Nov 21 3:30PM | TENNIS | Zverev vs Medvedev | moneyline: Zverev | kalshi | $241k | -400 |  |  | -6.0c |  | pending |
-| Nov 21 3:10PM | NCAAB | Penn vs La Salle | moneyline: Penn | kalshi | $28k | +133 |  |  | +48.0c | yes | pending |
+| Nov 21 3:10PM | NCAAB | Penn vs La Salle | moneyline: Penn | kalshi | $28k | +133 |  |  | +43.0c | yes | pending |
 | Nov 21 2:30PM | NCAAB | Middle Tennessee vs Indiana St. | moneyline: Middle Tennessee | kalshi | $56k | -127 | ✅ novig |  | +0.0c |  | pending |
-| Nov 21 2:10PM | NCAAB | St. Thomas vs Milwaukee: Point Total | total: NOT Over 151.5 points | kalshi | $30k | +108 |  |  | +1.0c | yes | pending |
+| Nov 21 2:10PM | NCAAB | St. Thomas vs Milwaukee: Point Total | total: NOT Over 151.5 points | kalshi | $30k | +108 |  |  | +1.0c | yes | L |
 | Nov 21 1:20PM | NCAAB | Northern Illinois vs Bowling Green: Point Total | total: NOT Over 147.5 points | kalshi | $37k | -100 | ✅ novig | ❌ | +0.0c |  | L |
 | Nov 21 12:20PM | NCAAB | Charleston Southern vs Mercer | moneyline: Mercer | kalshi | $49k | -355 | ✅ novig |  | +0.0c |  | pending |
 | Nov 21 11:30AM | NCAAB | Morehead St. vs Elon: Spread | spread: NOT Elon wins by over 12.5 points | kalshi | $38k | -122 |  | ✅ | +1.0c |  | pending |
@@ -36,7 +37,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 9:40AM | NCAAB | Radford @ Chattanooga | moneyline: UTC (0) | novig | $37k | -335 |  |  | +1.0c |  | pending |
 | Nov 21 9:40AM | NCAAB | USC Upstate vs UNC Greensboro | moneyline: UNC Greensboro | kalshi | $69k | -257 |  |  | +0.0c |  | W |
 | Nov 21 9:40AM | NCAAB | Radford vs Chattanooga | moneyline: Chattanooga | kalshi | $46k | -335 |  |  | +1.0c |  | pending |
-| Nov 21 9:40AM | NCAAB | Penn vs La Salle | moneyline: La Salle | kalshi | $37k | -133 |  |  | -47.0c | yes | pending |
+| Nov 21 9:40AM | NCAAB | Penn vs La Salle | moneyline: La Salle | kalshi | $37k | -133 |  |  | -42.0c | yes | pending |
 | Nov 21 9:40AM | NCAAB | Kent St. vs Cleveland St. | moneyline: Kent St. | kalshi | $45k | -150 | ✅ novig |  | +0.0c |  | W |
 | Nov 21 9:40AM | NCAAB | Brown vs Vermont | moneyline: Vermont | kalshi | $30k | -156 |  |  | +3.0c |  | pending |
 | Nov 21 9:30AM | NCAAB | Northeastern vs Stonehill | moneyline: Northeastern | kalshi | $26k | -300 |  |  | +6.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 15 4:20PM | NCAAB | Western Michigan vs Southern Indiana: Point Total | total: Over 141.5 points | kalshi | $38k | +108 |  | ❌ | +0.0c |  | L |
 | Nov 15 4:10PM | NCAAB | Coastal Carolina vs Wisconsin: Point Total | total: NOT Over 149.5 points | kalshi | $33k | -113 |  |  | +0.0c | yes | L |
 | Nov 15 2:20PM | NCAAB | Missouri vs Marquette | moneyline: Marquette | kalshi | $43k | -133 | ✅ novig | ✅ | +0.0c |  | L |
-| Nov 15 1:20PM | NCAAB | Purdue Fort Wayne vs Eastern Illinois | moneyline: Purdue Fort Wayne | kalshi | $30k | -150 | ✅ novig |  | +0.0c | yes | W |

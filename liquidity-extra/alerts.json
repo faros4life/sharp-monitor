@@ -1,6 +1,213 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-21T22:00:26Z",
+   "base_depth": 18099,
+   "best_price": 0.605,
+   "best_price_american": -153,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.605,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-21",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Michigan",
+     "price": 0.6,
+     "this_side": 139724
+    },
+    "novig": {
+     "new_other_side": -1594,
+     "new_this_side": 25572,
+     "other_side": 4749,
+     "other_side_all_levels": 9999,
+     "ratio": 7.1,
+     "this_side": 33753,
+     "this_side_all_levels": 44501
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Michigan",
+     "price": 0.6154,
+     "this_side": 12234
+    }
+   },
+   "ex_stats_alert": {
+    "openInterest": 7572873.0,
+    "volume": 8104308.0
+   },
+   "ex_stats_change": {
+    "openInterest": 1188593.0,
+    "volume": 1292805.0
+   },
+   "ex_stats_first": {
+    "openInterest": 6384280.0,
+    "volume": 6811503.0
+   },
+   "fade_price": 0.4,
+   "first_seen_utc": "2026-11-21T21:50:20Z",
+   "game": "Michigan @ Villanova",
+   "game_surge_books": [
+    "prophetx"
+   ],
+   "game_x": 1.52,
+   "key": "novig|{\"market_id\": \"01a1fad1-4cb7-7412-82e4-874169677235\", \"outcome_id\": \"01a1fad1-4cb7-7412-82e4-8766a57ce258\"}",
+   "lead_min": 120,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 25572,
+   "new_x": 9.95,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 45361.74,
+      "volume_24h_fp": 43031.08,
+      "volume_fp": 46392.84
+     },
+     "game_normal": 112191,
+     "game_x": 1.51,
+     "normal": 21344,
+     "now": 169643,
+     "type": "ML",
+     "x": 7.95
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 7572873.0,
+      "volume": 8104308.0
+     },
+     "game_normal": 29282,
+     "game_x": 1.52,
+     "normal": 2571,
+     "now": 44501,
+     "type": "ML",
+     "x": 17.31
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 5681,
+     "game_x": 2.19,
+     "normal": 1458,
+     "now": 12434,
+     "type": "ML",
+     "x": 8.53
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.605,
+   "price_american": -153,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.605,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -175
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -170
+    },
+    "betopenly": {
+     "point": null,
+     "price": -171
+    },
+    "betrivers": {
+     "point": null,
+     "price": -200
+    },
+    "betus": {
+     "point": null,
+     "price": -170
+    },
+    "bovada": {
+     "point": null,
+     "price": -175
+    },
+    "circasports": {
+     "point": null,
+     "price": -165
+    },
+    "draftkings": {
+     "point": null,
+     "price": -175
+    },
+    "fanatics": {
+     "point": null,
+     "price": -175
+    },
+    "fanduel": {
+     "point": null,
+     "price": -172
+    },
+    "kalshi": {
+     "point": null,
+     "price": -150
+    },
+    "lowvig": {
+     "point": null,
+     "price": -170
+    },
+    "novig": {
+     "point": null,
+     "price": -153
+    },
+    "polymarket": {
+     "point": null,
+     "price": -156
+    },
+    "prophetx": {
+     "point": null,
+     "price": -160
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -170
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a1fad1-4cb7-7412-82e4-874169677235",
+    "outcome_id": "01a1fad1-4cb7-7412-82e4-8766a57ce258"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Michigan",
+   "side_label": "MICH (0)",
+   "size_x": 17.31,
+   "start_source": "odds",
+   "start_utc": "2026-11-22T00:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Michigan",
+    "Villanova"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-21T21:40:22Z",
    "base_depth": 109039,
    "best_price": 0.6,
@@ -52,9 +259,9 @@
     "volume_fp": 7221.58
    },
    "ex_stats_close": {
-    "open_interest_fp": 45137.8,
-    "volume_24h_fp": 37646.57,
-    "volume_fp": 46168.9
+    "open_interest_fp": 45361.74,
+    "volume_24h_fp": 43031.08,
+    "volume_fp": 46392.84
    },
    "ex_stats_first": {
     "open_interest_fp": 32612.739999999998,
@@ -112,6 +319,8 @@
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.6,
+   "price_after_15m": 0.605,
+   "price_after_15m_book": "novig",
    "price_american": -150,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.6,
@@ -198,6 +407,7 @@
    "size_x": 8.05,
    "start_source": "odds",
    "start_utc": "2026-11-22T00:00:00Z",
+   "still_actionable": false,
    "surge_books": [
     "kalshi",
     "novig",
@@ -520,8 +730,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.91,
-   "clv_cents": 48.0,
+   "close_price": 0.86,
+   "clv_cents": 43.0,
    "confirmed_after_min": 10,
    "date": "2026-11-21",
    "depth_by_book": {
@@ -546,9 +756,9 @@
     "volume_fp": 108.37
    },
    "ex_stats_close": {
-    "open_interest_fp": 161887.85,
-    "volume_24h_fp": 203169.84,
-    "volume_fp": 298718.58
+    "open_interest_fp": 175006.77000000002,
+    "volume_24h_fp": 298490.05,
+    "volume_fp": 322345.64
    },
    "ex_stats_first": {
     "open_interest_fp": 10776.26,
@@ -815,6 +1025,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Middle Tennessee",
@@ -891,6 +1102,7 @@
     "volume_fp": 2791.1
    },
    "fade_price": 0.53,
+   "fade_units": 0.83,
    "first_seen_utc": "2026-11-21T19:00:26Z",
    "game": "St. Thomas vs Milwaukee: Point Total",
    "game_surge_books": [
@@ -1011,11 +1223,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAMBTOTAL-26NOV21USTMILW-152"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
+   "settled_utc": "2026-11-21T22:00:26Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -1033,7 +1247,7 @@
     "Milwaukee"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-21T18:20:21Z",
@@ -1307,9 +1521,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 732.45,
-    "volume_24h_fp": 676.24,
-    "volume_fp": 732.45
+    "open_interest_fp": 741.73,
+    "volume_24h_fp": 687.24,
+    "volume_fp": 741.73
    },
    "ex_stats_first": {
     "open_interest_fp": 163.51999999999998,
@@ -1691,9 +1905,9 @@
     "volume_fp": 116.02
    },
    "ex_stats_close": {
-    "open_interest_fp": 45137.8,
-    "volume_24h_fp": 37646.57,
-    "volume_fp": 46168.9
+    "open_interest_fp": 45361.74,
+    "volume_24h_fp": 43031.08,
+    "volume_fp": 46392.84
    },
    "ex_stats_first": {
     "open_interest_fp": 10744.060000000001,
@@ -2717,9 +2931,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 48755.61,
-    "volume_24h_fp": 48649.17,
-    "volume_fp": 48768.229999999996
+    "open_interest_fp": 48760.58,
+    "volume_24h_fp": 48661.44,
+    "volume_fp": 48773.2
    },
    "ex_stats_first": {
     "open_interest_fp": 5482.0599999999995,
@@ -3053,6 +3267,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Austin Peay",
@@ -3750,7 +3965,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1049.8,
-    "volume_24h_fp": 326.73,
+    "volume_24h_fp": 337.73,
     "volume_fp": 1058.98
    },
    "ex_stats_first": {
@@ -3961,7 +4176,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 31651.36,
-    "volume_24h_fp": 30802.36,
+    "volume_24h_fp": 30806.83,
     "volume_fp": 31731.04
    },
    "ex_stats_first": {
@@ -4836,9 +5051,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 49327.740000000005,
-    "volume_24h_fp": 41117.21,
-    "volume_fp": 49641.46
+    "open_interest_fp": 57331.86,
+    "volume_24h_fp": 49618.46,
+    "volume_fp": 57645.58
    },
    "ex_stats_first": {
     "open_interest_fp": 147.84,
@@ -4985,8 +5200,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.1,
-   "clv_cents": -47.0,
+   "close_price": 0.15,
+   "clv_cents": -42.0,
    "confirmed_after_min": 10,
    "date": "2026-11-21",
    "depth_by_book": {
@@ -5011,9 +5226,9 @@
     "volume_fp": 1575.15
    },
    "ex_stats_close": {
-    "open_interest_fp": 161887.85,
-    "volume_24h_fp": 203169.84,
-    "volume_fp": 298718.58
+    "open_interest_fp": 175006.77000000002,
+    "volume_24h_fp": 298490.05,
+    "volume_fp": 322345.64
    },
    "ex_stats_first": {
     "open_interest_fp": 867.8299999999999,
@@ -5351,9 +5566,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2990.42,
+    "open_interest_fp": 2997.42,
     "volume_24h_fp": 5490.45,
-    "volume_fp": 5493.45
+    "volume_fp": 5500.45
    },
    "ex_stats_first": {
     "open_interest_fp": 2079.19,
@@ -9680,7 +9895,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 147,
+   "settle_tries": 148,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Daniil Medvedev N/A",
