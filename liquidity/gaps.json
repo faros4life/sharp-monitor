@@ -2,102 +2,6 @@
  "note": "PAPER ONLY (Oct 25; persistence added Oct 26): opposite sides of the same game/market/line on two different exchanges whose combined cost after fees is under $1 (Kalshi/Novig/ProphetX; Polymarket here is the global book, excluded). edge_pct = locked profit per $ staked at first sight; max/last_edge_pct while open. size_est = smaller leg's near-price depth (UPPER BOUND). first/last_seen_utc, scans_seen, lifetime_min = how long the gap stayed open (scan-interval resolution; a 1-scan gap may be a feed artifact). scan_sec = seconds from run start to this save, the most the two legs' reads can be apart. Measurement only: never alerted, never bet.",
  "gaps": [
   {
-   "seen_utc": "2026-11-07T03:10:10Z",
-   "league": "NCAAF",
-   "game": "Rhode Island @ New Hampshire",
-   "market": "moneyline",
-   "line": null,
-   "edge_pct": 0.51,
-   "total_cost": 0.9949,
-   "size_est": 257,
-   "legs": [
-    {
-     "book": "novig",
-     "side": "UNH (0)",
-     "price": 0.35,
-     "cost_after_fee": 0.35
-    },
-    {
-     "book": "prophetx",
-     "side": "Long Island University",
-     "price": 0.6403,
-     "cost_after_fee": 0.6449
-    }
-   ],
-   "first_seen_utc": "2026-11-07T03:10:10Z",
-   "last_seen_utc": "2026-11-07T09:46:10Z",
-   "scans_seen": 35,
-   "max_edge_pct": 1.02,
-   "scan_sec": 266,
-   "lifetime_min": 396,
-   "last_edge_pct": 0.51,
-   "last_size_est": 335
-  },
-  {
-   "seen_utc": "2026-11-07T03:41:16Z",
-   "league": "NCAAF",
-   "game": "Long Island University @ New Haven College",
-   "market": "moneyline",
-   "line": null,
-   "edge_pct": 1.34,
-   "total_cost": 0.9868,
-   "size_est": 94,
-   "legs": [
-    {
-     "book": "novig",
-     "side": "LIU (0)",
-     "price": 0.635,
-     "cost_after_fee": 0.635
-    },
-    {
-     "book": "prophetx",
-     "side": "New Hampshire",
-     "price": 0.3472,
-     "cost_after_fee": 0.3518
-    }
-   ],
-   "first_seen_utc": "2026-11-07T03:41:16Z",
-   "last_seen_utc": "2026-11-07T09:46:10Z",
-   "scans_seen": 32,
-   "max_edge_pct": 1.85,
-   "scan_sec": 281,
-   "lifetime_min": 365,
-   "last_edge_pct": 1.34,
-   "last_size_est": 512
-  },
-  {
-   "seen_utc": "2026-11-07T04:00:56Z",
-   "league": "NCAAF",
-   "game": "Kentucky @ Tennessee",
-   "market": "moneyline",
-   "line": null,
-   "edge_pct": 24.47,
-   "total_cost": 0.8034,
-   "size_est": 3071,
-   "legs": [
-    {
-     "book": "novig",
-     "side": "UK (0)",
-     "price": 0.35,
-     "cost_after_fee": 0.35
-    },
-    {
-     "book": "prophetx",
-     "side": "Middle Tennessee",
-     "price": 0.4484,
-     "cost_after_fee": 0.4534
-    }
-   ],
-   "first_seen_utc": "2026-11-07T04:00:56Z",
-   "last_seen_utc": "2026-11-07T09:46:10Z",
-   "scans_seen": 29,
-   "max_edge_pct": 25.57,
-   "scan_sec": 296,
-   "lifetime_min": 345,
-   "last_edge_pct": 25.57,
-   "last_size_est": 6619
-  },
-  {
    "seen_utc": "2026-11-07T04:30:31Z",
    "league": "NCAAF",
    "game": "Rhode Island vs New Hampshire: Total Points",
@@ -192,198 +96,6 @@
    "lifetime_min": 743,
    "last_edge_pct": 5.65,
    "last_size_est": 330
-  },
-  {
-   "seen_utc": "2026-11-07T06:40:10Z",
-   "league": "NCAAF",
-   "game": "Long Island University @ New Haven College",
-   "market": "spread",
-   "line": -3.5,
-   "edge_pct": 0.63,
-   "total_cost": 0.9937,
-   "size_est": 473,
-   "legs": [
-    {
-     "book": "novig",
-     "side": "LIU -3.5 (3.5)",
-     "price": 0.53,
-     "cost_after_fee": 0.53
-    },
-    {
-     "book": "prophetx",
-     "side": "New Hampshire +3.5 (+3.5)",
-     "price": 0.4587,
-     "cost_after_fee": 0.4637
-    }
-   ],
-   "first_seen_utc": "2026-11-07T06:40:10Z",
-   "last_seen_utc": "2026-11-07T09:46:10Z",
-   "scans_seen": 13,
-   "max_edge_pct": 0.63,
-   "scan_sec": 527,
-   "lifetime_min": 186,
-   "last_edge_pct": 0.63,
-   "last_size_est": 473
-  },
-  {
-   "seen_utc": "2026-11-07T08:20:11Z",
-   "league": "NCAAF",
-   "game": "Kentucky @ Tennessee",
-   "market": "total",
-   "line": 48.5,
-   "edge_pct": 8.12,
-   "total_cost": 0.9249,
-   "size_est": 67,
-   "legs": [
-    {
-     "book": "novig",
-     "side": "Over 48.5 (48.5)",
-     "price": 0.52,
-     "cost_after_fee": 0.52
-    },
-    {
-     "book": "prophetx",
-     "side": "under 48.5 (48.5)",
-     "price": 0.4,
-     "cost_after_fee": 0.4049
-    }
-   ],
-   "first_seen_utc": "2026-11-07T08:20:11Z",
-   "last_seen_utc": "2026-11-07T09:46:10Z",
-   "scans_seen": 6,
-   "max_edge_pct": 8.12,
-   "scan_sec": 501,
-   "lifetime_min": 86,
-   "last_edge_pct": 8.12,
-   "last_size_est": 162
-  },
-  {
-   "seen_utc": "2026-11-07T09:09:04Z",
-   "league": "NCAAF",
-   "game": "Long Island University @ New Haven College",
-   "market": "total",
-   "line": 42.5,
-   "edge_pct": 6.1,
-   "total_cost": 0.9425,
-   "size_est": 145,
-   "legs": [
-    {
-     "book": "novig",
-     "side": "Over 42.5 (42.5)",
-     "price": 0.495,
-     "cost_after_fee": 0.495
-    },
-    {
-     "book": "prophetx",
-     "side": "under 42.5 (42.5)",
-     "price": 0.4425,
-     "cost_after_fee": 0.4475
-    }
-   ],
-   "first_seen_utc": "2026-11-07T09:09:04Z",
-   "last_seen_utc": "2026-11-07T09:46:10Z",
-   "scans_seen": 3,
-   "max_edge_pct": 6.1,
-   "scan_sec": 554,
-   "lifetime_min": 37,
-   "last_edge_pct": 5.54,
-   "last_size_est": 145
-  },
-  {
-   "seen_utc": "2026-11-07T09:27:06Z",
-   "league": "NCAAF",
-   "game": "Rhode Island @ New Hampshire",
-   "market": "total",
-   "line": 45.5,
-   "edge_pct": 4.45,
-   "total_cost": 0.9574,
-   "size_est": 156,
-   "legs": [
-    {
-     "book": "novig",
-     "side": "Under 45.5 (45.5)",
-     "price": 0.525,
-     "cost_after_fee": 0.525
-    },
-    {
-     "book": "prophetx",
-     "side": "over 45.5 (45.5)",
-     "price": 0.4274,
-     "cost_after_fee": 0.4324
-    }
-   ],
-   "first_seen_utc": "2026-11-07T09:27:06Z",
-   "last_seen_utc": "2026-11-07T09:46:10Z",
-   "scans_seen": 2,
-   "max_edge_pct": 4.45,
-   "scan_sec": 569,
-   "lifetime_min": 19,
-   "last_edge_pct": 4.45,
-   "last_size_est": 156
-  },
-  {
-   "seen_utc": "2026-11-07T09:27:06Z",
-   "league": "NCAAF",
-   "game": "Western Kentucky @ Middle Tennessee",
-   "market": "total",
-   "line": 52.5,
-   "edge_pct": 7.11,
-   "total_cost": 0.9336,
-   "size_est": 153,
-   "legs": [
-    {
-     "book": "novig",
-     "side": "Under 52.5 (52.5)",
-     "price": 0.505,
-     "cost_after_fee": 0.505
-    },
-    {
-     "book": "prophetx",
-     "side": "over 52.5 (52.5)",
-     "price": 0.4237,
-     "cost_after_fee": 0.4286
-    }
-   ],
-   "first_seen_utc": "2026-11-07T09:27:06Z",
-   "last_seen_utc": "2026-11-07T09:46:10Z",
-   "scans_seen": 2,
-   "max_edge_pct": 7.11,
-   "scan_sec": 569,
-   "lifetime_min": 19,
-   "last_edge_pct": 7.11,
-   "last_size_est": 153
-  },
-  {
-   "seen_utc": "2026-11-07T09:27:06Z",
-   "league": "NCAAF",
-   "game": "Western Kentucky @ Middle Tennessee",
-   "market": "moneyline",
-   "line": null,
-   "edge_pct": 25.88,
-   "total_cost": 0.7944,
-   "size_est": 8875,
-   "legs": [
-    {
-     "book": "novig",
-     "side": "MTSU (0)",
-     "price": 0.445,
-     "cost_after_fee": 0.445
-    },
-    {
-     "book": "prophetx",
-     "side": "Kentucky",
-     "price": 0.3448,
-     "cost_after_fee": 0.3494
-    }
-   ],
-   "first_seen_utc": "2026-11-07T09:27:06Z",
-   "last_seen_utc": "2026-11-07T09:46:10Z",
-   "scans_seen": 2,
-   "max_edge_pct": 25.88,
-   "scan_sec": 569,
-   "lifetime_min": 19,
-   "last_edge_pct": 25.88,
-   "last_size_est": 8875
   },
   {
    "seen_utc": "2026-11-07T10:22:11Z",
@@ -6443,11 +6155,11 @@
     }
    ],
    "first_seen_utc": "2026-11-20T23:26:01Z",
-   "last_seen_utc": "2026-11-21T09:45:41Z",
-   "scans_seen": 108,
+   "last_seen_utc": "2026-11-21T09:50:17Z",
+   "scans_seen": 109,
    "max_edge_pct": 37.25,
    "scan_sec": 201,
-   "lifetime_min": 620,
+   "lifetime_min": 624,
    "last_edge_pct": 36.31,
    "last_size_est": 1325
   },
@@ -6785,11 +6497,11 @@
     }
    ],
    "first_seen_utc": "2026-11-21T03:00:28Z",
-   "last_seen_utc": "2026-11-21T09:45:41Z",
-   "scans_seen": 76,
+   "last_seen_utc": "2026-11-21T09:50:17Z",
+   "scans_seen": 77,
    "max_edge_pct": 35.3,
    "scan_sec": 260,
-   "lifetime_min": 405,
+   "lifetime_min": 410,
    "last_edge_pct": 35.3,
    "last_size_est": 2267
   },
@@ -7615,11 +7327,11 @@
     }
    ],
    "first_seen_utc": "2026-11-21T09:00:22Z",
-   "last_seen_utc": "2026-11-21T09:20:19Z",
-   "scans_seen": 3,
+   "last_seen_utc": "2026-11-21T09:50:17Z",
+   "scans_seen": 4,
    "max_edge_pct": 16.63,
    "scan_sec": 246,
-   "lifetime_min": 20,
+   "lifetime_min": 50,
    "last_edge_pct": 16.63,
    "last_size_est": 149
   },
