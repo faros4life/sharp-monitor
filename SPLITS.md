@@ -1,4 +1,4 @@
-# Paper splits (updated 2026-11-22T04:25:31Z)
+# Paper splits (updated 2026-11-22T04:30:37Z)
 
 Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kill bar: 30+ resulted at -0.10u/play or worse closes a split.
 
@@ -12,7 +12,7 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 | Unders only | scan | 2026-10-26 | 89-79-0 | -0.17 | -0.001 | -0.69 | OPEN |
 | Combined filter | scan | 2026-10-26 | 108-104-0 | -8.24 | -0.039 | -2.11 | OPEN |
 | Priced -125 or worse | scan | 2026-10-26 | 16-18-0 | -5.31 | -0.156 | -3.01 | CLOSED |
-| College basketball | scan | 2026-10-26 | 420-355-0 | +13.26 | +0.017 | -1.09 | OPEN |
+| College basketball | scan | 2026-10-26 | 422-355-0 | +15.11 | +0.019 | -1.07 | OPEN |
 | Fade alerts sent 12-24h out | scan | 2026-10-26 | 81-66-0 | -12.38 | -0.084 | -1.33 | CLOSED |
 | Tier 2 core (paper) | tier | 2026-10-27 | 23-23-0 | -3.25 | -0.071 | -2.38 | CLOSED |
 | Evening sends, ex-Hard Rock | scan | 2026-10-26 | 25-19-0 | +2.78 | +0.063 | -2.33 | OPEN |
