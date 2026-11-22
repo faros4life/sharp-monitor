@@ -2883,7 +2883,7 @@
    "close_fair_prob": 0.5719,
    "close_read_mins_before": 30,
    "close_value_pct": 6.8,
-   "clv": "+2 pts",
+   "clv": "+3 pts",
    "clv_conv_pts": 2.0,
    "clv_pin_line": 48.5,
    "clv_read_utc": "2026-11-22T17:30:27Z",
@@ -3406,7 +3406,7 @@
    "close_fair_prob": 0.5316,
    "close_read_mins_before": 30,
    "close_value_pct": -0.7,
-   "clv": "+1 pts",
+   "clv": "+0.5 pts",
    "clv_conv_pts": 1.5,
    "clv_pin_line": 3.0,
    "clv_read_utc": "2026-11-22T17:30:27Z",
@@ -110398,6 +110398,31 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Over 48.5 (-111) at ProphetX [-113 after ProphetX fee] (also: Hard Rock)",
+   "bet": "Over 48.5 (-111)",
+   "bet_result": null,
+   "book": "ProphetX",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -2.0,
+   "final": null,
+   "game": "Tampa Bay Buccaneers @ Detroit Lions",
+   "grade": "B",
+   "late": true,
+   "minutes_before_start": 15,
+   "price": -111,
+   "price_after_fee": -113,
+   "pushed_to_phone": false,
+   "repeat": true,
+   "score": 67,
+   "sent_et": "2026-11-22 12:50",
+   "sport": "NFL",
+   "start_utc": "2026-11-22T18:05:00Z",
+   "why": "Pinnacle total moved 48.5 -> 49.5; bet only at 49 or better (confirmed by BetOnline, Matchbook)"
+  },
   {
    "alert_text": "Over 44.5 (+100) at Novig (also: Hard Rock, ProphetX, Kalshi)",
    "bet": "Over 44.5 (+100)",
