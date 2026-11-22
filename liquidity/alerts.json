@@ -1,6 +1,562 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-22T06:05:50Z",
+   "base_depth": 778301,
+   "best_price": 0.505,
+   "best_price_american": -102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-22",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 7564,
+     "new_this_side": 187165,
+     "other_side": 568795,
+     "other_side_all_levels": 747687,
+     "ratio": 1.4,
+     "this_side": 798421,
+     "this_side_all_levels": 986386
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "PHI +3.5 (3.5)",
+     "price": 0.505,
+     "this_side": 61652
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 279238.99,
+    "volume_24h_fp": 269553.48,
+    "volume_fp": 279764.28
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 2226.17,
+    "volume_24h_fp": 4539.86,
+    "volume_fp": 2226.17
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 277012.82,
+    "volume_24h_fp": 265013.62,
+    "volume_fp": 277538.11
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-22T06:00:21Z",
+   "game": "Pittsburgh vs Philadelphia: Spread",
+   "game_surge_books": [],
+   "game_x": 1.15,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLSPREAD-26NOV22PITPHI-PIT4\"}",
+   "lead_min": 714,
+   "league": "NFL",
+   "line": 3.5,
+   "market": "spread",
+   "new_money": 187165,
+   "new_x": 0.19,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 279238.99,
+      "volume_24h_fp": 269553.48,
+      "volume_fp": 279764.28
+     },
+     "game_normal": 858045,
+     "game_x": 1.15,
+     "normal": 967526,
+     "now": 986386,
+     "type": "SPREAD",
+     "x": 1.02
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 8302535.0,
+      "volume": 12034024.0
+     },
+     "game_normal": 65099,
+     "game_x": 0.96,
+     "normal": 43345,
+     "now": 62366,
+     "type": "SPREAD",
+     "x": 1.44
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 3.5,
+     "price": -108
+    },
+    "betonlineag": {
+     "point": 4.0,
+     "price": -116
+    },
+    "betopenly": {
+     "point": 3.5,
+     "price": 101
+    },
+    "betrivers": {
+     "point": 3.5,
+     "price": -109
+    },
+    "betus": {
+     "point": 4.0,
+     "price": -115
+    },
+    "bovada": {
+     "point": 3.5,
+     "price": -108
+    },
+    "circasports": {
+     "point": 3.5,
+     "price": -115
+    },
+    "draftkings": {
+     "point": 3.5,
+     "price": -109
+    },
+    "fanatics": {
+     "point": 3.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 3.5,
+     "price": -108
+    },
+    "kalshi": {
+     "point": 3.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 4.0,
+     "price": -112
+    },
+    "mybookieag": {
+     "point": 4.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 3.5,
+     "price": -102
+    },
+    "polymarket": {
+     "point": 3.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 3.5,
+     "price": -103
+    },
+    "williamhill_us": {
+     "point": 3.5,
+     "price": -107
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNFLSPREAD-26NOV22PITPHI-PIT4"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Philadelphia",
+   "side_label": "NOT Pittsburgh wins by over 3.5 points",
+   "size_x": 1.02,
+   "start_source": "odds",
+   "start_utc": "2026-11-22T18:00:00Z",
+   "surge_books": [],
+   "teams": [
+    "Pittsburgh",
+    "Philadelphia"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-22T06:05:50Z",
+   "base_depth": 569736,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-22",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 11796,
+     "new_this_side": 165628,
+     "other_side": 510372,
+     "other_side_all_levels": 649551,
+     "ratio": 1.0,
+     "this_side": 526373,
+     "this_side_all_levels": 735243
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "MIA +16.5 (-16.5)",
+     "price": 0.51,
+     "this_side": 31230
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 312859.84,
+    "volume_24h_fp": 357935.52,
+    "volume_fp": 393428.1
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 130.92,
+    "volume_24h_fp": 783.33,
+    "volume_fp": 130.92
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 312728.92,
+    "volume_24h_fp": 357152.19,
+    "volume_fp": 393297.18
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-22T06:00:21Z",
+   "game": "Miami vs Buffalo: Spread",
+   "game_surge_books": [],
+   "game_x": 1.12,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLSPREAD-26NOV22MIABUF-BUF17\"}",
+   "lead_min": 714,
+   "league": "NFL",
+   "line": 16.5,
+   "market": "spread",
+   "new_money": 165628,
+   "new_x": 0.17,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 312859.84,
+      "volume_24h_fp": 357935.52,
+      "volume_fp": 393428.1
+     },
+     "game_normal": 657022,
+     "game_x": 1.12,
+     "normal": 967526,
+     "now": 735243,
+     "type": "SPREAD",
+     "x": 0.76
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 2950038.0,
+      "volume": 3554156.0
+     },
+     "game_normal": 34244,
+     "game_x": 0.93,
+     "normal": 43345,
+     "now": 31968,
+     "type": "SPREAD",
+     "x": 0.74
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 16.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 16.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 16.5,
+     "price": -103
+    },
+    "betrivers": {
+     "point": 16.5,
+     "price": -112
+    },
+    "betus": {
+     "point": 16.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 16.0,
+     "price": -112
+    },
+    "circasports": {
+     "point": 15.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 16.5,
+     "price": -112
+    },
+    "fanatics": {
+     "point": 16.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 16.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 16.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 16.5,
+     "price": -105
+    },
+    "mybookieag": {
+     "point": 16.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 16.5,
+     "price": -104
+    },
+    "polymarket": {
+     "point": 16.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 16.5,
+     "price": -106
+    },
+    "williamhill_us": {
+     "point": 16.5,
+     "price": -105
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNFLSPREAD-26NOV22MIABUF-BUF17"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Miami",
+   "side_label": "NOT Buffalo wins by over 16.5 points",
+   "size_x": 0.76,
+   "start_source": "odds",
+   "start_utc": "2026-11-22T18:00:00Z",
+   "surge_books": [],
+   "teams": [
+    "Miami",
+    "Buffalo"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-22T06:05:50Z",
+   "base_depth": 428835,
+   "best_price": 0.5026,
+   "best_price_american": -101,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.49,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-22",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 24190,
+     "new_this_side": 159617,
+     "other_side": 252425,
+     "other_side_all_levels": 425285,
+     "ratio": 1.5,
+     "this_side": 383987,
+     "this_side_all_levels": 588977
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 218336.79,
+    "volume_24h_fp": 217424.57,
+    "volume_fp": 218845.66
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 233.91,
+    "volume_24h_fp": 1003.22,
+    "volume_fp": 233.91
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 218102.88,
+    "volume_24h_fp": 216421.35,
+    "volume_fp": 218611.75
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-11-22T06:00:21Z",
+   "game": "Arizona vs Kansas City: Spread",
+   "game_surge_books": [],
+   "game_x": 1.19,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLSPREAD-26NOV22ARIKC-KC15\"}",
+   "lead_min": 714,
+   "league": "NFL",
+   "line": 14.5,
+   "market": "spread",
+   "new_money": 159617,
+   "new_x": 0.16,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 218336.79,
+      "volume_24h_fp": 217424.57,
+      "volume_fp": 218845.66
+     },
+     "game_normal": 495800,
+     "game_x": 1.19,
+     "normal": 967526,
+     "now": 588977,
+     "type": "SPREAD",
+     "x": 0.61
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.49,
+   "price_american": 104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.49,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 15.0,
+     "price": -108
+    },
+    "betonlineag": {
+     "point": 16.0,
+     "price": -115
+    },
+    "betopenly": {
+     "point": 15.0,
+     "price": 101
+    },
+    "betrivers": {
+     "point": 15.0,
+     "price": -113
+    },
+    "betus": {
+     "point": 16.0,
+     "price": -115
+    },
+    "bovada": {
+     "point": 14.5,
+     "price": -108
+    },
+    "circasports": {
+     "point": 14.5,
+     "price": -115
+    },
+    "draftkings": {
+     "point": 15.5,
+     "price": -113
+    },
+    "fanatics": {
+     "point": 15.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 16.5,
+     "price": -115
+    },
+    "kalshi": {
+     "point": 14.5,
+     "price": 104
+    },
+    "lowvig": {
+     "point": 16.0,
+     "price": -113
+    },
+    "mybookieag": {
+     "point": 15.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 15.5,
+     "price": -106
+    },
+    "polymarket": {
+     "point": 14.5,
+     "price": 104
+    },
+    "prophetx": {
+     "point": 16.5,
+     "price": -116
+    },
+    "williamhill_us": {
+     "point": 15.5,
+     "price": -108
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNFLSPREAD-26NOV22ARIKC-KC15"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Arizona",
+   "side_label": "NOT Kansas City wins by over 14.5 points",
+   "size_x": 0.61,
+   "start_source": "odds",
+   "start_utc": "2026-11-22T18:00:00Z",
+   "surge_books": [],
+   "teams": [
+    "Arizona",
+    "Kansas City"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-22T06:00:21Z",
    "base_depth": 2449330,
    "best_price": 0.725,
@@ -50,6 +606,11 @@
     "open_interest_fp": 53.0,
     "volume_24h_fp": 0.0,
     "volume_fp": 53.0
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 136179.59999999998,
+    "volume_24h_fp": 36336.71,
+    "volume_fp": 150058.5
    },
    "ex_stats_first": {
     "open_interest_fp": 136125.28,
@@ -268,9 +829,9 @@
     "volume_fp": 129.94
    },
    "ex_stats_close": {
-    "open_interest_fp": 28282.19,
-    "volume_24h_fp": 26584.32,
-    "volume_fp": 32141.399999999998
+    "open_interest_fp": 28973.739999999998,
+    "volume_24h_fp": 27152.62,
+    "volume_fp": 32882.96
    },
    "ex_stats_first": {
     "open_interest_fp": 28144.53,
@@ -463,9 +1024,9 @@
     "volume_fp": 326.89
    },
    "ex_stats_close": {
-    "open_interest_fp": 30038.14,
-    "volume_24h_fp": 30381.260000000002,
-    "volume_fp": 33742.28
+    "open_interest_fp": 30186.4,
+    "volume_24h_fp": 30713.96,
+    "volume_fp": 34117.16
    },
    "ex_stats_first": {
     "open_interest_fp": 29293.340000000004,
@@ -523,6 +1084,8 @@
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.77,
+   "price_after_15m": 0.765,
+   "price_after_15m_book": "novig",
    "price_american": -335,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.77,
@@ -619,6 +1182,7 @@
    "size_x": 1.35,
    "start_source": "odds",
    "start_utc": "2026-11-23T00:00:00Z",
+   "still_actionable": true,
    "surge_books": [
     "novig"
    ],
@@ -643,8 +1207,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 0.0,
+   "close_price": 0.55,
+   "clv_cents": 1.0,
    "confirmed_after_min": 5,
    "date": "2026-11-22",
    "depth_by_book": {
@@ -681,9 +1245,9 @@
     "volume_fp": 768.65
    },
    "ex_stats_close": {
-    "open_interest_fp": 35283.98,
-    "volume_24h_fp": 46508.909999999996,
-    "volume_fp": 56980.58
+    "open_interest_fp": 35647.5,
+    "volume_24h_fp": 53799.10999999999,
+    "volume_fp": 57344.1
    },
    "ex_stats_first": {
     "open_interest_fp": 24625.07,
@@ -888,9 +1452,9 @@
     "volume_fp": 4.02
    },
    "ex_stats_close": {
-    "open_interest_fp": 14229.91,
-    "volume_24h_fp": 13988.85,
-    "volume_fp": 14876.25
+    "open_interest_fp": 14339.35,
+    "volume_24h_fp": 14054.460000000001,
+    "volume_fp": 14985.689999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 9102.849999999999,
@@ -1100,9 +1664,9 @@
     "volume_fp": 759.99
    },
    "ex_stats_close": {
-    "open_interest_fp": 292133.19999999995,
-    "volume_24h_fp": 110346.76,
-    "volume_fp": 306788.61
+    "open_interest_fp": 292581.65,
+    "volume_24h_fp": 110359.37,
+    "volume_fp": 307480.14
    },
    "ex_stats_first": {
     "open_interest_fp": 274714.36,
@@ -1325,9 +1889,9 @@
     "volume_fp": 584.1
    },
    "ex_stats_close": {
-    "open_interest_fp": 197861.27000000002,
-    "volume_24h_fp": 74442.2,
-    "volume_fp": 217650.65
+    "open_interest_fp": 198430.0,
+    "volume_24h_fp": 75508.29999999999,
+    "volume_fp": 218219.38
    },
    "ex_stats_first": {
     "open_interest_fp": 179658.09,
@@ -1546,9 +2110,9 @@
     "volume_fp": 1.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 542.02,
-    "volume_24h_fp": 715.37,
-    "volume_fp": 805.13
+    "open_interest_fp": 565.0400000000001,
+    "volume_24h_fp": 719.23,
+    "volume_fp": 828.1500000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 254.96,
@@ -1791,7 +2355,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [
     "Utah State Aggies +7.5 (-113)"
@@ -1862,9 +2426,9 @@
     "volume_fp": 260.47
    },
    "ex_stats_close": {
-    "open_interest_fp": 189942.44,
-    "volume_24h_fp": 183989.55,
-    "volume_fp": 206428.65
+    "open_interest_fp": 190036.85,
+    "volume_24h_fp": 184358.87,
+    "volume_fp": 206659.58
    },
    "ex_stats_first": {
     "open_interest_fp": 175873.01,
@@ -2291,9 +2855,9 @@
     "volume_fp": 727.79
    },
    "ex_stats_close": {
-    "open_interest_fp": 831479.3400000001,
-    "volume_24h_fp": 484436.93000000005,
-    "volume_fp": 891151.9
+    "open_interest_fp": 832053.63,
+    "volume_24h_fp": 487458.12,
+    "volume_fp": 892920.81
    },
    "ex_stats_first": {
     "open_interest_fp": 472086.65,
@@ -2510,9 +3074,9 @@
     "volume_fp": 56.21
    },
    "ex_stats_close": {
-    "open_interest_fp": 69702.26,
-    "volume_24h_fp": 36322.31,
-    "volume_fp": 76569.1
+    "open_interest_fp": 70628.49,
+    "volume_24h_fp": 38552.93,
+    "volume_fp": 77495.33
    },
    "ex_stats_first": {
     "open_interest_fp": 57707.58,
@@ -3487,7 +4051,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [
     "Over 51.5 (+100)"
    ],
@@ -3783,9 +4347,9 @@
     "volume_fp": 2197.99
    },
    "ex_stats_close": {
-    "open_interest_fp": 253426.19,
-    "volume_24h_fp": 113770.26999999999,
-    "volume_fp": 283759.68
+    "open_interest_fp": 257302.54,
+    "volume_24h_fp": 114179.77,
+    "volume_fp": 287636.02999999997
    },
    "ex_stats_first": {
     "open_interest_fp": 205925.82,
@@ -4418,9 +4982,9 @@
     "volume_fp": 6393.3
    },
    "ex_stats_close": {
-    "open_interest_fp": 1220763.05,
-    "volume_24h_fp": 482348.3,
-    "volume_fp": 1409485.04
+    "open_interest_fp": 1222085.42,
+    "volume_24h_fp": 483721.92000000004,
+    "volume_fp": 1410807.41
    },
    "ex_stats_first": {
     "open_interest_fp": 995480.06,
@@ -4869,9 +5433,9 @@
     "volume_fp": 588.36
    },
    "ex_stats_close": {
-    "open_interest_fp": 344075.37,
-    "volume_24h_fp": 91967.0,
-    "volume_fp": 397010.11
+    "open_interest_fp": 344802.24,
+    "volume_24h_fp": 92680.91,
+    "volume_fp": 397736.98
    },
    "ex_stats_first": {
     "open_interest_fp": 314097.97,
@@ -5096,9 +5660,9 @@
     "volume_fp": 365.63
    },
    "ex_stats_close": {
-    "open_interest_fp": 249448.52000000002,
-    "volume_24h_fp": 99367.77,
-    "volume_fp": 285790.95
+    "open_interest_fp": 250244.91999999998,
+    "volume_24h_fp": 99886.3,
+    "volume_fp": 286587.35
    },
    "ex_stats_first": {
     "open_interest_fp": 198988.37,
@@ -6119,7 +6683,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 19,
+   "settle_tries": 20,
    "sharp_agree": [
     "Boise State Broncos -20.5 (+100)",
     "Boise State Broncos -17.5 (-117)"
@@ -6549,7 +7113,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 19,
+   "settle_tries": 20,
    "sharp_agree": [],
    "sharp_oppose": [
     "Boise State Broncos -20.5 (+100)",
@@ -6756,7 +7320,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [
     "Utah State Aggies +7.5 (-113)"
@@ -13064,7 +13628,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 61,
+   "settle_tries": 62,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Nevada",
@@ -15692,8 +16256,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 17739956.0,
-    "volume": 19808677.0
+    "openInterest": 17767455.0,
+    "volume": 19836176.0
    },
    "ex_stats_first": {
     "openInterest": 16199699.0,
