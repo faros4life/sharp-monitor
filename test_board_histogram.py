@@ -114,5 +114,48 @@ esrc = open(__file__.replace("test_board_histogram.py", "executor.py"), encoding
 ok("the histogram is wired into the run output", "board_refusal_histogram(results)" in esrc)
 ok("and into the public log", "LOG.extend(_bh)" in esrc)
 
+
+# --- V4 sub-reason breakdown (Peter, Nov 22, approved) --------------------------------------------
+S = ex.board_v4_subreason
+ok("V4: missing second-book confirmation",
+   S("no second-book confirmation at alert time (status missing)") == "missing second-book confirmation")
+ok("V4: evidence missing", S("second-book evidence missing") == "second-book evidence missing or unreadable")
+ok("V4: evidence unreadable",
+   S("second book failed verification (novig: evidence unreadable)") == "second-book evidence missing or unreadable")
+ok("V4: not an independent book",
+   S("second book failed verification (kalshi: not an independent known book)")
+   == "second book not independent or not a known book")
+ok("V4: insufficient depth is decided on the NUMBER",
+   S("second book failed verification (novig: size 5000, heavier True, same line True)") == "insufficient depth")
+ok("V4: a passing size is NOT called a depth failure",
+   S("second book failed verification (novig: size 50000, heavier False, same line True)") != "insufficient depth")
+ok("V4: not the heavier side",
+   S("second book failed verification (novig: size 50000, heavier False, same line True)") == "not the heavier side")
+ok("V4: different line",
+   S("second book failed verification (novig: size 50000, heavier True, same line False)")
+   == "second book on a different line")
+ok("V4: an unrecognised failure returns None (never imputed)", S("something new") is None)
+ok("V4: empty returns None", S(None) is None)
+
+def v4row(why, ok_=False):
+    r = row(["Board V4: x - V3 signal logged, not bet"])
+    r["play"]["board_v4"] = {"ok": ok_, "why": why}
+    return r
+
+out = H([v4row("no second-book confirmation at alert time (status missing)")])
+t = "\n".join(out)
+ok("V4 sub-breakdown is emitted", "V4 failures by sub-reason" in t)
+ok("V4 sub-breakdown names the failure", "missing second-book confirmation: 1" in t)
+ok("V4 sub-breakdown says the sets are not the same", "NOT the same set" in t)
+ok("V4 sub-breakdown warns price is not separable", "never to depth" in t)
+ok("an unmatched V4 reason is counted UNKNOWN in the sub-breakdown",
+   "UNKNOWN / NOT OBSERVED: 1" in "\n".join(H([v4row("brand new failure text")])))
+ok("a V4 PASS contributes nothing to the sub-breakdown",
+   "V4 failures by sub-reason" not in "\n".join(H([v4row(None, ok_=True)])))
+leaky = v4row("second book failed verification (novig: size 5000, heavier True, same line True)")
+t2 = "\n".join(H([leaky]))
+for leak in ("novig", "5000", "size 5"):
+    ok(f"V4 sub-breakdown does not leak {leak!r}", leak not in t2)
+
 print(f"{len(RAN) - len(FAILED)} passed, {len(FAILED)} failed")
 sys.exit(1 if FAILED else 0)

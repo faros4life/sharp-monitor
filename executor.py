@@ -1586,6 +1586,50 @@ BOARD_REASON_CODES = (
 )
 
 
+V4_SUBREASONS = (
+    # Peter, Nov 22: break the V4 failures down so a second investigation is not needed after the
+    # next Board session. Matched against board_v4()'s OWN reason text, first match wins, so the
+    # sub-categories are mutually exclusive and a row is counted once. Counts only: the source
+    # strings carry book names and sizes and NONE of that is emitted.
+    ("missing second-book confirmation", ("no second-book confirmation",)),
+    ("second-book evidence missing or unreadable", ("evidence missing", "no evidence row",
+                                                    "evidence unreadable", "no source alert")),
+    ("second book not independent or not a known book", ("not an independent known book",)),
+    ("insufficient depth", ("__depth__",)),          # decided numerically below, not by text
+    ("not the heavier side", ("heavier false",)),
+    ("second book on a different line", ("same line false",)),
+)
+
+
+def board_v4_subreason(text):
+    """One mutually-exclusive sub-category for a V4 failure, or None when it matches nothing.
+
+    None means UNKNOWN and is NEVER imputed into a category. The composite failure string carries
+    size, heavier-side and same-line together, so depth is decided on the NUMBER rather than on
+    wording: `size 5000, heavier True, same line True` is a depth failure, and the same string with
+    a passing size is not. A price-range failure shares that branch without printing the price, so
+    it is not separable here and falls to UNKNOWN rather than being attributed to depth."""
+    t = str(text or "").lower()
+    if "no second-book confirmation" in t:
+        return "missing second-book confirmation"
+    if any(n in t for n in ("evidence missing", "no evidence row", "evidence unreadable", "no source alert")):
+        return "second-book evidence missing or unreadable"
+    if "not an independent known book" in t:
+        return "second book not independent or not a known book"
+    m = re.search(r"size\s+(\d+(?:\.\d+)?)", t)
+    if m:
+        try:
+            if float(m.group(1)) < BOARD_V4_MIN:
+                return "insufficient depth"
+        except ValueError:
+            pass
+    if "heavier false" in t or "heavier none" in t:
+        return "not the heavier side"
+    if "same line false" in t:
+        return "second book on a different line"
+    return None
+
+
 def board_refusal_histogram(results):
     """COUNTS ONLY. Why Board PLAY candidates in THIS RUN did not become orders.
 
@@ -1609,8 +1653,15 @@ def board_refusal_histogram(results):
     if not rows:
         return []
     primary, secondary, filled, rested = {}, {}, 0, 0
+    v4sub = {}
     for r in rows:
         lv = r.get("live") or {}
+        if not lv.get("go"):
+            bv = (r.get("play") or {}).get("board_v4") or {}
+            if bv.get("ok") is False:
+                sub = board_v4_subreason(bv.get("why"))
+                k = sub or "UNKNOWN / NOT OBSERVED"
+                v4sub[k] = v4sub.get(k, 0) + 1
         if lv.get("go"):
             filled += 1          # a decision to send, not a confirmed fill - named as such below
             continue
@@ -1637,6 +1688,15 @@ def board_refusal_histogram(results):
            f"  candidates seen this run: {len(rows)}   sent to order: {filled}   resting placed: {rested}"]
     for cat, n in sorted(primary.items(), key=lambda kv: -kv[1]):
         out.append(f"    {cat}: {n}")
+    if v4sub:
+        out.append(f"  V4 failures by sub-reason (gate {'ON' if BOARD_V4 else 'OFF - logged only'}; "
+                   "mutually exclusive; counts every candidate whose V4 evidence failed, which is")
+        out.append("   NOT the same set as the V4 primary category above - a row can fail V4 and be")
+        out.append("   refused first for another reason):")
+        for cat, n in sorted(v4sub.items(), key=lambda kv: -kv[1]):
+            out.append(f"    {cat}: {n}")
+        out.append("    (a price-range failure is not separable from the same evidence string and "
+                   "falls to UNKNOWN, never to depth)")
     if secondary:
         out.append("  secondary reasons (NON-ADDITIVE - a row may contribute more than one):")
         for cat, n in sorted(secondary.items(), key=lambda kv: -kv[1]):
