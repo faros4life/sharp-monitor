@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 22, 10:15 AM ET. This run: 2 new, 0 not confirmed, 0 pending. Open alerts: 49.
+Updated Sun Nov 22, 10:20 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 49.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -13,7 +13,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 22 10:15AM | NHL | Buffalo vs Tampa Bay: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $34k | -104 | ✅ novig |  | +0.0c |  | pending |
 | Nov 22 10:15AM | NHL | Edmonton vs St. Louis: Spread | spread: NOT St. Louis wins by over 1.5 goals | kalshi | $40k | -233 | ✅ novig |  | +0.0c |  | pending |
 | Nov 22 10:05AM | NFL | Tennessee Titans at Dallas Cowboys | spread: Tennessee Titans +7.5 (+7.5) | prophetx | $31k | -107 | ✅ kalshi,novig |  | -0.2c | yes | pending |
-| Nov 22 10:00AM | NHL | Edmonton vs St. Louis | moneyline: St. Louis | kalshi | $94k | -108 | ✅ novig,prophetx |  | +0.0c |  | pending |
+| Nov 22 10:00AM | NHL | Edmonton vs St. Louis | moneyline: St. Louis | kalshi | $94k | -108 | ✅ novig,prophetx |  | +2.0c |  | pending |
 | Nov 22 9:50AM | NFL | Jacksonville Jaguars at New York Giants | spread: New York Giants +5.5 (+5.5) | prophetx | $30k | +101 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 22 9:30AM | NFL | Baltimore Ravens @ Carolina Panthers | moneyline: CAR (0) | novig | $46k | -135 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 22 9:30AM | NFL | Baltimore vs Carolina | moneyline: Carolina | kalshi | $339k | -138 | ✅ novig |  | +0.0c |  | pending |
@@ -41,7 +41,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 22 1:05AM | NFL | Arizona vs Kansas City: Spread | spread: NOT Kansas City wins by over 14.5 points | kalshi | $160k | +104 |  |  | +0.0c |  | pending |
 | Nov 22 1:00AM | NFL | Cincinnati vs Washington | moneyline: Cincinnati | kalshi | $358k | -270 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 22 12:55AM | NBA | Boston vs Golden State | moneyline: Boston | kalshi | $73k | -335 |  |  | -1.0c | yes | pending |
-| Nov 22 12:50AM | NBA | Denver vs Chicago | moneyline: Denver | kalshi | $164k | -335 | ✅ novig |  | +0.0c | yes | pending |
+| Nov 22 12:50AM | NBA | Denver vs Chicago | moneyline: Denver | kalshi | $164k | -335 | ✅ novig |  | +1.0c | yes | pending |
 | Nov 21 11:35PM | NBA | Dallas vs Utah | moneyline: Dallas | kalshi | $60k | -117 |  |  | -4.0c |  | pending |
 | Nov 21 11:25PM | NBA | Indiana vs New York | moneyline: New York | kalshi | $40k | -355 |  |  | -3.0c |  | pending |
 | Nov 21 11:05PM | NFL | Jacksonville vs New York G | moneyline: Jacksonville | kalshi | $114k | -245 | ✅ novig,prophetx |  | +0.0c | yes | pending |
