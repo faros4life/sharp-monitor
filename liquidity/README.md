@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 21, 8:25 PM ET. This run: 2 new, 0 not confirmed, 2 pending. Open alerts: 50.
+Updated Sat Nov 21, 8:30 PM ET. This run: 1 new, 1 not confirmed, 1 pending. Open alerts: 51.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 21 8:30PM | NFL | New Orleans vs Chicago | moneyline: Chicago | kalshi | $493k | -567 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 21 8:25PM | NFL | Tennessee vs Dallas | moneyline: Dallas | kalshi | $175k | -335 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 21 8:25PM | NBA | Boston vs Sacramento | moneyline: Boston | kalshi | $145k | -525 | ✅ novig,prophetx | ❌ | +0.0c |  | pending |
 | Nov 21 8:20PM | NHL | Minnesota vs Vancouver: Spread | spread: NOT Minnesota wins by over 1.5 goals | kalshi | $38k | +113 |  |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 19 1:50PM | NHL | Anaheim vs Colorado: Total Goals | total: Over 6.5 goals scored | kalshi | $28k | -117 | ✅ novig |  | +4.0c |  | L |
 | Nov 19 1:40PM | NHL | Buffalo vs Washington: Total Goals | total: Over 6.5 goals scored | kalshi | $60k | -117 | ✅ novig |  | +0.0c | yes | W |
 | Nov 19 1:35PM | NHL | St. Louis vs Pittsburgh | moneyline: St. Louis | kalshi | $45k | -104 | ✅ novig |  | +1.0c |  | W |
-| Nov 19 1:30PM | NHL | Columbus vs Chicago: Spread | spread: NOT Columbus wins by over 1.5 goals | kalshi | $42k | -170 | ✅ novig |  | +0.0c | yes | L |
