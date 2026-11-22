@@ -1,6 +1,198 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-22T01:20:19Z",
+   "base_depth": 46572,
+   "best_price": 0.465,
+   "best_price_american": 115,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.47,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-21",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 2660,
+     "new_this_side": 38392,
+     "other_side": 47922,
+     "other_side_all_levels": 70351,
+     "ratio": 1.5,
+     "this_side": 70435,
+     "this_side_all_levels": 86225
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "VAN +1.5 (1.5)",
+     "price": 0.465,
+     "this_side": 27687
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 60022.86,
+    "volume_24h_fp": 57087.69,
+    "volume_fp": 62822.47
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 36.81,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 75.69
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 59986.05,
+    "volume_24h_fp": 57087.69,
+    "volume_fp": 62746.78
+   },
+   "fade_price": 0.54,
+   "first_seen_utc": "2026-11-22T01:15:45Z",
+   "game": "Minnesota vs Vancouver: Spread",
+   "game_surge_books": [],
+   "game_x": 1.16,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26NOV21MINVAN-MIN2\"}",
+   "lead_min": 100,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 38392,
+   "new_x": 0.33,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 60022.86,
+      "volume_24h_fp": 57087.69,
+      "volume_fp": 62822.47
+     },
+     "game_normal": 74264,
+     "game_x": 1.16,
+     "normal": 115997,
+     "now": 86225,
+     "type": "SPREAD",
+     "x": 0.74
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 1667782.0,
+      "volume": 2381908.0
+     },
+     "game_normal": 20655,
+     "game_x": 1.37,
+     "normal": 8185,
+     "now": 28268,
+     "type": "SPREAD",
+     "x": 3.45
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.47,
+   "price_american": 113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.47,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": 100
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": 105
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": 109
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": 102
+    },
+    "betus": {
+     "point": 1.5,
+     "price": 110
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": 110
+    },
+    "circasports": {
+     "point": 1.5,
+     "price": -105
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": 102
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": 105
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": 104
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": 113
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": 105
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -101
+    },
+    "novig": {
+     "point": 1.5,
+     "price": 115
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": 113
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": 113
+    },
+    "williamhill_us": {
+     "point": 1.5,
+     "price": 111
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLSPREAD-26NOV21MINVAN-MIN2"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Vancouver",
+   "side_label": "NOT Minnesota wins by over 1.5 goals",
+   "size_x": 0.74,
+   "start_source": "odds",
+   "start_utc": "2026-11-22T03:00:00Z",
+   "surge_books": [
+    "novig"
+   ],
+   "teams": [
+    "Minnesota",
+    "Vancouver"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-22T01:00:21Z",
    "base_depth": 43672,
    "best_price": 0.84,
@@ -266,7 +458,7 @@
    },
    "ex_stats_close": {
     "openInterest": 2567655.0,
-    "volume": 3245960.0
+    "volume": 3286152.0
    },
    "ex_stats_first": {
     "openInterest": 1981296.0,
@@ -687,9 +879,9 @@
     "volume_fp": 2526.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 40635.7,
+    "open_interest_fp": 41470.03,
     "volume_24h_fp": 46243.14,
-    "volume_fp": 46964.87
+    "volume_fp": 47818.52
    },
    "ex_stats_first": {
     "open_interest_fp": 31161.74,
@@ -900,9 +1092,9 @@
     "volume_fp": 381.17
    },
    "ex_stats_close": {
-    "open_interest_fp": 17262.02,
+    "open_interest_fp": 17504.620000000003,
     "volume_24h_fp": 12427.810000000001,
-    "volume_fp": 18511.420000000002
+    "volume_fp": 18754.02
    },
    "ex_stats_first": {
     "open_interest_fp": 15881.109999999999,
@@ -1907,8 +2099,8 @@
     "volume": 30422.0
    },
    "ex_stats_close": {
-    "openInterest": 18237463.0,
-    "volume": 22115975.0
+    "openInterest": 18601169.0,
+    "volume": 22479681.0
    },
    "ex_stats_first": {
     "openInterest": 16165434.0,
@@ -5619,7 +5811,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [
     "Over 6 (-117)"
@@ -6720,7 +6912,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Buffalo",
@@ -7139,7 +7331,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Pittsburgh",
@@ -7251,7 +7443,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Nevada",
@@ -7453,7 +7645,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -7863,7 +8055,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas St.",

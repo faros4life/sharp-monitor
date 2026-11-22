@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 21, 8:15 PM ET. This run: 0 new, 0 not confirmed, 3 pending. Open alerts: 47.
+Updated Sat Nov 21, 8:20 PM ET. This run: 1 new, 2 not confirmed, 2 pending. Open alerts: 48.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 21 8:20PM | NHL | Minnesota vs Vancouver: Spread | spread: NOT Minnesota wins by over 1.5 goals | kalshi | $38k | +113 |  |  | +0.0c |  | pending |
 | Nov 21 8:00PM | NBA | Boston Celtics at Sacramento Kings | moneyline: Boston Celtics | prophetx | $28k | -520 | ✅ kalshi,novig | ❌ | +0.0c |  | pending |
 | Nov 21 7:35PM | NCAAF | San Diego State @ Boise State | spread: BSU -20.5 (-20.5) | novig | $25k | -104 |  | ✅ | -0.5c |  | pending |
 | Nov 21 7:35PM | NBA | Los Angeles C vs Dallas: Spread | spread: NOT Dallas wins by over 5.5 points | kalshi | $85k | -108 | ✅ novig |  | +0.0c | yes | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 19 1:30PM | NHL | Columbus vs Chicago: Spread | spread: NOT Columbus wins by over 1.5 goals | kalshi | $42k | -170 | ✅ novig |  | +0.0c | yes | L |
 | Nov 19 1:10PM | NHL | Buffalo vs Washington: Spread | spread: NOT Washington wins by over 1.5 goals | kalshi | $38k | -194 | ✅ novig |  | -1.0c | yes | W |
 | Nov 19 12:56PM | NHL | Edmonton vs Tampa Bay: Spread | spread: NOT Tampa Bay wins by over 1.5 goals | kalshi | $37k | -194 | ✅ novig |  | +0.0c | yes | L |
-| Nov 19 12:30PM | NHL | Anaheim vs Colorado: Spread | spread: NOT Colorado wins by over 1.5 goals | kalshi | $36k | -194 | ✅ novig |  | +1.0c |  | L |
