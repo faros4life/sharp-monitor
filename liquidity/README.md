@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 22, 5:25 PM ET. This run: 1 new, 0 not confirmed, 3 pending. Open alerts: 56.
+Updated Sun Nov 22, 5:30 PM ET. This run: 2 new, 1 not confirmed, 1 pending. Open alerts: 58.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,8 +10,10 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 22 5:30PM | NBA | Indiana Pacers @ New York Knicks | moneyline: NYK (0) | novig | $28k | -270 | ✅ kalshi,prophetx | ❌ | +0.0c |  | pending |
+| Nov 22 5:30PM | NBA | Orlando Magic @ Washington Wizards | moneyline: ORL (0) | novig | $34k | -182 | ✅ kalshi,prophetx | ✅ | +0.0c |  | pending |
 | Nov 22 5:25PM | NFL | Minnesota Vikings @ San Francisco 49ers | total: Over 45.5 (45.5) | novig | $45k | -100 | ✅ prophetx | ❌ | +0.0c |  | pending |
-| Nov 22 5:10PM | NBA | Boston vs Golden State: Spread | spread: Boston wins by over 7.5 points | kalshi | $27k | -108 | ✅ novig | ❌ | +1.0c |  | pending |
+| Nov 22 5:10PM | NBA | Boston vs Golden State: Spread | spread: Boston wins by over 7.5 points | kalshi | $27k | -108 | ✅ novig | ❌ | +1.0c | yes | pending |
 | Nov 22 5:05PM | NBA | Denver vs Chicago: Total Points | total: Over 236.5 points | kalshi | $32k | -113 |  |  | +0.0c |  | pending |
 | Nov 22 4:40PM | NFL | Minnesota Vikings @ San Francisco 49ers | spread: SF -3.5 (-3.5) | novig | $29k | -108 | ✅ kalshi |  | +0.0c | yes | pending |
 | Nov 22 4:40PM | NBA | Oklahoma City vs Miami | moneyline: Miami | kalshi | $301k | -233 | ✅ novig | ✅ | -6.0c | yes | pending |
@@ -23,8 +25,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 22 3:10PM | NFL | New York Jets @ Los Angeles Chargers | spread: LAC -3.5 (-3.5) | novig | $93k | +117 |  |  | -0.5c | yes | pending |
 | Nov 22 3:10PM | NBA | Detroit vs Atlanta: Total Points | total: Over 223.5 points | kalshi | $63k | -104 |  | ❌ | +2.0c |  | pending |
 | Nov 22 2:50PM | NBA | Denver Nuggets @ Chicago Bulls | moneyline: DEN (0) | novig | $36k | -376 | ✅ kalshi,prophetx | ✅ | -1.0c | yes | pending |
-| Nov 22 2:25PM | NBA | Dallas vs Utah: Total Points | total: NOT Over 226.5 points | kalshi | $53k | +104 |  |  | +3.0c |  | pending |
-| Nov 22 2:10PM | NBA | Dallas vs Utah: Spread | spread: Dallas wins by over 1.5 points | kalshi | $102k | -108 | ✅ novig | ❌ | +1.0c |  | pending |
+| Nov 22 2:25PM | NBA | Dallas vs Utah: Total Points | total: NOT Over 226.5 points | kalshi | $53k | +104 |  |  | +2.0c |  | pending |
+| Nov 22 2:10PM | NBA | Dallas vs Utah: Spread | spread: Dallas wins by over 1.5 points | kalshi | $102k | -108 | ✅ novig | ❌ | +2.0c |  | pending |
 | Nov 22 2:00PM | NFL | New York Jets @ Los Angeles Chargers | moneyline: LAC (0) | novig | $51k | -156 | ✅ kalshi,prophetx |  | -0.5c | yes | pending |
 | Nov 22 1:55PM | NBA | Detroit Pistons @ Atlanta Hawks | total: Under 223.5 (223.5) | novig | $28k | -100 | ✅ prophetx | ✅ | +0.0c |  | pending |
 | Nov 22 1:35PM | NFL | Minnesota Vikings @ San Francisco 49ers | moneyline: SF (0) | novig | $48k | -170 | ✅ kalshi,prophetx |  | +2.0c |  | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 5:20AM | NCAAF | Vanderbilt vs Florida: Total Points | total: Over 47.5 points | kalshi | $38k | +113 |  |  | +5.0c | yes | W |
 | Nov 21 5:10AM | NCAAF | Marist vs Davidson | moneyline: Marist | kalshi | $29k | -400 |  |  | +2.0c | yes | W |
 | Nov 21 5:10AM | NCAAF | Dayton vs Presbyterian | moneyline: Dayton | kalshi | $29k | -488 |  |  | +0.0c | yes | W |
-| Nov 21 4:35AM | NCAAF | Ohio St. vs Nebraska: Total Points | total: Over 42.5 points | kalshi | $112k | +104 |  |  | +1.0c |  | W |
-| Nov 21 3:50AM | NCAAF | Charleston Southern vs Eastern Illinois | moneyline: Eastern Illinois | kalshi | $42k | -117 | ✅ novig |  | +4.0c | yes | W |
