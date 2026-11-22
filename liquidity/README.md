@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 22, 8:50 AM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 36.
+Updated Sun Nov 22, 8:55 AM ET. This run: 2 new, 0 not confirmed, 0 pending. Open alerts: 38.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 22 8:55AM | NFL | Tennessee vs Dallas: Total Points | total: NOT Over 54.5 points | kalshi | $96k | +104 | ✅ novig |  | +0.0c |  | pending |
+| Nov 22 8:55AM | NHL | Pittsburgh vs Dallas | moneyline: Dallas | kalshi | $33k | -213 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 22 8:25AM | NFL | Minnesota vs San Francisco: Spread | spread: NOT San Francisco wins by over 3.5 points | kalshi | $178k | -113 | ✅ novig |  | +0.0c |  | pending |
 | Nov 22 8:10AM | NFL | Tampa Bay Buccaneers @ Detroit Lions | moneyline: TB (0) | novig | $37k | +194 |  | ✅ | +0.0c |  | pending |
 | Nov 22 8:10AM | NFL | Tampa Bay vs Detroit: Total Points | total: Over 47.5 points | kalshi | $190k | -100 | ✅ novig,prophetx | ✅ | +1.0c |  | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 20 7:53AM | NCAAF | Iowa St. vs UCF: Spread | spread: NOT UCF wins by over 1.5 points | kalshi | $96k | -113 |  |  | +3.0c |  | L |
 | Nov 20 7:53AM | NCAAF | Iowa St. vs UCF | moneyline: Iowa St. | kalshi | $128k | +108 | ✅ prophetx |  | +6.0c |  | L |
 | Nov 20 6:20AM | NCAAF | East Carolina vs Army | moneyline: East Carolina | kalshi | $47k | +212 |  |  | +3.0c | yes | W |
-| Nov 20 4:00AM | NCAAF | East Carolina vs Army | moneyline: Army | kalshi | $99k | -223 |  |  | -3.0c | yes | L |
-| Nov 20 2:15AM | NBA | Sacramento vs Los Angeles L: Spread | spread: NOT Los Angeles L wins by over 14.5 points | kalshi | $42k | -104 |  |  | +0.0c |  | W |
