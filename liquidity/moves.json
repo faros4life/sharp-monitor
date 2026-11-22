@@ -1,6 +1,94 @@
 {
  "moves": [
   {
+   "alerted_utc": "2026-11-22T10:25:37Z",
+   "bar": false,
+   "best_price": 0.4774,
+   "best_price_book": "kalshi",
+   "book": "novig",
+   "close_price": 0.48,
+   "clv_cents": 0.0,
+   "date": "2026-11-23",
+   "dir": "DROP",
+   "ex_stats": {
+    "openInterest": 0.0,
+    "volume": 0.0
+   },
+   "first_play": true,
+   "game": "Minnesota Wild @ San Jose Sharks",
+   "key": "novig|{\"market_id\": \"01a1fd15-da38-74d0-b2b8-983c2446dac9\", \"outcome_id\": \"01a1fd15-da38-74d0-b2b8-98503234330f\"}",
+   "lead_min": 2434,
+   "league": "NHL",
+   "league_x": 0.08,
+   "line": -1.5,
+   "market": "spread",
+   "normal_4h": 200,
+   "now": 82,
+   "other_side_now": 110,
+   "paper_only": true,
+   "price": 0.48,
+   "price_american": 108,
+   "ref": {
+    "market_id": "01a1fd15-da38-74d0-b2b8-983c2446dac9",
+    "outcome_id": "01a1fd15-da38-74d0-b2b8-98503234330f"
+   },
+   "result": null,
+   "side": "Minnesota Wild",
+   "side_label": "MIN -1.5 (1.5)",
+   "side_raw": 0,
+   "start_utc": "2026-11-24T03:00:00Z",
+   "teams": [
+    "Minnesota Wild",
+    "San Jose Sharks"
+   ],
+   "units_flat": null,
+   "x": 0.41
+  },
+  {
+   "alerted_utc": "2026-11-22T10:25:37Z",
+   "bar": true,
+   "best_price": 0.4673,
+   "best_price_book": "kalshi",
+   "book": "novig",
+   "close_price": 0.48,
+   "clv_cents": 0.0,
+   "date": "2026-11-23",
+   "dir": "DROP",
+   "ex_stats": {
+    "openInterest": 0.0,
+    "volume": 0.0
+   },
+   "first_play": true,
+   "game": "Calgary Flames @ Ottawa Senators",
+   "key": "novig|{\"market_id\": \"01a1fd16-f6ba-75b2-b018-dbdd60509e61\", \"outcome_id\": \"01a1fd16-f6ba-75b2-b018-dbeb8f0cdace\"}",
+   "lead_min": 2284,
+   "league": "NHL",
+   "league_x": 0.06,
+   "line": -1.5,
+   "market": "spread",
+   "normal_4h": 184,
+   "now": 55,
+   "other_side_now": 29,
+   "paper_only": true,
+   "price": 0.48,
+   "price_american": 108,
+   "ref": {
+    "market_id": "01a1fd16-f6ba-75b2-b018-dbdd60509e61",
+    "outcome_id": "01a1fd16-f6ba-75b2-b018-dbeb8f0cdace"
+   },
+   "result": null,
+   "side": "Ottawa Senators",
+   "side_label": "OTT -1.5 (-1.5)",
+   "side_raw": 1,
+   "start_utc": "2026-11-24T00:30:00Z",
+   "teams": [
+    "Calgary Flames",
+    "Ottawa Senators"
+   ],
+   "units_flat": null,
+   "x": 0.3
+  },
+  {
    "alerted_utc": "2026-11-22T10:20:23Z",
    "bar": false,
    "best_price": 0.34,
@@ -13,6 +101,11 @@
    "ex_stats": {
     "open_interest_fp": 9159.31,
     "volume_24h_fp": 2271.16,
+    "volume_fp": 10249.150000000001
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 9159.31,
+    "volume_24h_fp": 3187.7200000000003,
     "volume_fp": 10249.150000000001
    },
    "first_play": false,
@@ -56,6 +149,10 @@
    "date": "2026-11-23",
    "dir": "DROP",
    "ex_stats": {
+    "openInterest": 2830.0,
+    "volume": 2830.0
+   },
+   "ex_stats_close": {
     "openInterest": 2830.0,
     "volume": 2830.0
    },
@@ -209,6 +306,8 @@
    "other_side_now": 10916,
    "paper_only": true,
    "price": 0.5025,
+   "price_after_15m": 0.505,
+   "price_after_15m_book": "novig",
    "price_american": -101,
    "ref": {
     "line": 42.5,
@@ -221,6 +320,7 @@
    "side_label": "under 42.5 (42.5)",
    "side_raw": "UNDER",
    "start_utc": "2026-11-22T21:05:00Z",
+   "still_actionable": true,
    "teams": [
     "New York Jets",
     "Los Angeles Chargers"
@@ -307,6 +407,8 @@
    "other_side_now": 2352,
    "paper_only": true,
    "price": 0.525,
+   "price_after_15m": 0.525,
+   "price_after_15m_book": "novig",
    "price_american": -111,
    "ref": {
     "market_id": "01a20161-975e-7443-b3a2-f84348e3a0e7",
@@ -317,6 +419,7 @@
    "side_label": "IND +9.5 (-9.5)",
    "side_raw": 0,
    "start_utc": "2026-11-23T01:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Indiana Pacers",
     "New York Knicks"
@@ -1080,8 +1183,8 @@
    "best_price": 0.505,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5146,
-   "clv_cents": 0.7,
+   "close_price": 0.5169,
+   "clv_cents": 1.0,
    "date": "2026-11-22",
    "dir": "RAISE",
    "ex_stats": null,
@@ -1850,8 +1953,8 @@
     "volume": 230189.0
    },
    "ex_stats_close": {
-    "openInterest": 237125.0,
-    "volume": 241932.0
+    "openInterest": 237165.0,
+    "volume": 241972.0
    },
    "first_play": false,
    "game": "Dallas Mavericks @ Utah Jazz",
@@ -2725,8 +2828,8 @@
    "best_price": 0.5,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.495,
-   "clv_cents": -0.7,
+   "close_price": 0.4926,
+   "clv_cents": -1.0,
    "date": "2026-11-22",
    "dir": "DROP",
    "ex_stats": null,
@@ -3764,7 +3867,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 422.21,
-    "volume_24h_fp": 369.85,
+    "volume_24h_fp": 422.21,
     "volume_fp": 422.21
    },
    "first_play": true,
@@ -4369,8 +4472,8 @@
    "best_price": 0.75,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.765,
-   "clv_cents": 1.5,
+   "close_price": 0.76,
+   "clv_cents": 1.0,
    "date": "2026-11-23",
    "dir": "RAISE",
    "ex_stats": {
@@ -4624,8 +4727,8 @@
    "best_price": 0.51,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5074,
-   "clv_cents": -2.8,
+   "close_price": 0.5098,
+   "clv_cents": -2.5,
    "date": "2026-11-22",
    "dir": "DROP",
    "ex_stats": null,
@@ -4934,9 +5037,9 @@
     "volume_fp": 529.85
    },
    "ex_stats_close": {
-    "open_interest_fp": 386.25,
+    "open_interest_fp": 387.25,
     "volume_24h_fp": 611.85,
-    "volume_fp": 611.85
+    "volume_fp": 612.85
    },
    "first_play": false,
    "game": "Denver vs Chicago: Spread",
@@ -4987,9 +5090,9 @@
     "volume_fp": 529.85
    },
    "ex_stats_close": {
-    "open_interest_fp": 386.25,
+    "open_interest_fp": 387.25,
     "volume_24h_fp": 611.85,
-    "volume_fp": 611.85
+    "volume_fp": 612.85
    },
    "first_play": false,
    "game": "Denver vs Chicago: Spread",
@@ -5478,8 +5581,8 @@
    "best_price": 0.7012,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.7101,
-   "clv_cents": 1.3,
+   "close_price": 0.7015,
+   "clv_cents": 0.5,
    "date": "2026-11-22",
    "dir": "RAISE",
    "ex_stats": null,
@@ -6137,7 +6240,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 2368.41,
-    "volume_24h_fp": 2572.28,
+    "volume_24h_fp": 2574.28,
     "volume_fp": 2574.28
    },
    "first_play": false,
@@ -6190,7 +6293,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 2368.41,
-    "volume_24h_fp": 2572.28,
+    "volume_24h_fp": 2574.28,
     "volume_fp": 2574.28
    },
    "first_play": false,
@@ -6242,9 +6345,9 @@
     "volume_fp": 49538.49
    },
    "ex_stats_close": {
-    "open_interest_fp": 46909.28,
-    "volume_24h_fp": 64293.97,
-    "volume_fp": 68908.0
+    "open_interest_fp": 47027.810000000005,
+    "volume_24h_fp": 64777.36,
+    "volume_fp": 69026.53
    },
    "first_play": false,
    "game": "Dallas vs Utah",
@@ -6295,9 +6398,9 @@
     "volume_fp": 128180.63
    },
    "ex_stats_close": {
-    "open_interest_fp": 91214.49,
-    "volume_24h_fp": 127951.78,
-    "volume_fp": 149505.56
+    "open_interest_fp": 91344.1,
+    "volume_24h_fp": 128162.04,
+    "volume_fp": 149691.35
    },
    "first_play": false,
    "game": "Oklahoma City vs Miami",
@@ -6347,8 +6450,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 61483.0,
-    "volume": 61483.0
+    "openInterest": 64185.0,
+    "volume": 64185.0
    },
    "first_play": true,
    "game": "Carolina Hurricanes @ New York Rangers",
@@ -6542,8 +6645,8 @@
    "best_price": 0.5219,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5074,
-   "clv_cents": -1.0,
+   "close_price": 0.5098,
+   "clv_cents": -0.7,
    "date": "2026-11-22",
    "dir": "RAISE",
    "ex_stats": null,
@@ -7428,8 +7531,8 @@
    "best_price": 0.515,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5,
-   "clv_cents": -1.2,
+   "close_price": 0.4975,
+   "clv_cents": -1.5,
    "date": "2026-11-22",
    "dir": "RAISE",
    "ex_stats": null,
@@ -7586,9 +7689,9 @@
     "volume_fp": 14472.63
    },
    "ex_stats_close": {
-    "open_interest_fp": 14265.42,
-    "volume_24h_fp": 20636.44,
-    "volume_fp": 22862.78
+    "open_interest_fp": 14502.900000000001,
+    "volume_24h_fp": 20628.239999999998,
+    "volume_fp": 23100.260000000002
    },
    "first_play": false,
    "game": "Carolina vs New York R",
@@ -7767,8 +7870,8 @@
    "best_price": 0.45,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.431,
-   "clv_cents": -2.2,
+   "close_price": 0.4274,
+   "clv_cents": -2.5,
    "date": "2026-11-22",
    "dir": "RAISE",
    "ex_stats": null,
@@ -8232,8 +8335,8 @@
    "best_price": 0.5664,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5798,
-   "clv_cents": 1.8,
+   "close_price": 0.5833,
+   "clv_cents": 2.2,
    "date": "2026-11-22",
    "dir": "RAISE",
    "ex_stats": null,
@@ -8583,9 +8686,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3259.96,
+    "open_interest_fp": 3491.22,
     "volume_24h_fp": 4079.5,
-    "volume_fp": 4079.5
+    "volume_fp": 4310.76
    },
    "first_play": false,
    "game": "Carolina vs New York R: Spread",
@@ -8636,9 +8739,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3259.96,
+    "open_interest_fp": 3491.22,
     "volume_24h_fp": 4079.5,
-    "volume_fp": 4079.5
+    "volume_fp": 4310.76
    },
    "first_play": false,
    "game": "Carolina vs New York R: Spread",
@@ -9123,8 +9226,8 @@
    "best_price": 0.515,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5192,
-   "clv_cents": 0.2,
+   "close_price": 0.5215,
+   "clv_cents": 0.5,
    "date": "2026-11-22",
    "dir": "DROP",
    "ex_stats": null,
@@ -9225,7 +9328,7 @@
    },
    "ex_stats_close": {
     "openInterest": 6245481.0,
-    "volume": 7718163.0
+    "volume": 7762120.0
    },
    "first_play": false,
    "game": "Minnesota Vikings @ San Francisco 49ers",
@@ -9566,8 +9669,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 61483.0,
-    "volume": 61483.0
+    "openInterest": 64185.0,
+    "volume": 64185.0
    },
    "first_play": true,
    "game": "Carolina Hurricanes @ New York Rangers",
@@ -9947,8 +10050,8 @@
    "best_price": 0.465,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.43,
-   "clv_cents": -3.5,
+   "close_price": 0.425,
+   "clv_cents": -4.0,
    "date": "2026-11-22",
    "dir": "RAISE",
    "ex_stats": {
@@ -10262,8 +10365,8 @@
     "volume": 28.0
    },
    "ex_stats_close": {
-    "openInterest": 1379223.0,
-    "volume": 1547813.0
+    "openInterest": 1388741.0,
+    "volume": 1557331.0
    },
    "first_play": true,
    "game": "Orlando Magic @ Washington Wizards",
@@ -10313,8 +10416,8 @@
     "volume": 28.0
    },
    "ex_stats_close": {
-    "openInterest": 1379223.0,
-    "volume": 1547813.0
+    "openInterest": 1388741.0,
+    "volume": 1557331.0
    },
    "first_play": true,
    "game": "Orlando Magic @ Washington Wizards",
@@ -10508,8 +10611,8 @@
    "best_price": 0.605,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.58,
-   "clv_cents": -2.5,
+   "close_price": 0.585,
+   "clv_cents": -2.0,
    "date": "2026-11-22",
    "dir": "RAISE",
    "ex_stats": {
@@ -11322,8 +11425,8 @@
    "best_price": 0.43,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.425,
-   "clv_cents": -0.5,
+   "close_price": 0.43,
+   "clv_cents": 0.0,
    "date": "2026-11-22",
    "dir": "RAISE",
    "ex_stats": {
@@ -11332,7 +11435,7 @@
    },
    "ex_stats_close": {
     "openInterest": 10134487.0,
-    "volume": 16726914.0
+    "volume": 16728090.0
    },
    "first_play": false,
    "game": "Baltimore Ravens @ Carolina Panthers",
@@ -12055,8 +12158,8 @@
    "best_price": 0.515,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5192,
-   "clv_cents": 0.0,
+   "close_price": 0.5215,
+   "clv_cents": 0.2,
    "date": "2026-11-22",
    "dir": "RAISE",
    "ex_stats": null,
@@ -12423,8 +12526,8 @@
    "best_price": 0.505,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.495,
-   "clv_cents": -2.0,
+   "close_price": 0.4926,
+   "clv_cents": -2.2,
    "date": "2026-11-22",
    "dir": "RAISE",
    "ex_stats": null,
@@ -12776,8 +12879,8 @@
     "volume": 14739113.0
    },
    "ex_stats_close": {
-    "openInterest": 12992318.0,
-    "volume": 18329244.0
+    "openInterest": 12997970.0,
+    "volume": 18334896.0
    },
    "first_play": true,
    "game": "New York Jets @ Los Angeles Chargers",
@@ -12827,8 +12930,8 @@
     "volume": 4538315.0
    },
    "ex_stats_close": {
-    "openInterest": 6704486.0,
-    "volume": 8416562.0
+    "openInterest": 6710200.0,
+    "volume": 8422276.0
    },
    "first_play": true,
    "game": "Baltimore Ravens @ Carolina Panthers",
@@ -12929,8 +13032,8 @@
     "volume": 3028200.0
    },
    "ex_stats_close": {
-    "openInterest": 3455890.0,
-    "volume": 4595722.0
+    "openInterest": 3467001.0,
+    "volume": 4606833.0
    },
    "first_play": true,
    "game": "Miami Dolphins @ Buffalo Bills",
@@ -13326,8 +13429,8 @@
     "volume": 1563694.0
    },
    "ex_stats_close": {
-    "openInterest": 7728071.0,
-    "volume": 8906688.0
+    "openInterest": 7737686.0,
+    "volume": 8916303.0
    },
    "first_play": true,
    "game": "New Orleans Saints @ Chicago Bears",
@@ -13479,8 +13582,8 @@
     "volume": 14734332.0
    },
    "ex_stats_close": {
-    "openInterest": 12992318.0,
-    "volume": 18329244.0
+    "openInterest": 12997970.0,
+    "volume": 18334896.0
    },
    "first_play": true,
    "game": "New York Jets @ Los Angeles Chargers",
@@ -13530,8 +13633,8 @@
     "volume": 14734332.0
    },
    "ex_stats_close": {
-    "openInterest": 12992318.0,
-    "volume": 18329244.0
+    "openInterest": 12997970.0,
+    "volume": 18334896.0
    },
    "first_play": true,
    "game": "New York Jets @ Los Angeles Chargers",
@@ -13581,8 +13684,8 @@
     "volume": 4536392.0
    },
    "ex_stats_close": {
-    "openInterest": 6704486.0,
-    "volume": 8416562.0
+    "openInterest": 6710200.0,
+    "volume": 8422276.0
    },
    "first_play": true,
    "game": "Baltimore Ravens @ Carolina Panthers",
@@ -13623,8 +13726,8 @@
    "best_price": 0.52,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.52,
-   "clv_cents": 0.0,
+   "close_price": 0.525,
+   "clv_cents": 0.5,
    "date": "2026-11-22",
    "dir": "DROP",
    "ex_stats": {
@@ -13632,8 +13735,8 @@
     "volume": 4536392.0
    },
    "ex_stats_close": {
-    "openInterest": 6704486.0,
-    "volume": 8416562.0
+    "openInterest": 6710200.0,
+    "volume": 8422276.0
    },
    "first_play": true,
    "game": "Baltimore Ravens @ Carolina Panthers",
@@ -13683,8 +13786,8 @@
     "volume": 1101767.0
    },
    "ex_stats_close": {
-    "openInterest": 9059842.0,
-    "volume": 13634828.0
+    "openInterest": 9099842.0,
+    "volume": 13684728.0
    },
    "first_play": true,
    "game": "Pittsburgh Steelers @ Philadelphia Eagles",
@@ -13734,8 +13837,8 @@
     "volume": 3005242.0
    },
    "ex_stats_close": {
-    "openInterest": 3455890.0,
-    "volume": 4595722.0
+    "openInterest": 3467001.0,
+    "volume": 4606833.0
    },
    "first_play": false,
    "game": "Miami Dolphins @ Buffalo Bills",
@@ -13785,8 +13888,8 @@
     "volume": 2313173.0
    },
    "ex_stats_close": {
-    "openInterest": 6293299.0,
-    "volume": 7106546.0
+    "openInterest": 6295575.0,
+    "volume": 7108822.0
    },
    "first_play": true,
    "game": "Tennessee Titans @ Dallas Cowboys",
@@ -13827,8 +13930,8 @@
    "best_price": 0.515,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.43,
-   "clv_cents": -8.5,
+   "close_price": 0.425,
+   "clv_cents": -9.0,
    "date": "2026-11-22",
    "dir": "DROP",
    "ex_stats": {
@@ -13878,8 +13981,8 @@
    "best_price": 0.505,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.58,
-   "clv_cents": 7.5,
+   "close_price": 0.585,
+   "clv_cents": 8.0,
    "date": "2026-11-22",
    "dir": "DROP",
    "ex_stats": {
@@ -23632,7 +23735,7 @@
     "outcome_id": "01a1ec79-47d8-7430-8e1f-5448dc9f048b"
    },
    "result": null,
-   "settle_tries": 139,
+   "settle_tries": 140,
    "side": "OVER",
    "side_label": "Over 60.5 (60.5)",
    "side_raw": "OVER",
@@ -26875,7 +26978,7 @@
     "outcome_id": "01a1ec79-47d8-7430-8e1f-5448dc9f048b"
    },
    "result": null,
-   "settle_tries": 139,
+   "settle_tries": 140,
    "side": "OVER",
    "side_label": "Over 60.5 (60.5)",
    "side_raw": "OVER",
@@ -27443,7 +27546,7 @@
     "outcome_id": "01a1ec79-47d8-7430-8e1f-518a20e10d0b"
    },
    "result": null,
-   "settle_tries": 139,
+   "settle_tries": 140,
    "side": "Bethune Cookman",
    "side_label": "BCU -4.5 (4.5)",
    "side_raw": 0,
@@ -29987,7 +30090,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 139,
+   "settle_tries": 140,
    "side": "OVER",
    "side_label": "over 55.5 (55.5)",
    "side_raw": "OVER",
@@ -41549,7 +41652,7 @@
     "outcome_id": "01a1ec70-50ac-74c3-9a59-e9c9da237169"
    },
    "result": null,
-   "settle_tries": 139,
+   "settle_tries": 140,
    "side": "Bethune Cookman",
    "side_label": "BCU (0)",
    "side_raw": 0,
@@ -41601,7 +41704,7 @@
     "outcome_id": "01a1ec70-50ac-74c3-9a59-e9b794b355e5"
    },
    "result": null,
-   "settle_tries": 139,
+   "settle_tries": 140,
    "side": "Florida A&M",
    "side_label": "FAMU (0)",
    "side_raw": 1,
@@ -47217,7 +47320,7 @@
     "outcome_id": "01a1ec39-3115-7230-a4eb-1ed629297fbf"
    },
    "result": null,
-   "settle_tries": 160,
+   "settle_tries": 161,
    "side": "GWEB (0)",
    "side_label": "GWEB (0)",
    "side_raw": null,
@@ -53057,7 +53160,7 @@
     "outcome_id": "01a1ec79-47d8-7430-8e1f-5418cac941e8"
    },
    "result": null,
-   "settle_tries": 139,
+   "settle_tries": 140,
    "side": "OVER",
    "side_label": "Over 59.5 (59.5)",
    "side_raw": "OVER",
@@ -53163,7 +53266,7 @@
     "outcome_id": "01a1ec39-3244-7b81-93ae-08c669f67ec0"
    },
    "result": null,
-   "settle_tries": 160,
+   "settle_tries": 161,
    "side": "UNDER",
    "side_label": "Under 39.5 (39.5)",
    "side_raw": "UNDER",
@@ -53755,7 +53858,7 @@
     "outcome_id": "01a1ec79-47d8-7430-8e1f-518a20e10d0b"
    },
    "result": null,
-   "settle_tries": 139,
+   "settle_tries": 140,
    "side": "Bethune Cookman",
    "side_label": "BCU -4.5 (4.5)",
    "side_raw": 0,
@@ -56757,7 +56860,7 @@
     "outcome_id": "01a1ec39-3244-7b81-93ae-0a6da0fbaece"
    },
    "result": null,
-   "settle_tries": 160,
+   "settle_tries": 161,
    "side": "OVER",
    "side_label": "Over 49.5 (49.5)",
    "side_raw": "OVER",
@@ -57220,7 +57323,7 @@
     "outcome_id": "01a1ec79-47d8-7430-8e1f-5418cac941e8"
    },
    "result": null,
-   "settle_tries": 139,
+   "settle_tries": 140,
    "side": "OVER",
    "side_label": "Over 59.5 (59.5)",
    "side_raw": "OVER",
@@ -58148,7 +58251,7 @@
     "outcome_id": "01a1ec39-3115-7230-a4eb-1ed629297fbf"
    },
    "result": null,
-   "settle_tries": 160,
+   "settle_tries": 161,
    "side": "GWEB (0)",
    "side_label": "GWEB (0)",
    "side_raw": null,
@@ -65826,7 +65929,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 139,
+   "settle_tries": 140,
    "side": "Bethune Cookman",
    "side_label": "Bethune Cookman",
    "side_raw": 0,
@@ -65978,7 +66081,7 @@
     "outcome_id": "01a1ec79-47d8-7430-8e1f-539ffb798040"
    },
    "result": null,
-   "settle_tries": 139,
+   "settle_tries": 140,
    "side": "UNDER",
    "side_label": "Under 55.5 (55.5)",
    "side_raw": "UNDER",
@@ -66030,7 +66133,7 @@
     "outcome_id": "01a1ec79-47d8-7430-8e1f-50ba4125455d"
    },
    "result": null,
-   "settle_tries": 139,
+   "settle_tries": 140,
    "side": "Florida A&M",
    "side_label": "FAMU -2.5 (-2.5)",
    "side_raw": 1,
@@ -67156,7 +67259,7 @@
     "outcome_id": "01a1ec79-47d8-7430-8e1f-538049722a70"
    },
    "result": null,
-   "settle_tries": 139,
+   "settle_tries": 140,
    "side": "OVER",
    "side_label": "Over 55.5 (55.5)",
    "side_raw": "OVER",
@@ -69473,7 +69576,7 @@
     "outcome_id": "01a1ec39-3244-7b81-93ae-0cb05f47a453"
    },
    "result": null,
-   "settle_tries": 160,
+   "settle_tries": 161,
    "side": "TNST +14.5 (-14.5)",
    "side_label": "TNST +14.5 (-14.5)",
    "side_raw": null,
@@ -70147,7 +70250,7 @@
     "outcome_id": "01a1ec79-47d8-7430-8e1f-50ba4125455d"
    },
    "result": null,
-   "settle_tries": 139,
+   "settle_tries": 140,
    "side": "Florida A&M",
    "side_label": "FAMU -2.5 (-2.5)",
    "side_raw": 1,
@@ -71296,7 +71399,7 @@
     "outcome_id": "01a1ec79-47d8-7430-8e1f-50cfbf3b58fc"
    },
    "result": null,
-   "settle_tries": 139,
+   "settle_tries": 140,
    "side": "Bethune Cookman",
    "side_label": "BCU +2.5 (-2.5)",
    "side_raw": 0,
@@ -71451,7 +71554,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 139,
+   "settle_tries": 140,
    "side": "OVER",
    "side_label": "over 58.5 (58.5)",
    "side_raw": "OVER",
@@ -74056,7 +74159,7 @@
     "outcome_id": "01a1ec79-47d8-7430-8e1f-538049722a70"
    },
    "result": null,
-   "settle_tries": 139,
+   "settle_tries": 140,
    "side": "OVER",
    "side_label": "Over 55.5 (55.5)",
    "side_raw": "OVER",
@@ -74468,7 +74571,7 @@
     "outcome_id": "01a1ec79-47d8-7430-8e1f-51b5cb1747b0"
    },
    "result": null,
-   "settle_tries": 139,
+   "settle_tries": 140,
    "side": "Bethune Cookman",
    "side_label": "BCU -5.5 (5.5)",
    "side_raw": 0,
@@ -74673,7 +74776,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 139,
+   "settle_tries": 140,
    "side": "Bethune Cookman",
    "side_label": "Bethune Cookman",
    "side_raw": 0,
@@ -86949,7 +87052,7 @@
     "outcome_id": "01a1ec39-3115-7230-a4eb-1ee09e3c4ef8"
    },
    "result": null,
-   "settle_tries": 160,
+   "settle_tries": 161,
    "side": "TNST (0)",
    "side_label": "TNST (0)",
    "side_raw": null,
@@ -95137,7 +95240,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 139,
+   "settle_tries": 140,
    "side": "Florida A&M",
    "side_label": "Florida A&M",
    "side_raw": 1,
@@ -95233,7 +95336,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 139,
+   "settle_tries": 140,
    "side": "Bethune Cookman",
    "side_label": "Bethune Cookman -1.5 (-1.5)",
    "side_raw": 0,
@@ -105226,7 +105329,7 @@
     "outcome_id": "01a1ec70-50ac-74c3-9a59-e9c9da237169"
    },
    "result": null,
-   "settle_tries": 139,
+   "settle_tries": 140,
    "side": "Bethune Cookman",
    "side_label": "BCU (0)",
    "side_raw": 0,
@@ -105278,7 +105381,7 @@
     "outcome_id": "01a1ec70-50ac-74c3-9a59-e9b794b355e5"
    },
    "result": null,
-   "settle_tries": 139,
+   "settle_tries": 140,
    "side": "Florida A&M",
    "side_label": "FAMU (0)",
    "side_raw": 1,
@@ -107740,7 +107843,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 139,
+   "settle_tries": 140,
    "side": "Florida A&M",
    "side_label": "Florida A&M",
    "side_raw": 1,
@@ -108234,7 +108337,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 139,
+   "settle_tries": 140,
    "side": "Bethune Cookman",
    "side_label": "Bethune Cookman -1.5 (-1.5)",
    "side_raw": 0,
@@ -115289,7 +115392,7 @@
     "outcome_id": "01a1ec39-3244-7b81-93ae-0a9f77384ca9"
    },
    "result": null,
-   "settle_tries": 160,
+   "settle_tries": 161,
    "side": "OVER",
    "side_label": "Over 50.5 (50.5)",
    "side_raw": "OVER",
@@ -117804,7 +117907,7 @@
     "outcome_id": "01a1ec39-3244-7b81-93ae-0bed0278de01"
    },
    "result": null,
-   "settle_tries": 160,
+   "settle_tries": 161,
    "side": "GWEB -18.5 (-18.5)",
    "side_label": "GWEB -18.5 (-18.5)",
    "side_raw": null,
@@ -120973,7 +121076,7 @@
     "outcome_id": "01a1ec79-47d8-7430-8e1f-51b5cb1747b0"
    },
    "result": null,
-   "settle_tries": 139,
+   "settle_tries": 140,
    "side": "Bethune Cookman",
    "side_label": "BCU -5.5 (5.5)",
    "side_raw": 0,
@@ -126619,7 +126722,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 139,
+   "settle_tries": 140,
    "side": "OVER",
    "side_label": "over 58.5 (58.5)",
    "side_raw": "OVER",
@@ -127417,7 +127520,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 139,
+   "settle_tries": 140,
    "side": "UNDER",
    "side_label": "under 58.5 (58.5)",
    "side_raw": "UNDER",
