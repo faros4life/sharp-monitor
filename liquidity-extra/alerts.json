@@ -46,9 +46,9 @@
     "volume_fp": 1931.95
    },
    "ex_stats_close": {
-    "open_interest_fp": 58906.5,
-    "volume_24h_fp": 56366.42,
-    "volume_fp": 59500.479999999996
+    "open_interest_fp": 61638.520000000004,
+    "volume_24h_fp": 62218.84,
+    "volume_fp": 62232.5
    },
    "ex_stats_first": {
     "open_interest_fp": 38720.11,
@@ -594,12 +594,14 @@
     "volume": 6811503.0
    },
    "fade_price": 0.4,
+   "fade_units": 1.5,
    "first_seen_utc": "2026-11-21T21:50:20Z",
    "game": "Michigan @ Villanova",
    "game_surge_books": [
     "prophetx"
    ],
    "game_x": 1.52,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1fad1-4cb7-7412-82e4-874169677235\", \"outcome_id\": \"01a1fad1-4cb7-7412-82e4-8766a57ce258\"}",
    "lead_min": 120,
    "league": "NCAAB",
@@ -722,7 +724,7 @@
     "market_id": "01a1fad1-4cb7-7412-82e4-874169677235",
     "outcome_id": "01a1fad1-4cb7-7412-82e4-8766a57ce258"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -730,7 +732,8 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 6,
+   "settle_tries": 7,
+   "settled_utc": "2026-11-22T03:00:26Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Michigan",
@@ -749,7 +752,7 @@
     "Villanova"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-21T21:40:22Z",
@@ -4267,6 +4270,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [
     "Oral Roberts Golden Eagles -2.5 (-110)"
    ],
@@ -5332,12 +5336,14 @@
     "volume": 541792.0
    },
    "fade_price": 0.235,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-21T14:30:24Z",
    "game": "Radford @ Chattanooga",
    "game_surge_books": [
     "novig"
    ],
    "game_x": 3.57,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1fc36-5a92-7c52-a05e-a6b8f76651cc\", \"outcome_id\": \"01a1fc36-5a92-7c52-a05e-a6c8708a615b\"}",
    "lead_min": 560,
    "league": "NCAAB",
@@ -5373,12 +5379,13 @@
     "market_id": "01a1fc36-5a92-7c52-a05e-a6b8f76651cc",
     "outcome_id": "01a1fc36-5a92-7c52-a05e-a6c8708a615b"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 6,
+   "settle_tries": 7,
+   "settled_utc": "2026-11-22T03:00:26Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UTC (0)",
@@ -5395,7 +5402,7 @@
     "Chattanooga"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.3
   },
   {
    "alerted_utc": "2026-11-21T14:40:20Z",
@@ -10491,7 +10498,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 177,
+   "settle_tries": 178,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Daniil Medvedev N/A",
