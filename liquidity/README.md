@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 22, 1:05 AM ET. This run: 3 new, 0 not confirmed, 0 pending. Open alerts: 29.
+Updated Sun Nov 22, 1:10 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 27.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1839-1436 (-39.72u flat) | rule met: 1080-863
+**Record:** 1840-1437 (-39.71u flat) | rule met: 1080-863
 
-**Fade (paper, betting against the print):** 1170-1566 (-190.57u flat, after fees)
+**Fade (paper, betting against the print):** 1171-1567 (-190.57u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -14,8 +14,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 22 1:05AM | NFL | Miami vs Buffalo: Spread | spread: NOT Buffalo wins by over 16.5 points | kalshi | $166k | -104 | ✅ novig |  | +0.0c |  | pending |
 | Nov 22 1:05AM | NFL | Arizona vs Kansas City: Spread | spread: NOT Kansas City wins by over 14.5 points | kalshi | $160k | +104 |  |  | +0.0c |  | pending |
 | Nov 22 1:00AM | NFL | Cincinnati vs Washington | moneyline: Cincinnati | kalshi | $358k | -270 | ✅ novig,prophetx |  | +0.0c |  | pending |
-| Nov 22 12:55AM | NBA | Boston vs Golden State | moneyline: Boston | kalshi | $73k | -335 |  |  | +0.0c | yes | pending |
-| Nov 22 12:50AM | NBA | Denver vs Chicago | moneyline: Denver | kalshi | $164k | -335 | ✅ novig |  | +0.0c |  | pending |
+| Nov 22 12:55AM | NBA | Boston vs Golden State | moneyline: Boston | kalshi | $73k | -335 |  |  | +1.0c | yes | pending |
+| Nov 22 12:50AM | NBA | Denver vs Chicago | moneyline: Denver | kalshi | $164k | -335 | ✅ novig |  | +1.0c | yes | pending |
 | Nov 21 11:35PM | NBA | Dallas vs Utah | moneyline: Dallas | kalshi | $60k | -117 |  |  | +1.0c |  | pending |
 | Nov 21 11:25PM | NBA | Indiana vs New York | moneyline: New York | kalshi | $40k | -355 |  |  | +0.0c |  | pending |
 | Nov 21 11:05PM | NFL | Jacksonville vs New York G | moneyline: Jacksonville | kalshi | $114k | -245 | ✅ novig,prophetx |  | +0.0c | yes | pending |
@@ -41,9 +41,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 8:25PM | NBA | Boston vs Sacramento | moneyline: Boston | kalshi | $145k | -525 | ✅ novig,prophetx | ❌ | +0.0c | yes | L |
 | Nov 21 8:20PM | NHL | Minnesota vs Vancouver: Spread | spread: NOT Minnesota wins by over 1.5 goals | kalshi | $38k | +113 |  |  | +0.0c | yes | W |
 | Nov 21 8:00PM | NBA | Boston Celtics at Sacramento Kings | moneyline: Boston Celtics | prophetx | $28k | -520 | ✅ kalshi,novig | ❌ | -0.3c |  | L |
-| Nov 21 7:35PM | NCAAF | San Diego State @ Boise State | spread: BSU -20.5 (-20.5) | novig | $25k | -104 |  | ✅ | +0.0c |  | pending |
+| Nov 21 7:35PM | NCAAF | San Diego State @ Boise State | spread: BSU -20.5 (-20.5) | novig | $25k | -104 |  | ✅ | +0.0c |  | L |
 | Nov 21 7:35PM | NBA | Los Angeles C vs Dallas: Spread | spread: NOT Dallas wins by over 5.5 points | kalshi | $85k | -108 | ✅ novig |  | +0.0c | yes | L |
-| Nov 21 7:30PM | NCAAF | San Diego St. vs Boise St.: Spread | spread: NOT Boise St. wins by over 20.5 points | kalshi | $36k | -100 |  | ❌ | +0.0c | yes | pending |
+| Nov 21 7:30PM | NCAAF | San Diego St. vs Boise St.: Spread | spread: NOT Boise St. wins by over 20.5 points | kalshi | $36k | -100 |  | ❌ | +0.0c | yes | W |
 | Nov 21 7:30PM | NCAAF | Utah St. vs Oregon St. | moneyline: Oregon St. | kalshi | $258k | -245 | ✅ prophetx | ❌ | +0.0c | yes | pending |
 | Nov 21 7:20PM | NCAAF | SMU vs Notre Dame: Spread | spread: NOT Notre Dame wins by over 20.5 points | kalshi | $170k | -113 |  |  | -1.0c | yes | L |
 | Nov 21 7:20PM | NBA | Portland vs New York: Spread | spread: NOT Portland wins by over 1.5 points | kalshi | $35k | -100 |  | ❌ | +0.0c | yes | W |
