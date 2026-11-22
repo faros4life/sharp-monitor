@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 22, 4:30 PM ET. This run: 0 new, 1 not confirmed, 2 pending. Open alerts: 51.
+Updated Sun Nov 22, 4:35 PM ET. This run: 0 new, 2 not confirmed, 2 pending. Open alerts: 51.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -12,7 +12,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 22 4:20PM | NFL | Jacksonville Jaguars @ New York Giants | spread: JAX -6.5 (6.5) | novig | $32k | +102 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Nov 22 4:20PM | NFL | Cincinnati vs Washington: Spread | spread: NOT Cincinnati wins by over 6.5 points | kalshi | $127k | -108 | ✅ novig |  | +0.0c |  | pending |
-| Nov 22 4:15PM | NBA | Boston vs Golden State: Total Points | total: Over 209.5 points | kalshi | $100k | -108 |  |  | +1.0c |  | pending |
+| Nov 22 4:15PM | NBA | Boston vs Golden State: Total Points | total: Over 209.5 points | kalshi | $100k | -108 |  |  | +1.0c | yes | pending |
 | Nov 22 4:10PM | NHL | Buffalo vs Tampa Bay: Spread | spread: NOT Tampa Bay wins by over 1.5 goals | kalshi | $27k | -127 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 22 3:55PM | NFL | Las Vegas Raiders @ Denver Broncos | total: Over 41.5 (41.5) | novig | $25k | -100 |  |  | +0.5c | yes | pending |
 | Nov 22 3:10PM | NFL | New York Jets @ Los Angeles Chargers | spread: LAC -3.5 (-3.5) | novig | $93k | +117 |  |  | -0.5c | yes | pending |
@@ -80,7 +80,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 22 1:05AM | NFL | Miami vs Buffalo: Spread | spread: NOT Buffalo wins by over 16.5 points | kalshi | $166k | -104 | ✅ novig |  | -2.0c | yes | L |
 | Nov 22 1:05AM | NFL | Arizona vs Kansas City: Spread | spread: NOT Kansas City wins by over 14.5 points | kalshi | $160k | +104 |  |  | -1.0c |  | L |
 | Nov 22 1:00AM | NFL | Cincinnati vs Washington | moneyline: Cincinnati | kalshi | $358k | -270 | ✅ novig,prophetx |  | +0.0c |  | pending |
-| Nov 22 12:55AM | NBA | Boston vs Golden State | moneyline: Boston | kalshi | $73k | -335 |  |  | -3.0c | yes | pending |
+| Nov 22 12:55AM | NBA | Boston vs Golden State | moneyline: Boston | kalshi | $73k | -335 |  |  | -2.0c | yes | pending |
 | Nov 22 12:50AM | NBA | Denver vs Chicago | moneyline: Denver | kalshi | $164k | -335 | ✅ novig |  | +3.0c | yes | pending |
 | Nov 21 11:35PM | NBA | Dallas vs Utah | moneyline: Dallas | kalshi | $60k | -117 |  |  | +2.0c |  | pending |
 | Nov 21 11:25PM | NBA | Indiana vs New York | moneyline: New York | kalshi | $40k | -355 |  |  | -5.0c |  | pending |
