@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 22, 1:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 76.
+Updated Sun Nov 22, 1:25 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 76.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -54,7 +54,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 22 8:10AM | NFL | Tampa Bay Buccaneers @ Detroit Lions | moneyline: TB (0) | novig | $37k | +194 |  | ✅ | +0.5c |  | pending |
 | Nov 22 8:10AM | NFL | Tampa Bay vs Detroit: Total Points | total: Over 47.5 points | kalshi | $190k | -100 | ✅ novig,prophetx | ✅ | +6.0c | yes | pending |
 | Nov 22 8:05AM | NHL | Carolina vs New York R | moneyline: Carolina | kalshi | $45k | -150 | ✅ novig,prophetx |  | +1.0c |  | pending |
-| Nov 22 7:15AM | NBA | Dallas vs Utah | moneyline: Utah | kalshi | $50k | +108 | ✅ novig |  | +3.0c |  | pending |
+| Nov 22 7:15AM | NBA | Dallas vs Utah | moneyline: Utah | kalshi | $50k | +108 | ✅ novig |  | +2.0c |  | pending |
 | Nov 22 6:40AM | NHL | Pittsburgh vs Dallas: Spread | spread: NOT Dallas wins by over 1.5 goals | kalshi | $51k | -133 | ✅ novig |  | -1.0c |  | pending |
 | Nov 22 6:35AM | NFL | Jacksonville vs New York G: Total Points | total: NOT Over 45.5 points | kalshi | $86k | -108 |  | ✅ | +0.0c |  | pending |
 | Nov 22 5:25AM | NHL | Chicago vs Vancouver | moneyline: Chicago | kalshi | $37k | -108 |  |  | +0.0c | yes | pending |
