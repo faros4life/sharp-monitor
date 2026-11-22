@@ -1932,7 +1932,7 @@
    "close_fair_prob": 0.55,
    "close_read_mins_before": 30,
    "close_value_pct": 1.1,
-   "clv": "+1.5 pts",
+   "clv": "+2.5 pts",
    "clv_conv_pts": 1.5,
    "clv_pin_line": 45.0,
    "clv_read_utc": "2026-11-22T20:55:16Z",
@@ -3493,8 +3493,8 @@
    "fade_point": 43.5,
    "fade_price": 113,
    "fade_price_after_fee": 111,
-   "fade_units": null,
-   "final": null,
+   "fade_units": -1.0,
+   "final": "BAL 33, CAR 35",
    "floor_line": 44.0,
    "game": "Baltimore Ravens @ Carolina Panthers",
    "grade": "B",
@@ -3532,13 +3532,13 @@
     }
    },
    "pricing_bettable": true,
-   "result": null,
+   "result": "W",
    "score": 72,
    "sent_to_phone": true,
    "sport": "NFL",
    "start_utc": "2026-11-22T18:00:00Z",
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.84
   },
   {
    "alert_utc": "2026-11-22T14:35:20Z",
@@ -110766,6 +110766,30 @@
  ],
  "all_alerts": [
   {
+   "alert_text": "Under 45.5 (-115) at ProphetX [-117 after ProphetX fee] (also: Hard Rock, Novig, Kalshi)",
+   "bet": "Under 45.5 (-115)",
+   "bet_result": null,
+   "book": "ProphetX",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -1.2,
+   "final": null,
+   "game": "Jacksonville Jaguars @ New York Giants",
+   "grade": "B",
+   "late": true,
+   "minutes_before_start": 5,
+   "price": -115,
+   "price_after_fee": -117,
+   "pushed_to_phone": false,
+   "repeat": true,
+   "score": 72,
+   "sent_et": "2026-11-22 16:20",
+   "sport": "NFL",
+   "start_utc": "2026-11-22T21:25:00Z",
+   "why": "Pinnacle total moved 45 -> 44; bet only at 44.5 or better (confirmed by BetOnline)"
+  },
+  {
    "alert_text": "Over 226.5 (-104) at Novig (also: Hard Rock, ProphetX, Kalshi)",
    "bet": "Over 226.5 (-104)",
    "bet_result": null,
@@ -110940,14 +110964,14 @@
   {
    "alert_text": "Over 44.5 (+100) at Novig (also: Hard Rock, ProphetX, Kalshi)",
    "bet": "Over 44.5 (+100)",
-   "bet_result": null,
+   "bet_result": "W",
    "book": "Novig",
    "confirmed_by": [
     "BetOnline",
     "Matchbook"
    ],
    "edge_pct": -2.3,
-   "final": null,
+   "final": "BAL 33, CAR 35",
    "game": "Baltimore Ravens @ Carolina Panthers",
    "grade": "A",
    "late": true,
@@ -111762,14 +111786,14 @@
   {
    "alert_text": "Over 43.5 (-117) at ProphetX [-119 after ProphetX fee] (also: Hard Rock)",
    "bet": "Over 43.5 (-117)",
-   "bet_result": null,
+   "bet_result": "W",
    "book": "ProphetX",
    "confirmed_by": [
     "BetOnline",
     "Matchbook"
    ],
    "edge_pct": -2.0,
-   "final": null,
+   "final": "BAL 33, CAR 35",
    "game": "Baltimore Ravens @ Carolina Panthers",
    "grade": "B",
    "late": false,
