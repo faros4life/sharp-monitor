@@ -1,17 +1,17 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 21, 9:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 12.
+Updated Sat Nov 21, 9:43 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 11.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 413-250 (-18.88u flat) | rule met: 80-63
+**Record:** 414-250 (-18.57u flat) | rule met: 81-63
 
-**Fade (paper, betting against the print):** 225-378 (+19.36u flat, after fees)
+**Fade (paper, betting against the print):** 225-379 (+18.36u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 21 8:00PM | TENNIS | Zverev vs Alcaraz | moneyline: Alcaraz | kalshi | $50k | -194 |  |  | +0.0c |  | pending |
-| Nov 21 7:20PM | NCAAB | Presbyterian vs Tennessee Tech | moneyline: Tennessee Tech | kalshi | $58k | -317 | ✅ prophetx |  | +0.0c |  | pending |
+| Nov 21 7:20PM | NCAAB | Presbyterian vs Tennessee Tech | moneyline: Tennessee Tech | kalshi | $58k | -317 | ✅ prophetx |  | +0.0c |  | W |
 | Nov 21 6:50PM | NCAAB | Michigan vs Villanova: Point Total | total: NOT Over 159.5 points | kalshi | $39k | -100 |  | ❌ | +0.0c |  | W |
 | Nov 21 5:00PM | NCAAB | Michigan @ Villanova | moneyline: MICH (0) | novig | $26k | -153 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Nov 21 4:40PM | NCAAB | Michigan vs Villanova | moneyline: Michigan | kalshi | $49k | -150 |  |  | +1.0c |  | L |
