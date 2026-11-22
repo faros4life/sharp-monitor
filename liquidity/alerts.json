@@ -1,6 +1,409 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-22T00:35:52Z",
+   "base_depth": 28827,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-11-21",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": false,
+     "label": "Boise St. wins by over 20.5 points",
+     "price": 0.51,
+     "this_side": 128411
+    },
+    "novig": {
+     "new_other_side": 1758,
+     "new_this_side": 25359,
+     "other_side": 52497,
+     "other_side_all_levels": 52857,
+     "ratio": 1.0,
+     "this_side": 53846,
+     "this_side_all_levels": 54384
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Boise State -20.5 (-20.5)",
+     "price": 0.5146,
+     "this_side": 8846
+    }
+   },
+   "ex_stats_alert": {
+    "openInterest": 1997043.0,
+    "volume": 2667548.0
+   },
+   "ex_stats_change": {
+    "openInterest": 15747.0,
+    "volume": 15747.0
+   },
+   "ex_stats_first": {
+    "openInterest": 1981296.0,
+    "volume": 2651801.0
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-22T00:30:19Z",
+   "game": "San Diego State @ Boise State",
+   "game_surge_books": [
+    "novig",
+    "prophetx"
+   ],
+   "game_x": 2.25,
+   "key": "novig|{\"market_id\": \"01a1e014-b194-7fd2-be72-05d96e016856\", \"outcome_id\": \"01a1e014-b194-7fd2-be72-05e8f2811ebb\"}",
+   "lead_min": 114,
+   "league": "NCAAF",
+   "line": -20.5,
+   "market": "spread",
+   "new_money": 25359,
+   "new_x": 1.77,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 34217.9,
+      "volume_24h_fp": 39413.43,
+      "volume_fp": 40167.92
+     },
+     "game_normal": 193896,
+     "game_x": 1.19,
+     "normal": 20407,
+     "now": 230400,
+     "type": "SPREAD",
+     "x": 11.29
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 1997043.0,
+      "volume": 2667548.0
+     },
+     "game_normal": 24177,
+     "game_x": 2.25,
+     "normal": 14348,
+     "now": 54384,
+     "type": "SPREAD",
+     "x": 3.79
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 4255,
+     "game_x": 2.08,
+     "normal": 2199,
+     "now": 8846,
+     "type": "SPREAD",
+     "x": 4.02
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -20.5,
+     "price": -108
+    },
+    "betonlineag": {
+     "point": -20.5,
+     "price": -110
+    },
+    "betrivers": {
+     "point": -20.5,
+     "price": -114
+    },
+    "betus": {
+     "point": -20.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": -20.5,
+     "price": -112
+    },
+    "circasports": {
+     "point": -20.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": -20.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": -20.5,
+     "price": -115
+    },
+    "fanduel": {
+     "point": -20.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": -20.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": -20.5,
+     "price": -106
+    },
+    "mybookieag": {
+     "point": -21.0,
+     "price": -110
+    },
+    "novig": {
+     "point": -20.5,
+     "price": -104
+    },
+    "polymarket": {
+     "point": -20.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": -20.5,
+     "price": -106
+    },
+    "williamhill_us": {
+     "point": -20.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a1e014-b194-7fd2-be72-05d96e016856",
+    "outcome_id": "01a1e014-b194-7fd2-be72-05e8f2811ebb"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [
+    "Boise State Broncos -20.5 (+100)",
+    "Boise State Broncos -17.5 (-117)"
+   ],
+   "sharp_oppose": [],
+   "side": "Boise State",
+   "side_label": "BSU -20.5 (-20.5)",
+   "size_x": 3.79,
+   "start_source": "odds",
+   "start_utc": "2026-11-22T02:30:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "San Diego State",
+    "Boise State"
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-22T00:35:52Z",
+   "base_depth": 202339,
+   "best_price": 0.52,
+   "best_price_american": -108,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-11-21",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 936,
+     "new_this_side": 84805,
+     "other_side": 193022,
+     "other_side_all_levels": 345685,
+     "ratio": 1.1,
+     "this_side": 219601,
+     "this_side_all_levels": 389680
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "LAC +5.5 (-5.5)",
+     "price": 0.52,
+     "this_side": 65627
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 18169.51,
+    "volume_24h_fp": 18229.71,
+    "volume_fp": 19085.26
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 855.55,
+    "volume_24h_fp": 917.71,
+    "volume_fp": 855.55
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 17313.96,
+    "volume_24h_fp": 17312.0,
+    "volume_fp": 18229.71
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-11-22T00:30:19Z",
+   "game": "Los Angeles C vs Dallas: Spread",
+   "game_surge_books": [],
+   "game_x": 1.8,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBASPREAD-26NOV21LACDAL-DAL6\"}",
+   "lead_min": 24,
+   "league": "NBA",
+   "line": 5.5,
+   "market": "spread",
+   "new_money": 84805,
+   "new_x": 0.58,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 18169.51,
+      "volume_24h_fp": 18229.71,
+      "volume_fp": 19085.26
+     },
+     "game_normal": 216144,
+     "game_x": 1.8,
+     "normal": 146989,
+     "now": 389680,
+     "type": "SPREAD",
+     "x": 2.65
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 12235601.0,
+      "volume": 14349183.0
+     },
+     "game_normal": 33683,
+     "game_x": 1.97,
+     "normal": 19214,
+     "now": 66291,
+     "type": "SPREAD",
+     "x": 3.45
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 4.5,
+     "price": -102
+    },
+    "betonlineag": {
+     "point": 5.0,
+     "price": -108
+    },
+    "betopenly": {
+     "point": 4.5,
+     "price": 102
+    },
+    "betrivers": {
+     "point": 5.5,
+     "price": -112
+    },
+    "betus": {
+     "point": 5.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 5.0,
+     "price": -110
+    },
+    "circasports": {
+     "point": 5.0,
+     "price": -115
+    },
+    "draftkings": {
+     "point": 4.5,
+     "price": -107
+    },
+    "fanatics": {
+     "point": 5.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 5.5,
+     "price": -112
+    },
+    "kalshi": {
+     "point": 5.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 5.0,
+     "price": -104
+    },
+    "mybookieag": {
+     "point": 4.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 5.5,
+     "price": -108
+    },
+    "polymarket": {
+     "point": 5.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": 5.5,
+     "price": -110
+    },
+    "williamhill_us": {
+     "point": 5.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNBASPREAD-26NOV21LACDAL-DAL6"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Los Angeles C",
+   "side_label": "NOT Dallas wins by over 5.5 points",
+   "size_x": 2.65,
+   "start_source": "odds",
+   "start_utc": "2026-11-22T01:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "Los Angeles C",
+    "Dallas"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-22T00:30:19Z",
    "base_depth": 206988,
    "best_price": 0.4977,
@@ -50,6 +453,11 @@
     "open_interest_fp": 2526.24,
     "volume_24h_fp": 0.0,
     "volume_fp": 2526.24
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 34217.9,
+    "volume_24h_fp": 39413.43,
+    "volume_fp": 40167.92
    },
    "ex_stats_first": {
     "open_interest_fp": 31161.74,
@@ -255,6 +663,11 @@
     "open_interest_fp": 381.17,
     "volume_24h_fp": 0.0,
     "volume_fp": 381.17
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 16301.41,
+    "volume_24h_fp": 11477.55,
+    "volume_fp": 17492.33
    },
    "ex_stats_first": {
     "open_interest_fp": 15881.109999999999,
@@ -485,6 +898,8 @@
    "norm_ready_books": 1,
    "paper_only": false,
    "price": 0.53,
+   "price_after_15m": 0.4975,
+   "price_after_15m_book": "kalshi",
    "price_american": -113,
    "price_rule": "ok",
    "price_when_first_seen": 0.53,
@@ -576,6 +991,7 @@
    "size_x": 68.25,
    "start_source": "odds",
    "start_utc": "2026-11-22T00:30:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi"
    ],
@@ -829,9 +1245,9 @@
     "volume_fp": 236.49
    },
    "ex_stats_close": {
-    "open_interest_fp": 22544.6,
-    "volume_24h_fp": 24597.43,
-    "volume_fp": 29786.15
+    "open_interest_fp": 24362.15,
+    "volume_24h_fp": 29792.17,
+    "volume_fp": 31603.7
    },
    "ex_stats_first": {
     "open_interest_fp": 18487.86,
@@ -1245,8 +1661,8 @@
     "volume": 30422.0
    },
    "ex_stats_close": {
-    "openInterest": 16827176.0,
-    "volume": 20455688.0
+    "openInterest": 16972176.0,
+    "volume": 20600688.0
    },
    "ex_stats_first": {
     "openInterest": 16165434.0,
@@ -1650,9 +2066,9 @@
     "volume_fp": 3809.71
    },
    "ex_stats_close": {
-    "open_interest_fp": 35537.36,
-    "volume_24h_fp": 38294.14,
-    "volume_fp": 39838.37
+    "open_interest_fp": 36518.69,
+    "volume_24h_fp": 39838.37,
+    "volume_fp": 40819.7
    },
    "ex_stats_first": {
     "open_interest_fp": 22103.33,
@@ -8908,7 +9324,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 21,
+   "settle_tries": 22,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "LSU",
@@ -9182,8 +9598,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 17120600.0,
-    "volume": 19156296.0
+    "openInterest": 17120718.0,
+    "volume": 19156414.0
    },
    "ex_stats_first": {
     "openInterest": 16199699.0,
