@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 22, 12:50 AM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 31.
+Updated Sun Nov 22, 12:55 AM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 32.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 22 12:55AM | NBA | Boston vs Golden State | moneyline: Boston | kalshi | $73k | -335 |  |  | +0.0c |  | pending |
 | Nov 22 12:50AM | NBA | Denver vs Chicago | moneyline: Denver | kalshi | $164k | -335 | ✅ novig |  | +0.0c |  | pending |
 | Nov 21 11:35PM | NBA | Dallas vs Utah | moneyline: Dallas | kalshi | $60k | -117 |  |  | +0.0c |  | pending |
 | Nov 21 11:25PM | NBA | Indiana vs New York | moneyline: New York | kalshi | $40k | -355 |  |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 19 7:35PM | NBA | Indiana vs Cleveland | moneyline: Cleveland | kalshi | $49k | -213 |  |  | +0.0c |  | W |
 | Nov 19 7:20PM | NCAAF | Rice vs Temple: Total Points | total: NOT Over 51.5 points | kalshi | $177k | +108 |  | ❌ | +0.0c | yes | L |
 | Nov 19 7:10PM | NFL | Indianapolis Colts @ Houston Texans | spread: IND +12.5 (-12.5) | novig | $30k | -104 |  |  | -0.5c | yes | L |
-| Nov 19 7:10PM | NHL | Columbus vs Chicago: Total Goals | total: Over 5.5 goals scored | kalshi | $62k | -122 | ✅ novig |  | +3.0c | yes | W |

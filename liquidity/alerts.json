@@ -1,6 +1,195 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-22T05:55:43Z",
+   "base_depth": 371647,
+   "best_price": 0.775,
+   "best_price_american": -344,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.77,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-22",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 14674,
+     "new_this_side": 72856,
+     "other_side": 21168,
+     "other_side_all_levels": 105418,
+     "ratio": 3.1,
+     "this_side": 66634,
+     "this_side_all_levels": 437229
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "BOS (0)",
+     "price": 0.775,
+     "this_side": 2197
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Boston Celtics",
+     "price": 0.7753,
+     "this_side": 1542
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 28274.47,
+    "volume_24h_fp": 26584.32,
+    "volume_fp": 32072.88
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 129.94,
+    "volume_24h_fp": 1914.38,
+    "volume_fp": 129.94
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 28144.53,
+    "volume_24h_fp": 24669.940000000002,
+    "volume_fp": 31942.940000000002
+   },
+   "fade_price": 0.24,
+   "first_seen_utc": "2026-11-22T05:50:18Z",
+   "game": "Boston vs Golden State",
+   "game_surge_books": [],
+   "game_x": 1.09,
+   "key": "kalshi|KXNBAGAME-26NOV22BOSGSW|ml|0",
+   "lead_min": 1174,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 72856,
+   "new_x": 0.19,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 28274.47,
+      "volume_24h_fp": 26584.32,
+      "volume_fp": 32072.88
+     },
+     "game_normal": 400993,
+     "game_x": 1.09,
+     "normal": 376449,
+     "now": 437229,
+     "type": "ML",
+     "x": 1.16
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 209703.0,
+      "volume": 213108.0
+     },
+     "game_normal": 2589,
+     "game_x": 0.85,
+     "normal": 2616,
+     "now": 2201,
+     "type": "ML",
+     "x": 0.84
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 1268,
+     "game_x": 1.22,
+     "normal": 4940,
+     "now": 1542,
+     "type": "ML",
+     "x": 0.31
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.77,
+   "price_american": -335,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.77,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -425
+    },
+    "betopenly": {
+     "point": null,
+     "price": -353
+    },
+    "betrivers": {
+     "point": null,
+     "price": -400
+    },
+    "draftkings": {
+     "point": null,
+     "price": -410
+    },
+    "fanatics": {
+     "point": null,
+     "price": -400
+    },
+    "fanduel": {
+     "point": null,
+     "price": -405
+    },
+    "kalshi": {
+     "point": null,
+     "price": -335
+    },
+    "limitless": {
+     "point": null,
+     "price": -352
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -429
+    },
+    "novig": {
+     "point": null,
+     "price": -344
+    },
+    "polymarket": {
+     "point": null,
+     "price": -335
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -335
+    },
+    "prophetx": {
+     "point": null,
+     "price": -345
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26NOV22BOSGSW-BOS"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Boston",
+   "side_label": "Boston",
+   "size_x": 1.16,
+   "start_source": "odds",
+   "start_utc": "2026-11-23T01:30:00Z",
+   "surge_books": [],
+   "teams": [
+    "Boston",
+    "Golden State"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-22T05:50:18Z",
    "base_depth": 351819,
    "best_price": 0.765,
@@ -50,6 +239,11 @@
     "open_interest_fp": 245.79,
     "volume_24h_fp": 0.0,
     "volume_fp": 326.89
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 29940.86,
+    "volume_24h_fp": 30381.260000000002,
+    "volume_fp": 33613.36
    },
    "ex_stats_first": {
     "open_interest_fp": 29293.340000000004,
@@ -265,9 +459,9 @@
     "volume_fp": 768.65
    },
    "ex_stats_close": {
-    "open_interest_fp": 27841.89,
-    "volume_24h_fp": 45303.93,
-    "volume_fp": 49538.49
+    "open_interest_fp": 35115.200000000004,
+    "volume_24h_fp": 46508.909999999996,
+    "volume_fp": 56811.8
    },
    "ex_stats_first": {
     "open_interest_fp": 24625.07,
@@ -472,9 +666,9 @@
     "volume_fp": 4.02
    },
    "ex_stats_close": {
-    "open_interest_fp": 12761.400000000001,
-    "volume_24h_fp": 11905.79,
-    "volume_fp": 13407.74
+    "open_interest_fp": 14227.44,
+    "volume_24h_fp": 13988.85,
+    "volume_fp": 14873.78
    },
    "ex_stats_first": {
     "open_interest_fp": 9102.849999999999,
@@ -684,9 +878,9 @@
     "volume_fp": 759.99
    },
    "ex_stats_close": {
-    "open_interest_fp": 291206.7,
-    "volume_24h_fp": 109532.98,
-    "volume_fp": 305862.11
+    "open_interest_fp": 291731.76,
+    "volume_24h_fp": 110346.76,
+    "volume_fp": 306387.17000000004
    },
    "ex_stats_first": {
     "open_interest_fp": 274714.36,
@@ -909,9 +1103,9 @@
     "volume_fp": 584.1
    },
    "ex_stats_close": {
-    "open_interest_fp": 197012.49,
-    "volume_24h_fp": 67666.76,
-    "volume_fp": 216801.87
+    "open_interest_fp": 197606.41999999998,
+    "volume_24h_fp": 74442.2,
+    "volume_fp": 217395.8
    },
    "ex_stats_first": {
     "open_interest_fp": 179658.09,
@@ -1131,7 +1325,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 538.16,
-    "volume_24h_fp": 676.73,
+    "volume_24h_fp": 715.37,
     "volume_fp": 801.2700000000001
    },
    "ex_stats_first": {
@@ -1375,7 +1569,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [
     "Utah State Aggies +7.5 (-113)"
@@ -1446,9 +1640,9 @@
     "volume_fp": 260.47
    },
    "ex_stats_close": {
-    "open_interest_fp": 189800.2,
-    "volume_24h_fp": 179978.73,
-    "volume_fp": 205884.42
+    "open_interest_fp": 189818.8,
+    "volume_24h_fp": 183989.55,
+    "volume_fp": 206049.12
    },
    "ex_stats_first": {
     "open_interest_fp": 175873.01,
@@ -1875,9 +2069,9 @@
     "volume_fp": 727.79
    },
    "ex_stats_close": {
-    "open_interest_fp": 827414.02,
-    "volume_24h_fp": 482953.56,
-    "volume_fp": 887086.58
+    "open_interest_fp": 830654.77,
+    "volume_24h_fp": 484436.93000000005,
+    "volume_fp": 890327.33
    },
    "ex_stats_first": {
     "open_interest_fp": 472086.65,
@@ -2094,9 +2288,9 @@
     "volume_fp": 56.21
    },
    "ex_stats_close": {
-    "open_interest_fp": 67688.39,
-    "volume_24h_fp": 35491.05,
-    "volume_fp": 74338.48
+    "open_interest_fp": 68753.98,
+    "volume_24h_fp": 36322.31,
+    "volume_fp": 75620.82
    },
    "ex_stats_first": {
     "open_interest_fp": 57707.58,
@@ -2451,7 +2645,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Minnesota",
@@ -2515,8 +2709,8 @@
     "volume": 2525.0
    },
    "ex_stats_close": {
-    "openInterest": 8661389.0,
-    "volume": 10160956.0
+    "openInterest": 8663207.0,
+    "volume": 10162774.0
    },
    "ex_stats_first": {
     "openInterest": 7612506.0,
@@ -2847,7 +3041,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Minnesota",
@@ -3067,7 +3261,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [
     "Over 51.5 (+100)"
    ],
@@ -3363,9 +3557,9 @@
     "volume_fp": 2197.99
    },
    "ex_stats_close": {
-    "open_interest_fp": 252736.72,
-    "volume_24h_fp": 111664.18,
-    "volume_fp": 283053.83
+    "open_interest_fp": 253144.33000000002,
+    "volume_24h_fp": 113770.26999999999,
+    "volume_fp": 283475.82
    },
    "ex_stats_first": {
     "open_interest_fp": 205925.82,
@@ -3998,9 +4192,9 @@
     "volume_fp": 6393.3
    },
    "ex_stats_close": {
-    "open_interest_fp": 1217868.28,
-    "volume_24h_fp": 394188.61,
-    "volume_fp": 1406547.77
+    "open_interest_fp": 1219118.52,
+    "volume_24h_fp": 482348.3,
+    "volume_fp": 1407840.51
    },
    "ex_stats_first": {
     "open_interest_fp": 995480.06,
@@ -4449,9 +4643,9 @@
     "volume_fp": 588.36
    },
    "ex_stats_close": {
-    "open_interest_fp": 342060.63,
-    "volume_24h_fp": 91623.82,
-    "volume_fp": 394995.37
+    "open_interest_fp": 343836.60000000003,
+    "volume_24h_fp": 91967.0,
+    "volume_fp": 396771.33999999997
    },
    "ex_stats_first": {
     "open_interest_fp": 314097.97,
@@ -4676,9 +4870,9 @@
     "volume_fp": 365.63
    },
    "ex_stats_close": {
-    "open_interest_fp": 248556.65,
-    "volume_24h_fp": 93291.82,
-    "volume_fp": 284899.08
+    "open_interest_fp": 249113.47,
+    "volume_24h_fp": 99367.77,
+    "volume_fp": 285455.9
    },
    "ex_stats_first": {
     "open_interest_fp": 198988.37,
@@ -5267,7 +5461,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Vancouver",
@@ -5479,7 +5673,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [
     "Sacramento Kings +12.5 (-106)",
@@ -5694,7 +5888,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 17,
+   "settle_tries": 18,
    "sharp_agree": [
     "Boise State Broncos -20.5 (+100)",
     "Boise State Broncos -17.5 (-117)"
@@ -6124,7 +6318,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 17,
+   "settle_tries": 18,
    "sharp_agree": [],
    "sharp_oppose": [
     "Boise State Broncos -20.5 (+100)",
@@ -6331,7 +6525,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [
     "Utah State Aggies +7.5 (-113)"
@@ -7357,7 +7551,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [
     "Sacramento Kings +12.5 (-106)",
@@ -12636,7 +12830,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 59,
+   "settle_tries": 60,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Nevada",
@@ -14062,7 +14256,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 23,
+   "settle_tries": 24,
    "sharp_agree": [
     "Utah Utes -7.5 (-111)"
    ],
@@ -15261,8 +15455,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 17704841.0,
-    "volume": 19773562.0
+    "openInterest": 17739956.0,
+    "volume": 19808677.0
    },
    "ex_stats_first": {
     "openInterest": 16199699.0,
@@ -16911,7 +17105,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 23,
+   "settle_tries": 24,
    "sharp_agree": [
     "Utah Utes -7.5 (-111)"
    ],
