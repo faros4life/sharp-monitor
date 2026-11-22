@@ -95,6 +95,8 @@
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.8387,
+   "price_after_15m": 0.84,
+   "price_after_15m_book": "novig",
    "price_american": -520,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.8387,
@@ -201,6 +203,7 @@
    "size_x": 4.52,
    "start_source": "odds",
    "start_utc": "2026-11-22T03:00:00Z",
+   "still_actionable": true,
    "surge_books": [
     "novig",
     "prophetx"
@@ -226,8 +229,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 0.0,
+   "close_price": 0.505,
+   "clv_cents": -0.5,
    "confirmed_after_min": 6,
    "date": "2026-11-21",
    "depth_by_book": {
@@ -684,9 +687,9 @@
     "volume_fp": 2526.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 40138.54,
-    "volume_24h_fp": 45901.23,
-    "volume_fp": 46467.71
+    "open_interest_fp": 40635.7,
+    "volume_24h_fp": 46243.14,
+    "volume_fp": 46964.87
    },
    "ex_stats_first": {
     "open_interest_fp": 31161.74,
@@ -897,9 +900,9 @@
     "volume_fp": 381.17
    },
    "ex_stats_close": {
-    "open_interest_fp": 17180.690000000002,
-    "volume_24h_fp": 11989.46,
-    "volume_fp": 18430.09
+    "open_interest_fp": 17262.02,
+    "volume_24h_fp": 12427.810000000001,
+    "volume_fp": 18511.420000000002
    },
    "ex_stats_first": {
     "open_interest_fp": 15881.109999999999,
@@ -1904,8 +1907,8 @@
     "volume": 30422.0
    },
    "ex_stats_close": {
-    "openInterest": 18190254.0,
-    "volume": 22068766.0
+    "openInterest": 18237463.0,
+    "volume": 22115975.0
    },
    "ex_stats_first": {
     "openInterest": 16165434.0,
@@ -5616,7 +5619,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [
     "Over 6 (-117)"
@@ -6717,7 +6720,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Buffalo",
@@ -7136,7 +7139,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Pittsburgh",
@@ -7248,7 +7251,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Nevada",
@@ -7450,6 +7453,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -7859,7 +7863,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas St.",
