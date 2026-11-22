@@ -1,6 +1,213 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-22T18:40:20Z",
+   "base_depth": 162461,
+   "best_price": 0.46,
+   "best_price_american": 117,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.46,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-22",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 7460,
+     "new_this_side": 25694,
+     "other_side": 38860,
+     "other_side_all_levels": 150887,
+     "ratio": 3.5,
+     "this_side": 136265,
+     "this_side_all_levels": 209691
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "USD (0)",
+     "price": 0.46,
+     "this_side": 21597
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "San Diego",
+     "price": 0.4651,
+     "this_side": 7757
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 2427.69,
+    "volume_24h_fp": 2234.45,
+    "volume_fp": 2446.87
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 1.0,
+    "volume_24h_fp": 446.67,
+    "volume_fp": 1.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 2426.69,
+    "volume_24h_fp": 1787.78,
+    "volume_fp": 2445.87
+   },
+   "fade_price": 0.55,
+   "first_seen_utc": "2026-11-22T18:30:24Z",
+   "game": "Fordham vs San Diego",
+   "game_surge_books": [],
+   "game_x": 1.59,
+   "key": "kalshi|KXNCAAMBGAME-26NOV22FORUSD|ml|1",
+   "lead_min": 20,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 25694,
+   "new_x": 0.93,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 2427.69,
+      "volume_24h_fp": 2234.45,
+      "volume_fp": 2446.87
+     },
+     "game_normal": 131885,
+     "game_x": 1.59,
+     "normal": 27566,
+     "now": 209691,
+     "type": "ML",
+     "x": 7.61
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 1656511.0,
+      "volume": 1698415.0
+     },
+     "game_normal": 28575,
+     "game_x": 1.57,
+     "normal": 5215,
+     "now": 44768,
+     "type": "ML",
+     "x": 8.58
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 5583,
+     "game_x": 1.46,
+     "normal": 1626,
+     "now": 8154,
+     "type": "ML",
+     "x": 5.01
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.46,
+   "price_american": 117,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.44,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 110
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 105
+    },
+    "betopenly": {
+     "point": null,
+     "price": 122
+    },
+    "betrivers": {
+     "point": null,
+     "price": 108
+    },
+    "betus": {
+     "point": null,
+     "price": 105
+    },
+    "bovada": {
+     "point": null,
+     "price": 110
+    },
+    "circasports": {
+     "point": null,
+     "price": 110
+    },
+    "draftkings": {
+     "point": null,
+     "price": 110
+    },
+    "fanatics": {
+     "point": null,
+     "price": 110
+    },
+    "fanduel": {
+     "point": null,
+     "price": 108
+    },
+    "kalshi": {
+     "point": null,
+     "price": 117
+    },
+    "lowvig": {
+     "point": null,
+     "price": 105
+    },
+    "novig": {
+     "point": null,
+     "price": 115
+    },
+    "polymarket": {
+     "point": null,
+     "price": 113
+    },
+    "prophetx": {
+     "point": null,
+     "price": 115
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV22FORUSD-USD"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "San Diego",
+   "side_label": "San Diego",
+   "size_x": 7.61,
+   "start_source": "odds",
+   "start_utc": "2026-11-22T19:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Fordham",
+    "San Diego"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-22T17:56:34Z",
    "base_depth": 194999,
    "best_price": 0.525,
@@ -52,9 +259,9 @@
     "volume_fp": 134.56
    },
    "ex_stats_close": {
-    "open_interest_fp": 13338.19,
-    "volume_24h_fp": 12806.39,
-    "volume_fp": 13730.29
+    "open_interest_fp": 13342.220000000001,
+    "volume_24h_fp": 13641.23,
+    "volume_fp": 13734.32
    },
    "ex_stats_first": {
     "open_interest_fp": 12357.84,
@@ -444,7 +651,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1117.89,
-    "volume_24h_fp": 1176.59,
+    "volume_24h_fp": 1211.65,
     "volume_fp": 1211.65
    },
    "ex_stats_first": {
@@ -729,9 +936,9 @@
     "volume_fp": 0.73
    },
    "ex_stats_close": {
-    "open_interest_fp": 1733.5900000000001,
-    "volume_24h_fp": 1561.75,
-    "volume_fp": 2043.47
+    "open_interest_fp": 1749.54,
+    "volume_24h_fp": 2042.13,
+    "volume_fp": 2059.42
    },
    "ex_stats_first": {
     "open_interest_fp": 854.21,
@@ -883,7 +1090,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 2767.94,
-    "volume_24h_fp": 2710.84,
+    "volume_24h_fp": 2713.86,
     "volume_fp": 2768.94
    },
    "ex_stats_first": {
@@ -1101,7 +1308,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1140.08,
-    "volume_24h_fp": 1138.85,
+    "volume_24h_fp": 1141.3700000000001,
     "volume_fp": 1151.94
    },
    "ex_stats_first": {
@@ -1314,9 +1521,9 @@
     "volume_fp": 17.96
    },
    "ex_stats_close": {
-    "open_interest_fp": 12691.51,
-    "volume_24h_fp": 12684.72,
-    "volume_fp": 12695.46
+    "open_interest_fp": 12901.71,
+    "volume_24h_fp": 12695.46,
+    "volume_fp": 12905.66
    },
    "ex_stats_first": {
     "open_interest_fp": 961.81,
@@ -1728,7 +1935,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 693.79,
-    "volume_24h_fp": 679.26,
+    "volume_24h_fp": 681.61,
     "volume_fp": 705.28
    },
    "ex_stats_first": {
@@ -1864,9 +2071,9 @@
     "volume_fp": 1.17
    },
    "ex_stats_close": {
-    "open_interest_fp": 1554.16,
-    "volume_24h_fp": 1421.5100000000002,
-    "volume_fp": 1556.16
+    "open_interest_fp": 1562.9,
+    "volume_24h_fp": 1422.3600000000001,
+    "volume_fp": 1564.9
    },
    "ex_stats_first": {
     "open_interest_fp": 256.76,
@@ -2428,7 +2635,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 3173.74,
-    "volume_24h_fp": 2358.54,
+    "volume_24h_fp": 2360.94,
     "volume_fp": 3213.3199999999997
    },
    "ex_stats_first": {
@@ -2623,7 +2830,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 19356.03,
-    "volume_24h_fp": 21318.12,
+    "volume_24h_fp": 21320.7,
     "volume_fp": 21320.7
    },
    "ex_stats_first": {
@@ -2823,9 +3030,9 @@
     "volume_fp": 248.29
    },
    "ex_stats_close": {
-    "open_interest_fp": 785.93,
-    "volume_24h_fp": 514.13,
-    "volume_fp": 793.7299999999999
+    "open_interest_fp": 2373.08,
+    "volume_24h_fp": 516.96,
+    "volume_fp": 2424.99
    },
    "ex_stats_first": {
     "open_interest_fp": 331.25,
