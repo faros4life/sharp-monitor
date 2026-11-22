@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 21, 11:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 36.
+Updated Sat Nov 21, 11:45 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 34.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1833-1429 (-36.48u flat) | rule met: 1075-856
+**Record:** 1834-1430 (-36.89u flat) | rule met: 1076-857
 
-**Fade (paper, betting against the print):** 1163-1560 (-204.54u flat, after fees)
+**Fade (paper, betting against the print):** 1164-1561 (-204.87u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -27,9 +27,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 8:50PM | NHL | Seattle vs San Jose: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $27k | -108 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 21 8:50PM | NFL | Pittsburgh vs Philadelphia | moneyline: Pittsburgh | kalshi | $101k | -186 | ✅ prophetx |  | +0.0c | yes | pending |
 | Nov 21 8:45PM | NHL | Seattle vs San Jose: Spread | spread: NOT San Jose wins by over 1.5 goals | kalshi | $75k | -233 | ✅ novig |  | +0.0c |  | pending |
-| Nov 21 8:40PM | NHL | Anaheim vs Utah: Spread | spread: NOT Utah wins by over 1.5 goals | kalshi | $45k | -178 | ✅ novig |  | +0.0c |  | pending |
+| Nov 21 8:40PM | NHL | Anaheim vs Utah: Spread | spread: NOT Utah wins by over 1.5 goals | kalshi | $45k | -178 | ✅ novig |  | +0.0c |  | W |
 | Nov 21 8:40PM | NFL | Tampa Bay vs Detroit | moneyline: Detroit | kalshi | $487k | -223 | ✅ novig,prophetx |  | +0.0c | yes | pending |
-| Nov 21 8:35PM | NHL | Anaheim vs Utah | moneyline: Anaheim | kalshi | $149k | +133 | ✅ prophetx |  | +0.0c | yes | pending |
+| Nov 21 8:35PM | NHL | Anaheim vs Utah | moneyline: Anaheim | kalshi | $149k | +133 | ✅ prophetx |  | +0.0c | yes | L |
 | Nov 21 8:30PM | NFL | New Orleans vs Chicago | moneyline: Chicago | kalshi | $493k | -567 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 21 8:25PM | NFL | Tennessee vs Dallas | moneyline: Dallas | kalshi | $175k | -335 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 21 8:25PM | NBA | Boston vs Sacramento | moneyline: Boston | kalshi | $145k | -525 | ✅ novig,prophetx | ❌ | +0.0c | yes | pending |
