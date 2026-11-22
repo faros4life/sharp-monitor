@@ -1872,22 +1872,28 @@ def tg(text):
         LOG.append("TELEGRAM NOT CONFIGURED: no bot token or chat id - no Telegram alert was sent")
         print("telegram NOT CONFIGURED (missing token or chat id)", flush=True)
         return False
-    try:
-        req = urllib.request.Request(f"https://api.telegram.org/bot{tok}/sendMessage",
-                                     data=json.dumps({"chat_id": chat, "text": text[:3500]}).encode(), method="POST",
-                                     headers={"Content-Type": "application/json"})
-        body = urllib.request.urlopen(req, timeout=15).read().decode()
-        ok = bool((json.loads(body) or {}).get("ok"))
-        if not ok:
+    # Nov 22 (Peter): colour symbol + bold header on EVERY message. Formatting only. The decorated
+    # HTML goes first and the undecorated-but-symbolled plain text is the fallback, because
+    # Telegram answers ok:false for malformed HTML and a stray '<' must never cost an alert.
+    import tg_format
+    html, plain = tg_format.decorate(text)
+    for payload in ({"chat_id": chat, "text": html[:3500], "parse_mode": "HTML"},
+                    {"chat_id": chat, "text": plain[:3500]}):
+        try:
+            req = urllib.request.Request(f"https://api.telegram.org/bot{tok}/sendMessage",
+                                         data=json.dumps(payload).encode(), method="POST",
+                                         headers={"Content-Type": "application/json"})
+            body = urllib.request.urlopen(req, timeout=15).read().decode()
+            if bool((json.loads(body) or {}).get("ok")):
+                return True
             # 200 with ok:false - the silent-failure case. Counts only in the public log; the
             # description can name the chat, so it goes no further than a short reason.
             LOG.append(f"TELEGRAM REFUSED the message: {str((json.loads(body) or {}).get('description'))[:60]}")
             print("telegram send refused (ok:false)", flush=True)
-        return ok
-    except Exception as ex:
-        LOG.append(f"TELEGRAM SEND FAILED: {str(ex)[:60]}")
-        print("telegram send failed", flush=True)
-        return False
+        except Exception as ex:
+            LOG.append(f"TELEGRAM SEND FAILED: {str(ex)[:60]}")
+            print("telegram send failed", flush=True)
+    return False
 
 
 def tg_push(title, text):

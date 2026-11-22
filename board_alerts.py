@@ -52,15 +52,21 @@ def tg(text):
     chat = (os.environ.get("TELEGRAM_CHAT_ID") or "").strip()
     if not (TG and tok and chat):
         return False
-    try:
-        req = urllib.request.Request(f"https://api.telegram.org/bot{tok}/sendMessage",
-                                     data=json.dumps({"chat_id": chat, "text": text[:3500]}).encode(),
-                                     method="POST", headers={"Content-Type": "application/json"})
-        urllib.request.urlopen(req, timeout=15).read()
-        return True
-    except Exception:
-        print("board telegram failed")
-        return False
+    # Nov 22 (Peter): colour symbol + bold header on EVERY message. Formatting only. HTML first,
+    # symbolled plain text as the fallback - a malformed entity must never cost an alert.
+    import tg_format
+    rich, plain = tg_format.decorate(text)
+    for payload in ({"chat_id": chat, "text": rich[:3500], "parse_mode": "HTML"},
+                    {"chat_id": chat, "text": plain[:3500]}):
+        try:
+            req = urllib.request.Request(f"https://api.telegram.org/bot{tok}/sendMessage",
+                                         data=json.dumps(payload).encode(),
+                                         method="POST", headers={"Content-Type": "application/json"})
+            if bool((json.loads(urllib.request.urlopen(req, timeout=15).read().decode()) or {}).get("ok")):
+                return True
+        except Exception:
+            print("board telegram failed")
+    return False
 
 
 def one_line(r, x, dropped=False):

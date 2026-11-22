@@ -1333,14 +1333,20 @@ def tg_mirror(text, html=False):
     tok, chat = (os.environ.get("TELEGRAM_BOT_TOKEN") or "").strip(), (os.environ.get("TELEGRAM_CHAT_ID") or "").strip()
     if not tok or not chat:
         return
-    try:
-        req = urllib.request.Request(f"https://api.telegram.org/bot{tok}/sendMessage",
-                                     data=json.dumps(dict({"chat_id": chat, "text": text[:3500]},
-                                                          **({"parse_mode": "HTML"} if html else {}))).encode(), method="POST",
-                                     headers={"Content-Type": "application/json"})
-        urllib.request.urlopen(req, timeout=15).read()
-    except Exception:
-        print("telegram mirror failed")
+    # Nov 22 (Peter): colour symbol + bold header on EVERY message. Formatting only. HTML first,
+    # symbolled plain text as the fallback - a malformed entity must never cost an alert.
+    import tg_format
+    rich, plain = tg_format.decorate(text, body_is_html=html)
+    for payload in ({"chat_id": chat, "text": rich[:3500], "parse_mode": "HTML"},
+                    {"chat_id": chat, "text": plain[:3500]}):
+        try:
+            req = urllib.request.Request(f"https://api.telegram.org/bot{tok}/sendMessage",
+                                         data=json.dumps(payload).encode(), method="POST",
+                                         headers={"Content-Type": "application/json"})
+            if bool((json.loads(urllib.request.urlopen(req, timeout=15).read().decode()) or {}).get("ok")):
+                return
+        except Exception:
+            print("telegram mirror failed")
 
 
 def _esc(t):
