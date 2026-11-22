@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 22, 2:20 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 80.
+Updated Sun Nov 22, 2:25 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 81.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,8 +10,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 22 2:25PM | NBA | Dallas vs Utah: Total Points | total: NOT Over 226.5 points | kalshi | $53k | +104 |  |  | +0.0c |  | pending |
 | Nov 22 2:10PM | NBA | Dallas vs Utah: Spread | spread: Dallas wins by over 1.5 points | kalshi | $102k | -108 | ✅ novig | ❌ | +0.0c |  | pending |
-| Nov 22 2:00PM | NFL | New York Jets @ Los Angeles Chargers | moneyline: LAC (0) | novig | $51k | -156 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
+| Nov 22 2:00PM | NFL | New York Jets @ Los Angeles Chargers | moneyline: LAC (0) | novig | $51k | -156 | ✅ kalshi,prophetx |  | +0.5c |  | pending |
 | Nov 22 1:55PM | NBA | Detroit Pistons @ Atlanta Hawks | total: Under 223.5 (223.5) | novig | $28k | -100 | ✅ prophetx | ✅ | +0.0c |  | pending |
 | Nov 22 1:35PM | NFL | Minnesota Vikings @ San Francisco 49ers | moneyline: SF (0) | novig | $48k | -170 | ✅ kalshi,prophetx |  | +0.5c |  | pending |
 | Nov 22 1:10PM | NFL | Jacksonville Jaguars @ New York Giants | moneyline: JAX (0) | novig | $90k | -257 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 20 11:25PM | NCAAF | Ohio St. vs Nebraska: Spread | spread: NOT Ohio St. wins by over 3.5 points | kalshi | $138k | -100 |  |  | -1.0c | yes | W |
 | Nov 20 11:15PM | NCAAF | Ohio State @ Nebraska | spread: OSU -3.5 (3.5) | novig | $31k | -104 | ✅ kalshi |  | +0.0c | yes | L |
 | Nov 20 11:15PM | NHL | Edmonton vs Carolina | moneyline: Carolina | kalshi | $40k | -178 | ✅ novig |  | +5.0c | yes | W |
-| Nov 20 11:05PM | NCAAF | North Texas vs Tulane: Spread | spread: NOT North Texas wins by over 6.5 points | kalshi | $31k | +108 |  | ❌ | -4.0c | yes | W |
