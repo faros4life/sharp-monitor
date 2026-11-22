@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 22, 11:35 AM ET. This run: 2 new, 0 not confirmed, 1 pending. Open alerts: 56.
+Updated Sun Nov 22, 11:40 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 57.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,11 +10,12 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 22 11:40AM | NFL | Pittsburgh Steelers @ Philadelphia Eagles | moneyline: PIT (0) | novig | $31k | -194 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Nov 22 11:35AM | NFL | Baltimore Ravens @ Carolina Panthers | spread: BAL +2.5 (-2.5) | novig | $63k | +104 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 22 11:35AM | NBA | Detroit vs Atlanta | moneyline: Detroit | kalshi | $62k | -113 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 22 11:05AM | NFL | Las Vegas vs Denver: Spread | spread: Denver wins by over 10.5 points | kalshi | $143k | -104 | ✅ novig |  | +0.0c |  | pending |
 | Nov 22 11:00AM | NHL | Carolina vs New York R: Total Goals | total: Over 6.5 goals scored | kalshi | $31k | +108 |  |  | +0.0c |  | pending |
-| Nov 22 10:55AM | NFL | Pittsburgh Steelers @ Philadelphia Eagles | spread: PIT -3.5 (3.5) | novig | $54k | -100 |  |  | +0.0c |  | pending |
+| Nov 22 10:55AM | NFL | Pittsburgh Steelers @ Philadelphia Eagles | spread: PIT -3.5 (3.5) | novig | $54k | -100 |  |  | +0.5c |  | pending |
 | Nov 22 10:30AM | NFL | Tennessee Titans @ Dallas Cowboys | spread: DAL -7.5 (-7.5) | novig | $99k | +104 |  |  | +0.0c |  | pending |
 | Nov 22 10:30AM | NFL | Miami vs Buffalo: Total Points | total: Over 44.5 points | kalshi | $254k | -104 | ✅ novig |  | +1.0c |  | pending |
 | Nov 22 10:15AM | NHL | Buffalo vs Tampa Bay: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $34k | -104 | ✅ novig |  | +1.0c | yes | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 20 2:15PM | NCAAF | Colorado vs Cincinnati: Spread | spread: NOT Cincinnati wins by over 3.5 points | kalshi | $95k | -113 | ✅ novig |  | +2.0c |  | L |
 | Nov 20 1:40PM | NBA | Orlando vs Brooklyn: Spread | spread: NOT Orlando wins by over 6.5 points | kalshi | $25k | +104 | ✅ novig,prophetx |  | +1.0c | yes | W |
 | Nov 20 1:40PM | NBA | Charlotte vs Atlanta: Spread | spread: NOT Atlanta wins by over 7.5 points | kalshi | $37k | -108 | ✅ novig | ✅ | +0.0c | yes | L |
-| Nov 20 1:25PM | NCAAF | Clemson vs Duke: Total Points | total: Over 39.5 points | kalshi | $29k | -122 |  |  | +1.0c | yes | L |
