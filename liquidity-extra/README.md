@@ -1,20 +1,21 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 22, 2:10 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 23.
+Updated Sun Nov 22, 2:20 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 23.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 418-251 (-17.19u flat) | rule met: 84-64
+**Record:** 419-251 (-16.67u flat) | rule met: 84-64
 
-**Fade (paper, betting against the print):** 226-383 (+15.86u flat, after fees)
+**Fade (paper, betting against the print):** 226-384 (+14.86u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 22 2:20PM | NCAAB | Western Kentucky vs George Washington | moneyline: Western Kentucky | kalshi | $50k | -203 |  |  | +0.0c |  | pending |
 | Nov 22 1:40PM | NCAAB | Fordham vs San Diego | moneyline: San Diego | kalshi | $26k | +117 | ✅ novig |  | +0.0c |  | pending |
-| Nov 22 12:56PM | NCAAB | Utah Tech vs South Dakota | moneyline: Utah Tech | kalshi | $56k | -108 | ✅ novig |  | +2.0c |  | pending |
+| Nov 22 12:56PM | NCAAB | Utah Tech vs South Dakota | moneyline: Utah Tech | kalshi | $56k | -108 | ✅ novig |  | +2.0c | yes | pending |
 | Nov 22 12:56PM | NCAAB | Loyola Marymount vs UC Irvine | moneyline: UC Irvine | kalshi | $67k | -122 |  | ❌ | +0.0c |  | pending |
 | Nov 22 11:50AM | NCAAB | NJIT vs Boston College: Spread | spread: NOT Boston College wins by over 23.5 points | kalshi | $39k | -108 |  |  | +0.0c |  | pending |
-| Nov 22 10:30AM | NCAAB | Maryland-Eastern Shore @ IU Indianapolis | moneyline: IUPUI (0) | novig | $29k | -506 |  |  | +0.5c |  | pending |
+| Nov 22 10:30AM | NCAAB | Maryland-Eastern Shore @ IU Indianapolis | moneyline: IUPUI (0) | novig | $29k | -506 |  |  | +0.0c |  | pending |
 | Nov 22 10:30AM | NCAAB | San Jose St. vs Loyola Chicago | moneyline: Loyola Chicago | kalshi | $37k | -186 | ✅ novig |  | +0.0c |  | pending |
 | Nov 22 10:20AM | NCAAB | Wyoming vs Duquesne | moneyline: Wyoming | kalshi | $48k | -163 | ✅ novig |  | +2.0c |  | pending |
 | Nov 22 10:20AM | NCAAB | Valparaiso vs Southern Miss | moneyline: Valparaiso | kalshi | $56k | -335 | ✅ novig |  | +1.0c |  | pending |
@@ -27,7 +28,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 22 7:50AM | NCAAB | Utah vs Minnesota | moneyline: Minnesota | kalshi | $53k | -567 |  |  | -3.0c |  | pending |
 | Nov 22 7:50AM | NCAAB | Portland vs California Baptist | moneyline: Portland | kalshi | $31k | -456 |  |  | -6.0c |  | pending |
 | Nov 22 1:40AM | NCAAB | West Florida vs South Alabama | moneyline: South Alabama | kalshi | $28k | -233 |  |  | -1.0c |  | pending |
-| Nov 21 8:00PM | TENNIS | Zverev vs Alcaraz | moneyline: Alcaraz | kalshi | $50k | -194 |  |  | +1.0c |  | pending |
+| Nov 21 8:00PM | TENNIS | Zverev vs Alcaraz | moneyline: Alcaraz | kalshi | $50k | -194 |  |  | +1.0c |  | W |
 | Nov 21 7:20PM | NCAAB | Presbyterian vs Tennessee Tech | moneyline: Tennessee Tech | kalshi | $58k | -317 | ✅ prophetx |  | +0.0c |  | W |
 | Nov 21 6:50PM | NCAAB | Michigan vs Villanova: Point Total | total: NOT Over 159.5 points | kalshi | $39k | -100 |  | ❌ | +0.0c |  | W |
 | Nov 21 5:00PM | NCAAB | Michigan @ Villanova | moneyline: MICH (0) | novig | $26k | -153 | ✅ kalshi,prophetx |  | +0.0c |  | L |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 16 7:10PM | NCAAB | Western Illinois vs Minnesota: Point Total | total: Over 136.5 points | kalshi | $33k | +104 |  | ❌ | +0.0c |  | W |
 | Nov 16 7:10PM | NCAAB | Central Arkansas vs Oklahoma St.: Point Total | total: NOT Over 162.5 points | kalshi | $33k | -104 | ✅ novig | ❌ | +0.0c |  | L |
 | Nov 16 6:30PM | NCAAB | The Citadel vs Clemson: Point Total | total: Over 141.5 points | kalshi | $67k | -108 |  |  | +2.0c |  | L |
-| Nov 16 5:50PM | NCAAB | Western Illinois vs Minnesota: Point Total | total: NOT Over 136.5 points | kalshi | $28k | -104 |  | ✅ | +1.0c |  | L |
