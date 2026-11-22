@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 21, 9:10 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 57.
+Updated Sat Nov 21, 9:15 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 57.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -25,7 +25,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 8:25PM | NBA | Boston vs Sacramento | moneyline: Boston | kalshi | $145k | -525 | ✅ novig,prophetx | ❌ | +0.0c |  | pending |
 | Nov 21 8:20PM | NHL | Minnesota vs Vancouver: Spread | spread: NOT Minnesota wins by over 1.5 goals | kalshi | $38k | +113 |  |  | +0.0c | yes | pending |
 | Nov 21 8:00PM | NBA | Boston Celtics at Sacramento Kings | moneyline: Boston Celtics | prophetx | $28k | -520 | ✅ kalshi,novig | ❌ | +0.0c |  | pending |
-| Nov 21 7:35PM | NCAAF | San Diego State @ Boise State | spread: BSU -20.5 (-20.5) | novig | $25k | -104 |  | ✅ | -0.5c |  | pending |
+| Nov 21 7:35PM | NCAAF | San Diego State @ Boise State | spread: BSU -20.5 (-20.5) | novig | $25k | -104 |  | ✅ | -1.0c |  | pending |
 | Nov 21 7:35PM | NBA | Los Angeles C vs Dallas: Spread | spread: NOT Dallas wins by over 5.5 points | kalshi | $85k | -108 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 21 7:30PM | NCAAF | San Diego St. vs Boise St.: Spread | spread: NOT Boise St. wins by over 20.5 points | kalshi | $36k | -100 |  | ❌ | +0.0c |  | pending |
 | Nov 21 7:30PM | NCAAF | Utah St. vs Oregon St. | moneyline: Oregon St. | kalshi | $258k | -245 | ✅ prophetx | ❌ | +0.0c |  | pending |
