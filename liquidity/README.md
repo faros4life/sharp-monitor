@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 22, 12:40 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 33.
+Updated Sun Nov 22, 12:45 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 32.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1834-1431 (-37.89u flat) | rule met: 1076-858
+**Record:** 1835-1431 (-36.95u flat) | rule met: 1077-858
 
-**Fade (paper, betting against the print):** 1165-1561 (-200.31u flat, after fees)
+**Fade (paper, betting against the print):** 1165-1562 (-201.31u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -17,7 +17,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 10:10PM | NHL | Chicago vs Vancouver | moneyline: Vancouver | kalshi | $30k | -104 |  |  | +0.0c |  | pending |
 | Nov 21 10:00PM | NCAAF | Utah State @ Oregon State | moneyline: ORST (0) | novig | $30k | -239 |  | ❌ | +0.5c |  | pending |
 | Nov 21 9:55PM | NFL | Tennessee vs Dallas: Spread | spread: NOT Dallas wins by over 7.5 points | kalshi | $641k | -104 | ✅ novig |  | +1.0c | yes | pending |
-| Nov 21 9:50PM | NBA | Boston vs Sacramento: Spread | spread: NOT Boston wins by over 12.5 points | kalshi | $133k | -108 | ✅ novig | ✅ | +1.0c | yes | pending |
+| Nov 21 9:50PM | NBA | Boston vs Sacramento: Spread | spread: NOT Boston wins by over 12.5 points | kalshi | $133k | -108 | ✅ novig | ✅ | +1.0c | yes | W |
 | Nov 21 9:50PM | NFL | Las Vegas vs Denver | moneyline: Denver | kalshi | $232k | -488 | ✅ novig,prophetx |  | +0.0c | yes | pending |
 | Nov 21 9:30PM | NFL | Baltimore vs Carolina: Spread | spread: NOT Carolina wins by over 2.5 points | kalshi | $172k | +104 |  |  | +0.0c | yes | pending |
 | Nov 21 9:05PM | NHL | Minnesota vs Vancouver | moneyline: Minnesota | kalshi | $108k | -285 | ✅ novig,prophetx |  | +0.0c |  | pending |
