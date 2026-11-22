@@ -1,19 +1,19 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 21, 10:55 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 41.
+Updated Sat Nov 21, 11:00 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 40.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1826-1428 (-38.89u flat) | rule met: 1068-856
+**Record:** 1826-1429 (-39.89u flat) | rule met: 1068-856
 
-**Fade (paper, betting against the print):** 1162-1553 (-198.55u flat, after fees)
+**Fade (paper, betting against the print):** 1163-1553 (-197.54u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 21 10:35PM | NFL | New York J vs Los Angeles C | moneyline: Los Angeles C | kalshi | $561k | -156 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 21 10:10PM | NHL | Chicago vs Vancouver | moneyline: Vancouver | kalshi | $30k | -104 |  |  | +0.0c |  | pending |
 | Nov 21 10:00PM | NCAAF | Utah State @ Oregon State | moneyline: ORST (0) | novig | $30k | -239 |  | ❌ | +0.5c |  | pending |
-| Nov 21 9:55PM | NFL | Tennessee vs Dallas: Spread | spread: NOT Dallas wins by over 7.5 points | kalshi | $641k | -104 | ✅ novig |  | +0.0c |  | pending |
+| Nov 21 9:55PM | NFL | Tennessee vs Dallas: Spread | spread: NOT Dallas wins by over 7.5 points | kalshi | $641k | -104 | ✅ novig |  | +1.0c |  | pending |
 | Nov 21 9:50PM | NBA | Boston vs Sacramento: Spread | spread: NOT Boston wins by over 12.5 points | kalshi | $133k | -108 | ✅ novig | ✅ | +1.0c | yes | pending |
 | Nov 21 9:50PM | NFL | Las Vegas vs Denver | moneyline: Denver | kalshi | $232k | -488 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 21 9:30PM | NFL | Baltimore vs Carolina: Spread | spread: NOT Carolina wins by over 2.5 points | kalshi | $172k | +104 |  |  | +0.0c |  | pending |
@@ -36,7 +36,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 7:35PM | NBA | Los Angeles C vs Dallas: Spread | spread: NOT Dallas wins by over 5.5 points | kalshi | $85k | -108 | ✅ novig |  | +0.0c | yes | L |
 | Nov 21 7:30PM | NCAAF | San Diego St. vs Boise St.: Spread | spread: NOT Boise St. wins by over 20.5 points | kalshi | $36k | -100 |  | ❌ | +0.0c | yes | pending |
 | Nov 21 7:30PM | NCAAF | Utah St. vs Oregon St. | moneyline: Oregon St. | kalshi | $258k | -245 | ✅ prophetx | ❌ | +0.0c | yes | pending |
-| Nov 21 7:20PM | NCAAF | SMU vs Notre Dame: Spread | spread: NOT Notre Dame wins by over 20.5 points | kalshi | $170k | -113 |  |  | -1.0c | yes | pending |
+| Nov 21 7:20PM | NCAAF | SMU vs Notre Dame: Spread | spread: NOT Notre Dame wins by over 20.5 points | kalshi | $170k | -113 |  |  | -1.0c | yes | L |
 | Nov 21 7:20PM | NBA | Portland vs New York: Spread | spread: NOT Portland wins by over 1.5 points | kalshi | $35k | -100 |  | ❌ | +0.0c | yes | W |
 | Nov 21 7:05PM | NBA | Memphis vs Minnesota: Spread | spread: NOT Minnesota wins by over 6.5 points | kalshi | $58k | -113 |  |  | +0.0c | yes | L |
 | Nov 21 6:55PM | NBA | Portland vs New York | moneyline: Portland | kalshi | $458k | -113 | ✅ novig,prophetx | ✅ | +0.0c |  | L |
