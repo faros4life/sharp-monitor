@@ -1340,7 +1340,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+4 pts",
+   "clv": "+5.5 pts",
    "clv_conv_pts": null,
    "clv_pin_line": null,
    "clv_read_utc": null,
@@ -1555,20 +1555,20 @@
   {
    "alert_utc": "2026-11-22T14:35:20Z",
    "beat_close": true,
-   "beat_true_close": null,
+   "beat_true_close": false,
    "bet": "Temple Owls -1.5 (-120)",
    "book": "Hard Rock",
    "book_key": "hardrockbet",
-   "close_fair_prob": null,
-   "close_read_mins_before": null,
-   "close_value_pct": null,
+   "close_fair_prob": 0.5189,
+   "close_read_mins_before": 30,
+   "close_value_pct": -4.9,
    "clv": "+1 pts",
-   "clv_conv_pts": null,
-   "clv_pin_line": null,
-   "clv_read_utc": null,
+   "clv_conv_pts": 1.0,
+   "clv_pin_line": -2.5,
+   "clv_read_utc": "2026-11-22T22:00:24Z",
    "clv_skipped": null,
-   "clv_source": null,
-   "clv_verified": null,
+   "clv_source": "live read (provisional)",
+   "clv_verified": false,
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -2685,8 +2685,8 @@
    "fade_point": 166.5,
    "fade_price": 113,
    "fade_price_after_fee": 111,
-   "fade_units": null,
-   "final": null,
+   "fade_units": -1.0,
+   "final": "W&M 75, YSU 63",
    "floor_line": 165.0,
    "game": "William & Mary Tribe @ Youngstown St Penguins",
    "grade": "B",
@@ -2719,13 +2719,13 @@
     }
    },
    "pricing_bettable": true,
-   "result": null,
+   "result": "W",
    "score": 63,
    "sent_to_phone": false,
    "sport": "NCAAB",
    "start_utc": "2026-11-22T19:00:00Z",
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.78
   },
   {
    "alert_utc": "2026-11-22T11:00:31Z",
@@ -2828,8 +2828,8 @@
    "fade_point": 21.5,
    "fade_price": 102,
    "fade_price_after_fee": 102,
-   "fade_units": null,
-   "final": null,
+   "fade_units": 1.02,
+   "final": "EVAN 62, MEM 82",
    "floor_line": -21.5,
    "game": "Evansville Purple Aces @ Memphis Tigers",
    "grade": "A",
@@ -2867,13 +2867,13 @@
     }
    },
    "pricing_bettable": true,
-   "result": null,
+   "result": "L",
    "score": 80,
    "sent_to_phone": false,
    "sport": "NCAAB",
    "start_utc": "2026-11-22T19:00:00Z",
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alert_utc": "2026-11-22T14:35:20Z",
@@ -3050,8 +3050,8 @@
    "fade_point": 157.5,
    "fade_price": 106,
    "fade_price_after_fee": 104,
-   "fade_units": null,
-   "final": null,
+   "fade_units": -1.0,
+   "final": "EVAN 62, MEM 82",
    "floor_line": 157.0,
    "game": "Evansville Purple Aces @ Memphis Tigers",
    "grade": "A",
@@ -3089,13 +3089,13 @@
     }
    },
    "pricing_bettable": true,
-   "result": null,
+   "result": "W",
    "score": 80,
    "sent_to_phone": false,
    "sport": "NCAAB",
    "start_utc": "2026-11-22T19:00:00Z",
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.95
   },
   {
    "alert_utc": "2026-11-22T16:50:27Z",
@@ -3198,8 +3198,8 @@
    "fade_point": 28.5,
    "fade_price": 103,
    "fade_price_after_fee": 101,
-   "fade_units": null,
-   "final": null,
+   "fade_units": 1.01,
+   "final": "UML 68, CIN 78",
    "floor_line": -29.0,
    "game": "UMass Lowell River Hawks @ Cincinnati Bearcats",
    "grade": "B",
@@ -3232,13 +3232,13 @@
     }
    },
    "pricing_bettable": true,
-   "result": null,
+   "result": "L",
    "score": 65,
    "sent_to_phone": false,
    "sport": "NCAAB",
    "start_utc": "2026-11-22T19:00:00Z",
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alert_utc": "2026-11-21T22:20:24Z",
@@ -110766,6 +110766,31 @@
  ],
  "all_alerts": [
   {
+   "alert_text": "Miami Heat -7.5 (-105) at ProphetX [-107 after ProphetX fee] (also: Hard Rock, Kalshi)",
+   "bet": "Miami Heat -7.5 (-105)",
+   "bet_result": null,
+   "book": "ProphetX",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -4.6,
+   "final": null,
+   "game": "Oklahoma City Thunder @ Miami Heat",
+   "grade": "A",
+   "late": true,
+   "minutes_before_start": 59,
+   "price": -105,
+   "price_after_fee": -107,
+   "pushed_to_phone": false,
+   "repeat": true,
+   "score": 90,
+   "sent_et": "2026-11-22 17:00",
+   "sport": "NBA",
+   "start_utc": "2026-11-22T23:00:00Z",
+   "why": "Pinnacle moved -4 -> -8; bet only at -7.5 or better (confirmed by BetOnline, Matchbook)"
+  },
+  {
    "alert_text": "Under 45.5 (-115) at ProphetX [-117 after ProphetX fee] (also: Hard Rock, Novig, Kalshi)",
    "bet": "Under 45.5 (-115)",
    "bet_result": null,
@@ -110891,13 +110916,13 @@
   {
    "alert_text": "Cincinnati Bearcats -28.5 (-115) at Hard Rock (also: ProphetX)",
    "bet": "Cincinnati Bearcats -28.5 (-115)",
-   "bet_result": null,
+   "bet_result": "L",
    "book": "Hard Rock",
    "confirmed_by": [
     "BetOnline"
    ],
    "edge_pct": -1.4,
-   "final": null,
+   "final": "UML 68, CIN 78",
    "game": "UMass Lowell River Hawks @ Cincinnati Bearcats",
    "grade": "B",
    "late": true,
@@ -111253,13 +111278,13 @@
   {
    "alert_text": "Under 157.5 (-105) at Hard Rock (also: ProphetX, Kalshi)",
    "bet": "Under 157.5 (-105)",
-   "bet_result": null,
+   "bet_result": "W",
    "book": "Hard Rock",
    "confirmed_by": [
     "BetOnline"
    ],
    "edge_pct": 2.8,
-   "final": null,
+   "final": "EVAN 62, MEM 82",
    "game": "Evansville Purple Aces @ Memphis Tigers",
    "grade": "A",
    "late": false,
@@ -111762,13 +111787,13 @@
   {
    "alert_text": "Memphis Tigers -21.5 (-104) at Novig (also: Hard Rock, ProphetX)",
    "bet": "Memphis Tigers -21.5 (-104)",
-   "bet_result": null,
+   "bet_result": "L",
    "book": "Novig",
    "confirmed_by": [
     "BetOnline"
    ],
    "edge_pct": -1.2,
-   "final": null,
+   "final": "EVAN 62, MEM 82",
    "game": "Evansville Purple Aces @ Memphis Tigers",
    "grade": "A",
    "late": false,
@@ -112326,13 +112351,13 @@
   {
    "alert_text": "Under 166.5 (-125) at ProphetX [-128 after ProphetX fee]",
    "bet": "Under 166.5 (-125)",
-   "bet_result": null,
+   "bet_result": "W",
    "book": "ProphetX",
    "confirmed_by": [
     "BetOnline"
    ],
    "edge_pct": -3.7,
-   "final": null,
+   "final": "W&M 75, YSU 63",
    "game": "William & Mary Tribe @ Youngstown St Penguins",
    "grade": "B",
    "late": false,
