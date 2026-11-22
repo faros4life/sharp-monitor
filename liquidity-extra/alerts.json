@@ -1,6 +1,348 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-22T15:10:20Z",
+   "base_depth": 40549,
+   "best_price": 0.5673,
+   "best_price_american": -131,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.55,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-22",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 1994,
+     "new_this_side": 25347,
+     "other_side": 13654,
+     "other_side_all_levels": 35029,
+     "ratio": 2.9,
+     "this_side": 40162,
+     "this_side_all_levels": 70040
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 5683.3,
+    "volume_24h_fp": 6132.74,
+    "volume_fp": 6344.25
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 89.7,
+    "volume_fp": 211.51
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 5683.3,
+    "volume_24h_fp": 6043.04,
+    "volume_fp": 6132.74
+   },
+   "fade_price": 0.46,
+   "first_seen_utc": "2026-11-22T15:00:26Z",
+   "game": "Miami (OH) vs UIC: Spread",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 2.01,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAMBSPREAD-26NOV22MOHUIC-MOH2\"}",
+   "lead_min": 110,
+   "league": "NCAAB",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 25347,
+   "new_x": 2.32,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 5683.3,
+      "volume_24h_fp": 6132.74,
+      "volume_fp": 6344.25
+     },
+     "game_normal": 34810,
+     "game_x": 2.01,
+     "normal": 10903,
+     "now": 70040,
+     "type": "SPREAD",
+     "x": 6.42
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.55,
+   "price_american": -122,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.55,
+   "prices_by_book": {
+    "betonlineag": {
+     "point": -1.0,
+     "price": -110
+    },
+    "betrivers": {
+     "point": -1.5,
+     "price": -106
+    },
+    "betus": {
+     "point": -1.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": -1.0,
+     "price": -110
+    },
+    "circasports": {
+     "point": -1.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": -1.5,
+     "price": -102
+    },
+    "fanatics": {
+     "point": -1.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": -1.5,
+     "price": -102
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -122
+    },
+    "lowvig": {
+     "point": -1.0,
+     "price": -106
+    },
+    "novig": {
+     "point": 15.5,
+     "price": -100000
+    },
+    "prophetx": {
+     "point": -1.5,
+     "price": -101
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAMBSPREAD-26NOV22MOHUIC-MOH2"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UIC",
+   "side_label": "NOT Miami (OH) wins by over 1.5 points",
+   "size_x": 6.42,
+   "start_source": "odds",
+   "start_utc": "2026-11-22T17:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Miami (OH)",
+    "UIC"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-22T15:10:20Z",
+   "base_depth": 21757,
+   "best_price": 0.515,
+   "best_price_american": -106,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-22",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 4795,
+     "new_this_side": 26004,
+     "other_side": 8991,
+     "other_side_all_levels": 25542,
+     "ratio": 3.4,
+     "this_side": 30126,
+     "this_side_all_levels": 47338
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "RICH +1.5 (1.5)",
+     "price": 0.515,
+     "this_side": 15965
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 4437.64,
+    "volume_24h_fp": 4322.07,
+    "volume_fp": 4534.25
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 177.09,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 212.18
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 4260.55,
+    "volume_24h_fp": 4322.07,
+    "volume_fp": 4322.07
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-22T15:00:26Z",
+   "game": "Liberty vs Richmond: Spread",
+   "game_surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "game_x": 2.62,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAMBSPREAD-26NOV22LIBRICH-LIB2\"}",
+   "lead_min": 380,
+   "league": "NCAAB",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 26004,
+   "new_x": 2.39,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 4437.64,
+      "volume_24h_fp": 4322.07,
+      "volume_fp": 4534.25
+     },
+     "game_normal": 18040,
+     "game_x": 2.62,
+     "normal": 10903,
+     "now": 47338,
+     "type": "SPREAD",
+     "x": 4.34
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 1221555.0,
+      "volume": 1356206.0
+     },
+     "game_normal": 4195,
+     "game_x": 5.85,
+     "normal": 1367,
+     "now": 24559,
+     "type": "SPREAD",
+     "x": 17.96
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -110
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -108
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -110
+    },
+    "circasports": {
+     "point": 1.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -112
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -106
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -106
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -109
+    },
+    "williamhill_us": {
+     "point": 1.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAMBSPREAD-26NOV22LIBRICH-LIB2"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Richmond",
+   "side_label": "NOT Liberty wins by over 1.5 points",
+   "size_x": 4.34,
+   "start_source": "odds",
+   "start_utc": "2026-11-22T21:30:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "Liberty",
+    "Richmond"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-22T12:50:21Z",
    "base_depth": 78527,
    "best_price": 0.85,
@@ -46,9 +388,9 @@
     "volume_fp": 11.05
    },
    "ex_stats_close": {
-    "open_interest_fp": 1981.4899999999998,
-    "volume_24h_fp": 1101.31,
-    "volume_fp": 1994.07
+    "open_interest_fp": 2009.4699999999998,
+    "volume_24h_fp": 1189.8500000000001,
+    "volume_fp": 2022.05
    },
    "ex_stats_first": {
     "open_interest_fp": 1788.4,
@@ -242,7 +584,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 13027.83,
-    "volume_24h_fp": 14844.66,
+    "volume_24h_fp": 14844.720000000001,
     "volume_fp": 14972.720000000001
    },
    "ex_stats_first": {
@@ -404,8 +746,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.71,
-   "clv_cents": 1.0,
+   "close_price": 0.69,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-22",
    "depth_by_book": {
@@ -442,9 +784,9 @@
     "volume_fp": 248.29
    },
    "ex_stats_close": {
-    "open_interest_fp": 665.39,
+    "open_interest_fp": 665.68,
     "volume_24h_fp": 395.42,
-    "volume_fp": 672.1899999999999
+    "volume_fp": 673.4799999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 331.25,
