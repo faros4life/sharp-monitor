@@ -40,9 +40,9 @@
     "volume_fp": 236.49
    },
    "ex_stats_close": {
-    "open_interest_fp": 18620.29,
-    "volume_24h_fp": 23158.86,
-    "volume_fp": 23545.1
+    "open_interest_fp": 19024.29,
+    "volume_24h_fp": 23545.1,
+    "volume_fp": 24123.97
    },
    "ex_stats_first": {
     "open_interest_fp": 18487.86,
@@ -231,9 +231,9 @@
     "volume_fp": 24466.73
    },
    "ex_stats_close": {
-    "open_interest_fp": 1165624.0899999999,
-    "volume_24h_fp": 1256665.58,
-    "volume_fp": 1340292.73
+    "open_interest_fp": 1218294.24,
+    "volume_24h_fp": 1322263.3,
+    "volume_fp": 1395319.37
    },
    "ex_stats_first": {
     "open_interest_fp": 1057983.8399999999,
@@ -291,6 +291,8 @@
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.53,
+   "price_after_15m": 0.53,
+   "price_after_15m_book": "novig",
    "price_american": -113,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.53,
@@ -395,6 +397,7 @@
    "size_x": 1.18,
    "start_source": "odds",
    "start_utc": "2026-11-22T00:30:00Z",
+   "still_actionable": false,
    "surge_books": [
     "novig",
     "prophetx"
@@ -450,8 +453,8 @@
     "volume": 30422.0
    },
    "ex_stats_close": {
-    "openInterest": 16633855.0,
-    "volume": 20252367.0
+    "openInterest": 16815398.0,
+    "volume": 20443910.0
    },
    "ex_stats_first": {
     "openInterest": 16165434.0,
@@ -823,8 +826,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.51,
+   "clv_cents": 1.0,
    "confirmed_after_min": 6,
    "date": "2026-11-21",
    "depth_by_book": {
@@ -855,9 +858,9 @@
     "volume_fp": 3809.71
    },
    "ex_stats_close": {
-    "open_interest_fp": 29432.82,
-    "volume_24h_fp": 31871.46,
-    "volume_fp": 33639.05
+    "open_interest_fp": 32475.58,
+    "volume_24h_fp": 33639.05,
+    "volume_fp": 36681.81
    },
    "ex_stats_first": {
     "open_interest_fp": 22103.33,
@@ -3594,9 +3597,9 @@
     "volume_fp": 16426.88
    },
    "ex_stats_close": {
-    "open_interest_fp": 1165624.0899999999,
-    "volume_24h_fp": 1256665.58,
-    "volume_fp": 1340292.73
+    "open_interest_fp": 1218294.24,
+    "volume_24h_fp": 1322263.3,
+    "volume_fp": 1395319.37
    },
    "ex_stats_first": {
     "open_interest_fp": 675611.8300000001,
@@ -7397,7 +7400,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 12,
+   "settle_tries": 13,
    "sharp_agree": [
     "Marshall Thundering Herd -2.5 (-111)"
    ],
@@ -7801,7 +7804,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 17,
+   "settle_tries": 18,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Michigan",
@@ -8107,7 +8110,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 17,
+   "settle_tries": 18,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "LSU",
@@ -9409,7 +9412,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 17,
+   "settle_tries": 18,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UCLA",
@@ -15509,10 +15512,12 @@
     "volume": 9609556.0
    },
    "fade_price": 0.26,
+   "fade_units": 2.85,
    "first_seen_utc": "2026-11-21T13:45:45Z",
    "game": "Indiana @ Washington",
    "game_surge_books": [],
    "game_x": 1.57,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1dda1-b1c3-7740-a192-99417a0f24ab\", \"outcome_id\": \"01a1dda1-b1c3-7740-a192-99628cc664f9\"}",
    "lead_min": 400,
    "league": "NCAAF",
@@ -15617,12 +15622,13 @@
     "market_id": "01a1dda1-b1c3-7740-a192-99417a0f24ab",
     "outcome_id": "01a1dda1-b1c3-7740-a192-99628cc664f9"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 17,
+   "settle_tries": 18,
+   "settled_utc": "2026-11-22T00:15:52Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Indiana",
@@ -15639,7 +15645,7 @@
     "Washington"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-21T13:40:18Z",
@@ -17043,12 +17049,14 @@
     "volume": 4522551.0
    },
    "fade_price": 0.5,
+   "fade_units": 1.0,
    "first_seen_utc": "2026-11-21T11:10:31Z",
    "game": "Indiana @ Washington",
    "game_surge_books": [
     "novig"
    ],
    "game_x": 2.33,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1dda1-85e2-7213-bf58-7db17866c5fe\", \"outcome_id\": \"01a1dda1-85e2-7213-bf58-7dd6ce819cda\"}",
    "lead_min": 554,
    "league": "NCAAF",
@@ -17162,12 +17170,13 @@
     "market_id": "01a1dda1-85e2-7213-bf58-7db17866c5fe",
     "outcome_id": "01a1dda1-85e2-7213-bf58-7dd6ce819cda"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 17,
+   "settle_tries": 18,
+   "settled_utc": "2026-11-22T00:15:52Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Indiana",
@@ -17185,7 +17194,7 @@
     "Washington"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-21T10:20:18Z",
@@ -19664,10 +19673,12 @@
     "volume_fp": 20580.29
    },
    "fade_price": 0.47,
+   "fade_units": 1.05,
    "first_seen_utc": "2026-11-21T04:45:44Z",
    "game": "Texas A&M vs Oklahoma: Spread",
    "game_surge_books": [],
    "game_x": 1.22,
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26NOV21TXAMOKLA-OKLA8\"}",
    "lead_min": 955,
    "league": "NCAAF",
@@ -19769,12 +19780,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26NOV21TXAMOKLA-OKLA8"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 14,
+   "settle_tries": 15,
+   "settled_utc": "2026-11-22T00:15:52Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas A&M",
@@ -19791,7 +19803,7 @@
     "Oklahoma"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-21T04:25:45Z",
@@ -28514,10 +28526,12 @@
     "volume_fp": 26092.17
    },
    "fade_price": 0.28,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-20T13:40:17Z",
    "game": "Texas A&M vs Oklahoma",
    "game_surge_books": [],
    "game_x": 1.12,
+   "graded_by": "espn",
    "key": "kalshi|KXNCAAFGAME-26NOV21TXAMOKLA|ml|1",
    "lead_min": 1859,
    "league": "NCAAF",
@@ -28644,14 +28658,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26NOV21TXAMOKLA-OKLA"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 14,
+   "settle_tries": 15,
+   "settled_utc": "2026-11-22T00:15:52Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Oklahoma",
@@ -28670,7 +28685,7 @@
     "Oklahoma"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.4
   },
   {
    "alerted_utc": "2026-11-20T13:00:24Z",
