@@ -1570,6 +1570,82 @@ LANE_NAME = {"board": "BOARD V3", "r1": "R1", "lane2": "LANE 2", "rules": "PHASE
 MANUAL_HANDOFF = ('If you place it by hand, log it as a \'Bets manual\' note (MANUAL: {"sport": .., "game": "Away @ Home", "bet": "Under 225.5 (-110)", "book": ..}) or the bot cannot see it and may bet the same or the opposite side.')
 
 
+BOARD_REASON_CODES = (
+    # (primary category, substrings that identify it). Order matters: first match wins, so the
+    # categories stay MUTUALLY EXCLUSIVE and a row is counted exactly once.
+    ("lane/route OFF", ("not switched on",)),
+    ("per-lane/global cap", ("play cap", "daily risk limit", "daily stop", "exposure unknown")),
+    ("position/claim stacking", ("already sent for this bet", "other side of this game",
+                                 "with Peter's manual bet")),
+    ("V4 confirmation not met", ("Board V4:",)),
+    ("no venue/book at alert line", ("no live book has the alert number",)),
+    ("after-fee price unacceptable", ("after-fee", "price worse", "deadband")),
+    ("insufficient available liquidity", ("liquidity", "no depth", "avail")),
+    ("cutoff/timing", ("late", "started", "cutoff")),
+    ("failed dispatch/venue error", ("error", "refused", "failed")),
+)
+
+
+def board_refusal_histogram(results):
+    """COUNTS ONLY. Why Board PLAY candidates in THIS RUN did not become orders.
+
+    Peter, Nov 22, approved after the fill-rate question: 68 live-period Board PLAY calls produced
+    25 fills, and nothing in the public record said why the other 43 did not convert. The per-play
+    reasons live in the private lane report; the public Actions log prints counts only, so this
+    prints counts only - no game, line, price, stake, play key or balance ever appears here.
+
+    REPORTING ONLY. It reads `results` after every decision has already been made and returns
+    strings. It cannot trade, cannot write, and cannot change an order outcome: nothing in this
+    function assigns to a play, a live dict, a gate or a store.
+
+    WHAT THIS COUNTS, EXACTLY. Decision ATTEMPTS in one run, not distinct Board calls. The executor
+    re-scans an open candidate on every pass, so one call can be counted on many runs. Run counts
+    must NEVER be summed into the 43 - they would double-count the same call. The line says so.
+
+    UNKNOWN IS NEVER IMPUTED. A row whose reason text matches no category is counted UNKNOWN / NOT
+    OBSERVED and left there. A resting order is never called expired without terminal evidence, so
+    there is no "expired" category: posted-and-unfilled is only claimed where the record says so."""
+    rows = [r for r in results if (r.get("play") or {}).get("source") == "board"]
+    if not rows:
+        return []
+    primary, secondary, filled, rested = {}, {}, 0, 0
+    for r in rows:
+        lv = r.get("live") or {}
+        if lv.get("go"):
+            filled += 1          # a decision to send, not a confirmed fill - named as such below
+            continue
+        if ((lv.get("rest") or {}).get("status")) == "placed":
+            rested += 1
+            continue
+        whys = [str(w) for w in (lv.get("why") or [])]
+        if not whys:
+            primary["UNKNOWN / NOT OBSERVED"] = primary.get("UNKNOWN / NOT OBSERVED", 0) + 1
+            continue
+        hit = None
+        for cat, needles in BOARD_REASON_CODES:
+            if any(n.lower() in whys[0].lower() for n in needles):
+                hit = cat
+                break
+        primary[hit or "UNKNOWN / NOT OBSERVED"] = primary.get(hit or "UNKNOWN / NOT OBSERVED", 0) + 1
+        for w in whys[1:]:       # NON-ADDITIVE: a row can contribute several of these
+            for cat, needles in BOARD_REASON_CODES:
+                if any(n.lower() in w.lower() for n in needles):
+                    secondary[cat] = secondary.get(cat, 0) + 1
+                    break
+    out = ["BOARD NON-CONVERSION (counts only; THIS RUN's decision attempts, NOT distinct calls -",
+           " do not sum across runs, one open call is re-scanned every pass)",
+           f"  candidates seen this run: {len(rows)}   sent to order: {filled}   resting placed: {rested}"]
+    for cat, n in sorted(primary.items(), key=lambda kv: -kv[1]):
+        out.append(f"    {cat}: {n}")
+    if secondary:
+        out.append("  secondary reasons (NON-ADDITIVE - a row may contribute more than one):")
+        for cat, n in sorted(secondary.items(), key=lambda kv: -kv[1]):
+            out.append(f"    {cat}: {n}")
+    out.append("  HISTORICAL REASONS UNKNOWN for the 43 live-period calls that did not convert "
+               "before this instrumentation existed; no split is inferred for them.")
+    return out
+
+
 def lane_report(results):
     """Nov 11 (Peter): separate performance reporting per lane. Each live lane has its OWN unit,
     play cap and daily risk limit, so one combined number hides which lane is near its ceiling.
@@ -6906,6 +6982,13 @@ def main():
                  f"or better at check: {len(g)}; not gettable: {sum(1 for r in q if r.get('books') and r.get('px') is None)}.", ""]
     body += [lane2.summary_line(), ""]   # Nov 4: Lane 2 counts (private email; dollars never in the public log)
     body += [lane_report(results), ""]   # Nov 11: per-lane counts and exposure, Board v3 and R1 separate
+    # Nov 22 (Peter, approved): counts-only Board non-conversion histogram. Reporting only - it
+    # reads decisions already made and returns strings. Both the private body and the PUBLIC log
+    # get the same counts; no identifier, price, stake or balance is in them.
+    _bh = board_refusal_histogram(results)
+    if _bh:
+        body += _bh + [""]
+        LOG.extend(_bh)
     try:
         # Nov 11: teach the store this run's tokens BEFORE the email goes out, so a crash between
         # the two cannot leave the registry claiming completeness while missing them. A failed
