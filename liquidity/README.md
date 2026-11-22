@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 21, 8:55 PM ET. This run: 1 new, 1 not confirmed, 0 pending. Open alerts: 57.
+Updated Sat Nov 21, 9:00 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 56.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1807-1423 (-46.60u flat) | rule met: 1054-852
+**Record:** 1808-1423 (-46.38u flat) | rule met: 1054-852
 
-**Fade (paper, betting against the print):** 1157-1534 (-184.83u flat, after fees)
+**Fade (paper, betting against the print):** 1157-1535 (-185.83u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -61,7 +61,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 5:00PM | NCAAF | Maryland vs USC: Total Points | total: NOT Over 57.5 points | kalshi | $92k | -100 |  |  | +1.0c | yes | pending |
 | Nov 21 4:40PM | NCAAF | Pittsburgh @ Louisville | moneyline: LOU (0) | novig | $27k | -426 | ✅ kalshi,prophetx |  | -1.5c |  | pending |
 | Nov 21 4:25PM | NCAAF | Washington St. vs Texas St. | moneyline: Texas St. | kalshi | $431k | -488 | ✅ prophetx |  | +1.0c |  | pending |
-| Nov 21 4:25PM | NCAAF | South Alabama vs Southern Miss | moneyline: South Alabama | kalshi | $149k | -426 |  |  | -1.0c |  | pending |
+| Nov 21 4:25PM | NCAAF | South Alabama vs Southern Miss | moneyline: South Alabama | kalshi | $149k | -426 |  |  | -1.0c |  | W |
 | Nov 21 4:20PM | NCAAF | Arizona @ Kansas State | moneyline: ARIZ (0) | novig | $29k | -335 | ✅ kalshi,prophetx | ✅ | +0.0c |  | pending |
 | Nov 21 4:10PM | NCAAF | Arizona vs Kansas St. | moneyline: Arizona | kalshi | $151k | -335 | ✅ novig,prophetx | ✅ | +0.0c | yes | pending |
 | Nov 21 3:41PM | NCAAF | Utah vs TCU | moneyline: Utah | kalshi | $159k | -317 | ✅ novig,prophetx | ✅ | +0.0c |  | pending |
