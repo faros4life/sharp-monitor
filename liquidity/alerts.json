@@ -51,6 +51,11 @@
     "volume_24h_fp": 1568.31,
     "volume_fp": 759.99
    },
+   "ex_stats_close": {
+    "open_interest_fp": 276041.04000000004,
+    "volume_24h_fp": 97066.46,
+    "volume_fp": 290024.62
+   },
    "ex_stats_first": {
     "open_interest_fp": 274714.36,
     "volume_24h_fp": 95498.15,
@@ -188,7 +193,8 @@
      "price": -265
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-22T04:10:18Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNFLGAME-26NOV22JACNYG-JAC"
@@ -268,9 +274,9 @@
     "volume_fp": 584.1
    },
    "ex_stats_close": {
-    "open_interest_fp": 183187.28,
+    "open_interest_fp": 184226.67,
     "volume_24h_fp": 65755.35,
-    "volume_fp": 202776.86
+    "volume_fp": 203831.0
    },
    "ex_stats_first": {
     "open_interest_fp": 179658.09,
@@ -488,9 +494,9 @@
     "volume_fp": 1.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 296.58,
+    "open_interest_fp": 298.47,
     "volume_24h_fp": 473.79,
-    "volume_fp": 559.6899999999999
+    "volume_fp": 561.58
    },
    "ex_stats_first": {
     "open_interest_fp": 254.96,
@@ -803,9 +809,9 @@
     "volume_fp": 260.47
    },
    "ex_stats_close": {
-    "open_interest_fp": 178474.15,
+    "open_interest_fp": 179345.89,
     "volume_24h_fp": 162262.8,
-    "volume_fp": 184214.64
+    "volume_fp": 185143.38
    },
    "ex_stats_first": {
     "open_interest_fp": 175873.01,
@@ -1228,9 +1234,9 @@
     "volume_fp": 727.79
    },
    "ex_stats_close": {
-    "open_interest_fp": 802297.34,
+    "open_interest_fp": 803171.51,
     "volume_24h_fp": 464376.94,
-    "volume_fp": 859852.86
+    "volume_fp": 860728.05
    },
    "ex_stats_first": {
     "open_interest_fp": 472086.65,
@@ -1446,9 +1452,9 @@
     "volume_fp": 56.21
    },
    "ex_stats_close": {
-    "open_interest_fp": 60569.78,
+    "open_interest_fp": 61395.91,
     "volume_24h_fp": 30242.76,
-    "volume_fp": 66038.48
+    "volume_fp": 67061.65
    },
    "ex_stats_first": {
     "open_interest_fp": 57707.58,
@@ -1865,8 +1871,8 @@
     "volume": 2525.0
    },
    "ex_stats_close": {
-    "openInterest": 8165586.0,
-    "volume": 9663193.0
+    "openInterest": 8184450.0,
+    "volume": 9682057.0
    },
    "ex_stats_first": {
     "openInterest": 7612506.0,
@@ -2708,9 +2714,9 @@
     "volume_fp": 2197.99
    },
    "ex_stats_close": {
-    "open_interest_fp": 231619.78,
+    "open_interest_fp": 238565.36,
     "volume_24h_fp": 91307.84999999999,
-    "volume_fp": 261270.3
+    "volume_fp": 268351.88
    },
    "ex_stats_first": {
     "open_interest_fp": 205925.82,
@@ -3266,7 +3272,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Anaheim",
@@ -3338,9 +3344,9 @@
     "volume_fp": 6393.3
    },
    "ex_stats_close": {
-    "open_interest_fp": 1103485.25,
+    "open_interest_fp": 1104611.1600000001,
     "volume_24h_fp": 354018.55,
-    "volume_fp": 1275409.3
+    "volume_fp": 1276552.44
    },
    "ex_stats_first": {
     "open_interest_fp": 995480.06,
@@ -3715,7 +3721,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Anaheim",
@@ -3787,9 +3793,9 @@
     "volume_fp": 588.36
    },
    "ex_stats_close": {
-    "open_interest_fp": 331406.88,
+    "open_interest_fp": 331768.58,
     "volume_24h_fp": 81493.5,
-    "volume_fp": 383135.06
+    "volume_fp": 383496.76
    },
    "ex_stats_first": {
     "open_interest_fp": 314097.97,
@@ -4013,9 +4019,9 @@
     "volume_fp": 365.63
    },
    "ex_stats_close": {
-    "open_interest_fp": 226914.03,
+    "open_interest_fp": 227433.19,
     "volume_24h_fp": 84712.46,
-    "volume_fp": 263027.75
+    "volume_fp": 263566.69
    },
    "ex_stats_first": {
     "open_interest_fp": 198988.37,
@@ -9465,7 +9471,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 14,
+   "settle_tries": 15,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UTSA",
@@ -11059,10 +11065,12 @@
     "volume_fp": 114783.41
    },
    "fade_price": 0.2,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-21T22:25:52Z",
    "game": "Pittsburgh vs Louisville",
    "game_surge_books": [],
    "game_x": 1.07,
+   "graded_by": "espn",
    "key": "kalshi|KXNCAAFGAME-26NOV21PITTLOU|ml|1",
    "lead_min": 120,
    "league": "NCAAF",
@@ -11185,14 +11193,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26NOV21PITTLOU-LOU"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 20,
+   "settle_tries": 21,
+   "settled_utc": "2026-11-22T04:10:18Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Pittsburgh Panthers +12.5 (-110)"
@@ -11212,7 +11221,7 @@
     "Louisville"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.25
   },
   {
    "alerted_utc": "2026-11-21T22:25:52Z",
@@ -11493,12 +11502,14 @@
     "volume_fp": 4951.93
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-21T22:15:43Z",
    "game": "Arizona vs Kansas St.: Total Points",
    "game_surge_books": [
     "novig"
    ],
    "game_x": 1.13,
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFTOTAL-26NOV21ARIZKSU-54\"}",
    "lead_min": 100,
    "league": "NCAAF",
@@ -11608,14 +11619,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFTOTAL-26NOV21ARIZKSU-54"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 26,
+   "settle_tries": 27,
+   "settled_utc": "2026-11-22T04:10:18Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -11633,7 +11645,7 @@
     "Kansas St."
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.98
   },
   {
    "alerted_utc": "2026-11-21T22:20:26Z",
@@ -11954,7 +11966,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 38,
+   "settle_tries": 39,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Nevada",
@@ -12237,10 +12249,12 @@
     "volume": 3893685.0
    },
    "fade_price": 0.2,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-21T21:35:49Z",
    "game": "Pittsburgh @ Louisville",
    "game_surge_books": [],
    "game_x": 1.55,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1de61-e2b6-7450-8f4a-b5364e327fcc\", \"outcome_id\": \"01a1de61-e2b6-7450-8f4a-b544b682ebf7\"}",
    "lead_min": 170,
    "league": "NCAAF",
@@ -12363,7 +12377,7 @@
     "market_id": "01a1de61-e2b6-7450-8f4a-b5364e327fcc",
     "outcome_id": "01a1de61-e2b6-7450-8f4a-b544b682ebf7"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -12371,7 +12385,8 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 20,
+   "settle_tries": 21,
+   "settled_utc": "2026-11-22T04:10:18Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Louisville",
@@ -12390,7 +12405,7 @@
     "Louisville"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.23
   },
   {
    "alerted_utc": "2026-11-21T21:25:51Z",
@@ -12804,10 +12819,12 @@
     "volume": 8413029.0
    },
    "fade_price": 0.235,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-21T21:10:17Z",
    "game": "Arizona @ Kansas State",
    "game_surge_books": [],
    "game_x": 1.23,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1de7d-9a6a-7663-a2de-6bc1be8f091c\", \"outcome_id\": \"01a1de7d-9a6a-7663-a2de-6be0ad3b6282\"}",
    "lead_min": 160,
    "league": "NCAAF",
@@ -12926,7 +12943,7 @@
     "market_id": "01a1de7d-9a6a-7663-a2de-6bc1be8f091c",
     "outcome_id": "01a1de7d-9a6a-7663-a2de-6be0ad3b6282"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -12934,7 +12951,8 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 26,
+   "settle_tries": 27,
+   "settled_utc": "2026-11-22T04:10:18Z",
    "sharp_agree": [
     "Arizona Wildcats -9.5 (-115)",
     "Arizona Wildcats -7.5 (-110)"
@@ -12956,7 +12974,7 @@
     "Kansas State"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.3
   },
   {
    "alerted_utc": "2026-11-21T21:10:17Z",
@@ -13020,10 +13038,12 @@
     "volume_fp": 280433.25
    },
    "fade_price": 0.24,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-21T21:00:30Z",
    "game": "Arizona vs Kansas St.",
    "game_surge_books": [],
    "game_x": 0.85,
+   "graded_by": "espn",
    "key": "kalshi|KXNCAAFGAME-26NOV21ARIZKSU|ml|0",
    "lead_min": 170,
    "league": "NCAAF",
@@ -13143,7 +13163,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26NOV21ARIZKSU-ARIZ"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -13151,7 +13171,8 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 26,
+   "settle_tries": 27,
+   "settled_utc": "2026-11-22T04:10:18Z",
    "sharp_agree": [
     "Arizona Wildcats -9.5 (-115)",
     "Arizona Wildcats -7.5 (-110)"
@@ -13173,7 +13194,7 @@
     "Kansas St."
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.31
   },
   {
    "alerted_utc": "2026-11-21T20:41:08Z",
@@ -13371,7 +13392,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [
     "Utah Utes -7.5 (-111)"
    ],
@@ -14570,8 +14591,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 17546801.0,
-    "volume": 19615522.0
+    "openInterest": 17567299.0,
+    "volume": 19636020.0
    },
    "ex_stats_first": {
     "openInterest": 16199699.0,
@@ -16220,7 +16241,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [
     "Utah Utes -7.5 (-111)"
    ],
