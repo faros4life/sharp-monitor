@@ -1,6 +1,254 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-22T15:30:30Z",
+   "base_depth": 7984,
+   "best_price": 0.835,
+   "best_price_american": -506,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.835,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-22",
+   "depth_by_book": {
+    "novig": {
+     "new_other_side": 3072,
+     "new_this_side": 28519,
+     "other_side": 3696,
+     "other_side_all_levels": 3767,
+     "ratio": 7.7,
+     "this_side": 28508,
+     "this_side_all_levels": 34559
+    }
+   },
+   "ex_stats_alert": {
+    "openInterest": 1920432.0,
+    "volume": 1920432.0
+   },
+   "ex_stats_change": {
+    "openInterest": 29.0,
+    "volume": 29.0
+   },
+   "ex_stats_first": {
+    "openInterest": 1920403.0,
+    "volume": 1920403.0
+   },
+   "fade_price": 0.17,
+   "first_seen_utc": "2026-11-22T15:20:21Z",
+   "game": "Maryland-Eastern Shore @ IU Indianapolis",
+   "game_surge_books": [
+    "novig"
+   ],
+   "game_x": 4.87,
+   "key": "novig|{\"market_id\": \"01a1fd16-da89-7b80-a328-ce07f6c56b54\", \"outcome_id\": \"01a1fd16-da89-7b80-a328-ce1c14f28e2c\"}",
+   "lead_min": 359,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 28519,
+   "new_x": 9.53,
+   "norm_by_book": {
+    "novig": {
+     "ex_stats": {
+      "openInterest": 1920432.0,
+      "volume": 1920432.0
+     },
+     "game_normal": 7100,
+     "game_x": 4.87,
+     "normal": 2992,
+     "now": 34559,
+     "type": "ML",
+     "x": 11.55
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.835,
+   "price_american": -506,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.835,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "market_id": "01a1fd16-da89-7b80-a328-ce07f6c56b54",
+    "outcome_id": "01a1fd16-da89-7b80-a328-ce1c14f28e2c"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "IUPUI (0)",
+   "side_label": "IUPUI (0)",
+   "size_x": 11.55,
+   "start_source": "prophetx",
+   "start_utc": "2026-11-22T21:30:00Z",
+   "surge_books": [
+    "novig"
+   ],
+   "teams": [
+    "Maryland-Eastern Shore",
+    "IU Indianapolis"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-22T15:30:30Z",
+   "base_depth": 91567,
+   "best_price": 0.65,
+   "best_price_american": -186,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.65,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-23",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -584,
+     "new_this_side": 36929,
+     "other_side": 11014,
+     "other_side_all_levels": 50279,
+     "ratio": 5.9,
+     "this_side": 64538,
+     "this_side_all_levels": 128645
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Loyola Chicago (0)",
+     "price": 0.65,
+     "this_side": 22474
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Loyola Chicago",
+     "price": 0.6552,
+     "this_side": 3252
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 854.94,
+    "volume_24h_fp": 890.2,
+    "volume_fp": 891.54
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.73,
+    "volume_24h_fp": 0.73,
+    "volume_fp": 0.73
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 854.21,
+    "volume_24h_fp": 889.47,
+    "volume_fp": 890.8100000000001
+   },
+   "fade_price": 0.35,
+   "first_seen_utc": "2026-11-22T15:20:21Z",
+   "game": "San Jose St. vs Loyola Chicago",
+   "game_surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "game_x": 2.43,
+   "key": "kalshi|KXNCAAMBGAME-26NOV23SJSULCHI|ml|1",
+   "lead_min": 809,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 36929,
+   "new_x": 1.92,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 854.94,
+      "volume_24h_fp": 890.2,
+      "volume_fp": 891.54
+     },
+     "game_normal": 52867,
+     "game_x": 2.43,
+     "normal": 19216,
+     "now": 128645,
+     "type": "ML",
+     "x": 6.69
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 558716.0,
+      "volume": 628816.0
+     },
+     "game_normal": 17422,
+     "game_x": 2.06,
+     "normal": 2992,
+     "now": 35950,
+     "type": "ML",
+     "x": 12.02
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 1968,
+     "game_x": 1.71,
+     "normal": 1087,
+     "now": 3357,
+     "type": "ML",
+     "x": 3.09
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.65,
+   "price_american": -186,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.65,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV23SJSULCHI-LCHI"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Loyola Chicago",
+   "side_label": "Loyola Chicago",
+   "size_x": 6.69,
+   "start_source": "prophetx",
+   "start_utc": "2026-11-23T05:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "San Jose St.",
+    "Loyola Chicago"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-22T15:20:21Z",
    "base_depth": 121776,
    "best_price": 0.62,
@@ -14,8 +262,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.62,
-   "clv_cents": 0.0,
+   "close_price": 0.63,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-22",
    "depth_by_book": {
@@ -50,6 +298,11 @@
     "open_interest_fp": 1.0,
     "volume_24h_fp": 0.24,
     "volume_fp": 1.0
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 1470.13,
+    "volume_24h_fp": 1450.18,
+    "volume_fp": 1471.13
    },
    "ex_stats_first": {
     "open_interest_fp": 1397.77,
@@ -261,6 +514,11 @@
     "volume_24h_fp": 0.0,
     "volume_fp": 0.12
    },
+   "ex_stats_close": {
+    "open_interest_fp": 686.29,
+    "volume_24h_fp": 687.58,
+    "volume_fp": 698.1500000000001
+   },
    "ex_stats_first": {
     "open_interest_fp": 680.1700000000001,
     "volume_24h_fp": 681.46,
@@ -467,6 +725,11 @@
     "volume_24h_fp": 1.34,
     "volume_fp": 17.96
    },
+   "ex_stats_close": {
+    "open_interest_fp": 979.77,
+    "volume_24h_fp": 979.77,
+    "volume_fp": 979.77
+   },
    "ex_stats_first": {
     "open_interest_fp": 961.81,
     "volume_24h_fp": 960.47,
@@ -671,6 +934,11 @@
     "volume_24h_fp": 1.18,
     "volume_fp": 5.0
    },
+   "ex_stats_close": {
+    "open_interest_fp": 837.48,
+    "volume_24h_fp": 1085.4,
+    "volume_fp": 1115.57
+   },
    "ex_stats_first": {
     "open_interest_fp": 833.48,
     "volume_24h_fp": 1079.22,
@@ -864,6 +1132,11 @@
     "volume_24h_fp": 0.0,
     "volume_fp": 0.0
    },
+   "ex_stats_close": {
+    "open_interest_fp": 291.22,
+    "volume_24h_fp": 279.03999999999996,
+    "volume_fp": 302.71000000000004
+   },
    "ex_stats_first": {
     "open_interest_fp": 291.22,
     "volume_24h_fp": 279.03999999999996,
@@ -992,6 +1265,11 @@
     "open_interest_fp": 1.17,
     "volume_24h_fp": 0.0,
     "volume_fp": 1.17
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 257.93,
+    "volume_24h_fp": 168.85999999999999,
+    "volume_fp": 258.93
    },
    "ex_stats_first": {
     "open_interest_fp": 256.76,
@@ -1185,9 +1463,9 @@
     "volume_fp": 211.51
    },
    "ex_stats_close": {
-    "open_interest_fp": 11847.71,
-    "volume_24h_fp": 6344.25,
-    "volume_fp": 12628.44
+    "open_interest_fp": 11654.48,
+    "volume_24h_fp": 12628.44,
+    "volume_fp": 13042.0
    },
    "ex_stats_first": {
     "open_interest_fp": 5683.3,
@@ -1226,6 +1504,8 @@
    "norm_ready_books": 1,
    "paper_only": false,
    "price": 0.55,
+   "price_after_15m": 0.5673,
+   "price_after_15m_book": "kalshi",
    "price_american": -122,
    "price_rule": "fails_cap",
    "price_when_first_seen": 0.55,
@@ -1296,6 +1576,7 @@
    "size_x": 6.42,
    "start_source": "odds",
    "start_utc": "2026-11-22T17:00:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi"
    ],
@@ -1352,9 +1633,9 @@
     "volume_fp": 212.18
    },
    "ex_stats_close": {
-    "open_interest_fp": 4475.68,
-    "volume_24h_fp": 4515.3,
-    "volume_fp": 4572.29
+    "open_interest_fp": 4507.96,
+    "volume_24h_fp": 4604.57,
+    "volume_fp": 4604.57
    },
    "ex_stats_first": {
     "open_interest_fp": 4260.55,
@@ -1406,6 +1687,8 @@
    "norm_ready_books": 2,
    "paper_only": false,
    "price": 0.51,
+   "price_after_15m": 0.515,
+   "price_after_15m_book": "novig",
    "price_american": -104,
    "price_rule": "ok",
    "price_when_first_seen": 0.51,
@@ -1486,6 +1769,7 @@
    "size_x": 4.34,
    "start_source": "odds",
    "start_utc": "2026-11-22T21:30:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi",
     "novig"
@@ -1543,9 +1827,9 @@
     "volume_fp": 11.05
    },
    "ex_stats_close": {
-    "open_interest_fp": 2014.71,
-    "volume_24h_fp": 1206.83,
-    "volume_fp": 2027.29
+    "open_interest_fp": 2053.9900000000002,
+    "volume_24h_fp": 1251.35,
+    "volume_fp": 2066.57
    },
    "ex_stats_first": {
     "open_interest_fp": 1788.4,
