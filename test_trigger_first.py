@@ -43,6 +43,8 @@ r = {"lcs": [], "lc": None}
 ex.trigger_first(r, {"book_key": "kalshi"})
 check("no live venue -> nothing chosen", r["lc"] is None)
 src = open("executor.py").read()
-check("applied in all three live lanes", src.count("                trigger_first(r, ent)\n") == 3)
+# Nov 22: four lanes now - board, r1, ncs and the phase-1 branch. Every lane that can place must
+# call trigger_first, or its order skips the trigger-venue ordering entirely.
+check("applied in all four live lanes", src.count("                trigger_first(r, ent)\n") == 4)
 print("ALL PASS" if not BAD else f"{len(BAD)} FAILED")
 sys.exit(1 if BAD else 0)

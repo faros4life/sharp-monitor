@@ -30,7 +30,12 @@ ck("board producer writes no floor_line (the defect this fixes)",
    sum(1 for r in rows if r.get("floor_line") is not None) == 0, f"of {len(rows)} rows")
 
 # ---------------------------------------------------------------- the fix is wired
-ck("evaluate defaults a board floor", "p.get(\"source\") == \"board\"" in src and "floor = line" in src)
+# Nov 22: the branch was one equality test; it is now a tuple, because R1 and NCS take the same
+# default (their own alert line or strictly better). The guard is the same - evaluate must still
+# hand a board-sourced play a floor - only its spelling in the source changed.
+ck("evaluate defaults a board floor",
+   'p.get("source") in ("board", "r1", "ncs")' in src and "floor = line" in src)
+ck("the board lane is still covered by that branch", '"board"' in src)
 floor_blk = [l.strip() for l in src.splitlines() if "floor = line" in l]
 ck("the default is applied exactly once", len(floor_blk) == 1, repr(floor_blk))
 guard = [l for l in src.splitlines() if "floor is None" in l and "board" in l]

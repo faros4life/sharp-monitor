@@ -1274,7 +1274,130 @@ def r1_plays(now):
     return out
 
 
-LANE_PREFIXES = ("rule|", "board|", "r1|", "lane2|")   # every lane that stamps its own play_key
+# ---------------------------------------------------------------- NCS lane: NCAAB spreads (Peter, 22 Nov)
+# Peter, Nov 22: "Do it. Let's see if it beats r1."
+#
+# WHY THIS LANE EXISTS. Spreads are DEAD on the Bets Board - killed by Peter on Oct 27 when the
+# liquidity spread population read 191 resulted, -32.15u (-0.17/play), negative in every time block
+# and every lead window. That kill was correct on the data it had. NCAAB basketball had not started:
+# the FIRST NCAAB spread print in the feed is Nov 5, and 48 of the 64 are from Nov 14 on. So the
+# category the kill closed never contained this one.
+#
+# What it reads now, over the whole month in board/calls.json and the liquidity feeds:
+#   outcomes  36-26, +7.30u, +0.118/play, 95% [-0.121, +0.357]  - NOT distinguishable from zero
+#   CLV       +1.34c vs the board close, 95% [+0.50, +2.19], beat close 40/64 (62%)
+#   CLV 4h+   +2.33c (n24), beat close 18/24 (75%)              - the board's own PLAY lead condition
+# Of twelve league x market categories on the board, exactly two have a CLV interval clear of zero:
+# NBA totals (the existing Board lane) and this one. The outcome record does NOT support the lane on
+# its own; the PRICE record is what does, which is Peter's standing order of evidence - CLV leads.
+#
+# KALSHI ONLY, and not for performance. The four Novig rows in the feed are MALFORMED for this
+# purpose: `side` is a pre-formatted string ("UVA -3.5 (-3.5)") rather than a team, with the line
+# sitting where a price belongs. A bet string cannot be built from them safely. Kalshi's 60 rows are
+# well-formed, and the sign of `line` carries the side:
+#     line +23.5, label "NOT Boston College wins by over 23.5 points" -> NJIT +23.5
+#     line  -6.5, label "St. Thomas wins by over 6.5 points"          -> St. Thomas -6.5
+# so the bet is f"{side} {line:+g}". test_ncs_lane.py asserts that reading against every row in the
+# feed, because getting the sign backwards here places the opposite bet.
+#
+# Its own switch, unit, cap and daily limit, so it can never consume R1's or Board's budget. Ships
+# OFF: with EXEC_NCS_LIVE unset this selects and logs WOULD PLACE and places nothing.
+NCS_LIVE = (os.environ.get("EXEC_NCS_LIVE") or "off").strip().lower() == "on"   # money switch (repo variable; Peter flips it)
+NCS_UNIT = 200.0            # same basis as R1 and the Board pilot; Lane 1's $300 is untouched
+NCS_DAILY_RISK = float(os.environ.get("EXEC_NCS_DAILY_RISK", "") or "1000")   # half R1's, until it has a forward record
+NCS_MAX_PLAYS = int(os.environ.get("EXEC_NCS_MAX_PLAYS", "") or "5")
+NCS_MIN_LEAD = 240          # minutes: the 4h+ condition the board's v3 PLAY rule already uses
+NCS_BOOK = "kalshi"
+NCS = {"risk": 0.0, "keys": set(), "known": False}
+
+
+def ncs_teams(x):
+    """The two teams, taken from the GAME STRING, not from the row's own `teams` field.
+
+    `teams` is not trustworthy here. A real feed row reads:
+        game  'University at Albany vs Holy Cross: Spread'
+        teams ['University', 'Albany vs Holy Cross']      <- split on ' at ', not ' vs '
+        side  'University'
+    so the row's side is a fragment of a team name. Building a bet from it produces
+    'University +2.5 (+104)' - not a team, not a bet, and nothing downstream would catch it because
+    the number and price are both well formed. The game string is split on ' vs ' instead, which is
+    the separator the board actually writes, and the side must match one of those two names exactly."""
+    g = str(x.get("game") or "")
+    g = g.rsplit(":", 1)[0] if ":" in g else g          # drop the trailing ': Spread'
+    parts = [t.strip() for t in g.split(" vs ")]
+    return parts if len(parts) == 2 and all(parts) else []
+
+
+def ncs_bet(x):
+    """The bet string for one Kalshi NCAAB spread row, or None when the row cannot be read safely.
+
+    Fail closed on anything unexpected: a side that is not one of the two teams named in the game
+    string (catches both the Novig pre-formatted shape and the mis-split row above), a missing line
+    or price. A row that is skipped is counted in the log and never guessed at."""
+    sd, ln, am = x.get("side"), x.get("line"), x.get("price_american")
+    if not sd or ln is None or am is None:
+        return None
+    if str(sd) not in ncs_teams(x):
+        return None
+    try:
+        return f"{sd} {float(ln):+g} ({int(am):+d})"
+    except (TypeError, ValueError):
+        return None
+
+
+def ncs_plays(now):
+    """NCAAB SPREADS on Kalshi, selected with the board's own v3 PLAY conditions: alerted 4h+ before
+    tip, money still there and not pulled, still PLAY-shaped >= BOARD_CONFIRM_MIN after posting, game
+    not started, ONE play per game, at most NCS_MAX_PLAYS a night by alert time.
+
+    The board itself tags every spread DEAD, so this cannot read r["tag"] - it applies the same
+    underlying conditions directly. Same downstream path as every other play: books checked, line
+    floor (the alert's own line), caps, stacking, positions, live guards. Places money only when
+    EXEC_NCS_LIVE is "on" AND live is on; otherwise a dry-run WOULD PLACE."""
+    try:
+        import board_build as bb
+        _, rows, _ = bb.build(upcoming=True)
+    except Exception as ex:
+        LOG.append(f"board unreadable (ncs): {str(ex)[:60]}")
+        return []
+    out, seen, skipped = [], set(), 0
+    for r in sorted(rows, key=lambda r: r["at"]):
+        x = r["x"]
+        if (x.get("league") or "") != "NCAAB" or x.get("market") != "spread":
+            continue
+        if (x.get("book") or "").strip().lower() != NCS_BOOK:
+            continue
+        if r.get("status") != "still there" or x.get("pulled") or x.get("artifact"):
+            continue
+        st = iso_t(x.get("start_utc"))
+        if not st or st <= now or not r.get("at") or now - r["at"] < timedelta(minutes=BOARD_CONFIRM_MIN):
+            continue
+        if (x.get("lead_min") or 0) < NCS_MIN_LEAD:
+            continue
+        bet = ncs_bet(x)
+        if not bet:
+            skipped += 1
+            continue
+        p = {"sport": "NCAAB", "game": x.get("game") or "", "bet": bet, "start_utc": x.get("start_utc"),
+             "late": False, "source": "ncs", "alert_utc": x.get("alerted_utc"),
+             "rules": {"verdict": "AGREE", "gate": None,
+                       "reason": "NCS (NCAAB spread, Kalshi, board v3 PLAY conditions)"},
+             "ncs_entry": {"alert_utc": x.get("alerted_utc"), "book_key": x.get("book"),
+                           "price_after_fee": x.get("price_american"), "alert_price_raw": x.get("price_american"),
+                           "point": x.get("line"), "sport": "NCAAB", "bet": None}}
+        k = derive_key(p)
+        if not k or k in seen:
+            continue   # one play per game
+        seen.add(k)
+        out.append(dict(p, play_key="ncs|" + k))
+        if len(out) >= NCS_MAX_PLAYS:
+            break
+    if skipped:
+        LOG.append(f"NCS: {skipped} NCAAB spread row(s) skipped - bet string not readable (never guessed)")
+    return out
+
+
+LANE_PREFIXES = ("rule|", "board|", "r1|", "lane2|", "ncs|")   # every lane that stamps its own play_key
 
 
 def lane_strip(k):
@@ -1430,11 +1553,13 @@ BOARD_UNIT = 200.0
 
 
 def unit_for(lane):
-    """The live unit for a lane. The board pilot ($200) and R1 ($200) differ; everything else is Lane 1's unit."""
-    return BOARD_UNIT if str(lane or "") == "board" else R1_UNIT if str(lane or "") == "r1" else LIVE_UNIT
+    """The live unit for a lane. The board pilot ($200), R1 ($200) and NCS ($200) differ; everything
+    else is Lane 1's unit."""
+    l = str(lane or "")
+    return BOARD_UNIT if l == "board" else R1_UNIT if l == "r1" else NCS_UNIT if l == "ncs" else LIVE_UNIT
 
 
-LANE_NAME = {"board": "BOARD V3", "r1": "R1", "lane2": "LANE 2", "rules": "PHASE 1"}
+LANE_NAME = {"board": "BOARD V3", "r1": "R1", "lane2": "LANE 2", "rules": "PHASE 1", "ncs": "NCS"}
 
 # Nov 12 (Peter): "Remove suggestions to place held bot orders manually unless there is an explicit
 # safe handoff that prevents automated retries." The handoff EXISTS - a "Bets manual" note, which
@@ -1454,7 +1579,8 @@ def lane_report(results):
     for lane, name, unit, cap, lim, store, on in (
             ("rules", "Phase 1", LIVE_UNIT, None, None, None, px_live.LIVE),
             ("board", ("Board v4" if BOARD_V4 else "Board v3"), BOARD_UNIT, BOARD_MAX_PLAYS, BOARD_DAILY_RISK, BOARD, BOARD_LIVE),   # Nov 17: the per-lane report names the rule that is deciding
-            ("r1", "R1", R1_UNIT, R1_MAX_PLAYS, R1_DAILY_RISK, R1, R1_LIVE)):
+            ("r1", "R1", R1_UNIT, R1_MAX_PLAYS, R1_DAILY_RISK, R1, R1_LIVE),
+            ("ncs", "NCS (NCAAB spreads)", NCS_UNIT, NCS_MAX_PLAYS, NCS_DAILY_RISK, NCS, NCS_LIVE)):
         rs = [r for r in results if (r.get("play") or {}).get("source") == lane
               or (lane == "rules" and (r.get("play") or {}).get("source") in (None, "muse", "rules"))]
         placed = [r for r in rs if ((r.get("live") or {}).get("order") or {}).get("status") == "placed"]
@@ -2644,7 +2770,7 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
     # WORSE line whenever an estimated half-point value (half_point(), HP_FALLBACK when the ladders
     # cannot say) appeared to compensate, with only the -130 cap behind it. A board play's floor is
     # its OWN alert line. Lane 1 is untouched: it keeps the floor its producer supplies.
-    if floor is None and mtype in ("spread", "total") and (p.get("source") == "board" or p.get("source") == "r1"):   # R1 too: its own alert line or strictly better
+    if floor is None and mtype in ("spread", "total") and p.get("source") in ("board", "r1", "ncs"):   # R1 and NCS too: their own alert line or strictly better
         floor = line
     cands, floor_blocked, no_qual_basis = [], 0, 0
     lvs_notes = []   # Nov 12: SHADOW capture of EVERY candidate and why it was rejected. Records only; no decision reads it.
@@ -2800,7 +2926,7 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
     # Oct 28 (Peter): phase-1 live fills on the best after-fee price among the LIVE books
     # (ProphetX keeps its 2c; Novig gets the same 2c from Nov 11 - see TOL_BOOKS)
     lcs = [c for c in capped if c["book"] in LIVE_BOOKS]
-    _u = unit_for(p.get("source") if p.get("source") in ("board", "r1") else None)
+    _u = unit_for(p.get("source") if p.get("source") in ("board", "r1", "ncs") else None)
     lfull = [c for c in lcs if c["avail"] >= live_stake(c["shown"], _u)[0]]
     lc = (lfull or lcs)[0] if lcs else None
     return dict(out, verdict="WOULD PLACE", book=pick["book"], american=pick["am"], shown=pick["shown"], take_line=pick["line"],
@@ -2925,6 +3051,7 @@ BOOK_NAME = {"novig": "Novig", "prophetx": "ProphetX", "kalshi": "Kalshi", "poly
 def src_tag(p):
     return ("[coded rules] " if p.get("source") == "rules" else "[board Lane 3] " if p.get("source") == "board"
             else "[R1] " if p.get("source") == "r1"
+            else "[NCS] " if p.get("source") == "ncs"
             else "[Lane 2 dry run] " if p.get("source") == "lane2"
             else ("[Muse] " if SOURCE == "both" else ""))
 
@@ -3406,6 +3533,13 @@ def _account_rows(rows, graded, ids, seen_oids, _intents, _confirmed):
                     fs_r = lo.get("filled_stake")
                     R1["risk"] += (max(float(fs_r or 0), float(lo.get("asked_stake") or 0))
                                    if (is_rest or fs_r is None) else float(fs_r))
+            if row.get("source") == "ncs" and d_et in (None, datetime.now(lm.ET).date()):   # same rules again
+                if row.get("key"):
+                    NCS["keys"].add(row["key"])
+                if graded.get(row.get("key")) not in ("W", "P"):
+                    fs_n = lo.get("filled_stake")
+                    NCS["risk"] += (max(float(fs_n or 0), float(lo.get("asked_stake") or 0))
+                                    if (is_rest or fs_n is None) else float(fs_n))
             if graded.get(row.get("key")) in ("W", "P"):
                 continue   # settled win/push: not a loss toward the daily stop
             if (lo.get("book") or "prophetx") != "prophetx" and d_et in (None, datetime.now(lm.ET).date()):
@@ -3583,6 +3717,7 @@ def _bot_orders_finish(M, ids, _intents, _confirmed, from_store=False):
         INTENT["open"][k] = row
     BOARD["known"] = True   # the ledger parsed, so today's board exposure above is real
     R1["known"] = True      # ...and today's R1 exposure
+    NCS["known"] = True     # ...and today's NCS exposure
     return ids
 
 
@@ -3726,6 +3861,30 @@ def r1_gate(risk, key=None):
         return False, (f"R1 daily risk limit: ${R1['risk']:,.2f} already at risk today (ET) + "
                        f"${risk:,.2f} would exceed ${R1_DAILY_RISK:,.0f}")
     return True, f"ok (R1 today: {len(R1['keys'])}/{R1_MAX_PLAYS} plays, ${R1['risk']:,.2f}/${R1_DAILY_RISK:,.0f} at risk)"
+
+
+def ncs_gate(risk, key=None):
+    """(ok, why) for ONE NCS order of `risk` dollars. Fail closed, exactly as board_gate and r1_gate:
+    counts submitted AND resting orders, a retry or partial fill of the same key is never an extra
+    play, the play cap cannot override the risk limit, and neither overrides the global daily stop.
+
+    NCS_DAILY_RISK starts at half R1's ($1,000) because this lane has no forward record yet - its
+    case rests on CLV (+1.34c vs the board close, beat close 62%), not on outcomes."""
+    if not NCS["known"]:
+        return False, "NCS exposure unknown this run (ledger unreadable) - fail closed"
+    n = len(NCS["keys"]) + (0 if (key and key in NCS["keys"]) else 1)
+    if n > NCS_MAX_PLAYS:
+        return False, f"NCS play cap: {len(NCS['keys'])} already submitted or resting today (ET), cap {NCS_MAX_PLAYS}"
+    try:
+        risk = float(risk or 0)
+    except Exception:
+        return False, "NCS order risk unreadable - fail closed"
+    if risk <= 0:
+        return False, "NCS order risk is zero - fail closed"
+    if NCS["risk"] + risk > NCS_DAILY_RISK + 1e-9:
+        return False, (f"NCS daily risk limit: ${NCS['risk']:,.2f} already at risk today (ET) + "
+                       f"${risk:,.2f} would exceed ${NCS_DAILY_RISK:,.0f}")
+    return True, f"ok (NCS today: {len(NCS['keys'])}/{NCS_MAX_PLAYS} plays, ${NCS['risk']:,.2f}/${NCS_DAILY_RISK:,.0f} at risk)"
 
 
 def live_guards():
@@ -6214,6 +6373,12 @@ def main():
     except Exception as ex:
         LOG.append(f"r1 unavailable: {str(ex)[:60]}")
         r1plays = []
+    try:   # Nov 22 (Peter): NCS - NCAAB spreads on Kalshi, board v3 PLAY conditions. Ships OFF.
+        with perf("ncs_plays"):
+            ncsplays = ncs_plays(now)
+    except Exception as ex:
+        LOG.append(f"ncs unavailable: {str(ex)[:60]}")
+        ncsplays = []
     try:   # Nov 4: Lane 2 (Muse registration 3:48 PM) - dry run only, no live path exists for these plays
         with perf("lane 2 candidates"):
             import clv_ledger as _cl
@@ -6224,7 +6389,7 @@ def main():
         l2plays = []
     # one Gmail search PER CANDIDATE play - with dozens of candidates across five lanes this is the
     # prime suspect for the unmeasured time, so it is counted and the call count is printed
-    _cand = plays + rplays + bplays + r1plays + l2plays
+    _cand = plays + rplays + bplays + r1plays + ncsplays + l2plays
     with perf("handled_pids (one Gmail search)", n=len(_cand)):
         _seen = handled_pids(M, _cand)
         _phase("dedupe resolved")
@@ -6547,6 +6712,32 @@ def main():
                                                                     if r["verdict"] == "WOULD PLACE" else (r.get("reason") or "skipped")]}
                 else:
                     r["live"] = {"go": False, "lane": "r1", "why": why}
+            elif p.get("source") == "ncs":   # NCS lane: own live decision, own $200 unit, own daily limit
+                r["entry"] = ent = p.get("ncs_entry") or {}
+                trigger_first(r, ent)
+                lk = derive_key(p) or p["play_key"]
+                why = [] if NCS_LIVE else ["NCS lane not switched on (EXEC_NCS_LIVE)"]
+                if lk in MANUAL_HELD:
+                    why.append(f"{MANUAL_HELD[lk]} with Peter's manual bet (Bets manual note)")
+                if lk in LIVEKEYS or any(same_bet(lk, k) for k in LIVEKEYS):
+                    why.append("a live order or resting bid was already sent for this bet (another lane)")
+                if any(opp_bet(lk, k) for k in LIVEKEYS):
+                    why.append("CONFLICT: the other side of this game was already bet (first side stays)")
+                if not why and r["verdict"] == "WOULD PLACE" and r.get("lc"):
+                    lc = r["lc"]
+                    lr, lw = live_stake(lc["shown"], NCS_UNIT)   # $200 to win, never Lane 1's $300
+                    g_ok, g_why = ncs_gate(lr, lk)
+                    if not g_ok:
+                        why.append(g_why)
+                if not why and r["verdict"] == "WOULD PLACE" and r.get("lc"):
+                    r["live"] = {"go": True, "book": lc["book"], "risk": lr, "to_win": lw, "am": lc["am"], "shown": lc["shown"],
+                                 "line": lc["line"], "partial": lc["avail"] < lr, "px": lc, "ids": lc.get("ids") or {},
+                                 "nfl": False, "lane": "ncs", "unit": NCS_UNIT}
+                elif not why:
+                    r["live"] = {"go": False, "lane": "ncs", "why": ["no live book has the alert number or better"
+                                                                     if r["verdict"] == "WOULD PLACE" else (r.get("reason") or "skipped")]}
+                else:
+                    r["live"] = {"go": False, "lane": "ncs", "why": why}
             elif ent and (p.get("source") != "rules" or RULES_LIVE):   # phase-1 live tag (Oct 30: coded AGREE goes live too)
                 trigger_first(r, ent)
                 ok, why = agree_rules.phase1(ent, True)   # totals unders NBA/NCAAF/NFL + NCAAF overs (Nov 3/Nov 4); spreads paper. See agree_rules.PHASE1
@@ -6626,7 +6817,7 @@ def main():
                 LIVEKEYS.add(derive_key(p) or p["play_key"])
             results.append(r)
             if (r["verdict"] == "WOULD PLACE" or ((r.get("live") or {}).get("rest") or {}).get("status") == "placed") \
-                    and derive_key(p) and p.get("source") not in ("rules", "board", "r1", "lane2"):
+                    and derive_key(p) and p.get("source") not in ("rules", "board", "r1", "lane2", "ncs"):
                 taken_now.add(derive_key(p))
         except Exception as ex:
             results.append({"play": p, "pid": pid(p["play_key"]), "verdict": "SKIP", "reason": f"error: {str(ex)[:100]}"})
@@ -6649,12 +6840,14 @@ def main():
     # per-lane flags; the header now reads the same ones instead of asserting from memory.
     _lanes_on = [nm for nm, on, unit in (("Phase 1", px_live.LIVE, LIVE_UNIT),
                                          (("Board v4" if BOARD_V4 else "Board v3"), BOARD_LIVE, BOARD_UNIT),
-                                         ("R1", R1_LIVE, R1_UNIT)) if on]
+                                         ("R1", R1_LIVE, R1_UNIT),
+                                         ("NCS", NCS_LIVE, NCS_UNIT)) if on]
     _lanes_off = [nm for nm, on, _u in (("Phase 1", px_live.LIVE, 0),
                                         (("Board v4" if BOARD_V4 else "Board v3"), BOARD_LIVE, 0),
-                                        ("R1", R1_LIVE, 0)) if not on]
+                                        ("R1", R1_LIVE, 0),
+                                        ("NCS", NCS_LIVE, 0)) if not on]
     body = [(f"LIVE: {', '.join(_lanes_on)} (phase 1 ${LIVE_UNIT:.0f} to win, board ${BOARD_UNIT:.0f}, "
-             f"R1 ${R1_UNIT:.0f}; best price on {', '.join(BOOK_NAME.get(b, b) for b in LIVE_BOOKS)})"
+             f"R1 ${R1_UNIT:.0f}, NCS ${NCS_UNIT:.0f}; best price on {', '.join(BOOK_NAME.get(b, b) for b in LIVE_BOOKS)})"
              + (f"; DRY RUN: {', '.join(_lanes_off)}" if _lanes_off else "")
              + f" ({when})" if _lanes_on
              else f"DRY RUN - nothing was bet ({when})"), ""]

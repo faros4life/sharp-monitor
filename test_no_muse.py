@@ -96,7 +96,8 @@ ck("Board v3 unit", ex.BOARD_UNIT, 200.0)
 ck("R1 unit", ex.R1_UNIT, 200.0)
 ck("Lane 2 is still dry-run only",
    bool(re.search(r"Lane 2 is dry-run only", src)), True)
-ck("lane prefixes unchanged", ex.LANE_PREFIXES, ("rule|", "board|", "r1|", "lane2|"))
+# Nov 22 (Peter): "ncs|" added for the NCAAB-spread lane. Exact tuple on purpose.
+ck("lane prefixes unchanged", ex.LANE_PREFIXES, ("rule|", "board|", "r1|", "lane2|", "ncs|"))
 
 print("\n7. nothing about execution, pricing, staking or resting moved")
 ck("price cap", ex.CAP_LINE, -130)

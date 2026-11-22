@@ -83,7 +83,10 @@ def t_lane_name_follows_the_live_rule():
             assert m.lane_tag(r) == want, (val, m.lane_tag(r))
             assert m.lane_tag(r1) == "[R1] "                                  # other lanes unaffected
             # LANE_NAME stays the canonical map other modules check; only the message changes
-            assert m.LANE_NAME == {"board": "BOARD V3", "r1": "R1", "lane2": "LANE 2", "rules": "PHASE 1"}
+            # Nov 22: NCS (NCAAB spreads) joined the map. Kept as an EXACT comparison on purpose -
+            # a lane that appears here without being wired everywhere else is the failure this guards.
+            assert m.LANE_NAME == {"board": "BOARD V3", "r1": "R1", "lane2": "LANE 2",
+                                   "rules": "PHASE 1", "ncs": "NCS"}
             assert m.BOARD_UNIT == 200.0 and "board|" in m.LANE_PREFIXES      # unit and play-key prefix untouched
     finally:
         if prev is None:
