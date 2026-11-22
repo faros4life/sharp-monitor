@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 22, 4:10 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 24.
+Updated Sun Nov 22, 4:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 24.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 22 3:10PM | NCAAB | Loyola Marymount vs UC Irvine: Spread | spread: NOT UC Irvine wins by over 2.5 points | kalshi | $43k | -104 |  | ✅ | +0.0c |  | pending |
+| Nov 22 3:10PM | NCAAB | Loyola Marymount vs UC Irvine: Spread | spread: NOT UC Irvine wins by over 2.5 points | kalshi | $43k | -104 |  | ✅ | +1.0c |  | pending |
 | Nov 22 3:10PM | NCAAB | Virginia Tech vs Oklahoma St. | moneyline: Virginia Tech | kalshi | $30k | -113 |  |  | +0.0c |  | pending |
 | Nov 22 2:40PM | NCAAB | Virginia Tech vs Oklahoma St.: Spread | spread: NOT Virginia Tech wins by over 1.5 points | kalshi | $28k | +104 |  |  | +2.0c |  | pending |
 | Nov 22 2:40PM | NCAAB | Virginia Tech vs Oklahoma St. | moneyline: Oklahoma St. | kalshi | $34k | +113 | ✅ prophetx |  | +1.0c |  | pending |
