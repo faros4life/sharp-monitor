@@ -45,7 +45,9 @@ def main():
                 nm = sd if mt == "total" else teams[sd]
                 lines.append(f"    alert on {nm.title() if mt == 'total' else nm}: {c[0] if c else 'no match'}")
     msg = "\n".join(lines)
-    ex.tg(msg)
+    # Peter, Nov 22: "I want only live bet alerts... alert the play and what happens to it."
+    # This is a diagnostic proof dump about how Kalshi NO-side reads resolve - it is not a play
+    # and nothing happens to a play because of it. Email only; Telegram carries plays.
     try:
         ex.send("Bets Kalshi NO-read proof", msg)
     except Exception:

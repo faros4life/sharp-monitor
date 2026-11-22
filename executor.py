@@ -1812,8 +1812,11 @@ def muse_watchdog(now, muse_plays, rplays, feed):
                       "Note only, no action needed." if RULES_LIVE else
                       "Live won't bet it without Muse AGREE. Ping Muse.")
         if not RULES_LIVE:   # Oct 30: with coded-AGREE live, a missing Muse verdict blocks nothing -> no phone message
+            # Peter, Nov 22: "I want only live bet alerts... alert the play and what happens to
+            # it." A missing Muse verdict is a watchdog on an AGENT, not an outcome for a play -
+            # the play's own REFUSED / NO FILL / FILLED message still reports what happened to it.
+            # ntfy and the watchdog email are unchanged; only the Telegram leg is gone.
             push("No Muse verdict: " + (p.get("bet") or "")[:50], msg, mirror=False)
-            tg("NO MUSE VERDICT\n" + msg)
         try:
             send(f"Bets watchdog: no Muse verdict ({(p.get('bet') or '')[:40]})", msg + f"\n\n{tok}")
         except Exception:

@@ -78,5 +78,31 @@ ok("CSV columns unchanged from the Telegram-era attachment",
    L50.CSV_COLS == ["test", "half", "ts", "game", "price_am", "result", "certified_clv_pct",
                     "provisional_clv_pct_not_certified", "provisional_source"], str(L50.CSV_COLS))
 
+# --- Peter, Nov 22: "Alert the play and what happens to it." -------------------------------
+# Telegram carries a play and that play's outcome. Diagnostics and agent watchdogs do not.
+knp = read("kalshi_no_proof.py")
+ok("kalshi_no_proof: no Telegram (diagnostic, not a play)", "ex.tg(" not in knp)
+ok("kalshi_no_proof: still emails", "ex.send(" in knp)
+
+ex_src = read("executor.py")
+ok("NO MUSE VERDICT no longer goes to Telegram (agent watchdog, not a play outcome)",
+   'tg("NO MUSE VERDICT' not in ex_src)
+ok("NO MUSE VERDICT still pushes to ntfy", 'push("No Muse verdict: ' in ex_src)
+
+# --- and what MUST still reach Telegram: the play, and what happens to it --------------------
+for needle, what in (('tg_push("ORDER REFUSED"', "ORDER REFUSED"),
+                     ('tg_push("ORDER FAILED"', "ORDER FAILED"),
+                     ('tg_push("DUPLICATE BLOCKED"', "DUPLICATE BLOCKED"),
+                     ('tg_push("CLAIM UNAVAILABLE"', "CLAIM UNAVAILABLE"),
+                     ("RESTING BID", "resting bid")):
+    ok(f"still alerted: {what}", needle in ex_src)
+
+bal = read("balances.py")
+ok("still alerted: NEW POSITIONS fills (Peter, Nov 12: 'i want if something gets filled')",
+   "ex.tg(msg)" in bal and "NEW POSITIONS" in bal)
+
+sm = read("sharp_monitor.py")
+ok("sharp_monitor still mirrors a live phase-1 trigger", "if TG_SHARP or live:" in sm)
+
 print(f"{len(RAN) - len(FAILED)} passed, {len(FAILED)} failed")
 sys.exit(1 if FAILED else 0)
