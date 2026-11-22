@@ -1326,32 +1326,14 @@ def settle(alerts, n):
               f"start) - all still ungraded, none re-queried", flush=True)
 
 
-def tg_mirror(text, html=False):
-    """Oct 27 (Peter): every ntfy push is mirrored to Telegram (@sharp_fills_bot) so all alerts land in one place.
-    Secrets TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID; missing or failing = silently skipped. ntfy is unchanged and always
-    fires first. Nothing is printed to the public log."""
-    tok, chat = (os.environ.get("TELEGRAM_BOT_TOKEN") or "").strip(), (os.environ.get("TELEGRAM_CHAT_ID") or "").strip()
-    if not tok or not chat:
-        return
-    # Nov 22 (Peter): colour symbol + bold header on EVERY message. Formatting only. HTML first,
-    # symbolled plain text as the fallback - a malformed entity must never cost an alert.
-    import tg_format
-    rich, plain = tg_format.decorate(text, body_is_html=html)
-    for payload in ({"chat_id": chat, "text": rich[:3500], "parse_mode": "HTML"},
-                    {"chat_id": chat, "text": plain[:3500]}):
-        try:
-            req = urllib.request.Request(f"https://api.telegram.org/bot{tok}/sendMessage",
-                                         data=json.dumps(payload).encode(), method="POST",
-                                         headers={"Content-Type": "application/json"})
-            if bool((json.loads(urllib.request.urlopen(req, timeout=15).read().decode()) or {}).get("ok")):
-                return
-        except Exception:
-            print("telegram mirror failed")
-
-
-def _esc(t):
-    return str(t).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-
+# Peter, Nov 22: "Stop liquidity... to telegram."
+#
+# tg_mirror() and its _esc() helper lived here from Oct 27 and mirrored every liquidity ntfy push
+# into @sharp_fills_bot. They are DELETED, not disabled: this lane is a scan, and its alerts were
+# filling the feed Peter watches for order events. Liquidity now goes to ntfy only.
+#
+# Nothing else in this module sent to Telegram, and nothing imported these two names except
+# telegram-mirror-test.yml, whose liquidity line went with them.
 
 LIQ_BOOK_NAME = {"kalshi": "Kalshi", "polymarket": "Polymarket", "novig": "Novig", "prophetx": "ProphetX"}
 
@@ -1371,10 +1353,11 @@ def notify(title, body, headline=None):
         urllib.request.urlopen(req, timeout=15).read()
     except Exception as ex:
         print(f"ntfy failed: {ex}")
-    if headline:
-        tg_mirror(f"<b>{_esc(headline)}</b>\n\U0001F4A7 {_esc(title)}\n{_esc(body)}", html=True)
-    else:
-        tg_mirror(f"\U0001F4A7 {title}\n{body}")
+    # Peter, Nov 22: "Stop liquidity... to telegram." Liquidity alerts go to ntfy ONLY. The
+    # Oct 27 rule ("every ntfy push mirrored to Telegram so all alerts land in one place") stays
+    # in force for the SHARP alert path; it is this scan lane that Peter does not want on the
+    # phone feed. The sender is deleted rather than left unused, because an idle Telegram
+    # function in this module is exactly how the mirror would creep back.
 
 
 # ---------------------------------------------------------------- main

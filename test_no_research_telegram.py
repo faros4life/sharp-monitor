@@ -29,12 +29,26 @@ def read(p):
         return f.read()
 
 
-# --- the research reporters carry no Telegram path at all -----------------------------------
-for mod in ("last50_report.py", "clv_report.py"):
+# --- research reporters and the liquidity scan lane carry no Telegram path at all -------------
+# liquidity_monitor is checked by SOURCE, not by import: importing it does live-trading setup.
+for mod in ("last50_report.py", "clv_report.py", "liquidity_monitor.py"):
     src = read(mod)
     ok(f"{mod}: no Telegram credentials read", "TELEGRAM_BOT_TOKEN" not in src and "TELEGRAM_CHAT_ID" not in src)
     ok(f"{mod}: no Telegram API call", "api.telegram.org" not in src)
     ok(f"{mod}: no sendMessage/sendDocument", "sendMessage" not in src and "sendDocument" not in src)
+
+liq = read("liquidity_monitor.py")
+ok("liquidity_monitor: tg_mirror deleted, not merely unused", "def tg_mirror" not in liq)
+ok("liquidity_monitor: still pushes to ntfy", "ntfy.sh" in liq)
+
+for w in ("liquidity-monitor.yml", "liquidity-extra.yml"):
+    wsrc = read(os.path.join(".github/workflows", w))
+    ok(f"{w}: TELEGRAM secrets not passed",
+       "secrets.TELEGRAM_BOT_TOKEN" not in wsrc and "secrets.TELEGRAM_CHAT_ID" not in wsrc)
+
+mt = read(".github/workflows/telegram-mirror-test.yml")
+ok("telegram-mirror-test: no longer previews liquidity", "liquidity_monitor" not in mt)
+ok("telegram-mirror-test: still previews sharp alerts", "sharp_monitor" in mt)
 
 # --- the workflow does not hand it the Telegram secrets --------------------------------------
 wf = read(".github/workflows/last50-report.yml")
