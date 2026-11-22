@@ -1,6 +1,192 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-22T00:20:20Z",
+   "base_depth": 205601,
+   "best_price": 0.7627,
+   "best_price_american": -321,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.76,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-21",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 17290,
+     "new_this_side": 58036,
+     "other_side": 75063,
+     "other_side_all_levels": 102934,
+     "ratio": 1.2,
+     "this_side": 93085,
+     "this_side_all_levels": 293075
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Tennessee Tech",
+     "price": 0.759,
+     "this_side": 11227
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 19850.84,
+    "volume_24h_fp": 19847.84,
+    "volume_fp": 19850.84
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 3.0,
+    "volume_24h_fp": 7.76,
+    "volume_fp": 3.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 19847.84,
+    "volume_24h_fp": 19840.08,
+    "volume_fp": 19847.84
+   },
+   "fade_price": 0.25,
+   "first_seen_utc": "2026-11-22T00:10:23Z",
+   "game": "Presbyterian vs Tennessee Tech",
+   "game_surge_books": [
+    "prophetx"
+   ],
+   "game_x": 1.74,
+   "key": "kalshi|KXNCAAMBGAME-26NOV21PRETNTC|ml|1",
+   "lead_min": 10,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 58036,
+   "new_x": 3.31,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 19850.84,
+      "volume_24h_fp": 19847.84,
+      "volume_fp": 19850.84
+     },
+     "game_normal": 168150,
+     "game_x": 1.74,
+     "normal": 17550,
+     "now": 293075,
+     "type": "ML",
+     "x": 16.7
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 5835,
+     "game_x": 2.04,
+     "normal": 1529,
+     "now": 11877,
+     "type": "ML",
+     "x": 7.77
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.76,
+   "price_american": -317,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.76,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -350
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -350
+    },
+    "betopenly": {
+     "point": null,
+     "price": -308
+    },
+    "betrivers": {
+     "point": null,
+     "price": -375
+    },
+    "bovada": {
+     "point": null,
+     "price": -350
+    },
+    "circasports": {
+     "point": null,
+     "price": -340
+    },
+    "draftkings": {
+     "point": null,
+     "price": -345
+    },
+    "fanatics": {
+     "point": null,
+     "price": -350
+    },
+    "fanduel": {
+     "point": null,
+     "price": -350
+    },
+    "kalshi": {
+     "point": null,
+     "price": -317
+    },
+    "lowvig": {
+     "point": null,
+     "price": -350
+    },
+    "novig": {
+     "point": null,
+     "price": -308
+    },
+    "polymarket": {
+     "point": null,
+     "price": -317
+    },
+    "prophetx": {
+     "point": null,
+     "price": -315
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -350
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV21PRETNTC-TNTC"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Tennessee Tech",
+   "side_label": "Tennessee Tech",
+   "size_x": 16.7,
+   "start_source": "odds",
+   "start_utc": "2026-11-22T00:30:00Z",
+   "surge_books": [
+    "kalshi",
+    "prophetx"
+   ],
+   "teams": [
+    "Presbyterian",
+    "Tennessee Tech"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-21T23:50:20Z",
    "base_depth": 54472,
    "best_price": 0.505,
@@ -2957,6 +3143,7 @@
     "volume_fp": 241.18
    },
    "fade_price": 0.3,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-21T15:40:26Z",
    "game": "Winthrop vs Wofford",
    "game_surge_books": [
@@ -3078,14 +3265,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV21WINWOF-WOF"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
+   "settled_utc": "2026-11-22T00:20:20Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Wofford",
@@ -3104,7 +3292,7 @@
     "Wofford"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.42
   },
   {
    "alerted_utc": "2026-11-21T15:50:22Z",
@@ -3781,7 +3969,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 3262.6099999999997,
-    "volume_24h_fp": 3339.17,
+    "volume_24h_fp": 3349.04,
     "volume_fp": 3440.61
    },
    "ex_stats_first": {
@@ -3990,9 +4178,9 @@
     "volume_fp": 41.52
    },
    "ex_stats_close": {
-    "open_interest_fp": 16259.84,
-    "volume_24h_fp": 16544.36,
-    "volume_fp": 16658.02
+    "open_interest_fp": 16623.46,
+    "volume_24h_fp": 16595.52,
+    "volume_fp": 17021.64
    },
    "ex_stats_first": {
     "open_interest_fp": 6471.38,
@@ -4405,7 +4593,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 31999.690000000002,
-    "volume_24h_fp": 31139.920000000002,
+    "volume_24h_fp": 31141.160000000003,
     "volume_fp": 32079.370000000003
    },
    "ex_stats_first": {
@@ -10128,7 +10316,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 161,
+   "settle_tries": 162,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Daniil Medvedev N/A",
