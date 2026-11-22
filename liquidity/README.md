@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 21, 10:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 42.
+Updated Sat Nov 21, 10:25 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 42.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -11,7 +11,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 21 10:10PM | NHL | Chicago vs Vancouver | moneyline: Vancouver | kalshi | $30k | -104 |  |  | +0.0c |  | pending |
-| Nov 21 10:00PM | NCAAF | Utah State @ Oregon State | moneyline: ORST (0) | novig | $30k | -239 |  | ❌ | +0.0c |  | pending |
+| Nov 21 10:00PM | NCAAF | Utah State @ Oregon State | moneyline: ORST (0) | novig | $30k | -239 |  | ❌ | +0.5c |  | pending |
 | Nov 21 9:55PM | NFL | Tennessee vs Dallas: Spread | spread: NOT Dallas wins by over 7.5 points | kalshi | $641k | -104 | ✅ novig |  | +0.0c |  | pending |
 | Nov 21 9:50PM | NBA | Boston vs Sacramento: Spread | spread: NOT Boston wins by over 12.5 points | kalshi | $133k | -108 | ✅ novig | ✅ | +1.0c | yes | pending |
 | Nov 21 9:50PM | NFL | Las Vegas vs Denver | moneyline: Denver | kalshi | $232k | -488 | ✅ novig,prophetx |  | +0.0c |  | pending |
@@ -19,7 +19,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 9:05PM | NHL | Minnesota vs Vancouver | moneyline: Minnesota | kalshi | $108k | -285 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 21 8:55PM | NFL | Jacksonville Jaguars @ New York Giants | spread: NYG +5.5 (5.5) | novig | $27k | +102 | ✅ prophetx |  | +0.0c |  | pending |
 | Nov 21 8:50PM | NHL | Minnesota vs Vancouver: Spread | spread: Minnesota wins by over 1.5 goals | kalshi | $27k | -117 | ✅ novig |  | +1.0c |  | pending |
-| Nov 21 8:50PM | NCAAF | Utah St. vs Oregon St.: Total Points | total: Over 51.5 points | kalshi | $27k | -100 | ✅ novig | ✅ | +0.0c | yes | pending |
+| Nov 21 8:50PM | NCAAF | Utah St. vs Oregon St.: Total Points | total: Over 51.5 points | kalshi | $27k | -100 | ✅ novig | ✅ | +1.0c | yes | pending |
 | Nov 21 8:50PM | NHL | Seattle vs San Jose: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $27k | -108 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 21 8:50PM | NFL | Pittsburgh vs Philadelphia | moneyline: Pittsburgh | kalshi | $101k | -186 | ✅ prophetx |  | +0.0c | yes | pending |
 | Nov 21 8:45PM | NHL | Seattle vs San Jose: Spread | spread: NOT San Jose wins by over 1.5 goals | kalshi | $75k | -233 | ✅ novig |  | +0.0c |  | pending |
