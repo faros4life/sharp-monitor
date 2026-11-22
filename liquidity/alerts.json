@@ -51,6 +51,11 @@
     "volume_24h_fp": 204760.5,
     "volume_fp": 24466.73
    },
+   "ex_stats_close": {
+    "open_interest_fp": 1104247.45,
+    "volume_24h_fp": 1211919.95,
+    "volume_fp": 1276840.22
+   },
    "ex_stats_first": {
     "open_interest_fp": 1057983.8399999999,
     "volume_24h_fp": 1007159.45,
@@ -266,8 +271,8 @@
     "volume": 30422.0
    },
    "ex_stats_close": {
-    "openInterest": 16195856.0,
-    "volume": 19803654.0
+    "openInterest": 16201765.0,
+    "volume": 19820277.0
    },
    "ex_stats_first": {
     "openInterest": 16165434.0,
@@ -668,9 +673,9 @@
     "volume_fp": 3809.71
    },
    "ex_stats_close": {
-    "open_interest_fp": 27390.74,
+    "open_interest_fp": 27665.23,
     "volume_24h_fp": 31350.4,
-    "volume_fp": 31596.97
+    "volume_fp": 31871.46
    },
    "ex_stats_first": {
     "open_interest_fp": 22103.33,
@@ -792,7 +797,8 @@
      "price": -115
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-22T00:00:20Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26NOV21MEMMIN-229"
@@ -1039,6 +1045,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.68,
    "clv_cents": 0.0,
    "confirmed_after_min": 8,
@@ -1212,7 +1219,8 @@
      "price": -245
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-22T00:00:20Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26NOV21UNLVSJSU-UNLV"
@@ -3401,9 +3409,9 @@
     "volume_fp": 16426.88
    },
    "ex_stats_close": {
-    "open_interest_fp": 1081889.9000000001,
+    "open_interest_fp": 1104247.45,
     "volume_24h_fp": 1211919.95,
-    "volume_fp": 1252382.54
+    "volume_fp": 1276840.22
    },
    "ex_stats_first": {
     "open_interest_fp": 675611.8300000001,
@@ -7204,7 +7212,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 9,
+   "settle_tries": 10,
    "sharp_agree": [
     "Marshall Thundering Herd -2.5 (-111)"
    ],
@@ -7426,7 +7434,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 14,
+   "settle_tries": 15,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Florida St.",
@@ -7606,7 +7614,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 14,
+   "settle_tries": 15,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Michigan",
@@ -7912,7 +7920,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 14,
+   "settle_tries": 15,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "LSU",
@@ -8186,8 +8194,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 17111185.0,
-    "volume": 19146881.0
+    "openInterest": 17120600.0,
+    "volume": 19156296.0
    },
    "ex_stats_first": {
     "openInterest": 16199699.0,
@@ -9214,7 +9222,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 14,
+   "settle_tries": 15,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UCLA",
@@ -10290,10 +10298,12 @@
     "volume": 1577918.0
    },
    "fade_price": 0.225,
+   "fade_units": 3.44,
    "first_seen_utc": "2026-11-21T17:20:24Z",
    "game": "North Carolina State @ Florida State",
    "game_surge_books": [],
    "game_x": 1.43,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1de62-1485-75a3-9111-923aca05ec4c\", \"outcome_id\": \"01a1de62-1485-75a3-9111-9241f0445e55\"}",
    "lead_min": 184,
    "league": "NCAAF",
@@ -10404,14 +10414,15 @@
     "market_id": "01a1de62-1485-75a3-9111-923aca05ec4c",
     "outcome_id": "01a1de62-1485-75a3-9111-9241f0445e55"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "prophetx"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 14,
+   "settle_tries": 15,
+   "settled_utc": "2026-11-22T00:00:20Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Florida State",
@@ -10429,7 +10440,7 @@
     "Florida State"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-21T17:10:17Z",
@@ -14817,10 +14828,12 @@
     "volume": 19508259.0
    },
    "fade_price": 0.35,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-21T14:45:42Z",
    "game": "Texas Tech @ Baylor",
    "game_surge_books": [],
    "game_x": 1.11,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1d355-39a0-7220-9402-f1d504334130\", \"outcome_id\": \"01a1d355-39a0-7220-9402-f1f4cf5fdeb2\"}",
    "lead_min": 340,
    "league": "NCAAF",
@@ -14925,12 +14938,13 @@
     "market_id": "01a1d355-39a0-7220-9402-f1d504334130",
     "outcome_id": "01a1d355-39a0-7220-9402-f1f4cf5fdeb2"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 14,
+   "settle_tries": 15,
+   "settled_utc": "2026-11-22T00:00:20Z",
    "sharp_agree": [
     "Texas Tech Red Raiders -4.5 (-108)"
    ],
@@ -14949,7 +14963,7 @@
     "Baylor"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.53
   },
   {
    "alerted_utc": "2026-11-21T14:35:49Z",
@@ -15421,7 +15435,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 14,
+   "settle_tries": 15,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Indiana",
@@ -16966,7 +16980,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 14,
+   "settle_tries": 15,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Indiana",
@@ -19573,7 +19587,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas A&M",
@@ -28450,7 +28464,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Oklahoma",
