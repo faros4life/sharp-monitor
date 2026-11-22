@@ -178,6 +178,90 @@ def kill_preregistration(rows):
     return f"SUSPEND (reversible): CI upper {hi:+.3f} < 0" if hi < 0 else f"keep: CI upper {hi:+.3f}"
 
 
+def reason_for(verdict, g):
+    """One short clause saying WHY, for the daily report. Upgrade reason when it promotes, the
+    first failing gate when it does not."""
+    if verdict == NO_VERDICT:
+        return "under the 30-play minimum"
+    if verdict == INSUFFICIENT:
+        for k in ("price", "lead", "stability", "sample"):
+            if k in g:
+                return f"cannot evaluate: {g[k]}"
+        return "cannot evaluate"
+    if verdict == PROMOTE:
+        return "all four gates pass"
+    bad = []
+    if "outcome" in g and not g["outcome"].split("95% [")[1].startswith("+"):
+        bad.append("outcome CI spans zero")
+    if "stability" in g and "-" in g["stability"].split("halves")[1].split("(")[0]:
+        bad.append("a disjoint half is negative")
+    if "price" in g and "95% [-" in g["price"]:
+        bad.append("CLV CI spans zero")
+    return "; ".join(bad) or "a gate did not pass"
+
+
+def section(root="."):
+    """The daily report's shadow-grading block. REPORT ONLY - returns text, changes nothing.
+
+    Peter, Nov 22: fold this into the existing daily report rather than add another scheduled job.
+    Everything the review needs is on the line: old verdict, shadow verdict, n, units/play and
+    total, the 95% outcome CI, the CLV figure with its unit, CI and coverage, the disjoint-half
+    signs, and the reason."""
+    rows = load_feed(root)
+    nba = [r for r in rows if r.get("league") == "NBA" and r.get("market") == "total"]
+    ncs = [r for r in rows if r.get("league") == "NCAAB" and r.get("market") == "spread"
+           and (r.get("book") or "").lower() == "kalshi"]
+    buckets = [("NBA totals - whole lane", nba),
+               ("NBA totals - $25-50k prints", [r for r in nba if 25000 <= size_of(r) <= 50000]),
+               ("NBA totals - over $50k", [r for r in nba if size_of(r) > 50000]),
+               ("NCAAB spreads (NCS) - all", ncs)]
+    for lab, src in (("NBA totals", nba), ("NCAAB spreads (NCS)", ncs)):
+        for name, lo, hi in LEAD_BANDS:
+            buckets.append((f"{lab} - lead {name}",
+                            [r for r in src if lo <= (r.get("lead_min") or 0) < hi]))
+    L = ["", "=" * 78,
+         "SHADOW GRADING LADDER - REPORT ONLY. NOT a promotion, suspension or allocation change.",
+         "=" * 78,
+         "'ELIGIBLE FOR HUMAN REVIEW' is NOT 'approved for live trading'. Nothing here moves",
+         "capital, switches a lane or changes a limit. EXEC_NCS_LIVE stays OFF; R1 and Board are",
+         "unchanged. Production kill/close semantics in splits.py are untouched; the SUSPEND line",
+         "is hypothetical, reversible and pre-registered for separate approval.",
+         "",
+         "Rolling week / fortnight / month windows are NESTED OVERLAPPING OBSERVATIONS - NOT",
+         "independent replications. Stability is therefore measured on two DISJOINT halves.",
+         f"CLV below is CENTS vs the board close, not the Pinnacle no-vig percent of",
+         "CLV_STANDARD.md. The two are never pooled.",
+         f"Gates: n>={MIN_N} | outcome 95% CI lower >0 | both halves >0 | CLV CI lower >0 at",
+         f">={MIN_COVERAGE:.0%} coverage. CLV is necessary to promote and never sufficient.",
+         ""]
+    for name, rs in buckets:
+        ov, od = old_verdict(rs)
+        nv, g = new_verdict(rs)
+        o = outcome(rs)
+        tot = sum(float(r["units_flat"]) for r in resulted(rs)) if resulted(rs) else 0.0
+        L.append(f"  {name}")
+        L.append(f"     OLD {ov:<28s} SHADOW {nv}")
+        if o:
+            L.append(f"     n={o[0]}  {o[1]:+.3f}u/play  total {tot:+.2f}u  95% [{o[3]:+.3f},{o[4]:+.3f}]")
+        else:
+            L.append(f"     n=0  no resulted rows")
+        if "price" in g:
+            L.append(f"     CLV (board cents) {g['price']}")
+        else:
+            c, cov = clv(rs)
+            L.append(f"     CLV (board cents) unsupported - coverage {cov:.0%}")
+        if "stability" in g:
+            L.append(f"     {g['stability']}")
+        L.append(f"     reason: {reason_for(nv, g)}")
+        L.append(f"     kill (PRE-REGISTERED, NOT APPLIED): {kill_preregistration(rs)}")
+        if (ov == "ELIGIBLE") != (nv == PROMOTE):
+            L.append(f"     *** DISAGREEMENT: production says {ov}, shadow says {nv}")
+        L.append("")
+    L.append("  No automatic promotion, suspension, allocation or execution change follows from")
+    L.append("  anything above. Human review decides.")
+    return L
+
+
 def load_feed(root="."):
     rows = []
     for p in ("liquidity/alerts.json", "liquidity-extra/alerts.json"):

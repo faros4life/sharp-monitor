@@ -101,5 +101,43 @@ ok("report says nothing is promoted or switched", "Nothing is promoted" in rep)
 ok("report shows both verdicts per bucket", "OLD (production" in rep and "NEW (four gates)" in rep)
 ok("report marks disagreements", "DISAGREE" in rep or "agree" in rep)
 
+# --- the daily-report section (Peter, Nov 22: fold in, don't add a scheduler) ------------------
+import os
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+sec = "\n".join(G.section(HERE))
+for needle, what in (
+        ("REPORT ONLY", "says report only"),
+        ("NOT a promotion, suspension or allocation change", "disclaims the three actions"),
+        ("is NOT 'approved for live trading'", "separates eligible-for-review from approved"),
+        ("NESTED OVERLAPPING OBSERVATIONS", "labels the windows as overlapping"),
+        ("NOT\nindependent replications", "says they are not replications"),
+        ("DISJOINT halves", "names the stability basis"),
+        ("CLV_STANDARD.md", "keeps the two CLV sources apart"),
+        ("EXEC_NCS_LIVE stays OFF", "states NCS stays off"),
+        ("PRE-REGISTERED, NOT APPLIED", "marks the kill proposal as not applied"),
+        ("u/play", "carries units per play"),
+        ("total ", "carries total units"),
+        ("95% [", "carries the outcome interval"),
+        ("coverage", "carries CLV coverage"),
+        ("reason:", "carries a reason"),
+        ("lead under 4h", "has the <4h band"),
+        ("lead 4-12h", "has the 4-12h band"),
+        ("lead 12h+", "has the 12h+ band"),
+        ("Human review decides", "ends by deferring to human review")):
+    ok(f"section {what}", needle in sec, "missing")
+
+ok("section shows the NCAAB disagreement with a reason",
+   "DISAGREEMENT" in sec and "NCAAB" in sec)
+ok("section never claims anything was promoted",
+   "has been promoted" not in sec and "now live" not in sec)
+
+dr = open(os.path.join(HERE, "daily_report.py"), encoding="utf-8").read()
+ok("daily_report calls the shadow section", "grade_shadow.section(" in dr)
+ok("daily_report does not let a shadow failure break the settled-bets report",
+   "SHADOW GRADING LADDER: not available this run" in dr)
+ok("no second scheduler was added for it",
+   not os.path.exists(os.path.join(HERE, ".github/workflows/grade-shadow.yml")))
+
 print(f"{len(RAN) - len(FAILED)} passed, {len(FAILED)} failed")
 sys.exit(1 if FAILED else 0)

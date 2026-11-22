@@ -666,6 +666,15 @@ def main(argv):
                             "verified snapshot, PROVISIONAL converted")
             break
     body = "\n".join(render(day, views, corr.get("_meta")))
+    # Nov 22 (Peter): "add the shadow grading results to an existing daily report rather than
+    # introduce another scheduled job." REPORT ONLY - grade_shadow imports nothing from the live
+    # decision path and writes nothing. A failure here must never cost the settled-bets report,
+    # which is this job's actual purpose, so it is caught and noted rather than raised.
+    try:
+        import grade_shadow
+        body += "\n" + "\n".join(grade_shadow.section(os.path.dirname(os.path.abspath(__file__)) or "."))
+    except Exception as ex:
+        body += f"\n\nSHADOW GRADING LADDER: not available this run ({type(ex).__name__})"
     print(body, flush=True)
     if os.environ.get("REPORT_EMAIL") == "1":
         try:
