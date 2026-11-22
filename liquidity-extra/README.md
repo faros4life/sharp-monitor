@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 22, 4:30 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 24.
+Updated Sun Nov 22, 4:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 24.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -27,9 +27,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 22 10:20AM | NCAAB | Tennessee-Martin vs Utah Valley | moneyline: Utah Valley | kalshi | $84k | -270 | ✅ novig | ❌ | +0.0c |  | pending |
 | Nov 22 10:20AM | NCAAB | UNC Asheville vs Samford | moneyline: Samford | kalshi | $163k | -456 | ✅ novig |  | +1.0c |  | pending |
 | Nov 22 10:20AM | NCAAB | Maryland-Eastern Shore vs IU Indy | moneyline: IU Indy | kalshi | $69k | -525 |  |  | +0.0c | yes | pending |
-| Nov 22 10:20AM | NCAAB | Lamar vs Rice | moneyline: Lamar | kalshi | $52k | -122 | ✅ novig |  | +1.0c |  | pending |
+| Nov 22 10:20AM | NCAAB | Lamar vs Rice | moneyline: Lamar | kalshi | $52k | -122 | ✅ novig |  | +2.0c |  | pending |
 | Nov 22 10:10AM | NCAAB | Miami (OH) vs UIC: Spread | spread: NOT Miami (OH) wins by over 1.5 points | kalshi | $25k | -122 |  |  | +0.0c |  | L |
-| Nov 22 10:10AM | NCAAB | Liberty vs Richmond: Spread | spread: NOT Liberty wins by over 1.5 points | kalshi | $26k | -104 | ✅ novig |  | +4.0c |  | pending |
+| Nov 22 10:10AM | NCAAB | Liberty vs Richmond: Spread | spread: NOT Liberty wins by over 1.5 points | kalshi | $26k | -104 | ✅ novig |  | +4.0c | yes | pending |
 | Nov 22 7:50AM | NCAAB | Utah vs Minnesota | moneyline: Minnesota | kalshi | $53k | -567 |  |  | -3.0c |  | pending |
 | Nov 22 7:50AM | NCAAB | Portland vs California Baptist | moneyline: Portland | kalshi | $31k | -456 |  |  | -7.0c |  | pending |
 | Nov 22 1:40AM | NCAAB | West Florida vs South Alabama | moneyline: South Alabama | kalshi | $28k | -233 |  |  | -1.0c |  | pending |
