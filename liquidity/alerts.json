@@ -1,6 +1,219 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-22T05:50:18Z",
+   "base_depth": 351819,
+   "best_price": 0.765,
+   "best_price_american": -326,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.77,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-22",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 39444,
+     "new_this_side": 164127,
+     "other_side": 33584,
+     "other_side_all_levels": 127437,
+     "ratio": 3.5,
+     "this_side": 117587,
+     "this_side_all_levels": 515936
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "DEN (0)",
+     "price": 0.765,
+     "this_side": 10679
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Denver Nuggets",
+     "price": 0.7753,
+     "this_side": 5242
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 29539.129999999997,
+    "volume_24h_fp": 30299.17,
+    "volume_fp": 33207.8
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 245.79,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 326.89
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 29293.340000000004,
+    "volume_24h_fp": 30299.17,
+    "volume_fp": 32880.91
+   },
+   "fade_price": 0.24,
+   "first_seen_utc": "2026-11-22T05:45:40Z",
+   "game": "Denver vs Chicago",
+   "game_surge_books": [],
+   "game_x": 1.43,
+   "key": "kalshi|KXNBAGAME-26NOV22DENCHI|ml|0",
+   "lead_min": 1090,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 164127,
+   "new_x": 0.43,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 29539.129999999997,
+      "volume_24h_fp": 30299.17,
+      "volume_fp": 33207.8
+     },
+     "game_normal": 360349,
+     "game_x": 1.43,
+     "normal": 381656,
+     "now": 515936,
+     "type": "ML",
+     "x": 1.35
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 82851.0,
+      "volume": 114662.0
+     },
+     "game_normal": 8697,
+     "game_x": 1.38,
+     "normal": 2694,
+     "now": 11977,
+     "type": "ML",
+     "x": 4.45
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 6102,
+     "game_x": 1.02,
+     "normal": 4983,
+     "now": 6222,
+     "type": "ML",
+     "x": 1.25
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.77,
+   "price_american": -335,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.77,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -375
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -370
+    },
+    "betrivers": {
+     "point": null,
+     "price": -360
+    },
+    "betus": {
+     "point": null,
+     "price": -370
+    },
+    "bovada": {
+     "point": null,
+     "price": -380
+    },
+    "circasports": {
+     "point": null,
+     "price": -365
+    },
+    "draftkings": {
+     "point": null,
+     "price": -375
+    },
+    "fanatics": {
+     "point": null,
+     "price": -375
+    },
+    "fanduel": {
+     "point": null,
+     "price": -355
+    },
+    "kalshi": {
+     "point": null,
+     "price": -335
+    },
+    "limitless": {
+     "point": null,
+     "price": -355
+    },
+    "lowvig": {
+     "point": null,
+     "price": -366
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -360
+    },
+    "novig": {
+     "point": null,
+     "price": -326
+    },
+    "polymarket": {
+     "point": null,
+     "price": -335
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -335
+    },
+    "prophetx": {
+     "point": null,
+     "price": -345
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -355
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26NOV22DENCHI-DEN"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Denver",
+   "side_label": "Denver",
+   "size_x": 1.35,
+   "start_source": "odds",
+   "start_utc": "2026-11-23T00:00:00Z",
+   "surge_books": [
+    "novig"
+   ],
+   "teams": [
+    "Denver",
+    "Chicago"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-22T04:35:38Z",
    "base_depth": 155944,
    "best_price": 0.54,
@@ -52,9 +265,9 @@
     "volume_fp": 768.65
    },
    "ex_stats_close": {
-    "open_interest_fp": 27804.879999999997,
+    "open_interest_fp": 27841.89,
     "volume_24h_fp": 45303.93,
-    "volume_fp": 49376.409999999996
+    "volume_fp": 49538.49
    },
    "ex_stats_first": {
     "open_interest_fp": 24625.07,
@@ -259,9 +472,9 @@
     "volume_fp": 4.02
    },
    "ex_stats_close": {
-    "open_interest_fp": 12275.43,
+    "open_interest_fp": 12761.400000000001,
     "volume_24h_fp": 11905.79,
-    "volume_fp": 12866.08
+    "volume_fp": 13407.74
    },
    "ex_stats_first": {
     "open_interest_fp": 9102.849999999999,
@@ -471,9 +684,9 @@
     "volume_fp": 759.99
    },
    "ex_stats_close": {
-    "open_interest_fp": 290888.14,
+    "open_interest_fp": 291206.7,
     "volume_24h_fp": 109532.98,
-    "volume_fp": 305515.95
+    "volume_fp": 305862.11
    },
    "ex_stats_first": {
     "open_interest_fp": 274714.36,
@@ -696,9 +909,9 @@
     "volume_fp": 584.1
    },
    "ex_stats_close": {
-    "open_interest_fp": 190707.76,
+    "open_interest_fp": 197012.49,
     "volume_24h_fp": 67666.76,
-    "volume_fp": 210497.14
+    "volume_fp": 216801.87
    },
    "ex_stats_first": {
     "open_interest_fp": 179658.09,
@@ -1162,7 +1375,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [
     "Utah State Aggies +7.5 (-113)"
@@ -1233,9 +1446,9 @@
     "volume_fp": 260.47
    },
    "ex_stats_close": {
-    "open_interest_fp": 189772.3,
+    "open_interest_fp": 189800.2,
     "volume_24h_fp": 179978.73,
-    "volume_fp": 202177.07
+    "volume_fp": 205884.42
    },
    "ex_stats_first": {
     "open_interest_fp": 175873.01,
@@ -1662,9 +1875,9 @@
     "volume_fp": 727.79
    },
    "ex_stats_close": {
-    "open_interest_fp": 825530.07,
+    "open_interest_fp": 827414.02,
     "volume_24h_fp": 482953.56,
-    "volume_fp": 885131.55
+    "volume_fp": 887086.58
    },
    "ex_stats_first": {
     "open_interest_fp": 472086.65,
@@ -1881,9 +2094,9 @@
     "volume_fp": 56.21
    },
    "ex_stats_close": {
-    "open_interest_fp": 67229.39,
+    "open_interest_fp": 67688.39,
     "volume_24h_fp": 35491.05,
-    "volume_fp": 73791.08
+    "volume_fp": 74338.48
    },
    "ex_stats_first": {
     "open_interest_fp": 57707.58,
@@ -2238,7 +2451,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Minnesota",
@@ -2634,7 +2847,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Minnesota",
@@ -2854,7 +3067,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [
     "Over 51.5 (+100)"
    ],
@@ -2938,6 +3151,7 @@
     "volume_fp": 12891.62
    },
    "fade_price": 0.49,
+   "fade_units": 0.97,
    "first_seen_utc": "2026-11-22T01:45:54Z",
    "game": "Seattle vs San Jose: Total Goals",
    "game_surge_books": [],
@@ -3069,14 +3283,15 @@
     "kalshi_side": "no",
     "market_ticker": "KXNHLTOTAL-26NOV21SEASJ-7"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
+   "settled_utc": "2026-11-22T05:50:18Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -3094,7 +3309,7 @@
     "San Jose"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-22T01:50:17Z",
@@ -3148,9 +3363,9 @@
     "volume_fp": 2197.99
    },
    "ex_stats_close": {
-    "open_interest_fp": 252488.85,
+    "open_interest_fp": 252736.72,
     "volume_24h_fp": 111664.18,
-    "volume_fp": 282805.96
+    "volume_fp": 283053.83
    },
    "ex_stats_first": {
     "open_interest_fp": 205925.82,
@@ -3376,6 +3591,7 @@
     "volume_fp": 2874.86
    },
    "fade_price": 0.31,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-22T01:40:18Z",
    "game": "Seattle vs San Jose: Spread",
    "game_surge_books": [],
@@ -3497,14 +3713,15 @@
     "kalshi_side": "no",
     "market_ticker": "KXNHLSPREAD-26NOV21SEASJ-SJ2"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
+   "settled_utc": "2026-11-22T05:50:18Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Seattle",
@@ -3521,7 +3738,7 @@
     "San Jose"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.44
   },
   {
    "alerted_utc": "2026-11-22T01:40:18Z",
@@ -3743,8 +3960,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.68,
-   "clv_cents": -1.0,
+   "close_price": 0.67,
+   "clv_cents": -2.0,
    "confirmed_after_min": 5,
    "date": "2026-11-22",
    "depth_by_book": {
@@ -3781,9 +3998,9 @@
     "volume_fp": 6393.3
    },
    "ex_stats_close": {
-    "open_interest_fp": 1144958.17,
+    "open_interest_fp": 1217868.28,
     "volume_24h_fp": 394188.61,
-    "volume_fp": 1317768.0699999998
+    "volume_fp": 1406547.77
    },
    "ex_stats_first": {
     "open_interest_fp": 995480.06,
@@ -4232,9 +4449,9 @@
     "volume_fp": 588.36
    },
    "ex_stats_close": {
-    "open_interest_fp": 341801.54,
+    "open_interest_fp": 342060.63,
     "volume_24h_fp": 91623.82,
-    "volume_fp": 394736.28
+    "volume_fp": 394995.37
    },
    "ex_stats_first": {
     "open_interest_fp": 314097.97,
@@ -4459,9 +4676,9 @@
     "volume_fp": 365.63
    },
    "ex_stats_close": {
-    "open_interest_fp": 244676.58000000002,
+    "open_interest_fp": 248556.65,
     "volume_24h_fp": 93291.82,
-    "volume_fp": 280926.99
+    "volume_fp": 284899.08
    },
    "ex_stats_first": {
     "open_interest_fp": 198988.37,
@@ -5050,7 +5267,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Vancouver",
@@ -5262,7 +5479,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [
     "Sacramento Kings +12.5 (-106)",
@@ -5477,7 +5694,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 16,
+   "settle_tries": 17,
    "sharp_agree": [
     "Boise State Broncos -20.5 (+100)",
     "Boise State Broncos -17.5 (-117)"
@@ -5907,7 +6124,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 16,
+   "settle_tries": 17,
    "sharp_agree": [],
    "sharp_oppose": [
     "Boise State Broncos -20.5 (+100)",
@@ -6114,7 +6331,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [
     "Utah State Aggies +7.5 (-113)"
@@ -7140,7 +7357,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [
     "Sacramento Kings +12.5 (-106)",
@@ -12419,7 +12636,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 58,
+   "settle_tries": 59,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Nevada",
@@ -13845,7 +14062,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 22,
+   "settle_tries": 23,
    "sharp_agree": [
     "Utah Utes -7.5 (-111)"
    ],
@@ -16694,7 +16911,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 22,
+   "settle_tries": 23,
    "sharp_agree": [
     "Utah Utes -7.5 (-111)"
    ],
