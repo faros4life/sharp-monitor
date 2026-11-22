@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 22, 1:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 77.
+Updated Sun Nov 22, 1:45 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 77.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -17,7 +17,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 22 12:55PM | NFL | Miami Dolphins @ Buffalo Bills | spread: BUF -16.5 (-16.5) | novig | $86k | -111 |  |  | +0.0c |  | pending |
 | Nov 22 12:55PM | NFL | Tampa Bay Buccaneers @ Detroit Lions | spread: TB +3.5 (-3.5) | novig | $68k | -100 | ✅ kalshi | ✅ | +0.0c |  | pending |
 | Nov 22 12:55PM | NFL | Tampa Bay vs Detroit: Total Points | total: Over 49.5 points | kalshi | $227k | -100 | ✅ novig,prophetx | ✅ | +0.0c |  | pending |
-| Nov 22 12:50PM | NFL | Minnesota vs San Francisco: Spread | spread: San Francisco wins by over 3.5 points | kalshi | $860k | -100 |  |  | +0.0c |  | pending |
+| Nov 22 12:50PM | NFL | Minnesota vs San Francisco: Spread | spread: San Francisco wins by over 3.5 points | kalshi | $860k | -100 |  |  | +1.0c |  | pending |
 | Nov 22 12:45PM | NFL | Arizona vs Kansas City: Spread | spread: Kansas City wins by over 14.5 points | kalshi | $211k | -113 |  | ❌ | +0.0c | yes | pending |
 | Nov 22 12:40PM | NFL | Pittsburgh vs Philadelphia: Total Points | total: NOT Over 37.5 points | kalshi | $228k | -100 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 22 12:25PM | NHL | Buffalo vs Tampa Bay: Spread | spread: Tampa Bay wins by over 1.5 goals | kalshi | $36k | +122 |  |  | +0.0c |  | pending |
@@ -51,7 +51,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 22 9:05AM | NFL | Tampa Bay vs Detroit: Spread | spread: Detroit wins by over 3.5 points | kalshi | $117k | -104 | ✅ novig | ❌ | +0.0c | yes | pending |
 | Nov 22 8:55AM | NFL | Tennessee vs Dallas: Total Points | total: NOT Over 54.5 points | kalshi | $96k | +104 | ✅ novig |  | +2.0c | yes | pending |
 | Nov 22 8:55AM | NHL | Pittsburgh vs Dallas | moneyline: Dallas | kalshi | $33k | -213 | ✅ novig,prophetx |  | +0.0c |  | pending |
-| Nov 22 8:25AM | NFL | Minnesota vs San Francisco: Spread | spread: NOT San Francisco wins by over 3.5 points | kalshi | $178k | -113 | ✅ novig |  | -2.0c |  | pending |
+| Nov 22 8:25AM | NFL | Minnesota vs San Francisco: Spread | spread: NOT San Francisco wins by over 3.5 points | kalshi | $178k | -113 | ✅ novig |  | -3.0c |  | pending |
 | Nov 22 8:10AM | NFL | Tampa Bay Buccaneers @ Detroit Lions | moneyline: TB (0) | novig | $37k | +194 |  | ✅ | +0.5c |  | pending |
 | Nov 22 8:10AM | NFL | Tampa Bay vs Detroit: Total Points | total: Over 47.5 points | kalshi | $190k | -100 | ✅ novig,prophetx | ✅ | +6.0c | yes | pending |
 | Nov 22 8:05AM | NHL | Carolina vs New York R | moneyline: Carolina | kalshi | $45k | -150 | ✅ novig,prophetx |  | +1.0c |  | pending |
