@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 22, 4:25 PM ET. This run: 0 new, 0 not confirmed, 3 pending. Open alerts: 51.
+Updated Sun Nov 22, 4:30 PM ET. This run: 0 new, 1 not confirmed, 2 pending. Open alerts: 51.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -18,7 +18,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 22 3:10PM | NFL | New York Jets @ Los Angeles Chargers | spread: LAC -3.5 (-3.5) | novig | $93k | +117 |  |  | -0.5c | yes | pending |
 | Nov 22 3:10PM | NBA | Detroit vs Atlanta: Total Points | total: Over 223.5 points | kalshi | $63k | -104 |  | ❌ | +2.0c |  | pending |
 | Nov 22 2:50PM | NBA | Denver Nuggets @ Chicago Bulls | moneyline: DEN (0) | novig | $36k | -376 | ✅ kalshi,prophetx | ✅ | +1.0c | yes | pending |
-| Nov 22 2:25PM | NBA | Dallas vs Utah: Total Points | total: NOT Over 226.5 points | kalshi | $53k | +104 |  |  | +1.0c |  | pending |
+| Nov 22 2:25PM | NBA | Dallas vs Utah: Total Points | total: NOT Over 226.5 points | kalshi | $53k | +104 |  |  | +2.0c |  | pending |
 | Nov 22 2:10PM | NBA | Dallas vs Utah: Spread | spread: Dallas wins by over 1.5 points | kalshi | $102k | -108 | ✅ novig | ❌ | +1.0c |  | pending |
 | Nov 22 2:00PM | NFL | New York Jets @ Los Angeles Chargers | moneyline: LAC (0) | novig | $51k | -156 | ✅ kalshi,prophetx |  | -0.5c | yes | pending |
 | Nov 22 1:55PM | NBA | Detroit Pistons @ Atlanta Hawks | total: Under 223.5 (223.5) | novig | $28k | -100 | ✅ prophetx | ✅ | +0.0c |  | pending |
