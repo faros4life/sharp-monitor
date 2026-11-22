@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 22, 1:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 22.
+Updated Sun Nov 22, 1:30 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 22.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 22 12:56PM | NCAAB | Utah Tech vs South Dakota | moneyline: Utah Tech | kalshi | $56k | -108 | ✅ novig |  | +0.0c |  | pending |
+| Nov 22 12:56PM | NCAAB | Utah Tech vs South Dakota | moneyline: Utah Tech | kalshi | $56k | -108 | ✅ novig |  | +1.0c |  | pending |
 | Nov 22 12:56PM | NCAAB | Loyola Marymount vs UC Irvine | moneyline: UC Irvine | kalshi | $67k | -122 |  | ❌ | +0.0c |  | pending |
 | Nov 22 11:50AM | NCAAB | NJIT vs Boston College: Spread | spread: NOT Boston College wins by over 23.5 points | kalshi | $39k | -108 |  |  | +0.0c |  | pending |
 | Nov 22 10:30AM | NCAAB | Maryland-Eastern Shore @ IU Indianapolis | moneyline: IUPUI (0) | novig | $29k | -506 |  |  | +0.0c |  | pending |
