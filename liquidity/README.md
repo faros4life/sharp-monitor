@@ -1,15 +1,16 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 21, 7:00 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 48.
+Updated Sat Nov 21, 7:05 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 48.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1804-1414 (-39.63u flat) | rule met: 1052-846
+**Record:** 1804-1415 (-40.63u flat) | rule met: 1052-847
 
-**Fade (paper, betting against the print):** 1148-1531 (-195.21u flat, after fees)
+**Fade (paper, betting against the print):** 1149-1531 (-191.90u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 21 7:05PM | NBA | Memphis vs Minnesota: Spread | spread: NOT Minnesota wins by over 6.5 points | kalshi | $58k | -113 |  |  | +0.0c |  | pending |
 | Nov 21 6:55PM | NBA | Portland vs New York | moneyline: Portland | kalshi | $458k | -113 | ✅ novig,prophetx | ✅ | +0.0c |  | pending |
 | Nov 21 6:50PM | NBA | Boston Celtics @ Sacramento Kings | moneyline: BOS (0) | novig | $40k | -525 | ✅ prophetx | ❌ | +0.0c |  | pending |
 | Nov 21 6:45PM | NHL | Los Angeles vs Ottawa: Spread | spread: Ottawa wins by over 1.5 goals | kalshi | $56k | +150 |  |  | +1.0c |  | pending |
@@ -26,7 +27,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 5:55PM | NHL | Los Angeles vs Ottawa | moneyline: Ottawa | kalshi | $197k | -178 | ✅ novig,prophetx |  | +1.0c |  | pending |
 | Nov 21 5:55PM | NCAAF | UTSA vs UAB | moneyline: UTSA | kalshi | $179k | -170 | ✅ novig |  | +0.0c |  | pending |
 | Nov 21 5:55PM | NCAAF | Kentucky vs Missouri | moneyline: Missouri | kalshi | $394k | -186 | ✅ prophetx |  | +0.0c |  | pending |
-| Nov 21 5:55PM | NBA | Portland vs New York | moneyline: New York | kalshi | $569k | +104 | ✅ novig,prophetx | ❌ | -1.0c |  | pending |
+| Nov 21 5:55PM | NBA | Portland vs New York | moneyline: New York | kalshi | $569k | +104 | ✅ novig,prophetx | ❌ | -2.0c |  | pending |
 | Nov 21 5:50PM | NHL | Columbus vs Toronto: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $26k | -117 | ✅ novig |  | +1.0c |  | pending |
 | Nov 21 5:40PM | NHL | Buffalo vs Florida: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $120k | -117 | ✅ novig | ❌ | +2.0c |  | pending |
 | Nov 21 5:35PM | NCAAF | Stanford vs California | moneyline: Stanford | kalshi | $177k | -133 | ✅ novig,prophetx |  | +0.0c |  | pending |
@@ -45,7 +46,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 4:10PM | NCAAF | Arizona vs Kansas St. | moneyline: Arizona | kalshi | $151k | -335 | ✅ novig,prophetx | ✅ | +0.0c | yes | pending |
 | Nov 21 3:41PM | NCAAF | Utah vs TCU | moneyline: Utah | kalshi | $159k | -317 | ✅ novig,prophetx | ✅ | +0.0c |  | pending |
 | Nov 21 3:10PM | NCAAF | Georgia St. vs Marshall | moneyline: Marshall | kalshi | $97k | -144 | ✅ prophetx | ✅ | +0.0c | yes | pending |
-| Nov 21 3:01PM | NCAAF | NC St. vs Florida St. | moneyline: Florida St. | kalshi | $133k | -376 | ✅ novig,prophetx |  | +0.0c |  | pending |
+| Nov 21 3:01PM | NCAAF | NC St. vs Florida St. | moneyline: Florida St. | kalshi | $133k | -376 | ✅ novig,prophetx |  | +0.0c |  | L |
 | Nov 21 2:30PM | NCAAF | UCLA @ Michigan | spread: MICH +3.5 (3.5) | novig | $29k | -106 |  |  | +0.5c |  | pending |
 | Nov 21 2:20PM | NCAAF | Cornell vs Columbia | moneyline: Columbia | kalshi | $67k | -127 |  |  | +18.0c |  | W |
 | Nov 21 2:11PM | NCAAF | LSU @ Tennessee | moneyline: LSU (0) | novig | $25k | -108 | ✅ prophetx |  | +1.0c | yes | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 19 10:35AM | NHL | Edmonton vs Tampa Bay | moneyline: Tampa Bay | kalshi | $30k | -133 | ✅ novig |  | +1.0c |  | W |
 | Nov 19 10:25AM | NBA | Los Angeles C vs San Antonio: Spread | spread: NOT San Antonio wins by over 15.5 points | kalshi | $29k | -104 | ✅ novig | ❌ | +0.0c | yes | W |
 | Nov 19 10:05AM | NBA | Los Angeles C vs San Antonio: Total Points | total: NOT Over 225.5 points | kalshi | $35k | -100 | ✅ novig | ✅ | +4.0c |  | L |
-| Nov 19 9:40AM | NBA | Golden State vs Memphis: Total Points | total: NOT Over 225.5 points | kalshi | $43k | +104 | ✅ prophetx |  | +3.0c | yes | W |
