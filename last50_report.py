@@ -577,46 +577,60 @@ def registry_names():
     return out
 
 
-def send_telegram(body, rows):
-    """Private Telegram delivery (Peter, 13 Nov: no Gmail). Text in 4000-char chunks, then the CSV as a
-    document - a CSV cannot be half-valid the way truncated text can. Nothing is printed to the public log
-    except a count. Missing secrets or a failed send exits non-zero so a dead report is loud."""
-    import urllib.request
-    tok = (os.environ.get("TELEGRAM_BOT_TOKEN") or "").strip()
-    chat = (os.environ.get("TELEGRAM_CHAT_ID") or "").strip()
-    if not tok or not chat:
-        print("telegram not configured - report NOT delivered")
+CSV_COLS = ["test", "half", "ts", "game", "price_am", "result", "certified_clv_pct",
+            "provisional_clv_pct_not_certified", "provisional_source"]
+
+
+def send_report(body, rows):
+    """EMAIL delivery. NOT Telegram (Peter, Nov 22: "I don't need paper or research to telegram").
+
+    This used to chunk the whole report into Telegram plus a CSV document, and the reason was in
+    its own old docstring: "Peter, 13 Nov: no Gmail". That rule was about CLAUDE READING Peter's
+    mailbox - it was never about where a report is delivered. The rule got applied to sending as
+    well, so a VALUE LAB research report landed on the LIVE ALERT FEED every morning at 5:24 ET,
+    in a dozen chunks plus an attachment, between the order notices Peter actually watches.
+    clv_report.py has always emailed; this is the same channel, not a new one.
+
+    Credentials are read from the environment directly rather than through executor.gmail(),
+    because importing executor does live-trading setup at import time and this is a read-only
+    reporter. Same three secrets, no new credential.
+
+    The CSV stays an ATTACHMENT: a truncated body can be silently half-valid, a CSV cannot.
+    Missing secrets or a failed send still returns False, and main() exits non-zero on it, so a
+    dead reporter stays loud. Nothing is printed to the public log except a count."""
+    import smtplib
+    from email import encoders
+    from email.mime.base import MIMEBase
+    from email.mime.multipart import MIMEMultipart
+    from email.mime.text import MIMEText
+    user = (os.environ.get("GMAIL_ADDRESS") or "").strip()
+    pw = (os.environ.get("GMAIL_APP_PASSWORD") or "").replace(" ", "").strip()
+    to = (os.environ.get("EMAIL_TO") or "").strip() or user
+    if not (user and pw):
+        print("email not configured - report NOT delivered")
         return False
-    base = f"https://api.telegram.org/bot{tok}/"
-    chunks, cur = [], ""
-    for ln in body.split("\n"):
-        if len(cur) + len(ln) + 1 > 3900:
-            chunks.append(cur)
-            cur = ""
-        cur += ln + "\n"
-    chunks.append(cur)
     try:
-        for c in chunks:
-            data = json.dumps({"chat_id": chat, "text": c}).encode()
-            req = urllib.request.Request(base + "sendMessage", data, {"Content-Type": "application/json"})
-            urllib.request.urlopen(req, timeout=30).read()
         buf = io.StringIO()
-        w = csv.DictWriter(buf, fieldnames=["test", "half", "ts", "game", "price_am", "result", "certified_clv_pct", "provisional_clv_pct_not_certified", "provisional_source"],
-                           extrasaction="ignore")
+        w = csv.DictWriter(buf, fieldnames=CSV_COLS, extrasaction="ignore")
         w.writeheader()
         for r in rows:
             w.writerow(r)
-        bd = "----last50"
-        parts = [f'--{bd}\r\nContent-Disposition: form-data; name="chat_id"\r\n\r\n{chat}\r\n',
-                 f'--{bd}\r\nContent-Disposition: form-data; name="document"; filename="last50_plays.csv"\r\n'
-                 f'Content-Type: text/csv\r\n\r\n{buf.getvalue()}\r\n--{bd}--\r\n']
-        req = urllib.request.Request(base + "sendDocument", "".join(parts).encode(),
-                                     {"Content-Type": f"multipart/form-data; boundary={bd}"})
-        urllib.request.urlopen(req, timeout=60).read()
+        m = MIMEMultipart()
+        m["Subject"] = "Bets VALUE LAB - LAST-50 REPORT"
+        m["From"], m["To"] = user, to
+        m.attach(MIMEText(body, "plain", "utf-8"))
+        part = MIMEBase("text", "csv")
+        part.set_payload(buf.getvalue().encode("utf-8"))
+        encoders.encode_base64(part)
+        part.add_header("Content-Disposition", "attachment", filename="last50_plays.csv")
+        m.attach(part)
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465, timeout=120) as sv:
+            sv.login(user, pw)
+            sv.sendmail(user, [to], m.as_string())
     except Exception as e:
-        print(f"telegram send failed ({type(e).__name__})")
+        print(f"email send failed ({type(e).__name__})")
         return False
-    print(f"telegram delivered: {len(chunks)} message(s) + CSV")
+    print(f"emailed: report + CSV ({len(rows)} rows)")
     return True
 
 
@@ -800,7 +814,7 @@ def main():
     say("  4. Circa close not included; Pinnacle only.")
     say("")
     say("SUMMARY: " + ", ".join(f"{k}: {v}" for k, v in Counter(status.values()).items()))
-    return 0 if send_telegram("\n".join(L), csv_rows) else 1
+    return 0 if send_report("\n".join(L), csv_rows) else 1
 
 
 if __name__ == "__main__":

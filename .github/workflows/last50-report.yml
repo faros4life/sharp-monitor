@@ -28,8 +28,13 @@ jobs:
           python-version: "3.12"
       - run: pip install -q cryptography
       - name: Last-50 report
+        # Peter, Nov 22: "I don't need paper or research to telegram." This VALUE LAB report is
+        # emailed, like clv-report. The Telegram secrets are deliberately NOT passed - if a
+        # Telegram path is ever reintroduced here it will fail loudly instead of quietly
+        # reappearing on the live alert feed.
         env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
           TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
         run: python -u last50_report.py
