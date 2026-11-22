@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 22, 4:40 PM ET. This run: 2 new, 0 not confirmed, 0 pending. Open alerts: 53.
+Updated Sun Nov 22, 4:46 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 53.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -53,7 +53,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 22 10:30AM | NFL | Tennessee Titans @ Dallas Cowboys | spread: DAL -7.5 (-7.5) | novig | $99k | +104 |  |  | +1.5c | yes | W |
 | Nov 22 10:30AM | NFL | Miami vs Buffalo: Total Points | total: Over 44.5 points | kalshi | $254k | -104 | ✅ novig |  | +1.0c | yes | L |
 | Nov 22 10:15AM | NHL | Buffalo vs Tampa Bay: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $34k | -104 | ✅ novig |  | -1.0c | yes | pending |
-| Nov 22 10:15AM | NHL | Edmonton vs St. Louis: Spread | spread: NOT St. Louis wins by over 1.5 goals | kalshi | $40k | -233 | ✅ novig |  | +0.0c |  | pending |
+| Nov 22 10:15AM | NHL | Edmonton vs St. Louis: Spread | spread: NOT St. Louis wins by over 1.5 goals | kalshi | $40k | -233 | ✅ novig |  | +1.0c |  | pending |
 | Nov 22 10:05AM | NFL | Tennessee Titans at Dallas Cowboys | spread: Tennessee Titans +7.5 (+7.5) | prophetx | $31k | -107 | ✅ kalshi,novig |  | -1.7c | yes | L |
 | Nov 22 10:00AM | NHL | Edmonton vs St. Louis | moneyline: St. Louis | kalshi | $94k | -108 | ✅ novig,prophetx |  | +1.0c |  | pending |
 | Nov 22 9:50AM | NFL | Jacksonville Jaguars at New York Giants | spread: New York Giants +5.5 (+5.5) | prophetx | $30k | +101 | ✅ kalshi |  | -3.2c | yes | pending |
