@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 22, 3:00 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 25.
+Updated Sun Nov 22, 3:10 PM ET. This run: 2 new, 0 not confirmed, 1 pending. Open alerts: 27.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,15 +10,17 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 22 3:10PM | NCAAB | Loyola Marymount vs UC Irvine: Spread | spread: NOT UC Irvine wins by over 2.5 points | kalshi | $43k | -104 |  | ✅ | +0.0c |  | pending |
+| Nov 22 3:10PM | NCAAB | Virginia Tech vs Oklahoma St. | moneyline: Virginia Tech | kalshi | $30k | -113 |  |  | +0.0c |  | pending |
 | Nov 22 2:40PM | NCAAB | Virginia Tech vs Oklahoma St.: Spread | spread: NOT Virginia Tech wins by over 1.5 points | kalshi | $28k | +104 |  |  | +2.0c |  | pending |
-| Nov 22 2:40PM | NCAAB | Virginia Tech vs Oklahoma St. | moneyline: Oklahoma St. | kalshi | $34k | +113 | ✅ prophetx |  | +0.0c |  | pending |
+| Nov 22 2:40PM | NCAAB | Virginia Tech vs Oklahoma St. | moneyline: Oklahoma St. | kalshi | $34k | +113 | ✅ prophetx |  | +1.0c |  | pending |
 | Nov 22 2:40PM | NCAAB | McNeese vs Texas St. | moneyline: Texas St. | kalshi | $40k | -133 |  |  | +0.0c |  | pending |
-| Nov 22 2:20PM | NCAAB | Western Kentucky vs George Washington | moneyline: Western Kentucky | kalshi | $50k | -203 |  |  | +9.0c |  | pending |
+| Nov 22 2:20PM | NCAAB | Western Kentucky vs George Washington | moneyline: Western Kentucky | kalshi | $50k | -203 |  |  | +10.0c |  | pending |
 | Nov 22 1:40PM | NCAAB | Fordham vs San Diego | moneyline: San Diego | kalshi | $26k | +117 | ✅ novig |  | +0.0c |  | pending |
 | Nov 22 12:56PM | NCAAB | Utah Tech vs South Dakota | moneyline: Utah Tech | kalshi | $56k | -108 | ✅ novig |  | +2.0c | yes | pending |
 | Nov 22 12:56PM | NCAAB | Loyola Marymount vs UC Irvine | moneyline: UC Irvine | kalshi | $67k | -122 |  | ❌ | +0.0c |  | pending |
 | Nov 22 11:50AM | NCAAB | NJIT vs Boston College: Spread | spread: NOT Boston College wins by over 23.5 points | kalshi | $39k | -108 |  |  | +0.0c |  | pending |
-| Nov 22 10:30AM | NCAAB | Maryland-Eastern Shore @ IU Indianapolis | moneyline: IUPUI (0) | novig | $29k | -506 |  |  | +0.0c |  | pending |
+| Nov 22 10:30AM | NCAAB | Maryland-Eastern Shore @ IU Indianapolis | moneyline: IUPUI (0) | novig | $29k | -506 |  |  | +0.5c |  | pending |
 | Nov 22 10:30AM | NCAAB | San Jose St. vs Loyola Chicago | moneyline: Loyola Chicago | kalshi | $37k | -186 | ✅ novig |  | +0.0c |  | pending |
 | Nov 22 10:20AM | NCAAB | Wyoming vs Duquesne | moneyline: Wyoming | kalshi | $48k | -163 | ✅ novig |  | +2.0c |  | pending |
 | Nov 22 10:20AM | NCAAB | Valparaiso vs Southern Miss | moneyline: Valparaiso | kalshi | $56k | -335 | ✅ novig |  | +2.0c |  | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 17 1:40AM | NCAAB | Le Moyne vs Evansville | moneyline: Evansville | kalshi | $26k | -257 |  |  | +3.0c | yes | W |
 | Nov 17 1:30AM | NCAAB | Florida International vs UAB | moneyline: UAB | kalshi | $39k | -170 |  |  | +0.0c |  | W |
 | Nov 17 1:30AM | NCAAB | Central Michigan vs Dayton | moneyline: Dayton | kalshi | $36k | -567 |  |  | +4.0c | yes | W |
-| Nov 17 12:40AM | NCAAB | UC Irvine vs Stanford | moneyline: Stanford | kalshi | $52k | -317 |  |  | -2.0c |  | W |
-| Nov 16 9:30PM | NCAAB | Sam Houston vs Wyoming | moneyline: Wyoming | kalshi | $49k | -525 |  |  | +4.0c | yes | W |

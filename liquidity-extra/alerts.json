@@ -1,6 +1,385 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-22T20:10:20Z",
+   "base_depth": 43412,
+   "best_price": 0.5275,
+   "best_price_american": -112,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-22",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 2776,
+     "new_this_side": 43193,
+     "other_side": 27569,
+     "other_side_all_levels": 54830,
+     "ratio": 2.3,
+     "this_side": 64690,
+     "this_side_all_levels": 86623
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 48786.22,
+    "volume_24h_fp": 51415.78,
+    "volume_fp": 51435.1
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 19.32
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 48786.22,
+    "volume_24h_fp": 51415.78,
+    "volume_fp": 51415.78
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-22T20:00:25Z",
+   "game": "Loyola Marymount vs UC Irvine: Spread",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 2.01,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAMBSPREAD-26NOV22LMUUCI-UCI3\"}",
+   "lead_min": 80,
+   "league": "NCAAB",
+   "line": 2.5,
+   "market": "spread",
+   "new_money": 43193,
+   "new_x": 2.32,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 48786.22,
+      "volume_24h_fp": 51415.78,
+      "volume_fp": 51435.1
+     },
+     "game_normal": 43181,
+     "game_x": 2.01,
+     "normal": 18587,
+     "now": 86623,
+     "type": "SPREAD",
+     "x": 4.66
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -105
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": 106
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -112
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -105
+    },
+    "bovada": {
+     "point": 2.0,
+     "price": -115
+    },
+    "circasports": {
+     "point": 2.0,
+     "price": -115
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -105
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -105
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -104
+    },
+    "kalshi": {
+     "point": 2.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -101
+    },
+    "novig": {
+     "point": 1.5,
+     "price": 104
+    },
+    "polymarket": {
+     "point": 24.5,
+     "price": -9900
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": 103
+    },
+    "williamhill_us": {
+     "point": 2.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAMBSPREAD-26NOV22LMUUCI-UCI3"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [
+    "Loyola Marymount Lions +2.5 (-115)"
+   ],
+   "sharp_oppose": [],
+   "side": "Loyola Marymount",
+   "side_label": "NOT UC Irvine wins by over 2.5 points",
+   "size_x": 4.66,
+   "start_source": "odds",
+   "start_utc": "2026-11-22T21:30:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Loyola Marymount",
+    "UC Irvine"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-22T20:10:20Z",
+   "base_depth": 231204,
+   "best_price": 0.525,
+   "best_price_american": -111,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.53,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-22",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -21882,
+     "new_this_side": 29795,
+     "other_side": 140623,
+     "other_side_all_levels": 253417,
+     "ratio": 0.6,
+     "this_side": 90708,
+     "this_side_all_levels": 258723
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "VT (0)",
+     "price": 0.525,
+     "this_side": 20041
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Virginia Tech",
+     "price": 0.5327,
+     "this_side": 9264
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 56111.99,
+    "volume_24h_fp": 50309.68,
+    "volume_fp": 57717.32
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 6145.66,
+    "volume_24h_fp": 6879.12,
+    "volume_fp": 6445.66
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 49966.33,
+    "volume_24h_fp": 43430.56,
+    "volume_fp": 51271.659999999996
+   },
+   "fade_price": 0.48,
+   "first_seen_utc": "2026-11-22T20:00:25Z",
+   "game": "Virginia Tech vs Oklahoma St.",
+   "game_surge_books": [],
+   "game_x": 1.27,
+   "key": "kalshi|KXNCAAMBGAME-26NOV22VTOKST|ml|0",
+   "lead_min": 20,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 29795,
+   "new_x": 1.28,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 56111.99,
+      "volume_24h_fp": 50309.68,
+      "volume_fp": 57717.32
+     },
+     "game_normal": 203382,
+     "game_x": 1.27,
+     "normal": 23337,
+     "now": 258723,
+     "type": "ML",
+     "x": 11.09
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 7552709.0,
+      "volume": 8925074.0
+     },
+     "game_normal": 45254,
+     "game_x": 0.97,
+     "normal": 4746,
+     "now": 44046,
+     "type": "ML",
+     "x": 9.28
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 7426,
+     "game_x": 1.25,
+     "normal": 1939,
+     "now": 9319,
+     "type": "ML",
+     "x": 4.81
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.53,
+   "price_american": -113,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.54,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -125
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -125
+    },
+    "betopenly": {
+     "point": null,
+     "price": -110
+    },
+    "betrivers": {
+     "point": null,
+     "price": -132
+    },
+    "betus": {
+     "point": null,
+     "price": -125
+    },
+    "bovada": {
+     "point": null,
+     "price": -125
+    },
+    "circasports": {
+     "point": null,
+     "price": -125
+    },
+    "draftkings": {
+     "point": null,
+     "price": -125
+    },
+    "fanatics": {
+     "point": null,
+     "price": -120
+    },
+    "fanduel": {
+     "point": null,
+     "price": -130
+    },
+    "kalshi": {
+     "point": null,
+     "price": -113
+    },
+    "lowvig": {
+     "point": null,
+     "price": -125
+    },
+    "novig": {
+     "point": null,
+     "price": -111
+    },
+    "polymarket": {
+     "point": null,
+     "price": -117
+    },
+    "prophetx": {
+     "point": null,
+     "price": -114
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -125
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV22VTOKST-VT"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Virginia Tech",
+   "side_label": "Virginia Tech",
+   "size_x": 11.09,
+   "start_source": "odds",
+   "start_utc": "2026-11-22T20:30:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Virginia Tech",
+    "Oklahoma St."
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-22T19:40:20Z",
    "base_depth": 79033,
    "best_price": 0.5075,
@@ -40,9 +419,9 @@
     "volume_fp": 5514.53
    },
    "ex_stats_close": {
-    "open_interest_fp": 41271.35,
-    "volume_24h_fp": 30720.07,
-    "volume_fp": 44695.66
+    "open_interest_fp": 56893.74,
+    "volume_24h_fp": 44695.66,
+    "volume_fp": 62571.56
    },
    "ex_stats_first": {
     "open_interest_fp": 20226.25,
@@ -192,8 +571,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.47,
-   "clv_cents": 0.0,
+   "close_price": 0.48,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-22",
    "depth_by_book": {
@@ -224,9 +603,9 @@
     "volume_fp": 1166.96
    },
    "ex_stats_close": {
-    "open_interest_fp": 49966.33,
-    "volume_24h_fp": 43430.56,
-    "volume_fp": 51271.659999999996
+    "open_interest_fp": 56111.99,
+    "volume_24h_fp": 50309.68,
+    "volume_fp": 57717.32
    },
    "ex_stats_first": {
     "open_interest_fp": 32382.41,
@@ -420,9 +799,9 @@
     "volume_fp": 286.63
    },
    "ex_stats_close": {
-    "open_interest_fp": 22638.6,
-    "volume_24h_fp": 25104.699999999997,
-    "volume_fp": 25576.86
+    "open_interest_fp": 23679.59,
+    "volume_24h_fp": 25576.86,
+    "volume_fp": 26617.85
    },
    "ex_stats_first": {
     "open_interest_fp": 13106.63,
@@ -578,8 +957,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.76,
-   "clv_cents": 9.0,
+   "close_price": 0.77,
+   "clv_cents": 10.0,
    "confirmed_after_min": 10,
    "date": "2026-11-22",
    "depth_by_book": {
@@ -604,9 +983,9 @@
     "volume_fp": 68630.5
    },
    "ex_stats_close": {
-    "open_interest_fp": 143168.09,
-    "volume_24h_fp": 156633.59000000003,
-    "volume_fp": 183750.21000000002
+    "open_interest_fp": 165055.89,
+    "volume_24h_fp": 182501.14,
+    "volume_fp": 211014.83000000002
    },
    "ex_stats_first": {
     "open_interest_fp": 22757.85,
@@ -1144,9 +1523,9 @@
     "volume_fp": 38.88
    },
    "ex_stats_close": {
-    "open_interest_fp": 78655.97,
-    "volume_24h_fp": 78698.01,
-    "volume_fp": 78698.18
+    "open_interest_fp": 78657.70000000001,
+    "volume_24h_fp": 78698.18,
+    "volume_fp": 78699.91
    },
    "ex_stats_first": {
     "open_interest_fp": 48213.41,
@@ -1334,9 +1713,9 @@
     "volume_fp": 66.95
    },
    "ex_stats_close": {
-    "open_interest_fp": 1117.89,
+    "open_interest_fp": 1278.68,
     "volume_24h_fp": 1211.65,
-    "volume_fp": 1211.65
+    "volume_fp": 1372.44
    },
    "ex_stats_first": {
     "open_interest_fp": 928.29,
@@ -1472,8 +1851,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.835,
-   "clv_cents": 0.0,
+   "close_price": 0.84,
+   "clv_cents": 0.5,
    "confirmed_after_min": 10,
    "date": "2026-11-22",
    "depth_by_book": {
@@ -1496,8 +1875,8 @@
     "volume": 29.0
    },
    "ex_stats_close": {
-    "openInterest": 2333006.0,
-    "volume": 2337542.0
+    "openInterest": 2384006.0,
+    "volume": 2388542.0
    },
    "ex_stats_first": {
     "openInterest": 1920403.0,
@@ -1620,9 +1999,9 @@
     "volume_fp": 0.73
    },
    "ex_stats_close": {
-    "open_interest_fp": 1817.72,
+    "open_interest_fp": 1819.72,
     "volume_24h_fp": 2142.21,
-    "volume_fp": 2143.55
+    "volume_fp": 2145.55
    },
    "ex_stats_first": {
     "open_interest_fp": 854.21,
@@ -1992,7 +2371,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1536.22,
-    "volume_24h_fp": 1625.92,
+    "volume_24h_fp": 1627.96,
     "volume_fp": 1638.5300000000002
    },
    "ex_stats_first": {
@@ -2205,9 +2584,9 @@
     "volume_fp": 17.96
    },
    "ex_stats_close": {
-    "open_interest_fp": 17976.73,
+    "open_interest_fp": 17980.190000000002,
     "volume_24h_fp": 17980.68,
-    "volume_fp": 17997.68
+    "volume_fp": 18001.14
    },
    "ex_stats_first": {
     "open_interest_fp": 961.81,
@@ -2418,7 +2797,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1650.51,
-    "volume_24h_fp": 1872.17,
+    "volume_24h_fp": 1988.4699999999998,
     "volume_fp": 2022.21
    },
    "ex_stats_first": {
@@ -2619,7 +2998,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 853.1800000000001,
-    "volume_24h_fp": 809.6800000000001,
+    "volume_24h_fp": 837.47,
     "volume_fp": 864.6700000000001
    },
    "ex_stats_first": {
@@ -2755,9 +3134,9 @@
     "volume_fp": 1.17
    },
    "ex_stats_close": {
-    "open_interest_fp": 1570.8,
+    "open_interest_fp": 1592.8,
     "volume_24h_fp": 1482.73,
-    "volume_fp": 1572.8
+    "volume_fp": 1594.8
    },
    "ex_stats_first": {
     "open_interest_fp": 256.76,
@@ -3128,9 +3507,9 @@
     "volume_fp": 212.18
    },
    "ex_stats_close": {
-    "open_interest_fp": 6984.71,
+    "open_interest_fp": 7038.53,
     "volume_24h_fp": 7081.32,
-    "volume_fp": 7081.32
+    "volume_fp": 7135.14
    },
    "ex_stats_first": {
     "open_interest_fp": 4260.55,
@@ -3322,9 +3701,9 @@
     "volume_fp": 11.05
    },
    "ex_stats_close": {
-    "open_interest_fp": 4036.68,
-    "volume_24h_fp": 3196.63,
-    "volume_fp": 4076.2599999999998
+    "open_interest_fp": 4057.7,
+    "volume_24h_fp": 3206.1,
+    "volume_fp": 4097.280000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 1788.4,
@@ -3517,9 +3896,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 35487.84,
-    "volume_24h_fp": 32212.4,
-    "volume_fp": 37480.2
+    "open_interest_fp": 40763.24,
+    "volume_24h_fp": 37480.2,
+    "volume_fp": 42755.600000000006
    },
    "ex_stats_first": {
     "open_interest_fp": 10850.71,
