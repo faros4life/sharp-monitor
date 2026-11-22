@@ -227,7 +227,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+1 pts",
+   "clv": "+1.5 pts",
    "clv_conv_pts": null,
    "clv_pin_line": null,
    "clv_read_utc": null,
@@ -1256,6 +1256,81 @@
    "units_flat": null
   },
   {
+   "alert_utc": "2026-11-22T21:00:33Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "Over 226.5 (-104)",
+   "book": "Novig",
+   "book_key": "novig",
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+0.5 pts",
+   "clv_conv_pts": null,
+   "clv_pin_line": null,
+   "clv_read_utc": null,
+   "clv_skipped": null,
+   "clv_source": null,
+   "clv_verified": null,
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -2.9,
+   "executable_book": true,
+   "fade_book": "novig",
+   "fade_point": 226.5,
+   "fade_price": -102,
+   "fade_price_after_fee": -102,
+   "fade_units": null,
+   "final": null,
+   "floor_line": 226.5,
+   "game": "Dallas Mavericks @ Utah Jazz",
+   "grade": "A",
+   "hr1_eligible": false,
+   "hr1_pushed": false,
+   "hr1_verified": null,
+   "hr1_verify_status": null,
+   "hr1_verify_why": null,
+   "kind": "tot",
+   "late": false,
+   "minutes_before_start": 179,
+   "point": 226.5,
+   "price": -104,
+   "price_after_fee": -104,
+   "prices_at_alert": {
+    "hardrockbet": {
+     "after_fee": -110,
+     "point": 226.5,
+     "price": -110
+    },
+    "kalshi": {
+     "after_fee": -111.5,
+     "point": 226.5,
+     "price": -104
+    },
+    "novig": {
+     "after_fee": -104,
+     "point": 226.5,
+     "price": -104
+    },
+    "prophetx": {
+     "after_fee": -107.1,
+     "point": 226.5,
+     "price": -105
+    }
+   },
+   "pricing_bettable": true,
+   "result": null,
+   "score": 82,
+   "sent_to_phone": true,
+   "sport": "NBA",
+   "start_utc": "2026-11-23T00:00:00Z",
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alert_utc": "2026-11-22T11:00:30Z",
    "beat_close": true,
    "beat_true_close": null,
@@ -1702,20 +1777,20 @@
   {
    "alert_utc": "2026-11-22T15:15:23Z",
    "beat_close": true,
-   "beat_true_close": null,
+   "beat_true_close": false,
    "bet": "Loyola Marymount Lions +2.5 (-115)",
    "book": "ProphetX",
    "book_key": "prophetx",
-   "close_fair_prob": null,
-   "close_read_mins_before": null,
-   "close_value_pct": null,
+   "close_fair_prob": 0.5134,
+   "close_read_mins_before": 30,
+   "close_value_pct": -4.9,
    "clv": "+1 pts",
-   "clv_conv_pts": null,
-   "clv_pin_line": null,
-   "clv_read_utc": null,
+   "clv_conv_pts": 1.0,
+   "clv_pin_line": 1.5,
+   "clv_read_utc": "2026-11-22T21:00:22Z",
    "clv_skipped": null,
-   "clv_source": null,
-   "clv_verified": null,
+   "clv_source": "live read (provisional)",
+   "clv_verified": false,
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -1776,20 +1851,20 @@
   {
    "alert_utc": "2026-11-22T16:10:24Z",
    "beat_close": true,
-   "beat_true_close": null,
+   "beat_true_close": true,
    "bet": "Richmond Spiders +1.5 (-115)",
    "book": "Novig",
    "book_key": "novig",
-   "close_fair_prob": null,
-   "close_read_mins_before": null,
-   "close_value_pct": null,
+   "close_fair_prob": 0.5639,
+   "close_read_mins_before": 30,
+   "close_value_pct": 5.4,
    "clv": "+2.5 pts",
-   "clv_conv_pts": null,
-   "clv_pin_line": null,
-   "clv_read_utc": null,
+   "clv_conv_pts": 2.5,
+   "clv_pin_line": -1.0,
+   "clv_read_utc": "2026-11-22T21:00:22Z",
    "clv_skipped": null,
-   "clv_source": null,
-   "clv_verified": null,
+   "clv_source": "live read (provisional)",
+   "clv_verified": false,
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -3343,8 +3418,8 @@
    "fade_point": -16.5,
    "fade_price": 115,
    "fade_price_after_fee": 113,
-   "fade_units": null,
-   "final": null,
+   "fade_units": 1.13,
+   "final": "ARI 7, KC 34",
    "floor_line": 15.0,
    "game": "Arizona Cardinals @ Kansas City Chiefs",
    "grade": "A",
@@ -3382,13 +3457,13 @@
     }
    },
    "pricing_bettable": true,
-   "result": null,
+   "result": "L",
    "score": 76,
    "sent_to_phone": true,
    "sport": "NFL",
    "start_utc": "2026-11-22T18:00:00Z",
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alert_utc": "2026-11-22T13:55:30Z",
@@ -3641,8 +3716,8 @@
    "fade_point": 140.5,
    "fade_price": 111,
    "fade_price_after_fee": 109,
-   "fade_units": null,
-   "final": null,
+   "fade_units": 1.09,
+   "final": "CHST 62, MARQ 106",
    "floor_line": 139.5,
    "game": "Chicago St Cougars @ Marquette Golden Eagles",
    "grade": "B",
@@ -3680,13 +3755,13 @@
     }
    },
    "pricing_bettable": true,
-   "result": null,
+   "result": "L",
    "score": 63,
    "sent_to_phone": false,
    "sport": "NCAAB",
    "start_utc": "2026-11-22T18:00:00Z",
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alert_utc": "2026-11-22T17:00:42Z",
@@ -3715,8 +3790,8 @@
    "fade_point": -4.5,
    "fade_price": -102,
    "fade_price_after_fee": -104,
-   "fade_units": null,
-   "final": null,
+   "fade_units": -1.0,
+   "final": "WIU 66, CAN 46",
    "floor_line": 3.5,
    "game": "Western Illinois Leathernecks @ Canisius Golden Griffins",
    "grade": "B",
@@ -3754,13 +3829,13 @@
     }
    },
    "pricing_bettable": true,
-   "result": null,
+   "result": "W",
    "score": 74,
    "sent_to_phone": false,
    "sport": "NCAAB",
    "start_utc": "2026-11-22T18:00:00Z",
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.87
   },
   {
    "alert_utc": "2026-11-22T17:00:42Z",
@@ -3789,8 +3864,8 @@
    "fade_point": 34.5,
    "fade_price": -105,
    "fade_price_after_fee": -105,
-   "fade_units": null,
-   "final": null,
+   "fade_units": -1.0,
+   "final": "CHST 62, MARQ 106",
    "floor_line": -34.5,
    "game": "Chicago St Cougars @ Marquette Golden Eagles",
    "grade": "B",
@@ -3823,13 +3898,13 @@
     }
    },
    "pricing_bettable": true,
-   "result": null,
+   "result": "W",
    "score": 60,
    "sent_to_phone": false,
    "sport": "NCAAB",
    "start_utc": "2026-11-22T18:00:00Z",
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.87
   },
   {
    "alert_utc": "2026-11-22T13:45:28Z",
@@ -110691,6 +110766,31 @@
  ],
  "all_alerts": [
   {
+   "alert_text": "Over 226.5 (-104) at Novig (also: Hard Rock, ProphetX, Kalshi)",
+   "bet": "Over 226.5 (-104)",
+   "bet_result": null,
+   "book": "Novig",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -2.9,
+   "final": null,
+   "game": "Dallas Mavericks @ Utah Jazz",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 179,
+   "price": -104,
+   "price_after_fee": -104,
+   "pushed_to_phone": true,
+   "repeat": false,
+   "score": 82,
+   "sent_et": "2026-11-22 16:00",
+   "sport": "NBA",
+   "start_utc": "2026-11-23T00:00:00Z",
+   "why": "Pinnacle total moved 224.5 -> 227; bet only at 226.5 or better (confirmed by BetOnline, Matchbook)"
+  },
+  {
    "alert_text": "Under 163.5 (-110) at Hard Rock (also: ProphetX, Novig)",
    "bet": "Under 163.5 (-110)",
    "bet_result": null,
@@ -110865,13 +110965,13 @@
   {
    "alert_text": "Marquette Golden Eagles -34.5 (-115) at Hard Rock",
    "bet": "Marquette Golden Eagles -34.5 (-115)",
-   "bet_result": null,
+   "bet_result": "W",
    "book": "Hard Rock",
    "confirmed_by": [
     "BetOnline"
    ],
    "edge_pct": -3.8,
-   "final": null,
+   "final": "CHST 62, MARQ 106",
    "game": "Chicago St Cougars @ Marquette Golden Eagles",
    "grade": "B",
    "late": true,
@@ -110889,13 +110989,13 @@
   {
    "alert_text": "Western Illinois Leathernecks +4.5 (-113) at ProphetX [-115 after ProphetX fee] (also: Hard Rock, Novig, Kalshi)",
    "bet": "Western Illinois Leathernecks +4.5 (-113)",
-   "bet_result": null,
+   "bet_result": "W",
    "book": "ProphetX",
    "confirmed_by": [
     "BetOnline"
    ],
    "edge_pct": -0.3,
-   "final": null,
+   "final": "WIU 66, CAN 46",
    "game": "Western Illinois Leathernecks @ Canisius Golden Griffins",
    "grade": "B",
    "late": true,
@@ -110985,13 +111085,13 @@
   {
    "alert_text": "Under 140.5 (-118) at ProphetX [-120 after ProphetX fee] (also: Hard Rock)",
    "bet": "Under 140.5 (-118)",
-   "bet_result": null,
+   "bet_result": "L",
    "book": "ProphetX",
    "confirmed_by": [
     "BetOnline"
    ],
    "edge_pct": -4.0,
-   "final": null,
+   "final": "CHST 62, MARQ 106",
    "game": "Chicago St Cougars @ Marquette Golden Eagles",
    "grade": "B",
    "late": false,
@@ -111759,14 +111859,14 @@
   {
    "alert_text": "Arizona Cardinals +16.5 (-118) at ProphetX [-120 after ProphetX fee] (also: Hard Rock)",
    "bet": "Arizona Cardinals +16.5 (-118)",
-   "bet_result": null,
+   "bet_result": "L",
    "book": "ProphetX",
    "confirmed_by": [
     "BetOnline",
     "Matchbook"
    ],
    "edge_pct": -4.2,
-   "final": null,
+   "final": "ARI 7, KC 34",
    "game": "Arizona Cardinals @ Kansas City Chiefs",
    "grade": "A",
    "late": false,
