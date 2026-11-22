@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 22, 10:10 AM ET. This run: 2 new, 0 not confirmed, 6 pending. Open alerts: 11.
+Updated Sun Nov 22, 10:20 AM ET. This run: 6 new, 0 not confirmed, 2 pending. Open alerts: 17.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,10 +10,16 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 22 10:20AM | NCAAB | Wyoming vs Duquesne | moneyline: Wyoming | kalshi | $48k | -163 | ✅ novig |  | +0.0c |  | pending |
+| Nov 22 10:20AM | NCAAB | Valparaiso vs Southern Miss | moneyline: Valparaiso | kalshi | $56k | -335 | ✅ novig |  | +0.0c |  | pending |
+| Nov 22 10:20AM | NCAAB | Tennessee-Martin vs Utah Valley | moneyline: Utah Valley | kalshi | $84k | -270 | ✅ novig | ❌ | +0.0c |  | pending |
+| Nov 22 10:20AM | NCAAB | UNC Asheville vs Samford | moneyline: Samford | kalshi | $163k | -456 | ✅ novig |  | +0.0c |  | pending |
+| Nov 22 10:20AM | NCAAB | Maryland-Eastern Shore vs IU Indy | moneyline: IU Indy | kalshi | $69k | -525 |  |  | +0.0c |  | pending |
+| Nov 22 10:20AM | NCAAB | Lamar vs Rice | moneyline: Lamar | kalshi | $52k | -122 | ✅ novig |  | +0.0c |  | pending |
 | Nov 22 10:10AM | NCAAB | Miami (OH) vs UIC: Spread | spread: NOT Miami (OH) wins by over 1.5 points | kalshi | $25k | -122 |  |  | +0.0c |  | pending |
-| Nov 22 10:10AM | NCAAB | Liberty vs Richmond: Spread | spread: NOT Liberty wins by over 1.5 points | kalshi | $26k | -104 | ✅ novig |  | +0.0c |  | pending |
+| Nov 22 10:10AM | NCAAB | Liberty vs Richmond: Spread | spread: NOT Liberty wins by over 1.5 points | kalshi | $26k | -104 | ✅ novig |  | +1.0c |  | pending |
 | Nov 22 7:50AM | NCAAB | Utah vs Minnesota | moneyline: Minnesota | kalshi | $53k | -567 |  |  | +0.0c |  | pending |
-| Nov 22 7:50AM | NCAAB | Portland vs California Baptist | moneyline: Portland | kalshi | $31k | -456 |  |  | -4.0c |  | pending |
+| Nov 22 7:50AM | NCAAB | Portland vs California Baptist | moneyline: Portland | kalshi | $31k | -456 |  |  | -5.0c |  | pending |
 | Nov 22 1:40AM | NCAAB | West Florida vs South Alabama | moneyline: South Alabama | kalshi | $28k | -233 |  |  | -1.0c |  | pending |
 | Nov 21 8:00PM | TENNIS | Zverev vs Alcaraz | moneyline: Alcaraz | kalshi | $50k | -194 |  |  | +1.0c |  | pending |
 | Nov 21 7:20PM | NCAAB | Presbyterian vs Tennessee Tech | moneyline: Tennessee Tech | kalshi | $58k | -317 | ✅ prophetx |  | +0.0c |  | W |
@@ -204,9 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 16 4:20PM | NCAAB | Richmond vs Virginia Tech: Point Total | total: NOT Over 152.5 points | kalshi | $45k | -104 |  | ✅ | +4.0c |  | L |
 | Nov 16 4:20PM | NCAAB | Montana vs Kansas St.: Spread | spread: NOT Kansas St. wins by over 15.5 points | kalshi | $29k | -113 |  | ✅ | +2.0c |  | L |
 | Nov 16 2:40PM | TENNIS | Zverev vs Shelton | moneyline: Zverev | kalshi | $51k | -178 |  |  | +1.0c |  | W |
-| Nov 16 2:20PM | NCAAB | Eastern Kentucky vs Kent St.: Spread | spread: NOT Kent St. wins by over 10.5 points | kalshi | $46k | -113 |  |  | +4.0c |  | W |
-| Nov 16 2:00PM | NCAAB | Murray St. vs Hofstra | moneyline: Murray St. | kalshi | $41k | -488 |  |  | +2.0c |  | W |
-| Nov 16 1:30PM | NCAAB | Abilene Christian vs Missouri St.: Point Total | total: NOT Over 139.5 points | kalshi | $28k | +113 |  | ✅ | +3.0c | yes | W |
-| Nov 16 1:10PM | NCAAB | Illinois vs Duke | moneyline: Duke | kalshi | $28k | -335 |  |  | +2.0c |  | L |
-| Nov 16 10:00AM | NCAAB | Long Beach St. vs UCLA: Spread | spread: NOT UCLA wins by over 34.5 points | kalshi | $59k | -117 |  |  | +12.0c | yes | L |
-| Nov 16 9:50AM | NCAAB | Iona vs UMBC | moneyline: Iona | kalshi | $61k | -138 |  |  | -1.0c |  | L |
