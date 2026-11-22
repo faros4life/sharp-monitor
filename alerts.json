@@ -299,6 +299,80 @@
    "units_flat": null
   },
   {
+   "alert_utc": "2026-11-22T01:00:28Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "Over 51.5 (+100)",
+   "book": "Novig",
+   "book_key": "novig",
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+0.5 pts",
+   "clv_conv_pts": null,
+   "clv_pin_line": null,
+   "clv_read_utc": null,
+   "clv_skipped": null,
+   "clv_source": null,
+   "clv_verified": null,
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -0.2,
+   "executable_book": true,
+   "fade_book": "novig",
+   "fade_point": 51.5,
+   "fade_price": -104,
+   "fade_price_after_fee": -104,
+   "fade_units": null,
+   "final": null,
+   "floor_line": 51.5,
+   "game": "Utah State Aggies @ Oregon State Beavers",
+   "grade": "A",
+   "hr1_eligible": false,
+   "hr1_pushed": false,
+   "hr1_verified": null,
+   "hr1_verify_status": null,
+   "hr1_verify_why": null,
+   "kind": "tot",
+   "late": false,
+   "minutes_before_start": 150,
+   "point": 51.5,
+   "price": 100,
+   "price_after_fee": 100,
+   "prices_at_alert": {
+    "hardrockbet": {
+     "after_fee": -115,
+     "point": 51.5,
+     "price": -115
+    },
+    "kalshi": {
+     "after_fee": -103.1,
+     "point": 51.5,
+     "price": 104
+    },
+    "novig": {
+     "after_fee": 100,
+     "point": 51.5,
+     "price": 100
+    },
+    "prophetx": {
+     "after_fee": -102.0,
+     "point": 51.5,
+     "price": 100
+    }
+   },
+   "pricing_bettable": true,
+   "result": null,
+   "score": 80,
+   "sent_to_phone": false,
+   "sport": "NCAAF",
+   "start_utc": "2026-11-22T03:30:00Z",
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alert_utc": "2026-11-21T03:50:23Z",
    "beat_close": true,
    "beat_true_close": null,
@@ -668,20 +742,20 @@
   {
    "alert_utc": "2026-11-21T15:30:28Z",
    "beat_close": true,
-   "beat_true_close": null,
+   "beat_true_close": true,
    "bet": "New Orleans Privateers +1.5 (-102)",
    "book": "Novig",
    "book_key": "novig",
-   "close_fair_prob": null,
-   "close_read_mins_before": null,
-   "close_value_pct": null,
+   "close_fair_prob": 0.5172,
+   "close_read_mins_before": 30,
+   "close_value_pct": 2.4,
    "clv": "+0.5 pts",
-   "clv_conv_pts": null,
-   "clv_pin_line": null,
-   "clv_read_utc": null,
+   "clv_conv_pts": 0.5,
+   "clv_pin_line": 1.0,
+   "clv_read_utc": "2026-11-22T01:00:23Z",
    "clv_skipped": null,
-   "clv_source": null,
-   "clv_verified": null,
+   "clv_source": "live read (provisional)",
+   "clv_verified": false,
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -742,20 +816,20 @@
   {
    "alert_utc": "2026-11-21T15:30:28Z",
    "beat_close": true,
-   "beat_true_close": null,
+   "beat_true_close": true,
    "bet": "Under 157.5 (-115)",
    "book": "Hard Rock",
    "book_key": "hardrockbet",
-   "close_fair_prob": null,
-   "close_read_mins_before": null,
-   "close_value_pct": null,
+   "close_fair_prob": 0.577,
+   "close_read_mins_before": 30,
+   "close_value_pct": 7.9,
    "clv": "+3.5 pts",
-   "clv_conv_pts": null,
-   "clv_pin_line": null,
-   "clv_read_utc": null,
+   "clv_conv_pts": 3.5,
+   "clv_pin_line": 154.0,
+   "clv_read_utc": "2026-11-22T01:00:23Z",
    "clv_skipped": null,
-   "clv_source": null,
-   "clv_verified": null,
+   "clv_source": "live read (provisional)",
+   "clv_verified": false,
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -3283,8 +3357,8 @@
    "fade_point": 172.5,
    "fade_price": -106,
    "fade_price_after_fee": -106,
-   "fade_units": null,
-   "final": null,
+   "fade_units": 0.94,
+   "final": "AF 68, UTSA 90",
    "floor_line": 173.0,
    "game": "Air Force Falcons @ UTSA Roadrunners",
    "grade": "A",
@@ -3322,13 +3396,13 @@
     }
    },
    "pricing_bettable": true,
-   "result": null,
+   "result": "L",
    "score": 80,
    "sent_to_phone": false,
    "sport": "NCAAB",
    "start_utc": "2026-11-21T22:00:00Z",
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alert_utc": "2026-11-21T16:00:35Z",
@@ -3431,8 +3505,8 @@
    "fade_point": 165.5,
    "fade_price": 108,
    "fade_price_after_fee": 101,
-   "fade_units": null,
-   "final": null,
+   "fade_units": 1.01,
+   "final": "WIN 86, WOF 91",
    "floor_line": 164.0,
    "game": "Winthrop Eagles @ Wofford Terriers",
    "grade": "B",
@@ -3470,13 +3544,13 @@
     }
    },
    "pricing_bettable": true,
-   "result": null,
+   "result": "L",
    "score": 68,
    "sent_to_phone": false,
    "sport": "NCAAB",
    "start_utc": "2026-11-21T22:00:00Z",
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alert_utc": "2026-11-21T16:40:26Z",
@@ -3505,8 +3579,8 @@
    "fade_point": -6.5,
    "fade_price": -110,
    "fade_price_after_fee": -110,
-   "fade_units": null,
-   "final": null,
+   "fade_units": 0.91,
+   "final": "AF 68, UTSA 90",
    "floor_line": 5.5,
    "game": "Air Force Falcons @ UTSA Roadrunners",
    "grade": "A",
@@ -3544,13 +3618,13 @@
     }
    },
    "pricing_bettable": true,
-   "result": null,
+   "result": "L",
    "score": 80,
    "sent_to_phone": false,
    "sport": "NCAAB",
    "start_utc": "2026-11-21T22:00:00Z",
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alert_utc": "2026-11-21T17:20:28Z",
@@ -3579,8 +3653,8 @@
    "fade_point": 8.5,
    "fade_price": 113,
    "fade_price_after_fee": 105,
-   "fade_units": null,
-   "final": null,
+   "fade_units": 1.05,
+   "final": "NE 82, STO 95",
    "floor_line": -8.5,
    "game": "Northeastern Huskies @ Stonehill Skyhawks",
    "grade": "A",
@@ -3618,13 +3692,13 @@
     }
    },
    "pricing_bettable": true,
-   "result": null,
+   "result": "L",
    "score": 79,
    "sent_to_phone": false,
    "sport": "NCAAB",
    "start_utc": "2026-11-21T22:00:00Z",
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alert_utc": "2026-11-21T13:40:26Z",
@@ -106637,6 +106711,30 @@
  ],
  "all_alerts": [
   {
+   "alert_text": "Over 51.5 (+100) at Novig (also: Hard Rock, ProphetX, Kalshi)",
+   "bet": "Over 51.5 (+100)",
+   "bet_result": null,
+   "book": "Novig",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -0.2,
+   "final": null,
+   "game": "Utah State Aggies @ Oregon State Beavers",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 150,
+   "price": 100,
+   "price_after_fee": 100,
+   "pushed_to_phone": false,
+   "repeat": false,
+   "score": 80,
+   "sent_et": "2026-11-21 20:00",
+   "sport": "NCAAF",
+   "start_utc": "2026-11-22T03:30:00Z",
+   "why": "Pinnacle total moved 51 -> 52; bet only at 51.5 or better (confirmed by BetOnline)"
+  },
+  {
    "alert_text": "Under 227.5 (-109) at ProphetX [-111 after ProphetX fee] (also: Hard Rock, Kalshi)",
    "bet": "Under 227.5 (-109)",
    "bet_result": null,
@@ -107816,13 +107914,13 @@
   {
    "alert_text": "Northeastern Huskies -8.5 (-110) at Hard Rock (also: Kalshi)",
    "bet": "Northeastern Huskies -8.5 (-110)",
-   "bet_result": null,
+   "bet_result": "L",
    "book": "Hard Rock",
    "confirmed_by": [
     "BetOnline"
    ],
    "edge_pct": -0.8,
-   "final": null,
+   "final": "NE 82, STO 95",
    "game": "Northeastern Huskies @ Stonehill Skyhawks",
    "grade": "A",
    "late": false,
@@ -108035,13 +108133,13 @@
   {
    "alert_text": "Air Force Falcons +6.5 (-110) at Hard Rock (also: ProphetX, Novig)",
    "bet": "Air Force Falcons +6.5 (-110)",
-   "bet_result": null,
+   "bet_result": "L",
    "book": "Hard Rock",
    "confirmed_by": [
     "BetOnline"
    ],
    "edge_pct": 1.9,
-   "final": null,
+   "final": "AF 68, UTSA 90",
    "game": "Air Force Falcons @ UTSA Roadrunners",
    "grade": "A",
    "late": false,
@@ -108108,13 +108206,13 @@
   {
    "alert_text": "Under 165.5 (-113) at Kalshi [-121 after Kalshi fee] (also: ProphetX)",
    "bet": "Under 165.5 (-113)",
-   "bet_result": null,
+   "bet_result": "L",
    "book": "Kalshi",
    "confirmed_by": [
     "BetOnline"
    ],
    "edge_pct": -1.1,
-   "final": null,
+   "final": "WIN 86, WOF 91",
    "game": "Winthrop Eagles @ Wofford Terriers",
    "grade": "B",
    "late": false,
@@ -109277,13 +109375,13 @@
   {
    "alert_text": "Over 172.5 (-102) at Novig (also: Hard Rock, ProphetX, Kalshi)",
    "bet": "Over 172.5 (-102)",
-   "bet_result": null,
+   "bet_result": "L",
    "book": "Novig",
    "confirmed_by": [
     "BetOnline"
    ],
    "edge_pct": 2.1,
-   "final": null,
+   "final": "AF 68, UTSA 90",
    "game": "Air Force Falcons @ UTSA Roadrunners",
    "grade": "A",
    "late": false,
