@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 22, 5:00 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 53.
+Updated Sun Nov 22, 5:05 PM ET. This run: 1 new, 0 not confirmed, 2 pending. Open alerts: 54.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 22 5:05PM | NBA | Denver vs Chicago: Total Points | total: Over 236.5 points | kalshi | $32k | -113 |  |  | +0.0c |  | pending |
 | Nov 22 4:40PM | NFL | Minnesota Vikings @ San Francisco 49ers | spread: SF -3.5 (-3.5) | novig | $29k | -108 | ✅ kalshi |  | +0.0c | yes | pending |
 | Nov 22 4:40PM | NBA | Oklahoma City vs Miami | moneyline: Miami | kalshi | $301k | -233 | ✅ novig | ✅ | -6.0c | yes | pending |
 | Nov 22 4:20PM | NFL | Jacksonville Jaguars @ New York Giants | spread: JAX -6.5 (6.5) | novig | $32k | +102 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 3:50AM | NCAAF | Charleston Southern vs Eastern Illinois | moneyline: Eastern Illinois | kalshi | $42k | -117 | ✅ novig |  | +4.0c | yes | W |
 | Nov 21 3:30AM | NCAAF | University at Albany vs North Carolina A&T | moneyline: University | kalshi | $28k | +257 |  |  | -18.0c | yes | W |
 | Nov 21 3:20AM | NCAAF | BYU vs Kansas: Total Points | total: NOT Over 47.5 points | kalshi | $29k | -104 |  |  | +1.0c | yes | L |
-| Nov 21 2:50AM | NCAAF | Vanderbilt vs Florida: Total Points | total: NOT Over 47.5 points | kalshi | $30k | -117 |  |  | -5.0c | yes | L |
