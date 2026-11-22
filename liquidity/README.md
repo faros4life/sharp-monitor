@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 21, 10:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 42.
+Updated Sat Nov 21, 10:45 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 41.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1825-1428 (-39.41u flat) | rule met: 1067-856
+**Record:** 1826-1428 (-38.89u flat) | rule met: 1068-856
 
-**Fade (paper, betting against the print):** 1162-1552 (-197.55u flat, after fees)
+**Fade (paper, betting against the print):** 1162-1553 (-198.55u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -54,7 +54,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 5:55PM | NHL | New Jersey vs St. Louis | moneyline: New Jersey | kalshi | $491k | -138 | ✅ novig,prophetx |  | +0.0c |  | L |
 | Nov 21 5:55PM | NHL | Los Angeles vs Ottawa | moneyline: Ottawa | kalshi | $197k | -178 | ✅ novig,prophetx |  | +1.0c |  | W |
 | Nov 21 5:55PM | NCAAF | UTSA vs UAB | moneyline: UTSA | kalshi | $179k | -170 | ✅ novig |  | +0.0c |  | pending |
-| Nov 21 5:55PM | NCAAF | Kentucky vs Missouri | moneyline: Missouri | kalshi | $394k | -186 | ✅ prophetx |  | +0.0c |  | pending |
+| Nov 21 5:55PM | NCAAF | Kentucky vs Missouri | moneyline: Missouri | kalshi | $394k | -186 | ✅ prophetx |  | +0.0c |  | W |
 | Nov 21 5:55PM | NBA | Portland vs New York | moneyline: New York | kalshi | $569k | +104 | ✅ novig,prophetx | ❌ | -1.0c |  | W |
 | Nov 21 5:50PM | NHL | Columbus vs Toronto: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $26k | -117 | ✅ novig |  | +1.0c |  | L |
 | Nov 21 5:40PM | NHL | Buffalo vs Florida: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $120k | -117 | ✅ novig | ❌ | +2.0c |  | L |
