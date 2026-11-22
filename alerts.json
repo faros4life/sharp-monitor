@@ -377,7 +377,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+0.5 pts",
+   "clv": "+2.5 pts",
    "clv_conv_pts": null,
    "clv_pin_line": null,
    "clv_read_utc": null,
@@ -510,6 +510,81 @@
    "result": null,
    "score": 69,
    "sent_to_phone": false,
+   "sport": "NBA",
+   "start_utc": "2026-11-23T00:00:00Z",
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alert_utc": "2026-11-22T13:10:23Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "Denver Nuggets -8.5 (-115)",
+   "book": "Hard Rock",
+   "book_key": "hardrockbet",
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+1 pts",
+   "clv_conv_pts": null,
+   "clv_pin_line": null,
+   "clv_read_utc": null,
+   "clv_skipped": null,
+   "clv_source": null,
+   "clv_verified": null,
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -3.5,
+   "executable_book": true,
+   "fade_book": "prophetx",
+   "fade_point": 8.5,
+   "fade_price": 106,
+   "fade_price_after_fee": 104,
+   "fade_units": null,
+   "final": null,
+   "floor_line": -9.0,
+   "game": "Denver Nuggets @ Chicago Bulls",
+   "grade": "B",
+   "hr1_eligible": false,
+   "hr1_pushed": false,
+   "hr1_verified": null,
+   "hr1_verify_status": null,
+   "hr1_verify_why": null,
+   "kind": "spr",
+   "late": false,
+   "minutes_before_start": 650,
+   "point": -8.5,
+   "price": -115,
+   "price_after_fee": -115,
+   "prices_at_alert": {
+    "hardrockbet": {
+     "after_fee": -115,
+     "point": -8.5,
+     "price": -115
+    },
+    "kalshi": {
+     "after_fee": -121.2,
+     "point": -8.5,
+     "price": -113
+    },
+    "novig": {
+     "after_fee": 104,
+     "point": -9.5,
+     "price": 104
+    },
+    "prophetx": {
+     "after_fee": -115.3,
+     "point": -8.5,
+     "price": -113
+    }
+   },
+   "pricing_bettable": true,
+   "result": null,
+   "score": 74,
+   "sent_to_phone": true,
    "sport": "NBA",
    "start_utc": "2026-11-23T00:00:00Z",
    "top25": null,
@@ -107816,6 +107891,31 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Denver Nuggets -8.5 (-115) at Hard Rock (also: ProphetX, Kalshi)",
+   "bet": "Denver Nuggets -8.5 (-115)",
+   "bet_result": null,
+   "book": "Hard Rock",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -3.5,
+   "final": null,
+   "game": "Denver Nuggets @ Chicago Bulls",
+   "grade": "B",
+   "late": false,
+   "minutes_before_start": 650,
+   "price": -115,
+   "price_after_fee": -115,
+   "pushed_to_phone": true,
+   "repeat": false,
+   "score": 74,
+   "sent_et": "2026-11-22 08:10",
+   "sport": "NBA",
+   "start_utc": "2026-11-23T00:00:00Z",
+   "why": "Pinnacle moved -8.5 -> -9.5; bet only at -9 or better (confirmed by BetOnline, Matchbook)"
+  },
   {
    "alert_text": "Utah Jazz +1.5 (-111) at Novig (also: Hard Rock, ProphetX, Kalshi)",
    "bet": "Utah Jazz +1.5 (-111)",
