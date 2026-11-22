@@ -3175,22 +3175,96 @@
    "units_flat": null
   },
   {
-   "alert_utc": "2026-11-22T13:45:28Z",
+   "alert_utc": "2026-11-22T16:30:28Z",
    "beat_close": true,
    "beat_true_close": null,
-   "bet": "Under 149.5 (-117)",
-   "book": "Kalshi",
-   "book_key": "kalshi",
+   "bet": "Under 140.5 (-118)",
+   "book": "ProphetX",
+   "book_key": "prophetx",
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+2 pts",
+   "clv": "+1.5 pts",
    "clv_conv_pts": null,
    "clv_pin_line": null,
    "clv_read_utc": null,
    "clv_skipped": null,
    "clv_source": null,
    "clv_verified": null,
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -4.0,
+   "executable_book": true,
+   "fade_book": "prophetx",
+   "fade_point": 140.5,
+   "fade_price": 111,
+   "fade_price_after_fee": 109,
+   "fade_units": null,
+   "final": null,
+   "floor_line": 139.5,
+   "game": "Chicago St Cougars @ Marquette Golden Eagles",
+   "grade": "B",
+   "hr1_eligible": false,
+   "hr1_pushed": false,
+   "hr1_verified": null,
+   "hr1_verify_status": null,
+   "hr1_verify_why": null,
+   "kind": "tot",
+   "late": false,
+   "minutes_before_start": 90,
+   "point": 140.5,
+   "price": -118,
+   "price_after_fee": -120,
+   "prices_at_alert": {
+    "hardrockbet": {
+     "after_fee": -110,
+     "point": 139.5,
+     "price": -110
+    },
+    "kalshi": {
+     "after_fee": 109.1,
+     "point": 137.5,
+     "price": 117
+    },
+    "novig": {
+     "after_fee": -99900,
+     "point": 118.5,
+     "price": -99900
+    },
+    "prophetx": {
+     "after_fee": -120.4,
+     "point": 140.5,
+     "price": -118
+    }
+   },
+   "pricing_bettable": true,
+   "result": null,
+   "score": 63,
+   "sent_to_phone": false,
+   "sport": "NCAAB",
+   "start_utc": "2026-11-22T18:00:00Z",
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alert_utc": "2026-11-22T13:45:28Z",
+   "beat_close": true,
+   "beat_true_close": false,
+   "bet": "Under 149.5 (-117)",
+   "book": "Kalshi",
+   "book_key": "kalshi",
+   "close_fair_prob": 0.531,
+   "close_read_mins_before": 30,
+   "close_value_pct": -4.6,
+   "clv": "+2 pts",
+   "clv_conv_pts": 2.0,
+   "clv_pin_line": 147.5,
+   "clv_read_utc": "2026-11-22T16:30:21Z",
+   "clv_skipped": null,
+   "clv_source": "live read (provisional)",
+   "clv_verified": false,
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -110033,6 +110107,54 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Utah Utes +9.5 (-108) at Novig (also: Hard Rock, ProphetX, Kalshi)",
+   "bet": "Utah Utes +9.5 (-108)",
+   "bet_result": null,
+   "book": "Novig",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -2.1,
+   "final": null,
+   "game": "Utah Utes @ Minnesota Golden Gophers",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 390,
+   "price": -108,
+   "price_after_fee": -108,
+   "pushed_to_phone": false,
+   "repeat": true,
+   "score": 80,
+   "sent_et": "2026-11-22 11:30",
+   "sport": "NCAAB",
+   "start_utc": "2026-11-22T23:00:00Z",
+   "why": "Pinnacle moved +10 -> +9; bet only at +9.5 or better (confirmed by BetOnline)"
+  },
+  {
+   "alert_text": "Under 140.5 (-118) at ProphetX [-120 after ProphetX fee] (also: Hard Rock)",
+   "bet": "Under 140.5 (-118)",
+   "bet_result": null,
+   "book": "ProphetX",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -4.0,
+   "final": null,
+   "game": "Chicago St Cougars @ Marquette Golden Eagles",
+   "grade": "B",
+   "late": false,
+   "minutes_before_start": 90,
+   "price": -118,
+   "price_after_fee": -120,
+   "pushed_to_phone": false,
+   "repeat": false,
+   "score": 63,
+   "sent_et": "2026-11-22 11:30",
+   "sport": "NCAAB",
+   "start_utc": "2026-11-22T18:00:00Z",
+   "why": "Pinnacle total moved 140.5 -> 139; bet only at 139.5 or better (confirmed by BetOnline)"
+  },
   {
    "alert_text": "Over 131.5 (-110) at Hard Rock",
    "bet": "Over 131.5 (-110)",
