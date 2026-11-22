@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 22, 10:40 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 19.
+Updated Sun Nov 22, 10:50 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 19.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -20,7 +20,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 22 10:20AM | NCAAB | Lamar vs Rice | moneyline: Lamar | kalshi | $52k | -122 | ✅ novig |  | +0.0c |  | pending |
 | Nov 22 10:10AM | NCAAB | Miami (OH) vs UIC: Spread | spread: NOT Miami (OH) wins by over 1.5 points | kalshi | $25k | -122 |  |  | +0.0c |  | pending |
 | Nov 22 10:10AM | NCAAB | Liberty vs Richmond: Spread | spread: NOT Liberty wins by over 1.5 points | kalshi | $26k | -104 | ✅ novig |  | +1.0c |  | pending |
-| Nov 22 7:50AM | NCAAB | Utah vs Minnesota | moneyline: Minnesota | kalshi | $53k | -567 |  |  | +0.0c |  | pending |
+| Nov 22 7:50AM | NCAAB | Utah vs Minnesota | moneyline: Minnesota | kalshi | $53k | -567 |  |  | -1.0c |  | pending |
 | Nov 22 7:50AM | NCAAB | Portland vs California Baptist | moneyline: Portland | kalshi | $31k | -456 |  |  | -5.0c |  | pending |
 | Nov 22 1:40AM | NCAAB | West Florida vs South Alabama | moneyline: South Alabama | kalshi | $28k | -233 |  |  | -1.0c |  | pending |
 | Nov 21 8:00PM | TENNIS | Zverev vs Alcaraz | moneyline: Alcaraz | kalshi | $50k | -194 |  |  | +1.0c |  | pending |
