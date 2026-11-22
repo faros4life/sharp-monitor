@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 21, 9:30 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 57.
+Updated Sat Nov 21, 9:35 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 56.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1809-1423 (-46.18u flat) | rule met: 1055-852
+**Record:** 1810-1423 (-45.39u flat) | rule met: 1056-852
 
-**Fade (paper, betting against the print):** 1157-1536 (-186.83u flat, after fees)
+**Fade (paper, betting against the print):** 1157-1537 (-187.83u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -24,8 +24,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 8:30PM | NFL | New Orleans vs Chicago | moneyline: Chicago | kalshi | $493k | -567 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 21 8:25PM | NFL | Tennessee vs Dallas | moneyline: Dallas | kalshi | $175k | -335 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 21 8:25PM | NBA | Boston vs Sacramento | moneyline: Boston | kalshi | $145k | -525 | ✅ novig,prophetx | ❌ | +0.0c |  | pending |
-| Nov 21 8:20PM | NHL | Minnesota vs Vancouver: Spread | spread: NOT Minnesota wins by over 1.5 goals | kalshi | $38k | +113 |  |  | +0.0c | yes | pending |
-| Nov 21 8:00PM | NBA | Boston Celtics at Sacramento Kings | moneyline: Boston Celtics | prophetx | $28k | -520 | ✅ kalshi,novig | ❌ | +0.0c |  | pending |
+| Nov 21 8:20PM | NHL | Minnesota vs Vancouver: Spread | spread: NOT Minnesota wins by over 1.5 goals | kalshi | $38k | +113 |  |  | -1.0c | yes | pending |
+| Nov 21 8:00PM | NBA | Boston Celtics at Sacramento Kings | moneyline: Boston Celtics | prophetx | $28k | -520 | ✅ kalshi,novig | ❌ | +0.3c |  | pending |
 | Nov 21 7:35PM | NCAAF | San Diego State @ Boise State | spread: BSU -20.5 (-20.5) | novig | $25k | -104 |  | ✅ | +0.0c |  | pending |
 | Nov 21 7:35PM | NBA | Los Angeles C vs Dallas: Spread | spread: NOT Dallas wins by over 5.5 points | kalshi | $85k | -108 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 21 7:30PM | NCAAF | San Diego St. vs Boise St.: Spread | spread: NOT Boise St. wins by over 20.5 points | kalshi | $36k | -100 |  | ❌ | +0.0c | yes | pending |
@@ -44,7 +44,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 5:55PM | NCAAF | Arkansas State @ Louisiana Tech | moneyline: LT (0) | novig | $26k | -545 | ✅ kalshi,prophetx | ✅ | +0.0c |  | pending |
 | Nov 21 5:55PM | NHL | Washington vs Boston: Total Goals | total: Over 6.5 goals scored | kalshi | $30k | -113 |  |  | -1.0c |  | pending |
 | Nov 21 5:55PM | NHL | Vegas vs Winnipeg: Spread | spread: NOT Vegas wins by over 1.5 goals | kalshi | $27k | -213 | ✅ novig |  | -1.0c |  | pending |
-| Nov 21 5:55PM | NHL | New York I vs Detroit | moneyline: New York I | kalshi | $165k | -133 | ✅ prophetx |  | +0.0c |  | pending |
+| Nov 21 5:55PM | NHL | New York I vs Detroit | moneyline: New York I | kalshi | $165k | -133 | ✅ prophetx |  | +0.0c |  | W |
 | Nov 21 5:55PM | NHL | New Jersey vs St. Louis | moneyline: New Jersey | kalshi | $491k | -138 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 21 5:55PM | NHL | Los Angeles vs Ottawa | moneyline: Ottawa | kalshi | $197k | -178 | ✅ novig,prophetx |  | +1.0c |  | pending |
 | Nov 21 5:55PM | NCAAF | UTSA vs UAB | moneyline: UTSA | kalshi | $179k | -170 | ✅ novig |  | +0.0c |  | pending |
