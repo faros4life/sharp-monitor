@@ -50,8 +50,8 @@
     "volume": 15747.0
    },
    "ex_stats_close": {
-    "openInterest": 2016343.0,
-    "volume": 2686848.0
+    "openInterest": 2513543.0,
+    "volume": 3191848.0
    },
    "ex_stats_first": {
     "openInterest": 1981296.0,
@@ -258,9 +258,9 @@
     "volume_fp": 855.55
    },
    "ex_stats_close": {
-    "open_interest_fp": 20680.96,
-    "volume_24h_fp": 18229.71,
-    "volume_fp": 21596.71
+    "open_interest_fp": 21663.18,
+    "volume_24h_fp": 21596.71,
+    "volume_fp": 22581.93
    },
    "ex_stats_first": {
     "open_interest_fp": 17313.96,
@@ -464,9 +464,9 @@
     "volume_fp": 2526.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 34242.15,
-    "volume_24h_fp": 39413.43,
-    "volume_fp": 40192.17
+    "open_interest_fp": 35962.99,
+    "volume_24h_fp": 40119.25,
+    "volume_fp": 41913.01
    },
    "ex_stats_first": {
     "open_interest_fp": 31161.74,
@@ -527,6 +527,8 @@
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.5,
+   "price_after_15m": 0.4977,
+   "price_after_15m_book": "prophetx",
    "price_american": -100,
    "price_rule": "ok",
    "price_when_first_seen": 0.5,
@@ -616,6 +618,7 @@
    "size_x": 12.74,
    "start_source": "odds",
    "start_utc": "2026-11-22T02:30:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi",
     "novig",
@@ -674,9 +677,9 @@
     "volume_fp": 381.17
    },
    "ex_stats_close": {
-    "open_interest_fp": 16460.559999999998,
-    "volume_24h_fp": 11477.55,
-    "volume_fp": 17651.48
+    "open_interest_fp": 16481.739999999998,
+    "volume_24h_fp": 11714.31,
+    "volume_fp": 17731.14
    },
    "ex_stats_first": {
     "open_interest_fp": 15881.109999999999,
@@ -722,6 +725,8 @@
    "norm_ready_books": 2,
    "paper_only": false,
    "price": 0.71,
+   "price_after_15m": 0.7142,
+   "price_after_15m_book": "prophetx",
    "price_american": -245,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.71,
@@ -816,6 +821,7 @@
    "size_x": 24.08,
    "start_source": "odds",
    "start_utc": "2026-11-22T03:30:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi",
     "prophetx"
@@ -1259,9 +1265,9 @@
     "volume_fp": 236.49
    },
    "ex_stats_close": {
-    "open_interest_fp": 25020.31,
-    "volume_24h_fp": 29792.17,
-    "volume_fp": 32261.86
+    "open_interest_fp": 29338.99,
+    "volume_24h_fp": 32261.86,
+    "volume_fp": 36580.54
    },
    "ex_stats_first": {
     "open_interest_fp": 18487.86,
@@ -1677,7 +1683,7 @@
    },
    "ex_stats_close": {
     "openInterest": 17107256.0,
-    "volume": 20811695.0
+    "volume": 20924194.0
    },
    "ex_stats_first": {
     "openInterest": 16165434.0,
@@ -2081,9 +2087,9 @@
     "volume_fp": 3809.71
    },
    "ex_stats_close": {
-    "open_interest_fp": 36609.69,
-    "volume_24h_fp": 39838.37,
-    "volume_fp": 40913.7
+    "open_interest_fp": 38205.65,
+    "volume_24h_fp": 40913.7,
+    "volume_fp": 42509.66
    },
    "ex_stats_first": {
     "open_interest_fp": 22103.33,
@@ -9223,10 +9229,12 @@
     "volume": 46679985.0
    },
    "fade_price": 0.485,
+   "fade_units": 1.06,
    "first_seen_utc": "2026-11-21T19:00:22Z",
    "game": "LSU @ Tennessee",
    "game_surge_books": [],
    "game_x": 1.16,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1d6a9-5c13-7d80-9567-38f58cfb07aa\", \"outcome_id\": \"01a1d6a9-5c13-7d80-9567-391c0f92d55d\"}",
    "lead_min": 79,
    "league": "NCAAF",
@@ -9333,14 +9341,15 @@
     "market_id": "01a1d6a9-5c13-7d80-9567-38f58cfb07aa",
     "outcome_id": "01a1d6a9-5c13-7d80-9567-391c0f92d55d"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "prophetx"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 23,
+   "settle_tries": 24,
+   "settled_utc": "2026-11-22T00:45:51Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "LSU",
@@ -9358,7 +9367,7 @@
     "Tennessee"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-21T18:50:17Z",
