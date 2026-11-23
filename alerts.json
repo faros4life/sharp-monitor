@@ -151,7 +151,7 @@
   },
   {
    "alert_utc": "2026-11-23T03:05:25Z",
-   "beat_close": false,
+   "beat_close": true,
    "beat_true_close": null,
    "bet": "Under 225.5 (-115)",
    "book": "Hard Rock",
@@ -159,7 +159,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+0 pts",
+   "clv": "+1 pts",
    "clv_conv_pts": null,
    "clv_pin_line": null,
    "clv_read_utc": null,
@@ -296,6 +296,81 @@
    "sport": "NCAAB",
    "start_utc": "2026-11-24T01:00:00Z",
    "top25": false,
+   "units_flat": null
+  },
+  {
+   "alert_utc": "2026-11-23T14:40:30Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "Over 232.5 (-106)",
+   "book": "Novig",
+   "book_key": "novig",
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+0.5 pts",
+   "clv_conv_pts": null,
+   "clv_pin_line": null,
+   "clv_read_utc": null,
+   "clv_skipped": null,
+   "clv_source": null,
+   "clv_verified": null,
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -1.6,
+   "executable_book": true,
+   "fade_book": "novig",
+   "fade_point": 232.5,
+   "fade_price": 102,
+   "fade_price_after_fee": 102,
+   "fade_units": null,
+   "final": null,
+   "floor_line": 232.5,
+   "game": "Phoenix Suns @ New Orleans Pelicans",
+   "grade": "B",
+   "hr1_eligible": false,
+   "hr1_pushed": false,
+   "hr1_verified": null,
+   "hr1_verify_status": null,
+   "hr1_verify_why": null,
+   "kind": "tot",
+   "late": false,
+   "minutes_before_start": 619,
+   "point": 232.5,
+   "price": -106,
+   "price_after_fee": -106,
+   "prices_at_alert": {
+    "hardrockbet": {
+     "after_fee": -110,
+     "point": 232.5,
+     "price": -110
+    },
+    "kalshi": {
+     "after_fee": -103.1,
+     "point": 233.5,
+     "price": 104
+    },
+    "novig": {
+     "after_fee": -106,
+     "point": 232.5,
+     "price": -106
+    },
+    "prophetx": {
+     "after_fee": 101.9,
+     "point": 233.5,
+     "price": 104
+    }
+   },
+   "pricing_bettable": true,
+   "result": null,
+   "score": 74,
+   "sent_to_phone": true,
+   "sport": "NBA",
+   "start_utc": "2026-11-24T01:00:00Z",
+   "top25": null,
    "units_flat": null
   },
   {
@@ -111367,6 +111442,31 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Over 232.5 (-106) at Novig (also: Hard Rock)",
+   "bet": "Over 232.5 (-106)",
+   "bet_result": null,
+   "book": "Novig",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -1.6,
+   "final": null,
+   "game": "Phoenix Suns @ New Orleans Pelicans",
+   "grade": "B",
+   "late": false,
+   "minutes_before_start": 619,
+   "price": -106,
+   "price_after_fee": -106,
+   "pushed_to_phone": true,
+   "repeat": false,
+   "score": 74,
+   "sent_et": "2026-11-23 09:40",
+   "sport": "NBA",
+   "start_utc": "2026-11-24T01:00:00Z",
+   "why": "Pinnacle total moved 231.5 -> 233; bet only at 232.5 or better (confirmed by BetOnline, Matchbook)"
+  },
   {
    "alert_text": "Washington Huskies +11.5 (-105) at Hard Rock (also: ProphetX, Novig, Kalshi)",
    "bet": "Washington Huskies +11.5 (-105)",
