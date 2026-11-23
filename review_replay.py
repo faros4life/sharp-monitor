@@ -186,6 +186,11 @@ def backfill_candidates(rows):
                          "status": st or None,
                          "asked_stake": o.get("asked_stake", o.get("risk")),
                          "filled_stake": o.get("filled_stake"),
+                         # Whether the FILL was actually read back. The Nov 19 Novig lesson: an
+                         # initialised zero is not a venue-confirmed zero, so a zero only counts
+                         # when something says it was read.
+                         "fill_read": (o.get("fill_read") if o.get("fill_read") is not None
+                                       else o.get("fills_read")),
                          "american": american_of(o),
                          "lane": lane, "unit": unit, "unit_why": unit_why or None,
                          "day": str(r.get("et_day") or r.get("decided_utc") or "")[:10] or None,
