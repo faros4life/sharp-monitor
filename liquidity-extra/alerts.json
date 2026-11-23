@@ -1,6 +1,213 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-23T15:20:26Z",
+   "base_depth": 263984,
+   "best_price": 0.585,
+   "best_price_american": -141,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.58,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-11-23",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 5656,
+     "new_this_side": 44553,
+     "other_side": 28456,
+     "other_side_all_levels": 207675,
+     "ratio": 2.7,
+     "this_side": 77277,
+     "this_side_all_levels": 325997
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "ECU (0)",
+     "price": 0.585,
+     "this_side": 14701
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "East Carolina",
+     "price": 0.5833,
+     "this_side": 2787
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 10131.56,
+    "volume_24h_fp": 20796.17,
+    "volume_fp": 21989.57
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 842.16,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 842.16
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 9289.400000000001,
+    "volume_24h_fp": 20796.17,
+    "volume_fp": 21147.41
+   },
+   "fade_price": 0.42,
+   "first_seen_utc": "2026-11-23T15:14:01Z",
+   "game": "Indiana St. vs East Carolina",
+   "game_surge_books": [],
+   "game_x": 1.42,
+   "key": "kalshi|KXNCAAMBGAME-26NOV23INSTECU|ml|1",
+   "lead_min": 130,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 44553,
+   "new_x": 5.58,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 10131.56,
+      "volume_24h_fp": 20796.17,
+      "volume_fp": 21989.57
+     },
+     "game_normal": 229186,
+     "game_x": 1.42,
+     "normal": 7981,
+     "now": 325997,
+     "type": "ML",
+     "x": 40.85
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 2570380.0,
+      "volume": 2765778.0
+     },
+     "game_normal": 28364,
+     "game_x": 1.59,
+     "normal": 1817,
+     "now": 45105,
+     "type": "ML",
+     "x": 24.82
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 3376,
+     "game_x": 0.88,
+     "normal": 1016,
+     "now": 2987,
+     "type": "ML",
+     "x": 2.94
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.58,
+   "price_american": -138,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.59,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -150
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -145
+    },
+    "betopenly": {
+     "point": null,
+     "price": -138
+    },
+    "betrivers": {
+     "point": null,
+     "price": -155
+    },
+    "betus": {
+     "point": null,
+     "price": -145
+    },
+    "bovada": {
+     "point": null,
+     "price": -140
+    },
+    "circasports": {
+     "point": null,
+     "price": -140
+    },
+    "draftkings": {
+     "point": null,
+     "price": -148
+    },
+    "fanatics": {
+     "point": null,
+     "price": -150
+    },
+    "fanduel": {
+     "point": null,
+     "price": -150
+    },
+    "kalshi": {
+     "point": null,
+     "price": -138
+    },
+    "lowvig": {
+     "point": null,
+     "price": -145
+    },
+    "novig": {
+     "point": null,
+     "price": -138
+    },
+    "polymarket": {
+     "point": null,
+     "price": -138
+    },
+    "prophetx": {
+     "point": null,
+     "price": -140
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -150
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV23INSTECU-ECU"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "East Carolina",
+   "side_label": "East Carolina",
+   "size_x": 40.85,
+   "start_source": "odds",
+   "start_utc": "2026-11-23T17:30:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Indiana St.",
+    "East Carolina"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-23T14:31:19Z",
    "base_depth": 6278,
    "best_price": 0.785,
@@ -50,8 +257,8 @@
     "volume": 267640.0
    },
    "ex_stats_close": {
-    "openInterest": 1087204.0,
-    "volume": 1324973.0
+    "openInterest": 1089476.0,
+    "volume": 1327245.0
    },
    "ex_stats_first": {
     "openInterest": 630621.0,
@@ -263,9 +470,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1444.46,
+    "open_interest_fp": 1451.31,
     "volume_24h_fp": 1488.19,
-    "volume_fp": 1488.19
+    "volume_fp": 1495.04
    },
    "ex_stats_first": {
     "open_interest_fp": 1243.02,
@@ -460,9 +667,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 7835.82,
+    "open_interest_fp": 7839.16,
     "volume_24h_fp": 7836.700000000001,
-    "volume_fp": 7837.25
+    "volume_fp": 7840.589999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 0.0,
@@ -575,9 +782,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 222.11,
+    "open_interest_fp": 244.67000000000002,
     "volume_24h_fp": 212.14999999999998,
-    "volume_fp": 222.11
+    "volume_fp": 244.67000000000002
    },
    "ex_stats_first": {
     "open_interest_fp": 14.27,
@@ -696,9 +903,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 668.91,
+    "open_interest_fp": 690.46,
     "volume_24h_fp": 657.51,
-    "volume_fp": 668.91
+    "volume_fp": 690.46
    },
    "ex_stats_first": {
     "open_interest_fp": 420.14,
@@ -1269,8 +1476,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.68,
-   "clv_cents": 1.0,
+   "close_price": 0.69,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-23",
    "depth_by_book": {
@@ -1307,9 +1514,9 @@
     "volume_fp": 9.47
    },
    "ex_stats_close": {
-    "open_interest_fp": 35245.78,
+    "open_interest_fp": 37604.36,
     "volume_24h_fp": 66967.59,
-    "volume_fp": 67046.59
+    "volume_fp": 70171.63
    },
    "ex_stats_first": {
     "open_interest_fp": 7328.32,
@@ -1475,8 +1682,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.84,
-   "clv_cents": -1.0,
+   "close_price": 0.85,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-23",
    "depth_by_book": {
@@ -1677,8 +1884,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.68,
-   "clv_cents": -4.0,
+   "close_price": 0.67,
+   "clv_cents": -5.0,
    "confirmed_after_min": 10,
    "date": "2026-11-23",
    "depth_by_book": {
@@ -1709,9 +1916,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 15325.470000000001,
+    "open_interest_fp": 15348.25,
     "volume_24h_fp": 15263.07,
-    "volume_fp": 15792.86
+    "volume_fp": 15815.64
    },
    "ex_stats_first": {
     "open_interest_fp": 2576.39,
@@ -1860,8 +2067,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.65,
-   "clv_cents": -2.0,
+   "close_price": 0.64,
+   "clv_cents": -3.0,
    "confirmed_after_min": 10,
    "date": "2026-11-23",
    "depth_by_book": {
@@ -1892,9 +2099,9 @@
     "volume_fp": 0.74
    },
    "ex_stats_close": {
-    "open_interest_fp": 50494.68,
+    "open_interest_fp": 52953.01,
     "volume_24h_fp": 46016.740000000005,
-    "volume_fp": 52777.600000000006
+    "volume_fp": 55235.92999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 1554.21,
@@ -2043,8 +2250,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.75,
-   "clv_cents": 1.0,
+   "close_price": 0.74,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-23",
    "depth_by_book": {
@@ -2081,9 +2288,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 302.31,
+    "open_interest_fp": 5376.3,
     "volume_24h_fp": 234.51,
-    "volume_fp": 302.31
+    "volume_fp": 5376.3
    },
    "ex_stats_first": {
     "open_interest_fp": 173.07,
@@ -2282,9 +2489,9 @@
     "volume_fp": 15.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 10117.14,
+    "open_interest_fp": 24578.120000000003,
     "volume_24h_fp": 10170.42,
-    "volume_fp": 10463.23
+    "volume_fp": 25221.100000000002
    },
    "ex_stats_first": {
     "open_interest_fp": 978.1800000000001,
@@ -2483,9 +2690,9 @@
     "volume_fp": 239.89
    },
    "ex_stats_close": {
-    "open_interest_fp": 5689.27,
+    "open_interest_fp": 5736.11,
     "volume_24h_fp": 4683.98,
-    "volume_fp": 5704.469999999999
+    "volume_fp": 5751.31
    },
    "ex_stats_first": {
     "open_interest_fp": 927.97,
@@ -2685,9 +2892,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 385.5,
+    "open_interest_fp": 499.5,
     "volume_24h_fp": 385.5,
-    "volume_fp": 385.5
+    "volume_fp": 499.5
    },
    "ex_stats_first": {
     "open_interest_fp": 11.91,
@@ -2880,9 +3087,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 585.33,
+    "open_interest_fp": 605.35,
     "volume_24h_fp": 582.02,
-    "volume_fp": 585.5699999999999
+    "volume_fp": 605.59
    },
    "ex_stats_first": {
     "open_interest_fp": 160.34,
@@ -3047,9 +3254,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 5722.549999999999,
+    "open_interest_fp": 5743.58,
     "volume_24h_fp": 5646.95,
-    "volume_fp": 5872.549999999999
+    "volume_fp": 5893.58
    },
    "ex_stats_first": {
     "open_interest_fp": 241.28,
@@ -3220,9 +3427,9 @@
     "volume_fp": 32.97
    },
    "ex_stats_close": {
-    "open_interest_fp": 4936.17,
+    "open_interest_fp": 5003.54,
     "volume_24h_fp": 4661.73,
-    "volume_fp": 5283.86
+    "volume_fp": 5351.23
    },
    "ex_stats_first": {
     "open_interest_fp": 1120.31,
@@ -5305,7 +5512,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 93,
+   "settle_tries": 94,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "IUPUI (0)",
