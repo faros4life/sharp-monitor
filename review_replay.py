@@ -159,6 +159,13 @@ def _px_trades():
     /v4/mm/get_trades and _mine() already matches on order_id. Read-only; no order path is used."""
     try:
         import px_live
+        # trades() does NOT authenticate itself, and an unauthenticated GET returns 401 - which
+        # would make ProphetX permanently UNREADABLE and the verdict permanently INCOMPLETE. login()
+        # is a CREDENTIAL EXCHANGE (POST /auth/login), the only POST anywhere in this script. It is
+        # not an order path: no strike, price, stake or order id is sent. Stated plainly rather than
+        # claiming this script makes no POST at all.
+        if not px_live.login():
+            return None, "ProphetX credentials absent or refused - no fill evidence"
         tr = px_live.trades()
         if not isinstance(tr, list):
             return None, "trade list unreadable"

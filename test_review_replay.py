@@ -252,6 +252,12 @@ ok("the public log carries UNITS, never a dollar figure",
    "unit(s)" in log_part and "asked_stake" not in log_part and "filled_usd" not in log_part)
 ok("the mail says a clean discrepancy list is not a claim that none exists",
    "not a claim that none exists" in src)
+ok("ProphetX auth failure yields NO evidence, never an assumed zero",
+   "no fill evidence" in src and "credentials absent or refused" in src)
+ok("the only POST is the ProphetX credential exchange, and it is documented as such",
+   "the only POST anywhere in this script" in src)
+ok("and nothing here touches the pause, stop or bot-order registry controls",
+   not any(x in src for x in ("auto_pause(", "stop_state(", "set_bot_orders(", "add_bot_order(")))
 
 print(f"\n{len(P)} passed, {len(F)} failed")
 raise SystemExit(1 if F else 0)
