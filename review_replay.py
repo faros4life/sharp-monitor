@@ -212,8 +212,12 @@ def _num(v):
 
 
 OPEN_WORDS = ("open", "resting", "working", "pending", "new", "accepted")
-GONE_WORDS = ("canceled", "cancelled", "expired", "rejected", "settled", "executed", "filled",
-              "closed", "done")
+# Terminal words split by what they IMPLY about the fill. "canceled" with a read zero is a real
+# zero. "filled" or "executed" with a zero is a CONTRADICTION between two fields - a fill we failed
+# to read - and the remedies are opposite. Lumped together, the second was released as zero
+# exposure, which is the remaining route to undercounting a filled order.
+ZERO_WORDS = ("canceled", "cancelled", "expired", "rejected", "closed", "done")
+FILLED_WORDS = ("filled", "executed", "settled", "matched", "complete")
 
 
 def classify_generic(o):
@@ -238,12 +242,16 @@ def classify_generic(o):
     if qty is not None and fq > 0:
         if fq >= qty:
             return nr.FILLED, ev
-        return (nr.PARTIAL if any(w in st for w in OPEN_WORDS) else nr.PARTIAL), ev
+        return nr.PARTIAL, ev     # resting or since-terminal: a real quantity filled either way
     if fq > 0:
         return nr.PARTIAL, ev
     if any(w in st for w in OPEN_WORDS):
         return nr.OPEN, ev
-    if any(w in st for w in GONE_WORDS):
+    if any(w in st for w in FILLED_WORDS):
+        ev["why"] = (f"venue status {st!r} means filled but the quantity read as zero - "
+                     f"contradiction, so the full commitment is kept")
+        return nr.UNKNOWN, ev
+    if any(w in st for w in ZERO_WORDS):
         return nr.TERMINAL, ev
     ev["why"] = f"venue status {st!r} is not one this reader knows"
     return nr.UNKNOWN, ev
@@ -398,8 +406,8 @@ def incident_exposure(rows, needle, legs):
             # Never force an invalid source key to match a valid reservation.
             pass
     mine = [l for l in legs if str(l.get("key") or "") in hit_keys and hit_keys]
-    report, disc, units = [], [], 0.0
-    units_unknown = 0
+    report, disc = [], []
+    by_order, units_unknown = {}, 0
     for l in mine:
         vc = l.get("venue_class")
         rec_term = bool(l.get("recorded_terminal"))
@@ -439,9 +447,16 @@ def incident_exposure(rows, needle, legs):
             f = R.leg_fraction({"status": "open", "order_id": l.get("order_id") or "x",
                                 "asked_stake": l.get("asked_stake"),
                                 "american": l.get("american"), "unit": l.get("unit")})
-            units += f
         except Exception:
             units_unknown += 1
+            continue
+        # remaining_mixed() takes the MAX per order id and then sums. A flat sum here reported one
+        # order recorded under two nested fields at 2.0 units where the guard would charge 1.0 -
+        # so the comment above ("cannot drift apart") was not true of the code beneath it.
+        oid = str(l.get("order_id") or l.get("client_id") or id(l))
+        bucket = by_order.setdefault(str(l.get("key") or ""), {})
+        bucket[oid] = max(f, bucket.get(oid, 0.0))
+    units = sum(v for b in by_order.values() for v in b.values())
     return report, (None if units_unknown else round(units, 3)), disc
 
 

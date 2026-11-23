@@ -246,11 +246,11 @@ ok("and it uses the reservation protocol's own per-leg fraction, so the two cann
    "leg_fraction" in open("review_replay.py", encoding="utf-8").read())
 ok("a registry-terminal leg the venue still shows live is flagged as a discrepancy",
    any("still shows it live" in d.get("why", "") for d in RR.incident_exposure(
-       [INC], "MIN@SF",
+       [INC], "MIN @ SF",
        [dict(ilegs[0], recorded_terminal=True, venue_class="OPEN")])[2]))
 ok("a leg with no venue proof is itself a discrepancy",
    any("no venue proof" in d.get("why", "") for d in RR.incident_exposure(
-       [INC], "MIN@SF", [dict(ilegs[0], evidence_class=RR.UNREADABLE)])[2]))
+       [INC], "MIN @ SF", [dict(ilegs[0], evidence_class=RR.UNREADABLE)])[2]))
 ok("an unreadable unit makes combined exposure NOT COMPUTABLE rather than a guess",
    RR.incident_exposure([INC], "MIN @ SF",
                         [dict(ilegs[0], unit=None)])[1] is None)
@@ -303,6 +303,46 @@ _pr, _uncertain, _d = RR.incident_exposure([_probe], "MIN @ SF",
   [dict(_probe_legs[0], evidence_class=RR.NO_RECORD, venue_class="UNKNOWN")])
 ok("unverified venue record yields NOT COMPUTABLE instead of falsely zero",
    _uncertain is None, str(_uncertain))
+
+# ------------------------------------------------- deltas on top of the Nov 23 04:30 corrections
+# (a) a status that MEANS filled, with a zero quantity, must not be released as a zero fill
+ok("a FILLED-meaning status with a zero quantity is a contradiction, not a released zero",
+   RR.classify_generic({"status": "executed", "filled_qty": 0, "qty": 50})[0] == "UNKNOWN")
+ok("and the reason names the contradiction",
+   "contradiction" in RR.classify_generic({"status": "filled", "filled_qty": 0, "qty": 9})[1]["why"])
+ok("a CANCELLED order with a read zero is still a real terminal zero",
+   RR.classify_generic({"status": "canceled", "filled_qty": 0, "qty": 50})[0]
+   == "TERMINAL ZERO FILL")
+ok("a partial fill on an order since cancelled is still PARTIAL, not zero",
+   RR.classify_generic({"status": "canceled", "filled_qty": 10, "qty": 50})[0]
+   == "PARTIALLY FILLED")
+import ast as _ast, inspect as _inspect
+ok("no ternary in the classifier has identical branches",
+   not any(_ast.unparse(n.body) == _ast.unparse(n.orelse) for n in _ast.walk(_ast.parse(
+       _inspect.getsource(RR.classify_generic))) if isinstance(n, _ast.IfExp)))
+
+# (b) the incident figure must equal what the guard would charge
+import review_unit_reservation as _R
+_CK = "nfl|min @ sf|total|under"
+_mk = lambda f, oid, vc="OPEN": {
+    "key": _CK, "registry_key": "rule|NFL|MIN @ SF|total|UNDER", "field": f, "order_id": oid,
+    "book": "novig", "status": "open", "asked_stake": 220.0, "american": -110, "unit": 200.0,
+    "venue_class": vc, "evidence_class": RR.PROVEN}
+_rows = [{"key": "rule|NFL|MIN @ SF|total|UNDER"}]
+_same = [_mk("live_order", "same-1"), _mk("live_rest", "same-1")]
+_u = RR.incident_exposure(_rows, "MIN @ SF", _same)[1]
+_guard = round(1.0 - _R.remaining_mixed(
+    [dict(l, status="open", filled_stake=None) for l in _same], _CK), 3)
+ok("one order recorded under two nested fields counts ONCE", _u == 1.0, str(_u))
+ok("so the reported figure equals what the guard would actually charge", _u == _guard,
+   f"{_u} vs {_guard}")
+ok("two DISTINCT orders on one play still count twice",
+   RR.incident_exposure(_rows, "MIN @ SF", [_mk("live_order", "a"), _mk("live_more", "b")])[1]
+   == 2.0)
+ok("a FILLED leg still contributes its share",
+   RR.incident_exposure(_rows, "MIN @ SF", [_mk("live_order", "a", "FILLED")])[1] == 1.0)
+ok("the incident needle is matched against the real key, so it cannot silently match nothing",
+   len(RR.incident_exposure(_rows, "MIN @ SF", [_mk("live_order", "a")])[0]) == 1)
 
 print(f"\n{len(P)} passed, {len(F)} failed")
 raise SystemExit(1 if F else 0)
