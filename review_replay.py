@@ -3,9 +3,9 @@
 
 WHY THIS EXISTS. Two preconditions for the shared unit ledger need data nobody can hand to a chat
 session: the MIN @ SF reconciliation, and proof that the backfill list of already-outstanding
-orders is complete. Both live behind TRACKER_PASSPHRASE and the venue keys. This script runs where
-those secrets already are - a dispatch-only workflow - so the work happens without the secret or
-the records ever leaving that run. The public Actions log gets COUNTS ONLY; the detail goes to the
+orders is complete. Both need the registry token and the venue read keys, which live in Actions and
+nowhere else - so this runs there, as a dispatch-only workflow, and neither the secrets nor the
+records ever leave that run. It does NOT read the tracker, so it is not given TRACKER_PASSPHRASE. The public Actions log gets COUNTS ONLY; the detail goes to the
 private Bets inbox, the same split every other reporter in this repo uses.
 
 IT PLACES NOTHING AND CANCELS NOTHING. It reads the registry, the runner's venue snapshots and each
