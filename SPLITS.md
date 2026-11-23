@@ -1,11 +1,11 @@
-# Paper splits (updated 2026-11-23T00:00:32Z)
+# Paper splits (updated 2026-11-23T00:05:24Z)
 
 Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kill bar: 30+ resulted at -0.10u/play or worse closes a split.
 
 | Split | Type | Start | W-L-P | Units | u/play | True close % | Status |
 |---|---|---|---|---|---|---|---|
 | Phase-1 live filter (paper view) | a-priori | 2026-10-26 | 36-34-0 | -2.83 | -0.040 | -1.91 | CLOSED |
-| Phase-1 control group | control | 2026-10-26 | 67-53-2 | +4.51 | +0.037 | -1.67 | OPEN |
+| Phase-1 control group | control | 2026-10-26 | 68-53-2 | +5.35 | +0.043 | -1.65 | OPEN |
 | Hard Rock-priced, routed | a-priori | 2026-10-26 | 100-84-0 | +5.16 | +0.028 | -1.09 | ELIGIBLE at next review |
 | Fade Hard Rock-priced | scan | 2026-10-26 | 100-84-0 | -15.13 | -0.082 | -1.09 | CLOSED |
 | PM-global-priced, routed | a-priori | 2026-10-26 | 0-0-0 | +0.00 |  |  | OPEN |
