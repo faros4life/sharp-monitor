@@ -1,21 +1,23 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 23, 5:50 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 25.
+Updated Mon Nov 23, 6:00 PM ET. This run: 2 new, 0 not confirmed, 0 pending. Open alerts: 25.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 442-260 (-12.78u flat) | rule met: 92-69
+**Record:** 442-262 (-14.78u flat) | rule met: 92-70
 
-**Fade (paper, betting against the print):** 235-407 (+6.62u flat, after fees)
+**Fade (paper, betting against the print):** 237-407 (+8.45u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 23 2:10PM | NCAAB | Middle Tennessee @ Southern Illinois | spread: Southern Illinois -3.5 (-3.5) | novig | $25k | -108 |  | ✅ | +0.0c |  | pending |
+| Nov 23 6:00PM | NCAAB | UNC Greensboro @ Pepperdine | moneyline: Pepperdine (0) | novig | $33k | -525 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
+| Nov 23 6:00PM | NCAAB | Central Arkansas @ North Florida | moneyline: CARK (0) | novig | $39k | -344 |  |  | +0.0c |  | pending |
+| Nov 23 2:10PM | NCAAB | Middle Tennessee @ Southern Illinois | spread: Southern Illinois -3.5 (-3.5) | novig | $25k | -108 |  | ✅ | +0.0c |  | L |
 | Nov 23 2:10PM | NCAAB | William & Mary vs IU Indy | moneyline: William & Mary | kalshi | $122k | -223 |  |  | +1.0c | yes | W |
 | Nov 23 2:10PM | NCAAB | VCU vs Providence | moneyline: Providence | kalshi | $31k | -117 | ✅ novig |  | +0.0c |  | pending |
 | Nov 23 1:20PM | NCAAB | UNC Greensboro vs Pepperdine: Spread | spread: Pepperdine wins by over 10.5 points | kalshi | $29k | -113 |  |  | +1.0c |  | pending |
 | Nov 23 1:20PM | NCAAB | Monmouth vs North Carolina: Spread | spread: NOT North Carolina wins by over 17.5 points | kalshi | $31k | +117 |  | ✅ | +0.0c | yes | pending |
-| Nov 23 1:20PM | NCAAB | Yale vs Belmont | moneyline: Yale | kalshi | $27k | +113 | ✅ novig |  | +2.0c | yes | pending |
+| Nov 23 1:20PM | NCAAB | Yale vs Belmont | moneyline: Yale | kalshi | $27k | +113 | ✅ novig |  | +2.0c | yes | L |
 | Nov 23 1:20PM | NCAAB | Illinois St. vs Santa Clara | moneyline: Santa Clara | kalshi | $25k | -144 |  | ❌ | +1.0c |  | pending |
 | Nov 23 1:20PM | NCAAB | Georgia Southern vs Northern Kentucky | moneyline: Northern Kentucky | kalshi | $39k | -144 |  |  | +1.0c |  | pending |
 | Nov 23 11:00AM | NCAAB | Illinois St. vs Santa Clara | moneyline: Illinois St. | kalshi | $29k | +138 |  | ✅ | -1.0c | yes | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 17 5:40PM | NCAAB | Jacksonville St. vs Louisiana Tech: Point Total | total: Over 128.5 points | kalshi | $31k | -133 |  | ❌ | +0.0c | yes | W |
 | Nov 17 5:40PM | NCAAB | Southern Illinois vs Liberty: Point Total | total: NOT Over 144.5 points | kalshi | $26k | -100 |  |  | +0.0c | yes | L |
 | Nov 17 5:20PM | NCAAB | Saint Peter's vs UMass Lowell: Point Total | total: Over 128.5 points | kalshi | $52k | -113 |  |  | -2.0c |  | L |
-| Nov 17 5:10PM | NCAAB | Illinois vs Duke: Point Total | total: NOT Over 167.5 points | kalshi | $47k | -104 |  | ❌ | +0.0c | yes | L |
-| Nov 17 4:50PM | NCAAB | Nicholls St. vs Ole Miss: Point Total | total: NOT Over 143.5 points | kalshi | $51k | -117 |  |  | +0.0c | yes | W |
