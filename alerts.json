@@ -72,20 +72,20 @@
   {
    "alert_utc": "2026-11-22T15:10:22Z",
    "beat_close": false,
-   "beat_true_close": null,
+   "beat_true_close": false,
    "bet": "Seattle Redhawks +1.5 (-122)",
    "book": "ProphetX",
    "book_key": "prophetx",
-   "close_fair_prob": null,
-   "close_read_mins_before": null,
-   "close_value_pct": null,
+   "close_fair_prob": 0.5211,
+   "close_read_mins_before": 30,
+   "close_value_pct": -6.0,
    "clv": "+0 pts",
-   "clv_conv_pts": null,
-   "clv_pin_line": null,
-   "clv_read_utc": null,
+   "clv_conv_pts": 0.0,
+   "clv_pin_line": 1.5,
+   "clv_read_utc": "2026-11-23T02:00:22Z",
    "clv_skipped": null,
-   "clv_source": null,
-   "clv_verified": null,
+   "clv_source": "live read (provisional)",
+   "clv_verified": false,
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -146,20 +146,20 @@
   {
    "alert_utc": "2026-11-22T15:45:24Z",
    "beat_close": true,
-   "beat_true_close": null,
+   "beat_true_close": false,
    "bet": "Over 146.5 (-126)",
    "book": "ProphetX",
    "book_key": "prophetx",
-   "close_fair_prob": null,
-   "close_read_mins_before": null,
-   "close_value_pct": null,
+   "close_fair_prob": 0.5557,
+   "close_read_mins_before": 30,
+   "close_value_pct": -1.2,
    "clv": "+1.5 pts",
-   "clv_conv_pts": null,
-   "clv_pin_line": null,
-   "clv_read_utc": null,
+   "clv_conv_pts": 1.5,
+   "clv_pin_line": 148.0,
+   "clv_read_utc": "2026-11-23T02:00:22Z",
    "clv_skipped": null,
-   "clv_source": null,
-   "clv_verified": null,
+   "clv_source": "live read (provisional)",
+   "clv_verified": false,
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -1581,8 +1581,8 @@
    "fade_point": 2.5,
    "fade_price": 108,
    "fade_price_after_fee": 106,
-   "fade_units": null,
-   "final": null,
+   "fade_units": -1.0,
+   "final": "OKC 113, MIA 123",
    "floor_line": -3.0,
    "game": "Oklahoma City Thunder @ Miami Heat",
    "grade": "B",
@@ -1620,13 +1620,13 @@
     }
    },
    "pricing_bettable": true,
-   "result": null,
+   "result": "W",
    "score": 69,
    "sent_to_phone": true,
    "sport": "NBA",
    "start_utc": "2026-11-22T23:00:00Z",
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.87
   },
   {
    "alert_utc": "2026-11-22T14:35:20Z",
@@ -1655,8 +1655,8 @@
    "fade_point": -10.5,
    "fade_price": 100,
    "fade_price_after_fee": 100,
-   "fade_units": null,
-   "final": null,
+   "fade_units": 1.0,
+   "final": "UTAH 62, MINN 77",
    "floor_line": 10.5,
    "game": "Utah Utes @ Minnesota Golden Gophers",
    "grade": "A",
@@ -1694,13 +1694,13 @@
     }
    },
    "pricing_bettable": true,
-   "result": null,
+   "result": "L",
    "score": 80,
    "sent_to_phone": false,
    "sport": "NCAAB",
    "start_utc": "2026-11-22T23:00:00Z",
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alert_utc": "2026-11-22T18:00:28Z",
@@ -110455,14 +110455,14 @@
   {
    "alert_text": "Miami Heat -4.5 (-108) at Novig (also: ProphetX)",
    "bet": "Miami Heat -4.5 (-108)",
-   "bet_result": null,
+   "bet_result": "W",
    "book": "Novig",
    "confirmed_by": [
     "BetOnline",
     "Matchbook"
    ],
    "edge_pct": -1.7,
-   "final": null,
+   "final": "OKC 113, MIA 123",
    "game": "Oklahoma City Thunder @ Miami Heat",
    "grade": "B",
    "late": true,
@@ -110504,14 +110504,14 @@
   {
    "alert_text": "Miami Heat -7.5 (-105) at ProphetX [-107 after ProphetX fee] (also: Hard Rock, Kalshi)",
    "bet": "Miami Heat -7.5 (-105)",
-   "bet_result": null,
+   "bet_result": "W",
    "book": "ProphetX",
    "confirmed_by": [
     "BetOnline",
     "Matchbook"
    ],
    "edge_pct": -4.6,
-   "final": null,
+   "final": "OKC 113, MIA 123",
    "game": "Oklahoma City Thunder @ Miami Heat",
    "grade": "A",
    "late": true,
@@ -110846,13 +110846,13 @@
   {
    "alert_text": "Utah Utes +9.5 (-108) at Novig (also: Hard Rock, ProphetX, Kalshi)",
    "bet": "Utah Utes +9.5 (-108)",
-   "bet_result": null,
+   "bet_result": "L",
    "book": "Novig",
    "confirmed_by": [
     "BetOnline"
    ],
    "edge_pct": -2.1,
-   "final": null,
+   "final": "UTAH 62, MINN 77",
    "game": "Utah Utes @ Minnesota Golden Gophers",
    "grade": "A",
    "late": false,
@@ -111327,13 +111327,13 @@
   {
    "alert_text": "Utah Utes +10.5 (-105) at Hard Rock (also: ProphetX, Novig, Kalshi)",
    "bet": "Utah Utes +10.5 (-105)",
-   "bet_result": null,
+   "bet_result": "L",
    "book": "Hard Rock",
    "confirmed_by": [
     "BetOnline"
    ],
    "edge_pct": -1.8,
-   "final": null,
+   "final": "UTAH 62, MINN 77",
    "game": "Utah Utes @ Minnesota Golden Gophers",
    "grade": "A",
    "late": false,
@@ -111964,13 +111964,13 @@
   {
    "alert_text": "Miami Heat -2.5 (-115) at Hard Rock (also: ProphetX)",
    "bet": "Miami Heat -2.5 (-115)",
-   "bet_result": null,
+   "bet_result": "W",
    "book": "Hard Rock",
    "confirmed_by": [
     "Matchbook"
    ],
    "edge_pct": -1.8,
-   "final": null,
+   "final": "OKC 113, MIA 123",
    "game": "Oklahoma City Thunder @ Miami Heat",
    "grade": "B",
    "late": false,
