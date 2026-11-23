@@ -103,7 +103,7 @@ def main():
     need = {}
     for x in rows:
         b = {"league": x["league"], "game": x.get("game"), "teams": [{"name": n} for n in x.get("teams") or []], "game_start": x.get("start_utc")}
-        if not cl.find_fixture(st, b):
+        if not cl.find_fixture(st, b, relax_unique=True):
             need.setdefault(x["league"], True)
     for lg in need:
         last = tb.tparse(st["fx_last"].get(lg))
@@ -121,7 +121,7 @@ def main():
     for x in rows:
         k = f"{x.get('key')}|{x.get('alerted_utc')}"
         b = {"league": x["league"], "game": x.get("game"), "teams": [{"name": n} for n in x.get("teams") or []], "game_start": x.get("start_utc")}
-        fid = cl.find_fixture(st, b)
+        fid = cl.find_fixture(st, b, relax_unique=True)
         rec = dict(prev.get(k) or {})
         # BASIS FIRST. It describes WHEN the alert printed, which is known before any lookup, and
         # stamping it after the fixture `continue`s left 2,838 of 3,202 rows with none - so a
