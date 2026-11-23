@@ -122,5 +122,21 @@ ok("four slices tile 30 days with no gap and no overlap",
    == [(7, 0), (14, 7), (21, 14), (30, 21)]
    and all(a[0] == b[1] for a, b in zip([(7, 0), (14, 7), (21, 14)], [(14, 7), (21, 14), (30, 21)])))
 
+# --- the prune was throwing away the backfill's own fixtures -------------------------------------
+ok("fixture retention is persisted in the cache, not reset every run", '"keep_days": keep_days' in SRC)
+ok("a backfill raises retention to cover its window", "(BACKFILL_DAYS + 1) if BACKFILL_DAYS else 0" in SRC)
+ok("an ordinary run HONOURS what it finds rather than pruning back to 5 days",
+   'int(cache.get("keep_days") or KEEP_DAYS_MIN)' in SRC)
+ok("retention is bounded so the cache cannot grow for ever", "KEEP_DAYS_MIN, KEEP_DAYS_MAX = 5, 45" in SRC)
+ok("the run reports the cache size and window", "fixture cache {len(kept)} over {keep_days}d" in SRC)
+
+def keep(cached, backfill, lo=5, hi=45):
+    return min(hi, max(lo, cached or lo, (backfill + 1) if backfill else 0))
+ok("an ordinary run after a 30-day backfill keeps the 31 days", keep(31, 0) == 31)
+ok("a 7-day backfill on a fresh cache keeps 8", keep(None, 7) == 8)
+ok("a small backfill never SHRINKS an existing window", keep(31, 7) == 31)
+ok("retention is capped", keep(None, 400) == 45 and keep(999, 0) == 45)
+ok("the floor still applies", keep(None, 0) == 5)
+
 print(f"\n{len(P)} passed, {len(F)} failed")
 raise SystemExit(1 if F else 0)
