@@ -9,7 +9,11 @@ on:
 
     inputs:
       backfill_days:
-        description: "Deliberate one-off backfill: tag alerts this many days back. Empty = today only. It bills (/fixtures), so set it only when you mean to."
+        description: "Backfill slice START, in days back. Empty = today only. A 30-day run is KILLED by the 25-minute timeout - use slices of about 7 days."
+        required: false
+        default: ""
+      backfill_end_days:
+        description: "Backfill slice END, in days back (exclusive). 7/0 then 14/7 then 21/14 then 30/21 tiles a month."
         required: false
         default: ""
 permissions:
@@ -34,6 +38,7 @@ jobs:
           ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
           ODDSPAPI_FREE_KEY: ${{ secrets.ODDSPAPI_FREE_KEY }}   # Nov 3: history goes through the free key (paid key: 403 on pinnacle)
           X2_BACKFILL_DAYS: ${{ inputs.backfill_days }}
+          X2_BACKFILL_END_DAYS: ${{ inputs.backfill_end_days }}
         run: python -u x2_tag.py
       - name: Commit limits and fixture cache
         run: |

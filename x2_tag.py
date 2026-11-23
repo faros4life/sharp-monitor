@@ -41,6 +41,13 @@ FORWARD_FROM = (os.environ.get("X2_FORWARD_FROM") or "2026-11-23").strip()[:10]
 # fixtures outside the normal now-1d..now+3d window, and /fixtures BILLS (only /account and
 # /historical-odds are free), so this is opt-in per run and never the default.
 BACKFILL_DAYS = max(0, int(os.environ.get("X2_BACKFILL_DAYS") or "0"))
+# Nov 23: a single 30-day backfill was KILLED by the 25-minute timeout - "Terminate orphan process:
+# pid (python)", CLAUDE.md's decisive tell for a kill mid-work rather than a dropped queue run. It
+# saved nothing. The schedule fires every 30 minutes, so raising the timeout only collides with the
+# next firing; the work has to get smaller instead. So a backfill is a bounded SLICE, run as many
+# times as it takes: the window is [now - DAYS, now - END_DAYS], and a row that already carries a
+# verdict is skipped, so repeat dispatches make progress instead of redoing the same work.
+BACKFILL_END_DAYS = max(0, int(os.environ.get("X2_BACKFILL_END_DAYS") or "0"))
 
 
 def load(p, d):
@@ -62,12 +69,25 @@ def main():
         print("x2 tag: ODDSPAPI_KEY not set")
         return
     day0 = now.astimezone(ET).replace(hour=0, minute=0, second=0, microsecond=0)
+    day1 = None
     if BACKFILL_DAYS:
         day0 -= timedelta(days=BACKFILL_DAYS)
+        if BACKFILL_END_DAYS:
+            day1 = now.astimezone(ET).replace(hour=0, minute=0, second=0, microsecond=0) \
+                   - timedelta(days=BACKFILL_END_DAYS)
     a = load("liquidity/alerts.json", [])
     a = a if isinstance(a, list) else a.get("alerts") or []
     rows = [x for x in a if x.get("league") in cl.SPORT and x.get("market") in ("moneyline", "spread", "total")
-            and (tb.tparse(x.get("alerted_utc")) or now) >= day0]
+            and (tb.tparse(x.get("alerted_utc")) or now) >= day0
+            and (day1 is None or (tb.tparse(x.get("alerted_utc")) or now) < day1)]
+    done = (load(OUT, {"rows": {}}).get("rows") or {})
+    if BACKFILL_DAYS:
+        before = len(rows)
+        rows = [x for x in rows
+                if done.get(f"{x.get('key')}|{x.get('alerted_utc')}", {}).get("x2_pass") is None]
+        print(f"x2 tag: backfill slice {BACKFILL_DAYS}d..{BACKFILL_END_DAYS}d | "
+              f"{before} row(s) in the window, {before - len(rows)} already have a verdict, "
+              f"{len(rows)} to do")
     cache = load(CACHE, {"fixtures": {}, "fx_last": {}})
     st = {"fixtures": cache.get("fixtures") or {}, "fx_last": cache.get("fx_last") or {}, "billable": {}}
     out = load(OUT, {"rows": {}})
@@ -89,6 +109,7 @@ def main():
         st["fx_last"].pop(lg, None)
         cl.refresh_fixtures(st, now, lg, (now - timedelta(days=1 + BACKFILL_DAYS)).astimezone(ET),
                             (now + timedelta(days=3)).astimezone(ET))
+    t_fix = (datetime.now(timezone.utc) - now).total_seconds()
     hist, res = {}, {}
     for x in rows:
         k = f"{x.get('key')}|{x.get('alerted_utc')}"
@@ -163,6 +184,9 @@ def main():
     print(f"x2 tag: forward {len(fwd)} (true 2X {sum(1 for v in fwd if v.get('x2_pass'))}), "
           f"backfill {len(bak)} (true 2X {sum(1 for v in bak if v.get('x2_pass'))}) - "
           f"backfill is BACKTEST data and must not pool into the forward count")
+    el = (datetime.now(timezone.utc) - now).total_seconds()
+    print(f"x2 tag: elapsed {el:.0f}s (fixtures {t_fix:.0f}s, rows {el - t_fix:.0f}s) - the 30-day "
+          f"run was killed at the 25-minute timeout, so slices are sized against this")
     cov = sum(1 for v in res.values() if v.get("p_limit"))
     print(f"x2 tag: limit coverage {cov}/{len(res)} rows "
           f"({(100.0 * cov / len(res)) if res else 0:.0f}%) - rows with no Pinnacle limit carry NO "
