@@ -5,6 +5,11 @@ name: pr10-reconcile
 # already carry exposure, and the MIN @ SF replay. Both need TRACKER_PASSPHRASE and the registry
 # token, which live here and nowhere else. Public log gets COUNTS ONLY; detail goes to the Bets
 # inbox. It places nothing, cancels nothing and writes nothing - EXEC_UNIT_LEDGER is not read.
+#
+# Nov 23: it now reads each venue BACK for every outstanding order, because a registry status is
+# what we believed when we wrote it and not what the venue holds. The venue credentials below are
+# GET-only here - the same read-only wiring positions-check.yml already uses - and no order,
+# cancel or amend path is imported.
 
 on:
   workflow_dispatch:
@@ -40,5 +45,9 @@ jobs:
           GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          KALSHI_KEY_ID: ${{ secrets.KALSHI_KEY_ID }}               # GET /portfolio/orders/{id} only
+          KALSHI_PRIVATE_KEY: ${{ secrets.KALSHI_PRIVATE_KEY }}
+          PMUS_KEY_ID: ${{ secrets.PMUS_KEY_ID }}                   # GET /v1/order/{id} only
+          PMUS_SECRET_KEY: ${{ secrets.PMUS_SECRET_KEY }}
           REPLAY_MATCH: ${{ inputs.match }}
         run: python -u review_replay.py

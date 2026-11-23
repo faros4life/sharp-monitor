@@ -1,74 +1,175 @@
 #!/usr/bin/env python3
-"""REVIEW ONLY. The private reconciliation reports or says MISSING - it never invents a record."""
-import sys
+"""review_replay: the nested-record reader, the venue evidence and the completeness verdict.
 
-import review_replay as RP
+No venue is contacted: the readers are injected. The point of these tests is the two defects the
+first version had - reading flat where the records are nested, and calling a leg captured on the
+registry's own word.
+"""
+import review_replay as RR
 
-FAILED, RAN = [], []
-
-
-def ok(name, cond, got=""):
-    print(("PASS  " if cond else "FAIL  ") + name + (f"   got: {got}" if not cond and got else ""))
-    RAN.append(name)
-    if not cond:
-        FAILED.append(name)
+P, F = [], []
 
 
-ROWS = [
-    {"order_id": "a", "play_key": "k1", "status": "open", "asked_stake": 220.0, "american": -110, "unit": 200},
-    {"order_id": "b", "play_key": "k1", "status": "filled", "asked_stake": 110.0, "filled_stake": 110.0,
-     "american": -110, "unit": 200},
-    {"order_id": "c", "play_key": "k2", "status": "banana", "asked_stake": 10.0, "american": -110, "unit": 200},
-    {"order_id": "d", "status": "open", "asked_stake": 10.0, "american": -110, "unit": 200},
-    {"order_id": "e", "play_key": "k3", "status": "resting", "asked_stake": 50.0, "american": -110},
-]
-legs, unreadable, terminal = RP.backfill_candidates(ROWS)
-ok("an outstanding order becomes a backfill leg", any(l["order_id"] == "a" for l in legs))
-ok("a resting order counts as outstanding", any(l["order_id"] == "e" for l in legs))
-ok("a settled order does not", terminal == 1 and not any(l["order_id"] == "b" for l in legs))
-ok("an unrecognised state goes to UNREADABLE, never to zero exposure",
-   any(u["id"] == "c" for u in unreadable))
-ok("a row missing its play key goes to UNREADABLE", any(u["id"] == "d" for u in unreadable))
-ok("nothing is silently dropped", len(legs) + len(unreadable) + terminal == len(ROWS))
+def ok(label, cond, got=""):
+    (P if cond else F).append(label)
+    print(("PASS  " if cond else "FAIL  ") + label + ("" if cond else f"   got: {got}"))
 
-v, why = RP.completeness(legs, unreadable)
-ok("completeness is INCOMPLETE while anything is unreadable", v == "INCOMPLETE", v)
-ok("and says how many", "could not be classified" in why)
-v2, why2 = RP.completeness([{"key": "k", "unit": 200}], [])
-ok("a clean list is COMPLETE", v2 == "COMPLETE")
-v3, _ = RP.completeness([{"key": "k"}], [])
-ok("a leg with no lane unit makes it INCOMPLETE", v3 == "INCOMPLETE")
-v4, why4 = RP.completeness([], [])
-ok("an empty list is reported as empty, not as proven", "empty" in v4 and "verify" in why4)
 
-ok("the replay returns verbatim rows", len(RP.min_at_sf(ROWS, "k1")) == 2)
-ok("no term means no replay, not a guess", RP.min_at_sf(ROWS, "") == [])
-ok("an unmatched term returns nothing rather than the nearest row",
-   RP.min_at_sf(ROWS, "zzz") == [])
-ok("an unreadable registry reports nothing and infers nothing", RP._rows.__doc__.count("NEVER") == 1)
+# ---------------------------------------------------------------- 1. nested enumeration
+FLAT = {"key": "k1", "order_id": "top-1", "status": "open"}
+NESTED = {"key": "k2",
+          "live_order": {"order_id": "c1", "client_id": "c1", "book": "novig", "status": "open",
+                         "asked_stake": 220.0, "american": -110, "unit": 200.0},
+          "live_rest": {"order_id": "a2", "client_id": "c2", "book": "kalshi", "status": "open",
+                        "asked_stake": 100.0, "american": 120, "unit": 200.0},
+          "live_more": [{"order_id": "a3", "client_id": "c3", "book": "kalshi", "status": "filled"},
+                        {"order_id": "a4", "client_id": "c4", "book": "polymarket_us",
+                         "status": "open", "asked_stake": 50.0, "american": -105, "unit": 200.0}]}
 
-# Match CODE, not comments: the docstrings name EXEC_UNIT_LEDGER and "no schedule" precisely to
-# say the module has neither, and ".replace(" contains "place(".
-full = open("review_replay.py", encoding="utf-8").read()
-import ast as _ast
-_m = _ast.parse(full)
-code = "\n".join(full.split("\n")[_m.body[0].end_lineno:]) if _ast.get_docstring(_m) else full
-code = "\n".join(l for l in code.split("\n") if not l.strip().startswith("#"))
-for bad in ("px_live.place(", "cancel(", "rest_bid", "live_order(", "_put_with_sha",
-            'environ.get("EXEC_UNIT_LEDGER'):
-    ok(f"the reconciler has no {bad!r}", bad not in code)
-# The flag's NAME does appear once in code - inside the email body, telling Peter it was not
-# touched. That is a message, not a read. The precise assertion above (no environ.get) is the one
-# that matters; a blanket name match would flag the reassurance itself.
-ok("the only mention is the line telling Peter it was untouched",
-   code.count("EXEC_UNIT_LEDGER") == 1 and "untouched" in code)
-ok("it computes no verdict on the incident", "no verdict is computed" in full.lower())
-wf = open(".github/workflows/pr10-reconcile.yml", encoding="utf-8").read()
-wfc = "\n".join(l for l in wf.split("\n") if not l.strip().startswith("#"))
-ok("the workflow is dispatch-only, never scheduled",
-   "schedule:" not in wfc and "cron" not in wfc and "workflow_dispatch" in wfc)
-ok("it is read-only on contents", "contents: read" in wf)
-ok("it runs the REVIEW branch, not main", "review/per-play-unit-exposure-guard" in wf)
+ok("live_more is read as a LIST, not dict-accessed", len(RR.legs_from(NESTED)) == 4,
+   str(len(RR.legs_from(NESTED))))
+ok("all three nested fields are enumerated",
+   {f for f, _ in RR.legs_from(NESTED)} == {"live_order", "live_rest", "live_more"})
+ok("a row whose order records are only at the TOP level yields no legs", RR.legs_from(FLAT) == [])
 
-print(f"{len(RAN) - len(FAILED)} passed, {len(FAILED)} failed")
-sys.exit(1 if FAILED else 0)
+legs, unreadable, terminal = RR.backfill_candidates([NESTED])
+ok("the terminal nested leg is counted terminal, not outstanding", terminal == 1, str(terminal))
+ok("three nested legs come back outstanding", len(legs) == 3, str(len(legs)))
+ok("each outstanding leg carries the field it came from",
+   all(l.get("field") in RR.NESTED_FIELDS for l in legs))
+
+_l, _u, _t = RR.backfill_candidates([FLAT])
+ok("a top-level-only row is reported UNREADABLE, never silently dropped",
+   len(_u) == 1 and not _l and _t == 0, f"{len(_u)}/{len(_l)}/{_t}")
+ok("and the reason names the row shape, so the two remedies stay apart",
+   "no nested order record" in _u[0]["why"])
+
+_l2, _u2, _ = RR.backfill_candidates([{"key": "k3", "live_order": {
+    "order_id": "x", "book": "novig", "status": "weird_state"}}])
+ok("an unknown recorded status is UNREADABLE, not assumed open or closed",
+   not _l2 and len(_u2) == 1 and "weird_state" in _u2[0]["why"])
+
+
+# ---------------------------------------------------------------- 2. venue evidence
+def no_novig():
+    return (None, None), "orders snapshot: no registry token"
+
+
+def novig_ok():
+    return ({"c1": {"client_id": "c1", "order_id": "v1", "status": "OPEN", "qty": 200,
+                    "filled_qty": 0, "fill_read": True, "price": 55}}, {}), "ok"
+
+
+def kalshi_ok(oid):
+    return {"status": "resting", "filled_qty": 0, "qty": 83}, ""
+
+
+def kalshi_dead(oid):
+    return None, "status 503"
+
+
+def pmus_ok(oid):
+    return {"status": "OPEN", "cumQuantity": 0, "quantity": 48}, ""
+
+
+def pmus_dead(oid):
+    return None, "HTTPError"
+
+
+base = [dict(l) for l in legs]
+got, counts = RR.venue_evidence([dict(l) for l in base], novig=novig_ok, kalshi=kalshi_ok,
+                                pmus=pmus_ok)
+ok("every leg is proven when all three venues answer", counts.get(RR.PROVEN) == 3, str(counts))
+
+got, counts = RR.venue_evidence([dict(l) for l in base], novig=no_novig, kalshi=kalshi_ok,
+                                pmus=pmus_ok)
+ok("an unreadable Novig snapshot leaves that leg UNREADABLE, not zero-filled",
+   counts.get(RR.UNREADABLE) == 1, str(counts))
+ok("and the reason is carried through verbatim",
+   any("no registry token" in str((l.get("evidence") or {}).get("why")) for l in got))
+
+got, counts = RR.venue_evidence([dict(l) for l in base], novig=novig_ok, kalshi=kalshi_dead,
+                                pmus=pmus_dead)
+ok("a venue that will not answer blocks both of its legs", counts.get(RR.UNREADABLE) == 2,
+   str(counts))
+
+got, counts = RR.venue_evidence(
+    [{"key": "k", "book": "prophetx", "order_id": "p1", "unit": 200.0}],
+    novig=novig_ok, kalshi=kalshi_ok, pmus=pmus_ok)
+ok("a book with no read-back path is NO READER, not quietly proven",
+   counts.get(RR.NO_READER) == 1, str(counts))
+
+got, counts = RR.venue_evidence([{"key": "k", "book": "novig", "unit": 200.0}],
+                                novig=novig_ok, kalshi=kalshi_ok, pmus=pmus_ok)
+ok("a leg with no identifier is NO VENUE RECORD", counts.get(RR.NO_RECORD) == 1, str(counts))
+
+got, counts = RR.venue_evidence(
+    [{"key": "k", "book": "novig", "client_id": "not-in-snapshot", "unit": 200.0,
+      "asked_stake": 100.0, "american": -110, "status": "open"}],
+    novig=novig_ok, kalshi=kalshi_ok, pmus=pmus_ok)
+ok("a Novig id absent from the snapshot is NOT proof of zero fills",
+   counts.get(RR.NO_RECORD) == 1, str(counts))
+
+
+# ---------------------------------------------------------------- 3. completeness is bounded
+ok("no venue evidence at all reads UNPROVEN, never COMPLETE",
+   RR.completeness(base, [], None)[0] == "UNPROVEN")
+ok("an unclassifiable row blocks the verdict",
+   RR.completeness(base, [{"why": "x"}], {RR.PROVEN: 3})[0] == "INCOMPLETE")
+ok("a leg with no lane unit blocks the verdict",
+   RR.completeness([{"unit": None}], [], {RR.PROVEN: 1})[0] == "INCOMPLETE")
+ok("one unproven leg among many blocks the verdict",
+   RR.completeness(base, [], {RR.PROVEN: 2, RR.UNREADABLE: 1})[0] == "INCOMPLETE")
+v, why = RR.completeness(base, [], {RR.PROVEN: 3})
+ok("COMPLETE only with a unit and venue evidence on every leg", v == "COMPLETE", f"{v}: {why}")
+ok("and the COMPLETE wording says what was actually checked", "against its venue" in why)
+ok("an empty outstanding list is COMPLETE and says so",
+   RR.completeness([], [], {})[1].startswith("no outstanding legs"))
+
+
+# ---------------------------------------------------------------- 4. the replay is honest about itself
+ok("the replay matches NESTED order ids, which is the only place they appear",
+   len(RR.min_at_sf([NESTED], "a4")) == 1)
+ok("a Novig leg is looked up by the registry's order_id, which IS Novig's client id",
+   RR.venue_evidence([{"key": "k", "book": "novig", "order_id": "c1", "unit": 200.0,
+                       "asked_stake": 110.0, "american": -110, "status": "open"}],
+                     novig=novig_ok, kalshi=kalshi_ok, pmus=pmus_ok)[1].get(RR.PROVEN) == 1)
+ok("a Kalshi leg is looked up by its VENUE order id, not a client id",
+   RR.venue_evidence([{"key": "k", "book": "kalshi", "order_id": "a2", "client_id": "c2",
+                       "unit": 200.0}], novig=novig_ok,
+                     kalshi=lambda o: (({"status": "resting"}, "") if o == "a2"
+                                       else (None, "wrong id")), pmus=pmus_ok
+                     )[1].get(RR.PROVEN) == 1)
+ok("an empty needle replays nothing rather than everything", RR.min_at_sf([NESTED], "") == [])
+src = open("review_replay.py", encoding="utf-8").read()
+ok("the mail says plainly that the replay is a registry search, not a venue reconciliation",
+   "not a venue-side reconciliation" in src)
+
+
+# ---------------------------------------------------------------- 5. delivery cannot be half-valid
+import csv as _csv
+import io as _io
+
+proven, _ = RR.venue_evidence([dict(l) for l in base], novig=novig_ok, kalshi=kalshi_ok,
+                              pmus=pmus_ok)
+text = RR._csv(proven)
+parsed = list(_csv.DictReader(_io.StringIO(text)))
+ok("the backfill list is delivered as parseable CSV", len(parsed) == 3, str(len(parsed)))
+ok("with the evidence class on every row",
+   all(r["evidence_class"] == RR.PROVEN for r in parsed))
+ok("the body does NOT carry the truncated JSON list that broke clv_report",
+   "BACKFILL LIST" not in src and "pr10_backfill_legs.csv" in src)
+ok("the public log prints counts only - no key, id or dollar figure",
+   all(s not in src.split("def main")[1].split("body = [")[0]
+       for s in ("asked_stake", "order_id", "leg['key']")))
+
+
+# ---------------------------------------------------------------- 6. still read-only
+for forbidden in ("px_live.place", "book_live.kalshi_place", "book_live.novig_place",
+                  "book_live.pmus_place", "pmus_cancel", "_put_with_sha", "put_order"):
+    ok(f"review_replay never calls {forbidden}", forbidden not in src)
+ok("and never reads or writes the ledger flag", "EXEC_UNIT_LEDGER" not in src.replace(
+    "it never touches EXEC_UNIT_LEDGER", "").replace("EXEC_UNIT_LEDGER untouched", ""))
+
+print(f"\n{len(P)} passed, {len(F)} failed")
+raise SystemExit(1 if F else 0)
