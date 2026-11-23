@@ -52,3 +52,73 @@ The existing `claim_submission()` is an exclusive key claim used for duplicate p
 
 ### Reviewer evidence distinction
 Current public source confirms control flow, registry field projections and workflow concurrency only. Private, real MIN @ SF registry rows and venue fills are NOT accessible to this connection; all sample values in tests are fixtures, not a private-data replay. Tests in PR #10 are isolated and currently NOT an end-to-end order-block test. **NO-GO for merge or deployment** until all production paths, atomic reservations, private reconciliation and production-grade tests are verified.
+
+---
+
+# Two-repository architecture — November 22, approved as REVIEW ONLY
+
+Peter, Nov 22: "Both execution systems use one authoritative per-play exposure budget. Every order
+reserves capacity atomically before submission. Open orders remain reserved until their status is
+verified. Unknown exposure blocks additional orders. A failed reservation cannot be bypassed by
+either runner." Plus: do not auto-cancel existing venue orders.
+
+Scope approved: expand this draft to cover BOTH repositories, review-only. No merge, no deployment,
+no real orders, no live setting changes. STOP remains Peter's control and was not touched.
+
+## The finding that forced the scope change
+
+`faros4life/novig-runner` — the home runner — **does not share the exposure count**:
+
+| evidence | what it means |
+|---|---|
+| `registry/bot_registry.json` | its own registry file, not this repo's durable store |
+| `novig_live_order.py` contains no `registry.` reference at all | no `committed_risk`, no `claim_submission`, no `submission_held` |
+| it journals through its own `novig_order_journal` | separate write-ahead record |
+| `MAX_COST = 275.0`; bundled `executor.py` has `LIVE_UNIT = 50.0` | limits disagree with this repo's 300 / 200 |
+
+So a guard added to `executor.py` alone would be blind to every order the home runner places. It
+would pass its own tests and still let a play exceed its unit — the no-op that looks like success.
+New Mexico −7.5 on Nov 20 is consistent with exactly this shape: **$348.20 on one side across
+ProphetX and Novig, 1.49 R1 units**.
+
+## What this branch now contains
+
+- `review_unit_exposure.py` — the pure calculator (unchanged). Says itself it "DOES NOT provide
+  atomic locking or authorize a new order".
+- `review_unit_reservation.py` — **new**: the protocol that makes one of two racing runners lose.
+- `test_review_unit_reservation.py` — one named test per requirement, including a racing store
+  that always snipes the write, and a check that no production module imports any of it.
+
+## The protocol
+
+1. **One budget, keyed by canonical play identity** — event + market + side + line, lane-stripped
+   and venue-agnostic. Both runners key the same way or requirement 1 is not met.
+2. **Reserve before submit, under compare-and-swap.** Read `(state, version)`, evaluate remaining,
+   write back with the version. A lost write never proceeds on the stale answer: it re-reads, and
+   if it still cannot win, it refuses.
+3. **Open and unknown-fill legs hold their FULL asked exposure.** Capacity is released only on
+   `terminal_verified=True` with a fill amount — explicit venue evidence. Time passing is not
+   evidence; a missing fill report is not evidence.
+4. **Every failure path refuses.** Unreadable store, unknown order state, missing identity,
+   unreadable price, lost compare-and-swap. Refusal is never "proceed with less".
+5. **A `Grant` is the only thing that converts a stake into permission.** `authorize()` accepts
+   nothing else, and a stake above the grant is refused rather than trimmed — a trimmed order would
+   make the reservation and the submission disagree, which is the condition this exists to prevent.
+   A runner that skips `reserve()` has no Grant and no code path that returns permission.
+6. **There is no cancel or shrink path in the module.** Releasing capacity and cancelling an order
+   are different actions; the second is not authorized.
+
+## What is still NOT done, and cannot be done from here
+
+- **Wiring.** Nothing imports this. `live_order()`, `live_remainder()`, `rest_bid()` and the home
+  runner's `place()` are all unchanged. Wiring is a production change and needs separate approval.
+- **The shared store.** The protocol is correct only if both runners read and write ONE store. That
+  is an infrastructure decision — which store, reachable by a home runner and by Actions, with
+  compare-and-swap. The code takes it as an injected dependency and does not choose.
+- **The MIN @ SF replay.** It needs private registry rows and venue fills. The ledger is encrypted
+  with `TRACKER_PASSPHRASE` and venue reads need trading keys — both GitHub Secrets. Not available
+  to this session and not to be used by it. Muse or a dispatch-only workflow can do it.
+- **End-to-end proof.** These remain pure-function tests against a fixture store. They do not prove
+  that a real order is blocked.
+
+**NO-GO for merge or deployment.** Unchanged.
