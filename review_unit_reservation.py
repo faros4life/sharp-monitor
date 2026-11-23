@@ -123,8 +123,30 @@ def _num(v, label):
     return x
 
 
+# ONE PLAY, SPELLED TWO WAYS (Peter, Nov 23). The budget is per play, and a play's key carries the game exactly as
+# the feed that produced it wrote it: "Dallas Mavericks @ Utah Jazz" from one feed, "Dallas vs Utah" from another.
+# Matching on the text alone gave those two their own unit each. The system that owns the team tables installs a
+# matcher here; it is asked ONLY when the keys differ, so it can only ever ADD legs to a play's budget - an exact
+# match always counts, exactly as before. With no matcher installed (the home runner, which only claims a
+# reservation the cloud already judged) behaviour is unchanged. A matcher that raises is not swallowed: the
+# budget cannot be established, so the caller's read fails closed.
+_MATCH = {"fn": None}
+
+
+def set_play_matcher(fn):
+    """Install (or clear, with None) the same-play test: fn(leg, key) -> bool."""
+    _MATCH["fn"] = fn
+
+
+def same_play(leg, key):
+    if leg.get("key") == key:
+        return True
+    fn = _MATCH["fn"]
+    return bool(fn(leg, key)) if fn is not None else False
+
+
 def _legs(state, key):
-    return [l for l in (state.get("legs") or []) if l.get("key") == key]
+    return [l for l in (state.get("legs") or []) if same_play(l, key)]
 
 
 def leg_fraction(leg):
@@ -157,7 +179,7 @@ def remaining_mixed(legs, key):
         raise ExposureUnknown("missing canonical key")
     by_order = {}
     for leg in legs:
-        if leg.get("key") != key:
+        if not same_play(leg, key):
             continue
         used = leg_fraction(leg)
         oid = str(leg.get("order_id") or leg.get("leg_id"))

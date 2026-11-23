@@ -4699,6 +4699,126 @@ def _unit_ledger_mode():
     return v if v in ("record", "on") else "off"
 
 
+# ---------------------------------------------------------------- one play, whatever the feed calls it (Peter, Nov 23)
+# The main feed writes "Dallas Mavericks @ Utah Jazz"; the liquidity feed DOGS reads writes "Dallas vs Utah" or
+# "Edmonton vs Carolina: Spread". Keyed on the text, a DOGS bet and a Lane 1 / Board bet on the same side of the same
+# game each got their own unit in the shared ledger. This is the test the ledger now asks when two keys differ.
+# It is deliberately STRICTER than same_bet(): lm.toks() drops "state", so it reads Kansas and Kansas State as one
+# team. Here a shorter name matches a longer one only when the extra words are a nickname, never a qualifier that
+# makes it a different school. Same sport, same market, same side, both teams paired one-to-one, and the same event
+# day (within one day, since two feeds can disagree by minutes around midnight UTC).
+_LEDGER_DISTINCT = frozenset((
+    "state", "st", "tech", "a", "m", "am", "christian", "southern", "northern", "eastern", "western", "central",
+    "international", "atlantic", "coastal", "east", "west", "north", "south", "oh", "ohio", "fl", "valley", "poly",
+    "methodist", "baptist", "pacific", "upstate", "ii", "b", "u21", "u23", "women", "w"))
+
+
+def _ledger_words(name):
+    t = re.sub(r"\s*[\(\[:|].*$", lambda m: " " + re.sub(r"[^a-z0-9 ]", " ", m.group(0)) if m.group(0).lstrip()[:1] == "(" else "",
+               str(name or "").lower())
+    t = re.sub(r"(?<=[a-z])\.", "", t)
+    for _a, _b in lm.PHRASES:          # "north carolina state" -> "nc state", the feeds' own equivalence
+        t = t.replace(_a, _b)
+    w = re.findall(r"[a-z0-9]+", t)
+    # "Ohio St." / "Ball St" is State; a LEADING "St." is Saint ("St. John's") and is left alone
+    return frozenset("state" if (x == "st" and i > 0) else x for i, x in enumerate(w))
+
+
+def _ledger_team_eq(x, y, lg):
+    """Two names for ONE team. Equal words, or one inside the other with only nickname words left over; a nickname
+    alone ("Hawks") reaches its city through the alias table the feeds already use."""
+    wx, wy = _ledger_words(x), _ledger_words(y)
+    if not wx or not wy:
+        return False
+    if wx == wy:
+        return True
+    table = lm.MLB_ALIAS if lg == "MLB" else ({} if lg == "TENNIS" else lm.ALIAS)
+    for small, big in ((wx, wy), (wy, wx)):
+        reach = set(big)
+        for w in big:
+            reach |= set(table.get(w, ()))
+        # Kalshi writes "Los Angeles L" / "Los Angeles C": a lone initial stands for a nickname word of the longer name
+        init = {w for w in small - reach if len(w) == 1 and any(v.startswith(w) and len(v) > 1 for v in big - small)}
+        core = small - init
+        if not core or not core <= reach:
+            continue
+        extra = {v for v in big - small if not any(v.startswith(i) for i in init)}
+        if (extra | (core - big)) & _LEDGER_DISTINCT:
+            continue
+        return True
+    return False
+
+
+def _ledger_same_play(key_a, key_b):
+    """Teams, market and side only - the day is checked by the caller, which knows where a day can be read from."""
+    a, b = str(key_a or "").split("|"), str(key_b or "").split("|")
+    if len(a) != 4 or len(b) != 4 or a[0] != b[0] or a[2] != b[2]:
+        return False
+    lg = a[0].upper()
+    ta, tb = lm.split_teams(a[1]), lm.split_teams(b[1])
+    if not ta or not tb:
+        return False
+    eq = lambda x, y: _ledger_team_eq(x, y, lg)
+    if eq(ta[0], tb[0]) and eq(ta[1], tb[1]):
+        pair = {0: 0, 1: 1}
+    elif eq(ta[0], tb[1]) and eq(ta[1], tb[0]):
+        # "A @ B" states who is away. Two keys that BOTH say so and disagree are the two legs of a home-and-home
+        # (Colorado @ Dallas, then Dallas @ Colorado the next night) - different games. "vs" states no order.
+        if " @ " in a[1] and " @ " in b[1]:
+            return False
+        pair = {0: 1, 1: 0}
+    else:
+        return False
+    if a[2] == "total":
+        return a[3] == b[3]
+    # the side has had its numbers stripped by the shared key ("Philadelphia 76ers" -> "philadelphia ers"), so each
+    # team is put through the same stripping before the side is compared with it
+    import review_integration as _ri4
+    sd = lambda side, team: eq(side, team) or eq(side, _ri4._side_only(team))
+    ia = [i for i in (0, 1) if sd(a[3], ta[i])]
+    ib = [i for i in (0, 1) if sd(b[3], tb[i])]
+    if len(ia) == 1 and len(ib) == 1:
+        return pair[ia[0]] == ib[0]
+    return False if (ia or ib) else eq(a[3], b[3])   # a side that names neither team is only matched to its twin
+
+
+def _ledger_day(x):
+    t = iso_t(x)
+    return t.date() if t else None
+
+
+def _unit_ledger_matcher(p, order_rows=None):
+    """fn(leg, key) for review_unit_reservation.set_play_matcher, for ONE play about to be judged.
+
+    The day of an existing leg comes from the registry order row with the same key (its start_utc); a leg older than
+    the registry window falls back to when it was placed. A leg whose day cannot be read at all MATCHES on teams -
+    unknown is counted against the budget, never for it."""
+    import review_integration as ri
+    play_day = _ledger_day((p or {}).get("start_utc"))
+    days = {}
+    for o in order_rows or []:
+        try:
+            k, d = ri.key_from_registry(o.get("key")), _ledger_day(o.get("start_utc"))
+        except Exception:
+            continue
+        if d:
+            days.setdefault(k, set()).add(d)
+
+    def fn(leg, key):
+        if not _ledger_same_play(leg.get("key"), key):
+            return False
+        if play_day is None:
+            return True
+        known = days.get(leg.get("key"))
+        if known:
+            return any(abs((d - play_day).days) <= 1 for d in known)
+        placed = _ledger_day(leg.get("placed_utc"))
+        if placed is None:
+            return True
+        return -3 <= (placed - play_day).days <= 1
+    return fn
+
+
 def _unit_ledger_consume(grant, stake):
     """REVIEW BRANCH ONLY. Consume the reservation immediately before the venue call.
 
@@ -4815,7 +4935,17 @@ def _unit_ledger_guard(r, path, book=None):
     # still in flight, a record that failed, an order placed just before enforcement began. Each
     # wrote a write-ahead intent, and an intent with no ledger entry is exposure not yet counted.
     # If that cannot be established, this order is refused - fail closed.
+    import review_unit_reservation as _resm
+    _resm.set_play_matcher(None)   # never judge this play, or sweep, with the previous play's matcher
     _unit_ledger_sweep(store, _reg, lv.get("client_id"), strict=True)
+    # Nov 23 (Peter): the budget is read across every spelling of this play. The matcher is built from the same
+    # order rows the sweep just read; if they cannot be read the order is refused - a budget judged on the exact
+    # text alone is the defect this closes.
+    import review_intents as _ri3
+    _rows = _ri3.read_rows(_reg)
+    if _rows is None:
+        raise RuntimeError("shared ledger: order rows unreadable - cannot match this play across feeds, refusing")
+    _resm.set_play_matcher(_unit_ledger_matcher(p, _rows))
     try:
         return ri.guard_or_refuse(store, key, f"{path}|{_id}",
                                   lv.get("risk"), lv.get("shown"), lv.get("unit") or LIVE_UNIT,
