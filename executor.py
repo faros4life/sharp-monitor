@@ -233,6 +233,10 @@ def log_report():
         for _b in sorted({k[0] for k in VSTAT}):
             _parts = ", ".join(f"{k[1]} {v}" for k, v in sorted(VSTAT.items()) if k[0] == _b)
             print(f"  {_b:<15} {_parts}")
+    # Nov 23 (Peter, priority 1: "verify alerts are delivered, especially failures requiring STOP"). Successes were
+    # never logged, so a quiet log could not tell "delivered" from "nothing sent". Counts only.
+    print("notifications (counts only): " + ("; ".join(f"{ch} {st} {n}" for (ch, st), n in sorted(NOTIFY.items()))
+                                             if NOTIFY else "none sent this run"))
     print(f"LOG ({len(LOG)} line(s); counts only)")
     for _l in LOG:
         print(f"  {_l}")
@@ -2227,19 +2231,28 @@ def held_tok(key):
     return "xheld" + hashlib.sha1(key.encode()).hexdigest()[:12]
 
 
+NOTIFY = collections.Counter()   # (channel, outcome) -> count for THIS run; printed in the public log, counts only
+
+
 def push(title, body, mirror=True):
     """Phone alert through the same ntfy topic as the sharp alerts (no amounts)."""
     topic = os.environ.get("NTFY_TOPIC", "")
     if not topic:
+        NOTIFY[("ntfy", "NOT CONFIGURED")] += 1
+        LOG.append("NTFY NOT CONFIGURED: no topic - no ntfy alert was sent")
         return False   # no topic configured: nothing was delivered
     try:
         req = urllib.request.Request(f"https://ntfy.sh/{topic}", data=body.encode(), method="POST",
                                      headers={"Title": title.encode("ascii", "ignore").decode(), "Priority": "high",
                                               "Tags": "warning"})
-        urllib.request.urlopen(req, timeout=15).read()
-        ok = True
+        _resp = urllib.request.urlopen(req, timeout=15)
+        _resp.read()
+        ok = 200 <= int(getattr(_resp, "status", 200) or 200) < 300   # ntfy answers 200 with the stored message
+        NOTIFY[("ntfy", "delivered" if ok else "HTTP not ok")] += 1
     except Exception as ex:
         ok = False
+        NOTIFY[("ntfy", "FAILED")] += 1
+        LOG.append(f"NTFY SEND FAILED: {type(ex).__name__}")
         print(f"push failed: {str(ex)[:60]}")
     if mirror:   # Oct 27 (Peter): every ntfy push also lands in Telegram; mirror=False where a tg() line already says it
         tg(f"{title}\n{body}")
@@ -2268,6 +2281,7 @@ def tg(text):
     Still never raises: a notification must not break an order path. The VERDICT is the product."""
     tok, chat = (os.environ.get("TELEGRAM_BOT_TOKEN") or "").strip(), (os.environ.get("TELEGRAM_CHAT_ID") or "").strip()
     if not tok or not chat:
+        NOTIFY[("telegram", "NOT CONFIGURED")] += 1
         LOG.append("TELEGRAM NOT CONFIGURED: no bot token or chat id - no Telegram alert was sent")
         print("telegram NOT CONFIGURED (missing token or chat id)", flush=True)
         return False
@@ -2284,6 +2298,7 @@ def tg(text):
                                          headers={"Content-Type": "application/json"})
             body = urllib.request.urlopen(req, timeout=15).read().decode()
             if bool((json.loads(body) or {}).get("ok")):
+                NOTIFY[("telegram", "delivered")] += 1
                 return True
             # 200 with ok:false - the silent-failure case. Counts only in the public log; the
             # description can name the chat, so it goes no further than a short reason.
@@ -2292,6 +2307,7 @@ def tg(text):
         except Exception as ex:
             LOG.append(f"TELEGRAM SEND FAILED: {str(ex)[:60]}")
             print("telegram send failed", flush=True)
+    NOTIFY[("telegram", "FAILED")] += 1
     return False
 
 
@@ -7668,6 +7684,16 @@ def main():
                 taken_now.add(derive_key(p))
         except Exception as ex:
             results.append({"play": p, "pid": pid(p["play_key"]), "verdict": "SKIP", "reason": f"error: {str(ex)[:100]}"})
+            # Nov 23 (Peter: "failures requiring STOP"). An error here used to be a SKIP row in the dry-run email only -
+            # a shared-ledger refusal, an unreadable exposure store or any crash on a live play reached no phone.
+            # With live on, every such error now goes to Telegram AND ntfy. A notifier can never change the outcome.
+            if px_live.LIVE:
+                try:
+                    tg_push(f"{src_tag(p)}LIVE PLAY ERROR - check, STOP if unsure",
+                            f"{src_tag(p)}{(p.get('bet') or '')[:60]} ({p.get('sport') or ''})\n"
+                            f"{type(ex).__name__}: {str(ex)[:160]}\nThe order state for this play may be incomplete - check the venue.")
+                except Exception as _nx:
+                    LOG.append(f"live play error alert failed: {type(_nx).__name__}")
         results[-1]["decided_utc"] = datetime.now(timezone.utc)
     _phase("evaluate + order work (all lanes)")
     if wake_s is not None:
