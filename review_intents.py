@@ -10,84 +10,66 @@ hole, and a time cutoff does not close them:
   - an order can be placed between the last check and the moment enforcement is switched on.
 
 In every one of those cases one thing has still happened, because the executor refuses to submit
-without it: journal_intent() wrote a write-ahead INTENT to the registry BEFORE the order was sent,
-with the play key, the venue, the lane and the asked stake. So the rule is simply
+without it: journal_intent() stored a PRE-ORDER ROW and read it back before the order was sent.
 
-        every intent is represented in the ledger
+WHERE THAT ROW LIVES - and the mistake the first version of this file made. It read the registry's
+`intents` list. Nothing in the order path writes there. journal_intent() calls
+registry.put_rows([row]), so the pre-order row is a row in `orders`, keyed by the executor's
+CLIENT ID, shaped {key, source, client_id, decided_utc, live_order: {order_id: "intent-<cid>",
+book, asked_stake, client_id, intent: True}}. When the order is confirmed, the confirmed row is
+upserted over it under the same client id, and the nested order id becomes the venue's. When the
+executor proves nothing was sent, it upserts a row with voided: True. The first production dry
+run printed "intents 0" - the reader, not the world - and the tests had passed because the
+fixtures put rows where the code looked rather than where production writes them. The tests now
+obtain their rows from the real journal_intent().
 
-and sweep() enforces it. The executor runs it immediately before it reserves or records anything,
-so by the time an order is judged, every earlier attempt - from any run, in any mode, recorded or
-not, filled or not - is already counted against its play.
+So the rule is: every non-voided order row is represented in the ledger. sweep() enforces it, and
+the executor runs it immediately before it reserves or records anything.
 
-HOW AN INTENT IS "REPRESENTED":
-  1. a ledger leg carries its client id (the reservation or record made for that same attempt);
-  2. it was refused by the ledger and never sent (recorded in the ledger's own refused list);
-  3. a SEEDED leg for the same play, venue and stake absorbs it, one for one - the order existed
-     before the seed and is already counted under its venue id.
-Anything else is ADDED, as an open commitment at its full asked stake.
+HOW A ROW'S ORDER IS "REPRESENTED" - by identity only, never by resemblance:
+  1. a ledger leg has the same venue and the same order id (the seed, or an earlier sweep);
+  2. a ledger leg for the same venue carries the same client id (the reservation or record made
+     for that attempt, or the pre-order row swept before the order was confirmed);
+  3. the ledger refused that client id, so the attempt was never sent;
+  4. the seed excluded it by identity, as a venue-proven zero fill.
+A row the executor VOIDED was never submitted and is skipped. Anything else is ADDED, as an open
+commitment at its full asked stake - including a pending pre-order row whose send is unconfirmed.
 
-VALUATION IS AN UPPER BOUND, because an intent carries no price: the stake is counted as risk
-against the lane unit, which is never less than the to-win measure used for minus money. A lane
-that cannot be read is valued at the SMALLEST unit, the larger fraction. An intent whose play key
-is not an identity cannot be placed in any budget; it is counted and reported, never guessed.
+VALUATION IS AN UPPER BOUND where the price is not yet known: stake at risk over the lane unit,
+never less than the to-win measure. A lane that cannot be read is valued at the SMALLEST unit. A
+row that cannot be keyed or valued is counted and reported, never guessed.
 """
 import review_integration as ri
 import review_unit_reservation as R
 
 REFUSED = "intent_refused"
+EXCLUDED = "seed_excluded_ids"
 SMALLEST_UNIT = 200.0
 
 
-def read_intents(registry_module):
-    """The registry's write-ahead intents, or None if the file cannot be read. Never []."""
+def read_rows(registry_module):
+    """The registry's order rows - where pre-order records are written - or None if the file
+    cannot be read. Never []: "could not read" must not look like "nothing there"."""
     try:
         data, sha = registry_module._fetch()
     except Exception:
         return None
     if data is None:
         return None
-    return list(data.get("intents") or [])
+    return list(data.get("orders") or [])
 
 
-def _lane_unit(row):
-    try:
-        import review_replay as RR
-        lane, unit, _why = RR.lane_unit(row)
-        if unit:
-            return float(unit), True
-        return float(min(RR.LANE_UNIT.values())), False
-    except Exception:
-        return SMALLEST_UNIT, False
+def _book_of(leg):
+    return str(leg.get("actor") or "").rsplit(":", 1)[-1]
 
 
-def parse(intents):
-    """([{cid, key, book, stake, unit, lane_known, when}], unkeyable_count)."""
-    out, bad = [], 0
-    for i in intents or []:
-        lo = (i or {}).get("live_order") or {}
-        cid = str(i.get("client_id") or lo.get("client_id") or "")
-        book = str(lo.get("book") or "").strip().lower()
-        try:
-            stake = float(lo.get("asked_stake"))
-            key = ri.key_from_registry(i.get("key"))
-            if not cid or not book or not (stake > 0):
-                raise ValueError("incomplete intent")
-        except Exception:
-            bad += 1
-            continue
-        unit, known = _lane_unit(i)
-        out.append({"cid": cid, "key": key, "book": book, "stake": round(stake, 2), "unit": unit,
-                    "lane_known": known, "when": str(i.get("decided_utc") or "")})
-    out.sort(key=lambda x: x["when"])
-    return out, bad
-
-
-def sweep(store, intents, exclude_cid=None, write=True, attempts=3):
-    """Add every unrepresented intent to a SEEDED ledger. Returns counts. Idempotent.
+def sweep(store, rows, exclude_cid=None, write=True, attempts=3):
+    """Add every unrepresented order row to a SEEDED ledger. Returns counts. Idempotent.
 
     `exclude_cid` is the attempt being judged right now: its own reservation is about to be made,
     so it is not swept in ahead of itself."""
-    items, bad = parse(intents)
+    import review_replay as RR
+    cand, unreadable, _ = RR.backfill_candidates(rows or [])
     counts = {}
     for _attempt in range(max(1, int(attempts))):
         got = store.read()
@@ -97,48 +79,80 @@ def sweep(store, intents, exclude_cid=None, write=True, attempts=3):
         if state.get(R.SEEDED) is not True:
             raise R.ExposureUnknown("the ledger is not seeded - nothing to sweep into")
         legs = list(state.get("legs") or [])
-        by_cid = {str(l.get("intent_cid")) for l in legs if l.get("intent_cid")}
+        have_ids = {str(l.get("order_id")) for l in legs} | set(state.get(EXCLUDED) or [])
+        have_cids = {(_book_of(l), str(l.get("intent_cid"))) for l in legs if l.get("intent_cid")}
         refused = set(state.get(REFUSED) or [])
-        # seeded / backfilled legs that can each absorb ONE intent for the same play, venue, stake
-        pool = {}
-        for l in legs:
-            if l.get("backfilled") and not l.get("intent_cid"):
-                b = str(l.get("actor") or "").rsplit(":", 1)[-1]
-                k = (l.get("key"), b, round(float(l.get("asked_stake") or 0), 2))
-                pool[k] = pool.get(k, 0) + 1
-        counts = {"intents": len(items), "unkeyable": bad, "represented": 0, "refused_unsent": 0,
-                  "absorbed_by_seed": 0, "added": 0, "added_lane_unknown": 0}
+        counts = {"rows": len(rows or []), "legs": len(cand), "unkeyable": len(unreadable),
+                  "never_submitted": 0, "represented_by_order_id": 0,
+                  "represented_by_client_id": 0, "refused_unsent": 0, "added": 0,
+                  "added_pending": 0, "added_lane_unknown": 0}
         add = []
-        for it in items:
-            if exclude_cid and it["cid"] == str(exclude_cid):
+        for l in cand:
+            book, oid, cid = str(l.get("book") or ""), str(l.get("order_id") or ""), str(l.get("cid") or "")
+            if l.get("voided"):
+                counts["never_submitted"] += 1
                 continue
-            if it["cid"] in by_cid:
-                counts["represented"] += 1
+            if exclude_cid and cid and cid == str(exclude_cid):
                 continue
-            if it["cid"] in refused:
+            ident = f"{book}|{oid}"
+            if ident in have_ids:
+                counts["represented_by_order_id"] += 1
+                continue
+            if cid and (book, cid) in have_cids:
+                counts["represented_by_client_id"] += 1
+                continue
+            if cid and cid in refused:
                 counts["refused_unsent"] += 1
                 continue
-            k = (it["key"], it["book"], it["stake"])
-            if pool.get(k):
-                pool[k] -= 1
-                counts["absorbed_by_seed"] += 1
+            unit, lane_known = l.get("unit"), True
+            if not unit:
+                unit, lane_known = SMALLEST_UNIT, False
+            pending = l.get("american") is None
+            try:
+                leg = {"key": l.get("key"), "leg_id": f"sweep|{ident}", "order_id": ident,
+                       "venue_order_id": oid, "status": "open",
+                       "asked_stake": l.get("asked_stake"),
+                       "american": 100 if pending else l.get("american"), "unit": unit,
+                       "actor": ri.actor_for("sweep", l.get("field") or "order", book),
+                       # an order attempt that already happened: never claimable by a new order
+                       "dispatched": True, "claimed_by": "sweep", "swept": True,
+                       **({"intent_cid": cid} if cid else {})}
+                if not oid or not leg["key"]:
+                    raise ValueError("no identity")
+                R.leg_fraction(leg)
+            except Exception:
+                counts["unkeyable"] += 1
                 continue
-            leg = {"key": it["key"], "leg_id": f"intent|{it['cid']}",
-                   "order_id": f"intent|{it['cid']}", "status": "open",
-                   "asked_stake": it["stake"], "american": 100, "unit": it["unit"],
-                   "actor": ri.actor_for("intent", "sweep", it["book"]),
-                   # an order attempt that already happened: never claimable by a new order
-                   "dispatched": True, "claimed_by": "intent-sweep",
-                   "intent_cid": it["cid"], "swept": True}
-            R.leg_fraction(leg)
             add.append(leg)
+            have_ids.add(ident)
+            if cid:
+                have_cids.add((book, cid))
             counts["added"] += 1
-            counts["added_lane_unknown"] += 0 if it["lane_known"] else 1
+            counts["added_pending"] += 1 if pending else 0
+            counts["added_lane_unknown"] += 0 if lane_known else 1
         if not write or not add:
             return counts
         if store.write(dict(state, legs=legs + add), version):
             return counts
-    raise R.ReservationRefused("intent sweep could not win the write - the store kept moving")
+    raise R.ReservationRefused("sweep could not win the write - the store kept moving")
+
+
+def note_excluded(store, ids, attempts=3):
+    """Record the order ids the SEED left out as venue-proven zero fills, so the sweep - which has
+    no venue evidence of its own - does not add them back at full stake."""
+    ids = [str(i) for i in ids or [] if i]
+    if not ids:
+        return True
+    for _attempt in range(max(1, int(attempts))):
+        got = store.read()
+        if not got or got[0] is None or got[1] is None:
+            return False
+        state, version = got
+        cur = list(state.get(EXCLUDED) or [])
+        new = cur + [i for i in ids if i not in cur]
+        if new == cur or store.write(dict(state, **{EXCLUDED: new}), version):
+            return True
+    return False
 
 
 def mark_refused(store, cid, attempts=3):

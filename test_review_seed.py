@@ -39,17 +39,17 @@ def leg(oid, book="novig", vc="OPEN", ec=None, ask=220.0, am=-110, unit=200.0, k
 
 seed, sm, why = S.build([leg("a"), leg("b", "prophetx", "FILLED", key="nfl|min @ sf|total|under",
                                    unit=300.0, ask=330.0, lane="lane1")], [])
-ok("open and FILLED orders are both seeded", why is None and sm["seeded"] == 2, f"{why} {sm}")
+ok("open and FILLED orders are both seeded", why is None and sm["retained"] == 2, f"{why} {sm}")
 ok("every seeded leg is held at its FULL asked stake as an open commitment",
    all(l["status"] == "open" and l["asked_stake"] in (220.0, 330.0) for l in seed))
 seed, sm, why = S.build([leg("a", vc="TERMINAL ZERO FILL")], [])
-ok("only a venue-PROVEN zero fill is left out", why is None and sm["seeded"] == 0
-   and sm["skipped_proven_zero"] == 1)
+ok("only a venue-PROVEN zero fill is left out", why is None and sm["retained"] == 0
+   and sm["proven_zero"] == 1)
 seed, sm, why = S.build([leg("a", vc="TERMINAL ZERO FILL", ec=RR.NO_RECORD)], [])
-ok("a terminal zero WITHOUT venue proof is seeded in full", sm["seeded"] == 1)
+ok("a terminal zero WITHOUT venue proof is seeded in full", sm["retained"] == 1)
 seed, sm, why = S.build([leg("a", vc="UNKNOWN", ec=RR.NO_RECORD)], [])
 ok("an order whose fill was never read is seeded in full and counted as unproven",
-   why is None and sm["seeded"] == 1 and sm["unproven_seeded_in_full"] == 1)
+   why is None and sm["retained"] == 1 and sm["unproven_retained_in_full"] == 1)
 for label, bad in (("no lane unit", leg("a", unit=None)), ("no price", leg("a", am=None)),
                    ("no stake", leg("a", ask=None)), ("no order id", leg("")),
                    ("no venue", leg("a", book=""))):
@@ -58,13 +58,13 @@ for label, bad in (("no lane unit", leg("a", unit=None)), ("no price", leg("a", 
 seed, sm, why = S.build([leg("a")], [{"why": "no canonical identity"}])
 ok("a row that could not be keyed refuses the whole seed", seed == [] and "could not be keyed" in why)
 seed, sm, why = S.build([leg("same"), dict(leg("same"), field="live_rest")], [])
-ok("one order recorded under two fields is seeded ONCE", sm["seeded"] == 1)
+ok("one order recorded under two fields is seeded ONCE", sm["retained"] == 1)
 seed, sm, why = S.build([leg("a"), leg("b", "prophetx")], [])
 ok("a play already over one unit is reported, and still seeded",
-   sm["plays"] == 1 and sm["plays_at_or_over_one_unit"] == 1 and sm["seeded"] == 2)
+   sm["plays"] == 1 and sm["plays_at_or_over_one_unit"] == 1 and sm["retained"] == 2)
 
 seed, sm, why = S.build([leg("dup-1", "novig", ask=110.0), leg("dup-1", "prophetx", ask=110.0)], [])
-ok("the SAME order id on two venues is two orders, not one", sm["seeded"] == 2, str(sm))
+ok("the SAME order id on two venues is two orders, not one", sm["retained"] == 2, str(sm))
 _st = Store(); R.backfill(_st, seed, "dup test")
 ok("and the ledger charges BOTH: two half units leave no capacity",
    R.available(_st, K) == 0.0, str(R.available(_st, K)))

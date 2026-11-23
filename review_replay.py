@@ -146,7 +146,7 @@ def backfill_candidates(rows):
     the venue decides, in venue_evidence() below.
     """
     legs, unreadable, terminal = [], [], 0
-    for r in rows or []:
+    for _ri, r in enumerate(rows or []):
         key = r.get("key") or r.get("play_key") or ""
         found = legs_from(r)
         # The normal ledger uses lane-stripped, line-blind identity. A source key
@@ -190,6 +190,20 @@ def backfill_candidates(rows):
                          "lane": lane, "unit": unit, "unit_why": unit_why or None,
                          "day": str(r.get("et_day") or r.get("decided_utc") or "")[:10] or None,
                          "decided_utc": str(r.get("decided_utc") or "") or None,
+                         # The executor's own client id for this attempt. The pre-order row and
+                         # the confirmed row share it, which is what lets the sweep recognise an
+                         # order whose id changed from "intent-<cid>" to the venue's id.
+                         # Taken from the ORDER RECORD; the row's own client id is used only for
+                         # live_order, the order the row was written for. A top-up in live_more
+                         # is a different order and must not inherit the row's client id, or two
+                         # real orders would look like one.
+                         "cid": str(o.get("client_id")
+                                    or (r.get("client_id") if field == "live_order" else "")
+                                    or "") or None,
+                         # voided = the executor proved the request never reached a venue
+                         "voided": bool(o.get("voided") or r.get("voided")),
+                         "intent_only": str(o.get("order_id") or "").startswith("intent-"),
+                         "row_index": _ri,
                          "fields": sorted(k for k in o if isinstance(k, str)),
                          "terminal_verified": o.get("terminal_verified")})
     return legs, unreadable, terminal

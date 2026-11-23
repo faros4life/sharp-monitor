@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 """REVIEW ONLY. The ledger is a superset of every order attempt - with no pause and no cutoff.
 
-The two cases Peter's review raised, plus the one behind them:
-  1. an OLDER RUN still in flight submits after recording began, and writes nothing to the ledger;
-  2. a ledger WRITE FAILS and the order goes through, between the last check and activation;
-  3. (the same hole, generally) any order attempt the ledger did not hear about.
-Each still wrote a write-ahead intent. The sweep turns that intent into counted exposure before
-the next order is judged.
+THE ROWS IN THIS TEST COME FROM THE PRODUCTION WRITERS. The first version built its own
+"intent" fixtures and put them in the registry's `intents` list, which is where the sweep looked
+and where nothing in the order path writes; the tests passed and the first production dry run
+read zero rows. Here the pre-order row is written by executor.journal_intent(), the confirmed row
+by executor.journal_order() and the void by executor.void_intent(), all through the real
+registry.put_rows() merge into `orders`. Only the network is stubbed.
+
+Cases: an older run still in flight; a ledger write that fails; an order placed between the last
+check and activation; a resting order (which leaves BOTH a pending and a confirmed record in one
+row); a voided attempt; a refused attempt; top-ups that share a row.
 """
 import copy
 import os
@@ -16,6 +20,8 @@ import executor as ex
 import registry as _registry
 import review_integration as ri
 import review_intents as RI
+import review_replay as RR
+import review_seed as S
 import review_store_registry as _rs
 import review_unit_reservation as R
 
@@ -27,33 +33,34 @@ def ok(label, cond, got=""):
     print(("PASS  " if cond else "FAIL  ") + label + ("" if cond else f"   got: {got}"))
 
 
-PLAY = {"sport": "NBA", "game": "Los Angeles Lakers @ Boston Celtics", "bet": "Under 225.5 (-110)"}
+PLAY = {"sport": "NBA", "game": "Los Angeles Lakers @ Boston Celtics", "bet": "Under 225.5 (-110)",
+        "source": "r1", "start_utc": "2026-11-24T00:00:00Z"}
 DK = ex.derive_key(PLAY)
 KEY = ri.key_from_registry(DK)
 
 
-def intent(cid, stake=220.0, book="prophetx", key=None, source="r1", when="2026-11-23T11:00:00Z"):
-    return {"key": key if key is not None else "r1|" + DK, "source": source, "intent": True,
-            "client_id": cid, "decided_utc": when,
-            "live_order": {"status": "placed", "order_id": "intent-" + cid, "book": book,
-                           "asked_stake": stake, "filled_stake": None, "client_id": cid,
-                           "intent": True}}
-
-
 class Reg:
-    """The registry file: intents and the ledger in one blob, one sha."""
+    """The registry file - order rows and the ledger in ONE blob with one sha, as in production."""
 
-    def __init__(self, seeded=True, intents=None):
-        self.data = {"intents": list(intents or []),
+    def __init__(self, seeded=True):
+        self.data = {"orders": [], "intents": [],
                      "unit_reservations": {"legs": [], **({"seeded": True} if seeded else {})}}
-        self.n, self.fail_puts, self.readable = 1, 0, True
+        self.n, self.fail_ledger, self.readable, self.venue = 1, 0, True, 0
+
+    def put_rows(self, rows):                      # registry.put_rows()'s own merge, verbatim
+        for r in rows:
+            rid = _registry._rid(r)
+            if rid:
+                _registry._upsert(self.data["orders"], dict(r, _rid=rid), key="_rid")
+        self.n += 1
+        return True
 
     def _fetch(self):
         return (copy.deepcopy(self.data), f"s{self.n}") if self.readable else (None, None)
 
     def _put_with_sha(self, merged, sha):
-        if self.fail_puts:
-            self.fail_puts -= 1
+        if self.fail_ledger:
+            self.fail_ledger -= 1
             return False
         if sha != f"s{self.n}":
             return False
@@ -66,167 +73,254 @@ class Reg:
     def legs(self):
         return self.data["unit_reservations"]["legs"]
 
+    def rows(self):
+        return self.data["orders"]
 
-def run(reg, mode, fn):
-    keep = (_registry._fetch, _registry._put_with_sha)
+
+def wire(reg):
+    keep = {k: getattr(_registry, k) for k in ("_fetch", "_put_with_sha", "put_rows", "load",
+                                               "enabled", "claim_submission",
+                                               "release_submission", "invalidate")}
+    keep_ex = {k: getattr(ex, k) for k in ("send", "tg_push", "intent_readable")}
     _registry._fetch, _registry._put_with_sha = reg._fetch, reg._put_with_sha
-    os.environ["EXEC_UNIT_LEDGER"] = mode
-    try:
-        return fn()
-    except Exception as e:
-        return e
-    finally:
-        _registry._fetch, _registry._put_with_sha = keep
+    _registry.put_rows, _registry.load = reg.put_rows, (lambda: reg.data)
+    _registry.enabled = lambda: True
+    _registry.claim_submission = lambda k, c: True
+    _registry.release_submission = lambda *a, **k: True
+    _registry.invalidate = lambda: None
+    ex.send = lambda *a, **k: None
+    ex.tg_push = lambda *a, **k: None
+    ex.intent_readable = lambda cid: False
+
+    def undo():
+        for k, v in keep.items():
+            setattr(_registry, k, v)
+        for k, v in keep_ex.items():
+            setattr(ex, k, v)
         os.environ.pop("EXEC_UNIT_LEDGER", None)
+    return undo
 
 
-def order(cid, bet="Under 225.5 (-110)", risk=220.0, shown=-110, line=225.5, book="prophetx"):
-    return {"live": {"risk": risk, "shown": shown, "unit": 200.0, "book": book, "line": line,
-                     "client_id": cid}, "play": dict(PLAY, bet=bet)}
+def attempt(reg, mode, bet="Under 225.5 (-110)", risk=220.0, shown=-110, line=225.5,
+            book="prophetx", confirm=True, void=False, rest=False):
+    """One order, start to finish, as the executor does it: pre-order row, ledger, venue, journal."""
+    undo = wire(reg)
+    os.environ["EXEC_UNIT_LEDGER"] = mode
+    r = {"live": {"risk": risk, "shown": shown, "unit": 200.0, "book": book, "line": line},
+         "play": dict(PLAY, bet=bet, play_key="r1|" + DK)}
+    try:
+        okk, cid = ex.journal_intent(r, book, risk)          # PRODUCTION pre-order writer
+        assert okk and cid, "journal_intent refused"
+        r["live"]["client_id"] = cid
+        try:
+            ex._unit_ledger_guard(r, "rest_bid" if rest else "live_order", book)
+            out = None
+        except Exception as e:
+            out = e
+        if out is None and void:
+            ex.void_intent(cid, book, "refused before submission", key=r["play"]["play_key"])
+        elif out is None and confirm:
+            reg.venue += 1
+            ex.journal_order(r, {"order_id": f"venue-{reg.venue}", "book": book,
+                                 "asked_stake": risk, "limit": shown, "filled_stake": None},
+                             is_rest=rest, cid=cid)           # PRODUCTION confirmed-row writer
+        return out, cid
+    finally:
+        undo()
 
 
-def place(reg, mode, cid, **kw):
-    """What the executor does for one order: write the intent FIRST, then consult the ledger."""
-    reg.data["intents"].append(intent(cid, stake=kw.get("risk", 220.0), book=kw.get("book", "prophetx")))
-    return run(reg, mode, lambda: ex._unit_ledger_guard(order(cid, **kw), "live_order",
-                                                        kw.get("book", "prophetx")))
-
+# ---------------------------------------------------------------- the production row shapes
+reg = Reg()
+_, cid = attempt(reg, "off", confirm=False)
+row = reg.rows()[0]
+ok("journal_intent writes the pre-order row into `orders`, not `intents`",
+   len(reg.rows()) == 1 and reg.data["intents"] == [])
+ok("keyed by the executor's client id, with an intent-<cid> order id",
+   row.get("client_id") == cid and row["live_order"]["order_id"] == "intent-" + cid
+   and row["live_order"].get("intent") is True, str(row)[:200])
+ok("the old reader's source is empty for this row - which is why it saw nothing",
+   not hasattr(RI, "read_intents") and RI.read_rows(reg) == reg.rows())
+reg = Reg()
+_, cid = attempt(reg, "off")
+ok("journal_order upserts the confirmed row over the pre-order row: one row per attempt",
+   len(reg.rows()) == 1 and reg.rows()[0]["live_order"]["order_id"] == "venue-1"
+   and reg.rows()[0]["live_order"].get("client_id") == cid, str(reg.rows())[:300])
+reg = Reg()
+attempt(reg, "off", rest=True)
+legs, _, _ = RR.backfill_candidates(reg.rows())
+ok("a RESTING order leaves a pending record AND a confirmed record in the same row",
+   sorted((l["field"], l["intent_only"]) for l in legs) == [("live_order", True), ("live_rest", False)],
+   str([(l["field"], l["intent_only"]) for l in legs]))
+seed, sm, why = S.build(legs, [])
+ok("the seed proves them one order BY CLIENT ID and retains it once",
+   why is None and sm["retained"] == 1 and sm["duplicate"] == 1
+   and list(sm["dup_reasons"]) == ["same client id, same row in two fields: pending record "
+                                   "and its confirmed order"], f"{why} {sm}")
+ok("the CONFIRMED record is the one kept, at its real price",
+   seed[0]["venue_order_id"] == "venue-1" and seed[0]["american"] == -110
+   and sm["pending_valued_as_risk"] == 0, str(seed))
+ok("and its accounting closes: retained + zero + never-submitted + duplicate = input",
+   sm["retained"] + sm["proven_zero"] + sm["never_submitted"] + sm["duplicate"] == sm["input"])
 
 # ---------------------------------------------------------------- CASE 1: an older run in flight
 reg = Reg()
-place(reg, "off", "old-run-1")                      # a flag-OFF run places: intent only, no ledger
+attempt(reg, "off")                                  # a flag-OFF run: order rows, no ledger entry
 ok("an order from a flag-off run is in no ledger entry - the hole", reg.legs() == [])
-out = place(reg, "on", "new-1", bet="Under 226.5 (-108)", shown=-108, line=226.5)
+out, _ = attempt(reg, "on", bet="Under 226.5 (-110)", line=226.5)
 ok("CASE 1: the next order on that play - an ADJACENT line - is REFUSED once enforcing",
    isinstance(out, R.ReservationRefused), repr(out))
-ok("because the older run's order was swept in at its full asked stake first",
-   [(l["intent_cid"], l["asked_stake"], l["status"]) for l in reg.legs()]
-   == [("old-run-1", 220.0, "open")], str(reg.legs()))
-ok("with no time cutoff involved: the sweep is by identity, whenever the order was placed",
-   "cutoff" not in open("review_intents.py", encoding="utf-8").read().split('"""', 2)[2].lower())
+ok("because the older run's order was swept in first, under its venue order id, at full stake",
+   [(l["order_id"], l["asked_stake"], l["status"], l.get("swept")) for l in reg.legs()]
+   == [("prophetx|venue-1", 220.0, "open", True)], str(reg.legs()))
 
 reg = Reg()
-place(reg, "record", "rec-1")
-reg.data["intents"].append(intent("zombie-1", book="novig"))    # a zombie run, during recording
-out = place(reg, "on", "new-2", bet="Under 224.5 (-112)", shown=-112, line=224.5)
-ok("CASE 1: an older run that submits DURING recording is counted too",
+attempt(reg, "off", confirm=False, book="novig")     # an older run mid-send: pre-order row only
+out, _ = attempt(reg, "on", bet="Under 226.5 (-110)", line=226.5)
+ok("CASE 1: an in-flight order whose send is NOT YET CONFIRMED is counted at its full stake",
    isinstance(out, R.ReservationRefused)
-   and {l.get("intent_cid") for l in reg.legs()} == {"rec-1", "zombie-1"})
+   and [(l["asked_stake"], l["american"]) for l in reg.legs()] == [(220.0, 100)], str(reg.legs()))
+undo = wire(reg)
+reg.put_rows([{"client_id": reg.rows()[0]["client_id"],
+               "live_order": {"status": "placed", "order_id": "venue-late", "book": "novig",
+                              "asked_stake": 220.0, "limit": -110, "client_id": reg.rows()[0]["client_id"],
+                              "intent": False}}])
+c = RI.sweep(reg.store(), reg.rows())
+undo()
+ok("when its confirmation arrives LATE, the same order is recognised by client id, not re-added",
+   c["represented_by_client_id"] == 1 and c["added"] == 0 and len(reg.legs()) == 1, str(c))
 
 # ---------------------------------------------------------------- CASE 2: a failed ledger write
 reg = Reg()
-reg.fail_puts = 99
-out = place(reg, "record", "lost-1")
-ok("CASE 2: a record-only write that fails does not block the order", out is None)
-ok("and leaves nothing in the ledger - the order went through unrecorded", reg.legs() == [])
-reg.fail_puts = 0
-out = place(reg, "on", "after-1", bet="Under 226.5 (-108)", shown=-108, line=226.5)
-ok("CASE 2: the unrecorded order still counts - the next order on that play is REFUSED",
+reg.fail_ledger = 99
+out, _ = attempt(reg, "record")
+ok("CASE 2: a record-only write that fails does not block the order", out is None, repr(out))
+ok("and the order went through with nothing in the ledger", reg.legs() == [] and len(reg.rows()) == 1)
+reg.fail_ledger = 0
+out, _ = attempt(reg, "on", bet="Under 226.5 (-110)", line=226.5)
+ok("CASE 2: it still counts - the next order on that play is REFUSED",
    isinstance(out, R.ReservationRefused), repr(out))
-ok("it is in the ledger at its full asked stake, whatever its fill turns out to be",
-   any(l.get("intent_cid") == "lost-1" and l["asked_stake"] == 220.0 and l["status"] == "open"
-       for l in reg.legs()))
 
 reg = Reg()
-place(reg, "record", "ok-1", risk=110.0)
-reg.fail_puts = 99
-place(reg, "record", "lost-2", risk=110.0, bet="Under 226.5 (-108)", shown=-108, line=226.5)
-reg.fail_puts = 0
-ok("between the last check and activation: one recorded, one lost",
-   [l.get("intent_cid") for l in reg.legs()] == ["ok-1"])
-out = place(reg, "on", "act-1", risk=110.0, bet="Under 224.5 (-112)", shown=-112, line=224.5)
+attempt(reg, "record", risk=110.0)
+reg.fail_ledger = 99
+attempt(reg, "record", risk=110.0, bet="Under 226.5 (-110)", line=226.5)
+reg.fail_ledger = 0
+ok("between the last check and activation: one recorded, one lost", len(reg.legs()) == 1)
+out, _ = attempt(reg, "on", risk=110.0, bet="Under 224.5 (-110)", line=224.5)
 ok("the FIRST order after activation is judged against both, and refused",
    isinstance(out, R.ReservationRefused), repr(out))
+ok("with each of the two earlier orders in the ledger exactly once",
+   len(reg.legs()) == 2 and abs(sum(R.leg_fraction(l) for l in reg.legs()) - 1.0) < 1e-9,
+   str([(l["order_id"], l["asked_stake"]) for l in reg.legs()]))
 
-# ---------------------------------------------------------------- the sweep itself
+# ---------------------------------------------------------------- exactly once, through confirmation
 reg = Reg()
-place(reg, "on", "a-1", risk=110.0)
-ok("an order's own intent is not swept in ahead of its own reservation",
-   [(l.get("intent_cid"), l.get("swept")) for l in reg.legs()] == [("a-1", None)], str(reg.legs()))
-c = RI.sweep(reg.store(), reg.data["intents"])
-ok("a reserved order is represented by its client id and never added twice",
-   c["represented"] == 1 and c["added"] == 0 and len(reg.legs()) == 1, str(c))
-out = place(reg, "on", "a-2", risk=110.0, bet="Under 226.5 (-110)", shown=-110, line=226.5)
-ok("a second half-unit on the play is granted", not isinstance(out, Exception), repr(out))
-out = place(reg, "on", "a-3", risk=110.0, bet="Under 224.5 (-112)", shown=-112, line=224.5)
-ok("a third is refused", isinstance(out, R.ReservationRefused))
-n_before = len(reg.legs())
-c = RI.sweep(reg.store(), reg.data["intents"])
-ok("a REFUSED attempt is never counted as an order by a later sweep",
-   c["refused_unsent"] == 1 and c["added"] == 0 and len(reg.legs()) == n_before, str(c))
-ok("so the play holds exactly one unit, not one and a half",
-   abs(sum(R.leg_fraction(l) for l in reg.legs()) - 1.0) < 1e-9)
+out, cid = attempt(reg, "on", risk=110.0)
+ok("an enforced order is reserved under its client id", out is None
+   and [l.get("intent_cid") for l in reg.legs()] == [cid])
+undo = wire(reg)
+c = RI.sweep(reg.store(), reg.rows())
+undo()
+ok("its confirmed row is the same order: represented by client id, not added again",
+   c["represented_by_client_id"] == 1 and c["added"] == 0 and len(reg.legs()) == 1, str(c))
+out, _ = attempt(reg, "on", risk=110.0, bet="Under 226.5 (-110)", line=226.5)
+ok("a second half unit on the play is granted", out is None, repr(out))
+out, _ = attempt(reg, "on", risk=110.0, bet="Under 224.5 (-110)", line=224.5, confirm=False)
+ok("a third is refused", isinstance(out, R.ReservationRefused), repr(out))
+undo = wire(reg)
+c = RI.sweep(reg.store(), reg.rows())
+undo()
+ok("a REFUSED attempt's pre-order row is never counted as an order",
+   c["refused_unsent"] == 1 and c["added"] == 0, str(c))
+ok("so the play holds exactly one unit", abs(sum(R.leg_fraction(l) for l in reg.legs()) - 1.0) < 1e-9)
 
-# seeded positions absorb their own intents, one for one
+reg = Reg()
+attempt(reg, "off", void=True)
+legs, _, _ = RR.backfill_candidates(reg.rows())
+ok("void_intent marks the row voided", len(legs) == 1 and legs[0]["voided"] is True, str(legs))
+undo = wire(reg)
+c = RI.sweep(reg.store(), reg.rows())
+undo()
+ok("a VOIDED attempt was never submitted and is not counted", c["never_submitted"] == 1
+   and c["added"] == 0 and reg.legs() == [], str(c))
+seed, sm, why = S.build(legs, [])
+ok("the seed gives it the never_submitted disposition", why is None and sm["never_submitted"] == 1
+   and sm["retained"] == 0)
+
+# top-ups: two real orders in one row must stay two orders
+legs = [{"key": KEY, "field": "live_order", "order_id": "v-1", "book": "prophetx", "cid": "c1",
+         "asked_stake": 110.0, "american": -110, "unit": 200.0, "lane": "r1", "row_index": 0,
+         "evidence_class": RR.PROVEN, "venue_class": "FILLED"},
+        {"key": KEY, "field": "live_more", "order_id": "v-2", "book": "prophetx", "cid": "c1",
+         "asked_stake": 110.0, "american": -110, "unit": 200.0, "lane": "r1", "row_index": 0,
+         "evidence_class": RR.PROVEN, "venue_class": "FILLED"}]
+seed, sm, why = S.build(legs, [])
+ok("two CONFIRMED orders with different venue ids are two orders even with one client id",
+   why is None and sm["retained"] == 2 and sm["duplicate"] == 0, f"{why} {sm}")
+ok("a row's client id is not inherited by its live_more top-ups",
+   [l["cid"] for l in RR.backfill_candidates([{"key": "r1|" + DK, "client_id": "rowcid",
+        "live_order": {"order_id": "a", "book": "novig", "status": "placed"},
+        "live_more": [{"order_id": "b", "book": "novig", "status": "placed"}]}])[0]]
+   == ["rowcid", None])
+ok("the same play, venue and stake alone never makes a duplicate",
+   S.build([dict(legs[0], order_id="x1", cid=None), dict(legs[0], order_id="x2", cid=None)],
+           [])[1]["duplicate"] == 0)
+seed, sm, why = S.build([dict(legs[0]), dict(legs[0], key="nba|other @ game|total|under")], [])
+ok("one venue order id under two different plays is UNRESOLVED and refuses the seed",
+   seed == [] and "two play keys" in str(why), str(why))
+
+# the seed's proven-zero exclusions survive the sweep
 reg = Reg(seeded=False)
-R.backfill(reg.store(), [{"key": KEY, "order_id": "prophetx|v1", "asked_stake": 220.0,
-                          "american": -110, "unit": 200.0,
-                          "actor": ri.actor_for("backfill", "live_order", "prophetx")}], "seed")
-c = RI.sweep(reg.store(), [intent("pre-1"), intent("pre-2")])
-ok("an intent for an order the SEED already holds is absorbed, not double-counted",
-   c["absorbed_by_seed"] == 1, str(c))
-ok("but a second intent with no seeded order behind it IS added",
-   c["added"] == 1 and len(reg.legs()) == 2, str(c))
-c = RI.sweep(reg.store(), [intent("pre-1"), intent("pre-2")])
-ok("the sweep is idempotent", c["added"] == 0 and len(reg.legs()) == 2, str(c))
-
-# valuation is an upper bound; nothing is guessed
-reg = Reg()
-c = RI.sweep(reg.store(), [intent("u-1", stake=110.0, source="muse", key=DK)])
-ok("an intent whose lane cannot be read is valued at the SMALLEST unit and reported",
-   c["added"] == 1 and c["added_lane_unknown"] == 1 and reg.legs()[0]["unit"] == 200.0, str(c))
-ok("an intent is counted as stake at risk, which is never below the to-win measure",
-   abs(R.leg_fraction(reg.legs()[0]) - 110.0 / 200.0) < 1e-9)
-c = RI.sweep(reg.store(), [intent("bad-1", key="not-a-key"), intent("", key=DK),
-                           intent("bad-3", stake=0), intent("bad-4", book="")])
-ok("an intent that is not an identity is counted and reported, never placed in a budget",
-   c["unkeyable"] == 4 and c["added"] == 0, str(c))
-try:
-    R.claim_dispatched(reg.store(), KEY, 50.0, "novig", "new-cid")
-    claimed = True
-except R.ReservationRefused:
-    claimed = False
-ok("a new Novig order cannot claim a swept-in position", claimed is False)
+attempt(reg, "off")
+attempt(reg, "off", bet="Over 225.5 (-110)")
+legs, _, _ = RR.backfill_candidates(reg.rows())
+legs[0].update(evidence_class=RR.PROVEN, venue_class="FILLED")
+legs[1].update(evidence_class=RR.PROVEN, venue_class="TERMINAL ZERO FILL")
+seed, sm, why = S.build(legs, [])
+R.backfill(reg.store(), seed, "seed")
+zero = [f"{l['book']}|{l['order_id']}" for l in legs if l["disposition"] == "proven_zero"]
+RI.note_excluded(reg.store(), zero)
+undo = wire(reg)
+c = RI.sweep(reg.store(), reg.rows())
+undo()
+ok("after the seed, the sweep finds every row represented and adds nothing",
+   c["added"] == 0 and c["represented_by_order_id"] == 2 and len(reg.legs()) == 1, str(c))
+ok("so seed plus sweep account for each existing order exactly once",
+   sm["retained"] + sm["proven_zero"] == 2 == c["legs"])
 
 # fail closed when enforcing, never block when recording
-for label, broke in (("the intents cannot be read", lambda r: setattr(r, "readable", False)),
-                     ("the ledger is not seeded", None)):
-    reg = Reg(seeded=(broke is not None))
-    if broke:
-        reg.data["intents"].append(intent("x"))
-    r1 = order("f-1")
-    keep = (_registry._fetch, _registry._put_with_sha)
-    _registry._fetch, _registry._put_with_sha = reg._fetch, reg._put_with_sha
-    if broke:
-        broke(reg)
+for label, prep in (("the order rows cannot be read", lambda r: setattr(r, "readable", False)),
+                    ("the ledger is not seeded", None)):
+    reg = Reg(seeded=(prep is not None))
+    undo = wire(reg)
+    if prep:
+        prep(reg)
+    r1 = {"live": {"risk": 220.0, "shown": -110, "unit": 200.0, "book": "prophetx",
+                   "line": 225.5, "client_id": "x1"}, "play": dict(PLAY, play_key="r1|" + DK)}
     os.environ["EXEC_UNIT_LEDGER"] = "on"
     try:
         ex._unit_ledger_guard(r1, "live_order", "prophetx")
-        res_on = None
+        on_res = None
     except Exception as e:
-        res_on = e
+        on_res = e
     os.environ["EXEC_UNIT_LEDGER"] = "record"
     try:
-        res_rec = ex._unit_ledger_guard(r1, "live_order", "prophetx")
+        ex._unit_ledger_guard(r1, "live_order", "prophetx")
         rec_raised = False
     except Exception:
         rec_raised = True
-    _registry._fetch, _registry._put_with_sha = keep
-    os.environ.pop("EXEC_UNIT_LEDGER", None)
-    ok(f"ENFORCING: when {label}, the order is REFUSED", isinstance(res_on, Exception), repr(res_on))
+    undo()
+    ok(f"ENFORCING: when {label}, the order is REFUSED", isinstance(on_res, Exception), repr(on_res))
     ok(f"RECORDING: when {label}, the order is never blocked", rec_raised is False)
 
 src = open("executor.py", encoding="utf-8").read()
 g = src.split("def _unit_ledger_guard(")[1].split("\ndef ")[0]
 ok("when enforcing, the sweep runs BEFORE the reservation is attempted",
    g.index("_unit_ledger_sweep(store, _reg") < g.index("ri.guard_or_refuse("))
-ok("and the reservation carries the intent's client id",
-   'intent_cid=lv.get("client_id")' in g)
-ok("the sweep's log lines are counts only", "unit ledger: intent sweep added" in src
-   and "INTENT SWEEP FAILED" in src)
-ok("the guard is still reached only after the write-ahead intent",
-   src.index('i_ok, cid = journal_intent(r, lv.get("book", "prophetx")')
-   < src.index('_unit_ledger_guard(r, "live_order", "prophetx")'))
+ok("the executor's sweep reads the order rows", "_ri2.read_rows(registry_module)" in src
+   and "read_intents" not in src)
+ok("no time cutoff is used", "cutoff" not in open("review_intents.py", encoding="utf-8").read()
+   .split('"""', 2)[2].lower())
 
 print(f"\n{len(P)} passed, {len(F)} failed")
 raise SystemExit(1 if F else 0)
