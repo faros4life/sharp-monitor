@@ -40,6 +40,14 @@ on:
         description: "Term identifying the incident to replay (e.g. the MIN @ SF game string)"
         required: false
         default: ""
+      date:
+        description: "Incident date, YYYY-MM-DD (counts that day's registry legs and venue records)"
+        required: false
+        default: ""
+      aliases:
+        description: "Alias groups, one per team: Minnesota|Vikings|MIN;San Francisco|49ers|SF"
+        required: false
+        default: ""
 
 permissions:
   contents: read
@@ -55,7 +63,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: de4defdc5221742a96f8c95d621fdc5f5870d898                      # PINNED COMMIT, not a branch
+          ref: 069b09a7d4ac2400f691df0f5de45ac81cb3924e                      # PINNED COMMIT, not a branch
           persist-credentials: false
       - uses: actions/setup-python@v5
         with:
@@ -74,4 +82,6 @@ jobs:
           PROPHETX_TRADE_ACCESS_KEY: ${{ secrets.PROPHETX_TRADE_ACCESS_KEY }}
           PROPHETX_TRADE_SECRET_KEY: ${{ secrets.PROPHETX_TRADE_SECRET_KEY }}
           REPLAY_MATCH: ${{ inputs.match }}
+          REPLAY_DATE: ${{ inputs.date }}
+          REPLAY_ALIASES: ${{ inputs.aliases }}
         run: python -u review_replay.py
