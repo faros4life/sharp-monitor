@@ -7,6 +7,11 @@ on:
     - cron: "11,41 * * * *"
   workflow_dispatch:
 
+    inputs:
+      backfill_days:
+        description: "Deliberate one-off backfill: tag alerts this many days back. Empty = today only. It bills (/fixtures), so set it only when you mean to."
+        required: false
+        default: ""
 permissions:
   contents: write
 
@@ -28,6 +33,8 @@ jobs:
         env:
           ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
           ODDSPAPI_FREE_KEY: ${{ secrets.ODDSPAPI_FREE_KEY }}   # Nov 3: history goes through the free key (paid key: 403 on pinnacle)
+        env:
+          X2_BACKFILL_DAYS: ${{ inputs.backfill_days }}
         run: python -u x2_tag.py
       - name: Commit limits and fixture cache
         run: |
