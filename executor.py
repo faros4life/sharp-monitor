@@ -4328,6 +4328,29 @@ def _unit_ledger_consume(grant, stake):
     return ri.authorized_stake(_rs.RegistryStore(_reg), grant, stake)
 
 
+def _unit_ledger_sweep(store, registry_module, own_cid, strict):
+    """Bring the ledger up to date with every write-ahead intent. See review_intents.
+
+    strict=True (enforcing): any failure raises, so the order being judged is refused.
+    strict=False (record-only): never raises; a failure prints a count-safe line."""
+    try:
+        import review_intents as _ri2
+        intents = _ri2.read_intents(registry_module)
+        if intents is None:
+            raise RuntimeError("write-ahead intents unreadable")
+        c = _ri2.sweep(store, intents, exclude_cid=own_cid)
+        if c.get("added") or c.get("unkeyable"):
+            print(f"unit ledger: intent sweep added {c.get('added', 0)}, "
+                  f"unkeyable {c.get('unkeyable', 0)}", flush=True)
+        return c
+    except Exception as ex:
+        if strict:
+            raise RuntimeError(f"shared ledger: intent sweep failed ({type(ex).__name__}) - "
+                               f"refusing to submit against an incomplete ledger") from None
+        print(f"unit ledger: INTENT SWEEP FAILED ({type(ex).__name__})", flush=True)
+        return None
+
+
 def _unit_ledger_record(r, path, book=None):
     """Record-only stage. Writes the order to the ledger; NEVER raises and never blocks an order.
 
@@ -4340,12 +4363,14 @@ def _unit_ledger_record(r, path, book=None):
         import review_store_registry as _rs
         import review_unit_reservation as _res
         lv, p = r.get("live") or {}, r.get("play") or {}
+        _unit_ledger_sweep(_rs.RegistryStore(_reg), _reg, lv.get("client_id"), strict=False)
         _id = derive_key(p) or p.get("play_key") or lv.get("cid")
         key = ri.key_from_registry(derive_key(p) or p.get("play_key"))
         _res.record_unconditional(
             _rs.RegistryStore(_reg), key, f"{path}|{_id}|{lv.get('line')}|{lv.get('shown')}",
             lv.get("risk"), lv.get("shown"), lv.get("unit") or LIVE_UNIT,
-            ri.actor_for("sharp-monitor", path, book or lv.get("book")))
+            ri.actor_for("sharp-monitor", path, book or lv.get("book")),
+            intent_cid=lv.get("client_id"))
         print("unit ledger: order recorded (record-only stage)", flush=True)
     except Exception as ex:
         print(f"unit ledger: RECORD FAILED ({type(ex).__name__}) - order proceeds unrecorded",
@@ -4401,9 +4426,25 @@ def _unit_ledger_guard(r, path, book=None):
     if not _id:
         raise RuntimeError("shared ledger: no order identity for this play - refusing to submit")
     _id = f"{_id}|{lv.get('line')}|{lv.get('shown')}"
-    return ri.guard_or_refuse(store, key, f"{path}|{_id}",
-                              lv.get("risk"), lv.get("shown"), lv.get("unit") or LIVE_UNIT,
-                              actor=ri.actor_for("sharp-monitor", path, book or lv.get("book")))
+    # Every earlier order ATTEMPT is swept into the ledger before this one is judged: an older run
+    # still in flight, a record that failed, an order placed just before enforcement began. Each
+    # wrote a write-ahead intent, and an intent with no ledger entry is exposure not yet counted.
+    # If that cannot be established, this order is refused - fail closed.
+    _unit_ledger_sweep(store, _reg, lv.get("client_id"), strict=True)
+    try:
+        return ri.guard_or_refuse(store, key, f"{path}|{_id}",
+                                  lv.get("risk"), lv.get("shown"), lv.get("unit") or LIVE_UNIT,
+                                  actor=ri.actor_for("sharp-monitor", path, book or lv.get("book")),
+                                  intent_cid=lv.get("client_id"))
+    except Exception:
+        # This attempt will not be sent. Say so in the ledger, or its intent would later be swept
+        # in as if it were an order.
+        try:
+            import review_intents as _ri2
+            _ri2.mark_refused(store, lv.get("client_id"))
+        except Exception:
+            pass
+        raise
 
 
 def live_order(r):

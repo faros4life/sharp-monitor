@@ -113,67 +113,11 @@ ok("its confirm input defaults to empty, so a bare dispatch is a dry run",
 ok("and it neither reads nor sets the guard flag",
    "EXEC_UNIT_LEDGER" not in d["jobs"]["run"]["steps"][-1]["env"])
 
-# ------------------------------------------------- catch-up: the seed-to-recording gap
-CUT = "2026-11-23T11:00:00Z"
-
-
-def dated(oid, when, **kw):
-    l = leg(oid, **kw)
-    l["decided_utc"] = when
-    return l
-
-
-st = Store()
-seed0, _, _ = S.build([dated("old-1", "2026-11-22T20:00:00Z")], [])
-R.backfill(st, seed0, "seed")
-inv, _, _ = S.build([dated("old-1", "2026-11-22T20:00:00Z"),
-                     dated("gap-1", "2026-11-23T10:40:00Z", book="prophetx", ask=110.0,
-                           key="nba|x @ y|side|x"),
-                     dated("gap-2", "2026-11-23T10:55:00Z", vc="UNKNOWN", ec=RR.NO_RECORD,
-                           key="nba|x @ y|side|x", ask=110.0),
-                     dated("late-1", "2026-11-23T11:05:00Z", key="nba|p @ q|total|over")], [])
-c = S.catch_up(st, inv, CUT, write=False)
-ok("catch-up dry run counts the gap and writes nothing",
-   c["added"] == 2 and c["already_in_ledger"] == 1 and c["after_cutoff_skipped"] == 1
-   and len(st.state["legs"]) == 1, str(c))
-ok("before the catch-up, a play with a gap order still reads a full unit free - the hole",
-   R.available(st, "nba|x @ y|side|x") == 1.0)
-c = S.catch_up(st, inv, CUT, write=True)
-ok("the catch-up writes exactly the gap orders", c["added"] == 2 and len(st.state["legs"]) == 3)
-ok("an order placed during the transition now counts toward the one-unit limit",
-   R.available(st, "nba|x @ y|side|x") == 0.0, str(R.available(st, "nba|x @ y|side|x")))
-ok("including one whose fill status has not come back - held at its full asked stake",
-   any(l["order_id"] == "novig|gap-2" and l["status"] == "open" and l["asked_stake"] == 110.0
-       for l in st.state["legs"]))
-ok("an order placed AFTER recording began is left to the executor's own record",
-   R.available(st, "nba|p @ q|total|over") == 1.0)
-c = S.catch_up(st, inv, CUT, write=True)
-ok("running the catch-up again adds nothing", c["added"] == 0 and len(st.state["legs"]) == 3)
-und, _, _ = S.build([leg("undated-1", key="nba|u @ v|total|over")], [])
-c = S.catch_up(st, und, CUT, write=True)
-ok("an order with NO timestamp is added (over-count is the safe side) and reported",
-   c["added"] == 1 and c["added_undated"] == 1)
-try:
-    S.catch_up(Store(), inv, CUT, write=True)
-    unseeded = True
-except Exception:
-    unseeded = False
-ok("catch-up refuses an unseeded ledger", unseeded is False)
-for bad in ("", "yesterday", None):
-    try:
-        S.catch_up(st, inv, bad, write=True)
-        r = True
-    except Exception:
-        r = False
-    ok(f"catch-up refuses without a readable cutoff ({bad!r})", r is False)
-try:
-    R.claim_dispatched(st, "nba|x @ y|side|x", 50.0, "novig", "new-cid")
-    c2 = True
-except R.ReservationRefused:
-    c2 = False
-ok("a new Novig order cannot claim a caught-up position", c2 is False)
-ok("the catch-up write is behind its own exact word", 'CATCHUP = "CATCHUP"' in src
-   and "write=(confirm == CATCHUP)" in src)
+ok("the sweep write is behind its own exact word", 'SWEEP = "SWEEP"' in src
+   and "write=(confirm == SWEEP)" in src)
+ok("the seed write is read back before it is called written",
+   src.index("R.backfill(") < src.index("read-back") and "CONFIRMED" in src)
+ok("no time cutoff is used anywhere in the cutover", "cutoff" not in src.lower())
 
 print(f"\n{len(P)} passed, {len(F)} failed")
 raise SystemExit(1 if F else 0)

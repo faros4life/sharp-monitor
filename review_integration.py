@@ -99,7 +99,7 @@ def actor_for(system, path, book):
     return f"{system}:{path}:{b}"
 
 
-def guard_or_refuse(store, key, leg_id, stake, american, unit, actor):
+def guard_or_refuse(store, key, leg_id, stake, american, unit, actor, intent_cid=None):
     """Reserve capacity, or raise. Returns the Grant the caller must pass to authorize().
 
     Returns None ONLY when the ledger is switched off, which means "the old behaviour applies".
@@ -107,7 +107,7 @@ def guard_or_refuse(store, key, leg_id, stake, american, unit, actor):
     ways out of this function are a Grant or an exception."""
     if not enabled():
         return None
-    return reserve(store, key, leg_id, stake, american, unit, actor)
+    return reserve(store, key, leg_id, stake, american, unit, actor, intent_cid=intent_cid)
 
 
 def authorized_stake(store, grant, stake):

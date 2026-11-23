@@ -24,67 +24,21 @@ import sys
 import review_replay as RR
 
 CONFIRM = "SEED"
-CATCHUP = "CATCHUP"
+SWEEP = "SWEEP"
 
 
-def _when(text):
-    from datetime import datetime, timezone
-    try:
-        t = datetime.fromisoformat(str(text).strip().replace("Z", "+00:00"))
-        return t if t.tzinfo else t.replace(tzinfo=timezone.utc)
-    except Exception:
-        return None
+class _Mem:
+    """An in-memory ledger, for showing what a sweep WOULD add without writing anything."""
 
+    def __init__(self, state):
+        self.state = state
 
-def catch_up(store, legs, cutoff, write=False, attempts=3):
-    """Add to a SEEDED ledger the orders placed after the seed and before recording began.
+    def read(self):
+        return ({**self.state, "legs": [dict(l) for l in self.state.get("legs") or []]}, "mem")
 
-    The cutover has three stages - seed, record-only, enforce - and this closes the one gap the
-    first two leave: an order placed after the seed read the inventory and before the executor
-    started writing its own orders to the ledger. Such an order is in the registry and at the
-    venue but in no ledger. It is added here at its FULL ASKED stake, as an open commitment,
-    whatever its fill status is or later turns out to be.
-
-    `cutoff` is when record-only began (UTC). Orders at or after it are NOT added: the executor
-    recorded those itself, under its own leg id, and adding them again would count them twice. An
-    order with no timestamp cannot be placed on either side of the cutoff, so it is added - the
-    direction that can only over-count - and reported separately.
-
-    Idempotent: an order already in the ledger is skipped, so this can be run again safely."""
-    import review_unit_reservation as R
-    cut = _when(cutoff)
-    if cut is None:
-        raise ValueError("catch-up needs the UTC time record-only began (e.g. 2026-11-23T11:00:00Z)")
-    out = {}
-    for _attempt in range(max(1, int(attempts))):
-        got = store.read()
-        if not got or got[0] is None or got[1] is None:
-            raise R.ExposureUnknown("reservation store unreadable - fail closed")
-        state, version = got
-        if state.get(R.SEEDED) is not True:
-            raise R.ReservationRefused("the ledger is not seeded - seed first, then catch up")
-        have = {str(l.get("order_id")) for l in state.get("legs") or []}
-        out = {"inventory": len(legs), "already_in_ledger": 0, "after_cutoff_skipped": 0,
-               "added": 0, "added_undated": 0}
-        add = []
-        for leg in legs:
-            if str(leg.get("order_id")) in have:
-                out["already_in_ledger"] += 1
-                continue
-            t = _when(leg.get("placed_utc")) if leg.get("placed_utc") else None
-            if t is not None and t >= cut:
-                out["after_cutoff_skipped"] += 1
-                continue
-            new = dict(leg, backfilled=True, caught_up=True)
-            R.leg_fraction(new)
-            add.append(new)
-            out["added"] += 1
-            out["added_undated"] += 1 if t is None else 0
-        if not write or not add:
-            return out
-        if store.write(dict(state, legs=list(state.get("legs") or []) + add), version):
-            return out
-    raise R.ReservationRefused("catch-up could not win the write - the store kept moving")
+    def write(self, state, version):
+        self.state = dict(state)
+        return True
 
 
 def build(legs, unreadable):
@@ -160,21 +114,41 @@ def main():
     import registry
     import review_store_registry as rs
     import review_unit_reservation as R
+    import review_intents as RI
     confirm = (os.environ.get("SEED_CONFIRM") or "").strip()
-    cutoff = (os.environ.get("SEED_CUTOFF") or "").strip()
-    if cutoff:
-        # CATCH-UP path: the ledger is already seeded; add what was placed before recording began.
+    store = rs.RegistryStore(registry)
+    intents = RI.read_intents(registry)
+    if intents is None:
+        print("SEED: write-ahead intents unreadable - nothing written", flush=True)
+        return 1
+    got = store.read()
+    if not got or got[0] is None:
+        print("SEED: ledger unreadable - nothing written", flush=True)
+        return 1
+    already = got[0].get(R.SEEDED) is True
+    print(f"SEED: ledger currently {'SEEDED' if already else 'not seeded'} | "
+          f"legs in ledger {len(got[0].get('legs') or [])}", flush=True)
+
+    def _show(c, label):
+        print(f"SWEEP ({label}): " + " | ".join(f"{k} {v}" for k, v in c.items()), flush=True)
+
+    if already:
+        # The seed is a one-time act. On a seeded ledger the only thing left to do is the sweep.
         try:
-            c = catch_up(rs.RegistryStore(registry), seed, cutoff, write=(confirm == CATCHUP))
+            _show(RI.sweep(store, intents, write=(confirm == SWEEP)),
+                  "WRITTEN" if confirm == SWEEP else "dry run - confirm=SWEEP to write")
         except Exception as ex:
-            print(f"CATCHUP: REFUSED - {type(ex).__name__}: {str(ex)[:120]}. Nothing written.",
-                  flush=True)
+            print(f"SWEEP: REFUSED - {type(ex).__name__}: {str(ex)[:120]}", flush=True)
             return 1
-        print("CATCHUP: " + " | ".join(f"{k} {v}" for k, v in c.items()), flush=True)
-        print("CATCHUP: WRITTEN" if confirm == CATCHUP else
-              "CATCHUP: DRY RUN - nothing written. Dispatch with confirm=CATCHUP to write.",
-              flush=True)
         return 0
+    # What the sweep would add on top of this seed - shown BEFORE anything is written.
+    try:
+        sim = [dict(l, backfilled=True) for l in seed]
+        _show(RI.sweep(_Mem({"legs": sim, R.SEEDED: True}), intents, write=True),
+              "what the seed's sweep would add - nothing written")
+    except Exception as ex:
+        print(f"SWEEP: preview failed - {type(ex).__name__}. Nothing written.", flush=True)
+        return 1
     if confirm != CONFIRM:
         print("SEED: DRY RUN - nothing written. Dispatch with confirm=SEED to write.", flush=True)
         return 0
@@ -186,6 +160,20 @@ def main():
               flush=True)
         return 1
     print(f"SEED: WRITTEN - {n} leg(s). The ledger is seeded; the flag is still off.", flush=True)
+    back = store.read()
+    ok = bool(back and back[0] and back[0].get(R.SEEDED) is True
+              and len(back[0].get("legs") or []) >= n)
+    print(f"SEED: read-back {'CONFIRMED' if ok else 'FAILED'} - "
+          f"{len((back[0] or {}).get('legs') or []) if back and back[0] else 0} leg(s) in the ledger",
+          flush=True)
+    if not ok:
+        return 1
+    try:
+        _show(RI.sweep(store, intents, write=True), "WRITTEN with the seed")
+    except Exception as ex:
+        print(f"SWEEP: FAILED after the seed - {type(ex).__name__}. Re-run with confirm=SWEEP.",
+              flush=True)
+        return 1
     return 0
 
 

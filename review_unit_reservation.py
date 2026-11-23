@@ -242,7 +242,7 @@ def _same_request(leg, stake, american, unit, actor):
         return False
 
 
-def reserve(store, key, leg_id, stake, american, unit, actor, attempts=3):
+def reserve(store, key, leg_id, stake, american, unit, actor, attempts=3, intent_cid=None):
     """Atomically reserve capacity for ONE leg, BEFORE submission. Returns a Grant or raises.
 
     The compare-and-swap is the point: between reading and writing, another runner may have
@@ -276,7 +276,10 @@ def reserve(store, key, leg_id, stake, american, unit, actor, attempts=3):
         new = dict(state)
         new["legs"] = list(state.get("legs") or []) + [{
             "key": key, "leg_id": str(leg_id), "status": "open", "asked_stake": round(float(stake), 2),
-            "american": american, "unit": u, "order_id": str(leg_id), "actor": actor}]
+            "american": american, "unit": u, "order_id": str(leg_id), "actor": actor,
+            # The write-ahead intent this reservation belongs to. It is how the intent sweep
+            # knows an order attempt is already in the ledger and must not be added again.
+            **({"intent_cid": str(intent_cid)} if intent_cid else {})}]
         if store.write(new, version):
             return Grant(key, leg_id, want, round(float(stake), 2), american, u, actor, version)
     raise ReservationRefused("could not win the reservation write - another runner holds it")
@@ -409,7 +412,8 @@ def _claim_once(store, got, key, s, b, who):
     return str(legs[pick].get("leg_id"))
 
 
-def record_unconditional(store, key, leg_id, stake, american, unit, actor, attempts=3):
+def record_unconditional(store, key, leg_id, stake, american, unit, actor, attempts=3,
+                         intent_cid=None):
     """RECORD-ONLY stage: write an order into the ledger WITHOUT judging it. Never refuses on budget.
 
     Why this exists. Enforcement cannot start from a ledger with a hole in it, and there is always
@@ -431,6 +435,8 @@ def record_unconditional(store, key, leg_id, stake, american, unit, actor, attem
     leg = {"key": key, "leg_id": str(leg_id), "order_id": str(leg_id), "status": "open",
            "asked_stake": round(s, 2), "american": american, "unit": unit, "actor": actor,
            "dispatched": True, "recorded_only": True}
+    if intent_cid:
+        leg["intent_cid"] = str(intent_cid)
     leg_fraction(leg)                            # same validation as any reservation
     for _attempt in range(max(1, int(attempts))):
         got = store.read()
