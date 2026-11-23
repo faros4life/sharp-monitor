@@ -150,6 +150,9 @@ jobs:
           # when this repo VARIABLE is "on" (and EXEC_LIVE is on). Own $200 unit; own daily risk limit and play cap below.
           EXEC_R1_LIVE: ${{ vars.EXEC_R1_LIVE || 'off' }}
           EXEC_R1_DAILY_RISK: ${{ vars.EXEC_R1_DAILY_RISK || '2000' }}
+          # Nov 23 (Peter): DOGS pilot lane (liquidity underdogs). Places money only when this repo VARIABLE is "on"
+          # (and EXEC_LIVE is on). Own $100 unit, own cap and daily risk limit. Ships OFF.
+          EXEC_DOGS_LIVE: ${{ vars.EXEC_DOGS_LIVE || 'off' }}
           EXEC_R1_MAX_PLAYS: ${{ vars.EXEC_R1_MAX_PLAYS || '10' }}
           # Nov 11 (Peter: "Make it 2000", "And global 3000"). Neither of these was passed here before,
           # so both ran on their code default and there was no repo variable to flip. Now both are

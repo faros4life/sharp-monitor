@@ -1397,7 +1397,139 @@ def ncs_plays(now):
     return out
 
 
-LANE_PREFIXES = ("rule|", "board|", "r1|", "lane2|", "ncs|")   # every lane that stamps its own play_key
+# ---------------------------------------------------------------- DOGS lane: liquidity underdogs (Peter, 23 Nov)
+# Peter, Nov 23 09:08 ET: "ok lets do it lets get it done fast" - ruling 3 of the Nov 23 review.
+#
+# THE TRIGGER, exactly as reproduced independently by Muse (n128, 76-52, +39.62u, +0.310/play, 95% [+0.117, +0.502],
+# liquidity/alerts.json, 23 Oct - 22 Nov, CLV +2.0c):
+#   * a LIQ-MAIN print on a bettable venue (Polymarket GLOBAL excluded - not bettable from the US), not an artifact
+#   * the FIRST print for that game + market + side (a later print of the same play never qualifies)
+#   * priced as an underdog: price_american >= +100
+#   * $25,000 <= new_money < $50,000
+#   * sharp_agree AND sharp_oppose both empty
+#   * market spread or moneyline (totals excluded)
+# Honest limits, kept with the code: the slice was found in a search over many slices (best false-discovery q 0.145);
+# the moneyline leg alone has an interval that crosses zero ([-0.023, +0.594], n58) - the spreads leg (n70, [+0.086,
+# +0.573]) and the combined trigger carry the proof. Spreads and moneylines are REPORTED SEPARATELY (the ledger's
+# alert_line is null on a moneyline) and both must be judged before any scaling.
+# KILL BAR (Peter): -0.10u/play or worse at 30 LIVE FILLS, judged on verified fill prices - not the alert-price record.
+#
+# Execution is the path every other lane uses: the alert's own line is the floor, the alert price or better (the
+# standing approved tolerance, nothing new), trigger venue first then Novig. Own switch, unit, cap and daily limit, so
+# it can never consume another lane's budget. Ships OFF: with EXEC_DOGS_LIVE unset this selects and logs WOULD PLACE
+# and places nothing.
+DOGS_LIVE = (os.environ.get("EXEC_DOGS_LIVE") or "off").strip().lower() == "on"   # money switch (repo variable; Peter flips it)
+DOGS_UNIT = 100.0           # Peter, 23 Nov: $100 pilot unit. A dog is plus money, so this is $100 RISKED per play.
+DOGS_DAILY_RISK = float(os.environ.get("EXEC_DOGS_DAILY_RISK", "") or "800")
+DOGS_MAX_PLAYS = int(os.environ.get("EXEC_DOGS_MAX_PLAYS", "") or "8")       # the record ran ~4 qualifying plays a day
+DOGS_MAX_AGE_MIN = int(os.environ.get("EXEC_DOGS_MAX_AGE_MIN", "") or "30")  # act on a FRESH print only: no backlog fires
+DOGS_MIN_MONEY, DOGS_MAX_MONEY = 25000.0, 50000.0
+DOGS_FEED = "liquidity/alerts.json"
+DOGS_NOT_BETTABLE = ("polymarket", "polymarket.global", "polymarket_global")
+DOGS = {"risk": 0.0, "keys": set(), "known": False}
+
+
+def dogs_teams(x):
+    """The two team names from the GAME STRING (never the row's `teams` field - see ncs_teams for why). The three
+    venues write ' vs ' (Kalshi), ' @ ' (Novig) and ' at ' (ProphetX); ' vs ' is tried first so a name that itself
+    contains ' at ' ('University at Albany vs Holy Cross') is not split inside the name."""
+    g = str(x.get("game") or "")
+    g = g.rsplit(":", 1)[0] if ":" in g else g
+    for sep in (" vs ", " @ ", " at "):
+        parts = [t.strip() for t in g.split(sep)]
+        if len(parts) == 2 and all(parts):
+            return parts
+    return []
+
+
+def dogs_bet(x):
+    """The bet string for one qualifying row, or None when it cannot be read safely (counted, never guessed).
+    `line` is the BETTOR'S signed handicap on all three venues (Kalshi 'NOT Air Force wins by over 5.5' -> Wyoming
+    line +5.5; Novig 'LAR -3.5' -> -3.5; ProphetX 'Patriots -7' -> -7.0), so a spread is f"{side} {line:+g}".
+    The side must be exactly one of the two teams named in the game string."""
+    sd, ln, am, mk = x.get("side"), x.get("line"), x.get("price_american"), x.get("market")
+    if not sd or am is None or str(sd) not in dogs_teams(x):
+        return None
+    try:
+        if mk == "spread":
+            return None if ln is None else f"{sd} {float(ln):+g} ({int(am):+d})"
+        if mk == "moneyline":
+            return f"{sd} ML ({int(am):+d})"
+    except (TypeError, ValueError):
+        return None
+    return None
+
+
+def dogs_qualifies(x):
+    """The trigger's row conditions (everything except first-print and timing). Pure."""
+    try:
+        am, nm = x.get("price_american"), float(x.get("new_money") or 0)
+    except (TypeError, ValueError):
+        return False
+    return (x.get("market") in ("spread", "moneyline") and am is not None and am >= 100
+            and DOGS_MIN_MONEY <= nm < DOGS_MAX_MONEY
+            and not x.get("sharp_agree") and not x.get("sharp_oppose"))
+
+
+def dogs_select(rows, now):
+    """(plays, skipped). rows = every LIQ-MAIN alert dict. First print per game+market+side over ALL bettable
+    non-artifact rows decides; only that print can qualify."""
+    elig = [x for x in rows if isinstance(x, dict) and not x.get("artifact") and not x.get("close_suspect")
+            and str(x.get("book") or "").strip().lower() not in DOGS_NOT_BETTABLE and iso_t(x.get("alerted_utc"))]
+    elig.sort(key=lambda x: iso_t(x.get("alerted_utc")))
+    first = {}
+    for x in elig:
+        first.setdefault((str(x.get("game")).lower(), x.get("market"), str(x.get("side")).lower()), x)
+    out, seen, skipped = [], set(), 0
+    for x in first.values():
+        if not dogs_qualifies(x):
+            continue
+        at, st = iso_t(x.get("alerted_utc")), iso_t(x.get("start_utc"))
+        if not st or st <= now or at > now or now - at > timedelta(minutes=DOGS_MAX_AGE_MIN):
+            continue
+        bet = dogs_bet(x)
+        if not bet:
+            skipped += 1
+            continue
+        p = {"sport": x.get("league") or "", "game": x.get("game") or "", "bet": bet, "start_utc": x.get("start_utc"),
+             "late": False, "source": "dogs", "alert_utc": x.get("alerted_utc"),
+             "rules": {"verdict": "AGREE", "gate": None,
+                       "reason": "DOGS (liquidity dog +100, $25-50k print, no sharp tag, spread/ML)"},
+             "dogs_entry": {"alert_utc": x.get("alerted_utc"), "book_key": x.get("book"),
+                            "price_after_fee": x.get("price_american"), "alert_price_raw": x.get("price_american"),
+                            "point": x.get("line") if x.get("market") == "spread" else None,
+                            "sport": x.get("league"), "bet": None, "dogs_market": x.get("market")}}
+        k = derive_key(p)
+        if not k:
+            skipped += 1
+            continue
+        if k in seen:
+            continue
+        seen.add(k)
+        out.append(dict(p, play_key="dogs|" + k))
+        if len(out) >= DOGS_MAX_PLAYS:
+            break
+    return out, skipped
+
+
+def dogs_plays(now):
+    """Liquidity underdogs (see the block above). Same downstream path as every other play. Places money only when
+    EXEC_DOGS_LIVE is "on" AND live is on; otherwise a dry-run WOULD PLACE."""
+    try:   # LIQ-MAIN only: the record was measured on this feed. board_build.load() also reads LIQ-EXTRA (NCAAB,
+        # tennis, MLB), which the trigger was never tested on, so it is not used here.
+        with open(DOGS_FEED) as fh:
+            a = json.load(fh)
+        rows = a if isinstance(a, list) else (a.get("alerts") or [])
+    except Exception as ex:
+        LOG.append(f"liquidity feed unreadable (dogs): {type(ex).__name__}")
+        return []
+    out, skipped = dogs_select(rows, now)
+    if skipped:
+        LOG.append(f"DOGS: {skipped} qualifying row(s) skipped - bet string not readable (never guessed)")
+    return out
+
+
+LANE_PREFIXES = ("rule|", "board|", "r1|", "lane2|", "ncs|", "dogs|")   # every lane that stamps its own play_key
 
 
 def lane_strip(k):
@@ -1556,10 +1688,11 @@ def unit_for(lane):
     """The live unit for a lane. The board pilot ($200), R1 ($200) and NCS ($200) differ; everything
     else is Lane 1's unit."""
     l = str(lane or "")
-    return BOARD_UNIT if l == "board" else R1_UNIT if l == "r1" else NCS_UNIT if l == "ncs" else LIVE_UNIT
+    return (BOARD_UNIT if l == "board" else R1_UNIT if l == "r1" else NCS_UNIT if l == "ncs"
+            else DOGS_UNIT if l == "dogs" else LIVE_UNIT)
 
 
-LANE_NAME = {"board": "BOARD V3", "r1": "R1", "lane2": "LANE 2", "rules": "PHASE 1", "ncs": "NCS"}
+LANE_NAME = {"board": "BOARD V3", "r1": "R1", "lane2": "LANE 2", "rules": "PHASE 1", "ncs": "NCS", "dogs": "DOGS"}
 
 # Nov 12 (Peter): "Remove suggestions to place held bot orders manually unless there is an explicit
 # safe handoff that prevents automated retries." The handoff EXISTS - a "Bets manual" note, which
@@ -1716,7 +1849,8 @@ def lane_report(results):
             ("rules", "Phase 1", LIVE_UNIT, None, None, None, px_live.LIVE),
             ("board", ("Board v4" if BOARD_V4 else "Board v3"), BOARD_UNIT, BOARD_MAX_PLAYS, BOARD_DAILY_RISK, BOARD, BOARD_LIVE),   # Nov 17: the per-lane report names the rule that is deciding
             ("r1", "R1", R1_UNIT, R1_MAX_PLAYS, R1_DAILY_RISK, R1, R1_LIVE),
-            ("ncs", "NCS (NCAAB spreads)", NCS_UNIT, NCS_MAX_PLAYS, NCS_DAILY_RISK, NCS, NCS_LIVE)):
+            ("ncs", "NCS (NCAAB spreads)", NCS_UNIT, NCS_MAX_PLAYS, NCS_DAILY_RISK, NCS, NCS_LIVE),
+            ("dogs", "DOGS (liquidity dogs)", DOGS_UNIT, DOGS_MAX_PLAYS, DOGS_DAILY_RISK, DOGS, DOGS_LIVE)):
         rs = [r for r in results if (r.get("play") or {}).get("source") == lane
               or (lane == "rules" and (r.get("play") or {}).get("source") in (None, "muse", "rules"))]
         placed = [r for r in rs if ((r.get("live") or {}).get("order") or {}).get("status") == "placed"]
@@ -2906,7 +3040,7 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
     # WORSE line whenever an estimated half-point value (half_point(), HP_FALLBACK when the ladders
     # cannot say) appeared to compensate, with only the -130 cap behind it. A board play's floor is
     # its OWN alert line. Lane 1 is untouched: it keeps the floor its producer supplies.
-    if floor is None and mtype in ("spread", "total") and p.get("source") in ("board", "r1", "ncs"):   # R1 and NCS too: their own alert line or strictly better
+    if floor is None and mtype in ("spread", "total") and p.get("source") in ("board", "r1", "ncs", "dogs"):   # R1, NCS and DOGS too: their own alert line or strictly better
         floor = line
     cands, floor_blocked, no_qual_basis = [], 0, 0
     lvs_notes = []   # Nov 12: SHADOW capture of EVERY candidate and why it was rejected. Records only; no decision reads it.
@@ -3062,7 +3196,7 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
     # Oct 28 (Peter): phase-1 live fills on the best after-fee price among the LIVE books
     # (ProphetX keeps its 2c; Novig gets the same 2c from Nov 11 - see TOL_BOOKS)
     lcs = [c for c in capped if c["book"] in LIVE_BOOKS]
-    _u = unit_for(p.get("source") if p.get("source") in ("board", "r1", "ncs") else None)
+    _u = unit_for(p.get("source") if p.get("source") in ("board", "r1", "ncs", "dogs") else None)
     lfull = [c for c in lcs if c["avail"] >= live_stake(c["shown"], _u)[0]]
     lc = (lfull or lcs)[0] if lcs else None
     return dict(out, verdict="WOULD PLACE", book=pick["book"], american=pick["am"], shown=pick["shown"], take_line=pick["line"],
@@ -3188,6 +3322,7 @@ def src_tag(p):
     return ("[coded rules] " if p.get("source") == "rules" else "[board Lane 3] " if p.get("source") == "board"
             else "[R1] " if p.get("source") == "r1"
             else "[NCS] " if p.get("source") == "ncs"
+            else "[DOGS] " if p.get("source") == "dogs"
             else "[Lane 2 dry run] " if p.get("source") == "lane2"
             else ("[Muse] " if SOURCE == "both" else ""))
 
@@ -3676,6 +3811,13 @@ def _account_rows(rows, graded, ids, seen_oids, _intents, _confirmed):
                     fs_n = lo.get("filled_stake")
                     NCS["risk"] += (max(float(fs_n or 0), float(lo.get("asked_stake") or 0))
                                     if (is_rest or fs_n is None) else float(fs_n))
+            if row.get("source") == "dogs" and d_et in (None, datetime.now(lm.ET).date()):   # same rules again
+                if row.get("key"):
+                    DOGS["keys"].add(row["key"])
+                if graded.get(row.get("key")) not in ("W", "P"):
+                    fs_d = lo.get("filled_stake")
+                    DOGS["risk"] += (max(float(fs_d or 0), float(lo.get("asked_stake") or 0))
+                                     if (is_rest or fs_d is None) else float(fs_d))
             if graded.get(row.get("key")) in ("W", "P"):
                 continue   # settled win/push: not a loss toward the daily stop
             if (lo.get("book") or "prophetx") != "prophetx" and d_et in (None, datetime.now(lm.ET).date()):
@@ -3854,6 +3996,7 @@ def _bot_orders_finish(M, ids, _intents, _confirmed, from_store=False):
     BOARD["known"] = True   # the ledger parsed, so today's board exposure above is real
     R1["known"] = True      # ...and today's R1 exposure
     NCS["known"] = True     # ...and today's NCS exposure
+    DOGS["known"] = True    # ...and today's DOGS exposure
     return ids
 
 
@@ -3997,6 +4140,26 @@ def r1_gate(risk, key=None):
         return False, (f"R1 daily risk limit: ${R1['risk']:,.2f} already at risk today (ET) + "
                        f"${risk:,.2f} would exceed ${R1_DAILY_RISK:,.0f}")
     return True, f"ok (R1 today: {len(R1['keys'])}/{R1_MAX_PLAYS} plays, ${R1['risk']:,.2f}/${R1_DAILY_RISK:,.0f} at risk)"
+
+
+def dogs_gate(risk, key=None):
+    """(ok, why) for ONE DOGS order of `risk` dollars. Fail closed, exactly as board_gate, r1_gate and ncs_gate:
+    unknown exposure (ledger unreadable), the play cap, an unreadable or zero risk, or the daily risk limit all refuse."""
+    if not DOGS["known"]:
+        return False, "DOGS exposure unknown this run (ledger unreadable) - fail closed"
+    n = len(DOGS["keys"]) + (0 if (key and key in DOGS["keys"]) else 1)
+    if n > DOGS_MAX_PLAYS:
+        return False, f"DOGS play cap: {len(DOGS['keys'])} already submitted or resting today (ET), cap {DOGS_MAX_PLAYS}"
+    try:
+        risk = float(risk)
+    except (TypeError, ValueError):
+        return False, "DOGS order risk unreadable - fail closed"
+    if not (risk > 0):
+        return False, "DOGS order risk is zero - fail closed"
+    if DOGS["risk"] + risk > DOGS_DAILY_RISK + 1e-9:
+        return False, (f"DOGS daily risk limit: ${DOGS['risk']:,.2f} already at risk today (ET) + "
+                       f"${risk:,.2f} would exceed ${DOGS_DAILY_RISK:,.0f}")
+    return True, f"ok (DOGS today: {len(DOGS['keys'])}/{DOGS_MAX_PLAYS} plays, ${DOGS['risk']:,.2f}/${DOGS_DAILY_RISK:,.0f} at risk)"
 
 
 def ncs_gate(risk, key=None):
@@ -6674,6 +6837,12 @@ def main():
     except Exception as ex:
         LOG.append(f"ncs unavailable: {str(ex)[:60]}")
         ncsplays = []
+    try:   # Nov 23 (Peter): DOGS - liquidity underdogs, $25-50k print, no sharp tag. Ships OFF.
+        with perf("dogs_plays"):
+            dogsplays = dogs_plays(now)
+    except Exception as ex:
+        LOG.append(f"dogs unavailable: {str(ex)[:60]}")
+        dogsplays = []
     try:   # Nov 4: Lane 2 (Muse registration 3:48 PM) - dry run only, no live path exists for these plays
         with perf("lane 2 candidates"):
             import clv_ledger as _cl
@@ -6684,7 +6853,7 @@ def main():
         l2plays = []
     # one Gmail search PER CANDIDATE play - with dozens of candidates across five lanes this is the
     # prime suspect for the unmeasured time, so it is counted and the call count is printed
-    _cand = plays + rplays + bplays + r1plays + ncsplays + l2plays
+    _cand = plays + rplays + bplays + r1plays + ncsplays + dogsplays + l2plays
     with perf("handled_pids (one Gmail search)", n=len(_cand)):
         _seen = handled_pids(M, _cand)
         _phase("dedupe resolved")
@@ -7033,6 +7202,32 @@ def main():
                                                                      if r["verdict"] == "WOULD PLACE" else (r.get("reason") or "skipped")]}
                 else:
                     r["live"] = {"go": False, "lane": "ncs", "why": why}
+            elif p.get("source") == "dogs":   # DOGS lane: own live decision, own $100 unit, own daily limit
+                r["entry"] = ent = p.get("dogs_entry") or {}
+                trigger_first(r, ent)
+                lk = derive_key(p) or p["play_key"]
+                why = [] if DOGS_LIVE else ["DOGS lane not switched on (EXEC_DOGS_LIVE)"]
+                if lk in MANUAL_HELD:
+                    why.append(f"{MANUAL_HELD[lk]} with Peter's manual bet (Bets manual note)")
+                if lk in LIVEKEYS or any(same_bet(lk, k) for k in LIVEKEYS):
+                    why.append("a live order or resting bid was already sent for this bet (another lane)")
+                if any(opp_bet(lk, k) for k in LIVEKEYS):
+                    why.append("CONFLICT: the other side of this game was already bet (first side stays)")
+                if not why and r["verdict"] == "WOULD PLACE" and r.get("lc"):
+                    lc = r["lc"]
+                    lr, lw = live_stake(lc["shown"], DOGS_UNIT)   # $100 pilot unit, never another lane's
+                    g_ok, g_why = dogs_gate(lr, lk)
+                    if not g_ok:
+                        why.append(g_why)
+                if not why and r["verdict"] == "WOULD PLACE" and r.get("lc"):
+                    r["live"] = {"go": True, "book": lc["book"], "risk": lr, "to_win": lw, "am": lc["am"], "shown": lc["shown"],
+                                 "line": lc["line"], "partial": lc["avail"] < lr, "px": lc, "ids": lc.get("ids") or {},
+                                 "nfl": False, "lane": "dogs", "unit": DOGS_UNIT}
+                elif not why:
+                    r["live"] = {"go": False, "lane": "dogs", "why": ["no live book has the alert number or better"
+                                                                     if r["verdict"] == "WOULD PLACE" else (r.get("reason") or "skipped")]}
+                else:
+                    r["live"] = {"go": False, "lane": "dogs", "why": why}
             elif ent and (p.get("source") != "rules" or RULES_LIVE):   # phase-1 live tag (Oct 30: coded AGREE goes live too)
                 trigger_first(r, ent)
                 ok, why = agree_rules.phase1(ent, True)   # totals unders NBA/NCAAF/NFL + NCAAF overs (Nov 3/Nov 4); spreads paper. See agree_rules.PHASE1
@@ -7112,7 +7307,7 @@ def main():
                 LIVEKEYS.add(derive_key(p) or p["play_key"])
             results.append(r)
             if (r["verdict"] == "WOULD PLACE" or ((r.get("live") or {}).get("rest") or {}).get("status") == "placed") \
-                    and derive_key(p) and p.get("source") not in ("rules", "board", "r1", "lane2", "ncs"):
+                    and derive_key(p) and p.get("source") not in ("rules", "board", "r1", "lane2", "ncs", "dogs"):
                 taken_now.add(derive_key(p))
         except Exception as ex:
             results.append({"play": p, "pid": pid(p["play_key"]), "verdict": "SKIP", "reason": f"error: {str(ex)[:100]}"})
@@ -7136,13 +7331,15 @@ def main():
     _lanes_on = [nm for nm, on, unit in (("Phase 1", px_live.LIVE, LIVE_UNIT),
                                          (("Board v4" if BOARD_V4 else "Board v3"), BOARD_LIVE, BOARD_UNIT),
                                          ("R1", R1_LIVE, R1_UNIT),
-                                         ("NCS", NCS_LIVE, NCS_UNIT)) if on]
+                                         ("NCS", NCS_LIVE, NCS_UNIT),
+                                         ("DOGS", DOGS_LIVE, DOGS_UNIT)) if on]
     _lanes_off = [nm for nm, on, _u in (("Phase 1", px_live.LIVE, 0),
                                         (("Board v4" if BOARD_V4 else "Board v3"), BOARD_LIVE, 0),
                                         ("R1", R1_LIVE, 0),
-                                        ("NCS", NCS_LIVE, 0)) if not on]
+                                        ("NCS", NCS_LIVE, 0),
+                                        ("DOGS", DOGS_LIVE, 0)) if not on]
     body = [(f"LIVE: {', '.join(_lanes_on)} (phase 1 ${LIVE_UNIT:.0f} to win, board ${BOARD_UNIT:.0f}, "
-             f"R1 ${R1_UNIT:.0f}, NCS ${NCS_UNIT:.0f}; best price on {', '.join(BOOK_NAME.get(b, b) for b in LIVE_BOOKS)})"
+             f"R1 ${R1_UNIT:.0f}, NCS ${NCS_UNIT:.0f}, DOGS ${DOGS_UNIT:.0f}; best price on {', '.join(BOOK_NAME.get(b, b) for b in LIVE_BOOKS)})"
              + (f"; DRY RUN: {', '.join(_lanes_off)}" if _lanes_off else "")
              + f" ({when})" if _lanes_on
              else f"DRY RUN - nothing was bet ({when})"), ""]

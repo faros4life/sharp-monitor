@@ -136,7 +136,7 @@ for needle, what in (('ncsplays = ncs_plays(now)', "selection runs"),
                      ('NCS["known"] = True', "exposure is marked known"),
                      ('NCS["keys"].add(row["key"])', "ledger rows feed the day's exposure"),
                      ('("ncs", "NCS (NCAAB spreads)"', "lane report lists it"),
-                     ('("board", "r1", "ncs")', "line floor and unit lookup include it")):
+                     ('("board", "r1", "ncs", "dogs")', "line floor and unit lookup include it")):
     ok(f"wired: {what}", needle in src)
 
 print(f"{len(RAN) - len(FAILED)} passed, {len(FAILED)} failed")
