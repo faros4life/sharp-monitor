@@ -147,9 +147,18 @@ import subprocess
 
 hits = subprocess.run(["grep", "-rln", "review_store_registry", "--include=*.py", "."],
                       capture_output=True, text=True).stdout.split()
-ok("no production module imports the adapter",
-   all(h.endswith(("review_store_registry.py", "test_review_store_registry.py")) for h in hits),
-   str(hits))
+# The wiring exists now (draft PR #10), so "nothing references this" is no longer the invariant.
+# The stronger one for the wired state: the ONLY production file that may reference it is
+# executor.py, its import must be LAZY (inside the flag-gated helper, never at module import), and
+# the reference must sit behind the flag.
+prod = [h for h in hits if not h.split("/")[-1].startswith(("review_", "test_review_"))]
+ok("the only production file referencing it is executor.py", prod == ["./executor.py"], str(prod))
+_ex = open("executor.py", encoding="utf-8").read()
+ok("executor imports it LAZILY, never at module scope",
+   "\nimport review_" not in _ex and "\nfrom review_" not in _ex)
+ok("and only inside the flag-gated helper",
+   "def _unit_ledger_guard" in _ex and "if not ri.enabled():" in _ex)
+ok("a missing review module cannot break production", "except Exception:\n        return None" in _ex)
 # Match CODE, not prose: the module docstring names REGISTRY_TOKEN and registry._commit precisely
 # in order to say it uses neither, and a whole-file match would flag that explanation.
 full = open("review_store_registry.py", encoding="utf-8").read()

@@ -152,3 +152,50 @@ send-site proofs, existing-order reconciliation, loss/late-fill tests against
 real (private) record formats, documented reconciliation ownership, and a
 separate explicit operator GO. No actual venue orders, cancels or settings
 changes are part of this review work.
+
+---
+
+# Controlled activation and rollback plan — review only, NOT authorized
+
+`EXEC_UNIT_LEDGER` is a repo **variable**. Peter flips it; Claude cannot write repo variables. It
+defaults to `off`, and with it off every wired path behaves byte-for-byte as main does today —
+asserted by test, and by importing `executor` with the flag unset and seeing the guard return
+`None`.
+
+## Preconditions — all of them, before the flag is touched
+
+1. **MIN @ SF replay reconciled** against real registry rows and venue fills. Private-data task;
+   it must not be replaced with invented records.
+2. **Backfill executed and checked.** `review_unit_reservation.backfill()` seeds every outstanding
+   filled and resting order. Until it runs, every read, reservation and authorization BLOCKS — a
+   fresh ledger is not an empty book. After it runs, spot-check that a play known to be live at a
+   venue reports **zero** capacity, not one unit.
+3. **Both runners deployed with the same `review_integration`.** One system guarded and the other
+   not is worse than neither: the guarded one refuses while the unguarded one keeps sending.
+4. **`registry._put_with_sha` present in both deployments.** Without it the adapter fails closed,
+   which is safe but blocks every order.
+
+## Activation
+
+Flip `EXEC_UNIT_LEDGER=on` **outside market hours**, on a day with no card, and watch one full
+executor cycle with no candidates. Expected: no behaviour change, no refusals, ledger reads clean.
+Then one live card, with the daily caps already in force as a second net.
+
+## Rollback
+
+Set `EXEC_UNIT_LEDGER=off`. That is the whole rollback — one variable, no deploy, no code change,
+effective on the next run of each system. The ledger rows are left in place; they are inert when
+the flag is off and correct if it is switched on again.
+
+**Rollback does not undo orders already sent.** Nothing here cancels, shrinks or amends a venue
+order, by design. If activation causes a problem the answer is STOP, which is Peter's control, not
+an automated unwind.
+
+## What would make activation WRONG to attempt
+
+- Backfill not run, or run against an incomplete order list.
+- Either runner on a different `play_key` definition — the two must key identically or they are not
+  sharing a budget.
+- Any remaining dispatch path that does not call the guard. `review_integration.DISPATCH_PATHS`
+  lists all four; `test_review_integration` asserts each one calls it and calls it **before** it
+  dispatches, because a guard nothing calls passes every behavioural test ever written.

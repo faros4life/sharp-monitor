@@ -4301,9 +4301,45 @@ def static_refusal(r):
     return None
 
 
+
+# ---------------------------------------------------------------- shared unit ledger (draft PR #10)
+def _unit_ledger_guard(r, path):
+    """REVIEW BRANCH ONLY. Reserve this play's capacity in the SHARED ledger before dispatch.
+
+    Returns None when EXEC_UNIT_LEDGER is off, which is the default and which makes every caller
+    behave exactly as main does today. When it is on, a refusal RAISES and the order is not sent.
+
+    The store is the file registry.py already uses - faros4life/novig-runner
+    registry/bot_registry.json, whose writes take the blob sha as an optimistic lock - so this and
+    the home runner reserve against ONE budget rather than two. The ledger blocks until it has been
+    seeded with the orders that already exist (review_unit_reservation.backfill), because a fresh
+    ledger would otherwise read every play as having its full unit free."""
+    try:
+        import review_integration as ri
+    except Exception:
+        return None
+    if not ri.enabled():
+        return None
+    import registry as _reg
+    import review_store_registry as _rs
+    lv, p = r.get("live") or {}, r.get("play") or {}
+    store = _rs.RegistryStore(_reg)
+    key = ri.play_key(p.get("sport"), p.get("game"), p.get("market") or "total",
+                      p.get("side") or p.get("bet"), lv.get("line"))
+    return ri.guard_or_refuse(store, key, f"{path}|{derive_key(p) or p.get('play_key')}",
+                              lv.get("risk"), lv.get("shown"), lv.get("unit") or LIVE_UNIT,
+                              actor=f"sharp-monitor:{path}")
+
+
 def live_order(r):
     """Phase-1 live order (only when EXEC_LIVE is on): ProphetX here, Kalshi / Polymarket US via live_order_other (Oct 28).
     Returns the order record for the email/ledger."""
+    # --- REVIEW BRANCH, UNMERGED, FLAG-GATED OFF (EXEC_UNIT_LEDGER). Draft PR #10. ---------------
+    # With the flag off this is a no-op and behaviour is byte-for-byte what main does today. With
+    # it on, NO ORDER LEAVES THIS FUNCTION without a reservation taken atomically in the store both
+    # execution systems share. A refusal here is final: never "send a smaller order".
+    _led = _unit_ledger_guard(r, "live_order")
+    # --------------------------------------------------------------------------------------------
     lv, p = r["live"], r["play"]
     if journal_latch_why():   # Nov 11: a lost durable row means unknown exposure - place nothing more.
         return refuse(r,                      # First gate, so no other refusal reason can mask it.
@@ -4403,6 +4439,12 @@ def live_remainder(r):
     """Oct 28 (Peter): the unit is $200 total per play across venues. After the best book's fill, take what's left on
     the next live books at the alert number or better (each its own threshold), skipping remainders under MIN_TAKE.
     Stops at the first refusal or error (fail closed)."""
+    # --- REVIEW BRANCH, UNMERGED, FLAG-GATED OFF (EXEC_UNIT_LEDGER). Draft PR #10. ---------------
+    # With the flag off this is a no-op and behaviour is byte-for-byte what main does today. With
+    # it on, NO ORDER LEAVES THIS FUNCTION without a reservation taken atomically in the store both
+    # execution systems share. A refusal here is final: never "send a smaller order".
+    _led = _unit_ledger_guard(r, "live_remainder")
+    # --------------------------------------------------------------------------------------------
     lv, more = r["live"], []
     first = lv.get("order") or {}
     if first.get("status") != "placed":
@@ -4947,6 +4989,12 @@ def rest_bid(r):
     """Rest ONE bid at the alert's after-fee number (no 2c extra) on the first REST_BOOKS book that lists the exact
     alert line: Kalshi (good-till-cancelled with an expiry) or Novig (GTT on the home PC). Same unit, cap, STOP and
     daily stop as live fills; the whole amount counts as risked until it expires or settles."""
+    # --- REVIEW BRANCH, UNMERGED, FLAG-GATED OFF (EXEC_UNIT_LEDGER). Draft PR #10. ---------------
+    # With the flag off this is a no-op and behaviour is byte-for-byte what main does today. With
+    # it on, NO ORDER LEAVES THIS FUNCTION without a reservation taken atomically in the store both
+    # execution systems share. A refusal here is final: never "send a smaller order".
+    _led = _unit_ledger_guard(r, "rest_bid")
+    # --------------------------------------------------------------------------------------------
     p, e, books = r["play"], r.get("entry") or {}, r.get("books") or {}
     if journal_latch_why():   # Nov 11: unknown exposure places nothing, resting bids included
         return {"status": "refused",
