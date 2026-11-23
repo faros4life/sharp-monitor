@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 23, 5:20 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 58.
+Updated Mon Nov 23, 5:25 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 59.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,10 +10,11 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 23 5:25PM | NHL | Anaheim vs Seattle: Total Goals | total: Over 6.5 goals scored | kalshi | $26k | -122 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 23 4:55PM | NFL | Cincinnati Bengals @ Washington Commanders | spread: CIN -6.5 (6.5) | novig | $41k | -100 | ✅ kalshi,prophetx |  | +0.5c |  | pending |
 | Nov 23 4:50PM | NFL | Cincinnati Bengals @ Washington Commanders | total: Under 54.5 (54.5) | novig | $37k | -106 | ✅ kalshi | ✅ | +0.0c |  | pending |
 | Nov 23 4:40PM | NFL | Cincinnati vs Washington: Spread | spread: Cincinnati wins by over 6.5 points | kalshi | $245k | +104 | ✅ novig |  | +1.0c |  | pending |
-| Nov 23 4:05PM | NBA | Los Angeles C vs Houston: Spread | spread: NOT Houston wins by over 12.5 points | kalshi | $33k | -104 |  |  | +0.0c |  | pending |
+| Nov 23 4:05PM | NBA | Los Angeles C vs Houston: Spread | spread: NOT Houston wins by over 12.5 points | kalshi | $33k | -104 |  |  | -1.0c |  | pending |
 | Nov 23 3:25PM | NHL | Toronto vs New York I | moneyline: New York I | kalshi | $50k | -150 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 23 2:30PM | NBA | Milwaukee vs Toronto: Spread | spread: NOT Toronto wins by over 10.5 points | kalshi | $43k | -104 | ✅ prophetx |  | +1.0c |  | pending |
 | Nov 23 2:30PM | NBA | Memphis vs Charlotte: Spread | spread: NOT Memphis wins by over 2.5 points | kalshi | $38k | +104 |  |  | +0.0c |  | pending |
@@ -32,8 +33,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 23 11:00AM | NCAAF | Kent St. vs Eastern Michigan | moneyline: Eastern Michigan | kalshi | $31k | -213 | ✅ novig |  | +0.0c |  | pending |
 | Nov 23 10:30AM | NHL | Calgary vs Ottawa: Spread | spread: Ottawa wins by over 1.5 goals | kalshi | $35k | +117 | ✅ novig |  | +1.0c |  | pending |
 | Nov 23 10:06AM | NHL | Toronto vs New York I: Spread | spread: NOT New York I wins by over 1.5 goals | kalshi | $47k | -178 | ✅ novig |  | -1.0c |  | pending |
-| Nov 23 10:06AM | NHL | Utah vs Winnipeg | moneyline: Winnipeg | kalshi | $121k | -100 | ✅ prophetx |  | +2.0c | yes | pending |
-| Nov 23 10:06AM | NHL | Los Angeles vs Montreal | moneyline: Montreal | kalshi | $93k | -144 | ✅ novig,prophetx |  | -1.0c |  | pending |
+| Nov 23 10:06AM | NHL | Utah vs Winnipeg | moneyline: Winnipeg | kalshi | $121k | -100 | ✅ prophetx |  | +1.0c | yes | pending |
+| Nov 23 10:06AM | NHL | Los Angeles vs Montreal | moneyline: Montreal | kalshi | $93k | -144 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 23 10:01AM | NBA | Portland vs Philadelphia: Spread | spread: NOT Philadelphia wins by over 3.5 points | kalshi | $52k | -104 | ✅ novig |  | +2.0c | yes | pending |
 | Nov 23 9:25AM | NBA | Los Angeles Clippers @ Houston Rockets | moneyline: HOU (0) | novig | $27k | -545 | ✅ kalshi |  | +0.5c | yes | pending |
 | Nov 23 9:25AM | NBA | Cleveland Cavaliers @ Chicago Bulls | moneyline: CLE (0) | novig | $37k | -300 | ✅ kalshi,prophetx |  | +0.5c | yes | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 5:15PM | NCAAF | Hawai'i vs Nevada | moneyline: Nevada | kalshi | $131k | -245 |  |  | +0.0c |  | W |
 | Nov 21 5:00PM | NCAAF | Maryland vs USC: Total Points | total: NOT Over 57.5 points | kalshi | $92k | -100 |  |  | +1.0c | yes | W |
 | Nov 21 4:40PM | NCAAF | Pittsburgh @ Louisville | moneyline: LOU (0) | novig | $27k | -426 | ✅ kalshi,prophetx |  | -1.5c |  | W |
-| Nov 21 4:25PM | NCAAF | Washington St. vs Texas St. | moneyline: Texas St. | kalshi | $431k | -488 | ✅ prophetx |  | +1.0c |  | W |
