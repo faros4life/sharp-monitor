@@ -122,3 +122,33 @@ ProphetX and Novig, 1.49 R1 units**.
   that a real order is blocked.
 
 **NO-GO for merge or deployment.** Unchanged.
+
+
+## Production migration blockers (review-only, November 22)
+
+**Do not switch execution onto an empty `unit_reservations` table.** The existing
+private `orders` registry and runner venue journal can already contain fills and
+resting orders. An empty new ledger would report `1.0` free even when a full unit
+is outstanding. On first activation, under the same authoritative CAS state, require
+a certified import/reconciliation of every still-exposed bot order (including
+unknown/partial fills) into canonical per-play reservations, or refuse all trading
+for any unverified play. A successful CAS protocol with incomplete underlying data
+is NOT a successful exposure guard.
+
+**Production prerequisite:** the existing private `novig-runner` repository must be
+reviewed and its venue submission chokepoint wired to the SAME grant protocol; the
+current GitHub connection returns HTTP 404 for that private repository. The full
+two-repository fix cannot be certified or completed from sharp-monitor alone.
+
+**Shared-store implementation progress on this review branch:** `registry.py` now
+contains an unused `_put_with_sha(data, sha)` helper that performs a single
+authenticated conditional GitHub PUT without retry and fails closed on any
+unconfirmed write. `test_review_registry_atomic_put.py` tests its intended
+success, conflict, credential and error behavior offline. This helper is
+UNDEPLOYED and no production execution path calls the new reservation modules.
+
+**Release gate:** before authorizing live deployment, require BOTH repos'
+send-site proofs, existing-order reconciliation, loss/late-fill tests against
+real (private) record formats, documented reconciliation ownership, and a
+separate explicit operator GO. No actual venue orders, cancels or settings
+changes are part of this review work.
