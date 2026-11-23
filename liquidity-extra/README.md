@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 23, 4:20 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 23.
+Updated Mon Nov 23, 4:30 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 23.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 23 1:20AM | NCAAB | Temple vs Tennessee-Martin | moneyline: Temple | kalshi | $27k | -213 |  |  | -2.0c |  | pending |
+| Nov 23 1:20AM | NCAAB | Temple vs Tennessee-Martin | moneyline: Temple | kalshi | $27k | -213 |  |  | -3.0c |  | pending |
 | Nov 23 1:20AM | NCAAB | FDU vs Iona | moneyline: Iona | kalshi | $30k | -376 |  |  | +0.0c |  | pending |
 | Nov 23 1:20AM | NCAAB | Central Arkansas vs North Florida | moneyline: Central Arkansas | kalshi | $31k | -400 |  |  | +0.0c |  | pending |
 | Nov 23 1:10AM | NCAAB | TCU vs Miami (FL) | moneyline: Miami | kalshi | $138k | -300 |  |  | +0.0c |  | pending |
