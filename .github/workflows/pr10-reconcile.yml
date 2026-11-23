@@ -1,0 +1,76 @@
+name: pr10-reconcile
+
+# REVIEW ONLY, READ-ONLY, DISPATCH ONLY. No schedule - it runs when Peter asks and never on its own.
+# It produces the two private-data preconditions for draft PR #10: the backfill list of orders that
+# already carry exposure, and the MIN @ SF replay. Both need TRACKER_PASSPHRASE and the registry
+# token, which live here and nowhere else. Public log gets COUNTS ONLY; detail goes to the Bets
+# inbox. It places nothing, cancels nothing and writes nothing - EXEC_UNIT_LEDGER is not read.
+#
+# THIS FILE IS THE WHOLE OF ITS PULL REQUEST. The guard, the reservation protocol and the executor
+# changes stay in draft PR #10 and never land on main; only this dispatcher does. A workflow is
+# only dispatchable when its file is on the default branch, which is the sole reason this is split
+# out - measured, not assumed: the file was not on main, GitHub did not list it, and all 50 of the
+# repo's most recent workflow_dispatch runs ran off main with no counter-example.
+#
+# The checkout is pinned to a COMMIT, not a branch. A branch ref is mutable, so a later push to the
+# review branch would silently change what a dispatched run executes. Re-pin deliberately when the
+# review commit moves.
+#
+# ONE POST EXISTS, and it is named rather than glossed: px_live.login(), a credential exchange with
+# ProphetX, because its trade read does not authenticate itself. No strike, price, stake or order
+# id is sent on it. Every other call in the pinned script is a GET: Kalshi
+# /portfolio/orders/{id}, Polymarket US /v1/order/{id}, the registry contents read and the runner's
+# Novig snapshots. The script's whole cross-module surface at this commit is registry.rows,
+# novig_reconcile.load_venue, novig_reconcile.classify, book_live._k_call("GET"),
+# book_live._pm_call("GET"), px_live.login, px_live.trades and
+# review_unit_reservation.leg_fraction - no place, cancel, amend, put_order, _commit or
+# _put_with_sha anywhere, and no reachable module runs a venue call, a write or a send at import
+# time.
+#
+# Nov 23: it now reads each venue BACK for every outstanding order, because a registry status is
+# what we believed when we wrote it and not what the venue holds. The venue credentials below are
+# GET-only here - the same read-only wiring positions-check.yml already uses - and no order,
+# cancel or amend path is imported.
+
+on:
+  workflow_dispatch:
+    inputs:
+      match:
+        description: "Term identifying the incident to replay (e.g. the MIN @ SF game string)"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pr10-reconcile
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: f7f471b5bfdbedc3c257af9664eae1e14bd32365                      # PINNED COMMIT, not a branch
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Private reconciliation (read-only)
+        env:
+          REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          KALSHI_KEY_ID: ${{ secrets.KALSHI_KEY_ID }}               # GET /portfolio/orders/{id} only
+          KALSHI_PRIVATE_KEY: ${{ secrets.KALSHI_PRIVATE_KEY }}
+          PMUS_KEY_ID: ${{ secrets.PMUS_KEY_ID }}                   # GET /v1/order/{id} only
+          PMUS_SECRET_KEY: ${{ secrets.PMUS_SECRET_KEY }}
+          PROPHETX_TRADE_ACCESS_KEY: ${{ secrets.PROPHETX_TRADE_ACCESS_KEY }}
+          PROPHETX_TRADE_SECRET_KEY: ${{ secrets.PROPHETX_TRADE_SECRET_KEY }}
+          REPLAY_MATCH: ${{ inputs.match }}
+        run: python -u review_replay.py
