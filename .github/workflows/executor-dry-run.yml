@@ -214,7 +214,10 @@ jobs:
           job_t0=$(date -u +%s)
           if run_pass; then
             for i in 1; do
-              git fetch -q origin main || break
+              # Nov 23 (Peter): this fetch hung ~12 minutes on two runs today (14:52 and 18:06 UTC: PASS END to
+              # JOB TOTAL with nothing in between), and the concurrency queue dropped every run behind it. Bounded
+              # and shallow: a slow fetch now costs this optional catch-up pass, never the next scheduled run.
+              timeout 45 git fetch -q --depth=1 origin main || break
               if git diff --quiet HEAD origin/main -- alerts.json; then break; fi
               echo "newer alerts.json landed during the run: pass $((i + 1))"
               git reset -q --hard origin/main
@@ -223,7 +226,7 @@ jobs:
           else
             echo "pass 1 FAILED - waiting 90s for the Gmail registry to be readable, then retrying once"
             sleep 90
-            git fetch -q origin main && git reset -q --hard origin/main || true
+            timeout 45 git fetch -q --depth=1 origin main && git reset -q --hard origin/main || true
             run_pass || true
           fi
           echo "JOB TOTAL $(( $(date -u +%s) - job_t0 ))s across $pass_n pass(es)"
