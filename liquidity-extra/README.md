@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 23, 4:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 29.
+Updated Mon Nov 23, 4:10 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 28.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 439-259 (-13.05u flat) | rule met: 92-68
+**Record:** 440-259 (-12.65u flat) | rule met: 92-68
 
-**Fade (paper, betting against the print):** 234-404 (+8.43u flat, after fees)
+**Fade (paper, betting against the print):** 234-405 (+7.43u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -18,7 +18,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 23 1:20PM | NCAAB | Yale vs Belmont | moneyline: Yale | kalshi | $27k | +113 | ✅ novig |  | +2.0c | yes | pending |
 | Nov 23 1:20PM | NCAAB | Illinois St. vs Santa Clara | moneyline: Santa Clara | kalshi | $25k | -144 |  | ❌ | +1.0c |  | pending |
 | Nov 23 1:20PM | NCAAB | Georgia Southern vs Northern Kentucky | moneyline: Northern Kentucky | kalshi | $39k | -144 |  |  | +1.0c |  | pending |
-| Nov 23 11:00AM | NCAAB | Illinois St. vs Santa Clara | moneyline: Illinois St. | kalshi | $29k | +138 |  | ✅ | +0.0c | yes | pending |
+| Nov 23 11:00AM | NCAAB | Illinois St. vs Santa Clara | moneyline: Illinois St. | kalshi | $29k | +138 |  | ✅ | -1.0c | yes | pending |
 | Nov 23 10:40AM | NCAAB | Indiana St. vs East Carolina | moneyline: East Carolina | kalshi | $45k | -138 | ✅ novig |  | -3.0c | yes | L |
 | Nov 23 9:31AM | NCAAB | Long Beach State @ Florida International | moneyline: FIU (0) | novig | $25k | -365 | ✅ kalshi |  | -2.0c |  | W |
 | Nov 23 9:00AM | NCAAB | Middle Tennessee vs Southern Illinois | moneyline: Southern Illinois | kalshi | $62k | -133 | ✅ novig |  | +4.0c | yes | pending |
@@ -30,7 +30,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 23 1:10AM | NCAAB | San Diego St. vs Iowa St. | moneyline: Iowa St. | kalshi | $138k | -335 |  |  | +1.0c |  | pending |
 | Nov 23 1:10AM | NCAAB | Northern Iowa vs Davidson | moneyline: Davidson | kalshi | $134k | -203 |  |  | +2.0c |  | W |
 | Nov 23 1:10AM | NCAAB | UNC Greensboro vs Pepperdine | moneyline: Pepperdine | kalshi | $146k | -567 |  |  | -1.0c |  | pending |
-| Nov 23 1:10AM | NCAAB | Tulsa vs Oregon St. | moneyline: Oregon St. | kalshi | $118k | -257 |  |  | -5.0c |  | pending |
+| Nov 23 1:10AM | NCAAB | Tulsa vs Oregon St. | moneyline: Oregon St. | kalshi | $118k | -257 |  |  | -5.0c |  | W |
 | Nov 23 1:10AM | NCAAB | St. Bonaventure vs Appalachian St. | moneyline: St. Bonaventure | kalshi | $123k | -203 |  |  | -3.0c |  | W |
 | Nov 23 1:10AM | NCAAB | Nevada vs San Francisco | moneyline: Nevada | kalshi | $131k | -285 |  |  | -1.0c |  | pending |
 | Nov 23 1:10AM | NCAAB | Ole Miss vs Clemson | moneyline: Ole Miss | kalshi | $123k | -223 |  |  | +0.0c |  | pending |
@@ -38,7 +38,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 23 1:10AM | NCAAB | Eastern Washington vs UNLV | moneyline: UNLV | kalshi | $132k | -317 |  |  | -1.0c |  | pending |
 | Nov 23 1:10AM | NCAAB | Charlotte vs Florida Gulf Coast | moneyline: Charlotte | kalshi | $122k | -257 |  |  | +0.0c |  | W |
 | Nov 23 1:10AM | NCAAB | Arkansas St. vs Southern Utah | moneyline: Arkansas St. | kalshi | $121k | -270 |  |  | +0.0c |  | pending |
-| Nov 22 8:20PM | NCAAB | Washington vs BYU | moneyline: BYU | kalshi | $31k | -567 |  |  | +1.0c |  | pending |
+| Nov 22 8:20PM | NCAAB | Washington vs BYU | moneyline: BYU | kalshi | $31k | -567 |  |  | -1.0c |  | pending |
 | Nov 22 3:10PM | NCAAB | Loyola Marymount vs UC Irvine: Spread | spread: NOT UC Irvine wins by over 2.5 points | kalshi | $43k | -104 |  | ✅ | +1.0c |  | W |
 | Nov 22 3:10PM | NCAAB | Virginia Tech vs Oklahoma St. | moneyline: Virginia Tech | kalshi | $30k | -113 |  |  | +0.0c |  | L |
 | Nov 22 2:40PM | NCAAB | Virginia Tech vs Oklahoma St.: Spread | spread: NOT Virginia Tech wins by over 1.5 points | kalshi | $28k | +104 |  |  | +2.0c |  | W |
