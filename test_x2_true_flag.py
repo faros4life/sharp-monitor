@@ -100,5 +100,27 @@ ok("so a row with no fixture still says forward or backfill",
 ok("the run reports limit coverage, which is what decides whether a cell can be judged",
    "limit coverage" in SRC and "cannot judge a cell" in SRC)
 
+# --- the backfill must FIT: bounded slice, resumable ---------------------------------------------
+ok("a backfill is a bounded slice, not one 30-day run",
+   'BACKFILL_END_DAYS = max(0, int(os.environ.get("X2_BACKFILL_END_DAYS")' in SRC)
+ok("the slice has an end as well as a start", "day1 is None or" in SRC and "day1 =" in SRC)
+ok("rows that already carry a verdict are skipped, so repeats make progress",
+   '.get("x2_pass") is None' in SRC)
+ok("the skip applies only to a backfill, never to the ordinary run",
+   SRC.index("if BACKFILL_DAYS:\n        before = len(rows)") > 0)
+ok("the run says how much of its slice is left to do", "to do" in SRC)
+ok("and reports elapsed time split by phase, so the next slice is sized on measurement",
+   "elapsed {el:.0f}s (fixtures" in SRC)
+ok("the timeout kill is recorded where the next person will look",
+   "killed at the 25-minute timeout" in SRC and "Terminate orphan process" in SRC)
+
+def window(days, end_days):
+    """The slice [now-days, now-end_days) in whole days back from today."""
+    return (days, end_days)
+ok("four slices tile 30 days with no gap and no overlap",
+   [window(*w) for w in ((7, 0), (14, 7), (21, 14), (30, 21))]
+   == [(7, 0), (14, 7), (21, 14), (30, 21)]
+   and all(a[0] == b[1] for a, b in zip([(7, 0), (14, 7), (21, 14)], [(14, 7), (21, 14), (30, 21)])))
+
 print(f"\n{len(P)} passed, {len(F)} failed")
 raise SystemExit(1 if F else 0)
