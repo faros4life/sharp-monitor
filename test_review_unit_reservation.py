@@ -253,5 +253,47 @@ cf.__class__ = CasFail
 ok("F4: a lost compare-and-swap on the outcome write fails closed",
    raises(lambda: R.record_outcome(cf, KEY, "C", "filled", 110.0), R.ReservationRefused))
 
+
+# ============ the three findings of the SECOND review (head a9016085f) ===============
+# 5) unverified release into a zero-exposure state
+g5 = Store(); R.reserve(g5, KEY, "V", 110.0, -110, U, actor="executor")
+ok("F5: voiding a reserved leg with no evidence is refused",
+   raises(lambda: R.record_outcome(g5, KEY, "V", "void"), X.ExposureUnknown))
+ok("F5: refused/dry are held to the same standard",
+   raises(lambda: R.record_outcome(g5, KEY, "V", "refused"), X.ExposureUnknown)
+   and raises(lambda: R.record_outcome(g5, KEY, "V", "dry"), X.ExposureUnknown))
+ok("F5: the reservation is still held after the attempt", abs(R.available(g5, KEY) - 0.5) < 1e-9,
+   str(R.available(g5, KEY)))
+ok("F5: a void carrying a non-zero fill is impossible",
+   raises(lambda: R.record_outcome(g5, KEY, "V", "void", 50.0, evidence="x"), X.ExposureUnknown))
+R.record_outcome(g5, KEY, "V", "void", 0.0, evidence="venue read: order never submitted")
+ok("F5: with evidence that it never reached the venue, capacity is released",
+   abs(R.available(g5, KEY) - 1.0) < 1e-9)
+
+# 6) a late callback must not shrink a verified fill
+g6 = Store(); R.reserve(g6, KEY, "S", 220.0, -110, U, actor="executor")
+R.record_outcome(g6, KEY, "S", "filled", 220.0, True, "venue fill report")
+ok("F6: a verified full fill holds the whole unit", abs(R.available(g6, KEY)) < 1e-9)
+ok("F6: a later SMALLER fill is refused as stale",
+   raises(lambda: R.record_outcome(g6, KEY, "S", "filled", 20.0), R.ReservationRefused))
+ok("F6: the exposure is unchanged after the stale callback", abs(R.available(g6, KEY)) < 1e-9)
+ok("F6: a verified terminal leg cannot be voided either",
+   raises(lambda: R.record_outcome(g6, KEY, "S", "void", 0.0, evidence="x"), R.ReservationRefused))
+
+# 7) a spent or released reservation cannot authorize another order
+g7 = Store(); gr7 = R.reserve(g7, KEY, "A", 110.0, -110, U, actor="executor")
+ok("F7: an active reservation authorizes", R.authorize(g7, gr7, 110.0) == 110.0)
+R.record_outcome(g7, KEY, "A", "filled", 110.0, True, "venue fill report")
+ok("F7: once filled and verified, the SAME grant no longer authorizes",
+   raises(lambda: R.authorize(g7, gr7, 110.0), R.ReservationRefused))
+g7b = Store(); gr7b = R.reserve(g7b, KEY, "B", 110.0, -110, U, actor="executor")
+R.record_outcome(g7b, KEY, "B", "cancelled", 0.0, True, "venue read: 0 matched")
+ok("F7: a cancelled reservation does not authorize",
+   raises(lambda: R.authorize(g7b, gr7b, 110.0), R.ReservationRefused))
+g7c = Store(); gr7c = R.reserve(g7c, KEY, "C2", 110.0, -110, U, actor="executor")
+R.record_outcome(g7c, KEY, "C2", "void", 0.0, evidence="never submitted")
+ok("F7: a voided reservation does not authorize",
+   raises(lambda: R.authorize(g7c, gr7c, 110.0), R.ReservationRefused))
+
 print(f"{len(RAN) - len(FAILED)} passed, {len(FAILED)} failed")
 sys.exit(1 if FAILED else 0)

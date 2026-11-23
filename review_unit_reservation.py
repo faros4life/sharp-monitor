@@ -17,6 +17,16 @@ REQUIREMENTS (Peter, Nov 22): one authoritative per-play budget across both syst
 atomically before submission; open orders stay reserved until status is VERIFIED; unknown exposure
 blocks; a failed reservation cannot be bypassed; nothing cancels or shrinks a venue order.
 
+THREE MORE FOUND IN THE SECOND REVIEW (head a9016085f), all fixed here:
+  5. A reserved leg could be moved to void/refused/dry - which contribute ZERO exposure -
+     with no evidence, freeing its whole reservation. Those states now need the same proof
+     as any release, and a non-zero fill makes them impossible.
+  6. A late callback with a SMALLER fill overwrote a verified one and released matched
+     exposure. A verified fill may now only hold or grow, and cannot be voided at all.
+  7. authorize() checked the terms but not whether the reservation was still ACTIVE, so a
+     cancelled, expired, settled or filled leg could authorize another order. It must now be
+     open/placed/partially_filled and not terminal-verified.
+
 FOUR DEFECTS FOUND IN REVIEW OF THE FIRST DRAFT (head 6f182a2ee), all fixed here:
   1. The idempotent leg_id path returned a Grant for the NEWLY REQUESTED stake without checking it
      against the recorded leg. A retry with a larger stake, different odds, different unit or a
@@ -213,6 +223,13 @@ def authorize(store, grant, stake):
         raise ReservationRefused("grant does not correspond to a reservation in the store")
     if not _same_request(leg, grant.max_stake, grant.american, grant.unit, grant.actor):
         raise ReservationRefused("grant disagrees with the stored reservation - refused")
+    # Finding 3 (second review): a grant is good only while its reservation is ACTIVE. A cancelled,
+    # expired, settled, filled or voided leg has already had its outcome; re-authorizing against it
+    # would send a second order on capacity that is spent or released.
+    st = str(leg.get("status") or "").lower()
+    if st not in LIVE_STATES or leg.get("terminal_verified") is True:
+        raise ReservationRefused(
+            f"reservation is no longer active (status {st or 'unknown'}) - authorization refused")
     s = float(stake)
     if not math.isfinite(s) or s <= 0:
         raise ExposureUnknown("stake unreadable")
@@ -235,6 +252,15 @@ def record_outcome(store, key, leg_id, status, filled_stake=None, terminal_verif
     st = str(status or "").lower()
     if st not in KNOWN_STATES:
         raise ExposureUnknown(f"unknown terminal/live status {status!r} - fail closed")
+    # Finding 1 (second review): void/refused/dry contribute ZERO exposure, so moving a reserved
+    # leg into one of them frees its whole reservation. That is a release and it needs the same
+    # proof as any other release: evidence that the order never reached the venue.
+    if st in IGNORED:
+        if not str(evidence or "").strip():
+            raise ExposureUnknown(
+                f"release to {st!r} without evidence the order never reached the venue - fail closed")
+        if filled_stake is not None and _num(filled_stake, "filled") > 0.011:
+            raise ExposureUnknown(f"release to {st!r} with a non-zero fill - fail closed")
     if terminal_verified:
         if st not in TERMINAL_STATES:
             raise ExposureUnknown("terminal_verified on a non-terminal status - fail closed")
@@ -251,9 +277,20 @@ def record_outcome(store, key, leg_id, status, filled_stake=None, terminal_verif
     for i, l in enumerate(legs):
         if l.get("key") == key and str(l.get("leg_id")) == str(leg_id):
             was = str(l.get("status") or "").lower()
-            if was in TERMINAL_STATES and l.get("terminal_verified") is True and st in LIVE_STATES:
+            verified = l.get("terminal_verified") is True
+            if was in TERMINAL_STATES and verified and st in LIVE_STATES:
                 raise ReservationRefused(
                     "a verified terminal leg cannot regress to a live state - stale callback refused")
+            # Finding 2 (second review): a late callback carrying a SMALLER fill would shrink the
+            # recorded exposure and release capacity that is genuinely matched. Once verified, the
+            # fill may only hold or grow; a smaller one is stale and is refused.
+            if verified and filled_stake is not None and l.get("filled_stake") is not None:
+                if _num(filled_stake, "filled") < _num(l.get("filled_stake"), "recorded") - 0.011:
+                    raise ReservationRefused(
+                        "a verified fill cannot be reduced by a later callback - stale, refused")
+            if verified and st in IGNORED:
+                raise ReservationRefused(
+                    "a verified terminal leg cannot be voided - that would release matched exposure")
             upd = dict(l, status=st)
             if filled_stake is not None:
                 f = _num(filled_stake, "filled")
