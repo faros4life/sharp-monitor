@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 22, 7:55 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 42.
+Updated Sun Nov 22, 8:00 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 42.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -13,7 +13,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 22 7:50PM | NBA | Los Angeles C vs Houston | moneyline: Houston | kalshi | $58k | -488 |  |  | +0.0c |  | pending |
 | Nov 22 7:40PM | NBA | Milwaukee vs Toronto | moneyline: Toronto | kalshi | $50k | -400 |  |  | +0.0c |  | pending |
 | Nov 22 7:15PM | NFL | Minnesota Vikings @ San Francisco 49ers | spread: SF -4.5 (-4.5) | novig | $46k | +106 | ✅ kalshi |  | +1.5c | yes | pending |
-| Nov 22 7:05PM | NFL | Minnesota vs San Francisco: Spread | spread: San Francisco wins by over 4.5 points | kalshi | $582k | +104 | ✅ novig |  | +1.0c |  | pending |
+| Nov 22 7:05PM | NFL | Minnesota vs San Francisco: Spread | spread: San Francisco wins by over 4.5 points | kalshi | $582k | +104 | ✅ novig |  | +1.0c | yes | pending |
 | Nov 22 6:50PM | NBA | Dallas Mavericks @ Utah Jazz | moneyline: UTA (0) | novig | $41k | +125 |  | ✅ | +0.0c |  | pending |
 | Nov 22 5:55PM | NBA | Oklahoma City Thunder at Miami Heat | moneyline: Miami Heat | prophetx | $66k | -174 | ✅ novig | ✅ | +0.0c |  | pending |
 | Nov 22 5:55PM | NHL | Calgary vs Ottawa | moneyline: Ottawa | kalshi | $26k | -203 |  |  | +0.0c |  | pending |
