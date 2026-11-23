@@ -4860,6 +4860,13 @@ def _unit_ledger_sweep(store, registry_module, own_cid, strict):
         if rows is None:
             raise RuntimeError("order rows unreadable")
         c = _ri2.sweep(store, rows, exclude_cid=own_cid)
+        # Bring legs down to what the venue actually matched, so a cancelled, expired or
+        # partly-filled order stops holding a whole unit on its play.
+        rc = _ri2.reconcile_outcomes(store, rows)
+        if rc.get("reduced_to_fill") or rc.get("released_zero_fill") or rc.get("refused"):
+            print(f"unit ledger: reconciled {rc.get('reduced_to_fill', 0)} to fill, "
+                  f"released {rc.get('released_zero_fill', 0)}, refused {rc.get('refused', 0)}",
+                  flush=True)
         if c.get("added") or c.get("unkeyable"):
             print(f"unit ledger: intent sweep added {c.get('added', 0)}, "
                   f"unkeyable {c.get('unkeyable', 0)}", flush=True)
