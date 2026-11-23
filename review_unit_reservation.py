@@ -74,6 +74,7 @@ FAIL CLOSED EVERYWHERE. Unreadable store, unknown leg state, missing identity, u
 mismatched retry, or a lost compare-and-swap all REFUSE. Refusal is never "proceed with less".
 """
 import math
+from datetime import datetime, timezone
 
 from review_unit_exposure import ExposureUnknown, fraction, maximum_stake
 
@@ -472,6 +473,94 @@ def record_unconditional(store, key, leg_id, stake, american, unit, actor, attem
         if store.write(dict(state, legs=legs + [leg]), version):
             return True
     raise ReservationRefused("could not write the record-only leg - the store kept moving")
+
+
+def never_submitted_proof(rows, intent_cid):
+    """True only when the REGISTRY ROWS prove this attempt never reached a venue.
+
+    The caller's word is not enough on its own. void_intent() writes `voided: True` on the row for
+    that client id, and until an order is confirmed the row's nested order id is still
+    "intent-<cid>". Either is proof. A confirmed row - a venue order id, resting or not - is
+    proof of the opposite, and refuses the release."""
+    cid = str(intent_cid or "").strip()
+    if not cid or rows is None:
+        return False
+    seen = False
+    for r in rows or []:
+        for field in ("live_order", "live_rest", "live_more"):
+            v = r.get(field)
+            for o in (v if isinstance(v, list) else [v]):
+                if not isinstance(o, dict):
+                    continue
+                if str(o.get("client_id") or r.get("client_id") or "") != cid:
+                    continue
+                seen = True
+                if r.get("voided") or o.get("voided"):
+                    continue                       # proof: nothing was transmitted
+                if not str(o.get("order_id") or "").startswith("intent-"):
+                    return False                   # a venue order id: an order exists
+    return seen
+
+
+def release_never_submitted(store, intent_cid, evidence, rows=None, attempts=3):
+    """Release a leg ONLY on authoritative proof that its order was NEVER SUBMITTED.
+
+    Nov 23. Record-only writes the leg BEFORE submission - the safe direction - but nothing undid
+    it when the executor then proved nothing was sent. The first order recorded in production was
+    exactly that: void_intent() wrote its "never transmitted" row and the ledger went on holding a
+    full unit for an order that does not exist, which under enforcement blocks that play for good.
+    Voids are routine (a venue refusing on price, a book disabled), so this would have accumulated.
+
+    THE ONLY RELEASE THIS MODULE PERFORMS WITHOUT A VENUE FILL READ, and it is narrow by design:
+
+      - the caller must pass void_intent()'s own proof string; no evidence, no release;
+      - the leg must still be LIVE. A terminal or verified leg has had its outcome already;
+      - the leg must carry NO fill of any size. A partial fill means an order exists;
+      - the leg must be UNCLAIMED. Once the Novig runner claims a reservation it may have gone to
+        the venue, and a void written on this side cannot prove otherwise;
+      - FILLED, RESTING, PARTIAL and UNKNOWN exposure is never released here. Settlement and
+        cancellation are NOT release events: an order can fill and then cancel or settle, so those
+        still go through record_outcome(), which demands a verified fill amount and evidence.
+
+    The leg is kept and marked void - an audit trail, not a deletion - so it stops counting against
+    the budget while the record of what happened stays in the ledger."""
+    cid = str(intent_cid or "").strip()
+    note = str(evidence or "").strip()
+    if not cid or not note:
+        raise ExposureUnknown("release needs an intent id and proof - fail closed")
+    if rows is not None and not never_submitted_proof(rows, cid):
+        return 0                      # the rows do not prove it: the unit stays held
+    for _attempt in range(max(1, int(attempts))):
+        got = store.read()
+        if not got or got[0] is None or got[1] is None:
+            raise ExposureUnknown("reservation store unreadable - fail closed")
+        _require_seeded(got[0])
+        state, version = got
+        legs = list(state.get("legs") or [])
+        hit = [i for i, l in enumerate(legs) if str(l.get("intent_cid") or "") == cid]
+        if not hit:
+            return 0                      # nothing recorded for this attempt: nothing to release
+        freed = 0
+        for i in hit:
+            l = legs[i]
+            if str(l.get("status") or "").lower() not in LIVE_STATES:
+                continue                  # already terminal: its outcome is recorded
+            if l.get("terminal_verified") is True:
+                continue
+            fs = l.get("filled_stake")
+            if fs is not None and _num(fs, "filled") != 0.0:
+                continue                  # a fill of any size means an order exists
+            if l.get("claimed_by") and str(l.get("claimed_by")) not in ("record", "sweep"):
+                continue                  # a runner holds it; it may have reached the venue
+            legs[i] = dict(l, status="void", released="never_submitted",
+                           released_evidence=note[:200],
+                           released_utc=datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"))
+            freed += 1
+        if not freed:
+            return 0
+        if store.write(dict(state, legs=legs), version):
+            return freed
+    raise ReservationRefused("could not win the write releasing a never-submitted leg")
 
 
 def rearm(store, key, leg_id, evidence):

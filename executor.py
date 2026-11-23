@@ -6949,6 +6949,33 @@ def _release_claim(key, cid, why):
     return False
 
 
+def _unit_ledger_release(cid, why):
+    """Release the ledger leg for an attempt the executor has PROVEN was never transmitted.
+
+    Best-effort and silent on failure, exactly like void_intent itself: a release that does not
+    land leaves the unit held, which is the safe direction - it blocks a play rather than
+    allowing a second one. Never raises into the order path."""
+    if _unit_ledger_mode() == "off" or not cid:
+        return
+    try:
+        import registry as _reg
+        import review_store_registry as _rs
+        import review_unit_reservation as _res
+        _rows = None
+        try:
+            _d = _reg.load()
+            _rows = (_d or {}).get("orders") if _d is not None else None
+        except Exception:
+            _rows = None
+        n = _res.release_never_submitted(_rs.RegistryStore(_reg), cid,
+                                         f"void_intent: {str(why)[:120]}", rows=_rows)
+        if n:
+            print(f"unit ledger: released {n} never-submitted leg(s)", flush=True)
+    except Exception as ex:
+        print(f"unit ledger: RELEASE FAILED ({type(ex).__name__}) - the unit stays held",
+              flush=True)
+
+
 def void_intent(cid, book, why, key=None):
     """Resolve a write-ahead intent whose order was NEVER TRANSMITTED (Peter/Muse, Nov 12).
 
@@ -6972,6 +6999,7 @@ def void_intent(cid, book, why, key=None):
     if not cid:
         return False
     ok = False
+    _unit_ledger_release(cid, why)
     row = {"client_id": cid, "voided": True,
            "live_order": {"status": "void", "order_id": "intent-" + str(cid), "book": book,
                           "client_id": cid, "intent": True, "voided": True,
