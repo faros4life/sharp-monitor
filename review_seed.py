@@ -25,6 +25,32 @@ import review_replay as RR
 
 CONFIRM = "SEED"
 SWEEP = "SWEEP"
+RELEASE = "RELEASE"
+
+
+def stuck_never_submitted(store, rows):
+    """Legs still holding a unit whose ROWS prove their order was never submitted.
+
+    One-off repair for legs recorded before void_intent learned to release them. It uses the same
+    proof and the same release as the live path - no second rule - so a leg this frees is one the
+    executor would have freed itself today."""
+    import review_unit_reservation as R
+    got = store.read()
+    if not got or got[0] is None:
+        return None, "ledger unreadable"
+    legs = (got[0] or {}).get("legs") or []
+    out = []
+    for l in legs:
+        cid = str(l.get("intent_cid") or "")
+        if not cid or str(l.get("status") or "").lower() not in R.LIVE_STATES:
+            continue
+        if l.get("claimed_by") and str(l.get("claimed_by")) not in ("record", "sweep"):
+            continue
+        if l.get("filled_stake") not in (None, 0, 0.0):
+            continue
+        if R.never_submitted_proof(rows, cid):
+            out.append(cid)
+    return out, ""
 
 
 class _Mem:
@@ -239,6 +265,28 @@ def main():
     def _show(c, label):
         print(f"SWEEP ({label}): " + " | ".join(f"{k} {v}" for k, v in c.items()), flush=True)
 
+    if confirm == RELEASE or (not confirm and already):
+        import review_unit_reservation as _R
+        cids, why = stuck_never_submitted(store, rows)
+        if cids is None:
+            print(f"RELEASE: {why} - nothing done", flush=True)
+            return 1
+        print(f"RELEASE: legs holding a unit for a never-submitted order: {len(cids)}", flush=True)
+        if confirm == RELEASE:
+            freed = 0
+            for c in cids:
+                try:
+                    freed += _R.release_never_submitted(
+                        store, c, "one-off repair: registry rows prove never submitted", rows=rows)
+                except Exception as ex:
+                    print(f"RELEASE: refused for one leg ({type(ex).__name__})", flush=True)
+            back = store.read()
+            bl = (back[0] or {}).get("legs") or []
+            print(f"RELEASE: freed {freed} | ledger legs {len(bl)} | "
+                  f"still held {sum(1 for l in bl if str(l.get('status') or '').lower() in _R.LIVE_STATES)}",
+                  flush=True)
+            return 0
+        print("RELEASE: dry run - dispatch with confirm=RELEASE to apply.", flush=True)
     if already:
         # The seed is a one-time act. On a seeded ledger the only thing left to do is the sweep.
         try:

@@ -119,5 +119,29 @@ ok("the seed write is read back before it is called written",
    src.index("R.backfill(") < src.index("read-back") and "CONFIRMED" in src)
 ok("no time cutoff is used anywhere in the cutover", "cutoff" not in src.lower())
 
+# ------------------------------------------------- one-off repair of a stuck never-submitted leg
+import review_unit_reservation as _R
+_st = Store(); _st.state["seeded"] = True
+_st.state["legs"] = [
+    {"key": K, "leg_id": "a", "order_id": "a", "status": "open", "asked_stake": 220.0,
+     "american": -110, "unit": 200.0, "actor": "sharp-monitor:live_order:novig",
+     "intent_cid": "cid-void", "recorded_only": True},
+    {"key": K, "leg_id": "b", "order_id": "b", "status": "open", "asked_stake": 220.0,
+     "american": -110, "unit": 200.0, "actor": "sharp-monitor:live_order:novig",
+     "intent_cid": "cid-live"}]
+_rows = [{"client_id": "cid-void", "voided": True,
+          "live_order": {"order_id": "intent-cid-void", "book": "novig", "client_id": "cid-void"}},
+         {"client_id": "cid-live",
+          "live_order": {"order_id": "venue-9", "book": "novig", "client_id": "cid-live"}}]
+_c, _w = S.stuck_never_submitted(_st, _rows)
+ok("the repair finds only the leg whose rows prove it was never submitted", _c == ["cid-void"], str(_c))
+_R.release_never_submitted(_st, "cid-void", "one-off repair", rows=_rows)
+ok("releasing it frees its unit and keeps the leg",
+   len(_st.state["legs"]) == 2 and _st.state["legs"][0]["status"] == "void")
+ok("the confirmed order's leg is untouched", _st.state["legs"][1]["status"] == "open")
+ok("and a second pass finds nothing", S.stuck_never_submitted(_st, _rows)[0] == [])
+ok("the repair is behind its own exact word", 'RELEASE = "RELEASE"' in src
+   and "confirm == RELEASE" in src)
+
 print(f"\n{len(P)} passed, {len(F)} failed")
 raise SystemExit(1 if F else 0)
