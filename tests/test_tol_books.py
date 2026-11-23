@@ -68,6 +68,11 @@ ck("the tolerance decision exists exactly once", len(tol_lines) == 1, repr(tol_l
 ck("the tolerance decision keys off TOL_BOOKS", tol_lines and "TOL_BOOKS" in tol_lines[0], repr(tol_lines))
 ck("the tolerance decision does not read the lane",
    tol_lines and not any(w in tol_lines[0] for w in ("lane", "board", "source", "rules")), repr(tol_lines))
+# Nov 23 (Peter, DOGS merge condition: "no relaxed price tolerances"): ONE deliberate exception, and it can only
+# REMOVE the allowance. Lane 1, the board, R1 and NCS stay lane-blind exactly as pinned above.
+ck("the only lane exception is DOGS, and it only ever sets the allowance to zero",
+   src.count("if strict:\n            tol = 0.0") == 1 and "strict = dogs_strict(p)" in src
+   and not any(("tol =" in l or "px_tol =" in l) and any(w in l for w in ("board", "rules", "r1", "ncs")) for l in src.splitlines()))
 ck("no hardcoded per-book tolerance branch survives",
    'px_tol if b == "prophetx"' not in src and "px_tol if b == 'prophetx'" not in src)
 

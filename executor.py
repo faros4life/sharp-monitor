@@ -2423,6 +2423,15 @@ def handled_pids(M, cands, chunk=20, days=HANDLED_DAYS):
             LOG.append("dedupe fell back to Gmail: completeness claim missing or stale")
         except Exception as ex:
             LOG.append(f"token store unreadable, using Gmail: {str(ex)[:50]}")
+    # Nov 23 (Peter): a DOGS candidate's tokens are never put into a Gmail search. On this fallback path they are
+    # answered "handled" instead, so the play is left out of THIS run (nothing is recorded, so the next run with a
+    # complete store sees it again). A token another lane also asks for is still searched for that lane.
+    _all = want
+    _keep = {t for p in cands if not dogs_strict(p) for k in handled_keys(p) for t in (pid(k), retry_tok(k))}
+    _dogs_only = set(_all) - _keep
+    if _dogs_only:
+        LOG.append(f"DOGS: {len(_dogs_only)} token(s) withheld from the Gmail fallback - those plays sit this run out")
+    want = sorted(_keep)
     uids, seen = [], set()
     for i in range(0, len(want), chunk):
         q = f"newer_than:{days}d (" + " OR ".join(want[i:i + chunk]) + ")"
@@ -2441,7 +2450,7 @@ def handled_pids(M, cands, chunk=20, days=HANDLED_DAYS):
         raw = d[0][1] if isinstance(d[0], tuple) and len(d[0]) > 1 else b""
         blob.append(raw.decode("utf-8", "replace") if isinstance(raw, bytes) else str(raw))
     text = "\n".join(blob)
-    return {x: (x in text) for x in want}
+    return dict({x: (x in text) for x in want}, **{x: True for x in _dogs_only})
 
 
 def already_handled(M, p, seen=None):
@@ -3033,6 +3042,15 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
         alert_af = price
     alert_cost = american_to_prob(alert_af)
     px_tol = american_to_prob(cents_worse(alert_af, PX_TOL_CENTS)) - alert_cost   # Oct 27 ProphetX, Nov 11 Novig: may be 2c worse
+    # Nov 23 (Peter, DOGS merge condition): "Only execute at the alert line and alert price or better, after applicable
+    # fees. No worse-line substitutions or relaxed price tolerances." For a DOGS play the 2c allowance is ZERO on every
+    # book and any line other than the alert's own is refused. Every other lane is untouched.
+    strict = dogs_strict(p)
+    if strict:
+        px_tol = 0.0
+
+    def _tolc(b):
+        return 0 if strict else (PX_TOL_CENTS if b in TOL_BOOKS else 0)
     floor = p.get("floor_line") if mtype in ("spread", "total") else None
     # Nov 11 (Peter, "original alert line or strictly better"): board v3 plays carry NO floor_line -
     # the board producer never writes one (0 of 1045 rows in board/calls.json), so the Oct 31
@@ -3065,6 +3083,10 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
             floor_blocked += 1   # Oct 31 (Muse): the alert's bet-only-at LINE is a hard floor, whatever the converted price
             _note(b, bl, r, "floor_blocked")
             continue
+        if strict and mtype != "moneyline" and (bl is None or abs(float(bl) - float(line)) > 1e-9):
+            floor_blocked += 1   # DOGS: the alert's own line only - no other line, better or worse
+            _note(b, bl, r, "dogs_alert_line_only")
+            continue
         hb = 0.0 if mtype == "moneyline" else better_halfpoints(mtype, side, line, bl)
         am = r["best_price_american"]
         # frozen for Polymarket US, identical elsewhere. The ladder now carries it directly; the
@@ -3077,11 +3099,13 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
             _note(b, bl, r, "no_frozen_basis")
             continue
         tol = px_tol if b in TOL_BOOKS else 0.0
+        if strict:
+            tol = 0.0   # Nov 23 (Peter): DOGS only - the alert price or better, no allowance on any book
         if lv_mode() == "live" and mtype in ("spread", "total"):
             # REPLACEMENT PATH (Peter's switch). One shared convert() supplies the credit for this gate, the order threshold
             # below and the recheck in revalidate(). Unsupported conversions are skipped with their named reason - never the
             # old constant. The credit is expressed in the legacy gate's units so c_eq / thr keep ONE formula below.
-            cv = lvcalc.convert(al["sport"], mtype, side, line, alert_af, bl, am_q, b, PX_TOL_CENTS if b in TOL_BOOKS else 0,
+            cv = lvcalc.convert(al["sport"], mtype, side, line, alert_af, bl, am_q, b, _tolc(b),
                                 cents_worse, lv_ref, CAP_LINE)   # CAP_LINE: the effective maximum is never looser than the cap
             if cv["status"] != "ok":
                 _note(b, bl, r, "lv_unsupported:" + str(cv.get("reason")), hb=hb)
@@ -3112,7 +3136,7 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
             # ceiling by 0.429 pts. It now fails here. The same play at +102 gains 3.983 pts and
             # passes on its own merits, with no tolerance needed.
             _repl = bl is not None and abs(float(bl) - float(line)) > 1e-9
-            if _repl and (PX_TOL_CENTS if b in TOL_BOOKS else 0):
+            if _repl and _tolc(b):
                 cv0 = lvcalc.convert(al["sport"], mtype, side, line, alert_af, bl, am_q, b, 0,
                                      cents_worse, lv_ref, CAP_LINE)
                 if cv0["status"] != "ok":
@@ -3174,6 +3198,9 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
             return dict(out, verdict="SKIP", reason="no book lists this market near the alert line")
         if floor_blocked and floor_blocked == len(ladders):
             return dict(out, verdict="SKIP", reason=f"no fill - blocked by bet-only-at floor ({fmt_line(mtype, floor)})")
+        if strict:
+            return dict(out, verdict="SKIP", reason=f"price: nothing at {alert_af:+d} or better after fees at the alert line "
+                                                    f"{fmt_line(mtype, line)} (DOGS: no tolerance, no other line)")
         return dict(out, verdict="SKIP", reason=f"price: nothing at or better than {alert_af:+d} after fees "
                                                 f"({'/'.join(TOL_BOOKS)}: {cents_worse(alert_af, PX_TOL_CENTS):+d}) at {fmt_line(mtype, line)} "
                                                 f"(equivalent, after fees; half point = {hp * 100:.1f}c {hp_src})"
@@ -3214,7 +3241,7 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
                 # rather than reconstructed at the order site - reparsing is where drift creeps in.
                 reval={"al": al, "mtype": mtype, "side": side, "price": price, "teams": teams,
                        "line": line, "alert_af": alert_af, "alert_cost": alert_cost,
-                       "px_tol": px_tol, "hp": hp, "lv_mode": lv_mode(),
+                       "px_tol": px_tol, "strict": strict, "hp": hp, "lv_mode": lv_mode(),
                        "lv_ref": (dict(lv_ref.__dict__) if lv_ref is not None else None)})   # plain dict: JSON-safe
 
 
@@ -3634,7 +3661,10 @@ def revalidate(r, stake=None):
         am_q = qual_price(am, book)
     if am_q is None:
         return False, f"{book} has no frozen qualification price at order time - fail closed", None
-    tol = rv.get("px_tol", 0.0) if book in TOL_BOOKS else 0.0
+    tol = 0.0 if rv.get("strict") else (rv.get("px_tol", 0.0) if book in TOL_BOOKS else 0.0)
+    _tc = 0 if rv.get("strict") else (PX_TOL_CENTS if book in TOL_BOOKS else 0)   # DOGS: zero cents, every book
+    if rv.get("strict") and mtype != "moneyline" and abs(float(ln) - float(rv["line"])) > 1e-9:
+        return False, f"{book}: DOGS orders only at the alert line {fmt_line(mtype, rv['line'])} - fail closed", None
     # Nov 11 FIX: compare the EQUIVALENT price at the alert line, exactly as evaluate()'s gate does
     # (c_eq_q = american_to_prob(am_q) - hb * hp). Before this the raw price at the CHOSEN line was
     # compared against the bar for the ALERT line, with the half-point credit dropped. A better line
@@ -3652,7 +3682,7 @@ def revalidate(r, stake=None):
     if rv.get("lv_mode") == "live" and mtype in ("spread", "total"):
         # REPLACEMENT PATH: the SAME convert() with the SAME stored reference the play qualified under
         cv = lvcalc.convert((rv.get("al") or {}).get("sport"), mtype, rv.get("side"), rv["line"], rv["alert_af"], ln, am_q, book,
-                            PX_TOL_CENTS if book in TOL_BOOKS else 0, cents_worse,
+                            _tc, cents_worse,
                             lvcalc.Reference(**rv["lv_ref"]) if rv.get("lv_ref") else None, CAP_LINE)
         if cv["status"] != "ok":
             return False, f"{book}: line conversion unsupported at order time ({cv.get('reason')}) - fail closed", None
@@ -3660,7 +3690,7 @@ def revalidate(r, stake=None):
         # the order-time bar cannot be looser than the one the play qualified under. Without it a
         # play could fail the new gate in evaluate(), and a later pass whose price drifted into the
         # 2c band could still submit - which is the stacking this change exists to stop.
-        if abs(float(ln) - float(rv["line"])) > 1e-9 and (PX_TOL_CENTS if book in TOL_BOOKS else 0):
+        if abs(float(ln) - float(rv["line"])) > 1e-9 and _tc:
             cv0 = lvcalc.convert((rv.get("al") or {}).get("sport"), mtype, rv.get("side"), rv["line"],
                                  rv["alert_af"], ln, am_q, book, 0, cents_worse,
                                  lvcalc.Reference(**rv["lv_ref"]) if rv.get("lv_ref") else None, CAP_LINE)
@@ -4142,9 +4172,192 @@ def r1_gate(risk, key=None):
     return True, f"ok (R1 today: {len(R1['keys'])}/{R1_MAX_PLAYS} plays, ${R1['risk']:,.2f}/${R1_DAILY_RISK:,.0f} at risk)"
 
 
+def dogs_strict(p):
+    """True for a DOGS play. ONE test, so the no-tolerance / alert-line-only / no-Gmail / no-rest rules cannot drift apart."""
+    return isinstance(p, dict) and p.get("source") == "dogs"
+
+
+def dogs_route(r):
+    """Nov 23 (Peter): "Trigger venue first, then Novig." After trigger_first() the route is cut to those two, in that
+    order. Each was already accepted on its own by evaluate() at the alert line and the alert price or better with no
+    tolerance, so Novig is only ever present because it passed independently. No third venue; none left = no order."""
+    lcs = list(r.get("lcs") or [])
+    trig = (r.get("route") or {}).get("trigger")
+    keep = [c for c in lcs if c.get("book") == trig] + [c for c in lcs if c.get("book") == "novig" and c.get("book") != trig]
+    r["lcs"], r["lc"] = keep, (keep[0] if keep else None)
+    r["route"] = dict(r.get("route") or {}, dogs="trigger venue then Novig only", order=[c["book"] for c in keep])
+    return r
+
+
+def dogs_store_ok():
+    """True only when the private token store can answer dedupe and side-taken with NO Gmail search."""
+    try:
+        return bool(registry.enabled() and registry.tokens_complete())
+    except Exception:
+        return False
+
+
+def dogs_no_gmail(cands, where):
+    """Nov 23 (Peter: "Confirm Dogs candidates cannot trigger Gmail reads"). handled_pids() and taken() answer from the
+    private store when it is known complete and otherwise fall back to a Gmail search over every candidate's tokens.
+    A DOGS candidate is therefore only admitted when the store can answer; otherwise it is dropped from THIS run, with
+    a logged reason, before any search is built. Other lanes are returned untouched."""
+    cands = list(cands or [])
+    n = sum(1 for p in cands if dogs_strict(p))
+    if not n or dogs_store_ok():
+        return cands
+    LOG.append(f"DOGS: {n} candidate(s) skipped this run at the {where} - the private store cannot answer, and DOGS "
+               f"never uses the Gmail fallback")
+    return [p for p in cands if not dogs_strict(p)]
+
+
+# ---------------------------------------------------------------- DOGS kill bar (Peter, Nov 23) - ENFORCED
+# Ruling: the pilot stops at -0.10u/play or worse once 30 verified live fills are graded. This is that rule in code;
+# dogs_gate() asks it before every live DOGS order. It can only ever REFUSE.
+#   fill      one DOGS order row (lane from the stored row, registry.row_lane) in the durable reporting ledger
+#             (reporting/ledger.enc, append-only, never pruned - the 4-day registry cannot hold 30 fills)
+#   verified  the venue fill was read back: filled_stake > 0 on the order, or a FILLED/PARTIAL fill record under its
+#             order id / client id. An order sent but never read back is NOT verified.
+#   graded    W/L/P from the liquidity feed for the same play key AND market (first bettable print, as the lane
+#             selects). A spread and a moneyline on one team share a play key, so the market is part of the join.
+#   units     flat, at the fill's after-fee price: win = am/100 (plus money) or 100/|am|, loss = -1, push = 0
+# FAILS CLOSED when the grading data is not reliable: ledger or feed unreadable, ledger not refreshed for
+# DOGS_KILL_STALE_H hours, a live DOGS order still unread or ungraded DOGS_KILL_OVERDUE_H hours after its game
+# started, or a verified fill with no usable price. Any of those refuses live DOGS orders until it clears.
+DOGS_KILL_N = 30
+DOGS_KILL_BAR = -0.10
+DOGS_KILL_STALE_H = 48.0
+DOGS_KILL_OVERDUE_H = 72.0
+DOGS_KILL = {"state": None}
+
+
+def dogs_units(am, res):
+    if res == "P":
+        return 0.0
+    if res == "L":
+        return -1.0
+    am = float(am)
+    return am / 100.0 if am > 0 else 100.0 / abs(am)
+
+
+def dogs_kill_eval(orders, fill_ids, results, now, ledger_seen=None):
+    """Pure. orders = stored DOGS order rows; fill_ids = ids with a FILLED/PARTIAL fill record;
+    results = {(key, market): W/L/P}.
+    Returns {"blocked", "why", "n", "units", "mean", "unverified", "overdue"}."""
+    out = {"blocked": False, "why": "", "n": 0, "units": 0.0, "mean": None, "unverified": 0, "overdue": 0}
+
+    def _stop(why):
+        out.update(blocked=True, why=why)
+        return out
+    if ledger_seen is not None and now - ledger_seen > timedelta(hours=DOGS_KILL_STALE_H):
+        return _stop(f"DOGS kill bar: grading ledger not refreshed for over {DOGS_KILL_STALE_H:.0f}h - fail closed")
+    plays = {}
+    for o in orders or []:
+        if not isinstance(o, dict) or not o.get("live") or not o.get("key"):
+            continue
+        los = [x for x in [o.get("live_order")] + list(o.get("live_more") or []) if isinstance(x, dict)]
+        sent = [x for x in los if x.get("status") == "placed"]
+        if not sent:
+            continue
+        ver = [x for x in sent
+               if (isinstance(x.get("filled_stake"), (int, float)) and not isinstance(x.get("filled_stake"), bool)
+                   and float(x["filled_stake"]) > 0)
+               or str(x.get("order_id") or "") in fill_ids or str(x.get("client_id") or "") in fill_ids]
+        zero = all(isinstance(x.get("filled_stake"), (int, float)) and not isinstance(x.get("filled_stake"), bool)
+                   and float(x["filled_stake"]) == 0 for x in sent) and not ver
+        if zero:
+            continue   # read back and nothing filled: not a fill
+        mk = "spread" if o.get("alert_line") is not None else "moneyline"   # ledger_row: alert_line = the spread, None on ML
+        d = plays.setdefault((o["key"], mk), {"ver": False, "am": None, "start": None})
+        d["ver"] = d["ver"] or bool(ver)
+        am = o.get("live_px_price_after_fee")
+        d["am"] = am if am is not None else d["am"]
+        d["start"] = iso_t(o.get("start_utc")) or d["start"]
+    late = timedelta(hours=DOGS_KILL_OVERDUE_H)
+    for k, d in plays.items():
+        res = results.get(k)
+        old = d["start"] is None or now - d["start"] > late
+        if not d["ver"]:
+            out["unverified"] += 1
+            out["overdue"] += 1 if old else 0
+            continue
+        if res not in ("W", "L", "P"):
+            out["overdue"] += 1 if old else 0
+            continue
+        try:
+            u = dogs_units(d["am"], res)
+        except (TypeError, ValueError, ZeroDivisionError):
+            return _stop("DOGS kill bar: a verified fill has no usable fill price - fail closed")
+        out["n"] += 1
+        out["units"] += u
+    out["units"] = round(out["units"], 4)
+    out["mean"] = round(out["units"] / out["n"], 4) if out["n"] else None
+    if out["overdue"]:
+        return _stop(f"DOGS kill bar: {out['overdue']} live order(s) still unread or ungraded "
+                     f"{DOGS_KILL_OVERDUE_H:.0f}h after the start - grading not reliable, fail closed")
+    if out["n"] >= DOGS_KILL_N and out["mean"] <= DOGS_KILL_BAR + 1e-9:
+        return _stop(f"DOGS KILL BAR HIT: {out['mean']:+.3f}u/play over {out['n']} verified live fills "
+                     f"(bar {DOGS_KILL_BAR:+.2f} at {DOGS_KILL_N}) - lane stopped")
+    out["why"] = (f"kill bar ok ({out['n']}/{DOGS_KILL_N} verified graded fills"
+                  + (f", {out['mean']:+.3f}u/play" if out["n"] else "") + ")")
+    return out
+
+
+def dogs_feed_results():
+    """{(play key, market): W/L/P} from the liquidity feed, on the first bettable print per game+market+side - the lane's own
+    selection - so a grade is only ever read for the row the play was built from. Raises if the feed is unreadable."""
+    with open(DOGS_FEED) as fh:
+        a = json.load(fh)
+    rows = a if isinstance(a, list) else (a.get("alerts") or [])
+    elig = [x for x in rows if isinstance(x, dict) and not x.get("artifact") and not x.get("close_suspect")
+            and str(x.get("book") or "").strip().lower() not in DOGS_NOT_BETTABLE and iso_t(x.get("alerted_utc"))]
+    elig.sort(key=lambda x: iso_t(x.get("alerted_utc")))
+    first, out = {}, {}
+    for x in elig:
+        first.setdefault((str(x.get("game")).lower(), x.get("market"), str(x.get("side")).lower()), x)
+    for x in first.values():
+        if x.get("result") not in ("W", "L", "P") or not dogs_qualifies(x):
+            continue
+        bet = dogs_bet(x)
+        k = derive_key({"sport": x.get("league") or "", "game": x.get("game") or "", "bet": bet}) if bet else None
+        if k:
+            out.setdefault((k, x.get("market")), x["result"])
+    return out
+
+
+def dogs_kill_state(now=None):
+    """The kill-bar verdict for this run, read once. Any failure to read is a refusal, never a pass."""
+    if DOGS_KILL["state"] is not None:
+        return DOGS_KILL["state"]
+    now = now or datetime.now(timezone.utc)
+    try:
+        import reporting_ledger as _rl
+        L = _rl.load_ledger()
+        if not L.get("events"):
+            raise RuntimeError("durable ledger empty or missing")
+        cur = _rl.latest(L)
+        seen = max((iso_t(e.get("seen_utc")) for e in L["events"] if iso_t(e.get("seen_utc"))), default=None)
+        if seen is None:
+            raise RuntimeError("durable ledger carries no timestamp")
+        orders = [d for (kind, _i), (_f, d) in cur.items() if kind == "order" and registry.row_lane(d) == "dogs"]
+        fill_ids = {str(i) for (kind, i), (_f, d) in cur.items()
+                    if kind == "fill" and (d or {}).get("state") in ("FILLED", "PARTIAL")}
+        st = dogs_kill_eval(orders, fill_ids, dogs_feed_results(), now, seen)
+    except Exception as ex:
+        st = {"blocked": True, "n": 0, "units": 0.0, "mean": None, "unverified": 0, "overdue": 0,
+              "why": f"DOGS kill bar: grading data unreadable ({type(ex).__name__}) - fail closed"}
+    DOGS_KILL["state"] = st
+    LOG.append("DOGS " + ("REFUSED - " if st["blocked"] else "") + st["why"])   # counts and units only
+    return st
+
+
 def dogs_gate(risk, key=None):
     """(ok, why) for ONE DOGS order of `risk` dollars. Fail closed, exactly as board_gate, r1_gate and ncs_gate:
-    unknown exposure (ledger unreadable), the play cap, an unreadable or zero risk, or the daily risk limit all refuse."""
+    unknown exposure (ledger unreadable), the play cap, an unreadable or zero risk, or the daily risk limit all refuse.
+    Nov 23: the kill bar is asked first, and it refuses on a hit OR on grading data it cannot trust."""
+    ks = dogs_kill_state()
+    if ks.get("blocked"):
+        return False, ks.get("why") or "DOGS kill bar unreadable - fail closed"
     if not DOGS["known"]:
         return False, "DOGS exposure unknown this run (ledger unreadable) - fail closed"
     n = len(DOGS["keys"]) + (0 if (key and key in DOGS["keys"]) else 1)
@@ -5013,6 +5226,8 @@ def rest_wanted(r):
     lv = r.get("live")
     if not lv or not px_live.LIVE or not REST_BOOKS:
         return False
+    if dogs_strict(r.get("play")):
+        return False   # Nov 23: a DOGS play fills at the alert number now or not at all - it never rests a bid
     if lv.get("go"):
         o = lv.get("order") or {}
         allo = [o] + list(lv.get("more") or [])
@@ -6373,7 +6588,7 @@ def ledger_row(r, run_start):
             # from the winner alone. Logging only; nothing here feeds a decision.
             "venues_considered": [{"book": c.get("book"), "after_fee": c.get("am"), "screen": c.get("shown"),
                                    "line": c.get("line"), "depth_at_thr": c.get("avail"), "thr": c.get("thr"),
-                                   "tolerance_cents": (PX_TOL_CENTS if c.get("book") in TOL_BOOKS else 0),
+                                   "tolerance_cents": (0 if dogs_strict(p) else (PX_TOL_CENTS if c.get("book") in TOL_BOOKS else 0)),
                                    "maker": False}
                                   for c in (r.get("lcs") or [])],
             "fee_basis": {"model": FEE_MODEL, "taker": True,
@@ -6853,6 +7068,7 @@ def main():
         l2plays = []
     # one Gmail search PER CANDIDATE play - with dozens of candidates across five lanes this is the
     # prime suspect for the unmeasured time, so it is counted and the call count is printed
+    dogsplays = dogs_no_gmail(dogsplays, "dedupe")   # Nov 23 (Peter): a DOGS candidate never causes a Gmail search
     _cand = plays + rplays + bplays + r1plays + ncsplays + dogsplays + l2plays
     with perf("handled_pids (one Gmail search)", n=len(_cand)):
         _seen = handled_pids(M, _cand)
@@ -7073,6 +7289,7 @@ def main():
     # Bounded to HANDLED_DAYS, the same window the dedupe and the order registry use: a side taken
     # inside the period that can still matter is found, and games here start within hours of an
     # alert.
+    new = dogs_no_gmail(new, "side-taken check")   # the store answers below, or DOGS plays leave this run
     _wp_ask = {wp(ok) for p in new if (ok := opposite_key(p))}
     _wp_from_store = False
     if registry.enabled() and _wp_ask:
@@ -7205,6 +7422,7 @@ def main():
             elif p.get("source") == "dogs":   # DOGS lane: own live decision, own $100 unit, own daily limit
                 r["entry"] = ent = p.get("dogs_entry") or {}
                 trigger_first(r, ent)
+                dogs_route(r)   # Nov 23 (Peter): trigger venue first, then Novig - no third venue
                 lk = derive_key(p) or p["play_key"]
                 why = [] if DOGS_LIVE else ["DOGS lane not switched on (EXEC_DOGS_LIVE)"]
                 if lk in MANUAL_HELD:
@@ -7256,7 +7474,7 @@ def main():
                 # can't see what's already held on every book: hold, retry next run, alert the phone once
                 r = dict(r, verdict="HELD", reason="positions unreadable on " + ", ".join(blind))
                 dk = derive_key(p) or p["play_key"]
-                if not gsearch(M2, held_tok(dk)):
+                if not dogs_strict(p) and not gsearch(M2, held_tok(dk)):   # DOGS: held without the Gmail lookup or the push
                     _ph = prior_hold(p)   # Nov 12 (Peter): say so when the journal already shows this play
                     if _ph is not None:
                         push("Held - you already hold this: " + (p.get("bet") or "")[:50],

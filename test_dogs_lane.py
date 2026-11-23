@@ -76,6 +76,7 @@ for x in elig:
 want = [x for x in first.values() if ex.dogs_qualifies(x) and ex.iso_t(x.get("start_utc"))
         and ex.iso_t(x["start_utc"]) > ex.iso_t(x["alerted_utc"]) + timedelta(minutes=1)]
 got_n, wrong, unread, by_mk = 0, [], 0, {"spread": 0, "moneyline": 0}
+SELKEY = {}
 _cap = ex.DOGS_MAX_PLAYS
 ex.DOGS_MAX_PLAYS = 10 ** 6
 try:
@@ -88,6 +89,7 @@ try:
             unread += 1
             continue
         p = mine[0]
+        SELKEY[(ex.lane_strip(p["play_key"]), x["market"])] = x.get("result")
         got_n += 1
         by_mk[x["market"]] += 1
         k = p["play_key"].split("|")
@@ -137,6 +139,7 @@ ok("selection stops at the play cap", len(p_) <= ex.DOGS_MAX_PLAYS, len(p_))
 
 # --- 6. the gate fails closed --------------------------------------------------------------------
 _s = dict(ex.DOGS)
+ex.DOGS_KILL["state"] = {"blocked": False, "why": "kill bar ok (test)"}   # section 8 tests the bar itself
 try:
     ex.DOGS.update(risk=0.0, keys=set(), known=False)
     ok("unknown exposure refuses", ex.dogs_gate(100)[0] is False)
@@ -167,6 +170,167 @@ wf = open(os.path.join(HERE, ".github", "workflows", "executor-dry-run.yml")).re
 ok("the workflow passes the switch, default off", "EXEC_DOGS_LIVE: ${{ vars.EXEC_DOGS_LIVE || 'off' }}" in wf)
 import registry as rg
 ok("registry lane map knows the lane (reporting)", rg.row_lane({"key": "NBA|A @ B|side|A", "source": "dogs"}) == "dogs")
+
+# --- 8. the kill bar is CODE, and fails closed on grading it cannot trust (Peter, Nov 23) ---------
+from datetime import datetime, timezone
+NOW = datetime(2026, 12, 20, tzinfo=timezone.utc)
+OLD, RECENT = "2026-12-10T00:00:00Z", "2026-12-19T12:00:00Z"
+
+
+def _o(i, am=100, fs=100.0, start=OLD, live=True, status="placed", oid=None):
+    return {"key": f"K{i}", "source": "dogs", "live": live, "start_utc": start, "live_px_price_after_fee": am, "alert_line": None,
+            "live_order": {"status": status, "filled_stake": fs, "order_id": oid or f"o{i}", "book": "kalshi"}}
+
+
+def _ev(orders, res, fills=(), seen=NOW):
+    return ex.dogs_kill_eval(orders, set(fills), {(k, "moneyline"): v for k, v in res.items()}, NOW, seen)
+
+
+ok("bar constants are the ruling", (ex.DOGS_KILL_N, ex.DOGS_KILL_BAR) == (30, -0.10))
+ok("units: +150 win, loss, push", (ex.dogs_units(150, "W"), ex.dogs_units(150, "L"), ex.dogs_units(150, "P")) == (1.5, -1.0, 0.0))
+ok("no fills yet: not blocked", _ev([], {})["blocked"] is False)
+o30 = [_o(i) for i in range(30)]
+r_bad = {f"K{i}": ("W" if i < 13 else "L") for i in range(30)}      # 13-17 at +100 = -4u = -0.133/play
+r_edge = {f"K{i}": ("W" if i < 14 else "L") for i in range(30)}     # 14-16 = -2u = -0.067/play
+k = _ev(o30, r_bad)
+ok("30 verified fills at -0.133u/play: lane stopped", k["blocked"] and k["n"] == 30 and "KILL BAR HIT" in k["why"], k)
+ok("30 fills at -0.067u/play: runs", _ev(o30, r_edge)["blocked"] is False)
+ok("29 fills, same losing rate: bar not reached yet", _ev(o30[:29], r_bad)["blocked"] is False)
+o_exact = [_o(i, am=100) for i in range(30)]
+r_m3 = {f"K{i}": ("L" if i < 3 else "P") for i in range(30)}       # -3u / 30 = exactly -0.10
+ok("exactly -0.10u/play at 30: stopped (bar is inclusive)", _ev(o_exact, r_m3)["blocked"] is True)
+ok("a fill never read back, game 10 days old: fail closed",
+   _ev([_o(1, fs=None)], {"K1": "W"})["blocked"] is True)
+ok("the same unread fill is verified by a FILLED fill record", _ev([_o(1, fs=None)], {"K1": "W"}, fills={"o1"})["n"] == 1)
+ok("an unread fill on a game not yet 72h old: waits, not counted", (lambda x: (x["blocked"], x["n"], x["unverified"]))(
+    _ev([_o(1, fs=None, start=RECENT)], {})) == (False, 0, 1))
+ok("verified fill ungraded 10 days after the start: fail closed", _ev([_o(1)], {})["blocked"] is True)
+ok("read back with zero filled: not a fill at all", (lambda x: (x["blocked"], x["n"]))(_ev([_o(1, fs=0.0)], {})) == (False, 0))
+ok("dry-run rows (live False) never count", _ev([_o(i, live=False) for i in range(40)], r_bad)["n"] == 0)
+ok("verified fill with no price: fail closed", _ev([_o(1, am=None)], {"K1": "W"})["blocked"] is True)
+ok("ledger not refreshed for 3 days: fail closed", _ev([], {}, seen=NOW - timedelta(hours=72))["blocked"] is True)
+import reporting_ledger as _rl
+_ll, _kg = _rl.load_ledger, dict(ex.DOGS)
+try:
+    def _boom(*a, **k):
+        raise RuntimeError("cannot decrypt")
+    _rl.load_ledger = _boom
+    ex.DOGS_KILL["state"] = None
+    st = ex.dogs_kill_state(NOW)
+    ok("ledger unreadable: kill state is BLOCKED", st["blocked"] is True and "unreadable" in st["why"], st)
+    ex.DOGS.update(known=True, risk=0.0, keys=set())
+    ok("...and dogs_gate refuses the order on it", ex.dogs_gate(100, "x")[0] is False)
+    _rl.load_ledger = lambda *a, **k: {"events": [], "head": {}}
+    ex.DOGS_KILL["state"] = None
+    ok("ledger empty or missing: BLOCKED, never 'no fills so fine'", ex.dogs_kill_state(NOW)["blocked"] is True)
+finally:
+    _rl.load_ledger = _ll
+    ex.DOGS_KILL["state"] = None
+    ex.DOGS.clear(); ex.DOGS.update(_kg)
+ok("dogs_gate asks the kill bar before anything else", SRC.split("def dogs_gate(")[1].split("if not DOGS")[0].count("dogs_kill_state()") == 1)
+_fr = ex.dogs_feed_results()
+_g = {k: v for k, v in SELKEY.items() if v in ("W", "L", "P")}
+ok("every graded play the lane selects is graded under the SAME key and market by the kill bar",
+   len(_g) >= 120 and all(_fr.get(k) == v for k, v in _g.items()), (len(_g), sum(_fr.get(k) != v for k, v in _g.items())))
+ok("a spread loss is never read as the moneyline's result on the same team",
+   ex.dogs_kill_eval([dict(_o(1), alert_line=3.5)], set(), {("K1", "moneyline"): "W"}, NOW, NOW)["n"] == 0)
+
+# --- 9. alert line and alert price or better: no tolerance, no other line, trigger then Novig ------
+EV = SRC.split("def evaluate(")[1].split("\ndef fmt_line(")[0]
+RV = SRC.split("def revalidate(")[1].split("\ndef px_limit(")[0]
+ok("evaluate: DOGS tolerance is zero on every book", "strict = dogs_strict(p)" in EV and "if strict:\n        px_tol = 0.0" in EV
+   and "if strict:\n            tol = 0.0" in EV and "PX_TOL_CENTS if b in TOL_BOOKS else 0," not in EV)
+ok("evaluate: any line but the alert's is refused for DOGS", '"dogs_alert_line_only"' in EV)
+ok("order-time recheck carries the same rule", '"strict": strict' in EV and 'tol = 0.0 if rv.get("strict")' in RV
+   and "DOGS orders only at the alert line" in RV)
+
+
+def _reval(strict, now_am, book="novig", line=None, mtype="moneyline", rvline=None):
+    alert = 120
+    r = {"live": {"book": book, "line": line, "px": {"thr": alert}},
+         "reval": {"mtype": mtype, "side": "A", "line": rvline, "alert_af": alert, "alert_cost": ex.american_to_prob(alert),
+                   "px_tol": 0.0 if strict else ex.american_to_prob(ex.cents_worse(alert, ex.PX_TOL_CENTS)) - ex.american_to_prob(alert),
+                   "strict": strict, "hp": 0.0, "lv_mode": "legacy", "al": {"sport": "NBA"}}}
+    _rb = ex.reread_book
+    try:
+        ex.reread_book = lambda b, ln, rv: {"status": "ok", "best_price_american": now_am, "best_price_american_qual": now_am,
+                                            "line": line, "buy_levels": []}
+        return ex.revalidate(r, 100)
+    finally:
+        ex.reread_book = _rb
+
+
+a = _reval(True, 118)
+ok("DOGS: Novig 2c worse than the alert at order time is REFUSED", a[0] is False and "moved worse" in a[1], a[1])
+b = _reval(False, 118)
+ok("(control) another lane keeps its 2c on Novig - the refusal above is the DOGS rule", "moved worse" not in b[1], b[1])
+c = _reval(True, 120)
+ok("DOGS: the alert price itself passes the price gate", "moved worse" not in c[1], c[1])
+d = _reval(True, 125, mtype="spread", line=4.0, rvline=3.5)
+ok("DOGS: a different line at order time is refused even at a better price", d[0] is False and "only at the alert line" in d[1], d[1])
+rr = {"lcs": [{"book": "prophetx"}, {"book": "novig"}, {"book": "kalshi"}, {"book": "polymarket_us"}], "route": {"trigger": "kalshi"}}
+ex.dogs_route(rr)
+ok("route: trigger venue, then Novig, nothing else", [c["book"] for c in rr["lcs"]] == ["kalshi", "novig"] and rr["lc"]["book"] == "kalshi")
+rr = {"lcs": [{"book": "prophetx"}, {"book": "novig"}], "route": {"trigger": "kalshi"}}
+ex.dogs_route(rr)
+ok("route: trigger off the number -> Novig only (it passed on its own)", [c["book"] for c in rr["lcs"]] == ["novig"])
+rr = {"lcs": [{"book": "prophetx"}, {"book": "polymarket_us"}], "route": {"trigger": "kalshi"}}
+ex.dogs_route(rr)
+ok("route: neither available -> no venue, no order", rr["lcs"] == [] and rr["lc"] is None)
+ok("the live branch applies the route", "trigger_first(r, ent)\n                dogs_route(r)" in SRC)
+_live = ex.px_live.LIVE
+try:
+    ex.px_live.LIVE = True
+    _rw = lambda v, why, reason=None: ex.rest_wanted({"play": {"source": "dogs"}, "books": {}, "verdict": v, "reason": reason,
+                                                     "live": {"go": False, "why": why}})
+    ok("DOGS never rests a bid (price skip)", _rw("SKIP", ["price: x"], "price: x") is False)
+    ok("DOGS never rests a bid (no live book at the number)", _rw("WOULD PLACE", ["no live book has the alert number or better"]) is False)
+finally:
+    ex.px_live.LIVE = _live
+
+# --- 10. a DOGS candidate cannot cause a Gmail search (Peter, Nov 23) -------------------------------
+class _NoGmail:
+    calls = []
+
+    def uid(self, *a, **k):
+        _NoGmail.calls.append(a)
+        if a[0] == "SEARCH":
+            return "OK", [b""]
+        raise AssertionError("fetch not expected")
+
+
+DP = {"source": "dogs", "play_key": "dogs|NBA|A @ B|side|A", "sport": "NBA", "game": "A @ B", "bet": "A ML (+120)"}
+BP = {"source": "board", "play_key": "board|NBA|C @ D|total|over", "sport": "NBA", "game": "C @ D", "bet": "Over 220.5 (-110)"}
+_en, _tc = ex.registry.enabled, ex.registry.tokens_complete
+try:
+    ex.registry.enabled = lambda: False                      # the store cannot answer -> the Gmail fallback path
+    ok("store cannot answer: DOGS candidates are dropped before the dedupe", ex.dogs_no_gmail([DP, BP], "dedupe") == [BP])
+    _NoGmail.calls = []
+    m = ex.handled_pids(_NoGmail(), [DP])
+    ok("DOGS-only candidates: ZERO Gmail calls on the fallback path", _NoGmail.calls == [] and m and all(m.values()), _NoGmail.calls)
+    ok("...and the play is treated as handled, so it sits the run out", ex.already_handled(_NoGmail(), DP, m) is True)
+    _NoGmail.calls = []
+    m = ex.handled_pids(_NoGmail(), [DP, BP])
+    q = " ".join(str(x) for c in _NoGmail.calls for x in c)
+    dtok = {t for k in ex.handled_keys(DP) for t in (ex.pid(k), ex.retry_tok(k))}
+    ok("mixed candidates: the search carries the other lane's tokens and none of DOGS'", len(_NoGmail.calls) == 1
+       and not any(t in q for t in dtok) and all(ex.pid(k) in q for k in ex.handled_keys(BP)), q[:120])
+    ex.registry.enabled, ex.registry.tokens_complete = (lambda: True), (lambda *a, **k: True)
+    ok("store complete: DOGS candidates are admitted", ex.dogs_no_gmail([DP, BP], "dedupe") == [DP, BP])
+finally:
+    ex.registry.enabled, ex.registry.tokens_complete = _en, _tc
+ok("candidates and the side-taken check both pass through the filter", 'dogsplays = dogs_no_gmail(dogsplays, "dedupe")' in SRC
+   and 'new = dogs_no_gmail(new, "side-taken check")' in SRC and "if not dogs_strict(p) and not gsearch(M2, held_tok(dk))" in SRC)
+
+# --- 11. switch OFF = no order, whatever else is true -------------------------------------------------
+BR = SRC.split('elif p.get("source") == "dogs":   # DOGS lane')[1].split("elif ent and (p.get")[0]
+ok("OFF puts a reason in `why` before any gate is asked", 'why = [] if DOGS_LIVE else ["DOGS lane not switched on (EXEC_DOGS_LIVE)"]' in BR)
+ok('"go": True is reachable only with an empty `why`', BR.count('"go": True') == 1
+   and 'if not why and r["verdict"] == "WOULD PLACE" and r.get("lc"):\n                    r["live"] = {"go": True' in BR)
+ok("code default is off (unset, empty, or anything but 'on')", '(os.environ.get("EXEC_DOGS_LIVE") or "off")' in SRC)
+ok("limits unchanged: $100 unit, 8 plays, $800/day, 30-minute freshness",
+   (ex.DOGS_UNIT, ex.DOGS_MAX_PLAYS, ex.DOGS_DAILY_RISK, ex.DOGS_MAX_AGE_MIN) == (100.0, 8, 800.0, 30)
+   or any(os.environ.get(v) for v in ("EXEC_DOGS_DAILY_RISK", "EXEC_DOGS_MAX_PLAYS", "EXEC_DOGS_MAX_AGE_MIN")))
 
 print(f"\n{len(RAN) - len(FAILED)} passed, {len(FAILED)} failed")
 sys.exit(1 if FAILED else 0)
