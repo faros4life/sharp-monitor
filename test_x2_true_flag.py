@@ -87,5 +87,18 @@ ok("the fixture call is still capped at once per league per 8h",
 ok("the log prints counts only - no stake, price or play identity",
    not re.search(r'print\(f?"[^"]*\{[^}]*(stake|price|game|bet)', SRC))
 
+# --- the two coverage defects from the first 30-day run ---------------------------------------
+ok("a backfill IGNORES the 8h fixture cache guard, or the wider window is never fetched",
+   "and not BACKFILL_DAYS" in SRC)
+ok("the ordinary half-hourly run still honours the guard",
+   "now - last < timedelta(hours=8) and not BACKFILL_DAYS" in SRC)
+_body = SRC.split("for x in rows:")[-1]
+ok("basis is stamped BEFORE the fixture lookup can skip the row",
+   _body.index('rec["basis"]') < _body.index("if not fid:"))
+ok("so a row with no fixture still says forward or backfill",
+   _body.index('rec["basis"]') < _body.index('"NO LIMIT DATA (game not found)"'))
+ok("the run reports limit coverage, which is what decides whether a cell can be judged",
+   "limit coverage" in SRC and "cannot judge a cell" in SRC)
+
 print(f"\n{len(P)} passed, {len(F)} failed")
 raise SystemExit(1 if F else 0)

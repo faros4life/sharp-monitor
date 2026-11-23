@@ -80,7 +80,11 @@ def main():
             need.setdefault(x["league"], True)
     for lg in need:
         last = tb.tparse(st["fx_last"].get(lg))
-        if last and now - last < timedelta(hours=8):
+        # The 8h guard keeps the ordinary half-hourly run cheap. A BACKFILL must ignore it: the
+        # cached window is now-1d..now+3d, so a league refreshed within 8h would skip the fetch
+        # entirely and the wider window would never be loaded. That is what left the first 30-day
+        # run at 11% limit coverage - 2,838 of 3,202 rows found no fixture.
+        if last and now - last < timedelta(hours=8) and not BACKFILL_DAYS:
             continue
         st["fx_last"].pop(lg, None)
         cl.refresh_fixtures(st, now, lg, (now - timedelta(days=1 + BACKFILL_DAYS)).astimezone(ET),
@@ -91,6 +95,11 @@ def main():
         b = {"league": x["league"], "game": x.get("game"), "teams": [{"name": n} for n in x.get("teams") or []], "game_start": x.get("start_utc")}
         fid = cl.find_fixture(st, b)
         rec = dict(prev.get(k) or {})
+        # BASIS FIRST. It describes WHEN the alert printed, which is known before any lookup, and
+        # stamping it after the fixture `continue`s left 2,838 of 3,202 rows with none - so a
+        # reader counting forward vs backfill silently under-counted both.
+        rec["basis"] = ("forward" if str(x.get("alerted_utc") or "")[:10] >= FORWARD_FROM
+                        else "backfill")
         dep = {e: depth(x, e) for e in EXCH}
         tot = sum(dep.values())
         rec.update(liq=round(tot), two5k=sum(1 for v in dep.values() if v >= 5000) >= 2)
@@ -115,11 +124,6 @@ def main():
         lim2, how2, _ = xb.limit_at(x, f, pm, mkmap, min(now, st0) if st0 else now)
         if lim2 is not None:
             rec.update(p_now=round(lim2 * OJ), p_now_utc=cl.iso(now))
-        # BASIS. A row alerted before the day these fields landed is BACKTEST data, however it is
-        # tagged: its verdict was reconstructed after the fact. It must never pool into the forward
-        # count, so the row says which it is and the reader does not have to infer it from a date.
-        alerted = str(x.get("alerted_utc") or "")[:10]
-        rec["basis"] = "forward" if alerted >= FORWARD_FROM else "backfill"
         if rec.get("p_alert"):
             rec.pop("note", None)
             # The three clauses, each on the record. The flag alone cannot be audited; these can.
@@ -159,6 +163,10 @@ def main():
     print(f"x2 tag: forward {len(fwd)} (true 2X {sum(1 for v in fwd if v.get('x2_pass'))}), "
           f"backfill {len(bak)} (true 2X {sum(1 for v in bak if v.get('x2_pass'))}) - "
           f"backfill is BACKTEST data and must not pool into the forward count")
+    cov = sum(1 for v in res.values() if v.get("p_limit"))
+    print(f"x2 tag: limit coverage {cov}/{len(res)} rows "
+          f"({(100.0 * cov / len(res)) if res else 0:.0f}%) - rows with no Pinnacle limit carry NO "
+          f"verdict and cannot judge a cell")
     loose = sum(1 for v in res.values() if v.get("c_two5k") and v.get("c_total"))
     print(f"x2 tag: depth-only proxy would pass {loose}, the multiple clause holds on "
           f"{sum(1 for v in res.values() if v.get('c_mult'))} - the gap is why the two differ")
