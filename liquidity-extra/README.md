@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 23, 8:20 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 23.
+Updated Mon Nov 23, 8:30 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 23.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,11 +10,11 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 23 1:20AM | NCAAB | Temple vs Tennessee-Martin | moneyline: Temple | kalshi | $27k | -213 |  |  | -4.0c |  | pending |
+| Nov 23 1:20AM | NCAAB | Temple vs Tennessee-Martin | moneyline: Temple | kalshi | $27k | -213 |  |  | -7.0c |  | pending |
 | Nov 23 1:20AM | NCAAB | FDU vs Iona | moneyline: Iona | kalshi | $30k | -376 |  |  | +0.0c |  | pending |
 | Nov 23 1:20AM | NCAAB | Central Arkansas vs North Florida | moneyline: Central Arkansas | kalshi | $31k | -400 |  |  | +1.0c |  | pending |
 | Nov 23 1:10AM | NCAAB | TCU vs Miami (FL) | moneyline: Miami | kalshi | $138k | -300 |  |  | -1.0c |  | pending |
-| Nov 23 1:10AM | NCAAB | St. John's vs Oregon | moneyline: St. John's | kalshi | $154k | -456 |  |  | -1.0c |  | pending |
+| Nov 23 1:10AM | NCAAB | St. John's vs Oregon | moneyline: St. John's | kalshi | $154k | -456 |  |  | +0.0c |  | pending |
 | Nov 23 1:10AM | NCAAB | San Diego St. vs Iowa St. | moneyline: Iowa St. | kalshi | $138k | -335 |  |  | -2.0c |  | pending |
 | Nov 23 1:10AM | NCAAB | Northern Iowa vs Davidson | moneyline: Davidson | kalshi | $134k | -203 |  |  | +1.0c |  | pending |
 | Nov 23 1:10AM | NCAAB | UNC Greensboro vs Pepperdine | moneyline: Pepperdine | kalshi | $146k | -567 |  |  | -1.0c |  | pending |
@@ -25,7 +25,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 23 1:10AM | NCAAB | Long Beach St. vs Florida International | moneyline: Florida International | kalshi | $171k | -426 |  |  | +0.0c |  | pending |
 | Nov 23 1:10AM | NCAAB | Eastern Washington vs UNLV | moneyline: UNLV | kalshi | $132k | -317 |  |  | +0.0c |  | pending |
 | Nov 23 1:10AM | NCAAB | Charlotte vs Florida Gulf Coast | moneyline: Charlotte | kalshi | $122k | -257 |  |  | +0.0c |  | pending |
-| Nov 23 1:10AM | NCAAB | Arkansas St. vs Southern Utah | moneyline: Arkansas St. | kalshi | $121k | -270 |  |  | +0.0c |  | pending |
+| Nov 23 1:10AM | NCAAB | Arkansas St. vs Southern Utah | moneyline: Arkansas St. | kalshi | $121k | -270 |  |  | +1.0c |  | pending |
 | Nov 22 8:20PM | NCAAB | Washington vs BYU | moneyline: BYU | kalshi | $31k | -567 |  |  | +2.0c |  | pending |
 | Nov 22 3:10PM | NCAAB | Loyola Marymount vs UC Irvine: Spread | spread: NOT UC Irvine wins by over 2.5 points | kalshi | $43k | -104 |  | ✅ | +1.0c |  | W |
 | Nov 22 3:10PM | NCAAB | Virginia Tech vs Oklahoma St. | moneyline: Virginia Tech | kalshi | $30k | -113 |  |  | +0.0c |  | L |
