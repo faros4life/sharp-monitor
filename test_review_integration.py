@@ -49,7 +49,7 @@ class FakeRegistry:
         return True
 
 
-KEY = RI.play_key("NBA", "LAL @ BOS", "total", "under", 225.5)
+KEY = RI.play_key("NBA", "LAL @ BOS", "total", "under")
 U = 200.0
 
 
@@ -78,10 +78,16 @@ ok("the flag is a repo variable, not a code default",
 
 # --- identity: lane and venue are NOT in the key -------------------------------------------------
 ok("the same side of the same game is ONE key whatever the lane",
-   RI.play_key("NCAAF", "NM @ WYO", "spread", "New Mexico -7.5", -7.5)
-   == RI.play_key("NCAAF", "NM @ WYO", "spread", "New Mexico -7.5", -7.5))
+   RI.play_key("NCAAF", "NM @ WYO", "spread", "New Mexico -7.5")
+   == RI.play_key("NCAAF", "NM @ WYO", "spread", "New Mexico -7.5"))
+ok("and an ADJACENT line on the same side shares that key - one budget, not two",
+   RI.play_key("NBA", "LAL @ BOS", "total", "Under 225.5 (-110)")
+   == RI.play_key("NBA", "LAL @ BOS", "total", "Under 226.5 (-108)"))
+ok("while the OPPOSITE side keeps its own",
+   RI.play_key("NBA", "LAL @ BOS", "total", "Over 225.5 (-110)")
+   != RI.play_key("NBA", "LAL @ BOS", "total", "Under 225.5 (-110)"))
 ok("an incomplete identity fails closed",
-   raises(lambda: RI.play_key("NBA", "", "total", "under", 1), X.ExposureUnknown))
+   raises(lambda: RI.play_key("NBA", "", "total", "under"), X.ExposureUnknown))
 
 # --- behavioural: with the flag ON, the paths refuse ---------------------------------------------
 on()
@@ -130,12 +136,24 @@ for fn in ("live_order", "live_remainder", "rest_bid"):
     if not m:
         continue
     body = m.group(1)
-    ok(f"executor.{fn} calls the shared guard", "_unit_ledger_guard(" in body)
-    # the guard must come before anything that sends
-    gi = body.find("_unit_ledger_guard(")
-    for send in ("px_live.place(", "live_order_other(", "book_live.", "kalshi_place(", "novig_place("):
-        si = body.find(send)
-        ok(f"executor.{fn}: guard precedes {send}", si == -1 or gi < si, f"{gi} vs {si}")
+    # A path is guarded either DIRECTLY, or because its only send is a call to a function that
+    # guards itself. live_remainder tops up the SAME play by calling live_order(r), which reserves;
+    # a second reservation there would ask for a second unit on one play, which is the bug this
+    # ledger exists to prevent. Assert the real shape, not a uniform one.
+    direct = "_unit_ledger_guard(" in body
+    via = (not direct) and re.search(r"\blive_order\(r\)", body) is not None
+    ok(f"executor.{fn} is guarded (directly or through a guarded callee)", direct or via,
+       "neither")
+    if direct:
+        gi = body.find("_unit_ledger_guard(")
+        for send in ("px_live.place(", "live_order_other(", "book_live.",
+                     "kalshi_place(", "novig_place("):
+            si = body.find(send)
+            ok(f"executor.{fn}: guard precedes {send}", si == -1 or gi < si, f"{gi} vs {si}")
+    else:
+        ok(f"executor.{fn} sends ONLY through that guarded callee",
+           not any(x in body for x in ("px_live.place(", "book_live.", "kalshi_place(",
+                                       "novig_place(")))
 
 ok("the helper reserves against the SHARED registry store",
    "review_store_registry" in ex and "RegistryStore(_reg)" in ex)

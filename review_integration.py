@@ -26,6 +26,7 @@ A refusal is never "send a smaller order". The stake that was reserved is the st
 sent, or nothing.
 """
 import os
+import re
 
 from review_unit_exposure import ExposureUnknown
 from review_unit_reservation import ReservationRefused, authorize, reserve
@@ -39,16 +40,30 @@ def enabled():
     return (os.environ.get(FLAG) or "off").strip().lower() == "on"
 
 
-def play_key(sport, game, market, side, line):
+def play_key(sport, game, market, side):
     """The canonical identity both systems must agree on, or they are not sharing a budget.
 
     LANE IS NOT IN IT, deliberately: Lane 1 and R1 betting the same side of the same game are one
-    exposure, not two. Venue is not in it either, for the same reason - that is precisely the New
-    Mexico shape, one side across ProphetX and Novig."""
-    parts = [str(p).strip().lower() for p in (sport, game, market, side, line)]
+    exposure, not two. Venue is not in it either - that is precisely the New Mexico shape, one side
+    across ProphetX and Novig.
+
+    NEITHER IS THE LINE (finding 2 of the fifth review). Under 225.5 and Under 226.5 on the same
+    side of one game are overlapping exposure, not two budgets; keying on the line would hand each
+    its own unit and reproduce the bug one decimal place away. The side is normalised to drop the
+    number it carries, so "Under 225.5" and "Under 226.5" collapse to the same key."""
+    parts = [str(p).strip().lower() for p in (sport, game, market, _side_only(side))]
     if not all(parts):
         raise ExposureUnknown("incomplete play identity - fail closed")
     return "|".join(parts)
+
+
+def _side_only(side):
+    """'Under 225.5 (-110)' -> 'under'; 'New Mexico Lobos -7.5' -> 'new mexico lobos'.
+
+    Strips the number and price so adjacent lines on one side share a budget."""
+    t = re.sub(r"\(.*?\)", " ", str(side or ""))
+    t = re.sub(r"[+-]?\d+(?:\.\d+)?", " ", t)
+    return re.sub(r"\s+", " ", t).strip().lower()
 
 
 def guard_or_refuse(store, key, leg_id, stake, american, unit, actor):

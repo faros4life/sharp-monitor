@@ -4303,6 +4303,20 @@ def static_refusal(r):
 
 
 # ---------------------------------------------------------------- shared unit ledger (draft PR #10)
+def _unit_ledger_consume(grant, stake):
+    """REVIEW BRANCH ONLY. Consume the reservation immediately before the venue call.
+
+    Finding 1: reserving without consuming left the single-use mechanism inert - the dispatch mark
+    was never written, so one reservation could still authorize repeated submissions. Returns the
+    stake unchanged when the ledger is off."""
+    if (os.environ.get("EXEC_UNIT_LEDGER") or "off").strip().lower() != "on":
+        return stake
+    import review_integration as ri
+    import registry as _reg
+    import review_store_registry as _rs
+    return ri.authorized_stake(_rs.RegistryStore(_reg), grant, stake)
+
+
 def _unit_ledger_guard(r, path):
     """REVIEW BRANCH ONLY. Reserve this play's capacity in the SHARED ledger before dispatch.
 
@@ -4314,19 +4328,39 @@ def _unit_ledger_guard(r, path):
     the home runner reserve against ONE budget rather than two. The ledger blocks until it has been
     seeded with the orders that already exist (review_unit_reservation.backfill), because a fresh
     ledger would otherwise read every play as having its full unit free."""
+    # Finding 4: reading the flag through the module means an import failure LOOKS like "off".
+    # The flag is read directly from the environment, so if it is ON and the modules are missing the
+    # guard RAISES instead of waving the order through.
+    if (os.environ.get("EXEC_UNIT_LEDGER") or "off").strip().lower() != "on":
+        return None
     try:
         import review_integration as ri
-    except Exception:
-        return None
+        import registry as _reg
+        import review_store_registry as _rs
+    except Exception as ex:
+        raise RuntimeError(
+            f"EXEC_UNIT_LEDGER is on but the shared-ledger modules are unavailable "
+            f"({type(ex).__name__}) - refusing to submit unguarded") from None
     if not ri.enabled():
         return None
-    import registry as _reg
-    import review_store_registry as _rs
     lv, p = r.get("live") or {}, r.get("play") or {}
     store = _rs.RegistryStore(_reg)
+    # Finding 2: the LINE is deliberately NOT in the key. Under 225.5 and Under 226.5 on the same
+    # side of one game are overlapping exposure, not two budgets.
     key = ri.play_key(p.get("sport"), p.get("game"), p.get("market") or "total",
-                      p.get("side") or p.get("bet"), lv.get("line"))
-    return ri.guard_or_refuse(store, key, f"{path}|{derive_key(p) or p.get('play_key')}",
+                      p.get("side") or p.get("bet"))
+    # The leg id must be UNIQUE PER ORDER. derive_key() can return None, and two different bets
+    # sharing a null id would collide on the idempotent path and be re-granted as if they were a
+    # retry of one another. No identity means no order.
+    # derive_key() is LINE- and PRICE-BLIND: "Under 225.5 (-110)" and "Under 226.5 (-108)" derive
+    # the same key. Using it alone as the leg id made a second, genuinely different order look like
+    # a retry of the first, and the idempotent path re-granted it on a spent budget. The leg id
+    # must identify THE ORDER. A true retry sends the same line and price and still matches.
+    _id = derive_key(p) or p.get("play_key") or (r.get("live") or {}).get("cid")
+    if not _id:
+        raise RuntimeError("shared ledger: no order identity for this play - refusing to submit")
+    _id = f"{_id}|{lv.get('line')}|{lv.get('shown')}"
+    return ri.guard_or_refuse(store, key, f"{path}|{_id}",
                               lv.get("risk"), lv.get("shown"), lv.get("unit") or LIVE_UNIT,
                               actor=f"sharp-monitor:{path}")
 
@@ -4334,12 +4368,6 @@ def _unit_ledger_guard(r, path):
 def live_order(r):
     """Phase-1 live order (only when EXEC_LIVE is on): ProphetX here, Kalshi / Polymarket US via live_order_other (Oct 28).
     Returns the order record for the email/ledger."""
-    # --- REVIEW BRANCH, UNMERGED, FLAG-GATED OFF (EXEC_UNIT_LEDGER). Draft PR #10. ---------------
-    # With the flag off this is a no-op and behaviour is byte-for-byte what main does today. With
-    # it on, NO ORDER LEAVES THIS FUNCTION without a reservation taken atomically in the store both
-    # execution systems share. A refusal here is final: never "send a smaller order".
-    _led = _unit_ledger_guard(r, "live_order")
-    # --------------------------------------------------------------------------------------------
     lv, p = r["live"], r["play"]
     if journal_latch_why():   # Nov 11: a lost durable row means unknown exposure - place nothing more.
         return refuse(r,                      # First gate, so no other refusal reason can mask it.
@@ -4374,11 +4402,18 @@ def live_order(r):
         return refuse(r, "could not store the pre-order record - nothing was submitted (fail closed)")
     lv["client_id"] = cid
     if lv.get("book", "prophetx") != "prophetx":
+        _lo = _unit_ledger_guard(r, "live_order_other")
+        _unit_ledger_consume(_lo, (r.get("live") or {}).get("risk"))
         return live_order_other(r)
     strike, limit, stake = px_limit(lv["px"], lv["risk"])
     if not strike or stake < MIN_TAKE - 0.01:
         return refuse_untransmitted(r, f"ProphetX ladder can't cover ${MIN_TAKE:.0f}+ at the alert number (have ${stake:.2f})", book="prophetx")
     label = f"{p.get('sport')} {p.get('game')} | {bet_text(r, lv['line'], limit)}"
+    # --- draft PR #10, flag-gated off. Finding 3: reserve LATE - every static, live and
+    # revalidation gate above has already decided this order IS being sent, so a refusal path never
+    # consumes capacity. Finding 1: the grant is CONSUMED here, which is what makes it single-use.
+    _led = _unit_ledger_guard(r, "live_order")
+    stake = _unit_ledger_consume(_led, stake)
     res = px_live.place(strike, limit, stake, label)
     if res.get("status") == "refused":   # Nov 11: a refusal is a lane event too
         # Nov 12 (Peter/Muse): px_live.place() returns "refused" before its own submit call, so the
@@ -4439,12 +4474,6 @@ def live_remainder(r):
     """Oct 28 (Peter): the unit is $200 total per play across venues. After the best book's fill, take what's left on
     the next live books at the alert number or better (each its own threshold), skipping remainders under MIN_TAKE.
     Stops at the first refusal or error (fail closed)."""
-    # --- REVIEW BRANCH, UNMERGED, FLAG-GATED OFF (EXEC_UNIT_LEDGER). Draft PR #10. ---------------
-    # With the flag off this is a no-op and behaviour is byte-for-byte what main does today. With
-    # it on, NO ORDER LEAVES THIS FUNCTION without a reservation taken atomically in the store both
-    # execution systems share. A refusal here is final: never "send a smaller order".
-    _led = _unit_ledger_guard(r, "live_remainder")
-    # --------------------------------------------------------------------------------------------
     lv, more = r["live"], []
     first = lv.get("order") or {}
     if first.get("status") != "placed":
@@ -4989,12 +5018,6 @@ def rest_bid(r):
     """Rest ONE bid at the alert's after-fee number (no 2c extra) on the first REST_BOOKS book that lists the exact
     alert line: Kalshi (good-till-cancelled with an expiry) or Novig (GTT on the home PC). Same unit, cap, STOP and
     daily stop as live fills; the whole amount counts as risked until it expires or settles."""
-    # --- REVIEW BRANCH, UNMERGED, FLAG-GATED OFF (EXEC_UNIT_LEDGER). Draft PR #10. ---------------
-    # With the flag off this is a no-op and behaviour is byte-for-byte what main does today. With
-    # it on, NO ORDER LEAVES THIS FUNCTION without a reservation taken atomically in the store both
-    # execution systems share. A refusal here is final: never "send a smaller order".
-    _led = _unit_ledger_guard(r, "rest_bid")
-    # --------------------------------------------------------------------------------------------
     p, e, books = r["play"], r.get("entry") or {}, r.get("books") or {}
     if journal_latch_why():   # Nov 11: unknown exposure places nothing, resting bids included
         return {"status": "refused",
@@ -5122,6 +5145,7 @@ def rest_bid(r):
                 "reason": f"resting stake is not a finite positive number ({risk!r}) - fail closed"}
     rest_pre_alert(r, risk, expire, REST_BOOKS)
     why_not = []
+    _rb_grant = None
     for b in REST_BOOKS:
         x = books.get(b) or {}
         # Nov 18 (Peter: "There is a game on both"). This merged TWO failures with opposite remedies
@@ -5140,6 +5164,11 @@ def rest_bid(r):
             why_not.append(f"{_nm}: has the game at {_bl}, not our {_al}"
                            if _bl is not None else f"{_nm}: line unreadable (ours {_al})")
             continue
+        # Reserved only once we have a priced, exact-line market on this venue: a venue we screen
+        # out above must not consume the play's unit.
+        if _rb_grant is None:
+            _rb_grant = _unit_ledger_guard(r, "rest_bid")
+            _unit_ledger_consume(_rb_grant, risk)
         if b == "kalshi":
             kb = x.get("kalshi_buy") or []
             c = book_live.kalshi_cost_for(p_star, bc.TAKER_COEF["kalshi"])
