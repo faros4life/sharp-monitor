@@ -26,6 +26,22 @@ CACHE = "oddspapi/fixtures.json"
 OJ = 4 / 3
 EXCH = ("novig", "prophetx", "kalshi")
 
+# Nov 23 (Peter, via VALUE LAB). Every 2X backtest so far used a DEPTH-ONLY proxy - clauses 2 and 3
+# without the Pinnacle multiple - which fires on 73% of resulted plays. That is a different trigger
+# from the one this file computes. So the TRUE verdict and the limit it used are now persisted per
+# row, with each clause separately, so the multiple can be re-derived and audited rather than the
+# flag being trusted on its own.
+#
+# A SIDECAR, NOT THE FEED. liquidity_monitor rewrites liquidity/alerts.json in full on every run,
+# so a second writer would race it and lose. x2/limits.json is keyed by "<key>|<alerted_utc>",
+# which joins back to the alert, and the Pinnacle limit is reconstructed AS OF the alert's print
+# time over /historical-odds - a FREE path - so nothing billable enters the alerting path.
+FORWARD_FROM = (os.environ.get("X2_FORWARD_FROM") or "2026-11-23").strip()[:10]
+# Deliberate, bounded backfill. 0 = today only, the behaviour before this change. A backfill needs
+# fixtures outside the normal now-1d..now+3d window, and /fixtures BILLS (only /account and
+# /historical-odds are free), so this is opt-in per run and never the default.
+BACKFILL_DAYS = max(0, int(os.environ.get("X2_BACKFILL_DAYS") or "0"))
+
 
 def load(p, d):
     try:
@@ -46,6 +62,8 @@ def main():
         print("x2 tag: ODDSPAPI_KEY not set")
         return
     day0 = now.astimezone(ET).replace(hour=0, minute=0, second=0, microsecond=0)
+    if BACKFILL_DAYS:
+        day0 -= timedelta(days=BACKFILL_DAYS)
     a = load("liquidity/alerts.json", [])
     a = a if isinstance(a, list) else a.get("alerts") or []
     rows = [x for x in a if x.get("league") in cl.SPORT and x.get("market") in ("moneyline", "spread", "total")
@@ -65,7 +83,8 @@ def main():
         if last and now - last < timedelta(hours=8):
             continue
         st["fx_last"].pop(lg, None)
-        cl.refresh_fixtures(st, now, lg, (now - timedelta(days=1)).astimezone(ET), (now + timedelta(days=3)).astimezone(ET))
+        cl.refresh_fixtures(st, now, lg, (now - timedelta(days=1 + BACKFILL_DAYS)).astimezone(ET),
+                            (now + timedelta(days=3)).astimezone(ET))
     hist, res = {}, {}
     for x in rows:
         k = f"{x.get('key')}|{x.get('alerted_utc')}"
@@ -96,25 +115,53 @@ def main():
         lim2, how2, _ = xb.limit_at(x, f, pm, mkmap, min(now, st0) if st0 else now)
         if lim2 is not None:
             rec.update(p_now=round(lim2 * OJ), p_now_utc=cl.iso(now))
+        # BASIS. A row alerted before the day these fields landed is BACKTEST data, however it is
+        # tagged: its verdict was reconstructed after the fact. It must never pool into the forward
+        # count, so the row says which it is and the reader does not have to infer it from a date.
+        alerted = str(x.get("alerted_utc") or "")[:10]
+        rec["basis"] = "forward" if alerted >= FORWARD_FROM else "backfill"
         if rec.get("p_alert"):
             rec.pop("note", None)
-            ok = tot >= 2 * rec["p_alert"] and rec["two5k"] and tot >= 25000
-            rec["x2"] = bool(ok)
+            # The three clauses, each on the record. The flag alone cannot be audited; these can.
+            c_mult = tot >= 2 * rec["p_alert"]
+            c_two5k = bool(rec["two5k"])
+            c_total = tot >= 25000
+            ok = c_mult and c_two5k and c_total
+            rec.update(x2=bool(ok), x2_pass=bool(ok), p_limit=rec["p_alert"],
+                       c_mult=bool(c_mult), c_two5k=c_two5k, c_total=bool(c_total),
+                       mult=round(tot / rec["p_alert"], 3) if rec["p_alert"] else None,
+                       exch_total=round(tot))
             if ok and not rec.get("x2_first_utc"):
                 rec["x2_first_utc"] = cl.iso(now)
         else:
-            rec["note"] = "NO LIMIT DATA"
+            # No limit means NO VERDICT - never a False, which would read as "tested and failed".
+            for f in ("x2", "x2_pass", "p_limit", "c_mult", "mult"):
+                rec.pop(f, None)
+            rec.update(note="NO LIMIT DATA", c_two5k=bool(rec["two5k"]),
+                       c_total=tot >= 25000, exch_total=round(tot))
         res[k] = rec
     os.makedirs("x2", exist_ok=True)
     os.makedirs("oddspapi", exist_ok=True)
-    keep = {k: v for k, v in prev.items() if k not in res and (v.get("p_now_utc") or "") >= cl.iso(now - timedelta(days=3))}
+    # A row that HAS a verdict is evidence and is kept; the 3-day prune is for rows still being
+    # followed. Without this a backfilled row would be dropped by the next ordinary run.
+    keep = {k: v for k, v in prev.items()
+            if k not in res and (v.get("x2_pass") is not None
+                                 or (v.get("p_now_utc") or "") >= cl.iso(now - timedelta(days=3)))}
     keep.update(res)
     json.dump({"updated": cl.iso(now), "scale": "OddsJam (OddsPapi x 4/3)", "rows": keep}, open(OUT, "w"), separators=(",", ":"))
     cut = cl.iso(now - timedelta(days=5))
     json.dump({"fixtures": {k: v for k, v in st["fixtures"].items() if (v.get("start") or "") >= cut}, "fx_last": st["fx_last"],
                "note": "OddsPapi fixture ids (public)"}, open(CACHE, "w"), separators=(",", ":"))
+    fwd = [v for v in res.values() if v.get("basis") == "forward"]
+    bak = [v for v in res.values() if v.get("basis") == "backfill"]
     print(f"x2 tag: rows {len(rows)}, with P limit {sum(1 for v in res.values() if v.get('p_alert'))}, "
-          f"2X {sum(1 for v in res.values() if v.get('x2'))}, calls {len(cl.CALLS)}")   # counts only
+          f"TRUE 2X {sum(1 for v in res.values() if v.get('x2_pass'))}, calls {len(cl.CALLS)}")
+    print(f"x2 tag: forward {len(fwd)} (true 2X {sum(1 for v in fwd if v.get('x2_pass'))}), "
+          f"backfill {len(bak)} (true 2X {sum(1 for v in bak if v.get('x2_pass'))}) - "
+          f"backfill is BACKTEST data and must not pool into the forward count")
+    loose = sum(1 for v in res.values() if v.get("c_two5k") and v.get("c_total"))
+    print(f"x2 tag: depth-only proxy would pass {loose}, the multiple clause holds on "
+          f"{sum(1 for v in res.values() if v.get('c_mult'))} - the gap is why the two differ")
 
 
 if __name__ == "__main__":
