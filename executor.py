@@ -4335,10 +4335,10 @@ def _unit_ledger_sweep(store, registry_module, own_cid, strict):
     strict=False (record-only): never raises; a failure prints a count-safe line."""
     try:
         import review_intents as _ri2
-        intents = _ri2.read_intents(registry_module)
-        if intents is None:
-            raise RuntimeError("write-ahead intents unreadable")
-        c = _ri2.sweep(store, intents, exclude_cid=own_cid)
+        rows = _ri2.read_rows(registry_module)       # pre-order rows live in `orders`
+        if rows is None:
+            raise RuntimeError("order rows unreadable")
+        c = _ri2.sweep(store, rows, exclude_cid=own_cid)
         if c.get("added") or c.get("unkeyable"):
             print(f"unit ledger: intent sweep added {c.get('added', 0)}, "
                   f"unkeyable {c.get('unkeyable', 0)}", flush=True)

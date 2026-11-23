@@ -12,6 +12,10 @@ on:
         description: "Empty = dry run (counts only). SEED writes the one-time seed. SWEEP writes the intent sweep."
         required: false
         default: ""
+      prior_snapshot_utc:
+        description: "Optional: UTC time of the previous snapshot, to report rows newer than it"
+        required: false
+        default: ""
 
 permissions:
   contents: read
@@ -42,4 +46,5 @@ jobs:
           PROPHETX_TRADE_ACCESS_KEY: ${{ secrets.PROPHETX_TRADE_ACCESS_KEY }}
           PROPHETX_TRADE_SECRET_KEY: ${{ secrets.PROPHETX_TRADE_SECRET_KEY }}
           SEED_CONFIRM: ${{ inputs.confirm }}
+          SEED_PRIOR_SNAPSHOT_UTC: ${{ inputs.prior_snapshot_utc }}
         run: python -u review_seed.py
