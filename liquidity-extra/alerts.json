@@ -1,10 +1,10 @@
 {
  "alerts": [
   {
-   "alerted_utc": "2026-11-23T15:20:26Z",
+   "alerted_utc": "2026-11-23T15:40:12Z",
    "base_depth": 263984,
-   "best_price": 0.585,
-   "best_price_american": -141,
+   "best_price": 0.58,
+   "best_price_american": -138,
    "best_price_book": "novig",
    "bid_improved": false,
    "bid_improved_at_pending": true,
@@ -16,58 +16,58 @@
    ],
    "close_price": 0.58,
    "clv_cents": 0.0,
-   "confirmed_after_min": 6,
+   "confirmed_after_min": 26,
    "date": "2026-11-23",
    "depth_by_book": {
     "kalshi": {
      "new_other_side": 5656,
      "new_this_side": 44553,
-     "other_side": 28456,
-     "other_side_all_levels": 207675,
-     "ratio": 2.7,
-     "this_side": 77277,
-     "this_side_all_levels": 325997
+     "other_side": 33874,
+     "other_side_all_levels": 212675,
+     "ratio": 2.5,
+     "this_side": 85435,
+     "this_side_all_levels": 318485
     },
     "novig": {
      "heavier_side": true,
      "label": "ECU (0)",
-     "price": 0.585,
-     "this_side": 14701
+     "price": 0.58,
+     "this_side": 10703
     },
     "prophetx": {
-     "heavier_side": false,
+     "heavier_side": true,
      "label": "East Carolina",
      "price": 0.5833,
-     "this_side": 2787
+     "this_side": 5009
     }
    },
    "ex_stats_alert": {
-    "open_interest_fp": 10131.56,
-    "volume_24h_fp": 20796.17,
-    "volume_fp": 21989.57
+    "open_interest_fp": 10334.77,
+    "volume_24h_fp": 22002.59,
+    "volume_fp": 22192.78
    },
    "ex_stats_change": {
-    "open_interest_fp": 842.16,
-    "volume_24h_fp": 0.0,
-    "volume_fp": 842.16
+    "open_interest_fp": 1045.37,
+    "volume_24h_fp": 1206.42,
+    "volume_fp": 1045.37
    },
    "ex_stats_close": {
-    "open_interest_fp": 10949.970000000001,
-    "volume_24h_fp": 22192.78,
-    "volume_fp": 22807.980000000003
+    "open_interest_fp": 11494.599999999999,
+    "volume_24h_fp": 23911.530000000002,
+    "volume_fp": 23946.15
    },
    "ex_stats_first": {
     "open_interest_fp": 9289.400000000001,
     "volume_24h_fp": 20796.17,
     "volume_fp": 21147.41
    },
-   "fade_price": 0.42,
+   "fade_price": 0.43,
    "first_seen_utc": "2026-11-23T15:14:01Z",
    "game": "Indiana St. vs East Carolina",
    "game_surge_books": [],
-   "game_x": 1.42,
+   "game_x": 1.39,
    "key": "kalshi|KXNCAAMBGAME-26NOV23INSTECU|ml|1",
-   "lead_min": 130,
+   "lead_min": 110,
    "league": "NCAAB",
    "line": null,
    "market": "moneyline",
@@ -76,44 +76,42 @@
    "norm_by_book": {
     "kalshi": {
      "ex_stats": {
-      "open_interest_fp": 10131.56,
-      "volume_24h_fp": 20796.17,
-      "volume_fp": 21989.57
+      "open_interest_fp": 10334.77,
+      "volume_24h_fp": 22002.59,
+      "volume_fp": 22192.78
      },
      "game_normal": 229186,
-     "game_x": 1.42,
+     "game_x": 1.39,
      "normal": 7981,
-     "now": 325997,
+     "now": 318485,
      "type": "ML",
-     "x": 40.85
+     "x": 39.91
     },
     "novig": {
      "ex_stats": {
-      "openInterest": 2570380.0,
-      "volume": 2765778.0
+      "openInterest": 3182365.0,
+      "volume": 3427160.0
      },
      "game_normal": 28364,
-     "game_x": 1.59,
+     "game_x": 1.2,
      "normal": 1817,
-     "now": 45105,
+     "now": 34036,
      "type": "ML",
-     "x": 24.82
+     "x": 18.73
     },
     "prophetx": {
      "ex_stats": null,
      "game_normal": 3376,
-     "game_x": 0.88,
+     "game_x": 1.62,
      "normal": 1016,
-     "now": 2987,
+     "now": 5459,
      "type": "ML",
-     "x": 2.94
+     "x": 5.37
     }
    },
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.58,
-   "price_after_15m": 0.58,
-   "price_after_15m_book": "novig",
    "price_american": -138,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.59,
@@ -125,10 +123,6 @@
     "betonlineag": {
      "point": null,
      "price": -145
-    },
-    "betopenly": {
-     "point": null,
-     "price": -138
     },
     "betrivers": {
      "point": null,
@@ -152,7 +146,7 @@
     },
     "fanatics": {
      "point": null,
-     "price": -150
+     "price": -145
     },
     "fanduel": {
      "point": null,
@@ -199,10 +193,9 @@
    "sharp_oppose": [],
    "side": "East Carolina",
    "side_label": "East Carolina",
-   "size_x": 40.85,
+   "size_x": 39.91,
    "start_source": "odds",
    "start_utc": "2026-11-23T17:30:00Z",
-   "still_actionable": true,
    "surge_books": [
     "kalshi",
     "novig",
@@ -265,8 +258,8 @@
     "volume": 267640.0
    },
    "ex_stats_close": {
-    "openInterest": 1461089.0,
-    "volume": 1705604.0
+    "openInterest": 1504323.0,
+    "volume": 1748838.0
    },
    "ex_stats_first": {
     "openInterest": 630621.0,
@@ -1073,7 +1066,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 271.82,
-    "volume_24h_fp": 32.0,
+    "volume_24h_fp": 97.7,
     "volume_fp": 275.0
    },
    "ex_stats_first": {
@@ -1221,7 +1214,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1592.9099999999999,
-    "volume_24h_fp": 1423.52,
+    "volume_24h_fp": 1395.35,
     "volume_fp": 1600.9099999999999
    },
    "ex_stats_first": {
@@ -1522,9 +1515,9 @@
     "volume_fp": 9.47
    },
    "ex_stats_close": {
-    "open_interest_fp": 47535.130000000005,
-    "volume_24h_fp": 74268.42,
-    "volume_fp": 80203.22
+    "open_interest_fp": 67292.92,
+    "volume_24h_fp": 80481.09,
+    "volume_fp": 100377.01000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 7328.32,
@@ -1924,9 +1917,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 15833.380000000001,
-    "volume_24h_fp": 16194.869999999999,
-    "volume_fp": 16300.77
+    "open_interest_fp": 15993.26,
+    "volume_24h_fp": 16368.86,
+    "volume_fp": 16460.65
    },
    "ex_stats_first": {
     "open_interest_fp": 2576.39,
@@ -2107,9 +2100,9 @@
     "volume_fp": 0.74
    },
    "ex_stats_close": {
-    "open_interest_fp": 76764.48,
-    "volume_24h_fp": 71797.83,
-    "volume_fp": 84275.54000000001
+    "open_interest_fp": 109512.04,
+    "volume_24h_fp": 85044.83,
+    "volume_fp": 117023.1
    },
    "ex_stats_first": {
     "open_interest_fp": 1554.21,
@@ -2297,7 +2290,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 5506.87,
-    "volume_24h_fp": 5767.75,
+    "volume_24h_fp": 5769.07,
     "volume_fp": 5806.87
    },
    "ex_stats_first": {
@@ -2498,7 +2491,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 25443.210000000003,
-    "volume_24h_fp": 25353.010000000002,
+    "volume_24h_fp": 25799.34,
     "volume_fp": 26086.190000000002
    },
    "ex_stats_first": {
@@ -2698,9 +2691,9 @@
     "volume_fp": 239.89
    },
    "ex_stats_close": {
-    "open_interest_fp": 5892.24,
-    "volume_24h_fp": 5899.97,
-    "volume_fp": 5907.4400000000005
+    "open_interest_fp": 5920.02,
+    "volume_24h_fp": 5907.4400000000005,
+    "volume_fp": 5935.219999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 927.97,
@@ -3096,7 +3089,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 655.95,
-    "volume_24h_fp": 602.04,
+    "volume_24h_fp": 652.64,
     "volume_fp": 656.19
    },
    "ex_stats_first": {
@@ -3435,9 +3428,9 @@
     "volume_fp": 32.97
    },
    "ex_stats_close": {
-    "open_interest_fp": 5508.62,
-    "volume_24h_fp": 5341.36,
-    "volume_fp": 5869.49
+    "open_interest_fp": 5510.05,
+    "volume_24h_fp": 5342.79,
+    "volume_fp": 5870.92
    },
    "ex_stats_first": {
     "open_interest_fp": 1120.31,

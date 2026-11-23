@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 23, 10:46 AM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 26.
+Updated Mon Nov 23, 10:51 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 26.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 23 10:20AM | NCAAB | Indiana St. vs East Carolina | moneyline: East Carolina | kalshi | $45k | -138 | ✅ novig |  | +0.0c |  | pending |
+| Nov 23 10:40AM | NCAAB | Indiana St. vs East Carolina | moneyline: East Carolina | kalshi | $45k | -138 | ✅ novig |  | +0.0c |  | pending |
 | Nov 23 9:31AM | NCAAB | Long Beach State @ Florida International | moneyline: FIU (0) | novig | $25k | -365 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 23 9:00AM | NCAAB | Middle Tennessee vs Southern Illinois | moneyline: Southern Illinois | kalshi | $62k | -133 | ✅ novig |  | +2.0c |  | pending |
 | Nov 23 1:20AM | NCAAB | Temple vs Tennessee-Martin | moneyline: Temple | kalshi | $27k | -213 |  |  | -10.0c |  | pending |
