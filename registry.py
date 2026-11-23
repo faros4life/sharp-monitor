@@ -199,6 +199,29 @@ def _commit(merge, tries=4):
     return False
 
 
+
+def _put_with_sha(data, sha):
+    """ONE conditional registry write for atomic reservations (review branch only).
+
+    No automatic retry or merge. A lost SHA race returns False, so the caller
+    must re-read and re-evaluate its exposure budget before trying again.
+    An unreadable store, no token or missing SHA fails closed. Existing _commit()
+    retains its separate additive merge/retry semantics.
+    """
+    if not enabled() or not isinstance(data, dict) or not sha:
+        return False
+    try:
+        body = {"message": "registry atomic reservation update",
+                "branch": os.environ.get("REGISTRY_BRANCH") or "main",
+                "content": base64.b64encode(json.dumps(
+                    data, separators=(",", ":"), sort_keys=True).encode()).decode(),
+                "sha": sha}
+        st, _ = _call("PUT", f"{API}/repos/{REPO}/contents/{PATH}", body)
+        return st in (200, 201)
+    except Exception:
+        return False
+
+
 def _upsert(rows, row, key="client_id"):
     """Replace the row with the same money identity, else append. Keeps one row per order."""
     ident = row.get(key)

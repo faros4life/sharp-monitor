@@ -114,6 +114,9 @@ jobs:
           EXEC_UNIT: "300"
           # LIVE phase 1 (Oct 26): real ProphetX orders only when the repo VARIABLE EXEC_LIVE is "on"
           EXEC_LIVE: ${{ vars.EXEC_LIVE }}
+          # Shared unit ledger. Unset or anything but "on" leaves the executor exactly as it is.
+          # Without this line the repo variable never reaches the job and flipping it does nothing.
+          EXEC_UNIT_LEDGER: ${{ vars.EXEC_UNIT_LEDGER }}
           # Nov 12 (Peter): the Novig submission hold was readable by novig-snapshot-check and
           # novig-dispatch-check but NEVER reached the executor, so setting the variable would have
           # had no effect here - book_live.NOVIG_SUBMIT would still default off. Wired with an
