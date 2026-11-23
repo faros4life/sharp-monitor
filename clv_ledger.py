@@ -581,7 +581,7 @@ def refresh_fixtures(st, now, lg, lo, hi, allow_extra=False):
     return True
 
 
-def find_fixture(st, b):
+def find_fixture(st, b, relax_unique=False):
     """Nov 5 (Peter, approval of the targeted recovery): BOTH participants must match on a DISTINCTIVE
     token, neither side may be carried by a word the other also matched, AT LEAST ONE side must match
     on TWO or more distinctive tokens, and the winner must be unique.
@@ -613,12 +613,53 @@ def find_fixture(st, b):
         return None
     # the per-fixture test lives in _qualifies so this and fixture_check() can never diverge - two
     # standards for the same question is exactly how the first version of the exclusion went wrong.
-    hit = [fid for fid, f in (st.get("fixtures") or {}).items() if _qualifies(f, lg, gs, words)]
-    return hit[0] if len(hit) == 1 else None
+    fx = (st.get("fixtures") or {}).items()
+    hit = [fid for fid, f in fx if _qualifies(f, lg, gs, words)]
+    if len(hit) == 1:
+        return hit[0]
+    if relax_unique and not hit:
+        # OPT-IN, and only where the strict rule found NOTHING. Nov 23, measured on the liquidity
+        # feed: 398 of 596 rows (67%) were unambiguous near-misses - both sides hit a correct,
+        # distinctive token and the sides were distinct, rejected solely for not reaching TWO
+        # tokens on either side. The feed names games by city ("Milwaukee vs Toronto: Spread")
+        # while the Nov 5 floor was tuned on bet rows carrying full team names, so nearly every
+        # row sits at exactly one token per side.
+        #
+        # The floor's real job is kept by the UNIQUENESS gate, not by the token count. Nov 5's own
+        # example is why: "Penn State Nittany Lions / Purdue" against "Pennsylvania Quakers /
+        # Columbia Lions" matched on penn + lions, and the floor worked there because the junk
+        # fixture dropped out and left the true game unique. Drop the floor and BOTH qualify - so
+        # requiring exactly one soft-qualifying fixture refuses it for the same reason, by the
+        # ambiguity that was always the actual danger. Several or none still returns None, and a
+        # side that matches nothing, or two sides carried by one shared word, still fails.
+        soft = [fid for fid, f in fx if _qualifies(f, lg, gs, words, floor=1)]
+        if len(soft) == 1:
+            # UNIQUELY QUALIFYING IS NOT ENOUGH. Measured while writing the test: with the true
+            # game absent from the cache, "Penn @ Lions" soft-qualified the JUNK fixture alone
+            # (Pennsylvania PENN / Columbia Lions) and the uniqueness gate happily returned it -
+            # the Nov 5 wrong-fixture failure, reproduced. A single coincidental token per side can
+            # carry a match whenever the real fixture is simply not there to compete.
+            #
+            # So the tokens that carried it must be the candidate's OWN. If any other fixture in
+            # the window also contains one of them, the token is coincidental rather than
+            # distinctive and the match is refused. Penn State's real fixture holds both "penn" and
+            # "lions", so it refuses; "toronto"/"milwaukee" touch one fixture, so it stands.
+            won = next(f for fid, f in fx if fid == soft[0])
+            used = ((tb.toks(won.get("p1") or "") | tb.toks(won.get("p2") or "")) - tb.WEAK) & words
+            shared = [fid for fid, f in fx
+                      if fid != soft[0] and f.get("lg") == lg
+                      and (((tb.toks(f.get("p1") or "") | tb.toks(f.get("p2") or "")) - tb.WEAK)
+                           & used)]
+            if not shared:
+                return soft[0]
+    return None
 
 
-def _qualifies(f, lg, gs, words):
-    """The matcher's own test for ONE fixture, so find_fixture and the validation cannot drift."""
+def _qualifies(f, lg, gs, words, floor=2):
+    """The matcher's own test for ONE fixture, so find_fixture and the validation cannot drift.
+
+    `floor` is the Nov 5 two-token requirement. It is 2 everywhere by default and is lowered to 1
+    only by find_fixture's opt-in relax_unique path, which then demands a UNIQUE soft match."""
     if f.get("lg") != lg:
         return False
     fs = tp(f.get("start"))
@@ -626,7 +667,7 @@ def _qualifies(f, lg, gs, words):
         return False
     a = (tb.toks(f.get("p1") or "") - tb.WEAK) & words
     c = (tb.toks(f.get("p2") or "") - tb.WEAK) & words
-    return bool(a and c and (a - c) and (c - a) and max(len(a), len(c)) >= 2)
+    return bool(a and c and (a - c) and (c - a) and max(len(a), len(c)) >= floor)
 
 
 def fixture_check(st, rec):
