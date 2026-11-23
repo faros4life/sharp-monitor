@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 22, 7:10 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 15.
+Updated Sun Nov 22, 7:20 PM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 12.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 428-255 (-14.04u flat) | rule met: 87-65
+**Record:** 431-255 (-11.98u flat) | rule met: 89-65
 
-**Fade (paper, betting against the print):** 230-393 (+10.11u flat, after fees)
+**Fade (paper, betting against the print):** 230-396 (+7.11u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -19,17 +19,17 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 22 1:40PM | NCAAB | Fordham vs San Diego | moneyline: San Diego | kalshi | $26k | +117 | ✅ novig |  | +0.0c |  | W |
 | Nov 22 12:56PM | NCAAB | Utah Tech vs South Dakota | moneyline: Utah Tech | kalshi | $56k | -108 | ✅ novig |  | +2.0c | yes | L |
 | Nov 22 12:56PM | NCAAB | Loyola Marymount vs UC Irvine | moneyline: UC Irvine | kalshi | $67k | -122 |  | ❌ | +0.0c |  | L |
-| Nov 22 11:50AM | NCAAB | NJIT vs Boston College: Spread | spread: NOT Boston College wins by over 23.5 points | kalshi | $39k | -108 |  |  | +0.0c |  | pending |
+| Nov 22 11:50AM | NCAAB | NJIT vs Boston College: Spread | spread: NOT Boston College wins by over 23.5 points | kalshi | $39k | -108 |  |  | +0.0c |  | W |
 | Nov 22 10:30AM | NCAAB | Maryland-Eastern Shore @ IU Indianapolis | moneyline: IUPUI (0) | novig | $29k | -506 |  |  | +0.5c |  | pending |
 | Nov 22 10:30AM | NCAAB | San Jose St. vs Loyola Chicago | moneyline: Loyola Chicago | kalshi | $37k | -186 | ✅ novig |  | +0.0c |  | pending |
 | Nov 22 10:20AM | NCAAB | Wyoming vs Duquesne | moneyline: Wyoming | kalshi | $48k | -163 | ✅ novig |  | +2.0c |  | W |
 | Nov 22 10:20AM | NCAAB | Valparaiso vs Southern Miss | moneyline: Valparaiso | kalshi | $56k | -335 | ✅ novig |  | +2.0c |  | pending |
 | Nov 22 10:20AM | NCAAB | Tennessee-Martin vs Utah Valley | moneyline: Utah Valley | kalshi | $84k | -270 | ✅ novig | ❌ | +0.0c |  | pending |
-| Nov 22 10:20AM | NCAAB | UNC Asheville vs Samford | moneyline: Samford | kalshi | $163k | -456 | ✅ novig |  | +1.0c |  | pending |
+| Nov 22 10:20AM | NCAAB | UNC Asheville vs Samford | moneyline: Samford | kalshi | $163k | -456 | ✅ novig |  | +1.0c |  | W |
 | Nov 22 10:20AM | NCAAB | Maryland-Eastern Shore vs IU Indy | moneyline: IU Indy | kalshi | $69k | -525 |  |  | +0.0c | yes | W |
 | Nov 22 10:20AM | NCAAB | Lamar vs Rice | moneyline: Lamar | kalshi | $52k | -122 | ✅ novig |  | +2.0c | yes | pending |
 | Nov 22 10:10AM | NCAAB | Miami (OH) vs UIC: Spread | spread: NOT Miami (OH) wins by over 1.5 points | kalshi | $25k | -122 |  |  | +0.0c |  | L |
-| Nov 22 10:10AM | NCAAB | Liberty vs Richmond: Spread | spread: NOT Liberty wins by over 1.5 points | kalshi | $26k | -104 | ✅ novig |  | +4.0c | yes | pending |
+| Nov 22 10:10AM | NCAAB | Liberty vs Richmond: Spread | spread: NOT Liberty wins by over 1.5 points | kalshi | $26k | -104 | ✅ novig |  | +4.0c | yes | W |
 | Nov 22 7:50AM | NCAAB | Utah vs Minnesota | moneyline: Minnesota | kalshi | $53k | -567 |  |  | -3.0c |  | pending |
 | Nov 22 7:50AM | NCAAB | Portland vs California Baptist | moneyline: Portland | kalshi | $31k | -456 |  |  | -9.0c |  | pending |
 | Nov 22 1:40AM | NCAAB | West Florida vs South Alabama | moneyline: South Alabama | kalshi | $28k | -233 |  |  | -1.0c |  | W |
