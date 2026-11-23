@@ -161,6 +161,14 @@ ok("an unclassifiable row blocks the verdict",
 ok("a venue-PROVEN terminal leg needs no unit, so settled history cannot hold the verdict hostage",
    RR.completeness([{"unit": None, "venue_class": "TERMINAL ZERO FILL"}], [],
                    {RR.PROVEN: 1})[0] == "COMPLETE")
+ok("venue proof cannot make missing odds into a COMPLETE budget",
+   RR.completeness([{"key":"nba|lal @ bos|total|under", "order_id":"x",
+                     "unit":200.0, "asked_stake":100.0, "american":None,
+                     "venue_class":"OPEN"}], [], {RR.PROVEN:1})[0] == "INCOMPLETE")
+ok("venue proof cannot make missing monetary stake into COMPLETE",
+   RR.completeness([{"key":"nba|lal @ bos|total|under", "order_id":"x",
+                     "unit":200.0, "asked_stake":None, "american":-110,
+                     "venue_class":"OPEN"}], [], {RR.PROVEN:1})[0] == "INCOMPLETE")
 ok("a leg with no lane unit blocks the verdict",
    RR.completeness([{"unit": None}], [], {RR.PROVEN: 1})[0] == "INCOMPLETE")
 ok("one unproven leg among many blocks the verdict",
