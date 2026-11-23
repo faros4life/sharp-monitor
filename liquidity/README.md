@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 22, 8:10 PM ET. This run: 1 new, 0 not confirmed, 2 pending. Open alerts: 43.
+Updated Sun Nov 22, 8:15 PM ET. This run: 1 new, 1 not confirmed, 0 pending. Open alerts: 44.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,16 +10,17 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 22 8:15PM | NFL | Minnesota Vikings at San Francisco 49ers | moneyline: San Francisco 49ers | prophetx | $53k | -200 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Nov 22 8:10PM | NBA | Brooklyn vs Minnesota | moneyline: Minnesota | kalshi | $53k | -525 |  |  | +0.0c |  | pending |
 | Nov 22 7:50PM | NBA | Los Angeles C vs Houston | moneyline: Houston | kalshi | $58k | -488 |  |  | +0.0c |  | pending |
 | Nov 22 7:40PM | NBA | Milwaukee vs Toronto | moneyline: Toronto | kalshi | $50k | -400 |  |  | +0.0c |  | pending |
-| Nov 22 7:15PM | NFL | Minnesota Vikings @ San Francisco 49ers | spread: SF -4.5 (-4.5) | novig | $46k | +106 | ✅ kalshi |  | +1.0c | yes | pending |
+| Nov 22 7:15PM | NFL | Minnesota Vikings @ San Francisco 49ers | spread: SF -4.5 (-4.5) | novig | $46k | +106 | ✅ kalshi |  | +1.5c | yes | pending |
 | Nov 22 7:05PM | NFL | Minnesota vs San Francisco: Spread | spread: San Francisco wins by over 4.5 points | kalshi | $582k | +104 | ✅ novig |  | +1.0c | yes | pending |
 | Nov 22 6:50PM | NBA | Dallas Mavericks @ Utah Jazz | moneyline: UTA (0) | novig | $41k | +125 |  | ✅ | +0.0c |  | pending |
 | Nov 22 5:55PM | NBA | Oklahoma City Thunder at Miami Heat | moneyline: Miami Heat | prophetx | $66k | -174 | ✅ novig | ✅ | +0.0c |  | pending |
 | Nov 22 5:55PM | NHL | Calgary vs Ottawa | moneyline: Ottawa | kalshi | $26k | -203 |  |  | +0.0c |  | pending |
 | Nov 22 5:50PM | NBA | Oklahoma City vs Miami: Spread | spread: NOT Miami wins by over 4.5 points | kalshi | $47k | -100 |  | ❌ | +0.0c |  | pending |
-| Nov 22 5:35PM | NBA | Boston vs Golden State: Spread | spread: NOT Boston wins by over 8.5 points | kalshi | $32k | -108 | ✅ novig | ✅ | -1.0c |  | pending |
+| Nov 22 5:35PM | NBA | Boston vs Golden State: Spread | spread: NOT Boston wins by over 8.5 points | kalshi | $32k | -108 | ✅ novig | ✅ | +0.0c |  | pending |
 | Nov 22 5:30PM | NBA | Indiana Pacers @ New York Knicks | moneyline: NYK (0) | novig | $28k | -270 | ✅ kalshi,prophetx | ❌ | -4.5c | yes | pending |
 | Nov 22 5:30PM | NBA | Orlando Magic @ Washington Wizards | moneyline: ORL (0) | novig | $34k | -182 | ✅ kalshi,prophetx | ✅ | +0.0c |  | pending |
 | Nov 22 5:25PM | NFL | Minnesota Vikings @ San Francisco 49ers | total: Over 45.5 (45.5) | novig | $45k | -100 | ✅ prophetx | ❌ | -0.5c | yes | pending |
@@ -39,7 +40,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 22 2:10PM | NBA | Dallas vs Utah: Spread | spread: Dallas wins by over 1.5 points | kalshi | $102k | -108 | ✅ novig | ❌ | +2.0c |  | pending |
 | Nov 22 2:00PM | NFL | New York Jets @ Los Angeles Chargers | moneyline: LAC (0) | novig | $51k | -156 | ✅ kalshi,prophetx |  | -0.5c | yes | L |
 | Nov 22 1:55PM | NBA | Detroit Pistons @ Atlanta Hawks | total: Under 223.5 (223.5) | novig | $28k | -100 | ✅ prophetx | ✅ | +0.0c |  | W |
-| Nov 22 1:35PM | NFL | Minnesota Vikings @ San Francisco 49ers | moneyline: SF (0) | novig | $48k | -170 | ✅ kalshi,prophetx |  | +3.0c |  | pending |
+| Nov 22 1:35PM | NFL | Minnesota Vikings @ San Francisco 49ers | moneyline: SF (0) | novig | $48k | -170 | ✅ kalshi,prophetx |  | +3.5c |  | pending |
 | Nov 22 1:10PM | NFL | Jacksonville Jaguars @ New York Giants | moneyline: JAX (0) | novig | $90k | -257 | ✅ kalshi,prophetx |  | +0.5c |  | L |
 | Nov 22 1:10PM | NFL | New York Jets @ Los Angeles Chargers | spread: NYJ +3.5 (-3.5) | novig | $46k | -117 | ✅ kalshi |  | +1.0c |  | W |
 | Nov 22 12:55PM | NFL | Tennessee Titans at Dallas Cowboys | spread: Dallas Cowboys -7.5 (-7.5) | prophetx | $38k | -104 | ✅ kalshi,novig |  | +0.0c |  | W |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 9:35AM | NCAAF | Northwestern @ Minnesota | moneyline: NU (0) | novig | $27k | -133 | ✅ prophetx |  | +0.5c |  | L |
 | Nov 21 8:50AM | NCAAF | North Carolina @ Virginia | moneyline: UVA (0) | novig | $26k | -104 |  |  | -3.0c |  | L |
 | Nov 21 8:50AM | NCAAF | Indiana @ Washington | moneyline: IND (0) | novig | $31k | -292 |  |  | +1.5c |  | L |
-| Nov 21 8:40AM | NCAAF | Wake Forest vs Georgia Tech: Spread | spread: Wake Forest wins by over 21.5 points | kalshi | $26k | +108 |  |  | +5.0c | yes | L |
