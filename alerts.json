@@ -233,7 +233,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+2.5 pts",
+   "clv": "+1 pts",
    "clv_conv_pts": null,
    "clv_pin_line": null,
    "clv_read_utc": null,
@@ -1998,20 +1998,20 @@
   {
    "alert_utc": "2026-11-23T17:40:28Z",
    "beat_close": true,
-   "beat_true_close": null,
+   "beat_true_close": true,
    "bet": "Under 148.5 (-110)",
    "book": "Hard Rock",
    "book_key": "hardrockbet",
-   "close_fair_prob": null,
-   "close_read_mins_before": null,
-   "close_value_pct": null,
+   "close_fair_prob": 0.5285,
+   "close_read_mins_before": 30,
+   "close_value_pct": 0.9,
    "clv": "+1 pts",
-   "clv_conv_pts": null,
-   "clv_pin_line": null,
-   "clv_read_utc": null,
+   "clv_conv_pts": 1.0,
+   "clv_pin_line": 147.5,
+   "clv_read_utc": "2026-11-23T19:00:28Z",
    "clv_skipped": null,
-   "clv_source": null,
-   "clv_verified": null,
+   "clv_source": "live read (provisional)",
+   "clv_verified": false,
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -2614,8 +2614,8 @@
    "fade_point": 5.5,
    "fade_price": -101,
    "fade_price_after_fee": -103,
-   "fade_units": null,
-   "final": null,
+   "fade_units": -1.0,
+   "final": "UNI 48, DAV 79",
    "floor_line": -5.5,
    "game": "Northern Iowa Panthers @ Davidson Wildcats",
    "grade": "A",
@@ -2653,13 +2653,13 @@
     }
    },
    "pricing_bettable": true,
-   "result": null,
+   "result": "W",
    "score": 78,
    "sent_to_phone": false,
    "sport": "NCAAB",
    "start_utc": "2026-11-23T16:00:00Z",
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.98
   },
   {
    "alert_utc": "2026-11-23T15:10:24Z",
@@ -2688,8 +2688,8 @@
    "fade_point": -4.5,
    "fade_price": -101,
    "fade_price_after_fee": -103,
-   "fade_units": null,
-   "final": null,
+   "fade_units": 0.97,
+   "final": "SBU 71, APP 65",
    "floor_line": 4.5,
    "game": "St. Bonaventure Bonnies @ Appalachian St Mountaineers",
    "grade": "B",
@@ -2727,13 +2727,13 @@
     }
    },
    "pricing_bettable": true,
-   "result": null,
+   "result": "L",
    "score": 70,
    "sent_to_phone": false,
    "sport": "NCAAB",
    "start_utc": "2026-11-23T16:00:00Z",
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alert_utc": "2026-11-23T15:30:32Z",
@@ -2762,8 +2762,8 @@
    "fade_point": 135.5,
    "fade_price": -110,
    "fade_price_after_fee": -110,
-   "fade_units": null,
-   "final": null,
+   "fade_units": -1.0,
+   "final": "SBU 71, APP 65",
    "floor_line": 136.5,
    "game": "St. Bonaventure Bonnies @ Appalachian St Mountaineers",
    "grade": "A",
@@ -2801,13 +2801,13 @@
     }
    },
    "pricing_bettable": true,
-   "result": null,
+   "result": "W",
    "score": 78,
    "sent_to_phone": false,
    "sport": "NCAAB",
    "start_utc": "2026-11-23T16:00:00Z",
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.91
   },
   {
    "alert_utc": "2026-11-23T15:30:32Z",
@@ -2836,8 +2836,8 @@
    "fade_point": 143.5,
    "fade_price": 116,
    "fade_price_after_fee": 114,
-   "fade_units": null,
-   "final": null,
+   "fade_units": 1.14,
+   "final": "UNI 48, DAV 79",
    "floor_line": 145.5,
    "game": "Northern Iowa Panthers @ Davidson Wildcats",
    "grade": "A",
@@ -2875,13 +2875,13 @@
     }
    },
    "pricing_bettable": true,
-   "result": null,
+   "result": "L",
    "score": 82,
    "sent_to_phone": false,
    "sport": "NCAAB",
    "start_utc": "2026-11-23T16:00:00Z",
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alert_utc": "2026-11-22T13:45:28Z",
@@ -113210,6 +113210,31 @@
  ],
  "all_alerts": [
   {
+   "alert_text": "Oklahoma City Thunder -5.5 (-108) at Novig",
+   "bet": "Oklahoma City Thunder -5.5 (-108)",
+   "bet_result": null,
+   "book": "Novig",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -1.0,
+   "final": null,
+   "game": "Oklahoma City Thunder @ Indiana Pacers",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 329,
+   "price": -108,
+   "price_after_fee": -108,
+   "pushed_to_phone": false,
+   "repeat": true,
+   "score": 77,
+   "sent_et": "2026-11-23 14:00",
+   "sport": "NBA",
+   "start_utc": "2026-11-24T00:30:00Z",
+   "why": "Pinnacle moved -4.5 -> -6.5; bet only at -6 or better (confirmed by BetOnline, Matchbook)"
+  },
+  {
    "alert_text": "Oklahoma City Thunder -4.5 (-122) at ProphetX [-124 after ProphetX fee]",
    "bet": "Oklahoma City Thunder -4.5 (-122)",
    "bet_result": null,
@@ -113476,13 +113501,13 @@
   {
    "alert_text": "Over 137.5 (-115) at Hard Rock (also: ProphetX, Kalshi)",
    "bet": "Over 137.5 (-115)",
-   "bet_result": null,
+   "bet_result": "W",
    "book": "Hard Rock",
    "confirmed_by": [
     "BetOnline"
    ],
    "edge_pct": -0.4,
-   "final": null,
+   "final": "SBU 71, APP 65",
    "game": "St. Bonaventure Bonnies @ Appalachian St Mountaineers",
    "grade": "A",
    "late": true,
@@ -113620,13 +113645,13 @@
   {
    "alert_text": "Over 143.5 (-127) at ProphetX [-130 after ProphetX fee] (also: Hard Rock, Novig, Kalshi)",
    "bet": "Over 143.5 (-127)",
-   "bet_result": null,
+   "bet_result": "L",
    "book": "ProphetX",
    "confirmed_by": [
     "BetOnline"
    ],
    "edge_pct": -1.7,
-   "final": null,
+   "final": "UNI 48, DAV 79",
    "game": "Northern Iowa Panthers @ Davidson Wildcats",
    "grade": "A",
    "late": true,
@@ -113644,13 +113669,13 @@
   {
    "alert_text": "Over 135.5 (-110) at Hard Rock (also: ProphetX)",
    "bet": "Over 135.5 (-110)",
-   "bet_result": null,
+   "bet_result": "W",
    "book": "Hard Rock",
    "confirmed_by": [
     "BetOnline"
    ],
    "edge_pct": 1.8,
-   "final": null,
+   "final": "SBU 71, APP 65",
    "game": "St. Bonaventure Bonnies @ Appalachian St Mountaineers",
    "grade": "A",
    "late": true,
@@ -113740,13 +113765,13 @@
   {
    "alert_text": "Appalachian St Mountaineers +4.5 (-102) at ProphetX [-104 after ProphetX fee] (also: Hard Rock)",
    "bet": "Appalachian St Mountaineers +4.5 (-102)",
-   "bet_result": null,
+   "bet_result": "L",
    "book": "ProphetX",
    "confirmed_by": [
     "BetOnline"
    ],
    "edge_pct": -0.5,
-   "final": null,
+   "final": "SBU 71, APP 65",
    "game": "St. Bonaventure Bonnies @ Appalachian St Mountaineers",
    "grade": "B",
    "late": true,
@@ -113982,13 +114007,13 @@
   {
    "alert_text": "Davidson Wildcats -5.5 (-102) at Novig (also: Hard Rock, ProphetX, Kalshi)",
    "bet": "Davidson Wildcats -5.5 (-102)",
-   "bet_result": null,
+   "bet_result": "W",
    "book": "Novig",
    "confirmed_by": [
     "BetOnline"
    ],
    "edge_pct": 1.5,
-   "final": null,
+   "final": "UNI 48, DAV 79",
    "game": "Northern Iowa Panthers @ Davidson Wildcats",
    "grade": "A",
    "late": false,
