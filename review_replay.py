@@ -33,6 +33,7 @@ measurement returns nothing, the measurement is the first suspect:
 import csv
 import io
 import json
+import re
 import os
 import sys
 from datetime import datetime, timezone
@@ -92,6 +93,57 @@ def canonical_registry_key(raw):
     return ri.play_key(*parts)
 
 
+# Lane units, per Peter (Nov 23): $300 for Lane 1, $200 for R1, Board and NCS. These mirror
+# executor.LIVE_UNIT / R1_UNIT / BOARD_UNIT / NCS_UNIT and a test asserts they still agree;
+# executor itself is not imported, to keep the order paths out of this script's reachable set.
+LANE_UNIT = {"lane1": 300.0, "r1": 200.0, "board": 200.0, "ncs": 200.0}
+# The two places a row states its lane: the play-key prefix and the row's source.
+PREFIX_LANE = {"rule": "lane1", "rules": "lane1", "board": "board", "r1": "r1", "ncs": "ncs"}
+SOURCE_LANE = {"rules": "lane1", "board": "board", "r1": "r1", "ncs": "ncs"}
+
+
+def lane_unit(row, order=None):
+    """(lane, unit, why). The unit comes from LANE METADATA or not at all.
+
+    The first run (Nov 23) refused 46 legs for "no lane unit" because this script read a `unit`
+    field off the order record, and the registry's projection of an order never writes one. The
+    world was fine; the reader was wrong.
+
+    NOTHING IS DEFAULTED. executor.unit_for() treats every lane it does not name as Lane 1, which is
+    right for sizing a new order and wrong for certifying old exposure. Here an unnamed lane, a
+    source this table does not know ("muse", "lane2", blank) or a prefix that disagrees with the
+    source returns no unit, and the leg stays INCOMPLETE until a person rules on it.
+    """
+    key = str((row or {}).get("key") or (row or {}).get("play_key") or "")
+    parts = key.split("|")
+    by_prefix = PREFIX_LANE.get(parts[0].strip().lower()) if len(parts) == 5 else None
+    src = str((row or {}).get("source") or "").strip().lower()
+    by_source = SOURCE_LANE.get(src)
+    if by_prefix and by_source and by_prefix != by_source:
+        return None, None, "lane conflict: key prefix and source disagree"
+    lane = by_prefix or by_source
+    if not lane:
+        if len(parts) == 5 and not by_prefix:
+            return None, None, "lane unknown: unrecognised key prefix"
+        return None, None, ("lane unknown: source not a live lane" if src
+                            else "lane unknown: no prefix and no source")
+    unit = LANE_UNIT[lane]
+    stored = _num((order or {}).get("unit"))
+    if stored is not None and abs(stored - unit) > 0.005:
+        return lane, None, "unit conflict: stored unit disagrees with the lane"
+    return lane, unit, ""
+
+
+def american_of(o):
+    """The order's American price, or None. The registry projection stores it as `limit`; older
+    shapes used american / shown. A value that is not American odds (|x| < 100) is not guessed at."""
+    for k in ("american", "shown", "limit"):
+        v = _num((o or {}).get(k))
+        if v is not None:
+            return v if abs(v) >= 100 else None
+    return None
+
+
 def backfill_candidates(rows):
     """(legs, unreadable, terminal) from the NESTED order records of every registry row.
 
@@ -118,6 +170,7 @@ def backfill_candidates(rows):
                                "fields_present": sorted(k for k in r if k in NESTED_FIELDS)})
             continue
         for field, o in found:
+            lane, unit, unit_why = lane_unit(r, o)
             st = str(o.get("status") or "").strip().lower()
             if st in LEDGER_STATES_TERMINAL:
                 terminal += 1
@@ -138,8 +191,10 @@ def backfill_candidates(rows):
                          "status": st or None,
                          "asked_stake": o.get("asked_stake", o.get("risk")),
                          "filled_stake": o.get("filled_stake"),
-                         "american": o.get("american", o.get("shown")),
-                         "unit": o.get("unit"),
+                         "american": american_of(o),
+                         "lane": lane, "unit": unit, "unit_why": unit_why or None,
+                         "day": str(r.get("et_day") or r.get("decided_utc") or "")[:10] or None,
+                         "fields": sorted(k for k in o if isinstance(k, str)),
                          "terminal_verified": o.get("terminal_verified")})
     return legs, unreadable, terminal
 
@@ -338,8 +393,13 @@ def completeness(legs, unreadable, counts=None):
     standing = [l for l in legs if l.get("venue_class") != nr.TERMINAL]
     missing_unit = [l for l in standing if l.get("unit") in (None, "")]
     if missing_unit:
-        return "INCOMPLETE", (f"{len(missing_unit)} leg(s) with standing exposure carry no lane "
-                              f"unit, so their share of the budget cannot be computed")
+        why = {}
+        for l in missing_unit:
+            k = l.get("unit_why") or "no lane unit"
+            why[k] = why.get(k, 0) + 1
+        return "INCOMPLETE", (f"{len(missing_unit)} leg(s) with standing exposure have no lane "
+                              f"unit (" + "; ".join(f"{v} {k}" for k, v in sorted(why.items()))
+                              + ")")
     # The venue can prove an order exists while our registry still lacks enough
     # economic fields to value it. A COMPLETE flag must not be based on unit alone.
     try:
@@ -365,23 +425,123 @@ def completeness(legs, unreadable, counts=None):
                         f"({len(standing)} with exposure still standing)")
 
 
-def min_at_sf(rows, needle):
+REASON_CODES = (
+    ("leg carries no identifier", "no identifier on the leg"),
+    ("no venue record for this client id", "id absent from the Novig snapshot"),
+    ("fill quantity not read", "Novig fill quantity unread"),
+    ("zero that no read confirms", "Novig terminal zero unconfirmed"),
+    ("no ProphetX trade", "no ProphetX trade record"),
+    ("venue returned no filled quantity", "venue returned no filled quantity"),
+    ("means filled but the quantity read as zero", "filled status with zero quantity"),
+    ("is not one this reader knows", "venue status unknown to the reader"),
+    ("no read-back path", "no reader for this book"),
+)
+
+
+def reason_code(leg):
+    """A FIXED-VOCABULARY reason for a leg without venue proof. The raw text can carry an order id
+    or a venue message, so the public log only ever prints one of these codes."""
+    why = str((leg.get("evidence") or {}).get("why") or "")
+    for needle, code in REASON_CODES:
+        if needle in why:
+            return code
+    return "other (see private mail)"
+
+
+def diagnostics(legs):
+    """Counts and reasons only - safe for a public log. No id, key, price or amount.
+
+    Peter, Nov 23: identify the unproven legs' venue, missing evidence and reason WITHOUT a Gmail
+    read. This is that: (book, evidence class, reason) -> count, the lane split, and which
+    economic fields are absent - by NAME, never value, as px_live.trade_fields() does.
+    """
+    out = {"unproven": {}, "lane": {}, "unit": {}, "missing": {}, "fields": {}}
+    for l in legs:
+        if l.get("evidence_class") != PROVEN:
+            k = f"{l.get('book') or 'unknown book'} / {l.get('evidence_class')} / {reason_code(l)}"
+            out["unproven"][k] = out["unproven"].get(k, 0) + 1
+        ln = l.get("lane") or "unknown"
+        out["lane"][ln] = out["lane"].get(ln, 0) + 1
+        if l.get("unit") is None:
+            k = l.get("unit_why") or "no lane unit"
+            out["unit"][k] = out["unit"].get(k, 0) + 1
+        for f in ("asked_stake", "american", "order_id", "book"):
+            if l.get(f) in (None, ""):
+                out["missing"][f] = out["missing"].get(f, 0) + 1
+        for f in l.get("fields") or []:
+            out["fields"][f] = out["fields"].get(f, 0) + 1
+    return out
+
+
+def parse_aliases(text):
+    """"Minnesota|Vikings;San Francisco|49ers" -> [["minnesota","vikings"],["san francisco","49ers"]].
+    One group per team; a record matches when EVERY group has at least one whole-word hit."""
+    groups = []
+    for g in str(text or "").split(";"):
+        names = [n.strip().lower() for n in g.split("|") if n.strip()]
+        if names:
+            groups.append(names)
+    return groups
+
+
+def matches_incident(obj, needle="", aliases=None):
+    """True when a record names the incident - by the literal term, or by every alias group.
+
+    The first run searched one literal string, "MIN @ SF", found nothing and printed "0 unit(s)".
+    A venue or a lane may spell the game with full names, a different separator or the teams in
+    the other order, so a literal miss proves nothing about exposure."""
+    blob = json.dumps(obj, default=str).lower()
+    want = str(needle or "").strip().lower()
+    if want and want in blob:
+        return True
+    groups = aliases or []
+    return bool(groups) and all(
+        any(re.search(r"(?<![a-z0-9])" + re.escape(n) + r"(?![a-z0-9])", blob) for n in g)
+        for g in groups)
+
+
+def venue_side_search(needle, aliases, date, novig=None, px=None):
+    """Counts of VENUE-SIDE records naming the incident or dated that day, found without going
+    through the registry at all - so an order the registry never recorded can still surface.
+
+    Novig: the runner's order snapshot. ProphetX: the trade list. Kalshi and Polymarket US have no
+    history read in this repo (only a per-order read by id), which is reported as a limit rather
+    than passed off as a clean result."""
+    out = {}
+    (by_cid, _f), nv_why = (novig or _novig_index)()
+    if by_cid is None:
+        out["novig"] = {"readable": False, "why": nv_why}
+    else:
+        recs = list(by_cid.values())
+        out["novig"] = {"readable": True, "records": len(recs),
+                        "on_date": sum(1 for r in recs if date and date in json.dumps(r, default=str)),
+                        "matching": [r for r in recs if matches_incident(r, needle, aliases)]}
+    px_by, px_why = (px or _px_trades)()
+    if px_by is None:
+        out["prophetx"] = {"readable": False, "why": px_why}
+    else:
+        recs = [t for v in px_by.values() for t in v]
+        out["prophetx"] = {"readable": True, "records": len(recs),
+                           "on_date": sum(1 for r in recs if date and date in json.dumps(r, default=str)),
+                           "matching": [r for r in recs if matches_incident(r, needle, aliases)],
+                           "field_names": sorted({k for r in recs[:40] for k in r})}
+    for b in ("kalshi", "polymarket_us"):
+        out[b] = {"readable": False, "why": "no history read exists for this venue - by-id only"}
+    return out
+
+
+def min_at_sf(rows, needle, aliases=None, date=None):
     """The replay: every registry row matching the incident, verbatim, with nothing inferred.
 
     Matches the NESTED records as well as the row, because an order id only ever appears nested.
     """
     want = str(needle or "").strip().lower()
-    if not want:
+    if not want and not aliases:
         return []
-    hits = []
-    for r in rows or []:
-        blob = json.dumps(r, default=str).lower()
-        if want in blob:
-            hits.append(r)
-    return hits
+    return [r for r in rows or [] if matches_incident(r, want, aliases)]
 
 
-def incident_exposure(rows, needle, legs):
+def incident_exposure(rows, needle, legs, aliases=None, date=None):
     """(report, units, discrepancies) for the incident: what each venue holds, and where it
     disagrees with the registry.
 
@@ -395,10 +555,10 @@ def incident_exposure(rows, needle, legs):
     """
     import novig_reconcile as nr
     want = str(needle or "").strip().lower()
-    if not want:
+    if not want and not aliases:
         return [], None, []
     hit_keys = set()
-    for row in min_at_sf(rows, want):
+    for row in min_at_sf(rows, want, aliases):
         try:
             hit_keys.add(canonical_registry_key(row.get("key") or row.get("play_key")))
         except Exception:
@@ -483,6 +643,8 @@ def _csv(legs):
 
 def main(argv):
     needle = argv[1] if len(argv) > 1 else os.environ.get("REPLAY_MATCH", "")
+    aliases = parse_aliases(os.environ.get("REPLAY_ALIASES", ""))
+    date = (os.environ.get("REPLAY_DATE") or "").strip()[:10]
     rows = _rows()
     if rows is None:
         print("REPLAY: registry unreadable - nothing reported, nothing inferred", flush=True)
@@ -490,8 +652,11 @@ def main(argv):
     legs, unreadable, terminal = backfill_candidates(rows)
     legs, counts = venue_evidence(legs)
     verdict, why = completeness(legs, unreadable, counts)
-    hits = min_at_sf(rows, needle)
-    inc, inc_units, inc_disc = incident_exposure(rows, needle, legs)
+    hits = min_at_sf(rows, needle, aliases)
+    inc, inc_units, inc_disc = incident_exposure(rows, needle, legs, aliases)
+    diag = diagnostics(legs)
+    on_date = [l for l in legs if date and l.get("day") == date]
+    vside = venue_side_search(needle, aliases, date) if (needle or aliases) else {}
 
     # PUBLIC LOG: counts only. No key, no dollar figure, no order id.
     print(f"REPLAY: registry rows {len(rows)} | outstanding {len(legs)} | terminal {terminal} | "
@@ -499,12 +664,38 @@ def main(argv):
     print("REPLAY: venue evidence " + (", ".join(f"{k}={v}" for k, v in sorted(counts.items()))
                                        or "none gathered"), flush=True)
     print(f"REPLAY: backfill completeness {verdict} - {why}", flush=True)
-    if needle:
-        print(f"REPLAY: incident rows matching the supplied term: {len(hits)} | "
-              f"legs {len(inc)} | discrepancies {len(inc_disc)}", flush=True)
+    _fmt = lambda d: "; ".join(f"{v} x {k}" for k, v in sorted(d.items())) or "none"
+    print("REPLAY: unproven legs by book / class / reason: " + _fmt(diag["unproven"]), flush=True)
+    print("REPLAY: legs by lane: " + _fmt(diag["lane"]), flush=True)
+    print("REPLAY: legs with no unit, by reason: " + _fmt(diag["unit"]), flush=True)
+    print("REPLAY: legs missing an economic field (names only): " + _fmt(diag["missing"]),
+          flush=True)
+    print("REPLAY: order-record field names seen (names only): "
+          + ", ".join(sorted(diag["fields"])), flush=True)
+    if needle or aliases:
+        print(f"REPLAY: incident - registry rows matching the term or aliases: {len(hits)} | "
+              f"legs {len(inc)} | discrepancies {len(inc_disc)} | alias groups {len(aliases)}",
+              flush=True)
+        if date:
+            print(f"REPLAY: incident - registry legs dated {date}: {len(on_date)}", flush=True)
+        for b in sorted(vside):
+            v = vside[b]
+            print(f"REPLAY: incident - venue-side {b}: " + (
+                f"{v['records']} record(s) read, {v['on_date']} on the date, "
+                f"{len(v['matching'])} naming the incident" if v.get("readable")
+                else f"NOT SEARCHED ({v.get('why')})"), flush=True)
+        if "field_names" in (vside.get("prophetx") or {}):
+            print("REPLAY: incident - ProphetX trade field names (names only): "
+                  + ", ".join(vside["prophetx"]["field_names"]), flush=True)
         # UNITS ONLY in the log. Dollars go to the private mail, per CLAUDE.md.
-        print("REPLAY: incident combined exposure " + (f"{inc_units} unit(s)" if inc_units
-              is not None else "NOT COMPUTABLE - a leg lacks a readable unit or price"), flush=True)
+        if not inc:
+            # Zero matched legs is NOT zero exposure, and must never be printed as "0 unit(s)".
+            print("REPLAY: incident combined exposure NOT FOUND - no registry leg matched, which "
+                  "is not evidence of zero exposure", flush=True)
+        else:
+            print("REPLAY: incident combined exposure " + (f"{inc_units} unit(s)" if inc_units
+                  is not None else "NOT COMPUTABLE - a leg lacks venue proof, a unit or a price"),
+                  flush=True)
     else:
         print("REPLAY: no incident term supplied; replay section skipped", flush=True)
 
@@ -522,7 +713,10 @@ def main(argv):
     if unreadable:
         body += ["ROWS THAT COULD NOT BE CLASSIFIED (these block activation):"]
         body += [f"  {json.dumps(u, default=str)}" for u in unreadable[:50]] + [""]
-    if needle:
+    if needle or aliases:
+        body += ["VENUE-SIDE RECORDS NAMING THE INCIDENT (found without the registry):",
+                 json.dumps({b: v.get("matching") for b, v in vside.items() if v.get("readable")},
+                            indent=1, default=str)[:100000], ""]
         body += [f"INCIDENT EXPOSURE - {len(inc)} leg(s) across the matching rows",
                  f"  combined exposure: " + (f"{inc_units} unit(s)" if inc_units is not None
                                              else "NOT COMPUTABLE"),

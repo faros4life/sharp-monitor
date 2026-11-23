@@ -5,6 +5,7 @@ No venue is contacted: the readers are injected. The point of these tests is the
 first version had - reading flat where the records are nested, and calling a leg captured on the
 registry's own word.
 """
+import json
 import review_replay as RR
 
 P, F = [], []
@@ -233,7 +234,7 @@ ok("and never reads or writes the ledger flag", "EXEC_UNIT_LEDGER" not in src.re
 # ---------------------------------------------------------------- 7. the incident report
 INC = {"key": "rule|NFL|MIN @ SF|total|UNDER", "live_order": {"order_id": "c1", "client_id": "c1", "book": "novig",
                                        "status": "open", "asked_stake": 110.0, "american": -110,
-                                       "unit": 200.0},
+                                       "unit": 300.0},
        "live_more": [{"order_id": "px-1", "book": "prophetx", "status": "filled",
                       "asked_stake": 300.0, "american": -110, "unit": 300.0}]}
 ilegs, _iu, _it = RR.backfill_candidates([INC])
@@ -284,7 +285,7 @@ ok("invalid source keys fail rather than creating a separate budget",
        "american":-110, "unit":200}}])[1]) == 1)
 _probe = {"key":"r1|NFL|MIN @ SF|total|UNDER",
           "live_order":{"order_id":"px-filled", "book":"prophetx", "status":"filled",
-                        "asked_stake":330.0, "american":-110, "unit":300.0}}
+                        "asked_stake":220.0, "american":-110, "unit":200.0}}
 _probe_legs, _probe_bad, _ = RR.backfill_candidates([_probe])
 ok("a lane-tagged filled order is exported with the shared canonical key",
    len(_probe_legs) == 1 and _probe_legs[0]["key"] ==
@@ -343,6 +344,110 @@ ok("a FILLED leg still contributes its share",
    RR.incident_exposure(_rows, "MIN @ SF", [_mk("live_order", "a", "FILLED")])[1] == 1.0)
 ok("the incident needle is matched against the real key, so it cannot silently match nothing",
    len(RR.incident_exposure(_rows, "MIN @ SF", [_mk("live_order", "a")])[0]) == 1)
+
+# ------------------------------------------------- Nov 23 run 1: units, ambiguity, the search
+import re as _re
+_ex = open("executor.py", encoding="utf-8").read()
+def _const(name):
+    return float(_re.search(rf"^{name} = ([0-9.]+)", _ex, _re.M).group(1))
+ok("the lane units mirror executor's constants exactly",
+   RR.LANE_UNIT == {"lane1": _const("LIVE_UNIT"), "r1": _const("R1_UNIT"),
+                    "board": _const("BOARD_UNIT"), "ncs": _const("NCS_UNIT")}, str(RR.LANE_UNIT))
+ok("Lane 1 is $300 and R1, Board and NCS are $200",
+   RR.LANE_UNIT == {"lane1": 300.0, "r1": 200.0, "board": 200.0, "ncs": 200.0})
+_K = "NFL|MIN @ SF|total|UNDER"
+for _row, _want in (({"key": "rule|" + _K}, ("lane1", 300.0)),
+                    ({"key": _K, "source": "rules"}, ("lane1", 300.0)),
+                    ({"key": "r1|" + _K}, ("r1", 200.0)),
+                    ({"key": "board|" + _K, "source": "board"}, ("board", 200.0)),
+                    ({"key": _K, "source": "ncs"}, ("ncs", 200.0))):
+    ok(f"unit derived from lane metadata: {_row}", RR.lane_unit(_row)[:2] == _want,
+       str(RR.lane_unit(_row)))
+for _row, _why in (({"key": _K}, "no prefix and no source"),
+                   ({"key": _K, "source": "muse"}, "not a live lane"),
+                   ({"key": "lane2|" + _K}, "unrecognised key prefix"),
+                   ({"key": "zzz|" + _K}, "unrecognised key prefix"),
+                   ({"key": "r1|" + _K, "source": "board"}, "lane conflict")):
+    _l, _u, _w = RR.lane_unit(_row)
+    ok(f"NO unit and no default for {_row}", _u is None and _why in _w, f"{_u} / {_w}")
+ok("a stored unit that disagrees with the lane is a conflict, not a tie-break",
+   RR.lane_unit({"key": "r1|" + _K}, {"unit": 300.0})[1:] ==
+   (None, "unit conflict: stored unit disagrees with the lane"))
+ok("a stored unit alone, with no lane, grants nothing",
+   RR.lane_unit({"key": _K}, {"unit": 300.0})[1] is None)
+ok("the registry projection's `limit` is read as the American price",
+   RR.american_of({"limit": -110}) == -110 and RR.american_of({"limit": 0.52}) is None)
+
+# the run-1 shape: an order record with NO unit field, as the registry really stores it
+_real = lambda key, src=None, oid="o1": dict(
+    {"key": key, "decided_utc": "2026-11-22T20:00:00Z",
+     "live_order": {"order_id": oid, "book": "kalshi", "status": "placed",
+                    "asked_stake": 220.0, "limit": -110, "filled_stake": 220.0}},
+    **({"source": src} if src else {}))
+_kal = lambda oid: ({"status": "executed", "filled_qty": 9, "qty": 9}, "")
+def _run(rows):
+    lg, un, _ = RR.backfill_candidates(rows)
+    lg, ct = RR.venue_evidence(lg, novig=novig_ok, kalshi=_kal, pmus=pmus_ok, px=px_ok)
+    return lg, RR.completeness(lg, un, ct)
+_lg, (_v, _w) = _run([_real("r1|" + _K)])
+ok("a record with no unit field gets its unit from the lane and can be COMPLETE",
+   _v == "COMPLETE" and _lg[0]["unit"] == 200.0 and _lg[0]["american"] == -110, f"{_v}: {_w}")
+for _label, _rows in (("no lane metadata", [_real(_K)]),
+                      ("an unknown source", [_real(_K, "muse")]),
+                      ("conflicting lanes", [_real("r1|" + _K, "board")]),
+                      ("one ambiguous leg among good ones",
+                       [_real("r1|" + _K, oid="a"), _real(_K, oid="b")])):
+    _lg, (_v, _w) = _run(_rows)
+    ok(f"historical exposure with {_label} cannot be marked COMPLETE", _v == "INCOMPLETE",
+       f"{_v}: {_w}")
+ok("and the verdict says WHY the unit is missing, by reason and count",
+   "lane unknown" in _run([_real(_K)])[1][1], _run([_real(_K)])[1][1])
+_lg, (_v, _w) = _run([{"key": "r1|" + _K, "live_order": {
+    "order_id": "p", "book": "kalshi", "status": "placed", "asked_stake": 220.0}}])
+ok("a leg with a unit but no readable price is still INCOMPLETE", _v == "INCOMPLETE", _w)
+
+# diagnostics: counts and reasons only
+_dl, _du, _ = RR.backfill_candidates([_real("r1|" + _K, oid="SECRET-ID-1"), _real(_K, oid="b")])
+_dl, _ = RR.venue_evidence(_dl, novig=novig_ok, kalshi=lambda o: (None, "status 503 SECRET"),
+                           pmus=pmus_ok, px=px_ok)
+_dg = RR.diagnostics(_dl)
+ok("diagnostics split the unproven legs by book, class and reason", len(_dg["unproven"]) >= 1
+   and all(k.startswith("kalshi / ") for k in _dg["unproven"]), str(_dg["unproven"]))
+ok("and carry no order id, key or raw venue text", "SECRET" not in json.dumps(_dg)
+   and "MIN @ SF" not in json.dumps(_dg), json.dumps(_dg)[:200])
+ok("a reason outside the fixed vocabulary is coded 'other', never echoed",
+   RR.reason_code({"evidence": {"why": "weird SECRET-ID text"}}) == "other (see private mail)")
+ok("field NAMES are reported, never values", set(_dg["fields"]) >= {"asked_stake", "limit"})
+
+# the incident search no longer hangs on one literal string
+_al = RR.parse_aliases("Minnesota|Vikings|MIN;San Francisco|49ers|SF")
+ok("aliases parse into one group per team", len(_al) == 2 and "49ers" in _al[1])
+ok("full team names match where the literal term does not",
+   RR.matches_incident({"game": "Minnesota Vikings @ San Francisco 49ers"}, "MIN @ SF", _al))
+ok("reversed order and another separator still match",
+   RR.matches_incident({"label": "49ers vs Vikings"}, "MIN @ SF", _al))
+ok("one team alone does not match", not RR.matches_incident({"g": "Vikings @ Bears"}, "MIN @ SF", _al))
+ok("a short code only matches as a whole word",
+   not RR.matches_incident({"note": "minimum stake sfx"}, "", RR.parse_aliases("MIN;SF")))
+_vs = RR.venue_side_search("MIN @ SF", _al, "2026-11-22",
+    novig=lambda: (({"c9": {"client_id": "c9", "label": "Vikings at 49ers",
+                             "placed_utc": "2026-11-22T21:00:00Z"}}, {}), "ok"),
+    px=lambda: ({"p9": [{"order_id": "p9", "event": "Minnesota Vikings v San Francisco 49ers",
+                         "created": "2026-11-22T20:10:00Z"}]}, "ok"))
+ok("venue-side search finds an incident order the registry never recorded",
+   len(_vs["novig"]["matching"]) == 1 and len(_vs["prophetx"]["matching"]) == 1)
+ok("and counts that day's venue records", _vs["novig"]["on_date"] == 1 and _vs["prophetx"]["on_date"] == 1)
+ok("venues with no history read are reported NOT SEARCHED, not clean",
+   _vs["kalshi"]["readable"] is False and _vs["polymarket_us"]["readable"] is False)
+_vd = RR.venue_side_search("MIN @ SF", _al, "2026-11-22",
+                           novig=lambda: ((None, None), "snapshot unreadable"), px=px_dead)
+ok("an unreadable venue is NOT SEARCHED, never zero records",
+   _vd["novig"]["readable"] is False and _vd["prophetx"]["readable"] is False)
+ok("zero matched legs is printed as NOT FOUND, never as 0 units",
+   "not evidence of zero exposure" in src and "NOT FOUND" in src)
+_mainlog = src.split("# PUBLIC LOG")[1].split("body = [")[0]
+ok("the public log still prints no id, key or amount",
+   not any(x in _mainlog for x in ("l['key']", "order_id\"]", "asked_stake\"]", "json.dumps(")))
 
 print(f"\n{len(P)} passed, {len(F)} failed")
 raise SystemExit(1 if F else 0)
