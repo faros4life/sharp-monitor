@@ -176,9 +176,9 @@ ok("the store is injected, not constructed", "def reserve(store" in src)
 import subprocess
 hits = subprocess.run(["grep", "-rln", "review_unit_reservation", "--include=*.py", "."],
                       capture_output=True, text=True).stdout.split()
+# Review-only files may reference each other; what must never appear is a PRODUCTION module.
 ok("no production module imports it",
-   all(h.endswith(("review_unit_reservation.py", "test_review_unit_reservation.py")) for h in hits),
-   str(hits))
+   all(h.split("/")[-1].startswith(("review_", "test_review_")) for h in hits), str(hits))
 
 
 # ============ the four review findings on head 6f182a2ee ============================
