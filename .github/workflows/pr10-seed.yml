@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
     inputs:
       confirm:
-        description: "Empty = dry run (counts only). SEED writes the one-time seed. SWEEP writes the intent sweep."
+        description: "Empty = dry run (counts only). SEED = one-time seed. SWEEP = intent sweep. RELEASE = free legs whose rows prove the order was never submitted."
         required: false
         default: ""
       prior_snapshot_utc:
