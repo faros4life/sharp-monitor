@@ -77,7 +77,7 @@
   },
   {
    "alert_utc": "2026-11-23T16:00:38Z",
-   "beat_close": true,
+   "beat_close": false,
    "beat_true_close": null,
    "bet": "Under 6.5 (-115)",
    "book": "Novig",
@@ -85,7 +85,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+0.5 pts",
+   "clv": "+0 pts",
    "clv_conv_pts": null,
    "clv_pin_line": null,
    "clv_read_utc": null,
@@ -2137,6 +2137,80 @@
    "pricing_bettable": true,
    "result": null,
    "score": 78,
+   "sent_to_phone": false,
+   "sport": "NCAAB",
+   "start_utc": "2026-11-23T17:30:00Z",
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alert_utc": "2026-11-23T16:30:27Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "Over 150.5 (+100)",
+   "book": "ProphetX",
+   "book_key": "prophetx",
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+1 pts",
+   "clv_conv_pts": null,
+   "clv_pin_line": null,
+   "clv_read_utc": null,
+   "clv_skipped": null,
+   "clv_source": null,
+   "clv_verified": null,
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": 2.5,
+   "executable_book": true,
+   "fade_book": "novig",
+   "fade_point": 150.5,
+   "fade_price": -108,
+   "fade_price_after_fee": -108,
+   "fade_units": null,
+   "final": null,
+   "floor_line": 151.0,
+   "game": "Indiana St Sycamores @ East Carolina Pirates",
+   "grade": "A",
+   "hr1_eligible": false,
+   "hr1_pushed": false,
+   "hr1_verified": null,
+   "hr1_verify_status": null,
+   "hr1_verify_why": null,
+   "kind": "tot",
+   "late": true,
+   "minutes_before_start": 60,
+   "point": 150.5,
+   "price": 100,
+   "price_after_fee": -102,
+   "prices_at_alert": {
+    "hardrockbet": {
+     "after_fee": -110,
+     "point": 150.5,
+     "price": -110
+    },
+    "kalshi": {
+     "after_fee": 100.7,
+     "point": 151.5,
+     "price": 108
+    },
+    "novig": {
+     "after_fee": -104,
+     "point": 150.5,
+     "price": -104
+    },
+    "prophetx": {
+     "after_fee": -102.0,
+     "point": 150.5,
+     "price": 100
+    }
+   },
+   "pricing_bettable": true,
+   "result": null,
+   "score": 86,
    "sent_to_phone": false,
    "sport": "NCAAB",
    "start_utc": "2026-11-23T17:30:00Z",
@@ -112765,6 +112839,30 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Over 150.5 (+100) at ProphetX [-102 after ProphetX fee] (also: Hard Rock, Novig)",
+   "bet": "Over 150.5 (+100)",
+   "bet_result": null,
+   "book": "ProphetX",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": 2.5,
+   "final": null,
+   "game": "Indiana St Sycamores @ East Carolina Pirates",
+   "grade": "A",
+   "late": true,
+   "minutes_before_start": 60,
+   "price": 100,
+   "price_after_fee": -102,
+   "pushed_to_phone": false,
+   "repeat": false,
+   "score": 86,
+   "sent_et": "2026-11-23 11:30",
+   "sport": "NCAAB",
+   "start_utc": "2026-11-23T17:30:00Z",
+   "why": "Pinnacle total moved 148 -> 151.5; bet only at 151 or better (confirmed by BetOnline)"
+  },
   {
    "alert_text": "Under 6.5 (-115) at Novig (also: Hard Rock, ProphetX, Kalshi)",
    "bet": "Under 6.5 (-115)",
