@@ -54,7 +54,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: f7f471b5bfdbedc3c257af9664eae1e14bd32365                      # PINNED COMMIT, not a branch
+          ref: f268d783509fa51d8a89aaa0b89b997e31481fe9                      # PINNED COMMIT, not a branch
           persist-credentials: false
       - uses: actions/setup-python@v5
         with:
