@@ -1,6 +1,196 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-23T04:50:20Z",
+   "base_depth": 21624,
+   "best_price": 0.635,
+   "best_price_american": -174,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.635,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 4,
+   "date": "2026-11-23",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Oklahoma City",
+     "price": 0.64,
+     "this_side": 60628
+    },
+    "novig": {
+     "new_other_side": -376,
+     "new_this_side": 27756,
+     "other_side": 5484,
+     "other_side_all_levels": 8725,
+     "ratio": 4.8,
+     "this_side": 26150,
+     "this_side_all_levels": 49418
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Oklahoma City Thunder",
+     "price": 0.6429,
+     "this_side": 954
+    }
+   },
+   "ex_stats_alert": {
+    "openInterest": 2633897.0,
+    "volume": 3680523.0
+   },
+   "ex_stats_change": {
+    "openInterest": 6987.0,
+    "volume": 7114.0
+   },
+   "ex_stats_first": {
+    "openInterest": 2626910.0,
+    "volume": 3673409.0
+   },
+   "fade_price": 0.37,
+   "first_seen_utc": "2026-11-23T04:45:52Z",
+   "game": "Oklahoma City Thunder @ Indiana Pacers",
+   "game_surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "game_x": 4.05,
+   "key": "novig|{\"market_id\": \"01a1fd16-7e7d-7c53-b3aa-d908d0711838\", \"outcome_id\": \"01a1fd16-7e7d-7c53-b3aa-d92e44404983\"}",
+   "lead_min": 1180,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 27756,
+   "new_x": 5.07,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 13300.419999999998,
+      "volume_24h_fp": 12767.65,
+      "volume_fp": 16139.630000000001
+     },
+     "game_normal": 132593,
+     "game_x": 2.43,
+     "normal": 186813,
+     "now": 322704,
+     "type": "ML",
+     "x": 1.73
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 2633897.0,
+      "volume": 3680523.0
+     },
+     "game_normal": 12206,
+     "game_x": 4.05,
+     "normal": 5474,
+     "now": 49418,
+     "type": "ML",
+     "x": 9.03
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 463,
+     "game_x": 2.06,
+     "normal": 3537,
+     "now": 954,
+     "type": "ML",
+     "x": 0.27
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.635,
+   "price_american": -174,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.635,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -210
+    },
+    "betrivers": {
+     "point": null,
+     "price": -220
+    },
+    "draftkings": {
+     "point": null,
+     "price": -205
+    },
+    "fanatics": {
+     "point": null,
+     "price": -205
+    },
+    "fanduel": {
+     "point": null,
+     "price": -200
+    },
+    "kalshi": {
+     "point": null,
+     "price": -178
+    },
+    "limitless": {
+     "point": null,
+     "price": -185
+    },
+    "novig": {
+     "point": null,
+     "price": -174
+    },
+    "polymarket": {
+     "point": null,
+     "price": -186
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -178
+    },
+    "prophetx": {
+     "point": null,
+     "price": -180
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -205
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a1fd16-7e7d-7c53-b3aa-d908d0711838",
+    "outcome_id": "01a1fd16-7e7d-7c53-b3aa-d92e44404983"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Oklahoma City Thunder",
+   "side_label": "OKC (0)",
+   "size_x": 9.03,
+   "start_source": "odds",
+   "start_utc": "2026-11-24T00:30:00Z",
+   "surge_books": [
+    "novig"
+   ],
+   "teams": [
+    "Oklahoma City Thunder",
+    "Indiana Pacers"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-23T04:45:52Z",
    "base_depth": 15966,
    "best_price": 0.6048,
@@ -14,8 +204,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.605,
-   "clv_cents": 0.0,
+   "close_price": 0.615,
+   "clv_cents": 1.0,
    "confirmed_after_min": 6,
    "date": "2026-11-23",
    "depth_by_book": {
@@ -48,6 +238,10 @@
    "ex_stats_change": {
     "openInterest": 8962.0,
     "volume": 8962.0
+   },
+   "ex_stats_close": {
+    "openInterest": 7958205.0,
+    "volume": 8438363.0
    },
    "ex_stats_first": {
     "openInterest": 2995772.0,
@@ -266,8 +460,8 @@
     "volume": 1112445.0
    },
    "ex_stats_close": {
-    "openInterest": 28395751.0,
-    "volume": 29821624.0
+    "openInterest": 28513257.0,
+    "volume": 29940915.0
    },
    "ex_stats_first": {
     "openInterest": 27679419.0,
@@ -485,9 +679,9 @@
     "volume_fp": 404.69
    },
    "ex_stats_close": {
-    "open_interest_fp": 9518.61,
+    "open_interest_fp": 12864.82,
     "volume_24h_fp": 7627.7,
-    "volume_fp": 10300.76
+    "volume_fp": 13646.97
    },
    "ex_stats_first": {
     "open_interest_fp": 7919.4,
@@ -694,9 +888,9 @@
     "volume_fp": 103.34
    },
    "ex_stats_close": {
-    "open_interest_fp": 13156.39,
+    "open_interest_fp": 13300.419999999998,
     "volume_24h_fp": 12767.65,
-    "volume_fp": 15995.599999999999
+    "volume_fp": 16139.630000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 8208.48,
@@ -884,9 +1078,9 @@
     "volume_fp": 156.39
    },
    "ex_stats_close": {
-    "open_interest_fp": 51076.159999999996,
+    "open_interest_fp": 51322.64,
     "volume_24h_fp": 63119.87,
-    "volume_fp": 68254.76999999999
+    "volume_fp": 68622.91
    },
    "ex_stats_first": {
     "open_interest_fp": 31266.55,
@@ -1044,9 +1238,9 @@
     "volume_fp": 60.04
    },
    "ex_stats_close": {
-    "open_interest_fp": 83865.98,
+    "open_interest_fp": 86072.41,
     "volume_24h_fp": 80752.39,
-    "volume_fp": 91796.46
+    "volume_fp": 94155.17
    },
    "ex_stats_first": {
     "open_interest_fp": 19664.760000000002,
@@ -1198,9 +1392,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 13796.48,
+    "open_interest_fp": 13818.02,
     "volume_24h_fp": 13393.82,
-    "volume_fp": 14871.08
+    "volume_fp": 14892.619999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 4777.82,
@@ -1366,9 +1560,9 @@
     "volume_fp": 459.25
    },
    "ex_stats_close": {
-    "open_interest_fp": 36916.759999999995,
+    "open_interest_fp": 37335.43,
     "volume_24h_fp": 37198.6,
-    "volume_fp": 39090.36
+    "volume_fp": 39509.03
    },
    "ex_stats_first": {
     "open_interest_fp": 7679.95,
@@ -1773,9 +1967,9 @@
     "volume_fp": 28.91
    },
    "ex_stats_close": {
-    "open_interest_fp": 30328.27,
+    "open_interest_fp": 30553.010000000002,
     "volume_24h_fp": 30736.55,
-    "volume_fp": 35279.79
+    "volume_fp": 35504.53
    },
    "ex_stats_first": {
     "open_interest_fp": 6683.07,
@@ -1937,9 +2131,9 @@
     "volume_fp": 5.83
    },
    "ex_stats_close": {
-    "open_interest_fp": 27856.42,
+    "open_interest_fp": 28146.260000000002,
     "volume_24h_fp": 31003.91,
-    "volume_fp": 34580.54
+    "volume_fp": 34870.380000000005
    },
    "ex_stats_first": {
     "open_interest_fp": 7419.200000000001,
@@ -2117,9 +2311,9 @@
     "volume_fp": 7.39
    },
    "ex_stats_close": {
-    "open_interest_fp": 34164.46,
+    "open_interest_fp": 34548.28,
     "volume_24h_fp": 34057.38,
-    "volume_fp": 36164.5
+    "volume_fp": 36549.32
    },
    "ex_stats_first": {
     "open_interest_fp": 12207.960000000001,
@@ -5434,9 +5628,9 @@
     "volume_fp": 715.69
    },
    "ex_stats_close": {
-    "open_interest_fp": 459899.66,
+    "open_interest_fp": 466297.9,
     "volume_24h_fp": 383890.49,
-    "volume_fp": 483642.05
+    "volume_fp": 490094.88
    },
    "ex_stats_first": {
     "open_interest_fp": 210853.54,
@@ -10205,9 +10399,9 @@
     "volume_fp": 579.7
    },
    "ex_stats_close": {
-    "open_interest_fp": 344568.11,
+    "open_interest_fp": 344619.41,
     "volume_24h_fp": 345361.43,
-    "volume_fp": 353258.79
+    "volume_fp": 353310.09
    },
    "ex_stats_first": {
     "open_interest_fp": 338077.35,
@@ -19839,9 +20033,9 @@
     "volume_fp": 53.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 774072.03,
+    "open_interest_fp": 783988.5800000001,
     "volume_24h_fp": 539444.23,
-    "volume_fp": 813906.96
+    "volume_fp": 824034.1499999999
    },
    "ex_stats_first": {
     "open_interest_fp": 136125.28,
