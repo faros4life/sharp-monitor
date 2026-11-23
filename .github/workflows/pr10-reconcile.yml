@@ -2,8 +2,9 @@ name: pr10-reconcile
 
 # REVIEW ONLY, READ-ONLY, DISPATCH ONLY. No schedule - it runs when Peter asks and never on its own.
 # It produces the two private-data preconditions for draft PR #10: the backfill list of orders that
-# already carry exposure, and the MIN @ SF replay. Both need TRACKER_PASSPHRASE and the registry
-# token, which live here and nowhere else. Public log gets COUNTS ONLY; detail goes to the Bets
+# already carry exposure, and the MIN @ SF replay. Both need the registry token and the venue
+# read keys, which live here and nowhere else. TRACKER_PASSPHRASE is NOT granted: the script
+# does not read the tracker. Public log gets COUNTS ONLY; detail goes to the Bets
 # inbox. It places nothing, cancels nothing and writes nothing - EXEC_UNIT_LEDGER is not read.
 #
 # THIS FILE IS THE WHOLE OF ITS PULL REQUEST. The guard, the reservation protocol and the executor
@@ -54,7 +55,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: 3a710d6a352fe1d6378d7f30b9fcc73334157515                      # PINNED COMMIT, not a branch
+          ref: de4defdc5221742a96f8c95d621fdc5f5870d898                      # PINNED COMMIT, not a branch
           persist-credentials: false
       - uses: actions/setup-python@v5
         with:
