@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 22, 6:50 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 16.
+Updated Sun Nov 22, 7:00 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 15.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 427-255 (-14.50u flat) | rule met: 87-65
+**Record:** 428-255 (-14.04u flat) | rule met: 87-65
 
-**Fade (paper, betting against the print):** 230-392 (+11.11u flat, after fees)
+**Fade (paper, betting against the print):** 230-393 (+10.11u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -15,7 +15,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 22 2:40PM | NCAAB | Virginia Tech vs Oklahoma St.: Spread | spread: NOT Virginia Tech wins by over 1.5 points | kalshi | $28k | +104 |  |  | +2.0c |  | W |
 | Nov 22 2:40PM | NCAAB | Virginia Tech vs Oklahoma St. | moneyline: Oklahoma St. | kalshi | $34k | +113 | ✅ prophetx |  | +1.0c |  | W |
 | Nov 22 2:40PM | NCAAB | McNeese vs Texas St. | moneyline: Texas St. | kalshi | $40k | -133 |  |  | +0.0c |  | W |
-| Nov 22 2:20PM | NCAAB | Western Kentucky vs George Washington | moneyline: Western Kentucky | kalshi | $50k | -203 |  |  | +23.0c |  | pending |
+| Nov 22 2:20PM | NCAAB | Western Kentucky vs George Washington | moneyline: Western Kentucky | kalshi | $50k | -203 |  |  | +23.0c |  | W |
 | Nov 22 1:40PM | NCAAB | Fordham vs San Diego | moneyline: San Diego | kalshi | $26k | +117 | ✅ novig |  | +0.0c |  | W |
 | Nov 22 12:56PM | NCAAB | Utah Tech vs South Dakota | moneyline: Utah Tech | kalshi | $56k | -108 | ✅ novig |  | +2.0c | yes | L |
 | Nov 22 12:56PM | NCAAB | Loyola Marymount vs UC Irvine | moneyline: UC Irvine | kalshi | $67k | -122 |  | ❌ | +0.0c |  | L |
