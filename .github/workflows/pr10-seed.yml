@@ -1,0 +1,45 @@
+name: pr10-seed
+
+# DISPATCH ONLY. No schedule. Seeds the shared unit ledger from existing orders, once.
+# Dry run unless the confirm input is exactly SEED. Places nothing, cancels nothing; its only write
+# is the ledger key inside the private registry file, and backfill() refuses to run a second time.
+# It does not read or set EXEC_UNIT_LEDGER - seeding the ledger does not switch the guard on.
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: "Leave empty for a dry run (counts only). Type SEED to write the ledger."
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pr10-seed
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Seed the unit ledger (dry run unless confirm=SEED)
+        env:
+          REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
+          KALSHI_KEY_ID: ${{ secrets.KALSHI_KEY_ID }}
+          KALSHI_PRIVATE_KEY: ${{ secrets.KALSHI_PRIVATE_KEY }}
+          PMUS_KEY_ID: ${{ secrets.PMUS_KEY_ID }}
+          PMUS_SECRET_KEY: ${{ secrets.PMUS_SECRET_KEY }}
+          PROPHETX_TRADE_ACCESS_KEY: ${{ secrets.PROPHETX_TRADE_ACCESS_KEY }}
+          PROPHETX_TRADE_SECRET_KEY: ${{ secrets.PROPHETX_TRADE_SECRET_KEY }}
+          SEED_CONFIRM: ${{ inputs.confirm }}
+        run: python -u review_seed.py
