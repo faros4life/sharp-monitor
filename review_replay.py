@@ -74,6 +74,24 @@ def legs_from(row):
     return out
 
 
+def canonical_registry_key(raw):
+    """Map a stored lane-prefixed key to EXACTLY the live guard's play identity.
+
+    Invalid/unknown formats are not allowed into an activation backfill. The original
+    value is retained separately for private audit; never silently guess a market.
+    """
+    import review_integration as ri
+    val = str(raw or "").strip()
+    for prefix in ("rule|", "board|", "r1|", "lane2|", "ncs|"):
+        if val.lower().startswith(prefix):
+            val = val[len(prefix):]
+            break
+    parts = val.split("|")
+    if len(parts) != 4 or not all(p.strip() for p in parts):
+        raise ValueError("unrecognised or incomplete source play key")
+    return ri.play_key(*parts)
+
+
 def backfill_candidates(rows):
     """(legs, unreadable, terminal) from the NESTED order records of every registry row.
 
@@ -84,6 +102,14 @@ def backfill_candidates(rows):
     for r in rows or []:
         key = r.get("key") or r.get("play_key") or ""
         found = legs_from(r)
+        # The normal ledger uses lane-stripped, line-blind identity. A source key
+        # that does not resolve to that format must block activation, not start a
+        # different and therefore falsely empty exposure budget.
+        try:
+            canon = canonical_registry_key(key)
+        except Exception:
+            unreadable.append({"key": str(key), "why": "source play key cannot be canonicalised"})
+            continue
         if not found:
             # A row with no nested order record at all. Named, never dropped: it is either a row
             # shape this reader does not know or a row that never reached a venue, and the two
@@ -104,7 +130,7 @@ def backfill_candidates(rows):
             # recorded status and skipped terminal legs, so a filled order - the one kind that
             # certainly moved money - was never checked against a venue at all. A recorded
             # "filled" is still only what we believed when we wrote it.
-            legs.append({"key": str(key), "field": field,
+            legs.append({"key": canon, "source_key": str(key), "field": field,
                          "recorded_terminal": st in LEDGER_STATES_TERMINAL,
                          "order_id": str(o.get("order_id") or o.get("client_id") or ""),
                          "client_id": str(o.get("client_id") or "") or None,
@@ -379,7 +405,14 @@ def incident_exposure(rows, needle, legs):
                          "detail": ev.get("why")})
         # combined UNIT exposure: the same per-leg fraction the reservation protocol uses, so the
         # number here and the number the guard would enforce cannot drift apart.
-        if vc == nr.TERMINAL:
+        # Only a PROVEN zero-fill terminal outcome can release the entire ask.
+        # A venue-confirmed FILLED order remains committed even when the registry
+        # calls it terminal. Open/partial/unknown retains the whole asked stake.
+        # This is a conservative RESERVATION number, not realized P&L.
+        if vc == nr.TERMINAL and l.get("evidence_class") == PROVEN:
+            continue
+        if l.get("evidence_class") != PROVEN:
+            units_unknown += 1
             continue
         try:
             import review_unit_reservation as R
@@ -393,9 +426,13 @@ def incident_exposure(rows, needle, legs):
 
 
 def _csv(legs):
-    """The backfill list as CSV. CLAUDE.md: an email body truncates SILENTLY and clv_report shipped
+    """Evidence-review CSV, NOT a directly executable activation backfill. A complete
+    evidence report still needs identity dedupe, verified fill amounts and explicit
+    migration approval before it may be used to seed the live ledger.
+
+    CLAUDE.md: an email body truncates SILENTLY and clv_report shipped
     unparseable half-JSON for months that way. A CSV attachment cannot be half-valid."""
-    cols = ["key", "field", "order_id", "client_id", "book", "status", "asked_stake",
+    cols = ["key", "source_key", "field", "order_id", "client_id", "book", "status", "asked_stake",
             "filled_stake", "american", "unit", "terminal_verified", "evidence_class",
             "venue_class", "evidence"]
     buf = io.StringIO()
