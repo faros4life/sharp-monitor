@@ -140,6 +140,8 @@ ok("selection stops at the play cap", len(p_) <= ex.DOGS_MAX_PLAYS, len(p_))
 # --- 6. the gate fails closed --------------------------------------------------------------------
 _s = dict(ex.DOGS)
 ex.DOGS_KILL["state"] = {"blocked": False, "why": "kill bar ok (test)"}   # section 8 tests the bar itself
+_ulm = ex._unit_ledger_mode
+ex._unit_ledger_mode = lambda: "on"
 try:
     ex.DOGS.update(risk=0.0, keys=set(), known=False)
     ok("unknown exposure refuses", ex.dogs_gate(100)[0] is False)
@@ -151,7 +153,14 @@ try:
     ex.DOGS.update(risk=0.0, keys={f"k{i}" for i in range(ex.DOGS_MAX_PLAYS)})
     ok("play cap refuses a new key", ex.dogs_gate(100, "new")[0] is False)
     ok("a key already counted is not counted twice", ex.dogs_gate(100, "k0")[0] is True)
+    ex.DOGS.update(risk=0.0, keys=set())
+    for _m in ("off", "record"):
+        ex._unit_ledger_mode = lambda _m=_m: _m
+        ok(f"shared unit ledger '{_m}' (not enforced): a live DOGS order is refused", ex.dogs_gate(100, "z")[0] is False)
+    ex._unit_ledger_mode = lambda: "on"
+    ok("shared unit ledger enforced: the gate can pass", ex.dogs_gate(100, "z")[0] is True)
 finally:
+    ex._unit_ledger_mode = _ulm
     ex.DOGS.clear(); ex.DOGS.update(_s)
 
 # --- 7. wiring: every dispatch point knows the lane ------------------------------------------------
@@ -219,7 +228,8 @@ try:
     st = ex.dogs_kill_state(NOW)
     ok("ledger unreadable: kill state is BLOCKED", st["blocked"] is True and "unreadable" in st["why"], st)
     ex.DOGS.update(known=True, risk=0.0, keys=set())
-    ok("...and dogs_gate refuses the order on it", ex.dogs_gate(100, "x")[0] is False)
+    _g = ex.dogs_gate(100, "x")
+    ok("...and dogs_gate refuses the order on it, naming the kill bar", _g[0] is False and "kill bar" in _g[1], _g[1])
     _rl.load_ledger = lambda *a, **k: {"events": [], "head": {}}
     ex.DOGS_KILL["state"] = None
     ok("ledger empty or missing: BLOCKED, never 'no fills so fine'", ex.dogs_kill_state(NOW)["blocked"] is True)

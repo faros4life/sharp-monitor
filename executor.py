@@ -4358,6 +4358,12 @@ def dogs_gate(risk, key=None):
     ks = dogs_kill_state()
     if ks.get("blocked"):
         return False, ks.get("why") or "DOGS kill bar unreadable - fail closed"
+    # Nov 23 (Peter, condition 3): the home Novig runner only CLAIMS a play's one unit from the shared ledger when
+    # EXEC_UNIT_LEDGER is "on" (in "record" it writes and refuses nothing). DOGS routes to Novig second, so a live
+    # DOGS order requires the ledger ENFORCED - one budget, one play identity, across the cloud and the runner.
+    if _unit_ledger_mode() != "on":
+        return False, (f"DOGS needs the shared unit ledger enforced (EXEC_UNIT_LEDGER is '{_unit_ledger_mode()}', "
+                       f"not 'on') - fail closed")
     if not DOGS["known"]:
         return False, "DOGS exposure unknown this run (ledger unreadable) - fail closed"
     n = len(DOGS["keys"]) + (0 if (key and key in DOGS["keys"]) else 1)
