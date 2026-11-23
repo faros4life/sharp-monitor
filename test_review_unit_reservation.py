@@ -295,5 +295,52 @@ R.record_outcome(g7c, KEY, "C2", "void", 0.0, evidence="never submitted")
 ok("F7: a voided reservation does not authorize",
    raises(lambda: R.authorize(g7c, gr7c, 110.0), R.ReservationRefused))
 
+
+# ============ finding 8 (third review, head b4eeb1a22): one reservation, one order ==========
+h = Store(); gh = R.reserve(h, KEY, "D", 110.0, -110, U, actor="executor")
+ok("F8: the first authorization succeeds", R.authorize(h, gh, 110.0) == 110.0)
+ok("F8: the SAME grant cannot authorize a second submission",
+   raises(lambda: R.authorize(h, gh, 110.0), R.ReservationRefused))
+ok("F8: nor a smaller one", raises(lambda: R.authorize(h, gh, 10.0), R.ReservationRefused))
+ok("F8: the exposure is still exactly one reservation, not two",
+   abs(R.available(h, KEY) - 0.5) < 1e-9, str(R.available(h, KEY)))
+ok("F8: the dispatch is recorded in the store, not just in the object",
+   any(l.get("dispatched") is True for l in h.state["legs"]))
+
+# a fresh grant object for the same leg must not bypass it either
+h2 = Store(); gh2 = R.reserve(h2, KEY, "E", 110.0, -110, U, actor="executor")
+R.authorize(h2, gh2, 110.0)
+again = R.reserve(h2, KEY, "E", 110.0, -110, U, actor="executor")   # idempotent re-read
+ok("F8: re-reserving the same leg returns a grant that still cannot re-authorize",
+   raises(lambda: R.authorize(h2, again, 110.0), R.ReservationRefused))
+
+
+class LoseWrite(Store):
+    def write(self, state, version):
+        return False
+
+
+h3 = Store(); gh3 = R.reserve(h3, KEY, "F", 110.0, -110, U, actor="executor")
+h3.__class__ = LoseWrite
+ok("F8: losing the race to mark dispatched REFUSES rather than retrying",
+   raises(lambda: R.authorize(h3, gh3, 110.0), R.ReservationRefused))
+
+# re-arm only on explicit evidence the submission never reached the venue
+h4 = Store(); gh4 = R.reserve(h4, KEY, "G2", 110.0, -110, U, actor="executor")
+R.authorize(h4, gh4, 110.0)
+ok("F8: re-arming with no evidence is refused",
+   raises(lambda: R.rearm(h4, KEY, "G2", ""), X.ExposureUnknown))
+ok("F8: still cannot authorize after a refused re-arm",
+   raises(lambda: R.authorize(h4, gh4, 110.0), R.ReservationRefused))
+R.rearm(h4, KEY, "G2", "venue read: no order with this client id")
+ok("F8: with evidence, exactly one further authorization is allowed",
+   R.authorize(h4, gh4, 110.0) == 110.0)
+ok("F8: and then it is spent again", raises(lambda: R.authorize(h4, gh4, 110.0), R.ReservationRefused))
+h5 = Store(); gh5 = R.reserve(h5, KEY, "H2", 110.0, -110, U, actor="executor")
+R.authorize(h5, gh5, 110.0)
+R.record_outcome(h5, KEY, "H2", "filled", 110.0, True, "venue fill report")
+ok("F8: a verified terminal leg cannot be re-armed",
+   raises(lambda: R.rearm(h5, KEY, "H2", "anything"), R.ReservationRefused))
+
 print(f"{len(RAN) - len(FAILED)} passed, {len(FAILED)} failed")
 sys.exit(1 if FAILED else 0)

@@ -17,6 +17,19 @@ REQUIREMENTS (Peter, Nov 22): one authoritative per-play budget across both syst
 atomically before submission; open orders stay reserved until status is VERIFIED; unknown exposure
 blocks; a failed reservation cannot be bypassed; nothing cancels or shrinks a venue order.
 
+ONE MORE FOUND IN THE THIRD REVIEW (head b4eeb1a22), fixed here:
+  8. authorize() was a READ-ONLY CHECK, so an active grant returned permission every time it
+     was called - one reservation could authorize unlimited submissions of the same stake.
+     Authorization is now a SINGLE-USE STATE TRANSITION committed under compare-and-swap
+     before the caller is told yes. A lost race refuses and is never retried, because a retry
+     of a dispatch mark is exactly how one order becomes two. rearm() allows one further
+     authorization ONLY on explicit evidence the first submission never reached the venue.
+
+     NOTE on the existing journal: executor.journal_intent() already calls
+     registry.claim_submission() before takers, which prevents a duplicate CLAIM on one key.
+     It is not the same guarantee - it is per-key exclusivity, not per-reservation single use,
+     the taker and rest paths claim different names, and the Novig runner calls none of it.
+
 THREE MORE FOUND IN THE SECOND REVIEW (head a9016085f), all fixed here:
   5. A reserved leg could be moved to void/refused/dry - which contribute ZERO exposure -
      with no evidence, freeing its whole reservation. Those states now need the same proof
@@ -230,13 +243,61 @@ def authorize(store, grant, stake):
     if st not in LIVE_STATES or leg.get("terminal_verified") is True:
         raise ReservationRefused(
             f"reservation is no longer active (status {st or 'unknown'}) - authorization refused")
+    # Finding 8 (third review): authorization must be SINGLE USE. A read-only check returns
+    # permission every time it is called, so one reservation could authorize an unlimited number
+    # of submissions of the same stake. Authorization is therefore a STATE TRANSITION, committed
+    # under compare-and-swap in the same store, before the caller is told yes.
+    if leg.get("dispatched") is True:
+        raise ReservationRefused(
+            "this reservation has already authorized a submission - one reservation, one order")
     s = float(stake)
     if not math.isfinite(s) or s <= 0:
         raise ExposureUnknown("stake unreadable")
     if s > _num(leg.get("asked_stake"), "asked") + 0.011:
         raise ReservationRefused(
             f"stake {s:.2f} exceeds the reserved {leg.get('asked_stake')} - not trimmed, refused")
+    state, version = got
+    legs = list(state.get("legs") or [])
+    for i, l in enumerate(legs):
+        if l.get("key") == grant.key and str(l.get("leg_id")) == str(grant.leg_id):
+            legs[i] = dict(l, dispatched=True, dispatched_stake=round(s, 2))
+            break
+    if not store.write(dict(state, legs=legs), version):
+        # Lost the race: another caller consumed this reservation between the read and the write.
+        # Fail closed. Never retry a dispatch mark - a retry here is how one becomes two.
+        raise ReservationRefused(
+            "lost the compare-and-swap marking this reservation dispatched - refused, not retried")
     return round(s, 2)
+
+
+def rearm(store, key, leg_id, evidence):
+    """Allow ONE further authorization, only on proof the first submission never reached the venue.
+
+    A send can fail. But a failed send and a successful send whose acknowledgement was lost look
+    identical from here, and the fail-closed reading of that ambiguity is that the order WAS sent.
+    So re-arming is not automatic and not time-based: it needs the same explicit venue evidence as
+    any other release. Without it, the correct recovery is a NEW reservation under a new leg_id,
+    which is counted against the budget like anything else."""
+    if not str(evidence or "").strip():
+        raise ExposureUnknown("re-arm without evidence the submission never reached the venue")
+    got = store.read()
+    if not got or got[0] is None or got[1] is None:
+        raise ExposureUnknown("reservation store unreadable - fail closed")
+    state, version = got
+    legs = list(state.get("legs") or [])
+    hit = False
+    for i, l in enumerate(legs):
+        if l.get("key") == key and str(l.get("leg_id")) == str(leg_id):
+            if l.get("terminal_verified") is True:
+                raise ReservationRefused("a verified terminal leg cannot be re-armed")
+            legs[i] = dict(l, dispatched=False, rearm_evidence=str(evidence)[:120])
+            hit = True
+            break
+    if not hit:
+        raise ExposureUnknown("re-arm for a leg that was never reserved - fail closed")
+    if not store.write(dict(state, legs=legs), version):
+        raise ReservationRefused("re-arm lost the compare-and-swap - refused")
+    return True
 
 
 def record_outcome(store, key, leg_id, status, filled_stake=None, terminal_verified=False,
