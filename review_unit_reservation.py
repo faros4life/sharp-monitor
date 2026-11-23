@@ -17,6 +17,16 @@ REQUIREMENTS (Peter, Nov 22): one authoritative per-play budget across both syst
 atomically before submission; open orders stay reserved until status is VERIFIED; unknown exposure
 blocks; a failed reservation cannot be bypassed; nothing cancels or shrinks a venue order.
 
+MIGRATION, FOUND IN THE FOURTH REVIEW (head d4bca65e), fixed here:
+  9. A fresh ledger is not an empty book. Activated against an unseeded ledger this would
+     read every play as having its full unit free while real filled and resting orders are
+     already outstanding at the venues - it would authorize a SECOND unit on every open play
+     on its first pass. An empty store and an unmigrated one look identical, so the
+     difference is now recorded explicitly: every read, reservation and authorization BLOCKS
+     until backfill() seeds the existing orders and marks the ledger usable. backfill()
+     refuses to run twice, because re-seeding a live ledger would drop reservations made
+     since.
+
 ONE MORE FOUND IN THE THIRD REVIEW (head b4eeb1a22), fixed here:
   8. authorize() was a READ-ONLY CHECK, so an active grant returned permission every time it
      was called - one reservation could authorize unlimited submissions of the same stake.
@@ -155,6 +165,60 @@ def remaining_mixed(legs, key):
     return max(0.0, BUDGET - sum(by_order.values()))
 
 
+SEEDED = "seeded"
+
+
+def _require_seeded(state):
+    """Finding 9: a FRESH ledger is not an EMPTY book.
+
+    Switching this on against an unseeded ledger would read every play as having its full unit
+    available while real filled and resting orders are already outstanding at the venues - the
+    guard would authorize a second unit on every open play on its first pass. An empty store and a
+    store that has never been migrated are indistinguishable by their contents, so the difference
+    has to be recorded explicitly. Until backfill() marks it, every read BLOCKS."""
+    if state.get(SEEDED) is not True:
+        raise ExposureUnknown(
+            "exposure ledger has not been seeded with existing filled and resting orders - "
+            "fail closed (see backfill)")
+
+
+def backfill(store, legs, note):
+    """Seed the ledger from orders that ALREADY EXIST, then mark it usable. Run once, before use.
+
+    `legs` are the outstanding filled and resting orders, in the leg shape this module stores.
+    They are written as-is and counted exactly like any reservation, so a play that already has a
+    unit at a venue starts with zero capacity rather than a full one.
+
+    Refuses to run twice: re-seeding a live ledger would drop reservations made since. Recovering
+    from a bad seed is a deliberate act, not an idempotent one."""
+    if not str(note or "").strip():
+        raise ExposureUnknown("backfill without a provenance note - fail closed")
+    got = store.read()
+    if not got or got[0] is None or got[1] is None:
+        raise ExposureUnknown("reservation store unreadable - fail closed")
+    state, version = got
+    if state.get(SEEDED) is True:
+        raise ReservationRefused("ledger is already seeded - re-seeding would drop live reservations")
+    seeded = []
+    for l in legs or []:
+        leg = dict(l)
+        if not leg.get("key") or not (leg.get("leg_id") or leg.get("order_id")):
+            raise ExposureUnknown("backfill leg without a play key or identity - fail closed")
+        leg.setdefault("leg_id", str(leg.get("order_id")))
+        leg.setdefault("order_id", str(leg.get("leg_id")))
+        leg.setdefault("status", "open")        # unknown outcome reserves in full
+        leg["backfilled"] = True
+        leg_fraction(leg)                        # validates unit, price, status, amounts; raises if not
+        seeded.append(leg)
+    new = dict(state)
+    new["legs"] = list(state.get("legs") or []) + seeded
+    new[SEEDED] = True
+    new["seed_note"] = str(note)[:160]
+    if not store.write(new, version):
+        raise ReservationRefused("backfill lost the compare-and-swap - refused, not retried")
+    return len(seeded)
+
+
 def available(store, key):
     """Units still free, or raise. Reads only; grants nothing.
 
@@ -163,6 +227,7 @@ def available(store, key):
     got = store.read()
     if not got or got[0] is None or got[1] is None:
         raise ExposureUnknown("reservation store unreadable - fail closed")
+    _require_seeded(got[0])
     return remaining_mixed(_legs(got[0], key), key)
 
 
@@ -194,6 +259,7 @@ def reserve(store, key, leg_id, stake, american, unit, actor, attempts=3):
         if not got or got[0] is None or got[1] is None:
             raise ExposureUnknown("reservation store unreadable - fail closed")
         state, version = got
+        _require_seeded(state)
         legs = _legs(state, key)
         prior = next((l for l in legs if str(l.get("leg_id")) == str(leg_id)), None)
         if prior is not None:
@@ -230,6 +296,7 @@ def authorize(store, grant, stake):
     got = store.read()
     if not got or got[0] is None or got[1] is None:
         raise ExposureUnknown("reservation store unreadable - fail closed")
+    _require_seeded(got[0])
     leg = next((l for l in _legs(got[0], grant.key)
                 if str(l.get("leg_id")) == str(grant.leg_id)), None)
     if leg is None:

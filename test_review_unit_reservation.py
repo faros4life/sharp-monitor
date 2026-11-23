@@ -46,6 +46,15 @@ KEY = "NBA|2026-11-22|LAL@BOS|total|under|225.5"
 U = 200.0
 
 
+_mk = Store
+
+
+def Store(legs=None, readable=True):          # noqa: N802 - seeded by default for the older tests
+    st = _mk(legs, readable)
+    st.state["seeded"] = True
+    return st
+
+
 def raises(fn, exc):
     try:
         fn()
@@ -78,7 +87,7 @@ ok("but a third leg is not", raises(lambda: R.reserve(s2, KEY, "c", 1.0, -110, U
 
 
 # --- 2. atomic: the loser of a race does not proceed on a stale read ---------------------------
-class RacyStore(Store):
+class RacyStore(_mk):
     """Another runner commits in between this runner's read and write, every time."""
 
     def __init__(self):
@@ -97,6 +106,7 @@ class RacyStore(Store):
 
 
 rs = RacyStore()
+rs.state["seeded"] = True
 ok("losing the compare-and-swap REFUSES, it does not submit on the stale answer",
    raises(lambda: R.reserve(rs, KEY, "mine", 220.0, -110, U, actor="executor"),
           (R.ReservationRefused, X.ExposureUnknown)))
@@ -243,13 +253,18 @@ ok("F4: a verified terminal leg cannot regress to a live state",
    raises(lambda: R.record_outcome(f4, KEY, "O", "open"), R.ReservationRefused))
 
 
-class CasFail(Store):
+class CasFail(_mk):
     def write(self, state, version):
         return False
 
 
 cf = Store(); R.reserve(cf, KEY, "C", 110.0, -110, U, actor="executor")
-cf.__class__ = CasFail
+class _NoWrite(_mk):
+    def write(self, state, version):
+        return False
+
+
+cf.__class__ = _NoWrite
 ok("F4: a lost compare-and-swap on the outcome write fails closed",
    raises(lambda: R.record_outcome(cf, KEY, "C", "filled", 110.0), R.ReservationRefused))
 
@@ -315,13 +330,13 @@ ok("F8: re-reserving the same leg returns a grant that still cannot re-authorize
    raises(lambda: R.authorize(h2, again, 110.0), R.ReservationRefused))
 
 
-class LoseWrite(Store):
+class LoseWrite(_mk):
     def write(self, state, version):
         return False
 
 
 h3 = Store(); gh3 = R.reserve(h3, KEY, "F", 110.0, -110, U, actor="executor")
-h3.__class__ = LoseWrite
+h3.__class__ = _NoWrite
 ok("F8: losing the race to mark dispatched REFUSES rather than retrying",
    raises(lambda: R.authorize(h3, gh3, 110.0), R.ReservationRefused))
 
@@ -341,6 +356,39 @@ R.authorize(h5, gh5, 110.0)
 R.record_outcome(h5, KEY, "H2", "filled", 110.0, True, "venue fill report")
 ok("F8: a verified terminal leg cannot be re-armed",
    raises(lambda: R.rearm(h5, KEY, "H2", "anything"), R.ReservationRefused))
+
+
+# ============ finding 9 (fourth review): migration before activation ==================
+raw = _mk()                                   # a genuinely fresh, UNSEEDED ledger
+ok("F9: an unseeded ledger does NOT read as a free unit",
+   raises(lambda: R.available(raw, KEY), X.ExposureUnknown))
+ok("F9: it refuses reservations",
+   raises(lambda: R.reserve(raw, KEY, "x", 110.0, -110, U, actor="e"), X.ExposureUnknown))
+ok("F9: backfill needs a provenance note",
+   raises(lambda: R.backfill(raw, [], ""), X.ExposureUnknown))
+ok("F9: a backfill leg with no play key is refused",
+   raises(lambda: R.backfill(raw, [{"asked_stake": 10.0, "american": -110, "unit": U}], "n"),
+          X.ExposureUnknown))
+
+existing = [{"key": KEY, "order_id": "already-at-venue", "status": "filled", "asked_stake": 220.0,
+             "filled_stake": 220.0, "terminal_verified": True, "evidence": "venue fill",
+             "american": -110, "unit": U}]
+n = R.backfill(raw, existing, "seeded from registry filled+resting, 2026-11-22")
+ok("F9: backfill reports what it seeded", n == 1, str(n))
+ok("F9: a play that ALREADY has a unit at the venue starts with ZERO capacity",
+   abs(R.available(raw, KEY)) < 1e-9, str(R.available(raw, KEY)))
+ok("F9: so the first pass cannot authorize a second unit on it",
+   raises(lambda: R.reserve(raw, KEY, "new", 220.0, -110, U, actor="executor"),
+          R.ReservationRefused))
+ok("F9: an untouched play still has its full unit", abs(R.available(raw, KEY + "|z") - 1.0) < 1e-9)
+ok("F9: re-seeding a live ledger is refused",
+   raises(lambda: R.backfill(raw, existing, "again"), R.ReservationRefused))
+
+rest = _mk()
+R.backfill(rest, [{"key": KEY, "order_id": "resting-1", "status": "open", "asked_stake": 110.0,
+                   "american": -110, "unit": U}], "seeded")
+ok("F9: a RESTING order is seeded at its full asked exposure",
+   abs(R.available(rest, KEY) - 0.5) < 1e-9, str(R.available(rest, KEY)))
 
 print(f"{len(RAN) - len(FAILED)} passed, {len(FAILED)} failed")
 sys.exit(1 if FAILED else 0)

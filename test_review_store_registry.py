@@ -57,6 +57,18 @@ class FakeRegistry:
 KEY = "NBA|2026-11-22|LAL@BOS|total|under|225.5"
 U = 200.0
 
+
+def seeded_unreadable():
+    return S.RegistryStore(FakeRegistry(readable=False))
+
+
+def seeded(reg=None):
+    """A store whose ledger has been migrated - finding 9. The adapter tests below are about the
+    STORE contract, so they start from a seeded ledger; the migration itself is tested separately."""
+    st = S.RegistryStore(reg or FakeRegistry())
+    R.backfill(st, [], "test fixture: no pre-existing venue orders")
+    return st
+
 # --- the adapter honours the contract ------------------------------------------------------------
 st = S.RegistryStore(FakeRegistry())
 state, ver = st.read()
@@ -67,7 +79,7 @@ ok("state lives under one key inside the existing file, not in a second file",
    S.LEDGER_KEY == "unit_reservations")
 
 fr = FakeRegistry({"orders": [{"id": "pre-existing"}]})
-st2 = S.RegistryStore(fr)
+st2 = seeded(fr)
 R.reserve(st2, KEY, "a", 110.0, -110, U, actor="executor")
 ok("writing the ledger preserves the rest of the registry file",
    fr.data.get("orders") == [{"id": "pre-existing"}])
@@ -82,7 +94,7 @@ ok("a registry that raises fails closed",
                    ).read() == (None, None))
 
 # --- PROOF 1: a duplicate submission cannot reuse a reservation -----------------------------------
-p1 = S.RegistryStore(FakeRegistry())
+p1 = seeded()
 g = R.reserve(p1, KEY, "order-1", 220.0, -110, U, actor="executor")
 ok("P1: the first submission is authorized", R.authorize(p1, g, 220.0) == 220.0)
 ok("P1: a second submission on the same reservation is REFUSED",
@@ -99,7 +111,7 @@ ok("P1: a second leg on the same play is refused for want of budget",
           R.ReservationRefused))
 
 # --- PROOF 2: an unknown fill cannot release exposure ----------------------------------------------
-p2 = S.RegistryStore(FakeRegistry())
+p2 = seeded()
 R.reserve(p2, KEY, "o", 220.0, -110, U, actor="executor")
 held = R.available(p2, KEY)
 ok("P2: a fresh reservation holds the whole unit", abs(held) < 1e-9)
@@ -118,7 +130,7 @@ for call, what in (
        str(R.available(p2, KEY)))
 
 ok("P2: an unreadable store blocks rather than reporting free capacity",
-   raises(lambda: R.available(S.RegistryStore(FakeRegistry(readable=False)), KEY),
+   raises(lambda: R.available(seeded_unreadable(), KEY),
           X.ExposureUnknown))
 R.record_outcome(p2, KEY, "o", "cancelled", 0.0, True, "venue read: 0 matched quantity")
 ok("P2: only an explicit verified zero from the venue releases it",
@@ -152,6 +164,18 @@ ok("it does not CALL registry._commit, whose retry is unsafe here",
    "._commit(" not in body and "_commit(merge" not in body)
 ok("it does call the registry's own fetch", "._fetch()" in body)
 ok("the docstring explains why _commit is unsafe here", "_commit" in full)
+
+
+# --- migration through the real store contract ------------------------------------------------
+m = S.RegistryStore(FakeRegistry())
+ok("M: a brand-new ledger on the shared store does not read as a free unit",
+   raises(lambda: R.available(m, KEY), X.ExposureUnknown))
+R.backfill(m, [{"key": KEY, "order_id": "venue-order", "status": "open", "asked_stake": 220.0,
+                "american": -110, "unit": U}], "seeded from registry filled+resting")
+ok("M: after seeding, a play already live at the venue has no capacity",
+   abs(R.available(m, KEY)) < 1e-9, str(R.available(m, KEY)))
+ok("M: the seed is persisted in the store, not held in memory",
+   m._r.data["unit_reservations"].get("seeded") is True)
 
 print(f"{len(RAN) - len(FAILED)} passed, {len(FAILED)} failed")
 sys.exit(1 if FAILED else 0)
