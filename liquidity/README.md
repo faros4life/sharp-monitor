@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 22, 8:50 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 45.
+Updated Sun Nov 22, 8:55 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 46.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,9 +10,10 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 22 8:55PM | NBA | San Antonio vs Sacramento | moneyline: San Antonio | kalshi | $28k | -488 |  |  | +0.0c |  | pending |
 | Nov 22 8:35PM | NBA | Utah vs Los Angeles L | moneyline: Los Angeles L | kalshi | $44k | -567 |  |  | +0.0c |  | pending |
 | Nov 22 8:35PM | NBA | Cleveland vs Chicago | moneyline: Cleveland | kalshi | $30k | -300 |  |  | -1.0c |  | pending |
-| Nov 22 8:30PM | NBA | Memphis vs Charlotte | moneyline: Memphis | kalshi | $40k | -138 |  |  | +3.0c |  | pending |
+| Nov 22 8:30PM | NBA | Memphis vs Charlotte | moneyline: Memphis | kalshi | $40k | -138 |  |  | +2.0c |  | pending |
 | Nov 22 8:15PM | NFL | Minnesota Vikings at San Francisco 49ers | moneyline: San Francisco 49ers | prophetx | $53k | -200 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Nov 22 8:10PM | NBA | Brooklyn vs Minnesota | moneyline: Minnesota | kalshi | $53k | -525 |  |  | +0.0c |  | pending |
 | Nov 22 7:50PM | NBA | Los Angeles C vs Houston | moneyline: Houston | kalshi | $58k | -488 |  |  | +1.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 10:20AM | NCAAF | Houston vs West Virginia: Spread | spread: NOT Houston wins by over 7.5 points | kalshi | $35k | -117 |  | ✅ | +4.0c | yes | W |
 | Nov 21 10:05AM | NCAAF | Memphis @ Navy | spread: NAVY +2.5 (2.5) | novig | $25k | -100 | ✅ kalshi |  | +0.5c |  | W |
 | Nov 21 10:05AM | NCAAF | Wake Forest @ Georgia Tech | spread: WAKE -21.5 (21.5) | novig | $27k | -100 | ✅ kalshi |  | +1.0c |  | L |
-| Nov 21 9:50AM | NCAAF | Texas Tech @ Baylor | moneyline: TTU (0) | novig | $32k | -190 |  | ✅ | +1.0c |  | W |

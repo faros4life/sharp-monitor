@@ -1,6 +1,158 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-23T01:55:46Z",
+   "base_depth": 40037,
+   "best_price": 0.82,
+   "best_price_american": -456,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.83,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-23",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 2804,
+     "new_this_side": 27538,
+     "other_side": 3963,
+     "other_side_all_levels": 15811,
+     "ratio": 4.2,
+     "this_side": 16529,
+     "this_side_all_levels": 72022
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "SAS (0)",
+     "price": 0.82,
+     "this_side": 3268
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 31398.039999999997,
+    "volume_24h_fp": 42273.700000000004,
+    "volume_fp": 45381.1
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 131.49,
+    "volume_24h_fp": 15.28,
+    "volume_fp": 156.39
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 31266.55,
+    "volume_24h_fp": 42258.420000000006,
+    "volume_fp": 45224.71000000001
+   },
+   "fade_price": 0.18,
+   "first_seen_utc": "2026-11-23T01:50:19Z",
+   "game": "San Antonio vs Sacramento",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 2.26,
+   "key": "kalshi|KXNBAGAME-26NOV23SASSAC|ml|0",
+   "lead_min": 1504,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 27538,
+   "new_x": 0.15,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 31398.039999999997,
+      "volume_24h_fp": 42273.700000000004,
+      "volume_fp": 45381.1
+     },
+     "game_normal": 31911,
+     "game_x": 2.26,
+     "normal": 184531,
+     "now": 72022,
+     "type": "ML",
+     "x": 0.39
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 825732.0,
+      "volume": 1504367.0
+     },
+     "game_normal": 3966,
+     "game_x": 1.62,
+     "normal": 3542,
+     "now": 6438,
+     "type": "ML",
+     "x": 1.82
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.83,
+   "price_american": -488,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.83,
+   "prices_by_book": {
+    "fanatics": {
+     "point": null,
+     "price": -525
+    },
+    "fanduel": {
+     "point": null,
+     "price": -550
+    },
+    "kalshi": {
+     "point": null,
+     "price": -488
+    },
+    "limitless": {
+     "point": null,
+     "price": -495
+    },
+    "novig": {
+     "point": null,
+     "price": -456
+    },
+    "polymarket": {
+     "point": null,
+     "price": -456
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -456
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26NOV23SASSAC-SAS"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "San Antonio",
+   "side_label": "San Antonio",
+   "size_x": 0.39,
+   "start_source": "odds",
+   "start_utc": "2026-11-24T03:00:00Z",
+   "surge_books": [],
+   "teams": [
+    "San Antonio",
+    "Sacramento"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-23T01:35:50Z",
    "base_depth": 269085,
    "best_price": 0.85,
@@ -47,7 +199,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 19731.78,
-    "volume_24h_fp": 15667.539999999999,
+    "volume_24h_fp": 15664.099999999999,
     "volume_fp": 24505.32
    },
    "ex_stats_first": {
@@ -97,6 +249,8 @@
    "norm_ready_books": 2,
    "paper_only": false,
    "price": 0.85,
+   "price_after_15m": 0.85,
+   "price_after_15m_book": "novig",
    "price_american": -567,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.85,
@@ -143,6 +297,7 @@
    "size_x": 1.74,
    "start_source": "odds",
    "start_utc": "2026-11-24T03:00:00Z",
+   "still_actionable": true,
    "surge_books": [],
    "teams": [
     "Utah",
@@ -250,6 +405,8 @@
    "norm_ready_books": 2,
    "paper_only": false,
    "price": 0.75,
+   "price_after_15m": 0.74,
+   "price_after_15m_book": "novig",
    "price_american": -300,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.75,
@@ -300,6 +457,7 @@
    "size_x": 1.3,
    "start_source": "odds",
    "start_utc": "2026-11-24T01:00:00Z",
+   "still_actionable": true,
    "surge_books": [
     "novig"
    ],
@@ -324,8 +482,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.61,
-   "clv_cents": 3.0,
+   "close_price": 0.6,
+   "clv_cents": 2.0,
    "confirmed_after_min": 5,
    "date": "2026-11-23",
    "depth_by_book": {
@@ -362,9 +520,9 @@
     "volume_fp": 459.25
    },
    "ex_stats_close": {
-    "open_interest_fp": 8509.949999999999,
-    "volume_24h_fp": 8185.64,
-    "volume_fp": 9461.62
+    "open_interest_fp": 8610.369999999999,
+    "volume_24h_fp": 8458.53,
+    "volume_fp": 9562.039999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 7679.95,
@@ -765,9 +923,9 @@
     "volume_fp": 28.91
    },
    "ex_stats_close": {
-    "open_interest_fp": 7781.460000000001,
-    "volume_24h_fp": 6167.54,
-    "volume_fp": 11379.17
+    "open_interest_fp": 7782.630000000001,
+    "volume_24h_fp": 7431.91,
+    "volume_fp": 11380.34
    },
    "ex_stats_first": {
     "open_interest_fp": 6683.07,
@@ -929,9 +1087,9 @@
     "volume_fp": 5.83
    },
    "ex_stats_close": {
-    "open_interest_fp": 7848.55,
-    "volume_24h_fp": 7716.36,
-    "volume_fp": 13803.84
+    "open_interest_fp": 9652.58,
+    "volume_24h_fp": 12420.49,
+    "volume_fp": 15607.869999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 7419.200000000001,
@@ -1109,9 +1267,9 @@
     "volume_fp": 7.39
    },
    "ex_stats_close": {
-    "open_interest_fp": 16138.17,
-    "volume_24h_fp": 14718.96,
-    "volume_fp": 17631.06
+    "open_interest_fp": 16194.41,
+    "volume_24h_fp": 15827.58,
+    "volume_fp": 17711.949999999997
    },
    "ex_stats_first": {
     "open_interest_fp": 12207.960000000001,
@@ -2007,7 +2165,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [
     "Miami Heat -4.5 (-108)",
     "Miami Heat -7.5 (-105)",
@@ -2078,7 +2236,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 2570.27,
-    "volume_24h_fp": 1812.28,
+    "volume_24h_fp": 1826.6599999999999,
     "volume_fp": 2571.85
    },
    "ex_stats_first": {
@@ -4387,9 +4545,9 @@
     "volume_fp": 715.69
    },
    "ex_stats_close": {
-    "open_interest_fp": 242219.21,
-    "volume_24h_fp": 197008.87,
-    "volume_fp": 262277.45
+    "open_interest_fp": 242511.37,
+    "volume_24h_fp": 197653.47,
+    "volume_fp": 262573.83
    },
    "ex_stats_first": {
     "open_interest_fp": 210853.54,
@@ -9138,9 +9296,9 @@
     "volume_fp": 579.7
    },
    "ex_stats_close": {
-    "open_interest_fp": 343005.19,
-    "volume_24h_fp": 336425.2,
-    "volume_fp": 345438.56
+    "open_interest_fp": 343023.85,
+    "volume_24h_fp": 338350.97,
+    "volume_fp": 345457.22
    },
    "ex_stats_first": {
     "open_interest_fp": 338077.35,
@@ -18744,9 +18902,9 @@
     "volume_fp": 53.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 383810.85,
-    "volume_24h_fp": 271865.01,
-    "volume_fp": 411226.89999999997
+    "open_interest_fp": 385290.4,
+    "volume_24h_fp": 275616.62,
+    "volume_fp": 412776.82999999996
    },
    "ex_stats_first": {
     "open_interest_fp": 136125.28,
