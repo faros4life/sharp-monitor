@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 22, 7:20 PM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 12.
+Updated Sun Nov 22, 7:30 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 12.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -24,7 +24,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 22 10:30AM | NCAAB | San Jose St. vs Loyola Chicago | moneyline: Loyola Chicago | kalshi | $37k | -186 | ✅ novig |  | +0.0c |  | pending |
 | Nov 22 10:20AM | NCAAB | Wyoming vs Duquesne | moneyline: Wyoming | kalshi | $48k | -163 | ✅ novig |  | +2.0c |  | W |
 | Nov 22 10:20AM | NCAAB | Valparaiso vs Southern Miss | moneyline: Valparaiso | kalshi | $56k | -335 | ✅ novig |  | +2.0c |  | pending |
-| Nov 22 10:20AM | NCAAB | Tennessee-Martin vs Utah Valley | moneyline: Utah Valley | kalshi | $84k | -270 | ✅ novig | ❌ | +0.0c |  | pending |
+| Nov 22 10:20AM | NCAAB | Tennessee-Martin vs Utah Valley | moneyline: Utah Valley | kalshi | $84k | -270 | ✅ novig | ❌ | -1.0c |  | pending |
 | Nov 22 10:20AM | NCAAB | UNC Asheville vs Samford | moneyline: Samford | kalshi | $163k | -456 | ✅ novig |  | +1.0c |  | W |
 | Nov 22 10:20AM | NCAAB | Maryland-Eastern Shore vs IU Indy | moneyline: IU Indy | kalshi | $69k | -525 |  |  | +0.0c | yes | W |
 | Nov 22 10:20AM | NCAAB | Lamar vs Rice | moneyline: Lamar | kalshi | $52k | -122 | ✅ novig |  | +2.0c | yes | pending |
