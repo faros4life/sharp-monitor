@@ -48,6 +48,13 @@ BACKFILL_DAYS = max(0, int(os.environ.get("X2_BACKFILL_DAYS") or "0"))
 # times as it takes: the window is [now - DAYS, now - END_DAYS], and a row that already carries a
 # verdict is skipped, so repeat dispatches make progress instead of redoing the same work.
 BACKFILL_END_DAYS = max(0, int(os.environ.get("X2_BACKFILL_END_DAYS") or "0"))
+# Nov 23, measured: of 3,203 alerts in a 30-day window, 140 matched a fixture and ZERO failed on
+# the join - 3,063 misses were simply days we never held. The cache carried 260 fixtures over 8
+# days while the alerts spanned 19-32 game-days per league, because the write below pruned to 5
+# days: a backfill fetched its window and the same run threw it away, and the next scheduled run
+# started empty. So retention is PERSISTED in the cache - a backfill raises it, and the ordinary
+# half-hourly run honours what it finds instead of resetting it. Bounded, so it cannot grow for ever.
+KEEP_DAYS_MIN, KEEP_DAYS_MAX = 5, 45
 
 
 def load(p, d):
@@ -174,9 +181,14 @@ def main():
                                  or (v.get("p_now_utc") or "") >= cl.iso(now - timedelta(days=3)))}
     keep.update(res)
     json.dump({"updated": cl.iso(now), "scale": "OddsJam (OddsPapi x 4/3)", "rows": keep}, open(OUT, "w"), separators=(",", ":"))
-    cut = cl.iso(now - timedelta(days=5))
-    json.dump({"fixtures": {k: v for k, v in st["fixtures"].items() if (v.get("start") or "") >= cut}, "fx_last": st["fx_last"],
+    keep_days = min(KEEP_DAYS_MAX, max(KEEP_DAYS_MIN, int(cache.get("keep_days") or KEEP_DAYS_MIN),
+                                       (BACKFILL_DAYS + 1) if BACKFILL_DAYS else 0))
+    cut = cl.iso(now - timedelta(days=keep_days))
+    kept = {k: v for k, v in st["fixtures"].items() if (v.get("start") or "") >= cut}
+    json.dump({"fixtures": kept, "fx_last": st["fx_last"], "keep_days": keep_days,
                "note": "OddsPapi fixture ids (public)"}, open(CACHE, "w"), separators=(",", ":"))
+    print(f"x2 tag: fixture cache {len(kept)} over {keep_days}d "
+          f"(was {len(st['fixtures'])} before the prune) - a 5-day prune is what held coverage at 8%")
     fwd = [v for v in res.values() if v.get("basis") == "forward"]
     bak = [v for v in res.values() if v.get("basis") == "backfill"]
     print(f"x2 tag: rows {len(rows)}, with P limit {sum(1 for v in res.values() if v.get('p_alert'))}, "
