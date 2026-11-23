@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 23, 12:25 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 44.
+Updated Mon Nov 23, 12:30 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 44.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -20,7 +20,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 23 10:06AM | NHL | Toronto vs New York I: Spread | spread: NOT New York I wins by over 1.5 goals | kalshi | $47k | -178 | ✅ novig |  | -1.0c |  | pending |
 | Nov 23 10:06AM | NHL | Utah vs Winnipeg | moneyline: Winnipeg | kalshi | $121k | -100 | ✅ prophetx |  | -1.0c | yes | pending |
 | Nov 23 10:06AM | NHL | Los Angeles vs Montreal | moneyline: Montreal | kalshi | $93k | -144 | ✅ novig,prophetx |  | -1.0c |  | pending |
-| Nov 23 10:01AM | NBA | Portland vs Philadelphia: Spread | spread: NOT Philadelphia wins by over 3.5 points | kalshi | $52k | -104 | ✅ novig |  | +6.0c | yes | pending |
+| Nov 23 10:01AM | NBA | Portland vs Philadelphia: Spread | spread: NOT Philadelphia wins by over 3.5 points | kalshi | $52k | -104 | ✅ novig |  | +5.0c | yes | pending |
 | Nov 23 9:25AM | NBA | Los Angeles Clippers @ Houston Rockets | moneyline: HOU (0) | novig | $27k | -545 | ✅ kalshi |  | +0.0c | yes | pending |
 | Nov 23 9:25AM | NBA | Cleveland Cavaliers @ Chicago Bulls | moneyline: CLE (0) | novig | $37k | -300 | ✅ kalshi,prophetx |  | +0.0c | yes | pending |
 | Nov 23 9:25AM | NBA | Milwaukee Bucks @ Toronto Raptors | moneyline: TOR (0) | novig | $27k | -400 | ✅ kalshi,prophetx |  | +0.0c | yes | pending |
@@ -32,7 +32,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 23 7:00AM | NBA | Memphis Grizzlies @ Charlotte Hornets | total: Over 215.5 (215.5) | novig | $35k | +102 | ✅ kalshi | ❌ | +0.0c | yes | pending |
 | Nov 23 6:15AM | NFL | Cincinnati Bengals @ Washington Commanders | spread: WSH +6.5 (6.5) | novig | $33k | -113 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 23 6:05AM | NBA | Brooklyn Nets @ Minnesota Timberwolves | moneyline: MIN (0) | novig | $30k | -525 | ✅ kalshi,prophetx | ❌ | -1.0c | yes | pending |
-| Nov 23 3:20AM | NHL | Utah vs Winnipeg: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $31k | -108 |  |  | +0.0c |  | pending |
+| Nov 23 3:20AM | NHL | Utah vs Winnipeg: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $31k | -108 |  |  | +1.0c |  | pending |
 | Nov 23 3:20AM | NHL | Anaheim vs Seattle | moneyline: Seattle | kalshi | $35k | -104 |  |  | +2.0c |  | pending |
 | Nov 23 12:40AM | NHL | Minnesota vs San Jose | moneyline: Minnesota | kalshi | $29k | -194 |  |  | -4.0c |  | pending |
 | Nov 22 11:50PM | NBA | Oklahoma City Thunder @ Indiana Pacers | moneyline: OKC (0) | novig | $28k | -174 | ✅ kalshi |  | +0.0c | yes | pending |
