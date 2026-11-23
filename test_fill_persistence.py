@@ -154,6 +154,47 @@ def main():
         registry.load = real_load
 
     print()
+    print("7. Nov 23 root cause: one order, one record - the client-id twin written while SENDING is retired")
+    store = {}
+
+    def keep_commit(merge, tries=4):
+        merge(store)
+        return True
+    real = registry._commit
+    registry._commit = keep_commit
+    try:
+        # pass 1: journalled before the venue call - only the client id exists
+        registry.put_fills([{"client_id": "cA", "status": "SENDING", "qty": 100, "play_key": "k"}])
+        f = store["fills"]
+        check("first write is keyed by client id and is PLACED (fill unknown)", f["cA"]["state"] == "PLACED" and f["cA"]["filled_stake"] is None, f)
+        # pass 2: the venue id has arrived and the order filled
+        registry.put_fills([{"client_id": "cA", "order_id": "vA", "status": "FILLED", "qty": 100, "filled_qty": 100,
+                             "filled_cost": 5200, "avg_price": 108}])
+        f = store["fills"]
+        check("the FILLED record is stored under the venue id with its price", f["vA"]["state"] == "FILLED" and f["vA"]["avg_price"] == 108)
+        check("the stale PLACED twin under the client id is GONE (this was the defect)", "cA" not in f, list(f))
+        check("the surviving record still carries the client id for the join", f["vA"]["client_id"] == "cA")
+        # an EXISTING orphan (the 15 in production) is healed by an unchanged re-read of the same row
+        store["fills"]["cA"] = {"state": "PLACED", "venue_status": "SENDING", "client_id": "cA"}
+        registry.put_fills([{"client_id": "cA", "order_id": "vA", "status": "FILLED", "qty": 100, "filled_qty": 100,
+                             "filled_cost": 5200, "avg_price": 108}])
+        check("an orphan already in the store is retired on the next pass, with no other change", "cA" not in store["fills"]
+              and store["fills"]["vA"]["state"] == "FILLED")
+        # never the other way: a TERMINAL client-id record is evidence and is kept
+        store["fills"]["cB"] = {"state": "NO_FILL", "client_id": "cB"}
+        registry.put_fills([{"client_id": "cB", "order_id": "vB", "status": "OPEN", "qty": 10}])
+        check("a terminal client-id record is never removed by a later non-terminal row", store["fills"]["cB"]["state"] == "NO_FILL")
+        # unknown stays unknown: FILLED with no quantity is not a fill, and its twin's removal invents nothing
+        store["fills"]["cC"] = {"state": "PLACED", "client_id": "cC"}
+        registry.put_fills([{"client_id": "cC", "order_id": "vC", "status": "FILLED", "qty": 10}])
+        check("FILLED with no confirmed amount stays PLACED / unknown - never zero, never filled",
+              store["fills"]["vC"]["state"] == "PLACED" and store["fills"]["vC"]["filled_stake"] is None and "cC" not in store["fills"])
+        # two different orders never collide
+        registry.put_fills([{"client_id": "cD", "status": "SENDING", "qty": 5}, {"client_id": "cE", "order_id": "vE", "status": "FILLED", "qty": 5, "filled_qty": 5}])
+        check("another order's client-id record is untouched", store["fills"]["cD"]["state"] == "PLACED")
+    finally:
+        registry._commit = real
+
     if BAD:
         print(f"FAILED {len(BAD)}: {BAD}")
         return 1

@@ -859,6 +859,19 @@ def put_fills(rows):
         m = d.setdefault("fills", {})
         changed = False
         for k, rec in keep.items():
+            # Nov 23 (Peter, "fix the Novig registry reconciliation"). ROOT CAUSE of 15 orders stuck PLACED/SENDING
+            # while the runner said FILLED: the runner journals a row BEFORE the venue call, when only the client
+            # id exists, so the first record is keyed by client id. Once Novig's order id arrives the SAME order is
+            # written again under that id - a second record - and the first was never touched again. The cloud
+            # order row carries the client id, so every reader that joined on it found the stale twin.
+            # One order, one record: when this row is stored under the venue id, its non-terminal client-id twin
+            # is retired. Nothing is invented - the surviving record is the venue's own status, it carries the
+            # client id, and venue_ids keeps the mapping. A TERMINAL twin is never removed (it is evidence).
+            cid = str(rec.get("client_id") or "")
+            twin = m.get(cid) if (cid and cid != k) else None
+            if twin is not None and twin.get("state") not in ("FILLED", "PARTIAL", "NO_FILL"):
+                del m[cid]
+                changed = True
             old = m.get(k) or {}
             # Only ever move FORWARD: a terminal outcome is never overwritten by a later
             # non-terminal read (the runner re-reads every 5 minutes and an older row can arrive

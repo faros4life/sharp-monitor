@@ -4340,8 +4340,11 @@ def dogs_kill_state(now=None):
         if seen is None:
             raise RuntimeError("durable ledger carries no timestamp")
         orders = [d for (kind, _i), (_f, d) in cur.items() if kind == "order" and registry.row_lane(d) == "dogs"]
-        fill_ids = {str(i) for (kind, i), (_f, d) in cur.items()
-                    if kind == "fill" and (d or {}).get("state") in ("FILLED", "PARTIAL")}
+        # a fill record is keyed by the VENUE order id; the cloud order row carries the CLIENT id (Novig), so both
+        # ids of a filled record count - joining on the key alone would miss every Novig fill (Nov 23 root cause)
+        fill_ids = {str(x) for (kind, i), (_f, d) in cur.items()
+                    if kind == "fill" and (d or {}).get("state") in ("FILLED", "PARTIAL")
+                    for x in (i, (d or {}).get("client_id")) if x}
         st = dogs_kill_eval(orders, fill_ids, dogs_feed_results(), now, seen)
     except Exception as ex:
         st = {"blocked": True, "n": 0, "units": 0.0, "mean": None, "unverified": 0, "overdue": 0,
