@@ -47,10 +47,10 @@ ck('WON',statOf({result:'W'}),'WON');ck('LOST',statOf({result:'L'}),'LOST');
 ck('PUSH',statOf({result:'P'}),'PUSH');ck('PENDING',statOf({}),'PENDING');
 ck('lane 1',tagOf({source:'bot',lane:'Lane 1'}),'Bot - Lane 1');
 ck('r1',tagOf({source:'bot',lane:'R1'}),'Bot - R1');
-ck('board v3',tagOf({source:'Bets Board v3'}),'Bot - Board v3');
+ck('board v3',tagOf({source:'Bets Board v4'}),'Bot - Board v4');
 ck('street value',tagOf({source:'Street Value CFB'}),'Street Value');
 ck('peter',tagOf({source:'Peter'}),'Peter');
-const SET=['Bot - Lane 1','Bot - R1','Bot - Board v3','Street Value','Peter','OddsJam','Claude'];
+const SET=['Bot - Lane 1','Bot - R1','Bot - Board v4','Street Value','Peter','OddsJam','Claude'];
 ['Peter','bot','ntfy (bot fill)','HR flag (Peter manual)','Bets Board','Street Value','OddsJam','Claude']
  .forEach(s=>{const t=tagOf({source:s});if(SET.indexOf(t)<0&&!/^Bot - /.test(t))fail.push('tag outside the spec set: '+s+' -> '+t);});
 

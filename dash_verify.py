@@ -37,7 +37,7 @@ body = re.sub(r"<script.*?</script>", "", h, flags=re.S)
 ck("markup is prompt-sized", len(body) < 4000, f"{len(body)} bytes")
 ck("markup has a passphrase field", 'type="password"' in body)
 ck("markup carries no figure, no lane name, no league",
-   not re.search(r"(PHASE 1|BOARD V3|LIQ-BOT|NBA|NCAAF|NHL|NFL|[+-]\d+\.\d+%)", body))
+   not re.search(r"(LANE 1|BOARD V4|LIQ-BOT|NBA|NCAAF|NHL|NFL|[+-]\d+\.\d+%)", body))
 ck("no dollar sign anywhere in the file", "$" not in h)
 ck("the page is noindex", 'content="noindex"' in h)
 

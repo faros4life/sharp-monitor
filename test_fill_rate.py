@@ -29,10 +29,10 @@ legs, summ = rs.fill_rate(orders, fills, fx, "2026-11-12")
 by = {(l["key"][:8], l["kind"]): l for l in legs}
 check("only placed legs from the start date (refused and older excluded)", len(legs) == 5)
 check("registry FILLED -> FILLED", any(l["outcome"] == "FILLED" and l["venue"] == "novig" and l["kind"] == "first" for l in legs))
-check("registry NO_FILL -> NOT FILLED", summ[("BOARD V3", "novig")]["NOT FILLED"] == 1)
+check("registry NO_FILL -> NOT FILLED", summ[("BOARD V4", "novig")]["NOT FILLED"] == 1)
 check("balance leg classified from venue evidence", any(l["kind"] == "balance" and l["outcome"] == "NOT FILLED" for l in legs))
 check("no record and venue says filled -> FILLED", summ[("R1", "prophetx")]["FILLED"] == 1)
-check("no record and no evidence -> UNKNOWN, never guessed", summ[("PHASE 1", "prophetx")]["UNKNOWN"] == 1)
+check("no record and no evidence -> UNKNOWN, never guessed", summ[("LANE 1", "prophetx")]["UNKNOWN"] == 1)
 l1 = next(l for l in legs if l["kind"] == "first" and l["outcome"] == "FILLED")
 check("price gap in cents of probability, + = worse than the alert", l1["gap_c"] is not None and l1["gap_c"] > 0)
 check("timing in minutes", l1["latency_min"] == 20 and l1["to_start_min"] == 540)
@@ -41,10 +41,10 @@ o5 = [{"key": "board|NBA|P vs Q: Total Points|total|OVER", "et_day": "2026-11-15
 lg5, sm5 = rs.fill_rate(o5, {"f1": {"play_key": "NBA|P vs Q: Total Points|total|OVER", "state": "FILLED"}}, [], "2026-11-12")
 check("Novig fill found by play key (lane prefix optional)", lg5[0]["outcome"] == "FILLED")
 o6 = [{"key": "board|NBA|Orlando vs Boston: Total Points|total|OVER", "et_day": "2026-11-16", "live_order": {"status": "placed", "client_id": "c7", "book": "novig"}}]
-pos = {"BOARD V3": [{"game": "Orlando Magic @ Boston Celtics", "bet": "Over 210.5"}]}
+pos = {"BOARD V4": [{"game": "Orlando Magic @ Boston Celtics", "bet": "Over 210.5"}]}
 lg6, _s = rs.fill_rate(o6, {"f": {"play_key": "NBA|Orlando vs Boston: Total Points|total|OVER", "state": "PLACED"}}, [], "2026-11-12", rows_by_lane=pos)
 check("venue-confirmed live position beats a stale PLACED fill record", lg6[0]["outcome"] == "FILLED")
-lg7, _s = rs.fill_rate(o6, {}, [], "2026-11-12", rows_by_lane={"BOARD V3": pos["BOARD V3"] * 2})
+lg7, _s = rs.fill_rate(o6, {}, [], "2026-11-12", rows_by_lane={"BOARD V4": pos["BOARD V4"] * 2})
 check("two matching positions -> not guessed", lg7[0]["outcome"] == "UNKNOWN")
 cx = [{"id": "a", "why": "the bet text is '-15.50', not a team - the side was never recorded", "league": "NCAAF"},
       {"id": "b", "why": "NCAAB fixture not in any cached store; waiting", "league": "NCAAB"},

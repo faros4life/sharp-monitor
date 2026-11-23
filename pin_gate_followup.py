@@ -128,12 +128,12 @@ def placed_legs(r):
 def lane_of(r):
     s = str(r.get("source") or "").lower()
     if s.startswith("board"):
-        return "Board v3"
+        return "Board v4"
     if s.startswith("r1") or s == "lane1":
         return "R1"
     if s == "lane2":
         return "Lane 2"
-    return "Phase 1"
+    return "Lane 1"
 
 
 def corrected_gap(r, pc):
@@ -353,7 +353,7 @@ def main():
     allc = ex_rows + adj_rows
     say(f"  {'lane':<12} {'n':>3} {'PASS':>5} {'REFUSE':>7} {'mean corrected gap':>20}")
     say("  " + "-" * 56)
-    for lane in ("Phase 1", "Board v3", "R1", "Lane 2"):
+    for lane in ("Lane 1", "Board v4", "R1", "Lane 2"):
         sub = [x for x in allc if x["lane"] == lane]
         if not sub:
             continue

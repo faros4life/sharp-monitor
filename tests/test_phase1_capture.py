@@ -86,11 +86,11 @@ ck("A row: ambiguous id is not resolved", tb.assign_lane_src(b, idx, rg.lane_of)
 
 # ---- tracker KEY_LANE from the registry row (not executor.lane_of)
 tb.KEY_LANE.clear(); tb.KEY_LANE_CONFLICT.clear()
-ck("K board source -> BOARD V3 (executor.lane_of would have raised on live=True)",
-   tb.key_lane_put({"key": "NBA|A @ B|total|OVER", "source": "board", "live": True}) == "BOARD V3")
+ck("K board source -> BOARD V4 (executor.lane_of would have raised on live=True)",
+   tb.key_lane_put({"key": "NBA|A @ B|total|OVER", "source": "board", "live": True}) == "BOARD V4")
 ck("K r1 / rules", tb.key_lane_put({"key": "NFL|C @ D|side|C", "source": "r1", "live": False}) == "R1"
-   and tb.key_lane_put({"key": "NBA|E @ F|total|UNDER", "source": "rules", "live": True}) == "PHASE 1")
-ck("K unknown legacy source labels nothing (no PHASE 1 default)", tb.key_lane_put({"key": "NBA|G @ H|total|OVER", "source": "muse"}) is None
+   and tb.key_lane_put({"key": "NBA|E @ F|total|UNDER", "source": "rules", "live": True}) == "LANE 1")
+ck("K unknown legacy source labels nothing (no LANE 1 default)", tb.key_lane_put({"key": "NBA|G @ H|total|OVER", "source": "muse"}) is None
    and "NBA|G @ H|total|OVER" not in tb.KEY_LANE)
 tb.key_lane_put({"key": "NBA|A @ B|total|OVER", "source": "r1"})
 ck("K one key under two lanes -> conflict, unlabelled", "NBA|A @ B|total|OVER" not in tb.KEY_LANE and "NBA|A @ B|total|OVER" in tb.KEY_LANE_CONFLICT)

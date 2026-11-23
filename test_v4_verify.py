@@ -48,7 +48,7 @@ def t_nothing_private_leaks():
 
 def t_only_board_rows():
     other = [{"lane": "R1", "board_v4": {"ok": True, "evidence": {"book": "x", "size": 99999}}},
-             {"lane": "PHASE 1", "live_why_not": ["something"]}]
+             {"lane": "LANE 1", "live_why_not": ["something"]}]
     assert rs.v4_verify(other, LANE)[1]["rows"] == 0
     assert rs.gate_reasons(other, LANE)[1] == {}
     assert rs.v4_verify([], LANE)[1]["rows"] == 0 and rs.v4_verify(None, LANE)[1]["rows"] == 0

@@ -865,14 +865,14 @@ def bot_row_lane(b):
 def key_lane_put(row):
     """Label a bot key with the lane its REGISTRY / ledger row records (registry.row_lane: 'source' rules|board|r1|lane2 or a
     lane prefix on the key). executor.lane_of is NOT used here: it reads row['live'] as a dict, but ledger rows store 'live' as a
-    BOOL, so it raised (lane lost) or fell back to PHASE 1. An unknown source labels nothing; two lanes on one key -> conflict.
+    BOOL, so it raised (lane lost) or fell back to LANE 1. An unknown source labels nothing; two lanes on one key -> conflict.
     Display / reporting only (tracker lane column, FUZZY bucket): nothing in execution reads KEY_LANE."""
     import registry as _rgk
     k = row.get("key")
     lane = _rgk.row_lane(row)
     if not k or not lane:
         return None
-    name = {"rules": "PHASE 1", "board": "BOARD V3", "r1": "R1", "lane2": "LANE 2"}.get(lane)
+    name = {"rules": "LANE 1", "board": "BOARD V4", "r1": "R1", "lane2": "LANE 2"}.get(lane)
     if k in KEY_LANE_CONFLICT:
         return None
     if k in KEY_LANE and KEY_LANE[k] != name:
@@ -1400,13 +1400,13 @@ ${T==='settled'?list.map(rowOf).join(''):'</div>'+list.map(b=>card(b,T==='live'?
    the W-L COUNT folds split fills and same-game/same-side wagers into one game (Peter Nov 12,
    "All games count 1x"). A zero-fill or refused order is not a row - rows come from the ledger,
    which only holds fills. */
-const TAGS={'lane 1':'Bot - Lane 1','lane1':'Bot - Lane 1','r1':'Bot - R1','board':'Bot - Board v3',
-            'board v3':'Bot - Board v3','bets board':'Bot - Board v3','street value':'Street Value',
+const TAGS={'lane 1':'Bot - Lane 1','lane1':'Bot - Lane 1','r1':'Bot - R1','board':'Bot - Board v4',
+            'board v3':'Bot - Board v4','bets board':'Bot - Board v4','street value':'Street Value',
             'street value cfb':'Street Value','oddsjam':'OddsJam','claude':'Claude'};
 const tagOf=b=>{const ln=String(b.lane||'').toLowerCase().trim(),sc=String(b.source||'').toLowerCase().trim();
   if(TAGS[ln])return TAGS[ln];if(TAGS[sc])return TAGS[sc];
   if(sc.indexOf('street value')>=0)return 'Street Value';
-  if(sc.indexOf('board')>=0)return 'Bot - Board v3';
+  if(sc.indexOf('board')>=0)return 'Bot - Board v4';
   if(sc.indexOf('bot')>=0||sc.indexOf('ntfy')>=0)return ln?('Bot - '+b.lane):'Bot - Lane 1';
   return 'Peter';};
 const statOf=b=>b.result==='W'?'WON':b.result==='L'?'LOST':b.result==='P'?'PUSH':'PENDING';

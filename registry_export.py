@@ -13,7 +13,7 @@ import json
 import re
 import sys
 
-LANES = {"rules": "PHASE 1", "board": "BOARD V3", "r1": "R1", "lane2": "LANE 2 (paper)"}
+LANES = {"rules": "LANE 1", "board": "BOARD V4", "r1": "R1", "lane2": "LANE 2 (paper)"}
 
 
 def clean(x):

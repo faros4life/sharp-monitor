@@ -56,7 +56,7 @@ HC = os.environ.get("HCACHE_DIR", "") or "hcache"
 ALT_FX = fxm.ALT_PATHS
 MKFILE = "clv/markets.json"
 LANE_UNIT = {"rules": 300.0, "board": 200.0, "r1": 200.0, "lane2": 200.0}
-LANE_NAME = {"rules": "PHASE 1", "board": "BOARD V3", "r1": "R1", "lane2": "LANE 2 (paper)"}
+LANE_NAME = {"rules": "LANE 1", "board": "BOARD V4", "r1": "R1", "lane2": "LANE 2 (paper)"}
 L, SCREEN = [], []
 _PIN = {}        # fixture id -> wrapped cached Pinnacle history, opened at most once
 _MKMAP = {}      # market ids, loaded once in main()
@@ -567,8 +567,8 @@ def main():
             f"{(('%+.2f' % (100 * s2)) if s2 is not None else '-'):>8} "
             f"{st_['pos']}/{st_['n']:<7} "
             f"{('INSUFFICIENT' if st_['n'] < 20 else 'SEE SCORECARD'):>12}")
-    for lane_key, label in (("r1", "1/R1 (live)"), ("board", "7/BOARD v3 (live)"),
-                            ("rules", "1/PHASE 1 (live)"), ("lane2", "8/LANE 2 (paper)")):
+    for lane_key, label in (("r1", "1/R1 (live)"), ("board", "7/BOARD v4 (live)"),
+                            ("rules", "1/LANE 1 (live)"), ("lane2", "8/LANE 2 (paper)")):
         _cand(label, [o for o in obs.values() if o.get("_lane") == lane_key])
     _cand("5/STREET VALUE", [o for o in obs.values()
                              if "street" in str(o.get("source") or "").lower()])

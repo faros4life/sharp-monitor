@@ -135,12 +135,12 @@ def placed_legs(r):
 def lane_of(r):
     s = str(r.get("source") or "").lower()
     if s.startswith("board"):
-        return "Board v3"
+        return "Board v4"
     if s in ("r1", "lane1") or s.startswith("r1"):
         return "R1"
     if s == "lane2":
         return "Lane 2"
-    return "Phase 1"
+    return "Lane 1"
 
 
 def line_kind(pc, r):
@@ -319,7 +319,7 @@ def main():
 
     say("")
     say("  by lane:")
-    for lane in ("Phase 1", "Board v3", "R1", "Lane 2"):
+    for lane in ("Lane 1", "Board v4", "R1", "Lane 2"):
         sub = [x for x in rec if x["lane"] == lane]
         if sub:
             p = sum(1 for x in sub if x["verdict"] == "PASS")

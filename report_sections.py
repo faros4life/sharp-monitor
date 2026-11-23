@@ -319,7 +319,7 @@ def fill_rate(orders, fills, fx, start_et=START_ET, rows_by_lane=None):
             continue
         key = str(o.get("key") or "")
         lane = key.split("|", 1)[0] if key.split("|", 1)[0] in ("board", "r1", "rule", "rules") else (o.get("source") or "phase1")
-        lane = {"board": "BOARD V3", "r1": "R1", "rule": "PHASE 1", "rules": "PHASE 1"}.get(lane, "PHASE 1")   # report keeps V3 as the lane's historical name; the live rule is named in the executor's own notifications
+        lane = {"board": "BOARD V4", "r1": "R1", "rule": "LANE 1", "rules": "LANE 1"}.get(lane, "LANE 1")   # report keeps V3 as the lane's historical name; the live rule is named in the executor's own notifications
         more = o.get("live_more")
         for kind, lo in [("first", d(o.get("live_order"))), ("rest", d(o.get("live_rest")))] + \
                 [("balance", d(x)) for x in (more if isinstance(more, list) else [])]:
@@ -485,7 +485,7 @@ def v4_verify(rows, lane_of):
     out, seen = [], {"rows": 0, "with_evidence": 0, "accept": 0, "reject": 0, "rule_match": 0, "rule_mismatch": 0,
                      "basis_corrected": 0, "basis_raw": 0, "no_v4_field": 0}
     for r in rows or []:
-        if str(lane_of(r) or "").upper() not in ("BOARD V3", "BOARD V4", "BOARD"):
+        if str(lane_of(r) or "").upper() not in ("BOARD V4", "BOARD"):
             continue
         seen["rows"] += 1
         v = r.get("board_v4") if isinstance(r.get("board_v4"), dict) else None
@@ -516,7 +516,7 @@ def v4_verify(rows, lane_of):
     return out, seen
 
 
-def gate_reasons(rows, lane_of, lanes=("BOARD V3", "BOARD V4", "BOARD")):
+def gate_reasons(rows, lane_of, lanes=("BOARD V4", "BOARD")):
     """Why board orders did not go live, as masked reason text with counts. Pure. No game, side price or amount."""
     from collections import Counter
     c, out = Counter(), []
@@ -577,7 +577,7 @@ def category_counts(xs):
 
 # ---------------------------------------------------------------- SECTION H: final lane scorecard (Peter, 16 Nov)
 CHANGE_UTC = "2026-11-11T16:31:19+00:00"     # the approved pricing-model change, 11 Nov 11:31:19 AM ET
-LANES_LIVE = ("PHASE 1", "R1", "BOARD V3")
+LANES_LIVE = ("LANE 1", "R1", "BOARD V4")
 # Nov 17 (Peter, CLV_STANDARD.md section 1): only a same-line Pinnacle close (or the exact moneyline market) is
 # CERTIFIED. A close read off Pinnacle's main line and moved to the bet's number with the half-point table is an
 # ESTIMATE: reported separately, never in a certified mean, half, interval or qualification gate. Ledger rows are

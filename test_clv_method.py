@@ -32,7 +32,7 @@ sc = rs.lane_scope(rep, "R1", cert, {"R1": ("2026-11-11T00:00:00+00:00", 200.0)}
 check("certified mean uses only the same-line play", sc["whole"]["clv_n"] == 1 and sc["whole"]["clv"] == 4.0)
 check("a play mixing certified and estimated components is not certified", sc["whole"]["clv_missing"] == 2)
 check("estimated reported separately", sc["est"]["whole"]["clv_n"] == 1 and sc["est"]["whole"]["clv"] == 3.0)
-cmb = rs.combined_scope({"R1": sc, "BOARD V3": None})
+cmb = rs.combined_scope({"R1": sc, "BOARD V4": None})
 check("combined counts each play once", cmb["whole"]["n"] == 3 and cmb["whole"]["W"] == 1 and cmb["whole"]["L"] == 2)
 check("combined units are the lane-unit sum", cmb["whole"]["units"] == round((90 - 200) / 200, 2))
 txt = rs.render_scorecard([("X", {"R1": sc})], {}, {})

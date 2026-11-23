@@ -2,7 +2,7 @@
 """
 NOVIG ORDER STATUS READBACK - READ-ONLY (Peter, 19 Nov 2026).
 
-WHY. A Telegram alert read "[BOARD V3] NOVIG NO FILL ... limit -102, $205.53 asked; nothing
+WHY. A Telegram alert read "[BOARD V4] NOVIG NO FILL ... limit -102, $205.53 asked; nothing
 traded". The registry holds exactly ONE row for that play: a journal row whose only order is a
 RESTING Novig bid (resting: true, status: placed, filled_stake: null, expires 2026-11-20T00:30Z)
 and whose live_order is null. "Nothing traded" is therefore our inference from a fill read, not a

@@ -219,7 +219,7 @@ def main():
     say("")
     say("UNITS")
     say("=" * 100)
-    say("  Units are NOT reported here. A unit is a lane concept ($300 Phase 1, $200 Board/R1)")
+    say("  Units are NOT reported here. A unit is a lane concept ($300 Lane 1, $200 Board/R1)")
     say("  and the ledger rows carry no lane - only 36 registry orders exist against 363 rows, so")
     say("  any per-row unit figure would be a guess for most of the sample. ROI above needs no")
     say("  unit and is reported. Stage 3 persists the lane with the order, which is what makes a")

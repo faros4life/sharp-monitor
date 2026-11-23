@@ -34,7 +34,7 @@ def r_for(lane, src, bk="novig", af=-115, shown=-115, am=-117, risk=234.0, win=2
 
 
 # ---------------------------------------------------------------- fires for every lane
-for lane, src, tag in (("r1", "r1", "[R1]"), ("board", "board", "[BOARD V3]"), (None, "rules", "[PHASE 1]")):
+for lane, src, tag in (("r1", "r1", "[R1]"), ("board", "board", "[BOARD V4]"), (None, "rules", "[LANE 1]")):
     SENT.clear()
     ex.live_play_alert(r_for(lane, src))
     ck(f"{tag} live play alerts", len(SENT) == 1, str(len(SENT)))
@@ -61,8 +61,8 @@ ck("  and still names the exchange and stake",
    "Novig" in SENT[0][1] and "proposed stake" in SENT[0][1], SENT[0][1])
 SENT.clear()
 ex.live_play_alert({"play": {}, "live": {}, "entry": {}})
-ck("a degenerate play still alerts as PHASE 1 rather than raising",
-   len(SENT) == 1 and SENT[0][0].startswith("[PHASE 1] LIVE PLAY"), str(SENT))
+ck("a degenerate play still alerts as LANE 1 rather than raising",
+   len(SENT) == 1 and SENT[0][0].startswith("[LANE 1] LIVE PLAY"), str(SENT))
 
 # ---------------------------------------------------------------- wired, all lanes, before the order
 mb = inspect.getsource(ex.main)

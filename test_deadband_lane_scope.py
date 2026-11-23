@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""The Oct 27 retail deadband is PHASE 1 ONLY, and a static refusal never announces a LIVE PLAY.
+"""The Oct 27 retail deadband is LANE 1 ONLY, and a static refusal never announces a LIVE PLAY.
 
 Peter, Nov 12, after the Toronto/Philadelphia Under 224.5: a Board V3 play that had cleared the
 board rule, the liquidity gate, pin_check and the line-value REPLACEMENT maximum (Under 225.5 at
@@ -10,7 +10,7 @@ inside live_order(), which runs AFTER live_play_alert().
 Three scopes have to come out differently, and that is the point of these tests:
   - Hard Rock                -> GLOBAL, every lane (Peter is limited there)
   - unknown after-fee price  -> GLOBAL and fail-closed, every lane (not knowing != acceptable)
-  - the -119..-110 band      -> PHASE 1 ONLY
+  - the -119..-110 band      -> LANE 1 ONLY
 
 Nothing here places, replays or modifies any order. No historical order is re-sent.
 """
@@ -43,11 +43,11 @@ def play(lane, book="novig", paf=-113, source=None):
                      "shown": -117, "line": 225.5, "limit": "-117"}}
 
 
-print("The band is PHASE 1 only")
+print("The band is LANE 1 only")
 r = play("rules")
 check("phase 1 at -113 on Novig is refused",
       "retail deadband" in (ex.static_refusal(r) or ""))
-check("BOARD V3 at the same price is NOT refused", ex.static_refusal(play("board")) is None)
+check("BOARD V4 at the same price is NOT refused", ex.static_refusal(play("board")) is None)
 check("R1 at the same price is NOT refused", ex.static_refusal(play("r1")) is None)
 check("LANE 2 at the same price is NOT refused", ex.static_refusal(play("lane2")) is None)
 

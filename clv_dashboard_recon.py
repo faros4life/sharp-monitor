@@ -213,26 +213,26 @@ for L in B["B_lanes"]["lanes"]:
         ck(f"{L['name']}: contradictory raw rows -> published figure is withheld",
            u is None and cum.get("fin_status") == "UNVERIFIED")
 
-print("10. Phase 1 attribution diagnostics (counts only)")
+print("10. Lane 1 attribution diagnostics (counts only)")
 p1 = next((L for L in B["B_lanes"]["lanes"] if L["lane"] == "rules"), None)
 orders = (reg or {}).get("orders") or []
 lane_of = lambda o: str(o.get("key") or "?").split("|")[0]
 ords_by_lane = collections.Counter(lane_of(o) for o in orders)
 print(f"     registry orders by lane: {dict(ords_by_lane)}")
-print(f"     Phase 1 selections attributed: {p1['cumulative'].get('n', 0) if p1 else 'lane missing'}")
+print(f"     Lane 1 selections attributed: {p1['cumulative'].get('n', 0) if p1 else 'lane missing'}")
 p1_orders = [o for o in orders if lane_of(o) == "rules"]
 joined = sum(1 for o in p1_orders
              if any(lane_for(k, ob) == "rules" for k, ob in obs.items()
                     if str(o.get("key", "")).endswith(k.split("|", 1)[-1])))
-print(f"     Phase 1 registry orders {len(p1_orders)}; with a certified CLV selection {joined}")
+print(f"     Lane 1 registry orders {len(p1_orders)}; with a certified CLV selection {joined}")
 conf_p1 = sum(1 for k, ob in obs.items() if lane_for(k, ob) == "rules" and fill_join(k, ob))
-print(f"     Phase 1 certified selections that join a confirmed fill: {conf_p1}")
+print(f"     Lane 1 certified selections that join a confirmed fill: {conf_p1}")
 print("     reading: orders==0 -> no qualifying orders recorded (history starts "
       "at the registry window); orders>0 and certified==0 -> join/CLV problem; "
       "certified>0 -> attribution works")
 
 
-print("10b. Phase 1 evidence: key prefix vs the registry's own source / live-order lane (counts only)")
+print("10b. Lane 1 evidence: key prefix vs the registry's own source / live-order lane (counts only)")
 ev = collections.Counter()
 for o in orders:
     pre = lane_of(o)

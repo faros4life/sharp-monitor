@@ -2,7 +2,7 @@
 """LIVE BOT PLAYS for the Last 50 page, by lane (Peter, Nov 13). READ-ONLY.
 
 Decrypts tracker/state.enc, keeps source == "bot" rows (same grouping as bot_record.py), splits them by
-lane (PHASE 1 = Lane 1, BOARD V3, R1, LANE 2) and writes tracker/bot_live.enc, encrypted with the same
+lane (LANE 1 = Lane 1, BOARD V4, R1, LANE 2) and writes tracker/bot_live.enc, encrypted with the same
 TRACKER_PASSPHRASE scheme as state.enc. The plaintext never reaches the repo or the log.
 
 NO DOLLARS: units are profit / stake per play (flat 1u risked, the same convention as the last-50 report),
@@ -28,13 +28,13 @@ TRIGGERS = {
   ("11-05","miami","golden"),("11-06","boston","charlotte"),("11-06","utah","orleans"),("11-06","toronto","milwaukee"),
   ("11-07","denver","indiana"),("11-08","boston","milwaukee"),("11-11","lakers","milwaukee")],
  "R1": [("11-11","furman","cross"),("11-12","louisiana","monroe")],
- "Bets Board v3": [("11-04","milwaukee","boston"),("11-11","denver","memphis"),("11-11","brooklyn","orleans"),
+ "Bets Board v4": [("11-04","milwaukee","boston"),("11-11","denver","memphis"),("11-11","brooklyn","orleans"),
   ("11-11","washington","indiana"),("11-12","dallas","minnesota"),("11-12","charlotte","phoenix"),("11-12","toronto","philadelphia")],
 }
-FIRST_MULTI_LANE_DAY = "2026-11-11"   # R1 and Board v3 were approved on Nov 11; before it only Lane 1 (PHASE 1) could place
+FIRST_MULTI_LANE_DAY = "2026-11-11"   # R1 and Board v3 were approved on Nov 11; before it only Lane 1 (LANE 1) could place
 
 OUT = "tracker/bot_live.enc"
-LANES = {"PHASE 1": "Lane 1", "BOARD V3": "Bets Board v3", "R1": "R1", "LANE 2": "Lane 2"}
+LANES = {"LANE 1": "Lane 1", "BOARD V4": "Bets Board v4", "R1": "R1", "LANE 2": "Lane 2"}
 
 
 def play(b):
@@ -68,13 +68,13 @@ def registry_lanes():
             if any(lo.get("status") == "placed" and lo.get("order_id") and not lo.get("intent")
                    and not lo.get("voided") for lo in los):
                 safe = dict(row, live=d(row.get("live")), play=d(row.get("play")))   # lane_of() calls .get on both
-                out[row["key"]] = ex.LANE_NAME.get(ex.lane_of(safe), "PHASE 1")
+                out[row["key"]] = ex.LANE_NAME.get(ex.lane_of(safe), "LANE 1")
     except Exception as e:
         print(f"registry unreadable ({type(e).__name__}: {str(e)[:90]}); lanes fall back to the tracker own tags")
     return out
 
 
-SEC = [("LANE 1", "Lane 1"), ("R1", "R1"), ("BETS BOARD", "Bets Board v3")]
+SEC = [("LANE 1", "Lane 1"), ("R1", "R1"), ("BETS BOARD", "Bets Board v4")]
 ENTRY = re.compile(r"^\((?:ids?)\s[^)]*\)\s+(\d{4})-(\d\d-\d\d)\s+(.+?)\s+@\s+(.+?)(?:\s+(?:Under|Over)\s|,\s|\s+-\s|\s+[-+]\d)")
 
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Novig fill reports must carry the REAL lane (Nov 13, Peter: "STILL SAYS PHASE 1"). Offline."""
+"""Novig fill reports must carry the REAL lane (Nov 13, Peter: "STILL SAYS LANE 1"). Offline."""
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import executor as ex
@@ -11,9 +11,9 @@ def ck(n, got, want):
 BOARD = "NBA|Memphis vs New Orleans: Total Points|total|OVER"
 R1 = "NCAAF|Louisiana Ragin Cajuns @ UL Monroe Warhawks|total|UNDER"
 
-# The bug: the dispatched key has no lane prefix, so lane_from_key can only say PHASE 1.
-ck("unprefixed key alone cannot resolve a lane", ex.lane_from_key(BOARD), "PHASE 1")
-ck("a prefixed key still resolves directly", ex.lane_from_key("board|" + BOARD), "BOARD V3")
+# The bug: the dispatched key has no lane prefix, so lane_from_key can only say LANE 1.
+ck("unprefixed key alone cannot resolve a lane", ex.lane_from_key(BOARD), "LANE 1")
+ck("a prefixed key still resolves directly", ex.lane_from_key("board|" + BOARD), "BOARD V4")
 
 rows, enabled = [], [True]
 ex.registry.rows = lambda: rows
@@ -21,7 +21,7 @@ ex.registry.enabled = lambda: enabled[0]
 
 rows[:] = [{"key": "board|" + BOARD}, {"key": BOARD}, {"key": "r1|" + R1}]
 m = ex.lane_lookup([BOARD, R1])
-ck("board play recovers its lane", m.get(BOARD), "BOARD V3")
+ck("board play recovers its lane", m.get(BOARD), "BOARD V4")
 ck("r1 play recovers its lane", m.get(R1), "R1")
 
 # A genuine Phase 1 play has no prefixed row anywhere: it must stay unresolved -> default.
