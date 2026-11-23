@@ -332,6 +332,20 @@ def completeness(legs, unreadable, counts=None):
     if missing_unit:
         return "INCOMPLETE", (f"{len(missing_unit)} leg(s) with standing exposure carry no lane "
                               f"unit, so their share of the budget cannot be computed")
+    # The venue can prove an order exists while our registry still lacks enough
+    # economic fields to value it. A COMPLETE flag must not be based on unit alone.
+    try:
+        import review_unit_reservation as reservation
+        for leg in standing:
+            reservation.leg_fraction({
+                "status": "open",   # conservatively hold the full asked exposure
+                "order_id": leg.get("order_id") or leg.get("client_id"),
+                "asked_stake": leg.get("asked_stake"),
+                "american": leg.get("american"),
+                "unit": leg.get("unit"),
+            })
+    except Exception:
+        return "INCOMPLETE", "standing exposure has invalid/missing identity, amount, price or unit"
     if counts is None:
         return "UNPROVEN", "no venue evidence was gathered - the registry's own status is not proof"
     unproven = {k: v for k, v in counts.items() if k != PROVEN and v}
