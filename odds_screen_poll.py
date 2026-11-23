@@ -15,6 +15,28 @@ import sharp_monitor as sm
 _M = (os.environ.get("ODDS_SCREEN_MIN", "") or "off").strip().lower()   # Nov 5: off by default (Refresh button on the page);
 EVERY_S = None if _M in ("off", "0", "none") else float(_M) * 60     # set GitHub variable ODDS_SCREEN_MIN to 10 or 5 to turn on
 FRESH_S = (EVERY_S or 0) - 60
+_RANKS = {}
+
+
+def ranks(key, n):
+    """Nov 22 (Peter: "odds screen I don't see the teams"): the Top 25 tag used to be COPIED FORWARD from games
+    already on the screen, so a game seen here first - every college game more than a day out, which is all the week
+    pull adds - got an empty tag and vanished under 'CFB Top 25 only'. Look the poll up instead (ESPN, no API
+    credits), cached for the run. None when the sport has no poll, which keeps the carried-forward value."""
+    if key not in sm.RANKINGS:
+        return None
+    if key not in _RANKS:
+        _RANKS[key] = sm.load_top25({}, n, key)
+    return _RANKS[key]
+
+
+def rank_info(ev, teams, carried):
+    """[(team, rank)] for the event, from the live poll; falls back to what the screen already had."""
+    if not teams:
+        return [tuple(x) for x in carried]
+    hits = [(t, r[0]) for t in (ev["away_team"], ev["home_team"])
+            for r in [sm.top25_rank(t, teams)] if r]
+    return hits or [tuple(x) for x in carried]
 
 
 def main():
@@ -49,9 +71,10 @@ def main():
             continue
         spent += len(cfg["markets"])
         polled.append(lg)
+        teams = ranks(key, n)
         for ev in events:
             ev["commence_time"] = sm.listed_start(cfg["label"], ev["commence_time"])
-            odds_screen.add(lg, ev, sm.book_lines(ev), [tuple(x) for x in t25.get(ev["id"], [])], sm.RETAIL, sm.SHARP)
+            odds_screen.add(lg, ev, sm.book_lines(ev), rank_info(ev, teams, t25.get(ev["id"], [])), sm.RETAIL, sm.SHARP)
     odds_screen.save(sm.RETAIL, sm.SHARP, sm.NAMES, rem)
     d = json.load(open(odds_screen.FILE))
     d["fast_poll"] = round(now)
@@ -88,9 +111,11 @@ def week():
             print(f"odds screen week pull: {cfg['label']} failed ({str(x)[:60]})")
             continue
         spent += len(cfg["markets"])
+        teams = ranks(key, n)
         for ev in events:
             ev["commence_time"] = sm.listed_start(cfg["label"], ev["commence_time"])
-            odds_screen.add(cfg["label"], ev, sm.book_lines(ev), [tuple(x) for x in t25.get(ev["id"], [])], sm.RETAIL, sm.SHARP)
+            odds_screen.add(cfg["label"], ev, sm.book_lines(ev), rank_info(ev, teams, t25.get(ev["id"], [])),
+                            sm.RETAIL, sm.SHARP)
     odds_screen.save(sm.RETAIL, sm.SHARP, sm.NAMES, rem)
     d = json.load(open(odds_screen.FILE))
     d["week_poll"] = round(time.time())
