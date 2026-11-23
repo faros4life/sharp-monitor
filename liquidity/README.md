@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 23, 12:35 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 19.
+Updated Mon Nov 23, 12:40 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 20.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 23 12:40AM | NHL | Minnesota vs San Jose | moneyline: Minnesota | kalshi | $29k | -194 |  |  | +0.0c |  | pending |
 | Nov 22 11:50PM | NBA | Oklahoma City Thunder @ Indiana Pacers | moneyline: OKC (0) | novig | $28k | -174 | ✅ kalshi |  | +0.0c | yes | pending |
 | Nov 22 11:45PM | NBA | Portland Trail Blazers @ Philadelphia 76ers | moneyline: PHI (0) | novig | $58k | -153 | ✅ kalshi |  | +1.0c | yes | pending |
 | Nov 22 11:40PM | NFL | Cincinnati Bengals @ Washington Commanders | moneyline: CIN (0) | novig | $70k | -264 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 10:55AM | NCAAF | Northwestern vs Minnesota: Spread | spread: Northwestern wins by over 2.5 points | kalshi | $109k | -113 | ✅ novig | ✅ | +0.0c | yes | L |
 | Nov 21 10:50AM | NCAAF | North Texas @ Tulane | moneyline: UNT (0) | novig | $25k | -257 | ✅ prophetx | ✅ | +0.0c | yes | L |
 | Nov 21 10:45AM | NCAAF | Memphis vs Navy | moneyline: Navy | kalshi | $143k | +127 | ✅ novig,prophetx |  | +3.0c | yes | W |
-| Nov 21 10:30AM | NCAAF | Memphis vs Navy: Total Points | total: NOT Over 67.5 points | kalshi | $29k | -100 | ✅ novig | ❌ | -1.0c |  | L |
