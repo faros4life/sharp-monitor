@@ -9,8 +9,8 @@ sys.path.insert(0, HERE)
 import p2_audit_core as c  # noqa: E402
 
 R = lambda **k: {"result": "W", "stake": 100, "profit": 90, "game": "g", "bet": "b", "book": "ProphetX", **k}
-IDX = {"A": [("prophetx", "K1", "R1")], "B": [("prophetx", "K1", "R1")], "C": [("prophetx", "K2", "PHASE 1")],
-       "X": [("prophetx", "K3", "R1"), ("prophetx", "K4", "PHASE 1")], "N": [("novig", "K9", "BOARD V3")]}
+IDX = {"A": [("prophetx", "K1", "R1")], "B": [("prophetx", "K1", "R1")], "C": [("prophetx", "K2", "LANE 1")],
+       "X": [("prophetx", "K3", "R1"), ("prophetx", "K4", "LANE 1")], "N": [("novig", "K9", "BOARD V4")]}
 run = lambda rows: c.build(rows, IDX)
 
 
@@ -57,13 +57,13 @@ def t_merge_only_on_one_verified_claim():
 
 
 def t_unkeyed_rows_never_merge():   # Novig-style: no order id, identical game/bet/book
-    rep = run([R(book="Novig", lane="PHASE 1"), R(book="Novig", lane="PHASE 1")])
-    b = rep["buckets"]["FUZZY:PHASE 1"]; assert b["all"]["settled"] == 2 and b["possible_split_flagged_NOT_MERGED"] == 1
+    rep = run([R(book="Novig", lane="LANE 1"), R(book="Novig", lane="LANE 1")])
+    b = rep["buckets"]["FUZZY:LANE 1"]; assert b["all"]["settled"] == 2 and b["possible_split_flagged_NOT_MERGED"] == 1
 
 
 def t_different_claims_never_merge():
     rep = run([R(order_ref="A"), R(order_ref="C")])
-    assert rep["buckets"]["EXACT:R1"]["all"]["settled"] == 1 and rep["buckets"]["EXACT:PHASE 1"]["all"]["settled"] == 1
+    assert rep["buckets"]["EXACT:R1"]["all"]["settled"] == 1 and rep["buckets"]["EXACT:LANE 1"]["all"]["settled"] == 1
 
 
 def t_ambiguous_and_missing_claims():
@@ -74,13 +74,13 @@ def t_ambiguous_and_missing_claims():
 
 def t_venue_scoped():   # same order id under another venue is not a claim for this row
     assert c.resolve(R(order_ref="N", book="ProphetX"), IDX)[0] == "venue_unmatched"
-    assert c.resolve(R(order_ref="N", book="Novig"), IDX) == ("exact", "BOARD V3", "K9")
+    assert c.resolve(R(order_ref="N", book="Novig"), IDX) == ("exact", "BOARD V4", "K9")
 
 
 def t_lane_conflict_reported_and_quarantined():
-    rep = run([R(order_ref="A", lane_src="registry-order-id", lane="PHASE 1")])
+    rep = run([R(order_ref="A", lane_src="registry-order-id", lane="LANE 1")])
     assert rep["join"]["lane_conflict"] == 1 and rep["lane_conflicts"][0]["registry_lane"] == "R1"
-    assert "CONFLICT(registry=R1)" in rep["buckets"] and "EXACT:R1" not in rep["buckets"] and "EXACT:PHASE 1" not in rep["buckets"]
+    assert "CONFLICT(registry=R1)" in rep["buckets"] and "EXACT:R1" not in rep["buckets"] and "EXACT:LANE 1" not in rep["buckets"]
 
 
 def t_claim_without_lane_proves_nothing():
@@ -133,10 +133,10 @@ def t_bug2_invalid_component_stake_not_laundered():
 # ---- bug 3: any differing lane / lane_fuzzy is a conflict, whatever lane_src says
 def t_bug3_conflict_any_lane_src():
     for src in (None, "fuzzy-join", "manual-source", "none", "registry-order-id"):
-        rep = run([R(order_ref="A", lane_src=src, lane="BOARD V3")])
+        rep = run([R(order_ref="A", lane_src=src, lane="BOARD V4")])
         assert rep["join"] == {"lane_conflict": 1}, (src, rep["join"])
     rep = run([R(order_ref="A", lane="R1", lane_fuzzy="board")])
-    assert rep["join"] == {"lane_conflict": 1} and rep["lane_conflicts"][0]["tracker_lanes"] == ["BOARD V3", "R1"]
+    assert rep["join"] == {"lane_conflict": 1} and rep["lane_conflicts"][0]["tracker_lanes"] == ["BOARD V4", "R1"]
 
 
 def t_bug3_conflicts_not_merged_or_counted_exact():
@@ -149,7 +149,7 @@ def t_bug3_conflicts_not_merged_or_counted_exact():
 def t_lane_spelling_variants_not_conflicts():
     for v in ("r1", "R1", " r 1 "):
         assert run([R(order_ref="A", lane=v)])["join"] == {"exact": 1}, v
-    assert c.build([R(order_ref="C", lane="rules")], IDX)["join"] == {"exact": 1}         # rules == PHASE 1
+    assert c.build([R(order_ref="C", lane="rules")], IDX)["join"] == {"exact": 1}         # rules == LANE 1
 
 
 def t_unknown_lane_spelling_is_a_conflict_not_a_match():
@@ -275,9 +275,9 @@ def t_workflow_secrets_are_exactly_the_needed_four():
 
 # ---- counts-only diagnosis of ambiguous order ids
 def t_ambiguity_kinds():
-    assert c.ambiguity_kind({("K1", "R1"), ("K2", "PHASE 1")}) == "different_lanes"
+    assert c.ambiguity_kind({("K1", "R1"), ("K2", "LANE 1")}) == "different_lanes"
     assert c.ambiguity_kind({("NBA|A|total|OVER", "board"), ("board|NBA|A|total|OVER", "board")}) == "same_lane_prefix_variant"
-    assert c.ambiguity_kind({("NBA|A|total|OVER", "board"), ("NBA|B|total|OVER", "BOARD V3")}) == "same_lane_different_keys"
+    assert c.ambiguity_kind({("NBA|A|total|OVER", "board"), ("NBA|B|total|OVER", "BOARD V4")}) == "same_lane_different_keys"
     idx = {"Z": [("prophetx", "NBA|A|total|OVER", "board"), ("prophetx", "board|NBA|A|total|OVER", "board")]}
     rep = c.build([R(order_ref="Z")], idx)
     assert rep["join"] == {"ambiguous_claims:same_lane_prefix_variant": 1} and "UNATTRIBUTED(ambiguous_claims)" in rep["buckets"]
@@ -313,7 +313,7 @@ def t_link_index_keys_are_the_tracker_keys():
 def t_link_position_one_lane_is_exact():
     li = c.link_index([F("M", "O", "c1"), F("M", "O", "c2")], [])
     rep = c.build([NV("nv|M|O")], NVX, links=li)
-    assert rep["join"].get("exact") == 1 and rep["join"].get("exact_via_venue_link") == 1 and "EXACT:BOARD V3" in rep["buckets"]
+    assert rep["join"].get("exact") == 1 and rep["join"].get("exact_via_venue_link") == 1 and "EXACT:BOARD V4" in rep["buckets"]
 
 
 def t_link_position_two_lanes_is_not_exact():
@@ -336,13 +336,13 @@ def t_link_is_venue_scoped():
     li = c.link_index([F("M", "O", "P9")], [])                    # a ProphetX id used as a Novig client id
     assert c.resolve_link(NV("nv|M|O"), li, NVX)[0] == "link_order_not_in_registry"
     li2 = c.link_index([], [{"id": 5, "order_id": "P9"}])
-    assert c.resolve_link(R(id="px|5", book="ProphetX"), li2, NVX) == ("exact_link", "PHASE 1", "K9")
+    assert c.resolve_link(R(id="px|5", book="ProphetX"), li2, NVX) == ("exact_link", "LANE 1", "K9")
 
 
 def t_link_rows_never_merge_and_conflict_still_applies():
     li = c.link_index([F("M", "O", "c1"), F("M", "Q", "c2")], [])
     rep = c.build([NV("nv|M|O"), NV("nv|M|Q"), NV("nv|M|O", lane="R1")], NVX, links=li)
-    assert rep["buckets"]["EXACT:BOARD V3"]["all"]["settled"] == 2 and rep["join"]["lane_conflict"] == 1
+    assert rep["buckets"]["EXACT:BOARD V4"]["all"]["settled"] == 2 and rep["join"]["lane_conflict"] == 1
 
 
 def t_order_ref_path_unchanged_by_links():
@@ -412,12 +412,12 @@ def t_novig_page_cap_marks_truncated():
 # ---- RULED (Peter's 13 Nov table) - never EXACT, multi-lane -> UNATTRIBUTED
 TOKS = lambda t: set(__import__("re").findall(r"[a-z]+", str(t).lower()))
 TRG = {"Lane 1": [("11-01", {"boston"}, {"orlando"})], "R1": [("11-11", {"utah"}, {"denver"})],
-       "Bets Board v3": [("11-11", {"utah"}, {"denver"}), ("11-20", {"late"}, {"game"})]}
+       "Bets Board v4": [("11-11", {"utah"}, {"denver"}), ("11-20", {"late"}, {"game"})]}
 RG = lambda **k: R(order_ref=None, **k)
 
 
 def t_ruled_matches_date_window_and_both_teams():
-    assert c.ruled_lane(RG(game="Boston Celtics @ Orlando Magic", game_start="2026-11-02T00:30:00Z"), TRG, TOKS) == ("PHASE 1", None)
+    assert c.ruled_lane(RG(game="Boston Celtics @ Orlando Magic", game_start="2026-11-02T00:30:00Z"), TRG, TOKS) == ("LANE 1", None)
     assert c.ruled_lane(RG(game="Boston Celtics @ Miami Heat", game_start="2026-11-01T23:00:00Z"), TRG, TOKS) == (None, None)
     assert c.ruled_lane(RG(game="Boston @ Orlando", game_start="2026-11-05T00:00:00Z"), TRG, TOKS) == (None, None)
 
@@ -435,14 +435,14 @@ def t_ruled_window_is_oct31_to_nov12_only():
 def t_ruled_never_exact_and_exact_wins():
     rep = c.build([RG(game="Boston @ Orlando", game_start="2026-11-01T23:00:00Z"),
                    R(order_ref="A", game="Boston @ Orlando", game_start="2026-11-01T23:00:00Z")], IDX, ruled=(TRG, TOKS))
-    assert "RULED:PHASE 1" in rep["buckets"] and "EXACT:R1" in rep["buckets"]
+    assert "RULED:LANE 1" in rep["buckets"] and "EXACT:R1" in rep["buckets"]
     assert not any(b.startswith("EXACT:PHASE") for b in rep["buckets"])
-    assert c.units_for("RULED:PHASE 1", ["2026-11-10T00:00:00+00:00", "x"], 300) is None      # no units on RULED
+    assert c.units_for("RULED:LANE 1", ["2026-11-10T00:00:00+00:00", "x"], 300) is None      # no units on RULED
 
 
 def t_ruled_beats_fuzzy_and_disagreement_is_counted():
     rep = c.build([RG(game="Boston @ Orlando", game_start="2026-11-01T23:00:00Z", lane="R1")], IDX, ruled=(TRG, TOKS))
-    assert "RULED:PHASE 1" in rep["buckets"] and rep["join"].get("ruled_vs_tracker_text_disagree") == 1
+    assert "RULED:LANE 1" in rep["buckets"] and rep["join"].get("ruled_vs_tracker_text_disagree") == 1
 
 
 def t_no_ruled_table_means_old_behaviour():
@@ -492,7 +492,7 @@ def t_section_f_exactly_once_over_mixed_classes():
             RG(id="4", game_start="2026-11-13T23:00:00Z", result=None, profit=None)]
     rep = c.build(rows, IDX, ruled=(TRG, TOKS))
     eo = rep["exactly_once"]
-    assert eo["ok"] and eo["rows"] == 4 and set(rep["row_bucket"].values()) == {"EXACT:R1", "RULED:PHASE 1", "FUZZY:R1",
+    assert eo["ok"] and eo["rows"] == 4 and set(rep["row_bucket"].values()) == {"EXACT:R1", "RULED:LANE 1", "FUZZY:R1",
                                                                                   "UNATTRIBUTED(no_order_ref)"}
 
 

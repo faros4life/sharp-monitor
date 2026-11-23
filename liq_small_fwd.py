@@ -3,7 +3,7 @@
 $25-50k NBA LIQUIDITY - FORWARD PAPER TEST (Nov 6, 2026; Peter: "move it forward now"). PAPER ONLY. Lane 1 unchanged;
 the candidate stays paper until Peter approves. Reads, never places: no order, no alert, no executor input.
 
-CANDIDATE (the historical 34): a Bets Board v3 PLAY (NBA total, 4h+ before tip, money still there, one per game total,
+CANDIDATE (the historical 34): a Bets Board v4 PLAY (NBA total, 4h+ before tip, money still there, one per game total,
 cap 5) whose liquidity print (new_money) is $25,000 - $49,999.
 EXECUTION SOURCE: the executor's existing Lane 3 shadow. Every board PLAY is already priced there against the LIVE order
 books of ProphetX / Novig / Kalshi / Polymarket US at decision time, with the same routing, -130 cap and $200 unit as live

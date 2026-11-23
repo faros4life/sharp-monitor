@@ -679,7 +679,7 @@ def main():
     else:
         Lg, B, C = src
         acct = ll.account(Lg, B, C, ll.feed_alerts())
-        for lane, reg_n in (("LANE 1", 1), ("R1", None), ("BOARD V3", None), ("LANE 2", 8)):
+        for lane, reg_n in (("LANE 1", 1), ("R1", None), ("BOARD V4", None), ("LANE 2", 8)):
             rows = live_rows(acct, lane)
             run(f"{lane} - live fills", rows, "confirmed fills only; partial fills merged; 1u at the fill price")
             if reg_n and rows:
@@ -689,7 +689,7 @@ def main():
         # at 25 unique live settled selections, PAUSE FOR REVIEW if units <= 0 AND certified CLV <= 0; if CLV > 0
         # and units < 0, report INCONCLUSIVE and wait for Peter - never extend the window automatically. Nothing
         # here changes R1's rule, stakes, price floor or risk limits, and it never overrides a daily stop.
-        for _ln in board_v4_split(live_rows(acct, "BOARD V3")):
+        for _ln in board_v4_split(live_rows(acct, "BOARD V4")):
             say(_ln)
         say("")
         say(R1_CHECK_TITLE)
@@ -758,7 +758,7 @@ def main():
         (25, "PULL_FADE (reg 25)", paper_certified(lane_rows("pull_fade")), "price is the logged probability"),
         (26, "SOLO (reg 26)", paper_certified(lane_rows("solo")), "price is the logged probability"),
         (7, "BOARD V4 (reg 7) - LIVE since 17 Nov", board_v4_rows(), "V3 PLAY calls that a second book confirmed at alert time ($10k, same line); the live board rule"),
-        (7, "BOARD V3 (reg 7) - shadow", liq_certified(board_rows()), "every PLAY call, confirmed or not; the pre-17-Nov live rule, now shadow only"),
+        (7, "BOARD V4 (reg 7) - shadow", liq_certified(board_rows()), "every PLAY call, confirmed or not; the pre-17-Nov live rule, now shadow only"),
         (14, "BOARD v2 (reg 14) - superseded 6 Nov", liq_certified(board_rows("v2")), "v2 PLAY calls from the same frozen call log; kept for history, not a live rule"),
         (None, f"HR1 - LIVE MANUAL PLAYS (from {HR1_START})", (hr1_live_rows(acct) if acct else []),
          f"HR1's record: Peter's own Hard Rock bets tagged source HR1, from {HR1_START}. Nothing before that date and no alert he did not bet"),

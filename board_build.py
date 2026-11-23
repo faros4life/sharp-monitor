@@ -751,7 +751,7 @@ def live_plays_card():
     else:
         body = "".join(out)
     return ('<div class="card"><h2>Today&#39;s plays - what the bot did</h2>'
-            '<p class="note">Every lane (Phase 1, Board v3, R1), today ET, newest first, from the executor ledger. Live orders only, no paper. '
+            '<p class="note">Every lane (Lane 1, Board v4, R1), today ET, newest first, from the executor ledger. Live orders only, no paper. '
             'PLACED = an order went in. REFUSED = a gate fired at order time. SKIPPED = never reached an '
             'order, usually the price was gone. BLOCKED = qualified but a switch stopped it. Every reason is '
             'the executor\'s own words, not a summary. A quote is not a fill.</p>'

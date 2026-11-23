@@ -32,7 +32,7 @@ import re
 from collections import defaultdict
 
 START_UTC = "2026-11-12T05:00:00Z"          # Peter: every live bot bet from 12 Nov 2026 00:00 ET
-LANES = {"rules": "LANE 1", "r1": "R1", "board": "BOARD V3", "lane2": "LANE 2"}
+LANES = {"rules": "LANE 1", "r1": "R1", "board": "BOARD V4", "lane2": "LANE 2"}
 PREFIX = ("rule", "rules", "board", "r1", "lane2")
 FEED_MAX_DAYS = 7
 RES = {"W": "W", "WIN": "W", "WON": "W", "L": "L", "LOSS": "L", "LOST": "L", "P": "P", "PUSH": "P", "VOID": "P"}

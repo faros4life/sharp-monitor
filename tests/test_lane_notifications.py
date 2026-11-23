@@ -1,6 +1,6 @@
 """Three-lane Telegram labelling and no-duplicate rule (Peter, Nov 11).
 
-Every notification must say which lane fired - [PHASE 1], [BOARD V3], [R1] - and carry the game,
+Every notification must say which lane fired - [LANE 1], [BOARD V4], [R1] - and carry the game,
 bet, line, execution odds AFTER FEES, exchange, stake, fill status and order id. Partial fills,
 cancellations, rejections and errors are labelled too. Exactly one Telegram message per event.
 """
@@ -32,12 +32,12 @@ def placed(bk="novig", am=-117, asked=234.0, filled=234.0, oid="NV-7781"):
 
 # ---------------------------------------------------------------- the three labels, exactly
 ck("R1 label", ex.lane_tag(play("r1", "r1")) == "[R1] ")
-ck("Board v3 label is UPPERCASE", ex.lane_tag(play("board", "board")) == "[BOARD V3] ")
-ck("Phase 1 is LABELLED, not blank", ex.lane_tag(play(None, "rules")) == "[PHASE 1] ")
+ck("Board v3 label is UPPERCASE", ex.lane_tag(play("board", "board")) == "[BOARD V4] ")
+ck("Phase 1 is LABELLED, not blank", ex.lane_tag(play(None, "rules")) == "[LANE 1] ")
 ck("a play with no lane and no source still labels as Phase 1",
-   ex.lane_tag({"play": {}, "live": {}}) == "[PHASE 1] ")
+   ex.lane_tag({"play": {}, "live": {}}) == "[LANE 1] ")
 ck("an unknown lane falls back to Phase 1 rather than printing nothing",
-   ex.lane_tag({"play": {"source": "weird"}, "live": {"lane": "weird"}}) == "[PHASE 1] ")
+   ex.lane_tag({"play": {"source": "weird"}, "live": {"lane": "weird"}}) == "[LANE 1] ")
 ck("the lane comes from live.lane first, then the play source",
    ex.lane_of({"play": {"source": "r1"}, "live": {}}) == "r1"
    and ex.lane_of({"play": {"source": "rules"}, "live": {"lane": "board"}}) == "board")
@@ -53,7 +53,7 @@ ck("it also states what the stake wins", "to win $200.00" in n, n)
 ck("and the line actually taken", "took:" in n, n)
 
 # ---------------------------------------------------------------- every state, labelled
-for lane, src, tag in (("r1", "r1", "[R1]"), ("board", "board", "[BOARD V3]"), (None, "rules", "[PHASE 1]")):
+for lane, src, tag in (("r1", "r1", "[R1]"), ("board", "board", "[BOARD V4]"), (None, "rules", "[LANE 1]")):
     r = play(lane, src)
     full = ex.lane_note(r, "FILLED", placed(), "novig", -117)
     part = ex.lane_note(r, "FILLED", placed(filled=90.0), "novig", -117)

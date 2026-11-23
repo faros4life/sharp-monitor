@@ -1,6 +1,6 @@
 """Novig fill-status integrity, CLOUD side (Peter, PRIORITY 1, 19 Nov 2026).
 
-The incident: "[BOARD V3] NOVIG NO FILL: NBA Golden State vs Memphis ... nothing traded" went out
+The incident: "[BOARD V4] NOVIG NO FILL: NBA Golden State vs Memphis ... nothing traded" went out
 for an order that had MATCHED $203.50, and LAC/SA matched $215.80 the same day. Neither was
 verified by our fill reader; 0 of 29 Novig placements since 12 Nov carry a fill read, so the false
 no-fill was the ORDINARY path.
@@ -279,9 +279,9 @@ try:
     plain = ex.lane_lookup([BASE])
 finally:
     ex.registry.enabled, ex.registry.rows = _re, _rr
-check("lane_lookup still resolves the lane name", names.get(BASE) == "BOARD V3", names)
+check("lane_lookup still resolves the lane name", names.get(BASE) == "BOARD V4", names)
 check("the one-argument contract other callers rely on is unchanged",
-      isinstance(plain, dict) and plain.get(BASE) == "BOARD V3", type(plain).__name__)
+      isinstance(plain, dict) and plain.get(BASE) == "BOARD V4", type(plain).__name__)
 check("and now also returns the FULL lane-prefixed key", keys.get(BASE) == LANEKEY, keys)
 live_id = ex.play_id({"play_key": LANEKEY})
 check("the delayed id equals the id the trigger and order stages use",

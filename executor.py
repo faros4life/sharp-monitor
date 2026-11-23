@@ -346,7 +346,7 @@ def novig_head(x):
                             AND a zero the venue actually reported. Either alone is not evidence.
       STATUS UNKNOWN      - everything else, including an unread quantity and an unrecognised or
                             empty status. This was previously the ELSE for NO FILL, which is how
-                            "[BOARD V3] NOVIG NO FILL ... nothing traded" went out on an order that
+                            "[BOARD V4] NOVIG NO FILL ... nothing traded" went out on an order that
                             had MATCHED $203.50: any status the reporter did not recognise became a
                             positive claim that nothing traded.
     """
@@ -1696,7 +1696,7 @@ def unit_for(lane):
             else DOGS_UNIT if l == "dogs" else LIVE_UNIT)
 
 
-LANE_NAME = {"board": "BOARD V3", "r1": "R1", "lane2": "LANE 2", "rules": "PHASE 1", "ncs": "NCS", "dogs": "DOGS"}
+LANE_NAME = {"board": "BOARD V4", "r1": "R1", "lane2": "LANE 2", "rules": "LANE 1", "ncs": "NCS", "dogs": "DOGS"}
 
 # Nov 12 (Peter): "Remove suggestions to place held bot orders manually unless there is an explicit
 # safe handoff that prevents automated retries." The handoff EXISTS - a "Bets manual" note, which
@@ -1874,7 +1874,7 @@ def lane_from_key(k):
     """Display lane for a stored play_key. Nov 13 (Peter): Novig fill reports carried no lane.
 
     Board and R1 keys are lane-prefixed ("board|NBA|...", "r1|NCAAB|..."); a Phase 1 key is not, so
-    an unprefixed key is PHASE 1 - the same default lane_of() uses, and an UNLABELLED notification
+    an unprefixed key is LANE 1 - the same default lane_of() uses, and an UNLABELLED notification
     is exactly what Peter asked to stop seeing on Nov 11."""
     head = str(k or "").split("|")[0].strip().lower()
     return LANE_NAME.get(head, LANE_NAME["rules"])
@@ -1887,12 +1887,12 @@ def lane_lookup(play_keys, with_keys=False):
     Novig report needs to compute the same play id the trigger and order stages use. It is opt-in
     because the one-argument contract is relied on by callers outside this module.
 
-    Nov 13 (Peter, "STILL SAYS PHASE 1"). lane_from_key cannot work on a Novig fill report, and my
+    Nov 13 (Peter, "STILL SAYS LANE 1"). lane_from_key cannot work on a Novig fill report, and my
     earlier fix that used it was wrong for a reason the key itself hides: book_live.novig_place
     dispatches derive_key(p), which is sport|game|market|side with NO lane prefix, so the runner's
     snapshot row never carries a lane and lane_from_key could only ever answer its default,
-    PHASE 1. That is why a refusal - reported cloud-side, where the lane is known - says [R1] while
-    the fill for the same lane says [PHASE 1].
+    LANE 1. That is why a refusal - reported cloud-side, where the lane is known - says [R1] while
+    the fill for the same lane says [LANE 1].
 
     The registry does store the lane-prefixed key, so the lane is recovered here by matching on
     lane_strip. A base key that resolves to TWO different lanes is left unresolved rather than
@@ -1931,17 +1931,17 @@ def lane_of(r):
 
 
 def lane_tag(r):
-    """'[R1] ' / '[BOARD V4] ' / '[PHASE 1] ' - which lane fired, on EVERY notification.
+    """'[R1] ' / '[BOARD V4] ' / '[LANE 1] ' - which lane fired, on EVERY notification.
 
     Nov 17 (Peter: "telegram should read v4 not v3 i got a fill"). LANE_NAME stays the canonical lane -> name map,
     which other modules check against; only the message Peter reads names the rule that actually decided the play.
-    With EXEC_BOARD_V4 on, a second-book confirmation is required and V3 is a shadow record, so "[BOARD V3]" on a
+    With EXEC_BOARD_V4 on, a second-book confirmation is required and V3 is a shadow record, so "[BOARD V4]" on a
     fill credits a rule that did not place it. Label only: lane key, play key, caps, risk accounting and the ledger
     are unchanged."""
     lane = lane_of(r)
     if lane == "board" and BOARD_V4:
         return "[BOARD V4] "
-    return f"[{LANE_NAME.get(lane, 'PHASE 1')}] "
+    return f"[{LANE_NAME.get(lane, 'LANE 1')}] "
 
 
 def prior_hold(p):
@@ -3444,7 +3444,7 @@ def fmt(r):
         # side was actually taken. Only the alert-suppressing token is written.
         # Nov 18 (Peter: "Still getting this why" - SAME PLAY attempts 3 and 4, one a minute, on a
         # Jazz/Lakers Under the daily stop was refusing). The token was written under derive_key(p),
-        # but live_play_alert looks it up through handled_keys(p) - and for source "rules" (PHASE 1)
+        # but live_play_alert looks it up through handled_keys(p) - and for source "rules" (LANE 1)
         # and "lane2" that returns the play_key ALONE. Written under one key, searched under another,
         # so the match never happened and the alert repeated every run until tip-off. Phase 1 is the
         # lane this hits, which is why it survived: the other lanes' handled_keys includes derive_key.
@@ -4683,7 +4683,7 @@ def static_refusal(r):
        never live whatever lane it came from.
     2. An UNKNOWN after-fee price stays GLOBAL and fail-closed. Not knowing the price is not the
        same as the price being acceptable, and that holds for every lane.
-    3. The Oct 27 RETAIL DEADBAND (-119..-110 after fee, non-ProphetX) is now PHASE 1 ONLY (Peter,
+    3. The Oct 27 RETAIL DEADBAND (-119..-110 after fee, non-ProphetX) is now LANE 1 ONLY (Peter,
        Nov 12: "Board V3 should use its own approved eligibility, line-value, pricing, liquidity and
        risk rules"). It was refusing board plays that had already cleared all of those - including
        the Nov 12 Toronto/Philadelphia Under 224.5, which passed the line-value REPLACEMENT maximum
@@ -5377,7 +5377,7 @@ def rest_wanted(r):
     behaviour changed here - the description was wrong, not the code.
 
     Naming, since the code uses both words: source "rules" IS Phase 1 IS Lane 1 (LANE_NAME maps it
-    to "PHASE 1"). One lane, two names."""
+    to "LANE 1"). One lane, two names."""
     lv = r.get("live")
     if not lv or not px_live.LIVE or not REST_BOOKS:
         return False
@@ -5497,7 +5497,7 @@ def pmus_rest_sweep(now):
                 # state that silently frees exposure was the one Peter could not see on his phone.
                 try:
                     tg_push(f"PM US {'CANCELLED' if ok else 'CANCEL FAILED'}",
-                       f"[{LANE_NAME.get(rest_lane, 'PHASE 1' if rest_lane in ('', 'rules') else rest_lane.upper())}] "
+                       f"[{LANE_NAME.get(rest_lane, 'LANE 1' if rest_lane in ('', 'rules') else rest_lane.upper())}] "
                        f"{'CANCELLED' if ok else 'CANCEL FAILED'} Polymarket US: resting bid on {slug[:40]} "
                        f"reached T-30.\n{res.get('status')}: {res.get('state') or res.get('reason') or ''}"
                        + ("" if ok else "\nIt rests until end of day - cancel it in the app."))

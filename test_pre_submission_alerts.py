@@ -125,10 +125,10 @@ print("ALL PASS")
 
 # ---------------------------------------------------------------- Nov 13: fill-report contents
 print("\n8. Fill reports name the lane and the venue order id (Peter, requirement 2)")
-check("lane_from_key maps a board key", ex.lane_from_key("board|NBA|A @ B|total|OVER") == "BOARD V3")
+check("lane_from_key maps a board key", ex.lane_from_key("board|NBA|A @ B|total|OVER") == "BOARD V4")
 check("...an r1 key", ex.lane_from_key("r1|NCAAB|A @ B|spread|AWAY") == "R1")
-check("...and an unprefixed Phase 1 key defaults to PHASE 1",
-      ex.lane_from_key("NBA|A @ B|total|UNDER") == "PHASE 1" and ex.lane_from_key(None) == "PHASE 1")
+check("...and an unprefixed Phase 1 key defaults to LANE 1",
+      ex.lane_from_key("NBA|A @ B|total|UNDER") == "LANE 1" and ex.lane_from_key(None) == "LANE 1")
 nr = inspect.getsource(ex.novig_reports)
 check("the Novig message leads with the lane", "[{lane_from_key(x.get('play_key'))}]" in nr)
 check("and carries the Novig order id", "Novig order id:" in nr)

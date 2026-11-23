@@ -117,7 +117,7 @@ check("R1 Novig fill joins bot-wallet row", psu and psu["lane"] == "R1" and psu[
 check("certified CLV on own line", psu and psu["clv"] is not None)
 
 mil = P.get("NBA|Milwaukee vs Orlando: Total Points|total|UNDER")
-check("ProphetX order_ref attributes to Board", mil and mil["lane"] == "BOARD V3" and mil["evidence"] == "E1 order-id"
+check("ProphetX order_ref attributes to Board", mil and mil["lane"] == "BOARD V4" and mil["evidence"] == "E1 order-id"
       and mil["res"] == "W" and mil["am"] == -102)
 check("after-fee price applies the ProphetX fee", mil and mil["am_net"] == -104)
 stan = P.get("NCAAF|Stanford Cardinal @ Virginia Tech Hokies|side|Virginia Tech Hokies")

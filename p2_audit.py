@@ -546,7 +546,7 @@ def main():
         _calls = (json.load(open("board/calls.json")) or {}).get("calls") or {}
         _bb.backfill_results(_calls, _bb.load())          # same late-game grading fix the board now applies
         _rb = rep.get("row_bucket") or {}
-        _live = [b for b in rows if _rb.get(str(b.get("id") or "")) == "EXACT:BOARD V3"]
+        _live = [b for b in rows if _rb.get(str(b.get("id") or "")) == "EXACT:BOARD V4"]
         _tr, _ex, _ts = rs.paper_live_trace(_calls, rr, fills_all, live_rows=_live)
         text += rs.render_trace(_tr, _ex, _ts)
         print("section K paper->live (counts only): " + " | ".join(

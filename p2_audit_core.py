@@ -60,8 +60,8 @@ def time_basis(r):
 
 
 # executor.LANE_NAME (executor.py:951) plus the registry's own spellings. Matched after _norm, so 'r1' == 'R1'.
-LANE_CANON = {"rules": "PHASE 1", "rule": "PHASE 1", "phase1": "PHASE 1", "lane1": "PHASE 1",
-              "board": "BOARD V3", "boardv3": "BOARD V3", "r1": "R1", "lane2": "LANE 2"}
+LANE_CANON = {"rules": "LANE 1", "rule": "LANE 1", "phase1": "LANE 1", "lane1": "LANE 1",
+              "board": "BOARD V4", "boardv3": "BOARD V4", "r1": "R1", "lane2": "LANE 2"}
 
 
 def canon_lane(v):
@@ -280,10 +280,10 @@ CSV_FIELDS = ("bucket", "segment", "book", "plays", "verified_money", "W", "L", 
 # Verified unit schedule: (lane, effective-from UTC, unit in dollars to win). Peter, 15 Nov 2026: "Lane 1 300";
 # executor.LIVE_UNIT records the change $200 -> $300 on 9 Nov. A segment gets units ONLY when EXACT-attributed
 # to that lane and every play in it is dated on/after the effective time. Other lanes: UNAVAILABLE until confirmed.
-# R1 and BOARD V3: executor.R1_UNIT / BOARD_UNIT, both "Peter, 11 Nov" written approvals, unchanged since.
-UNIT_SCHEDULE = {"PHASE 1": ("2026-11-09T00:00:00+00:00", 300.0),
+# R1 and BOARD V4: executor.R1_UNIT / BOARD_UNIT, both "Peter, 11 Nov" written approvals, unchanged since.
+UNIT_SCHEDULE = {"LANE 1": ("2026-11-09T00:00:00+00:00", 300.0),
                  "R1": ("2026-11-11T00:00:00+00:00", 200.0),
-                 "BOARD V3": ("2026-11-11T00:00:00+00:00", 200.0)}
+                 "BOARD V4": ("2026-11-11T00:00:00+00:00", 200.0)}
 
 
 def units_for(bucket, seg_range, net):
@@ -469,7 +469,7 @@ def resolve_link(row, links, index, norm=_norm):
 
 
 # ------------------------------------------------------------------ Peter, 16 Nov 04:43 "USE BOTH"
-RULED_LANE = {"lane 1": "PHASE 1", "r1": "R1", "bets board v3": "BOARD V3", "board v3": "BOARD V3", "board": "BOARD V3"}
+RULED_LANE = {"lane 1": "LANE 1", "r1": "R1", "bets board v3": "BOARD V4", "board v3": "BOARD V4", "board": "BOARD V4"}
 RULED_FROM, RULED_TO = "2026-10-31", "2026-11-12"       # Peter: RULED recovers Oct 31 - Nov 12 only
 
 

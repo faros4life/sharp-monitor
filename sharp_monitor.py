@@ -232,7 +232,7 @@ def notify(title, body, red=False, yellow=False, extra_tags=(), headline=None, l
     urllib.request.urlopen(req, timeout=15).read()
     tags = list(extra_tags) + [t for t, on in (("red_circle", red), ("yellow_circle", yellow), ("moneybag", True)) if on]
     # Nov 11 (Peter: "ONLY LIVE PLAY ALERTS GO TO MY TELEGRAM"). Telegram is now reserved for the
-    # BOT's own play and order messages, which the executor sends: [PHASE 1]/[BOARD V3]/[R1] LIVE
+    # BOT's own play and order messages, which the executor sends: [LANE 1]/[BOARD V4]/[R1] LIVE
     # PLAY, FILLED, PARTIAL, NO FILL, REFUSED, ERROR, resting and cancellations.
     #
     # A SIGNAL alert is not a bot play. sharp_monitor fires the instant it sees the move; the
@@ -752,7 +752,7 @@ def _alert_iso(commence, lead):
 
 
 def phase1_label(a, sport, grade, lead, late, opposite_earlier):
-    """Oct 26 (Peter): label each phone alert PHASE 1 (candidate for the live filter; Muse's AGREE still decides) or
+    """Oct 26 (Peter): label each phone alert LANE 1 (candidate for the live filter; Muse's AGREE still decides) or
     PAPER. Same rule as agree_rules.phase1 plus first-side-stays. Labeling only: every alert is still sent and recorded."""
     try:
         import agree_rules

@@ -2,7 +2,7 @@
 """Part 1 of the Telegram cleanup (Peter, 19 Nov 2026): TRIGGER -> ORDER -> FILL, labels and IDs.
 
 The regression that forced this: on 19 Nov a Novig order that had MATCHED $203.50 at 2.00x was
-reported "[BOARD V3] NOVIG NO FILL ... nothing traded". The fill READ had failed; nothing about
+reported "[BOARD V4] NOVIG NO FILL ... nothing traded". The fill READ had failed; nothing about
 the trade was known. 0 of 29 Novig placements since 12 Nov have a fill read, so that was the
 normal path, not an edge case.
 

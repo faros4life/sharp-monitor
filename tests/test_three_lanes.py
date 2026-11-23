@@ -133,8 +133,8 @@ ck("R1 respects the -130 cap", ex.CAP_LINE == -130)
 
 # ---------------------------------------------------------------- notifications and reporting
 ck("phone alerts name the lane", ex.lane_tag({"live": {"lane": "r1"}}) == "[R1] "
-   and ex.lane_tag({"live": {"lane": "board"}}) == "[BOARD V3] "
-   and ex.lane_tag({"live": {}}) == "[PHASE 1] ")
+   and ex.lane_tag({"live": {"lane": "board"}}) == "[BOARD V4] "
+   and ex.lane_tag({"live": {}}) == "[LANE 1] ")
 for fn, nm in ((ex.live_order, "live_order"), (ex.live_order_other, "live_order_other")):
     s = inspect.getsource(fn)
     ck(f"{nm} tags fills with the lane", 'lane_note(r, "FILLED"' in s)

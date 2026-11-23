@@ -49,13 +49,13 @@ check("the baseline is the Phase 1 capture commit time", rs.P1_BASELINE_UTC == "
 check("rows stamped before the baseline never qualify",
       rs.project1([{"id": "q", "result": "W", "ingest_checked": "2026-11-13T00:00:00Z"}], {})["qualifying"] == 0)
 check("Lane 1 units only on EXACT Phase 1 plays dated on/after 9 Nov",
-      core.units_for("EXACT:PHASE 1", ["2026-11-12T00:00:00+00:00", "x"], -300.0) == -1.0)
+      core.units_for("EXACT:LANE 1", ["2026-11-12T00:00:00+00:00", "x"], -300.0) == -1.0)
 check("a segment reaching back before 9 Nov gets no units",
-      core.units_for("EXACT:PHASE 1", ["2026-11-01T00:00:00+00:00", "x"], 300.0) is None)
-check("FUZZY Phase 1 never gets units", core.units_for("FUZZY:PHASE 1", ["2026-11-12T00:00:00+00:00"], 300.0) is None)
+      core.units_for("EXACT:LANE 1", ["2026-11-01T00:00:00+00:00", "x"], 300.0) is None)
+check("FUZZY Phase 1 never gets units", core.units_for("FUZZY:LANE 1", ["2026-11-12T00:00:00+00:00"], 300.0) is None)
 check("R1 units at 200 from 11 Nov", core.units_for("EXACT:R1", ["2026-11-12T00:00:00+00:00"], 200.0) == 1.0)
-check("Board V3 before 11 Nov gets no units", core.units_for("EXACT:BOARD V3", ["2026-11-10T00:00:00+00:00"], 200.0) is None)
-check("CONFLICT and UNATTRIBUTED never get units", core.units_for("CONFLICT(registry=BOARD V3)", ["2026-11-12T00:00:00+00:00"], 200.0) is None)
+check("Board V3 before 11 Nov gets no units", core.units_for("EXACT:BOARD V4", ["2026-11-10T00:00:00+00:00"], 200.0) is None)
+check("CONFLICT and UNATTRIBUTED never get units", core.units_for("CONFLICT(registry=BOARD V4)", ["2026-11-12T00:00:00+00:00"], 200.0) is None)
 # exactly-once over a real build: two partial-fill rows of one order merge into ONE play, never two
 idx = {"o1": [("novig", "board|NFL|a+b|side|a", "board")]}
 rws = [{"id": "r1", "source": "bot", "order_ref": "o1", "book": "novig", "result": "W", "stake": 50, "profit": 45, "settled": "2026-11-15T21:00:00Z"},
@@ -131,12 +131,12 @@ check("Polymarket US order with no linked row stays UNKNOWN",
       rs.fill_exceptions(pmo, {}, set(), True, None, set())[0]["category"].startswith("UNKNOWN"))
 Y = core.text_label_yields
 check("text label vs exact registry claim, no other-lane order -> registry wins",
-      Y({"lane": "PHASE 1", "lane_src": None}, "BOARD V3", set()) is True)
-check("a registry-derived tracker label never yields", Y({"lane": "PHASE 1", "lane_src": "registry-order-id"}, "BOARD V3", set()) is False)
+      Y({"lane": "LANE 1", "lane_src": None}, "BOARD V4", set()) is True)
+check("a registry-derived tracker label never yields", Y({"lane": "LANE 1", "lane_src": "registry-order-id"}, "BOARD V4", set()) is False)
 check("a registry order under the label's lane for the same event keeps it CONFLICT",
-      Y({"lane": "PHASE 1", "lane_src": None}, "BOARD V3", {"PHASE 1"}) is False)
-check("no disagreement -> nothing to resolve", Y({"lane": "BOARD V3"}, "BOARD V3", set()) is False)
-check("no tracker label -> nothing to resolve", Y({}, "BOARD V3", set()) is False)
+      Y({"lane": "LANE 1", "lane_src": None}, "BOARD V4", {"LANE 1"}) is False)
+check("no disagreement -> nothing to resolve", Y({"lane": "BOARD V4"}, "BOARD V4", set()) is False)
+check("no tracker label -> nothing to resolve", Y({}, "BOARD V4", set()) is False)
 mk = lambda i, res, st, pr, gs: {"ids": [i], "result": res, "stake": st, "profit": pr, "game_start": gs, "settled": gs, "rows": 1}
 pl = [mk("a", "W", 200, 180, "2026-11-12T18:00:00Z"), mk("b", "L", 200, -200, "2026-11-13T18:00:00Z")]
 ss = rs.seg_stats(pl, {"a": 0.02}, 200.0, "2026-11-11T00:00:00+00:00")
@@ -158,7 +158,7 @@ gr = [{"id": "a", "game": "A @ B", "bet": "A -3", "book": "novig", "result": "W"
       {"id": "c", "game": "E @ F", "bet": "E -1", "book": "novig", "game_start": "2026-11-13T00:00:00Z"},
       {"id": "d", "game": "G @ H", "bet": "G -2", "book": "novig", "game_start": "2026-11-16T23:00:00Z"},
       {"id": "e", "game": "I @ J", "bet": "-15.50", "book": "Polymarket US", "result": "W", "stake": None, "profit": 50, "game_start": "2026-11-14T20:00:00Z"}]
-rb = {"a": "EXACT:R1", "b": "EXACT:R1", "c": "EXACT:BOARD V3", "d": "EXACT:BOARD V3", "e": "UNATTRIBUTED(no_order_ref)"}
+rb = {"a": "EXACT:R1", "b": "EXACT:R1", "c": "EXACT:BOARD V4", "d": "EXACT:BOARD V4", "e": "UNATTRIBUTED(no_order_ref)"}
 G = {g["id"]: g for g in rs.grade_rows(gr, rb, {"a": 0.012}, {"b": {"done": True, "why": "league NCAAB not covered"}}, set(),
                                        {"R1": ("2026-11-11T00:00:00+00:00", 200.0)}, NOW)}
 check("a settled, linked, priced, certified play is FULLY GRADED", G["a"]["fully_graded"] and G["a"]["units"] == 0.9 and G["a"]["roi"] == 90.0, G["a"])

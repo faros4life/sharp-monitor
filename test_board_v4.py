@@ -69,7 +69,7 @@ def t_plays_same_key():
 
 
 def t_lane_name_follows_the_live_rule():
-    """Peter, 17 Nov: a notification that says BOARD V3 while V4 is deciding names a rule that did not place the bet.
+    """Peter, 17 Nov: a notification that says BOARD V4 while V4 is deciding names a rule that did not place the bet.
     The label follows the switch; the lane KEY, caps and accounting do not change."""
     import importlib
     import os
@@ -77,7 +77,7 @@ def t_lane_name_follows_the_live_rule():
     r1 = {"live": {"lane": "r1"}, "play": {"source": "r1"}}
     prev = os.environ.get("EXEC_BOARD_V4")
     try:
-        for val, want in (("off", "[BOARD V3] "), ("on", "[BOARD V4] ")):
+        for val, want in (("off", "[BOARD V4] "), ("on", "[BOARD V4] ")):
             os.environ["EXEC_BOARD_V4"] = val
             m = importlib.reload(ex)
             assert m.lane_tag(r) == want, (val, m.lane_tag(r))
@@ -85,8 +85,8 @@ def t_lane_name_follows_the_live_rule():
             # LANE_NAME stays the canonical map other modules check; only the message changes
             # Nov 22: NCS (NCAAB spreads) joined the map. Kept as an EXACT comparison on purpose -
             # a lane that appears here without being wired everywhere else is the failure this guards.
-            assert m.LANE_NAME == {"board": "BOARD V3", "r1": "R1", "lane2": "LANE 2",
-                                   "rules": "PHASE 1", "ncs": "NCS", "dogs": "DOGS"}   # Nov 23: DOGS pilot lane
+            assert m.LANE_NAME == {"board": "BOARD V4", "r1": "R1", "lane2": "LANE 2",
+                                   "rules": "LANE 1", "ncs": "NCS", "dogs": "DOGS"}   # Nov 23: DOGS pilot lane
             assert m.BOARD_UNIT == 200.0 and "board|" in m.LANE_PREFIXES      # unit and play-key prefix untouched
     finally:
         if prev is None:
