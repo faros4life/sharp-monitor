@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 23, 3:40 PM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 30.
+Updated Mon Nov 23, 3:50 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 30.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -15,7 +15,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 23 2:10PM | NCAAB | VCU vs Providence | moneyline: Providence | kalshi | $31k | -117 | ✅ novig |  | +0.0c |  | pending |
 | Nov 23 1:20PM | NCAAB | UNC Greensboro vs Pepperdine: Spread | spread: Pepperdine wins by over 10.5 points | kalshi | $29k | -113 |  |  | +0.0c |  | pending |
 | Nov 23 1:20PM | NCAAB | Monmouth vs North Carolina: Spread | spread: NOT North Carolina wins by over 17.5 points | kalshi | $31k | +117 |  | ✅ | +0.0c |  | pending |
-| Nov 23 1:20PM | NCAAB | Yale vs Belmont | moneyline: Yale | kalshi | $27k | +113 | ✅ novig |  | +1.0c | yes | pending |
+| Nov 23 1:20PM | NCAAB | Yale vs Belmont | moneyline: Yale | kalshi | $27k | +113 | ✅ novig |  | +2.0c | yes | pending |
 | Nov 23 1:20PM | NCAAB | Illinois St. vs Santa Clara | moneyline: Santa Clara | kalshi | $25k | -144 |  | ❌ | +1.0c |  | pending |
 | Nov 23 1:20PM | NCAAB | Georgia Southern vs Northern Kentucky | moneyline: Northern Kentucky | kalshi | $39k | -144 |  |  | +0.0c |  | pending |
 | Nov 23 11:00AM | NCAAB | Illinois St. vs Santa Clara | moneyline: Illinois St. | kalshi | $29k | +138 |  | ✅ | +0.0c | yes | pending |
