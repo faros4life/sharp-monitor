@@ -1,0 +1,43 @@
+name: kalshi-open-orders
+
+# Peter, Nov 23 2026: list ALL open Kalshi orders from the venue on a schedule and alert Telegram + ntfy for any order
+# still open within 30 minutes of its game's start, or any read that is incomplete. READ-ONLY: contents: read,
+# GET calls only (test_kalshi_open_orders.py asserts it from the AST before the key is used), nothing cancelled.
+# Scheduled like fill-reports: after every executor run (GitHub cron barely fires in this repo), cron as backup.
+on:
+  workflow_run:
+    workflows: ["executor-dry-run"]
+    types: [completed]
+  schedule:
+    - cron: "7-59/10 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kalshi-open-orders
+  cancel-in-progress: true
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Prove the watch has no write path before giving it a trading key
+        run: python -u test_kalshi_open_orders.py
+      - name: List every resting Kalshi order and escalate unsafe ones
+        env:
+          KALSHI_KEY_ID: ${{ secrets.KALSHI_KEY_ID }}
+          KALSHI_PRIVATE_KEY: ${{ secrets.KALSHI_PRIVATE_KEY }}
+          REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: python -u kalshi_open_orders.py
