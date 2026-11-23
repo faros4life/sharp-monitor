@@ -21,6 +21,9 @@ main{padding:10px 16px 40px;max-width:900px;margin:0 auto}
 .g{background:var(--card);border:1px solid var(--line);border-radius:10px;margin-bottom:10px;overflow:hidden}
 .gh{display:flex;justify-content:space-between;gap:8px;padding:8px 10px;border-bottom:1px solid var(--line);font-size:12px;color:var(--dim)}
 .rk{color:var(--hr);font-weight:600}
+/* Nov 23 (Peter: "I don't see the teams"): the matchup was only ever in the column headers, which
+   on Total and Moneyline read Over/Under - so those tabs showed a game with no teams anywhere. */
+.gm{padding:7px 10px;border-bottom:1px solid var(--line);font-size:14px;font-weight:600}
 table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
 th{font-weight:600;font-size:12.5px;text-align:center;padding:6px 4px;color:var(--ink)}
 th:first-child,td:first-child{text-align:left;padding-left:10px;width:34%;color:var(--dim);font-size:12.5px}
@@ -89,7 +92,7 @@ function render(){
     const fair=g.fair&&g.fair[MK];
     const rk=g.t25.map(([t,r])=>`#${r} ${short(t)}`).join(", ");
     const stale=(Date.now()/1000-(g.upd||0))>1800;
-    html+=`<div class="g"><div class="gh"><span>${g.lg} · ${et(g.start)}${rk?` · <span class="rk">${rk}</span>`:""}</span><span class="${stale?"stale":""}">${ago(g.upd||0)}</span></div><table>`;
+    html+=`<div class="g"><div class="gh"><span>${g.lg} · ${et(g.start)}${rk?` · <span class="rk">${rk}</span>`:""}</span><span class="${stale?"stale":""}">${ago(g.upd||0)}</span></div><div class="gm">${g.away} <small>at</small> ${g.home}</div><table>`;
     html+=`<tr><th></th>${sd.map(s=>`<th>${MK==="t"?s:short(s)}</th>`).join("")}</tr>`;
     for(const b of books){
       const m=g.books[b]&&g.books[b][MK];
