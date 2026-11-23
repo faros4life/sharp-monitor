@@ -352,9 +352,10 @@ def _const(name):
     return float(_re.search(rf"^{name} = ([0-9.]+)", _ex, _re.M).group(1))
 ok("the lane units mirror executor's constants exactly",
    RR.LANE_UNIT == {"lane1": _const("LIVE_UNIT"), "r1": _const("R1_UNIT"),
-                    "board": _const("BOARD_UNIT"), "ncs": _const("NCS_UNIT")}, str(RR.LANE_UNIT))
-ok("Lane 1 is $300 and R1, Board and NCS are $200",
-   RR.LANE_UNIT == {"lane1": 300.0, "r1": 200.0, "board": 200.0, "ncs": 200.0})
+                    "board": _const("BOARD_UNIT"), "ncs": _const("NCS_UNIT"),
+                    "dogs": _const("DOGS_UNIT")}, str(RR.LANE_UNIT))
+ok("Lane 1 is $300, R1/Board/NCS are $200, and DOGS is $100",
+   RR.LANE_UNIT == {"lane1": 300.0, "r1": 200.0, "board": 200.0, "ncs": 200.0, "dogs": 100.0})
 _K = "NFL|MIN @ SF|total|UNDER"
 for _row, _want in (({"key": "rule|" + _K}, ("lane1", 300.0)),
                     ({"key": _K, "source": "rules"}, ("lane1", 300.0)),

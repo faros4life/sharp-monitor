@@ -91,10 +91,20 @@ def canonical_registry_key(raw):
 # Lane units, per Peter (Nov 23): $300 for Lane 1, $200 for R1, Board and NCS. These mirror
 # executor.LIVE_UNIT / R1_UNIT / BOARD_UNIT / NCS_UNIT and a test asserts they still agree;
 # executor itself is not imported, to keep the order paths out of this script's reachable set.
-LANE_UNIT = {"lane1": 300.0, "r1": 200.0, "board": 200.0, "ncs": 200.0}
+LANE_UNIT = {"lane1": 300.0, "r1": 200.0, "board": 200.0, "ncs": 200.0, "dogs": 100.0}
 # The two places a row states its lane: the play-key prefix and the row's source.
-PREFIX_LANE = {"rule": "lane1", "rules": "lane1", "board": "board", "r1": "r1", "ncs": "ncs"}
-SOURCE_LANE = {"rules": "lane1", "board": "board", "r1": "r1", "ncs": "ncs"}
+PREFIX_LANE = {"rule": "lane1", "rules": "lane1", "board": "board", "r1": "r1", "ncs": "ncs",
+               "dogs": "dogs"}
+SOURCE_LANE = {"rules": "lane1", "board": "board", "r1": "r1", "ncs": "ncs", "dogs": "dogs"}
+# Nov 23: DOGS was missing from all three while the lane was LIVE and the ledger was enforcing.
+# Its own reservation was right (that takes the unit off the play record), but every path that
+# re-derives the unit from the ROW - the sweep, the seed, completeness - read "lane unknown". The
+# sweep then valued a $100 dog against the $200 fallback, i.e. HALF its real share of the play,
+# which is the overbet direction; the seed would have refused the leg outright. This is CLAUDE.md's
+# own lesson - a lane name with no branch is silently dropped - so the test below now fails if a
+# lane that can place live money is added here without its unit.
+# LANE 2 is deliberately absent: it is dry-run only, so a row claiming a Lane 2 unit should fail
+# closed rather than be valued.
 
 
 def lane_unit(row, order=None):
