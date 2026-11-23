@@ -4317,7 +4317,7 @@ def _unit_ledger_consume(grant, stake):
     return ri.authorized_stake(_rs.RegistryStore(_reg), grant, stake)
 
 
-def _unit_ledger_guard(r, path):
+def _unit_ledger_guard(r, path, book=None):
     """REVIEW BRANCH ONLY. Reserve this play's capacity in the SHARED ledger before dispatch.
 
     Returns None when EXEC_UNIT_LEDGER is off, which is the default and which makes every caller
@@ -4347,8 +4347,10 @@ def _unit_ledger_guard(r, path):
     store = _rs.RegistryStore(_reg)
     # Finding 2: the LINE is deliberately NOT in the key. Under 225.5 and Under 226.5 on the same
     # side of one game are overlapping exposure, not two budgets.
-    key = ri.play_key(p.get("sport"), p.get("game"), p.get("market") or "total",
-                      p.get("side") or p.get("bet"))
+    # Identity comes from derive_key(), through the one shared function - never assembled here.
+    # (This used to pass p.get("market") or "total": a play has no "market", so spreads and
+    # moneylines were keyed as totals and could not match the backfill or the Novig runner.)
+    key = ri.key_from_registry(derive_key(p) or p.get("play_key"))
     # The leg id must be UNIQUE PER ORDER. derive_key() can return None, and two different bets
     # sharing a null id would collide on the idempotent path and be re-granted as if they were a
     # retry of one another. No identity means no order.
@@ -4362,7 +4364,7 @@ def _unit_ledger_guard(r, path):
     _id = f"{_id}|{lv.get('line')}|{lv.get('shown')}"
     return ri.guard_or_refuse(store, key, f"{path}|{_id}",
                               lv.get("risk"), lv.get("shown"), lv.get("unit") or LIVE_UNIT,
-                              actor=f"sharp-monitor:{path}")
+                              actor=ri.actor_for("sharp-monitor", path, book or lv.get("book")))
 
 
 def live_order(r):
@@ -4412,7 +4414,7 @@ def live_order(r):
     # --- draft PR #10, flag-gated off. Finding 3: reserve LATE - every static, live and
     # revalidation gate above has already decided this order IS being sent, so a refusal path never
     # consumes capacity. Finding 1: the grant is CONSUMED here, which is what makes it single-use.
-    _led = _unit_ledger_guard(r, "live_order")
+    _led = _unit_ledger_guard(r, "live_order", "prophetx")
     stake = _unit_ledger_consume(_led, stake)
     res = px_live.place(strike, limit, stake, label)
     if res.get("status") == "refused":   # Nov 11: a refusal is a lane event too
@@ -5167,7 +5169,7 @@ def rest_bid(r):
         # Reserved only once we have a priced, exact-line market on this venue: a venue we screen
         # out above must not consume the play's unit.
         if _rb_grant is None:
-            _rb_grant = _unit_ledger_guard(r, "rest_bid")
+            _rb_grant = _unit_ledger_guard(r, "rest_bid", b)
             _unit_ledger_consume(_rb_grant, risk)
         if b == "kalshi":
             kb = x.get("kalshi_buy") or []

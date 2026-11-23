@@ -93,7 +93,8 @@ try:
        isinstance(catch(lambda: ex._unit_ledger_guard(rb, "rest_bid")), R.ReservationRefused))
     ok("a play with NO order identity is refused outright",
        isinstance(catch(lambda: ex._unit_ledger_guard({"live": {}, "play": {"sport": "NBA",
-                  "game": "g", "market": "total", "bet": "Under 1"}}, "live_order")), RuntimeError))
+                  "game": "g", "market": "total", "bet": "Under 1"}}, "live_order")),
+                  (RuntimeError, R.ReservationRefused, __import__("review_unit_exposure").ExposureUnknown)))
     ok("consuming the grant once is allowed", ex._unit_ledger_consume(g, 220.0) == 220.0)
     ok("consuming the SAME grant twice is refused",
        isinstance(catch(lambda: ex._unit_ledger_consume(g, 220.0)), R.ReservationRefused))
@@ -146,7 +147,7 @@ finally:
 ok("the flag is left OFF after the tests", ex._unit_ledger_guard(r, "t") is None)
 src = open("executor.py", encoding="utf-8").read()
 ok("the reservation is taken LATE, after the gates decided to send",
-   src.index('_unit_ledger_guard(r, "live_order")') > src.index("journal_intent(r,"))
+   src.index('_unit_ledger_guard(r, "live_order", "prophetx")') > src.index("journal_intent(r,"))
 ok("the grant is CONSUMED before the venue call",
    src.index("_unit_ledger_consume(_led, stake)") < src.index("res = px_live.place("))
 

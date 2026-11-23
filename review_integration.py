@@ -66,6 +66,39 @@ def _side_only(side):
     return re.sub(r"\s+", " ", t).strip().lower()
 
 
+def key_from_registry(raw):
+    """THE identity, from the key every system already carries: derive_key()'s
+    SPORT|game|market|side, with or without a lane prefix.
+
+    Nov 23: three callers built the identity three ways and two of them disagreed. The cloud guard
+    called play_key(sport, game, p.get("market") or "total", bet); a play carries no "market", so
+    every SPREAD and MONEYLINE was keyed as a total with the price words left on the side, while
+    the backfill and the Novig runner keyed the same play from its registry key as market "side".
+    Totals happened to agree, which is why it was not seen. Existing exposure and new reservations
+    for one spread would have sat in two budgets.
+
+    So nobody assembles the four fields by hand any more. The cloud passes derive_key(p), the
+    runner passes the IN_KEY it was dispatched with, the backfill passes the stored key, and all
+    three come through here. A lane prefix is dropped by ARITY, not from a list, so a lane added
+    later cannot quietly start its own budget. Anything else raises: fail closed."""
+    parts = str(raw or "").strip().split("|")
+    if len(parts) == 5:
+        parts = parts[1:]
+    if len(parts) != 4 or not all(p.strip() for p in parts):
+        raise ExposureUnknown("play key is not sport|game|market|side - fail closed")
+    return play_key(*parts)
+
+
+def actor_for(system, path, book):
+    """Who holds a reservation, INCLUDING THE VENUE it is for. The runner may only claim a
+    reservation made for Novig; without the venue on the record, a Novig order could ride a
+    ProphetX reservation on the same play - which is the overbet this exists to stop."""
+    b = str(book or "").strip().lower()
+    if not b:
+        raise ExposureUnknown("reservation has no venue - fail closed")
+    return f"{system}:{path}:{b}"
+
+
 def guard_or_refuse(store, key, leg_id, stake, american, unit, actor):
     """Reserve capacity, or raise. Returns the Grant the caller must pass to authorize().
 

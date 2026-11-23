@@ -337,6 +337,78 @@ def authorize(store, grant, stake):
     return round(s, 2)
 
 
+def claim_dispatched(store, key, stake, book, claimant, attempts=3):
+    """The SECOND executor's half: claim a reservation the first one made, or refuse.
+
+    The cloud executor reserves a play's unit and marks it dispatched before it hands a Novig order
+    to the runner. The runner must not reserve again - the budget is already held, so a second
+    reservation would refuse every legitimate order - and it must not place on trust either, or a
+    manual or duplicated dispatch goes straight to the venue. So it CLAIMS: it finds a reservation
+    under the same identity that was made for THIS venue, is active, has been dispatched, has not
+    been claimed, and covers the stake; and it marks that reservation claimed under
+    compare-and-swap before it submits.
+
+      duplicate retry    -> the reservation is already claimed: refused
+      simultaneous runs  -> one wins the compare-and-swap; the other re-reads, sees the claim
+                            and is refused
+      no reservation     -> refused (a Novig order cannot ride a ProphetX reservation)
+      unknown fill later -> the reservation keeps its FULL asked exposure until an outcome is
+                            verified; claiming releases nothing
+    """
+    s = float(stake)
+    if not math.isfinite(s) or s <= 0:
+        raise ExposureUnknown("stake unreadable")
+    b = str(book or "").strip().lower()
+    who = str(claimant or "").strip()
+    if not b or not who:
+        raise ExposureUnknown("claim needs a venue and a claimant - fail closed")
+    # The registry file is shared with ordinary bookkeeping writes, so a lost compare-and-swap is
+    # usually someone else's unrelated commit. Each attempt RE-READS and RE-DECIDES from the fresh
+    # state - it never re-applies a stale decision - so a reservation another runner claimed in
+    # the meantime is seen as claimed and refused.
+    for _attempt in range(max(1, int(attempts))):
+        got = store.read()
+        if not got or got[0] is None or got[1] is None:
+            raise ExposureUnknown("reservation store unreadable - fail closed")
+        _require_seeded(got[0])
+        leg_id = _claim_once(store, got, key, s, b, who)
+        if leg_id is not None:
+            return leg_id
+    raise ReservationRefused(
+        "lost the compare-and-swap claiming this reservation - refused, not placed")
+
+
+def _claim_once(store, got, key, s, b, who):
+    """One read-decide-write. Returns the leg id, None on a lost write, or raises a refusal."""
+    state, version = got
+    legs = list(state.get("legs") or [])
+    pick, seen_claimed = None, False
+    for i, l in enumerate(legs):
+        if l.get("key") != key or not str(l.get("actor") or "").endswith(":" + b):
+            continue
+        if str(l.get("status") or "").lower() not in LIVE_STATES or l.get("terminal_verified") is True:
+            continue
+        if l.get("dispatched") is not True:
+            continue
+        if l.get("claimed_by"):
+            seen_claimed = True
+            continue
+        if s > _num(l.get("asked_stake"), "asked") + 0.011:
+            continue
+        pick = i
+        break
+    if pick is None:
+        raise ReservationRefused(
+            "the reservation for this play and venue has already been claimed - one reservation, "
+            "one order" if seen_claimed else
+            "no active dispatched reservation for this play on this venue covers the stake - "
+            "refused")
+    legs[pick] = dict(legs[pick], claimed_by=who, claimed_stake=round(s, 2))
+    if not store.write(dict(state, legs=legs), version):
+        return None
+    return str(legs[pick].get("leg_id"))
+
+
 def rearm(store, key, leg_id, evidence):
     """Allow ONE further authorization, only on proof the first submission never reached the venue.
 

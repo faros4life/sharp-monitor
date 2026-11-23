@@ -82,15 +82,10 @@ def canonical_registry_key(raw):
     value is retained separately for private audit; never silently guess a market.
     """
     import review_integration as ri
-    val = str(raw or "").strip()
-    for prefix in ("rule|", "board|", "r1|", "lane2|", "ncs|"):
-        if val.lower().startswith(prefix):
-            val = val[len(prefix):]
-            break
-    parts = val.split("|")
-    if len(parts) != 4 or not all(p.strip() for p in parts):
+    try:
+        return ri.key_from_registry(raw)      # the ONE identity function; nothing rebuilt here
+    except Exception:
         raise ValueError("unrecognised or incomplete source play key")
-    return ri.play_key(*parts)
 
 
 # Lane units, per Peter (Nov 23): $300 for Lane 1, $200 for R1, Board and NCS. These mirror
