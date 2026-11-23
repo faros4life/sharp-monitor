@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 23, 4:30 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 28.
+Updated Mon Nov 23, 4:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 27.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 440-259 (-12.65u flat) | rule met: 92-68
+**Record:** 441-259 (-12.20u flat) | rule met: 92-68
 
-**Fade (paper, betting against the print):** 234-405 (+7.43u flat, after fees)
+**Fade (paper, betting against the print):** 234-406 (+6.43u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -33,7 +33,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 23 1:10AM | NCAAB | Tulsa vs Oregon St. | moneyline: Oregon St. | kalshi | $118k | -257 |  |  | -5.0c |  | W |
 | Nov 23 1:10AM | NCAAB | St. Bonaventure vs Appalachian St. | moneyline: St. Bonaventure | kalshi | $123k | -203 |  |  | -3.0c |  | W |
 | Nov 23 1:10AM | NCAAB | Nevada vs San Francisco | moneyline: Nevada | kalshi | $131k | -285 |  |  | -1.0c |  | pending |
-| Nov 23 1:10AM | NCAAB | Ole Miss vs Clemson | moneyline: Ole Miss | kalshi | $123k | -223 |  |  | +0.0c |  | pending |
+| Nov 23 1:10AM | NCAAB | Ole Miss vs Clemson | moneyline: Ole Miss | kalshi | $123k | -223 |  |  | +0.0c |  | W |
 | Nov 23 1:10AM | NCAAB | Long Beach St. vs Florida International | moneyline: Florida International | kalshi | $171k | -426 |  |  | -4.0c |  | W |
 | Nov 23 1:10AM | NCAAB | Eastern Washington vs UNLV | moneyline: UNLV | kalshi | $132k | -317 |  |  | +0.0c |  | pending |
 | Nov 23 1:10AM | NCAAB | Charlotte vs Florida Gulf Coast | moneyline: Charlotte | kalshi | $122k | -257 |  |  | +0.0c |  | W |
