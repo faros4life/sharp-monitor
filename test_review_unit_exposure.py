@@ -10,11 +10,11 @@ def leg(oid, stake, odds=-110, fill=None, status="open", verified=False, key=K):
 
 class UnitGuardCases(unittest.TestCase):
     def test_min_sf_rest_then_take(self):
-        # $44.264 at -110 = $40.24 gross to-win.
-        old=leg("novig",44.264,fill=44.264,status="filled",verified=True)
+        # $47.08 at -117 = approximately $40.24 gross to-win (MIN @ SF reported fill).
+        old=leg("novig",47.08,odds=-117,fill=47.08,status="filled",verified=True)
         left=remaining([old],300,K)
-        self.assertAlmostEqual(left*300,259.76,places=2)
-        self.assertLessEqual(maximum_stake(left,-110,300)*100/110,259.761)
+        self.assertAlmostEqual(left*300,300-47.08*100/117,places=2)
+        self.assertLessEqual(maximum_stake(left,-103,300)*100/103,300-47.08*100/117+0.011)
     def test_taker_then_open_rest_reserves(self):
         taker=leg("px",220,fill=220,status="filled",verified=True)
         rest=leg("nv",110)
