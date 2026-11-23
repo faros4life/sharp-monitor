@@ -4303,18 +4303,54 @@ def static_refusal(r):
 
 
 # ---------------------------------------------------------------- shared unit ledger (draft PR #10)
+def _unit_ledger_mode():
+    """off | record | on. Anything unrecognised is OFF - a typo must never switch something on.
+
+    record  every order is WRITTEN to the shared ledger at its full asked stake before it is sent,
+            and nothing is refused. This is the transition stage: it closes the gap between the
+            seed and enforcement, so an order placed during the cutover counts toward the unit.
+    on      the ledger is enforced: no reservation, no order."""
+    v = (os.environ.get("EXEC_UNIT_LEDGER") or "off").strip().lower()
+    return v if v in ("record", "on") else "off"
+
+
 def _unit_ledger_consume(grant, stake):
     """REVIEW BRANCH ONLY. Consume the reservation immediately before the venue call.
 
     Finding 1: reserving without consuming left the single-use mechanism inert - the dispatch mark
     was never written, so one reservation could still authorize repeated submissions. Returns the
-    stake unchanged when the ledger is off."""
-    if (os.environ.get("EXEC_UNIT_LEDGER") or "off").strip().lower() != "on":
+    stake unchanged when the ledger is off, and in the record-only stage, which refuses nothing."""
+    if _unit_ledger_mode() != "on":
         return stake
     import review_integration as ri
     import registry as _reg
     import review_store_registry as _rs
     return ri.authorized_stake(_rs.RegistryStore(_reg), grant, stake)
+
+
+def _unit_ledger_record(r, path, book=None):
+    """Record-only stage. Writes the order to the ledger; NEVER raises and never blocks an order.
+
+    A write that fails is counted in the log (a count, nothing else) so it can be seen and the
+    order added by hand - the catch-up cannot see it, because it only adds orders placed before
+    recording began."""
+    try:
+        import review_integration as ri
+        import registry as _reg
+        import review_store_registry as _rs
+        import review_unit_reservation as _res
+        lv, p = r.get("live") or {}, r.get("play") or {}
+        _id = derive_key(p) or p.get("play_key") or lv.get("cid")
+        key = ri.key_from_registry(derive_key(p) or p.get("play_key"))
+        _res.record_unconditional(
+            _rs.RegistryStore(_reg), key, f"{path}|{_id}|{lv.get('line')}|{lv.get('shown')}",
+            lv.get("risk"), lv.get("shown"), lv.get("unit") or LIVE_UNIT,
+            ri.actor_for("sharp-monitor", path, book or lv.get("book")))
+        print("unit ledger: order recorded (record-only stage)", flush=True)
+    except Exception as ex:
+        print(f"unit ledger: RECORD FAILED ({type(ex).__name__}) - order proceeds unrecorded",
+              flush=True)
+    return None
 
 
 def _unit_ledger_guard(r, path, book=None):
@@ -4331,8 +4367,11 @@ def _unit_ledger_guard(r, path, book=None):
     # Finding 4: reading the flag through the module means an import failure LOOKS like "off".
     # The flag is read directly from the environment, so if it is ON and the modules are missing the
     # guard RAISES instead of waving the order through.
-    if (os.environ.get("EXEC_UNIT_LEDGER") or "off").strip().lower() != "on":
+    _mode = _unit_ledger_mode()
+    if _mode == "off":
         return None
+    if _mode == "record":
+        return _unit_ledger_record(r, path, book)
     try:
         import review_integration as ri
         import registry as _reg

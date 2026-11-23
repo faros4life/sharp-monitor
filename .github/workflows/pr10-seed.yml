@@ -9,7 +9,11 @@ on:
   workflow_dispatch:
     inputs:
       confirm:
-        description: "Leave empty for a dry run (counts only). Type SEED to write the ledger."
+        description: "Empty = dry run (counts only). SEED writes the seed. CATCHUP (with cutoff) writes the catch-up."
+        required: false
+        default: ""
+      cutoff:
+        description: "Catch-up only: UTC time record-only began, e.g. 2026-11-23T11:00:00Z"
         required: false
         default: ""
 
@@ -42,4 +46,5 @@ jobs:
           PROPHETX_TRADE_ACCESS_KEY: ${{ secrets.PROPHETX_TRADE_ACCESS_KEY }}
           PROPHETX_TRADE_SECRET_KEY: ${{ secrets.PROPHETX_TRADE_SECRET_KEY }}
           SEED_CONFIRM: ${{ inputs.confirm }}
+          SEED_CUTOFF: ${{ inputs.cutoff }}
         run: python -u review_seed.py

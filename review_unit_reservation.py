@@ -409,6 +409,43 @@ def _claim_once(store, got, key, s, b, who):
     return str(legs[pick].get("leg_id"))
 
 
+def record_unconditional(store, key, leg_id, stake, american, unit, actor, attempts=3):
+    """RECORD-ONLY stage: write an order into the ledger WITHOUT judging it. Never refuses on budget.
+
+    Why this exists. Enforcement cannot start from a ledger with a hole in it, and there is always
+    a hole between the moment the seed reads the existing orders and the moment the guard is
+    switched on: an order placed in that gap is in no ledger, and the guard would hand its play a
+    second unit. In the record-only stage every order the executor sends is written here at its
+    FULL ASKED stake, as an open commitment, before it goes to the venue - whatever the venue later
+    says about the fill - while nothing is yet refused. The orders placed before recording began
+    are added by the catch-up. Only then is enforcement switched on, against a complete ledger.
+
+    Idempotent on leg_id. Validates the leg exactly as a reservation is validated, and requires a
+    seeded ledger, so a malformed or premature record raises rather than writing nonsense. Returns
+    True when the leg is on record."""
+    s = float(stake)
+    if not math.isfinite(s) or s <= 0:
+        raise ExposureUnknown("stake unreadable")
+    if not key or not leg_id or not str(actor or "").strip():
+        raise ExposureUnknown("record needs a play key, a leg id and an actor - fail closed")
+    leg = {"key": key, "leg_id": str(leg_id), "order_id": str(leg_id), "status": "open",
+           "asked_stake": round(s, 2), "american": american, "unit": unit, "actor": actor,
+           "dispatched": True, "recorded_only": True}
+    leg_fraction(leg)                            # same validation as any reservation
+    for _attempt in range(max(1, int(attempts))):
+        got = store.read()
+        if not got or got[0] is None or got[1] is None:
+            raise ExposureUnknown("reservation store unreadable - fail closed")
+        _require_seeded(got[0])
+        state, version = got
+        legs = list(state.get("legs") or [])
+        if any(l.get("key") == key and str(l.get("leg_id")) == str(leg_id) for l in legs):
+            return True
+        if store.write(dict(state, legs=legs + [leg]), version):
+            return True
+    raise ReservationRefused("could not write the record-only leg - the store kept moving")
+
+
 def rearm(store, key, leg_id, evidence):
     """Allow ONE further authorization, only on proof the first submission never reached the venue.
 

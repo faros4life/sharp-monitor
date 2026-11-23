@@ -250,5 +250,94 @@ ok("the executor workflow passes the EXEC_UNIT_LEDGER variable to the job that p
 ok("and that same job has the registry token the ledger needs",
    any("EXEC_UNIT_LEDGER" in e and "REGISTRY_TOKEN" in e for e in _envs))
 
+# ------------------------------------------------------------------ 6. the record-only stage
+import os
+import registry as _registry
+import review_store_registry as _rs
+
+
+class _FakeReg:
+    def __init__(self, seeded=True):
+        self.data, self.n = {"unit_reservations": {"legs": [], **({"seeded": True} if seeded else {})}}, 1
+    def _fetch(self):
+        import copy
+        return copy.deepcopy(self.data), f"s{self.n}"
+    def _put_with_sha(self, merged, sha):
+        if sha != f"s{self.n}":
+            return False
+        self.data, self.n = dict(merged), self.n + 1
+        return True
+
+
+def _with(reg, mode, fn):
+    keep = (_registry._fetch, _registry._put_with_sha, os.environ.get("EXEC_UNIT_LEDGER"))
+    _registry._fetch, _registry._put_with_sha = reg._fetch, reg._put_with_sha
+    os.environ["EXEC_UNIT_LEDGER"] = mode
+    try:
+        return fn()
+    finally:
+        _registry._fetch, _registry._put_with_sha = keep[0], keep[1]
+        if keep[2] is None:
+            os.environ.pop("EXEC_UNIT_LEDGER", None)
+        else:
+            os.environ["EXEC_UNIT_LEDGER"] = keep[2]
+
+
+def _r(bet, risk=220.0, shown=-110, unit=200.0, book="prophetx", line=225.5):
+    return {"live": {"risk": risk, "shown": shown, "unit": unit, "book": book, "line": line},
+            "play": dict(PLAYS["total"], bet=bet)}
+
+
+for _m, _want in (("off", "off"), ("", "off"), ("ON", "on"), ("record", "record"),
+                  ("Record ", "record"), ("true", "off"), ("recording", "off"), ("1", "off")):
+    os.environ["EXEC_UNIT_LEDGER"] = _m
+    ok(f"mode {_m!r} is read as {_want} - a typo never switches anything on",
+       ex._unit_ledger_mode() == _want, ex._unit_ledger_mode())
+os.environ.pop("EXEC_UNIT_LEDGER", None)
+
+reg = _FakeReg()
+g = _with(reg, "record", lambda: ex._unit_ledger_guard(_r("Under 225.5 (-110)"), "live_order", "prophetx"))
+ok("RECORD: the guard returns nothing to consume and raises nothing", g is None)
+ok("RECORD: the order is in the ledger at its full asked stake, as an open commitment",
+   [(l["asked_stake"], l["status"], l.get("recorded_only")) for l in
+    reg.data["unit_reservations"]["legs"]] == [(220.0, "open", True)])
+ok("RECORD: consume passes the stake through untouched",
+   _with(reg, "record", lambda: ex._unit_ledger_consume(None, 220.0)) == 220.0)
+_with(reg, "record", lambda: ex._unit_ledger_guard(_r("Under 226.5 (-108)", shown=-108, line=226.5),
+                                                  "live_order", "prophetx"))
+ok("RECORD: a second order on an ADJACENT line is NOT refused - nothing is, in this stage",
+   len(reg.data["unit_reservations"]["legs"]) == 2)
+ok("RECORD: and both are on record under the one play identity",
+   len({l["key"] for l in reg.data["unit_reservations"]["legs"]}) == 1)
+_with(reg, "record", lambda: ex._unit_ledger_guard(_r("Under 225.5 (-110)"), "live_order", "prophetx"))
+ok("RECORD: the same order replayed is recorded once", len(reg.data["unit_reservations"]["legs"]) == 2)
+_store = _rs.RegistryStore(reg)
+ok("so when enforcement starts, the play recorded during the transition has no unit left",
+   R.available(_store, KEY) == 0.0)
+ok("ENFORCE after RECORD: a further order on that play is refused",
+   raises(lambda: _with(reg, "on", lambda: ex._unit_ledger_guard(
+       _r("Under 224.5 (-112)", shown=-112, line=224.5), "live_order", "prophetx")),
+       R.ReservationRefused) is True)
+ok("ENFORCE after RECORD: a Novig order cannot claim a ProphetX order recorded in transition",
+   raises(lambda: R.claim_dispatched(_store, KEY, 100.0, "novig", "c"), R.ReservationRefused) is True)
+
+for _label, _reg, _play in (("an unseeded ledger", _FakeReg(seeded=False), _r("Under 225.5 (-110)")),
+                            ("a play with no identity", _FakeReg(),
+                             {"live": {"risk": 1.0, "shown": -110, "book": "prophetx"}, "play": {}}),
+                            ("an unreadable price", _FakeReg(), _r("Under 225.5 (-110)", shown=None))):
+    try:
+        _out = _with(_reg, "record", lambda p=_play: ex._unit_ledger_guard(p, "live_order", "prophetx"))
+        _raised = False
+    except Exception:
+        _raised = True
+    ok(f"RECORD never blocks an order, even with {_label}", _raised is False and _out is None)
+    ok(f"and writes nothing it cannot validate ({_label})",
+       not _reg.data["unit_reservations"]["legs"])
+ok("OFF: the guard and consume do nothing and the registry is untouched",
+   _with(_FakeReg(), "off", lambda: (ex._unit_ledger_guard(_r("Under 225.5 (-110)"), "live_order"),
+                                     ex._unit_ledger_consume(None, 5.0))) == (None, 5.0))
+ok("a failed record is reported as a COUNT-SAFE log line, with no id, key or amount",
+   'print(f"unit ledger: RECORD FAILED ({type(ex).__name__}) - order proceeds unrecorded"' in _src)
+
 print(f"\n{len(P)} passed, {len(F)} failed")
 raise SystemExit(1 if F else 0)

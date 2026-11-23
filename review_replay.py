@@ -189,6 +189,7 @@ def backfill_candidates(rows):
                          "american": american_of(o),
                          "lane": lane, "unit": unit, "unit_why": unit_why or None,
                          "day": str(r.get("et_day") or r.get("decided_utc") or "")[:10] or None,
+                         "decided_utc": str(r.get("decided_utc") or "") or None,
                          "fields": sorted(k for k in o if isinstance(k, str)),
                          "terminal_verified": o.get("terminal_verified")})
     return legs, unreadable, terminal
