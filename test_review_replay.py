@@ -16,7 +16,7 @@ def ok(label, cond, got=""):
 
 
 # ---------------------------------------------------------------- 1. nested enumeration
-FLAT = {"key": "k1", "order_id": "top-1", "status": "open"}
+FLAT = {"key": "NBA|LAL @ BOS|total|UNDER", "order_id": "top-1", "status": "open"}
 NESTED = {"key": "board|NBA|LAL @ BOS|total|UNDER",
           "live_order": {"order_id": "c1", "client_id": "c1", "book": "novig", "status": "open",
                          "asked_stake": 220.0, "american": -110, "unit": 200.0},
