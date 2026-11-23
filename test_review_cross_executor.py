@@ -242,5 +242,13 @@ for line in open("review_shared.sha256", encoding="utf-8").read().split("\n"):
         ok(f"{name} is byte-identical to the manifest both repositories carry", have == want,
            "edit made here without regenerating review_shared.sha256 and re-syncing the runner")
 
+import yaml
+_wf = yaml.safe_load(open(".github/workflows/executor-dry-run.yml"))
+_envs = [st.get("env") or {} for j in _wf["jobs"].values() for st in j["steps"]]
+ok("the executor workflow passes the EXEC_UNIT_LEDGER variable to the job that places orders",
+   any(e.get("EXEC_UNIT_LEDGER") == "${{ vars.EXEC_UNIT_LEDGER }}" and "EXEC_LIVE" in e for e in _envs))
+ok("and that same job has the registry token the ledger needs",
+   any("EXEC_UNIT_LEDGER" in e and "REGISTRY_TOKEN" in e for e in _envs))
+
 print(f"\n{len(P)} passed, {len(F)} failed")
 raise SystemExit(1 if F else 0)
