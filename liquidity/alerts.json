@@ -257,9 +257,9 @@
     "volume_fp": 28.91
    },
    "ex_stats_close": {
-    "open_interest_fp": 6757.85,
-    "volume_24h_fp": 5801.33,
-    "volume_fp": 9714.36
+    "open_interest_fp": 6770.79,
+    "volume_24h_fp": 5915.75,
+    "volume_fp": 9737.8
    },
    "ex_stats_first": {
     "open_interest_fp": 6683.07,
@@ -310,6 +310,8 @@
    "norm_ready_books": 2,
    "paper_only": false,
    "price": 0.84,
+   "price_after_15m": 0.835,
+   "price_after_15m_book": "novig",
    "price_american": -525,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.84,
@@ -364,6 +366,7 @@
    "size_x": 1.79,
    "start_source": "odds",
    "start_utc": "2026-11-24T00:30:00Z",
+   "still_actionable": true,
    "surge_books": [],
    "teams": [
     "Brooklyn",
@@ -418,9 +421,9 @@
     "volume_fp": 5.83
    },
    "ex_stats_close": {
-    "open_interest_fp": 7521.5,
-    "volume_24h_fp": 7527.83,
-    "volume_fp": 10741.69
+    "open_interest_fp": 7551.3,
+    "volume_24h_fp": 7624.26,
+    "volume_fp": 10771.49
    },
    "ex_stats_first": {
     "open_interest_fp": 7419.200000000001,
@@ -598,9 +601,9 @@
     "volume_fp": 7.39
    },
    "ex_stats_close": {
-    "open_interest_fp": 15152.16,
-    "volume_24h_fp": 14177.27,
-    "volume_fp": 16148.79
+    "open_interest_fp": 15165.71,
+    "volume_24h_fp": 14340.310000000001,
+    "volume_fp": 16183.34
    },
    "ex_stats_first": {
     "open_interest_fp": 12207.960000000001,
@@ -1496,7 +1499,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [
     "Miami Heat -4.5 (-108)",
     "Miami Heat -7.5 (-105)",
@@ -1766,6 +1769,7 @@
     "volume_fp": 116069.6
    },
    "fade_price": 0.51,
+   "fade_units": 0.9,
    "first_seen_utc": "2026-11-22T22:45:44Z",
    "game": "Oklahoma City vs Miami: Spread",
    "game_surge_books": [
@@ -1890,12 +1894,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26NOV22OKCMIA-MIA5"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 5,
+   "settle_tries": 6,
+   "settled_utc": "2026-11-23T01:25:43Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Miami Heat -4.5 (-108)",
@@ -1917,7 +1922,7 @@
     "Miami"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-22T22:35:54Z",
@@ -1965,9 +1970,9 @@
     "volume_fp": 224.78
    },
    "ex_stats_close": {
-    "open_interest_fp": 84814.54,
-    "volume_24h_fp": 88300.52,
-    "volume_fp": 93493.3
+    "open_interest_fp": 87206.97,
+    "volume_24h_fp": 93580.51,
+    "volume_fp": 95885.73
    },
    "ex_stats_first": {
     "open_interest_fp": 48140.81,
@@ -2807,8 +2812,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 2.0,
+   "close_price": 0.53,
+   "clv_cents": 1.0,
    "confirmed_after_min": 5,
    "date": "2026-11-22",
    "depth_by_book": {
@@ -2840,7 +2845,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 35791.34,
-    "volume_24h_fp": 39415.18,
+    "volume_24h_fp": 39683.27,
     "volume_fp": 39683.27
    },
    "ex_stats_first": {
@@ -3442,6 +3447,7 @@
     "volume_fp": 628286.45
    },
    "fade_price": 0.3,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-22T21:35:41Z",
    "game": "Oklahoma City vs Miami",
    "game_surge_books": [],
@@ -3581,14 +3587,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26NOV22OKCMIA-MIA"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
+   "settled_utc": "2026-11-23T01:25:43Z",
    "sharp_agree": [
     "Miami Heat -2.5 (-115)"
    ],
@@ -3608,7 +3615,7 @@
     "Miami"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.43
   },
   {
    "alerted_utc": "2026-11-22T21:20:19Z",
@@ -3870,8 +3877,8 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 237682.8,
-    "volume_24h_fp": 187562.36,
-    "volume_fp": 257362.31
+    "volume_24h_fp": 193000.81,
+    "volume_fp": 257372.56
    },
    "ex_stats_first": {
     "open_interest_fp": 210853.54,
@@ -4063,9 +4070,9 @@
     "volume_fp": 65.81
    },
    "ex_stats_close": {
-    "open_interest_fp": 12327.5,
-    "volume_24h_fp": 14326.13,
-    "volume_fp": 14396.07
+    "open_interest_fp": 12596.5,
+    "volume_24h_fp": 14396.07,
+    "volume_fp": 14666.8
    },
    "ex_stats_first": {
     "open_interest_fp": 1539.99,
@@ -8619,9 +8626,9 @@
     "volume_fp": 579.7
    },
    "ex_stats_close": {
-    "open_interest_fp": 340988.15,
-    "volume_24h_fp": 336187.18,
-    "volume_fp": 343334.72
+    "open_interest_fp": 341106.74,
+    "volume_24h_fp": 336257.58,
+    "volume_fp": 343512.79
    },
    "ex_stats_first": {
     "open_interest_fp": 338077.35,
@@ -18225,9 +18232,9 @@
     "volume_fp": 53.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 364898.81999999995,
-    "volume_24h_fp": 249265.94,
-    "volume_fp": 391009.64
+    "open_interest_fp": 367358.04,
+    "volume_24h_fp": 259102.9,
+    "volume_fp": 393628.79
    },
    "ex_stats_first": {
     "open_interest_fp": 136125.28,
@@ -18449,9 +18456,9 @@
     "volume_fp": 129.94
    },
    "ex_stats_close": {
-    "open_interest_fp": 394319.41,
-    "volume_24h_fp": 358022.35,
-    "volume_fp": 430004.01
+    "open_interest_fp": 426214.95,
+    "volume_24h_fp": 429432.92000000004,
+    "volume_fp": 462132.19
    },
    "ex_stats_first": {
     "open_interest_fp": 28144.53,
