@@ -325,9 +325,8 @@ def completeness(legs, unreadable, counts=None):
     import novig_reconcile as nr
     if unreadable:
         return "INCOMPLETE", f"{len(unreadable)} row(s) could not be classified"
-    # A lane unit is needed only where the venue shows exposure still standing. A leg the venue has
-    # PROVEN terminal contributes nothing to the budget, so demanding a unit for it would hold the
-    # verdict hostage to settled history forever.
+    # A lane unit is needed wherever exposure could exist. A PROVEN zero-fill terminal
+    # contributes nothing, but FILLED is a settled liability and still counts.
     standing = [l for l in legs if l.get("venue_class") != nr.TERMINAL]
     missing_unit = [l for l in standing if l.get("unit") in (None, "")]
     if missing_unit:
@@ -487,8 +486,10 @@ def main(argv):
             f"unreadable {len(unreadable)}",
             "  venue evidence: " + (", ".join(f"{k}={v}" for k, v in sorted(counts.items()))
                                     or "none gathered"), "",
-            "The backfill list is the CSV attachment, not this body: an email body truncates",
-            "silently and a half-written list is worse than none.", ""]
+            "CSV contains reconciliation CANDIDATES, not an activation-ready backfill.",
+            "Do not seed the production ledger directly from this attachment: order/client",
+            "identity dedupe, independently verified monetary fills, and complete venue",
+            "coverage require separate reconciliation and approval.", ""]
     if unreadable:
         body += ["ROWS THAT COULD NOT BE CLASSIFIED (these block activation):"]
         body += [f"  {json.dumps(u, default=str)}" for u in unreadable[:50]] + [""]
