@@ -63,6 +63,14 @@ seed, sm, why = S.build([leg("a"), leg("b", "prophetx")], [])
 ok("a play already over one unit is reported, and still seeded",
    sm["plays"] == 1 and sm["plays_at_or_over_one_unit"] == 1 and sm["seeded"] == 2)
 
+seed, sm, why = S.build([leg("dup-1", "novig", ask=110.0), leg("dup-1", "prophetx", ask=110.0)], [])
+ok("the SAME order id on two venues is two orders, not one", sm["seeded"] == 2, str(sm))
+_st = Store(); R.backfill(_st, seed, "dup test")
+ok("and the ledger charges BOTH: two half units leave no capacity",
+   R.available(_st, K) == 0.0, str(R.available(_st, K)))
+ok("the venue's own order id is kept alongside for audit",
+   {l["venue_order_id"] for l in seed} == {"dup-1"} and len({l["order_id"] for l in seed}) == 2)
+
 st = Store()
 seed, _, _ = S.build([leg("a")], [])
 try:

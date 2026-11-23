@@ -43,7 +43,11 @@ def build(legs, unreadable):
         oid = str(l.get("order_id") or l.get("client_id") or "")
         book = str(l.get("book") or "")
         try:
-            leg = {"key": l.get("key"), "leg_id": f"backfill|{book}|{oid}", "order_id": oid,
+            # The id is NAMESPACED BY VENUE. The ledger counts one order id once per play (max),
+            # so two venues that happened to issue the same id on one play would otherwise
+            # collapse into a single order and the smaller one would vanish from the budget.
+            leg = {"key": l.get("key"), "leg_id": f"backfill|{book}|{oid}",
+                   "order_id": f"{book}|{oid}", "venue_order_id": oid,
                    "status": "open", "asked_stake": l.get("asked_stake"),
                    "american": l.get("american"), "unit": l.get("unit"),
                    "actor": ri.actor_for("backfill", l.get("field") or "order", book),
@@ -56,14 +60,14 @@ def build(legs, unreadable):
             why = l.get("unit_why") or type(ex).__name__
             bad[why] = bad.get(why, 0) + 1
             continue
-        prev = by_id.get((leg["key"], oid))
+        prev = by_id.get((leg["key"], book, oid))
         if prev is None or frac > prev[1]:
-            by_id[(leg["key"], oid)] = (leg, frac, l)
+            by_id[(leg["key"], book, oid)] = (leg, frac, l)
     if bad:
         return [], summary, ("standing order(s) that cannot be valued: "
                              + "; ".join(f"{v} x {k}" for k, v in sorted(bad.items())))
     per_play = {}
-    for (key, _oid), (leg, frac, l) in by_id.items():
+    for (key, _book, _oid), (leg, frac, l) in by_id.items():
         per_play[key] = per_play.get(key, 0.0) + frac
         ln = l.get("lane") or "unknown"
         summary["by_lane"][ln] = summary["by_lane"].get(ln, 0) + 1

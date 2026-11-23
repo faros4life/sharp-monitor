@@ -608,7 +608,7 @@ def incident_exposure(rows, needle, legs, aliases=None, date=None):
         # remaining_mixed() takes the MAX per order id and then sums. A flat sum here reported one
         # order recorded under two nested fields at 2.0 units where the guard would charge 1.0 -
         # so the comment above ("cannot drift apart") was not true of the code beneath it.
-        oid = str(l.get("order_id") or l.get("client_id") or id(l))
+        oid = f"{l.get('book')}|{l.get('order_id') or l.get('client_id') or id(l)}"   # per venue
         bucket = by_order.setdefault(str(l.get("key") or ""), {})
         bucket[oid] = max(f, bucket.get(oid, 0.0))
     units = sum(v for b in by_order.values() for v in b.values())
