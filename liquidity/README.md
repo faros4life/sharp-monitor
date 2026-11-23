@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 22, 8:35 PM ET. This run: 2 new, 0 not confirmed, 1 pending. Open alerts: 45.
+Updated Sun Nov 22, 8:40 PM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 45.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -11,7 +11,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 22 8:35PM | NBA | Utah vs Los Angeles L | moneyline: Los Angeles L | kalshi | $44k | -567 |  |  | +0.0c |  | pending |
-| Nov 22 8:35PM | NBA | Cleveland vs Chicago | moneyline: Cleveland | kalshi | $30k | -300 |  |  | +0.0c |  | pending |
+| Nov 22 8:35PM | NBA | Cleveland vs Chicago | moneyline: Cleveland | kalshi | $30k | -300 |  |  | -1.0c |  | pending |
 | Nov 22 8:30PM | NBA | Memphis vs Charlotte | moneyline: Memphis | kalshi | $40k | -138 |  |  | +1.0c |  | pending |
 | Nov 22 8:15PM | NFL | Minnesota Vikings at San Francisco 49ers | moneyline: San Francisco 49ers | prophetx | $53k | -200 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Nov 22 8:10PM | NBA | Brooklyn vs Minnesota | moneyline: Minnesota | kalshi | $53k | -525 |  |  | +0.0c |  | pending |
@@ -23,7 +23,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 22 5:55PM | NBA | Oklahoma City Thunder at Miami Heat | moneyline: Miami Heat | prophetx | $66k | -174 | ✅ novig | ✅ | +0.0c |  | pending |
 | Nov 22 5:55PM | NHL | Calgary vs Ottawa | moneyline: Ottawa | kalshi | $26k | -203 |  |  | +0.0c |  | pending |
 | Nov 22 5:50PM | NBA | Oklahoma City vs Miami: Spread | spread: NOT Miami wins by over 4.5 points | kalshi | $47k | -100 |  | ❌ | +0.0c |  | L |
-| Nov 22 5:35PM | NBA | Boston vs Golden State: Spread | spread: NOT Boston wins by over 8.5 points | kalshi | $32k | -108 | ✅ novig | ✅ | -1.0c |  | pending |
+| Nov 22 5:35PM | NBA | Boston vs Golden State: Spread | spread: NOT Boston wins by over 8.5 points | kalshi | $32k | -108 | ✅ novig | ✅ | -1.0c | yes | pending |
 | Nov 22 5:30PM | NBA | Indiana Pacers @ New York Knicks | moneyline: NYK (0) | novig | $28k | -270 | ✅ kalshi,prophetx | ❌ | -4.5c | yes | pending |
 | Nov 22 5:30PM | NBA | Orlando Magic @ Washington Wizards | moneyline: ORL (0) | novig | $34k | -182 | ✅ kalshi,prophetx | ✅ | +0.0c |  | pending |
 | Nov 22 5:25PM | NFL | Minnesota Vikings @ San Francisco 49ers | total: Over 45.5 (45.5) | novig | $45k | -100 | ✅ prophetx | ❌ | -0.5c | yes | pending |
