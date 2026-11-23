@@ -1,6 +1,198 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-23T00:05:53Z",
+   "base_depth": 2291732,
+   "best_price": 0.485,
+   "best_price_american": 106,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.49,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-11-22",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 107424,
+     "new_this_side": 581866,
+     "other_side": 2391797,
+     "other_side_all_levels": 2663560,
+     "ratio": 1.1,
+     "this_side": 2692544,
+     "this_side_all_levels": 2928198
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "SF -4.5 (-4.5)",
+     "price": 0.485,
+     "this_side": 115410
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 520010.37,
+    "volume_24h_fp": 269378.16,
+    "volume_fp": 557069.25
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 26766.87,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 27150.78
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 493243.5,
+    "volume_24h_fp": 269378.16,
+    "volume_fp": 529918.47
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-11-23T00:00:22Z",
+   "game": "Minnesota vs San Francisco: Spread",
+   "game_surge_books": [],
+   "game_x": 1.57,
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNFLSPREAD-26NOV22MINSF-SF5\"}",
+   "lead_min": 74,
+   "league": "NFL",
+   "line": -4.5,
+   "market": "spread",
+   "new_money": 581866,
+   "new_x": 0.39,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 520010.37,
+      "volume_24h_fp": 269378.16,
+      "volume_fp": 557069.25
+     },
+     "game_normal": 1860246,
+     "game_x": 1.57,
+     "normal": 1480223,
+     "now": 2928198,
+     "type": "SPREAD",
+     "x": 1.98
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 8379789.0,
+      "volume": 11849806.0
+     },
+     "game_normal": 125107,
+     "game_x": 1.02,
+     "normal": 112960,
+     "now": 127498,
+     "type": "SPREAD",
+     "x": 1.13
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.49,
+   "price_american": 104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.49,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -4.0,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": -4.0,
+     "price": -112
+    },
+    "betopenly": {
+     "point": -4.5,
+     "price": 106
+    },
+    "betrivers": {
+     "point": -4.0,
+     "price": -112
+    },
+    "betus": {
+     "point": -4.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": -4.0,
+     "price": -112
+    },
+    "circasports": {
+     "point": -4.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": -4.5,
+     "price": -103
+    },
+    "fanatics": {
+     "point": -4.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": -3.5,
+     "price": -120
+    },
+    "kalshi": {
+     "point": -4.5,
+     "price": 104
+    },
+    "lowvig": {
+     "point": -4.0,
+     "price": -105
+    },
+    "mybookieag": {
+     "point": -4.0,
+     "price": -110
+    },
+    "novig": {
+     "point": -4.5,
+     "price": 106
+    },
+    "polymarket": {
+     "point": -4.5,
+     "price": 104
+    },
+    "prophetx": {
+     "point": -3.5,
+     "price": -113
+    },
+    "williamhill_us": {
+     "point": -4.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNFLSPREAD-26NOV22MINSF-SF5"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "San Francisco",
+   "side_label": "San Francisco wins by over 4.5 points",
+   "size_x": 1.98,
+   "start_source": "odds",
+   "start_utc": "2026-11-23T01:20:00Z",
+   "surge_books": [],
+   "teams": [
+    "Minnesota",
+    "San Francisco"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-22T23:50:18Z",
    "base_depth": 81280,
    "best_price": 0.445,
@@ -881,9 +1073,9 @@
     "volume_fp": 224.78
    },
    "ex_stats_close": {
-    "open_interest_fp": 52994.71,
+    "open_interest_fp": 53190.81,
     "volume_24h_fp": 56257.35,
-    "volume_fp": 57397.86
+    "volume_fp": 57743.96
    },
    "ex_stats_first": {
     "open_interest_fp": 48140.81,
@@ -1091,8 +1283,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 8944380.0,
-    "volume": 10942313.0
+    "openInterest": 9000815.0,
+    "volume": 10998748.0
    },
    "ex_stats_first": {
     "openInterest": 8776831.0,
@@ -1545,8 +1737,8 @@
     "volume": 101136.0
    },
    "ex_stats_close": {
-    "openInterest": 26480078.0,
-    "volume": 34889520.0
+    "openInterest": 26532117.0,
+    "volume": 35061283.0
    },
    "ex_stats_first": {
     "openInterest": 9954927.0,
@@ -1755,9 +1947,9 @@
     "volume_fp": 213.94
    },
    "ex_stats_close": {
-    "open_interest_fp": 31401.77,
+    "open_interest_fp": 31414.32,
     "volume_24h_fp": 34238.18,
-    "volume_fp": 34833.17
+    "volume_fp": 34845.72
    },
    "ex_stats_first": {
     "open_interest_fp": 27048.2,
@@ -2717,7 +2909,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Jacksonville Jaguars",
@@ -2781,9 +2973,9 @@
     "volume_fp": 715.69
    },
    "ex_stats_close": {
-    "open_interest_fp": 221759.35,
+    "open_interest_fp": 222143.87,
     "volume_24h_fp": 175933.35,
-    "volume_fp": 239248.01
+    "volume_fp": 239632.53
    },
    "ex_stats_first": {
     "open_interest_fp": 210853.54,
@@ -2975,9 +3167,9 @@
     "volume_fp": 65.81
    },
    "ex_stats_close": {
-    "open_interest_fp": 9113.6,
+    "open_interest_fp": 9212.23,
     "volume_24h_fp": 10025.56,
-    "volume_fp": 10567.22
+    "volume_fp": 10665.85
    },
    "ex_stats_first": {
     "open_interest_fp": 1539.99,
@@ -3306,7 +3498,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Buffalo",
@@ -3505,7 +3697,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -3576,10 +3768,12 @@
     "volume": 41912887.0
    },
    "fade_price": 0.545,
+   "fade_units": 0.83,
    "first_seen_utc": "2026-11-22T20:05:49Z",
    "game": "New York Jets @ Los Angeles Chargers",
    "game_surge_books": [],
    "game_x": 1.69,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1c9ea-d9ca-7e13-adb9-0ca934e95a46\", \"outcome_id\": \"01a1c9ea-d9ca-7e13-adb9-0cbce8c15d08\"}",
    "lead_min": 55,
    "league": "NFL",
@@ -3694,12 +3888,13 @@
     "market_id": "01a1c9ea-d9ca-7e13-adb9-0ca934e95a46",
     "outcome_id": "01a1c9ea-d9ca-7e13-adb9-0cbce8c15d08"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 12,
+   "settle_tries": 13,
+   "settled_utc": "2026-11-23T00:05:53Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Los Angeles Chargers",
@@ -3716,7 +3911,7 @@
     "Los Angeles Chargers"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-22T20:10:21Z",
@@ -4578,10 +4773,12 @@
     "volume": 31658605.0
    },
    "fade_price": 0.395,
+   "fade_units": 1.53,
    "first_seen_utc": "2026-11-22T18:55:51Z",
    "game": "New York Jets @ Los Angeles Chargers",
    "game_surge_books": [],
    "game_x": 1.27,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1c9ea-d9c8-7d10-9bb1-558f6591bde2\", \"outcome_id\": \"01a1c9ea-d9c8-7d10-9bb1-559d77f76cda\"}",
    "lead_min": 125,
    "league": "NFL",
@@ -4713,7 +4910,7 @@
     "market_id": "01a1c9ea-d9c8-7d10-9bb1-558f6591bde2",
     "outcome_id": "01a1c9ea-d9c8-7d10-9bb1-559d77f76cda"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -4721,7 +4918,8 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 12,
+   "settle_tries": 13,
+   "settled_utc": "2026-11-23T00:05:53Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Los Angeles Chargers",
@@ -4738,7 +4936,7 @@
     "Los Angeles Chargers"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-22T18:55:51Z",
@@ -5014,8 +5212,8 @@
     "volume": 19999.0
    },
    "ex_stats_close": {
-    "openInterest": 58982938.0,
-    "volume": 76617899.0
+    "openInterest": 59840836.0,
+    "volume": 77476654.0
    },
    "ex_stats_first": {
     "openInterest": 21366519.0,
@@ -5391,7 +5589,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Jacksonville Jaguars",
@@ -5462,10 +5660,12 @@
     "volume": 35344378.0
    },
    "fade_price": 0.465,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-22T18:05:46Z",
    "game": "New York Jets @ Los Angeles Chargers",
    "game_surge_books": [],
    "game_x": 1.36,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1c9ea-d9ca-7e13-adb9-0ca934e95a46\", \"outcome_id\": \"01a1c9ea-d9ca-7e13-adb9-0ccda72d7a0f\"}",
    "lead_min": 175,
    "league": "NFL",
@@ -5579,14 +5779,15 @@
     "market_id": "01a1c9ea-d9ca-7e13-adb9-0ca934e95a46",
     "outcome_id": "01a1c9ea-d9ca-7e13-adb9-0ccda72d7a0f"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 12,
+   "settle_tries": 13,
+   "settled_utc": "2026-11-23T00:05:53Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New York Jets",
@@ -5601,7 +5802,7 @@
     "Los Angeles Chargers"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.85
   },
   {
    "alerted_utc": "2026-11-22T17:55:40Z",
@@ -6466,9 +6667,9 @@
     "volume_fp": 3733.99
    },
    "ex_stats_close": {
-    "open_interest_fp": 813363.44,
+    "open_interest_fp": 838387.09,
     "volume_24h_fp": 734043.35,
-    "volume_fp": 897981.75
+    "volume_fp": 923290.76
    },
    "ex_stats_first": {
     "open_interest_fp": 271977.03,
@@ -7209,7 +7410,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Tampa Bay",
@@ -7508,9 +7709,9 @@
     "volume_fp": 579.7
    },
    "ex_stats_close": {
-    "open_interest_fp": 339352.89,
+    "open_interest_fp": 339353.89,
     "volume_24h_fp": 333762.4,
-    "volume_fp": 340739.7
+    "volume_fp": 340740.7
    },
    "ex_stats_first": {
     "open_interest_fp": 338077.35,
@@ -8915,7 +9116,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Jacksonville",
@@ -10007,7 +10208,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Denver",
@@ -11050,7 +11251,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -11891,7 +12092,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New York Giants",
@@ -12575,7 +12776,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Denver Broncos",
@@ -13711,9 +13912,9 @@
     "volume_fp": 127.54
    },
    "ex_stats_close": {
-    "open_interest_fp": 813363.44,
+    "open_interest_fp": 838387.09,
     "volume_24h_fp": 734043.35,
-    "volume_fp": 897981.75
+    "volume_fp": 923290.76
    },
    "ex_stats_first": {
     "open_interest_fp": 210774.31,
@@ -15148,7 +15349,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [
     "Under 46.5 (-117)"
    ],
@@ -15219,9 +15420,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 62141.51,
+    "open_interest_fp": 62415.42,
     "volume_24h_fp": 56543.130000000005,
-    "volume_fp": 64366.270000000004
+    "volume_fp": 64640.18
    },
    "ex_stats_first": {
     "open_interest_fp": 915.0,
@@ -15579,7 +15780,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Las Vegas",
@@ -15780,7 +15981,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New York G",
@@ -15997,7 +16198,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Tampa Bay",
@@ -16266,9 +16467,9 @@
     "volume_fp": 2931.31
    },
    "ex_stats_close": {
-    "open_interest_fp": 5251436.53,
+    "open_interest_fp": 5363108.3100000005,
     "volume_24h_fp": 3794617.4400000004,
-    "volume_fp": 5789693.91
+    "volume_fp": 5910721.79
    },
    "ex_stats_first": {
     "open_interest_fp": 1864092.7200000002,
@@ -17086,9 +17287,9 @@
     "volume_fp": 53.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 303825.01,
+    "open_interest_fp": 306628.62,
     "volume_24h_fp": 194103.40000000002,
-    "volume_fp": 324447.9
+    "volume_fp": 327384.88
    },
    "ex_stats_first": {
     "open_interest_fp": 136125.28,
@@ -17310,9 +17511,9 @@
     "volume_fp": 129.94
    },
    "ex_stats_close": {
-    "open_interest_fp": 243829.4,
+    "open_interest_fp": 255514.4,
     "volume_24h_fp": 256056.25,
-    "volume_fp": 276682.2
+    "volume_fp": 288460.76
    },
    "ex_stats_first": {
     "open_interest_fp": 28144.53,
@@ -17937,9 +18138,9 @@
     "volume_fp": 4.02
    },
    "ex_stats_close": {
-    "open_interest_fp": 146137.83000000002,
+    "open_interest_fp": 150990.03999999998,
     "volume_24h_fp": 139087.27000000002,
-    "volume_fp": 151055.11
+    "volume_fp": 156005.39
    },
    "ex_stats_first": {
     "open_interest_fp": 9102.849999999999,
@@ -18306,7 +18507,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Jacksonville",
@@ -18599,9 +18800,9 @@
     "volume_fp": 1.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 62141.51,
+    "open_interest_fp": 62415.42,
     "volume_24h_fp": 56543.130000000005,
-    "volume_fp": 64366.270000000004
+    "volume_fp": 64640.18
    },
    "ex_stats_first": {
     "open_interest_fp": 254.96,
@@ -19509,7 +19710,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Denver",
@@ -20132,7 +20333,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New York Giants",
