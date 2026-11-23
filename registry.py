@@ -878,7 +878,11 @@ def put_fills(rows):
             # after a newer one), and an unchanged state is not rewritten at all.
             if old.get("state") in ("FILLED", "PARTIAL", "NO_FILL") and rec["state"] not in ("FILLED", "PARTIAL", "NO_FILL"):
                 continue
-            if old.get("state") == rec["state"] and old.get("filled_qty") == rec.get("filled_qty"):
+            # Nov 23 (Peter, "fix 1"): state and quantity alone hid a newly READ price - a FILLED record stored before
+            # its traded price was read could never receive it. A record now updates when the price or the dollar
+            # stake arrives, and never when a later read LOSES one (an unread value is not newer information).
+            if old.get("state") == rec["state"] and old.get("filled_qty") == rec.get("filled_qty") and not any(
+                    rec.get(f) is not None and old.get(f) != rec.get(f) for f in ("avg_price", "filled_stake")):
                 continue
             m[k] = rec
             changed = True

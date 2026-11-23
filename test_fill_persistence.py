@@ -195,6 +195,23 @@ def main():
     finally:
         registry._commit = real
 
+    print("8. Nov 23: a traded price read AFTER the record was stored still reaches it")
+    store2 = {}
+    real2 = registry._commit
+    registry._commit = lambda merge, tries=4: (merge(store2), True)[1]
+    try:
+        registry.put_fills([{"order_id": "vP", "client_id": "cP", "status": "FILLED", "qty": 100, "filled_qty": 100,
+                             "filled_cost": 5000}])
+        check("stored first without a price", store2["fills"]["vP"]["avg_price"] is None)
+        registry.put_fills([{"order_id": "vP", "client_id": "cP", "status": "FILLED", "qty": 100, "filled_qty": 100,
+                             "filled_cost": 5000, "avg_price": 50.0}])
+        check("the price read later is written (this was the defect)", store2["fills"]["vP"]["avg_price"] == 50.0)
+        registry.put_fills([{"order_id": "vP", "client_id": "cP", "status": "FILLED", "qty": 100, "filled_qty": 100,
+                             "filled_cost": 5000}])
+        check("a later read WITHOUT the price never erases it", store2["fills"]["vP"]["avg_price"] == 50.0)
+    finally:
+        registry._commit = real2
+
     if BAD:
         print(f"FAILED {len(BAD)}: {BAD}")
         return 1
