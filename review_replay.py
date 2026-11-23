@@ -95,13 +95,17 @@ def backfill_candidates(rows):
             st = str(o.get("status") or "").strip().lower()
             if st in LEDGER_STATES_TERMINAL:
                 terminal += 1
-                continue
-            if st and st not in LEDGER_STATES_OPEN:
+            elif st and st not in LEDGER_STATES_OPEN:
                 unreadable.append({"key": str(key), "field": field,
                                    "order_id": str(o.get("order_id") or o.get("client_id")),
                                    "why": f"unknown recorded status {st!r}"})
                 continue
+            # EVERY leg is verified, FILLED ONES INCLUDED. The first version stopped at the
+            # recorded status and skipped terminal legs, so a filled order - the one kind that
+            # certainly moved money - was never checked against a venue at all. A recorded
+            # "filled" is still only what we believed when we wrote it.
             legs.append({"key": str(key), "field": field,
+                         "recorded_terminal": st in LEDGER_STATES_TERMINAL,
                          "order_id": str(o.get("order_id") or o.get("client_id") or ""),
                          "client_id": str(o.get("client_id") or "") or None,
                          "book": str(o.get("book") or "").strip().lower() or None,
@@ -150,7 +154,69 @@ def _pmus_order(oid):
     return None, last or "no order body returned"
 
 
-def venue_evidence(legs, novig=None, kalshi=None, pmus=None):
+def _px_trades():
+    """(trades_by_order_id, why). ProphetX fill evidence is its TRADE list - px_live.trades() reads
+    /v4/mm/get_trades and _mine() already matches on order_id. Read-only; no order path is used."""
+    try:
+        import px_live
+        tr = px_live.trades()
+        if not isinstance(tr, list):
+            return None, "trade list unreadable"
+        by = {}
+        for t in tr:
+            if isinstance(t, dict) and t.get("order_id") is not None:
+                by.setdefault(str(t["order_id"]), []).append(t)
+        return by, f"ok ({len(by)} order id(s) with trades)"
+    except Exception as ex:
+        return None, f"px_live unavailable: {type(ex).__name__}"
+
+
+def _num(v):
+    try:
+        return None if v is None else float(v)
+    except (TypeError, ValueError):
+        return None
+
+
+OPEN_WORDS = ("open", "resting", "working", "pending", "new", "accepted")
+GONE_WORDS = ("canceled", "cancelled", "expired", "rejected", "settled", "executed", "filled",
+              "closed", "done")
+
+
+def classify_generic(o):
+    """(class, evidence) for a Kalshi or Polymarket US order body, in novig_reconcile's vocabulary.
+
+    The Nov 19 Novig lesson applies verbatim here: an UNREAD quantity must not become a confident
+    zero. A missing or unparseable filled quantity is UNKNOWN, which keeps the leg's full
+    commitment, never TERMINAL, which would release it.
+    """
+    import novig_reconcile as nr
+    st = str(o.get("status") or "").strip().lower()
+    fq = _num(o.get("filled_qty"))
+    if fq is None:
+        fq = _num(o.get("cumQuantity"))
+    qty = _num(o.get("qty"))
+    if qty is None:
+        qty = _num(o.get("quantity"))
+    ev = {"venue_status": o.get("status") or None, "filled": fq, "qty": qty}
+    if fq is None:
+        ev["why"] = "venue returned no filled quantity - an unread fill is not a zero"
+        return nr.UNKNOWN, ev
+    if qty is not None and fq > 0:
+        if fq >= qty:
+            return nr.FILLED, ev
+        return (nr.PARTIAL if any(w in st for w in OPEN_WORDS) else nr.PARTIAL), ev
+    if fq > 0:
+        return nr.PARTIAL, ev
+    if any(w in st for w in OPEN_WORDS):
+        return nr.OPEN, ev
+    if any(w in st for w in GONE_WORDS):
+        return nr.TERMINAL, ev
+    ev["why"] = f"venue status {st!r} is not one this reader knows"
+    return nr.UNKNOWN, ev
+
+
+def venue_evidence(legs, novig=None, kalshi=None, pmus=None, px=None):
     """Attach venue evidence to each outstanding leg. Returns (legs, summary_by_class).
 
     The readers are injectable so the tests exercise this against fakes and never a live venue.
@@ -158,13 +224,17 @@ def venue_evidence(legs, novig=None, kalshi=None, pmus=None):
     an unread venue must never be able to release a dollar, which is novig_reconcile's own rule and
     is the reason this does not fall back to the registry's status.
     """
+    import novig_reconcile as nr
     if novig is None:
         novig = _novig_index
     if kalshi is None:
         kalshi = _kalshi_order
     if pmus is None:
         pmus = _pmus_order
+    if px is None:
+        px = _px_trades
     (by_cid, fills), nv_why = novig()
+    px_by, px_why = px()
     counts = {}
     for leg in legs:
         book = (leg.get("book") or "").lower()
@@ -189,10 +259,23 @@ def venue_evidence(legs, novig=None, kalshi=None, pmus=None):
             if not o:
                 leg["evidence_class"], leg["evidence"] = UNREADABLE, {"why": why}
             else:
-                leg["evidence_class"] = PROVEN
-                leg["evidence"] = {"venue_status": o.get("status"),
-                                   "filled": o.get("filled_qty", o.get("cumQuantity")),
-                                   "qty": o.get("qty", o.get("quantity"))}
+                cls, ev = classify_generic(o)
+                leg["evidence_class"] = PROVEN if cls != nr.UNKNOWN else NO_RECORD
+                leg["venue_class"], leg["evidence"] = cls, ev
+        elif book == "prophetx":
+            if px_by is None:
+                leg["evidence_class"], leg["evidence"] = UNREADABLE, {"why": px_why}
+            else:
+                tr = px_by.get(str(oid)) or []
+                if tr:
+                    leg["evidence_class"], leg["venue_class"] = PROVEN, nr.FILLED
+                    leg["evidence"] = {"trade_records": len(tr), "source": "px get_trades"}
+                else:
+                    # No trade for this order id. ProphetX's trade list is FILLS, so absence is not
+                    # proof the order never filled - it may predate the window the venue returns.
+                    leg["evidence_class"], leg["venue_class"] = NO_RECORD, nr.UNKNOWN
+                    leg["evidence"] = {"why": "no ProphetX trade for this order id - absence of a "
+                                              "fill record is not proof of zero fills"}
         else:
             leg["evidence_class"] = NO_READER
             leg["evidence"] = {"why": f"no read-back path for book {book or 'unknown'!r}"}
@@ -206,20 +289,26 @@ def completeness(legs, unreadable, counts=None):
     Bounded, not asserted. The old version called the list COMPLETE when every leg merely carried a
     unit - which proves the reader parsed the row, not that the exposure is real or still open.
     """
+    import novig_reconcile as nr
     if unreadable:
         return "INCOMPLETE", f"{len(unreadable)} row(s) could not be classified"
-    missing_unit = [l for l in legs if l.get("unit") in (None, "")]
+    # A lane unit is needed only where the venue shows exposure still standing. A leg the venue has
+    # PROVEN terminal contributes nothing to the budget, so demanding a unit for it would hold the
+    # verdict hostage to settled history forever.
+    standing = [l for l in legs if l.get("venue_class") != nr.TERMINAL]
+    missing_unit = [l for l in standing if l.get("unit") in (None, "")]
     if missing_unit:
-        return "INCOMPLETE", (f"{len(missing_unit)} leg(s) carry no lane unit, so their share of "
-                              f"the budget cannot be computed")
+        return "INCOMPLETE", (f"{len(missing_unit)} leg(s) with standing exposure carry no lane "
+                              f"unit, so their share of the budget cannot be computed")
     if counts is None:
         return "UNPROVEN", "no venue evidence was gathered - the registry's own status is not proof"
     unproven = {k: v for k, v in counts.items() if k != PROVEN and v}
     if unproven:
         return "INCOMPLETE", "; ".join(f"{v} leg(s) {k.lower()}" for k, v in sorted(unproven.items()))
     if not legs:
-        return "COMPLETE", "no outstanding legs: nothing to backfill"
-    return "COMPLETE", f"{len(legs)} outstanding leg(s), each confirmed against its venue"
+        return "COMPLETE", "no order records at all: nothing to backfill"
+    return "COMPLETE", (f"{len(legs)} leg(s) confirmed against their venue "
+                        f"({len(standing)} with exposure still standing)")
 
 
 def min_at_sf(rows, needle):
@@ -236,6 +325,64 @@ def min_at_sf(rows, needle):
         if want in blob:
             hits.append(r)
     return hits
+
+
+def incident_exposure(rows, needle, legs):
+    """(report, units, discrepancies) for the incident: what each venue holds, and where it
+    disagrees with the registry.
+
+    Peter, Nov 23: report the ACTUAL Novig and ProphetX fills, the discrepancies and the combined
+    unit exposure. Combined exposure is in UNITS, never dollars, so this is safe to summarise in
+    chat; the dollar figures stay in the private mail and never reach a log.
+
+    A discrepancy is recorded, never reconciled away: where the registry and the venue disagree the
+    row says so and BOTH figures are kept. CLAUDE.md - two states with opposite remedies must not
+    be collapsed into one message.
+    """
+    import novig_reconcile as nr
+    want = str(needle or "").strip().lower()
+    if not want:
+        return [], None, []
+    hit_keys = {str(r.get("key") or r.get("play_key") or "") for r in min_at_sf(rows, want)}
+    mine = [l for l in legs if str(l.get("key") or "") in hit_keys and hit_keys]
+    report, disc, units = [], [], 0.0
+    units_unknown = 0
+    for l in mine:
+        vc = l.get("venue_class")
+        rec_term = bool(l.get("recorded_terminal"))
+        ev = l.get("evidence") or {}
+        report.append({"book": l.get("book"), "field": l.get("field"),
+                       "order_id": l.get("order_id"), "recorded_status": l.get("status"),
+                       "venue_class": vc, "evidence_class": l.get("evidence_class"),
+                       "asked_stake": l.get("asked_stake"), "filled_stake": l.get("filled_stake"),
+                       "venue_filled": ev.get("filled_usd", ev.get("filled")),
+                       "unit": l.get("unit"), "american": l.get("american")})
+        # the registry said terminal, the venue says it is still live - or the reverse
+        if rec_term and vc in (nr.OPEN, nr.PARTIAL):
+            disc.append({"order_id": l.get("order_id"), "book": l.get("book"),
+                         "why": "registry recorded this terminal; the venue still shows it live",
+                         "registry": l.get("status"), "venue": vc})
+        if (not rec_term) and vc == nr.TERMINAL:
+            disc.append({"order_id": l.get("order_id"), "book": l.get("book"),
+                         "why": "registry recorded this live; the venue shows it terminal",
+                         "registry": l.get("status"), "venue": vc})
+        if l.get("evidence_class") != PROVEN:
+            disc.append({"order_id": l.get("order_id"), "book": l.get("book"),
+                         "why": f"no venue proof: {l.get('evidence_class')}",
+                         "detail": ev.get("why")})
+        # combined UNIT exposure: the same per-leg fraction the reservation protocol uses, so the
+        # number here and the number the guard would enforce cannot drift apart.
+        if vc == nr.TERMINAL:
+            continue
+        try:
+            import review_unit_reservation as R
+            f = R.leg_fraction({"status": "open", "order_id": l.get("order_id") or "x",
+                                "asked_stake": l.get("asked_stake"),
+                                "american": l.get("american"), "unit": l.get("unit")})
+            units += f
+        except Exception:
+            units_unknown += 1
+    return report, (None if units_unknown else round(units, 3)), disc
 
 
 def _csv(legs):
@@ -265,6 +412,7 @@ def main(argv):
     legs, counts = venue_evidence(legs)
     verdict, why = completeness(legs, unreadable, counts)
     hits = min_at_sf(rows, needle)
+    inc, inc_units, inc_disc = incident_exposure(rows, needle, legs)
 
     # PUBLIC LOG: counts only. No key, no dollar figure, no order id.
     print(f"REPLAY: registry rows {len(rows)} | outstanding {len(legs)} | terminal {terminal} | "
@@ -272,8 +420,14 @@ def main(argv):
     print("REPLAY: venue evidence " + (", ".join(f"{k}={v}" for k, v in sorted(counts.items()))
                                        or "none gathered"), flush=True)
     print(f"REPLAY: backfill completeness {verdict} - {why}", flush=True)
-    print(f"REPLAY: incident rows matching the supplied term: {len(hits)}"
-          if needle else "REPLAY: no incident term supplied; replay section skipped", flush=True)
+    if needle:
+        print(f"REPLAY: incident rows matching the supplied term: {len(hits)} | "
+              f"legs {len(inc)} | discrepancies {len(inc_disc)}", flush=True)
+        # UNITS ONLY in the log. Dollars go to the private mail, per CLAUDE.md.
+        print("REPLAY: incident combined exposure " + (f"{inc_units} unit(s)" if inc_units
+              is not None else "NOT COMPUTABLE - a leg lacks a readable unit or price"), flush=True)
+    else:
+        print("REPLAY: no incident term supplied; replay section skipped", flush=True)
 
     body = [f"PR #10 private reconciliation - {datetime.now(timezone.utc).isoformat()}", "",
             "READ-ONLY. Nothing was placed or cancelled. EXEC_UNIT_LEDGER untouched.", "",
@@ -288,6 +442,18 @@ def main(argv):
         body += ["ROWS THAT COULD NOT BE CLASSIFIED (these block activation):"]
         body += [f"  {json.dumps(u, default=str)}" for u in unreadable[:50]] + [""]
     if needle:
+        body += [f"INCIDENT EXPOSURE - {len(inc)} leg(s) across the matching rows",
+                 f"  combined exposure: " + (f"{inc_units} unit(s)" if inc_units is not None
+                                             else "NOT COMPUTABLE"),
+                 "  per-leg detail (registry figure AND venue figure, both kept):",
+                 json.dumps(inc, indent=1, default=str)[:100000], ""]
+        if inc_disc:
+            body += [f"DISCREPANCIES - {len(inc_disc)}. Recorded, not reconciled away:"]
+            body += [f"  {json.dumps(d, default=str)}" for d in inc_disc[:50]] + [""]
+        else:
+            body += ["DISCREPANCIES: none found between the registry and the venues for these "
+                     "legs. That is not a claim that none exists - only legs with venue proof "
+                     "could be compared.", ""]
         body += [f"MIN @ SF REPLAY - rows matching {needle!r}: {len(hits)}",
                  "Verbatim registry rows. No verdict is computed here; nothing is inferred.",
                  "This is a REGISTRY-RECORD search. It is not a venue-side reconciliation of that",
