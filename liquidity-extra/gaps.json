@@ -2,36 +2,6 @@
  "note": "PAPER ONLY (Oct 25; persistence added Oct 26): opposite sides of the same game/market/line on two different exchanges whose combined cost after fees is under $1 (Kalshi/Novig/ProphetX; Polymarket here is the global book, excluded). edge_pct = locked profit per $ staked at first sight; max/last_edge_pct while open. size_est = smaller leg's near-price depth (UPPER BOUND). first/last_seen_utc, scans_seen, lifetime_min = how long the gap stayed open (scan-interval resolution; a 1-scan gap may be a feed artifact). scan_sec = seconds from run start to this save, the most the two legs' reads can be apart. Measurement only: never alerted, never bet.",
  "gaps": [
   {
-   "seen_utc": "2026-11-09T07:00:24Z",
-   "league": "NCAAB",
-   "game": "North Florida @ Miami Florida",
-   "market": "total",
-   "line": 162.5,
-   "edge_pct": 0.58,
-   "total_cost": 0.9942,
-   "size_est": 0,
-   "legs": [
-    {
-     "book": "novig",
-     "side": "Under 162.5 (162.5)",
-     "price": 0.47,
-     "cost_after_fee": 0.47
-    },
-    {
-     "book": "prophetx",
-     "side": "over 162.5 (162.5)",
-     "price": 0.5192,
-     "cost_after_fee": 0.5242
-    }
-   ],
-   "first_seen_utc": "2026-11-09T07:00:24Z",
-   "last_seen_utc": "2026-11-09T07:00:24Z",
-   "scans_seen": 1,
-   "max_edge_pct": 0.58,
-   "scan_sec": 475,
-   "lifetime_min": 0
-  },
-  {
    "seen_utc": "2026-11-10T21:40:44Z",
    "league": "NCAAB",
    "game": "San Diego @ Colorado",
@@ -2393,13 +2363,13 @@
     }
    ],
    "first_seen_utc": "2026-11-23T05:00:26Z",
-   "last_seen_utc": "2026-11-23T06:50:18Z",
-   "scans_seen": 12,
+   "last_seen_utc": "2026-11-23T07:00:26Z",
+   "scans_seen": 13,
    "max_edge_pct": 38.75,
    "scan_sec": 275,
-   "lifetime_min": 110,
+   "lifetime_min": 120,
    "last_edge_pct": 38.75,
-   "last_size_est": 1290
+   "last_size_est": 560
   }
  ]
 }
