@@ -376,7 +376,14 @@ def incident_exposure(rows, needle, legs):
     want = str(needle or "").strip().lower()
     if not want:
         return [], None, []
-    hit_keys = {str(r.get("key") or r.get("play_key") or "") for r in min_at_sf(rows, want)}
+    hit_keys = set()
+    for row in min_at_sf(rows, want):
+        try:
+            hit_keys.add(canonical_registry_key(row.get("key") or row.get("play_key")))
+        except Exception:
+            # The row is already reported as unreadable by backfill_candidates.
+            # Never force an invalid source key to match a valid reservation.
+            pass
     mine = [l for l in legs if str(l.get("key") or "") in hit_keys and hit_keys]
     report, disc, units = [], [], 0.0
     units_unknown = 0
