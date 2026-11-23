@@ -17,7 +17,7 @@ def ok(label, cond, got=""):
 
 # ---------------------------------------------------------------- 1. nested enumeration
 FLAT = {"key": "k1", "order_id": "top-1", "status": "open"}
-NESTED = {"key": "k2",
+NESTED = {"key": "board|NBA|LAL @ BOS|total|UNDER",
           "live_order": {"order_id": "c1", "client_id": "c1", "book": "novig", "status": "open",
                          "asked_stake": 220.0, "american": -110, "unit": 200.0},
           "live_rest": {"order_id": "a2", "client_id": "c2", "book": "kalshi", "status": "open",
@@ -47,7 +47,7 @@ ok("a top-level-only row is reported UNREADABLE, never silently dropped",
 ok("and the reason names the row shape, so the two remedies stay apart",
    "no nested order record" in _u[0]["why"])
 
-_l2, _u2, _ = RR.backfill_candidates([{"key": "k3", "live_order": {
+_l2, _u2, _ = RR.backfill_candidates([{"key": "r1|NBA|LAL @ BOS|total|UNDER", "live_order": {
     "order_id": "x", "book": "novig", "status": "weird_state"}}])
 ok("an unknown recorded status is UNREADABLE, not assumed open or closed",
    not _l2 and len(_u2) == 1 and "weird_state" in _u2[0]["why"])
@@ -223,14 +223,14 @@ ok("and never reads or writes the ledger flag", "EXEC_UNIT_LEDGER" not in src.re
     "it never touches EXEC_UNIT_LEDGER", "").replace("EXEC_UNIT_LEDGER untouched", ""))
 
 # ---------------------------------------------------------------- 7. the incident report
-INC = {"key": "MIN@SF", "live_order": {"order_id": "c1", "client_id": "c1", "book": "novig",
+INC = {"key": "rule|NFL|MIN @ SF|total|UNDER", "live_order": {"order_id": "c1", "client_id": "c1", "book": "novig",
                                        "status": "open", "asked_stake": 110.0, "american": -110,
                                        "unit": 200.0},
        "live_more": [{"order_id": "px-1", "book": "prophetx", "status": "filled",
                       "asked_stake": 300.0, "american": -110, "unit": 300.0}]}
 ilegs, _iu, _it = RR.backfill_candidates([INC])
 ilegs, _ic = RR.venue_evidence(ilegs, novig=novig_ok, kalshi=kalshi_ok, pmus=pmus_ok, px=px_ok)
-rep, units, disc = RR.incident_exposure([INC], "MIN@SF", ilegs)
+rep, units, disc = RR.incident_exposure([INC], "MIN @ SF", ilegs)
 ok("the incident report covers BOTH venues' legs", len(rep) == 2, str(len(rep)))
 ok("Novig and ProphetX are both named", {r["book"] for r in rep} == {"novig", "prophetx"})
 ok("combined exposure is reported in UNITS", isinstance(units, float), str(units))
@@ -244,7 +244,7 @@ ok("a leg with no venue proof is itself a discrepancy",
    any("no venue proof" in d.get("why", "") for d in RR.incident_exposure(
        [INC], "MIN@SF", [dict(ilegs[0], evidence_class=RR.UNREADABLE)])[2]))
 ok("an unreadable unit makes combined exposure NOT COMPUTABLE rather than a guess",
-   RR.incident_exposure([INC], "MIN@SF",
+   RR.incident_exposure([INC], "MIN @ SF",
                         [dict(ilegs[0], unit=None)])[1] is None)
 ok("no needle means no incident report at all", RR.incident_exposure([INC], "", ilegs) == ([], None, []))
 log_part = src.split("# PUBLIC LOG")[1].split("body = [")[0]
@@ -260,6 +260,41 @@ ok("it does not claim a secret it never reads", "TRACKER_PASSPHRASE" not in src.
    "it is not given TRACKER_PASSPHRASE", ""))
 ok("and nothing here touches the pause, stop or bot-order registry controls",
    not any(x in src for x in ("auto_pause(", "stop_state(", "set_bot_orders(", "add_bot_order(")))
+
+
+
+# ---------------------------------------------------------------- 8. key normalization and terminal-fill regressions
+ok("lane prefixes map to the exact same canonical budget",
+   RR.canonical_registry_key("r1|NBA|LAL @ BOS|total|UNDER")
+   == RR.canonical_registry_key("board|NBA|LAL @ BOS|total|UNDER"))
+ok("alternate total prices and lines do not create separate budgets",
+   RR.canonical_registry_key("NBA|LAL @ BOS|total|UNDER")
+   == RR.canonical_registry_key("r1|NBA|LAL @ BOS|total|UNDER"))
+ok("invalid source keys fail rather than creating a separate budget",
+   len(RR.backfill_candidates([{"key":"unknown", "live_order":{
+       "order_id":"x", "book":"novig", "status":"open", "asked_stake":100,
+       "american":-110, "unit":200}}])[1]) == 1)
+_probe = {"key":"r1|NFL|MIN @ SF|total|UNDER",
+          "live_order":{"order_id":"px-filled", "book":"prophetx", "status":"filled",
+                        "asked_stake":330.0, "american":-110, "unit":300.0}}
+_probe_legs, _probe_bad, _ = RR.backfill_candidates([_probe])
+ok("a lane-tagged filled order is exported with the shared canonical key",
+   len(_probe_legs) == 1 and _probe_legs[0]["key"] ==
+   RR.canonical_registry_key("NFL|MIN @ SF|total|UNDER"))
+_probe_proven = [dict(_probe_legs[0], evidence_class=RR.PROVEN,
+                      venue_class="FILLED", evidence={"trade_records":1})]
+_pr, _units, _d = RR.incident_exposure([_probe], "MIN @ SF", _probe_proven)
+ok("confirmed FILLED terminal order still consumes capacity",
+   len(_pr) == 1 and abs(_units - 1.0) < 1e-9, str(_units))
+_probe_zero = [dict(_probe_legs[0], evidence_class=RR.PROVEN,
+                    venue_class="TERMINAL ZERO FILL", evidence={"filled":0})]
+_pr, _zero_units, _d = RR.incident_exposure([_probe], "MIN @ SF", _probe_zero)
+ok("only proven zero-fill terminal releases capacity",
+   _zero_units == 0.0, str(_zero_units))
+_pr, _uncertain, _d = RR.incident_exposure([_probe], "MIN @ SF",
+  [dict(_probe_legs[0], evidence_class=RR.NO_RECORD, venue_class="UNKNOWN")])
+ok("unverified venue record yields NOT COMPUTABLE instead of falsely zero",
+   _uncertain is None, str(_uncertain))
 
 print(f"\n{len(P)} passed, {len(F)} failed")
 raise SystemExit(1 if F else 0)
