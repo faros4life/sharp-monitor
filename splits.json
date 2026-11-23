@@ -181,14 +181,14 @@
    "status": "OPEN",
    "closed_utc": null,
    "plays": 884,
-   "resulted": 802,
-   "W": 433,
+   "resulted": 804,
+   "W": 435,
    "L": 369,
    "P": 0,
-   "units": 10.87,
-   "u_per_play": 0.014,
+   "units": 12.85,
+   "u_per_play": 0.016,
    "true_close_value_pct": -1.09,
-   "true_close_n": 789
+   "true_close_n": 791
   },
   {
    "id": "fade_1224",
@@ -287,27 +287,38 @@
    "status": "OPEN",
    "closed_utc": null,
    "plays": 229,
-   "resulted": 211,
-   "W": 106,
+   "resulted": 212,
+   "W": 107,
    "L": 105,
    "P": 0,
-   "units": -10.83,
-   "u_per_play": -0.051,
-   "true_close_value_pct": -0.3,
-   "true_close_n": 204,
+   "units": -9.85,
+   "u_per_play": -0.046,
+   "true_close_value_pct": -0.31,
+   "true_close_n": 205,
    "all_history": {
     "plays": 261,
-    "resulted": 243,
-    "W": 130,
+    "resulted": 244,
+    "W": 131,
     "L": 113,
     "P": 0,
-    "units": 1.77,
-    "u_per_play": 0.007,
-    "true_close_value_pct": -0.3,
-    "true_close_n": 204
+    "units": 2.75,
+    "u_per_play": 0.011,
+    "true_close_value_pct": -0.31,
+    "true_close_n": 205
    },
    "by_book": {
     "forward": {
+     "prophetx": {
+      "plays": 38,
+      "resulted": 37,
+      "W": 20,
+      "L": 17,
+      "P": 0,
+      "units": 0.49,
+      "u_per_play": 0.013,
+      "true_close_value_pct": -1.13,
+      "true_close_n": 36
+     },
      "hardrockbet": {
       "plays": 135,
       "resulted": 123,
@@ -318,17 +329,6 @@
       "u_per_play": -0.002,
       "true_close_value_pct": -0.12,
       "true_close_n": 118
-     },
-     "prophetx": {
-      "plays": 38,
-      "resulted": 36,
-      "W": 19,
-      "L": 17,
-      "P": 0,
-      "units": -0.49,
-      "u_per_play": -0.014,
-      "true_close_value_pct": -1.12,
-      "true_close_n": 35
      },
      "novig": {
       "plays": 40,
@@ -356,14 +356,14 @@
     "all_history": {
      "prophetx": {
       "plays": 55,
-      "resulted": 53,
-      "W": 35,
+      "resulted": 54,
+      "W": 36,
       "L": 18,
       "P": 0,
-      "units": 12.18,
-      "u_per_play": 0.23,
-      "true_close_value_pct": -1.12,
-      "true_close_n": 35
+      "units": 13.16,
+      "u_per_play": 0.244,
+      "true_close_value_pct": -1.13,
+      "true_close_n": 36
      },
      "fanduel": {
       "plays": 1,
@@ -424,6 +424,17 @@
       "true_close_value_pct": -0.44,
       "true_close_n": 109
      },
+     "total over": {
+      "plays": 36,
+      "resulted": 36,
+      "W": 17,
+      "L": 19,
+      "P": 0,
+      "units": -3.89,
+      "u_per_play": -0.108,
+      "true_close_value_pct": -0.88,
+      "true_close_n": 35
+     },
      "total under": {
       "plays": 68,
       "resulted": 63,
@@ -434,17 +445,6 @@
       "u_per_play": -0.071,
       "true_close_value_pct": 0.26,
       "true_close_n": 61
-     },
-     "total over": {
-      "plays": 36,
-      "resulted": 35,
-      "W": 16,
-      "L": 19,
-      "P": 0,
-      "units": -4.87,
-      "u_per_play": -0.139,
-      "true_close_value_pct": -0.86,
-      "true_close_n": 34
      }
     },
     "all_history": {
@@ -459,6 +459,17 @@
       "true_close_value_pct": -0.44,
       "true_close_n": 109
      },
+     "total over": {
+      "plays": 45,
+      "resulted": 45,
+      "W": 23,
+      "L": 22,
+      "P": 0,
+      "units": -1.84,
+      "u_per_play": -0.041,
+      "true_close_value_pct": -0.88,
+      "true_close_n": 35
+     },
      "total under": {
       "plays": 70,
       "resulted": 65,
@@ -469,17 +480,6 @@
       "u_per_play": -0.041,
       "true_close_value_pct": 0.26,
       "true_close_n": 61
-     },
-     "total over": {
-      "plays": 45,
-      "resulted": 44,
-      "W": 22,
-      "L": 22,
-      "P": 0,
-      "units": -2.82,
-      "u_per_play": -0.064,
-      "true_close_value_pct": -0.86,
-      "true_close_n": 34
      }
     }
    }
@@ -785,5 +785,5 @@
   "liq_evening": 0
  },
  "resulted_rule": "resulted = result W, L or P with a unit value (pushes count as 0u); liquidity artifacts excluded; pending and ungraded plays do not count",
- "updated_utc": "2026-11-23T20:20:27Z"
+ "updated_utc": "2026-11-23T20:30:32Z"
 }
