@@ -1,13 +1,57 @@
 {
  "moves": [
   {
+   "alerted_utc": "2026-11-24T04:25:55Z",
+   "bar": false,
+   "best_price": 0.525,
+   "best_price_book": "novig",
+   "book": "novig",
+   "close_price": 0.525,
+   "clv_cents": 0.0,
+   "date": "2026-11-24",
+   "dir": "DROP",
+   "ex_stats": {
+    "openInterest": 99484.0,
+    "volume": 99484.0
+   },
+   "first_play": false,
+   "game": "Detroit Pistons @ Orlando Magic",
+   "key": "novig|{\"market_id\": \"01a20ae6-bb3f-7a61-846c-7ce1b04ffe9e\", \"outcome_id\": \"01a20ae6-bb3f-7a61-846c-7cf20dc92ef6\"}",
+   "lead_min": 1185,
+   "league": "NBA",
+   "league_x": 0.2,
+   "line": 2.5,
+   "market": "spread",
+   "normal_4h": 3586,
+   "now": 1790,
+   "other_side_now": 2079,
+   "paper_only": true,
+   "price": 0.525,
+   "price_american": -111,
+   "ref": {
+    "market_id": "01a20ae6-bb3f-7a61-846c-7ce1b04ffe9e",
+    "outcome_id": "01a20ae6-bb3f-7a61-846c-7cf20dc92ef6"
+   },
+   "result": null,
+   "side": "Orlando Magic",
+   "side_label": "ORL +2.5 (2.5)",
+   "side_raw": 1,
+   "start_utc": "2026-11-25T00:11:00Z",
+   "teams": [
+    "Detroit Pistons",
+    "Orlando Magic"
+   ],
+   "units_flat": null,
+   "x": 0.5
+  },
+  {
    "alerted_utc": "2026-11-24T04:20:20Z",
    "bar": true,
    "best_price": 0.5242,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5192,
-   "clv_cents": 0.0,
+   "close_price": 0.5261,
+   "clv_cents": 0.7,
    "date": "2026-11-24",
    "dir": "DROP",
    "ex_stats": null,
@@ -110,6 +154,8 @@
    "other_side_now": 438,
    "paper_only": true,
    "price": 0.5169,
+   "price_after_15m": 0.515,
+   "price_after_15m_book": "novig",
    "price_american": -107,
    "ref": {
     "line": 231.5,
@@ -122,6 +168,7 @@
    "side_label": "over 231.5 (231.5)",
    "side_raw": "OVER",
    "start_utc": "2026-11-25T03:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Dallas Mavericks",
     "Denver Nuggets"
@@ -153,6 +200,8 @@
    "other_side_now": 1453,
    "paper_only": true,
    "price": 0.5,
+   "price_after_15m": 0.495,
+   "price_after_15m_book": "novig",
    "price_american": -100,
    "ref": {
     "line": 231.5,
@@ -165,6 +214,7 @@
    "side_label": "under 231.5 (231.5)",
    "side_raw": "UNDER",
    "start_utc": "2026-11-25T03:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Dallas Mavericks",
     "Denver Nuggets"
@@ -178,8 +228,8 @@
    "best_price": 0.485,
    "best_price_book": "novig",
    "book": "kalshi",
-   "close_price": 0.49,
-   "clv_cents": 0.0,
+   "close_price": 0.48,
+   "clv_cents": -1.0,
    "date": "2026-11-24",
    "dir": "RAISE",
    "ex_stats": {
@@ -188,9 +238,9 @@
     "volume_fp": 226.85
    },
    "ex_stats_close": {
-    "open_interest_fp": 226.85,
+    "open_interest_fp": 286.85,
     "volume_24h_fp": 226.85,
-    "volume_fp": 226.85
+    "volume_fp": 286.85
    },
    "first_play": false,
    "game": "Dallas vs Denver: Spread",
@@ -205,6 +255,8 @@
    "other_side_now": 85183,
    "paper_only": true,
    "price": 0.49,
+   "price_after_15m": 0.485,
+   "price_after_15m_book": "novig",
    "price_american": 104,
    "ref": {
     "kalshi_side": "no",
@@ -215,6 +267,7 @@
    "side_label": "NOT Denver wins by over 7.5 points",
    "side_raw": 0,
    "start_utc": "2026-11-25T03:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Dallas",
     "Denver"
@@ -228,8 +281,8 @@
    "best_price": 0.53,
    "best_price_book": "novig",
    "book": "kalshi",
-   "close_price": 0.52,
-   "clv_cents": 0.0,
+   "close_price": 0.54,
+   "clv_cents": 2.0,
    "date": "2026-11-24",
    "dir": "RAISE",
    "ex_stats": {
@@ -238,9 +291,9 @@
     "volume_fp": 226.85
    },
    "ex_stats_close": {
-    "open_interest_fp": 226.85,
+    "open_interest_fp": 286.85,
     "volume_24h_fp": 226.85,
-    "volume_fp": 226.85
+    "volume_fp": 286.85
    },
    "first_play": false,
    "game": "Dallas vs Denver: Spread",
@@ -255,6 +308,8 @@
    "other_side_now": 76280,
    "paper_only": true,
    "price": 0.52,
+   "price_after_15m": 0.53,
+   "price_after_15m_book": "novig",
    "price_american": -108,
    "ref": {
     "kalshi_side": "yes",
@@ -265,6 +320,7 @@
    "side_label": "Denver wins by over 7.5 points",
    "side_raw": 1,
    "start_utc": "2026-11-25T03:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Dallas",
     "Denver"
@@ -380,8 +436,8 @@
    "best_price": 0.515,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5283,
-   "clv_cents": 0.0,
+   "close_price": 0.5238,
+   "clv_cents": -0.4,
    "date": "2026-11-24",
    "dir": "RAISE",
    "ex_stats": null,
@@ -782,8 +838,8 @@
     "volume": 1413374.0
    },
    "ex_stats_close": {
-    "openInterest": 965946.0,
-    "volume": 1420105.0
+    "openInterest": 1022943.0,
+    "volume": 1477102.0
    },
    "first_play": false,
    "game": "Kent State @ Eastern Michigan",
@@ -834,9 +890,9 @@
     "volume_fp": 23476.25
    },
    "ex_stats_close": {
-    "open_interest_fp": 32516.52,
-    "volume_24h_fp": 29766.35,
-    "volume_fp": 37177.61
+    "open_interest_fp": 33115.340000000004,
+    "volume_24h_fp": 30006.690000000002,
+    "volume_fp": 37776.43
    },
    "first_play": false,
    "game": "Dallas vs Denver",
@@ -887,9 +943,9 @@
     "volume_fp": 32810.76
    },
    "ex_stats_close": {
-    "open_interest_fp": 41638.649999999994,
-    "volume_24h_fp": 35715.57,
-    "volume_fp": 51028.46
+    "open_interest_fp": 42382.25,
+    "volume_24h_fp": 36038.77,
+    "volume_fp": 51772.06
    },
    "first_play": false,
    "game": "Boston vs Washington",
@@ -940,9 +996,9 @@
     "volume_fp": 17610.32
    },
    "ex_stats_close": {
-    "open_interest_fp": 32516.52,
-    "volume_24h_fp": 29766.35,
-    "volume_fp": 37177.61
+    "open_interest_fp": 33115.340000000004,
+    "volume_24h_fp": 30006.690000000002,
+    "volume_fp": 37776.43
    },
    "first_play": false,
    "game": "Dallas vs Denver",
@@ -1197,9 +1253,9 @@
     "volume_fp": 31486.16
    },
    "ex_stats_close": {
-    "open_interest_fp": 41638.649999999994,
-    "volume_24h_fp": 35715.57,
-    "volume_fp": 51028.46
+    "open_interest_fp": 42382.25,
+    "volume_24h_fp": 36038.77,
+    "volume_fp": 51772.06
    },
    "first_play": false,
    "game": "Boston vs Washington",
@@ -1250,9 +1306,9 @@
     "volume_fp": 14711.14
    },
    "ex_stats_close": {
-    "open_interest_fp": 16798.58,
-    "volume_24h_fp": 15006.13,
-    "volume_fp": 18569.47
+    "open_interest_fp": 17337.82,
+    "volume_24h_fp": 15770.39,
+    "volume_fp": 19108.71
    },
    "first_play": false,
    "game": "Detroit vs Orlando",
@@ -1302,8 +1358,8 @@
     "volume": 2167204.0
    },
    "ex_stats_close": {
-    "openInterest": 2370356.0,
-    "volume": 2949500.0
+    "openInterest": 2393870.0,
+    "volume": 2998280.0
    },
    "first_play": true,
    "game": "Boston Celtics @ Washington Wizards",
@@ -1344,8 +1400,8 @@
    "best_price": 0.225,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.205,
-   "clv_cents": -2.0,
+   "close_price": 0.21,
+   "clv_cents": -1.5,
    "date": "2026-11-24",
    "dir": "RAISE",
    "ex_stats": {
@@ -1353,8 +1409,8 @@
     "volume": 2167204.0
    },
    "ex_stats_close": {
-    "openInterest": 2370356.0,
-    "volume": 2949500.0
+    "openInterest": 2393870.0,
+    "volume": 2998280.0
    },
    "first_play": true,
    "game": "Boston Celtics @ Washington Wizards",
@@ -1456,9 +1512,9 @@
     "volume_fp": 14459.62
    },
    "ex_stats_close": {
-    "open_interest_fp": 16798.58,
-    "volume_24h_fp": 15006.13,
-    "volume_fp": 18569.47
+    "open_interest_fp": 17337.82,
+    "volume_24h_fp": 15770.39,
+    "volume_fp": 19108.71
    },
    "first_play": false,
    "game": "Detroit vs Orlando",
@@ -1508,8 +1564,8 @@
     "volume": 1367703.0
    },
    "ex_stats_close": {
-    "openInterest": 965946.0,
-    "volume": 1420105.0
+    "openInterest": 1022943.0,
+    "volume": 1477102.0
    },
    "first_play": true,
    "game": "Kent State @ Eastern Michigan",
@@ -1560,9 +1616,9 @@
     "volume_fp": 438.15
    },
    "ex_stats_close": {
-    "open_interest_fp": 538.65,
+    "open_interest_fp": 634.65,
     "volume_24h_fp": 494.59,
-    "volume_fp": 538.65
+    "volume_fp": 634.65
    },
    "first_play": true,
    "game": "Vegas vs Edmonton: Total Goals",
@@ -1613,9 +1669,9 @@
     "volume_fp": 438.15
    },
    "ex_stats_close": {
-    "open_interest_fp": 538.65,
+    "open_interest_fp": 634.65,
     "volume_24h_fp": 494.59,
-    "volume_fp": 538.65
+    "volume_fp": 634.65
    },
    "first_play": false,
    "game": "Vegas vs Edmonton: Total Goals",
@@ -1665,8 +1721,8 @@
     "volume": 1348785.0
    },
    "ex_stats_close": {
-    "openInterest": 965946.0,
-    "volume": 1420105.0
+    "openInterest": 1022943.0,
+    "volume": 1477102.0
    },
    "first_play": false,
    "game": "Kent State @ Eastern Michigan",
@@ -1894,8 +1950,8 @@
    "best_price": 0.515,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5215,
-   "clv_cents": 0.7,
+   "close_price": 0.5192,
+   "clv_cents": 0.5,
    "date": "2026-11-24",
    "dir": "DROP",
    "ex_stats": null,
@@ -2895,9 +2951,9 @@
     "volume_fp": 44.06
    },
    "ex_stats_close": {
-    "open_interest_fp": 538.65,
+    "open_interest_fp": 634.65,
     "volume_24h_fp": 494.59,
-    "volume_fp": 538.65
+    "volume_fp": 634.65
    },
    "first_play": true,
    "game": "Vegas vs Edmonton: Total Goals",
@@ -4268,8 +4324,8 @@
    "best_price": 0.5076,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5,
-   "clv_cents": -0.2,
+   "close_price": 0.5025,
+   "clv_cents": 0.0,
    "date": "2026-11-24",
    "dir": "RAISE",
    "ex_stats": null,
@@ -4466,8 +4522,8 @@
    "best_price": 0.5051,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.5025,
+   "clv_cents": 0.2,
    "date": "2026-11-24",
    "dir": "DROP",
    "ex_stats": null,
@@ -4906,8 +4962,8 @@
     "volume": 976165.0
    },
    "ex_stats_close": {
-    "openInterest": 965946.0,
-    "volume": 1420105.0
+    "openInterest": 1022943.0,
+    "volume": 1477102.0
    },
    "first_play": true,
    "game": "Kent State @ Eastern Michigan",
@@ -5157,8 +5213,8 @@
    "best_price": 0.55,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.55,
-   "clv_cents": 0.0,
+   "close_price": 0.555,
+   "clv_cents": 0.5,
    "date": "2026-11-24",
    "dir": "RAISE",
    "ex_stats": {
@@ -5166,8 +5222,8 @@
     "volume": 23671.0
    },
    "ex_stats_close": {
-    "openInterest": 1807148.0,
-    "volume": 1871318.0
+    "openInterest": 2103714.0,
+    "volume": 2167884.0
    },
    "first_play": true,
    "game": "Detroit Pistons @ Orlando Magic",
@@ -6947,8 +7003,8 @@
    "best_price": 0.46,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.46,
-   "clv_cents": 0.0,
+   "close_price": 0.455,
+   "clv_cents": -0.5,
    "date": "2026-11-24",
    "dir": "RAISE",
    "ex_stats": {
@@ -6956,8 +7012,8 @@
     "volume": 23671.0
    },
    "ex_stats_close": {
-    "openInterest": 1807148.0,
-    "volume": 1871318.0
+    "openInterest": 2103714.0,
+    "volume": 2167884.0
    },
    "first_play": true,
    "game": "Detroit Pistons @ Orlando Magic",
@@ -7129,7 +7185,7 @@
     "outcome_id": "01a20595-5b20-7592-ba48-509ceda39293"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "UNDER",
    "side_label": "Under 225.5 (225.5)",
    "side_raw": "UNDER",
@@ -7276,7 +7332,7 @@
     "outcome_id": "01a20595-5b20-7592-ba48-508f42695eb7"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "OVER",
    "side_label": "Over 225.5 (225.5)",
    "side_raw": "OVER",
@@ -7304,9 +7360,9 @@
     "volume_fp": 1692.6399999999999
    },
    "ex_stats_close": {
-    "open_interest_fp": 4184.91,
-    "volume_24h_fp": 3448.42,
-    "volume_fp": 4429.13
+    "open_interest_fp": 4201.2300000000005,
+    "volume_24h_fp": 3454.09,
+    "volume_fp": 4445.45
    },
    "first_play": false,
    "game": "Vegas vs Edmonton",
@@ -7357,9 +7413,9 @@
     "volume_fp": 1692.6399999999999
    },
    "ex_stats_close": {
-    "open_interest_fp": 4184.91,
-    "volume_24h_fp": 3448.42,
-    "volume_fp": 4429.13
+    "open_interest_fp": 4201.2300000000005,
+    "volume_24h_fp": 3454.09,
+    "volume_fp": 4445.45
    },
    "first_play": true,
    "game": "Vegas vs Edmonton",
@@ -7428,7 +7484,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "OVER",
    "side_label": "over 225 (225)",
    "side_raw": "OVER",
@@ -7507,8 +7563,8 @@
     "volume": 526616.0
    },
    "ex_stats_close": {
-    "openInterest": 2370356.0,
-    "volume": 2949500.0
+    "openInterest": 2393870.0,
+    "volume": 2998280.0
    },
    "first_play": true,
    "game": "Boston Celtics @ Washington Wizards",
@@ -7549,8 +7605,8 @@
    "best_price": 0.215,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.205,
-   "clv_cents": -1.0,
+   "close_price": 0.21,
+   "clv_cents": -0.5,
    "date": "2026-11-24",
    "dir": "DROP",
    "ex_stats": {
@@ -7558,8 +7614,8 @@
     "volume": 526616.0
    },
    "ex_stats_close": {
-    "openInterest": 2370356.0,
-    "volume": 2949500.0
+    "openInterest": 2393870.0,
+    "volume": 2998280.0
    },
    "first_play": true,
    "game": "Boston Celtics @ Washington Wizards",
@@ -7600,8 +7656,8 @@
    "best_price": 0.55,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.55,
-   "clv_cents": 0.0,
+   "close_price": 0.555,
+   "clv_cents": 0.5,
    "date": "2026-11-24",
    "dir": "DROP",
    "ex_stats": {
@@ -7609,8 +7665,8 @@
     "volume": 23671.0
    },
    "ex_stats_close": {
-    "openInterest": 1807148.0,
-    "volume": 1871318.0
+    "openInterest": 2103714.0,
+    "volume": 2167884.0
    },
    "first_play": true,
    "game": "Detroit Pistons @ Orlando Magic",
@@ -8026,7 +8082,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "Los Angeles Clippers",
    "side_label": "Los Angeles Clippers +12.5 (+12.5)",
    "side_raw": 0,
@@ -8073,7 +8129,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "Houston Rockets",
    "side_label": "Houston Rockets -12.5 (-12.5)",
    "side_raw": 1,
@@ -8362,7 +8418,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "OVER",
    "side_label": "over 225 (225)",
    "side_raw": "OVER",
@@ -9571,7 +9627,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "Los Angeles Clippers",
    "side_label": "Los Angeles Clippers +12 (+12)",
    "side_raw": 0,
@@ -9618,7 +9674,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "Houston Rockets",
    "side_label": "Houston Rockets -12 (-12)",
    "side_raw": 1,
@@ -9915,7 +9971,7 @@
     "outcome_id": "01a20595-5b1f-7ea0-9560-874e7763f52a"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "Los Angeles Clippers",
    "side_label": "LAC +12.5 (-12.5)",
    "side_raw": 0,
@@ -9967,7 +10023,7 @@
     "outcome_id": "01a20595-5b1f-7ea0-9560-873976fe2f4b"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "Houston Rockets",
    "side_label": "HOU -12.5 (-12.5)",
    "side_raw": 1,
@@ -10731,7 +10787,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "Houston Rockets",
    "side_label": "Houston Rockets -12.5 (-12.5)",
    "side_raw": 1,
@@ -11204,9 +11260,9 @@
     "volume_fp": 44.06
    },
    "ex_stats_close": {
-    "open_interest_fp": 538.65,
+    "open_interest_fp": 634.65,
     "volume_24h_fp": 494.59,
-    "volume_fp": 538.65
+    "volume_fp": 634.65
    },
    "first_play": true,
    "game": "Vegas vs Edmonton: Total Goals",
@@ -11714,8 +11770,8 @@
    "best_price": 0.4673,
    "best_price_book": "kalshi",
    "book": "novig",
-   "close_price": 0.46,
-   "clv_cents": -1.0,
+   "close_price": 0.455,
+   "clv_cents": -1.5,
    "date": "2026-11-24",
    "dir": "DROP",
    "ex_stats": {
@@ -11723,8 +11779,8 @@
     "volume": 23671.0
    },
    "ex_stats_close": {
-    "openInterest": 1807148.0,
-    "volume": 1871318.0
+    "openInterest": 2103714.0,
+    "volume": 2167884.0
    },
    "first_play": true,
    "game": "Detroit Pistons @ Orlando Magic",
@@ -13875,7 +13931,7 @@
     "outcome_id": "01a20595-5b1f-7ea0-9560-874e7763f52a"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "Los Angeles Clippers",
    "side_label": "LAC +12.5 (-12.5)",
    "side_raw": 0,
@@ -14789,7 +14845,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "Los Angeles Clippers",
    "side_label": "Los Angeles Clippers +12.5 (+12.5)",
    "side_raw": 0,
@@ -15940,7 +15996,7 @@
     "outcome_id": "01a20595-5b20-7592-ba48-5113186b7442"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "OVER",
    "side_label": "Over 229.5 (229.5)",
    "side_raw": "OVER",
@@ -17355,7 +17411,7 @@
     "outcome_id": "01a20595-5b20-7592-ba48-5113186b7442"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "OVER",
    "side_label": "Over 229.5 (229.5)",
    "side_raw": "OVER",
@@ -18516,7 +18572,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "Los Angeles Clippers",
    "side_label": "Los Angeles Clippers",
    "side_raw": 0,
@@ -37939,7 +37995,7 @@
     "outcome_id": "01a1fd16-838d-7b32-ae52-ce19e91a649b"
    },
    "result": null,
-   "settle_tries": 10,
+   "settle_tries": 11,
    "side": "Los Angeles Clippers",
    "side_label": "LAC (0)",
    "side_raw": 0,
@@ -37991,7 +38047,7 @@
     "outcome_id": "01a1fd16-838d-7b32-ae52-ce015020e884"
    },
    "result": null,
-   "settle_tries": 10,
+   "settle_tries": 11,
    "side": "Houston Rockets",
    "side_label": "HOU (0)",
    "side_raw": 1,
