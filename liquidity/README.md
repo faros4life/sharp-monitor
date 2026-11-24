@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 23, 8:55 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 77.
+Updated Mon Nov 23, 9:00 PM ET. This run: 1 new, 0 not confirmed, 2 pending. Open alerts: 78.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 23 9:00PM | NBA | San Antonio vs Sacramento: Spread | spread: NOT San Antonio wins by over 8.5 points | kalshi | $46k | -108 | ✅ novig |  | +0.0c |  | pending |
 | Nov 23 8:50PM | NBA | Utah vs Los Angeles L: Spread | spread: NOT Los Angeles L wins by over 13.5 points | kalshi | $44k | -108 | ✅ novig |  | +0.0c |  | pending |
 | Nov 23 8:05PM | NBA | Boston vs Washington | moneyline: Boston | kalshi | $46k | -355 |  |  | +1.0c |  | pending |
 | Nov 23 7:05PM | NBA | Detroit vs Orlando | moneyline: Orlando | kalshi | $26k | +122 |  |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 6:10PM | NHL | New Jersey vs St. Louis: Spread | spread: NOT New Jersey wins by over 1.5 goals | kalshi | $25k | -194 | ✅ novig |  | +0.0c | yes | W |
 | Nov 21 5:55PM | NCAAF | Arkansas State @ Louisiana Tech | moneyline: LT (0) | novig | $26k | -545 | ✅ kalshi,prophetx | ✅ | +0.0c |  | W |
 | Nov 21 5:55PM | NHL | Washington vs Boston: Total Goals | total: Over 6.5 goals scored | kalshi | $30k | -113 |  |  | -1.0c |  | W |
-| Nov 21 5:55PM | NHL | Vegas vs Winnipeg: Spread | spread: NOT Vegas wins by over 1.5 goals | kalshi | $27k | -213 | ✅ novig |  | -1.0c |  | W |
