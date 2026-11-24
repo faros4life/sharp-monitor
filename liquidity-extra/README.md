@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 24, 3:20 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 49.
+Updated Tue Nov 24, 3:30 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 50.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 24 3:30PM | NCAAB | Lamar vs Robert Morris | moneyline: Lamar | kalshi | $26k | -138 | ✅ novig |  | +0.0c |  | pending |
 | Nov 24 2:50PM | NCAAB | Alabama A&M vs North Alabama | moneyline: North Alabama | kalshi | $69k | -156 | ✅ novig |  | +0.0c |  | pending |
 | Nov 24 2:40PM | NCAAB | Tennessee vs Maryland: Spread | spread: Tennessee wins by over 2.5 points | kalshi | $55k | -100 | ✅ novig |  | +3.0c | yes | pending |
 | Nov 24 2:10PM | NCAAB | Mercer vs Florida Atlantic: Spread | spread: Florida Atlantic wins by over 6.5 points | kalshi | $36k | -113 |  |  | +0.0c |  | pending |
@@ -23,7 +24,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 24 11:40AM | NCAAB | Belmont vs Akron: Point Total | total: NOT Over 141.5 points | kalshi | $28k | -117 |  |  | +2.0c | yes | L |
 | Nov 24 10:30AM | NCAAB | Rider vs Loyola Maryland | moneyline: Loyola Maryland | kalshi | $27k | -150 | ✅ novig |  | +1.0c |  | pending |
 | Nov 24 10:10AM | NCAAB | Vermont vs Siena | moneyline: Siena | kalshi | $36k | -178 | ✅ novig |  | +0.0c |  | pending |
-| Nov 24 10:10AM | NCAAB | Southern Indiana vs VMI | moneyline: VMI | kalshi | $34k | -203 | ✅ novig |  | +1.0c |  | pending |
+| Nov 24 10:10AM | NCAAB | Southern Indiana vs VMI | moneyline: VMI | kalshi | $34k | -203 | ✅ novig |  | +0.0c |  | pending |
 | Nov 24 10:10AM | NCAAB | Boston University vs Harvard | moneyline: Harvard | kalshi | $26k | -203 | ✅ novig |  | +1.0c | yes | pending |
 | Nov 24 10:10AM | NCAAB | Bryant vs Marist | moneyline: Marist | kalshi | $27k | -122 | ✅ novig |  | +3.0c |  | pending |
 | Nov 24 10:10AM | NCAAB | Belmont vs Akron | moneyline: Akron | kalshi | $43k | -133 | ✅ novig |  | +0.0c | yes | W |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 19 2:30PM | NCAAB | Charleston vs Drake | moneyline: Drake | kalshi | $39k | -113 |  | ✅ | +0.0c |  | W |
 | Nov 19 2:20PM | NCAAB | West Virginia @ Florida | moneyline: FLA (0) | novig | $36k | -355 | ✅ kalshi,prophetx | ❌ | +0.0c |  | W |
 | Nov 19 12:20PM | NCAAB | Florida vs West Virginia: Spread | spread: Florida wins by over 7.5 points | kalshi | $30k | -108 |  | ❌ | +1.0c | yes | W |
-| Nov 19 12:10PM | NCAAB | Houston vs Kansas | moneyline: Houston | kalshi | $34k | -138 | ✅ novig |  | +1.0c |  | W |
