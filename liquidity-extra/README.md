@@ -1,15 +1,17 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 24, 5:10 PM ET. This run: 0 new, 0 not confirmed, 3 pending. Open alerts: 45.
+Updated Tue Nov 24, 5:20 PM ET. This run: 2 new, 0 not confirmed, 1 pending. Open alerts: 46.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 459-273 (-18.44u flat) | rule met: 97-72
+**Record:** 460-273 (-17.85u flat) | rule met: 97-72
 
-**Fade (paper, betting against the print):** 248-424 (+9.52u flat, after fees)
+**Fade (paper, betting against the print):** 248-425 (+8.52u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 24 5:20PM | NCAAB | Michigan vs Creighton: Spread | spread: NOT Michigan wins by over 5.5 points | kalshi | $30k | -100 |  |  | +0.0c |  | pending |
+| Nov 24 5:20PM | NCAAB | Queens University vs Wofford | moneyline: Queens University | kalshi | $53k | -104 |  | ✅ | +0.0c |  | pending |
 | Nov 24 4:00PM | NCAAB | Purdue Fort Wayne vs Southeast Missouri St. | moneyline: Southeast Missouri St. | kalshi | $27k | -156 |  |  | +0.0c |  | pending |
 | Nov 24 3:30PM | NCAAB | Lamar vs Robert Morris | moneyline: Lamar | kalshi | $26k | -138 | ✅ novig |  | +0.0c |  | pending |
 | Nov 24 2:50PM | NCAAB | Alabama A&M vs North Alabama | moneyline: North Alabama | kalshi | $69k | -156 | ✅ novig |  | +0.0c |  | pending |
@@ -24,7 +26,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 24 12:00PM | NCAAB | Appalachian St. vs Yale | moneyline: Appalachian St. | kalshi | $26k | -100 | ✅ novig |  | +1.0c | yes | L |
 | Nov 24 11:40AM | NCAAB | Belmont vs Akron: Point Total | total: NOT Over 141.5 points | kalshi | $28k | -117 |  |  | +2.0c | yes | L |
 | Nov 24 10:30AM | NCAAB | Rider vs Loyola Maryland | moneyline: Loyola Maryland | kalshi | $27k | -150 | ✅ novig |  | +1.0c |  | pending |
-| Nov 24 10:10AM | NCAAB | Vermont vs Siena | moneyline: Siena | kalshi | $36k | -178 | ✅ novig |  | +0.0c |  | pending |
+| Nov 24 10:10AM | NCAAB | Vermont vs Siena | moneyline: Siena | kalshi | $36k | -178 | ✅ novig |  | -1.0c |  | pending |
 | Nov 24 10:10AM | NCAAB | Southern Indiana vs VMI | moneyline: VMI | kalshi | $34k | -203 | ✅ novig |  | +0.0c |  | pending |
 | Nov 24 10:10AM | NCAAB | Boston University vs Harvard | moneyline: Harvard | kalshi | $26k | -203 | ✅ novig |  | +2.0c | yes | pending |
 | Nov 24 10:10AM | NCAAB | Bryant vs Marist | moneyline: Marist | kalshi | $27k | -122 | ✅ novig |  | +3.0c |  | pending |
@@ -45,7 +47,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 24 9:30AM | NCAAB | Southern Utah @ Florida International | moneyline: FIU (0) | novig | $57k | -344 | ✅ kalshi |  | -0.5c |  | W |
 | Nov 24 9:10AM | NCAAB | Providence vs Arizona | moneyline: Arizona | kalshi | $51k | -317 |  |  | +0.0c |  | pending |
 | Nov 24 9:00AM | NCAAB | Michigan vs Creighton | moneyline: Michigan | kalshi | $45k | -233 |  |  | -2.0c |  | pending |
-| Nov 24 1:20AM | NCAAB | North Dakota vs Detroit Mercy | moneyline: North Dakota | kalshi | $28k | -170 |  |  | +1.0c |  | pending |
+| Nov 24 1:20AM | NCAAB | North Dakota vs Detroit Mercy | moneyline: North Dakota | kalshi | $28k | -170 |  |  | +1.0c |  | W |
 | Nov 24 12:30AM | NCAAB | Southern Utah vs Florida International | moneyline: Florida International | kalshi | $170k | -355 |  |  | -1.0c |  | W |
 | Nov 24 12:30AM | NCAAB | Samford vs Georgia Tech | moneyline: Georgia Tech | kalshi | $173k | -525 |  |  | +0.0c |  | pending |
 | Nov 24 12:30AM | NCAAB | Oregon St. vs San Francisco | moneyline: Oregon St. | kalshi | $192k | -426 |  |  | -3.0c |  | W |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 19 4:00PM | NCAAB | Northeastern vs Butler: Spread | spread: NOT Butler wins by over 15.5 points | kalshi | $35k | +108 |  |  | +0.0c |  | W |
 | Nov 19 2:30PM | NCAAB | Wisconsin vs Seton Hall | moneyline: Wisconsin | kalshi | $115k | -194 | ✅ novig | ✅ | +1.0c | yes | L |
 | Nov 19 2:30PM | NCAAB | Little Rock vs Jacksonville | moneyline: Little Rock | kalshi | $39k | +117 | ✅ novig | ✅ | +1.0c |  | W |
-| Nov 19 2:30PM | NCAAB | Charleston vs Drake | moneyline: Drake | kalshi | $39k | -113 |  | ✅ | +0.0c |  | W |
-| Nov 19 2:20PM | NCAAB | West Virginia @ Florida | moneyline: FLA (0) | novig | $36k | -355 | ✅ kalshi,prophetx | ❌ | +0.0c |  | W |
