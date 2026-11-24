@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 24, 10:00 AM ET. This run: 2 new, 0 not confirmed, 5 pending. Open alerts: 35.
+Updated Tue Nov 24, 10:10 AM ET. This run: 5 new, 0 not confirmed, 0 pending. Open alerts: 40.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,11 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 24 10:10AM | NCAAB | Vermont vs Siena | moneyline: Siena | kalshi | $36k | -178 | ✅ novig |  | +0.0c |  | pending |
+| Nov 24 10:10AM | NCAAB | Southern Indiana vs VMI | moneyline: VMI | kalshi | $34k | -203 | ✅ novig |  | +0.0c |  | pending |
+| Nov 24 10:10AM | NCAAB | Boston University vs Harvard | moneyline: Harvard | kalshi | $26k | -203 | ✅ novig |  | +0.0c |  | pending |
+| Nov 24 10:10AM | NCAAB | Bryant vs Marist | moneyline: Marist | kalshi | $27k | -122 | ✅ novig |  | +0.0c |  | pending |
+| Nov 24 10:10AM | NCAAB | Belmont vs Akron | moneyline: Akron | kalshi | $43k | -133 | ✅ novig |  | +0.0c |  | pending |
 | Nov 24 10:00AM | NCAAB | Tarleton St. vs Weber St. | moneyline: Weber St. | kalshi | $66k | -104 | ✅ novig |  | +0.0c |  | pending |
 | Nov 24 10:00AM | NCAAB | Eastern Michigan vs Kennesaw St. | moneyline: Kennesaw St. | kalshi | $40k | -186 | ✅ novig |  | +0.0c |  | pending |
 | Nov 24 9:30AM | NCAAB | St. John's @ Oregon | moneyline: SJU (0) | novig | $52k | -471 |  |  | +2.0c |  | pending |
@@ -18,7 +23,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 24 9:30AM | NCAAB | Duquesne @ High Point | moneyline: High Point (0) | novig | $35k | -456 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 24 9:30AM | NCAAB | Hampton @ Old Dominion | moneyline: ODU (0) | novig | $41k | -335 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 24 9:30AM | NCAAB | Binghamton @ Lehigh | moneyline: LEH (0) | novig | $36k | -344 | ✅ kalshi |  | +0.5c |  | pending |
-| Nov 24 9:30AM | NCAAB | Elon @ Furman | moneyline: FUR (0) | novig | $47k | -300 | ✅ kalshi |  | +0.0c |  | pending |
+| Nov 24 9:30AM | NCAAB | Elon @ Furman | moneyline: FUR (0) | novig | $47k | -300 | ✅ kalshi |  | -0.5c |  | pending |
 | Nov 24 9:30AM | NCAAB | Mercer @ Florida Atlantic | moneyline: FAU (0) | novig | $34k | -270 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 24 9:30AM | NCAAB | Kent State @ Wyoming | moneyline: WYO (0) | novig | $54k | -365 | ✅ kalshi | ❌ | +0.5c |  | pending |
 | Nov 24 9:30AM | NCAAB | Iowa State @ San Diego State | moneyline: ISU (0) | novig | $51k | -308 | ✅ kalshi |  | +2.5c |  | pending |
@@ -205,8 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 18 6:40PM | NCAAB | Howard vs Duquesne | moneyline: Duquesne | kalshi | $29k | -213 | ✅ novig |  | -1.0c |  | W |
 | Nov 18 5:50PM | NCAAB | Kansas vs West Virginia: Spread | spread: NOT Kansas wins by over 8.5 points | kalshi | $58k | -122 |  | ✅ | +2.0c | yes | W |
 | Nov 18 4:50PM | NCAAB | Vermont vs Yale | moneyline: Yale | kalshi | $71k | -285 | ✅ novig | ✅ | +2.0c |  | W |
-| Nov 18 4:50PM | NCAAB | Detroit Mercy vs Eastern Michigan | moneyline: Eastern Michigan | kalshi | $31k | -567 | ✅ novig |  | +0.0c | yes | W |
-| Nov 18 4:10PM | NCAAB | Kansas vs West Virginia: Spread | spread: Kansas wins by over 8.5 points | kalshi | $27k | +113 |  | ❌ | -3.0c | yes | L |
-| Nov 18 4:10PM | NCAAB | Northern Illinois vs Marquette: Spread | spread: NOT Marquette wins by over 27.5 points | kalshi | $41k | -113 |  | ✅ | +2.0c | yes | W |
-| Nov 18 4:10PM | NCAAB | IU Indy vs Penn St.: Spread | spread: NOT Penn St. wins by over 16.5 points | kalshi | $30k | -100 |  |  | +1.0c | yes | W |
-| Nov 18 4:10PM | NCAAB | Cornell vs Syracuse: Spread | spread: NOT Syracuse wins by over 19.5 points | kalshi | $38k | -122 |  | ✅ | +1.0c | yes | W |
