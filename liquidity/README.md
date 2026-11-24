@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 23, 10:55 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 33.
+Updated Mon Nov 23, 11:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 31.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1928-1497 (-32.86u flat) | rule met: 1143-898
+**Record:** 1929-1498 (-33.14u flat) | rule met: 1144-899
 
-**Fade (paper, betting against the print):** 1231-1655 (-202.02u flat, after fees)
+**Fade (paper, betting against the print):** 1232-1656 (-200.10u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -28,7 +28,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 23 6:10PM | NBA | Memphis vs Charlotte: Spread | spread: Memphis wins by over 2.5 points | kalshi | $31k | -108 | ✅ novig |  | -1.0c | yes | W |
 | Nov 23 6:10PM | NBA | Oklahoma City vs Indiana: Spread | spread: NOT Oklahoma City wins by over 4.5 points | kalshi | $86k | -104 |  | ✅ | +1.0c |  | W |
 | Nov 23 6:05PM | NBA | Memphis Grizzlies @ Charlotte Hornets | moneyline: MEM (0) | novig | $32k | -138 | ✅ kalshi,prophetx |  | -0.5c |  | W |
-| Nov 23 5:50PM | NBA | Phoenix Suns @ New Orleans Pelicans | moneyline: PHX (0) | novig | $27k | -138 | ✅ kalshi,prophetx |  | +0.5c |  | pending |
+| Nov 23 5:50PM | NBA | Phoenix Suns @ New Orleans Pelicans | moneyline: PHX (0) | novig | $27k | -138 | ✅ kalshi,prophetx |  | +0.5c |  | W |
 | Nov 23 5:35PM | NHL | Anaheim Ducks @ Seattle Kraken | moneyline: ANA (0) | novig | $28k | +108 |  |  | +2.5c | yes | pending |
 | Nov 23 5:35PM | NHL | Columbus Blue Jackets @ New Jersey Devils | moneyline: NJD (0) | novig | $44k | -186 | ✅ kalshi,prophetx |  | -0.5c |  | W |
 | Nov 23 5:25PM | NHL | Anaheim vs Seattle: Total Goals | total: Over 6.5 goals scored | kalshi | $26k | -122 | ✅ novig,prophetx |  | +0.0c | yes | pending |
@@ -58,7 +58,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 23 10:06AM | NHL | Los Angeles vs Montreal | moneyline: Montreal | kalshi | $93k | -144 | ✅ novig,prophetx |  | +0.0c | yes | L |
 | Nov 23 10:01AM | NBA | Portland vs Philadelphia: Spread | spread: NOT Philadelphia wins by over 3.5 points | kalshi | $52k | -104 | ✅ novig |  | +9.0c | yes | W |
 | Nov 23 9:25AM | NBA | Los Angeles Clippers @ Houston Rockets | moneyline: HOU (0) | novig | $27k | -545 | ✅ kalshi |  | +1.0c | yes | pending |
-| Nov 23 9:25AM | NBA | Cleveland Cavaliers @ Chicago Bulls | moneyline: CLE (0) | novig | $37k | -300 | ✅ kalshi,prophetx |  | +0.0c | yes | pending |
+| Nov 23 9:25AM | NBA | Cleveland Cavaliers @ Chicago Bulls | moneyline: CLE (0) | novig | $37k | -300 | ✅ kalshi,prophetx |  | +0.0c | yes | L |
 | Nov 23 9:25AM | NBA | Milwaukee Bucks @ Toronto Raptors | moneyline: TOR (0) | novig | $27k | -400 | ✅ kalshi,prophetx |  | -1.0c | yes | L |
 | Nov 23 8:10AM | NHL | Columbus vs New Jersey | moneyline: New Jersey | kalshi | $28k | -186 | ✅ novig,prophetx |  | +0.0c |  | W |
 | Nov 23 8:00AM | NBA | Memphis vs Charlotte: Total Points | total: Over 215.5 points | kalshi | $27k | -104 | ✅ novig | ❌ | -3.0c | yes | W |
