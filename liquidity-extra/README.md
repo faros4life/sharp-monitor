@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 24, 12:00 PM ET. This run: 3 new, 0 not confirmed, 0 pending. Open alerts: 45.
+Updated Tue Nov 24, 12:10 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 45.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -13,7 +13,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 24 12:00PM | NCAAB | UIC vs Rice | moneyline: UIC | kalshi | $43k | -270 |  |  | +0.0c |  | pending |
 | Nov 24 12:00PM | NCAAB | Nevada vs Santa Clara | moneyline: Nevada | kalshi | $30k | -100 | ✅ novig |  | +0.0c |  | pending |
 | Nov 24 12:00PM | NCAAB | Appalachian St. vs Yale | moneyline: Appalachian St. | kalshi | $26k | -100 | ✅ novig |  | +0.0c |  | pending |
-| Nov 24 11:40AM | NCAAB | Belmont vs Akron: Point Total | total: NOT Over 141.5 points | kalshi | $28k | -117 |  |  | +1.0c | yes | pending |
+| Nov 24 11:40AM | NCAAB | Belmont vs Akron: Point Total | total: NOT Over 141.5 points | kalshi | $28k | -117 |  |  | +2.0c | yes | pending |
 | Nov 24 10:30AM | NCAAB | Rider vs Loyola Maryland | moneyline: Loyola Maryland | kalshi | $27k | -150 | ✅ novig |  | +0.0c |  | pending |
 | Nov 24 10:10AM | NCAAB | Vermont vs Siena | moneyline: Siena | kalshi | $36k | -178 | ✅ novig |  | +0.0c |  | pending |
 | Nov 24 10:10AM | NCAAB | Southern Indiana vs VMI | moneyline: VMI | kalshi | $34k | -203 | ✅ novig |  | +1.0c |  | pending |
@@ -22,7 +22,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 24 10:10AM | NCAAB | Belmont vs Akron | moneyline: Akron | kalshi | $43k | -133 | ✅ novig |  | +0.0c |  | pending |
 | Nov 24 10:00AM | NCAAB | Tarleton St. vs Weber St. | moneyline: Weber St. | kalshi | $66k | -104 | ✅ novig |  | +1.0c |  | pending |
 | Nov 24 10:00AM | NCAAB | Eastern Michigan vs Kennesaw St. | moneyline: Kennesaw St. | kalshi | $40k | -186 | ✅ novig |  | +0.0c |  | pending |
-| Nov 24 9:30AM | NCAAB | St. John's @ Oregon | moneyline: SJU (0) | novig | $52k | -471 |  |  | +2.0c |  | pending |
+| Nov 24 9:30AM | NCAAB | St. John's @ Oregon | moneyline: SJU (0) | novig | $52k | -471 |  |  | +2.5c |  | pending |
 | Nov 24 9:30AM | NCAAB | Drexel @ Pennsylvania | moneyline: PENN (0) | novig | $46k | -228 |  | ❌ | +0.5c |  | pending |
 | Nov 24 9:30AM | NCAAB | Bucknell @ Cornell | moneyline: COR (0) | novig | $47k | -525 |  |  | +0.5c |  | pending |
 | Nov 24 9:30AM | NCAAB | Duquesne @ High Point | moneyline: High Point (0) | novig | $35k | -456 | ✅ kalshi |  | +0.0c |  | pending |
