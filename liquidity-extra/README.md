@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 24, 1:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 47.
+Updated Tue Nov 24, 1:50 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 47.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -11,7 +11,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 24 12:50PM | NCAAB | Tennessee vs Maryland | moneyline: Tennessee | kalshi | $86k | -122 | ✅ novig |  | +1.0c |  | pending |
-| Nov 24 12:40PM | NCAAB | Ole Miss vs BYU | moneyline: Ole Miss | kalshi | $68k | -113 | ✅ prophetx |  | +1.0c |  | pending |
+| Nov 24 12:40PM | NCAAB | Ole Miss vs BYU | moneyline: Ole Miss | kalshi | $68k | -113 | ✅ prophetx |  | +2.0c |  | pending |
 | Nov 24 12:00PM | NCAAB | UIC vs Rice | moneyline: UIC | kalshi | $43k | -270 |  |  | +0.0c |  | pending |
 | Nov 24 12:00PM | NCAAB | Nevada vs Santa Clara | moneyline: Nevada | kalshi | $30k | -100 | ✅ novig |  | +0.0c |  | pending |
 | Nov 24 12:00PM | NCAAB | Appalachian St. vs Yale | moneyline: Appalachian St. | kalshi | $26k | -100 | ✅ novig |  | +1.0c | yes | pending |
@@ -26,7 +26,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 24 10:00AM | NCAAB | Eastern Michigan vs Kennesaw St. | moneyline: Kennesaw St. | kalshi | $40k | -186 | ✅ novig |  | +0.0c |  | pending |
 | Nov 24 9:30AM | NCAAB | St. John's @ Oregon | moneyline: SJU (0) | novig | $52k | -471 |  |  | +2.0c |  | pending |
 | Nov 24 9:30AM | NCAAB | Drexel @ Pennsylvania | moneyline: PENN (0) | novig | $46k | -228 |  | ❌ | +0.5c |  | pending |
-| Nov 24 9:30AM | NCAAB | Bucknell @ Cornell | moneyline: COR (0) | novig | $47k | -525 |  |  | +0.5c |  | pending |
+| Nov 24 9:30AM | NCAAB | Bucknell @ Cornell | moneyline: COR (0) | novig | $47k | -525 |  |  | +2.0c |  | pending |
 | Nov 24 9:30AM | NCAAB | Duquesne @ High Point | moneyline: High Point (0) | novig | $35k | -456 | ✅ kalshi |  | +1.0c |  | pending |
 | Nov 24 9:30AM | NCAAB | Hampton @ Old Dominion | moneyline: ODU (0) | novig | $41k | -335 | ✅ kalshi |  | -0.5c |  | pending |
 | Nov 24 9:30AM | NCAAB | Binghamton @ Lehigh | moneyline: LEH (0) | novig | $36k | -344 | ✅ kalshi |  | +1.0c |  | pending |
@@ -34,10 +34,10 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 24 9:30AM | NCAAB | Mercer @ Florida Atlantic | moneyline: FAU (0) | novig | $34k | -270 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 24 9:30AM | NCAAB | Kent State @ Wyoming | moneyline: WYO (0) | novig | $54k | -365 | ✅ kalshi | ❌ | +0.0c |  | pending |
 | Nov 24 9:30AM | NCAAB | Iowa State @ San Diego State | moneyline: ISU (0) | novig | $51k | -308 | ✅ kalshi |  | +4.0c |  | pending |
-| Nov 24 9:30AM | NCAAB | Oregon State @ San Francisco | moneyline: ORST (0) | novig | $41k | -388 |  | ❌ | -2.0c |  | pending |
+| Nov 24 9:30AM | NCAAB | Oregon State @ San Francisco | moneyline: ORST (0) | novig | $41k | -388 |  | ❌ | -3.0c |  | pending |
 | Nov 24 9:30AM | NCAAB | Southern Utah @ Florida International | moneyline: FIU (0) | novig | $57k | -344 | ✅ kalshi |  | -0.5c |  | pending |
 | Nov 24 9:10AM | NCAAB | Providence vs Arizona | moneyline: Arizona | kalshi | $51k | -317 |  |  | +0.0c |  | pending |
-| Nov 24 9:00AM | NCAAB | Michigan vs Creighton | moneyline: Michigan | kalshi | $45k | -233 |  |  | +0.0c |  | pending |
+| Nov 24 9:00AM | NCAAB | Michigan vs Creighton | moneyline: Michigan | kalshi | $45k | -233 |  |  | -1.0c |  | pending |
 | Nov 24 1:20AM | NCAAB | North Dakota vs Detroit Mercy | moneyline: North Dakota | kalshi | $28k | -170 |  |  | +1.0c |  | pending |
 | Nov 24 12:30AM | NCAAB | Southern Utah vs Florida International | moneyline: Florida International | kalshi | $170k | -355 |  |  | -1.0c |  | pending |
 | Nov 24 12:30AM | NCAAB | Samford vs Georgia Tech | moneyline: Georgia Tech | kalshi | $173k | -525 |  |  | +0.0c |  | pending |
