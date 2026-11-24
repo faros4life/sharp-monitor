@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 24, 4:50 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 19.
+Updated Tue Nov 24, 5:00 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 19.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -11,7 +11,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 24 1:20AM | NCAAB | North Dakota vs Detroit Mercy | moneyline: North Dakota | kalshi | $28k | -170 |  |  | +0.0c |  | pending |
-| Nov 24 12:30AM | NCAAB | Southern Utah vs Florida International | moneyline: Florida International | kalshi | $170k | -355 |  |  | +0.0c |  | pending |
+| Nov 24 12:30AM | NCAAB | Southern Utah vs Florida International | moneyline: Florida International | kalshi | $170k | -355 |  |  | -1.0c |  | pending |
 | Nov 24 12:30AM | NCAAB | Samford vs Georgia Tech | moneyline: Georgia Tech | kalshi | $173k | -525 |  |  | +0.0c |  | pending |
 | Nov 24 12:30AM | NCAAB | Oregon St. vs San Francisco | moneyline: Oregon St. | kalshi | $192k | -426 |  |  | +0.0c |  | pending |
 | Nov 24 12:30AM | NCAAB | Mercer vs Florida Atlantic | moneyline: Florida Atlantic | kalshi | $140k | -270 |  |  | +1.0c |  | pending |
