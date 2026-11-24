@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 24, 3:10 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 11.
+Updated Tue Nov 24, 3:16 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 12.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 24 3:16AM | NFL | Green Bay vs Los Angeles R: Spread | spread: NOT Los Angeles R wins by over 2.5 points | kalshi | $67k | -104 |  |  | +0.0c |  | pending |
 | Nov 24 1:00AM | NFL | Green Bay vs Los Angeles R | moneyline: Green Bay | kalshi | $172k | +117 | ✅ novig |  | +0.0c |  | pending |
 | Nov 23 11:35PM | NHL | Vegas vs Edmonton | moneyline: Vegas | kalshi | $32k | -108 | ✅ novig |  | -1.0c | yes | pending |
 | Nov 23 9:25PM | NHL | Anaheim vs Seattle | moneyline: Anaheim | kalshi | $37k | +104 | ✅ novig,prophetx |  | +1.0c | yes | L |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 6:45PM | NHL | Los Angeles vs Ottawa: Spread | spread: Ottawa wins by over 1.5 goals | kalshi | $56k | +150 |  |  | +1.0c |  | W |
 | Nov 21 6:45PM | NBA | Memphis vs Minnesota: Total Points | total: NOT Over 228.5 points | kalshi | $134k | -100 | ✅ novig | ❌ | +1.0c | yes | W |
 | Nov 21 6:40PM | NHL | Columbus vs Toronto: Spread | spread: NOT Toronto wins by over 1.5 goals | kalshi | $67k | -233 | ✅ novig |  | +0.0c |  | W |
-| Nov 21 6:33PM | NCAAF | UNLV vs San Jose St. | moneyline: UNLV | kalshi | $206k | -213 | ✅ novig,prophetx |  | +0.0c | yes | W |
