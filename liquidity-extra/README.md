@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 24, 1:10 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 18.
+Updated Tue Nov 24, 1:20 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 19.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 24 1:20AM | NCAAB | North Dakota vs Detroit Mercy | moneyline: North Dakota | kalshi | $28k | -170 |  |  | +0.0c |  | pending |
 | Nov 24 12:30AM | NCAAB | Southern Utah vs Florida International | moneyline: Florida International | kalshi | $170k | -355 |  |  | +0.0c |  | pending |
 | Nov 24 12:30AM | NCAAB | Samford vs Georgia Tech | moneyline: Georgia Tech | kalshi | $173k | -525 |  |  | +0.0c |  | pending |
 | Nov 24 12:30AM | NCAAB | Oregon St. vs San Francisco | moneyline: Oregon St. | kalshi | $192k | -426 |  |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 18 2:20AM | NCAAB | UConn vs Arizona | moneyline: Arizona | kalshi | $25k | -144 |  |  | +1.0c |  | W |
 | Nov 18 2:10AM | NCAAB | Fresno St. vs San Jose St. | moneyline: San Jose St. | kalshi | $25k | -233 |  |  | +0.0c |  | W |
 | Nov 18 2:00AM | NCAAB | Boston College vs Harvard | moneyline: Boston College | kalshi | $26k | -170 |  |  | -2.0c | yes | W |
-| Nov 18 1:50AM | NCAAB | VMI vs Longwood | moneyline: Longwood | kalshi | $25k | -257 |  |  | +2.0c |  | W |

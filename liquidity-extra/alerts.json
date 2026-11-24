@@ -1,6 +1,195 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-24T06:20:20Z",
+   "base_depth": 174139,
+   "best_price": 0.63,
+   "best_price_american": -170,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.63,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 6661,
+     "new_this_side": 28139,
+     "other_side": 6583,
+     "other_side_all_levels": 104114,
+     "ratio": 2.1,
+     "this_side": 13886,
+     "this_side_all_levels": 203681
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "UND (0)",
+     "price": 0.63,
+     "this_side": 2818
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "North Dakota",
+     "price": 0.6429,
+     "this_side": 170
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 704.83,
+    "volume_24h_fp": 492.31,
+    "volume_fp": 711.83
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 2.52,
+    "volume_24h_fp": 25.22,
+    "volume_fp": 2.52
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 702.3100000000001,
+    "volume_24h_fp": 467.09,
+    "volume_fp": 709.3100000000001
+   },
+   "fade_price": 0.38,
+   "first_seen_utc": "2026-11-24T06:10:20Z",
+   "game": "North Dakota vs Detroit Mercy",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 2.88,
+   "key": "kalshi|KXNCAAMBGAME-26NOV24UNDDET|ml|0",
+   "lead_min": 820,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 28139,
+   "new_x": 1.71,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 704.83,
+      "volume_24h_fp": 492.31,
+      "volume_fp": 711.83
+     },
+     "game_normal": 70740,
+     "game_x": 2.88,
+     "normal": 16497,
+     "now": 203681,
+     "type": "ML",
+     "x": 12.35
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 144719.0,
+      "volume": 144719.0
+     },
+     "game_normal": 3368,
+     "game_x": 0.95,
+     "normal": 2020,
+     "now": 3211,
+     "type": "ML",
+     "x": 1.59
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 458,
+     "game_x": 1.03,
+     "normal": 800,
+     "now": 470,
+     "type": "ML",
+     "x": 0.59
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.63,
+   "price_american": -170,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.63,
+   "prices_by_book": {
+    "betonlineag": {
+     "point": null,
+     "price": -191
+    },
+    "betrivers": {
+     "point": null,
+     "price": -225
+    },
+    "betus": {
+     "point": null,
+     "price": -190
+    },
+    "bovada": {
+     "point": null,
+     "price": -175
+    },
+    "draftkings": {
+     "point": null,
+     "price": -185
+    },
+    "fanatics": {
+     "point": null,
+     "price": -190
+    },
+    "fanduel": {
+     "point": null,
+     "price": -200
+    },
+    "kalshi": {
+     "point": null,
+     "price": -170
+    },
+    "lowvig": {
+     "point": null,
+     "price": -191
+    },
+    "novig": {
+     "point": null,
+     "price": -170
+    },
+    "polymarket": {
+     "point": null,
+     "price": -170
+    },
+    "prophetx": {
+     "point": null,
+     "price": -180
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV24UNDDET-UND"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "North Dakota",
+   "side_label": "North Dakota",
+   "size_x": 12.35,
+   "start_source": "odds",
+   "start_utc": "2026-11-24T20:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "North Dakota",
+    "Detroit Mercy"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-24T05:30:25Z",
    "base_depth": 52900,
    "best_price": 0.775,
@@ -53,8 +242,8 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 462.49,
-    "volume_24h_fp": 417.87,
-    "volume_fp": 462.49
+    "volume_24h_fp": 431.83,
+    "volume_fp": 467.27
    },
    "ex_stats_first": {
     "open_interest_fp": 347.63,
@@ -431,7 +620,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1350.8899999999999,
-    "volume_24h_fp": 1440.71,
+    "volume_24h_fp": 1483.3400000000001,
     "volume_fp": 1598.57
    },
    "ex_stats_first": {
@@ -616,9 +805,9 @@
     "volume_fp": 4933.33
    },
    "ex_stats_close": {
-    "open_interest_fp": 6168.47,
-    "volume_24h_fp": 6040.07,
-    "volume_fp": 6168.47
+    "open_interest_fp": 6169.81,
+    "volume_24h_fp": 6043.47,
+    "volume_fp": 6169.81
    },
    "ex_stats_first": {
     "open_interest_fp": 1106.74,
@@ -812,9 +1001,9 @@
     "volume_fp": 1.28
    },
    "ex_stats_close": {
-    "open_interest_fp": 367.11,
-    "volume_24h_fp": 328.55,
-    "volume_fp": 367.11
+    "open_interest_fp": 380.99,
+    "volume_24h_fp": 343.11,
+    "volume_fp": 380.99
    },
    "ex_stats_first": {
     "open_interest_fp": 351.27,
@@ -997,9 +1186,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 252.25,
+    "open_interest_fp": 594.25,
     "volume_24h_fp": 202.23000000000002,
-    "volume_fp": 260.15
+    "volume_fp": 602.15
    },
    "ex_stats_first": {
     "open_interest_fp": 221.52,
@@ -1382,7 +1571,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 481.36,
-    "volume_24h_fp": 475.56,
+    "volume_24h_fp": 479.36,
     "volume_fp": 481.36
    },
    "ex_stats_first": {
@@ -5380,9 +5569,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 7876.6900000000005,
-    "volume_24h_fp": 7800.2,
-    "volume_fp": 8016.49
+    "open_interest_fp": 7897.389999999999,
+    "volume_24h_fp": 7808.48,
+    "volume_fp": 8037.19
    },
    "ex_stats_first": {
     "open_interest_fp": 203.45,
@@ -5670,9 +5859,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 5845.33,
-    "volume_24h_fp": 5023.76,
-    "volume_fp": 5966.82
+    "open_interest_fp": 5877.969999999999,
+    "volume_24h_fp": 5048.51,
+    "volume_fp": 6003.08
    },
    "ex_stats_first": {
     "open_interest_fp": 917.71,
@@ -9862,7 +10051,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 181,
+   "settle_tries": 182,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "IUPUI (0)",
