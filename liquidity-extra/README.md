@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 24, 8:40 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 19.
+Updated Tue Nov 24, 8:50 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 19.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -40,9 +40,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 23 1:20AM | NCAAB | Temple vs Tennessee-Martin | moneyline: Temple | kalshi | $27k | -213 |  |  | -58.0c | yes | L |
 | Nov 23 1:20AM | NCAAB | FDU vs Iona | moneyline: Iona | kalshi | $30k | -376 |  |  | -62.0c | yes | L |
 | Nov 23 1:20AM | NCAAB | Central Arkansas vs North Florida | moneyline: Central Arkansas | kalshi | $31k | -400 |  |  | -2.0c |  | W |
-| Nov 23 1:10AM | NCAAB | TCU vs Miami (FL) | moneyline: Miami | kalshi | $138k | -300 |  |  | -4.0c |  | pending |
+| Nov 23 1:10AM | NCAAB | TCU vs Miami (FL) | moneyline: Miami | kalshi | $138k | -300 |  |  | -5.0c |  | pending |
 | Nov 23 1:10AM | NCAAB | St. John's vs Oregon | moneyline: St. John's | kalshi | $154k | -456 |  |  | -1.0c |  | pending |
-| Nov 23 1:10AM | NCAAB | San Diego St. vs Iowa St. | moneyline: Iowa St. | kalshi | $138k | -335 |  |  | -2.0c |  | pending |
+| Nov 23 1:10AM | NCAAB | San Diego St. vs Iowa St. | moneyline: Iowa St. | kalshi | $138k | -335 |  |  | -1.0c |  | pending |
 | Nov 23 1:10AM | NCAAB | Northern Iowa vs Davidson | moneyline: Davidson | kalshi | $134k | -203 |  |  | +2.0c |  | W |
 | Nov 23 1:10AM | NCAAB | UNC Greensboro vs Pepperdine | moneyline: Pepperdine | kalshi | $146k | -567 |  |  | -1.0c |  | W |
 | Nov 23 1:10AM | NCAAB | Tulsa vs Oregon St. | moneyline: Oregon St. | kalshi | $118k | -257 |  |  | -5.0c |  | W |
