@@ -1,6 +1,649 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-24T12:15:52Z",
+   "base_depth": 32843,
+   "best_price": 0.735,
+   "best_price_american": -277,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.735,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-11-24",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Denver",
+     "price": 0.74,
+     "this_side": 92490
+    },
+    "novig": {
+     "new_other_side": 5879,
+     "new_this_side": 31616,
+     "other_side": 6943,
+     "other_side_all_levels": 16392,
+     "ratio": 2.9,
+     "this_side": 20460,
+     "this_side_all_levels": 58931
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Denver Nuggets",
+     "price": 0.7368,
+     "this_side": 12435
+    }
+   },
+   "ex_stats_alert": {
+    "openInterest": 1476334.0,
+    "volume": 1851145.0
+   },
+   "ex_stats_change": {
+    "openInterest": 37823.0,
+    "volume": 37823.0
+   },
+   "ex_stats_first": {
+    "openInterest": 1438511.0,
+    "volume": 1813322.0
+   },
+   "fade_price": 0.27,
+   "first_seen_utc": "2026-11-24T12:10:18Z",
+   "game": "Dallas Mavericks @ Denver Nuggets",
+   "game_surge_books": [],
+   "game_x": 1.87,
+   "key": "novig|{\"market_id\": \"01a20146-068d-7d43-8f24-26c24f689ac2\", \"outcome_id\": \"01a20146-068d-7d43-8f24-26d09635da08\"}",
+   "lead_min": 884,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 31616,
+   "new_x": 8.3,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 182488.46,
+      "volume_24h_fp": 183735.52000000002,
+      "volume_fp": 193047.08000000002
+     },
+     "game_normal": 405604,
+     "game_x": 1.16,
+     "normal": 103685,
+     "now": 469352,
+     "type": "ML",
+     "x": 4.53
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 1476334.0,
+      "volume": 1851145.0
+     },
+     "game_normal": 31493,
+     "game_x": 1.87,
+     "normal": 3811,
+     "now": 58931,
+     "type": "ML",
+     "x": 15.46
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 10124,
+     "game_x": 1.26,
+     "normal": 4340,
+     "now": 12735,
+     "type": "ML",
+     "x": 2.93
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.735,
+   "price_american": -277,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.74,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -325
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -320
+    },
+    "betopenly": {
+     "point": null,
+     "price": -286
+    },
+    "betrivers": {
+     "point": null,
+     "price": -335
+    },
+    "betus": {
+     "point": null,
+     "price": -320
+    },
+    "bovada": {
+     "point": null,
+     "price": -300
+    },
+    "circasports": {
+     "point": null,
+     "price": -320
+    },
+    "draftkings": {
+     "point": null,
+     "price": -324
+    },
+    "fanatics": {
+     "point": null,
+     "price": -320
+    },
+    "fanduel": {
+     "point": null,
+     "price": -340
+    },
+    "kalshi": {
+     "point": null,
+     "price": -285
+    },
+    "limitless": {
+     "point": null,
+     "price": -288
+    },
+    "lowvig": {
+     "point": null,
+     "price": -317
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -330
+    },
+    "novig": {
+     "point": null,
+     "price": -277
+    },
+    "polymarket": {
+     "point": null,
+     "price": -270
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -270
+    },
+    "prophetx": {
+     "point": null,
+     "price": -280
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -320
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a20146-068d-7d43-8f24-26c24f689ac2",
+    "outcome_id": "01a20146-068d-7d43-8f24-26d09635da08"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Denver Nuggets",
+   "side_label": "DEN (0)",
+   "size_x": 15.46,
+   "start_source": "odds",
+   "start_utc": "2026-11-25T03:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Dallas Mavericks",
+    "Denver Nuggets"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-24T12:15:52Z",
+   "base_depth": 34836,
+   "best_price": 0.805,
+   "best_price_american": -413,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.805,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-11-24",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Boston",
+     "price": 0.81,
+     "this_side": 162281
+    },
+    "novig": {
+     "new_other_side": 4997,
+     "new_this_side": 28076,
+     "other_side": 6692,
+     "other_side_all_levels": 13620,
+     "ratio": 3.3,
+     "this_side": 21756,
+     "this_side_all_levels": 60622
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Boston Celtics",
+     "price": 0.8039,
+     "this_side": 14102
+    }
+   },
+   "ex_stats_alert": {
+    "openInterest": 3810729.0,
+    "volume": 6237165.0
+   },
+   "ex_stats_change": {
+    "openInterest": 0.0,
+    "volume": 0.0
+   },
+   "ex_stats_first": {
+    "openInterest": 3810729.0,
+    "volume": 6237165.0
+   },
+   "fade_price": 0.2,
+   "first_seen_utc": "2026-11-24T12:10:18Z",
+   "game": "Boston Celtics @ Washington Wizards",
+   "game_surge_books": [],
+   "game_x": 1.78,
+   "key": "novig|{\"market_id\": \"01a200d8-33ff-7b03-9ce8-259f4cb06ff8\", \"outcome_id\": \"01a200d8-33ff-7b03-9ce8-25beb27ce30f\"}",
+   "lead_min": 764,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 28076,
+   "new_x": 7.37,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 219198.13999999998,
+      "volume_24h_fp": 214236.14,
+      "volume_fp": 233385.53000000003
+     },
+     "game_normal": 510291,
+     "game_x": 1.1,
+     "normal": 103685,
+     "now": 560502,
+     "type": "ML",
+     "x": 5.41
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 3810729.0,
+      "volume": 6237165.0
+     },
+     "game_normal": 34091,
+     "game_x": 1.78,
+     "normal": 3811,
+     "now": 60622,
+     "type": "ML",
+     "x": 15.91
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 11654,
+     "game_x": 1.21,
+     "normal": 4340,
+     "now": 14102,
+     "type": "ML",
+     "x": 3.25
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.805,
+   "price_american": -413,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.805,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -475
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -465
+    },
+    "betopenly": {
+     "point": null,
+     "price": -417
+    },
+    "betrivers": {
+     "point": null,
+     "price": -480
+    },
+    "betus": {
+     "point": null,
+     "price": -465
+    },
+    "bovada": {
+     "point": null,
+     "price": -450
+    },
+    "circasports": {
+     "point": null,
+     "price": -460
+    },
+    "draftkings": {
+     "point": null,
+     "price": -453
+    },
+    "fanatics": {
+     "point": null,
+     "price": -450
+    },
+    "fanduel": {
+     "point": null,
+     "price": -450
+    },
+    "kalshi": {
+     "point": null,
+     "price": -426
+    },
+    "limitless": {
+     "point": null,
+     "price": -429
+    },
+    "lowvig": {
+     "point": null,
+     "price": -459
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -450
+    },
+    "novig": {
+     "point": null,
+     "price": -413
+    },
+    "polymarket": {
+     "point": null,
+     "price": -400
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -400
+    },
+    "prophetx": {
+     "point": null,
+     "price": -410
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -455
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a200d8-33ff-7b03-9ce8-259f4cb06ff8",
+    "outcome_id": "01a200d8-33ff-7b03-9ce8-25beb27ce30f"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Boston Celtics",
+   "side_label": "BOS (0)",
+   "size_x": 15.91,
+   "start_source": "odds",
+   "start_utc": "2026-11-25T01:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Boston Celtics",
+    "Washington Wizards"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-24T12:15:52Z",
+   "base_depth": 62370,
+   "best_price": 0.46,
+   "best_price_american": 117,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.46,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-11-25",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Green Bay",
+     "price": 0.46,
+     "this_side": 2229948
+    },
+    "novig": {
+     "new_other_side": 13134,
+     "new_this_side": 41983,
+     "other_side": 13626,
+     "other_side_all_levels": 24662,
+     "ratio": 4.5,
+     "this_side": 61646,
+     "this_side_all_levels": 103629
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Green Bay Packers",
+     "price": 0.4587,
+     "this_side": 13506
+    }
+   },
+   "ex_stats_alert": {
+    "openInterest": 20286036.0,
+    "volume": 28633161.0
+   },
+   "ex_stats_change": {
+    "openInterest": 0.0,
+    "volume": 2173.0
+   },
+   "ex_stats_first": {
+    "openInterest": 20286036.0,
+    "volume": 28630988.0
+   },
+   "fade_price": 0.545,
+   "first_seen_utc": "2026-11-24T12:10:18Z",
+   "game": "Green Bay Packers @ Los Angeles Rams",
+   "game_surge_books": [],
+   "game_x": 1.58,
+   "key": "novig|{\"market_id\": \"01a1ec38-dbe1-7220-8652-c1483f361cdc\", \"outcome_id\": \"01a1ec38-dbe1-7220-8652-c16e8b7ac1de\"}",
+   "lead_min": 2204,
+   "league": "NFL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 41983,
+   "new_x": 0.49,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 778245.23,
+      "volume_24h_fp": 448313.53,
+      "volume_fp": 889186.6399999999
+     },
+     "game_normal": 2756453,
+     "game_x": 1.03,
+     "normal": 3522687,
+     "now": 2848223,
+     "type": "ML",
+     "x": 0.81
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 20286036.0,
+      "volume": 28633161.0
+     },
+     "game_normal": 65498,
+     "game_x": 1.58,
+     "normal": 84939,
+     "now": 103629,
+     "type": "ML",
+     "x": 1.22
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 12278,
+     "game_x": 1.15,
+     "normal": 15718,
+     "now": 14165,
+     "type": "ML",
+     "x": 0.9
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.46,
+   "price_american": 117,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.46,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 115
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 117
+    },
+    "betopenly": {
+     "point": null,
+     "price": 125
+    },
+    "betrivers": {
+     "point": null,
+     "price": 112
+    },
+    "betus": {
+     "point": null,
+     "price": 120
+    },
+    "circasports": {
+     "point": null,
+     "price": 120
+    },
+    "draftkings": {
+     "point": null,
+     "price": 113
+    },
+    "fanatics": {
+     "point": null,
+     "price": 115
+    },
+    "fanduel": {
+     "point": null,
+     "price": 120
+    },
+    "kalshi": {
+     "point": null,
+     "price": 117
+    },
+    "limitless": {
+     "point": null,
+     "price": 112
+    },
+    "lowvig": {
+     "point": null,
+     "price": 117
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 113
+    },
+    "novig": {
+     "point": null,
+     "price": 117
+    },
+    "polymarket": {
+     "point": null,
+     "price": 117
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 117
+    },
+    "prophetx": {
+     "point": null,
+     "price": 118
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 119
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a1ec38-dbe1-7220-8652-c1483f361cdc",
+    "outcome_id": "01a1ec38-dbe1-7220-8652-c16e8b7ac1de"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Green Bay Packers",
+   "side_label": "GB (0)",
+   "size_x": 1.22,
+   "start_source": "odds",
+   "start_utc": "2026-11-26T01:00:00Z",
+   "surge_books": [],
+   "teams": [
+    "Green Bay Packers",
+    "Los Angeles Rams"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-24T08:16:01Z",
    "base_depth": 572909,
    "best_price": 0.51,
@@ -46,9 +689,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 62785.99,
+    "open_interest_fp": 63007.78,
     "volume_24h_fp": 59583.68,
-    "volume_fp": 68331.79
+    "volume_fp": 68553.58
    },
    "ex_stats_first": {
     "open_interest_fp": 57285.02,
@@ -246,9 +889,9 @@
     "volume_fp": 2528.84
    },
    "ex_stats_close": {
-    "open_interest_fp": 778062.16,
-    "volume_24h_fp": 448433.65,
-    "volume_fp": 888876.99
+    "open_interest_fp": 778245.23,
+    "volume_24h_fp": 448313.53,
+    "volume_fp": 889186.6399999999
    },
    "ex_stats_first": {
     "open_interest_fp": 713645.59,
@@ -465,9 +1108,9 @@
     "volume_fp": 5.72
    },
    "ex_stats_close": {
-    "open_interest_fp": 19692.68,
-    "volume_24h_fp": 18854.02,
-    "volume_fp": 20562.12
+    "open_interest_fp": 19695.48,
+    "volume_24h_fp": 19279.62,
+    "volume_fp": 20564.92
    },
    "ex_stats_first": {
     "open_interest_fp": 4214.389999999999,
@@ -906,9 +1549,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 181956.63,
-    "volume_24h_fp": 182960.56,
-    "volume_fp": 192515.25
+    "open_interest_fp": 182488.46,
+    "volume_24h_fp": 183735.52000000002,
+    "volume_fp": 193047.08000000002
    },
    "ex_stats_first": {
     "open_interest_fp": 19536.510000000002,
@@ -1516,9 +2159,9 @@
     "volume_fp": 13.71
    },
    "ex_stats_close": {
-    "open_interest_fp": 218140.24,
-    "volume_24h_fp": 212925.90000000002,
-    "volume_fp": 232327.63
+    "open_interest_fp": 219198.13999999998,
+    "volume_24h_fp": 214236.14,
+    "volume_fp": 233385.53000000003
    },
    "ex_stats_first": {
     "open_interest_fp": 23945.57,
@@ -1665,8 +2308,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.45,
-   "clv_cents": 0.0,
+   "close_price": 0.44,
+   "clv_cents": -1.0,
    "confirmed_after_min": 5,
    "date": "2026-11-24",
    "depth_by_book": {
@@ -1697,9 +2340,9 @@
     "volume_fp": 10.29
    },
    "ex_stats_close": {
-    "open_interest_fp": 82223.79999999999,
-    "volume_24h_fp": 81235.77,
-    "volume_fp": 85153.52
+    "open_interest_fp": 82331.02,
+    "volume_24h_fp": 81579.59,
+    "volume_fp": 85264.2
    },
    "ex_stats_first": {
     "open_interest_fp": 13238.25,
@@ -2216,7 +2859,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 6418.91,
-    "volume_24h_fp": 6627.72,
+    "volume_24h_fp": 6673.72,
     "volume_fp": 6992.87
    },
    "ex_stats_first": {
@@ -8997,9 +9640,9 @@
     "volume_fp": 15.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 40721.86,
-    "volume_24h_fp": 32903.46,
-    "volume_fp": 47501.64
+    "open_interest_fp": 40742.0,
+    "volume_24h_fp": 34595.979999999996,
+    "volume_fp": 47521.78
    },
    "ex_stats_first": {
     "open_interest_fp": 12070.48,
@@ -9208,9 +9851,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 9461.68,
-    "volume_24h_fp": 5410.01,
-    "volume_fp": 11364.44
+    "open_interest_fp": 9463.68,
+    "volume_24h_fp": 5615.15,
+    "volume_fp": 11366.44
    },
    "ex_stats_first": {
     "open_interest_fp": 5069.02,
