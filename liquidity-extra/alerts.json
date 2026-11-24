@@ -1,6 +1,517 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-24T23:00:27Z",
+   "base_depth": 45559,
+   "best_price": 0.69,
+   "best_price_american": -223,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.69,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-24",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Harvard",
+     "price": 0.69,
+     "this_side": 118890
+    },
+    "novig": {
+     "new_other_side": 8319,
+     "new_this_side": 26184,
+     "other_side": 9968,
+     "other_side_all_levels": 23549,
+     "ratio": 3.3,
+     "this_side": 33249,
+     "this_side_all_levels": 72789
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Harvard",
+     "price": 0.6923,
+     "this_side": 9846
+    }
+   },
+   "ex_stats_alert": {
+    "openInterest": 855093.0,
+    "volume": 883905.0
+   },
+   "ex_stats_change": {
+    "openInterest": 0.0,
+    "volume": 0.0
+   },
+   "ex_stats_first": {
+    "openInterest": 855093.0,
+    "volume": 883905.0
+   },
+   "fade_price": 0.32,
+   "first_seen_utc": "2026-11-24T22:50:21Z",
+   "game": "Boston University @ Harvard",
+   "game_surge_books": [],
+   "game_x": 1.29,
+   "key": "novig|{\"market_id\": \"01a200a1-87d3-7a32-b574-36a7810e008d\", \"outcome_id\": \"01a200a1-87d3-7a32-b574-36bb932b673b\"}",
+   "lead_min": 60,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 26184,
+   "new_x": 3.22,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 2414.8399999999997,
+      "volume_24h_fp": 2457.7,
+      "volume_fp": 2480.37
+     },
+     "game_normal": 335859,
+     "game_x": 1.14,
+     "normal": 147413,
+     "now": 384038,
+     "type": "ML",
+     "x": 2.61
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 855093.0,
+      "volume": 883905.0
+     },
+     "game_normal": 56377,
+     "game_x": 1.29,
+     "normal": 8122,
+     "now": 72789,
+     "type": "ML",
+     "x": 8.96
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 6033,
+     "game_x": 1.75,
+     "normal": 2184,
+     "now": 10578,
+     "type": "ML",
+     "x": 4.84
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.69,
+   "price_american": -223,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.69,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -235
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -230
+    },
+    "betopenly": {
+     "point": null,
+     "price": -233
+    },
+    "betrivers": {
+     "point": null,
+     "price": -275
+    },
+    "bovada": {
+     "point": null,
+     "price": -250
+    },
+    "draftkings": {
+     "point": null,
+     "price": -238
+    },
+    "fanatics": {
+     "point": null,
+     "price": -245
+    },
+    "fanduel": {
+     "point": null,
+     "price": -220
+    },
+    "kalshi": {
+     "point": null,
+     "price": -223
+    },
+    "lowvig": {
+     "point": null,
+     "price": -230
+    },
+    "novig": {
+     "point": null,
+     "price": -223
+    },
+    "polymarket": {
+     "point": null,
+     "price": -223
+    },
+    "prophetx": {
+     "point": null,
+     "price": -225
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -250
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a200a1-87d3-7a32-b574-36a7810e008d",
+    "outcome_id": "01a200a1-87d3-7a32-b574-36bb932b673b"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [
+    "Harvard Crimson -5.5 (-105)"
+   ],
+   "sharp_oppose": [],
+   "side": "Harvard",
+   "side_label": "HARV (0)",
+   "size_x": 8.96,
+   "start_source": "odds",
+   "start_utc": "2026-11-25T00:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Boston University",
+    "Harvard"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-24T23:00:27Z",
+   "base_depth": 319812,
+   "best_price": 0.7147,
+   "best_price_american": -251,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.7,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 5722,
+     "new_this_side": 36494,
+     "other_side": 21694,
+     "other_side_all_levels": 105073,
+     "ratio": 4.7,
+     "this_side": 102439,
+     "this_side_all_levels": 366667
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 256.79999999999995,
+    "volume_24h_fp": 368.20000000000005,
+    "volume_fp": 383.51
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 256.79999999999995,
+    "volume_24h_fp": 368.20000000000005,
+    "volume_fp": 383.51
+   },
+   "fade_price": 0.31,
+   "first_seen_utc": "2026-11-24T22:50:21Z",
+   "game": "Drexel vs Penn",
+   "game_surge_books": [],
+   "game_x": 1.54,
+   "key": "kalshi|KXNCAAMBGAME-26NOV24DREXPENN|ml|1",
+   "lead_min": 300,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 36494,
+   "new_x": 0.25,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 256.79999999999995,
+      "volume_24h_fp": 368.20000000000005,
+      "volume_fp": 383.51
+     },
+     "game_normal": 238733,
+     "game_x": 1.54,
+     "normal": 147413,
+     "now": 366667,
+     "type": "ML",
+     "x": 2.49
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.7,
+   "price_american": -233,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.7,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV24DREXPENN-PENN"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Penn",
+   "side_label": "Penn",
+   "size_x": 2.49,
+   "start_source": "kalshi",
+   "start_utc": "2026-11-25T04:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Drexel",
+    "Penn"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-24T23:00:27Z",
+   "base_depth": 261595,
+   "best_price": 0.52,
+   "best_price_american": -108,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 2293,
+     "new_this_side": 32557,
+     "other_side": 27851,
+     "other_side_all_levels": 202063,
+     "ratio": 3.3,
+     "this_side": 93021,
+     "this_side_all_levels": 290516
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "CCU (0)",
+     "price": 0.52,
+     "this_side": 27185
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Coastal Carolina",
+     "price": 0.5349,
+     "this_side": 10178
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 8891.82,
+    "volume_24h_fp": 7442.370000000001,
+    "volume_fp": 9025.939999999999
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 1394.52,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 1394.52
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 7497.299999999999,
+    "volume_24h_fp": 7442.370000000001,
+    "volume_fp": 7631.42
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-11-24T22:50:21Z",
+   "game": "Campbell vs Coastal Carolina",
+   "game_surge_books": [],
+   "game_x": 1.1,
+   "key": "kalshi|KXNCAAMBGAME-26NOV24CAMPCCAR|ml|1",
+   "lead_min": 60,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 32557,
+   "new_x": 0.22,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 8891.82,
+      "volume_24h_fp": 7442.370000000001,
+      "volume_fp": 9025.939999999999
+     },
+     "game_normal": 263778,
+     "game_x": 1.1,
+     "normal": 147413,
+     "now": 290516,
+     "type": "ML",
+     "x": 1.97
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 7269229.0,
+      "volume": 8127375.0
+     },
+     "game_normal": 42458,
+     "game_x": 1.07,
+     "normal": 8122,
+     "now": 45531,
+     "type": "ML",
+     "x": 5.61
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 6511,
+     "game_x": 1.67,
+     "normal": 2184,
+     "now": 10847,
+     "type": "ML",
+     "x": 4.97
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -120
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -118
+    },
+    "betopenly": {
+     "point": null,
+     "price": -118
+    },
+    "betrivers": {
+     "point": null,
+     "price": -134
+    },
+    "betus": {
+     "point": null,
+     "price": -120
+    },
+    "bovada": {
+     "point": null,
+     "price": -125
+    },
+    "circasports": {
+     "point": null,
+     "price": -115
+    },
+    "draftkings": {
+     "point": null,
+     "price": -118
+    },
+    "fanatics": {
+     "point": null,
+     "price": -120
+    },
+    "fanduel": {
+     "point": null,
+     "price": -122
+    },
+    "kalshi": {
+     "point": null,
+     "price": -108
+    },
+    "lowvig": {
+     "point": null,
+     "price": -118
+    },
+    "novig": {
+     "point": null,
+     "price": -108
+    },
+    "polymarket": {
+     "point": null,
+     "price": -113
+    },
+    "prophetx": {
+     "point": null,
+     "price": -115
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -120
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV24CAMPCCAR-CCAR"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Campbell Fighting Camels +1.5 (-106)"
+   ],
+   "side": "Coastal Carolina",
+   "side_label": "Coastal Carolina",
+   "size_x": 1.97,
+   "start_source": "odds",
+   "start_utc": "2026-11-25T00:00:00Z",
+   "surge_books": [
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Campbell",
+    "Coastal Carolina"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-24T22:20:20Z",
    "base_depth": 240549,
    "best_price": 0.5175,
@@ -376,8 +887,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.61,
-   "clv_cents": 0.0,
+   "close_price": 0.6,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-24",
    "depth_by_book": {
@@ -609,9 +1120,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2704.9300000000003,
+    "open_interest_fp": 3138.46,
     "volume_24h_fp": 2659.39,
-    "volume_fp": 2704.9300000000003
+    "volume_fp": 3138.46
    },
    "ex_stats_first": {
     "open_interest_fp": 1184.8700000000001,
@@ -2441,9 +2952,9 @@
     "volume_fp": 204.26
    },
    "ex_stats_close": {
-    "open_interest_fp": 45022.72,
+    "open_interest_fp": 47707.58,
     "volume_24h_fp": 46643.83,
-    "volume_fp": 47498.03
+    "volume_fp": 50209.11
    },
    "ex_stats_first": {
     "open_interest_fp": 2369.8700000000003,
@@ -3259,9 +3770,9 @@
     "volume_fp": 1.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 15398.380000000001,
+    "open_interest_fp": 15658.65,
     "volume_24h_fp": 15986.86,
-    "volume_fp": 16024.09
+    "volume_fp": 16284.36
    },
    "ex_stats_first": {
     "open_interest_fp": 1359.2,
@@ -3681,9 +4192,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2396.75,
+    "open_interest_fp": 2414.8399999999997,
     "volume_24h_fp": 2457.7,
-    "volume_fp": 2462.2799999999997
+    "volume_fp": 2480.37
    },
    "ex_stats_first": {
     "open_interest_fp": 74.78,
@@ -3892,9 +4403,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 6617.1900000000005,
+    "open_interest_fp": 7070.27,
     "volume_24h_fp": 7023.51,
-    "volume_fp": 7048.09
+    "volume_fp": 7501.17
    },
    "ex_stats_first": {
     "open_interest_fp": 5002.860000000001,
@@ -4289,8 +4800,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 2.0,
+   "close_price": 0.54,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-11-24",
    "depth_by_book": {
@@ -4327,9 +4838,9 @@
     "volume_fp": 2.12
    },
    "ex_stats_close": {
-    "open_interest_fp": 21061.620000000003,
+    "open_interest_fp": 23815.87,
     "volume_24h_fp": 13727.3,
-    "volume_fp": 21339.97
+    "volume_fp": 24094.219999999998
    },
    "ex_stats_first": {
     "open_interest_fp": 2442.33,
@@ -4735,8 +5246,8 @@
     "volume": 410621.0
    },
    "ex_stats_close": {
-    "openInterest": 2924873.0,
-    "volume": 3512408.0
+    "openInterest": 2934248.0,
+    "volume": 3521783.0
    },
    "ex_stats_first": {
     "openInterest": 787098.0,
@@ -5434,8 +5945,8 @@
     "volume": 4583.0
    },
    "ex_stats_close": {
-    "openInterest": 1161594.0,
-    "volume": 1451688.0
+    "openInterest": 1263072.0,
+    "volume": 1599056.0
    },
    "ex_stats_first": {
     "openInterest": 2403.0,
@@ -5811,8 +6322,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.735,
-   "clv_cents": -1.5,
+   "close_price": 0.74,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-24",
    "depth_by_book": {
@@ -5847,8 +6358,8 @@
     "volume": 30587.0
    },
    "ex_stats_close": {
-    "openInterest": 3762743.0,
-    "volume": 3878017.0
+    "openInterest": 4894054.0,
+    "volume": 5014828.0
    },
    "ex_stats_first": {
     "openInterest": 297265.0,
@@ -7762,9 +8273,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2577.57,
+    "open_interest_fp": 2653.6800000000003,
     "volume_24h_fp": 2499.25,
-    "volume_fp": 2579.35
+    "volume_fp": 2655.46
    },
    "ex_stats_first": {
     "open_interest_fp": 297.64,
@@ -8514,9 +9025,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2822.54,
+    "open_interest_fp": 2904.8900000000003,
     "volume_24h_fp": 2670.3,
-    "volume_fp": 2836.34
+    "volume_fp": 2918.69
    },
    "ex_stats_first": {
     "open_interest_fp": 221.52,
@@ -8695,9 +9206,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1739.27,
+    "open_interest_fp": 1960.31,
     "volume_24h_fp": 1738.27,
-    "volume_fp": 1739.27
+    "volume_fp": 1960.31
    },
    "ex_stats_first": {
     "open_interest_fp": 1.99,
@@ -8898,9 +9409,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2142.87,
+    "open_interest_fp": 2256.8199999999997,
     "volume_24h_fp": 2236.33,
-    "volume_fp": 2238.33
+    "volume_fp": 2355.8
    },
    "ex_stats_first": {
     "open_interest_fp": 4.66,
