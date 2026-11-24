@@ -1780,9 +1780,15 @@ def run():
                     hr1_ok = hr1_sent = False
                     try:
                         import agree_rules as _ar
-                        hr1_ok = (not repeat) and _ar.hr1(
+                        # Nov 24 (Peter): hr1_flag, not hr1. The two flag-only cuts (180-min lead floor,
+                        # totals 145-155 dead zone) live there so that hr1() - which also stamps
+                        # hr1_eligible on every stored row above - keeps defining the FULL graded pool.
+                        # "point" is passed because this dict never carried it: without it the dead zone
+                        # would read None on every total and cut nothing while logging as if it had.
+                        hr1_ok = (not repeat) and _ar.hr1_flag(
                             {"sport": cfg["label"], "book_key": a.get("book"), "kind": a.get("kind"),
                              "bet": f"{a.get('side')} ", "top25": is_t25, "late": late,
+                             "point": a.get("pt"),
                              "price_after_fee": net(a["price"], a["book"], cfg["label"]),
                              # a["start"] is a DISPLAY string ("Tue 7:00 PM ET", line ~582). lead_min cannot parse
                              # it, returned None, and hr1 then failed every alert on "under 60 min before tip" with
