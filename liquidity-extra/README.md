@@ -1,16 +1,16 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 23, 11:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 14.
+Updated Mon Nov 23, 11:50 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 13.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 451-267 (-15.72u flat) | rule met: 93-70
+**Record:** 451-268 (-16.72u flat) | rule met: 93-71
 
-**Fade (paper, betting against the print):** 242-416 (+4.85u flat, after fees)
+**Fade (paper, betting against the print):** 243-416 (+5.68u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 23 8:40PM | NCAAB | Seattle vs Loyola Chicago | moneyline: Loyola Chicago | kalshi | $28k | +108 | ✅ novig |  | +0.0c |  | pending |
+| Nov 23 8:40PM | NCAAB | Seattle vs Loyola Chicago | moneyline: Loyola Chicago | kalshi | $28k | +108 | ✅ novig |  | +0.0c |  | L |
 | Nov 23 8:20PM | NCAAB | FDU vs Iona | moneyline: FDU | kalshi | $62k | -270 |  |  | +10.0c | yes | pending |
 | Nov 23 7:20PM | NCAAB | Texas A&M-Corpus Christi vs Wichita St.: Point Total | total: NOT Over 141.5 points | kalshi | $28k | -108 |  |  | +0.0c |  | L |
 | Nov 23 6:00PM | NCAAB | UNC Greensboro @ Pepperdine | moneyline: Pepperdine (0) | novig | $33k | -525 | ✅ kalshi,prophetx |  | +0.0c | yes | pending |
