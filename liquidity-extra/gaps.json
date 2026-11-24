@@ -2,36 +2,6 @@
  "note": "PAPER ONLY (Oct 25; persistence added Oct 26): opposite sides of the same game/market/line on two different exchanges whose combined cost after fees is under $1 (Kalshi/Novig/ProphetX; Polymarket here is the global book, excluded). edge_pct = locked profit per $ staked at first sight; max/last_edge_pct while open. size_est = smaller leg's near-price depth (UPPER BOUND). first/last_seen_utc, scans_seen, lifetime_min = how long the gap stayed open (scan-interval resolution; a 1-scan gap may be a feed artifact). scan_sec = seconds from run start to this save, the most the two legs' reads can be apart. Measurement only: never alerted, never bet.",
  "gaps": [
   {
-   "seen_utc": "2026-11-10T23:29:49Z",
-   "league": "NCAAB",
-   "game": "Duke @ Michigan State",
-   "market": "total",
-   "line": 147.5,
-   "edge_pct": 0.69,
-   "total_cost": 0.9931,
-   "size_est": 133,
-   "legs": [
-    {
-     "book": "novig",
-     "side": "Under 147.5 (147.5)",
-     "price": 0.505,
-     "cost_after_fee": 0.505
-    },
-    {
-     "book": "prophetx",
-     "side": "over 147.5 (147.5)",
-     "price": 0.4831,
-     "cost_after_fee": 0.4881
-    }
-   ],
-   "first_seen_utc": "2026-11-10T23:29:49Z",
-   "last_seen_utc": "2026-11-10T23:29:49Z",
-   "scans_seen": 1,
-   "max_edge_pct": 0.69,
-   "scan_sec": 636,
-   "lifetime_min": 0
-  },
-  {
    "seen_utc": "2026-11-11T00:13:01Z",
    "league": "NCAAB",
    "game": "Saint Joseph's @ South Florida",
@@ -2395,13 +2365,13 @@
     }
    ],
    "first_seen_utc": "2026-11-24T01:10:20Z",
-   "last_seen_utc": "2026-11-24T23:20:19Z",
-   "scans_seen": 132,
+   "last_seen_utc": "2026-11-24T23:30:24Z",
+   "scans_seen": 133,
    "max_edge_pct": 54.61,
    "scan_sec": 299,
-   "lifetime_min": 1330,
-   "last_edge_pct": 46.26,
-   "last_size_est": 5104
+   "lifetime_min": 1340,
+   "last_edge_pct": 46.67,
+   "last_size_est": 3023
   },
   {
    "seen_utc": "2026-11-24T03:00:27Z",
@@ -2549,13 +2519,13 @@
     }
    ],
    "first_seen_utc": "2026-11-24T18:50:21Z",
-   "last_seen_utc": "2026-11-24T23:20:19Z",
-   "scans_seen": 27,
+   "last_seen_utc": "2026-11-24T23:30:24Z",
+   "scans_seen": 28,
    "max_edge_pct": 46.95,
    "scan_sec": 422,
-   "lifetime_min": 270,
-   "last_edge_pct": 42.82,
-   "last_size_est": 5472
+   "lifetime_min": 280,
+   "last_edge_pct": 43.2,
+   "last_size_est": 3023
   },
   {
    "seen_utc": "2026-11-24T19:20:21Z",
@@ -2611,13 +2581,13 @@
     }
    ],
    "first_seen_utc": "2026-11-24T19:20:21Z",
-   "last_seen_utc": "2026-11-24T23:20:19Z",
-   "scans_seen": 24,
+   "last_seen_utc": "2026-11-24T23:30:24Z",
+   "scans_seen": 25,
    "max_edge_pct": 47.3,
    "scan_sec": 388,
-   "lifetime_min": 240,
+   "lifetime_min": 250,
    "last_edge_pct": 46.22,
-   "last_size_est": 5104
+   "last_size_est": 5047
   },
   {
    "seen_utc": "2026-11-24T19:20:21Z",
@@ -2643,13 +2613,13 @@
     }
    ],
    "first_seen_utc": "2026-11-24T19:20:21Z",
-   "last_seen_utc": "2026-11-24T23:20:19Z",
-   "scans_seen": 24,
+   "last_seen_utc": "2026-11-24T23:30:24Z",
+   "scans_seen": 25,
    "max_edge_pct": 47.47,
    "scan_sec": 388,
-   "lifetime_min": 240,
+   "lifetime_min": 250,
    "last_edge_pct": 44.97,
-   "last_size_est": 4349
+   "last_size_est": 4651
   },
   {
    "seen_utc": "2026-11-24T23:00:27Z",
