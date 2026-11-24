@@ -347,7 +347,16 @@ def hr1_flag(a):
     The backtest reads +0.278/play after both cuts. That is FITTED: both cuts were found in the same 129
     plays that produce it. Forward expectation is +0.15 to +0.20, and +0.137 again would not be a
     surprise. Restore is pre-committed to the POOLED cell (original plays plus everything graded since),
-    never the new plays alone.
+    never the new plays alone, with the bar on the RESTORE side: keeping a flat cell cut costs volume,
+    restoring a bad one costs money.
+
+    REVIEW DATES, recorded here because a schedule lives outside the repo and this file does not:
+      - totals 145-155 cell: Sat 16 Jan 2027 (~40 new graded plays at the Nov pace of ~28/4.5wk)
+      - lead 60-180 cell:    Mon 15 Mar 2027 (~14/4.5wk, so ~13 weeks - past the regular season)
+    Two dates, not one, because the cells accrue at different speeds; the lead cell is the one that
+    quietly never gets reviewed if they are collapsed. Read CLV on both cut cells at each review - it
+    is the lower-variance signal and will reach a read before the play counts do. If neither review
+    happened, the cuts are still in force and that is the thing to check first, not the cells.
 
     Fails closed: a total whose number cannot be read is not flagged.
     """
