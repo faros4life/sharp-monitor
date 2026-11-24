@@ -1,19 +1,28 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 24, 12:20 AM ET. This run: 0 new, 0 not confirmed, 9 pending. Open alerts: 10.
+Updated Tue Nov 24, 12:30 AM ET. This run: 9 new, 0 not confirmed, 0 pending. Open alerts: 18.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 453-269 (-17.05u flat) | rule met: 93-71
+**Record:** 454-269 (-16.86u flat) | rule met: 94-71
 
-**Fade (paper, betting against the print):** 244-418 (+7.41u flat, after fees)
+**Fade (paper, betting against the print):** 244-419 (+6.41u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 24 12:30AM | NCAAB | Southern Utah vs Florida International | moneyline: Florida International | kalshi | $170k | -355 |  |  | +0.0c |  | pending |
+| Nov 24 12:30AM | NCAAB | Samford vs Georgia Tech | moneyline: Georgia Tech | kalshi | $173k | -525 |  |  | +0.0c |  | pending |
+| Nov 24 12:30AM | NCAAB | Oregon St. vs San Francisco | moneyline: Oregon St. | kalshi | $192k | -426 |  |  | +0.0c |  | pending |
+| Nov 24 12:30AM | NCAAB | Mercer vs Florida Atlantic | moneyline: Florida Atlantic | kalshi | $140k | -270 |  |  | +0.0c |  | pending |
+| Nov 24 12:30AM | NCAAB | Kent St. vs Wyoming | moneyline: Wyoming | kalshi | $173k | -355 |  |  | +0.0c |  | pending |
+| Nov 24 12:30AM | NCAAB | High Point vs Duquesne | moneyline: High Point | kalshi | $161k | -456 |  |  | +0.0c |  | pending |
+| Nov 24 12:30AM | NCAAB | Hampton vs Old Dominion | moneyline: Old Dominion | kalshi | $154k | -335 |  |  | +0.0c |  | pending |
+| Nov 24 12:30AM | NCAAB | Elon vs Furman | moneyline: Furman | kalshi | $148k | -317 |  |  | +0.0c |  | pending |
+| Nov 24 12:30AM | NCAAB | Binghamton vs Lehigh | moneyline: Lehigh | kalshi | $154k | -355 |  |  | +0.0c |  | pending |
 | Nov 23 8:40PM | NCAAB | Seattle vs Loyola Chicago | moneyline: Loyola Chicago | kalshi | $28k | +108 | ✅ novig |  | +0.0c |  | L |
 | Nov 23 8:20PM | NCAAB | FDU vs Iona | moneyline: FDU | kalshi | $62k | -270 |  |  | +10.0c | yes | W |
 | Nov 23 7:20PM | NCAAB | Texas A&M-Corpus Christi vs Wichita St.: Point Total | total: NOT Over 141.5 points | kalshi | $28k | -108 |  |  | +0.0c |  | L |
-| Nov 23 6:00PM | NCAAB | UNC Greensboro @ Pepperdine | moneyline: Pepperdine (0) | novig | $33k | -525 | ✅ kalshi,prophetx |  | +0.0c | yes | pending |
+| Nov 23 6:00PM | NCAAB | UNC Greensboro @ Pepperdine | moneyline: Pepperdine (0) | novig | $33k | -525 | ✅ kalshi,prophetx |  | +0.0c | yes | W |
 | Nov 23 6:00PM | NCAAB | Central Arkansas @ North Florida | moneyline: CARK (0) | novig | $39k | -344 |  |  | -0.5c |  | W |
 | Nov 23 2:10PM | NCAAB | Middle Tennessee @ Southern Illinois | spread: Southern Illinois -3.5 (-3.5) | novig | $25k | -108 |  | ✅ | +0.0c |  | L |
 | Nov 23 2:10PM | NCAAB | William & Mary vs IU Indy | moneyline: William & Mary | kalshi | $122k | -223 |  |  | +1.0c | yes | W |
@@ -201,12 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 18 2:10AM | NCAAB | Fresno St. vs San Jose St. | moneyline: San Jose St. | kalshi | $25k | -233 |  |  | +0.0c |  | W |
 | Nov 18 2:00AM | NCAAB | Boston College vs Harvard | moneyline: Boston College | kalshi | $26k | -170 |  |  | -2.0c | yes | W |
 | Nov 18 1:50AM | NCAAB | VMI vs Longwood | moneyline: Longwood | kalshi | $25k | -257 |  |  | +2.0c |  | W |
-| Nov 18 1:50AM | NCAAB | UNC Wilmington vs LIU | moneyline: UNC Wilmington | kalshi | $37k | -525 |  |  | -3.0c |  | L |
-| Nov 18 1:40AM | NCAAB | Samford vs USC Upstate | moneyline: Samford | kalshi | $28k | -270 |  |  | +1.0c | yes | W |
-| Nov 17 8:20PM | NCAAB | Kansas vs UNLV: Point Total | total: Over 157.5 points | kalshi | $26k | -113 |  |  | +1.0c | yes | W |
-| Nov 17 7:40PM | NCAAB | Montana St. vs Gonzaga: Spread | spread: Gonzaga wins by over 21.5 points | kalshi | $33k | -122 |  |  | +1.0c | yes | L |
-| Nov 17 7:40PM | NCAAB | Le Moyne vs Evansville: Spread | spread: NOT Evansville wins by over 7.5 points | kalshi | $27k | -104 |  |  | +0.0c |  | L |
-| Nov 17 6:40PM | NCAAB | Eastern Illinois vs Vanderbilt: Spread | spread: NOT Vanderbilt wins by over 41.5 points | kalshi | $29k | -113 |  | ✅ | +0.0c |  | L |
-| Nov 17 6:30PM | NCAAB | Bowling Green vs William & Mary: Point Total | total: Over 168.5 points | kalshi | $29k | -113 |  | ❌ | +0.0c |  | L |
-| Nov 17 6:20PM | NCAAB | Wagner vs Saint Joseph's: Point Total | total: Over 137.5 points | kalshi | $28k | +104 |  |  | +0.0c |  | W |
-| Nov 17 6:10PM | NCAAB | Cal State Northridge vs Troy | moneyline: Troy | kalshi | $48k | -122 | ✅ novig | ❌ | +0.0c |  | W |
