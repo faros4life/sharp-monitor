@@ -321,6 +321,54 @@ def hr1(a):
     return (not why), why
 
 
+# ----------------------------------------------------------------- HR1 flag-only cuts (Peter, 24 Nov 2026)
+HR1_FLAG_MIN_LEAD = 180                 # no flag inside 3 hours of tip. HR1_MIN_LEAD (60) stays the POOL rule.
+HR1_FLAG_TOTAL_DEAD = (145.0, 155.0)    # inclusive: no flag on a total in this band
+
+
+def hr1_flag(a):
+    """Should this alert be PUSHED as an HR1 play? Flag-only cuts (Peter, 24 Nov 2026).
+
+    hr1() above still decides POOL membership and MUST NOT change. It is called in two places - the
+    stored-row recorder (sharp_monitor hr1_eligible) and the push site - so putting these cuts in it
+    would stop the cut cells being recorded as eligible and silently destroy the out-of-sample read the
+    review rule depends on. This function is consulted at the PUSH site only; the full eligible pool
+    keeps being recorded and graded exactly as before.
+
+    Two cuts from the graded eligible pool (n129, Oct 22 - Nov 23). Units are per-play return on amount
+    RISKED (pool SD 0.938), not on the to-win amount:
+      - lead 60-180 min graded -0.051/play (n14, 95% -0.54..+0.44). Cut on MECHANISM - CLV accrues with
+        lead time - not on this cell, which is indistinguishable from zero.
+      - totals 145-155 graded -0.184/play (n28, 95% -0.53..+0.16); <145 +0.201, 155+ +0.566 (n22, the
+        only cell clearing zero alone, and the selected maximum). The cut cell does not clear zero and a
+        dead zone in the middle of the distribution has no mechanism behind it, so this is the weaker of
+        the two cuts and the one expected to fail out of sample.
+
+    The backtest reads +0.278/play after both cuts. That is FITTED: both cuts were found in the same 129
+    plays that produce it. Forward expectation is +0.15 to +0.20, and +0.137 again would not be a
+    surprise. Restore is pre-committed to the POOLED cell (original plays plus everything graded since),
+    never the new plays alone.
+
+    Fails closed: a total whose number cannot be read is not flagged.
+    """
+    ok, why = hr1(a)
+    why = list(why)
+    ld = lead_min(a)
+    if ld is None or ld < HR1_FLAG_MIN_LEAD:
+        why.append(f"under {HR1_FLAG_MIN_LEAD} min before tip (flag floor; pool floor is {HR1_MIN_LEAD})")
+    if a.get("kind") == "tot":
+        pt = a.get("point") if a.get("point") is not None else a.get("pt")
+        lo, hi = HR1_FLAG_TOTAL_DEAD
+        try:
+            if pt is None:
+                why.append("total number missing - not flagged (fails closed)")
+            elif lo <= float(pt) <= hi:
+                why.append(f"total {float(pt):g} inside the {lo:g}-{hi:g} dead zone - not flagged")
+        except (TypeError, ValueError):
+            why.append(f"total {pt} unreadable - not flagged (fails closed)")
+    return (not why), why
+
+
 def phase1(a, muse_agree, tag_nfl=False):
     """Phase-1 LIVE filter (Muse + Peter, Oct 25). Returns (eligible, [reasons it is not]).
     tag_nfl=True (Peter's amendment, Oct 26): the DRY RUN also tags NFL plays; NFL in/out is decided at the pre-live

@@ -64,7 +64,10 @@ def t_live_path_uses_the_ISO_game_start():
     chain was reordered. a["commence"] is the ISO start, the field the export already uses."""
     s = open("sharp_monitor.py").read()
     i = s.index("hr1_ok = hr1_sent = False")
-    blk = s[i:i + 1400]
+    # Anchored to the end of the call, not a fixed width: a 1400-char window silently stopped
+    # covering the call on Nov 24 when the flag-cut comment was added above it, and the failure
+    # read as "the ISO start is gone" when the line was simply outside the slice.
+    blk = s[i:s.index("hr1 check skipped", i)]
     assert '"start_utc": a["commence"]' in blk and '"start_utc": a["start"]' not in blk
     # a display-style start must not silently pass as a lead
     assert ar.lead_min({"alert_utc": "2026-11-17T23:20:00Z", "start_utc": "Tue 7:00 PM ET"}) is None
