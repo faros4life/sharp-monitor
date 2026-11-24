@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 24, 12:00 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 11.
+Updated Tue Nov 24, 12:10 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 10.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 452-269 (-17.38u flat) | rule met: 93-71
+**Record:** 453-269 (-17.05u flat) | rule met: 93-71
 
-**Fade (paper, betting against the print):** 244-417 (+8.41u flat, after fees)
+**Fade (paper, betting against the print):** 244-418 (+7.41u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -40,7 +40,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 23 1:10AM | NCAAB | Nevada vs San Francisco | moneyline: Nevada | kalshi | $131k | -285 |  |  | -1.0c |  | W |
 | Nov 23 1:10AM | NCAAB | Ole Miss vs Clemson | moneyline: Ole Miss | kalshi | $123k | -223 |  |  | +0.0c |  | W |
 | Nov 23 1:10AM | NCAAB | Long Beach St. vs Florida International | moneyline: Florida International | kalshi | $171k | -426 |  |  | -4.0c |  | W |
-| Nov 23 1:10AM | NCAAB | Eastern Washington vs UNLV | moneyline: UNLV | kalshi | $132k | -317 |  |  | +1.0c |  | pending |
+| Nov 23 1:10AM | NCAAB | Eastern Washington vs UNLV | moneyline: UNLV | kalshi | $132k | -317 |  |  | +1.0c |  | W |
 | Nov 23 1:10AM | NCAAB | Charlotte vs Florida Gulf Coast | moneyline: Charlotte | kalshi | $122k | -257 |  |  | +0.0c |  | W |
 | Nov 23 1:10AM | NCAAB | Arkansas St. vs Southern Utah | moneyline: Arkansas St. | kalshi | $121k | -270 |  |  | +0.0c |  | W |
 | Nov 22 8:20PM | NCAAB | Washington vs BYU | moneyline: BYU | kalshi | $31k | -567 |  |  | -1.0c |  | W |
