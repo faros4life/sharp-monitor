@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 24, 2:30 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 11.
+Updated Tue Nov 24, 2:35 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 11.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -11,7 +11,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 24 1:00AM | NFL | Green Bay vs Los Angeles R | moneyline: Green Bay | kalshi | $172k | +117 | ✅ novig |  | +0.0c |  | pending |
-| Nov 23 11:35PM | NHL | Vegas vs Edmonton | moneyline: Vegas | kalshi | $32k | -108 | ✅ novig |  | +0.0c | yes | pending |
+| Nov 23 11:35PM | NHL | Vegas vs Edmonton | moneyline: Vegas | kalshi | $32k | -108 | ✅ novig |  | -1.0c | yes | pending |
 | Nov 23 9:25PM | NHL | Anaheim vs Seattle | moneyline: Anaheim | kalshi | $37k | +104 | ✅ novig,prophetx |  | +1.0c | yes | L |
 | Nov 23 9:05PM | NBA | Dallas vs Denver | moneyline: Denver | kalshi | $224k | -300 |  |  | -1.0c |  | pending |
 | Nov 23 9:00PM | NBA | San Antonio vs Sacramento: Spread | spread: NOT San Antonio wins by over 8.5 points | kalshi | $46k | -108 | ✅ novig |  | +1.0c | yes | L |
