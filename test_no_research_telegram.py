@@ -31,7 +31,9 @@ def read(p):
 
 # --- research reporters and the liquidity scan lane carry no Telegram path at all -------------
 # liquidity_monitor is checked by SOURCE, not by import: importing it does live-trading setup.
-for mod in ("last50_report.py", "clv_report.py", "liquidity_monitor.py"):
+# p2_audit.py joined this list Nov 24 2026 (Peter: "stop this going to telegram") - the live lane
+# audit was arriving on the order feed in chunks plus a CSV. Same route as the Nov 22 correction.
+for mod in ("last50_report.py", "clv_report.py", "liquidity_monitor.py", "p2_audit.py"):
     src = read(mod)
     ok(f"{mod}: no Telegram credentials read", "TELEGRAM_BOT_TOKEN" not in src and "TELEGRAM_CHAT_ID" not in src)
     ok(f"{mod}: no Telegram API call", "api.telegram.org" not in src)
@@ -41,7 +43,7 @@ liq = read("liquidity_monitor.py")
 ok("liquidity_monitor: tg_mirror deleted, not merely unused", "def tg_mirror" not in liq)
 ok("liquidity_monitor: still pushes to ntfy", "ntfy.sh" in liq)
 
-for w in ("liquidity-monitor.yml", "liquidity-extra.yml"):
+for w in ("liquidity-monitor.yml", "liquidity-extra.yml", "p2-audit.yml"):
     wsrc = read(os.path.join(".github/workflows", w))
     ok(f"{w}: TELEGRAM secrets not passed",
        "secrets.TELEGRAM_BOT_TOKEN" not in wsrc and "secrets.TELEGRAM_CHAT_ID" not in wsrc)
@@ -57,6 +59,12 @@ ok("last50-report.yml: TELEGRAM secrets not passed",
 ok("last50-report.yml: email secrets ARE passed",
    all(s in wf for s in ("secrets.GMAIL_ADDRESS", "secrets.GMAIL_APP_PASSWORD", "secrets.EMAIL_TO")))
 ok("last50-report.yml: still read-only permissions", re.search(r"contents:\s*read", wf) is not None)
+
+p2 = read(".github/workflows/p2-audit.yml")
+ok("p2-audit.yml: email secrets ARE passed",
+   all(s in p2 for s in ("secrets.GMAIL_ADDRESS", "secrets.GMAIL_APP_PASSWORD", "secrets.EMAIL_TO")))
+ok("p2_audit: old send_notice Telegram path is gone, not merely unused",
+   "api.telegram.org" not in read("p2_audit.py"))
 
 # --- delivery is wired, and a dead reporter is still loud ------------------------------------
 import last50_report as L50
