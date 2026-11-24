@@ -227,48 +227,76 @@ def t_runner_import_runs_nothing():
 def t_send_private_without_secrets_is_loud_not_silent():
     import contextlib
     m, out = _runner(), io.StringIO()
-    os.environ.pop("TELEGRAM_BOT_TOKEN", None); os.environ.pop("TELEGRAM_CHAT_ID", None)
+    for v in ("GMAIL_ADDRESS", "GMAIL_APP_PASSWORD", "EMAIL_TO"):
+        os.environ.pop(v, None)
     with contextlib.redirect_stdout(out):
         ok = m.send_private("x", [])
     assert ok is False and "NOT delivered" in out.getvalue()
 
 
 def t_send_private_public_log_carries_no_figures_or_token():
-    import contextlib, urllib.request
+    # Nov 24 (Peter: "stop this going to telegram"): the audit goes by private email on
+    # last50_report's route. The leak rules are unchanged - figures ride the message and the
+    # CSV attachment, never the public Actions log.
+    import contextlib, smtplib
     m, out, sent = _runner(), io.StringIO(), []
 
-    class Resp:
-        def read(self):
-            return b"{}"
-    orig = urllib.request.urlopen
-    urllib.request.urlopen = lambda req, timeout=0: (sent.append(req.data), Resp())[1]
-    os.environ["TELEGRAM_BOT_TOKEN"], os.environ["TELEGRAM_CHAT_ID"] = "TOKEN123", "CHAT9"
+    class SV:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *a):
+            return False
+
+        def login(self, u, p):
+            pass
+
+        def sendmail(self, frm, to, body):
+            sent.append(body)
+    orig = smtplib.SMTP_SSL
+    smtplib.SMTP_SSL = lambda host, port, timeout=0: SV()
+    os.environ["GMAIL_ADDRESS"], os.environ["GMAIL_APP_PASSWORD"] = "bets@example.com", "PASSWORD123"
+    os.environ["EMAIL_TO"] = "peter@example.com"
     try:
         text, csvr = c.render(run([R(order_ref="A", game_start="2026-11-02T00:00:00Z")]))
         with contextlib.redirect_stdout(out):
             ok = m.send_private(text, csvr)
-        urllib.request.urlopen = lambda req, timeout=0: (_ for _ in ()).throw(OSError("TOKEN123 secret detail"))
+        smtplib.SMTP_SSL = lambda host, port, timeout=0: (_ for _ in ()).throw(OSError("PASSWORD123 secret detail"))
         with contextlib.redirect_stdout(out):
             bad = m.send_private(text, csvr)
     finally:
-        urllib.request.urlopen = orig
-        os.environ.pop("TELEGRAM_BOT_TOKEN", None); os.environ.pop("TELEGRAM_CHAT_ID", None)
+        smtplib.SMTP_SSL = orig
+        for v in ("GMAIL_ADDRESS", "GMAIL_APP_PASSWORD", "EMAIL_TO"):
+            os.environ.pop(v, None)
     log = out.getvalue()
-    assert ok is True and bad is False and len(sent) == 2                        # one message + the CSV document
-    assert b"p2_lane_audit.csv" in sent[1] and b"risked" in sent[1]              # the figures go to Telegram...
-    for leak in ("TOKEN123", "CHAT9", "risked", "net", "+90", "secret detail"):  # ...and never to the public log
+    assert ok is True and bad is False and len(sent) == 1                        # one email, CSV attached
+    # MIMEText base64-encodes a utf-8 body, so decode the message rather than grepping the wire
+    # form - a raw substring check here passes or fails for the wrong reason.
+    import email as _email
+    msg = _email.message_from_string(sent[0])
+    parts = {p.get_content_type(): p for p in msg.walk() if not p.is_multipart()}
+    assert msg["To"] == "peter@example.com" and "live lane audit" in msg["Subject"]
+    assert parts["text/csv"].get_filename() == "p2_lane_audit.csv"
+    body = parts["text/plain"].get_payload(decode=True).decode("utf-8")
+    sheet = parts["text/csv"].get_payload(decode=True).decode("utf-8")
+    assert "risked" in body and "risked" in sheet                                # the figures go by email...
+    for leak in ("PASSWORD123", "risked", "net", "+90", "secret detail"):        # ...never to the public log
         assert leak not in log, (leak, log)
-    assert "telegram delivered: 1 message(s) + CSV" in log and "telegram send failed (OSError)" in log
+    assert "emailed: report + CSV" in log and "email send failed (OSError)" in log
+    assert "api.telegram.org" not in open(os.path.join(HERE, "p2_audit.py")).read()
 
 
 def t_workflow_secrets_are_exactly_the_needed_four():
     import re as _re
     wf = open(os.path.join(HERE, ".github", "workflows", "p2-audit.yml")).read()
-    assert set(_re.findall(r"secrets\.([A-Z_]+)", wf)) == {"TRACKER_PASSPHRASE", "REGISTRY_TOKEN", "TELEGRAM_BOT_TOKEN", "TELEGRAM_CHAT_ID",
+    assert set(_re.findall(r"secrets\.([A-Z_]+)", wf)) == {"TRACKER_PASSPHRASE", "REGISTRY_TOKEN",
+                                                           "GMAIL_ADDRESS", "GMAIL_APP_PASSWORD", "EMAIL_TO",
                                                            "NOVIG_READ_KEY_ID", "NOVIG_READ_KEY_PEM", "NOVIG_TRADE_KEY_ID",
                                                            "PROPHETX_ACCESS_KEY", "PROPHETX_SECRET_KEY",
                                                            "NOVIG_READ_TOKEN"}   # Nov 17 Option A: read-only, novig-runner only
-    for bad in ("NOVIG_TRADE_KEY_PEM", "PX_TRADE", "PROPHETX_TRADE", "GMAIL", "ODDSPAPI", "KALSHI", "PMUS"):
+    # GMAIL_* left this ban list on Nov 24 ("stop this going to telegram"): the three mail secrets
+    # are now needed and are pinned by the exact-set assertion above. Trade keys stay banned.
+    for bad in ("NOVIG_TRADE_KEY_PEM", "PX_TRADE", "PROPHETX_TRADE", "ODDSPAPI", "KALSHI", "PMUS", "TELEGRAM"):
         assert bad not in wf, bad
     assert "contents: read" in wf and "upload-artifact" not in wf and "actions/cache" not in wf and "git push" not in wf and "git commit" not in wf
 

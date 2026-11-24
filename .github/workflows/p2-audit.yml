@@ -62,8 +62,9 @@ jobs:
           REPORT_DAY: ${{ inputs.report_day }}
           TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
           REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}   # contents read on the private registry
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}   # private delivery only (same route as last50-report)
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}             # Nov 24 (Peter: "stop this going to telegram")
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}   # private email, same three secrets as last50-report
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
           P2_DELIVER: ${{ inputs.deliver || '1' }}   # Nov 17 (Peter): manual verification runs pass 0 - no Telegram
           NOVIG_READ_KEY_ID: ${{ secrets.NOVIG_READ_KEY_ID }}       # read-only (novig_signed.ready verifies the scope)
           NOVIG_READ_KEY_PEM: ${{ secrets.NOVIG_READ_KEY_PEM }}

@@ -581,7 +581,8 @@ CSV_COLS = ["test", "half", "ts", "game", "price_am", "result", "certified_clv_p
             "provisional_clv_pct_not_certified", "provisional_source"]
 
 
-def send_report(body, rows):
+def send_report(body, rows, subject="Bets VALUE LAB - LAST-50 REPORT",
+                filename="last50_plays.csv", fields=None):
     """EMAIL delivery. NOT Telegram (Peter, Nov 22: "I don't need paper or research to telegram").
 
     This used to chunk the whole report into Telegram plus a CSV document, and the reason was in
@@ -594,6 +595,9 @@ def send_report(body, rows):
     Credentials are read from the environment directly rather than through executor.gmail(),
     because importing executor does live-trading setup at import time and this is a read-only
     reporter. Same three secrets, no new credential.
+
+    Nov 24: the subject, attachment name and CSV columns are parameters so the P2 lane audit can
+    use this same route (Peter: "stop this going to telegram") rather than a second mailer.
 
     The CSV stays an ATTACHMENT: a truncated body can be silently half-valid, a CSV cannot.
     Missing secrets or a failed send still returns False, and main() exits non-zero on it, so a
@@ -611,18 +615,18 @@ def send_report(body, rows):
         return False
     try:
         buf = io.StringIO()
-        w = csv.DictWriter(buf, fieldnames=CSV_COLS, extrasaction="ignore")
+        w = csv.DictWriter(buf, fieldnames=list(fields or CSV_COLS), extrasaction="ignore")
         w.writeheader()
         for r in rows:
             w.writerow(r)
         m = MIMEMultipart()
-        m["Subject"] = "Bets VALUE LAB - LAST-50 REPORT"
+        m["Subject"] = subject
         m["From"], m["To"] = user, to
         m.attach(MIMEText(body, "plain", "utf-8"))
         part = MIMEBase("text", "csv")
         part.set_payload(buf.getvalue().encode("utf-8"))
         encoders.encode_base64(part)
-        part.add_header("Content-Disposition", "attachment", filename="last50_plays.csv")
+        part.add_header("Content-Disposition", "attachment", filename=filename)
         m.attach(part)
         with smtplib.SMTP_SSL("smtp.gmail.com", 465, timeout=120) as sv:
             sv.login(user, pw)

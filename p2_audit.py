@@ -3,7 +3,7 @@
 No Gmail, no order endpoint, no state change, no commit. Public log = counts only. Venue reads (Nov 14 23:33, Peter "Build it"):
 Novig GET /v3/portfolio/fills with the READ-ONLY key (verified read-only by novig_signed.ready), and ProphetX with the DATA key:
 POST /auth/login (authentication only) then GET trades - no trading key, no order route, no odds API. The dollar / ROI report goes ONLY to Peter's
-private Telegram (Peter approved Nov 14 18:06 ET), the same route as last50_report.send_telegram; nothing is written to disk.
+private EMAIL (Peter, Nov 24: "stop this going to telegram"), the same route last50_report uses; nothing is written to disk.
 Fails closed: unreadable registry -> nothing is reported. executor is NOT imported (see the index block)."""
 import csv
 import io
@@ -146,63 +146,25 @@ def degraded_reason(novig_complete, novig_note):
 
 
 def send_notice(text):
-    """One short PRIVATE Telegram message (no CSV). Same route as send_private. Returns True/False."""
-    import urllib.request
-    tok = (os.environ.get("TELEGRAM_BOT_TOKEN") or "").strip()
-    chat = (os.environ.get("TELEGRAM_CHAT_ID") or "").strip()
-    if not tok or not chat:
-        print("telegram not configured - notice NOT delivered")
-        return False
-    try:
-        req = urllib.request.Request(f"https://api.telegram.org/bot{tok}/sendMessage",
-                                     json.dumps({"chat_id": chat, "text": text}).encode(), {"Content-Type": "application/json"})
-        urllib.request.urlopen(req, timeout=30).read()
-    except Exception as e:
-        print(f"telegram notice failed ({type(e).__name__})")
-        return False
-    print("telegram notice delivered (scorecard withheld)")
-    return True
+    """One short PRIVATE EMAIL (no CSV). Returns True/False.
+
+    Nov 24 (Peter: "stop this going to telegram"). This audit went to the private Telegram feed -
+    the one Peter watches for LIVE ORDER notices - in a dozen chunks plus a CSV, and it carries
+    dollar figures and ROI. Same correction as last50_report on Nov 22: research and audit output
+    belongs in email, not on the alert feed. CLAUDE.md's own rule says dollars go by private email
+    and only units go in chat. One mailer, not a second one."""
+    import last50_report as l50
+    return l50.send_report(text, [], subject="Bets P2 - live lane audit (withheld)",
+                           filename="p2_lane_audit.csv", fields=list(CSV_FIELDS))
 
 
 def send_private(text, rows):
-    """PRIVATE Telegram delivery - the route last50_report.send_telegram already uses (secrets TELEGRAM_BOT_TOKEN /
-    TELEGRAM_CHAT_ID). The public log gets only 'delivered: N message(s) + CSV' or the exception TYPE. Returns True/False."""
-    import urllib.request
-    tok = (os.environ.get("TELEGRAM_BOT_TOKEN") or "").strip()
-    chat = (os.environ.get("TELEGRAM_CHAT_ID") or "").strip()
-    if not tok or not chat:
-        print("telegram not configured - report NOT delivered")
-        return False
-    base = f"https://api.telegram.org/bot{tok}/"
-    chunks, cur = [], ""
-    for ln in text.split("\n"):
-        if len(cur) + len(ln) + 1 > 3900:
-            chunks.append(cur)
-            cur = ""
-        cur += ln + "\n"
-    chunks.append(cur)
-    try:
-        for c in chunks:
-            req = urllib.request.Request(base + "sendMessage", json.dumps({"chat_id": chat, "text": c}).encode(),
-                                         {"Content-Type": "application/json"})
-            urllib.request.urlopen(req, timeout=30).read()
-        buf = io.StringIO()
-        w = csv.DictWriter(buf, fieldnames=list(CSV_FIELDS), extrasaction="ignore")
-        w.writeheader()
-        for r in rows:
-            w.writerow(r)
-        bd = "----p2audit"
-        parts = [f'--{bd}\r\nContent-Disposition: form-data; name="chat_id"\r\n\r\n{chat}\r\n',
-                 f'--{bd}\r\nContent-Disposition: form-data; name="document"; filename="p2_lane_audit.csv"\r\n'
-                 f'Content-Type: text/csv\r\n\r\n{buf.getvalue()}\r\n--{bd}--\r\n']
-        req = urllib.request.Request(base + "sendDocument", "".join(parts).encode(),
-                                     {"Content-Type": f"multipart/form-data; boundary={bd}"})
-        urllib.request.urlopen(req, timeout=60).read()
-    except Exception as e:
-        print(f"telegram send failed ({type(e).__name__})")
-        return False
-    print(f"telegram delivered: {len(chunks)} message(s) + CSV")
-    return True
+    """The audit by PRIVATE EMAIL, with the per-play CSV attached. Returns True/False.
+
+    The public log still gets counts only; nothing here prints a stake, a price or a play."""
+    import last50_report as l50
+    return l50.send_report(text, rows, subject="Bets P2 - live lane audit",
+                           filename="p2_lane_audit.csv", fields=list(CSV_FIELDS))
 
 
 def main():
