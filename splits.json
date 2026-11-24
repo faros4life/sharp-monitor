@@ -55,14 +55,14 @@
    "status": "ELIGIBLE at next review",
    "closed_utc": null,
    "plays": 195,
-   "resulted": 190,
-   "W": 105,
-   "L": 85,
+   "resulted": 192,
+   "W": 106,
+   "L": 86,
    "P": 0,
-   "units": 8.63,
-   "u_per_play": 0.045,
-   "true_close_value_pct": -1.02,
-   "true_close_n": 187
+   "units": 8.54,
+   "u_per_play": 0.044,
+   "true_close_value_pct": -1.0,
+   "true_close_n": 189
   },
   {
    "id": "hr_fade",
@@ -76,14 +76,14 @@
    "status": "CLOSED",
    "closed_utc": "2026-11-01T03:35:12Z",
    "plays": 195,
-   "resulted": 190,
-   "W": 105,
-   "L": 85,
+   "resulted": 192,
+   "W": 106,
+   "L": 86,
    "P": 0,
-   "units": -19.09,
-   "u_per_play": -0.1,
-   "true_close_value_pct": -1.02,
-   "true_close_n": 187
+   "units": -19.06,
+   "u_per_play": -0.099,
+   "true_close_value_pct": -1.0,
+   "true_close_n": 189
   },
   {
    "id": "pmg_routed",
@@ -118,14 +118,14 @@
    "status": "OPEN",
    "closed_utc": null,
    "plays": 189,
-   "resulted": 183,
-   "W": 98,
-   "L": 85,
+   "resulted": 186,
+   "W": 99,
+   "L": 87,
    "P": 0,
-   "units": 1.91,
-   "u_per_play": 0.01,
+   "units": 0.82,
+   "u_per_play": 0.004,
    "true_close_value_pct": -0.87,
-   "true_close_n": 181
+   "true_close_n": 184
   },
   {
    "id": "combined",
@@ -139,14 +139,14 @@
    "status": "OPEN",
    "closed_utc": null,
    "plays": 233,
-   "resulted": 226,
+   "resulted": 228,
    "W": 115,
-   "L": 111,
+   "L": 113,
    "P": 0,
-   "units": -9.0,
-   "u_per_play": -0.04,
+   "units": -11.0,
+   "u_per_play": -0.048,
    "true_close_value_pct": -2.18,
-   "true_close_n": 221
+   "true_close_n": 223
   },
   {
    "id": "worse_125",
@@ -201,15 +201,15 @@
    "kill_bar": ">= 30 resulted at <= -0.1u/play -> CLOSED",
    "status": "CLOSED",
    "closed_utc": "2026-11-03T06:00:21Z",
-   "plays": 158,
-   "resulted": 158,
-   "W": 87,
+   "plays": 159,
+   "resulted": 159,
+   "W": 88,
    "L": 71,
    "P": 0,
-   "units": -13.17,
-   "u_per_play": -0.083,
-   "true_close_value_pct": -1.41,
-   "true_close_n": 158
+   "units": -14.17,
+   "u_per_play": -0.089,
+   "true_close_value_pct": -1.38,
+   "true_close_n": 159
   },
   {
    "id": "tier2_core",
@@ -255,24 +255,24 @@
    "status": "OPEN",
    "closed_utc": null,
    "plays": 48,
-   "resulted": 47,
+   "resulted": 48,
    "W": 26,
-   "L": 21,
+   "L": 22,
    "P": 0,
-   "units": 1.62,
-   "u_per_play": 0.034,
-   "true_close_value_pct": -2.3,
-   "true_close_n": 42,
+   "units": 0.62,
+   "u_per_play": 0.013,
+   "true_close_value_pct": -2.27,
+   "true_close_n": 43,
    "all_history": {
     "plays": 66,
-    "resulted": 65,
+    "resulted": 66,
     "W": 34,
-    "L": 31,
+    "L": 32,
     "P": 0,
-    "units": -1.7,
-    "u_per_play": -0.026,
-    "true_close_value_pct": -2.06,
-    "true_close_n": 48
+    "units": -2.7,
+    "u_per_play": -0.041,
+    "true_close_value_pct": -2.03,
+    "true_close_n": 49
    }
   },
   {
@@ -785,5 +785,5 @@
   "liq_evening": 0
  },
  "resulted_rule": "resulted = result W, L or P with a unit value (pushes count as 0u); liquidity artifacts excluded; pending and ungraded plays do not count",
- "updated_utc": "2026-11-24T05:55:20Z"
+ "updated_utc": "2026-11-24T06:00:32Z"
 }
