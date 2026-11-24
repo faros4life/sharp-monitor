@@ -1,6 +1,210 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-24T19:50:21Z",
+   "base_depth": 255830,
+   "best_price": 0.62,
+   "best_price_american": -163,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.61,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 1913,
+     "new_this_side": 69363,
+     "other_side": 7951,
+     "other_side_all_levels": 144184,
+     "ratio": 18.2,
+     "this_side": 144546,
+     "this_side_all_levels": 329453
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "North Alabama (0)",
+     "price": 0.62,
+     "this_side": 18335
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "North Alabama",
+     "price": 0.6154,
+     "this_side": 1879
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 345.58,
+    "volume_24h_fp": 345.58,
+    "volume_fp": 345.58
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 5.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 345.58,
+    "volume_24h_fp": 340.58,
+    "volume_fp": 345.58
+   },
+   "fade_price": 0.39,
+   "first_seen_utc": "2026-11-24T19:40:22Z",
+   "game": "Alabama A&M vs North Alabama",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 11.52,
+   "key": "kalshi|KXNCAAMBGAME-26NOV24AAMUUNA|ml|1",
+   "lead_min": 310,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 69363,
+   "new_x": 0.57,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 345.58,
+      "volume_24h_fp": 345.58,
+      "volume_fp": 345.58
+     },
+     "game_normal": 28601,
+     "game_x": 11.52,
+     "normal": 120635,
+     "now": 329453,
+     "type": "ML",
+     "x": 2.73
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 793877.0,
+      "volume": 795777.0
+     },
+     "game_normal": 32852,
+     "game_x": 0.98,
+     "normal": 6579,
+     "now": 32244,
+     "type": "ML",
+     "x": 4.9
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 2326,
+     "game_x": 1.12,
+     "normal": 1567,
+     "now": 2603,
+     "type": "ML",
+     "x": 1.66
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.61,
+   "price_american": -156,
+   "price_rule": "ml_edge_ok",
+   "price_when_first_seen": 0.61,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -170
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -170
+    },
+    "betopenly": {
+     "point": null,
+     "price": -160
+    },
+    "betrivers": {
+     "point": null,
+     "price": -200
+    },
+    "bovada": {
+     "point": null,
+     "price": -175
+    },
+    "circasports": {
+     "point": null,
+     "price": -180
+    },
+    "draftkings": {
+     "point": null,
+     "price": -170
+    },
+    "fanatics": {
+     "point": null,
+     "price": -175
+    },
+    "fanduel": {
+     "point": null,
+     "price": -160
+    },
+    "kalshi": {
+     "point": null,
+     "price": -156
+    },
+    "lowvig": {
+     "point": null,
+     "price": -170
+    },
+    "novig": {
+     "point": null,
+     "price": -163
+    },
+    "polymarket": {
+     "point": null,
+     "price": -170
+    },
+    "prophetx": {
+     "point": null,
+     "price": -160
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -165
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV24AAMUUNA-UNA"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "North Alabama",
+   "side_label": "North Alabama",
+   "size_x": 2.73,
+   "start_source": "odds",
+   "start_utc": "2026-11-25T01:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "Alabama A&M",
+    "North Alabama"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-24T19:40:22Z",
    "base_depth": 143777,
    "best_price": 0.49,
@@ -14,8 +218,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.48,
+   "clv_cents": -2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-24",
    "depth_by_book": {
@@ -44,6 +248,11 @@
     "open_interest_fp": 23002.08,
     "volume_24h_fp": 14260.68,
     "volume_fp": 23914.07
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 207015.01,
+    "volume_24h_fp": 159619.97,
+    "volume_fp": 231563.3
    },
    "ex_stats_first": {
     "open_interest_fp": 92264.84,
@@ -159,7 +368,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-24T19:50:21Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBSPREAD-26NOV24TENNMD-TENN3"
@@ -236,7 +446,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 2132.92,
-    "volume_24h_fp": 2247.87,
+    "volume_24h_fp": 2257.92,
     "volume_fp": 2257.92
    },
    "ex_stats_first": {
@@ -423,7 +633,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 31566.09,
-    "volume_24h_fp": 33118.85,
+    "volume_24h_fp": 33618.86,
     "volume_fp": 33618.86
    },
    "ex_stats_first": {
@@ -606,9 +816,9 @@
     "volume_fp": 295.75
    },
    "ex_stats_close": {
-    "open_interest_fp": 8435.09,
-    "volume_24h_fp": 8307.08,
-    "volume_fp": 8927.33
+    "open_interest_fp": 8564.3,
+    "volume_24h_fp": 8659.32,
+    "volume_fp": 9056.539999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 7692.599999999999,
@@ -815,9 +1025,9 @@
     "volume_fp": 4323.07
    },
    "ex_stats_close": {
-    "open_interest_fp": 560581.51,
-    "volume_24h_fp": 223544.28,
-    "volume_fp": 592666.5800000001
+    "open_interest_fp": 601416.37,
+    "volume_24h_fp": 620997.22,
+    "volume_fp": 634519.47
    },
    "ex_stats_first": {
     "open_interest_fp": 93758.22,
@@ -944,7 +1154,8 @@
      "price": -135
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-24T19:50:21Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV24TENNMD-TENN"
@@ -1436,9 +1647,9 @@
     "volume_fp": 204.26
    },
    "ex_stats_close": {
-    "open_interest_fp": 10712.46,
-    "volume_24h_fp": 10512.45,
-    "volume_fp": 10749.86
+    "open_interest_fp": 11002.310000000001,
+    "volume_24h_fp": 10749.86,
+    "volume_fp": 11039.71
    },
    "ex_stats_first": {
     "open_interest_fp": 2369.8700000000003,
@@ -1647,9 +1858,9 @@
     "volume_fp": 96.71
    },
    "ex_stats_close": {
-    "open_interest_fp": 45916.39,
-    "volume_24h_fp": 43634.32000000001,
-    "volume_fp": 48940.95
+    "open_interest_fp": 49580.45,
+    "volume_24h_fp": 55427.05,
+    "volume_fp": 57066.89
    },
    "ex_stats_first": {
     "open_interest_fp": 11872.460000000001,
@@ -1860,6 +2071,7 @@
     "volume_fp": 13619.53
    },
    "fade_price": 0.47,
+   "fade_units": 1.05,
    "first_seen_utc": "2026-11-24T16:30:24Z",
    "game": "Belmont vs Akron: Point Total",
    "game_surge_books": [],
@@ -1966,12 +2178,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAMBTOTAL-26NOV24BELAKR-142"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 2,
+   "settle_tries": 3,
+   "settled_utc": "2026-11-24T19:50:21Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -1988,7 +2201,7 @@
     "Akron"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-24T15:30:27Z",
@@ -2043,7 +2256,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 801.4200000000001,
-    "volume_24h_fp": 869.46,
+    "volume_24h_fp": 886.96,
     "volume_fp": 1055.78
    },
    "ex_stats_first": {
@@ -2249,7 +2462,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 5086.1,
-    "volume_24h_fp": 4854.46,
+    "volume_24h_fp": 5110.87,
     "volume_fp": 5148.1
    },
    "ex_stats_first": {
@@ -2457,9 +2670,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 888.89,
-    "volume_24h_fp": 964.78,
-    "volume_fp": 981.78
+    "open_interest_fp": 896.08,
+    "volume_24h_fp": 971.97,
+    "volume_fp": 988.97
    },
    "ex_stats_first": {
     "open_interest_fp": 359.88,
@@ -2881,9 +3094,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 5298.700000000001,
-    "volume_24h_fp": 5616.0199999999995,
-    "volume_fp": 5640.6
+    "open_interest_fp": 5353.96,
+    "volume_24h_fp": 5671.28,
+    "volume_fp": 5695.860000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 5002.860000000001,
@@ -3105,6 +3318,7 @@
     "volume_fp": 11452.369999999999
    },
    "fade_price": 0.44,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-24T15:00:37Z",
    "game": "Belmont vs Akron",
    "game_surge_books": [
@@ -3234,14 +3448,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV24BELAKR-AKR"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
+   "settled_utc": "2026-11-24T19:50:21Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Akron",
@@ -3260,7 +3475,7 @@
     "Akron"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.74
   },
   {
    "alerted_utc": "2026-11-24T15:00:37Z",
@@ -3314,9 +3529,9 @@
     "volume_fp": 2.12
    },
    "ex_stats_close": {
-    "open_interest_fp": 7307.6,
-    "volume_24h_fp": 7537.04,
-    "volume_fp": 7537.04
+    "open_interest_fp": 8177.82,
+    "volume_24h_fp": 8407.26,
+    "volume_fp": 8407.26
    },
    "ex_stats_first": {
     "open_interest_fp": 2442.33,
@@ -3524,7 +3739,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1417.97,
-    "volume_24h_fp": 1388.38,
+    "volume_24h_fp": 1441.55,
     "volume_fp": 1444.55
    },
    "ex_stats_first": {
@@ -3698,8 +3913,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.85,
-   "clv_cents": 2.5,
+   "close_price": 0.845,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-24",
    "depth_by_book": {
@@ -3723,7 +3938,7 @@
    },
    "ex_stats_close": {
     "openInterest": 2705232.0,
-    "volume": 2981970.0
+    "volume": 2988220.0
    },
    "ex_stats_first": {
     "openInterest": 787098.0,
@@ -4834,8 +5049,8 @@
     "volume": 30587.0
    },
    "ex_stats_close": {
-    "openInterest": 1681376.0,
-    "volume": 1755271.0
+    "openInterest": 1761542.0,
+    "volume": 1835437.0
    },
    "ex_stats_first": {
     "openInterest": 297265.0,
@@ -5407,8 +5622,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.795,
-   "clv_cents": 4.0,
+   "close_price": 0.8,
+   "clv_cents": 4.5,
    "confirmed_after_min": 10,
    "date": "2026-11-24",
    "depth_by_book": {
@@ -5437,8 +5652,8 @@
     "volume": 45734.0
    },
    "ex_stats_close": {
-    "openInterest": 1290920.0,
-    "volume": 1422509.0
+    "openInterest": 1321966.0,
+    "volume": 1454754.0
    },
    "ex_stats_first": {
     "openInterest": 416518.0,
@@ -5957,9 +6172,9 @@
     "volume_fp": 1039.65
    },
    "ex_stats_close": {
-    "open_interest_fp": 116804.05,
-    "volume_24h_fp": 117253.33,
-    "volume_fp": 117388.79
+    "open_interest_fp": 119388.9,
+    "volume_24h_fp": 117407.86,
+    "volume_fp": 119973.64
    },
    "ex_stats_first": {
     "open_interest_fp": 5797.8099999999995,
@@ -6148,9 +6363,9 @@
     "volume_fp": 35.99
    },
    "ex_stats_close": {
-    "open_interest_fp": 7243.38,
-    "volume_24h_fp": 7342.1,
-    "volume_fp": 7983.41
+    "open_interest_fp": 7293.780000000001,
+    "volume_24h_fp": 7391.01,
+    "volume_fp": 8033.81
    },
    "ex_stats_first": {
     "open_interest_fp": 3135.8500000000004,
@@ -6339,9 +6554,9 @@
     "volume_fp": 2.52
    },
    "ex_stats_close": {
-    "open_interest_fp": 7772.03,
-    "volume_24h_fp": 3779.67,
-    "volume_fp": 7869.31
+    "open_interest_fp": 8289.89,
+    "volume_24h_fp": 8177.709999999999,
+    "volume_fp": 8395.17
    },
    "ex_stats_first": {
     "open_interest_fp": 702.3100000000001,
@@ -7101,7 +7316,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 6621.780000000001,
-    "volume_24h_fp": 6358.35,
+    "volume_24h_fp": 6491.0599999999995,
     "volume_fp": 6628.53
    },
    "ex_stats_first": {
@@ -7481,9 +7696,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2235.13,
-    "volume_24h_fp": 2131.71,
-    "volume_fp": 2248.9300000000003
+    "open_interest_fp": 2240.13,
+    "volume_24h_fp": 2131.99,
+    "volume_fp": 2253.9300000000003
    },
    "ex_stats_first": {
     "open_interest_fp": 221.52,
@@ -11832,8 +12047,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.66,
-   "clv_cents": -9.0,
+   "close_price": 0.67,
+   "clv_cents": -8.0,
    "confirmed_after_min": 10,
    "date": "2026-11-24",
    "depth_by_book": {
@@ -11864,9 +12079,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 379336.14,
-    "volume_24h_fp": 381424.2,
-    "volume_fp": 381919.72
+    "open_interest_fp": 383545.72000000003,
+    "volume_24h_fp": 386118.93,
+    "volume_fp": 386916.08
    },
    "ex_stats_first": {
     "open_interest_fp": 203.45,
@@ -12154,9 +12369,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 23179.91,
-    "volume_24h_fp": 21880.18,
-    "volume_fp": 23638.55
+    "open_interest_fp": 23882.530000000002,
+    "volume_24h_fp": 23063.13,
+    "volume_fp": 24341.170000000002
    },
    "ex_stats_first": {
     "open_interest_fp": 917.71,
