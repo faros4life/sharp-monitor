@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 24, 1:15 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 11.
+Updated Tue Nov 24, 1:20 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 11.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -16,7 +16,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 23 9:05PM | NBA | Dallas vs Denver | moneyline: Denver | kalshi | $224k | -300 |  |  | -1.0c |  | pending |
 | Nov 23 9:00PM | NBA | San Antonio vs Sacramento: Spread | spread: NOT San Antonio wins by over 8.5 points | kalshi | $46k | -108 | ✅ novig |  | +1.0c | yes | L |
 | Nov 23 8:50PM | NBA | Utah vs Los Angeles L: Spread | spread: NOT Los Angeles L wins by over 13.5 points | kalshi | $44k | -108 | ✅ novig |  | +1.0c | yes | L |
-| Nov 23 8:05PM | NBA | Boston vs Washington | moneyline: Boston | kalshi | $46k | -355 |  |  | +3.0c |  | pending |
+| Nov 23 8:05PM | NBA | Boston vs Washington | moneyline: Boston | kalshi | $46k | -355 |  |  | +2.0c |  | pending |
 | Nov 23 7:05PM | NBA | Detroit vs Orlando | moneyline: Orlando | kalshi | $26k | +122 |  |  | -1.0c |  | pending |
 | Nov 23 6:55PM | NBA | Portland vs Philadelphia: Total Points | total: NOT Over 231.5 points | kalshi | $67k | -108 | ✅ novig | ❌ | +0.0c |  | L |
 | Nov 23 6:50PM | NHL | Minnesota vs San Jose: Spread | spread: NOT Minnesota wins by over 1.5 goals | kalshi | $32k | -156 |  |  | +0.0c | yes | L |
