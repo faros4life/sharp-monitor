@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 23, 9:15 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 79.
+Updated Mon Nov 23, 9:20 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 79.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -28,7 +28,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 23 6:10PM | NBA | Oklahoma City vs Indiana: Spread | spread: NOT Oklahoma City wins by over 4.5 points | kalshi | $86k | -104 |  | ✅ | +1.0c |  | pending |
 | Nov 23 6:05PM | NBA | Memphis Grizzlies @ Charlotte Hornets | moneyline: MEM (0) | novig | $32k | -138 | ✅ kalshi,prophetx |  | -0.5c |  | pending |
 | Nov 23 5:50PM | NBA | Phoenix Suns @ New Orleans Pelicans | moneyline: PHX (0) | novig | $27k | -138 | ✅ kalshi,prophetx |  | +0.5c |  | pending |
-| Nov 23 5:35PM | NHL | Anaheim Ducks @ Seattle Kraken | moneyline: ANA (0) | novig | $28k | +108 |  |  | +0.0c |  | pending |
+| Nov 23 5:35PM | NHL | Anaheim Ducks @ Seattle Kraken | moneyline: ANA (0) | novig | $28k | +108 |  |  | +1.0c | yes | pending |
 | Nov 23 5:35PM | NHL | Columbus Blue Jackets @ New Jersey Devils | moneyline: NJD (0) | novig | $44k | -186 | ✅ kalshi,prophetx |  | -0.5c |  | pending |
 | Nov 23 5:25PM | NHL | Anaheim vs Seattle: Total Goals | total: Over 6.5 goals scored | kalshi | $26k | -122 | ✅ novig,prophetx |  | +1.0c | yes | pending |
 | Nov 23 4:55PM | NFL | Cincinnati Bengals @ Washington Commanders | spread: CIN -6.5 (6.5) | novig | $41k | -100 | ✅ kalshi,prophetx |  | -0.5c | yes | pending |
@@ -76,7 +76,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 22 11:20PM | NBA | Phoenix vs New Orleans | moneyline: Phoenix | kalshi | $42k | -150 |  |  | -2.0c |  | pending |
 | Nov 22 10:40PM | NBA | Oklahoma City vs Indiana | moneyline: Oklahoma City | kalshi | $58k | -186 |  |  | -2.0c |  | pending |
 | Nov 22 8:55PM | NBA | San Antonio vs Sacramento | moneyline: San Antonio | kalshi | $28k | -488 |  |  | -11.0c |  | pending |
-| Nov 22 8:35PM | NBA | Utah vs Los Angeles L | moneyline: Los Angeles L | kalshi | $44k | -567 |  |  | +2.0c |  | pending |
+| Nov 22 8:35PM | NBA | Utah vs Los Angeles L | moneyline: Los Angeles L | kalshi | $44k | -567 |  |  | +1.0c |  | pending |
 | Nov 22 8:35PM | NBA | Cleveland vs Chicago | moneyline: Cleveland | kalshi | $30k | -300 |  |  | +0.0c |  | pending |
 | Nov 22 8:30PM | NBA | Memphis vs Charlotte | moneyline: Memphis | kalshi | $40k | -138 |  |  | +0.0c |  | pending |
 | Nov 22 8:15PM | NFL | Minnesota Vikings at San Francisco 49ers | moneyline: San Francisco 49ers | prophetx | $53k | -200 | ✅ kalshi,novig |  | +0.0c |  | W |
