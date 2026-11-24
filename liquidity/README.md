@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 24, 6:10 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 38.
+Updated Tue Nov 24, 6:15 PM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 38.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -11,7 +11,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 24 5:50PM | NBA | Chicago vs Charlotte | moneyline: Charlotte | kalshi | $49k | -138 |  |  | +0.0c |  | pending |
-| Nov 24 5:40PM | NHL | Vegas vs Edmonton: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $41k | -108 | ✅ novig |  | +0.0c | yes | pending |
+| Nov 24 5:40PM | NHL | Vegas vs Edmonton: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $41k | -108 | ✅ novig |  | -4.0c | yes | pending |
 | Nov 24 5:35PM | NBA | Miami vs Philadelphia | moneyline: Philadelphia | kalshi | $60k | -108 |  |  | -1.0c |  | pending |
 | Nov 24 5:30PM | NFL | Green Bay vs Los Angeles R: Total Points | total: NOT Over 43.5 points | kalshi | $138k | +104 | ✅ novig |  | +0.0c |  | pending |
 | Nov 24 5:20PM | NBA | Miami vs Philadelphia | moneyline: Miami | kalshi | $106k | +104 |  |  | +1.0c | yes | pending |
