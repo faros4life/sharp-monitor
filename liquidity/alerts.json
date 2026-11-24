@@ -1,6 +1,199 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-24T14:30:26Z",
+   "base_depth": 114539,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 341,
+     "new_this_side": 119582,
+     "other_side": 36098,
+     "other_side_all_levels": 117409,
+     "ratio": 4.3,
+     "this_side": 154325,
+     "this_side_all_levels": 233158
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "ORL +2.5 (2.5)",
+     "price": 0.51,
+     "this_side": 3949
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 10155.15,
+    "volume_24h_fp": 12116.26,
+    "volume_fp": 12150.14
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 33.88,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 33.88
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 10121.27,
+    "volume_24h_fp": 12116.26,
+    "volume_fp": 12116.26
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-24T14:25:49Z",
+   "game": "Detroit vs Orlando: Spread",
+   "game_surge_books": [],
+   "game_x": 1.95,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBASPREAD-26NOV24DETORL-DET3\"}",
+   "lead_min": 581,
+   "league": "NBA",
+   "line": 2.5,
+   "market": "spread",
+   "new_money": 119582,
+   "new_x": 1.96,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 10155.15,
+      "volume_24h_fp": 12116.26,
+      "volume_fp": 12150.14
+     },
+     "game_normal": 119814,
+     "game_x": 1.95,
+     "normal": 60939,
+     "now": 233158,
+     "type": "SPREAD",
+     "x": 3.83
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 1400582.0,
+      "volume": 1621142.0
+     },
+     "game_normal": 8249,
+     "game_x": 0.52,
+     "normal": 1335,
+     "now": 4299,
+     "type": "SPREAD",
+     "x": 3.22
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 2.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 2.0,
+     "price": -105
+    },
+    "betopenly": {
+     "point": 2.5,
+     "price": -101
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -107
+    },
+    "betus": {
+     "point": 2.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 2.5,
+     "price": -110
+    },
+    "circasports": {
+     "point": 2.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 2.5,
+     "price": -111
+    },
+    "fanatics": {
+     "point": 2.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 2.5,
+     "price": -114
+    },
+    "kalshi": {
+     "point": 2.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 2.0,
+     "price": -101
+    },
+    "mybookieag": {
+     "point": 2.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 2.5,
+     "price": -104
+    },
+    "polymarket": {
+     "point": 2.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 2.5,
+     "price": -105
+    },
+    "williamhill_us": {
+     "point": 2.5,
+     "price": -115
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNBASPREAD-26NOV24DETORL-DET3"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Orlando",
+   "side_label": "NOT Detroit wins by over 2.5 points",
+   "size_x": 3.83,
+   "start_source": "odds",
+   "start_utc": "2026-11-25T00:11:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "Detroit",
+    "Orlando"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-24T12:40:19Z",
    "base_depth": 81247,
    "best_price": 0.5,
@@ -52,9 +245,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 16868.66,
+    "open_interest_fp": 17333.8,
     "volume_24h_fp": 18058.6,
-    "volume_fp": 18087.21
+    "volume_fp": 18552.35
    },
    "ex_stats_first": {
     "open_interest_fp": 14468.36,
@@ -459,8 +652,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.8,
-   "clv_cents": -0.5,
+   "close_price": 0.795,
+   "clv_cents": -1.0,
    "confirmed_after_min": 6,
    "date": "2026-11-24",
    "depth_by_book": {
@@ -495,8 +688,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 4300362.0,
-    "volume": 6803277.0
+    "openInterest": 4358980.0,
+    "volume": 6911171.0
    },
    "ex_stats_first": {
     "openInterest": 3810729.0,
@@ -721,7 +914,7 @@
    },
    "ex_stats_close": {
     "openInterest": 21144736.0,
-    "volume": 30018887.0
+    "volume": 30026599.0
    },
    "ex_stats_first": {
     "openInterest": 20286036.0,
@@ -932,9 +1125,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 85257.54,
+    "open_interest_fp": 85553.74,
     "volume_24h_fp": 82710.47,
-    "volume_fp": 92507.93
+    "volume_fp": 92852.43
    },
    "ex_stats_first": {
     "open_interest_fp": 57285.02,
@@ -1132,9 +1325,9 @@
     "volume_fp": 2528.84
    },
    "ex_stats_close": {
-    "open_interest_fp": 811177.89,
+    "open_interest_fp": 811863.6799999999,
     "volume_24h_fp": 462382.98000000004,
-    "volume_fp": 922885.62
+    "volume_fp": 923572.6300000001
    },
    "ex_stats_first": {
     "open_interest_fp": 713645.59,
@@ -1351,9 +1544,9 @@
     "volume_fp": 5.72
    },
    "ex_stats_close": {
-    "open_interest_fp": 26539.65,
+    "open_interest_fp": 26523.71,
     "volume_24h_fp": 26067.37,
-    "volume_fp": 27836.620000000003
+    "volume_fp": 28805.899999999998
    },
    "ex_stats_first": {
     "open_interest_fp": 4214.389999999999,
@@ -1792,9 +1985,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 195718.14,
+    "open_interest_fp": 196551.44999999998,
     "volume_24h_fp": 195486.78999999998,
-    "volume_fp": 206829.18
+    "volume_fp": 207662.49000000002
    },
    "ex_stats_first": {
     "open_interest_fp": 19536.510000000002,
@@ -2402,9 +2595,9 @@
     "volume_fp": 13.71
    },
    "ex_stats_close": {
-    "open_interest_fp": 384261.43000000005,
+    "open_interest_fp": 390952.51999999996,
     "volume_24h_fp": 386043.21,
-    "volume_fp": 415956.33999999997
+    "volume_fp": 422772.58
    },
    "ex_stats_first": {
     "open_interest_fp": 23945.57,
@@ -2583,9 +2776,9 @@
     "volume_fp": 10.29
    },
    "ex_stats_close": {
-    "open_interest_fp": 99119.65,
+    "open_interest_fp": 99433.72,
     "volume_24h_fp": 97330.87,
-    "volume_fp": 102378.01000000001
+    "volume_fp": 102692.08
    },
    "ex_stats_first": {
     "open_interest_fp": 13238.25,
@@ -9883,9 +10076,9 @@
     "volume_fp": 15.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 47312.16,
+    "open_interest_fp": 48516.020000000004,
     "volume_24h_fp": 40672.4,
-    "volume_fp": 54159.76
+    "volume_fp": 55363.619999999995
    },
    "ex_stats_first": {
     "open_interest_fp": 12070.48,
@@ -10094,9 +10287,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 10497.31,
+    "open_interest_fp": 10624.01,
     "volume_24h_fp": 6563.15,
-    "volume_fp": 12418.01
+    "volume_fp": 12544.71
    },
    "ex_stats_first": {
     "open_interest_fp": 5069.02,
