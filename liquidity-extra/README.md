@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 24, 1:50 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 47.
+Updated Tue Nov 24, 2:00 PM ET. This run: 2 new, 0 not confirmed, 1 pending. Open alerts: 49.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 24 2:00PM | NCAAB | Sacred Heart vs Rutgers: Spread | spread: NOT Rutgers wins by over 23.5 points | kalshi | $40k | -122 |  | ✅ | +0.0c |  | pending |
+| Nov 24 2:00PM | NCAAB | DePaul vs Purdue | moneyline: Purdue | kalshi | $51k | -150 | ✅ novig | ❌ | +0.0c |  | pending |
 | Nov 24 12:50PM | NCAAB | Tennessee vs Maryland | moneyline: Tennessee | kalshi | $86k | -122 | ✅ novig |  | +1.0c |  | pending |
 | Nov 24 12:40PM | NCAAB | Ole Miss vs BYU | moneyline: Ole Miss | kalshi | $68k | -113 | ✅ prophetx |  | +2.0c |  | pending |
 | Nov 24 12:00PM | NCAAB | UIC vs Rice | moneyline: UIC | kalshi | $43k | -270 |  |  | +0.0c |  | pending |
@@ -29,7 +31,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 24 9:30AM | NCAAB | Bucknell @ Cornell | moneyline: COR (0) | novig | $47k | -525 |  |  | +2.0c |  | pending |
 | Nov 24 9:30AM | NCAAB | Duquesne @ High Point | moneyline: High Point (0) | novig | $35k | -456 | ✅ kalshi |  | +1.0c |  | pending |
 | Nov 24 9:30AM | NCAAB | Hampton @ Old Dominion | moneyline: ODU (0) | novig | $41k | -335 | ✅ kalshi |  | -0.5c |  | pending |
-| Nov 24 9:30AM | NCAAB | Binghamton @ Lehigh | moneyline: LEH (0) | novig | $36k | -344 | ✅ kalshi |  | +1.0c |  | pending |
+| Nov 24 9:30AM | NCAAB | Binghamton @ Lehigh | moneyline: LEH (0) | novig | $36k | -344 | ✅ kalshi |  | +1.5c |  | pending |
 | Nov 24 9:30AM | NCAAB | Elon @ Furman | moneyline: FUR (0) | novig | $47k | -300 | ✅ kalshi |  | -1.5c |  | pending |
 | Nov 24 9:30AM | NCAAB | Mercer @ Florida Atlantic | moneyline: FAU (0) | novig | $34k | -270 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 24 9:30AM | NCAAB | Kent State @ Wyoming | moneyline: WYO (0) | novig | $54k | -365 | ✅ kalshi | ❌ | +0.0c |  | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 19 12:10PM | NCAAB | Georgia Southern vs Houston Christian | moneyline: Houston Christian | kalshi | $40k | -150 | ✅ novig | ✅ | +2.0c |  | L |
 | Nov 19 10:30AM | NCAAB | Florida vs West Virginia: Spread | spread: NOT Florida wins by over 8.5 points | kalshi | $31k | -108 |  | ✅ | +2.0c |  | L |
 | Nov 19 10:10AM | NCAAB | Robert Morris vs Toledo | moneyline: Toledo | kalshi | $29k | -257 | ✅ novig |  | +2.0c |  | W |
-| Nov 19 10:10AM | NCAAB | Notre Dame vs Auburn | moneyline: Auburn | kalshi | $56k | -150 | ✅ novig |  | +1.0c |  | L |
-| Nov 19 5:10AM | NCAAB | Southeast Missouri St. vs St. Thomas | moneyline: St. Thomas | kalshi | $27k | -285 |  |  | -1.0c |  | W |
