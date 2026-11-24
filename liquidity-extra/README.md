@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 24, 3:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 50.
+Updated Tue Nov 24, 3:50 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 49.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 456-270 (-16.83u flat) | rule met: 95-71
+**Record:** 456-271 (-17.83u flat) | rule met: 95-71
 
-**Fade (paper, betting against the print):** 245-421 (+5.46u flat, after fees)
+**Fade (paper, betting against the print):** 246-421 (+7.86u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -18,7 +18,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 24 2:00PM | NCAAB | DePaul vs Purdue | moneyline: Purdue | kalshi | $51k | -150 | ✅ novig | ❌ | +0.0c |  | pending |
 | Nov 24 12:50PM | NCAAB | Tennessee vs Maryland | moneyline: Tennessee | kalshi | $86k | -122 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 24 12:40PM | NCAAB | Ole Miss vs BYU | moneyline: Ole Miss | kalshi | $68k | -113 | ✅ prophetx |  | +2.0c | yes | pending |
-| Nov 24 12:00PM | NCAAB | UIC vs Rice | moneyline: UIC | kalshi | $43k | -270 |  |  | +0.0c |  | pending |
+| Nov 24 12:00PM | NCAAB | UIC vs Rice | moneyline: UIC | kalshi | $43k | -270 |  |  | +0.0c |  | L |
 | Nov 24 12:00PM | NCAAB | Nevada vs Santa Clara | moneyline: Nevada | kalshi | $30k | -100 | ✅ novig |  | +0.0c |  | pending |
 | Nov 24 12:00PM | NCAAB | Appalachian St. vs Yale | moneyline: Appalachian St. | kalshi | $26k | -100 | ✅ novig |  | +1.0c | yes | pending |
 | Nov 24 11:40AM | NCAAB | Belmont vs Akron: Point Total | total: NOT Over 141.5 points | kalshi | $28k | -117 |  |  | +2.0c | yes | L |
