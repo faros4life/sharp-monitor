@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 24, 5:15 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 33.
+Updated Tue Nov 24, 5:20 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 34.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 24 5:20PM | NBA | Miami vs Philadelphia | moneyline: Miami | kalshi | $106k | +104 |  |  | +0.0c |  | pending |
 | Nov 24 4:55PM | NBA | Cleveland vs New York | moneyline: New York | kalshi | $29k | -144 |  |  | +1.0c |  | pending |
 | Nov 24 4:30PM | NCAAF | Miami Ohio @ Western Michigan | spread: M-OH +4.5 (-4.5) | novig | $38k | +102 |  |  | +0.0c |  | pending |
 | Nov 24 4:20PM | NCAAF | Kent State @ Eastern Michigan | spread: EMU -6.5 (-6.5) | novig | $33k | -100 | ✅ kalshi |  | +1.5c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 8:50PM | NHL | Minnesota vs Vancouver: Spread | spread: Minnesota wins by over 1.5 goals | kalshi | $27k | -117 | ✅ novig |  | +1.0c |  | L |
 | Nov 21 8:50PM | NCAAF | Utah St. vs Oregon St.: Total Points | total: Over 51.5 points | kalshi | $27k | -100 | ✅ novig | ✅ | +1.0c | yes | W |
 | Nov 21 8:50PM | NHL | Seattle vs San Jose: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $27k | -108 | ✅ novig |  | +0.0c | yes | L |
-| Nov 21 8:50PM | NFL | Pittsburgh vs Philadelphia | moneyline: Pittsburgh | kalshi | $101k | -186 | ✅ prophetx |  | +0.0c | yes | L |
