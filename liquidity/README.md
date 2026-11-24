@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 23, 7:00 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 74.
+Updated Mon Nov 23, 7:05 PM ET. This run: 1 new, 1 not confirmed, 0 pending. Open alerts: 75.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,10 +10,11 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 23 7:05PM | NBA | Detroit vs Orlando | moneyline: Orlando | kalshi | $26k | +122 |  |  | +0.0c |  | pending |
 | Nov 23 6:55PM | NBA | Portland vs Philadelphia: Total Points | total: NOT Over 231.5 points | kalshi | $67k | -108 | ✅ novig | ❌ | +0.0c |  | pending |
 | Nov 23 6:50PM | NHL | Minnesota vs San Jose: Spread | spread: NOT Minnesota wins by over 1.5 goals | kalshi | $32k | -156 |  |  | +0.0c |  | pending |
 | Nov 23 6:35PM | NCAAF | Miami (OH) vs Western Michigan: Total Points | total: NOT Over 45.5 points | kalshi | $76k | -104 |  |  | +0.0c |  | pending |
-| Nov 23 6:35PM | NBA | Cleveland vs Chicago: Total Points | total: NOT Over 241.5 points | kalshi | $55k | -108 | ✅ novig |  | +2.0c |  | pending |
+| Nov 23 6:35PM | NBA | Cleveland vs Chicago: Total Points | total: NOT Over 241.5 points | kalshi | $55k | -108 | ✅ novig |  | +1.0c |  | pending |
 | Nov 23 6:30PM | NHL | Calgary vs Ottawa: Spread | spread: NOT Ottawa wins by over 1.5 goals | kalshi | $48k | -117 | ✅ novig |  | -1.0c |  | pending |
 | Nov 23 6:30PM | NBA | Portland vs Philadelphia: Spread | spread: NOT Philadelphia wins by over 1.5 points | kalshi | $144k | -113 |  | ✅ | +1.0c | yes | pending |
 | Nov 23 6:25PM | NHL | Columbus vs New Jersey: Total Goals | total: Over 6.5 goals scored | kalshi | $45k | +117 |  |  | +4.0c | yes | pending |
@@ -27,7 +28,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 23 5:35PM | NHL | Columbus Blue Jackets @ New Jersey Devils | moneyline: NJD (0) | novig | $44k | -186 | ✅ kalshi,prophetx |  | -0.5c |  | pending |
 | Nov 23 5:25PM | NHL | Anaheim vs Seattle: Total Goals | total: Over 6.5 goals scored | kalshi | $26k | -122 | ✅ novig,prophetx |  | +1.0c |  | pending |
 | Nov 23 4:55PM | NFL | Cincinnati Bengals @ Washington Commanders | spread: CIN -6.5 (6.5) | novig | $41k | -100 | ✅ kalshi,prophetx |  | +0.0c | yes | pending |
-| Nov 23 4:50PM | NFL | Cincinnati Bengals @ Washington Commanders | total: Under 54.5 (54.5) | novig | $37k | -106 | ✅ kalshi | ✅ | +0.0c | yes | pending |
+| Nov 23 4:50PM | NFL | Cincinnati Bengals @ Washington Commanders | total: Under 54.5 (54.5) | novig | $37k | -106 | ✅ kalshi | ✅ | +0.5c | yes | pending |
 | Nov 23 4:40PM | NFL | Cincinnati vs Washington: Spread | spread: Cincinnati wins by over 6.5 points | kalshi | $245k | +104 | ✅ novig |  | +2.0c | yes | pending |
 | Nov 23 4:05PM | NBA | Los Angeles C vs Houston: Spread | spread: NOT Houston wins by over 12.5 points | kalshi | $33k | -104 |  |  | -3.0c |  | pending |
 | Nov 23 3:25PM | NHL | Toronto vs New York I | moneyline: New York I | kalshi | $50k | -150 | ✅ novig,prophetx |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 5:55PM | NHL | Vegas vs Winnipeg: Spread | spread: NOT Vegas wins by over 1.5 goals | kalshi | $27k | -213 | ✅ novig |  | -1.0c |  | W |
 | Nov 21 5:55PM | NHL | New York I vs Detroit | moneyline: New York I | kalshi | $165k | -133 | ✅ prophetx |  | +0.0c |  | W |
 | Nov 21 5:55PM | NHL | New Jersey vs St. Louis | moneyline: New Jersey | kalshi | $491k | -138 | ✅ novig,prophetx |  | +0.0c |  | L |
-| Nov 21 5:55PM | NHL | Los Angeles vs Ottawa | moneyline: Ottawa | kalshi | $197k | -178 | ✅ novig,prophetx |  | +1.0c |  | W |
