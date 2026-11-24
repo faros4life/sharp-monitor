@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 23, 8:50 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 25.
+Updated Mon Nov 23, 8:56 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 25.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -11,7 +11,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 23 8:40PM | NCAAB | Seattle vs Loyola Chicago | moneyline: Loyola Chicago | kalshi | $28k | +108 | ✅ novig |  | +0.0c |  | pending |
-| Nov 23 8:20PM | NCAAB | FDU vs Iona | moneyline: FDU | kalshi | $62k | -270 |  |  | +10.0c | yes | pending |
+| Nov 23 8:20PM | NCAAB | FDU vs Iona | moneyline: FDU | kalshi | $62k | -270 |  |  | +16.0c | yes | pending |
 | Nov 23 7:20PM | NCAAB | Texas A&M-Corpus Christi vs Wichita St.: Point Total | total: NOT Over 141.5 points | kalshi | $28k | -108 |  |  | +0.0c |  | pending |
 | Nov 23 6:00PM | NCAAB | UNC Greensboro @ Pepperdine | moneyline: Pepperdine (0) | novig | $33k | -525 | ✅ kalshi,prophetx |  | +0.0c | yes | pending |
 | Nov 23 6:00PM | NCAAB | Central Arkansas @ North Florida | moneyline: CARK (0) | novig | $39k | -344 |  |  | -0.5c |  | pending |
@@ -28,7 +28,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 23 9:31AM | NCAAB | Long Beach State @ Florida International | moneyline: FIU (0) | novig | $25k | -365 | ✅ kalshi |  | -2.0c |  | W |
 | Nov 23 9:00AM | NCAAB | Middle Tennessee vs Southern Illinois | moneyline: Southern Illinois | kalshi | $62k | -133 | ✅ novig |  | +4.0c | yes | L |
 | Nov 23 1:20AM | NCAAB | Temple vs Tennessee-Martin | moneyline: Temple | kalshi | $27k | -213 |  |  | -58.0c | yes | pending |
-| Nov 23 1:20AM | NCAAB | FDU vs Iona | moneyline: Iona | kalshi | $30k | -376 |  |  | -62.0c | yes | pending |
+| Nov 23 1:20AM | NCAAB | FDU vs Iona | moneyline: Iona | kalshi | $30k | -376 |  |  | -67.0c | yes | pending |
 | Nov 23 1:20AM | NCAAB | Central Arkansas vs North Florida | moneyline: Central Arkansas | kalshi | $31k | -400 |  |  | -2.0c |  | pending |
 | Nov 23 1:10AM | NCAAB | TCU vs Miami (FL) | moneyline: Miami | kalshi | $138k | -300 |  |  | -2.0c |  | pending |
 | Nov 23 1:10AM | NCAAB | St. John's vs Oregon | moneyline: St. John's | kalshi | $154k | -456 |  |  | -1.0c |  | pending |
