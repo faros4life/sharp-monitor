@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 23, 9:55 PM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 64.
+Updated Mon Nov 23, 10:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 58.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1908-1486 (-36.98u flat) | rule met: 1131-891
+**Record:** 1913-1487 (-33.81u flat) | rule met: 1134-892
 
-**Fade (paper, betting against the print):** 1220-1635 (-201.31u flat, after fees)
+**Fade (paper, betting against the print):** 1221-1640 (-204.81u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -24,13 +24,13 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 23 6:30PM | NBA | Portland vs Philadelphia: Spread | spread: NOT Philadelphia wins by over 1.5 points | kalshi | $144k | -113 |  | ✅ | +1.0c | yes | W |
 | Nov 23 6:25PM | NHL | Columbus vs New Jersey: Total Goals | total: Over 6.5 goals scored | kalshi | $45k | +117 |  |  | +4.0c | yes | L |
 | Nov 23 6:15PM | NFL | Cincinnati Bengals at Washington Commanders | spread: Cincinnati Bengals -6.5 (-6.5) | prophetx | $32k | -102 | ✅ kalshi,novig |  | -0.8c | yes | pending |
-| Nov 23 6:10PM | NBA | Oklahoma City vs Indiana: Total Points | total: Over 225.5 points | kalshi | $56k | -108 |  | ❌ | +0.0c | yes | pending |
+| Nov 23 6:10PM | NBA | Oklahoma City vs Indiana: Total Points | total: Over 225.5 points | kalshi | $56k | -108 |  | ❌ | +0.0c | yes | W |
 | Nov 23 6:10PM | NBA | Memphis vs Charlotte: Spread | spread: Memphis wins by over 2.5 points | kalshi | $31k | -108 | ✅ novig |  | -1.0c | yes | W |
-| Nov 23 6:10PM | NBA | Oklahoma City vs Indiana: Spread | spread: NOT Oklahoma City wins by over 4.5 points | kalshi | $86k | -104 |  | ✅ | +1.0c |  | pending |
-| Nov 23 6:05PM | NBA | Memphis Grizzlies @ Charlotte Hornets | moneyline: MEM (0) | novig | $32k | -138 | ✅ kalshi,prophetx |  | -0.5c |  | pending |
+| Nov 23 6:10PM | NBA | Oklahoma City vs Indiana: Spread | spread: NOT Oklahoma City wins by over 4.5 points | kalshi | $86k | -104 |  | ✅ | +1.0c |  | W |
+| Nov 23 6:05PM | NBA | Memphis Grizzlies @ Charlotte Hornets | moneyline: MEM (0) | novig | $32k | -138 | ✅ kalshi,prophetx |  | -0.5c |  | W |
 | Nov 23 5:50PM | NBA | Phoenix Suns @ New Orleans Pelicans | moneyline: PHX (0) | novig | $27k | -138 | ✅ kalshi,prophetx |  | +0.5c |  | pending |
 | Nov 23 5:35PM | NHL | Anaheim Ducks @ Seattle Kraken | moneyline: ANA (0) | novig | $28k | +108 |  |  | +2.5c | yes | pending |
-| Nov 23 5:35PM | NHL | Columbus Blue Jackets @ New Jersey Devils | moneyline: NJD (0) | novig | $44k | -186 | ✅ kalshi,prophetx |  | -0.5c |  | pending |
+| Nov 23 5:35PM | NHL | Columbus Blue Jackets @ New Jersey Devils | moneyline: NJD (0) | novig | $44k | -186 | ✅ kalshi,prophetx |  | -0.5c |  | W |
 | Nov 23 5:25PM | NHL | Anaheim vs Seattle: Total Goals | total: Over 6.5 goals scored | kalshi | $26k | -122 | ✅ novig,prophetx |  | +0.0c | yes | pending |
 | Nov 23 4:55PM | NFL | Cincinnati Bengals @ Washington Commanders | spread: CIN -6.5 (6.5) | novig | $41k | -100 | ✅ kalshi,prophetx |  | -0.5c | yes | pending |
 | Nov 23 4:50PM | NFL | Cincinnati Bengals @ Washington Commanders | total: Under 54.5 (54.5) | novig | $37k | -106 | ✅ kalshi | ✅ | +0.0c | yes | pending |
@@ -65,14 +65,14 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 23 8:00AM | NBA | Phoenix vs New Orleans: Spread | spread: Phoenix wins by over 3.5 points | kalshi | $28k | -104 | ✅ novig |  | -2.0c | yes | pending |
 | Nov 23 8:00AM | NBA | Memphis vs Charlotte: Spread | spread: NOT Memphis wins by over 3.5 points | kalshi | $29k | -108 |  |  | +2.0c | yes | L |
 | Nov 23 7:15AM | NHL | Minnesota vs San Jose: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $31k | -122 |  |  | -1.0c |  | pending |
-| Nov 23 7:00AM | NBA | Memphis Grizzlies @ Charlotte Hornets | total: Over 215.5 (215.5) | novig | $35k | +102 | ✅ kalshi | ❌ | +0.0c | yes | pending |
+| Nov 23 7:00AM | NBA | Memphis Grizzlies @ Charlotte Hornets | total: Over 215.5 (215.5) | novig | $35k | +102 | ✅ kalshi | ❌ | +0.0c | yes | W |
 | Nov 23 6:15AM | NFL | Cincinnati Bengals @ Washington Commanders | spread: WSH +6.5 (6.5) | novig | $33k | -113 | ✅ kalshi |  | -2.0c |  | pending |
 | Nov 23 6:05AM | NBA | Brooklyn Nets @ Minnesota Timberwolves | moneyline: MIN (0) | novig | $30k | -525 | ✅ kalshi,prophetx | ❌ | -1.5c | yes | pending |
 | Nov 23 3:20AM | NHL | Utah vs Winnipeg: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $31k | -108 |  |  | +0.0c |  | pending |
 | Nov 23 3:20AM | NHL | Anaheim vs Seattle | moneyline: Seattle | kalshi | $35k | -104 |  |  | +0.0c | yes | pending |
 | Nov 23 12:40AM | NHL | Minnesota vs San Jose | moneyline: Minnesota | kalshi | $29k | -194 |  |  | -4.0c |  | pending |
 | Nov 22 11:50PM | NBA | Oklahoma City Thunder @ Indiana Pacers | moneyline: OKC (0) | novig | $28k | -174 | ✅ kalshi |  | -0.5c | yes | pending |
-| Nov 22 11:45PM | NBA | Portland Trail Blazers @ Philadelphia 76ers | moneyline: PHI (0) | novig | $58k | -153 | ✅ kalshi |  | -10.5c | yes | pending |
+| Nov 22 11:45PM | NBA | Portland Trail Blazers @ Philadelphia 76ers | moneyline: PHI (0) | novig | $58k | -153 | ✅ kalshi |  | -10.5c | yes | L |
 | Nov 22 11:40PM | NFL | Cincinnati Bengals @ Washington Commanders | moneyline: CIN (0) | novig | $70k | -264 | ✅ kalshi,prophetx |  | +0.5c | yes | pending |
 | Nov 22 11:20PM | NBA | Phoenix vs New Orleans | moneyline: Phoenix | kalshi | $42k | -150 |  |  | -2.0c |  | pending |
 | Nov 22 10:40PM | NBA | Oklahoma City vs Indiana | moneyline: Oklahoma City | kalshi | $58k | -186 |  |  | -2.0c |  | L |

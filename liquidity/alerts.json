@@ -270,9 +270,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 20202.56,
+    "open_interest_fp": 20257.649999999998,
     "volume_24h_fp": 18018.02,
-    "volume_fp": 24149.9
+    "volume_fp": 24204.99
    },
    "ex_stats_first": {
     "open_interest_fp": 19536.510000000002,
@@ -870,9 +870,9 @@
     "volume_fp": 13.71
    },
    "ex_stats_close": {
-    "open_interest_fp": 25379.83,
+    "open_interest_fp": 25903.190000000002,
     "volume_24h_fp": 21836.19,
-    "volume_fp": 34247.82
+    "volume_fp": 34771.18
    },
    "ex_stats_first": {
     "open_interest_fp": 23945.57,
@@ -1051,9 +1051,9 @@
     "volume_fp": 10.29
    },
    "ex_stats_close": {
-    "open_interest_fp": 14510.099999999999,
+    "open_interest_fp": 14552.310000000001,
     "volume_24h_fp": 13257.119999999999,
-    "volume_fp": 15941.21
+    "volume_fp": 15985.09
    },
    "ex_stats_first": {
     "open_interest_fp": 13238.25,
@@ -1902,6 +1902,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -2107,7 +2108,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Calgary",
@@ -2795,6 +2796,7 @@
     "volume_fp": 13696.73
    },
    "fade_price": 0.49,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-23T23:05:56Z",
    "game": "Oklahoma City vs Indiana: Total Points",
    "game_surge_books": [],
@@ -2905,12 +2907,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBATOTAL-26NOV23OKCIND-226"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 6,
+   "settle_tries": 7,
+   "settled_utc": "2026-11-24T03:00:29Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Under 222.5 (-116)"
@@ -2927,7 +2930,7 @@
     "Indiana"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.89
   },
   {
    "alerted_utc": "2026-11-23T23:10:18Z",
@@ -3193,6 +3196,7 @@
     "volume_fp": 17985.74
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-23T23:05:56Z",
    "game": "Oklahoma City vs Indiana: Spread",
    "game_surge_books": [
@@ -3316,12 +3320,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26NOV23OKCIND-OKC5"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 6,
+   "settle_tries": 7,
+   "settled_utc": "2026-11-24T03:00:29Z",
    "sharp_agree": [
     "Indiana Pacers +5.5 (-113)"
    ],
@@ -3341,7 +3346,7 @@
     "Indiana"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.0
   },
   {
    "alerted_utc": "2026-11-23T23:05:56Z",
@@ -3401,12 +3406,14 @@
     "volume": 14278201.0
    },
    "fade_price": 0.425,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-23T23:00:23Z",
    "game": "Memphis Grizzlies @ Charlotte Hornets",
    "game_surge_books": [
     "novig"
    ],
    "game_x": 2.48,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1fd16-7d5d-70d0-96d7-59e351f8bebf\", \"outcome_id\": \"01a1fd16-7d5d-70d0-96d7-5a01bd8972f3\"}",
    "lead_min": 54,
    "league": "NBA",
@@ -3541,7 +3548,7 @@
     "market_id": "01a1fd16-7d5d-70d0-96d7-59e351f8bebf",
     "outcome_id": "01a1fd16-7d5d-70d0-96d7-5a01bd8972f3"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -3549,7 +3556,8 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 12,
+   "settle_tries": 13,
+   "settled_utc": "2026-11-24T03:00:29Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Memphis Grizzlies",
@@ -3568,7 +3576,7 @@
     "Charlotte Hornets"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.72
   },
   {
    "alerted_utc": "2026-11-23T22:50:27Z",
@@ -3776,6 +3784,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Phoenix Suns",
@@ -4070,10 +4079,12 @@
     "volume": 4353642.0
    },
    "fade_price": 0.355,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-23T22:30:22Z",
    "game": "Columbus Blue Jackets @ New Jersey Devils",
    "game_surge_books": [],
    "game_x": 1.93,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1fd16-f4cc-7742-a474-98ffc50b3594\", \"outcome_id\": \"01a1fd16-f4cc-7742-a474-990aceddf7bb\"}",
    "lead_min": 84,
    "league": "NHL",
@@ -4204,7 +4215,7 @@
     "market_id": "01a1fd16-f4cc-7742-a474-98ffc50b3594",
     "outcome_id": "01a1fd16-f4cc-7742-a474-990aceddf7bb"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -4212,7 +4223,8 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 12,
+   "settle_tries": 13,
+   "settled_utc": "2026-11-24T03:00:29Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New Jersey Devils",
@@ -4229,7 +4241,7 @@
     "New Jersey Devils"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.54
   },
   {
    "alerted_utc": "2026-11-23T22:25:49Z",
@@ -5486,7 +5498,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New York I",
@@ -5706,7 +5718,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Milwaukee",
@@ -6088,7 +6100,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [
     "Brooklyn Nets +12.5 (-115)"
    ],
@@ -6734,6 +6746,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [
     "Over 232.5 (-106)"
@@ -6916,7 +6929,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -7986,7 +7999,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Los Angeles",
@@ -8211,7 +8224,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Los Angeles",
@@ -8841,7 +8854,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Ottawa",
@@ -9047,7 +9060,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Toronto",
@@ -9272,7 +9285,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Winnipeg",
@@ -9498,7 +9511,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Montreal",
@@ -10135,6 +10148,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Cleveland Cavaliers",
@@ -10360,7 +10374,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Toronto Raptors",
@@ -11016,6 +11030,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Phoenix",
@@ -11487,12 +11502,14 @@
     "volume": 2676912.0
    },
    "fade_price": 0.51,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-23T11:55:48Z",
    "game": "Memphis Grizzlies @ Charlotte Hornets",
    "game_surge_books": [
     "novig"
    ],
    "game_x": 5.25,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a205e3-2c3b-7af0-afb5-ebdca90c4839\", \"outcome_id\": \"01a205e3-2c3b-7af0-afb5-ebef5e014e32\"}",
    "lead_min": 720,
    "league": "NBA",
@@ -11603,14 +11620,15 @@
     "market_id": "01a205e3-2c3b-7af0-afb5-ebdca90c4839",
     "outcome_id": "01a205e3-2c3b-7af0-afb5-ebef5e014e32"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 12,
+   "settle_tries": 13,
+   "settled_utc": "2026-11-24T03:00:29Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Under 216.5 (-113)"
@@ -11629,7 +11647,7 @@
     "Charlotte Hornets"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.02
   },
   {
    "alerted_utc": "2026-11-23T11:15:47Z",
@@ -12028,7 +12046,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [
     "Brooklyn Nets +12.5 (-115)"
@@ -12247,7 +12265,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -12888,7 +12906,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Oklahoma City Thunder",
@@ -12965,12 +12983,14 @@
     "volume": 3463855.0
    },
    "fade_price": 0.4,
+   "fade_units": 1.5,
    "first_seen_utc": "2026-11-23T04:40:18Z",
    "game": "Portland Trail Blazers @ Philadelphia 76ers",
    "game_surge_books": [
     "novig"
    ],
    "game_x": 3.0,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1fd16-7d95-72d2-876b-b283674934a0\", \"outcome_id\": \"01a1fd16-7d95-72d2-876b-b293b716b5b8\"}",
    "lead_min": 1154,
    "league": "NBA",
@@ -13106,14 +13126,15 @@
     "market_id": "01a1fd16-7d95-72d2-876b-b283674934a0",
     "outcome_id": "01a1fd16-7d95-72d2-876b-b293b716b5b8"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi"
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 12,
+   "settle_tries": 13,
+   "settled_utc": "2026-11-24T03:00:29Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Philadelphia 76ers",
@@ -13130,7 +13151,7 @@
     "Philadelphia 76ers"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-23T04:40:18Z",
@@ -13547,6 +13568,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Phoenix",
@@ -14222,6 +14244,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Cleveland",
@@ -14805,7 +14828,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Minnesota",
@@ -15117,7 +15140,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Toronto",
@@ -16158,7 +16181,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Ottawa",
