@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 24, 4:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 48.
+Updated Tue Nov 24, 4:30 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 48.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -15,7 +15,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 24 2:50PM | NCAAB | Alabama A&M vs North Alabama | moneyline: North Alabama | kalshi | $69k | -156 | ✅ novig |  | +0.0c |  | pending |
 | Nov 24 2:40PM | NCAAB | Tennessee vs Maryland: Spread | spread: Tennessee wins by over 2.5 points | kalshi | $55k | -100 | ✅ novig |  | +3.0c | yes | pending |
 | Nov 24 2:10PM | NCAAB | Mercer vs Florida Atlantic: Spread | spread: Florida Atlantic wins by over 6.5 points | kalshi | $36k | -113 |  |  | +0.0c |  | pending |
-| Nov 24 2:00PM | NCAAB | Sacred Heart vs Rutgers: Spread | spread: NOT Rutgers wins by over 23.5 points | kalshi | $40k | -122 |  | ✅ | +0.0c |  | pending |
+| Nov 24 2:00PM | NCAAB | Sacred Heart vs Rutgers: Spread | spread: NOT Rutgers wins by over 23.5 points | kalshi | $40k | -122 |  | ✅ | +1.0c |  | pending |
 | Nov 24 2:00PM | NCAAB | DePaul vs Purdue | moneyline: Purdue | kalshi | $51k | -150 | ✅ novig | ❌ | +0.0c |  | pending |
 | Nov 24 12:50PM | NCAAB | Tennessee vs Maryland | moneyline: Tennessee | kalshi | $86k | -122 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 24 12:40PM | NCAAB | Ole Miss vs BYU | moneyline: Ole Miss | kalshi | $68k | -113 | ✅ prophetx |  | +2.0c | yes | pending |
