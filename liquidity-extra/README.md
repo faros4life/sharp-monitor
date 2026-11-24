@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 24, 9:40 AM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 33.
+Updated Tue Nov 24, 9:50 AM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 33.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -12,7 +12,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 24 9:30AM | NCAAB | St. John's @ Oregon | moneyline: SJU (0) | novig | $52k | -471 |  |  | +2.0c |  | pending |
 | Nov 24 9:30AM | NCAAB | Drexel @ Pennsylvania | moneyline: PENN (0) | novig | $46k | -228 |  | ❌ | +0.0c |  | pending |
-| Nov 24 9:30AM | NCAAB | Bucknell @ Cornell | moneyline: COR (0) | novig | $47k | -525 |  |  | +0.0c |  | pending |
+| Nov 24 9:30AM | NCAAB | Bucknell @ Cornell | moneyline: COR (0) | novig | $47k | -525 |  |  | +0.5c |  | pending |
 | Nov 24 9:30AM | NCAAB | Duquesne @ High Point | moneyline: High Point (0) | novig | $35k | -456 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 24 9:30AM | NCAAB | Hampton @ Old Dominion | moneyline: ODU (0) | novig | $41k | -335 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 24 9:30AM | NCAAB | Binghamton @ Lehigh | moneyline: LEH (0) | novig | $36k | -344 | ✅ kalshi |  | +0.5c |  | pending |
@@ -29,7 +29,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 24 12:30AM | NCAAB | Samford vs Georgia Tech | moneyline: Georgia Tech | kalshi | $173k | -525 |  |  | +0.0c |  | pending |
 | Nov 24 12:30AM | NCAAB | Oregon St. vs San Francisco | moneyline: Oregon St. | kalshi | $192k | -426 |  |  | -1.0c |  | pending |
 | Nov 24 12:30AM | NCAAB | Mercer vs Florida Atlantic | moneyline: Florida Atlantic | kalshi | $140k | -270 |  |  | +1.0c |  | pending |
-| Nov 24 12:30AM | NCAAB | Kent St. vs Wyoming | moneyline: Wyoming | kalshi | $173k | -355 |  |  | +0.0c |  | pending |
+| Nov 24 12:30AM | NCAAB | Kent St. vs Wyoming | moneyline: Wyoming | kalshi | $173k | -355 |  |  | +1.0c |  | pending |
 | Nov 24 12:30AM | NCAAB | High Point vs Duquesne | moneyline: High Point | kalshi | $161k | -456 |  |  | +0.0c |  | pending |
 | Nov 24 12:30AM | NCAAB | Hampton vs Old Dominion | moneyline: Old Dominion | kalshi | $154k | -335 |  |  | +0.0c |  | pending |
 | Nov 24 12:30AM | NCAAB | Elon vs Furman | moneyline: Furman | kalshi | $148k | -317 |  |  | -1.0c |  | pending |
