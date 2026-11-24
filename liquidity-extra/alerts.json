@@ -1,6 +1,190 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-24T00:20:24Z",
+   "base_depth": 48152,
+   "best_price": 0.5172,
+   "best_price_american": -107,
+   "best_price_book": "prophetx",
+   "bid_improved": true,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-23",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 3098,
+     "new_this_side": 27821,
+     "other_side": 18975,
+     "other_side_all_levels": 72209,
+     "ratio": 1.5,
+     "this_side": 28291,
+     "this_side_all_levels": 75281
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "under 141.5 (141.5)",
+     "price": 0.5122,
+     "this_side": 832
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 25094.6,
+    "volume_24h_fp": 19820.08,
+    "volume_fp": 25469.24
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 4079.16,
+    "volume_24h_fp": 10673.84,
+    "volume_fp": 4079.16
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 21015.44,
+    "volume_24h_fp": 9146.24,
+    "volume_fp": 21390.08
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-11-24T00:10:25Z",
+   "game": "Texas A&M-Corpus Christi vs Wichita St.: Point Total",
+   "game_surge_books": [
+    "prophetx"
+   ],
+   "game_x": 1.86,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAMBTOTAL-26NOV23AMCCWICH-142\"}",
+   "lead_min": 10,
+   "league": "NCAAB",
+   "line": 141.5,
+   "market": "total",
+   "new_money": 27821,
+   "new_x": 0.98,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 25094.6,
+      "volume_24h_fp": 19820.08,
+      "volume_fp": 25469.24
+     },
+     "game_normal": 40580,
+     "game_x": 1.86,
+     "normal": 28449,
+     "now": 75281,
+     "type": "UNDER",
+     "x": 2.65
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 460,
+     "game_x": 7.68,
+     "normal": 885,
+     "now": 3532,
+     "type": "UNDER",
+     "x": 3.99
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 141.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 142.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 140.5,
+     "price": 104
+    },
+    "betrivers": {
+     "point": 141.5,
+     "price": -108
+    },
+    "bovada": {
+     "point": 142.0,
+     "price": -110
+    },
+    "circasports": {
+     "point": 142.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 141.5,
+     "price": -105
+    },
+    "fanatics": {
+     "point": 141.5,
+     "price": -105
+    },
+    "fanduel": {
+     "point": 140.5,
+     "price": -105
+    },
+    "kalshi": {
+     "point": 141.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 142.0,
+     "price": -108
+    },
+    "novig": {
+     "point": 141.5,
+     "price": -106
+    },
+    "polymarket": {
+     "point": 141.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 141.5,
+     "price": -108
+    },
+    "williamhill_us": {
+     "point": 142.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAMBTOTAL-26NOV23AMCCWICH-142"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 141.5 points",
+   "size_x": 2.65,
+   "start_source": "odds",
+   "start_utc": "2026-11-24T00:30:00Z",
+   "surge_books": [
+    "kalshi",
+    "prophetx"
+   ],
+   "teams": [
+    "Texas A&M-Corpus Christi",
+    "Wichita St."
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-23T23:00:30Z",
    "base_depth": 19594,
    "best_price": 0.84,
@@ -680,9 +864,9 @@
     "volume_fp": 219.1
    },
    "ex_stats_close": {
-    "open_interest_fp": 67797.63,
-    "volume_24h_fp": 63052.850000000006,
-    "volume_fp": 72043.23
+    "open_interest_fp": 70551.52,
+    "volume_24h_fp": 70718.06,
+    "volume_fp": 74797.12
    },
    "ex_stats_first": {
     "open_interest_fp": 24147.24,
@@ -889,9 +1073,9 @@
     "volume_fp": 18.26
    },
    "ex_stats_close": {
-    "open_interest_fp": 47075.49,
-    "volume_24h_fp": 51064.25,
-    "volume_fp": 51369.07
+    "open_interest_fp": 47193.32,
+    "volume_24h_fp": 51369.07,
+    "volume_fp": 51486.9
    },
    "ex_stats_first": {
     "open_interest_fp": 16215.18,
@@ -1080,9 +1264,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 11938.08,
-    "volume_24h_fp": 12513.14,
-    "volume_fp": 12863.74
+    "open_interest_fp": 12117.49,
+    "volume_24h_fp": 12863.74,
+    "volume_fp": 13043.15
    },
    "ex_stats_first": {
     "open_interest_fp": 8127.55,
@@ -2702,8 +2886,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.43,
-   "clv_cents": -25.0,
+   "close_price": 0.2,
+   "clv_cents": -48.0,
    "confirmed_after_min": 10,
    "date": "2026-11-23",
    "depth_by_book": {
@@ -2728,9 +2912,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 331757.01,
-    "volume_24h_fp": 501620.77,
-    "volume_fp": 540486.1799999999
+    "open_interest_fp": 395282.70999999996,
+    "volume_24h_fp": 530509.75,
+    "volume_fp": 649329.39
    },
    "ex_stats_first": {
     "open_interest_fp": 0.0,
@@ -2818,8 +3002,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.8,
-   "clv_cents": 1.0,
+   "close_price": 0.77,
+   "clv_cents": -2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-23",
    "depth_by_book": {
@@ -2844,9 +3028,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 17313.03,
-    "volume_24h_fp": 12113.29,
-    "volume_fp": 18911.329999999998
+    "open_interest_fp": 40768.0,
+    "volume_24h_fp": 18527.18,
+    "volume_fp": 44518.83
    },
    "ex_stats_first": {
     "open_interest_fp": 14.27,
@@ -3127,7 +3311,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 5367.33,
-    "volume_24h_fp": 3018.92,
+    "volume_24h_fp": 5180.46,
     "volume_fp": 5372.950000000001
    },
    "ex_stats_first": {
@@ -3785,9 +3969,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 5562.1,
-    "volume_24h_fp": 5751.650000000001,
-    "volume_fp": 5997.28
+    "open_interest_fp": 6347.01,
+    "volume_24h_fp": 5762.75,
+    "volume_fp": 6782.19
    },
    "ex_stats_first": {
     "open_interest_fp": 913.42,
@@ -4972,9 +5156,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 28513.58,
-    "volume_24h_fp": 13846.26,
-    "volume_fp": 28802.42
+    "open_interest_fp": 44222.369999999995,
+    "volume_24h_fp": 24367.38,
+    "volume_fp": 44511.21
    },
    "ex_stats_first": {
     "open_interest_fp": 11.91,
@@ -5608,7 +5792,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "BYU",
@@ -7600,7 +7784,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 145,
+   "settle_tries": 146,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "IUPUI (0)",
