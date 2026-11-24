@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 24, 4:56 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 47.
+Updated Tue Nov 24, 5:03 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 45.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 459-271 (-16.44u flat) | rule met: 97-71
+**Record:** 459-273 (-18.44u flat) | rule met: 97-72
 
-**Fade (paper, betting against the print):** 246-424 (+4.86u flat, after fees)
+**Fade (paper, betting against the print):** 248-424 (+9.52u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -21,7 +21,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 24 12:40PM | NCAAB | Ole Miss vs BYU | moneyline: Ole Miss | kalshi | $68k | -113 | ✅ prophetx |  | +2.0c | yes | W |
 | Nov 24 12:00PM | NCAAB | UIC vs Rice | moneyline: UIC | kalshi | $43k | -270 |  |  | +0.0c |  | L |
 | Nov 24 12:00PM | NCAAB | Nevada vs Santa Clara | moneyline: Nevada | kalshi | $30k | -100 | ✅ novig |  | +0.0c |  | pending |
-| Nov 24 12:00PM | NCAAB | Appalachian St. vs Yale | moneyline: Appalachian St. | kalshi | $26k | -100 | ✅ novig |  | +1.0c | yes | pending |
+| Nov 24 12:00PM | NCAAB | Appalachian St. vs Yale | moneyline: Appalachian St. | kalshi | $26k | -100 | ✅ novig |  | +1.0c | yes | L |
 | Nov 24 11:40AM | NCAAB | Belmont vs Akron: Point Total | total: NOT Over 141.5 points | kalshi | $28k | -117 |  |  | +2.0c | yes | L |
 | Nov 24 10:30AM | NCAAB | Rider vs Loyola Maryland | moneyline: Loyola Maryland | kalshi | $27k | -150 | ✅ novig |  | +1.0c |  | pending |
 | Nov 24 10:10AM | NCAAB | Vermont vs Siena | moneyline: Siena | kalshi | $36k | -178 | ✅ novig |  | +0.0c |  | pending |
@@ -39,12 +39,12 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 24 9:30AM | NCAAB | Binghamton @ Lehigh | moneyline: LEH (0) | novig | $36k | -344 | ✅ kalshi |  | +1.0c |  | pending |
 | Nov 24 9:30AM | NCAAB | Elon @ Furman | moneyline: FUR (0) | novig | $47k | -300 | ✅ kalshi |  | -1.5c |  | pending |
 | Nov 24 9:30AM | NCAAB | Mercer @ Florida Atlantic | moneyline: FAU (0) | novig | $34k | -270 | ✅ kalshi |  | +0.0c |  | pending |
-| Nov 24 9:30AM | NCAAB | Kent State @ Wyoming | moneyline: WYO (0) | novig | $54k | -365 | ✅ kalshi | ❌ | +0.0c |  | pending |
+| Nov 24 9:30AM | NCAAB | Kent State @ Wyoming | moneyline: WYO (0) | novig | $54k | -365 | ✅ kalshi | ❌ | +0.5c |  | pending |
 | Nov 24 9:30AM | NCAAB | Iowa State @ San Diego State | moneyline: ISU (0) | novig | $51k | -308 | ✅ kalshi |  | +5.5c |  | pending |
-| Nov 24 9:30AM | NCAAB | Oregon State @ San Francisco | moneyline: ORST (0) | novig | $41k | -388 |  | ❌ | -3.0c |  | pending |
+| Nov 24 9:30AM | NCAAB | Oregon State @ San Francisco | moneyline: ORST (0) | novig | $41k | -388 |  | ❌ | -3.0c |  | L |
 | Nov 24 9:30AM | NCAAB | Southern Utah @ Florida International | moneyline: FIU (0) | novig | $57k | -344 | ✅ kalshi |  | -0.5c |  | W |
 | Nov 24 9:10AM | NCAAB | Providence vs Arizona | moneyline: Arizona | kalshi | $51k | -317 |  |  | +0.0c |  | pending |
-| Nov 24 9:00AM | NCAAB | Michigan vs Creighton | moneyline: Michigan | kalshi | $45k | -233 |  |  | -1.0c |  | pending |
+| Nov 24 9:00AM | NCAAB | Michigan vs Creighton | moneyline: Michigan | kalshi | $45k | -233 |  |  | -2.0c |  | pending |
 | Nov 24 1:20AM | NCAAB | North Dakota vs Detroit Mercy | moneyline: North Dakota | kalshi | $28k | -170 |  |  | +1.0c |  | pending |
 | Nov 24 12:30AM | NCAAB | Southern Utah vs Florida International | moneyline: Florida International | kalshi | $170k | -355 |  |  | -1.0c |  | W |
 | Nov 24 12:30AM | NCAAB | Samford vs Georgia Tech | moneyline: Georgia Tech | kalshi | $173k | -525 |  |  | +0.0c |  | pending |
