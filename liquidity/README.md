@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 24, 11:35 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 22.
+Updated Tue Nov 24, 11:40 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 22.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -11,9 +11,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 24 11:30AM | NCAAF | Kent St. vs Eastern Michigan: Spread | spread: Eastern Michigan wins by over 6.5 points | kalshi | $176k | -100 |  |  | +0.0c |  | pending |
-| Nov 24 11:10AM | NFL | Green Bay Packers @ Los Angeles Rams | spread: LAR -2.5 (-2.5) | novig | $27k | -100 |  |  | +0.5c |  | pending |
+| Nov 24 11:10AM | NFL | Green Bay Packers @ Los Angeles Rams | spread: LAR -2.5 (-2.5) | novig | $27k | -100 |  |  | +0.0c |  | pending |
 | Nov 24 10:21AM | NCAAF | Miami (OH) vs Western Michigan: Spread | spread: NOT Western Michigan wins by over 6.5 points | kalshi | $339k | -104 | ✅ prophetx |  | +2.0c |  | pending |
-| Nov 24 10:10AM | NCAAF | Miami Ohio @ Western Michigan | moneyline: WMU (0) | novig | $34k | -233 | ✅ kalshi,prophetx |  | -1.0c | yes | pending |
+| Nov 24 10:10AM | NCAAF | Miami Ohio @ Western Michigan | moneyline: WMU (0) | novig | $34k | -233 | ✅ kalshi,prophetx |  | -1.5c | yes | pending |
 | Nov 24 10:05AM | NBA | Dallas vs Denver: Total Points | total: NOT Over 233.5 points | kalshi | $33k | -104 | ✅ novig,prophetx | ❌ | -2.0c |  | pending |
 | Nov 24 9:30AM | NBA | Detroit vs Orlando: Spread | spread: NOT Detroit wins by over 2.5 points | kalshi | $120k | -108 |  |  | -1.0c |  | pending |
 | Nov 24 7:40AM | NBA | Detroit vs Orlando: Total Points | total: Over 212.5 points | kalshi | $45k | -100 |  | ❌ | +2.0c |  | pending |
