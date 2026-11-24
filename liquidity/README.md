@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 24, 12:45 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 11.
+Updated Tue Nov 24, 12:50 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 10.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1939-1509 (-38.15u flat) | rule met: 1150-908
+**Record:** 1939-1510 (-39.15u flat) | rule met: 1150-908
 
-**Fade (paper, betting against the print):** 1243-1666 (-195.93u flat, after fees)
+**Fade (paper, betting against the print):** 1244-1666 (-195.04u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -30,7 +30,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 23 6:10PM | NBA | Oklahoma City vs Indiana: Spread | spread: NOT Oklahoma City wins by over 4.5 points | kalshi | $86k | -104 |  | ✅ | +1.0c |  | W |
 | Nov 23 6:05PM | NBA | Memphis Grizzlies @ Charlotte Hornets | moneyline: MEM (0) | novig | $32k | -138 | ✅ kalshi,prophetx |  | -0.5c |  | W |
 | Nov 23 5:50PM | NBA | Phoenix Suns @ New Orleans Pelicans | moneyline: PHX (0) | novig | $27k | -138 | ✅ kalshi,prophetx |  | +0.5c |  | W |
-| Nov 23 5:35PM | NHL | Anaheim Ducks @ Seattle Kraken | moneyline: ANA (0) | novig | $28k | +108 |  |  | +2.5c | yes | pending |
+| Nov 23 5:35PM | NHL | Anaheim Ducks @ Seattle Kraken | moneyline: ANA (0) | novig | $28k | +108 |  |  | +2.5c | yes | L |
 | Nov 23 5:35PM | NHL | Columbus Blue Jackets @ New Jersey Devils | moneyline: NJD (0) | novig | $44k | -186 | ✅ kalshi,prophetx |  | -0.5c |  | W |
 | Nov 23 5:25PM | NHL | Anaheim vs Seattle: Total Goals | total: Over 6.5 goals scored | kalshi | $26k | -122 | ✅ novig,prophetx |  | +0.0c | yes | L |
 | Nov 23 4:55PM | NFL | Cincinnati Bengals @ Washington Commanders | spread: CIN -6.5 (6.5) | novig | $41k | -100 | ✅ kalshi,prophetx |  | -0.5c | yes | L |
