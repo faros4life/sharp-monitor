@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 23, 10:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 19.
+Updated Mon Nov 23, 10:10 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 18.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 448-265 (-15.67u flat) | rule met: 92-70
+**Record:** 448-266 (-16.67u flat) | rule met: 92-70
 
-**Fade (paper, betting against the print):** 240-413 (+5.36u flat, after fees)
+**Fade (paper, betting against the print):** 241-413 (+6.12u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -19,7 +19,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 23 2:10PM | NCAAB | William & Mary vs IU Indy | moneyline: William & Mary | kalshi | $122k | -223 |  |  | +1.0c | yes | W |
 | Nov 23 2:10PM | NCAAB | VCU vs Providence | moneyline: Providence | kalshi | $31k | -117 | ✅ novig |  | +1.0c |  | pending |
 | Nov 23 1:20PM | NCAAB | UNC Greensboro vs Pepperdine: Spread | spread: Pepperdine wins by over 10.5 points | kalshi | $29k | -113 |  |  | +1.0c |  | pending |
-| Nov 23 1:20PM | NCAAB | Monmouth vs North Carolina: Spread | spread: NOT North Carolina wins by over 17.5 points | kalshi | $31k | +117 |  | ✅ | +0.0c | yes | pending |
+| Nov 23 1:20PM | NCAAB | Monmouth vs North Carolina: Spread | spread: NOT North Carolina wins by over 17.5 points | kalshi | $31k | +117 |  | ✅ | +0.0c | yes | L |
 | Nov 23 1:20PM | NCAAB | Yale vs Belmont | moneyline: Yale | kalshi | $27k | +113 | ✅ novig |  | +2.0c | yes | L |
 | Nov 23 1:20PM | NCAAB | Illinois St. vs Santa Clara | moneyline: Santa Clara | kalshi | $25k | -144 |  | ❌ | +1.0c |  | W |
 | Nov 23 1:20PM | NCAAB | Georgia Southern vs Northern Kentucky | moneyline: Northern Kentucky | kalshi | $39k | -144 |  |  | +1.0c |  | L |
