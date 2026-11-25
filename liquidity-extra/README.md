@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 25, 2:00 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 28.
+Updated Wed Nov 25, 2:10 PM ET. This run: 1 new, 1 not confirmed, 0 pending. Open alerts: 29.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 25 2:10PM | NCAAB | Southeastern Louisiana vs North Dakota: Point Total | total: NOT Over 141.5 points | kalshi | $57k | -113 |  | ✅ | +0.0c |  | pending |
 | Nov 25 1:20PM | NCAAB | South Carolina vs USC | moneyline: USC | kalshi | $63k | -525 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 25 12:40PM | NCAAB | UConn vs Duke | moneyline: Duke | kalshi | $79k | +108 |  |  | +0.0c |  | pending |
 | Nov 25 12:30PM | NCAAB | UConn vs Duke: Spread | spread: NOT UConn wins by over 1.5 points | kalshi | $39k | -104 |  |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 20 12:40PM | NCAAB | Manhattan vs Miami (FL): Spread | spread: NOT Miami (FL) wins by over 36.5 points | kalshi | $45k | -104 |  | ✅ | -1.0c |  | L |
 | Nov 20 12:40PM | NCAAB | Delaware vs Cal State Northridge: Spread | spread: NOT Cal State Northridge wins by over 6.5 points | kalshi | $34k | +117 |  | ❌ | +2.0c |  | W |
 | Nov 20 12:10PM | NCAAB | Temple vs Middle Tennessee | moneyline: Temple | kalshi | $70k | -150 | ✅ novig | ❌ | +0.0c |  | W |
-| Nov 20 12:00PM | NCAAB | Kentucky vs Indiana | moneyline: Indiana | kalshi | $35k | -156 | ✅ novig |  | -1.0c |  | W |
