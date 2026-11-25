@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 24, 11:40 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 27.
+Updated Tue Nov 24, 11:45 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 28.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,9 +10,10 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 24 11:45PM | NBA | Minnesota vs Oklahoma City | moneyline: Oklahoma City | kalshi | $294k | -117 |  |  | +0.0c |  | pending |
 | Nov 24 10:30PM | NBA | Sacramento vs Golden State | moneyline: Golden State | kalshi | $50k | -213 |  |  | +0.0c |  | pending |
 | Nov 24 9:50PM | NFL | Green Bay vs Los Angeles R: Spread | spread: Los Angeles R wins by over 2.5 points | kalshi | $106k | -104 | ✅ novig |  | +0.0c |  | pending |
-| Nov 24 8:50PM | NBA | Brooklyn vs Milwaukee | moneyline: Milwaukee | kalshi | $33k | -104 |  |  | +1.0c |  | pending |
+| Nov 24 8:50PM | NBA | Brooklyn vs Milwaukee | moneyline: Milwaukee | kalshi | $33k | -104 |  |  | +0.0c |  | pending |
 | Nov 24 8:15PM | NBA | Brooklyn vs Milwaukee | moneyline: Brooklyn | kalshi | $26k | +104 |  |  | +0.0c |  | pending |
 | Nov 24 8:00PM | NBA | Los Angeles C vs Memphis | moneyline: Memphis | kalshi | $39k | -213 |  |  | +2.0c |  | pending |
 | Nov 24 7:16PM | NHL | St. Louis vs New York I | moneyline: New York I | kalshi | $26k | -117 | ✅ novig |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 22 1:05AM | NFL | Miami vs Buffalo: Spread | spread: NOT Buffalo wins by over 16.5 points | kalshi | $166k | -104 | ✅ novig |  | -2.0c | yes | L |
 | Nov 22 1:05AM | NFL | Arizona vs Kansas City: Spread | spread: NOT Kansas City wins by over 14.5 points | kalshi | $160k | +104 |  |  | -1.0c |  | L |
 | Nov 22 1:00AM | NFL | Cincinnati vs Washington | moneyline: Cincinnati | kalshi | $358k | -270 | ✅ novig,prophetx |  | +0.0c | yes | L |
-| Nov 22 12:55AM | NBA | Boston vs Golden State | moneyline: Boston | kalshi | $73k | -335 |  |  | -2.0c | yes | L |
