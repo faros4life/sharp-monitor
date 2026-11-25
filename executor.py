@@ -5038,6 +5038,7 @@ def live_order(r):
     # revalidation gate above has already decided this order IS being sent, so a refusal path never
     # consumes capacity. Finding 1: the grant is CONSUMED here, which is what makes it single-use.
     _led = _unit_ledger_guard(r, "live_order", "prophetx")
+    lv["_ledger_grant"] = _led       # Nov 25: live_remainder settles this leg to its actual fill
     stake = _unit_ledger_consume(_led, stake)
     res = px_live.place(strike, limit, stake, label)
     if res.get("status") == "refused":   # Nov 11: a refusal is a lane event too
@@ -5095,6 +5096,58 @@ def _got(o):
     return float(o.get("filled_stake") or 0)
 
 
+def _remainder_settle_first(lv, first):
+    """Nov 25, 2026 (Packers/Rams Under 44.5): ProphetX filled part of the unit and the remainder
+    went to Novig, where the shared ledger refused it with 0u free - the ProphetX leg still held its
+    FULL asked stake. ProphetX orders are fillOrKill, so the unmatched part was killed at submit and
+    is not exposure. Settle that leg to the fill this function already sizes the remainder from.
+
+    Only on a READ fill (fills_read True), exactly the read live_remainder trusts for `got`, so the
+    ledger and the remainder size can never disagree. Fails safe: if this cannot be recorded the leg
+    keeps its full hold and the remainder is refused, as before. Never touches any other venue."""
+    g = lv.get("_ledger_grant")
+    if g is None or lv.get("book") != "prophetx" or first.get("fills_read") is not True:
+        return False
+    f = first.get("filled_stake")
+    if f is None:
+        return False
+    try:
+        import registry as _reg
+        import review_store_registry as _rs
+        import review_unit_reservation as _R
+        st = "filled" if float(f) > 0 else "cancelled"
+        ev = (f"prophetx fillOrKill {first.get('order_id')}: filled {float(f):.2f} of "
+              f"{float(first.get('asked_stake') or 0):.2f}, rest killed at submit")
+        for _a in range(5):
+            try:
+                _R.record_outcome(_rs.RegistryStore(_reg), g.key, g.leg_id, st, float(f), True, ev)
+                LOG.append("remainder: first leg settled to its fill in the shared ledger")
+                return True
+            except _R.ReservationRefused as ex:
+                if "compare-and-swap" not in str(ex):
+                    raise
+                _R._cas_pause(_a)
+    except Exception as ex:
+        LOG.append(f"remainder: first leg NOT settled ({type(ex).__name__}) - it keeps its full hold")
+    return False
+
+
+def _remainder_cap(lv, c):
+    """Largest stake the shared ledger can still reserve for this play at venue c's price, or None
+    when the ledger is off or cannot answer (the reservation itself then decides, fail closed)."""
+    g = lv.get("_ledger_grant")
+    if g is None:
+        return None
+    try:
+        import registry as _reg
+        import review_store_registry as _rs
+        import review_unit_reservation as _R
+        return float(_R.cap_for(_rs.RegistryStore(_reg), g.key, c.get("shown") or c.get("am"),
+                                lv.get("unit") or LIVE_UNIT))
+    except Exception:
+        return None
+
+
 def live_remainder(r):
     """Oct 28 (Peter): the unit is $200 total per play across venues. After the best book's fill, take what's left on
     the next live books at the alert number or better (each its own threshold), skipping remainders under MIN_TAKE.
@@ -5111,6 +5164,8 @@ def live_remainder(r):
     # that is a different finding with a different fix from "reached and lost on price". So every
     # candidate is recorded as reached or not, and the reason it was not.
     QSTAT[(lv["book"], "reach", "filled first (its own order)")] += 1
+    _remainder_settle_first(lv, first)
+    lv["_claim_cid"] = lv.get("client_id")
     _stopped = None
     for c in (r.get("lcs") or []):
         rem = round(target - got - sum(_got(o) for o in more), 2)
@@ -5119,6 +5174,16 @@ def live_remainder(r):
             break
         if c["book"] in used:
             continue
+        # Nov 25: the remainder is sized in STAKE, but the unit is a TO-WIN budget; at a better
+        # price on the next venue the same stake wins more and the ledger refused it by ~0.01u
+        # (205 at -113 vs 0.59u free). Trim to what the shared ledger says is free, at this
+        # venue's own price. Advisory only - the reservation still decides.
+        _cap = _remainder_cap(lv, c)
+        if _cap is not None:
+            rem = min(rem, int(_cap * 100) / 100.0)
+            if rem < MIN_TAKE - 0.01:
+                _stopped = "unit already filled (shared ledger)"
+                break
         used.add(c["book"])
         QSTAT[(c["book"], "reach", "reached with a usable remainder")] += 1
         save = dict(lv)
@@ -5132,6 +5197,7 @@ def live_remainder(r):
         if o.get("status") != "placed":
             _stopped = f"stopped: {str(o.get('status'))[:18]}"
             break
+    lv.pop("_claim_cid", None)
     # Whatever was never reached, and why. Without this, a venue that is always last and always full
     # looks identical to one that was offered the order and refused it.
     try:
@@ -6857,7 +6923,10 @@ def journal_intent(r, book, asked):
             LOG.append(f"intent {cid}: no play key to claim - refusing")
             return False, None
         try:
-            if not registry.claim_submission(_ckey, cid):
+            # Nov 25: a REMAINDER is the rest of the bet this run already claimed, not a new
+            # bet. It claims under the first order's cid, which claim_submission() accepts as the
+            # same holder; any other run still loses the key exactly as before.
+            if not registry.claim_submission(_ckey, (r.get("live") or {}).get("_claim_cid") or cid):
                 LOG.append(f"intent {cid}: play key already claimed by another run - refusing")
                 try:
                     tg_push("DUPLICATE BLOCKED",
