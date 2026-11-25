@@ -1,6 +1,218 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-25T01:10:21Z",
+   "base_depth": 282709,
+   "best_price": 0.68,
+   "best_price_american": -213,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.67,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 3926,
+     "new_this_side": 62378,
+     "other_side": 30356,
+     "other_side_all_levels": 145647,
+     "ratio": 4.0,
+     "this_side": 122331,
+     "this_side_all_levels": 343164
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "WSU (0)",
+     "price": 0.68,
+     "this_side": 27593
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Washington State",
+     "price": 0.6825,
+     "this_side": 11934
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 4801.7,
+    "volume_24h_fp": 4439.54,
+    "volume_fp": 4808.76
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 311.67,
+    "volume_24h_fp": 1.43,
+    "volume_fp": 311.67
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 4490.03,
+    "volume_24h_fp": 4438.110000000001,
+    "volume_fp": 4497.09
+   },
+   "fade_price": 0.33,
+   "first_seen_utc": "2026-11-25T01:00:24Z",
+   "game": "Sam Houston vs Washington St.",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 2.63,
+   "key": "kalshi|KXNCAAMBGAME-26NOV24SHSUWSU|ml|1",
+   "lead_min": 50,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 62378,
+   "new_x": 0.38,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 4801.7,
+      "volume_24h_fp": 4439.54,
+      "volume_fp": 4808.76
+     },
+     "game_normal": 130357,
+     "game_x": 2.63,
+     "normal": 164232,
+     "now": 343164,
+     "type": "ML",
+     "x": 2.09
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 1396322.0,
+      "volume": 1624361.0
+     },
+     "game_normal": 42336,
+     "game_x": 0.92,
+     "normal": 6501,
+     "now": 38916,
+     "type": "ML",
+     "x": 5.99
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 6439,
+     "game_x": 1.87,
+     "normal": 2879,
+     "now": 12063,
+     "type": "ML",
+     "x": 4.19
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.67,
+   "price_american": -203,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.67,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -235
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -240
+    },
+    "betopenly": {
+     "point": null,
+     "price": -212
+    },
+    "betrivers": {
+     "point": null,
+     "price": -265
+    },
+    "betus": {
+     "point": null,
+     "price": -240
+    },
+    "bovada": {
+     "point": null,
+     "price": -230
+    },
+    "circasports": {
+     "point": null,
+     "price": -240
+    },
+    "draftkings": {
+     "point": null,
+     "price": -230
+    },
+    "fanatics": {
+     "point": null,
+     "price": -235
+    },
+    "fanduel": {
+     "point": null,
+     "price": -220
+    },
+    "kalshi": {
+     "point": null,
+     "price": -213
+    },
+    "lowvig": {
+     "point": null,
+     "price": -240
+    },
+    "novig": {
+     "point": null,
+     "price": -212
+    },
+    "polymarket": {
+     "point": null,
+     "price": -213
+    },
+    "prophetx": {
+     "point": null,
+     "price": -215
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -225
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV24SHSUWSU-WSU"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [
+    "Washington St Cougars -4.5 (-110)"
+   ],
+   "sharp_oppose": [],
+   "side": "Washington St.",
+   "side_label": "Washington St.",
+   "size_x": 2.09,
+   "start_source": "odds",
+   "start_utc": "2026-11-25T02:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Sam Houston",
+    "Washington St."
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-25T00:10:22Z",
    "base_depth": 122575,
    "best_price": 0.5673,
@@ -576,8 +788,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.62,
-   "clv_cents": -8.0,
+   "close_price": 0.8,
+   "clv_cents": 10.0,
    "confirmed_after_min": 10,
    "date": "2026-11-24",
    "depth_by_book": {
@@ -602,9 +814,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 564.28,
-    "volume_24h_fp": 629.8,
-    "volume_fp": 690.99
+    "open_interest_fp": 20238.91,
+    "volume_24h_fp": 646.5699999999999,
+    "volume_fp": 23313.32
    },
    "ex_stats_first": {
     "open_interest_fp": 256.79999999999995,
@@ -942,6 +1154,7 @@
     "volume_fp": 105687.44
    },
    "fade_price": 0.51,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-24T22:10:28Z",
    "game": "Michigan vs Creighton: Spread",
    "game_surge_books": [],
@@ -1048,12 +1261,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAMBSPREAD-26NOV24MICHCREI-MICH6"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 1,
+   "settle_tries": 2,
+   "settled_utc": "2026-11-25T01:10:21Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Creighton",
@@ -1070,7 +1284,7 @@
     "Creighton"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.93
   },
   {
    "alerted_utc": "2026-11-24T22:20:20Z",
@@ -1128,6 +1342,7 @@
     "volume_fp": 14619.08
    },
    "fade_price": 0.5,
+   "fade_units": 0.93,
    "first_seen_utc": "2026-11-24T22:10:28Z",
    "game": "Queens University vs Wofford",
    "game_surge_books": [],
@@ -1230,12 +1445,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV24QUCWOF-QUC"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 1,
+   "settle_tries": 2,
+   "settled_utc": "2026-11-25T01:10:21Z",
    "sharp_agree": [
     "Queens University Royals +1.5 (-120)"
    ],
@@ -1254,7 +1470,7 @@
     "Wofford"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-24T21:00:27Z",
@@ -2253,7 +2469,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Florida Atlantic",
@@ -2635,7 +2851,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [
     "DePaul Blue Demons +3.5 (-108)"
@@ -4510,7 +4726,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "VMI",
@@ -5579,7 +5795,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Kennesaw St.",
@@ -5638,8 +5854,8 @@
     "volume": 410621.0
    },
    "ex_stats_close": {
-    "openInterest": 3157958.0,
-    "volume": 3747645.0
+    "openInterest": 3161083.0,
+    "volume": 3750770.0
    },
    "ex_stats_first": {
     "openInterest": 787098.0,
@@ -7102,7 +7318,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Florida Atlantic",
@@ -7289,7 +7505,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [
     "Kent State Golden Flashes +8.5 (-105)"
@@ -7485,7 +7701,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Iowa State",
@@ -8090,6 +8306,7 @@
     "volume_fp": 3147.51
    },
    "fade_price": 0.31,
+   "fade_units": 2.08,
    "first_seen_utc": "2026-11-24T13:50:24Z",
    "game": "Michigan vs Creighton",
    "game_surge_books": [],
@@ -8196,12 +8413,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV24MICHCREI-MICH"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 4,
+   "settle_tries": 5,
+   "settled_utc": "2026-11-25T01:10:21Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Michigan",
@@ -8219,7 +8437,7 @@
     "Creighton"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-24T06:20:20Z",
@@ -9174,7 +9392,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Florida Atlantic",
@@ -13964,9 +14182,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 27669.36,
-    "volume_24h_fp": 30245.43,
-    "volume_fp": 34386.78
+    "open_interest_fp": 28005.15,
+    "volume_24h_fp": 30894.47,
+    "volume_fp": 34722.57
    },
    "ex_stats_first": {
     "open_interest_fp": 1198.79,
@@ -14197,7 +14415,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Iowa St.",

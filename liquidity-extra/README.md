@@ -1,22 +1,23 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 24, 8:00 PM ET. This run: 0 new, 0 not confirmed, 3 pending. Open alerts: 45.
+Updated Tue Nov 24, 8:10 PM ET. This run: 1 new, 1 not confirmed, 1 pending. Open alerts: 43.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 463-276 (-18.66u flat) | rule met: 99-72
+**Record:** 464-278 (-19.73u flat) | rule met: 99-72
 
-**Fade (paper, betting against the print):** 251-428 (+12.14u flat, after fees)
+**Fade (paper, betting against the print):** 253-429 (+14.15u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 24 8:10PM | NCAAB | Sam Houston vs Washington St. | moneyline: Washington St. | kalshi | $62k | -203 | ✅ novig,prophetx | ✅ | +0.0c |  | pending |
 | Nov 24 7:10PM | NCAAB | Oral Roberts vs UT Arlington: Spread | spread: UT Arlington wins by over 4.5 points | kalshi | $34k | -122 |  | ✅ | -2.0c |  | pending |
 | Nov 24 6:40PM | NCAAB | Purdue Fort Wayne vs Southeast Missouri St.: Spread | spread: NOT Southeast Missouri St. wins by over 2.5 points | kalshi | $27k | +113 |  |  | +0.0c |  | pending |
 | Nov 24 6:00PM | NCAAB | Boston University @ Harvard | moneyline: HARV (0) | novig | $26k | -223 | ✅ kalshi | ✅ | +0.0c | yes | pending |
-| Nov 24 6:00PM | NCAAB | Drexel vs Penn | moneyline: Penn | kalshi | $36k | -233 |  |  | -8.0c | yes | pending |
+| Nov 24 6:00PM | NCAAB | Drexel vs Penn | moneyline: Penn | kalshi | $36k | -233 |  |  | +10.0c | yes | pending |
 | Nov 24 6:00PM | NCAAB | Campbell vs Coastal Carolina | moneyline: Coastal Carolina | kalshi | $33k | -108 | ✅ novig | ❌ | +0.0c |  | pending |
-| Nov 24 5:20PM | NCAAB | Michigan vs Creighton: Spread | spread: NOT Michigan wins by over 5.5 points | kalshi | $30k | -100 |  |  | -1.0c | yes | pending |
-| Nov 24 5:20PM | NCAAB | Queens University vs Wofford | moneyline: Queens University | kalshi | $53k | -104 |  | ✅ | +0.0c |  | pending |
+| Nov 24 5:20PM | NCAAB | Michigan vs Creighton: Spread | spread: NOT Michigan wins by over 5.5 points | kalshi | $30k | -100 |  |  | -1.0c | yes | W |
+| Nov 24 5:20PM | NCAAB | Queens University vs Wofford | moneyline: Queens University | kalshi | $53k | -104 |  | ✅ | +0.0c |  | L |
 | Nov 24 4:00PM | NCAAB | Purdue Fort Wayne vs Southeast Missouri St. | moneyline: Southeast Missouri St. | kalshi | $27k | -156 |  |  | -1.0c | yes | pending |
 | Nov 24 3:30PM | NCAAB | Lamar vs Robert Morris | moneyline: Lamar | kalshi | $26k | -138 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 24 2:50PM | NCAAB | Alabama A&M vs North Alabama | moneyline: North Alabama | kalshi | $69k | -156 | ✅ novig |  | +2.0c |  | pending |
@@ -51,7 +52,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 24 9:30AM | NCAAB | Oregon State @ San Francisco | moneyline: ORST (0) | novig | $41k | -388 |  | ❌ | -3.0c |  | L |
 | Nov 24 9:30AM | NCAAB | Southern Utah @ Florida International | moneyline: FIU (0) | novig | $57k | -344 | ✅ kalshi |  | -0.5c |  | W |
 | Nov 24 9:10AM | NCAAB | Providence vs Arizona | moneyline: Arizona | kalshi | $51k | -317 |  |  | +0.0c |  | W |
-| Nov 24 9:00AM | NCAAB | Michigan vs Creighton | moneyline: Michigan | kalshi | $45k | -233 |  |  | -2.0c | yes | pending |
+| Nov 24 9:00AM | NCAAB | Michigan vs Creighton | moneyline: Michigan | kalshi | $45k | -233 |  |  | -2.0c | yes | L |
 | Nov 24 1:20AM | NCAAB | North Dakota vs Detroit Mercy | moneyline: North Dakota | kalshi | $28k | -170 |  |  | +1.0c |  | W |
 | Nov 24 12:30AM | NCAAB | Southern Utah vs Florida International | moneyline: Florida International | kalshi | $170k | -355 |  |  | -1.0c |  | W |
 | Nov 24 12:30AM | NCAAB | Samford vs Georgia Tech | moneyline: Georgia Tech | kalshi | $173k | -525 |  |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 19 4:10PM | NCAAB | Utah Tech vs Washington: Spread | spread: NOT Washington wins by over 17.5 points | kalshi | $32k | -108 |  | ✅ | +2.0c | yes | W |
 | Nov 19 4:10PM | NCAAB | UTEP vs New Mexico St. | moneyline: UTEP | kalshi | $30k | +113 | ✅ novig |  | +0.0c |  | W |
 | Nov 19 4:10PM | NCAAB | UC Santa Barbara vs Pepperdine | moneyline: Pepperdine | kalshi | $49k | +117 |  |  | +0.0c |  | L |
-| Nov 19 4:10PM | NCAAB | Tulane vs Louisiana Tech | moneyline: Tulane | kalshi | $43k | +117 |  | ❌ | +1.0c | yes | L |
