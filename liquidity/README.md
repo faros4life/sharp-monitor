@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 25, 1:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 65.
+Updated Wed Nov 25, 1:45 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 65.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -79,7 +79,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 24 1:40PM | NBA | Boston vs Washington: Spread | spread: Boston wins by over 10.5 points | kalshi | $31k | -108 | ✅ novig |  | +1.0c |  | W |
 | Nov 24 12:50PM | NCAAF | Miami (OH) vs Western Michigan: Spread | spread: NOT Western Michigan wins by over 5.5 points | kalshi | $59k | -100 |  |  | +3.0c |  | W |
 | Nov 24 12:45PM | NBA | Detroit vs Orlando | moneyline: Detroit | kalshi | $354k | -122 |  |  | -13.0c | yes | W |
-| Nov 24 12:30PM | NBA | Phoenix vs Houston | moneyline: Houston | kalshi | $189k | -317 |  |  | +1.0c |  | pending |
+| Nov 24 12:30PM | NBA | Phoenix vs Houston | moneyline: Houston | kalshi | $189k | -317 |  |  | +2.0c |  | pending |
 | Nov 24 11:30AM | NCAAF | Kent St. vs Eastern Michigan: Spread | spread: Eastern Michigan wins by over 6.5 points | kalshi | $176k | -100 |  |  | +1.0c | yes | L |
 | Nov 24 11:10AM | NFL | Green Bay Packers @ Los Angeles Rams | spread: LAR -2.5 (-2.5) | novig | $27k | -100 |  |  | +1.5c |  | pending |
 | Nov 24 10:21AM | NCAAF | Miami (OH) vs Western Michigan: Spread | spread: NOT Western Michigan wins by over 6.5 points | kalshi | $339k | -104 | ✅ prophetx |  | +5.0c |  | W |
