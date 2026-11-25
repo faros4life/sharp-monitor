@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 25, 6:20 PM ET. This run: 1 new, 0 not confirmed, 3 pending. Open alerts: 26.
+Updated Wed Nov 25, 6:30 PM ET. This run: 2 new, 1 not confirmed, 1 pending. Open alerts: 28.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 25 6:20PM | NCAAB | Duke @ Connecticut | moneyline: CONN (0) | novig | $31k | -106 |  |  | +0.0c |  | pending |
+| Nov 25 6:30PM | NCAAB | Duke @ Connecticut | spread: CONN -1.5 (-1.5) | novig | $40k | +108 |  |  | +0.0c |  | pending |
+| Nov 25 6:30PM | NCAAB | UConn vs Duke: Spread | spread: UConn wins by over 1.5 points | kalshi | $34k | +108 |  |  | +0.0c |  | pending |
+| Nov 25 6:20PM | NCAAB | Duke @ Connecticut | moneyline: CONN (0) | novig | $31k | -106 |  |  | +0.5c |  | pending |
 | Nov 25 6:10PM | NCAAB | St. Thomas-Minnesota @ UNC Wilmington | moneyline: UNCW (0) | novig | $27k | -217 |  |  | +0.0c |  | pending |
 | Nov 25 6:10PM | NCAAB | Northern Illinois vs SIU Edwardsville | moneyline: SIU Edwardsville | kalshi | $69k | +138 |  |  | +0.0c |  | pending |
 | Nov 25 5:30PM | NCAAB | Washington vs VCU | moneyline: VCU | kalshi | $26k | -178 |  |  | +0.0c |  | pending |
@@ -23,7 +25,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 25 2:10PM | NCAAB | Southeastern Louisiana vs North Dakota: Point Total | total: NOT Over 141.5 points | kalshi | $57k | -113 |  | ✅ | +0.0c | yes | L |
 | Nov 25 1:20PM | NCAAB | South Carolina vs USC | moneyline: USC | kalshi | $63k | -525 | ✅ novig |  | -1.0c | yes | pending |
 | Nov 25 12:40PM | NCAAB | UConn vs Duke | moneyline: Duke | kalshi | $79k | +108 |  |  | +1.0c |  | pending |
-| Nov 25 12:30PM | NCAAB | UConn vs Duke: Spread | spread: NOT UConn wins by over 1.5 points | kalshi | $39k | -104 |  |  | +1.0c |  | pending |
+| Nov 25 12:30PM | NCAAB | UConn vs Duke: Spread | spread: NOT UConn wins by over 1.5 points | kalshi | $39k | -104 |  |  | +2.0c |  | pending |
 | Nov 25 12:30PM | NCAAB | Florida Gulf Coast vs Georgia St. | moneyline: Florida Gulf Coast | kalshi | $29k | +108 | ✅ novig |  | +0.0c | yes | W |
 | Nov 25 12:20PM | NCAAB | Abilene Christian vs South Dakota St.: Spread | spread: South Dakota St. wins by over 7.5 points | kalshi | $33k | +108 |  |  | +1.0c |  | L |
 | Nov 25 12:20PM | NCAAB | Northern Illinois vs SIU Edwardsville: Spread | spread: NOT Northern Illinois wins by over 4.5 points | kalshi | $41k | -127 |  |  | +3.0c |  | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 20 3:10PM | NCAAB | Iowa vs Xavier: Spread | spread: NOT Xavier wins by over 3.5 points | kalshi | $45k | -104 |  |  | -1.0c |  | W |
 | Nov 20 3:10PM | NCAAB | Kansas City vs Iona | moneyline: Iona | kalshi | $48k | -178 | ✅ novig |  | +1.0c | yes | W |
 | Nov 20 3:10PM | NCAAB | Dayton vs Utah | moneyline: Dayton | kalshi | $33k | +108 |  |  | +2.0c |  | W |
-| Nov 20 2:50PM | NCAAB | Northwestern vs Virginia Tech: Point Total | total: Over 142.5 points | kalshi | $48k | -104 |  | ❌ | +0.0c |  | W |
-| Nov 20 1:50PM | NCAAB | UAB vs George Washington: Point Total | total: Over 151.5 points | kalshi | $38k | +104 | ✅ novig |  | +0.0c | yes | W |
