@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 25, 1:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 65.
+Updated Wed Nov 25, 1:05 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 65.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -12,7 +12,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 25 12:55PM | NHL | Ottawa vs Florida: Total Goals | total: Over 5.5 goals scored | kalshi | $36k | -104 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 25 12:55PM | NHL | Chicago vs Seattle | moneyline: Chicago | kalshi | $128k | +138 |  |  | +0.0c |  | pending |
-| Nov 25 12:50PM | NHL | New Jersey vs Columbus | moneyline: Columbus | kalshi | $61k | +133 |  |  | +0.0c |  | pending |
+| Nov 25 12:50PM | NHL | New Jersey vs Columbus | moneyline: Columbus | kalshi | $61k | +133 |  |  | +0.0c | yes | pending |
 | Nov 25 12:35PM | NHL | Nashville vs Dallas | moneyline: Dallas | kalshi | $80k | -163 | ✅ novig,prophetx |  | +0.0c | yes | pending |
 | Nov 25 12:25PM | NHL | New Jersey vs Columbus: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $27k | -117 | ✅ novig | ❌ | +0.0c |  | pending |
 | Nov 25 12:20PM | NHL | New York R vs Buffalo | moneyline: Buffalo | kalshi | $70k | -122 | ✅ novig |  | +0.0c |  | pending |
