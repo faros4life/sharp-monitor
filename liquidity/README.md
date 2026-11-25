@@ -1,16 +1,16 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 24, 10:35 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 35.
+Updated Tue Nov 24, 10:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 34.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1947-1517 (-39.45u flat) | rule met: 1155-910
+**Record:** 1948-1517 (-39.18u flat) | rule met: 1155-910
 
-**Fade (paper, betting against the print):** 1251-1674 (-195.49u flat, after fees)
+**Fade (paper, betting against the print):** 1251-1675 (-196.49u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 24 10:30PM | NBA | Sacramento vs Golden State | moneyline: Golden State | kalshi | $50k | -213 |  |  | +0.0c |  | pending |
+| Nov 24 10:30PM | NBA | Sacramento vs Golden State | moneyline: Golden State | kalshi | $50k | -213 |  |  | +1.0c |  | pending |
 | Nov 24 9:50PM | NFL | Green Bay vs Los Angeles R: Spread | spread: Los Angeles R wins by over 2.5 points | kalshi | $106k | -104 | ✅ novig |  | +0.0c |  | pending |
 | Nov 24 8:50PM | NBA | Brooklyn vs Milwaukee | moneyline: Milwaukee | kalshi | $33k | -104 |  |  | +0.0c |  | pending |
 | Nov 24 8:15PM | NBA | Brooklyn vs Milwaukee | moneyline: Brooklyn | kalshi | $26k | +104 |  |  | +0.0c |  | pending |
@@ -55,7 +55,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 23 9:05PM | NBA | Dallas vs Denver | moneyline: Denver | kalshi | $224k | -300 |  |  | -5.0c |  | pending |
 | Nov 23 9:00PM | NBA | San Antonio vs Sacramento: Spread | spread: NOT San Antonio wins by over 8.5 points | kalshi | $46k | -108 | ✅ novig |  | +1.0c | yes | L |
 | Nov 23 8:50PM | NBA | Utah vs Los Angeles L: Spread | spread: NOT Los Angeles L wins by over 13.5 points | kalshi | $44k | -108 | ✅ novig |  | +1.0c | yes | L |
-| Nov 23 8:05PM | NBA | Boston vs Washington | moneyline: Boston | kalshi | $46k | -355 |  |  | +1.0c |  | pending |
+| Nov 23 8:05PM | NBA | Boston vs Washington | moneyline: Boston | kalshi | $46k | -355 |  |  | +1.0c |  | W |
 | Nov 23 7:05PM | NBA | Detroit vs Orlando | moneyline: Orlando | kalshi | $26k | +122 |  |  | +12.0c |  | L |
 | Nov 23 6:55PM | NBA | Portland vs Philadelphia: Total Points | total: NOT Over 231.5 points | kalshi | $67k | -108 | ✅ novig | ❌ | +0.0c |  | L |
 | Nov 23 6:50PM | NHL | Minnesota vs San Jose: Spread | spread: NOT Minnesota wins by over 1.5 goals | kalshi | $32k | -156 |  |  | +0.0c | yes | L |
