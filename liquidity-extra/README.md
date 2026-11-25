@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 25, 3:50 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 26.
+Updated Wed Nov 25, 4:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 26.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -18,7 +18,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 25 12:30PM | NCAAB | UConn vs Duke: Spread | spread: NOT UConn wins by over 1.5 points | kalshi | $39k | -104 |  |  | +1.0c |  | pending |
 | Nov 25 12:30PM | NCAAB | Florida Gulf Coast vs Georgia St. | moneyline: Florida Gulf Coast | kalshi | $29k | +108 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 25 12:20PM | NCAAB | Abilene Christian vs South Dakota St.: Spread | spread: South Dakota St. wins by over 7.5 points | kalshi | $33k | +108 |  |  | +1.0c |  | pending |
-| Nov 25 12:20PM | NCAAB | Northern Illinois vs SIU Edwardsville: Spread | spread: NOT Northern Illinois wins by over 4.5 points | kalshi | $41k | -127 |  |  | +1.0c |  | pending |
+| Nov 25 12:20PM | NCAAB | Northern Illinois vs SIU Edwardsville: Spread | spread: NOT Northern Illinois wins by over 4.5 points | kalshi | $41k | -127 |  |  | +2.0c |  | pending |
 | Nov 25 11:40AM | NCAAB | Northern Colorado vs Detroit Mercy | moneyline: Northern Colorado | kalshi | $36k | -213 | ✅ novig |  | +0.0c |  | W |
 | Nov 25 11:40AM | NCAAB | Arkansas St. vs Florida International | moneyline: Florida International | kalshi | $30k | -122 | ✅ novig |  | +0.0c |  | pending |
 | Nov 25 9:30AM | NCAAB | Texas A&M vs Xavier | moneyline: Texas A&M | kalshi | $28k | -186 |  |  | -3.0c | yes | pending |
