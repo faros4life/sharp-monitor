@@ -1,19 +1,19 @@
-# Paper splits (updated 2026-11-25T03:05:31Z)
+# Paper splits (updated 2026-11-25T03:15:37Z)
 
 Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kill bar: 30+ resulted at -0.10u/play or worse closes a split.
 
 | Split | Type | Start | W-L-P | Units | u/play | True close % | Status |
 |---|---|---|---|---|---|---|---|
 | Phase-1 live filter (paper view) | a-priori | 2026-10-26 | 37-37-0 | -4.99 | -0.067 | -2.24 | CLOSED |
-| Phase-1 control group | control | 2026-10-26 | 75-58-2 | +6.46 | +0.048 | -1.76 | OPEN |
-| Hard Rock-priced, routed | a-priori | 2026-10-26 | 107-88-0 | +7.41 | +0.038 | -1.07 | ELIGIBLE at next review |
-| Fade Hard Rock-priced | scan | 2026-10-26 | 107-88-0 | -18.05 | -0.093 | -1.07 | CLOSED |
+| Phase-1 control group | control | 2026-10-26 | 76-58-2 | +7.29 | +0.054 | -1.72 | OPEN |
+| Hard Rock-priced, routed | a-priori | 2026-10-26 | 107-89-0 | +6.41 | +0.033 | -1.08 | ELIGIBLE at next review |
+| Fade Hard Rock-priced | scan | 2026-10-26 | 107-89-0 | -17.05 | -0.087 | -1.08 | CLOSED |
 | PM-global-priced, routed | a-priori | 2026-10-26 | 0-0-0 | +0.00 |  |  | OPEN |
-| Unders only | scan | 2026-10-26 | 100-87-0 | +1.69 | +0.009 | -0.88 | OPEN |
+| Unders only | scan | 2026-10-26 | 101-87-0 | +2.52 | +0.013 | -0.86 | OPEN |
 | Combined filter | scan | 2026-10-26 | 117-116-0 | -12.10 | -0.052 | -2.18 | OPEN |
 | Priced -125 or worse | scan | 2026-10-26 | 16-19-0 | -6.31 | -0.180 | -2.81 | CLOSED |
 | College basketball | scan | 2026-10-26 | 463-396-0 | +10.99 | +0.013 | -1.10 | OPEN |
-| Fade alerts sent 12-24h out | scan | 2026-10-26 | 88-71-0 | -14.17 | -0.089 | -1.38 | CLOSED |
+| Fade alerts sent 12-24h out | scan | 2026-10-26 | 89-71-0 | -15.17 | -0.095 | -1.35 | CLOSED |
 | Tier 2 core (paper) | tier | 2026-10-27 | 23-25-0 | -5.25 | -0.109 | -2.88 | CLOSED |
 | Evening sends, ex-Hard Rock | scan | 2026-10-26 | 26-22-0 | +0.62 | +0.013 | -2.27 | OPEN |
 | Muted midday (11 AM-2 PM ET) | scan | 2026-10-26 | 114-108-0 | -6.43 | -0.029 | -0.31 | OPEN |
