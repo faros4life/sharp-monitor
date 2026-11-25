@@ -41,11 +41,13 @@ JOBS = {   # workflow file: minimum minutes between runs (matches each workflow'
                                  # took. At ~4 runs a day a confluence is found hours late, past the
                                  # price and sometimes past tip - the one push path that is meant to
                                  # be actionable under Peter's "no alerts unless bot or actionable".
-    "ev-sightings.yml": 10,      # 12 of 431 (2.8%). Paper study, never notifies; exposure is sample
-                                 # accrual only. NOTE: a second file carries the same workflow NAME
-                                 # (ev-sightings_2.yml, hourly) and runs 436 times - tick keys on the
-                                 # FILE, so this entry is unambiguous, but the duplicate name still
-                                 # makes run attribution between them unreadable in logs.
+    # ev-sightings.yml REMOVED Nov 25, 2026. The study closed Nov 13 (Peter: "Approved. Disable
+    # ev-sightings now.") and the workflow was disabled on GitHub, but it stayed in this table, so
+    # tick tried to dispatch it every 10 minutes and GitHub refused every time. That pinned the log
+    # at "errors 1" for twelve days and saturated the error channel: a real second failure would
+    # have read as "errors 2" and gone unnoticed. Nothing was lost by the failures themselves - the
+    # study was paper-only and collection was meant to stop. (The ev-sightings_2.yml duplicate the
+    # old comment warned about no longer exists; its last run was Nov 12.)
     "balances-email.yml": 60,    # 11 of 72 (15.3%). Hourly by design; staleness of the balance and
                                  # open-exposure picture Muse reads. Reporting lag, not correctness.
     "ncaab-openers.yml": 30,     # 9 of 114 (10.5%). The freeze-lead measurement traced straight to
@@ -83,8 +85,10 @@ BUSY = {"queued", "in_progress", "waiting", "pending", "requested"}
 
 
 def gh(*args):
+    """Returns (rc, stdout, stderr). stderr used to be discarded, which is the whole reason a
+    dispatch failure could only ever be counted and never explained (Nov 25, 2026)."""
     r = subprocess.run(["gh", *args], capture_output=True, text=True, timeout=40)
-    return r.returncode, r.stdout
+    return r.returncode, r.stdout, r.stderr
 
 
 def is_automatic(run):
@@ -110,7 +114,7 @@ def today_runs(wf, now_utc):
     from zoneinfo import ZoneInfo
     et = now_utc.astimezone(ZoneInfo("America/New_York"))
     midnight = et.replace(hour=0, minute=0, second=0, microsecond=0).astimezone(timezone.utc)
-    rc, out = gh("api", f"repos/{{owner}}/{{repo}}/actions/workflows/{wf}/runs?created=>="
+    rc, out, _ = gh("api", f"repos/{{owner}}/{{repo}}/actions/workflows/{wf}/runs?created=>="
                  f"{midnight.strftime('%Y-%m-%dT%H:%M:%SZ')}&per_page=100",
                  "--jq", "[.workflow_runs[] | {event, actor: .triggering_actor.login, status, conclusion}]")
     if rc != 0:
@@ -118,34 +122,62 @@ def today_runs(wf, now_utc):
     return json.loads(out or "[]")
 
 
+def dispatch(wf):
+    """Dispatch one workflow. Returns "started", "disabled", or a short reason it failed.
+
+    Nov 25, 2026: this used to be `started += rc == 0; skipped += rc != 0`, with every exception
+    swallowed by a bare `except Exception: skipped += 1` and stderr discarded by gh(). A workflow
+    that is DELIBERATELY disabled and one that is genuinely failing produced the same number, and
+    the reason was gone. Two states with opposite remedies in one counter - a disabled workflow
+    should be taken OUT of the table, a failing one should be FIXED."""
+    rc, _, err = gh("workflow", "run", wf, "--ref", "main")
+    if rc == 0:
+        return "started"
+    text = (err or "").strip()
+    if "disabled" in text.lower():
+        return "disabled"
+    return (text.splitlines()[-1][:140] if text else f"rc={rc}, no stderr")
+
+
 def main():
     now = datetime.now(timezone.utc)
-    started = skipped = 0
+    started, disabled, failed = 0, [], {}
     for wf, mins in JOBS.items():
         try:
-            rc, out = gh("run", "list", "--workflow", wf, "--limit", "1", "--json", "createdAt,status")
+            rc, out, err = gh("run", "list", "--workflow", wf, "--limit", "1", "--json", "createdAt,status")
             if rc != 0:
-                skipped += 1
+                failed[wf] = f"run list failed: {(err or '').strip().splitlines()[-1][:120] if err else rc}"
                 continue
             runs = json.loads(out or "[]")
             if runs and runs[0].get("status") in BUSY:
                 continue
             last = datetime.fromisoformat(runs[0]["createdAt"].replace("Z", "+00:00")) if runs else None
             if last is None or now - last >= timedelta(minutes=mins - 2):
-                rc, _ = gh("workflow", "run", wf, "--ref", "main")
-                started += rc == 0
-                skipped += rc != 0
-        except Exception:
-            skipped += 1
+                r = dispatch(wf)
+                started += r == "started"
+                if r == "disabled":
+                    disabled.append(wf)
+                elif r != "started":
+                    failed[wf] = r
+        except Exception as ex:
+            failed[wf] = f"{type(ex).__name__}: {str(ex)[:100]}"
     for wf, (hh, mm) in DAILY_ET.items():
         try:
             if daily_due(hh, mm, now, today_runs(wf, now)):
-                rc, _ = gh("workflow", "run", wf, "--ref", "main")
-                started += rc == 0
-                skipped += rc != 0
-        except Exception:
-            skipped += 1
-    print(f"tick: started {started}, errors {skipped}")   # counts only
+                r = dispatch(wf)
+                started += r == "started"
+                if r == "disabled":
+                    disabled.append(wf)
+                elif r != "started":
+                    failed[wf] = r
+        except Exception as ex:
+            failed[wf] = f"{type(ex).__name__}: {str(ex)[:100]}"
+    # Counts only - workflow filenames and gh's own error text, never anything financial.
+    print(f"tick: started {started}, disabled {len(disabled)}, errors {len(failed)}")
+    for wf in sorted(disabled):
+        print(f"tick: DISABLED, not dispatched (take it out of JOBS if the study is closed): {wf}")
+    for wf in sorted(failed):
+        print(f"tick: DISPATCH FAILED {wf}: {failed[wf]}")
 
 
 if __name__ == "__main__":
