@@ -10,6 +10,17 @@ Two states with opposite remedies in one counter. A disabled workflow should be 
 table; a failing one should be FIXED. These checks pin the split and the reason."""
 import tick
 
+# The dispatch table as it must stand after ev-sightings was retired (Nov 25). Pinned by name so
+# that dropping any OTHER workflow - the failure mode this whole change is about - fails loudly
+# instead of quietly reducing what gets dispatched.
+EXPECTED_AFTER = {
+    "nba-model.yml", "x2-tag.yml", "clv-ledger.yml", "slow-hr.yml", "plimit-logger.yml",
+    "exchange-lag.yml", "hcache-fill.yml", "liq-small-fwd.yml", "model-lab.yml",
+    "liquidity-monitor.yml", "deadman.yml", "signal-alerts.yml", "balances-email.yml",
+    "ncaab-openers.yml", "plimit-level.yml", "reporting-ledger.yml", "clv-dashboard.yml",
+    "p2-audit.yml",
+}
+
 FAILED = []
 CALLS = []
 
@@ -32,6 +43,19 @@ ok("ev-sightings is no longer dispatched", "ev-sightings.yml" not in tick.JOBS)
 ok("it is not in the daily table either", "ev-sightings.yml" not in tick.DAILY_ET)
 ok("the rest of the table is intact", len(tick.JOBS) + len(tick.DAILY_ET) == 18,
    len(tick.JOBS) + len(tick.DAILY_ET))
+
+# --- every OTHER scheduled workflow is unaffected and still dispatchable ------------------------
+import os
+import yaml
+for wf in list(tick.JOBS) + list(tick.DAILY_ET):
+    p = os.path.join(".github/workflows", wf)
+    ok(f"{wf}: still present", os.path.exists(p))
+    y = yaml.safe_load(open(p))
+    on = y.get("on", y.get(True))                 # YAML 1.1 reads a bare `on:` as True
+    ok(f"{wf}: still has workflow_dispatch", isinstance(on, dict) and "workflow_dispatch" in on)
+ok("every remaining entry has a cadence", all(isinstance(v, int) and v > 0 for v in tick.JOBS.values()))
+ok("ev-sightings is the ONLY entry removed",
+   set(tick.JOBS) | set(tick.DAILY_ET) == EXPECTED_AFTER, sorted(set(tick.JOBS) | set(tick.DAILY_ET)))
 
 # --- gh() hands back stderr, which is where the reason lives -----------------------------------
 import inspect
