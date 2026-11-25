@@ -142,7 +142,9 @@ def clv_for(st, b, mkmap, now):
     if not cs.close_verified(c.get("how")):
         return "close not certifiable", None, f"how={str(c.get('how'))[:34]}"
 
-    bk = cs.canon(b.get("book"))
+    bk = cs.canon(b.get("book"), strict=False)
+    if bk is None:
+        return "venue not in registry", None, str(b.get("book"))[:20]
     am = num(b.get("price"))
     if am is None:
         return "no fill price", None, ""
@@ -152,6 +154,17 @@ def clv_for(st, b, mkmap, now):
     except cs.UnknownVenue:
         return "venue not in registry", None, bk
     return "CERTIFIED", 100 * (c["p"] * nd - 1), f"close p={c['p']:.4f} ({c.get('how')})"
+
+
+def venue(b):
+    """Display name for a row's venue. Nov 25: a FanDuel bet (placed in NYC, no Hard Rock there)
+    made cs.canon raise UnknownVenue in the venue tally and killed the whole report. Unknown venues
+    are shown by their own name and left unscored (score() files them under "venue not in
+    registry"), so one off-registry bet no longer stops every other row from being scored."""
+    bk = b.get("book")
+    if not bk:
+        return "?"
+    return cs.canon(bk, strict=False) or str(bk)
 
 
 def main():
@@ -198,7 +211,7 @@ def main():
         return 0
 
     by_src = Counter(str(b.get("source") or "?") for b in rows)
-    by_bk = Counter(cs.canon(b.get("book")) if b.get("book") else "?" for b in rows)
+    by_bk = Counter(venue(b) for b in rows)
     say(f"  by source: {', '.join(f'{k} {v}' for k, v in by_src.most_common())}")
     say(f"  by venue:  {', '.join(f'{k} {v}' for k, v in by_bk.most_common())}")
 
@@ -248,14 +261,14 @@ def main():
         am = num(b.get("price"))
         say(f"  {b['_day']:<10} {str(b.get('league') or '?'):<6} "
             f"{str(b.get('game') or '?')[:34]:<34} {str(b.get('bet') or '?')[:22]:<22} "
-            f"{(cs.canon(b.get('book')) if b.get('book') else '?')[:11]:<11} "
+            f"{venue(b)[:11]:<11} "
             f"{(f'{am:+.0f}' if am is not None else '?'):>6} "
             f"{str(b.get('result') or '-'):>4}")
         line = (f"       -> {status}" + (f"  CLV {clv:+.2f}%" if clv is not None else "")
                 + (f"  [{detail}]" if detail else ""))
         say(line)
         out.append({"day": b["_day"], "league": b.get("league"), "game": b.get("game"),
-                    "bet": b.get("bet"), "venue": cs.canon(b.get("book")) if b.get("book") else "",
+                    "bet": b.get("bet"), "venue": venue(b) if b.get("book") else "",
                     "american": am, "result": b.get("result"), "clv_status": status,
                     "clv_pct": (None if clv is None else round(clv, 3)),
                     "detail": detail, "stake": num(b.get("stake")),
@@ -270,7 +283,7 @@ def main():
     groups = {}
     for b in rows:
         k = (str(b.get("game") or ""), str(b.get("bet") or ""),
-             cs.canon(b.get("book")) if b.get("book") else "", num(b.get("price")))
+             venue(b) if b.get("book") else "", num(b.get("price")))
         groups.setdefault(k, []).append(b)
     dup = {k: v for k, v in groups.items() if len(v) > 1}
     if dup:
