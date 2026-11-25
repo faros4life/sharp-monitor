@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 25, 12:10 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 23.
+Updated Wed Nov 25, 12:20 PM ET. This run: 2 new, 0 not confirmed, 3 pending. Open alerts: 25.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 25 12:20PM | NCAAB | Abilene Christian vs South Dakota St.: Spread | spread: South Dakota St. wins by over 7.5 points | kalshi | $33k | +108 |  |  | +0.0c |  | pending |
+| Nov 25 12:20PM | NCAAB | Northern Illinois vs SIU Edwardsville: Spread | spread: NOT Northern Illinois wins by over 4.5 points | kalshi | $41k | -127 |  |  | +0.0c |  | pending |
 | Nov 25 11:40AM | NCAAB | Northern Colorado vs Detroit Mercy | moneyline: Northern Colorado | kalshi | $36k | -213 | ✅ novig |  | +0.0c |  | pending |
 | Nov 25 11:40AM | NCAAB | Arkansas St. vs Florida International | moneyline: Florida International | kalshi | $30k | -122 | ✅ novig |  | +0.0c |  | pending |
 | Nov 25 9:30AM | NCAAB | Texas A&M vs Xavier | moneyline: Texas A&M | kalshi | $28k | -186 |  |  | -3.0c |  | pending |
@@ -23,7 +25,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 25 1:20AM | NCAAB | LSU vs Arizona St. | moneyline: LSU | kalshi | $27k | -178 |  |  | -2.0c |  | pending |
 | Nov 25 1:20AM | NCAAB | Akron vs Appalachian St. | moneyline: Akron | kalshi | $27k | -233 |  |  | -3.0c |  | pending |
 | Nov 25 1:20AM | NCAAB | Abilene Christian vs South Dakota St. | moneyline: South Dakota St. | kalshi | $35k | -300 |  |  | -1.0c |  | pending |
-| Nov 25 1:10AM | NCAAB | Yale vs Wright St. | moneyline: Wright St. | kalshi | $29k | -233 |  |  | -5.0c |  | pending |
+| Nov 25 1:10AM | NCAAB | Yale vs Wright St. | moneyline: Wright St. | kalshi | $29k | -233 |  |  | -6.0c |  | pending |
 | Nov 25 1:10AM | NCAAB | Virginia vs Marquette | moneyline: Virginia | kalshi | $32k | -233 |  |  | +1.0c |  | pending |
 | Nov 25 1:10AM | NCAAB | Northern Iowa vs Charlotte | moneyline: Charlotte | kalshi | $26k | -317 |  |  | +2.0c |  | pending |
 | Nov 24 10:10PM | NCAAB | Lindenwood vs Stony Brook | moneyline: Stony Brook | kalshi | $41k | -488 |  |  | +3.0c |  | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 20 10:20AM | NCAAB | Mercyhurst vs Canisius | moneyline: Mercyhurst | kalshi | $40k | -138 |  |  | +5.0c |  | L |
 | Nov 20 8:40AM | NCAAB | Tulsa vs Mississippi St. | moneyline: Mississippi St. | kalshi | $49k | -285 |  | ✅ | +0.0c |  | W |
 | Nov 20 3:20AM | NCAAB | Western Illinois vs University at Albany | moneyline: Albany | kalshi | $143k | -300 |  |  | -3.0c |  | W |
-| Nov 20 3:20AM | NCAAB | Georgia vs Georgia Tech | moneyline: Georgia | kalshi | $75k | -335 |  |  | +0.0c |  | W |
-| Nov 20 3:20AM | NCAAB | South Dakota St. vs Idaho St. | moneyline: South Dakota St. | kalshi | $138k | -270 |  |  | -4.0c |  | L |
