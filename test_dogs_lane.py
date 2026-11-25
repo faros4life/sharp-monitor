@@ -117,7 +117,15 @@ ok("the selection covers at least the ruling's record (the feed only grows)", le
 ok("both markets are represented", by_mk["spread"] > 0 and by_mk["moneyline"] > 0, by_mk)
 
 # --- 5. first print only, freshness, no backlog --------------------------------------------------
-x0 = want[-1]
+# x0 must be a row dogs_bet ACCEPTS. This block tests freshness and first-print, nothing else,
+# but the feed it draws from is live production data that the bot rewrites continuously, so
+# want[-1] is whichever alert happened to land last. About 4.4% of rows carry a side the code
+# deliberately refuses - "Miami" against "Pittsburgh vs Miami (FL)", "MIZ (0)", "Bethune" for
+# Bethune-Cookman, the pre-formatted Novig "M-OH +4.5 (-4.5)" shape - which section 4 above
+# allows up to 6% of. Landing on one made "a fresh print fires" fail for a side-parsing reason,
+# so the suite went red roughly one run in twenty with nothing wrong (Nov 24-25, 2026).
+x0 = next((x for x in reversed(want) if ex.dogs_bet(x) is not None), None)
+ok("the feed still carries a bettable row to test freshness with", x0 is not None)
 t0 = ex.iso_t(x0["alerted_utc"])
 later = dict(x0, alerted_utc=(t0 + timedelta(minutes=5)).strftime("%Y-%m-%dT%H:%M:%SZ"), new_money=30000)
 bad_first = dict(x0, new_money=90000)
@@ -127,6 +135,17 @@ p_, _ = ex.dogs_select([x0], t0 + timedelta(minutes=ex.DOGS_MAX_AGE_MIN + 1))
 ok("a stale print does not fire (no backlog when the switch is first turned on)", p_ == [])
 p_, _ = ex.dogs_select([x0], t0 + timedelta(minutes=2))
 ok("a fresh print fires", len(p_) == 1)
+# ...and not just for whichever row landed last. Sampling one row out of a live feed is what made
+# this block flaky; asserting the PROPERTY over every bettable row is both deterministic and
+# strictly stronger, and it costs two dogs_select calls per row.
+_bettable = [x for x in want if ex.dogs_bet(x) is not None]
+_bad = [x.get("game") for x in _bettable
+        if len(ex.dogs_select([x], ex.iso_t(x["alerted_utc"]) + timedelta(minutes=2))[0]) != 1
+        or ex.dogs_select([x], ex.iso_t(x["alerted_utc"]) + timedelta(minutes=ex.DOGS_MAX_AGE_MIN + 1))[0] != []]
+ok("EVERY bettable row fires fresh and not stale, whatever order the feed is in",
+   not _bad, f"{len(_bad)} of {len(_bettable)}: {_bad[:3]}")
+ok("the refused rows stay inside the 6% the selection allows",
+   len(want) - len(_bettable) <= 0.06 * len(want), f"{len(want) - len(_bettable)} of {len(want)}")
 p_, _ = ex.dogs_select([dict(x0, start_utc=(t0 - timedelta(minutes=1)).strftime("%Y-%m-%dT%H:%M:%SZ"))], t0 + timedelta(minutes=2))
 ok("a started game never fires", p_ == [])
 p_, _ = ex.dogs_select([dict(x0, book="polymarket")], t0 + timedelta(minutes=2))
