@@ -1,6 +1,401 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-25T23:05:48Z",
+   "base_depth": 50657,
+   "best_price": 0.5,
+   "best_price_american": -100,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-26",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Chicago wins by over 1.5 points",
+     "price": 0.5,
+     "this_side": 946017
+    },
+    "novig": {
+     "new_other_side": -24081,
+     "new_this_side": 46116,
+     "other_side": 37216,
+     "other_side_all_levels": 72591,
+     "ratio": 1.4,
+     "this_side": 50809,
+     "this_side_all_levels": 97717
+    }
+   },
+   "ex_stats_alert": {
+    "openInterest": 3959309.0,
+    "volume": 4503967.0
+   },
+   "ex_stats_change": {
+    "openInterest": 2000.0,
+    "volume": 2000.0
+   },
+   "ex_stats_first": {
+    "openInterest": 3957309.0,
+    "volume": 4501967.0
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-11-25T23:00:25Z",
+   "game": "Chicago Bears @ Detroit Lions",
+   "game_surge_books": [
+    "novig"
+   ],
+   "game_x": 2.11,
+   "key": "novig|{\"market_id\": \"01a1edd4-de4c-78a1-8364-e6a57695c12a\", \"outcome_id\": \"01a1edd4-de4c-78a1-8364-e6c0d11e580f\"}",
+   "lead_min": 1134,
+   "league": "NFL",
+   "line": -1.5,
+   "market": "spread",
+   "new_money": 46116,
+   "new_x": 0.9,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 310689.78,
+      "volume_24h_fp": 315700.18,
+      "volume_fp": 316283.15
+     },
+     "game_normal": 1103895,
+     "game_x": 1.05,
+     "normal": 1365387,
+     "now": 1162043,
+     "type": "SPREAD",
+     "x": 0.85
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 3959309.0,
+      "volume": 4503967.0
+     },
+     "game_normal": 46213,
+     "game_x": 2.11,
+     "normal": 51226,
+     "now": 97717,
+     "type": "SPREAD",
+     "x": 1.91
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -1.0,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": -1.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": -1.5,
+     "price": 102
+    },
+    "betrivers": {
+     "point": -1.5,
+     "price": -113
+    },
+    "betus": {
+     "point": 0.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": -1.5,
+     "price": -108
+    },
+    "circasports": {
+     "point": 0.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": -1.5,
+     "price": -106
+    },
+    "fanatics": {
+     "point": -1.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": -1.5,
+     "price": -108
+    },
+    "kalshi": {
+     "point": -1.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": -1.0,
+     "price": -105
+    },
+    "mybookieag": {
+     "point": -1.0,
+     "price": -110
+    },
+    "novig": {
+     "point": -1.5,
+     "price": 100
+    },
+    "polymarket": {
+     "point": -1.5,
+     "price": 104
+    },
+    "prophetx": {
+     "point": -1.5,
+     "price": 102
+    },
+    "williamhill_us": {
+     "point": -1.5,
+     "price": -109
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a1edd4-de4c-78a1-8364-e6a57695c12a",
+    "outcome_id": "01a1edd4-de4c-78a1-8364-e6c0d11e580f"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Chicago Bears",
+   "side_label": "CHI -1.5 (1.5)",
+   "size_x": 1.91,
+   "start_source": "odds",
+   "start_utc": "2026-11-26T18:00:00Z",
+   "surge_books": [],
+   "teams": [
+    "Chicago Bears",
+    "Detroit Lions"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-25T23:05:48Z",
+   "base_depth": 131155,
+   "best_price": 0.52,
+   "best_price_american": -108,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-26",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": false,
+     "label": "Chicago",
+     "price": 0.53,
+     "this_side": 2474444
+    },
+    "novig": {
+     "new_other_side": 2494,
+     "new_this_side": 49702,
+     "other_side": 67674,
+     "other_side_all_levels": 133861,
+     "ratio": 1.4,
+     "this_side": 95984,
+     "this_side_all_levels": 184377
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Chicago Bears",
+     "price": 0.5238,
+     "this_side": 35816
+    }
+   },
+   "ex_stats_alert": {
+    "openInterest": 21634685.0,
+    "volume": 35857797.0
+   },
+   "ex_stats_change": {
+    "openInterest": 0.0,
+    "volume": 0.0
+   },
+   "ex_stats_first": {
+    "openInterest": 21634685.0,
+    "volume": 35857797.0
+   },
+   "fade_price": 0.485,
+   "first_seen_utc": "2026-11-25T23:00:25Z",
+   "game": "Chicago Bears @ Detroit Lions",
+   "game_surge_books": [],
+   "game_x": 1.62,
+   "key": "novig|{\"market_id\": \"01a1edd4-de4b-7583-b19e-16de5f2334cd\", \"outcome_id\": \"01a1edd4-de4b-7583-b19e-16f8b1605f5a\"}",
+   "lead_min": 1134,
+   "league": "NFL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 49702,
+   "new_x": 0.74,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 780471.72,
+      "volume_24h_fp": 441587.06,
+      "volume_fp": 869191.1
+     },
+     "game_normal": 3323279,
+     "game_x": 1.0,
+     "normal": 4488520,
+     "now": 3317477,
+     "type": "ML",
+     "x": 0.74
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 21634685.0,
+      "volume": 35857797.0
+     },
+     "game_normal": 113512,
+     "game_x": 1.62,
+     "normal": 67030,
+     "now": 184377,
+     "type": "ML",
+     "x": 2.75
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 32054,
+     "game_x": 1.12,
+     "normal": 31324,
+     "now": 35816,
+     "type": "ML",
+     "x": 1.14
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -120
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -120
+    },
+    "betopenly": {
+     "point": null,
+     "price": -115
+    },
+    "betrivers": {
+     "point": null,
+     "price": -127
+    },
+    "bovada": {
+     "point": null,
+     "price": -122
+    },
+    "draftkings": {
+     "point": null,
+     "price": -120
+    },
+    "fanatics": {
+     "point": null,
+     "price": -120
+    },
+    "fanduel": {
+     "point": null,
+     "price": -122
+    },
+    "kalshi": {
+     "point": null,
+     "price": -113
+    },
+    "limitless": {
+     "point": null,
+     "price": -117
+    },
+    "lowvig": {
+     "point": null,
+     "price": -120
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -123
+    },
+    "novig": {
+     "point": null,
+     "price": -108
+    },
+    "polymarket": {
+     "point": null,
+     "price": -113
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -109
+    },
+    "prophetx": {
+     "point": null,
+     "price": -110
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -127
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a1edd4-de4b-7583-b19e-16de5f2334cd",
+    "outcome_id": "01a1edd4-de4b-7583-b19e-16f8b1605f5a"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Chicago Bears",
+   "side_label": "CHI (0)",
+   "size_x": 2.75,
+   "start_source": "odds",
+   "start_utc": "2026-11-26T18:00:00Z",
+   "surge_books": [
+    "novig"
+   ],
+   "teams": [
+    "Chicago Bears",
+    "Detroit Lions"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-25T22:40:19Z",
    "base_depth": 336803,
    "best_price": 0.51,
@@ -14,8 +409,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 0.0,
+   "close_price": 0.52,
+   "clv_cents": 1.0,
    "confirmed_after_min": 4,
    "date": "2026-11-25",
    "depth_by_book": {
@@ -52,9 +447,9 @@
     "volume_fp": 874.04
    },
    "ex_stats_close": {
-    "open_interest_fp": 178441.32,
-    "volume_24h_fp": 173494.18,
-    "volume_fp": 180831.0
+    "open_interest_fp": 184828.37,
+    "volume_24h_fp": 175408.39,
+    "volume_fp": 187801.89
    },
    "ex_stats_first": {
     "open_interest_fp": 172884.39,
@@ -272,7 +667,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 24003.71,
-    "volume_24h_fp": 10098.13,
+    "volume_24h_fp": 10253.59,
     "volume_fp": 29493.09
    },
    "ex_stats_first": {
@@ -684,9 +1079,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 11780.86,
-    "volume_24h_fp": 10768.0,
-    "volume_fp": 12027.52
+    "open_interest_fp": 12177.71,
+    "volume_24h_fp": 11991.06,
+    "volume_fp": 12424.37
    },
    "ex_stats_first": {
     "open_interest_fp": 8215.93,
@@ -890,9 +1285,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 32937.7,
-    "volume_24h_fp": 28035.42,
-    "volume_fp": 33243.31
+    "open_interest_fp": 33082.27,
+    "volume_24h_fp": 33243.31,
+    "volume_fp": 33486.4
    },
    "ex_stats_first": {
     "open_interest_fp": 27426.16,
@@ -1085,8 +1480,8 @@
     "volume": 929352.0
    },
    "ex_stats_close": {
-    "openInterest": 62017824.0,
-    "volume": 96806340.0
+    "openInterest": 62286467.0,
+    "volume": 97716551.0
    },
    "ex_stats_first": {
     "openInterest": 47311904.0,
@@ -1478,8 +1873,8 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 27935.39,
-    "volume_24h_fp": 33839.26,
-    "volume_fp": 34906.45
+    "volume_24h_fp": 34931.99,
+    "volume_fp": 34931.99
    },
    "ex_stats_first": {
     "open_interest_fp": 25569.81,
@@ -1688,8 +2083,8 @@
     "volume": 109038.0
    },
    "ex_stats_close": {
-    "openInterest": 24059065.0,
-    "volume": 46796829.0
+    "openInterest": 24070389.0,
+    "volume": 46808153.0
    },
    "ex_stats_first": {
     "openInterest": 22770182.0,
@@ -1917,9 +2312,9 @@
     "volume_fp": 6.28
    },
    "ex_stats_close": {
-    "open_interest_fp": 41655.1,
-    "volume_24h_fp": 41861.850000000006,
-    "volume_fp": 44291.32
+    "open_interest_fp": 41695.61,
+    "volume_24h_fp": 42117.95,
+    "volume_fp": 44331.83
    },
    "ex_stats_first": {
     "open_interest_fp": 39869.39,
@@ -2097,8 +2492,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 1.0,
+   "close_price": 0.51,
+   "clv_cents": 0.0,
    "confirmed_after_min": 5,
    "date": "2026-11-25",
    "depth_by_book": {
@@ -2129,9 +2524,9 @@
     "volume_fp": 81.2
    },
    "ex_stats_close": {
-    "open_interest_fp": 39346.89,
-    "volume_24h_fp": 42614.62,
-    "volume_fp": 42766.47
+    "open_interest_fp": 39422.72,
+    "volume_24h_fp": 42766.47,
+    "volume_fp": 42842.3
    },
    "ex_stats_first": {
     "open_interest_fp": 13675.73,
@@ -2332,9 +2727,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 20599.28,
-    "volume_24h_fp": 19171.129999999997,
-    "volume_fp": 20615.31
+    "open_interest_fp": 21423.39,
+    "volume_24h_fp": 20033.260000000002,
+    "volume_fp": 21439.42
    },
    "ex_stats_first": {
     "open_interest_fp": 15762.59,
@@ -2552,8 +2947,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 17167917.0,
-    "volume": 17974694.0
+    "openInterest": 17168211.0,
+    "volume": 17974988.0
    },
    "ex_stats_first": {
     "openInterest": 16693892.0,
@@ -2770,8 +3165,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 6332695.0,
-    "volume": 8044859.0
+    "openInterest": 6342537.0,
+    "volume": 8054701.0
    },
    "ex_stats_first": {
     "openInterest": 4468555.0,
@@ -3219,8 +3614,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 4046673.0,
-    "volume": 6045240.0
+    "openInterest": 4053754.0,
+    "volume": 6056721.0
    },
    "ex_stats_first": {
     "openInterest": 3604552.0,
@@ -3669,8 +4064,8 @@
     "volume": 3380.0
    },
    "ex_stats_close": {
-    "openInterest": 4950517.0,
-    "volume": 6503997.0
+    "openInterest": 4958209.0,
+    "volume": 6511689.0
    },
    "ex_stats_first": {
     "openInterest": 4614257.0,
@@ -4109,8 +4504,8 @@
     "volume": 20250.0
    },
    "ex_stats_close": {
-    "openInterest": 9485372.0,
-    "volume": 13382743.0
+    "openInterest": 9490250.0,
+    "volume": 13387621.0
    },
    "ex_stats_first": {
     "openInterest": 9180670.0,
@@ -4331,9 +4726,9 @@
     "volume_fp": 169.67
    },
    "ex_stats_close": {
-    "open_interest_fp": 55412.16,
-    "volume_24h_fp": 53660.77,
-    "volume_fp": 56619.35
+    "open_interest_fp": 59200.2,
+    "volume_24h_fp": 54569.78999999999,
+    "volume_fp": 60407.39
    },
    "ex_stats_first": {
     "open_interest_fp": 17955.41,
@@ -4554,9 +4949,9 @@
     "volume_fp": 1188.58
    },
    "ex_stats_close": {
-    "open_interest_fp": 101428.13,
-    "volume_24h_fp": 108887.31,
-    "volume_fp": 113964.2
+    "open_interest_fp": 105892.89,
+    "volume_24h_fp": 109827.54999999999,
+    "volume_fp": 118450.7
    },
    "ex_stats_first": {
     "open_interest_fp": 77833.85,
@@ -4975,7 +5370,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 43287.88,
-    "volume_24h_fp": 44229.4,
+    "volume_24h_fp": 44256.8,
     "volume_fp": 44460.62
    },
    "ex_stats_first": {
@@ -5181,8 +5576,8 @@
     "volume": 75336.0
    },
    "ex_stats_close": {
-    "openInterest": 112498246.0,
-    "volume": 148445345.0
+    "openInterest": 113265094.0,
+    "volume": 149411750.0
    },
    "ex_stats_first": {
     "openInterest": 85697388.0,
@@ -5401,9 +5796,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 11138.3,
+    "open_interest_fp": 11180.3,
     "volume_24h_fp": 11300.28,
-    "volume_fp": 11303.48
+    "volume_fp": 11345.48
    },
    "ex_stats_first": {
     "open_interest_fp": 421.2,
@@ -5611,7 +6006,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 9865.63,
-    "volume_24h_fp": 8295.26,
+    "volume_24h_fp": 9922.4,
     "volume_fp": 9967.63
    },
    "ex_stats_first": {
@@ -5829,9 +6224,9 @@
     "volume_fp": 52.72
    },
    "ex_stats_close": {
-    "open_interest_fp": 13566.88,
-    "volume_24h_fp": 13278.92,
-    "volume_fp": 14174.34
+    "open_interest_fp": 13609.71,
+    "volume_24h_fp": 13316.17,
+    "volume_fp": 14217.17
    },
    "ex_stats_first": {
     "open_interest_fp": 9385.84,
@@ -6044,9 +6439,9 @@
     "volume_fp": 50.06
    },
    "ex_stats_close": {
-    "open_interest_fp": 55412.16,
-    "volume_24h_fp": 53660.77,
-    "volume_fp": 56619.35
+    "open_interest_fp": 59200.2,
+    "volume_24h_fp": 54569.78999999999,
+    "volume_fp": 60407.39
    },
    "ex_stats_first": {
     "open_interest_fp": 13497.37,
@@ -6261,9 +6656,9 @@
     "volume_fp": 0.13
    },
    "ex_stats_close": {
-    "open_interest_fp": 20341.17,
-    "volume_24h_fp": 15718.07,
-    "volume_fp": 20783.03
+    "open_interest_fp": 20831.87,
+    "volume_24h_fp": 16196.619999999999,
+    "volume_fp": 21273.73
    },
    "ex_stats_first": {
     "open_interest_fp": 14157.71,
@@ -6683,9 +7078,9 @@
     "volume_fp": 6.49
    },
    "ex_stats_close": {
-    "open_interest_fp": 24475.14,
-    "volume_24h_fp": 20870.45,
-    "volume_fp": 24788.24
+    "open_interest_fp": 25329.56,
+    "volume_24h_fp": 22667.33,
+    "volume_fp": 25642.66
    },
    "ex_stats_first": {
     "open_interest_fp": 7660.540000000001,
@@ -6868,8 +7263,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.57,
-   "clv_cents": -1.0,
+   "close_price": 0.58,
+   "clv_cents": 0.0,
    "confirmed_after_min": 4,
    "date": "2026-11-25",
    "depth_by_book": {
@@ -6906,9 +7301,9 @@
     "volume_fp": 106.85
    },
    "ex_stats_close": {
-    "open_interest_fp": 101428.13,
-    "volume_24h_fp": 108887.31,
-    "volume_fp": 113964.2
+    "open_interest_fp": 105892.89,
+    "volume_24h_fp": 109827.54999999999,
+    "volume_fp": 118450.7
    },
    "ex_stats_first": {
     "open_interest_fp": 34369.19,
@@ -7323,8 +7718,8 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1203.8,
-    "volume_24h_fp": 851.72,
-    "volume_fp": 1301.32
+    "volume_24h_fp": 956.45,
+    "volume_fp": 1336.57
    },
    "ex_stats_first": {
     "open_interest_fp": 571.27,
@@ -7525,9 +7920,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 987.19,
-    "volume_24h_fp": 799.63,
-    "volume_fp": 1014.82
+    "open_interest_fp": 1365.5,
+    "volume_24h_fp": 850.07,
+    "volume_fp": 1393.13
    },
    "ex_stats_first": {
     "open_interest_fp": 260.22,
@@ -7724,9 +8119,9 @@
     "volume_fp": 32.8
    },
    "ex_stats_close": {
-    "open_interest_fp": 41655.1,
-    "volume_24h_fp": 41861.850000000006,
-    "volume_fp": 44291.32
+    "open_interest_fp": 41695.61,
+    "volume_24h_fp": 42117.95,
+    "volume_fp": 44331.83
    },
    "ex_stats_first": {
     "open_interest_fp": 6845.950000000001,
@@ -7925,9 +8320,9 @@
     "volume_fp": 20.46
    },
    "ex_stats_close": {
-    "open_interest_fp": 42726.66,
-    "volume_24h_fp": 41264.91,
-    "volume_fp": 44264.81
+    "open_interest_fp": 43212.78,
+    "volume_24h_fp": 42720.020000000004,
+    "volume_fp": 44750.93
    },
    "ex_stats_first": {
     "open_interest_fp": 21500.76,
@@ -8143,9 +8538,9 @@
     "volume_fp": 4.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 18435.65,
-    "volume_24h_fp": 18385.52,
-    "volume_fp": 19013.12
+    "open_interest_fp": 18672.65,
+    "volume_24h_fp": 18962.39,
+    "volume_fp": 19250.12
    },
    "ex_stats_first": {
     "open_interest_fp": 3808.12,
@@ -8353,7 +8748,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 3549.19,
-    "volume_24h_fp": 3464.98,
+    "volume_24h_fp": 3551.19,
     "volume_fp": 3551.19
    },
    "ex_stats_first": {
@@ -8570,9 +8965,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 20341.17,
-    "volume_24h_fp": 15718.07,
-    "volume_fp": 20783.03
+    "open_interest_fp": 20831.87,
+    "volume_24h_fp": 16196.619999999999,
+    "volume_fp": 21273.73
    },
    "ex_stats_first": {
     "open_interest_fp": 12465.32,
@@ -8748,8 +9143,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 4.0,
+   "close_price": 0.49,
+   "clv_cents": 3.0,
    "confirmed_after_min": 6,
    "date": "2026-11-25",
    "depth_by_book": {
@@ -8786,9 +9181,9 @@
     "volume_fp": 99.29
    },
    "ex_stats_close": {
-    "open_interest_fp": 178441.32,
-    "volume_24h_fp": 173494.18,
-    "volume_fp": 180831.0
+    "open_interest_fp": 184828.37,
+    "volume_24h_fp": 175408.39,
+    "volume_fp": 187801.89
    },
    "ex_stats_first": {
     "open_interest_fp": 89849.47,
@@ -9000,9 +9395,9 @@
     "volume_fp": 39.4
    },
    "ex_stats_close": {
-    "open_interest_fp": 10972.38,
-    "volume_24h_fp": 5719.75,
-    "volume_fp": 11642.67
+    "open_interest_fp": 10980.38,
+    "volume_24h_fp": 5738.75,
+    "volume_fp": 11650.67
    },
    "ex_stats_first": {
     "open_interest_fp": 8644.28,
@@ -9204,9 +9599,9 @@
     "volume_fp": 37.13
    },
    "ex_stats_close": {
-    "open_interest_fp": 35091.98,
-    "volume_24h_fp": 13789.32,
-    "volume_fp": 37879.27
+    "open_interest_fp": 35129.88,
+    "volume_24h_fp": 13854.76,
+    "volume_fp": 37917.17
    },
    "ex_stats_first": {
     "open_interest_fp": 27244.74,
@@ -9381,8 +9776,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.61,
-   "clv_cents": 1.0,
+   "close_price": 0.6,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-25",
    "depth_by_book": {
@@ -9419,9 +9814,9 @@
     "volume_fp": 157.64
    },
    "ex_stats_close": {
-    "open_interest_fp": 22075.25,
-    "volume_24h_fp": 20867.65,
-    "volume_fp": 22574.28
+    "open_interest_fp": 22238.39,
+    "volume_24h_fp": 21526.73,
+    "volume_fp": 22737.420000000002
    },
    "ex_stats_first": {
     "open_interest_fp": 8714.44,
@@ -9639,8 +10034,8 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 27935.39,
-    "volume_24h_fp": 33839.26,
-    "volume_fp": 34906.45
+    "volume_24h_fp": 34931.99,
+    "volume_fp": 34931.99
    },
    "ex_stats_first": {
     "open_interest_fp": 17527.58,
@@ -9854,7 +10249,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 2774.95,
-    "volume_24h_fp": 2956.67,
+    "volume_24h_fp": 3024.67,
     "volume_fp": 3196.67
    },
    "ex_stats_first": {
@@ -10063,7 +10458,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 43287.88,
-    "volume_24h_fp": 44229.4,
+    "volume_24h_fp": 44256.8,
     "volume_fp": 44460.62
    },
    "ex_stats_first": {
@@ -10232,8 +10627,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 4.0,
+   "close_price": 0.54,
+   "clv_cents": 5.0,
    "confirmed_after_min": 6,
    "date": "2026-11-25",
    "depth_by_book": {
@@ -10265,7 +10660,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 34011.47,
-    "volume_24h_fp": 36408.55,
+    "volume_24h_fp": 36452.78,
     "volume_fp": 36452.78
    },
    "ex_stats_first": {
@@ -10472,9 +10867,9 @@
     "volume_fp": 28.05
    },
    "ex_stats_close": {
-    "open_interest_fp": 61897.03999999999,
-    "volume_24h_fp": 59835.82,
-    "volume_fp": 64792.99
+    "open_interest_fp": 62806.69,
+    "volume_24h_fp": 60918.509999999995,
+    "volume_fp": 65702.64
    },
    "ex_stats_first": {
     "open_interest_fp": 20294.07,
@@ -10890,9 +11285,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1178.86,
-    "volume_24h_fp": 1193.9,
-    "volume_fp": 1244.24
+    "open_interest_fp": 1252.61,
+    "volume_24h_fp": 1244.24,
+    "volume_fp": 1317.99
    },
    "ex_stats_first": {
     "open_interest_fp": 982.15,
@@ -11095,9 +11490,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 669.25,
+    "open_interest_fp": 1087.33,
     "volume_24h_fp": 670.25,
-    "volume_fp": 670.25
+    "volume_fp": 1088.33
    },
    "ex_stats_first": {
     "open_interest_fp": 80.04,
@@ -11303,9 +11698,9 @@
     "volume_fp": 308.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 423816.94,
-    "volume_24h_fp": 158572.14,
-    "volume_fp": 446371.02
+    "open_interest_fp": 754969.89,
+    "volume_24h_fp": 488052.80000000005,
+    "volume_fp": 777688.73
    },
    "ex_stats_first": {
     "open_interest_fp": 323794.29000000004,
@@ -11723,9 +12118,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 4133.13,
+    "open_interest_fp": 4269.77,
     "volume_24h_fp": 3935.09,
-    "volume_fp": 4276.48
+    "volume_fp": 4413.12
    },
    "ex_stats_first": {
     "open_interest_fp": 393.43,
@@ -11926,9 +12321,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 11274.61,
-    "volume_24h_fp": 10563.26,
-    "volume_fp": 11495.36
+    "open_interest_fp": 11916.63,
+    "volume_24h_fp": 10782.92,
+    "volume_fp": 12137.38
    },
    "ex_stats_first": {
     "open_interest_fp": 4959.33,
@@ -12118,9 +12513,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1362.71,
-    "volume_24h_fp": 1222.71,
-    "volume_fp": 1364.71
+    "open_interest_fp": 1391.16,
+    "volume_24h_fp": 1364.71,
+    "volume_fp": 1393.16
    },
    "ex_stats_first": {
     "open_interest_fp": 12.21,
@@ -12307,9 +12702,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3506.74,
-    "volume_24h_fp": 3921.48,
-    "volume_fp": 4138.07
+    "open_interest_fp": 3961.25,
+    "volume_24h_fp": 3999.3,
+    "volume_fp": 4592.58
    },
    "ex_stats_first": {
     "open_interest_fp": 331.16,
@@ -12510,7 +12905,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 4486.18,
-    "volume_24h_fp": 3890.86,
+    "volume_24h_fp": 3918.86,
     "volume_fp": 4530.38
    },
    "ex_stats_first": {
@@ -12711,9 +13106,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 57499.08,
-    "volume_24h_fp": 69694.12,
-    "volume_fp": 69756.95
+    "open_interest_fp": 58530.23,
+    "volume_24h_fp": 69756.95,
+    "volume_fp": 70788.1
    },
    "ex_stats_first": {
     "open_interest_fp": 1570.23,
@@ -12920,9 +13315,9 @@
     "volume_fp": 7.19
    },
    "ex_stats_close": {
-    "open_interest_fp": 8444.5,
-    "volume_24h_fp": 7579.41,
-    "volume_fp": 8859.59
+    "open_interest_fp": 8447.32,
+    "volume_24h_fp": 7780.52,
+    "volume_fp": 8963.71
    },
    "ex_stats_first": {
     "open_interest_fp": 1235.48,
@@ -13141,9 +13536,9 @@
     "volume_fp": 223.39
    },
    "ex_stats_close": {
-    "open_interest_fp": 113674.87000000001,
-    "volume_24h_fp": 110118.73999999999,
-    "volume_fp": 123266.06
+    "open_interest_fp": 114471.82,
+    "volume_24h_fp": 112829.33,
+    "volume_fp": 124414.37000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 40657.340000000004,
@@ -13354,7 +13749,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 70948.3,
-    "volume_24h_fp": 37161.65,
+    "volume_24h_fp": 57065.65,
     "volume_fp": 99355.32
    },
    "ex_stats_first": {
@@ -13541,9 +13936,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 40519.3,
-    "volume_24h_fp": 35538.83,
-    "volume_fp": 45455.09
+    "open_interest_fp": 42549.6,
+    "volume_24h_fp": 37009.2,
+    "volume_fp": 47485.39
    },
    "ex_stats_first": {
     "open_interest_fp": 8847.46,
@@ -13756,9 +14151,9 @@
     "volume_fp": 5.68
    },
    "ex_stats_close": {
-    "open_interest_fp": 591079.17,
-    "volume_24h_fp": 669576.88,
-    "volume_fp": 704932.94
+    "open_interest_fp": 593761.97,
+    "volume_24h_fp": 675994.8600000001,
+    "volume_fp": 710109.71
    },
    "ex_stats_first": {
     "open_interest_fp": 48221.31,
@@ -13974,9 +14369,9 @@
     "volume_fp": 666.67
    },
    "ex_stats_close": {
-    "open_interest_fp": 604289.66,
-    "volume_24h_fp": 294534.43,
-    "volume_fp": 660064.01
+    "open_interest_fp": 605524.54,
+    "volume_24h_fp": 295605.12,
+    "volume_fp": 661298.89
    },
    "ex_stats_first": {
     "open_interest_fp": 404335.91000000003,
@@ -14195,9 +14590,9 @@
     "volume_fp": 282.53
    },
    "ex_stats_close": {
-    "open_interest_fp": 396698.51,
-    "volume_24h_fp": 350439.56000000006,
-    "volume_fp": 442204.68000000005
+    "open_interest_fp": 402912.55,
+    "volume_24h_fp": 356635.91,
+    "volume_fp": 448480.45999999996
    },
    "ex_stats_first": {
     "open_interest_fp": 95393.79,
@@ -14410,9 +14805,9 @@
     "volume_fp": 181.87
    },
    "ex_stats_close": {
-    "open_interest_fp": 286766.57999999996,
-    "volume_24h_fp": 271666.13,
-    "volume_fp": 303527.38
+    "open_interest_fp": 287041.33999999997,
+    "volume_24h_fp": 281539.81,
+    "volume_fp": 303802.14
    },
    "ex_stats_first": {
     "open_interest_fp": 43732.63,
@@ -14605,9 +15000,9 @@
     "volume_fp": 59.04
    },
    "ex_stats_close": {
-    "open_interest_fp": 1074963.86,
-    "volume_24h_fp": 745003.92,
-    "volume_fp": 1191077.54
+    "open_interest_fp": 1185108.61,
+    "volume_24h_fp": 1071737.38,
+    "volume_fp": 1301315.31
    },
    "ex_stats_first": {
     "open_interest_fp": 121754.83,
@@ -14802,9 +15197,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 76633.02,
-    "volume_24h_fp": 73955.01999999999,
-    "volume_fp": 80513.17
+    "open_interest_fp": 78011.35,
+    "volume_24h_fp": 74406.99,
+    "volume_fp": 81909.6
    },
    "ex_stats_first": {
     "open_interest_fp": 6156.8099999999995,
@@ -14931,9 +15326,9 @@
     "volume_fp": 8.91
    },
    "ex_stats_close": {
-    "open_interest_fp": 76633.02,
-    "volume_24h_fp": 73955.01999999999,
-    "volume_fp": 80513.17
+    "open_interest_fp": 78011.35,
+    "volume_24h_fp": 74406.99,
+    "volume_fp": 81909.6
    },
    "ex_stats_first": {
     "open_interest_fp": 6059.5599999999995,
@@ -15061,9 +15456,9 @@
     "volume_fp": 75.15
    },
    "ex_stats_close": {
-    "open_interest_fp": 202808.75,
-    "volume_24h_fp": 198202.94,
-    "volume_fp": 210432.11
+    "open_interest_fp": 203048.26,
+    "volume_24h_fp": 201541.65,
+    "volume_fp": 210671.62
    },
    "ex_stats_first": {
     "open_interest_fp": 12151.0,
@@ -15192,9 +15587,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 40302.06,
-    "volume_24h_fp": 34278.94,
-    "volume_fp": 41105.38
+    "open_interest_fp": 40839.64,
+    "volume_24h_fp": 38780.65,
+    "volume_fp": 41642.96
    },
    "ex_stats_first": {
     "open_interest_fp": 2056.8199999999997,
@@ -16679,9 +17074,9 @@
     "volume_fp": 111.72
    },
    "ex_stats_close": {
-    "open_interest_fp": 154967.95,
-    "volume_24h_fp": 161809.26,
-    "volume_fp": 185065.55
+    "open_interest_fp": 158140.62,
+    "volume_24h_fp": 167953.06,
+    "volume_fp": 188247.76
    },
    "ex_stats_first": {
     "open_interest_fp": 15272.16,
@@ -17236,9 +17631,9 @@
     "volume_fp": 38.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 384195.46,
-    "volume_24h_fp": 210840.67,
-    "volume_fp": 425752.29
+    "open_interest_fp": 390116.12,
+    "volume_24h_fp": 418844.64,
+    "volume_fp": 431694.62
    },
    "ex_stats_first": {
     "open_interest_fp": 5735.68,
@@ -17640,9 +18035,9 @@
     "volume_fp": 148.13
    },
    "ex_stats_close": {
-    "open_interest_fp": 591079.17,
-    "volume_24h_fp": 669576.88,
-    "volume_fp": 704932.94
+    "open_interest_fp": 593761.97,
+    "volume_24h_fp": 675994.8600000001,
+    "volume_fp": 710109.71
    },
    "ex_stats_first": {
     "open_interest_fp": 22100.64,
@@ -17879,7 +18274,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 247,
+   "settle_tries": 248,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "M-OH +4.5 (-4.5)",
@@ -18603,9 +18998,9 @@
     "volume_fp": 213.3
    },
    "ex_stats_close": {
-    "open_interest_fp": 245626.84,
-    "volume_24h_fp": 100196.49,
-    "volume_fp": 358816.89
+    "open_interest_fp": 245682.33,
+    "volume_24h_fp": 101014.43,
+    "volume_fp": 359285.05
    },
    "ex_stats_first": {
     "open_interest_fp": 232365.35,
@@ -18806,9 +19201,9 @@
     "volume_fp": 3502.41
    },
    "ex_stats_close": {
-    "open_interest_fp": 4433421.47,
-    "volume_24h_fp": 3440115.11,
-    "volume_fp": 4813931.38
+    "open_interest_fp": 4624245.71,
+    "volume_24h_fp": 3567296.5500000003,
+    "volume_fp": 5005729.38
    },
    "ex_stats_first": {
     "open_interest_fp": 929682.5599999999,
@@ -19663,9 +20058,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 186919.05,
-    "volume_24h_fp": 185807.0,
-    "volume_fp": 204193.57
+    "open_interest_fp": 187649.1,
+    "volume_24h_fp": 186325.28,
+    "volume_fp": 204923.62
    },
    "ex_stats_first": {
     "open_interest_fp": 7432.040000000001,
@@ -20058,8 +20453,8 @@
     "volume": 4463.0
    },
    "ex_stats_close": {
-    "openInterest": 62017824.0,
-    "volume": 96806340.0
+    "openInterest": 62286467.0,
+    "volume": 97716551.0
    },
    "ex_stats_first": {
     "openInterest": 9016912.0,
@@ -20596,7 +20991,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 247,
+   "settle_tries": 248,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Western Michigan",
@@ -21781,8 +22176,8 @@
     "volume": 2173.0
    },
    "ex_stats_close": {
-    "openInterest": 112498246.0,
-    "volume": 148445345.0
+    "openInterest": 113265094.0,
+    "volume": 149411750.0
    },
    "ex_stats_first": {
     "openInterest": 20286036.0,
@@ -21994,9 +22389,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1074963.86,
-    "volume_24h_fp": 745003.92,
-    "volume_fp": 1191077.54
+    "open_interest_fp": 1185108.61,
+    "volume_24h_fp": 1071737.38,
+    "volume_fp": 1301315.31
    },
    "ex_stats_first": {
     "open_interest_fp": 57285.02,
@@ -22194,9 +22589,9 @@
     "volume_fp": 2528.84
    },
    "ex_stats_close": {
-    "open_interest_fp": 4433421.47,
-    "volume_24h_fp": 3440115.11,
-    "volume_fp": 4813931.38
+    "open_interest_fp": 4624245.71,
+    "volume_24h_fp": 3567296.5500000003,
+    "volume_fp": 5005729.38
    },
    "ex_stats_first": {
     "open_interest_fp": 713645.59,
