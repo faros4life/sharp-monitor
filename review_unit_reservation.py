@@ -74,6 +74,8 @@ FAIL CLOSED EVERYWHERE. Unreadable store, unknown leg state, missing identity, u
 mismatched retry, or a lost compare-and-swap all REFUSE. Refusal is never "proceed with less".
 """
 import math
+import random
+import time
 from datetime import datetime, timezone
 
 from review_unit_exposure import ExposureUnknown, fraction, maximum_stake
@@ -86,6 +88,30 @@ IGNORED = ("refused", "void", "dry")
 LIVE_STATES = ("open", "placed", "partially_filled")
 TERMINAL_STATES = ("filled", "settled", "canceled", "cancelled", "expired")
 KNOWN_STATES = IGNORED + LIVE_STATES + TERMINAL_STATES
+
+
+_CAS_BASE = 0.25      # seconds before the second attempt
+_CAS_CAP = 1.5        # longest single pause; total added latency stays under ~5s at 5 attempts
+_CAS_ATTEMPTS = 5
+
+
+def _cas_pause(attempt, sleep=time.sleep):
+    """Wait before RE-READING after a lost compare-and-swap. Nov 24, 2026.
+
+    The registry file is shared with ordinary bookkeeping writes, so a lost CAS is usually someone
+    else's unrelated commit. Both loops below retried immediately, with no pause at all, so all
+    three attempts landed inside the same burst of commits and a legitimate Novig order was refused
+    and never placed (BOARD V4, NBA Dallas/Denver Under 233.5, 24 Nov 10:26 ET).
+
+    Retrying longer is safe here and is NOT a loosening of the budget: every attempt re-reads the
+    store and re-decides from fresh state, so a reservation another runner genuinely claimed is
+    still seen as claimed and still refused, and a play with no unit left still refuses on the
+    budget. The only thing that changes is tolerance of UNRELATED commits.
+
+    Jittered, so two runners that collide do not line up again on the next attempt. Exponential and
+    capped, so a contended store cannot stall an order indefinitely - the limit price protects the
+    few seconds of delay, and a late order beats no order."""
+    sleep(min(_CAS_CAP, _CAS_BASE * (2 ** attempt)) * (0.5 + random.random()))
 
 
 class ReservationRefused(Exception):
@@ -265,7 +291,7 @@ def _same_request(leg, stake, american, unit, actor):
         return False
 
 
-def reserve(store, key, leg_id, stake, american, unit, actor, attempts=3, intent_cid=None):
+def reserve(store, key, leg_id, stake, american, unit, actor, attempts=_CAS_ATTEMPTS, intent_cid=None):
     """Atomically reserve capacity for ONE leg, BEFORE submission. Returns a Grant or raises.
 
     The compare-and-swap is the point: between reading and writing, another runner may have
@@ -277,7 +303,7 @@ def reserve(store, key, leg_id, stake, american, unit, actor, attempts=3, intent
     want = fraction(stake, american, u)
     if want <= 0:
         raise ExposureUnknown("non-positive reservation")
-    for _ in range(max(1, attempts)):
+    for _attempt in range(max(1, attempts)):
         got = store.read()
         if not got or got[0] is None or got[1] is None:
             raise ExposureUnknown("reservation store unreadable - fail closed")
@@ -305,6 +331,8 @@ def reserve(store, key, leg_id, stake, american, unit, actor, attempts=3, intent
             **({"intent_cid": str(intent_cid)} if intent_cid else {})}]
         if store.write(new, version):
             return Grant(key, leg_id, want, round(float(stake), 2), american, u, actor, version)
+        if _attempt < attempts - 1:      # same tight-loop defect as claim_dispatched; not observed failing
+            _cas_pause(_attempt)
     raise ReservationRefused("could not win the reservation write - another runner holds it")
 
 
@@ -363,7 +391,7 @@ def authorize(store, grant, stake):
     return round(s, 2)
 
 
-def claim_dispatched(store, key, stake, book, claimant, attempts=3):
+def claim_dispatched(store, key, stake, book, claimant, attempts=_CAS_ATTEMPTS):
     """The SECOND executor's half: claim a reservation the first one made, or refuse.
 
     The cloud executor reserves a play's unit and marks it dispatched before it hands a Novig order
@@ -400,6 +428,8 @@ def claim_dispatched(store, key, stake, book, claimant, attempts=3):
         leg_id = _claim_once(store, got, key, s, b, who)
         if leg_id is not None:
             return leg_id
+        if _attempt < attempts - 1:      # no pause before giving up
+            _cas_pause(_attempt)
     raise ReservationRefused(
         "lost the compare-and-swap claiming this reservation - refused, not placed")
 
@@ -435,7 +465,7 @@ def _claim_once(store, got, key, s, b, who):
     return str(legs[pick].get("leg_id"))
 
 
-def record_unconditional(store, key, leg_id, stake, american, unit, actor, attempts=3,
+def record_unconditional(store, key, leg_id, stake, american, unit, actor, attempts=_CAS_ATTEMPTS,
                          intent_cid=None):
     """RECORD-ONLY stage: write an order into the ledger WITHOUT judging it. Never refuses on budget.
 
@@ -472,6 +502,8 @@ def record_unconditional(store, key, leg_id, stake, american, unit, actor, attem
             return True
         if store.write(dict(state, legs=legs + [leg]), version):
             return True
+        if _attempt < attempts - 1:
+            _cas_pause(_attempt)
     raise ReservationRefused("could not write the record-only leg - the store kept moving")
 
 
@@ -502,7 +534,7 @@ def never_submitted_proof(rows, intent_cid):
     return seen
 
 
-def release_never_submitted(store, intent_cid, evidence, rows=None, attempts=3):
+def release_never_submitted(store, intent_cid, evidence, rows=None, attempts=_CAS_ATTEMPTS):
     """Release a leg ONLY on authoritative proof that its order was NEVER SUBMITTED.
 
     Nov 23. Record-only writes the leg BEFORE submission - the safe direction - but nothing undid
@@ -560,6 +592,8 @@ def release_never_submitted(store, intent_cid, evidence, rows=None, attempts=3):
             return 0
         if store.write(dict(state, legs=legs), version):
             return freed
+        if _attempt < attempts - 1:      # a lost race here leaves the unit HELD - retry matters
+            _cas_pause(_attempt)
     raise ReservationRefused("could not win the write releasing a never-submitted leg")
 
 
