@@ -97,6 +97,44 @@ def parse_muse(text):
     return out
 
 
+CI_FRAME = ("95% CI on units/play (profit/stake, flat 1u at the fill price): fully above 0 = proven; "
+            "fully below 0 = kill territory; crossing 0 = unproven, keep collecting.")
+
+CI_CAVEAT = ("The last-20 window is re-read every night, so it is NOT a 95% test: checking a rolling "
+             "window daily makes an eventual 'fully above 0' on a flat lane likely rather than rare. "
+             "The bar is also asymmetric at n=20 - promote and kill need the same distance from 0, but "
+             "promoting is the side that puts money at risk. Pending Peter's ruling on which window "
+             "governs, the all-time figure is the conservative read and last-20 is context.")
+
+
+def units_ci(plays, last=None, z=1.96):
+    """Mean units/play with its 95% confidence interval. Peter's ruling, Nov 25 2026.
+
+    Units here are profit/stake per play - flat 1u risked at the fill price - which is the
+    convention this export already uses, so these never need rebasing against the last-50 report.
+
+    A mean with no spread is an overcall: at these sample sizes a positive number usually cannot be
+    told from zero, and the interval is what says so. n<2 has no spread at all, so it gets no
+    interval and no verdict rather than a fabricated one.
+
+    Only RESULTED plays count (units is None while a play is open), and last-20 means the twenty
+    most recent by start time, not the first twenty the tracker happens to list."""
+    u = [p["units"] for p in sorted(plays, key=lambda p: (p.get("start") or p.get("seen") or ""), reverse=True)
+         if p.get("units") is not None]
+    if last:
+        u = u[:last]
+    n = len(u)
+    if n < 2:
+        return {"n": n, "mean": (round(float(u[0]), 4) if n else None), "sd": None,
+                "lo": None, "hi": None, "verdict": "unproven (no spread at n<2)"}
+    mean = sum(u) / n
+    sd = (sum((x - mean) ** 2 for x in u) / (n - 1)) ** 0.5     # sample SD: n-1, not n
+    half = z * sd / (n ** 0.5)
+    lo, hi = mean - half, mean + half
+    return {"n": n, "mean": round(mean, 4), "sd": round(sd, 4), "lo": round(lo, 4), "hi": round(hi, 4),
+            "verdict": "proven" if lo > 0 else "kill territory" if hi < 0 else "unproven"}
+
+
 def muse_triggers():
     """Newest Muse email, read from Gmail (Muse sends it; the export only reads). None when absent or unparsable,
     so the built-in list is used and the page says so."""
@@ -174,6 +212,8 @@ def main():
         (str(b.get("game_start") or b.get("settled") or b.get("first_seen") or "")[5:10], str(b.get("game")), str(b.get("result")))
         for b in rows if (b.get("source") or "") == "bot" and id(b) not in used)[:30])
     print("Toronto/Philadelphia rows:", [(b.get("source"), b.get("result"), bool(b.get("open"))) for b in rows if {"toronto", "philadelphia"} <= tb.toks(b.get("game") or "")])
+    trig_ci = {k: {"all_time": units_ci(v), "last_20": units_ci(v, last=20)} for k, v in tp.items()}
+    print("trigger CI sample sizes (counts only):", {k: (c["all_time"]["n"], c["last_20"]["n"]) for k, c in trig_ci.items()})
     keylane = registry_lanes()
     how = {"tracker tag": 0, "registry": 0, "none": 0}
     for b in rows:
@@ -194,7 +234,8 @@ def main():
         out[k].sort(key=lambda p: p["start"] or p["seen"], reverse=True)
         out[k] = out[k][:80]
     doc = {"at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"), "lanes": out,
-           "trigger_src": msrc if mt else "built-in list (" + msrc + ")"}
+           "trigger_src": msrc if mt else "built-in list (" + msrc + ")",
+           "trigger_ci": trig_ci, "ci_frame": CI_FRAME, "ci_caveat": CI_CAVEAT}
     json.dump(tb.enc(doc), open(OUT, "w"))
     print("lane source:", how)
     print("exported plays per lane:", {k: len(v) for k, v in out.items()})
