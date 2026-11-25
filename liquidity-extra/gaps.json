@@ -2,38 +2,6 @@
  "note": "PAPER ONLY (Oct 25; persistence added Oct 26): opposite sides of the same game/market/line on two different exchanges whose combined cost after fees is under $1 (Kalshi/Novig/ProphetX; Polymarket here is the global book, excluded). edge_pct = locked profit per $ staked at first sight; max/last_edge_pct while open. size_est = smaller leg's near-price depth (UPPER BOUND). first/last_seen_utc, scans_seen, lifetime_min = how long the gap stayed open (scan-interval resolution; a 1-scan gap may be a feed artifact). scan_sec = seconds from run start to this save, the most the two legs' reads can be apart. Measurement only: never alerted, never bet.",
  "gaps": [
   {
-   "seen_utc": "2026-11-11T00:13:01Z",
-   "league": "NCAAB",
-   "game": "Saint Joseph's @ South Florida",
-   "market": "moneyline",
-   "line": null,
-   "edge_pct": 12.99,
-   "total_cost": 0.885,
-   "size_est": 8,
-   "legs": [
-    {
-     "book": "novig",
-     "side": "USF (0)",
-     "price": 0.78,
-     "cost_after_fee": 0.78
-    },
-    {
-     "book": "prophetx",
-     "side": "Saint Peter's",
-     "price": 0.1031,
-     "cost_after_fee": 0.105
-    }
-   ],
-   "first_seen_utc": "2026-11-11T00:13:01Z",
-   "last_seen_utc": "2026-11-11T02:36:51Z",
-   "scans_seen": 8,
-   "max_edge_pct": 25.22,
-   "scan_sec": 602,
-   "lifetime_min": 144,
-   "last_edge_pct": 25.22,
-   "last_size_est": 56
-  },
-  {
    "seen_utc": "2026-11-11T00:33:32Z",
    "league": "NCAAB",
    "game": "Saint Peter's at South Carolina",
@@ -64,38 +32,6 @@
    "lifetime_min": 220,
    "last_edge_pct": 21.39,
    "last_size_est": 15
-  },
-  {
-   "seen_utc": "2026-11-11T01:15:29Z",
-   "league": "NCAAB",
-   "game": "Saint Joseph's @ South Florida",
-   "market": "moneyline",
-   "line": null,
-   "edge_pct": 23.05,
-   "total_cost": 0.8127,
-   "size_est": 314,
-   "legs": [
-    {
-     "book": "novig",
-     "side": "USF (0)",
-     "price": 0.77,
-     "cost_after_fee": 0.77
-    },
-    {
-     "book": "kalshi",
-     "side": "Saint Peter's",
-     "price": 0.04,
-     "cost_after_fee": 0.0427
-    }
-   ],
-   "first_seen_utc": "2026-11-11T01:15:29Z",
-   "last_seen_utc": "2026-11-11T02:36:51Z",
-   "scans_seen": 5,
-   "max_edge_pct": 25.36,
-   "scan_sec": 561,
-   "lifetime_min": 81,
-   "last_edge_pct": 25.27,
-   "last_size_est": 589
   },
   {
    "seen_utc": "2026-11-11T01:15:29Z",
@@ -160,36 +96,6 @@
    "lifetime_min": 97,
    "last_edge_pct": 6.3,
    "last_size_est": 100
-  },
-  {
-   "seen_utc": "2026-11-11T02:36:51Z",
-   "league": "NCAAB",
-   "game": "James Madison @ Delaware",
-   "market": "total",
-   "line": 147.5,
-   "edge_pct": 0.52,
-   "total_cost": 0.9948,
-   "size_est": 0,
-   "legs": [
-    {
-     "book": "novig",
-     "side": "Over 147.5 (147.5)",
-     "price": 0.48,
-     "cost_after_fee": 0.48
-    },
-    {
-     "book": "prophetx",
-     "side": "under 147.5 (147.5)",
-     "price": 0.5098,
-     "cost_after_fee": 0.5148
-    }
-   ],
-   "first_seen_utc": "2026-11-11T02:36:51Z",
-   "last_seen_utc": "2026-11-11T02:36:51Z",
-   "scans_seen": 1,
-   "max_edge_pct": 0.52,
-   "scan_sec": 581,
-   "lifetime_min": 0
   },
   {
    "seen_utc": "2026-11-11T03:17:02Z",
