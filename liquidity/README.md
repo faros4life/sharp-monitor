@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 24, 10:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 34.
+Updated Tue Nov 24, 10:45 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 28.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1948-1517 (-39.18u flat) | rule met: 1155-910
+**Record:** 1951-1520 (-39.52u flat) | rule met: 1158-913
 
-**Fade (paper, betting against the print):** 1251-1675 (-196.49u flat, after fees)
+**Fade (paper, betting against the print):** 1254-1678 (-195.57u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -16,14 +16,14 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 24 8:15PM | NBA | Brooklyn vs Milwaukee | moneyline: Brooklyn | kalshi | $26k | +104 |  |  | +0.0c |  | pending |
 | Nov 24 8:00PM | NBA | Los Angeles C vs Memphis | moneyline: Memphis | kalshi | $39k | -213 |  |  | +2.0c |  | pending |
 | Nov 24 7:16PM | NHL | St. Louis vs New York I | moneyline: New York I | kalshi | $26k | -117 | ✅ novig |  | +0.0c |  | pending |
-| Nov 24 7:05PM | NHL | Vegas vs Edmonton: Total Goals | total: Over 6.5 goals scored | kalshi | $75k | -122 | ✅ novig,prophetx |  | -1.0c | yes | pending |
+| Nov 24 7:05PM | NHL | Vegas vs Edmonton: Total Goals | total: Over 6.5 goals scored | kalshi | $75k | -122 | ✅ novig,prophetx |  | -1.0c | yes | W |
 | Nov 24 7:00PM | NBA | Detroit vs Orlando: Spread | spread: NOT Orlando wins by over 3.5 points | kalshi | $33k | -104 | ✅ novig |  | +0.0c | yes | W |
-| Nov 24 6:55PM | NHL | Vegas vs Edmonton: Spread | spread: NOT Vegas wins by over 1.5 goals | kalshi | $30k | -223 | ✅ novig |  | +0.0c | yes | pending |
-| Nov 24 6:50PM | NBA | Boston vs Washington: Spread | spread: NOT Boston wins by over 11.5 points | kalshi | $34k | -108 | ✅ novig | ❌ | +0.0c | yes | pending |
+| Nov 24 6:55PM | NHL | Vegas vs Edmonton: Spread | spread: NOT Vegas wins by over 1.5 goals | kalshi | $30k | -223 | ✅ novig |  | +0.0c | yes | L |
+| Nov 24 6:50PM | NBA | Boston vs Washington: Spread | spread: NOT Boston wins by over 11.5 points | kalshi | $34k | -108 | ✅ novig | ❌ | +0.0c | yes | L |
 | Nov 24 6:35PM | NBA | Dallas vs Denver: Spread | spread: NOT Denver wins by over 8.5 points | kalshi | $44k | -104 | ✅ novig,prophetx |  | +3.0c |  | pending |
 | Nov 24 6:25PM | NCAAF | Kent St. vs Eastern Michigan: Spread | spread: NOT Eastern Michigan wins by over 6.5 points | kalshi | $208k | -104 |  |  | -1.0c | yes | W |
-| Nov 24 5:50PM | NBA | Chicago vs Charlotte | moneyline: Charlotte | kalshi | $49k | -138 |  |  | +1.0c |  | pending |
-| Nov 24 5:40PM | NHL | Vegas vs Edmonton: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $41k | -108 | ✅ novig |  | -5.0c | yes | pending |
+| Nov 24 5:50PM | NBA | Chicago vs Charlotte | moneyline: Charlotte | kalshi | $49k | -138 |  |  | +0.0c |  | pending |
+| Nov 24 5:40PM | NHL | Vegas vs Edmonton: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $41k | -108 | ✅ novig |  | -5.0c | yes | L |
 | Nov 24 5:35PM | NBA | Miami vs Philadelphia | moneyline: Philadelphia | kalshi | $60k | -108 |  |  | -1.0c |  | pending |
 | Nov 24 5:30PM | NFL | Green Bay vs Los Angeles R: Total Points | total: NOT Over 43.5 points | kalshi | $138k | +104 | ✅ novig |  | +0.0c |  | pending |
 | Nov 24 5:20PM | NBA | Miami vs Philadelphia | moneyline: Miami | kalshi | $106k | +104 |  |  | +1.0c | yes | pending |
@@ -34,7 +34,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 24 3:15PM | NCAAF | Kent State @ Eastern Michigan | moneyline: EMU (0) | novig | $35k | -208 | ✅ kalshi,prophetx |  | +1.5c |  | W |
 | Nov 24 1:55PM | NFL | Green Bay vs Los Angeles R: Total Points | total: NOT Over 44.5 points | kalshi | $344k | -108 |  |  | +1.0c |  | pending |
 | Nov 24 1:55PM | NFL | Green Bay vs Los Angeles R | moneyline: Los Angeles R | kalshi | $1,098k | -127 | ✅ prophetx |  | +0.0c | yes | pending |
-| Nov 24 1:40PM | NBA | Boston vs Washington: Spread | spread: Boston wins by over 10.5 points | kalshi | $31k | -108 | ✅ novig |  | +1.0c |  | pending |
+| Nov 24 1:40PM | NBA | Boston vs Washington: Spread | spread: Boston wins by over 10.5 points | kalshi | $31k | -108 | ✅ novig |  | +1.0c |  | W |
 | Nov 24 12:50PM | NCAAF | Miami (OH) vs Western Michigan: Spread | spread: NOT Western Michigan wins by over 5.5 points | kalshi | $59k | -100 |  |  | +3.0c |  | W |
 | Nov 24 12:45PM | NBA | Detroit vs Orlando | moneyline: Detroit | kalshi | $354k | -122 |  |  | -13.0c | yes | W |
 | Nov 24 12:30PM | NBA | Phoenix vs Houston | moneyline: Houston | kalshi | $189k | -317 |  |  | +2.0c |  | pending |
@@ -50,7 +50,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 24 7:15AM | NFL | Green Bay Packers @ Los Angeles Rams | moneyline: GB (0) | novig | $42k | +117 | ✅ kalshi,prophetx |  | -1.5c |  | pending |
 | Nov 24 3:16AM | NFL | Green Bay vs Los Angeles R: Spread | spread: NOT Los Angeles R wins by over 2.5 points | kalshi | $67k | -104 |  |  | -1.0c |  | pending |
 | Nov 24 1:00AM | NFL | Green Bay vs Los Angeles R | moneyline: Green Bay | kalshi | $172k | +117 | ✅ novig |  | -1.0c |  | pending |
-| Nov 23 11:35PM | NHL | Vegas vs Edmonton | moneyline: Vegas | kalshi | $32k | -108 | ✅ novig |  | +1.0c | yes | pending |
+| Nov 23 11:35PM | NHL | Vegas vs Edmonton | moneyline: Vegas | kalshi | $32k | -108 | ✅ novig |  | +1.0c | yes | W |
 | Nov 23 9:25PM | NHL | Anaheim vs Seattle | moneyline: Anaheim | kalshi | $37k | +104 | ✅ novig,prophetx |  | +1.0c | yes | L |
 | Nov 23 9:05PM | NBA | Dallas vs Denver | moneyline: Denver | kalshi | $224k | -300 |  |  | -5.0c |  | pending |
 | Nov 23 9:00PM | NBA | San Antonio vs Sacramento: Spread | spread: NOT San Antonio wins by over 8.5 points | kalshi | $46k | -108 | ✅ novig |  | +1.0c | yes | L |
