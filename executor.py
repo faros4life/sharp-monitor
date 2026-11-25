@@ -1423,7 +1423,12 @@ def ncs_plays(now):
 # it can never consume another lane's budget. Ships OFF: with EXEC_DOGS_LIVE unset this selects and logs WOULD PLACE
 # and places nothing.
 DOGS_LIVE = (os.environ.get("EXEC_DOGS_LIVE") or "off").strip().lower() == "on"   # money switch (repo variable; Peter flips it)
-DOGS_UNIT = 100.0           # Peter, 23 Nov: $100 pilot unit. A dog is plus money, so this is $100 RISKED per play.
+DOGS_UNIT = 300.0           # Peter, 25 Nov: "make dogs bot play to win 300 if - and 300 bet total if +",
+                            # i.e. the same unit as Lane 1. live_stake already sizes exactly that way
+                            # (to WIN the unit at minus money, RISK the unit at plus money), so this is
+                            # the only value that changes. In practice Dogs is plus money by definition
+                            # (dogs_qualifies needs >= +100), so the minus branch is unreachable here and
+                            # this is $300 RISKED per play, up from the $100 pilot unit of 23 Nov.
 DOGS_DAILY_RISK = float(os.environ.get("EXEC_DOGS_DAILY_RISK", "") or "800")
 DOGS_MAX_PLAYS = int(os.environ.get("EXEC_DOGS_MAX_PLAYS", "") or "8")       # the record ran ~4 qualifying plays a day
 DOGS_MAX_AGE_MIN = int(os.environ.get("EXEC_DOGS_MAX_AGE_MIN", "") or "30")  # act on a FRESH print only: no backlog fires

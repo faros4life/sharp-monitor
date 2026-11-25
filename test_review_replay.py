@@ -355,7 +355,7 @@ ok("the lane units mirror executor's constants exactly",
                     "board": _const("BOARD_UNIT"), "ncs": _const("NCS_UNIT"),
                     "dogs": _const("DOGS_UNIT")}, str(RR.LANE_UNIT))
 ok("Lane 1 is $300, R1/Board/NCS are $200, and DOGS is $100",
-   RR.LANE_UNIT == {"lane1": 300.0, "r1": 200.0, "board": 200.0, "ncs": 200.0, "dogs": 100.0})
+   RR.LANE_UNIT == {"lane1": 300.0, "r1": 200.0, "board": 200.0, "ncs": 200.0, "dogs": 300.0})
 _K = "NFL|MIN @ SF|total|UNDER"
 for _row, _want in (({"key": "rule|" + _K}, ("lane1", 300.0)),
                     ({"key": _K, "source": "rules"}, ("lane1", 300.0)),
