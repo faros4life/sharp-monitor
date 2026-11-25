@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 25, 12:15 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 59.
+Updated Wed Nov 25, 12:20 PM ET. This run: 1 new, 0 not confirmed, 2 pending. Open alerts: 60.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 25 12:20PM | NHL | New York R vs Buffalo | moneyline: Buffalo | kalshi | $70k | -122 | ✅ novig |  | +0.0c |  | pending |
 | Nov 25 11:50AM | NHL | Utah vs Minnesota | moneyline: Minnesota | kalshi | $41k | -138 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 25 11:35AM | NHL | Calgary vs Pittsburgh: Spread | spread: NOT Pittsburgh wins by over 1.5 goals | kalshi | $41k | -170 | ✅ novig |  | +0.0c |  | pending |
 | Nov 25 11:30AM | NHL | Vancouver vs Detroit: Spread | spread: NOT Detroit wins by over 1.5 goals | kalshi | $41k | -127 | ✅ novig |  | +0.0c |  | pending |
@@ -75,7 +76,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 24 12:45PM | NBA | Detroit vs Orlando | moneyline: Detroit | kalshi | $354k | -122 |  |  | -13.0c | yes | W |
 | Nov 24 12:30PM | NBA | Phoenix vs Houston | moneyline: Houston | kalshi | $189k | -317 |  |  | +2.0c |  | pending |
 | Nov 24 11:30AM | NCAAF | Kent St. vs Eastern Michigan: Spread | spread: Eastern Michigan wins by over 6.5 points | kalshi | $176k | -100 |  |  | +1.0c | yes | L |
-| Nov 24 11:10AM | NFL | Green Bay Packers @ Los Angeles Rams | spread: LAR -2.5 (-2.5) | novig | $27k | -100 |  |  | +1.0c |  | pending |
+| Nov 24 11:10AM | NFL | Green Bay Packers @ Los Angeles Rams | spread: LAR -2.5 (-2.5) | novig | $27k | -100 |  |  | +1.5c |  | pending |
 | Nov 24 10:21AM | NCAAF | Miami (OH) vs Western Michigan: Spread | spread: NOT Western Michigan wins by over 6.5 points | kalshi | $339k | -104 | ✅ prophetx |  | +5.0c |  | W |
 | Nov 24 10:10AM | NCAAF | Miami Ohio @ Western Michigan | moneyline: WMU (0) | novig | $34k | -233 | ✅ kalshi,prophetx |  | -3.5c | yes | pending |
 | Nov 24 10:05AM | NBA | Dallas vs Denver: Total Points | total: NOT Over 233.5 points | kalshi | $33k | -104 | ✅ novig,prophetx | ❌ | -2.0c |  | W |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 22 11:50AM | NFL | Tampa Bay vs Detroit: Total Points | total: NOT Over 48.5 points | kalshi | $82k | -100 | ✅ novig,prophetx | ❌ | -2.0c | yes | L |
 | Nov 22 11:40AM | NFL | Pittsburgh Steelers @ Philadelphia Eagles | moneyline: PIT (0) | novig | $31k | -194 | ✅ kalshi,prophetx |  | -1.0c | yes | L |
 | Nov 22 11:35AM | NFL | Baltimore Ravens @ Carolina Panthers | spread: BAL +2.5 (-2.5) | novig | $63k | +104 | ✅ kalshi |  | +1.0c |  | W |
-| Nov 22 11:35AM | NBA | Detroit vs Atlanta | moneyline: Detroit | kalshi | $62k | -113 | ✅ novig,prophetx |  | +3.0c | yes | L |
