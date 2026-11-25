@@ -42,9 +42,9 @@ for pre in ex.LANE_PREFIXES:
        RR.LANE_UNIT.get(RR.PREFIX_LANE.get(head)) is not None, str(RR.PREFIX_LANE.get(head)))
 
 u = RR.lane_unit({"key": "dogs|NFL|A @ B|side|A"})
-ok("a dogs key now resolves to the $100 unit", u[:2] == ("dogs", 100.0), str(u))
+ok("a dogs key now resolves to the $300 unit", u[:2] == ("dogs", 300.0), str(u))
 ok("and so does a dogs-sourced row with no prefix",
-   RR.lane_unit({"key": "NFL|A @ B|side|A", "source": "dogs"})[:2] == ("dogs", 100.0))
+   RR.lane_unit({"key": "NFL|A @ B|side|A", "source": "dogs"})[:2] == ("dogs", 300.0))
 ok("a $100 dog is a FULL unit, not half of one",
    abs(RR.lane_unit({"key": "dogs|NFL|A @ B|side|A"})[1] - ex.DOGS_UNIT) < 1e-9)
 

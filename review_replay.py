@@ -91,7 +91,7 @@ def canonical_registry_key(raw):
 # Lane units, per Peter (Nov 23): $300 for Lane 1, $200 for R1, Board and NCS. These mirror
 # executor.LIVE_UNIT / R1_UNIT / BOARD_UNIT / NCS_UNIT and a test asserts they still agree;
 # executor itself is not imported, to keep the order paths out of this script's reachable set.
-LANE_UNIT = {"lane1": 300.0, "r1": 200.0, "board": 200.0, "ncs": 200.0, "dogs": 100.0}
+LANE_UNIT = {"lane1": 300.0, "r1": 200.0, "board": 200.0, "ncs": 200.0, "dogs": 300.0}   # dogs 100 -> 300, Peter 25 Nov
 # The two places a row states its lane: the play-key prefix and the row's source.
 PREFIX_LANE = {"rule": "lane1", "rules": "lane1", "board": "board", "r1": "r1", "ncs": "ncs",
                "dogs": "dogs"}

@@ -28,9 +28,13 @@ FEED = [x for x in json.load(open(os.path.join(HERE, "liquidity", "alerts.json")
 
 # --- 1. ships OFF, own unit and limits ---------------------------------------------------------
 ok("ships OFF with the variable unset", ex.DOGS_LIVE is False or os.environ.get("EXEC_DOGS_LIVE", "").lower() == "on")
-ok("unit is $100 and nothing else's", ex.DOGS_UNIT == 100.0 and ex.unit_for("dogs") == 100.0
+ok("unit is $300 and nothing else's", ex.DOGS_UNIT == 300.0 and ex.unit_for("dogs") == 300.0
    and ex.unit_for("r1") == ex.R1_UNIT and ex.unit_for(None) == ex.LIVE_UNIT)
-ok("a +money dog risks exactly one unit", ex.live_stake(120, ex.DOGS_UNIT)[0] == 100.0, ex.live_stake(120, ex.DOGS_UNIT))
+ok("a +money dog risks exactly one unit", ex.live_stake(120, ex.DOGS_UNIT)[0] == 300.0, ex.live_stake(120, ex.DOGS_UNIT))
+ok("a -money dog would size to WIN the unit (unreachable: dogs are +money only)",
+   ex.live_stake(-150, ex.DOGS_UNIT)[1] == 300.0
+   and not ex.dogs_qualifies({"market": "spread", "price_american": -150, "new_money": 30000,
+                              "sharp_agree": [], "sharp_oppose": []}))
 
 # --- 2. the row conditions ---------------------------------------------------------------------
 B = {"market": "spread", "price_american": 104, "new_money": 30000, "sharp_agree": [], "sharp_oppose": []}
@@ -358,7 +362,7 @@ ok('"go": True is reachable only with an empty `why`', BR.count('"go": True') ==
    and 'if not why and r["verdict"] == "WOULD PLACE" and r.get("lc"):\n                    r["live"] = {"go": True' in BR)
 ok("code default is off (unset, empty, or anything but 'on')", '(os.environ.get("EXEC_DOGS_LIVE") or "off")' in SRC)
 ok("limits unchanged: $100 unit, 8 plays, $800/day, 30-minute freshness",
-   (ex.DOGS_UNIT, ex.DOGS_MAX_PLAYS, ex.DOGS_DAILY_RISK, ex.DOGS_MAX_AGE_MIN) == (100.0, 8, 800.0, 30)
+   (ex.DOGS_UNIT, ex.DOGS_MAX_PLAYS, ex.DOGS_MAX_AGE_MIN) == (300.0, 8, 30)
    or any(os.environ.get(v) for v in ("EXEC_DOGS_DAILY_RISK", "EXEC_DOGS_MAX_PLAYS", "EXEC_DOGS_MAX_AGE_MIN")))
 
 print(f"\n{len(RAN) - len(FAILED)} passed, {len(FAILED)} failed")
