@@ -1,4 +1,4 @@
-# Paper splits (updated 2026-11-25T03:15:37Z)
+# Paper splits (updated 2026-11-25T03:25:27Z)
 
 Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kill bar: 30+ resulted at -0.10u/play or worse closes a split.
 
@@ -19,7 +19,7 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 | Muted midday (11 AM-2 PM ET) | scan | 2026-10-26 | 114-108-0 | -6.43 | -0.029 | -0.31 | OPEN |
 | Liquidity totals, no sharp agree | scan | 2026-10-22 | 317-304-0 | +1.59 | +0.003 |  | OPEN |
 | Liquidity vs sharp (oppose) | scan | 2026-10-22 | 257-237-0 | -18.10 | -0.037 |  | CLOSED |
-| Liquidity spreads | scan | 2026-10-22 | 586-554-0 | -34.93 | -0.031 |  | CLOSED (by decision, 2026-10-27) |
+| Liquidity spreads | scan | 2026-10-22 | 586-555-0 | -35.93 | -0.031 |  | CLOSED (by decision, 2026-10-27) |
 | Liquidity overnight (12-5 AM ET) | scan | 2026-10-26 | 179-117-0 | +4.18 | +0.014 |  | CLOSED |
 | Liquidity evening (5-8 PM ET) | scan | 2026-10-26 | 325-269-0 | -20.50 | -0.035 |  | CLOSED |
 | NBA liquidity totals (lane) | scan | 2026-10-28 | 140-117-0 | +17.91 | +0.070 |  | OPEN |
