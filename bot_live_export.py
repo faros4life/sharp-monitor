@@ -103,8 +103,9 @@ CI_FRAME = ("95% CI on units/play (profit/stake, flat 1u at the fill price): ful
 CI_CAVEAT = ("The last-20 window is re-read every night, so it is NOT a 95% test: checking a rolling "
              "window daily makes an eventual 'fully above 0' on a flat lane likely rather than rare. "
              "The bar is also asymmetric at n=20 - promote and kill need the same distance from 0, but "
-             "promoting is the side that puts money at risk. Pending Peter's ruling on which window "
-             "governs, the all-time figure is the conservative read and last-20 is context.")
+             "promoting is the side that puts money at risk. PETER'S RULING, Nov 25 2026: the ALL-TIME "
+             "interval governs statistical qualification; last-20 is supporting evidence and never "
+             "qualifies a trigger on its own. 50-play minimum stands.")
 
 
 def units_ci(plays, last=None, z=1.96):
