@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 25, 12:55 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 25.
+Updated Wed Nov 25, 1:00 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 24.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1954-1521 (-38.32u flat) | rule met: 1161-913
+**Record:** 1954-1522 (-39.32u flat) | rule met: 1161-914
 
-**Fade (paper, betting against the print):** 1255-1681 (-195.91u flat, after fees)
+**Fade (paper, betting against the print):** 1256-1681 (-193.21u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -46,7 +46,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 24 10:05AM | NBA | Dallas vs Denver: Total Points | total: NOT Over 233.5 points | kalshi | $33k | -104 | ✅ novig,prophetx | ❌ | -2.0c |  | W |
 | Nov 24 9:30AM | NBA | Detroit vs Orlando: Spread | spread: NOT Detroit wins by over 2.5 points | kalshi | $120k | -108 |  |  | +12.0c | yes | L |
 | Nov 24 7:40AM | NBA | Detroit vs Orlando: Total Points | total: Over 212.5 points | kalshi | $45k | -100 |  | ❌ | -5.0c |  | L |
-| Nov 24 7:15AM | NBA | Dallas Mavericks @ Denver Nuggets | moneyline: DEN (0) | novig | $32k | -277 | ✅ kalshi,prophetx |  | -3.0c | yes | pending |
+| Nov 24 7:15AM | NBA | Dallas Mavericks @ Denver Nuggets | moneyline: DEN (0) | novig | $32k | -277 | ✅ kalshi,prophetx |  | -3.0c | yes | L |
 | Nov 24 7:15AM | NBA | Boston Celtics @ Washington Wizards | moneyline: BOS (0) | novig | $28k | -413 | ✅ kalshi,prophetx |  | -1.5c | yes | W |
 | Nov 24 7:15AM | NFL | Green Bay Packers @ Los Angeles Rams | moneyline: GB (0) | novig | $42k | +117 | ✅ kalshi,prophetx |  | -1.0c |  | pending |
 | Nov 24 3:16AM | NFL | Green Bay vs Los Angeles R: Spread | spread: NOT Los Angeles R wins by over 2.5 points | kalshi | $67k | -104 |  |  | -1.0c |  | pending |
