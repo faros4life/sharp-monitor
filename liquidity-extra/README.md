@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 24, 9:10 PM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 25.
+Updated Tue Nov 24, 9:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 25.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -11,7 +11,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 24 8:50PM | NCAAB | Baylor vs Alabama: Spread | spread: Alabama wins by over 1.5 points | kalshi | $49k | -113 |  |  | +0.0c |  | pending |
-| Nov 24 8:30PM | NCAAB | Green Bay vs Kansas City | moneyline: Green Bay | kalshi | $31k | +108 |  |  | +30.0c | yes | pending |
+| Nov 24 8:30PM | NCAAB | Green Bay vs Kansas City | moneyline: Green Bay | kalshi | $31k | +108 |  |  | +23.0c | yes | pending |
 | Nov 24 8:10PM | NCAAB | Sam Houston vs Washington St. | moneyline: Washington St. | kalshi | $62k | -203 | ✅ novig,prophetx | ✅ | +2.0c |  | pending |
 | Nov 24 7:10PM | NCAAB | Oral Roberts vs UT Arlington: Spread | spread: UT Arlington wins by over 4.5 points | kalshi | $34k | -122 |  | ✅ | -2.0c |  | pending |
 | Nov 24 6:40PM | NCAAB | Purdue Fort Wayne vs Southeast Missouri St.: Spread | spread: NOT Southeast Missouri St. wins by over 2.5 points | kalshi | $27k | +113 |  |  | +0.0c |  | pending |
