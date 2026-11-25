@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 24, 7:05 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 44.
+Updated Tue Nov 24, 7:10 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 44.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -11,7 +11,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 24 7:05PM | NHL | Vegas vs Edmonton: Total Goals | total: Over 6.5 goals scored | kalshi | $75k | -122 | ✅ novig,prophetx |  | +0.0c |  | pending |
-| Nov 24 7:00PM | NBA | Detroit vs Orlando: Spread | spread: NOT Orlando wins by over 3.5 points | kalshi | $33k | -104 | ✅ novig |  | +0.0c |  | pending |
+| Nov 24 7:00PM | NBA | Detroit vs Orlando: Spread | spread: NOT Orlando wins by over 3.5 points | kalshi | $33k | -104 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 24 6:55PM | NHL | Vegas vs Edmonton: Spread | spread: NOT Vegas wins by over 1.5 goals | kalshi | $30k | -223 | ✅ novig |  | +0.0c |  | pending |
 | Nov 24 6:50PM | NBA | Boston vs Washington: Spread | spread: NOT Boston wins by over 11.5 points | kalshi | $34k | -108 | ✅ novig | ❌ | +0.0c |  | pending |
 | Nov 24 6:35PM | NBA | Dallas vs Denver: Spread | spread: NOT Denver wins by over 8.5 points | kalshi | $44k | -104 | ✅ novig,prophetx |  | +1.0c |  | pending |
@@ -37,7 +37,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 24 10:21AM | NCAAF | Miami (OH) vs Western Michigan: Spread | spread: NOT Western Michigan wins by over 6.5 points | kalshi | $339k | -104 | ✅ prophetx |  | +5.0c |  | pending |
 | Nov 24 10:10AM | NCAAF | Miami Ohio @ Western Michigan | moneyline: WMU (0) | novig | $34k | -233 | ✅ kalshi,prophetx |  | -3.5c | yes | pending |
 | Nov 24 10:05AM | NBA | Dallas vs Denver: Total Points | total: NOT Over 233.5 points | kalshi | $33k | -104 | ✅ novig,prophetx | ❌ | -3.0c |  | pending |
-| Nov 24 9:30AM | NBA | Detroit vs Orlando: Spread | spread: NOT Detroit wins by over 2.5 points | kalshi | $120k | -108 |  |  | +13.0c | yes | pending |
+| Nov 24 9:30AM | NBA | Detroit vs Orlando: Spread | spread: NOT Detroit wins by over 2.5 points | kalshi | $120k | -108 |  |  | +12.0c | yes | pending |
 | Nov 24 7:40AM | NBA | Detroit vs Orlando: Total Points | total: Over 212.5 points | kalshi | $45k | -100 |  | ❌ | -5.0c |  | pending |
 | Nov 24 7:15AM | NBA | Dallas Mavericks @ Denver Nuggets | moneyline: DEN (0) | novig | $32k | -277 | ✅ kalshi,prophetx |  | -1.0c | yes | pending |
 | Nov 24 7:15AM | NBA | Boston Celtics @ Washington Wizards | moneyline: BOS (0) | novig | $28k | -413 | ✅ kalshi,prophetx |  | -1.5c | yes | pending |
