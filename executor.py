@@ -1430,6 +1430,29 @@ DOGS_UNIT = 300.0           # Peter, 25 Nov: "make dogs bot play to win 300 if -
                             # (dogs_qualifies needs >= +100), so the minus branch is unreachable here and
                             # this is $300 RISKED per play, up from the $100 pilot unit of 23 Nov.
 DOGS_DAILY_RISK = float(os.environ.get("EXEC_DOGS_DAILY_RISK", "") or "800")
+# Nov 25 (Peter, DOGS SPEC CHANGE): the price gate allows 2 cents worse than the alert price AFTER FEES,
+# at the alert line only, on every book in the Dogs route. Nothing else moves: no other line, no resting
+# bid. Execution gate only - fills keep grading against the ALERT price for CLV and the scoreboard.
+# Versioned: orders before this change were gated at 0c; every Dogs order row now carries its version.
+# Basis: Muse's re-grade of 178 print-price plays, +0.237/play at the print, +0.226 at -2c, CI above 0.
+DOGS_TOL_CENTS = 2
+DOGS_GATE_VERSION = "dogs-gate-2c-2026-11-25"
+
+
+def cents_scale(am):
+    """An American price on a continuous cent scale: +104 -> 4, +101 -> 1, -101 -> -1, -115 -> -15.
+    The inverse of cents_worse(), so cents_scale(a) - cents_scale(cents_worse(a, c)) == c."""
+    am = int(am)
+    return am - 100 if am >= 100 else am + 100
+
+
+def dogs_giveback_cents(alert_af, got_af):
+    """Cents the order price gives back against the alert, both after fees. Positive = worse than the
+    alert, negative = better. None when either is missing. Logging only - never a gate."""
+    try:
+        return cents_scale(alert_af) - cents_scale(got_af)
+    except (TypeError, ValueError):
+        return None
 DOGS_MAX_PLAYS = int(os.environ.get("EXEC_DOGS_MAX_PLAYS", "") or "8")       # the record ran ~4 qualifying plays a day
 DOGS_MAX_AGE_MIN = int(os.environ.get("EXEC_DOGS_MAX_AGE_MIN", "") or "30")  # act on a FRESH print only: no backlog fires
 DOGS_MIN_MONEY, DOGS_MAX_MONEY = 25000.0, 50000.0
@@ -3067,11 +3090,11 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
     # fees. No worse-line substitutions or relaxed price tolerances." For a DOGS play the 2c allowance is ZERO on every
     # book and any line other than the alert's own is refused. Every other lane is untouched.
     strict = dogs_strict(p)
-    if strict:
-        px_tol = 0.0
+    if strict:   # Nov 25 (Peter): 2c on every Dogs book, alert line only (was 0c from Nov 23)
+        px_tol = american_to_prob(cents_worse(alert_af, DOGS_TOL_CENTS)) - alert_cost
 
     def _tolc(b):
-        return 0 if strict else (PX_TOL_CENTS if b in TOL_BOOKS else 0)
+        return DOGS_TOL_CENTS if strict else (PX_TOL_CENTS if b in TOL_BOOKS else 0)
     floor = p.get("floor_line") if mtype in ("spread", "total") else None
     # Nov 11 (Peter, "original alert line or strictly better"): board v3 plays carry NO floor_line -
     # the board producer never writes one (0 of 1045 rows in board/calls.json), so the Oct 31
@@ -3121,7 +3144,7 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
             continue
         tol = px_tol if b in TOL_BOOKS else 0.0
         if strict:
-            tol = 0.0   # Nov 23 (Peter): DOGS only - the alert price or better, no allowance on any book
+            tol = px_tol   # Nov 25 (Peter): DOGS - 2c after fees on every book in its route
         if lv_mode() == "live" and mtype in ("spread", "total"):
             # REPLACEMENT PATH (Peter's switch). One shared convert() supplies the credit for this gate, the order threshold
             # below and the recheck in revalidate(). Unsupported conversions are skipped with their named reason - never the
@@ -3220,8 +3243,9 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
         if floor_blocked and floor_blocked == len(ladders):
             return dict(out, verdict="SKIP", reason=f"no fill - blocked by bet-only-at floor ({fmt_line(mtype, floor)})")
         if strict:
-            return dict(out, verdict="SKIP", reason=f"price: nothing at {alert_af:+d} or better after fees at the alert line "
-                                                    f"{fmt_line(mtype, line)} (DOGS: no tolerance, no other line)")
+            return dict(out, verdict="SKIP", reason=f"price: nothing at {cents_worse(alert_af, DOGS_TOL_CENTS):+d} or better "
+                                                    f"after fees at the alert line {fmt_line(mtype, line)} (DOGS: alert "
+                                                    f"{alert_af:+d}, {DOGS_TOL_CENTS}c tolerance, no other line)")
         return dict(out, verdict="SKIP", reason=f"price: nothing at or better than {alert_af:+d} after fees "
                                                 f"({'/'.join(TOL_BOOKS)}: {cents_worse(alert_af, PX_TOL_CENTS):+d}) at {fmt_line(mtype, line)} "
                                                 f"(equivalent, after fees; half point = {hp * 100:.1f}c {hp_src})"
@@ -3682,8 +3706,8 @@ def revalidate(r, stake=None):
         am_q = qual_price(am, book)
     if am_q is None:
         return False, f"{book} has no frozen qualification price at order time - fail closed", None
-    tol = 0.0 if rv.get("strict") else (rv.get("px_tol", 0.0) if book in TOL_BOOKS else 0.0)
-    _tc = 0 if rv.get("strict") else (PX_TOL_CENTS if book in TOL_BOOKS else 0)   # DOGS: zero cents, every book
+    tol = rv.get("px_tol", 0.0) if (rv.get("strict") or book in TOL_BOOKS) else 0.0
+    _tc = DOGS_TOL_CENTS if rv.get("strict") else (PX_TOL_CENTS if book in TOL_BOOKS else 0)   # DOGS: 2c, every book (Nov 25)
     if rv.get("strict") and mtype != "moneyline" and abs(float(ln) - float(rv["line"])) > 1e-9:
         return False, f"{book}: DOGS orders only at the alert line {fmt_line(mtype, rv['line'])} - fail closed", None
     # Nov 11 FIX: compare the EQUIVALENT price at the alert line, exactly as evaluate()'s gate does
@@ -6806,6 +6830,12 @@ def ledger_row(r, run_start):
             # Nov 6 (Peter, $25-50k NBA forward paper test): depth at the chosen price and whether the unit fits. Logging only.
             "fill_avail": r.get("fillable"), "fill_partial": r.get("partial"), "live": bool(lv.get("go")), "live_nfl": bool(lv.get("nfl")), "live_why_not": lv.get("why"),
             "live_px_price_after_fee": lv.get("am"), "live_px_line": lv.get("line"), "live_book": lv.get("book"),
+            # Nov 25 (Peter): Dogs gate version and give-back (alert after-fee vs order price after-fee, in cents;
+            # the order is a limit, so a fill can only be at this price or better). Logging only.
+            "dogs_gate": (DOGS_GATE_VERSION if dogs_strict(p) else None),
+            "dogs_tol_cents": (DOGS_TOL_CENTS if dogs_strict(p) else None),
+            "dogs_giveback_cents": (dogs_giveback_cents(e.get("price_after_fee"), lv.get("am"))
+                                    if dogs_strict(p) and lv.get("am") is not None else None),
             "pin_check": lv.get("pin"),   # Nov 3: Pinnacle age / fair / our gap at the order (gap logged, never a gate)
             # Oct 27 gettable-price counter (Muse): phase-1 qualifying (coded view, ignoring Muse AGREE), ProphetX at the
             # alert price or better at check (equivalent price, same rule as live), best ProphetX price seen at the alert line
@@ -6821,7 +6851,7 @@ def ledger_row(r, run_start):
             # from the winner alone. Logging only; nothing here feeds a decision.
             "venues_considered": [{"book": c.get("book"), "after_fee": c.get("am"), "screen": c.get("shown"),
                                    "line": c.get("line"), "depth_at_thr": c.get("avail"), "thr": c.get("thr"),
-                                   "tolerance_cents": (0 if dogs_strict(p) else (PX_TOL_CENTS if c.get("book") in TOL_BOOKS else 0)),
+                                   "tolerance_cents": (DOGS_TOL_CENTS if dogs_strict(p) else (PX_TOL_CENTS if c.get("book") in TOL_BOOKS else 0)),
                                    "maker": False}
                                   for c in (r.get("lcs") or [])],
             "fee_basis": {"model": FEE_MODEL, "taker": True,

@@ -63,15 +63,19 @@ for af in (-250, -115, -109, 100, 105, 140):
 # ---------------------------------------------------------------- 3. lane-blind
 src = inspect.getsource(ex.evaluate)
 tree = ast.parse(textwrap.dedent(src))
-tol_lines = [l for l in src.splitlines() if "tol = px_tol" in l]
+# Nov 25: the DOGS exception line ("tol = px_tol   # ... DOGS ...") is pinned separately below.
+tol_lines = [l for l in src.splitlines() if "tol = px_tol" in l and "DOGS" not in l]
 ck("the tolerance decision exists exactly once", len(tol_lines) == 1, repr(tol_lines))
 ck("the tolerance decision keys off TOL_BOOKS", tol_lines and "TOL_BOOKS" in tol_lines[0], repr(tol_lines))
 ck("the tolerance decision does not read the lane",
    tol_lines and not any(w in tol_lines[0] for w in ("lane", "board", "source", "rules")), repr(tol_lines))
-# Nov 23 (Peter, DOGS merge condition: "no relaxed price tolerances"): ONE deliberate exception, and it can only
-# REMOVE the allowance. Lane 1, the board, R1 and NCS stay lane-blind exactly as pinned above.
-ck("the only lane exception is DOGS, and it only ever sets the allowance to zero",
-   src.count("if strict:\n            tol = 0.0") == 1 and "strict = dogs_strict(p)" in src
+# Nov 23 (Peter, DOGS merge condition) set the DOGS allowance to zero. Nov 25 (Peter, DOGS SPEC CHANGE):
+# 2 cents after fees on every book in the Dogs route, alert line only. Still ONE deliberate exception,
+# fixed at exactly DOGS_TOL_CENTS = 2. Lane 1, the board, R1 and NCS stay lane-blind exactly as pinned above.
+ck("the only lane exception is DOGS, and it is exactly its own 2c allowance",
+   src.count("if strict:\n            tol = px_tol") == 1 and "strict = dogs_strict(p)" in src
+   and "px_tol = american_to_prob(cents_worse(alert_af, DOGS_TOL_CENTS)) - alert_cost" in src
+   and ex.DOGS_TOL_CENTS == 2
    and not any(("tol =" in l or "px_tol =" in l) and any(w in l for w in ("board", "rules", "r1", "ncs")) for l in src.splitlines()))
 ck("no hardcoded per-book tolerance branch survives",
    'px_tol if b == "prophetx"' not in src and "px_tol if b == 'prophetx'" not in src)

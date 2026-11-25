@@ -271,10 +271,27 @@ ok("a spread loss is never read as the moneyline's result on the same team",
 # --- 9. alert line and alert price or better: no tolerance, no other line, trigger then Novig ------
 EV = SRC.split("def evaluate(")[1].split("\ndef fmt_line(")[0]
 RV = SRC.split("def revalidate(")[1].split("\ndef px_limit(")[0]
-ok("evaluate: DOGS tolerance is zero on every book", "strict = dogs_strict(p)" in EV and "if strict:\n        px_tol = 0.0" in EV
-   and "if strict:\n            tol = 0.0" in EV and "PX_TOL_CENTS if b in TOL_BOOKS else 0," not in EV)
+# Nov 25 (Peter, DOGS SPEC CHANGE): 2c after fees on every book, alert line only (was 0c from Nov 23)
+ok("evaluate: DOGS tolerance is 2c on every book",
+   "strict = dogs_strict(p)" in EV
+   and "px_tol = american_to_prob(cents_worse(alert_af, DOGS_TOL_CENTS)) - alert_cost" in EV
+   and "if strict:\n            tol = px_tol" in EV
+   and "return DOGS_TOL_CENTS if strict else" in EV)
+ok("the Dogs tolerance is exactly 2 cents and versioned", ex.DOGS_TOL_CENTS == 2
+   and ex.DOGS_GATE_VERSION == "dogs-gate-2c-2026-11-25")
+ok("Charlotte: alert +104, +102 is inside the gate, +101 is not",
+   ex.cents_worse(104, ex.DOGS_TOL_CENTS) == 102 and 101 < ex.cents_worse(104, ex.DOGS_TOL_CENTS))
+ok("across even money: +101 allows down to -101, not -102", ex.cents_worse(101, ex.DOGS_TOL_CENTS) == -101)
+ok("give-back is logged in cents, both signs",
+   ex.dogs_giveback_cents(104, 102) == 2 and ex.dogs_giveback_cents(101, -101) == 2
+   and ex.dogs_giveback_cents(104, 106) == -2 and ex.dogs_giveback_cents(None, 102) is None)
+ok("every Dogs order row carries gate version, tolerance and give-back",
+   '"dogs_gate": (DOGS_GATE_VERSION if dogs_strict(p) else None)' in SRC
+   and '"dogs_giveback_cents": (dogs_giveback_cents(' in SRC)
 ok("evaluate: any line but the alert's is refused for DOGS", '"dogs_alert_line_only"' in EV)
-ok("order-time recheck carries the same rule", '"strict": strict' in EV and 'tol = 0.0 if rv.get("strict")' in RV
+ok("order-time recheck carries the same rule", '"strict": strict' in EV
+   and 'tol = rv.get("px_tol", 0.0) if (rv.get("strict") or book in TOL_BOOKS) else 0.0' in RV
+   and '_tc = DOGS_TOL_CENTS if rv.get("strict")' in RV
    and "DOGS orders only at the alert line" in RV)
 
 
@@ -282,7 +299,8 @@ def _reval(strict, now_am, book="novig", line=None, mtype="moneyline", rvline=No
     alert = 120
     r = {"live": {"book": book, "line": line, "px": {"thr": alert}},
          "reval": {"mtype": mtype, "side": "A", "line": rvline, "alert_af": alert, "alert_cost": ex.american_to_prob(alert),
-                   "px_tol": 0.0 if strict else ex.american_to_prob(ex.cents_worse(alert, ex.PX_TOL_CENTS)) - ex.american_to_prob(alert),
+                   "px_tol": ex.american_to_prob(ex.cents_worse(alert, ex.DOGS_TOL_CENTS if strict else ex.PX_TOL_CENTS))
+                             - ex.american_to_prob(alert),   # what evaluate() now stores for each (Nov 25: Dogs 2c)
                    "strict": strict, "hp": 0.0, "lv_mode": "legacy", "al": {"sport": "NBA"}}}
     _rb = ex.reread_book
     try:
@@ -294,9 +312,11 @@ def _reval(strict, now_am, book="novig", line=None, mtype="moneyline", rvline=No
 
 
 a = _reval(True, 118)
-ok("DOGS: Novig 2c worse than the alert at order time is REFUSED", a[0] is False and "moved worse" in a[1], a[1])
+ok("DOGS (Nov 25): Novig 2c worse than the alert at order time PASSES the price gate", "moved worse" not in a[1], a[1])
+a3 = _reval(True, 117)
+ok("DOGS (Nov 25): 3c worse than the alert is still REFUSED", a3[0] is False and "moved worse" in a3[1], a3[1])
 b = _reval(False, 118)
-ok("(control) another lane keeps its 2c on Novig - the refusal above is the DOGS rule", "moved worse" not in b[1], b[1])
+ok("(control) another lane keeps its 2c on Novig", "moved worse" not in b[1], b[1])
 c = _reval(True, 120)
 ok("DOGS: the alert price itself passes the price gate", "moved worse" not in c[1], c[1])
 d = _reval(True, 125, mtype="spread", line=4.0, rvline=3.5)
