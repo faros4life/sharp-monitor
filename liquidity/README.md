@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 25, 4:35 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 79.
+Updated Wed Nov 25, 4:40 PM ET. This run: 1 new, 0 not confirmed, 2 pending. Open alerts: 80.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,19 +10,20 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 25 4:40PM | NHL | Calgary vs Pittsburgh | moneyline: Pittsburgh | kalshi | $46k | -156 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 25 4:20PM | NHL | Nashville Predators @ Dallas Stars | moneyline: DAL (0) | novig | $34k | -167 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Nov 25 4:20PM | NBA | Chicago Bulls @ Charlotte Hornets | moneyline: CHA (0) | novig | $31k | -153 | ✅ kalshi,prophetx |  | +0.5c |  | pending |
 | Nov 25 4:20PM | NFL | Kansas City Chiefs @ Buffalo Bills | moneyline: BUF (0) | novig | $48k | -141 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Nov 25 4:15PM | NBA | Sacramento Kings @ Golden State Warriors | moneyline: GSW (0) | novig | $39k | -270 | ✅ kalshi | ✅ | +0.0c |  | pending |
 | Nov 25 4:15PM | NBA | Phoenix Suns @ Houston Rockets | moneyline: HOU (0) | novig | $52k | -344 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Nov 25 4:15PM | NBA | Los Angeles Clippers @ Memphis Grizzlies | moneyline: MEM (0) | novig | $52k | -245 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
-| Nov 25 4:15PM | NFL | Chicago Bears @ Detroit Lions | moneyline: DET (0) | novig | $48k | +106 | ✅ kalshi,prophetx |  | +0.5c |  | pending |
+| Nov 25 4:15PM | NFL | Chicago Bears @ Detroit Lions | moneyline: DET (0) | novig | $48k | +106 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Nov 25 4:15PM | NFL | Philadelphia Eagles @ Dallas Cowboys | moneyline: DAL (0) | novig | $29k | -400 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Nov 25 3:50PM | NHL | New Jersey vs Columbus | moneyline: New Jersey | kalshi | $76k | -138 | ✅ novig,prophetx |  | +0.0c | yes | pending |
 | Nov 25 3:40PM | NHL | Utah vs Minnesota | moneyline: Utah | kalshi | $112k | +127 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 25 3:35PM | NBA | Miami vs Philadelphia: Spread | spread: NOT Miami wins by over 1.5 points | kalshi | $76k | -100 | ✅ novig | ✅ | +1.0c |  | pending |
 | Nov 25 3:20PM | NBA | Minnesota vs Oklahoma City: Spread | spread: Oklahoma City wins by over 1.5 points | kalshi | $48k | -108 | ✅ novig |  | +0.0c |  | pending |
-| Nov 25 2:25PM | NFL | Green Bay Packers @ Los Angeles Rams | moneyline: LAR (0) | novig | $56k | -130 | ✅ kalshi,prophetx |  | +0.5c |  | pending |
+| Nov 25 2:25PM | NFL | Green Bay Packers @ Los Angeles Rams | moneyline: LAR (0) | novig | $56k | -130 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Nov 25 2:10PM | NHL | Calgary vs Pittsburgh: Total Goals | total: Over 6.5 goals scored | kalshi | $26k | +117 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 25 12:55PM | NHL | Ottawa vs Florida: Total Goals | total: Over 5.5 goals scored | kalshi | $36k | -104 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 25 12:55PM | NHL | Chicago vs Seattle | moneyline: Chicago | kalshi | $128k | +138 |  |  | +0.0c |  | pending |
@@ -32,11 +33,11 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 25 12:20PM | NHL | New York R vs Buffalo | moneyline: Buffalo | kalshi | $70k | -122 | ✅ novig |  | +0.0c |  | pending |
 | Nov 25 11:50AM | NHL | Utah vs Minnesota | moneyline: Minnesota | kalshi | $41k | -138 | ✅ novig,prophetx |  | -2.0c | yes | pending |
 | Nov 25 11:35AM | NHL | Calgary vs Pittsburgh: Spread | spread: NOT Pittsburgh wins by over 1.5 goals | kalshi | $41k | -170 | ✅ novig |  | +0.0c |  | pending |
-| Nov 25 11:30AM | NHL | Vancouver vs Detroit: Spread | spread: NOT Detroit wins by over 1.5 goals | kalshi | $41k | -127 | ✅ novig |  | -1.0c |  | pending |
+| Nov 25 11:30AM | NHL | Vancouver vs Detroit: Spread | spread: NOT Detroit wins by over 1.5 goals | kalshi | $41k | -127 | ✅ novig |  | +0.0c |  | pending |
 | Nov 25 11:30AM | NHL | Nashville vs Dallas: Spread | spread: NOT Dallas wins by over 1.5 goals | kalshi | $45k | -170 | ✅ novig |  | +0.0c |  | pending |
 | Nov 25 11:30AM | NHL | San Jose vs Anaheim | moneyline: San Jose | kalshi | $60k | +127 |  |  | +2.0c |  | pending |
 | Nov 25 11:30AM | NHL | Montreal vs Colorado | moneyline: Colorado | kalshi | $97k | -113 | ✅ novig |  | +0.0c |  | pending |
-| Nov 25 11:26AM | NHL | Utah vs Minnesota: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $57k | -122 | ✅ novig |  | +0.0c |  | pending |
+| Nov 25 11:26AM | NHL | Utah vs Minnesota: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $57k | -122 | ✅ novig |  | +1.0c |  | pending |
 | Nov 25 11:26AM | NHL | Montreal vs Colorado: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $27k | -113 | ✅ novig |  | -1.0c |  | pending |
 | Nov 25 11:26AM | NHL | Nashville vs Dallas | moneyline: Nashville | kalshi | $95k | +156 |  |  | +0.0c |  | pending |
 | Nov 25 11:26AM | NHL | Carolina vs Tampa Bay | moneyline: Tampa Bay | kalshi | $93k | +117 |  |  | +3.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 22 1:55PM | NBA | Detroit Pistons @ Atlanta Hawks | total: Under 223.5 (223.5) | novig | $28k | -100 | ✅ prophetx | ✅ | +0.0c |  | W |
 | Nov 22 1:35PM | NFL | Minnesota Vikings @ San Francisco 49ers | moneyline: SF (0) | novig | $48k | -170 | ✅ kalshi,prophetx |  | +3.5c |  | W |
 | Nov 22 1:10PM | NFL | Jacksonville Jaguars @ New York Giants | moneyline: JAX (0) | novig | $90k | -257 | ✅ kalshi,prophetx |  | +0.5c |  | L |
-| Nov 22 1:10PM | NFL | New York Jets @ Los Angeles Chargers | spread: NYJ +3.5 (-3.5) | novig | $46k | -117 | ✅ kalshi |  | +1.0c |  | W |
