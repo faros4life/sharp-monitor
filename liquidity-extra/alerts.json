@@ -1,6 +1,197 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-25T01:50:20Z",
+   "base_depth": 164328,
+   "best_price": 0.515,
+   "best_price_american": -106,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.53,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 533,
+     "new_this_side": 49194,
+     "other_side": 46741,
+     "other_side_all_levels": 154922,
+     "ratio": 2.0,
+     "this_side": 91841,
+     "this_side_all_levels": 219046
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "ALA -1.5 (1.5)",
+     "price": 0.515,
+     "this_side": 7335
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 63693.08,
+    "volume_24h_fp": 68462.65,
+    "volume_fp": 70040.74
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 2164.18,
+    "volume_24h_fp": 10400.15,
+    "volume_fp": 2303.88
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 61528.9,
+    "volume_24h_fp": 58062.5,
+    "volume_fp": 67736.86
+   },
+   "fade_price": 0.48,
+   "first_seen_utc": "2026-11-25T01:40:27Z",
+   "game": "Baylor vs Alabama: Spread",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 7.32,
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAMBSPREAD-26NOV24BAYALA-ALA2\"}",
+   "lead_min": 70,
+   "league": "NCAAB",
+   "line": -1.5,
+   "market": "spread",
+   "new_money": 49194,
+   "new_x": 0.62,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 63693.08,
+      "volume_24h_fp": 68462.65,
+      "volume_fp": 70040.74
+     },
+     "game_normal": 29907,
+     "game_x": 7.32,
+     "normal": 79828,
+     "now": 219046,
+     "type": "SPREAD",
+     "x": 2.74
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 5468626.0,
+      "volume": 5985010.0
+     },
+     "game_normal": 15687,
+     "game_x": 1.86,
+     "normal": 3203,
+     "now": 29164,
+     "type": "SPREAD",
+     "x": 9.11
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.53,
+   "price_american": -113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.53,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -1.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": -1.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": -1.5,
+     "price": -103
+    },
+    "betrivers": {
+     "point": -1.5,
+     "price": -113
+    },
+    "betus": {
+     "point": -1.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": -1.5,
+     "price": -110
+    },
+    "circasports": {
+     "point": -1.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": -1.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": -1.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": -1.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": -1.5,
+     "price": -113
+    },
+    "lowvig": {
+     "point": -1.5,
+     "price": -106
+    },
+    "novig": {
+     "point": -1.5,
+     "price": -106
+    },
+    "polymarket": {
+     "point": -1.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -136
+    },
+    "williamhill_us": {
+     "point": -2.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBSPREAD-26NOV24BAYALA-ALA2"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Alabama",
+   "side_label": "Alabama wins by over 1.5 points",
+   "size_x": 2.74,
+   "start_source": "odds",
+   "start_utc": "2026-11-25T03:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "Baylor",
+    "Alabama"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-25T01:30:21Z",
    "base_depth": 137176,
    "best_price": 0.4975,
@@ -14,8 +205,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.7,
-   "clv_cents": 22.0,
+   "close_price": 0.75,
+   "clv_cents": 27.0,
    "confirmed_after_min": 10,
    "date": "2026-11-24",
    "depth_by_book": {
@@ -40,9 +231,9 @@
     "volume_fp": 25411.37
    },
    "ex_stats_close": {
-    "open_interest_fp": 61160.73,
-    "volume_24h_fp": 64036.44,
-    "volume_fp": 82514.12
+    "open_interest_fp": 72948.06,
+    "volume_24h_fp": 107522.94,
+    "volume_fp": 118192.57
    },
    "ex_stats_first": {
     "open_interest_fp": 35787.15,
@@ -79,6 +270,8 @@
    "norm_ready_books": 1,
    "paper_only": false,
    "price": 0.48,
+   "price_after_15m": 0.7631,
+   "price_after_15m_book": "kalshi",
    "price_american": 108,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.65,
@@ -101,6 +294,7 @@
    "size_x": 0.99,
    "start_source": "kalshi",
    "start_utc": "2026-11-25T04:00:00Z",
+   "still_actionable": false,
    "surge_books": [],
    "teams": [
     "Green Bay",
@@ -123,8 +317,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.67,
-   "clv_cents": 0.0,
+   "close_price": 0.69,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-24",
    "depth_by_book": {
@@ -161,9 +355,9 @@
     "volume_fp": 311.67
    },
    "ex_stats_close": {
-    "open_interest_fp": 5207.74,
-    "volume_24h_fp": 4980.6,
-    "volume_fp": 5214.799999999999
+    "open_interest_fp": 6431.12,
+    "volume_24h_fp": 6244.6900000000005,
+    "volume_fp": 6761.18
    },
    "ex_stats_first": {
     "open_interest_fp": 4490.03,
@@ -1848,6 +2042,7 @@
     "volume_fp": 1184.8700000000001
    },
    "fade_price": 0.43,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-24T20:20:21Z",
    "game": "Lamar vs Robert Morris",
    "game_surge_books": [
@@ -1974,14 +2169,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV24LAMRMU-LAM"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
+   "settled_utc": "2026-11-25T01:50:20Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Lamar",
@@ -1999,7 +2195,7 @@
     "Robert Morris"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.71
   },
   {
    "alerted_utc": "2026-11-24T19:50:21Z",
@@ -7237,7 +7433,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Furman",
@@ -7447,7 +7643,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Florida Atlantic",
@@ -14322,9 +14518,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 29146.72,
-    "volume_24h_fp": 32754.989999999998,
-    "volume_fp": 35875.94
+    "open_interest_fp": 30337.07,
+    "volume_24h_fp": 34247.65,
+    "volume_fp": 37222.28
    },
    "ex_stats_first": {
     "open_interest_fp": 1198.79,

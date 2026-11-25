@@ -1,17 +1,18 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 24, 8:40 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 35.
+Updated Tue Nov 24, 8:50 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 35.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 470-281 (-20.05u flat) | rule met: 101-75
+**Record:** 471-281 (-19.34u flat) | rule met: 102-75
 
-**Fade (paper, betting against the print):** 256-435 (+14.70u flat, after fees)
+**Fade (paper, betting against the print):** 256-436 (+13.70u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 24 8:30PM | NCAAB | Green Bay vs Kansas City | moneyline: Green Bay | kalshi | $31k | +108 |  |  | +22.0c | yes | pending |
-| Nov 24 8:10PM | NCAAB | Sam Houston vs Washington St. | moneyline: Washington St. | kalshi | $62k | -203 | ✅ novig,prophetx | ✅ | +0.0c |  | pending |
+| Nov 24 8:50PM | NCAAB | Baylor vs Alabama: Spread | spread: Alabama wins by over 1.5 points | kalshi | $49k | -113 |  |  | +0.0c |  | pending |
+| Nov 24 8:30PM | NCAAB | Green Bay vs Kansas City | moneyline: Green Bay | kalshi | $31k | +108 |  |  | +27.0c | yes | pending |
+| Nov 24 8:10PM | NCAAB | Sam Houston vs Washington St. | moneyline: Washington St. | kalshi | $62k | -203 | ✅ novig,prophetx | ✅ | +2.0c |  | pending |
 | Nov 24 7:10PM | NCAAB | Oral Roberts vs UT Arlington: Spread | spread: UT Arlington wins by over 4.5 points | kalshi | $34k | -122 |  | ✅ | -2.0c |  | pending |
 | Nov 24 6:40PM | NCAAB | Purdue Fort Wayne vs Southeast Missouri St.: Spread | spread: NOT Southeast Missouri St. wins by over 2.5 points | kalshi | $27k | +113 |  |  | +0.0c |  | pending |
 | Nov 24 6:00PM | NCAAB | Boston University @ Harvard | moneyline: HARV (0) | novig | $26k | -223 | ✅ kalshi | ✅ | +0.0c | yes | pending |
@@ -20,7 +21,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 24 5:20PM | NCAAB | Michigan vs Creighton: Spread | spread: NOT Michigan wins by over 5.5 points | kalshi | $30k | -100 |  |  | -1.0c | yes | W |
 | Nov 24 5:20PM | NCAAB | Queens University vs Wofford | moneyline: Queens University | kalshi | $53k | -104 |  | ✅ | +0.0c |  | L |
 | Nov 24 4:00PM | NCAAB | Purdue Fort Wayne vs Southeast Missouri St. | moneyline: Southeast Missouri St. | kalshi | $27k | -156 |  |  | -1.0c | yes | pending |
-| Nov 24 3:30PM | NCAAB | Lamar vs Robert Morris | moneyline: Lamar | kalshi | $26k | -138 | ✅ novig |  | +0.0c | yes | pending |
+| Nov 24 3:30PM | NCAAB | Lamar vs Robert Morris | moneyline: Lamar | kalshi | $26k | -138 | ✅ novig |  | +0.0c | yes | W |
 | Nov 24 2:50PM | NCAAB | Alabama A&M vs North Alabama | moneyline: North Alabama | kalshi | $69k | -156 | ✅ novig |  | +2.0c |  | pending |
 | Nov 24 2:40PM | NCAAB | Tennessee vs Maryland: Spread | spread: Tennessee wins by over 2.5 points | kalshi | $55k | -100 | ✅ novig |  | +3.0c | yes | W |
 | Nov 24 2:10PM | NCAAB | Mercer vs Florida Atlantic: Spread | spread: Florida Atlantic wins by over 6.5 points | kalshi | $36k | -113 |  |  | +1.0c |  | W |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 19 4:20PM | NCAAB | VCU vs Santa Clara | moneyline: Santa Clara | kalshi | $30k | -117 |  |  | +0.0c |  | L |
 | Nov 19 4:10PM | NCAAB | Southeast Missouri St. vs St. Thomas: Spread | spread: St. Thomas wins by over 6.5 points | kalshi | $26k | -108 |  |  | +1.0c |  | W |
 | Nov 19 4:10PM | NCAAB | Utah Tech vs Washington: Spread | spread: NOT Washington wins by over 17.5 points | kalshi | $32k | -108 |  | ✅ | +2.0c | yes | W |
-| Nov 19 4:10PM | NCAAB | UTEP vs New Mexico St. | moneyline: UTEP | kalshi | $30k | +113 | ✅ novig |  | +0.0c |  | W |
