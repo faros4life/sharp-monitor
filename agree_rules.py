@@ -335,8 +335,9 @@ def hr1_flag(a):
     review rule depends on. This function is consulted at the PUSH site only; the full eligible pool
     keeps being recorded and graded exactly as before.
 
-    Two cuts from the graded eligible pool (n129, Oct 22 - Nov 23). Units are per-play return on amount
-    RISKED (pool SD 0.938), not on the to-win amount:
+    Two cuts from the graded eligible pool of SPREADS + TOTALS UNDERS (n129, Oct 22 - Nov 23) - overs
+    have never been HR1-eligible, so the pool the cuts were fitted to contains none. Units are per-play
+    return on amount RISKED (pool SD 0.938), not on the to-win amount:
       - lead 60-180 min graded -0.051/play (n14, 95% -0.54..+0.44). Cut on MECHANISM - CLV accrues with
         lead time - not on this cell, which is indistinguishable from zero.
       - totals 145-155 graded -0.184/play (n28, 95% -0.53..+0.16); <145 +0.201, 155+ +0.566 (n22, the
@@ -357,6 +358,18 @@ def hr1_flag(a):
     quietly never gets reviewed if they are collapsed. Read CLV on both cut cells at each review - it
     is the lower-variance signal and will reach a read before the play counts do. If neither review
     happened, the cuts are still in force and that is the thing to check first, not the cells.
+
+    Three-arm split of that pool, Nov 25, reconstructed from alerts.json and reproducing the ruling's
+    own figures exactly (spreads 52 + unders 77 = n129, 77-52, +17.67u, +0.137/play):
+
+        spreads         n52  30-22  +0.095/play  95% [-0.162, +0.352]  unproven
+        totals UNDERS   n77  47-30  +0.165/play  95% [-0.044, +0.375]  unproven
+        totals OVERS    n66  36-30  +0.035/play  95% [-0.195, +0.264]  unproven   (NOT in the pool)
+
+    The overs arm is every row whose ONLY objection from hr1() is the unders rule, so it cannot drift
+    from the real rule. Had overs been included the pool would read n195, 113-82, +0.102/play
+    95% [-0.030, +0.234] - LOWER than the +0.137 the cuts were fitted to, not higher. No arm clears
+    zero on its own, so none of this changes the live filter, which stays as implemented.
 
     Fails closed: a total whose number cannot be read is not flagged.
     """
