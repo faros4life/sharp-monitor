@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 25, 4:10 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 26.
+Updated Wed Nov 25, 4:20 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 27.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 25 4:20PM | NCAAB | USC @ South Carolina | moneyline: USC (0) | novig | $55k | -488 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Nov 25 3:40PM | NCAAB | Clemson vs Colorado St. | moneyline: Clemson | kalshi | $43k | -156 | ✅ novig | ✅ | +0.0c |  | pending |
 | Nov 25 3:00PM | NCAAB | Wake Forest vs Mississippi St. | moneyline: Mississippi St. | kalshi | $33k | -163 |  |  | +0.0c |  | pending |
 | Nov 25 2:10PM | NCAAB | Southeastern Louisiana vs North Dakota: Point Total | total: NOT Over 141.5 points | kalshi | $57k | -113 |  | ✅ | +0.0c | yes | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 20 1:00PM | NCAAB | Northwestern vs Virginia Tech: Spread | spread: NOT Virginia Tech wins by over 11.5 points | kalshi | $44k | -113 |  |  | -3.0c |  | L |
 | Nov 20 1:00PM | NCAAB | Central Michigan vs Pittsburgh: Spread | spread: NOT Pittsburgh wins by over 20.5 points | kalshi | $35k | +108 |  | ✅ | +1.0c |  | L |
 | Nov 20 12:40PM | NCAAB | UAB vs George Washington: Spread | spread: NOT George Washington wins by over 8.5 points | kalshi | $33k | +104 |  |  | +0.0c | yes | W |
-| Nov 20 12:40PM | NCAAB | Manhattan vs Miami (FL): Spread | spread: NOT Miami (FL) wins by over 36.5 points | kalshi | $45k | -104 |  | ✅ | -1.0c |  | L |
