@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 25, 7:45 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 36.
+Updated Wed Nov 25, 7:50 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 36.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -11,10 +11,10 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 25 7:40AM | NHL | New Jersey vs Columbus: Spread | spread: NOT New Jersey wins by over 1.5 goals | kalshi | $51k | -186 | ✅ novig |  | +0.0c |  | pending |
-| Nov 25 7:35AM | NHL | Utah vs Minnesota: Spread | spread: NOT Minnesota wins by over 1.5 goals | kalshi | $29k | -194 |  |  | -1.0c |  | pending |
-| Nov 25 7:35AM | NHL | San Jose vs Anaheim: Spread | spread: NOT Anaheim wins by over 1.5 goals | kalshi | $29k | -186 |  |  | +0.0c |  | pending |
-| Nov 25 7:35AM | NHL | Ottawa vs Florida: Spread | spread: NOT Florida wins by over 1.5 goals | kalshi | $40k | -233 | ✅ novig |  | +0.0c |  | pending |
-| Nov 25 7:35AM | NHL | Montreal vs Colorado: Spread | spread: NOT Colorado wins by over 1.5 goals | kalshi | $30k | -223 | ✅ novig |  | +0.0c |  | pending |
+| Nov 25 7:35AM | NHL | Utah vs Minnesota: Spread | spread: NOT Minnesota wins by over 1.5 goals | kalshi | $29k | -194 |  |  | -1.0c | yes | pending |
+| Nov 25 7:35AM | NHL | San Jose vs Anaheim: Spread | spread: NOT Anaheim wins by over 1.5 goals | kalshi | $29k | -186 |  |  | +0.0c | yes | pending |
+| Nov 25 7:35AM | NHL | Ottawa vs Florida: Spread | spread: NOT Florida wins by over 1.5 goals | kalshi | $40k | -233 | ✅ novig |  | +0.0c | yes | pending |
+| Nov 25 7:35AM | NHL | Montreal vs Colorado: Spread | spread: NOT Colorado wins by over 1.5 goals | kalshi | $30k | -223 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 25 7:15AM | NBA | San Antonio vs Portland: Spread | spread: San Antonio wins by over 2.5 points | kalshi | $35k | -113 | ✅ novig |  | +0.0c |  | pending |
 | Nov 25 7:15AM | NHL | Vancouver vs Detroit | moneyline: Detroit | kalshi | $25k | -213 | ✅ novig |  | +0.0c |  | pending |
 | Nov 25 7:15AM | NBA | San Antonio vs Portland | moneyline: San Antonio | kalshi | $26k | -144 | ✅ novig,prophetx |  | +0.0c |  | pending |
@@ -25,7 +25,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 24 11:45PM | NBA | Minnesota vs Oklahoma City | moneyline: Oklahoma City | kalshi | $294k | -117 |  |  | +0.0c | yes | pending |
 | Nov 24 10:30PM | NBA | Sacramento vs Golden State | moneyline: Golden State | kalshi | $50k | -213 |  |  | +0.0c | yes | pending |
 | Nov 24 9:50PM | NFL | Green Bay vs Los Angeles R: Spread | spread: Los Angeles R wins by over 2.5 points | kalshi | $106k | -104 | ✅ novig |  | +0.0c | yes | pending |
-| Nov 24 8:50PM | NBA | Brooklyn vs Milwaukee | moneyline: Milwaukee | kalshi | $33k | -104 |  |  | +2.0c |  | pending |
+| Nov 24 8:50PM | NBA | Brooklyn vs Milwaukee | moneyline: Milwaukee | kalshi | $33k | -104 |  |  | +1.0c |  | pending |
 | Nov 24 8:15PM | NBA | Brooklyn vs Milwaukee | moneyline: Brooklyn | kalshi | $26k | +104 |  |  | +0.0c |  | pending |
 | Nov 24 8:00PM | NBA | Los Angeles C vs Memphis | moneyline: Memphis | kalshi | $39k | -213 |  |  | +1.0c |  | pending |
 | Nov 24 7:16PM | NHL | St. Louis vs New York I | moneyline: New York I | kalshi | $26k | -117 | ✅ novig |  | -1.0c |  | pending |
@@ -40,7 +40,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 24 5:35PM | NBA | Miami vs Philadelphia | moneyline: Philadelphia | kalshi | $60k | -108 |  |  | +1.0c |  | pending |
 | Nov 24 5:30PM | NFL | Green Bay vs Los Angeles R: Total Points | total: NOT Over 43.5 points | kalshi | $138k | +104 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 24 5:20PM | NBA | Miami vs Philadelphia | moneyline: Miami | kalshi | $106k | +104 |  |  | -1.0c | yes | pending |
-| Nov 24 4:55PM | NBA | Cleveland vs New York | moneyline: New York | kalshi | $29k | -144 |  |  | -1.0c |  | pending |
+| Nov 24 4:55PM | NBA | Cleveland vs New York | moneyline: New York | kalshi | $29k | -144 |  |  | +0.0c |  | pending |
 | Nov 24 4:30PM | NCAAF | Miami Ohio @ Western Michigan | spread: M-OH +4.5 (-4.5) | novig | $38k | +102 |  |  | +1.0c |  | pending |
 | Nov 24 4:20PM | NCAAF | Kent State @ Eastern Michigan | spread: EMU -6.5 (-6.5) | novig | $33k | -100 | ✅ kalshi |  | +1.5c |  | L |
 | Nov 24 3:20PM | NCAAF | Miami (OH) vs Western Michigan: Total Points | total: Over 45.5 points | kalshi | $117k | +104 | ✅ novig,prophetx |  | -2.0c |  | W |
@@ -60,7 +60,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 24 7:40AM | NBA | Detroit vs Orlando: Total Points | total: Over 212.5 points | kalshi | $45k | -100 |  | ❌ | -5.0c |  | L |
 | Nov 24 7:15AM | NBA | Dallas Mavericks @ Denver Nuggets | moneyline: DEN (0) | novig | $32k | -277 | ✅ kalshi,prophetx |  | -3.0c | yes | L |
 | Nov 24 7:15AM | NBA | Boston Celtics @ Washington Wizards | moneyline: BOS (0) | novig | $28k | -413 | ✅ kalshi,prophetx |  | -1.5c | yes | W |
-| Nov 24 7:15AM | NFL | Green Bay Packers @ Los Angeles Rams | moneyline: GB (0) | novig | $42k | +117 | ✅ kalshi,prophetx |  | -1.5c |  | pending |
+| Nov 24 7:15AM | NFL | Green Bay Packers @ Los Angeles Rams | moneyline: GB (0) | novig | $42k | +117 | ✅ kalshi,prophetx |  | -1.0c |  | pending |
 | Nov 24 3:16AM | NFL | Green Bay vs Los Angeles R: Spread | spread: NOT Los Angeles R wins by over 2.5 points | kalshi | $67k | -104 |  |  | -1.0c |  | pending |
 | Nov 24 1:00AM | NFL | Green Bay vs Los Angeles R | moneyline: Green Bay | kalshi | $172k | +117 | ✅ novig |  | -1.0c |  | pending |
 | Nov 23 11:35PM | NHL | Vegas vs Edmonton | moneyline: Vegas | kalshi | $32k | -108 | ✅ novig |  | +1.0c | yes | W |
