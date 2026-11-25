@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 24, 7:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 48.
+Updated Tue Nov 24, 7:30 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 47.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 462-274 (-16.98u flat) | rule met: 99-72
+**Record:** 463-274 (-16.66u flat) | rule met: 99-72
 
-**Fade (paper, betting against the print):** 249-427 (+8.92u flat, after fees)
+**Fade (paper, betting against the print):** 249-428 (+7.92u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -39,7 +39,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 24 10:00AM | NCAAB | Tarleton St. vs Weber St. | moneyline: Weber St. | kalshi | $66k | -104 | ✅ novig |  | +3.0c |  | pending |
 | Nov 24 10:00AM | NCAAB | Eastern Michigan vs Kennesaw St. | moneyline: Kennesaw St. | kalshi | $40k | -186 | ✅ novig |  | +1.0c |  | pending |
 | Nov 24 9:30AM | NCAAB | St. John's @ Oregon | moneyline: SJU (0) | novig | $52k | -471 |  |  | +2.5c |  | pending |
-| Nov 24 9:30AM | NCAAB | Drexel @ Pennsylvania | moneyline: PENN (0) | novig | $46k | -228 |  | ❌ | +0.5c |  | pending |
+| Nov 24 9:30AM | NCAAB | Drexel @ Pennsylvania | moneyline: PENN (0) | novig | $46k | -228 |  | ❌ | +1.0c |  | pending |
 | Nov 24 9:30AM | NCAAB | Bucknell @ Cornell | moneyline: COR (0) | novig | $47k | -525 |  |  | +2.0c |  | pending |
 | Nov 24 9:30AM | NCAAB | Duquesne @ High Point | moneyline: High Point (0) | novig | $35k | -456 | ✅ kalshi |  | +1.0c |  | pending |
 | Nov 24 9:30AM | NCAAB | Hampton @ Old Dominion | moneyline: ODU (0) | novig | $41k | -335 | ✅ kalshi |  | +0.0c |  | pending |
@@ -50,7 +50,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 24 9:30AM | NCAAB | Iowa State @ San Diego State | moneyline: ISU (0) | novig | $51k | -308 | ✅ kalshi |  | +6.0c |  | pending |
 | Nov 24 9:30AM | NCAAB | Oregon State @ San Francisco | moneyline: ORST (0) | novig | $41k | -388 |  | ❌ | -3.0c |  | L |
 | Nov 24 9:30AM | NCAAB | Southern Utah @ Florida International | moneyline: FIU (0) | novig | $57k | -344 | ✅ kalshi |  | -0.5c |  | W |
-| Nov 24 9:10AM | NCAAB | Providence vs Arizona | moneyline: Arizona | kalshi | $51k | -317 |  |  | +0.0c |  | pending |
+| Nov 24 9:10AM | NCAAB | Providence vs Arizona | moneyline: Arizona | kalshi | $51k | -317 |  |  | +0.0c |  | W |
 | Nov 24 9:00AM | NCAAB | Michigan vs Creighton | moneyline: Michigan | kalshi | $45k | -233 |  |  | -2.0c | yes | pending |
 | Nov 24 1:20AM | NCAAB | North Dakota vs Detroit Mercy | moneyline: North Dakota | kalshi | $28k | -170 |  |  | +1.0c |  | W |
 | Nov 24 12:30AM | NCAAB | Southern Utah vs Florida International | moneyline: Florida International | kalshi | $170k | -355 |  |  | -1.0c |  | W |
