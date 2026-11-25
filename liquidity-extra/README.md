@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 25, 3:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 27.
+Updated Wed Nov 25, 3:30 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 26.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 493-292 (-19.30u flat) | rule met: 114-79
+**Record:** 494-292 (-18.98u flat) | rule met: 115-79
 
-**Fade (paper, betting against the print):** 267-458 (+17.47u flat, after fees)
+**Fade (paper, betting against the print):** 267-459 (+16.47u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -21,7 +21,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 25 11:40AM | NCAAB | Northern Colorado vs Detroit Mercy | moneyline: Northern Colorado | kalshi | $36k | -213 | ✅ novig |  | +0.0c |  | W |
 | Nov 25 11:40AM | NCAAB | Arkansas St. vs Florida International | moneyline: Florida International | kalshi | $30k | -122 | ✅ novig |  | +0.0c |  | pending |
 | Nov 25 9:30AM | NCAAB | Texas A&M vs Xavier | moneyline: Texas A&M | kalshi | $28k | -186 |  |  | -3.0c | yes | pending |
-| Nov 25 8:40AM | NCAAB | Tulane vs Davidson | moneyline: Davidson | kalshi | $38k | -317 | ✅ novig |  | +4.0c |  | pending |
+| Nov 25 8:40AM | NCAAB | Tulane vs Davidson | moneyline: Davidson | kalshi | $38k | -317 | ✅ novig |  | +4.0c |  | W |
 | Nov 25 8:30AM | NCAAB | Portland St. vs UC Riverside | moneyline: UC Riverside | kalshi | $42k | -138 |  |  | +0.0c |  | pending |
 | Nov 25 8:30AM | NCAAB | Cal State Bakersfield vs Pepperdine | moneyline: Pepperdine | kalshi | $31k | -456 | ✅ novig |  | -1.0c |  | pending |
 | Nov 25 2:10AM | NCAAB | Eastern Washington vs Loyola Marymount | moneyline: Loyola Marymount | kalshi | $49k | -257 |  |  | +2.0c |  | pending |
