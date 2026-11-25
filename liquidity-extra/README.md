@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 25, 2:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 29.
+Updated Wed Nov 25, 2:30 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 29.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -19,7 +19,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 25 12:20PM | NCAAB | Northern Illinois vs SIU Edwardsville: Spread | spread: NOT Northern Illinois wins by over 4.5 points | kalshi | $41k | -127 |  |  | +0.0c |  | pending |
 | Nov 25 11:40AM | NCAAB | Northern Colorado vs Detroit Mercy | moneyline: Northern Colorado | kalshi | $36k | -213 | ✅ novig |  | +0.0c |  | pending |
 | Nov 25 11:40AM | NCAAB | Arkansas St. vs Florida International | moneyline: Florida International | kalshi | $30k | -122 | ✅ novig |  | +0.0c |  | pending |
-| Nov 25 9:30AM | NCAAB | Texas A&M vs Xavier | moneyline: Texas A&M | kalshi | $28k | -186 |  |  | -3.0c |  | pending |
+| Nov 25 9:30AM | NCAAB | Texas A&M vs Xavier | moneyline: Texas A&M | kalshi | $28k | -186 |  |  | -3.0c | yes | pending |
 | Nov 25 8:40AM | NCAAB | Tulane vs Davidson | moneyline: Davidson | kalshi | $38k | -317 | ✅ novig |  | +4.0c |  | pending |
 | Nov 25 8:30AM | NCAAB | Portland St. vs UC Riverside | moneyline: UC Riverside | kalshi | $42k | -138 |  |  | +0.0c |  | pending |
 | Nov 25 8:30AM | NCAAB | Cal State Bakersfield vs Pepperdine | moneyline: Pepperdine | kalshi | $31k | -456 | ✅ novig |  | -1.0c |  | pending |
