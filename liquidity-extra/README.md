@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 24, 10:50 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 15.
+Updated Tue Nov 24, 11:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 13.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 484-289 (-19.96u flat) | rule met: 112-79
+**Record:** 486-289 (-19.33u flat) | rule met: 112-79
 
-**Fade (paper, betting against the print):** 264-449 (+18.82u flat, after fees)
+**Fade (paper, betting against the print):** 264-451 (+16.82u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -43,8 +43,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 24 10:00AM | NCAAB | Tarleton St. vs Weber St. | moneyline: Weber St. | kalshi | $66k | -104 | ✅ novig |  | +3.0c |  | W |
 | Nov 24 10:00AM | NCAAB | Eastern Michigan vs Kennesaw St. | moneyline: Kennesaw St. | kalshi | $40k | -186 | ✅ novig |  | +1.0c |  | L |
 | Nov 24 9:30AM | NCAAB | St. John's @ Oregon | moneyline: SJU (0) | novig | $52k | -471 |  |  | +2.0c |  | pending |
-| Nov 24 9:30AM | NCAAB | Drexel @ Pennsylvania | moneyline: PENN (0) | novig | $46k | -228 |  | ❌ | +1.5c |  | pending |
-| Nov 24 9:30AM | NCAAB | Bucknell @ Cornell | moneyline: COR (0) | novig | $47k | -525 |  |  | +2.0c |  | pending |
+| Nov 24 9:30AM | NCAAB | Drexel @ Pennsylvania | moneyline: PENN (0) | novig | $46k | -228 |  | ❌ | +1.5c |  | W |
+| Nov 24 9:30AM | NCAAB | Bucknell @ Cornell | moneyline: COR (0) | novig | $47k | -525 |  |  | +2.0c |  | W |
 | Nov 24 9:30AM | NCAAB | Duquesne @ High Point | moneyline: High Point (0) | novig | $35k | -456 | ✅ kalshi |  | +1.0c |  | W |
 | Nov 24 9:30AM | NCAAB | Hampton @ Old Dominion | moneyline: ODU (0) | novig | $41k | -335 | ✅ kalshi |  | +0.0c |  | W |
 | Nov 24 9:30AM | NCAAB | Binghamton @ Lehigh | moneyline: LEH (0) | novig | $36k | -344 | ✅ kalshi |  | +1.5c |  | L |
