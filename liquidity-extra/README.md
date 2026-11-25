@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 25, 8:20 AM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 17.
+Updated Wed Nov 25, 8:30 AM ET. This run: 2 new, 0 not confirmed, 2 pending. Open alerts: 19.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 25 8:30AM | NCAAB | Portland St. vs UC Riverside | moneyline: UC Riverside | kalshi | $42k | -138 |  |  | +0.0c |  | pending |
+| Nov 25 8:30AM | NCAAB | Cal State Bakersfield vs Pepperdine | moneyline: Pepperdine | kalshi | $31k | -456 | ✅ novig |  | +0.0c |  | pending |
 | Nov 25 2:10AM | NCAAB | Eastern Washington vs Loyola Marymount | moneyline: Loyola Marymount | kalshi | $49k | -257 |  |  | +2.0c |  | pending |
 | Nov 25 1:30AM | NCAAB | Bethune-Cookman vs Richmond | moneyline: Richmond | kalshi | $31k | -567 |  |  | +1.0c |  | pending |
 | Nov 25 1:30AM | NCAAB | Bellarmine vs Northern Kentucky | moneyline: Northern Kentucky | kalshi | $26k | -257 |  |  | +0.0c |  | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 20 3:20AM | NCAAB | Delaware vs Cal State Northridge | moneyline: Cal State Northridge | kalshi | $134k | -245 |  |  | +3.0c |  | L |
 | Nov 20 1:20AM | NCAAB | Western Michigan vs Mount St. Mary's | moneyline: Western Michigan | kalshi | $26k | -335 |  |  | -2.0c |  | W |
 | Nov 20 1:20AM | NCAAB | Southeastern Louisiana vs Kennesaw St. | moneyline: Kennesaw St. | kalshi | $33k | -567 |  |  | +1.0c |  | W |
-| Nov 20 1:20AM | NCAAB | Bellarmine vs Eastern Kentucky | moneyline: Eastern Kentucky | kalshi | $25k | -317 |  |  | +1.0c |  | L |
-| Nov 20 1:20AM | NCAAB | Alabama St. vs Fresno St. | moneyline: Fresno St. | kalshi | $31k | -456 |  |  | +0.0c |  | W |
