@@ -1,6 +1,194 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-25T02:50:26Z",
+   "base_depth": 1415416,
+   "best_price": 0.505,
+   "best_price_american": -102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 4,
+   "date": "2026-11-25",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 21060,
+     "new_this_side": 105541,
+     "other_side": 1250691,
+     "other_side_all_levels": 1446176,
+     "ratio": 1.1,
+     "this_side": 1329434,
+     "this_side_all_levels": 1526431
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "LAR -2.5 (-2.5)",
+     "price": 0.505,
+     "this_side": 62450
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 121813.87,
+    "volume_24h_fp": 112302.38,
+    "volume_fp": 132216.72
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 59.04,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 59.04
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 121754.83,
+    "volume_24h_fp": 112302.38,
+    "volume_fp": 132157.68
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-25T02:45:57Z",
+   "game": "Green Bay vs Los Angeles R: Spread",
+   "game_surge_books": [],
+   "game_x": 1.1,
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNFLSPREAD-26NOV25GBLAR-LAR3\"}",
+   "lead_min": 1330,
+   "league": "NFL",
+   "line": -2.5,
+   "market": "spread",
+   "new_money": 105541,
+   "new_x": 0.08,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 121813.87,
+      "volume_24h_fp": 112302.38,
+      "volume_fp": 132216.72
+     },
+     "game_normal": 1390684,
+     "game_x": 1.1,
+     "normal": 1244651,
+     "now": 1526431,
+     "type": "SPREAD",
+     "x": 1.23
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 13682316.0,
+      "volume": 21647564.0
+     },
+     "game_normal": 70037,
+     "game_x": 0.9,
+     "normal": 72778,
+     "now": 62899,
+     "type": "SPREAD",
+     "x": 0.86
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -2.5,
+     "price": -108
+    },
+    "betonlineag": {
+     "point": -1.5,
+     "price": -122
+    },
+    "betopenly": {
+     "point": -2.5,
+     "price": 101
+    },
+    "betrivers": {
+     "point": -2.5,
+     "price": -112
+    },
+    "betus": {
+     "point": -2.0,
+     "price": -115
+    },
+    "circasports": {
+     "point": -2.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": -2.5,
+     "price": -109
+    },
+    "fanatics": {
+     "point": -2.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": -2.5,
+     "price": -112
+    },
+    "kalshi": {
+     "point": -2.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": -2.5,
+     "price": -107
+    },
+    "mybookieag": {
+     "point": -2.0,
+     "price": -110
+    },
+    "novig": {
+     "point": -2.5,
+     "price": -102
+    },
+    "polymarket": {
+     "point": -2.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": -2.5,
+     "price": -105
+    },
+    "williamhill_us": {
+     "point": -2.5,
+     "price": -109
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNFLSPREAD-26NOV25GBLAR-LAR3"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Los Angeles R",
+   "side_label": "Los Angeles R wins by over 2.5 points",
+   "size_x": 1.23,
+   "start_source": "odds",
+   "start_utc": "2026-11-26T01:00:00Z",
+   "surge_books": [],
+   "teams": [
+    "Green Bay",
+    "Los Angeles R"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-25T01:50:20Z",
    "base_depth": 119837,
    "best_price": 0.51,
@@ -304,9 +492,9 @@
     "volume_fp": 75.15
    },
    "ex_stats_close": {
-    "open_interest_fp": 15341.99,
+    "open_interest_fp": 15346.17,
     "volume_24h_fp": 15593.61,
-    "volume_fp": 17798.8
+    "volume_fp": 17802.98
    },
    "ex_stats_first": {
     "open_interest_fp": 12151.0,
@@ -435,9 +623,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3239.25,
+    "open_interest_fp": 3248.2200000000003,
     "volume_24h_fp": 2699.56,
-    "volume_fp": 3670.15
+    "volume_fp": 3679.12
    },
    "ex_stats_first": {
     "open_interest_fp": 2056.8199999999997,
@@ -1477,9 +1665,9 @@
     "volume_fp": 521.07
    },
    "ex_stats_close": {
-    "open_interest_fp": 181194.33,
+    "open_interest_fp": 185761.02,
     "volume_24h_fp": 192460.26,
-    "volume_fp": 194842.43
+    "volume_fp": 199573.12
    },
    "ex_stats_first": {
     "open_interest_fp": 46381.3,
@@ -1844,7 +2032,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Kent St.",
@@ -1907,9 +2095,9 @@
     "volume_fp": 111.72
    },
    "ex_stats_close": {
-    "open_interest_fp": 21589.39,
+    "open_interest_fp": 21755.48,
     "volume_24h_fp": 23299.36,
-    "volume_fp": 24120.71
+    "volume_fp": 24286.8
    },
    "ex_stats_first": {
     "open_interest_fp": 15272.16,
@@ -2265,9 +2453,9 @@
     "volume_fp": 91.62
    },
    "ex_stats_close": {
-    "open_interest_fp": 100186.92,
+    "open_interest_fp": 100477.02,
     "volume_24h_fp": 115606.92,
-    "volume_fp": 133020.15
+    "volume_fp": 133352.02
    },
    "ex_stats_first": {
     "open_interest_fp": 70385.02,
@@ -2428,8 +2616,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": 0.0,
+   "close_price": 0.5,
+   "clv_cents": 1.0,
    "confirmed_after_min": 4,
    "date": "2026-11-25",
    "depth_by_book": {
@@ -2460,9 +2648,9 @@
     "volume_fp": 38.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 8139.76,
+    "open_interest_fp": 8153.76,
     "volume_24h_fp": 8426.53,
-    "volume_fp": 9333.4
+    "volume_fp": 9347.4
    },
    "ex_stats_first": {
     "open_interest_fp": 5735.68,
@@ -2624,8 +2812,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 1.0,
+   "close_price": 0.49,
+   "clv_cents": 0.0,
    "confirmed_after_min": 5,
    "date": "2026-11-25",
    "depth_by_book": {
@@ -2662,9 +2850,9 @@
     "volume_fp": 930.74
    },
    "ex_stats_close": {
-    "open_interest_fp": 100186.92,
+    "open_interest_fp": 100477.02,
     "volume_24h_fp": 115606.92,
-    "volume_fp": 133020.15
+    "volume_fp": 133352.02
    },
    "ex_stats_first": {
     "open_interest_fp": 69055.04,
@@ -2862,9 +3050,9 @@
     "volume_fp": 148.13
    },
    "ex_stats_close": {
-    "open_interest_fp": 35485.95,
+    "open_interest_fp": 35642.18,
     "volume_24h_fp": 32084.440000000002,
-    "volume_fp": 41729.880000000005
+    "volume_fp": 41899.11
    },
    "ex_stats_first": {
     "open_interest_fp": 22100.64,
@@ -3101,7 +3289,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "M-OH +4.5 (-4.5)",
@@ -3318,7 +3506,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Eastern Michigan",
@@ -3537,7 +3725,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -3753,7 +3941,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Eastern Michigan",
@@ -4018,9 +4206,9 @@
     "volume_fp": 3502.41
    },
    "ex_stats_close": {
-    "open_interest_fp": 1222456.1800000002,
+    "open_interest_fp": 1224097.67,
     "volume_24h_fp": 739638.3,
-    "volume_fp": 1408354.2400000002
+    "volume_fp": 1410290.77
    },
    "ex_stats_first": {
     "open_interest_fp": 929682.5599999999,
@@ -4569,7 +4757,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Miami (OH)",
@@ -4869,9 +5057,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 26242.53,
+    "open_interest_fp": 26647.159999999996,
     "volume_24h_fp": 27497.21,
-    "volume_fp": 28362.18
+    "volume_fp": 29187.49
    },
    "ex_stats_first": {
     "open_interest_fp": 7432.040000000001,
@@ -5201,7 +5389,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Eastern Michigan",
@@ -5262,8 +5450,8 @@
     "volume": 4463.0
    },
    "ex_stats_close": {
-    "openInterest": 13681722.0,
-    "volume": 21637370.0
+    "openInterest": 13682316.0,
+    "volume": 21647564.0
    },
    "ex_stats_first": {
     "openInterest": 9016912.0,
@@ -5585,7 +5773,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Miami (OH)",
@@ -5797,7 +5985,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Western Michigan",
@@ -5870,9 +6058,9 @@
     "volume_fp": 47.39
    },
    "ex_stats_close": {
-    "open_interest_fp": 81065.06,
+    "open_interest_fp": 85598.44,
     "volume_24h_fp": 92583.48,
-    "volume_fp": 104475.11
+    "volume_fp": 109008.49
    },
    "ex_stats_first": {
     "open_interest_fp": 11291.33,
@@ -6520,8 +6708,8 @@
     "volume": 37823.0
    },
    "ex_stats_close": {
-    "openInterest": 24641770.0,
-    "volume": 35152266.0
+    "openInterest": 25390569.0,
+    "volume": 35901065.0
    },
    "ex_stats_first": {
     "openInterest": 1438511.0,
@@ -6970,8 +7158,8 @@
     "volume": 2173.0
    },
    "ex_stats_close": {
-    "openInterest": 38320805.0,
-    "volume": 51031708.0
+    "openInterest": 38393571.0,
+    "volume": 51126088.0
    },
    "ex_stats_first": {
     "openInterest": 20286036.0,
@@ -7182,9 +7370,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 121754.83,
+    "open_interest_fp": 121813.87,
     "volume_24h_fp": 112302.38,
-    "volume_fp": 132157.68
+    "volume_fp": 132216.72
    },
    "ex_stats_first": {
     "open_interest_fp": 57285.02,
@@ -7382,9 +7570,9 @@
     "volume_fp": 2528.84
    },
    "ex_stats_close": {
-    "open_interest_fp": 1222456.1800000002,
+    "open_interest_fp": 1224097.67,
     "volume_24h_fp": 739638.3,
-    "volume_fp": 1408354.2400000002
+    "volume_fp": 1410290.77
    },
    "ex_stats_first": {
     "open_interest_fp": 713645.59,
@@ -8043,9 +8231,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1486988.26,
+    "open_interest_fp": 1558843.31,
     "volume_24h_fp": 1455591.33,
-    "volume_fp": 1537591.3
+    "volume_fp": 1613544.6099999999
    },
    "ex_stats_first": {
     "open_interest_fp": 19536.510000000002,
@@ -9490,7 +9678,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -16283,7 +16471,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Western Michigan",
@@ -16496,7 +16684,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Eastern Michigan",
