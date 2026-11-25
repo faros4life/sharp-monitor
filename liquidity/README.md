@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 24, 10:15 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 42.
+Updated Tue Nov 24, 10:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 41.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1942-1514 (-40.89u flat) | rule met: 1152-909
+**Record:** 1943-1514 (-40.42u flat) | rule met: 1153-909
 
-**Fade (paper, betting against the print):** 1248-1669 (-194.50u flat, after fees)
+**Fade (paper, betting against the print):** 1248-1670 (-195.50u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -91,7 +91,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 23 11:10AM | NHL | Los Angeles vs Montreal: Spread | spread: NOT Montreal wins by over 1.5 goals | kalshi | $97k | -186 | ✅ novig |  | -1.0c | yes | W |
 | Nov 23 11:10AM | NHL | Los Angeles vs Montreal | moneyline: Los Angeles | kalshi | $159k | +144 | ✅ prophetx |  | +1.0c | yes | W |
 | Nov 23 11:10AM | NCAAF | Miami (OH) vs Western Michigan | moneyline: Western Michigan | kalshi | $112k | -245 | ✅ novig |  | -4.0c |  | pending |
-| Nov 23 11:00AM | NCAAF | Kent St. vs Eastern Michigan | moneyline: Eastern Michigan | kalshi | $31k | -213 | ✅ novig |  | +1.0c |  | pending |
+| Nov 23 11:00AM | NCAAF | Kent St. vs Eastern Michigan | moneyline: Eastern Michigan | kalshi | $31k | -213 | ✅ novig |  | +1.0c |  | W |
 | Nov 23 10:30AM | NHL | Calgary vs Ottawa: Spread | spread: Ottawa wins by over 1.5 goals | kalshi | $35k | +117 | ✅ novig |  | +3.0c | yes | L |
 | Nov 23 10:06AM | NHL | Toronto vs New York I: Spread | spread: NOT New York I wins by over 1.5 goals | kalshi | $47k | -178 | ✅ novig |  | -1.0c | yes | W |
 | Nov 23 10:06AM | NHL | Utah vs Winnipeg | moneyline: Winnipeg | kalshi | $121k | -100 | ✅ prophetx |  | +1.0c | yes | W |
