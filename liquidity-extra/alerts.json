@@ -1,6 +1,176 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-25T00:10:22Z",
+   "base_depth": 122575,
+   "best_price": 0.5673,
+   "best_price_american": -131,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.55,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 7213,
+     "new_this_side": 34414,
+     "other_side": 40395,
+     "other_side_all_levels": 141691,
+     "ratio": 0.3,
+     "this_side": 11643,
+     "this_side_all_levels": 155750
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 59371.44,
+    "volume_24h_fp": 67007.07,
+    "volume_fp": 67007.07
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 12460.23,
+    "volume_24h_fp": 12460.23,
+    "volume_fp": 12460.23
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 46911.21,
+    "volume_24h_fp": 54546.84,
+    "volume_fp": 54546.84
+   },
+   "fade_price": 0.46,
+   "first_seen_utc": "2026-11-25T00:00:25Z",
+   "game": "Oral Roberts vs UT Arlington: Spread",
+   "game_surge_books": [],
+   "game_x": 1.29,
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAMBSPREAD-26NOV24ORUUTA-UTA5\"}",
+   "lead_min": 50,
+   "league": "NCAAB",
+   "line": -4.5,
+   "market": "spread",
+   "new_money": 34414,
+   "new_x": 0.44,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 59371.44,
+      "volume_24h_fp": 67007.07,
+      "volume_fp": 67007.07
+     },
+     "game_normal": 120761,
+     "game_x": 1.29,
+     "normal": 78192,
+     "now": 155750,
+     "type": "SPREAD",
+     "x": 1.99
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.55,
+   "price_american": -122,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.55,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -4.5,
+     "price": -118
+    },
+    "betonlineag": {
+     "point": -5.0,
+     "price": -115
+    },
+    "betopenly": {
+     "point": -5.0,
+     "price": 104
+    },
+    "betrivers": {
+     "point": -4.5,
+     "price": -120
+    },
+    "betus": {
+     "point": -5.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": -5.0,
+     "price": -105
+    },
+    "circasports": {
+     "point": -5.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": -4.5,
+     "price": -118
+    },
+    "fanatics": {
+     "point": -5.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": -4.5,
+     "price": -120
+    },
+    "kalshi": {
+     "point": -4.5,
+     "price": -122
+    },
+    "lowvig": {
+     "point": -5.0,
+     "price": -111
+    },
+    "novig": {
+     "point": -5.5,
+     "price": 106
+    },
+    "polymarket": {
+     "point": -4.5,
+     "price": -113
+    },
+    "prophetx": {
+     "point": -4.5,
+     "price": -116
+    },
+    "williamhill_us": {
+     "point": -5.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBSPREAD-26NOV24ORUUTA-UTA5"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [
+    "UT-Arlington Mavericks -4.5 (-110)"
+   ],
+   "sharp_oppose": [],
+   "side": "UT Arlington",
+   "side_label": "UT Arlington wins by over 4.5 points",
+   "size_x": 1.99,
+   "start_source": "odds",
+   "start_utc": "2026-11-25T01:00:00Z",
+   "surge_books": [],
+   "teams": [
+    "Oral Roberts",
+    "UT Arlington"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-24T23:40:21Z",
    "base_depth": 129383,
    "best_price": 0.4874,
@@ -40,9 +210,9 @@
     "volume_fp": 74.11
    },
    "ex_stats_close": {
-    "open_interest_fp": 7776.64,
-    "volume_24h_fp": 8641.97,
-    "volume_fp": 8641.97
+    "open_interest_fp": 7930.5,
+    "volume_24h_fp": 8911.4,
+    "volume_fp": 8911.4
    },
    "ex_stats_first": {
     "open_interest_fp": 7704.86,
@@ -424,9 +594,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 370.94,
-    "volume_24h_fp": 482.34,
-    "volume_fp": 497.65
+    "open_interest_fp": 373.94,
+    "volume_24h_fp": 485.34,
+    "volume_fp": 500.65
    },
    "ex_stats_first": {
     "open_interest_fp": 256.79999999999995,
@@ -1121,9 +1291,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1216.11,
-    "volume_24h_fp": 1211.43,
-    "volume_fp": 1216.11
+    "open_interest_fp": 1226.11,
+    "volume_24h_fp": 1226.11,
+    "volume_fp": 1226.11
    },
    "ex_stats_first": {
     "open_interest_fp": 878.1500000000001,
@@ -1537,9 +1707,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 990.8900000000001,
-    "volume_24h_fp": 990.8900000000001,
-    "volume_fp": 990.8900000000001
+    "open_interest_fp": 992.3299999999999,
+    "volume_24h_fp": 992.3299999999999,
+    "volume_fp": 992.3299999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 345.58,
@@ -5450,8 +5620,8 @@
     "volume": 410621.0
    },
    "ex_stats_close": {
-    "openInterest": 2940247.0,
-    "volume": 3528370.0
+    "openInterest": 3066072.0,
+    "volume": 3655759.0
    },
    "ex_stats_first": {
     "openInterest": 787098.0,
@@ -5566,8 +5736,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 814398.0,
-    "volume": 1145117.0
+    "openInterest": 849598.0,
+    "volume": 1180317.0
    },
    "ex_stats_first": {
     "openInterest": 429011.0,
@@ -5945,8 +6115,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 853787.0,
-    "volume": 890593.0
+    "openInterest": 854918.0,
+    "volume": 891724.0
    },
    "ex_stats_first": {
     "openInterest": 95786.0,
@@ -7821,7 +7991,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Arizona",
@@ -9230,9 +9400,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 4634.65,
-    "volume_24h_fp": 4380.26,
-    "volume_fp": 4648.45
+    "open_interest_fp": 5821.77,
+    "volume_24h_fp": 5709.12,
+    "volume_fp": 5902.29
    },
    "ex_stats_first": {
     "open_interest_fp": 221.52,
@@ -13739,8 +13909,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.81,
-   "clv_cents": -1.0,
+   "close_price": 0.85,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-11-24",
    "depth_by_book": {
@@ -13765,9 +13935,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1936.98,
-    "volume_24h_fp": 1587.1599999999999,
-    "volume_fp": 1944.98
+    "open_interest_fp": 25405.760000000002,
+    "volume_24h_fp": 29224.260000000002,
+    "volume_fp": 32123.18
    },
    "ex_stats_first": {
     "open_interest_fp": 1198.79,
@@ -13998,7 +14168,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Iowa St.",
