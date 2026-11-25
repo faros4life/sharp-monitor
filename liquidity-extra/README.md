@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 25, 5:00 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 24.
+Updated Wed Nov 25, 5:10 PM ET. This run: 0 new, 1 not confirmed, 2 pending. Open alerts: 24.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 25 4:50PM | NCAAB | Memphis vs Penn St. | moneyline: Memphis | kalshi | $43k | -163 | ✅ novig |  | +0.0c | yes | pending |
+| Nov 25 4:50PM | NCAAB | Memphis vs Penn St. | moneyline: Memphis | kalshi | $43k | -163 | ✅ novig |  | +1.0c | yes | pending |
 | Nov 25 4:20PM | NCAAB | USC @ South Carolina | moneyline: USC (0) | novig | $55k | -488 | ✅ kalshi,prophetx |  | +0.0c | yes | pending |
 | Nov 25 3:40PM | NCAAB | Clemson vs Colorado St. | moneyline: Clemson | kalshi | $43k | -156 | ✅ novig | ✅ | +0.0c |  | pending |
 | Nov 25 3:00PM | NCAAB | Wake Forest vs Mississippi St. | moneyline: Mississippi St. | kalshi | $33k | -163 |  |  | +0.0c |  | pending |
