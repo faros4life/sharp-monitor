@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 25, 3:40 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 70.
+Updated Wed Nov 25, 3:45 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 70.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -11,7 +11,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 25 3:40PM | NHL | Utah vs Minnesota | moneyline: Utah | kalshi | $112k | +127 | ✅ novig,prophetx |  | +0.0c |  | pending |
-| Nov 25 3:35PM | NBA | Miami vs Philadelphia: Spread | spread: NOT Miami wins by over 1.5 points | kalshi | $76k | -100 | ✅ novig | ✅ | +0.0c |  | pending |
+| Nov 25 3:35PM | NBA | Miami vs Philadelphia: Spread | spread: NOT Miami wins by over 1.5 points | kalshi | $76k | -100 | ✅ novig | ✅ | +1.0c |  | pending |
 | Nov 25 3:20PM | NBA | Minnesota vs Oklahoma City: Spread | spread: Oklahoma City wins by over 1.5 points | kalshi | $48k | -108 | ✅ novig |  | +0.0c |  | pending |
 | Nov 25 2:25PM | NFL | Green Bay Packers @ Los Angeles Rams | moneyline: LAR (0) | novig | $56k | -130 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Nov 25 2:10PM | NHL | Calgary vs Pittsburgh: Total Goals | total: Over 6.5 goals scored | kalshi | $26k | +117 | ✅ novig |  | +0.0c | yes | pending |
@@ -43,7 +43,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 25 8:55AM | NHL | St. Louis vs New York I: Spread | spread: NOT New York I wins by over 1.5 goals | kalshi | $36k | -233 | ✅ novig |  | -2.0c |  | pending |
 | Nov 25 8:55AM | NHL | New York R vs Buffalo: Spread | spread: NOT Buffalo wins by over 1.5 goals | kalshi | $54k | -203 | ✅ novig |  | +0.0c |  | pending |
 | Nov 25 8:30AM | NFL | Kansas City vs Buffalo | moneyline: Buffalo | kalshi | $137k | -144 | ✅ novig |  | +0.0c |  | pending |
-| Nov 25 8:25AM | NBA | Sacramento vs Golden State: Spread | spread: Golden State wins by over 6.5 points | kalshi | $79k | -104 |  |  | +2.0c |  | pending |
+| Nov 25 8:25AM | NBA | Sacramento vs Golden State: Spread | spread: Golden State wins by over 6.5 points | kalshi | $79k | -104 |  |  | +6.0c |  | pending |
 | Nov 25 7:40AM | NHL | New Jersey vs Columbus: Spread | spread: NOT New Jersey wins by over 1.5 goals | kalshi | $51k | -186 | ✅ novig |  | +1.0c | yes | pending |
 | Nov 25 7:35AM | NHL | Utah vs Minnesota: Spread | spread: NOT Minnesota wins by over 1.5 goals | kalshi | $29k | -194 |  |  | -1.0c | yes | pending |
 | Nov 25 7:35AM | NHL | San Jose vs Anaheim: Spread | spread: NOT Anaheim wins by over 1.5 goals | kalshi | $29k | -186 |  |  | +2.0c | yes | pending |
@@ -57,7 +57,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 25 2:35AM | NBA | Cleveland vs New York | moneyline: Cleveland | kalshi | $49k | +138 |  |  | +4.0c | yes | pending |
 | Nov 25 1:30AM | NFL | Philadelphia vs Dallas | moneyline: Dallas | kalshi | $173k | -400 | ✅ novig,prophetx |  | +0.0c | yes | pending |
 | Nov 24 11:45PM | NBA | Minnesota vs Oklahoma City | moneyline: Oklahoma City | kalshi | $294k | -117 |  |  | +1.0c | yes | pending |
-| Nov 24 10:30PM | NBA | Sacramento vs Golden State | moneyline: Golden State | kalshi | $50k | -213 |  |  | +3.0c | yes | pending |
+| Nov 24 10:30PM | NBA | Sacramento vs Golden State | moneyline: Golden State | kalshi | $50k | -213 |  |  | +5.0c | yes | pending |
 | Nov 24 9:50PM | NFL | Green Bay vs Los Angeles R: Spread | spread: Los Angeles R wins by over 2.5 points | kalshi | $106k | -104 | ✅ novig |  | +1.0c | yes | pending |
 | Nov 24 8:50PM | NBA | Brooklyn vs Milwaukee | moneyline: Milwaukee | kalshi | $33k | -104 |  |  | +2.0c |  | pending |
 | Nov 24 8:15PM | NBA | Brooklyn vs Milwaukee | moneyline: Brooklyn | kalshi | $26k | +104 |  |  | -1.0c | yes | pending |
