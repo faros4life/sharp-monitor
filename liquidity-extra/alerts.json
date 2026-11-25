@@ -1,6 +1,192 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-25T20:00:26Z",
+   "base_depth": 253712,
+   "best_price": 0.6316,
+   "best_price_american": -171,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.62,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-25",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 6483,
+     "new_this_side": 32930,
+     "other_side": 43999,
+     "other_side_all_levels": 162700,
+     "ratio": 2.4,
+     "this_side": 106731,
+     "this_side_all_levels": 325398
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Mississippi State",
+     "price": 0.6269,
+     "this_side": 4074
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 27142.71,
+    "volume_24h_fp": 27287.41,
+    "volume_fp": 27452.149999999998
+   },
+   "ex_stats_change": {
+    "open_interest_fp": -144.9,
+    "volume_24h_fp": 17.0,
+    "volume_fp": 164.54
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 27287.61,
+    "volume_24h_fp": 27270.41,
+    "volume_fp": 27287.61
+   },
+   "fade_price": 0.38,
+   "first_seen_utc": "2026-11-25T19:50:23Z",
+   "game": "Wake Forest vs Mississippi St.",
+   "game_surge_books": [],
+   "game_x": 1.21,
+   "key": "kalshi|KXNCAAMBGAME-26NOV25WAKEMSST|ml|1",
+   "lead_min": 375,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 32930,
+   "new_x": 0.31,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 27142.71,
+      "volume_24h_fp": 27287.41,
+      "volume_fp": 27452.149999999998
+     },
+     "game_normal": 268845,
+     "game_x": 1.21,
+     "normal": 106007,
+     "now": 325398,
+     "type": "ML",
+     "x": 3.07
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 3745,
+     "game_x": 1.26,
+     "normal": 1844,
+     "now": 4724,
+     "type": "ML",
+     "x": 2.56
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.62,
+   "price_american": -163,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.62,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -175
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -177
+    },
+    "betopenly": {
+     "point": null,
+     "price": -165
+    },
+    "betrivers": {
+     "point": null,
+     "price": -175
+    },
+    "betus": {
+     "point": null,
+     "price": -175
+    },
+    "bovada": {
+     "point": null,
+     "price": -175
+    },
+    "circasports": {
+     "point": null,
+     "price": -170
+    },
+    "draftkings": {
+     "point": null,
+     "price": -175
+    },
+    "fanatics": {
+     "point": null,
+     "price": -180
+    },
+    "fanduel": {
+     "point": null,
+     "price": -166
+    },
+    "kalshi": {
+     "point": null,
+     "price": -170
+    },
+    "lowvig": {
+     "point": null,
+     "price": -177
+    },
+    "novig": {
+     "point": null,
+     "price": -167
+    },
+    "polymarket": {
+     "point": null,
+     "price": -163
+    },
+    "prophetx": {
+     "point": null,
+     "price": -168
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -175
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV25WAKEMSST-MSST"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Mississippi St.",
+   "side_label": "Mississippi St.",
+   "size_x": 3.07,
+   "start_source": "odds",
+   "start_utc": "2026-11-26T02:15:00Z",
+   "surge_books": [
+    "kalshi",
+    "prophetx"
+   ],
+   "teams": [
+    "Wake Forest",
+    "Mississippi St."
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-25T19:10:19Z",
    "base_depth": 48683,
    "best_price": 0.5399,
@@ -14,6 +200,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.53,
    "clv_cents": 0.0,
    "confirmed_after_min": 10,
@@ -231,9 +418,9 @@
     "volume_fp": 168.03
    },
    "ex_stats_close": {
-    "open_interest_fp": 23986.87,
-    "volume_24h_fp": 21444.309999999998,
-    "volume_fp": 25092.8
+    "open_interest_fp": 24334.489999999998,
+    "volume_24h_fp": 21796.95,
+    "volume_fp": 25446.3
    },
    "ex_stats_first": {
     "open_interest_fp": 17625.260000000002,
@@ -435,9 +622,9 @@
     "volume_fp": 833.62
    },
    "ex_stats_close": {
-    "open_interest_fp": 110995.02,
-    "volume_24h_fp": 104409.99,
-    "volume_fp": 117709.97
+    "open_interest_fp": 111587.24,
+    "volume_24h_fp": 106094.37,
+    "volume_fp": 118302.19
    },
    "ex_stats_first": {
     "open_interest_fp": 83835.8,
@@ -613,9 +800,9 @@
     "volume_fp": 206.48
    },
    "ex_stats_close": {
-    "open_interest_fp": 35997.3,
-    "volume_24h_fp": 37788.57,
-    "volume_fp": 37843.28
+    "open_interest_fp": 36295.8,
+    "volume_24h_fp": 37825.28,
+    "volume_fp": 38248.48
    },
    "ex_stats_first": {
     "open_interest_fp": 19206.91,
@@ -803,9 +990,9 @@
     "volume_fp": 631.28
    },
    "ex_stats_close": {
-    "open_interest_fp": 7273.5,
-    "volume_24h_fp": 7786.21,
-    "volume_fp": 7799.18
+    "open_interest_fp": 7286.51,
+    "volume_24h_fp": 7799.18,
+    "volume_fp": 7812.1900000000005
    },
    "ex_stats_first": {
     "open_interest_fp": 6409.379999999999,
@@ -1179,7 +1366,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 8328.27,
-    "volume_24h_fp": 8303.51,
+    "volume_24h_fp": 8328.51,
     "volume_fp": 8328.51
    },
    "ex_stats_first": {
@@ -1579,9 +1766,9 @@
     "volume_fp": 10.57
    },
    "ex_stats_close": {
-    "open_interest_fp": 5486.99,
-    "volume_24h_fp": 4996.18,
-    "volume_fp": 5511.7
+    "open_interest_fp": 8273.039999999999,
+    "volume_24h_fp": 5500.35,
+    "volume_fp": 8297.75
    },
    "ex_stats_first": {
     "open_interest_fp": 2409.62,
@@ -2217,7 +2404,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 5023.11,
-    "volume_24h_fp": 5049.66,
+    "volume_24h_fp": 5051.55,
     "volume_fp": 5051.55
    },
    "ex_stats_first": {
@@ -2410,8 +2597,8 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 3660.71,
-    "volume_24h_fp": 3719.27,
-    "volume_fp": 4347.76
+    "volume_24h_fp": 3812.16,
+    "volume_fp": 4440.65
    },
    "ex_stats_first": {
     "open_interest_fp": 2130.09,
@@ -2785,8 +2972,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.86,
-   "clv_cents": 1.0,
+   "close_price": 0.87,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-25",
    "depth_by_book": {
@@ -2817,9 +3004,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1188.05,
-    "volume_24h_fp": 1125.5900000000001,
-    "volume_fp": 1188.05
+    "open_interest_fp": 1390.8,
+    "volume_24h_fp": 1157.05,
+    "volume_fp": 1439.05
    },
    "ex_stats_first": {
     "open_interest_fp": 419.14,
@@ -4274,7 +4461,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Virginia",
@@ -4617,6 +4804,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Stony Brook",
