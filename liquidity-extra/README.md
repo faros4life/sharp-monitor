@@ -1,23 +1,23 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 25, 12:50 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 11.
+Updated Wed Nov 25, 1:00 AM ET. This run: 0 new, 0 not confirmed, 3 pending. Open alerts: 9.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 487-290 (-19.86u flat) | rule met: 113-79
+**Record:** 489-290 (-18.45u flat) | rule met: 113-79
 
-**Fade (paper, betting against the print):** 265-452 (+16.83u flat, after fees)
+**Fade (paper, betting against the print):** 265-454 (+14.83u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 24 10:10PM | NCAAB | Lindenwood vs Stony Brook | moneyline: Stony Brook | kalshi | $41k | -488 |  |  | +0.0c |  | pending |
 | Nov 24 8:50PM | NCAAB | Baylor vs Alabama: Spread | spread: Alabama wins by over 1.5 points | kalshi | $49k | -113 |  |  | +0.0c | yes | L |
-| Nov 24 8:30PM | NCAAB | Green Bay vs Kansas City | moneyline: Green Bay | kalshi | $31k | +108 |  |  | +26.0c | yes | pending |
+| Nov 24 8:30PM | NCAAB | Green Bay vs Kansas City | moneyline: Green Bay | kalshi | $31k | +108 |  |  | +26.0c | yes | W |
 | Nov 24 8:10PM | NCAAB | Sam Houston vs Washington St. | moneyline: Washington St. | kalshi | $62k | -203 | ✅ novig,prophetx | ✅ | +2.0c |  | W |
 | Nov 24 7:10PM | NCAAB | Oral Roberts vs UT Arlington: Spread | spread: UT Arlington wins by over 4.5 points | kalshi | $34k | -122 |  | ✅ | -2.0c |  | L |
 | Nov 24 6:40PM | NCAAB | Purdue Fort Wayne vs Southeast Missouri St.: Spread | spread: NOT Southeast Missouri St. wins by over 2.5 points | kalshi | $27k | +113 |  |  | +0.0c |  | W |
 | Nov 24 6:00PM | NCAAB | Boston University @ Harvard | moneyline: HARV (0) | novig | $26k | -223 | ✅ kalshi | ✅ | +0.0c | yes | L |
-| Nov 24 6:00PM | NCAAB | Drexel vs Penn | moneyline: Penn | kalshi | $36k | -233 |  |  | +25.0c | yes | pending |
+| Nov 24 6:00PM | NCAAB | Drexel vs Penn | moneyline: Penn | kalshi | $36k | -233 |  |  | +25.0c | yes | W |
 | Nov 24 6:00PM | NCAAB | Campbell vs Coastal Carolina | moneyline: Coastal Carolina | kalshi | $33k | -108 | ✅ novig | ❌ | +0.0c |  | L |
 | Nov 24 5:20PM | NCAAB | Michigan vs Creighton: Spread | spread: NOT Michigan wins by over 5.5 points | kalshi | $30k | -100 |  |  | -1.0c | yes | W |
 | Nov 24 5:20PM | NCAAB | Queens University vs Wofford | moneyline: Queens University | kalshi | $53k | -104 |  | ✅ | +0.0c |  | L |
