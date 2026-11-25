@@ -111,6 +111,9 @@ jobs:
           LINE_VALUE_PIN_READ: ${{ github.event.inputs.pin_read }}  # Nov 12: manual dispatch only; empty on schedule
           LINE_VALUE_MODE: ${{ vars.LINE_VALUE_MODE }}              # Nov 12: 'live' activates the replacement; unset/'shadow' = legacy decides
           ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}               # Nov 4: Lane 2 reads Pinnacle's LIMIT at decision time (dry run only)
+          # EXEC_UNIT is deliberately a literal, not a repo variable: Lane 1's unit is Peter's
+          # standing rule ("If + money we bet 300"), not a knob. The literal MUST equal the code
+          # default or the same unit means two things depending on how the job is started.
           EXEC_UNIT: "300"
           # LIVE phase 1 (Oct 26): real ProphetX orders only when the repo VARIABLE EXEC_LIVE is "on"
           EXEC_LIVE: ${{ vars.EXEC_LIVE }}
@@ -151,8 +154,21 @@ jobs:
           EXEC_R1_LIVE: ${{ vars.EXEC_R1_LIVE || 'off' }}
           EXEC_R1_DAILY_RISK: ${{ vars.EXEC_R1_DAILY_RISK || '2000' }}
           # Nov 23 (Peter): DOGS pilot lane (liquidity underdogs). Places money only when this repo VARIABLE is "on"
-          # (and EXEC_LIVE is on). Own $100 unit, own cap and daily risk limit. Ships OFF.
+          # (and EXEC_LIVE is on). Own $300 unit (Peter, 25 Nov; was the $100 pilot), own cap and daily risk limit.
           EXEC_DOGS_LIVE: ${{ vars.EXEC_DOGS_LIVE || 'off' }}
+          # Nov 25: EXEC_DOGS_DAILY_RISK and EXEC_NCS_DAILY_RISK were NOT passed here, so both ran on
+          # their code default whatever the repo variable said. Peter set EXEC_DOGS_DAILY_RISK=2400 in
+          # settings and the job kept reading 800 - a no-op that looked like success, and the exact
+          # failure the Nov 11 note below describes for R1 and BOARD. Defaults here match the code
+          # defaults so the two can never disagree; the repo variable overrides both.
+          EXEC_DOGS_DAILY_RISK: ${{ vars.EXEC_DOGS_DAILY_RISK || '800' }}
+          EXEC_NCS_DAILY_RISK: ${{ vars.EXEC_NCS_DAILY_RISK || '1000' }}
+          # Same gap, found by the same test. Defaults match the code exactly, so wiring these
+          # changes NOTHING today - it only means a repo variable will be obeyed if one is ever set,
+          # instead of being silently ignored.
+          EXEC_DOGS_MAX_PLAYS: ${{ vars.EXEC_DOGS_MAX_PLAYS || '8' }}
+          EXEC_NCS_MAX_PLAYS: ${{ vars.EXEC_NCS_MAX_PLAYS || '5' }}
+          EXEC_BOARD_MAX_PLAYS: ${{ vars.EXEC_BOARD_MAX_PLAYS || '10' }}
           EXEC_R1_MAX_PLAYS: ${{ vars.EXEC_R1_MAX_PLAYS || '10' }}
           # Nov 11 (Peter: "Make it 2000", "And global 3000"). Neither of these was passed here before,
           # so both ran on their code default and there was no repo variable to flip. Now both are
