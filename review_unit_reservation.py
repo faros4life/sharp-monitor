@@ -90,9 +90,13 @@ TERMINAL_STATES = ("filled", "settled", "canceled", "cancelled", "expired")
 KNOWN_STATES = IGNORED + LIVE_STATES + TERMINAL_STATES
 
 
-_CAS_BASE = 0.25      # seconds before the second attempt
-_CAS_CAP = 1.5        # longest single pause; total added latency stays under ~5s at 5 attempts
-_CAS_ATTEMPTS = 5
+# Nov 25, 2026: the Nov 24 refusal was not a chance collision. The dispatching executor run keeps
+# committing bookkeeping to the same registry file for ~30-60s after it reserves (7 commits in the
+# 30s after 15:22:09 UTC, gaps of 2-6s), so a ~5s retry window always sat inside that burst. The
+# window is widened to ~35-75s (shortest jitter still clears a 32s burst) so the claim outlasts the burst. Budget logic is unchanged.
+_CAS_BASE = 0.5       # seconds before the second attempt
+_CAS_CAP = 6.0        # longest single pause; pauses total ~37.5s (x0.5-1.5 jitter) at 10 attempts
+_CAS_ATTEMPTS = 10
 
 
 def _cas_pause(attempt, sleep=time.sleep):

@@ -136,5 +136,53 @@ R._cas_pause(3, sleep=seen_b.append)
 ok("pauses are jittered, not identical", seen_a[0] != seen_b[0])
 ok("a real pause actually waits", (lambda t0: (R._cas_pause(0), time.monotonic() - t0 > 0)[1])(time.monotonic()))
 
+# --- Nov 25: replay the Nov 24 burst against the real pause schedule -----------------------------
+# The dispatching run kept committing to the registry for 32s after the reservation (15:22:09 ->
+# 15:22:41 UTC). Pessimistically, every write inside that window loses; each attempt costs ~2s of
+# HTTP. The claim must still land, even when the jitter draws the SHORTEST pause every time.
+class Clock:
+    t = 0.0
+    def advance(self, dt):
+        self.t += dt
+
+class BurstStore(Store):
+    def __init__(self, state, clock, burst):
+        super().__init__(state)
+        self.clock, self.burst = clock, burst
+    def write(self, new, version):
+        self.clock.advance(2.0)
+        if self.clock.t < self.burst:
+            self.writes += 1
+            self.version += 1
+            return False
+        return super().write(new, version)
+
+_pause = R.__dict__["_cas_pause"]
+_rand = R.random.random
+LEG = [{"key": KEY, "leg_id": "L1", "status": "open", "asked_stake": 200.0, "american": 104,
+        "unit": 200.0, "actor": "cloud:novig", "dispatched": True}]
+for draw, label in ((0.0, "shortest"), (0.999, "longest")):
+    clk = Clock()
+    R.random.random = lambda d=draw: d
+    R._cas_pause = lambda a, sleep=None, c=clk: _pause(a, sleep=c.advance)
+    try:
+        leg = R.claim_dispatched(BurstStore(seeded(LEG), clk, 32.0), KEY, 200.0, "novig", "client-1")
+        ok(f"claim outlasts the Nov 24 32s burst ({label} jitter, landed at {clk.t:.0f}s)", leg is not None)
+    except Exception as e:
+        ok(f"claim outlasts the Nov 24 32s burst ({label} jitter): {type(e).__name__}", False)
+    ok(f"total claim wait stays bounded ({label} jitter, {clk.t:.0f}s <= 90s)", clk.t <= 90)
+R.random.random = _rand
+
+# and an already-claimed reservation is still refused at once - the longer window waits out
+# OTHER PEOPLE'S commits, never a genuine claim
+clk = Clock()
+R._cas_pause = lambda a, sleep=None, c=clk: _pause(a, sleep=c.advance)
+try:
+    R.claim_dispatched(BurstStore(seeded([dict(LEG[0], claimed_by="other")]), clk, 0.0),
+                       KEY, 200.0, "novig", "client-2")
+    ok("a claimed reservation still refuses", False)
+except R.ReservationRefused as e:
+    ok("a claimed reservation still refuses, with no waiting", "already been claimed" in str(e) and clk.t == 0)
+
 print(f"\n{len(FAILED)} failed" if FAILED else "\nall passed")
 raise SystemExit(1 if FAILED else 0)
