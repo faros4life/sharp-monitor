@@ -1,6 +1,210 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-25T14:30:22Z",
+   "base_depth": 251690,
+   "best_price": 0.64,
+   "best_price_american": -178,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.65,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-25",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -1829,
+     "new_this_side": 28211,
+     "other_side": 22428,
+     "other_side_all_levels": 138479,
+     "ratio": 0.8,
+     "this_side": 17321,
+     "this_side_all_levels": 283603
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "TA&M (0)",
+     "price": 0.64,
+     "this_side": 3838
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Texas A&M",
+     "price": 0.6479,
+     "this_side": 1124
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 7025.98,
+    "volume_24h_fp": 6429.13,
+    "volume_fp": 7139.89
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 1958.47,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 7025.98,
+    "volume_24h_fp": 4470.66,
+    "volume_fp": 7139.89
+   },
+   "fade_price": 0.36,
+   "first_seen_utc": "2026-11-25T14:20:31Z",
+   "game": "Texas A&M vs Xavier",
+   "game_surge_books": [],
+   "game_x": 1.14,
+   "key": "kalshi|KXNCAAMBGAME-26NOV25TXAMXAV|ml|0",
+   "lead_min": 300,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 28211,
+   "new_x": 0.33,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 7025.98,
+      "volume_24h_fp": 6429.13,
+      "volume_fp": 7139.89
+     },
+     "game_normal": 248531,
+     "game_x": 1.14,
+     "normal": 86505,
+     "now": 283603,
+     "type": "ML",
+     "x": 3.28
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 933592.0,
+      "volume": 1011360.0
+     },
+     "game_normal": 16505,
+     "game_x": 1.13,
+     "normal": 4693,
+     "now": 18637,
+     "type": "ML",
+     "x": 3.97
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 1381,
+     "game_x": 1.06,
+     "normal": 1193,
+     "now": 1458,
+     "type": "ML",
+     "x": 1.22
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.65,
+   "price_american": -186,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.65,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -190
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -190
+    },
+    "betopenly": {
+     "point": null,
+     "price": -238
+    },
+    "betrivers": {
+     "point": null,
+     "price": -245
+    },
+    "betus": {
+     "point": null,
+     "price": -190
+    },
+    "bovada": {
+     "point": null,
+     "price": -200
+    },
+    "circasports": {
+     "point": null,
+     "price": -195
+    },
+    "draftkings": {
+     "point": null,
+     "price": -192
+    },
+    "fanatics": {
+     "point": null,
+     "price": -205
+    },
+    "fanduel": {
+     "point": null,
+     "price": -176
+    },
+    "kalshi": {
+     "point": null,
+     "price": -186
+    },
+    "lowvig": {
+     "point": null,
+     "price": -190
+    },
+    "novig": {
+     "point": null,
+     "price": -178
+    },
+    "polymarket": {
+     "point": null,
+     "price": -186
+    },
+    "prophetx": {
+     "point": null,
+     "price": -176
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -180
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV25TXAMXAV-TXAM"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Texas A&M",
+   "side_label": "Texas A&M",
+   "size_x": 3.28,
+   "start_source": "odds",
+   "start_utc": "2026-11-25T19:30:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "Texas A&M",
+    "Xavier"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-25T13:40:29Z",
    "base_depth": 270942,
    "best_price": 0.76,
@@ -52,9 +256,9 @@
     "volume_fp": 39.32
    },
    "ex_stats_close": {
-    "open_interest_fp": 733.24,
+    "open_interest_fp": 782.64,
     "volume_24h_fp": 766.8,
-    "volume_fp": 769.8
+    "volume_fp": 819.1999999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 686.01,
@@ -862,7 +1066,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 522.66,
-    "volume_24h_fp": 464.87,
+    "volume_24h_fp": 491.65999999999997,
     "volume_fp": 522.66
    },
    "ex_stats_first": {
@@ -995,8 +1199,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.73,
-   "clv_cents": 1.0,
+   "close_price": 0.72,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-25",
    "depth_by_book": {
@@ -1034,7 +1238,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 78.16,
-    "volume_24h_fp": 59.16,
+    "volume_24h_fp": 75.16,
     "volume_fp": 78.16
    },
    "ex_stats_first": {
@@ -1216,9 +1420,9 @@
     "volume_fp": 70.74
    },
    "ex_stats_close": {
-    "open_interest_fp": 37172.1,
-    "volume_24h_fp": 38177.229999999996,
-    "volume_fp": 38694.33
+    "open_interest_fp": 38000.3,
+    "volume_24h_fp": 38679.95,
+    "volume_fp": 39670.66
    },
    "ex_stats_first": {
     "open_interest_fp": 10292.33,
@@ -1415,9 +1619,9 @@
     "volume_fp": 12.91
    },
    "ex_stats_close": {
-    "open_interest_fp": 6196.63,
-    "volume_24h_fp": 5949.2699999999995,
-    "volume_fp": 6449.33
+    "open_interest_fp": 6223.52,
+    "volume_24h_fp": 5984.5199999999995,
+    "volume_fp": 6476.219999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 1423.5,
@@ -1622,9 +1826,9 @@
     "volume_fp": 15.36
    },
    "ex_stats_close": {
-    "open_interest_fp": 587.11,
-    "volume_24h_fp": 269.25,
-    "volume_fp": 616.11
+    "open_interest_fp": 588.5,
+    "volume_24h_fp": 284.64,
+    "volume_fp": 617.5
    },
    "ex_stats_first": {
     "open_interest_fp": 479.97999999999996,
@@ -1819,9 +2023,9 @@
     "volume_fp": 19.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 762.8499999999999,
-    "volume_24h_fp": 745.78,
-    "volume_fp": 769.8499999999999
+    "open_interest_fp": 1497.71,
+    "volume_24h_fp": 746.78,
+    "volume_fp": 1504.71
    },
    "ex_stats_first": {
     "open_interest_fp": 100.37,
@@ -1976,8 +2180,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.71,
-   "clv_cents": 1.0,
+   "close_price": 0.7,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-25",
    "depth_by_book": {
@@ -2008,9 +2212,9 @@
     "volume_fp": 96.46
    },
    "ex_stats_close": {
-    "open_interest_fp": 10235.98,
-    "volume_24h_fp": 10097.42,
-    "volume_fp": 10329.970000000001
+    "open_interest_fp": 10380.720000000001,
+    "volume_24h_fp": 10172.900000000001,
+    "volume_fp": 10474.71
    },
    "ex_stats_first": {
     "open_interest_fp": 4851.25,
@@ -2193,9 +2397,9 @@
     "volume_fp": 5725.96
    },
    "ex_stats_close": {
-    "open_interest_fp": 141593.50999999998,
-    "volume_24h_fp": 143049.44999999998,
-    "volume_fp": 150851.97
+    "open_interest_fp": 142560.96000000002,
+    "volume_24h_fp": 147998.66,
+    "volume_fp": 152051.98
    },
    "ex_stats_first": {
     "open_interest_fp": 18656.82,
@@ -2378,9 +2582,9 @@
     "volume_fp": 38.74
    },
    "ex_stats_close": {
-    "open_interest_fp": 17584.39,
-    "volume_24h_fp": 14510.259999999998,
-    "volume_fp": 18879.96
+    "open_interest_fp": 18393.42,
+    "volume_24h_fp": 18772.52,
+    "volume_fp": 19688.989999999998
    },
    "ex_stats_first": {
     "open_interest_fp": 1779.93,
@@ -2553,9 +2757,9 @@
     "volume_fp": 21.01
    },
    "ex_stats_close": {
-    "open_interest_fp": 755.1500000000001,
-    "volume_24h_fp": 864.8699999999999,
-    "volume_fp": 875.1500000000001
+    "open_interest_fp": 785.1500000000001,
+    "volume_24h_fp": 870.4200000000001,
+    "volume_fp": 905.1500000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 250.73000000000002,
