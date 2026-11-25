@@ -1,6 +1,212 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-25T20:40:21Z",
+   "base_depth": 61563,
+   "best_price": 0.62,
+   "best_price_american": -163,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.61,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-26",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 4458,
+     "new_this_side": 42522,
+     "other_side": 9715,
+     "other_side_all_levels": 39249,
+     "ratio": 8.2,
+     "this_side": 79704,
+     "this_side_all_levels": 118092
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "CLEM (0)",
+     "price": 0.62,
+     "this_side": 23734
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Clemson",
+     "price": 0.6241,
+     "this_side": 2222
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 5059.46,
+    "volume_24h_fp": 5591.99,
+    "volume_fp": 5591.99
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 223.63,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 5059.46,
+    "volume_24h_fp": 5368.360000000001,
+    "volume_fp": 5591.99
+   },
+   "fade_price": 0.4,
+   "first_seen_utc": "2026-11-25T20:30:25Z",
+   "game": "Clemson vs Colorado St.",
+   "game_surge_books": [
+    "novig"
+   ],
+   "game_x": 1.8,
+   "key": "kalshi|KXNCAAMBGAME-26NOV26CLEMCSU|ml|0",
+   "lead_min": 530,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 42522,
+   "new_x": 0.4,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 5059.46,
+      "volume_24h_fp": 5591.99,
+      "volume_fp": 5591.99
+     },
+     "game_normal": 65433,
+     "game_x": 1.8,
+     "normal": 107437,
+     "now": 118092,
+     "type": "ML",
+     "x": 1.1
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 1214639.0,
+      "volume": 1282990.0
+     },
+     "game_normal": 7549,
+     "game_x": 3.35,
+     "normal": 7996,
+     "now": 25313,
+     "type": "ML",
+     "x": 3.17
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 2367,
+     "game_x": 1.13,
+     "normal": 1955,
+     "now": 2672,
+     "type": "ML",
+     "x": 1.37
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.61,
+   "price_american": -156,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.61,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -170
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -165
+    },
+    "betrivers": {
+     "point": null,
+     "price": -186
+    },
+    "betus": {
+     "point": null,
+     "price": -165
+    },
+    "bovada": {
+     "point": null,
+     "price": -165
+    },
+    "circasports": {
+     "point": null,
+     "price": -165
+    },
+    "draftkings": {
+     "point": null,
+     "price": -166
+    },
+    "fanatics": {
+     "point": null,
+     "price": -170
+    },
+    "fanduel": {
+     "point": null,
+     "price": -160
+    },
+    "kalshi": {
+     "point": null,
+     "price": -156
+    },
+    "lowvig": {
+     "point": null,
+     "price": -165
+    },
+    "novig": {
+     "point": null,
+     "price": -163
+    },
+    "polymarket": {
+     "point": null,
+     "price": -163
+    },
+    "prophetx": {
+     "point": null,
+     "price": -166
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -165
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV26CLEMCSU-CLEM"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [
+    "Clemson Tigers -2.5 (-117)",
+    "Clemson Tigers -2.5 (-110)"
+   ],
+   "sharp_oppose": [],
+   "side": "Clemson",
+   "side_label": "Clemson",
+   "size_x": 1.1,
+   "start_source": "odds",
+   "start_utc": "2026-11-26T05:30:00Z",
+   "surge_books": [
+    "novig"
+   ],
+   "teams": [
+    "Clemson",
+    "Colorado St."
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-25T20:00:26Z",
    "base_depth": 253712,
    "best_price": 0.6316,
@@ -47,7 +253,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 27314.440000000002,
-    "volume_24h_fp": 27528.77,
+    "volume_24h_fp": 27623.68,
     "volume_fp": 27623.88
    },
    "ex_stats_first": {
@@ -426,9 +632,9 @@
     "volume_fp": 168.03
    },
    "ex_stats_close": {
-    "open_interest_fp": 25133.34,
-    "volume_24h_fp": 22585.35,
-    "volume_fp": 26285.75
+    "open_interest_fp": 25816.84,
+    "volume_24h_fp": 22981.49,
+    "volume_fp": 26969.25
    },
    "ex_stats_first": {
     "open_interest_fp": 17625.260000000002,
@@ -630,9 +836,9 @@
     "volume_fp": 833.62
    },
    "ex_stats_close": {
-    "open_interest_fp": 153627.09,
-    "volume_24h_fp": 156179.16999999998,
-    "volume_fp": 169059.03999999998
+    "open_interest_fp": 155571.86,
+    "volume_24h_fp": 157428.75,
+    "volume_fp": 171095.14
    },
    "ex_stats_first": {
     "open_interest_fp": 83835.8,
@@ -808,9 +1014,9 @@
     "volume_fp": 206.48
    },
    "ex_stats_close": {
-    "open_interest_fp": 73942.6,
-    "volume_24h_fp": 81507.24,
-    "volume_fp": 82136.55
+    "open_interest_fp": 74188.9,
+    "volume_24h_fp": 82069.8,
+    "volume_fp": 82475.87
    },
    "ex_stats_first": {
     "open_interest_fp": 19206.91,
@@ -998,9 +1204,9 @@
     "volume_fp": 631.28
    },
    "ex_stats_close": {
-    "open_interest_fp": 7889.1,
-    "volume_24h_fp": 7830.83,
-    "volume_fp": 8414.779999999999
+    "open_interest_fp": 8002.549999999999,
+    "volume_24h_fp": 8103.21,
+    "volume_fp": 8528.23
    },
    "ex_stats_first": {
     "open_interest_fp": 6409.379999999999,
@@ -1125,7 +1331,8 @@
      "price": 105
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-25T20:40:21Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV25FGCUGAST-FGCU"
@@ -2415,7 +2622,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 5155.57,
-    "volume_24h_fp": 5055.549999999999,
+    "volume_24h_fp": 5184.01,
     "volume_fp": 5184.01
    },
    "ex_stats_first": {
@@ -2607,9 +2814,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3661.92,
+    "open_interest_fp": 3753.2200000000003,
     "volume_24h_fp": 3907.0,
-    "volume_fp": 4441.86
+    "volume_fp": 4533.16
    },
    "ex_stats_first": {
     "open_interest_fp": 2130.09,
@@ -3015,9 +3222,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1534.3600000000001,
-    "volume_24h_fp": 1523.08,
-    "volume_fp": 1582.6100000000001
+    "open_interest_fp": 1568.0,
+    "volume_24h_fp": 1551.55,
+    "volume_fp": 1616.25
    },
    "ex_stats_first": {
     "open_interest_fp": 419.14,
@@ -4472,7 +4679,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Virginia",
