@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 26, 4:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 25.
+Updated Thu Nov 26, 4:50 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 25.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -17,7 +17,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 26 11:00AM | NCAAB | Oklahoma vs Purdue | moneyline: Purdue | kalshi | $72k | -186 | ✅ novig |  | +2.0c |  | L |
 | Nov 26 10:10AM | NCAAB | Georgia @ Cincinnati | moneyline: CIN (0) | novig | $39k | -125 | ✅ kalshi |  | +3.5c |  | W |
 | Nov 26 10:10AM | NCAAB | Georgia vs Cincinnati: Point Total | total: Over 156.5 points | kalshi | $28k | +113 |  |  | +4.0c |  | W |
-| Nov 26 9:30AM | NCAAB | Saint Mary's @ UCLA | moneyline: UCLA (0) | novig | $26k | -292 | ✅ kalshi |  | +1.0c |  | pending |
+| Nov 26 9:30AM | NCAAB | Saint Mary's @ UCLA | moneyline: UCLA (0) | novig | $26k | -292 | ✅ kalshi |  | +1.5c |  | pending |
 | Nov 26 9:30AM | NCAAB | Oklahoma @ Purdue | moneyline: PUR (0) | novig | $37k | -186 | ✅ kalshi |  | +1.5c |  | L |
 | Nov 26 8:30AM | NCAAB | Arkansas @ Michigan State | moneyline: MSU (0) | novig | $32k | -203 | ✅ kalshi |  | +0.0c | yes | pending |
 | Nov 26 8:30AM | NCAAB | Tennessee vs Iowa St. | moneyline: Iowa St. | kalshi | $61k | -150 | ✅ novig |  | +6.0c | yes | pending |
