@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 26, 7:20 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 18.
+Updated Thu Nov 26, 7:30 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 18.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 26 6:10AM | NCAAB | Georgia vs Cincinnati | moneyline: Cincinnati | kalshi | $37k | -122 |  |  | +1.0c |  | pending |
+| Nov 26 6:10AM | NCAAB | Georgia vs Cincinnati | moneyline: Cincinnati | kalshi | $37k | -122 |  |  | +2.0c |  | pending |
 | Nov 26 2:30AM | NCAAB | Georgetown @ Texas | moneyline: TEX (0) | novig | $26k | -335 | ✅ kalshi |  | +0.5c |  | pending |
 | Nov 26 1:20AM | NCAAB | SMU vs LSU | moneyline: LSU | kalshi | $26k | -213 |  |  | +0.0c | yes | pending |
 | Nov 26 1:20AM | NCAAB | Arkansas vs Michigan St. | moneyline: Michigan St. | kalshi | $25k | -203 |  |  | +0.0c | yes | pending |
