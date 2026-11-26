@@ -108,7 +108,6 @@ def main():
     if DRY:
         print(f"DRY RUN: pass A would cost ~{len(todo) * FEAT_COST} credits; passes B/C are counted after A runs.")
         return 0
-    errs = 0
     for k in todo:
         if not spend_ok(FEAT_COST):
             print("budget reached in pass A - stopping")
@@ -116,15 +115,50 @@ def main():
         try:
             toa.fetch_snapshot(*k)
         except Exception as ex:
-            errs += 1
-            if errs <= 3:
+            ERRS[0] += 1
+            if ERRS[0] <= 3:
                 print(f"pass A fetch error: {type(ex).__name__}")
-            if errs >= 25:
+            if ERRS[0] >= 25:
                 print("pass A: 25 errors - stopping")
                 break
     toa.reset_cache()
 
-    # ---------------- pass B: event commence time, where our listed start missed the pre-start snapshot
+    # ---------------- pass B/C, repeated: a row matched only after a pass-B snapshot needs its own pass-C read
+    for _round in range(3):
+        if not _pass_bc(items, ctx, src_of):
+            break
+    toa.reset_cache()
+    after = run_classify(items, ctx)
+    _finish(items, after, b_sum)
+    return 0
+
+
+def _why(items, res, src_of):
+    """Why each still-open gap row failed on the store, by first reason word (counts only)."""
+    c = collections.Counter()
+    for i, (cls, _d) in res.items():
+        if cls not in GAP:
+            continue
+        x, s = src_of[i]
+        snap = oa.snap_for(x, s)
+        lg = snap.get("league") or x.get("sport") or x.get("league")
+        if lg not in toa.SPORT:
+            c["league not on The Odds API"] += 1
+            continue
+        fx = toa.fixtures(lg)
+        fid, n = fxm.ordered_match(snap, fx, cl.tp)
+        if not fid:
+            c["no unique event: " + str(n)[:40]] += 1
+            continue
+        _c, why = toa.close(snap, fx[fid], fid, lg, cl.parsed, fxm.resolve_side, cl.which_team, cl.novig_p,
+                            cl.FRESH_MIN)
+        c[str(why)[:70]] += 1
+    return c
+
+
+def _pass_bc(items, ctx, src_of):
+    """One round of pass B and pass C. Returns the number of calls made."""
+    made = 0
     mid = run_classify(items, ctx)
     needB, needC = set(), set()
     for i, (cls, _d) in mid.items():
@@ -148,6 +182,8 @@ def main():
             needB.add((toa.SPORT[lg], t0))
         elif "exact line" in why:
             needC.add((toa.SPORT[lg], fid.split(":", 1)[1], t0))
+    needB = {k for k in needB if not toa.have_snap(*k)}
+    needC = {k for k in needC if not os.path.exists(toa._path(k[0], toa.alt_name(k[1], k[2])))}
     print(f"pass B (commence-time snapshots) {len(needB)} | pass C (alternate lines) {len(needC)}")
     for k in sorted(needB, key=lambda k: k[1]):
         if not spend_ok(FEAT_COST):
@@ -155,19 +191,28 @@ def main():
             break
         try:
             toa.fetch_snapshot(*k)
+            made += 1
         except Exception:
-            errs += 1
+            ERRS[0] += 1
     for sp, eid, t0 in sorted(needC, key=lambda k: k[2]):
         if not spend_ok(ALT_COST):
             print("budget reached in pass C - stopping")
             break
         try:
             toa.fetch_alts(sp, eid, t0)
+            made += 1
         except Exception:
-            errs += 1
+            ERRS[0] += 1
     toa.reset_cache()
+    return made
 
-    after = run_classify(items, ctx)
+
+ERRS = [0]
+
+
+def _finish(items, after, b_sum):
+    src_of = {i: (x, s) for i, x, s, _p in items}
+    errs = ERRS[0]
     a_sum = summary(items, after)
     rec = sum(a_sum[(p, "via_toa")] for p in {k[0] for k in a_sum})
     print("BEFORE -> AFTER certified (counts only):")
@@ -180,7 +225,9 @@ def main():
           f"cost per recovered close {toa.METER['credits'] / rec:.1f}" if rec else
           f"fetch errors {errs} | recovered closes 0 | credits {toa.METER['credits']}")
     print(toa.report())
-    return 0
+    print("open gap rows on the store, by reason:")
+    for k, v in _why(items, after, src_of).most_common(12):
+        print(f"  {v:>5}  {k}")
 
 
 if __name__ == "__main__":
