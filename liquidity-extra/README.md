@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 25, 10:40 PM ET. This run: 0 new, 0 not confirmed, 4 pending. Open alerts: 16.
+Updated Wed Nov 25, 10:50 PM ET. This run: 4 new, 0 not confirmed, 0 pending. Open alerts: 20.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,8 +10,12 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 25 10:50PM | NCAAB | Alabama vs Kansas St.: Point Total | total: Over 169.5 points | kalshi | $61k | -104 |  |  | +0.0c |  | pending |
+| Nov 25 10:50PM | NCAAB | Texas Tech vs Oregon | moneyline: Texas Tech | kalshi | $163k | -400 |  |  | +0.0c |  | pending |
+| Nov 25 10:50PM | NCAAB | Omaha vs Pacific | moneyline: Pacific | kalshi | $163k | -317 |  |  | +0.0c |  | pending |
+| Nov 25 10:50PM | NCAAB | Georgetown vs Texas | moneyline: Texas | kalshi | $161k | -335 |  |  | +0.0c |  | pending |
 | Nov 25 9:50PM | NCAAB | Saint Mary's vs UCLA | moneyline: UCLA | kalshi | $29k | -300 |  |  | +0.0c |  | pending |
-| Nov 25 9:20PM | NCAAB | Grand Canyon vs Colorado | moneyline: Grand Canyon | kalshi | $59k | -456 |  |  | +8.0c | yes | pending |
+| Nov 25 9:20PM | NCAAB | Grand Canyon vs Colorado | moneyline: Grand Canyon | kalshi | $59k | -456 |  |  | +5.0c | yes | pending |
 | Nov 25 7:50PM | NCAAB | Grand Canyon @ Colorado | moneyline: Grand Canyon (0) | novig | $30k | -456 |  |  | -0.5c | yes | pending |
 | Nov 25 6:40PM | NCAAB | Wake Forest vs Mississippi St.: Spread | spread: Mississippi St. wins by over 3.5 points | kalshi | $26k | -108 |  |  | +0.0c | yes | pending |
 | Nov 25 6:30PM | NCAAB | Duke @ Connecticut | spread: CONN -1.5 (-1.5) | novig | $40k | +108 |  |  | +0.0c |  | L |
@@ -206,7 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 20 6:40PM | NCAAB | UT Arlington vs Northwestern St. | moneyline: UT Arlington | kalshi | $58k | -163 |  |  | +0.0c |  | W |
 | Nov 20 6:30PM | NCAAB | Coastal Carolina vs Tennessee: Spread | spread: NOT Tennessee wins by over 26.5 points | kalshi | $29k | -117 |  | ✅ | +1.0c |  | L |
 | Nov 20 5:20PM | NCAAB | Saint Joseph's vs Drexel | moneyline: Saint Joseph's | kalshi | $33k | -170 |  |  | +1.0c |  | L |
-| Nov 20 3:30PM | NCAAB | Rhode Island vs Liberty | moneyline: Rhode Island | kalshi | $37k | -108 | ✅ novig | ❌ | +1.0c |  | L |
-| Nov 20 3:20PM | NCAAB | Sam Houston vs Boise St.: Spread | spread: NOT Boise St. wins by over 11.5 points | kalshi | $33k | +108 |  |  | +0.0c |  | W |
-| Nov 20 3:20PM | NCAAB | Marshall vs North Carolina: Spread | spread: NOT North Carolina wins by over 17.5 points | kalshi | $32k | +113 |  |  | +1.0c |  | W |
-| Nov 20 3:20PM | NCAAB | UAB vs George Washington | moneyline: UAB | kalshi | $101k | -245 |  |  | -19.0c | yes | W |
