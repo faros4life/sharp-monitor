@@ -114,11 +114,19 @@ jobs:
           done
           echo "::error::alerts.json could NOT be published after 6 attempts - the feed is now stale"
           exit 1
+      # Nov 26 (Peter): "Healthchecks success pings must depend on successful upstream retrieval and
+      # validation." if:success() only meant the job did not crash - it pinged happily through a feed
+      # that fetched nothing. The ping now reads feed_health.state out of the file the run just wrote
+      # and goes ONLY on HEALTHY; FAILED and NO_EVENTS are left to time out the check on purpose.
       - name: External dead-man ping for the alert feed (Healthchecks.io; skipped until Peter adds HC_FEED_URL)
         if: success()
         env:
           HC_FEED_URL: ${{ secrets.HC_FEED_URL }}
-        run: '[ -n "$HC_FEED_URL" ] && curl -fsS -m 10 --retry 2 "$HC_FEED_URL" >/dev/null && echo "ping sent" || echo "no external ping (secret not set or ping failed)"'
+        run: |
+          STATE=$(python3 -c "import json;print((json.load(open('alerts.json')).get('feed_health') or {}).get('state','MISSING'))" 2>/dev/null || echo MISSING)
+          echo "feed state: $STATE"
+          if [ "$STATE" != "HEALTHY" ]; then echo "no ping: upstream fetch not healthy"; exit 0; fi
+          [ -n "$HC_FEED_URL" ] && curl -fsS -m 10 --retry 2 "$HC_FEED_URL" >/dev/null && echo "ping sent" || echo "ping skipped"
       - name: Wake the executor (new alert sent)
         if: always()
         env:

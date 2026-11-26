@@ -29,6 +29,19 @@ import hr_scanner   # Nov 4: Hard Rock EV scanner (paper lane + manual ntfy flag
 ET = ZoneInfo("America/New_York")
 API = "https://api.the-odds-api.com/v4"
 
+# Nov 26, 2026 (Peter): "A rewritten alerts.json must never be treated as proof of fresh data."
+# The Odds API quota ran out at 6:00 AM ET and the feed failed 57 runs in a row. Every outside signal
+# looked fine: the workflow step was green when it got that far, the file was rewritten each run, and
+# a zero-alert morning is indistinguishable from a dead feed unless something records whether the
+# UPSTREAM FETCH actually succeeded. FEED carries that, and write_alerts_file() publishes it inside
+# alerts.json - the file the monitor already reads - so there is no second publish path to keep alive.
+#
+# fetch_ok is the load-bearing field: True only when a sports odds call COMPLETED and returned a
+# parseable list. events_seen then separates a healthy quiet board (fetched fine, nothing qualified)
+# from a feed returning nothing at all.
+FEED = {"fetch_ok": False, "sports_polled": 0, "events_seen": 0, "alerts_sent": 0,
+        "credits_remaining": None, "quota_exhausted": False, "reason": "no poll attempted this run"}
+
 KEY = os.environ.get("ODDS_API_KEY", "")
 NTFY_TOPIC = os.environ.get("NTFY_TOPIC", "")
 STATE_FILE = os.environ.get("STATE_FILE", "state.json")
@@ -1395,6 +1408,22 @@ def write_alerts_file(st, n):
     """alerts.json: every alert from the last 45 days (bet, book, price, grade, confirm books, result) for agents/other tools.
     Rewritten each run; the workflow commits it only when it changed."""
     path = os.environ.get("ALERTS_FILE", "") or "alerts.json"
+    # Nov 26: last_fetch_ok_utc is the ONLY honest "is the feed alive" signal. It advances only on a
+    # fetch that completed; on a failed run it is carried forward from the previous file, so it goes
+    # STALE on its own and a monitor can see a 4-hour-old feed behind a green run and a fresh file.
+    prev = {}
+    try:
+        with open(path) as _f:
+            prev = (json.load(_f).get("feed_health") or {})
+    except Exception:
+        prev = {}
+    _now = now_utc().strftime("%Y-%m-%dT%H:%M:%SZ")
+    health = dict(FEED)
+    health["written_utc"] = _now
+    health["last_fetch_ok_utc"] = _now if FEED["fetch_ok"] else prev.get("last_fetch_ok_utc")
+    health["state"] = ("FAILED" if not FEED["fetch_ok"]
+                       else "NO_EVENTS" if FEED["events_seen"] == 0
+                       else "HEALTHY")   # HEALTHY covers a quiet board: fetched fine, nothing qualified
     out = []
     for e in sorted(st["log"], key=lambda x: x["start"], reverse=True):
         res = e.get("res")
@@ -1484,7 +1513,8 @@ def write_alerts_file(st, n):
             "bet_result": res["r"] if res else None, "final": res["score"] if res else None})
     try:
         with open(path, "w") as f:
-            json.dump({"note": ("alerts = one entry per bet (game/market/side), used for the record; result W/L/P or null. "
+            json.dump({"feed_health": health,
+                       "note": ("alerts = one entry per bet (game/market/side), used for the record; result W/L/P or null. "
                                 "all_alerts = every alert sent, newest first, repeats marked repeat=true (logged from Oct 21). "
                                 "units_flat = 1u risked at the first alert's price, after the book's fee on winnings (ProphetX 2%; price_after_fee). "
                                 "Edge, the -130 cap, best-book choice and CLV all use price_after_fee. "
@@ -1734,6 +1764,9 @@ def run():
     for key in active:
         if st.get("remaining") is not None and st["remaining"] <= RESERVE:
             print("Credit reserve reached; stopping.")
+            FEED["quota_exhausted"] = True          # Nov 26: say it, do not leave it to be inferred
+            FEED["credits_remaining"] = st["remaining"]
+            FEED["reason"] = f"credit reserve reached ({st['remaining']} left)"
             break
         last = st["last_poll"].get(key, 0)
         if time.time() - last < interval * 60:
@@ -1743,8 +1776,15 @@ def run():
             "bookmakers": books, "markets": ",".join(cfg["markets"]), "oddsFormat": "american",
             "includeLinks": "true",   # Nov 5: book deep links for the odds screen (tap a price -> that game on the book)
             "commenceTimeFrom": iso(n), "commenceTimeTo": iso(n + timedelta(hours=LOOKAHEAD_H))})
+        # The upstream call returned and parsed. This - not the workflow exiting 0, not the file being
+        # rewritten - is what "the feed is alive" means (Nov 26).
+        FEED["fetch_ok"] = True
+        FEED["sports_polled"] += 1
+        FEED["events_seen"] += len(events or [])
+        FEED["reason"] = ""
         if rem is not None:
             st["remaining"] = rem
+            FEED["credits_remaining"] = rem
         st["last_poll"][key] = time.time()
         _recv = now_utc().strftime("%Y-%m-%dT%H:%M:%SZ")   # Nov 26 (Peter): receipt time of this odds response
         for ev in events:
@@ -2037,6 +2077,7 @@ def run():
         odds_screen.save(RETAIL, SHARP, NAMES, st.get("remaining"))
     except Exception as _x:
         print(f"odds screen save failed: {str(_x)[:60]}")
+    FEED["alerts_sent"] = sent   # so "0 alerts" can be read as healthy-and-quiet, not as a dead feed
     write_summary(st, n)
     write_alerts_file(st, n)
     if sent:   # Oct 25: wake the executor right away instead of waiting for its 5-minute timer
