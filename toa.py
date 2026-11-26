@@ -254,3 +254,19 @@ def close_for_row(snap, lg):
         return None, f"toa: no unique event ({str(note)[:40]})"
     c, why = close(snap, fx[fid], fid, lg, cl.parsed, fxm.resolve_side, cl.which_team, cl.novig_p, cl.FRESH_MIN)
     return (c, fid) if c else (None, why)
+
+
+def store_guard(path):
+    """Nov 26: the store lives in an Actions cache, and GitHub evicts it when the 7.6 GB OddsPapi history cache is
+    re-saved (repo limit 10 GB). A certify run without it would rewrite `path` and silently DROP every close certified
+    from this store. Returns a refusal reason, or None when the write is safe. Pure apart from reading the two."""
+    try:
+        prior = (json.load(open(path)) or {}).get("certified") or {}
+    except (OSError, ValueError):
+        return None
+    n = sum(1 for r in prior.values() if isinstance(r, dict) and r.get("src") == SRC)
+    present = os.path.isdir(DIR) and any(glob.glob(os.path.join(DIR, "*", "*.json.gz")))
+    if n and not present:
+        return (f"REFUSED: The Odds API store is not present in this run, and {path} holds {n} closes certified from "
+                f"it. Writing now would drop them. Restore the store first.")
+    return None

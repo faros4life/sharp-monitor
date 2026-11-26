@@ -146,6 +146,12 @@ def main():
     items = gather(oa.load(oa.SHARP), oa.load(oa.LIQ), lanes, feed)
     cert, est, rej = certify(items, lambda x, s: oa.classify(x, s, fxs, alt, allfx, mkmap))
     os.makedirs("paper", exist_ok=True)
+    import toa
+    os.makedirs("paper", exist_ok=True)
+    _why = toa.store_guard(OUT)
+    if _why:
+        print(_why)
+        return 2
     json.dump({"generated": cl.iso(now), "basis": cb.BASIS_VERSION,
                "method": "clv_obs_audit.classify (cache-only); certified = own line or exact moneyline; unique ids",
                "certified": cert, "estimated": est, "rejected": rej}, open(OUT, "w"), indent=1, sort_keys=True)

@@ -1,0 +1,88 @@
+name: toa-baseline
+
+# Alert-time Pinnacle prices from The Odds API for the zero-movement baseline (Peter, Nov 26). HARD CAP 100,000 credits
+# (the budget input cannot exceed it). Dispatch only. Pilot first. Certified CLV is not changed and nothing is committed.
+# The store is saved to the Actions cache AND uploaded as an artifact, because the cache is evicted by the 7.6 GB
+# OddsPapi history cache (that is how the earlier store was lost on Nov 26).
+on:
+  workflow_dispatch:
+    inputs:
+      budget:
+        description: "credit ceiling for this run (max 100000)"
+        default: "1000"
+      dry:
+        description: "1 = count only, no paid calls"
+        default: "1"
+      pilot:
+        description: "number of snapshots to fetch (0 = all)"
+        default: "20"
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: toa-baseline
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Offline tests
+        run: python test_toa.py && python test_toa_store_guard.py && python test_clv_baseline.py
+      - name: Restore OddsPapi history cache (read only)
+        uses: actions/cache/restore@v4
+        with:
+          path: hcache
+          key: hcache-${{ github.run_id }}
+          restore-keys: hcache-
+      - name: Restore The Odds API store (cache)
+        id: toacache
+        uses: actions/cache/restore@v4
+        with:
+          path: toa_hist
+          key: toa-hist-${{ github.run_id }}
+          restore-keys: toa-hist-
+      - name: Restore The Odds API store (artifact fallback)
+        if: steps.toacache.outputs.cache-matched-key == ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          id=$(gh api "repos/${{ github.repository }}/actions/artifacts?name=toa-hist&per_page=1" -q '.artifacts[0].id' || true)
+          if [ -n "$id" ]; then gh api "repos/${{ github.repository }}/actions/artifacts/$id/zip" > /tmp/t.zip && mkdir -p toa_hist && unzip -q -o /tmp/t.zip -d toa_hist && echo "store restored from artifact"; else echo "no store artifact yet"; fi
+      - name: Fetch alert-time snapshots (counts and credits only)
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          TOA_BUDGET: ${{ inputs.budget }}
+          TOA_DRY: ${{ inputs.dry }}
+          TOA_PILOT: ${{ inputs.pilot }}
+        run: |
+          b="${TOA_BUDGET}"; if [ "$b" -gt 100000 ]; then echo "budget above the 100,000 cap - refused"; exit 1; fi
+          python -u toa_alert_baseline.py
+      - name: Baseline report (cache only, no key)
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          XC_CACHE_ONLY: "1"
+        run: python -u clv_baseline.py
+      - name: Save The Odds API store (cache)
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: toa_hist
+          key: toa-hist-${{ github.run_id }}
+      - name: Save The Odds API store (artifact, survives cache eviction)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: toa-hist
+          path: toa_hist
+          retention-days: 90
+          if-no-files-found: ignore

@@ -80,6 +80,11 @@ def main():
     rows = [x for x in oa.load(oa.LIQ) if in_scope(x)]
     cert, rej = certify(rows, lambda x: oa.classify(x, "liquidity", fxs, alt, allfx, mkmap),
                         lambda x: (cl.parsed(oa.snap_for(x, "liquidity")) or [None])[0])
+    import toa
+    _why = toa.store_guard(OUT)
+    if _why:
+        print(_why)
+        return 2
     json.dump({"generated": cl.iso(now), "basis": cb.BASIS_VERSION, "scope": "NBA totals: lead >= 240 min OR new money 25-50k",
                "method": "clv_obs_audit.classify (cache-only) + total-market and unique-id checks",
                "certified": cert, "rejected": rej}, open(OUT, "w"), indent=1, sort_keys=True)
