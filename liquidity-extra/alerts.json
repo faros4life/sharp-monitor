@@ -1,6 +1,189 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-26T02:50:22Z",
+   "base_depth": 50169,
+   "best_price": 0.75,
+   "best_price_american": -300,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.75,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-26",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 8570,
+     "new_this_side": 28927,
+     "other_side": 11309,
+     "other_side_all_levels": 19970,
+     "ratio": 2.9,
+     "this_side": 32686,
+     "this_side_all_levels": 79439
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "UCLA (0)",
+     "price": 0.75,
+     "this_side": 5623
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "UCLA",
+     "price": 0.759,
+     "this_side": 1040
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 1079.91,
+    "volume_24h_fp": 935.5,
+    "volume_fp": 1083.24
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 2.62,
+    "volume_24h_fp": 2.62,
+    "volume_fp": 2.62
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 1077.29,
+    "volume_24h_fp": 932.8799999999999,
+    "volume_fp": 1080.62
+   },
+   "fade_price": 0.26,
+   "first_seen_utc": "2026-11-26T02:40:22Z",
+   "game": "Saint Mary's vs UCLA",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 2.34,
+   "key": "kalshi|KXNCAAMBGAME-26NOV26SMCUCLA|ml|1",
+   "lead_min": 1150,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 28927,
+   "new_x": 0.49,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 1079.91,
+      "volume_24h_fp": 935.5,
+      "volume_fp": 1083.24
+     },
+     "game_normal": 33914,
+     "game_x": 2.34,
+     "normal": 58928,
+     "now": 79439,
+     "type": "ML",
+     "x": 1.35
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 2859.0,
+      "volume": 2859.0
+     },
+     "game_normal": 5533,
+     "game_x": 1.77,
+     "normal": 7341,
+     "now": 9809,
+     "type": "ML",
+     "x": 1.34
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 736,
+     "game_x": 1.41,
+     "normal": 1510,
+     "now": 1040,
+     "type": "ML",
+     "x": 0.69
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.75,
+   "price_american": -300,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.75,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -325
+    },
+    "betopenly": {
+     "point": null,
+     "price": -280
+    },
+    "betrivers": {
+     "point": null,
+     "price": -375
+    },
+    "bovada": {
+     "point": null,
+     "price": -340
+    },
+    "draftkings": {
+     "point": null,
+     "price": -340
+    },
+    "fanatics": {
+     "point": null,
+     "price": -320
+    },
+    "fanduel": {
+     "point": null,
+     "price": -310
+    },
+    "kalshi": {
+     "point": null,
+     "price": -300
+    },
+    "novig": {
+     "point": null,
+     "price": -300
+    },
+    "polymarket": {
+     "point": null,
+     "price": -317
+    },
+    "prophetx": {
+     "point": null,
+     "price": -315
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV26SMCUCLA-UCLA"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UCLA",
+   "side_label": "UCLA",
+   "size_x": 1.35,
+   "start_source": "odds",
+   "start_utc": "2026-11-26T22:00:00Z",
+   "surge_books": [],
+   "teams": [
+    "Saint Mary's",
+    "UCLA"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-26T02:20:21Z",
    "base_depth": 96610,
    "best_price": 0.8303,
@@ -40,9 +223,9 @@
     "volume_fp": 1119.93
    },
    "ex_stats_close": {
-    "open_interest_fp": 36159.24,
-    "volume_24h_fp": 30631.870000000003,
-    "volume_fp": 36918.06
+    "open_interest_fp": 56133.32,
+    "volume_24h_fp": 41121.21,
+    "volume_fp": 57048.270000000004
    },
    "ex_stats_first": {
     "open_interest_fp": 20962.85,
@@ -128,6 +311,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.815,
    "clv_cents": -0.5,
    "confirmed_after_min": 10,
@@ -572,7 +756,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Connecticut",
@@ -881,7 +1065,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Connecticut",
@@ -991,7 +1175,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNCW (0)",
@@ -1274,9 +1458,9 @@
     "volume_fp": 143.54
    },
    "ex_stats_close": {
-    "open_interest_fp": 31658.22,
-    "volume_24h_fp": 41286.06,
-    "volume_fp": 47880.8
+    "open_interest_fp": 38723.04,
+    "volume_24h_fp": 52834.47,
+    "volume_fp": 54974.5
    },
    "ex_stats_first": {
     "open_interest_fp": 10443.17,
@@ -1483,9 +1667,9 @@
     "volume_fp": 24.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 10543.87,
-    "volume_24h_fp": 10099.62,
-    "volume_fp": 10630.92
+    "open_interest_fp": 10830.55,
+    "volume_24h_fp": 10787.939999999999,
+    "volume_fp": 10977.210000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 8208.71,
@@ -2342,9 +2526,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 11098.119999999999,
-    "volume_24h_fp": 10851.19,
-    "volume_fp": 11880.65
+    "open_interest_fp": 11317.310000000001,
+    "volume_24h_fp": 12007.15,
+    "volume_fp": 12099.84
    },
    "ex_stats_first": {
     "open_interest_fp": 5059.46,
