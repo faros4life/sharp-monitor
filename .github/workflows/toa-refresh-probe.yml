@@ -1,0 +1,24 @@
+name: toa-refresh-probe
+# Peter, 26 Nov 2026: measure The Odds API refresh rate before any polling change. Dispatch only, ~1 credit per poll.
+on:
+  workflow_dispatch:
+    inputs:
+      sport: {default: "basketball_ncaab"}
+      poll_s: {default: "15"}
+      minutes: {default: "10"}
+permissions:
+  contents: read
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          PROBE_SPORT: ${{ inputs.sport }}
+          POLL_S: ${{ inputs.poll_s }}
+          MINUTES: ${{ inputs.minutes }}
+        run: python -u toa_refresh_probe.py
