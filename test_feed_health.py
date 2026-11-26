@@ -84,6 +84,31 @@ ok("and says so plainly when the balance is unavailable",
    "balance unavailable" in ev(nob)["QUOTA_OUT"])
 ok("exhaustion outranks the NO_EVENTS note", "FEED_EMPTY" not in ev(dict(out, state="NO_EVENTS")))
 
+# --- PARTIAL: some sports fetched, the rest never attempted (Peter, Nov 26) ---------------------
+# The credit-reserve break stops the poll mid-loop with fetch_ok already True. Before this was
+# fixed, one sport of four published HEALTHY and pinged Healthchecks.
+part = dict(quiet, state="PARTIAL", sports_due=4, sports_polled=1,
+            reason="only 1 of 4 due sports were fetched this run")
+bad = ev(part)
+ok("a partial poll is reported", "FEED_PARTIAL" in bad, sorted(bad))
+ok("it says how short it fell", "1 of 4" in bad["FEED_PARTIAL"], bad["FEED_PARTIAL"])
+ok("a partial poll is NOT reported as healthy-and-quiet", "FEED_EMPTY" not in bad)
+
+# and the state itself must never compute as HEALTHY when the poll stopped short
+import importlib
+import sharp_monitor as _sm
+src_sm = open("sharp_monitor.py", encoding="utf-8").read()
+ok("PARTIAL outranks HEALTHY in the state ladder",
+   src_sm.index('"PARTIAL" if (_short or FEED["quota_exhausted"])') < src_sm.index('else "HEALTHY")'))
+ok("quota exhaustion forces a non-HEALTHY state", 'FEED["quota_exhausted"])' in src_sm)
+ok("the feed counts sports DUE as well as polled", '"sports_due"' in src_sm)
+ok("a sport skipped on its own interval is not counted as due",
+   src_sm.index("if time.time() - last < interval * 60:") < src_sm.index('FEED["sports_due"] += 1'))
+
+# the ping gates on HEALTHY only, so PARTIAL cannot conceal a short poll
+wf_src = open(os.path.join(".github", "workflows", "sharp-monitor.yml"), encoding="utf-8").read()
+ok("PARTIAL cannot ping Healthchecks", '"$STATE" != "HEALTHY"' in wf_src)
+
 # --- never fetched at all ----------------------------------------------------------------------
 ok("a feed that never fetched is caught", "FEED_STALE" in ev({"last_fetch_ok_utc": None, "state": "FAILED"}))
 
