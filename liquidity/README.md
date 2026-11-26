@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 26, 3:05 PM ET. This run: 0 new, 1 not confirmed, 1 pending. Open alerts: 59.
+Updated Thu Nov 26, 3:10 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 60.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 26 3:10PM | NFL | Kansas City Chiefs @ Buffalo Bills | total: Under 46.5 (46.5) | novig | $37k | -106 |  |  | +0.0c |  | pending |
 | Nov 26 2:52PM | NFL | Philadelphia Eagles at Dallas Cowboys | spread: Dallas Cowboys -8.5 (-8.5) | prophetx | $31k | -101 |  |  | +0.0c |  | pending |
 | Nov 26 2:15PM | NCAAF | Buffalo @ Akron | moneyline: BUFF (0) | novig | $32k | -264 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Nov 26 1:10PM | NCAAF | Nebraska vs Iowa | moneyline: Iowa | kalshi | $200k | -186 | ✅ novig,prophetx |  | +0.0c | yes | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 23 2:30PM | NBA | Memphis vs Charlotte: Spread | spread: NOT Memphis wins by over 2.5 points | kalshi | $38k | +104 |  |  | +1.0c |  | L |
 | Nov 23 2:30PM | NBA | Brooklyn vs Minnesota: Spread | spread: NOT Minnesota wins by over 11.5 points | kalshi | $30k | -113 |  | ✅ | +1.0c | yes | L |
 | Nov 23 2:20PM | NBA | Memphis vs Charlotte | moneyline: Charlotte | kalshi | $106k | +133 |  |  | +0.0c |  | L |
-| Nov 23 2:10PM | NBA | Los Angeles Clippers at Houston Rockets | moneyline: Houston Rockets | prophetx | $29k | -550 | ✅ kalshi,novig |  | +1.5c |  | W |
