@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 26, 4:50 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 17.
+Updated Thu Nov 26, 5:00 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 17.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 26 2:30AM | NCAAB | Georgetown @ Texas | moneyline: TEX (0) | novig | $26k | -335 | ✅ kalshi |  | +0.0c |  | pending |
+| Nov 26 2:30AM | NCAAB | Georgetown @ Texas | moneyline: TEX (0) | novig | $26k | -335 | ✅ kalshi |  | +0.5c |  | pending |
 | Nov 26 1:20AM | NCAAB | SMU vs LSU | moneyline: LSU | kalshi | $26k | -213 |  |  | +0.0c | yes | pending |
 | Nov 26 1:20AM | NCAAB | Arkansas vs Michigan St. | moneyline: Michigan St. | kalshi | $25k | -203 |  |  | +0.0c | yes | pending |
 | Nov 26 12:25AM | NCAAB | Saint Louis vs Stanford | moneyline: Saint Louis | kalshi | $69k | -163 |  |  | +25.0c | yes | pending |
@@ -18,7 +18,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 25 10:50PM | NCAAB | Texas Tech vs Oregon | moneyline: Texas Tech | kalshi | $163k | -400 |  |  | +1.0c |  | pending |
 | Nov 25 10:50PM | NCAAB | Omaha vs Pacific | moneyline: Pacific | kalshi | $163k | -317 |  |  | +1.0c |  | pending |
 | Nov 25 10:50PM | NCAAB | Georgetown vs Texas | moneyline: Texas | kalshi | $161k | -335 |  |  | +0.0c |  | pending |
-| Nov 25 9:50PM | NCAAB | Saint Mary's vs UCLA | moneyline: UCLA | kalshi | $29k | -300 |  |  | +1.0c |  | pending |
+| Nov 25 9:50PM | NCAAB | Saint Mary's vs UCLA | moneyline: UCLA | kalshi | $29k | -300 |  |  | +0.0c |  | pending |
 | Nov 25 9:20PM | NCAAB | Grand Canyon vs Colorado | moneyline: Grand Canyon | kalshi | $59k | -456 |  |  | -16.0c | yes | pending |
 | Nov 25 7:50PM | NCAAB | Grand Canyon @ Colorado | moneyline: Grand Canyon (0) | novig | $30k | -456 |  |  | -0.5c | yes | W |
 | Nov 25 6:40PM | NCAAB | Wake Forest vs Mississippi St.: Spread | spread: Mississippi St. wins by over 3.5 points | kalshi | $26k | -108 |  |  | +0.0c | yes | L |
