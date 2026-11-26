@@ -439,6 +439,7 @@ def main():
             "pin_p": c["p"],            # the verified close itself, so the export can be re-graded
             "beat": c["p"] * nd > 1 + TOL,
             "stake": num(b.get("stake")), "profit": num(b.get("profit")), "res": b.get("result"),
+            "lane": str(b.get("lane") or "unlabelled"), "src": c.get("src") or "oddspapi",
         })
 
     say()
@@ -515,6 +516,23 @@ def main():
 
     block(clean, "HEADLINE - venues whose fee basis is established (Novig, ProphetX, Hard Rock)",
           "Novig: price is already net. ProphetX: 2% of net gains applied here.")
+
+    # Nov 26 (Peter): actual bot plays by lane - after-fee units, ROI, mean certified CLV, beat-close, first and
+    # second half by date. Same rows and same math as the headline; units only in the log.
+    say("\n  BY LANE (headline venues; units; halves split by date order)")
+    lanes = sorted({r["lane"] for r in clean})
+    for ln in lanes:
+        rows = sorted([r for r in clean if r["lane"] == ln], key=lambda r: r["day"])
+        for tag, part in (("all", rows), ("1st half", rows[:len(rows) // 2]), ("2nd half", rows[len(rows) // 2:])):
+            if not part:
+                continue
+            n_, st_ = len(part), sum(r["stake"] or 0 for r in part)
+            pf = sum(r["profit"] or 0 for r in part)
+            w = sum(r["res"] == "W" for r in part)
+            l_ = sum(r["res"] == "L" for r in part)
+            say(f"    {ln[:14]:<14} {tag:<8} n {n_:>3} | {w}-{l_} | {pf / UNIT:+.2f}u | ROI "
+                f"{(100 * pf / st_ if st_ else 0):+.1f}% | CLV {sum(r['clv'] for r in part) / n_:+.2f}% | "
+                f"beat {100 * sum(r['beat'] for r in part) / n_:.0f}% | src TOA {sum(r['src'] == 'theoddsapi' for r in part)}")
 
     amb = [r for r in R if r["book"] in AMBIG]
     if amb:
