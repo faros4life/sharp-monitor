@@ -11,6 +11,9 @@ on:
       dry:
         description: "1 = count only, no paid calls"
         default: "1"
+      script:
+        description: "toa_recover.py | toa_crosscheck.py"
+        default: "toa_recover.py"
 permissions:
   contents: read
 concurrency:
@@ -46,7 +49,8 @@ jobs:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           TOA_BUDGET: ${{ inputs.budget }}
           TOA_DRY: ${{ inputs.dry }}
-        run: python -u toa_recover.py
+          CROSS_MAX_CREDITS: "10000"
+        run: python -u ${{ inputs.script }}
       - name: Save The Odds API store (partial progress is kept)
         if: always()
         uses: actions/cache/save@v4
