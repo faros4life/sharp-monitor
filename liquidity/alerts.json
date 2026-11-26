@@ -1,6 +1,178 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-26T21:36:00Z",
+   "base_depth": 547752,
+   "best_price": 0.5625,
+   "best_price_american": -129,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.55,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-11-26",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -21172,
+     "new_this_side": 56626,
+     "other_side": 324405,
+     "other_side_all_levels": 481001,
+     "ratio": 1.1,
+     "this_side": 372510,
+     "this_side_all_levels": 603672
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 113800.88,
+    "volume_24h_fp": 101798.42,
+    "volume_fp": 117815.78
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 3148.85,
+    "volume_24h_fp": 42653.53,
+    "volume_fp": 3234.85
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 110652.03,
+    "volume_24h_fp": 59144.89,
+    "volume_fp": 114580.93
+   },
+   "fade_price": 0.46,
+   "first_seen_utc": "2026-11-26T21:30:23Z",
+   "game": "Kansas City vs Buffalo: Total Points",
+   "game_surge_books": [],
+   "game_x": 1.07,
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNFLTOTAL-26NOV26KCBUF-45\"}",
+   "lead_min": 224,
+   "league": "NFL",
+   "line": 44.5,
+   "market": "total",
+   "new_money": 56626,
+   "new_x": 0.09,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 113800.88,
+      "volume_24h_fp": 101798.42,
+      "volume_fp": 117815.78
+     },
+     "game_normal": 565746,
+     "game_x": 1.07,
+     "normal": 611483,
+     "now": 603672,
+     "type": "OVER",
+     "x": 0.99
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.55,
+   "price_american": -122,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.55,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 46.0,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 46.0,
+     "price": -108
+    },
+    "betopenly": {
+     "point": 46.5,
+     "price": 108
+    },
+    "betrivers": {
+     "point": 45.5,
+     "price": -113
+    },
+    "betus": {
+     "point": 46.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 46.0,
+     "price": -108
+    },
+    "circasports": {
+     "point": 46.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 45.5,
+     "price": -113
+    },
+    "fanatics": {
+     "point": 46.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 45.5,
+     "price": -116
+    },
+    "kalshi": {
+     "point": 47.5,
+     "price": 117
+    },
+    "lowvig": {
+     "point": 46.0,
+     "price": -105
+    },
+    "mybookieag": {
+     "point": 46.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 46.5,
+     "price": 104
+    },
+    "polymarket": {
+     "point": 46.5,
+     "price": 104
+    },
+    "prophetx": {
+     "point": 45.5,
+     "price": -110
+    },
+    "williamhill_us": {
+     "point": 46.0,
+     "price": -108
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNFLTOTAL-26NOV26KCBUF-45"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "OVER",
+   "side_label": "Over 44.5 points",
+   "size_x": 0.99,
+   "start_source": "odds",
+   "start_utc": "2026-11-27T01:20:00Z",
+   "surge_books": [],
+   "teams": [
+    "Kansas City",
+    "Buffalo"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-26T21:10:20Z",
    "base_depth": 136232,
    "best_price": 0.845,
@@ -693,8 +865,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 10794523.0,
-    "volume": 12422393.0
+    "openInterest": 10805251.0,
+    "volume": 12433121.0
    },
    "ex_stats_first": {
     "openInterest": 10726956.0,
@@ -1299,9 +1471,9 @@
     "volume_fp": 308.37
    },
    "ex_stats_close": {
-    "open_interest_fp": 131124.36,
-    "volume_24h_fp": 40576.7,
-    "volume_fp": 141737.21
+    "open_interest_fp": 130829.34,
+    "volume_24h_fp": 40011.07,
+    "volume_fp": 142411.12
    },
    "ex_stats_first": {
     "open_interest_fp": 120664.88,
@@ -1521,7 +1693,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 5334.860000000001,
-    "volume_24h_fp": 2595.95,
+    "volume_24h_fp": 2596.73,
     "volume_fp": 5873.17
    },
    "ex_stats_first": {
@@ -1934,9 +2106,9 @@
     "volume_fp": 73.81
    },
    "ex_stats_close": {
-    "open_interest_fp": 30218.71,
-    "volume_24h_fp": 32186.35,
-    "volume_fp": 36273.89
+    "open_interest_fp": 30251.97,
+    "volume_24h_fp": 33094.799999999996,
+    "volume_fp": 36307.15
    },
    "ex_stats_first": {
     "open_interest_fp": 23433.79,
@@ -2127,8 +2299,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 4533829.0,
-    "volume": 6639526.0
+    "openInterest": 4548219.0,
+    "volume": 6663916.0
    },
    "ex_stats_first": {
     "openInterest": 4275338.0,
@@ -2212,8 +2384,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.85,
-   "clv_cents": 0.0,
+   "close_price": 0.84,
+   "clv_cents": -1.0,
    "confirmed_after_min": 4,
    "date": "2026-11-26",
    "depth_by_book": {
@@ -2250,9 +2422,9 @@
     "volume_fp": 1206.84
    },
    "ex_stats_close": {
-    "open_interest_fp": 429695.76,
-    "volume_24h_fp": 302096.66000000003,
-    "volume_fp": 522200.0
+    "open_interest_fp": 460785.56,
+    "volume_24h_fp": 304179.56999999995,
+    "volume_fp": 555196.61
    },
    "ex_stats_first": {
     "open_interest_fp": 350458.26,
@@ -2466,10 +2638,12 @@
    "ex_stats_change": null,
    "ex_stats_first": null,
    "fade_price": 0.5074,
+   "fade_units": 0.95,
    "first_seen_utc": "2026-11-26T17:30:22Z",
    "game": "Chicago Bears at Detroit Lions",
    "game_surge_books": [],
    "game_x": 1.48,
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 0, \"px_event\": 1700008862, \"px_market\": 219, \"side\": \"1\"}",
    "lead_min": 24,
    "league": "NFL",
@@ -2602,14 +2776,15 @@
     "px_market": 219,
     "side": "1"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi"
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 19,
+   "settle_tries": 20,
+   "settled_utc": "2026-11-26T21:36:00Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Detroit Lions",
@@ -2627,7 +2802,7 @@
     "Detroit Lions"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-26T17:10:18Z",
@@ -2882,7 +3057,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 5334.860000000001,
-    "volume_24h_fp": 2595.95,
+    "volume_24h_fp": 2596.73,
     "volume_fp": 5873.17
    },
    "ex_stats_first": {
@@ -3291,9 +3466,9 @@
     "volume_fp": 5274.26
    },
    "ex_stats_close": {
-    "open_interest_fp": 107399.36,
-    "volume_24h_fp": 101413.38,
-    "volume_fp": 112502.33
+    "open_interest_fp": 107652.87,
+    "volume_24h_fp": 101449.9,
+    "volume_fp": 112755.84
    },
    "ex_stats_first": {
     "open_interest_fp": 89081.03,
@@ -3700,7 +3875,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 24483.21,
-    "volume_24h_fp": 10168.12,
+    "volume_24h_fp": 10173.76,
     "volume_fp": 31113.75
    },
    "ex_stats_first": {
@@ -3881,7 +4056,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 24483.21,
-    "volume_24h_fp": 10168.12,
+    "volume_24h_fp": 10173.76,
     "volume_fp": 31113.75
    },
    "ex_stats_first": {
@@ -3986,8 +4161,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.83,
-   "clv_cents": -1.0,
+   "close_price": 0.82,
+   "clv_cents": -2.0,
    "confirmed_after_min": 5,
    "date": "2026-11-27",
    "depth_by_book": {
@@ -4018,9 +4193,9 @@
     "volume_fp": 122.29
    },
    "ex_stats_close": {
-    "open_interest_fp": 38155.77,
-    "volume_24h_fp": 32542.32,
-    "volume_fp": 50750.07
+    "open_interest_fp": 38212.84,
+    "volume_24h_fp": 33113.69,
+    "volume_fp": 51289.82
    },
    "ex_stats_first": {
     "open_interest_fp": 26752.58,
@@ -4556,9 +4731,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 26450.5,
-    "volume_24h_fp": 24063.84,
-    "volume_fp": 29251.870000000003
+    "open_interest_fp": 26471.44,
+    "volume_24h_fp": 24088.46,
+    "volume_fp": 29272.809999999998
    },
    "ex_stats_first": {
     "open_interest_fp": 15796.61,
@@ -4689,9 +4864,9 @@
     "volume_fp": 19.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 8803.81,
-    "volume_24h_fp": 5839.48,
-    "volume_fp": 9642.08
+    "open_interest_fp": 8910.81,
+    "volume_24h_fp": 5828.17,
+    "volume_fp": 9749.08
    },
    "ex_stats_first": {
     "open_interest_fp": 7564.05,
@@ -4820,10 +4995,12 @@
     "volume": 6636036.0
    },
    "fade_price": 0.49,
+   "fade_units": 1.04,
    "first_seen_utc": "2026-11-26T14:16:03Z",
    "game": "Chicago Bears @ Detroit Lions",
    "game_surge_books": [],
    "game_x": 1.48,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1edd4-de4d-7861-9fb8-495be0a295cc\", \"outcome_id\": \"01a1edd4-de4d-7861-9fb8-49794b75bbb1\"}",
    "lead_min": 220,
    "league": "NFL",
@@ -4859,12 +5036,13 @@
     "market_id": "01a1edd4-de4d-7861-9fb8-495be0a295cc",
     "outcome_id": "01a1edd4-de4d-7861-9fb8-49794b75bbb1"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 19,
+   "settle_tries": 20,
+   "settled_utc": "2026-11-26T21:36:00Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -4879,7 +5057,7 @@
     "Detroit Lions"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-26T13:40:19Z",
@@ -4927,9 +5105,9 @@
     "volume_fp": 79.71
    },
    "ex_stats_close": {
-    "open_interest_fp": 423168.11,
-    "volume_24h_fp": 318712.04,
-    "volume_fp": 439120.07
+    "open_interest_fp": 440136.07,
+    "volume_24h_fp": 321288.46,
+    "volume_fp": 456088.03
    },
    "ex_stats_first": {
     "open_interest_fp": 241287.85,
@@ -5065,10 +5243,12 @@
     "volume": 9886898.0
    },
    "fade_price": 0.49,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-26T13:20:25Z",
    "game": "Chicago Bears @ Detroit Lions",
    "game_surge_books": [],
    "game_x": 1.1,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1edd4-de4d-7861-9fb8-4923f03cc874\", \"outcome_id\": \"01a1edd4-de4d-7861-9fb8-493d159fcfc0\"}",
    "lead_min": 270,
    "league": "NFL",
@@ -5115,14 +5295,15 @@
     "market_id": "01a1edd4-de4d-7861-9fb8-4923f03cc874",
     "outcome_id": "01a1edd4-de4d-7861-9fb8-493d159fcfc0"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 19,
+   "settle_tries": 20,
+   "settled_utc": "2026-11-26T21:36:00Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -5136,7 +5317,7 @@
     "Detroit Lions"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.94
   },
   {
    "alerted_utc": "2026-11-26T12:55:48Z",
@@ -5185,7 +5366,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 50127.19,
-    "volume_24h_fp": 32605.04,
+    "volume_24h_fp": 32591.25,
     "volume_fp": 51557.7
    },
    "ex_stats_first": {
@@ -5455,10 +5636,12 @@
     "volume": 21618977.0
    },
    "fade_price": 0.485,
+   "fade_units": 1.06,
    "first_seen_utc": "2026-11-26T10:43:39Z",
    "game": "Chicago Bears @ Detroit Lions",
    "game_surge_books": [],
    "game_x": 1.25,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1edd4-de4c-78a1-8364-e6a57695c12a\", \"outcome_id\": \"01a1edd4-de4c-78a1-8364-e6ba296a74f0\"}",
    "lead_min": 430,
    "league": "NFL",
@@ -5508,14 +5691,15 @@
     "market_id": "01a1edd4-de4c-78a1-8364-e6a57695c12a",
     "outcome_id": "01a1edd4-de4c-78a1-8364-e6ba296a74f0"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi"
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 19,
+   "settle_tries": 20,
+   "settled_utc": "2026-11-26T21:36:00Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Detroit Lions",
@@ -5532,7 +5716,7 @@
     "Detroit Lions"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-26T10:20:20Z",
@@ -5586,9 +5770,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 26226.120000000003,
-    "volume_24h_fp": 7100.51,
-    "volume_fp": 29115.6
+    "open_interest_fp": 26357.120000000003,
+    "volume_24h_fp": 7591.74,
+    "volume_fp": 29246.6
    },
    "ex_stats_first": {
     "open_interest_fp": 22737.87,
@@ -5736,9 +5920,9 @@
     "volume_fp": 3201.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 1506183.6900000002,
-    "volume_24h_fp": 821561.89,
-    "volume_fp": 1997676.49
+    "open_interest_fp": 1508938.72,
+    "volume_24h_fp": 817243.7200000001,
+    "volume_fp": 2000837.98
    },
    "ex_stats_first": {
     "open_interest_fp": 1027364.75,
@@ -5871,9 +6055,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 121867.36,
-    "volume_24h_fp": 31458.03,
-    "volume_fp": 141266.91
+    "open_interest_fp": 121881.34,
+    "volume_24h_fp": 32002.08,
+    "volume_fp": 141380.89
    },
    "ex_stats_first": {
     "open_interest_fp": 109014.38,
@@ -6276,8 +6460,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 25266164.0,
-    "volume": 33307727.0
+    "openInterest": 25295310.0,
+    "volume": 33336873.0
    },
    "ex_stats_first": {
     "openInterest": 9377107.0,
@@ -6544,7 +6728,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 8879.69,
-    "volume_24h_fp": 1505.65,
+    "volume_24h_fp": 1421.65,
     "volume_fp": 10464.13
    },
    "ex_stats_first": {
@@ -6759,9 +6943,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3830.59,
-    "volume_24h_fp": 1292.62,
-    "volume_fp": 4005.45
+    "open_interest_fp": 3832.21,
+    "volume_24h_fp": 1316.04,
+    "volume_fp": 4007.07
    },
    "ex_stats_first": {
     "open_interest_fp": 3213.87,
@@ -6970,7 +7154,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 5038.139999999999,
-    "volume_24h_fp": 1416.48,
+    "volume_24h_fp": 1398.5900000000001,
     "volume_fp": 6901.99
    },
    "ex_stats_first": {
@@ -7173,9 +7357,9 @@
     "volume_fp": 121.04
    },
    "ex_stats_close": {
-    "open_interest_fp": 1159770.83,
-    "volume_24h_fp": 124664.97,
-    "volume_fp": 1284439.79
+    "open_interest_fp": 1159951.53,
+    "volume_24h_fp": 177044.01,
+    "volume_fp": 1292432.68
    },
    "ex_stats_first": {
     "open_interest_fp": 1079758.46,
@@ -7360,9 +7544,9 @@
     "volume_fp": 40.04
    },
    "ex_stats_close": {
-    "open_interest_fp": 23423.02,
-    "volume_24h_fp": 22264.239999999998,
-    "volume_fp": 27001.97
+    "open_interest_fp": 23619.800000000003,
+    "volume_24h_fp": 22239.089999999997,
+    "volume_fp": 27753.75
    },
    "ex_stats_first": {
     "open_interest_fp": 5490.219999999999,
@@ -7543,10 +7727,12 @@
     "volume_fp": 321851.0
    },
    "fade_price": 0.5,
+   "fade_units": 0.93,
    "first_seen_utc": "2026-11-26T02:50:19Z",
    "game": "Chicago vs Detroit: Spread",
    "game_surge_books": [],
    "game_x": 1.17,
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLSPREAD-26NOV26CHIDET-CHI2\"}",
    "lead_min": 904,
    "league": "NFL",
@@ -7665,12 +7851,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNFLSPREAD-26NOV26CHIDET-CHI2"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 19,
+   "settle_tries": 20,
+   "settled_utc": "2026-11-26T21:36:00Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Detroit",
@@ -7685,7 +7872,7 @@
     "Detroit"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-26T02:50:19Z",
@@ -9687,6 +9874,7 @@
     "volume_fp": 899273.8999999999
    },
    "fade_price": 0.53,
+   "fade_units": 0.83,
    "first_seen_utc": "2026-11-26T00:15:58Z",
    "game": "Chicago vs Detroit",
    "game_surge_books": [],
@@ -9818,14 +10006,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNFLGAME-26NOV26CHIDET-DET"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "prophetx"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 19,
+   "settle_tries": 20,
+   "settled_utc": "2026-11-26T21:36:00Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Detroit",
@@ -9840,7 +10029,7 @@
     "Detroit"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-25T23:55:49Z",
@@ -11186,12 +11375,14 @@
     "volume": 4501967.0
    },
    "fade_price": 0.51,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-25T23:00:25Z",
    "game": "Chicago Bears @ Detroit Lions",
    "game_surge_books": [
     "novig"
    ],
    "game_x": 2.11,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1edd4-de4c-78a1-8364-e6a57695c12a\", \"outcome_id\": \"01a1edd4-de4c-78a1-8364-e6c0d11e580f\"}",
    "lead_min": 1134,
    "league": "NFL",
@@ -11310,14 +11501,15 @@
     "market_id": "01a1edd4-de4c-78a1-8364-e6a57695c12a",
     "outcome_id": "01a1edd4-de4c-78a1-8364-e6c0d11e580f"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi"
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 19,
+   "settle_tries": 20,
+   "settled_utc": "2026-11-26T21:36:00Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Chicago Bears",
@@ -11332,7 +11524,7 @@
     "Detroit Lions"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.0
   },
   {
    "alerted_utc": "2026-11-25T23:05:48Z",
@@ -11392,10 +11584,12 @@
     "volume": 35857797.0
    },
    "fade_price": 0.485,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-25T23:00:25Z",
    "game": "Chicago Bears @ Detroit Lions",
    "game_surge_books": [],
    "game_x": 1.62,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1edd4-de4b-7583-b19e-16de5f2334cd\", \"outcome_id\": \"01a1edd4-de4b-7583-b19e-16f8b1605f5a\"}",
    "lead_min": 1134,
    "league": "NFL",
@@ -11523,12 +11717,13 @@
     "market_id": "01a1edd4-de4b-7583-b19e-16de5f2334cd",
     "outcome_id": "01a1edd4-de4b-7583-b19e-16f8b1605f5a"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 19,
+   "settle_tries": 20,
+   "settled_utc": "2026-11-26T21:36:00Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Chicago Bears",
@@ -11545,7 +11740,7 @@
     "Detroit Lions"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.92
   },
   {
    "alerted_utc": "2026-11-25T22:40:19Z",
@@ -12857,9 +13052,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 69651.37,
-    "volume_24h_fp": 69311.09,
-    "volume_fp": 71738.63
+    "open_interest_fp": 69707.17,
+    "volume_24h_fp": 69214.48,
+    "volume_fp": 71794.43
    },
    "ex_stats_first": {
     "open_interest_fp": 977.76,
@@ -14604,8 +14799,8 @@
     "volume": 11275.0
    },
    "ex_stats_close": {
-    "openInterest": 36725209.0,
-    "volume": 61222771.0
+    "openInterest": 36881356.0,
+    "volume": 61658630.0
    },
    "ex_stats_first": {
     "openInterest": 6438126.0,
@@ -15524,10 +15719,12 @@
     "volume": 34945434.0
    },
    "fade_price": 0.52,
+   "fade_units": 0.92,
    "first_seen_utc": "2026-11-25T21:10:22Z",
    "game": "Chicago Bears @ Detroit Lions",
    "game_surge_books": [],
    "game_x": 1.64,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1edd4-de4b-7583-b19e-16de5f2334cd\", \"outcome_id\": \"01a1edd4-de4b-7583-b19e-16e874d5b1b5\"}",
    "lead_min": 1244,
    "league": "NFL",
@@ -15655,7 +15852,7 @@
     "market_id": "01a1edd4-de4b-7583-b19e-16de5f2334cd",
     "outcome_id": "01a1edd4-de4b-7583-b19e-16e874d5b1b5"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -15663,7 +15860,8 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 19,
+   "settle_tries": 20,
+   "settled_utc": "2026-11-26T21:36:00Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Detroit Lions",
@@ -15680,7 +15878,7 @@
     "Detroit Lions"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-25T21:15:54Z",
@@ -23058,9 +23256,9 @@
     "volume_fp": 308.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 2494210.2800000003,
-    "volume_24h_fp": 2211310.3,
-    "volume_fp": 2696014.0
+    "open_interest_fp": 2624115.42,
+    "volume_24h_fp": 2273181.51,
+    "volume_fp": 2829895.1500000004
    },
    "ex_stats_first": {
     "open_interest_fp": 323794.29000000004,
@@ -25155,10 +25353,12 @@
     "volume_fp": 70889.24
    },
    "fade_price": 0.49,
+   "fade_units": 0.97,
    "first_seen_utc": "2026-11-25T11:50:19Z",
    "game": "Chicago vs Detroit: Spread",
    "game_surge_books": [],
    "game_x": 1.08,
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLSPREAD-26NOV26CHIDET-CHI3\"}",
    "lead_min": 1804,
    "league": "NFL",
@@ -25261,12 +25461,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNFLSPREAD-26NOV26CHIDET-CHI3"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 19,
+   "settle_tries": 20,
+   "settled_utc": "2026-11-26T21:36:00Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Detroit",
@@ -25281,7 +25482,7 @@
     "Detroit"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-25T07:55:57Z",
