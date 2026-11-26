@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 26, 6:30 AM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 32.
+Updated Thu Nov 26, 6:35 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 32.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 26 5:50AM | NFL | Chicago Bears @ Detroit Lions | spread: DET +1.5 (1.5) | novig | $27k | -111 | ✅ kalshi |  | +0.0c |  | pending |
+| Nov 26 5:50AM | NFL | Chicago Bears @ Detroit Lions | spread: DET +1.5 (1.5) | novig | $27k | -111 | ✅ kalshi |  | -0.5c |  | pending |
 | Nov 26 5:20AM | NCAAF | Minnesota vs Wisconsin | moneyline: Wisconsin | kalshi | $96k | -300 | ✅ prophetx |  | +0.0c |  | pending |
 | Nov 26 5:10AM | NFL | Denver vs Pittsburgh | moneyline: Denver | kalshi | $209k | -203 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 26 5:10AM | NCAAF | Texas vs Texas A&M | moneyline: Texas | kalshi | $74k | -426 |  |  | +0.0c |  | pending |
@@ -41,7 +41,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 25 6:15PM | NHL | Philadelphia vs Washington: Total Goals | total: Over 6.5 goals scored | kalshi | $37k | +104 | ✅ novig |  | +1.0c | yes | W |
 | Nov 25 6:10PM | NHL | Carolina vs Tampa Bay: Spread | spread: NOT Carolina wins by over 1.5 goals | kalshi | $31k | -223 | ✅ novig |  | +0.0c | yes | L |
 | Nov 25 6:05PM | NFL | Chicago Bears @ Detroit Lions | spread: CHI -1.5 (1.5) | novig | $46k | -100 | ✅ kalshi |  | -1.5c | yes | pending |
-| Nov 25 6:05PM | NFL | Chicago Bears @ Detroit Lions | moneyline: CHI (0) | novig | $50k | -108 |  |  | +0.0c | yes | pending |
+| Nov 25 6:05PM | NFL | Chicago Bears @ Detroit Lions | moneyline: CHI (0) | novig | $50k | -108 |  |  | +0.5c | yes | pending |
 | Nov 25 5:40PM | NHL | Carolina vs Tampa Bay | moneyline: Carolina | kalshi | $79k | -104 | ✅ novig |  | +1.0c |  | W |
 | Nov 25 5:35PM | NFL | Chicago vs Detroit: Total Points | total: Over 55.5 points | kalshi | $69k | -104 | ✅ novig,prophetx |  | +1.0c | yes | pending |
 | Nov 25 5:25PM | NBA | Minnesota Timberwolves @ Oklahoma City Thunder | total: Over 222.5 (222.5) | novig | $36k | -106 | ✅ kalshi | ✅ | +0.0c |  | L |
