@@ -373,20 +373,20 @@
   {
    "alert_utc": "2026-11-25T11:00:34Z",
    "beat_close": true,
-   "beat_true_close": null,
+   "beat_true_close": false,
    "bet": "Under 223.5 (-115)",
    "book": "Hard Rock",
    "book_key": "hardrockbet",
-   "close_fair_prob": null,
-   "close_read_mins_before": null,
-   "close_value_pct": null,
+   "close_fair_prob": 0.5271,
+   "close_read_mins_before": 30,
+   "close_value_pct": -1.5,
    "clv": "+0.5 pts",
-   "clv_conv_pts": null,
-   "clv_pin_line": null,
-   "clv_read_utc": null,
+   "clv_conv_pts": 0.5,
+   "clv_pin_line": 223.0,
+   "clv_read_utc": "2026-11-26T01:00:23Z",
    "clv_skipped": null,
-   "clv_source": null,
-   "clv_verified": null,
+   "clv_source": "live read (provisional)",
+   "clv_verified": false,
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -447,20 +447,20 @@
   {
    "alert_utc": "2026-11-25T15:00:39Z",
    "beat_close": false,
-   "beat_true_close": null,
+   "beat_true_close": false,
    "bet": "Over 223.5 (-110)",
    "book": "Hard Rock",
    "book_key": "hardrockbet",
-   "close_fair_prob": null,
-   "close_read_mins_before": null,
-   "close_value_pct": null,
+   "close_fair_prob": 0.4729,
+   "close_read_mins_before": 30,
+   "close_value_pct": -9.7,
    "clv": "-0.5 pts",
-   "clv_conv_pts": null,
-   "clv_pin_line": null,
-   "clv_read_utc": null,
+   "clv_conv_pts": 0.5,
+   "clv_pin_line": 223.0,
+   "clv_read_utc": "2026-11-26T01:00:23Z",
    "clv_skipped": null,
-   "clv_source": null,
-   "clv_verified": null,
+   "clv_source": "live read (provisional)",
+   "clv_verified": false,
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -1657,8 +1657,8 @@
    "fade_point": 152.5,
    "fade_price": -104,
    "fade_price_after_fee": -104,
-   "fade_units": null,
-   "final": null,
+   "fade_units": -1.0,
+   "final": "PRST 72, UCR 65",
    "floor_line": 152.5,
    "game": "Portland St Vikings @ UC Riverside Highlanders",
    "grade": "A",
@@ -1696,13 +1696,13 @@
     }
    },
    "pricing_bettable": true,
-   "result": null,
+   "result": "W",
    "score": 80,
    "sent_to_phone": false,
    "sport": "NCAAB",
    "start_utc": "2026-11-25T22:00:00Z",
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.91
   },
   {
    "alert_utc": "2026-11-25T15:00:39Z",
@@ -1731,8 +1731,8 @@
    "fade_point": 1.5,
    "fade_price": 102,
    "fade_price_after_fee": 102,
-   "fade_units": null,
-   "final": null,
+   "fade_units": -1.0,
+   "final": "MIA 104, PHI 111",
    "floor_line": -1.5,
    "game": "Miami Heat @ Philadelphia 76ers",
    "grade": "A",
@@ -1770,13 +1770,13 @@
     }
    },
    "pricing_bettable": true,
-   "result": null,
+   "result": "W",
    "score": 79,
    "sent_to_phone": true,
    "sport": "NBA",
    "start_utc": "2026-11-25T22:00:00Z",
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.96
   },
   {
    "alert_utc": "2026-11-25T20:30:31Z",
@@ -1805,8 +1805,8 @@
    "fade_point": 1.5,
    "fade_price": 102,
    "fade_price_after_fee": 102,
-   "fade_units": null,
-   "final": null,
+   "fade_units": 1.02,
+   "final": "MIA 104, PHI 111",
    "floor_line": -1.5,
    "game": "Miami Heat @ Philadelphia 76ers",
    "grade": "A",
@@ -1844,13 +1844,13 @@
     }
    },
    "pricing_bettable": true,
-   "result": null,
+   "result": "L",
    "score": 93,
    "sent_to_phone": true,
    "sport": "NBA",
    "start_utc": "2026-11-25T22:00:00Z",
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alert_utc": "2026-11-25T20:30:31Z",
@@ -117033,13 +117033,13 @@
   {
    "alert_text": "Miami Heat -1.5 (-104) at Novig (also: Hard Rock, ProphetX, Kalshi)",
    "bet": "Miami Heat -1.5 (-104)",
-   "bet_result": null,
+   "bet_result": "L",
    "book": "Novig",
    "confirmed_by": [
     "BetOnline"
    ],
    "edge_pct": 0.1,
-   "final": null,
+   "final": "MIA 104, PHI 111",
    "game": "Miami Heat @ Philadelphia 76ers",
    "grade": "A",
    "late": false,
@@ -117466,13 +117466,13 @@
   {
    "alert_text": "Philadelphia 76ers -1.5 (-104) at Novig (also: Hard Rock, ProphetX, Kalshi)",
    "bet": "Philadelphia 76ers -1.5 (-104)",
-   "bet_result": null,
+   "bet_result": "W",
    "book": "Novig",
    "confirmed_by": [
     "BetOnline"
    ],
    "edge_pct": -1.2,
-   "final": null,
+   "final": "MIA 104, PHI 111",
    "game": "Miami Heat @ Philadelphia 76ers",
    "grade": "A",
    "late": false,
@@ -117563,13 +117563,13 @@
   {
    "alert_text": "Under 152.5 (-110) at Hard Rock (also: ProphetX, Novig)",
    "bet": "Under 152.5 (-110)",
-   "bet_result": null,
+   "bet_result": "W",
    "book": "Hard Rock",
    "confirmed_by": [
     "BetOnline"
    ],
    "edge_pct": -3.7,
-   "final": null,
+   "final": "PRST 72, UCR 65",
    "game": "Portland St Vikings @ UC Riverside Highlanders",
    "grade": "A",
    "late": false,
