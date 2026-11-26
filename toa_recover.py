@@ -66,7 +66,72 @@ def spend_ok(cost):
     return toa.METER["credits"] + cost <= BUDGET
 
 
+def fills_pass():
+    """Nov 26 (Peter): actual bot fills first. Every graded bot fill without a stored close gets its snapshot; the
+    fill's own after-fee price is applied later by executed_clv, exactly as before. Returns (fills, resolved)."""
+    import executed_clv as xc
+    F, _n = xc.fill_rows()
+
+    def q_of(b):
+        g = b.get("game_start") or b.get("settled") or b.get("placed") or b.get("first_seen")
+        return {"bet": b.get("bet"), "league": b.get("league"), "game": b.get("game"), "teams": b.get("teams"),
+                "game_start": g}, bool(b.get("game_start"))
+
+    for _round in range(3):
+        need_f, need_a = set(), set()
+        for b in F:
+            q, given = q_of(b)
+            lg = q["league"]
+            if lg not in toa.SPORT:
+                continue
+            c, why = toa.close_for_row(q, lg)
+            if c:
+                continue
+            t0 = cl.tp(q["game_start"])
+            if not t0:
+                continue
+            if "no unique event" in str(why) or "no stored" in str(why):
+                # no listed start: the settle time is after the game - look 3 hours earlier for the event
+                need_f.add((toa.SPORT[lg], (t0 if given else t0 - timedelta(hours=3)).replace(second=0, microsecond=0)))
+                continue
+            fx = toa.fixtures(lg)
+            fid, _ = fxm.ordered_match(dict(q, league=lg), fx, cl.tp)
+            if not fid:
+                continue
+            ts = cl.tp(fx[fid]["start"])
+            if "not at the close" in str(why):
+                need_f.add((toa.SPORT[lg], ts))
+            elif "exact line" in str(why):
+                need_a.add((toa.SPORT[lg], fid.split(":", 1)[1], ts))
+        need_f = {k for k in need_f if not toa.have_snap(*k)}
+        need_a = {k for k in need_a if not os.path.exists(toa._path(k[0], toa.alt_name(k[1], k[2])))}
+        print(f"fills round {_round + 1}: snapshots {len(need_f)} | alternate lines {len(need_a)}")
+        if not need_f and not need_a:
+            break
+        for k in need_f:
+            if spend_ok(FEAT_COST):
+                try:
+                    toa.fetch_snapshot(*k)
+                except Exception:
+                    ERRS[0] += 1
+        for k in need_a:
+            if spend_ok(ALT_COST):
+                try:
+                    toa.fetch_alts(*k)
+                except Exception:
+                    ERRS[0] += 1
+        toa.reset_cache()
+    res = sum(1 for b in F if q_of(b)[0]["league"] in toa.SPORT and toa.close_for_row(q_of(b)[0], q_of(b)[0]["league"])[0])
+    print(f"bot fills: {len(F)} graded | with a stored exact-line close {res}")
+    return len(F), res
+
+
 def main():
+    if (os.environ.get("TOA_FILLS") or "1") == "1" and not DRY:
+        fills_pass()
+    if (os.environ.get("TOA_ONLY_FILLS") or "") == "1":
+        print(toa.report())
+        return 0
     st = tb.dec(json.load(open(cl.STATE)))
     mkmap = (json.load(open(oa.MKFILE)) or {}).get("m") or {}
     fxs = st.get("fixtures") or {}

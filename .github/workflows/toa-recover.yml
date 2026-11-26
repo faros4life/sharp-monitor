@@ -14,6 +14,9 @@ on:
       script:
         description: "toa_recover.py | toa_crosscheck.py"
         default: "toa_recover.py"
+      only_fills:
+        description: "1 = bot fills only"
+        default: "0"
 permissions:
   contents: read
 concurrency:
@@ -50,6 +53,7 @@ jobs:
           TOA_BUDGET: ${{ inputs.budget }}
           TOA_DRY: ${{ inputs.dry }}
           CROSS_MAX_CREDITS: "10000"
+          TOA_ONLY_FILLS: ${{ inputs.only_fills }}
         run: python -u ${{ inputs.script }}
       - name: Save The Odds API store (partial progress is kept)
         if: always()
