@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 25, 7:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 28.
+Updated Wed Nov 25, 7:10 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 27.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 498-298 (-22.50u flat) | rule met: 116-80
+**Record:** 498-299 (-23.50u flat) | rule met: 116-80
 
-**Fade (paper, betting against the print):** 273-463 (+22.04u flat, after fees)
+**Fade (paper, betting against the print):** 274-463 (+23.33u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -34,7 +34,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 25 11:40AM | NCAAB | Arkansas St. vs Florida International | moneyline: Florida International | kalshi | $30k | -122 | ✅ novig |  | +0.0c |  | L |
 | Nov 25 9:30AM | NCAAB | Texas A&M vs Xavier | moneyline: Texas A&M | kalshi | $28k | -186 |  |  | -3.0c | yes | L |
 | Nov 25 8:40AM | NCAAB | Tulane vs Davidson | moneyline: Davidson | kalshi | $38k | -317 | ✅ novig |  | +4.0c |  | W |
-| Nov 25 8:30AM | NCAAB | Portland St. vs UC Riverside | moneyline: UC Riverside | kalshi | $42k | -138 |  |  | +1.0c |  | pending |
+| Nov 25 8:30AM | NCAAB | Portland St. vs UC Riverside | moneyline: UC Riverside | kalshi | $42k | -138 |  |  | +1.0c |  | L |
 | Nov 25 8:30AM | NCAAB | Cal State Bakersfield vs Pepperdine | moneyline: Pepperdine | kalshi | $31k | -456 | ✅ novig |  | -1.0c |  | pending |
 | Nov 25 2:10AM | NCAAB | Eastern Washington vs Loyola Marymount | moneyline: Loyola Marymount | kalshi | $49k | -257 |  |  | +2.0c |  | pending |
 | Nov 25 1:30AM | NCAAB | Bethune-Cookman vs Richmond | moneyline: Richmond | kalshi | $31k | -567 |  |  | +2.0c |  | pending |
