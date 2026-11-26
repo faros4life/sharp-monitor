@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 26, 12:50 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 23.
+Updated Thu Nov 26, 12:55 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 23.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -12,7 +12,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 26 12:45AM | NFL | Kansas City vs Buffalo: Total Points | total: NOT Over 47.5 points | kalshi | $59k | -122 |  |  | +0.0c |  | pending |
 | Nov 26 12:30AM | NBA | Atlanta vs Boston | moneyline: Boston | kalshi | $201k | -317 |  |  | +0.0c |  | pending |
-| Nov 25 9:55PM | NFL | Chicago vs Detroit: Spread | spread: NOT Chicago wins by over 1.5 points | kalshi | $283k | -108 |  |  | +0.0c | yes | pending |
+| Nov 25 9:55PM | NFL | Chicago vs Detroit: Spread | spread: NOT Chicago wins by over 1.5 points | kalshi | $283k | -108 |  |  | -1.0c | yes | pending |
 | Nov 25 9:50PM | NBA | Sacramento vs Golden State: Spread | spread: Golden State wins by over 8.5 points | kalshi | $32k | -104 | ✅ novig | ✅ | +0.0c | yes | W |
 | Nov 25 9:45PM | NHL | San Jose vs Anaheim: Total Goals | total: Over 6.5 goals scored | kalshi | $47k | -144 |  |  | +0.0c |  | W |
 | Nov 25 9:30PM | NBA | Sacramento Kings @ Golden State Warriors | total: Over 216.5 (216.5) | novig | $31k | -104 | ✅ kalshi | ❌ | -1.0c |  | pending |
