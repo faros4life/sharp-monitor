@@ -50,8 +50,8 @@
     "volume": 4400.0
    },
    "ex_stats_close": {
-    "openInterest": 2529866.0,
-    "volume": 4202348.0
+    "openInterest": 2604989.0,
+    "volume": 4338348.0
    },
    "ex_stats_first": {
     "openInterest": 2025466.0,
@@ -108,6 +108,8 @@
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.75,
+   "price_after_15m": 0.75,
+   "price_after_15m_book": "novig",
    "price_american": -300,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.75,
@@ -198,6 +200,7 @@
    "size_x": 22.52,
    "start_source": "odds",
    "start_utc": "2026-11-27T03:30:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi",
     "novig",
@@ -224,6 +227,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.56,
    "clv_cents": 4.0,
    "confirmed_after_min": 10,
@@ -393,7 +397,8 @@
      "price": -120
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-26T23:10:22Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV26TCUCREI-CREI"
@@ -471,9 +476,9 @@
     "volume_fp": 55.61
    },
    "ex_stats_close": {
-    "open_interest_fp": 87739.98,
-    "volume_24h_fp": 87630.25,
-    "volume_fp": 89498.25
+    "open_interest_fp": 98271.44,
+    "volume_24h_fp": 98365.44,
+    "volume_fp": 100029.71
    },
    "ex_stats_first": {
     "open_interest_fp": 35150.04,
@@ -842,6 +847,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.48,
    "clv_cents": -4.0,
    "confirmed_after_min": 10,
@@ -998,7 +1004,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-26T23:10:22Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNCAAMBSPREAD-26NOV26TCUCREI-CREI2"
@@ -1079,9 +1086,9 @@
     "volume_fp": 740.98
    },
    "ex_stats_close": {
-    "open_interest_fp": 32276.559999999998,
-    "volume_24h_fp": 34488.990000000005,
-    "volume_fp": 36409.590000000004
+    "open_interest_fp": 33407.31,
+    "volume_24h_fp": 35777.49,
+    "volume_fp": 37540.34
    },
    "ex_stats_first": {
     "open_interest_fp": 8248.810000000001,
@@ -2240,6 +2247,7 @@
     "volume_fp": 45412.28
    },
    "fade_price": 0.4,
+   "fade_units": 1.4,
    "first_seen_utc": "2026-11-26T13:20:23Z",
    "game": "Tennessee vs Iowa St.",
    "game_surge_books": [],
@@ -2302,14 +2310,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV26TENNISU-ISU"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
+   "settled_utc": "2026-11-26T23:10:22Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Iowa St.",
@@ -2328,7 +2337,7 @@
     "Iowa St."
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-26T13:30:23Z",
@@ -2838,9 +2847,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 16652.89,
-    "volume_24h_fp": 15432.63,
-    "volume_fp": 17169.839999999997
+    "open_interest_fp": 18169.21,
+    "volume_24h_fp": 17796.739999999998,
+    "volume_fp": 18686.16
    },
    "ex_stats_first": {
     "open_interest_fp": 1472.66,
@@ -3347,9 +3356,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2204.69,
-    "volume_24h_fp": 2452.57,
-    "volume_fp": 2452.57
+    "open_interest_fp": 2492.76,
+    "volume_24h_fp": 2702.13,
+    "volume_fp": 2748.64
    },
    "ex_stats_first": {
     "open_interest_fp": 101.0,
@@ -3551,9 +3560,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 14347.52,
-    "volume_24h_fp": 23335.36,
-    "volume_fp": 23460.21
+    "open_interest_fp": 14510.92,
+    "volume_24h_fp": 23491.29,
+    "volume_fp": 23623.61
    },
    "ex_stats_first": {
     "open_interest_fp": 247.82999999999998,
@@ -3752,9 +3761,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 29005.86,
-    "volume_24h_fp": 43084.58,
-    "volume_fp": 43123.34
+    "open_interest_fp": 29124.18,
+    "volume_24h_fp": 43200.28,
+    "volume_fp": 43241.66
    },
    "ex_stats_first": {
     "open_interest_fp": 13906.32,
@@ -5280,7 +5289,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 128,
+   "settle_tries": 129,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNCW (0)",
