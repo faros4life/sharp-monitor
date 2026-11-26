@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 26, 6:30 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 23.
+Updated Thu Nov 26, 6:40 PM ET. This run: 2 new, 0 not confirmed, 0 pending. Open alerts: 25.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 26 6:40PM | NCAAB | SMU vs LSU: Spread | spread: NOT LSU wins by over 6.5 points | kalshi | $245k | +104 |  |  | +0.0c |  | pending |
+| Nov 26 6:40PM | NCAAB | Pittsburgh vs DePaul | moneyline: DePaul | kalshi | $162k | -100 |  | ❌ | +0.0c |  | pending |
 | Nov 26 5:50PM | NCAAB | Omaha @ Pacific | moneyline: Pacific (0) | novig | $28k | -300 | ✅ kalshi | ❌ | +0.0c |  | pending |
 | Nov 26 5:00PM | NCAAB | TCU vs Creighton | moneyline: Creighton | kalshi | $84k | -108 | ✅ novig |  | +4.0c | yes | pending |
 | Nov 26 3:00PM | NCAAB | Louisville vs St. John's | moneyline: St. John's | kalshi | $28k | -113 |  |  | +0.0c |  | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 10:50AM | NCAAB | Northern Illinois vs Bowling Green | moneyline: Bowling Green | kalshi | $61k | -203 | ✅ novig |  | +0.0c |  | L |
 | Nov 21 10:50AM | NCAAB | Texas A&M-Corpus Christi vs Oral Roberts | moneyline: Oral Roberts | kalshi | $35k | -133 | ✅ novig | ✅ | +3.0c |  | W |
 | Nov 21 10:40AM | NCAAB | New Orleans vs Texas Southern | moneyline: New Orleans | kalshi | $41k | +113 | ✅ novig | ✅ | +1.0c |  | W |
-| Nov 21 10:40AM | NCAAB | Northern Arizona vs Cal Poly | moneyline: Cal Poly | kalshi | $48k | -335 | ✅ novig |  | +1.0c |  | W |
-| Nov 21 10:40AM | NCAAB | Bradley vs Pacific | moneyline: Pacific | kalshi | $39k | -400 | ✅ novig |  | -1.0c |  | W |
