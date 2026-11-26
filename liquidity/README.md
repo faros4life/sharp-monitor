@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 26, 6:15 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 60.
+Updated Thu Nov 26, 6:20 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 61.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 26 6:20PM | NFL | Kansas City Chiefs @ Buffalo Bills | spread: KC +2.5 (-2.5) | novig | $54k | +115 |  | ❌ | +0.0c |  | pending |
 | Nov 26 6:15PM | NFL | Kansas City Chiefs @ Buffalo Bills | moneyline: KC (0) | novig | $92k | +147 |  | ❌ | +0.0c |  | pending |
 | Nov 26 6:00PM | NCAAF | TCU @ Texas Tech | spread: TTU -13.5 (-13.5) | novig | $27k | -113 |  | ❌ | -0.5c | yes | pending |
 | Nov 26 5:20PM | NCAAF | Air Force vs New Mexico: Spread | spread: New Mexico wins by over 6.5 points | kalshi | $70k | -113 | ✅ novig,prophetx |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 23 6:10PM | NBA | Memphis vs Charlotte: Spread | spread: Memphis wins by over 2.5 points | kalshi | $31k | -108 | ✅ novig |  | -1.0c | yes | W |
 | Nov 23 6:10PM | NBA | Oklahoma City vs Indiana: Spread | spread: NOT Oklahoma City wins by over 4.5 points | kalshi | $86k | -104 |  | ✅ | +1.0c |  | W |
 | Nov 23 6:05PM | NBA | Memphis Grizzlies @ Charlotte Hornets | moneyline: MEM (0) | novig | $32k | -138 | ✅ kalshi,prophetx |  | -0.5c |  | W |
-| Nov 23 5:50PM | NBA | Phoenix Suns @ New Orleans Pelicans | moneyline: PHX (0) | novig | $27k | -138 | ✅ kalshi,prophetx |  | +0.5c |  | W |
