@@ -1,6 +1,404 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-26T17:00:30Z",
+   "base_depth": 115792,
+   "best_price": 0.52,
+   "best_price_american": -108,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-26",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 4390,
+     "new_this_side": 25187,
+     "other_side": 19685,
+     "other_side_all_levels": 105405,
+     "ratio": 2.2,
+     "this_side": 42680,
+     "this_side_all_levels": 144987
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "TCU +1.5 (1.5)",
+     "price": 0.52,
+     "this_side": 7801
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 3373.01,
+    "volume_24h_fp": 3380.39,
+    "volume_fp": 3380.39
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 18.5,
+    "volume_24h_fp": 71.5,
+    "volume_fp": 18.5
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 3354.51,
+    "volume_24h_fp": 3308.89,
+    "volume_fp": 3361.89
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-11-26T16:50:22Z",
+   "game": "TCU vs Creighton: Spread",
+   "game_surge_books": [
+    "novig"
+   ],
+   "game_x": 1.3,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAMBSPREAD-26NOV26TCUCREI-CREI2\"}",
+   "lead_min": 359,
+   "league": "NCAAB",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 25187,
+   "new_x": 0.4,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 3373.01,
+      "volume_24h_fp": 3380.39,
+      "volume_fp": 3380.39
+     },
+     "game_normal": 111208,
+     "game_x": 1.3,
+     "normal": 63697,
+     "now": 144987,
+     "type": "SPREAD",
+     "x": 2.28
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 587721.0,
+      "volume": 780801.0
+     },
+     "game_normal": 9856,
+     "game_x": 2.05,
+     "normal": 3561,
+     "now": 20201,
+     "type": "SPREAD",
+     "x": 5.67
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -118
+    },
+    "betonlineag": {
+     "point": 1.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 1.0,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 0.5,
+     "price": -107
+    },
+    "betus": {
+     "point": 1.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -115
+    },
+    "circasports": {
+     "point": 1.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": 1.0,
+     "price": -115
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -118
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 1.0,
+     "price": -106
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -108
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": -113
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -111
+    },
+    "williamhill_us": {
+     "point": 1.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAMBSPREAD-26NOV26TCUCREI-CREI2"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "TCU",
+   "side_label": "NOT Creighton wins by over 1.5 points",
+   "size_x": 2.28,
+   "start_source": "odds",
+   "start_utc": "2026-11-26T23:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "TCU",
+    "Creighton"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-26T17:00:30Z",
+   "base_depth": 301468,
+   "best_price": 0.615,
+   "best_price_american": -160,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.62,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-26",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -3310,
+     "new_this_side": 33733,
+     "other_side": 43559,
+     "other_side_all_levels": 169503,
+     "ratio": 2.5,
+     "this_side": 108114,
+     "this_side_all_levels": 336141
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Gonzaga (0)",
+     "price": 0.615,
+     "this_side": 23157
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Gonzaga",
+     "price": 0.6183,
+     "this_side": 4061
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 8929.79,
+    "volume_24h_fp": 9230.73,
+    "volume_fp": 9551.07
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 680.98,
+    "volume_24h_fp": 1695.56,
+    "volume_fp": 740.98
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 8248.810000000001,
+    "volume_24h_fp": 7535.17,
+    "volume_fp": 8810.09
+   },
+   "fade_price": 0.39,
+   "first_seen_utc": "2026-11-26T16:50:22Z",
+   "game": "Baylor vs Gonzaga",
+   "game_surge_books": [],
+   "game_x": 1.21,
+   "key": "kalshi|KXNCAAMBGAME-26NOV26BAYGONZ|ml|1",
+   "lead_min": 689,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 33733,
+   "new_x": 2.38,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 8929.79,
+      "volume_24h_fp": 9230.73,
+      "volume_fp": 9551.07
+     },
+     "game_normal": 277307,
+     "game_x": 1.21,
+     "normal": 14149,
+     "now": 336141,
+     "type": "ML",
+     "x": 23.76
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 741392.0,
+      "volume": 878243.0
+     },
+     "game_normal": 28144,
+     "game_x": 1.42,
+     "normal": 2603,
+     "now": 40015,
+     "type": "ML",
+     "x": 15.37
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 2145,
+     "game_x": 1.99,
+     "normal": 1422,
+     "now": 4261,
+     "type": "ML",
+     "x": 3.0
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.62,
+   "price_american": -163,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.62,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -180
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -180
+    },
+    "betopenly": {
+     "point": null,
+     "price": -162
+    },
+    "betrivers": {
+     "point": null,
+     "price": -180
+    },
+    "betus": {
+     "point": null,
+     "price": -180
+    },
+    "bovada": {
+     "point": null,
+     "price": -170
+    },
+    "circasports": {
+     "point": null,
+     "price": -180
+    },
+    "draftkings": {
+     "point": null,
+     "price": -175
+    },
+    "fanatics": {
+     "point": null,
+     "price": -175
+    },
+    "fanduel": {
+     "point": null,
+     "price": -176
+    },
+    "kalshi": {
+     "point": null,
+     "price": -163
+    },
+    "lowvig": {
+     "point": null,
+     "price": -180
+    },
+    "novig": {
+     "point": null,
+     "price": -160
+    },
+    "polymarket": {
+     "point": null,
+     "price": -163
+    },
+    "prophetx": {
+     "point": null,
+     "price": -162
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -175
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV26BAYGONZ-GONZ"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Gonzaga",
+   "side_label": "Gonzaga",
+   "size_x": 23.76,
+   "start_source": "odds",
+   "start_utc": "2026-11-27T04:30:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Baylor",
+    "Gonzaga"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-26T16:00:29Z",
    "base_depth": 437007,
    "best_price": 0.655,
@@ -529,8 +927,8 @@
     "volume": 98677.0
    },
    "ex_stats_close": {
-    "openInterest": 1047185.0,
-    "volume": 1047185.0
+    "openInterest": 1083538.0,
+    "volume": 1083538.0
    },
    "ex_stats_first": {
     "openInterest": 273655.0,
@@ -821,8 +1219,8 @@
     "volume": 746.0
    },
    "ex_stats_close": {
-    "openInterest": 1359748.0,
-    "volume": 1443058.0
+    "openInterest": 1378565.0,
+    "volume": 1463575.0
    },
    "ex_stats_first": {
     "openInterest": 289151.0,
@@ -972,9 +1370,9 @@
     "volume_fp": 743.11
    },
    "ex_stats_close": {
-    "open_interest_fp": 111712.52,
-    "volume_24h_fp": 107080.13,
-    "volume_fp": 117524.13
+    "open_interest_fp": 113561.05,
+    "volume_24h_fp": 115097.64000000001,
+    "volume_fp": 120368.75
    },
    "ex_stats_first": {
     "open_interest_fp": 44051.68,
@@ -1123,9 +1521,9 @@
     "volume_fp": 92.37
    },
    "ex_stats_close": {
-    "open_interest_fp": 14343.96,
-    "volume_24h_fp": 14369.52,
-    "volume_fp": 14561.5
+    "open_interest_fp": 16131.150000000001,
+    "volume_24h_fp": 16205.27,
+    "volume_fp": 16371.74
    },
    "ex_stats_first": {
     "open_interest_fp": 5158.28,
@@ -1418,8 +1816,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 11968891.0,
-    "volume": 12289622.0
+    "openInterest": 11975540.0,
+    "volume": 12313537.0
    },
    "ex_stats_first": {
     "openInterest": 512767.0,
@@ -1567,9 +1965,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 6512.47,
-    "volume_24h_fp": 6285.46,
-    "volume_fp": 6716.47
+    "open_interest_fp": 6799.17,
+    "volume_24h_fp": 6590.96,
+    "volume_fp": 7003.17
    },
    "ex_stats_first": {
     "open_interest_fp": 1472.66,
@@ -1767,9 +2165,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 23233.35,
-    "volume_24h_fp": 16164.15,
-    "volume_fp": 29327.940000000002
+    "open_interest_fp": 23675.449999999997,
+    "volume_24h_fp": 25269.05,
+    "volume_fp": 29826.260000000002
    },
    "ex_stats_first": {
     "open_interest_fp": 4336.24,
@@ -2076,7 +2474,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 977.01,
-    "volume_24h_fp": 1004.78,
+    "volume_24h_fp": 1053.44,
     "volume_fp": 1053.44
    },
    "ex_stats_first": {
@@ -2279,9 +2677,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 4691.44,
-    "volume_24h_fp": 3190.78,
-    "volume_fp": 7563.43
+    "open_interest_fp": 6901.04,
+    "volume_24h_fp": 9979.829999999998,
+    "volume_fp": 10585.029999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 247.82999999999998,
@@ -2480,9 +2878,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 27436.6,
-    "volume_24h_fp": 36762.49,
-    "volume_fp": 41320.95
+    "open_interest_fp": 27573.68,
+    "volume_24h_fp": 41457.67,
+    "volume_fp": 41458.03
    },
    "ex_stats_first": {
     "open_interest_fp": 13906.32,
@@ -2662,9 +3060,9 @@
     "volume_fp": 3.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 28992.79,
-    "volume_24h_fp": 27544.68,
-    "volume_fp": 30268.17
+    "open_interest_fp": 30768.08,
+    "volume_24h_fp": 29991.39,
+    "volume_fp": 32043.46
    },
    "ex_stats_first": {
     "open_interest_fp": 4720.94,
@@ -2859,9 +3257,9 @@
     "volume_fp": 2.62
    },
    "ex_stats_close": {
-    "open_interest_fp": 11454.69,
-    "volume_24h_fp": 11084.35,
-    "volume_fp": 11905.62
+    "open_interest_fp": 22393.940000000002,
+    "volume_24h_fp": 22593.82,
+    "volume_fp": 22996.53
    },
    "ex_stats_first": {
     "open_interest_fp": 1077.29,
@@ -4004,7 +4402,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 91,
+   "settle_tries": 92,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNCW (0)",
