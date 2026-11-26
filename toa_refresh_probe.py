@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Measure The Odds API's real pre-game refresh rate before any polling change (Peter, Nov 26: "Verify actual
 provider refresh rates before expanding polling frequency"). Polls ONE sport's Pinnacle + exchange spreads every
-POLL_S seconds for MINUTES minutes (1 credit per call) and reports, per bookmaker, how often a poll saw a NEW
-last_update. Counts and seconds only."""
+POLL_S seconds for MINUTES minutes (1 credit per call) and reports, per bookmaker, how often a poll saw a real PRICE
+OR LINE change. Nov 26 correction: the first version counted last_update timestamps, which advance every ~15 s
+whether or not a price moved - it measured the provider's heartbeat, not the market. Counts and seconds only."""
 import collections
 import json
 import os
@@ -31,7 +32,7 @@ while time.time() < end:
         for bk in ev.get("bookmakers") or []:
             for m in bk.get("markets") or []:
                 k = (ev["id"], bk["key"])
-                lu = m.get("last_update")
+                lu = tuple(sorted((o.get("name"), o.get("price"), o.get("point")) for o in m.get("outcomes") or []))
                 if k in seen and seen[k][0] != lu:
                     new[bk["key"]] += 1
                     gaps[bk["key"]].append(time.time() - seen[k][1])
@@ -43,5 +44,5 @@ for bk in sorted({k[1] for k in seen}):
     n_mk = sum(1 for k in seen if k[1] == bk)
     g = sorted(gaps[bk])
     med = g[len(g) // 2] if g else None
-    print(f"  {bk:<16} markets {n_mk:>4} | updates seen {new[bk]:>4} | updates per market per minute "
-          f"{new[bk] / max(n_mk, 1) / MINUTES:.3f} | median seconds between seen updates {med and round(med)}")
+    print(f"  {bk:<16} markets {n_mk:>4} | price changes {new[bk]:>4} | changes per market per minute "
+          f"{new[bk] / max(n_mk, 1) / MINUTES:.3f} | median seconds between changes {med and round(med)}")
