@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 26, 12:45 PM ET. This run: 2 new, 0 not confirmed, 0 pending. Open alerts: 55.
+Updated Thu Nov 26, 12:50 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 55.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -14,10 +14,10 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 26 12:45PM | NBA | Philadelphia vs Indiana | moneyline: Indiana | kalshi | $42k | +150 |  |  | +0.0c |  | pending |
 | Nov 26 12:40PM | NCAAF | Texas @ Texas A&M | moneyline: TEX (0) | novig | $27k | -400 |  |  | +0.0c |  | pending |
 | Nov 26 12:40PM | NCAAF | TCU vs Texas Tech | moneyline: Texas Tech | kalshi | $255k | -567 | ✅ novig,prophetx | ❌ | +0.0c |  | pending |
-| Nov 26 12:35PM | NFL | Chicago Bears at Detroit Lions | moneyline: Detroit Lions | prophetx | $31k | +101 | ✅ kalshi |  | -0.5c |  | pending |
+| Nov 26 12:35PM | NFL | Chicago Bears at Detroit Lions | moneyline: Detroit Lions | prophetx | $31k | +101 | ✅ kalshi |  | -0.3c |  | pending |
 | Nov 26 12:10PM | NCAAF | Appalachian St. vs South Alabama: Spread | spread: NOT South Alabama wins by over 3.5 points | kalshi | $47k | -113 | ✅ novig |  | +0.0c |  | pending |
 | Nov 26 12:10PM | NCAAF | Appalachian St. vs South Alabama | moneyline: Appalachian St. | kalshi | $45k | +150 | ✅ novig |  | +1.0c |  | pending |
-| Nov 26 11:50AM | NFL | Philadelphia Eagles at Dallas Cowboys | spread: Philadelphia Eagles +8.5 (+8.5) | prophetx | $26k | -101 | ✅ kalshi |  | +0.5c | yes | pending |
+| Nov 26 11:50AM | NFL | Philadelphia Eagles at Dallas Cowboys | spread: Philadelphia Eagles +8.5 (+8.5) | prophetx | $26k | -101 | ✅ kalshi |  | +0.0c | yes | pending |
 | Nov 26 11:50AM | NCAAF | TCU vs Texas Tech: Spread | spread: NOT Texas Tech wins by over 14.5 points | kalshi | $80k | -113 | ✅ novig | ✅ | +0.0c |  | pending |
 | Nov 26 11:45AM | NCAAF | TCU @ Texas Tech | spread: TCU +14.5 (-14.5) | novig | $32k | -111 | ✅ kalshi | ✅ | +0.5c |  | pending |
 | Nov 26 11:30AM | NCAAF | Tulsa vs UTSA | moneyline: Tulsa | kalshi | $145k | -104 |  |  | +0.0c |  | pending |
@@ -26,7 +26,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 26 9:40AM | NBA | Los Angeles L vs San Antonio | moneyline: San Antonio | kalshi | $29k | -178 |  |  | +1.0c |  | pending |
 | Nov 26 9:35AM | NFL | Philadelphia Eagles @ Dallas Cowboys | spread: DAL -8.5 (-8.5) | novig | $39k | -104 | ✅ prophetx |  | -0.5c |  | pending |
 | Nov 26 9:35AM | NBA | Golden State vs Portland | moneyline: Portland | kalshi | $79k | -300 |  |  | +0.0c |  | pending |
-| Nov 26 9:35AM | NBA | Dallas vs Phoenix | moneyline: Phoenix | kalshi | $59k | -108 |  |  | +1.0c |  | pending |
+| Nov 26 9:35AM | NBA | Dallas vs Phoenix | moneyline: Phoenix | kalshi | $59k | -108 |  |  | +2.0c |  | pending |
 | Nov 26 9:25AM | NFL | Denver vs Pittsburgh: Total Points | total: NOT Over 37.5 points | kalshi | $58k | -113 | ✅ novig |  | +0.0c |  | pending |
 | Nov 26 9:20AM | NFL | Chicago Bears @ Detroit Lions | total: Under 56.5 (56.5) | novig | $31k | -106 |  |  | -0.5c |  | pending |
 | Nov 26 8:40AM | NFL | Kansas City vs Buffalo: Spread | spread: Buffalo wins by over 2.5 points | kalshi | $189k | -122 |  |  | +0.0c | yes | pending |
@@ -45,7 +45,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 26 1:10AM | NCAAF | Toledo vs Ohio | moneyline: Toledo | kalshi | $95k | -150 |  |  | -1.0c | yes | pending |
 | Nov 26 1:10AM | NCAAF | North Dakota St. vs San Jose St. | moneyline: North Dakota St. | kalshi | $118k | -317 |  |  | -1.0c | yes | pending |
 | Nov 26 12:45AM | NFL | Kansas City vs Buffalo: Total Points | total: NOT Over 47.5 points | kalshi | $59k | -122 |  |  | +1.0c | yes | pending |
-| Nov 26 12:30AM | NBA | Atlanta vs Boston | moneyline: Boston | kalshi | $201k | -317 |  |  | +0.0c |  | pending |
+| Nov 26 12:30AM | NBA | Atlanta vs Boston | moneyline: Boston | kalshi | $201k | -317 |  |  | +1.0c |  | pending |
 | Nov 25 9:55PM | NFL | Chicago vs Detroit: Spread | spread: NOT Chicago wins by over 1.5 points | kalshi | $283k | -108 |  |  | +1.0c | yes | pending |
 | Nov 25 9:50PM | NBA | Sacramento vs Golden State: Spread | spread: Golden State wins by over 8.5 points | kalshi | $32k | -104 | ✅ novig | ✅ | +0.0c | yes | W |
 | Nov 25 9:45PM | NHL | San Jose vs Anaheim: Total Goals | total: Over 6.5 goals scored | kalshi | $47k | -144 |  |  | +0.0c |  | W |
@@ -66,7 +66,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 25 6:05PM | NFL | Chicago Bears @ Detroit Lions | spread: CHI -1.5 (1.5) | novig | $46k | -100 | ✅ kalshi |  | -2.0c | yes | pending |
 | Nov 25 6:05PM | NFL | Chicago Bears @ Detroit Lions | moneyline: CHI (0) | novig | $50k | -108 |  |  | -1.0c | yes | pending |
 | Nov 25 5:40PM | NHL | Carolina vs Tampa Bay | moneyline: Carolina | kalshi | $79k | -104 | ✅ novig |  | +1.0c |  | W |
-| Nov 25 5:35PM | NFL | Chicago vs Detroit: Total Points | total: Over 55.5 points | kalshi | $69k | -104 | ✅ novig,prophetx |  | +2.0c | yes | pending |
+| Nov 25 5:35PM | NFL | Chicago vs Detroit: Total Points | total: Over 55.5 points | kalshi | $69k | -104 | ✅ novig,prophetx |  | +3.0c | yes | pending |
 | Nov 25 5:25PM | NBA | Minnesota Timberwolves @ Oklahoma City Thunder | total: Over 222.5 (222.5) | novig | $36k | -106 | ✅ kalshi | ✅ | +0.0c |  | L |
 | Nov 25 5:25PM | NBA | Minnesota vs Oklahoma City: Spread | spread: Oklahoma City wins by over 2.5 points | kalshi | $54k | +104 | ✅ novig |  | +1.0c |  | L |
 | Nov 25 5:25PM | NBA | Brooklyn vs Milwaukee: Spread | spread: NOT Milwaukee wins by over 1.5 points | kalshi | $36k | -104 |  |  | +0.0c | yes | W |
