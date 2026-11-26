@@ -1,0 +1,38 @@
+name: clv-baseline
+
+# Two CLV diagnostics (Peter, Nov 26): zero-movement baseline and matched fills. READ-ONLY, cache-only.
+# No ODDSPAPI_KEY or ODDS_API_KEY and no email secrets are passed, so this job cannot spend a credit or send mail.
+# Log: percentages, counts, W-L and units only. Certified CLV is not changed; nothing is committed.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Restore OddsPapi history cache (read only)
+        uses: actions/cache/restore@v4
+        with:
+          path: hcache
+          key: hcache-${{ github.run_id }}
+          restore-keys: hcache-
+      - name: Restore The Odds API store (read only)
+        uses: actions/cache/restore@v4
+        with:
+          path: toa_hist
+          key: toa-hist-${{ github.run_id }}
+          restore-keys: toa-hist-
+      - name: Baseline and matched fills
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          XC_CACHE_ONLY: "1"
+        run: python -u clv_baseline.py
