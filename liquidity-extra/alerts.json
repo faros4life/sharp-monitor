@@ -39,6 +39,11 @@
     "volume_24h_fp": 1336.88,
     "volume_fp": 1119.93
    },
+   "ex_stats_close": {
+    "open_interest_fp": 32883.38,
+    "volume_24h_fp": 22499.79,
+    "volume_fp": 33492.2
+   },
    "ex_stats_first": {
     "open_interest_fp": 20962.85,
     "volume_24h_fp": 21162.91,
@@ -78,7 +83,8 @@
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.82,
    "prices_by_book": {},
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-26T02:30:21Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV26GCCOLO-GC"
@@ -563,7 +569,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Connecticut",
@@ -633,6 +639,7 @@
     "volume_fp": 179825.04
    },
    "fade_price": 0.53,
+   "fade_units": 0.83,
    "first_seen_utc": "2026-11-25T23:20:33Z",
    "game": "UConn vs Duke: Spread",
    "game_surge_books": [],
@@ -739,12 +746,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBSPREAD-26NOV25CONNDUKE-CONN2"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 3,
+   "settle_tries": 4,
+   "settled_utc": "2026-11-26T02:30:21Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UConn",
@@ -761,7 +769,7 @@
     "Duke"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-25T23:20:33Z",
@@ -870,7 +878,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Connecticut",
@@ -980,7 +988,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNCW (0)",
@@ -1263,9 +1271,9 @@
     "volume_fp": 143.54
    },
    "ex_stats_close": {
-    "open_interest_fp": 19802.89,
+    "open_interest_fp": 30373.95,
     "volume_24h_fp": 34913.51,
-    "volume_fp": 35847.93
+    "volume_fp": 46596.53
    },
    "ex_stats_first": {
     "open_interest_fp": 10443.17,
@@ -1472,9 +1480,9 @@
     "volume_fp": 24.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 9943.94,
+    "open_interest_fp": 10160.28,
     "volume_24h_fp": 9883.25,
-    "volume_fp": 9993.94
+    "volume_fp": 10210.28
    },
    "ex_stats_first": {
     "open_interest_fp": 8208.71,
@@ -2331,9 +2339,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 9496.17,
+    "open_interest_fp": 10143.66,
     "volume_24h_fp": 9778.7,
-    "volume_fp": 10278.7
+    "volume_fp": 10926.19
    },
    "ex_stats_first": {
     "open_interest_fp": 5059.46,
@@ -3143,6 +3151,7 @@
     "volume_fp": 89380.08
    },
    "fade_price": 0.53,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-25T17:30:24Z",
    "game": "UConn vs Duke",
    "game_surge_books": [],
@@ -3249,12 +3258,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV25CONNDUKE-DUKE"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 3,
+   "settle_tries": 4,
+   "settled_utc": "2026-11-26T02:30:21Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Duke",
@@ -3271,7 +3281,7 @@
     "Duke"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.01
   },
   {
    "alerted_utc": "2026-11-25T17:30:24Z",
@@ -3324,6 +3334,7 @@
     "volume_fp": 20464.61
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-25T17:20:22Z",
    "game": "UConn vs Duke: Spread",
    "game_surge_books": [],
@@ -3430,12 +3441,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAMBSPREAD-26NOV25CONNDUKE-CONN2"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 3,
+   "settle_tries": 4,
+   "settled_utc": "2026-11-26T02:30:21Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Duke",
@@ -3452,7 +3464,7 @@
     "Duke"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.9
   },
   {
    "alerted_utc": "2026-11-25T17:30:24Z",
