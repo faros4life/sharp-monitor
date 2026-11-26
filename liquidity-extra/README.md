@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 26, 3:20 PM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 25.
+Updated Thu Nov 26, 3:30 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 25.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -11,7 +11,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 26 3:00PM | NCAAB | Louisville vs St. John's | moneyline: St. John's | kalshi | $28k | -113 |  |  | +0.0c |  | pending |
-| Nov 26 2:20PM | NCAAB | Saint Mary's vs UCLA: Spread | spread: UCLA wins by over 7.5 points | kalshi | $28k | -104 |  |  | +0.0c |  | pending |
+| Nov 26 2:20PM | NCAAB | Saint Mary's vs UCLA: Spread | spread: UCLA wins by over 7.5 points | kalshi | $28k | -104 |  |  | +1.0c |  | pending |
 | Nov 26 12:00PM | NCAAB | TCU vs Creighton: Spread | spread: NOT Creighton wins by over 1.5 points | kalshi | $25k | -108 |  |  | +0.0c |  | pending |
 | Nov 26 12:00PM | NCAAB | Baylor vs Gonzaga | moneyline: Gonzaga | kalshi | $34k | -163 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 26 11:00AM | NCAAB | Oklahoma vs Purdue | moneyline: Purdue | kalshi | $72k | -186 | ✅ novig |  | +2.0c |  | L |
@@ -21,7 +21,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 26 9:30AM | NCAAB | Oklahoma @ Purdue | moneyline: PUR (0) | novig | $37k | -186 | ✅ kalshi |  | +1.5c |  | L |
 | Nov 26 8:30AM | NCAAB | Arkansas @ Michigan State | moneyline: MSU (0) | novig | $32k | -203 | ✅ kalshi |  | +0.5c | yes | pending |
 | Nov 26 8:30AM | NCAAB | Tennessee vs Iowa St. | moneyline: Iowa St. | kalshi | $61k | -150 | ✅ novig |  | +6.0c | yes | pending |
-| Nov 26 8:30AM | NCAAB | Miami (FL) vs Michigan | moneyline: Miami (FL) | kalshi | $60k | -122 |  |  | -3.0c |  | pending |
+| Nov 26 8:30AM | NCAAB | Miami (FL) vs Michigan | moneyline: Miami (FL) | kalshi | $60k | -122 |  |  | -3.0c | yes | pending |
 | Nov 26 6:10AM | NCAAB | Georgia vs Cincinnati | moneyline: Cincinnati | kalshi | $37k | -122 |  |  | +3.0c |  | W |
 | Nov 26 2:30AM | NCAAB | Georgetown @ Texas | moneyline: TEX (0) | novig | $26k | -335 | ✅ kalshi |  | -1.0c |  | pending |
 | Nov 26 1:20AM | NCAAB | SMU vs LSU | moneyline: LSU | kalshi | $26k | -213 |  |  | +7.0c | yes | pending |
