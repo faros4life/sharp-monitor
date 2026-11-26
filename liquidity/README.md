@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 26, 10:35 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 44.
+Updated Thu Nov 26, 10:40 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 44.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -21,7 +21,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 26 8:40AM | NFL | Kansas City vs Buffalo: Spread | spread: Buffalo wins by over 2.5 points | kalshi | $189k | -122 |  |  | +0.0c | yes | pending |
 | Nov 26 8:30AM | NFL | Chicago Bears @ Detroit Lions | total: Over 55.5 (55.5) | novig | $27k | -106 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 26 7:55AM | NCAAF | Mississippi St. vs Ole Miss: Spread | spread: Ole Miss wins by over 18.5 points | kalshi | $41k | -104 |  |  | +0.0c |  | pending |
-| Nov 26 7:50AM | NFL | Philadelphia Eagles at Dallas Cowboys | moneyline: Dallas Cowboys | prophetx | $27k | -400 | ✅ kalshi,novig |  | +0.2c | yes | pending |
+| Nov 26 7:50AM | NFL | Philadelphia Eagles at Dallas Cowboys | moneyline: Dallas Cowboys | prophetx | $27k | -400 | ✅ kalshi,novig |  | +0.0c | yes | pending |
 | Nov 26 5:50AM | NFL | Chicago Bears @ Detroit Lions | spread: DET +1.5 (1.5) | novig | $27k | -111 | ✅ kalshi |  | -0.5c | yes | pending |
 | Nov 26 5:20AM | NCAAF | Minnesota vs Wisconsin | moneyline: Wisconsin | kalshi | $96k | -300 | ✅ prophetx |  | +0.0c | yes | pending |
 | Nov 26 5:10AM | NFL | Denver vs Pittsburgh | moneyline: Denver | kalshi | $209k | -203 | ✅ novig,prophetx |  | +0.0c |  | pending |
