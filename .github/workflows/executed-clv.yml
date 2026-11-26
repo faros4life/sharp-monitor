@@ -54,6 +54,12 @@ jobs:
           path: hcache
           key: hcache-${{ github.run_id }}
           restore-keys: hcache-
+      - name: Restore The Odds API store (restore only; Nov 26 fallback, same certification rules)
+        uses: actions/cache/restore@v4
+        with:
+          path: toa_hist
+          key: toa-hist-${{ github.run_id }}
+          restore-keys: toa-hist-
       - name: Executed CLV (cache only, zero credits; dollars by private email)
         env:
           # required: the fill records and the fixture cache are both encrypted

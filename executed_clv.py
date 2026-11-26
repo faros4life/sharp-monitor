@@ -63,6 +63,7 @@ import clv_ledger as cl
 import clv_std as cs
 import executor as ex
 import hist_cache as hc
+import toa
 import tracker_build as tb
 
 ET = tb.ET
@@ -260,6 +261,9 @@ def net_of(book, raw_dec, league, live):
     return cs.net_dec(book, raw_dec, maker=False, league=league, live=live)
 
 
+TOA_N = [0]
+
+
 def main():
     now = datetime.now(timezone.utc)
     say("EXECUTED CLV - Lane 1 fills at the price the books actually filled")
@@ -372,27 +376,46 @@ def main():
                          "fee_basis": BASIS.get(cs.canon(b.get("book")) if b.get("book") else "", ""),
                          "fill_american": num(b.get("price")), "result": b.get("result"),
                          "included": 0, "exclusion_reason": reason, "fee_model": cs.FEE_MODEL})
+        # Nov 26 (Peter): where OddsPapi has no fixture or no cached history, the SAME exact-line Pinnacle no-vig
+        # close is read from The Odds API store (toa.close_for_row, cache-only). The fill's own after-fee price is
+        # used below exactly as before; only the close's source differs, and it is counted separately.
+        def _toa():
+            c2, w2 = toa.close_for_row(q, lg)
+            return c2 if c2 and (now - cl.tp(toa.fixtures(lg)[w2]["start"])) >= hc.FINAL_AFTER else None
+        c = None
         fid = cl.find_fixture(st, q)
         if not fid:
-            drop("no fixture matched")
-            unmatched.append(why_no_fixture(st, q, lg))
-            continue
-        f = st["fixtures"][fid]
-        start = cl.tp(f.get("start")) or cl.tp(b.get("game_start"))
-        if not start:
-            drop("no game start")
-            continue
-        if now - start < hc.FINAL_AFTER:
-            drop("game not final yet")
-            continue
-        if CACHE_ONLY and not os.path.exists(hc._path(fid, "pinnacle")):
-            drop("Pinnacle close not in cache (not bought)")
-            continue
-        h = hc.get_hist(fid, ["pinnacle"], start)
-        if isinstance(h, dict) and h.get("_error"):
-            drop("history error")
-            continue
-        c, why = cl.close_for(q, f, cl.book_markets(h, "pinnacle"), mkmap, start, lg)
+            c = _toa()
+            if not c:
+                drop("no fixture matched")
+                unmatched.append(why_no_fixture(st, q, lg))
+                continue
+        if c is None:
+            f = st["fixtures"][fid]
+            start = cl.tp(f.get("start")) or cl.tp(b.get("game_start"))
+            if not start:
+                drop("no game start")
+                continue
+            if now - start < hc.FINAL_AFTER:
+                drop("game not final yet")
+                continue
+            if CACHE_ONLY and not os.path.exists(hc._path(fid, "pinnacle")):
+                c = _toa()
+                if not c:
+                    drop("Pinnacle close not in cache (not bought)")
+                    continue
+        if c is None:
+            h = hc.get_hist(fid, ["pinnacle"], start)
+            if isinstance(h, dict) and h.get("_error"):
+                c = _toa()
+                if not c:
+                    drop("history error")
+                    continue
+        if c is None:
+            c, why = cl.close_for(q, f, cl.book_markets(h, "pinnacle"), mkmap, start, lg)
+        if c and c.get("src") == toa.SRC:
+            TOA_N[0] += 1
+            start = cl.tp(c.get("snap_ts")) or now
         if not c:
             drop(f"no verified same-line close ({str(why)[:28]})")
             continue
@@ -425,7 +448,7 @@ def main():
     say(f"  graded bot fills considered        {len(F)}")
     for k, n in miss.most_common():
         say(f"    excluded, {k:44s} {n:4d}")
-    say(f"  verified same-line sample          {len(R)}")
+    say(f"  verified same-line sample          {len(R)}  (closes from The Odds API store: {TOA_N[0]})")
     if F:
         say(f"  coverage                           {100 * len(R) / len(F):.1f}% of graded bot fills")
 

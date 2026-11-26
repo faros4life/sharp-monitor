@@ -237,3 +237,20 @@ def report():
     return (f"ODDS API (The Odds API) this run [{os.environ.get('GITHUB_WORKFLOW', 'local')}]: "
             f"calls {METER['calls']}, credits {METER['credits']}, empty {METER['empty']}, "
             f"remaining {METER.get('remaining')}")
+
+
+def close_for_row(snap, lg):
+    """The one entry point for readers: (close dict, fid) or (None, why), cache-only. Matching refuses ambiguity
+    (fixture_match.ordered_match); the close applies the ledger's rules through close()."""
+    import clv_ledger as cl
+    import fixture_match as fxm
+    if lg not in SPORT or not os.path.isdir(DIR):
+        return None, "toa: no store for this league"
+    fx = fixtures(lg)
+    if not fx:
+        return None, "toa: no stored events"
+    fid, note = fxm.ordered_match(dict(snap, league=snap.get("league") or lg), fx, cl.tp)
+    if not fid:
+        return None, f"toa: no unique event ({str(note)[:40]})"
+    c, why = close(snap, fx[fid], fid, lg, cl.parsed, fxm.resolve_side, cl.which_team, cl.novig_p, cl.FRESH_MIN)
+    return (c, fid) if c else (None, why)
