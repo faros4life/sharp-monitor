@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 26, 5:05 AM ET. This run: 1 new, 0 not confirmed, 3 pending. Open alerts: 28.
+Updated Thu Nov 26, 5:10 AM ET. This run: 2 new, 1 not confirmed, 0 pending. Open alerts: 30.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 26 5:10AM | NFL | Denver vs Pittsburgh | moneyline: Denver | kalshi | $209k | -203 | ✅ novig,prophetx |  | +0.0c |  | pending |
+| Nov 26 5:10AM | NCAAF | Texas vs Texas A&M | moneyline: Texas | kalshi | $74k | -426 |  |  | +0.0c |  | pending |
 | Nov 26 5:05AM | NCAAF | Air Force vs New Mexico | moneyline: New Mexico | kalshi | $46k | -245 |  |  | +0.0c |  | pending |
 | Nov 26 4:45AM | NFL | Denver Broncos @ Pittsburgh Steelers | moneyline: DEN (0) | novig | $49k | -203 | ✅ kalshi,prophetx |  | +0.0c | yes | pending |
 | Nov 26 3:15AM | NFL | Kansas City Chiefs @ Buffalo Bills | spread: BUF -2.5 (-2.5) | novig | $36k | -113 | ✅ kalshi |  | +0.0c | yes | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 23 3:20AM | NHL | Utah vs Winnipeg: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $31k | -108 |  |  | +0.0c |  | W |
 | Nov 23 3:20AM | NHL | Anaheim vs Seattle | moneyline: Seattle | kalshi | $35k | -104 |  |  | +0.0c | yes | W |
 | Nov 23 12:40AM | NHL | Minnesota vs San Jose | moneyline: Minnesota | kalshi | $29k | -194 |  |  | -4.0c |  | W |
-| Nov 22 11:50PM | NBA | Oklahoma City Thunder @ Indiana Pacers | moneyline: OKC (0) | novig | $28k | -174 | ✅ kalshi |  | -0.5c | yes | L |
-| Nov 22 11:45PM | NBA | Portland Trail Blazers @ Philadelphia 76ers | moneyline: PHI (0) | novig | $58k | -153 | ✅ kalshi |  | -10.5c | yes | L |
