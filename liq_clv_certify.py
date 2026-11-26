@@ -64,6 +64,7 @@ def certify(rows, classify, parsed_kind):
             rej[i] = "TIMING: no quote age recorded for the close"
             continue
         cert[i] = {"clv_pct": round(100 * d["clv"], 3), "fid": d.get("fid"), "how": d.get("how"),
+                   "src": d.get("src") or "oddspapi",   # Nov 26: tagged by source (approved for the scorecard)
                    "age_min": d.get("age_min"), "entry_dec": round(d["entry"], 4) if d.get("entry") else None}
     return cert, rej
 
