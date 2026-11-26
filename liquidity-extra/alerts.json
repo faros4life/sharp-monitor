@@ -1,6 +1,388 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-26T06:20:23Z",
+   "base_depth": 207624,
+   "best_price": 0.68,
+   "best_price_american": -213,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.68,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-26",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 4440,
+     "new_this_side": 25799,
+     "other_side": 15407,
+     "other_side_all_levels": 101075,
+     "ratio": 1.8,
+     "this_side": 27174,
+     "this_side_all_levels": 233839
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "LSU (0)",
+     "price": 0.68,
+     "this_side": 4034
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "LSU",
+     "price": 0.6825,
+     "this_side": 1038
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 1472.66,
+    "volume_24h_fp": 1294.15,
+    "volume_fp": 1518.66
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 6.13,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 1472.66,
+    "volume_24h_fp": 1288.02,
+    "volume_fp": 1518.66
+   },
+   "fade_price": 0.33,
+   "first_seen_utc": "2026-11-26T06:10:19Z",
+   "game": "SMU vs LSU",
+   "game_surge_books": [],
+   "game_x": 1.53,
+   "key": "kalshi|KXNCAAMBGAME-26NOV26SMULSU|ml|1",
+   "lead_min": 1060,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 25799,
+   "new_x": 0.53,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 1472.66,
+      "volume_24h_fp": 1294.15,
+      "volume_fp": 1518.66
+     },
+     "game_normal": 152363,
+     "game_x": 1.53,
+     "normal": 48447,
+     "now": 233839,
+     "type": "ML",
+     "x": 4.83
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 91747.0,
+      "volume": 96644.0
+     },
+     "game_normal": 8069,
+     "game_x": 0.87,
+     "normal": 5802,
+     "now": 6987,
+     "type": "ML",
+     "x": 1.2
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 805,
+     "game_x": 1.49,
+     "normal": 1098,
+     "now": 1201,
+     "type": "ML",
+     "x": 1.09
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.68,
+   "price_american": -213,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.68,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -210
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -220
+    },
+    "betopenly": {
+     "point": null,
+     "price": -219
+    },
+    "betrivers": {
+     "point": null,
+     "price": -230
+    },
+    "bovada": {
+     "point": null,
+     "price": -225
+    },
+    "draftkings": {
+     "point": null,
+     "price": -225
+    },
+    "fanatics": {
+     "point": null,
+     "price": -225
+    },
+    "fanduel": {
+     "point": null,
+     "price": -250
+    },
+    "kalshi": {
+     "point": null,
+     "price": -213
+    },
+    "lowvig": {
+     "point": null,
+     "price": -220
+    },
+    "novig": {
+     "point": null,
+     "price": -212
+    },
+    "polymarket": {
+     "point": null,
+     "price": -213
+    },
+    "prophetx": {
+     "point": null,
+     "price": -215
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV26SMULSU-LSU"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "LSU",
+   "side_label": "LSU",
+   "size_x": 4.83,
+   "start_source": "odds",
+   "start_utc": "2026-11-27T00:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "SMU",
+    "LSU"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-26T06:20:23Z",
+   "base_depth": 236345,
+   "best_price": 0.67,
+   "best_price_american": -203,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.67,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-26",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 4887,
+     "new_this_side": 25424,
+     "other_side": 13809,
+     "other_side_all_levels": 111135,
+     "ratio": 2.8,
+     "this_side": 38579,
+     "this_side_all_levels": 261765
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "MSU (0)",
+     "price": 0.67,
+     "this_side": 2943
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Michigan State",
+     "price": 0.6825,
+     "this_side": 990
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 4336.24,
+    "volume_24h_fp": 4666.3,
+    "volume_fp": 7498.49
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 4336.24,
+    "volume_24h_fp": 4666.3,
+    "volume_fp": 7498.49
+   },
+   "fade_price": 0.34,
+   "first_seen_utc": "2026-11-26T06:10:19Z",
+   "game": "Arkansas vs Michigan St.",
+   "game_surge_books": [],
+   "game_x": 1.46,
+   "key": "kalshi|KXNCAAMBGAME-26NOV26ARKMSU|ml|1",
+   "lead_min": 910,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 25424,
+   "new_x": 0.52,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 4336.24,
+      "volume_24h_fp": 4666.3,
+      "volume_fp": 7498.49
+     },
+     "game_normal": 179390,
+     "game_x": 1.46,
+     "normal": 48447,
+     "now": 261765,
+     "type": "ML",
+     "x": 5.4
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 23268.0,
+      "volume": 24168.0
+     },
+     "game_normal": 7371,
+     "game_x": 0.92,
+     "normal": 5802,
+     "now": 6747,
+     "type": "ML",
+     "x": 1.16
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 801,
+     "game_x": 1.62,
+     "normal": 1098,
+     "now": 1298,
+     "type": "ML",
+     "x": 1.18
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.67,
+   "price_american": -203,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.67,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -225
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -225
+    },
+    "betopenly": {
+     "point": null,
+     "price": -205
+    },
+    "betrivers": {
+     "point": null,
+     "price": -250
+    },
+    "bovada": {
+     "point": null,
+     "price": -225
+    },
+    "draftkings": {
+     "point": null,
+     "price": -218
+    },
+    "fanatics": {
+     "point": null,
+     "price": -220
+    },
+    "fanduel": {
+     "point": null,
+     "price": -225
+    },
+    "kalshi": {
+     "point": null,
+     "price": -203
+    },
+    "lowvig": {
+     "point": null,
+     "price": -225
+    },
+    "novig": {
+     "point": null,
+     "price": -203
+    },
+    "polymarket": {
+     "point": null,
+     "price": -213
+    },
+    "prophetx": {
+     "point": null,
+     "price": -215
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV26ARKMSU-MSU"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Michigan St.",
+   "side_label": "Michigan St.",
+   "size_x": 5.4,
+   "start_source": "odds",
+   "start_utc": "2026-11-26T21:30:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Arkansas",
+    "Michigan St."
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-26T05:25:46Z",
    "base_depth": 170797,
    "best_price": 0.6365,
@@ -14,8 +396,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.58,
-   "clv_cents": -4.0,
+   "close_price": 0.48,
+   "clv_cents": -14.0,
    "confirmed_after_min": 5,
    "date": "2026-11-27",
    "depth_by_book": {
@@ -40,9 +422,9 @@
     "volume_fp": 4076.64
    },
    "ex_stats_close": {
-    "open_interest_fp": 306672.1,
-    "volume_24h_fp": 286771.28,
-    "volume_fp": 327552.44
+    "open_interest_fp": 446652.98,
+    "volume_24h_fp": 310222.49,
+    "volume_fp": 516690.89
    },
    "ex_stats_first": {
     "open_interest_fp": 166657.21,
@@ -363,9 +745,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 359.16,
-    "volume_24h_fp": 378.17,
-    "volume_fp": 378.47
+    "open_interest_fp": 368.79,
+    "volume_24h_fp": 378.47,
+    "volume_fp": 388.1
    },
    "ex_stats_first": {
     "open_interest_fp": 247.82999999999998,
@@ -565,7 +947,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 22196.55,
-    "volume_24h_fp": 33863.82,
+    "volume_24h_fp": 33864.130000000005,
     "volume_fp": 33864.130000000005
    },
    "ex_stats_first": {
@@ -746,9 +1128,9 @@
     "volume_fp": 3.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 6893.54,
-    "volume_24h_fp": 5098.969999999999,
-    "volume_fp": 7211.73
+    "open_interest_fp": 8849.07,
+    "volume_24h_fp": 6000.48,
+    "volume_fp": 9167.26
    },
    "ex_stats_first": {
     "open_interest_fp": 4720.94,
@@ -944,7 +1326,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 2325.9700000000003,
-    "volume_24h_fp": 2274.4,
+    "volume_24h_fp": 2283.5699999999997,
     "volume_fp": 2432.63
    },
    "ex_stats_first": {
@@ -2088,7 +2470,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 27,
+   "settle_tries": 28,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNCW (0)",
