@@ -1,0 +1,23 @@
+name: toa-peak-probe
+# Peter, 26 Nov 2026: peak-hour sampling study - 15s ground truth vs simulated 30s/60s/5min, Pinnacle line moves caught
+# or missed, exchange price changes, split by minutes to start. Dispatch only. Log: counts and seconds only.
+on:
+  workflow_dispatch:
+    inputs:
+      minutes: {default: "60"}
+      sports: {default: "basketball_nba,basketball_ncaab,americanfootball_nfl"}
+permissions:
+  contents: read
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          MINUTES: ${{ inputs.minutes }}
+          PROBE_SPORTS: ${{ inputs.sports }}
+        run: python -u toa_peak_probe.py
