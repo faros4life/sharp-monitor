@@ -167,6 +167,31 @@ def snap_for(x, src):
     return snap
 
 
+def _toa_verified(snap, lg, entry):
+    """Nov 26 (Peter): the SAME certification from The Odds API's stored historical Pinnacle snapshots, used ONLY
+    where OddsPapi has no fixture or no history. Cache-only. Exact line or moneyline, two-sided, de-vigged, fresh -
+    toa.close() applies the ledger's own rules and refuses anything else. Returns the VERIFIED tuple or None (the
+    caller keeps its original rejection, so a missing store changes nothing)."""
+    try:
+        import toa
+    except Exception:
+        return None
+    if lg not in toa.SPORT or not os.path.isdir(toa.DIR):
+        return None
+    fx = toa.fixtures(lg)
+    if not fx:
+        return None
+    tfid, _n = fxm.ordered_match(snap, fx, cl.tp)
+    if not tfid:
+        return None
+    c, _w = toa.close(snap, fx[tfid], tfid, lg, cl.parsed, fxm.resolve_side, cl.which_team, cl.novig_p,
+                      cl.FRESH_MIN)
+    if not c:
+        return None
+    return "VERIFIED_PINNACLE", {"p": c["p"], "entry": entry, "clv": cb.clv(c["p"], entry), "how": c["how"],
+                                 "age_min": c["age_min"], "fid": tfid, "src": c["src"]}
+
+
 def classify(x, src, fxs, alt, allfx, mkmap):
     """Exactly ONE class, by waterfall. Returns (class, detail)."""
     lg = x.get("sport") or x.get("league")
@@ -199,9 +224,15 @@ def classify(x, src, fxs, alt, allfx, mkmap):
         return "LEAGUE_NOT_COVERED", f"league {lg or 'unknown'} has no OddsPapi sport id"
     fid, note = fxm.ordered_match(snap, allfx, cl.tp)
     if not fid:
+        t = _toa_verified(snap, lg, entry)
+        if t:
+            return t
         return "FIXTURE_OR_IDENTITY", f"no unique fixture: {note[:60]}"
     h = cached_pin(fid)
     if h is None:
+        t = _toa_verified(snap, lg, entry)
+        if t:
+            return t
         return "MISSING_HISTORY", f"fixture {fid} has no cached Pinnacle history"
     f = allfx[fid]
     p, why = cb.pinnacle_no_vig_close(f, snap, mkmap, cl.book_markets(h, "pinnacle"), cl.parsed,

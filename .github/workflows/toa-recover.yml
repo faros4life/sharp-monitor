@@ -1,0 +1,55 @@
+name: toa-recover
+# Peter, 26 Nov 2026: recover missing historical Pinnacle CLV from The Odds API (budget up to 2M credits before Dec 1).
+# Dispatch only. Fetches into the shared store toa_hist/ (Actions cache, never committed); writes nothing published.
+# The certifier and reports read the store cache-only. Log: counts only.
+on:
+  workflow_dispatch:
+    inputs:
+      budget:
+        description: "credit ceiling for this run"
+        default: "2000000"
+      dry:
+        description: "1 = count only, no paid calls"
+        default: "1"
+permissions:
+  contents: read
+concurrency:
+  group: toa-recover
+  cancel-in-progress: false
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Offline tests
+        run: python test_toa.py
+      - name: Restore shared OddsPapi history cache (restore only)
+        uses: actions/cache/restore@v4
+        with:
+          path: hcache
+          key: hcache-${{ github.run_id }}
+          restore-keys: hcache-
+      - name: Restore The Odds API store
+        uses: actions/cache/restore@v4
+        with:
+          path: toa_hist
+          key: toa-hist-${{ github.run_id }}
+          restore-keys: toa-hist-
+      - name: Recover (counts only)
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          TOA_BUDGET: ${{ inputs.budget }}
+          TOA_DRY: ${{ inputs.dry }}
+        run: python -u toa_recover.py
+      - name: Save The Odds API store (partial progress is kept)
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: toa_hist
+          key: toa-hist-${{ github.run_id }}

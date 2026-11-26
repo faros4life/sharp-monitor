@@ -27,13 +27,19 @@ jobs:
           path: hcache
           key: hcache-${{ github.run_id }}
           restore-keys: hcache-
+      - name: Restore The Odds API store (restore only; Nov 26 recovery source, same certification rules)
+        uses: actions/cache/restore@v4
+        with:
+          path: toa_hist
+          key: toa-hist-${{ github.run_id }}
+          restore-keys: toa-hist-
       - name: Certify (cache-only; counts in this log)
         env:
           TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
         run: python -u paper_clv_certify.py
       - name: Commit the certified file only
         run: |
-          git status --porcelain --untracked-files=all -- . ':!paper/clv_certified.json' ':!hcache' > "$RUNNER_TEMP/d"
+          git status --porcelain --untracked-files=all -- . ':!paper/clv_certified.json' ':!hcache' ':!toa_hist' > "$RUNNER_TEMP/d"
           if [ -s "$RUNNER_TEMP/d" ]; then echo "FAIL: unexpected changes"; cat "$RUNNER_TEMP/d"; exit 1; fi
           git config user.name "paper-clv-certify"; git config user.email "paper-clv-certify@users.noreply.github.com"
           git add paper/clv_certified.json
