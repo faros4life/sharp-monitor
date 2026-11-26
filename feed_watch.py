@@ -78,6 +78,9 @@ def evaluate(now, feed, liq, exe, credits_left, quota=QUOTA, quota_cause=None, h
             cl = health.get("credits_remaining")
             bad["QUOTA_OUT"] = ("The Odds API credits exhausted - the feed has stopped fetching"
                                 + (f" ({cl:,} left)" if isinstance(cl, (int, float)) else " (balance unavailable)"))
+        elif health.get("state") == "PARTIAL":
+            bad["FEED_PARTIAL"] = ("upstream fetch stopped short - "
+                                   + (health.get("reason") or "not all due sports were fetched"))
         elif health.get("state") == "NO_EVENTS":
             bad["FEED_EMPTY"] = ("upstream fetch succeeded but returned NO events - "
                                  "not the same as a quiet board with nothing qualifying")

@@ -39,7 +39,7 @@ API = "https://api.the-odds-api.com/v4"
 # fetch_ok is the load-bearing field: True only when a sports odds call COMPLETED and returned a
 # parseable list. events_seen then separates a healthy quiet board (fetched fine, nothing qualified)
 # from a feed returning nothing at all.
-FEED = {"fetch_ok": False, "sports_polled": 0, "events_seen": 0, "alerts_sent": 0,
+FEED = {"fetch_ok": False, "sports_due": 0, "sports_polled": 0, "events_seen": 0, "alerts_sent": 0,
         "credits_remaining": None, "quota_exhausted": False, "reason": "no poll attempted this run"}
 
 KEY = os.environ.get("ODDS_API_KEY", "")
@@ -1421,9 +1421,20 @@ def write_alerts_file(st, n):
     health = dict(FEED)
     health["written_utc"] = _now
     health["last_fetch_ok_utc"] = _now if FEED["fetch_ok"] else prev.get("last_fetch_ok_utc")
+    # Nov 26, second pass (Peter: "if only one of four sports fetches succeeds, can the feed
+    # incorrectly report HEALTHY?"). It could. A hard fetch error propagates and the run dies before
+    # this line, which is safe - but the credit-reserve break stops the loop mid-way with fetch_ok
+    # already True from the sports that did succeed, and quota_exhausted was not consulted here at
+    # all. One sport of four then published HEALTHY and pinged Healthchecks. PARTIAL now outranks
+    # HEALTHY, and the ping treats it as not-healthy.
+    _short = FEED["sports_polled"] < FEED["sports_due"]
     health["state"] = ("FAILED" if not FEED["fetch_ok"]
                        else "NO_EVENTS" if FEED["events_seen"] == 0
+                       else "PARTIAL" if (_short or FEED["quota_exhausted"])
                        else "HEALTHY")   # HEALTHY covers a quiet board: fetched fine, nothing qualified
+    if _short and not FEED["reason"]:
+        health["reason"] = (f"only {FEED['sports_polled']} of {FEED['sports_due']} due sports "
+                            f"were fetched this run")
     out = []
     for e in sorted(st["log"], key=lambda x: x["start"], reverse=True):
         res = e.get("res")
@@ -1771,6 +1782,7 @@ def run():
         last = st["last_poll"].get(key, 0)
         if time.time() - last < interval * 60:
             continue
+        FEED["sports_due"] += 1   # due to poll NOW; a sport skipped on its interval is not a miss
         cfg = SPORTS[key]
         events, rem = http_get(f"/sports/{key}/odds", {
             "bookmakers": books, "markets": ",".join(cfg["markets"]), "oddsFormat": "american",
