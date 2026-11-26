@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 26, 1:50 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 25.
+Updated Thu Nov 26, 1:55 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 25.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -13,7 +13,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 26 1:45AM | NBA | Denver vs Utah | moneyline: Denver | kalshi | $209k | -335 |  |  | +0.0c |  | pending |
 | Nov 26 1:15AM | NCAAF | Buffalo vs Akron | moneyline: Buffalo | kalshi | $114k | -257 |  |  | +0.0c |  | pending |
 | Nov 26 1:10AM | NCAAF | Toledo vs Ohio | moneyline: Toledo | kalshi | $95k | -150 |  |  | +0.0c |  | pending |
-| Nov 26 1:10AM | NCAAF | North Dakota St. vs San Jose St. | moneyline: North Dakota St. | kalshi | $118k | -317 |  |  | +0.0c |  | pending |
+| Nov 26 1:10AM | NCAAF | North Dakota St. vs San Jose St. | moneyline: North Dakota St. | kalshi | $118k | -317 |  |  | +0.0c | yes | pending |
 | Nov 26 12:45AM | NFL | Kansas City vs Buffalo: Total Points | total: NOT Over 47.5 points | kalshi | $59k | -122 |  |  | +1.0c | yes | pending |
 | Nov 26 12:30AM | NBA | Atlanta vs Boston | moneyline: Boston | kalshi | $201k | -317 |  |  | +1.0c |  | pending |
 | Nov 25 9:55PM | NFL | Chicago vs Detroit: Spread | spread: NOT Chicago wins by over 1.5 points | kalshi | $283k | -108 |  |  | +0.0c | yes | pending |
