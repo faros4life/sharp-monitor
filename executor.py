@@ -5733,6 +5733,45 @@ def committed_risk(pkey, rows_=None):
     return round(total, 2), None
 
 
+def rest_revalidate(r, book, line):
+    """Maker-safe venue re-read before POSTING a resting bid. Peter, Nov 26 2026 (Task 2).
+
+    rest_bid prices from r["books"] - the ladder evaluate() built earlier in the run. That is the
+    SAME stale source revalidate() was added to fix for takes, and it is the one remaining path by
+    which a stale feed reaches money: nothing re-reads the venue before a bid is posted.
+
+    This is deliberately NOT revalidate(). A resting bid is a MAKER order: by definition there is no
+    executable liquidity at its price, and that is the wanted case, not a fault. revalidate()'s
+    depth-at-threshold and price-not-worse-than-the-gate tests are TAKER tests, and applying them
+    here would refuse every valid resting bid - which is exactly what Peter ruled out.
+
+      checked, all fail closed   venue unreadable; market missing or closed; the line moved off the
+                                 alert's exact number; the identifiers we price from are gone
+      deliberately NOT checked   executable depth at our price, and whether the market's current
+                                 price beats our limit
+
+    Returns (ok, why, fresh). `fresh` replaces the stale ladder so cost and size are computed from
+    CURRENT grid levels. The LIMIT PRICE is never taken from here: it stays the alert's after-fee
+    number, so this can refuse a post but can never move the price Peter is resting at."""
+    rv = r.get("reval") or {}
+    if not rv:
+        return False, "no revalidation basis recorded - fail closed", None
+    try:
+        fresh = reread_book(book, line, rv)
+    except Exception as ex:
+        return False, f"{book}: re-read raised ({type(ex).__name__}) - fail closed", None
+    if not fresh:
+        return False, f"{book}: market unreadable at order time - fail closed", None
+    fl = fresh.get("line")
+    if line is not None and fl is not None and float(fl) != float(line):
+        return False, f"{book}: line moved {line} -> {fl} - no resting bid at a different number", None
+    if book == "novig" and not (fresh.get("outcome_id") and fresh.get("buy_levels")):
+        return False, "novig: outcome or grid missing at order time - fail closed", None
+    if book == "kalshi" and len(fresh.get("kalshi_buy") or []) != 1:
+        return False, "kalshi: market ambiguous at order time - fail closed", None
+    return True, "", fresh
+
+
 def rest_bid(r):
     """Rest ONE bid at the alert's after-fee number (no 2c extra) on the first REST_BOOKS book that lists the exact
     alert line: Kalshi (good-till-cancelled with an expiry) or Novig (GTT on the home PC). Same unit, cap, STOP and
@@ -5867,6 +5906,14 @@ def rest_bid(r):
     _rb_grant = None
     for b in REST_BOOKS:
         x = books.get(b) or {}
+        # Nov 26 (Task 2): re-read THIS venue before posting. Maker-safe - no depth test - so a
+        # legitimate resting bid is never refused for lack of executable liquidity.
+        if x:
+            _rok, _rwhy, _fresh = rest_revalidate(r, b, x.get("line", e.get("line")))
+            if not _rok:
+                why_not.append(_rwhy)
+                continue
+            x = _fresh
         # Nov 18 (Peter: "There is a game on both"). This merged TWO failures with opposite remedies
         # into one string, "no exact-line market": the venue having no priced market at all, and the
         # venue having the game at a DIFFERENT line. The first is a matching or listing problem; the
