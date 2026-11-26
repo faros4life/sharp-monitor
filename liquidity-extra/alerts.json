@@ -51,6 +51,11 @@
     "volume_24h_fp": 2.62,
     "volume_fp": 2.62
    },
+   "ex_stats_close": {
+    "open_interest_fp": 1079.91,
+    "volume_24h_fp": 935.5,
+    "volume_fp": 1083.24
+   },
    "ex_stats_first": {
     "open_interest_fp": 1077.29,
     "volume_24h_fp": 932.8799999999999,
@@ -197,8 +202,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.82,
-   "clv_cents": 0.0,
+   "close_price": 0.8,
+   "clv_cents": -2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-26",
    "depth_by_book": {
@@ -223,9 +228,9 @@
     "volume_fp": 1119.93
    },
    "ex_stats_close": {
-    "open_interest_fp": 56133.32,
+    "open_interest_fp": 61472.91,
     "volume_24h_fp": 41121.21,
-    "volume_fp": 57048.270000000004
+    "volume_fp": 63017.47
    },
    "ex_stats_first": {
     "open_interest_fp": 20962.85,
@@ -710,12 +715,14 @@
     "volume": 6202712.0
    },
    "fade_price": 0.525,
+   "fade_units": 0.9,
    "first_seen_utc": "2026-11-25T23:20:33Z",
    "game": "Duke @ Connecticut",
    "game_surge_books": [
     "novig"
    ],
    "game_x": 3.31,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a20f47-4706-7e21-a364-3a766d572c5a\", \"outcome_id\": \"01a20f47-4706-7e21-a364-3a82e24178c9\"}",
    "lead_min": 30,
    "league": "NCAAB",
@@ -751,12 +758,13 @@
     "market_id": "01a20f47-4706-7e21-a364-3a766d572c5a",
     "outcome_id": "01a20f47-4706-7e21-a364-3a82e24178c9"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 6,
+   "settle_tries": 7,
+   "settled_utc": "2026-11-26T03:00:24Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Connecticut",
@@ -773,7 +781,7 @@
     "Connecticut"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-25T23:30:23Z",
@@ -1010,12 +1018,14 @@
     "volume": 24744713.0
    },
    "fade_price": 0.49,
+   "fade_units": 1.04,
    "first_seen_utc": "2026-11-25T23:10:33Z",
    "game": "Duke @ Connecticut",
    "game_surge_books": [
     "novig"
    ],
    "game_x": 2.17,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a205c7-6f8b-7703-953a-fee5de528c4d\", \"outcome_id\": \"01a205c7-6f8b-7703-953a-fefd5a2c77a3\"}",
    "lead_min": 39,
    "league": "NCAAB",
@@ -1060,12 +1070,13 @@
     "market_id": "01a205c7-6f8b-7703-953a-fee5de528c4d",
     "outcome_id": "01a205c7-6f8b-7703-953a-fefd5a2c77a3"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 6,
+   "settle_tries": 7,
+   "settled_utc": "2026-11-26T03:00:24Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Connecticut",
@@ -1083,7 +1094,7 @@
     "Connecticut"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-25T23:10:33Z",
@@ -1175,7 +1186,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNCW (0)",
@@ -1420,6 +1431,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.64,
    "clv_cents": 0.0,
    "confirmed_after_min": 10,
@@ -1667,9 +1679,9 @@
     "volume_fp": 24.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 10830.55,
+    "open_interest_fp": 11161.439999999999,
     "volume_24h_fp": 10787.939999999999,
-    "volume_fp": 10977.210000000001
+    "volume_fp": 11308.1
    },
    "ex_stats_first": {
     "open_interest_fp": 8208.71,
@@ -2526,9 +2538,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 11317.310000000001,
+    "open_interest_fp": 11381.220000000001,
     "volume_24h_fp": 12007.15,
-    "volume_fp": 12099.84
+    "volume_fp": 12163.75
    },
    "ex_stats_first": {
     "open_interest_fp": 5059.46,
@@ -5472,6 +5484,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Pepperdine",

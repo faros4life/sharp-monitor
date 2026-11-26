@@ -1,22 +1,22 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 25, 9:50 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 19.
+Updated Wed Nov 25, 10:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 17.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 506-302 (-21.88u flat) | rule met: 120-80
+**Record:** 506-304 (-23.88u flat) | rule met: 120-80
 
-**Fade (paper, betting against the print):** 277-471 (+18.99u flat, after fees)
+**Fade (paper, betting against the print):** 279-471 (+20.93u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 25 9:50PM | NCAAB | Saint Mary's vs UCLA | moneyline: UCLA | kalshi | $29k | -300 |  |  | +0.0c |  | pending |
-| Nov 25 9:20PM | NCAAB | Grand Canyon vs Colorado | moneyline: Grand Canyon | kalshi | $59k | -456 |  |  | +0.0c | yes | pending |
+| Nov 25 9:20PM | NCAAB | Grand Canyon vs Colorado | moneyline: Grand Canyon | kalshi | $59k | -456 |  |  | -2.0c | yes | pending |
 | Nov 25 7:50PM | NCAAB | Grand Canyon @ Colorado | moneyline: Grand Canyon (0) | novig | $30k | -456 |  |  | -0.5c | yes | pending |
 | Nov 25 6:40PM | NCAAB | Wake Forest vs Mississippi St.: Spread | spread: Mississippi St. wins by over 3.5 points | kalshi | $26k | -108 |  |  | +0.0c | yes | pending |
-| Nov 25 6:30PM | NCAAB | Duke @ Connecticut | spread: CONN -1.5 (-1.5) | novig | $40k | +108 |  |  | +0.0c |  | pending |
+| Nov 25 6:30PM | NCAAB | Duke @ Connecticut | spread: CONN -1.5 (-1.5) | novig | $40k | +108 |  |  | +0.0c |  | L |
 | Nov 25 6:30PM | NCAAB | UConn vs Duke: Spread | spread: UConn wins by over 1.5 points | kalshi | $34k | +108 |  |  | +1.0c | yes | L |
-| Nov 25 6:20PM | NCAAB | Duke @ Connecticut | moneyline: CONN (0) | novig | $31k | -106 |  |  | +0.0c |  | pending |
+| Nov 25 6:20PM | NCAAB | Duke @ Connecticut | moneyline: CONN (0) | novig | $31k | -106 |  |  | +0.0c |  | L |
 | Nov 25 6:10PM | NCAAB | St. Thomas-Minnesota @ UNC Wilmington | moneyline: UNCW (0) | novig | $27k | -217 |  |  | +0.0c |  | pending |
 | Nov 25 6:10PM | NCAAB | Northern Illinois vs SIU Edwardsville | moneyline: SIU Edwardsville | kalshi | $69k | +138 |  |  | +0.0c |  | L |
 | Nov 25 5:30PM | NCAAB | Washington vs VCU | moneyline: VCU | kalshi | $26k | -178 |  |  | +0.0c |  | pending |
