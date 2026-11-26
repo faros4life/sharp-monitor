@@ -108,6 +108,8 @@ def certify(items, classify):
             rej[i] = "TIMING: no quote age recorded for the close"
             continue
         rec = {"clv_pct": round(100 * d["clv"], 3), "fid": d.get("fid"), "how": d.get("how"),
+               # Nov 26 (Peter): approved for the scorecard, tagged by source
+               "src": d.get("src") or "oddspapi",
                "age_min": d.get("age_min"), "entry_dec": round(d["entry"], 4) if d.get("entry") else None}
         if str(d.get("how") or "") in CERT_HOW:
             cert[i] = rec
@@ -151,7 +153,8 @@ def main():
         n = sum(1 for i, *_ in items if i.startswith(p + "|"))
         c = sum(1 for i in cert if i.startswith(p + "|"))
         e = sum(1 for i in est if i.startswith(p + "|"))
-        print(f"{p}: graded {n} | certified {c} | estimated {e}")
+        t = sum(1 for i, r in cert.items() if i.startswith(p + "|") and r.get("src") == "theoddsapi")
+        print(f"{p}: graded {n} | certified {c} (OddsPapi {c - t}, The Odds API {t}) | estimated {e}")
     print(f"hcache files {hc} | fixtures {len(allfx)}")
     print("rejections by class:", dict(collections.Counter(v.split(":")[0] for v in rej.values())))
     return 0
