@@ -126,9 +126,57 @@ def fills_pass():
     return len(F), res
 
 
+def diag():
+    """Unmatched gap rows: the row's team text and listed start next to the closest stored events (names and times
+    only - no prices, no money). Read-only, zero credits. Nov 26: before touching matching, see why it fails."""
+    st = tb.dec(json.load(open(cl.STATE)))
+    mkmap = (json.load(open(oa.MKFILE)) or {}).get("m") or {}
+    fxs = st.get("fixtures") or {}
+    alt = {fid: f for fid, (f, _s) in fxm.alt_fixtures().items()}
+    allfx = dict(alt, **fxs)
+    import board_build as bb
+    feed = {f"{x.get('key')}|{x.get('alerted_utc')}": x for x in bb.load()}
+    try:
+        lanes = json.load(open(pc.LANES))
+    except (OSError, ValueError):
+        lanes = {}
+    items = pc.gather(oa.load(oa.SHARP), oa.load(oa.LIQ), lanes, feed)
+    kinds = collections.Counter()
+    shown = 0
+    for i, x, s, pre in items:
+        if pre:
+            continue
+        cls, _d = oa.classify(x, s, fxs, alt, allfx, mkmap)
+        if cls not in GAP:
+            continue
+        snap = oa.snap_for(x, s)
+        lg = snap.get("league") or x.get("sport") or x.get("league")
+        if lg not in toa.SPORT:
+            continue
+        fx = toa.fixtures(lg)
+        fid, note = fxm.ordered_match(snap, fx, cl.tp)
+        if fid:
+            continue
+        t0 = cl.tp(snap.get("game_start"))
+        near = sorted((abs((cl.tp(f["start"]) - t0).total_seconds()), f) for f in fx.values()
+                      if t0 and cl.tp(f["start"]) and abs((cl.tp(f["start"]) - t0).total_seconds()) < 6 * 3600)
+        k = "AMBIGUOUS" if "AMBIGUOUS" in note or "ambiguous" in note else ("no event within 6h" if not near
+                                                                             else "names do not map")
+        kinds[(lg, k)] += 1
+        if shown < 40 and k != "AMBIGUOUS":
+            shown += 1
+            tm = [t.get("name") for t in (snap.get("teams") or [])]
+            print(f"  {lg} | row: {tm or snap.get('game')} @ {snap.get('game_start')} | "
+                  f"nearest: {[(f['p2'] + ' @ ' + f['p1'], f['start']) for _d, f in near[:2]]}")
+    print("unmatched by league and kind:", dict(kinds))
+    return 0
+
+
 def main():
     if (os.environ.get("TOA_FILLS") or "1") == "1" and not DRY:
         fills_pass()
+    if (os.environ.get("TOA_DIAG") or "") == "1":
+        return diag()
     if (os.environ.get("TOA_ONLY_FILLS") or "") == "1":
         print(toa.report())
         return 0

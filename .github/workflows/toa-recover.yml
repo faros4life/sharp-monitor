@@ -17,6 +17,9 @@ on:
       only_fills:
         description: "1 = bot fills only"
         default: "0"
+      diag:
+        description: "1 = print unmatched rows next to nearest events (zero credits)"
+        default: "0"
 permissions:
   contents: read
 concurrency:
@@ -54,6 +57,7 @@ jobs:
           TOA_DRY: ${{ inputs.dry }}
           CROSS_MAX_CREDITS: "10000"
           TOA_ONLY_FILLS: ${{ inputs.only_fills }}
+          TOA_DIAG: ${{ inputs.diag }}
         run: python -u ${{ inputs.script }}
       - name: Save The Odds API store (partial progress is kept)
         if: always()
