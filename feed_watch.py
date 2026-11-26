@@ -57,9 +57,30 @@ def active(now):
     return 9 <= (now + ET_OFF).hour <= 23
 
 
-def evaluate(now, feed, liq, exe, credits_left, quota=QUOTA, quota_cause=None):
-    """{condition: detail} currently TRUE. Pure given its inputs (run lists newest first)."""
+def evaluate(now, feed, liq, exe, credits_left, quota=QUOTA, quota_cause=None, health=None):
+    """{condition: detail} currently TRUE. Pure given its inputs (run lists newest first).
+
+    `health` is sharp_monitor's feed_health block out of alerts.json. Nov 26: every check below it
+    reads RUN CONCLUSIONS, which caught the Nov 26 outage only because those runs honestly failed. A
+    run that exits 0 having fetched nothing is invisible to all of them, and that is the case Peter
+    named first - a rewritten alerts.json is not proof of fresh data. FEED_STALE reads the last
+    successful UPSTREAM fetch instead, so it fires behind a green run and a freshly written file."""
     bad = {}
+    if health is not None:
+        last = tp(health["last_fetch_ok_utc"]) if health.get("last_fetch_ok_utc") else None
+        if last is None:
+            bad["FEED_STALE"] = "the feed has never recorded a successful upstream fetch"
+        elif (now - last) > timedelta(minutes=GAP_FEED_MIN):
+            bad["FEED_STALE"] = (f"last SUCCESSFUL upstream fetch was "
+                                 f"{round((now - last).total_seconds() / 60)} min ago "
+                                 f"(state {health.get('state')}) - runs may still be green")
+        if health.get("quota_exhausted"):
+            cl = health.get("credits_remaining")
+            bad["QUOTA_OUT"] = ("The Odds API credits exhausted - the feed has stopped fetching"
+                                + (f" ({cl:,} left)" if isinstance(cl, (int, float)) else " (balance unavailable)"))
+        elif health.get("state") == "NO_EVENTS":
+            bad["FEED_EMPTY"] = ("upstream fetch succeeded but returned NO events - "
+                                 "not the same as a quiet board with nothing qualifying")
     done = [r for r in feed if r.get("status") == "completed"]
     fails = 0
     for r in done:
@@ -97,9 +118,17 @@ def transitions(prev, now_bad):
     """(started, cleared): conditions to alert and to report as recovered."""
     started = {k: v for k, v in now_bad.items() if k not in prev}
     cleared = [k for k in prev if k not in now_bad]
-    # a quota level stepping UP (50 -> 70) is not a recovery of the lower level
-    hi = max([int(k.split("_")[1]) for k in now_bad if k.startswith("QUOTA_")] or [0])
-    cleared = [k for k in cleared if not (k.startswith("QUOTA_") and int(k.split("_")[1]) < hi)]
+    # A quota LEVEL stepping up (50 -> 70) is not a recovery of the lower level. Nov 26: this used to
+    # int() the suffix of anything starting with QUOTA_, so the new QUOTA_OUT condition crashed the
+    # whole monitor on its first transition - a watchdog that dies on an unexpected key is worse than
+    # one that misses, so only numeric levels are laddered and every other key passes through.
+    def _lvl(k):
+        tail = k.split("_", 1)[1] if "_" in k else ""
+        return int(tail) if tail.isdigit() else None
+    levels = [v for v in (_lvl(k) for k in now_bad if k.startswith("QUOTA_")) if v is not None]
+    hi = max(levels or [0])
+    cleared = [k for k in cleared
+               if not (k.startswith("QUOTA_") and (_lvl(k) is not None) and _lvl(k) < hi)]
     return started, cleared
 
 
@@ -138,7 +167,13 @@ def main():
         credits_left = (json.load(open("odds_screen.json")) or {}).get("credits_left")
     except (OSError, ValueError):
         credits_left = None
-    bad = evaluate(now, feed, liq, exe, credits_left, QUOTA, cause)
+    try:   # Nov 26: the feed's own account of whether the UPSTREAM fetch worked
+        health = (json.load(open("alerts.json")) or {}).get("feed_health")
+    except (OSError, ValueError):
+        health = None
+    if health is None:
+        print("feed_health missing from alerts.json - staleness cannot be checked this run")
+    bad = evaluate(now, feed, liq, exe, credits_left, QUOTA, cause, health)
     started, cleared = transitions(prev, bad)
     for k, v in started.items():
         send(f"FEED WARNING: {k}", f"FEED WARNING ({k}): {v}.\nChecked {(now + ET_OFF):%-I:%M %p} ET by the "
