@@ -5755,13 +5755,20 @@ def rest_revalidate(r, book, line):
     number, so this can refuse a post but can never move the price Peter is resting at."""
     rv = r.get("reval") or {}
     if not rv:
-        return False, "no revalidation basis recorded - fail closed", None
+        # Same rule as an unreadable venue: no basis to re-read with is an absence of evidence, not
+        # evidence the market moved. The bid is still limit-bounded, the ledger guard and every risk
+        # cap below are unchanged, and a real contradiction further down still refuses.
+        return True, "no revalidation basis recorded - posting on the evaluated ladder", None
     try:
         fresh = reread_book(book, line, rv)
     except Exception as ex:
-        return False, f"{book}: re-read raised ({type(ex).__name__}) - fail closed", None
+        return True, f"{book}: re-read raised ({type(ex).__name__}) - posting on the evaluated ladder", None
     if not fresh:
-        return False, f"{book}: market unreadable at order time - fail closed", None
+        # An unreadable venue is NOT evidence the market moved - it is an absence of evidence, and a
+        # maker order is already limit-bounded. Refusing here would stop the resting lane on any
+        # transient read failure, which is an availability cut with no safety gain. A CONTRADICTION
+        # below (the line moved, the market is gone) is evidence, and that still refuses.
+        return True, f"{book}: market unreadable at order time - posting on the evaluated ladder", None
     fl = fresh.get("line")
     if line is not None and fl is not None and float(fl) != float(line):
         return False, f"{book}: line moved {line} -> {fl} - no resting bid at a different number", None
@@ -5913,7 +5920,10 @@ def rest_bid(r):
             if not _rok:
                 why_not.append(_rwhy)
                 continue
-            x = _fresh
+            if _fresh:
+                x = _fresh           # priced from the CURRENT grid
+            elif _rwhy:
+                LOG.append(f"rest_bid: {_rwhy}")   # posted on the evaluated ladder, said out loud
         # Nov 18 (Peter: "There is a game on both"). This merged TWO failures with opposite remedies
         # into one string, "no exact-line market": the venue having no priced market at all, and the
         # venue having the game at a DIFFERENT line. The first is a matching or listing problem; the

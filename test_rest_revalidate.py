@@ -46,9 +46,13 @@ try:
     ok("a worse current market price does not refuse a maker bid", ex.rest_revalidate(PLAY, "novig", 149.5)[0])
 
     # --- what MUST still refuse -------------------------------------------------------------------
+    # Design B (Peter, Nov 26): refuse only on a CONTRADICTION. An unreadable venue is an absence
+    # of evidence, not evidence the market moved, and the bid is limit-bounded either way - so it
+    # posts on the evaluated ladder and says so, rather than stopping the lane on a transient read.
     ex.reread_book = lambda b, ln, rv: None
-    okk, why, _ = ex.rest_revalidate(PLAY, "novig", 149.5)
-    ok("an unreadable venue refuses", not okk and "unreadable" in why, why)
+    okk, why, fr = ex.rest_revalidate(PLAY, "novig", 149.5)
+    ok("an unreadable venue still posts, on the evaluated ladder", okk and fr is None, why)
+    ok("and it is said out loud", "posting on the evaluated ladder" in why, why)
 
     ex.reread_book = lambda b, ln, rv: dict(NOVIG_OK, line=150.5)
     okk, why, _ = ex.rest_revalidate(PLAY, "novig", 149.5)
@@ -72,13 +76,14 @@ try:
     def boom(b, ln, rv):
         raise RuntimeError("venue down")
     ex.reread_book = boom
-    okk, why, _ = ex.rest_revalidate(PLAY, "novig", 149.5)
-    ok("a raising reader fails closed", not okk and "RuntimeError" in why, why)
+    okk, why, fr = ex.rest_revalidate(PLAY, "novig", 149.5)
+    ok("a raising reader posts on the evaluated ladder, naming the error",
+       okk and fr is None and "RuntimeError" in why, why)
 
     # no basis recorded -> refuse, never post blind
     ex.reread_book = lambda b, ln, rv: dict(NOVIG_OK)
-    okk, why, _ = ex.rest_revalidate({}, "novig", 149.5)
-    ok("no revalidation basis refuses", not okk and "fail closed" in why, why)
+    okk, why, fr = ex.rest_revalidate({}, "novig", 149.5)
+    ok("no revalidation basis posts on the evaluated ladder", okk and fr is None, why)
 finally:
     ex.reread_book = orig
 
@@ -86,7 +91,9 @@ finally:
 src = open("executor.py", encoding="utf-8").read()
 fn = src[src.index("def rest_revalidate("):src.index("def rest_bid(")]
 ok("rest_revalidate never computes a price", "p_star" not in fn and "alert_af" not in fn)
-ok("it does not test depth", "avail" not in fn and "fillable" not in fn)
+# precise, not a substring sweep: the prose explains why depth is not tested, so "avail" appears
+ok("it never reads a depth field",
+   'get("avail")' not in fn and '["avail"]' not in fn and "fillable" not in fn)
 ok("it documents why depth is not tested", "MAKER" in fn and "TAKER" in fn)
 
 body = src[src.index("def rest_bid("):]
