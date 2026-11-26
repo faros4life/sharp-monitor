@@ -46,9 +46,9 @@
     "volume_fp": 278.36
    },
    "ex_stats_close": {
-    "open_interest_fp": 319035.54,
+    "open_interest_fp": 319072.54,
     "volume_24h_fp": 325747.33,
-    "volume_fp": 327038.51
+    "volume_fp": 327084.81
    },
    "ex_stats_first": {
     "open_interest_fp": 313918.81,
@@ -97,6 +97,8 @@
    "norm_ready_books": 2,
    "paper_only": false,
    "price": 0.52,
+   "price_after_15m": 0.51,
+   "price_after_15m_book": "novig",
    "price_american": -108,
    "price_rule": "ok",
    "price_when_first_seen": 0.52,
@@ -187,6 +189,7 @@
    "size_x": 0.96,
    "start_source": "odds",
    "start_utc": "2026-11-26T18:00:00Z",
+   "still_actionable": true,
    "surge_books": [],
    "teams": [
     "Chicago",
@@ -1685,7 +1688,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Green Bay Packers",
@@ -1893,7 +1896,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -2087,7 +2090,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Los Angeles C",
@@ -2158,9 +2161,9 @@
     "volume_fp": 2209.84
    },
    "ex_stats_close": {
-    "open_interest_fp": 901732.8400000001,
+    "open_interest_fp": 906141.8600000001,
     "volume_24h_fp": 393576.64,
-    "volume_fp": 1002053.89
+    "volume_fp": 1006508.99
    },
    "ex_stats_first": {
     "open_interest_fp": 809831.86,
@@ -2731,7 +2734,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [
     "Under 44.5 (-115)"
    ],
@@ -3859,8 +3862,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 23681357.0,
-    "volume": 38303489.0
+    "openInterest": 23722837.0,
+    "volume": 38344969.0
    },
    "ex_stats_first": {
     "openInterest": 21634685.0,
@@ -4296,9 +4299,9 @@
     "volume_fp": 1.74
    },
    "ex_stats_close": {
-    "open_interest_fp": 26150.01,
+    "open_interest_fp": 27219.01,
     "volume_24h_fp": 10238.83,
-    "volume_fp": 31922.49
+    "volume_fp": 32991.49
    },
    "ex_stats_first": {
     "open_interest_fp": 22850.33,
@@ -4640,7 +4643,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 9,
+   "settle_tries": 10,
    "sharp_agree": [
     "Over 223.5 (-123)"
    ],
@@ -4721,6 +4724,7 @@
     "volume_fp": 8386.43
    },
    "fade_price": 0.52,
+   "fade_units": 0.86,
    "first_seen_utc": "2026-11-25T22:20:20Z",
    "game": "Minnesota vs Oklahoma City: Spread",
    "game_surge_books": [
@@ -4845,14 +4849,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBASPREAD-26NOV25MINOKC-OKC3"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 9,
+   "settle_tries": 10,
+   "settled_utc": "2026-11-26T03:15:49Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Oklahoma City",
@@ -4870,7 +4875,7 @@
     "Oklahoma City"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-25T22:25:53Z",
@@ -5052,7 +5057,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Brooklyn",
@@ -5251,7 +5256,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Green Bay Packers",
@@ -5521,6 +5526,7 @@
     "volume_fp": 32270.94
    },
    "fade_price": 0.5,
+   "fade_units": 0.93,
    "first_seen_utc": "2026-11-25T22:10:20Z",
    "game": "Minnesota vs Oklahoma City: Total Points",
    "game_surge_books": [],
@@ -5643,14 +5649,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBATOTAL-26NOV25MINOKC-223"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 9,
+   "settle_tries": 10,
+   "settled_utc": "2026-11-26T03:15:49Z",
    "sharp_agree": [
     "Over 223.5 (-123)"
    ],
@@ -5672,7 +5679,7 @@
     "Oklahoma City"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-25T22:00:26Z",
@@ -5880,7 +5887,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 9,
+   "settle_tries": 10,
    "sharp_agree": [],
    "sharp_oppose": [
     "Cleveland Cavaliers +2.5 (-115)"
@@ -6750,7 +6757,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Dallas Stars",
@@ -7052,7 +7059,7 @@
    },
    "ex_stats_close": {
     "openInterest": 6558042.0,
-    "volume": 13034234.0
+    "volume": 13050404.0
    },
    "ex_stats_first": {
     "openInterest": 6438126.0,
@@ -7881,7 +7888,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Memphis Grizzlies",
@@ -7952,8 +7959,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 23681357.0,
-    "volume": 38303489.0
+    "openInterest": 23722837.0,
+    "volume": 38344969.0
    },
    "ex_stats_first": {
     "openInterest": 21062030.0,
@@ -8167,8 +8174,8 @@
     "volume": 20250.0
    },
    "ex_stats_close": {
-    "openInterest": 10449994.0,
-    "volume": 14508204.0
+    "openInterest": 10456957.0,
+    "volume": 14515167.0
    },
    "ex_stats_first": {
     "openInterest": 9180670.0,
@@ -8769,7 +8776,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Utah",
@@ -9051,6 +9058,7 @@
     "volume_fp": 36825.84
    },
    "fade_price": 0.49,
+   "fade_units": 0.97,
    "first_seen_utc": "2026-11-25T20:15:55Z",
    "game": "Minnesota vs Oklahoma City: Spread",
    "game_surge_books": [],
@@ -9173,14 +9181,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBASPREAD-26NOV25MINOKC-OKC2"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 9,
+   "settle_tries": 10,
+   "settled_utc": "2026-11-26T03:15:49Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Oklahoma City",
@@ -9198,7 +9207,7 @@
     "Oklahoma City"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-25T19:25:49Z",
@@ -9405,7 +9414,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Los Angeles Rams",
@@ -10496,7 +10505,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Dallas",
@@ -11152,7 +11161,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Minnesota",
@@ -11436,6 +11445,7 @@
     "volume_fp": 617.43
    },
    "fade_price": 0.46,
+   "fade_units": 1.09,
    "first_seen_utc": "2026-11-25T16:26:04Z",
    "game": "Vancouver vs Detroit: Spread",
    "game_surge_books": [],
@@ -11558,14 +11568,15 @@
     "kalshi_side": "no",
     "market_ticker": "KXNHLSPREAD-26NOV25VANDET-DET2"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 9,
+   "settle_tries": 10,
+   "settled_utc": "2026-11-26T03:15:49Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Vancouver",
@@ -11583,7 +11594,7 @@
     "Detroit"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-25T16:30:30Z",
@@ -11766,7 +11777,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Nashville",
@@ -12391,7 +12402,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -12829,7 +12840,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Nashville",
@@ -13119,9 +13130,9 @@
     "volume_fp": 39.4
    },
    "ex_stats_close": {
-    "open_interest_fp": 12771.38,
+    "open_interest_fp": 12831.23,
     "volume_24h_fp": 6590.68,
-    "volume_fp": 13449.67
+    "volume_fp": 13509.52
    },
    "ex_stats_first": {
     "open_interest_fp": 8644.28,
@@ -13323,9 +13334,9 @@
     "volume_fp": 37.13
    },
    "ex_stats_close": {
-    "open_interest_fp": 39232.72,
+    "open_interest_fp": 39241.72,
     "volume_24h_fp": 16863.41,
-    "volume_fp": 42065.84
+    "volume_fp": 42074.84
    },
    "ex_stats_first": {
     "open_interest_fp": 27244.74,
@@ -13772,6 +13783,7 @@
     "volume_fp": 20335.58
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-25T15:15:49Z",
    "game": "Minnesota vs Oklahoma City: Total Points",
    "game_surge_books": [
@@ -13895,14 +13907,15 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26NOV25MINOKC-223"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 9,
+   "settle_tries": 10,
+   "settled_utc": "2026-11-26T03:15:49Z",
    "sharp_agree": [
     "Under 224.5 (-110)"
    ],
@@ -13924,7 +13937,7 @@
     "Oklahoma City"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.94
   },
   {
    "alerted_utc": "2026-11-25T15:00:28Z",
@@ -13989,6 +14002,7 @@
     "volume_fp": 211.39
    },
    "fade_price": 0.54,
+   "fade_units": 0.79,
    "first_seen_utc": "2026-11-25T14:55:57Z",
    "game": "Vancouver vs Detroit: Total Goals",
    "game_surge_books": [
@@ -14118,12 +14132,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLTOTAL-26NOV25VANDET-7"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 9,
+   "settle_tries": 10,
+   "settled_utc": "2026-11-26T03:15:49Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -14142,7 +14157,7 @@
     "Detroit"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-25T14:45:48Z",
@@ -14201,6 +14216,7 @@
     "volume_fp": 20013.0
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-25T14:40:20Z",
    "game": "Minnesota vs Oklahoma City: Spread",
    "game_surge_books": [],
@@ -14323,12 +14339,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26NOV25MINOKC-OKC2"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 9,
+   "settle_tries": 10,
+   "settled_utc": "2026-11-26T03:15:49Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Minnesota",
@@ -14346,7 +14363,7 @@
     "Oklahoma City"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.02
   },
   {
    "alerted_utc": "2026-11-25T14:15:55Z",
@@ -15449,9 +15466,9 @@
     "volume_fp": 308.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 814720.02,
+    "open_interest_fp": 816975.0800000001,
     "volume_24h_fp": 550608.28,
-    "volume_fp": 860414.94
+    "volume_fp": 862670.0
    },
    "ex_stats_first": {
     "open_interest_fp": 323794.29000000004,
@@ -16210,7 +16227,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Utah",
@@ -17089,6 +17106,7 @@
     "volume_fp": 1622.21
    },
    "fade_price": 0.33,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-25T12:10:20Z",
    "game": "Vancouver vs Detroit",
    "game_surge_books": [],
@@ -17224,14 +17242,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26NOV25VANDET-DET"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 9,
+   "settle_tries": 10,
+   "settled_utc": "2026-11-26T03:15:49Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Detroit",
@@ -17248,7 +17267,7 @@
     "Detroit"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.46
   },
   {
    "alerted_utc": "2026-11-25T12:15:52Z",
@@ -18144,9 +18163,9 @@
     "volume_fp": 666.67
    },
    "ex_stats_close": {
-    "open_interest_fp": 709136.02,
+    "open_interest_fp": 712797.24,
     "volume_24h_fp": 362498.8,
-    "volume_fp": 774513.49
+    "volume_fp": 778319.41
    },
    "ex_stats_first": {
     "open_interest_fp": 404335.91000000003,
@@ -18376,6 +18395,7 @@
     "volume_fp": 115086.34
    },
    "fade_price": 0.47,
+   "fade_units": 1.05,
    "first_seen_utc": "2026-11-25T04:40:21Z",
    "game": "Minnesota vs Oklahoma City",
    "game_surge_books": [],
@@ -18511,12 +18531,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26NOV25MINOKC-OKC"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 9,
+   "settle_tries": 10,
+   "settled_utc": "2026-11-26T03:15:49Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Oklahoma City",
@@ -18534,7 +18555,7 @@
     "Oklahoma City"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-25T03:30:22Z",
@@ -18914,7 +18935,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Los Angeles R",
@@ -19045,7 +19066,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Milwaukee",
@@ -19177,7 +19198,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Brooklyn",
@@ -19310,7 +19331,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Memphis",
@@ -21564,7 +21585,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -22938,7 +22959,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -23162,7 +23183,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Los Angeles R",
@@ -24394,7 +24415,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Los Angeles Rams",
@@ -26139,7 +26160,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Green Bay Packers",
@@ -26335,7 +26356,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Green Bay",
@@ -26556,7 +26577,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Green Bay",
