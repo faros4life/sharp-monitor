@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 26, 2:20 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 25.
+Updated Thu Nov 26, 2:25 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 25.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -77,7 +77,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 25 11:26AM | NHL | Montreal vs Colorado: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $27k | -113 | ✅ novig |  | -1.0c | yes | W |
 | Nov 25 11:26AM | NHL | Nashville vs Dallas | moneyline: Nashville | kalshi | $95k | +156 |  |  | +0.0c |  | W |
 | Nov 25 11:26AM | NHL | Carolina vs Tampa Bay | moneyline: Tampa Bay | kalshi | $93k | +117 |  |  | +3.0c |  | L |
-| Nov 25 11:20AM | NFL | Philadelphia vs Dallas: Total Points | total: Over 48.5 points | kalshi | $209k | +104 |  |  | +1.0c | yes | pending |
+| Nov 25 11:20AM | NFL | Philadelphia vs Dallas: Total Points | total: Over 48.5 points | kalshi | $209k | +104 |  |  | +2.0c | yes | pending |
 | Nov 25 11:20AM | NFL | Philadelphia vs Dallas: Spread | spread: NOT Dallas wins by over 8.5 points | kalshi | $605k | -100 | ✅ novig |  | +0.0c |  | pending |
 | Nov 25 11:20AM | NHL | Philadelphia vs Washington | moneyline: Washington | kalshi | $28k | -150 | ✅ novig,prophetx |  | +1.0c |  | W |
 | Nov 25 10:20AM | NBA | Minnesota vs Oklahoma City: Total Points | total: NOT Over 222.5 points | kalshi | $57k | -108 | ✅ novig | ✅ | -4.0c |  | W |
