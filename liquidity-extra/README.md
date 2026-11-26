@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 25, 8:50 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 24.
+Updated Wed Nov 25, 9:00 PM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 24.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 25 7:50PM | NCAAB | Grand Canyon @ Colorado | moneyline: Grand Canyon (0) | novig | $30k | -456 |  |  | +0.0c | yes | pending |
+| Nov 25 7:50PM | NCAAB | Grand Canyon @ Colorado | moneyline: Grand Canyon (0) | novig | $30k | -456 |  |  | -0.5c | yes | pending |
 | Nov 25 6:40PM | NCAAB | Wake Forest vs Mississippi St.: Spread | spread: Mississippi St. wins by over 3.5 points | kalshi | $26k | -108 |  |  | +0.0c | yes | pending |
 | Nov 25 6:30PM | NCAAB | Duke @ Connecticut | spread: CONN -1.5 (-1.5) | novig | $40k | +108 |  |  | +0.0c |  | pending |
 | Nov 25 6:30PM | NCAAB | UConn vs Duke: Spread | spread: UConn wins by over 1.5 points | kalshi | $34k | +108 |  |  | +1.0c | yes | pending |
