@@ -1,6 +1,430 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-26T13:30:23Z",
+   "base_depth": 32029,
+   "best_price": 0.67,
+   "best_price_american": -203,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.67,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-26",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Michigan St.",
+     "price": 0.67,
+     "this_side": 50888
+    },
+    "novig": {
+     "new_other_side": 8865,
+     "new_this_side": 31684,
+     "other_side": 11365,
+     "other_side_all_levels": 24633,
+     "ratio": 0.5,
+     "this_side": 5655,
+     "this_side_all_levels": 61748
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Michigan State",
+     "price": 0.6721,
+     "this_side": 2191
+    }
+   },
+   "ex_stats_alert": {
+    "openInterest": 289897.0,
+    "volume": 335088.0
+   },
+   "ex_stats_change": {
+    "openInterest": 746.0,
+    "volume": 746.0
+   },
+   "ex_stats_first": {
+    "openInterest": 289151.0,
+    "volume": 334342.0
+   },
+   "fade_price": 0.335,
+   "first_seen_utc": "2026-11-26T13:20:23Z",
+   "game": "Arkansas @ Michigan State",
+   "game_surge_books": [
+    "novig"
+   ],
+   "game_x": 2.05,
+   "key": "novig|{\"market_id\": \"01a20a64-842f-7993-9c75-c3416bcee51e\", \"outcome_id\": \"01a20a64-842f-7993-9c75-c35c25a5dd58\"}",
+   "lead_min": 480,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 31684,
+   "new_x": 10.95,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 5708.63,
+      "volume_24h_fp": 4424.91,
+      "volume_fp": 9030.880000000001
+     },
+     "game_normal": 264568,
+     "game_x": 1.32,
+     "normal": 16262,
+     "now": 348385,
+     "type": "ML",
+     "x": 21.42
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 289897.0,
+      "volume": 335088.0
+     },
+     "game_normal": 30055,
+     "game_x": 2.05,
+     "normal": 2893,
+     "now": 61748,
+     "type": "ML",
+     "x": 21.34
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 1767,
+     "game_x": 1.41,
+     "normal": 1085,
+     "now": 2498,
+     "type": "ML",
+     "x": 2.3
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.67,
+   "price_american": -203,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.67,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "market_id": "01a20a64-842f-7993-9c75-c3416bcee51e",
+    "outcome_id": "01a20a64-842f-7993-9c75-c35c25a5dd58"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Michigan State",
+   "side_label": "MSU (0)",
+   "size_x": 21.34,
+   "start_source": "odds",
+   "start_utc": "2026-11-26T21:30:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Arkansas",
+    "Michigan State"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-26T13:30:23Z",
+   "base_depth": 268830,
+   "best_price": 0.605,
+   "best_price_american": -153,
+   "best_price_book": "novig",
+   "bid_improved": true,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.6,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-26",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 12828,
+     "new_this_side": 60668,
+     "other_side": 22388,
+     "other_side_all_levels": 171394,
+     "ratio": 4.9,
+     "this_side": 109087,
+     "this_side_all_levels": 342882
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "ISU (0)",
+     "price": 0.605,
+     "this_side": 15118
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Iowa State",
+     "price": 0.6094,
+     "this_side": 3222
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 44756.07,
+    "volume_24h_fp": 43034.32,
+    "volume_fp": 46155.39
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 704.39,
+    "volume_24h_fp": 160.47,
+    "volume_fp": 743.11
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 44051.68,
+    "volume_24h_fp": 42873.85,
+    "volume_fp": 45412.28
+   },
+   "fade_price": 0.4,
+   "first_seen_utc": "2026-11-26T13:20:23Z",
+   "game": "Tennessee vs Iowa St.",
+   "game_surge_books": [],
+   "game_x": 1.42,
+   "key": "kalshi|KXNCAAMBGAME-26NOV26TENNISU|ml|1",
+   "lead_min": 420,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 60668,
+   "new_x": 3.73,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 44756.07,
+      "volume_24h_fp": 43034.32,
+      "volume_fp": 46155.39
+     },
+     "game_normal": 241722,
+     "game_x": 1.42,
+     "normal": 16262,
+     "now": 342882,
+     "type": "ML",
+     "x": 21.09
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 1696103.0,
+      "volume": 2528434.0
+     },
+     "game_normal": 26993,
+     "game_x": 1.98,
+     "normal": 2893,
+     "now": 53418,
+     "type": "ML",
+     "x": 18.46
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 2214,
+     "game_x": 1.46,
+     "normal": 1085,
+     "now": 3222,
+     "type": "ML",
+     "x": 2.97
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.6,
+   "price_american": -150,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.6,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV26TENNISU-ISU"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Iowa St.",
+   "side_label": "Iowa St.",
+   "size_x": 21.09,
+   "start_source": "odds",
+   "start_utc": "2026-11-26T20:30:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Tennessee",
+    "Iowa St."
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-26T13:30:23Z",
+   "base_depth": 234793,
+   "best_price": 0.555,
+   "best_price_american": -125,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.55,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-26",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 18697,
+     "new_this_side": 60214,
+     "other_side": 35277,
+     "other_side_all_levels": 199276,
+     "ratio": 1.0,
+     "this_side": 35030,
+     "this_side_all_levels": 295764
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "MIA (0)",
+     "price": 0.555,
+     "this_side": 5341
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Miami Florida",
+     "price": 0.5575,
+     "this_side": 947
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 5240.07,
+    "volume_24h_fp": 5154.3099999999995,
+    "volume_fp": 5309.86
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 81.79,
+    "volume_24h_fp": 84.25,
+    "volume_fp": 92.37
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 5158.28,
+    "volume_24h_fp": 5070.06,
+    "volume_fp": 5217.49
+   },
+   "fade_price": 0.46,
+   "first_seen_utc": "2026-11-26T13:20:23Z",
+   "game": "Miami (FL) vs Michigan",
+   "game_surge_books": [
+    "novig"
+   ],
+   "game_x": 1.48,
+   "key": "kalshi|KXNCAAMBGAME-26NOV26MIAMICH|ml|0",
+   "lead_min": 420,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 60214,
+   "new_x": 3.7,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 5240.07,
+      "volume_24h_fp": 5154.3099999999995,
+      "volume_fp": 5309.86
+     },
+     "game_normal": 199650,
+     "game_x": 1.48,
+     "normal": 16262,
+     "now": 295764,
+     "type": "ML",
+     "x": 18.19
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 1035664.0,
+      "volume": 1091054.0
+     },
+     "game_normal": 21493,
+     "game_x": 2.1,
+     "normal": 2893,
+     "now": 45221,
+     "type": "ML",
+     "x": 15.63
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 731,
+     "game_x": 1.46,
+     "normal": 1085,
+     "now": 1069,
+     "type": "ML",
+     "x": 0.98
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.55,
+   "price_american": -122,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.55,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV26MIAMICH-MIA"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Miami (FL)",
+   "side_label": "Miami (FL)",
+   "size_x": 18.19,
+   "start_source": "odds",
+   "start_utc": "2026-11-26T20:30:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "Miami (FL)",
+    "Michigan"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-26T11:10:23Z",
    "base_depth": 219875,
    "best_price": 0.55,
@@ -52,9 +476,9 @@
     "volume_fp": 319.02
    },
    "ex_stats_close": {
-    "open_interest_fp": 141841.89,
-    "volume_24h_fp": 142976.53,
-    "volume_fp": 148951.99
+    "open_interest_fp": 145054.99,
+    "volume_24h_fp": 148654.27000000002,
+    "volume_fp": 152893.28999999998
    },
    "ex_stats_first": {
     "open_interest_fp": 89072.75,
@@ -198,8 +622,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 855222.0,
-    "volume": 942005.0
+    "openInterest": 1021898.0,
+    "volume": 1108681.0
    },
    "ex_stats_first": {
     "openInterest": 512767.0,
@@ -347,9 +771,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1667.78,
-    "volume_24h_fp": 1422.1599999999999,
-    "volume_fp": 1780.78
+    "open_interest_fp": 1706.79,
+    "volume_24h_fp": 1424.92,
+    "volume_fp": 1819.79
    },
    "ex_stats_first": {
     "open_interest_fp": 1472.66,
@@ -547,9 +971,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 5605.85,
-    "volume_24h_fp": 4418.32,
-    "volume_fp": 8914.28
+    "open_interest_fp": 5708.63,
+    "volume_24h_fp": 4424.91,
+    "volume_fp": 9030.880000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 4336.24,
@@ -855,9 +1279,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 549.72,
+    "open_interest_fp": 561.7,
     "volume_24h_fp": 590.49,
-    "volume_fp": 590.49
+    "volume_fp": 602.47
    },
    "ex_stats_first": {
     "open_interest_fp": 101.0,
@@ -1060,8 +1484,8 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1352.48,
-    "volume_24h_fp": 1361.46,
-    "volume_fp": 1371.79
+    "volume_24h_fp": 1363.8400000000001,
+    "volume_fp": 1379.74
    },
    "ex_stats_first": {
     "open_interest_fp": 247.82999999999998,
@@ -1260,9 +1684,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 22483.48,
-    "volume_24h_fp": 34145.950000000004,
-    "volume_fp": 34151.06
+    "open_interest_fp": 22487.31,
+    "volume_24h_fp": 34151.06,
+    "volume_fp": 34154.89
    },
    "ex_stats_first": {
     "open_interest_fp": 13906.32,
@@ -1442,9 +1866,9 @@
     "volume_fp": 3.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 11733.5,
-    "volume_24h_fp": 10803.45,
-    "volume_fp": 12269.24
+    "open_interest_fp": 11894.740000000002,
+    "volume_24h_fp": 10866.83,
+    "volume_fp": 12436.73
    },
    "ex_stats_first": {
     "open_interest_fp": 4720.94,
@@ -1639,9 +2063,9 @@
     "volume_fp": 2.62
    },
    "ex_stats_close": {
-    "open_interest_fp": 2797.05,
-    "volume_24h_fp": 2970.4900000000002,
-    "volume_fp": 3221.28
+    "open_interest_fp": 2798.67,
+    "volume_24h_fp": 3005.2200000000003,
+    "volume_fp": 3249.6
    },
    "ex_stats_first": {
     "open_interest_fp": 1077.29,
@@ -2784,7 +3208,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 70,
+   "settle_tries": 71,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNCW (0)",
