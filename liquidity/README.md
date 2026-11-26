@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 25, 10:55 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 54.
+Updated Wed Nov 25, 11:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 52.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1982-1550 (-43.64u flat) | rule met: 1179-931
+**Record:** 1983-1551 (-44.23u flat) | rule met: 1180-932
 
-**Fade (paper, betting against the print):** 1284-1709 (-189.58u flat, after fees)
+**Fade (paper, betting against the print):** 1285-1710 (-188.95u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -41,12 +41,12 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 25 5:00PM | NHL | San Jose vs Anaheim | moneyline: Anaheim | kalshi | $87k | -122 | ✅ novig,prophetx |  | -2.0c |  | pending |
 | Nov 25 4:45PM | NBA | Cleveland vs New York: Total Points | total: Over 218.5 points | kalshi | $100k | -104 |  |  | +4.0c | yes | W |
 | Nov 25 4:40PM | NHL | Calgary vs Pittsburgh | moneyline: Pittsburgh | kalshi | $46k | -156 | ✅ novig,prophetx |  | +0.0c | yes | L |
-| Nov 25 4:20PM | NHL | Nashville Predators @ Dallas Stars | moneyline: DAL (0) | novig | $34k | -167 | ✅ kalshi,prophetx |  | +0.5c | yes | pending |
+| Nov 25 4:20PM | NHL | Nashville Predators @ Dallas Stars | moneyline: DAL (0) | novig | $34k | -167 | ✅ kalshi,prophetx |  | +0.5c | yes | L |
 | Nov 25 4:20PM | NBA | Chicago Bulls @ Charlotte Hornets | moneyline: CHA (0) | novig | $31k | -153 | ✅ kalshi,prophetx |  | +2.5c | yes | L |
 | Nov 25 4:20PM | NFL | Kansas City Chiefs @ Buffalo Bills | moneyline: BUF (0) | novig | $48k | -141 | ✅ kalshi,prophetx |  | +0.0c | yes | pending |
 | Nov 25 4:15PM | NBA | Sacramento Kings @ Golden State Warriors | moneyline: GSW (0) | novig | $39k | -270 | ✅ kalshi | ✅ | +1.5c | yes | pending |
 | Nov 25 4:15PM | NBA | Phoenix Suns @ Houston Rockets | moneyline: HOU (0) | novig | $52k | -344 | ✅ kalshi,prophetx |  | -1.0c |  | pending |
-| Nov 25 4:15PM | NBA | Los Angeles Clippers @ Memphis Grizzlies | moneyline: MEM (0) | novig | $52k | -245 | ✅ kalshi,prophetx |  | +0.5c |  | pending |
+| Nov 25 4:15PM | NBA | Los Angeles Clippers @ Memphis Grizzlies | moneyline: MEM (0) | novig | $52k | -245 | ✅ kalshi,prophetx |  | +0.5c |  | W |
 | Nov 25 4:15PM | NFL | Chicago Bears @ Detroit Lions | moneyline: DET (0) | novig | $48k | +106 | ✅ kalshi,prophetx |  | -0.5c | yes | pending |
 | Nov 25 4:15PM | NFL | Philadelphia Eagles @ Dallas Cowboys | moneyline: DAL (0) | novig | $29k | -400 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Nov 25 3:50PM | NHL | New Jersey vs Columbus | moneyline: New Jersey | kalshi | $76k | -138 | ✅ novig,prophetx |  | +0.0c | yes | W |
