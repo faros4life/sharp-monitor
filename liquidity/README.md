@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 25, 8:25 PM ET. This run: 0 new, 1 not confirmed, 1 pending. Open alerts: 101.
+Updated Wed Nov 25, 8:30 PM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 101.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -38,11 +38,11 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 25 4:20PM | NHL | Nashville Predators @ Dallas Stars | moneyline: DAL (0) | novig | $34k | -167 | ✅ kalshi,prophetx |  | +0.5c | yes | pending |
 | Nov 25 4:20PM | NBA | Chicago Bulls @ Charlotte Hornets | moneyline: CHA (0) | novig | $31k | -153 | ✅ kalshi,prophetx |  | +2.5c | yes | pending |
 | Nov 25 4:20PM | NFL | Kansas City Chiefs @ Buffalo Bills | moneyline: BUF (0) | novig | $48k | -141 | ✅ kalshi,prophetx |  | +0.0c | yes | pending |
-| Nov 25 4:15PM | NBA | Sacramento Kings @ Golden State Warriors | moneyline: GSW (0) | novig | $39k | -270 | ✅ kalshi | ✅ | +2.0c | yes | pending |
+| Nov 25 4:15PM | NBA | Sacramento Kings @ Golden State Warriors | moneyline: GSW (0) | novig | $39k | -270 | ✅ kalshi | ✅ | +1.5c | yes | pending |
 | Nov 25 4:15PM | NBA | Phoenix Suns @ Houston Rockets | moneyline: HOU (0) | novig | $52k | -344 | ✅ kalshi,prophetx |  | -1.0c |  | pending |
 | Nov 25 4:15PM | NBA | Los Angeles Clippers @ Memphis Grizzlies | moneyline: MEM (0) | novig | $52k | -245 | ✅ kalshi,prophetx |  | +0.5c |  | pending |
 | Nov 25 4:15PM | NFL | Chicago Bears @ Detroit Lions | moneyline: DET (0) | novig | $48k | +106 | ✅ kalshi,prophetx |  | -0.5c | yes | pending |
-| Nov 25 4:15PM | NFL | Philadelphia Eagles @ Dallas Cowboys | moneyline: DAL (0) | novig | $29k | -400 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
+| Nov 25 4:15PM | NFL | Philadelphia Eagles @ Dallas Cowboys | moneyline: DAL (0) | novig | $29k | -400 | ✅ kalshi,prophetx |  | -0.5c |  | pending |
 | Nov 25 3:50PM | NHL | New Jersey vs Columbus | moneyline: New Jersey | kalshi | $76k | -138 | ✅ novig,prophetx |  | +0.0c | yes | pending |
 | Nov 25 3:40PM | NHL | Utah vs Minnesota | moneyline: Utah | kalshi | $112k | +127 | ✅ novig,prophetx |  | -1.0c | yes | pending |
 | Nov 25 3:35PM | NBA | Miami vs Philadelphia: Spread | spread: NOT Miami wins by over 1.5 points | kalshi | $76k | -100 | ✅ novig | ✅ | +3.0c |  | W |
@@ -83,7 +83,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 25 7:35AM | NHL | San Jose vs Anaheim: Spread | spread: NOT Anaheim wins by over 1.5 goals | kalshi | $29k | -186 |  |  | +2.0c | yes | pending |
 | Nov 25 7:35AM | NHL | Ottawa vs Florida: Spread | spread: NOT Florida wins by over 1.5 goals | kalshi | $40k | -233 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 25 7:35AM | NHL | Montreal vs Colorado: Spread | spread: NOT Colorado wins by over 1.5 goals | kalshi | $30k | -223 | ✅ novig |  | +0.0c | yes | pending |
-| Nov 25 7:15AM | NBA | San Antonio vs Portland: Spread | spread: San Antonio wins by over 2.5 points | kalshi | $35k | -113 | ✅ novig |  | +0.0c | yes | pending |
+| Nov 25 7:15AM | NBA | San Antonio vs Portland: Spread | spread: San Antonio wins by over 2.5 points | kalshi | $35k | -113 | ✅ novig |  | +1.0c | yes | pending |
 | Nov 25 7:15AM | NHL | Vancouver vs Detroit | moneyline: Detroit | kalshi | $25k | -213 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 25 7:15AM | NBA | San Antonio vs Portland | moneyline: San Antonio | kalshi | $26k | -144 | ✅ novig,prophetx |  | +1.0c | yes | pending |
 | Nov 25 6:55AM | NFL | Chicago vs Detroit: Spread | spread: NOT Chicago wins by over 2.5 points | kalshi | $101k | -108 |  |  | +2.0c |  | pending |
@@ -91,7 +91,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 25 2:35AM | NBA | Cleveland vs New York | moneyline: Cleveland | kalshi | $49k | +138 |  |  | -4.0c | yes | pending |
 | Nov 25 1:30AM | NFL | Philadelphia vs Dallas | moneyline: Dallas | kalshi | $173k | -400 | ✅ novig,prophetx |  | +0.0c | yes | pending |
 | Nov 24 11:45PM | NBA | Minnesota vs Oklahoma City | moneyline: Oklahoma City | kalshi | $294k | -117 |  |  | +2.0c | yes | pending |
-| Nov 24 10:30PM | NBA | Sacramento vs Golden State | moneyline: Golden State | kalshi | $50k | -213 |  |  | +6.0c | yes | pending |
+| Nov 24 10:30PM | NBA | Sacramento vs Golden State | moneyline: Golden State | kalshi | $50k | -213 |  |  | +7.0c | yes | pending |
 | Nov 24 9:50PM | NFL | Green Bay vs Los Angeles R: Spread | spread: Los Angeles R wins by over 2.5 points | kalshi | $106k | -104 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 24 8:50PM | NBA | Brooklyn vs Milwaukee | moneyline: Milwaukee | kalshi | $33k | -104 |  |  | +1.0c |  | pending |
 | Nov 24 8:15PM | NBA | Brooklyn vs Milwaukee | moneyline: Brooklyn | kalshi | $26k | +104 |  |  | +0.0c | yes | pending |
