@@ -1,6 +1,221 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-26T02:50:19Z",
+   "base_depth": 189349,
+   "best_price": 0.5,
+   "best_price_american": -100,
+   "best_price_book": "novig",
+   "bid_improved": true,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 4,
+   "date": "2026-11-25",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 1803,
+     "new_this_side": 31897,
+     "other_side": 117554,
+     "other_side_all_levels": 231227,
+     "ratio": 1.1,
+     "this_side": 133001,
+     "this_side_all_levels": 245957
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "GSW -8.5 (-8.5)",
+     "price": 0.5,
+     "this_side": 59222
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Golden State Warriors -8.5 (-8.5)",
+     "price": 0.5098,
+     "this_side": 30803
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 45572.47,
+    "volume_24h_fp": 28851.53,
+    "volume_fp": 48930.51
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 15991.24,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 17824.12
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 29581.23,
+    "volume_24h_fp": 28851.53,
+    "volume_fp": 31106.39
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-26T02:45:49Z",
+   "game": "Sacramento vs Golden State: Spread",
+   "game_surge_books": [
+    "novig",
+    "prophetx"
+   ],
+   "game_x": 1.43,
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBASPREAD-26NOV25SACGSW-GSW9\"}",
+   "lead_min": 25,
+   "league": "NBA",
+   "line": -8.5,
+   "market": "spread",
+   "new_money": 31897,
+   "new_x": 0.21,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 45572.47,
+      "volume_24h_fp": 28851.53,
+      "volume_fp": 48930.51
+     },
+     "game_normal": 172063,
+     "game_x": 1.43,
+     "normal": 153406,
+     "now": 245957,
+     "type": "SPREAD",
+     "x": 1.6
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 7812584.0,
+      "volume": 11002716.0
+     },
+     "game_normal": 35179,
+     "game_x": 2.65,
+     "normal": 24775,
+     "now": 93393,
+     "type": "SPREAD",
+     "x": 3.77
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 9907,
+     "game_x": 3.12,
+     "normal": 4929,
+     "now": 30903,
+     "type": "SPREAD",
+     "x": 6.27
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -8.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": -8.5,
+     "price": -115
+    },
+    "betopenly": {
+     "point": -8.5,
+     "price": -107
+    },
+    "betrivers": {
+     "point": -8.5,
+     "price": -118
+    },
+    "betus": {
+     "point": -8.5,
+     "price": -115
+    },
+    "bovada": {
+     "point": -8.5,
+     "price": -115
+    },
+    "circasports": {
+     "point": -9.0,
+     "price": -105
+    },
+    "draftkings": {
+     "point": -8.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": -8.5,
+     "price": -115
+    },
+    "fanduel": {
+     "point": -8.5,
+     "price": -118
+    },
+    "kalshi": {
+     "point": -8.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": -8.5,
+     "price": -111
+    },
+    "mybookieag": {
+     "point": -9.0,
+     "price": -110
+    },
+    "novig": {
+     "point": -8.5,
+     "price": 100
+    },
+    "polymarket": {
+     "point": -8.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": -8.5,
+     "price": -104
+    },
+    "williamhill_us": {
+     "point": -8.5,
+     "price": -115
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBASPREAD-26NOV25SACGSW-GSW9"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [
+    "Golden State Warriors -6.5 (-111)"
+   ],
+   "sharp_oppose": [],
+   "side": "Golden State",
+   "side_label": "Golden State wins by over 8.5 points",
+   "size_x": 1.6,
+   "start_source": "odds",
+   "start_utc": "2026-11-26T03:15:00Z",
+   "surge_books": [
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Sacramento",
+    "Golden State"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-26T02:45:49Z",
    "base_depth": 132525,
    "best_price": 0.59,
@@ -44,6 +259,11 @@
     "open_interest_fp": 398723.13,
     "volume_24h_fp": 1755.75,
     "volume_fp": 402227.13
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 437315.96,
+    "volume_24h_fp": 20442.82,
+    "volume_fp": 442131.92
    },
    "ex_stats_first": {
     "open_interest_fp": 19769.67,
@@ -208,8 +428,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.505,
-   "clv_cents": -0.5,
+   "close_price": 0.5,
+   "clv_cents": -1.0,
    "confirmed_after_min": 5,
    "date": "2026-11-25",
    "depth_by_book": {
@@ -244,8 +464,8 @@
     "volume": 63226.0
    },
    "ex_stats_close": {
-    "openInterest": 7097198.0,
-    "volume": 9147761.0
+    "openInterest": 7473990.0,
+    "volume": 9783865.0
    },
    "ex_stats_first": {
     "openInterest": 5951045.0,
@@ -685,9 +905,9 @@
     "volume_fp": 17659.11
    },
    "ex_stats_close": {
-    "open_interest_fp": 509987.88,
+    "open_interest_fp": 537188.9299999999,
     "volume_24h_fp": 572983.21,
-    "volume_fp": 604962.6699999999
+    "volume_fp": 632186.12
    },
    "ex_stats_first": {
     "open_interest_fp": 480429.48000000004,
@@ -912,9 +1132,9 @@
     "volume_fp": 590.49
    },
    "ex_stats_close": {
-    "open_interest_fp": 418492.8,
+    "open_interest_fp": 437315.96,
     "volume_24h_fp": 20442.82,
-    "volume_fp": 423308.76
+    "volume_fp": 442131.92
    },
    "ex_stats_first": {
     "open_interest_fp": 16761.26,
@@ -1729,9 +1949,9 @@
     "volume_fp": 2209.84
    },
    "ex_stats_close": {
-    "open_interest_fp": 884102.54,
+    "open_interest_fp": 885775.6499999999,
     "volume_24h_fp": 375219.36,
-    "volume_fp": 984272.2
+    "volume_fp": 985962.72
    },
    "ex_stats_first": {
     "open_interest_fp": 809831.86,
@@ -2085,7 +2305,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -2505,7 +2725,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -2722,7 +2942,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Boston Bruins",
@@ -2943,7 +3163,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -3215,8 +3435,8 @@
     "volume": 2000.0
    },
    "ex_stats_close": {
-    "openInterest": 4312992.0,
-    "volume": 4946126.0
+    "openInterest": 4314952.0,
+    "volume": 4948086.0
    },
    "ex_stats_first": {
     "openInterest": 3957309.0,
@@ -3420,8 +3640,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 23448636.0,
-    "volume": 37994208.0
+    "openInterest": 23567135.0,
+    "volume": 38118898.0
    },
    "ex_stats_first": {
     "openInterest": 21634685.0,
@@ -4201,7 +4421,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [
     "Over 223.5 (-123)"
    ],
@@ -4413,7 +4633,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Oklahoma City",
@@ -5209,7 +5429,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [
     "Over 223.5 (-123)"
    ],
@@ -5439,7 +5659,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [
     "Cleveland Cavaliers +2.5 (-115)"
@@ -5475,8 +5695,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": 0.0,
+   "close_price": 0.53,
+   "clv_cents": -2.0,
    "confirmed_after_min": 4,
    "date": "2026-11-25",
    "depth_by_book": {
@@ -5513,9 +5733,9 @@
     "volume_fp": 6.28
    },
    "ex_stats_close": {
-    "open_interest_fp": 392844.97000000003,
+    "open_interest_fp": 490473.04,
     "volume_24h_fp": 77141.87,
-    "volume_fp": 395863.45999999996
+    "volume_fp": 493491.53
    },
    "ex_stats_first": {
     "open_interest_fp": 39869.39,
@@ -5860,7 +6080,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -6533,7 +6753,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Charlotte Hornets",
@@ -6604,8 +6824,8 @@
     "volume": 11275.0
    },
    "ex_stats_close": {
-    "openInterest": 6541565.0,
-    "volume": 13017198.0
+    "openInterest": 6545838.0,
+    "volume": 13021780.0
    },
    "ex_stats_first": {
     "openInterest": 6438126.0,
@@ -6827,8 +7047,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 9242609.0,
-    "volume": 14270578.0
+    "openInterest": 9321081.0,
+    "volume": 14689766.0
    },
    "ex_stats_first": {
     "openInterest": 3604552.0,
@@ -7503,8 +7723,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 23448636.0,
-    "volume": 37994208.0
+    "openInterest": 23567135.0,
+    "volume": 38118898.0
    },
    "ex_stats_first": {
     "openInterest": 21062030.0,
@@ -7718,8 +7938,8 @@
     "volume": 20250.0
    },
    "ex_stats_close": {
-    "openInterest": 10408176.0,
-    "volume": 14466386.0
+    "openInterest": 10426551.0,
+    "volume": 14484761.0
    },
    "ex_stats_first": {
     "openInterest": 9180670.0,
@@ -8094,7 +8314,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New Jersey",
@@ -8728,7 +8948,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Oklahoma City",
@@ -9382,7 +9602,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -9817,7 +10037,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Columbus",
@@ -10241,7 +10461,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [
     "Over 6 (-111)"
@@ -11104,7 +11324,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Vancouver",
@@ -11370,9 +11590,9 @@
     "volume_fp": 32.8
    },
    "ex_stats_close": {
-    "open_interest_fp": 392844.97000000003,
+    "open_interest_fp": 490473.04,
     "volume_24h_fp": 77141.87,
-    "volume_fp": 395863.45999999996
+    "volume_fp": 493491.53
    },
    "ex_stats_first": {
     "open_interest_fp": 6845.950000000001,
@@ -12655,9 +12875,9 @@
     "volume_fp": 39.4
    },
    "ex_stats_close": {
-    "open_interest_fp": 12643.37,
+    "open_interest_fp": 12653.61,
     "volume_24h_fp": 6438.94,
-    "volume_fp": 13321.66
+    "volume_fp": 13331.9
    },
    "ex_stats_first": {
     "open_interest_fp": 8644.28,
@@ -12859,9 +13079,9 @@
     "volume_fp": 37.13
    },
    "ex_stats_close": {
-    "open_interest_fp": 39020.44,
+    "open_interest_fp": 39086.78,
     "volume_24h_fp": 16965.28,
-    "volume_fp": 41818.8
+    "volume_fp": 41890.93
    },
    "ex_stats_first": {
     "open_interest_fp": 27244.74,
@@ -13229,7 +13449,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Washington",
@@ -13436,7 +13656,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [
     "Under 224.5 (-110)"
    ],
@@ -13657,7 +13877,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -13862,7 +14082,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Minnesota",
@@ -14293,7 +14513,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Ottawa",
@@ -14701,7 +14921,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "St. Louis",
@@ -14979,9 +15199,9 @@
     "volume_fp": 308.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 805779.01,
+    "open_interest_fp": 807802.22,
     "volume_24h_fp": 540824.38,
-    "volume_fp": 851011.18
+    "volume_fp": 853342.38
    },
    "ex_stats_first": {
     "open_interest_fp": 323794.29000000004,
@@ -15196,9 +15416,9 @@
     "volume_fp": 4597.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 22146.16,
+    "open_interest_fp": 24878.49,
     "volume_24h_fp": 23154.33,
-    "volume_fp": 23263.19
+    "volume_fp": 25995.52
    },
    "ex_stats_first": {
     "open_interest_fp": 2458.99,
@@ -15538,7 +15758,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Columbus",
@@ -15796,9 +16016,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3724.35,
+    "open_interest_fp": 3752.98,
     "volume_24h_fp": 1948.95,
-    "volume_fp": 3726.35
+    "volume_fp": 3754.98
    },
    "ex_stats_first": {
     "open_interest_fp": 12.21,
@@ -16123,7 +16343,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Ottawa",
@@ -16392,9 +16612,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 114664.35,
+    "open_interest_fp": 115351.35,
     "volume_24h_fp": 164806.57,
-    "volume_fp": 165335.36
+    "volume_fp": 166022.36
    },
    "ex_stats_first": {
     "open_interest_fp": 1570.23,
@@ -16754,7 +16974,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Detroit",
@@ -16825,9 +17045,9 @@
     "volume_fp": 223.39
    },
    "ex_stats_close": {
-    "open_interest_fp": 509987.88,
+    "open_interest_fp": 537188.9299999999,
     "volume_24h_fp": 572983.21,
-    "volume_fp": 604962.6699999999
+    "volume_fp": 632186.12
    },
    "ex_stats_first": {
     "open_interest_fp": 40657.340000000004,
@@ -17037,9 +17257,9 @@
     "volume_fp": 100.49
    },
    "ex_stats_close": {
-    "open_interest_fp": 71630.35,
+    "open_interest_fp": 72645.77,
     "volume_24h_fp": 41745.94,
-    "volume_fp": 100612.94
+    "volume_fp": 101628.36
    },
    "ex_stats_first": {
     "open_interest_fp": 43080.25,
@@ -17595,7 +17815,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Cleveland",
@@ -17664,9 +17884,9 @@
     "volume_fp": 666.67
    },
    "ex_stats_close": {
-    "open_interest_fp": 699934.03,
+    "open_interest_fp": 701593.63,
     "volume_24h_fp": 355008.15,
-    "volume_fp": 763919.85
+    "volume_fp": 766382.8799999999
    },
    "ex_stats_first": {
     "open_interest_fp": 404335.91000000003,
@@ -18036,7 +18256,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Oklahoma City",
@@ -18070,8 +18290,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.75,
-   "clv_cents": 7.0,
+   "close_price": 0.74,
+   "clv_cents": 6.0,
    "confirmed_after_min": 5,
    "date": "2026-11-25",
    "depth_by_book": {
@@ -18102,9 +18322,9 @@
     "volume_fp": 181.87
    },
    "ex_stats_close": {
-    "open_interest_fp": 721428.71,
+    "open_interest_fp": 746224.13,
     "volume_24h_fp": 721652.88,
-    "volume_fp": 784148.33
+    "volume_fp": 809377.99
    },
    "ex_stats_first": {
     "open_interest_fp": 43732.63,
@@ -19023,7 +19243,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New York I",
@@ -21481,7 +21701,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New York",
