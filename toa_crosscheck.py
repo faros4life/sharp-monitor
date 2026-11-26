@@ -26,6 +26,7 @@ import toa
 import toa_recover as tr
 import tracker_build as tb
 
+SIGNED = []
 CAP = int(os.environ.get("CROSS_MAX_CREDITS", "") or "10000")
 
 
@@ -102,6 +103,7 @@ def main():
             continue
         diff = 100 * (c["p"] - d["p"])
         diffs.append(abs(diff))
+        SIGNED.append(diff)
         pz = cl.parsed(oa.snap_for(x, s)) or ("?",)
         by_mkt[pz[0]].append(abs(diff))
         games.add(k[2] if k and len(k) == 3 else i)
@@ -130,6 +132,9 @@ def main():
         v = sorted(v)
         print(f"  {m:<7} pairs {len(v):>5} | <=1 pt {100 * sum(1 for a in v if a <= 1) / len(v):.1f}% | "
               f"median {v[len(v) // 2]:.2f} pt")
+    import statistics
+    print(f"SIGNED diff (Odds API minus OddsPapi, win-prob points): mean {statistics.mean(SIGNED):+.3f} | "
+          f"se {statistics.pstdev(SIGNED) / len(SIGNED) ** 0.5:.3f} | share positive {100 * sum(v > 0 for v in SIGNED) / len(SIGNED):.1f}%")
     print("causes of |diff| > 1 pt:", dict(causes))
     print("not comparable, by reason:", dict(miss.most_common(8)))
     print(toa.report())
