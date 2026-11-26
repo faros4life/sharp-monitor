@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 26, 2:52 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 59.
+Updated Thu Nov 26, 2:55 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 59.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -15,7 +15,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 26 1:10PM | NCAAF | Nebraska vs Iowa | moneyline: Iowa | kalshi | $200k | -186 | ✅ novig,prophetx |  | +0.0c | yes | pending |
 | Nov 26 1:10PM | NCAAF | Appalachian St. vs South Alabama | moneyline: South Alabama | kalshi | $98k | -150 |  |  | +0.0c |  | pending |
 | Nov 26 12:45PM | NFL | Chicago vs Detroit: Total Points | total: Over 56.5 points | kalshi | $144k | -100 | ✅ novig | ✅ | +1.0c | yes | pending |
-| Nov 26 12:45PM | NBA | Philadelphia vs Indiana | moneyline: Indiana | kalshi | $42k | +150 |  |  | +0.0c |  | pending |
+| Nov 26 12:45PM | NBA | Philadelphia vs Indiana | moneyline: Indiana | kalshi | $42k | +150 |  |  | +1.0c |  | pending |
 | Nov 26 12:40PM | NCAAF | Texas @ Texas A&M | moneyline: TEX (0) | novig | $27k | -400 |  |  | +0.0c |  | pending |
 | Nov 26 12:40PM | NCAAF | TCU vs Texas Tech | moneyline: Texas Tech | kalshi | $255k | -567 | ✅ novig,prophetx | ❌ | +0.0c |  | pending |
 | Nov 26 12:35PM | NFL | Chicago Bears at Detroit Lions | moneyline: Detroit Lions | prophetx | $31k | +101 | ✅ kalshi |  | +0.0c |  | pending |
