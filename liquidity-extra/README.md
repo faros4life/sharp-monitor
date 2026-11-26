@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 26, 11:10 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 26.
+Updated Thu Nov 26, 11:20 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 26.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 26 11:00AM | NCAAB | Oklahoma vs Purdue | moneyline: Purdue | kalshi | $72k | -186 | ✅ novig |  | +0.0c |  | pending |
+| Nov 26 11:00AM | NCAAB | Oklahoma vs Purdue | moneyline: Purdue | kalshi | $72k | -186 | ✅ novig |  | +1.0c |  | pending |
 | Nov 26 10:10AM | NCAAB | Georgia @ Cincinnati | moneyline: CIN (0) | novig | $39k | -125 | ✅ kalshi |  | +3.5c |  | pending |
 | Nov 26 10:10AM | NCAAB | Georgia vs Cincinnati: Point Total | total: Over 156.5 points | kalshi | $28k | +113 |  |  | +4.0c |  | pending |
 | Nov 26 9:30AM | NCAAB | Saint Mary's @ UCLA | moneyline: UCLA (0) | novig | $26k | -292 | ✅ kalshi |  | +0.0c |  | pending |
@@ -23,7 +23,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 26 1:20AM | NCAAB | SMU vs LSU | moneyline: LSU | kalshi | $26k | -213 |  |  | +6.0c | yes | pending |
 | Nov 26 1:20AM | NCAAB | Arkansas vs Michigan St. | moneyline: Michigan St. | kalshi | $25k | -203 |  |  | +0.0c | yes | pending |
 | Nov 26 12:25AM | NCAAB | Saint Louis vs Stanford | moneyline: Saint Louis | kalshi | $69k | -163 |  |  | +25.0c | yes | pending |
-| Nov 25 10:50PM | NCAAB | Alabama vs Kansas St.: Point Total | total: Over 169.5 points | kalshi | $61k | -104 |  |  | +0.0c |  | pending |
+| Nov 25 10:50PM | NCAAB | Alabama vs Kansas St.: Point Total | total: Over 169.5 points | kalshi | $61k | -104 |  |  | +1.0c |  | pending |
 | Nov 25 10:50PM | NCAAB | Texas Tech vs Oregon | moneyline: Texas Tech | kalshi | $163k | -400 |  |  | +3.0c |  | pending |
 | Nov 25 10:50PM | NCAAB | Omaha vs Pacific | moneyline: Pacific | kalshi | $163k | -317 |  |  | +1.0c |  | pending |
 | Nov 25 10:50PM | NCAAB | Georgetown vs Texas | moneyline: Texas | kalshi | $161k | -335 |  |  | +0.0c |  | pending |
