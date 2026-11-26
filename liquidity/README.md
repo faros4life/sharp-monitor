@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 25, 7:05 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 99.
+Updated Wed Nov 25, 7:10 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 99.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -44,7 +44,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 25 3:20PM | NBA | Minnesota vs Oklahoma City: Spread | spread: Oklahoma City wins by over 1.5 points | kalshi | $48k | -108 | ✅ novig |  | +1.0c |  | pending |
 | Nov 25 2:25PM | NFL | Green Bay Packers @ Los Angeles Rams | moneyline: LAR (0) | novig | $56k | -130 | ✅ kalshi,prophetx |  | +0.5c | yes | pending |
 | Nov 25 2:10PM | NHL | Calgary vs Pittsburgh: Total Goals | total: Over 6.5 goals scored | kalshi | $26k | +117 | ✅ novig |  | +1.0c | yes | pending |
-| Nov 25 12:55PM | NHL | Ottawa vs Florida: Total Goals | total: Over 5.5 goals scored | kalshi | $36k | -104 | ✅ novig,prophetx |  | +2.0c |  | pending |
+| Nov 25 12:55PM | NHL | Ottawa vs Florida: Total Goals | total: Over 5.5 goals scored | kalshi | $36k | -104 | ✅ novig,prophetx |  | +2.0c | yes | pending |
 | Nov 25 12:55PM | NHL | Chicago vs Seattle | moneyline: Chicago | kalshi | $128k | +138 |  |  | +0.0c |  | pending |
 | Nov 25 12:50PM | NHL | New Jersey vs Columbus | moneyline: Columbus | kalshi | $61k | +133 |  |  | +0.0c | yes | pending |
 | Nov 25 12:35PM | NHL | Nashville vs Dallas | moneyline: Dallas | kalshi | $80k | -163 | ✅ novig,prophetx |  | +0.0c | yes | pending |
