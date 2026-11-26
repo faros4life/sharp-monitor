@@ -262,6 +262,9 @@ def net_of(book, raw_dec, league, live):
 
 
 TOA_N = [0]
+# one name per lane for the by-lane table (the tracker carries several spellings; stored data untouched)
+LANE_NAME = {"rules": "Lane 1", "phase 1": "Lane 1", "lane 1": "Lane 1", "r1": "R1", "board v3": "Board V3",
+             "board v4": "Board V4", "dogs": "Dogs", "ncs": "NCS"}
 
 
 def main():
@@ -439,7 +442,7 @@ def main():
             "pin_p": c["p"],            # the verified close itself, so the export can be re-graded
             "beat": c["p"] * nd > 1 + TOL,
             "stake": num(b.get("stake")), "profit": num(b.get("profit")), "res": b.get("result"),
-            "lane": str(b.get("lane") or "unlabelled"), "src": c.get("src") or "oddspapi",
+            "lane": LANE_NAME.get(str(b.get("lane") or "").strip().lower(), str(b.get("lane") or "unlabelled")), "src": c.get("src") or "oddspapi",
         })
 
     say()
