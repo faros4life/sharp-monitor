@@ -1,19 +1,19 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 26, 1:50 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 26.
+Updated Thu Nov 26, 2:00 PM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 25.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 512-308 (-24.60u flat) | rule met: 121-82
+**Record:** 513-308 (-23.80u flat) | rule met: 122-82
 
-**Fade (paper, betting against the print):** 283-477 (+20.34u flat, after fees)
+**Fade (paper, betting against the print):** 283-478 (+19.34u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 26 12:00PM | NCAAB | TCU vs Creighton: Spread | spread: NOT Creighton wins by over 1.5 points | kalshi | $25k | -108 |  |  | +0.0c |  | pending |
-| Nov 26 12:00PM | NCAAB | Baylor vs Gonzaga | moneyline: Gonzaga | kalshi | $34k | -163 | ✅ novig |  | +0.0c |  | pending |
+| Nov 26 12:00PM | NCAAB | Baylor vs Gonzaga | moneyline: Gonzaga | kalshi | $34k | -163 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 26 11:00AM | NCAAB | Oklahoma vs Purdue | moneyline: Purdue | kalshi | $72k | -186 | ✅ novig |  | +2.0c |  | pending |
-| Nov 26 10:10AM | NCAAB | Georgia @ Cincinnati | moneyline: CIN (0) | novig | $39k | -125 | ✅ kalshi |  | +3.5c |  | pending |
+| Nov 26 10:10AM | NCAAB | Georgia @ Cincinnati | moneyline: CIN (0) | novig | $39k | -125 | ✅ kalshi |  | +3.5c |  | W |
 | Nov 26 10:10AM | NCAAB | Georgia vs Cincinnati: Point Total | total: Over 156.5 points | kalshi | $28k | +113 |  |  | +4.0c |  | W |
 | Nov 26 9:30AM | NCAAB | Saint Mary's @ UCLA | moneyline: UCLA (0) | novig | $26k | -292 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 26 9:30AM | NCAAB | Oklahoma @ Purdue | moneyline: PUR (0) | novig | $37k | -186 | ✅ kalshi |  | +1.5c |  | pending |
