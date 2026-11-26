@@ -5064,7 +5064,9 @@ def live_order(r):
     _led = _unit_ledger_guard(r, "live_order", "prophetx")
     lv["_ledger_grant"] = _led       # Nov 25: live_remainder settles this leg to its actual fill
     stake = _unit_ledger_consume(_led, stake)
+    _sub_t = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")   # Nov 26 (Peter): submit time, logging only
     res = px_live.place(strike, limit, stake, label)
+    res = dict(res, submitted_utc=_sub_t, answered_utc=datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"))
     if res.get("status") == "refused":   # Nov 11: a refusal is a lane event too
         # Nov 12 (Peter/Muse): px_live.place() returns "refused" before its own submit call, so the
         # write-ahead intent must be voided or it latches every later live order. Unconditional:
@@ -5285,7 +5287,7 @@ def live_order_other(r):
         res = book_live.novig_place(ids["outcome_id"], limit_cost, count * 100, label, None, derive_key(p) or "")
     else:
         return refuse_untransmitted(r, f"no live order code for {name}", book=book)
-    res = dict(res, book=book)
+    res = dict(res, book=book, answered_utc=datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"))   # Nov 26: log only
     # Nov 19 (Peter, safeguard 1): "ORDER ACCEPTED or ORDER FAILED as supported by actual
     # evidence." The three venue outcomes are NOT symmetrical and must not be flattened into one
     # head, so only the case that had NO closing message gets one here:
@@ -7247,6 +7249,8 @@ def journal_order(r, lo, is_rest=False, cid=None):
                    # The Nov 17 note above records the same class of omission being fixed once
                    # already; expires_utc was missed that round.
                    "expires_utc": lo.get("expires_utc"),
+                   # Nov 26 (Peter, live-feed integrity): submit and venue-answer times. Logging only.
+                   "submitted_utc": lo.get("submitted_utc"), "answered_utc": lo.get("answered_utc"),
                    # Nov 11: resolves the write-ahead intent row and makes the money count once
                    "client_id": cid or (r.get("live") or {}).get("client_id"), "intent": False,
                    # Nov 18: the execution-time fee, so the CLV ledger grades this fill on the

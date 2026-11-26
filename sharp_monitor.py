@@ -265,6 +265,14 @@ def save_state(st):
 
 
 # ---------------------------------------------------------------- odds parsing
+def _age_s(lu, t):
+    """Seconds between a provider last_update and the alert time (epoch). None when either is missing."""
+    try:
+        return round(t - parse_iso(lu).timestamp()) if (lu and t) else None
+    except Exception:
+        return None
+
+
 def book_lines(event):
     """{book: {'spreads': {team: (pt, price)}, 'totals': {'Over': (pt, price)}, 'h2h': {team: price}}}"""
     out = {}
@@ -278,6 +286,22 @@ def book_lines(event):
                 elif "point" in o:
                     d.setdefault(mk, {})[o["name"]] = (o["point"], o["price"])
     return out
+
+
+_LU_MK = {"spr": "spreads", "rl": "spreads", "tot": "totals", "ml": "h2h"}
+
+
+def quote_lu(event, book, kind):
+    """Nov 26 (Peter, live-feed integrity): the provider's own last_update for one book's market on this event, or None.
+    Logging only - nothing reads it to decide anything."""
+    mk = _LU_MK.get(kind)
+    for bk in event.get("bookmakers", []):
+        if bk.get("key") == book:
+            for m in bk.get("markets", []):
+                if m.get("key") == mk:
+                    return m.get("last_update") or bk.get("last_update")
+            return bk.get("last_update")
+    return None
 
 
 def sharp_values(lines, book=None):
@@ -639,6 +663,9 @@ def detect(event, cfg, lines, base):
                            # push, the exports and the audit can all see whether an EV figure is a same-line
                            # comparison or a conversion. conv 0 = same line.
                            pin_line=pin_line, conv=conv, prices=book_prices(offers, cfg["label"]),
+                           # Nov 26 (Peter): provider timestamps + receipt time, so quote age is measurable. Log only.
+                           q_recv=event.get("_recv"), q_pin_lu=quote_lu(event, SHARP, kind),
+                           q_book_lu=quote_lu(event, book, kind),
                            evp=round(100 * (evp if evp is not None else edge), 1) if (evp is not None or edge is not None) else None))
 
     # Spreads: sharp side = team whose number got worse (money pushed it).
@@ -1378,6 +1405,10 @@ def write_alerts_file(st, n):
             "alert_utc": datetime.fromtimestamp(e["t"], timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ") if e.get("t") else None,
             "price": e["price"], "price_after_fee": round(net(e["price"], e["book"])),
             "point": e.get("pt"),
+            # Nov 26 (Peter, live-feed integrity): provider timestamps and quote ages at the alert. Logging only.
+            "quote_recv_utc": e.get("q_recv"), "quote_pin_utc": e.get("q_pin_lu"), "quote_book_utc": e.get("q_book_lu"),
+            "pin_quote_age_s": _age_s(e.get("q_pin_lu"), e.get("t")),
+            "book_quote_age_s": _age_s(e.get("q_book_lu"), e.get("t")),
             "grade": e.get("grade"), "score": e.get("score"), "edge_pct": e.get("evp"), "late": bool(e.get("late")),
             "minutes_before_start": e.get("lead"), "confirm": e.get("conf"), "confirmed_by": e.get("cby", []),
             "sent_to_phone": not e.get("muted", False),
@@ -1715,7 +1746,9 @@ def run():
         if rem is not None:
             st["remaining"] = rem
         st["last_poll"][key] = time.time()
+        _recv = now_utc().strftime("%Y-%m-%dT%H:%M:%SZ")   # Nov 26 (Peter): receipt time of this odds response
         for ev in events:
+            ev["_recv"] = _recv
             ev["commence_time"] = listed_start(cfg["label"], ev["commence_time"])
             lines = book_lines(ev)
             try:   # Nov 5: odds screen - every game (all CFB, no Top 25 filter), Peter's books + Pinnacle
@@ -1951,6 +1984,7 @@ def run():
                                live=p1_ok or hr1_ok)   # Nov 17: HR1 mirrors to Telegram (Peter asked); mirror flag only
                     st["alerted"][a["id"]] = time.time()
                     e = {k: a[k] for k in ("id", "ev", "game", "kind", "side", "pt", "price", "book", "conf", "nconf", "cby", "evp", "fade", "prices")}
+                    e.update({k: a.get(k) for k in ("q_recv", "q_pin_lu", "q_book_lu") if a.get(k)})
                     # Nov 18: this projection is a FIXED key list, so a field set on the live alert dict is dropped
                     # unless it is named here. That is why the Navy row exported hr1_verified: None after the gate
                     # had already blocked it and printed the reason - the verdict never reached the record.
