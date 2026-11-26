@@ -43,6 +43,11 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
         run: python -u feed_watch.py
+      - name: External dead-man ping (Healthchecks.io; skipped until Peter adds the HC_WATCH_URL secret)
+        if: success()
+        env:
+          HC_WATCH_URL: ${{ secrets.HC_WATCH_URL }}
+        run: '[ -n "$HC_WATCH_URL" ] && curl -fsS -m 10 --retry 2 "$HC_WATCH_URL" >/dev/null && echo "ping sent" || echo "no external ping (secret not set or ping failed)"'
       - name: Save watch state
         if: always()
         uses: actions/cache/save@v4

@@ -114,6 +114,11 @@ jobs:
           done
           echo "::error::alerts.json could NOT be published after 6 attempts - the feed is now stale"
           exit 1
+      - name: External dead-man ping for the alert feed (Healthchecks.io; skipped until Peter adds HC_FEED_URL)
+        if: success()
+        env:
+          HC_FEED_URL: ${{ secrets.HC_FEED_URL }}
+        run: '[ -n "$HC_FEED_URL" ] && curl -fsS -m 10 --retry 2 "$HC_FEED_URL" >/dev/null && echo "ping sent" || echo "no external ping (secret not set or ping failed)"'
       - name: Wake the executor (new alert sent)
         if: always()
         env:
