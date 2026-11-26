@@ -1,0 +1,51 @@
+name: feed-watch
+# Peter, 26 Nov 2026: independent heartbeat - warns on alert-feed failure, feed/executor gaps and Odds API quota,
+# with recovery notices. Runs on its own timer AND after every liquidity-monitor run (a separate feed), so it keeps
+# working when the alert feed itself is down. Read-only on GitHub; notifies via Telegram + ntfy. Log: counts only.
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_run:
+    workflows: ["liquidity-monitor"]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      test:
+        description: "1 = send a test warning and a test recovery"
+        default: "0"
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: feed-watch
+  cancel-in-progress: false
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 1}
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install -q cryptography
+      - name: Restore watch state
+        uses: actions/cache/restore@v4
+        with:
+          path: fw_state
+          key: feed-watch-${{ github.run_id }}
+          restore-keys: feed-watch-
+      - name: Watch (counts only)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TEST: ${{ inputs.test }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: python -u feed_watch.py
+      - name: Save watch state
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: fw_state
+          key: feed-watch-${{ github.run_id }}
