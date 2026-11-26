@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 25, 7:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 26.
+Updated Wed Nov 25, 7:30 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 25.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 499-299 (-23.30u flat) | rule met: 117-80
+**Record:** 500-299 (-23.10u flat) | rule met: 118-80
 
-**Fade (paper, betting against the print):** 274-464 (+22.33u flat, after fees)
+**Fade (paper, betting against the print):** 274-465 (+21.33u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -20,9 +20,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 25 5:30PM | NCAAB | Jacksonville St. vs Pacific | moneyline: Pacific | kalshi | $26k | -170 | ✅ novig |  | +0.0c |  | pending |
 | Nov 25 5:20PM | NCAAB | Providence @ BYU | moneyline: BYU (0) | novig | $41k | -130 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Nov 25 4:50PM | NCAAB | Memphis vs Penn St. | moneyline: Memphis | kalshi | $43k | -163 | ✅ novig |  | +0.0c | yes | pending |
-| Nov 25 4:20PM | NCAAB | USC @ South Carolina | moneyline: USC (0) | novig | $55k | -488 | ✅ kalshi,prophetx |  | +0.0c | yes | pending |
+| Nov 25 4:20PM | NCAAB | USC @ South Carolina | moneyline: USC (0) | novig | $55k | -488 | ✅ kalshi,prophetx |  | +0.0c | yes | W |
 | Nov 25 3:40PM | NCAAB | Clemson vs Colorado St. | moneyline: Clemson | kalshi | $43k | -156 | ✅ novig | ✅ | +0.0c |  | pending |
-| Nov 25 3:00PM | NCAAB | Wake Forest vs Mississippi St. | moneyline: Mississippi St. | kalshi | $33k | -163 |  |  | +0.0c |  | pending |
+| Nov 25 3:00PM | NCAAB | Wake Forest vs Mississippi St. | moneyline: Mississippi St. | kalshi | $33k | -163 |  |  | +1.0c | yes | pending |
 | Nov 25 2:10PM | NCAAB | Southeastern Louisiana vs North Dakota: Point Total | total: NOT Over 141.5 points | kalshi | $57k | -113 |  | ✅ | +0.0c | yes | L |
 | Nov 25 1:20PM | NCAAB | South Carolina vs USC | moneyline: USC | kalshi | $63k | -525 | ✅ novig |  | -1.0c | yes | W |
 | Nov 25 12:40PM | NCAAB | UConn vs Duke | moneyline: Duke | kalshi | $79k | +108 |  |  | +1.0c | yes | pending |
@@ -35,7 +35,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 25 9:30AM | NCAAB | Texas A&M vs Xavier | moneyline: Texas A&M | kalshi | $28k | -186 |  |  | -3.0c | yes | L |
 | Nov 25 8:40AM | NCAAB | Tulane vs Davidson | moneyline: Davidson | kalshi | $38k | -317 | ✅ novig |  | +4.0c |  | W |
 | Nov 25 8:30AM | NCAAB | Portland St. vs UC Riverside | moneyline: UC Riverside | kalshi | $42k | -138 |  |  | +1.0c |  | L |
-| Nov 25 8:30AM | NCAAB | Cal State Bakersfield vs Pepperdine | moneyline: Pepperdine | kalshi | $31k | -456 | ✅ novig |  | -1.0c |  | pending |
+| Nov 25 8:30AM | NCAAB | Cal State Bakersfield vs Pepperdine | moneyline: Pepperdine | kalshi | $31k | -456 | ✅ novig |  | +0.0c |  | pending |
 | Nov 25 2:10AM | NCAAB | Eastern Washington vs Loyola Marymount | moneyline: Loyola Marymount | kalshi | $49k | -257 |  |  | +2.0c |  | pending |
 | Nov 25 1:30AM | NCAAB | Bethune-Cookman vs Richmond | moneyline: Richmond | kalshi | $31k | -567 |  |  | +2.0c |  | pending |
 | Nov 25 1:30AM | NCAAB | Bellarmine vs Northern Kentucky | moneyline: Northern Kentucky | kalshi | $26k | -257 |  |  | +1.0c |  | pending |
