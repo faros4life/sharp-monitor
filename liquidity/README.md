@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 26, 4:36 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 52.
+Updated Thu Nov 26, 4:40 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 53.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 26 4:40PM | NCAAF | Minnesota @ Wisconsin | moneyline: WIS (0) | novig | $27k | -292 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 26 4:36PM | NFL | Kansas City vs Buffalo: Total Points | total: Over 44.5 points | kalshi | $57k | -122 |  |  | +0.0c |  | pending |
 | Nov 26 4:10PM | NCAAF | TCU @ Texas Tech | moneyline: TTU (0) | novig | $49k | -545 | ✅ kalshi,prophetx | ❌ | +0.0c | yes | pending |
 | Nov 26 4:00PM | NFL | Philadelphia vs Dallas: Total Points | total: NOT Over 49.5 points | kalshi | $297k | -104 |  | ❌ | +0.0c | yes | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 23 4:50PM | NFL | Cincinnati Bengals @ Washington Commanders | total: Under 54.5 (54.5) | novig | $37k | -106 | ✅ kalshi | ✅ | +0.0c | yes | W |
 | Nov 23 4:40PM | NFL | Cincinnati vs Washington: Spread | spread: Cincinnati wins by over 6.5 points | kalshi | $245k | +104 | ✅ novig |  | +1.0c | yes | L |
 | Nov 23 4:05PM | NBA | Los Angeles C vs Houston: Spread | spread: NOT Houston wins by over 12.5 points | kalshi | $33k | -104 |  |  | -3.0c | yes | W |
-| Nov 23 3:25PM | NHL | Toronto vs New York I | moneyline: New York I | kalshi | $50k | -150 | ✅ novig,prophetx |  | +0.0c | yes | L |
