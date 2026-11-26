@@ -1,6 +1,203 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-26T19:52:45Z",
+   "base_depth": 68158,
+   "best_price": 0.505,
+   "best_price_american": -102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "prophetx",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.5025,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 7,
+   "date": "2026-11-26",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": false,
+     "label": "Dallas wins by over 8.5 points",
+     "price": 0.51,
+     "this_side": 1706193
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "DAL -8.5 (-8.5)",
+     "price": 0.505,
+     "this_side": 186997
+    },
+    "prophetx": {
+     "new_other_side": 1369,
+     "new_this_side": 31405,
+     "other_side": 78539,
+     "other_side_all_levels": 78539,
+     "ratio": 1.3,
+     "this_side": 99556,
+     "this_side_all_levels": 99556
+    }
+   },
+   "ex_stats_alert": null,
+   "ex_stats_change": null,
+   "ex_stats_first": null,
+   "fade_price": 0.5074,
+   "first_seen_utc": "2026-11-26T19:45:56Z",
+   "game": "Philadelphia Eagles at Dallas Cowboys",
+   "game_surge_books": [],
+   "game_x": 1.39,
+   "key": "prophetx|{\"line\": 8.5, \"px_event\": 1700008839, \"px_market\": 223, \"side\": \"1\"}",
+   "lead_min": 97,
+   "league": "NFL",
+   "line": -8.5,
+   "market": "spread",
+   "new_money": 31405,
+   "new_x": 7.11,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 233477.6,
+      "volume_24h_fp": 204380.34,
+      "volume_fp": 247426.83
+     },
+     "game_normal": 2021604,
+     "game_x": 1.0,
+     "normal": 1449795,
+     "now": 2011830,
+     "type": "SPREAD",
+     "x": 1.39
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 26838302.0,
+      "volume": 37463302.0
+     },
+     "game_normal": 270890,
+     "game_x": 0.93,
+     "normal": 179889,
+     "now": 252087,
+     "type": "SPREAD",
+     "x": 1.4
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 71673,
+     "game_x": 1.39,
+     "normal": 4418,
+     "now": 99556,
+     "type": "SPREAD",
+     "x": 22.53
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.5025,
+   "price_american": -101,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5025,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -8.5,
+     "price": -108
+    },
+    "betonlineag": {
+     "point": -8.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": -8.5,
+     "price": -101
+    },
+    "betrivers": {
+     "point": -8.5,
+     "price": -112
+    },
+    "betus": {
+     "point": -9.5,
+     "price": 100
+    },
+    "bovada": {
+     "point": -8.5,
+     "price": -112
+    },
+    "circasports": {
+     "point": -8.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": -8.5,
+     "price": -109
+    },
+    "fanatics": {
+     "point": -8.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": -8.5,
+     "price": -112
+    },
+    "kalshi": {
+     "point": -8.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": -8.5,
+     "price": -102
+    },
+    "mybookieag": {
+     "point": -8.5,
+     "price": -110
+    },
+    "novig": {
+     "point": -8.5,
+     "price": -102
+    },
+    "polymarket": {
+     "point": -8.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": -8.5,
+     "price": -101
+    },
+    "williamhill_us": {
+     "point": -8.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "line": 8.5,
+    "px_event": 1700008839,
+    "px_market": 223,
+    "side": "1"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Dallas Cowboys",
+   "side_label": "Dallas Cowboys -8.5 (-8.5)",
+   "size_x": 22.53,
+   "start_source": "odds",
+   "start_utc": "2026-11-26T21:30:00Z",
+   "surge_books": [
+    "prophetx"
+   ],
+   "teams": [
+    "Philadelphia Eagles",
+    "Dallas Cowboys"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-26T19:15:53Z",
    "base_depth": 45308,
    "best_price": 0.725,
@@ -266,9 +463,9 @@
     "volume_fp": 308.37
    },
    "ex_stats_close": {
-    "open_interest_fp": 126820.26,
+    "open_interest_fp": 126996.01,
     "volume_24h_fp": 40299.5,
-    "volume_fp": 136993.25
+    "volume_fp": 137169.0
    },
    "ex_stats_first": {
     "open_interest_fp": 120664.88,
@@ -860,8 +1057,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.41,
-   "clv_cents": 1.0,
+   "close_price": 0.4,
+   "clv_cents": 0.0,
    "confirmed_after_min": 6,
    "date": "2026-11-27",
    "depth_by_book": {
@@ -1213,9 +1410,9 @@
     "volume_fp": 1206.84
    },
    "ex_stats_close": {
-    "open_interest_fp": 398907.46,
+    "open_interest_fp": 399694.62,
     "volume_24h_fp": 276251.13,
-    "volume_fp": 490016.0
+    "volume_fp": 490876.05
    },
    "ex_stats_first": {
     "open_interest_fp": 350458.26,
@@ -2979,7 +3176,7 @@
    "ex_stats_close": {
     "open_interest_fp": 35440.76,
     "volume_24h_fp": 29222.4,
-    "volume_fp": 46485.880000000005
+    "volume_fp": 46686.880000000005
    },
    "ex_stats_first": {
     "open_interest_fp": 26752.58,
@@ -3256,7 +3453,7 @@
    },
    "ex_stats_close": {
     "openInterest": 26838302.0,
-    "volume": 37455976.0
+    "volume": 37463302.0
    },
    "ex_stats_first": {
     "openInterest": 7529201.0,
@@ -3515,9 +3712,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 24435.53,
+    "open_interest_fp": 24645.0,
     "volume_24h_fp": 21633.92,
-    "volume_fp": 27061.75
+    "volume_fp": 27271.219999999998
    },
    "ex_stats_first": {
     "open_interest_fp": 15796.61,
@@ -3885,9 +4082,9 @@
     "volume_fp": 79.71
    },
    "ex_stats_close": {
-    "open_interest_fp": 367075.88,
+    "open_interest_fp": 367977.41,
     "volume_24h_fp": 317621.91,
-    "volume_fp": 382989.59
+    "volume_fp": 383891.12
    },
    "ex_stats_first": {
     "open_interest_fp": 241287.85,
@@ -4692,9 +4889,9 @@
     "volume_fp": 3201.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 1163967.85,
+    "open_interest_fp": 1164308.92,
     "volume_24h_fp": 774193.67,
-    "volume_fp": 1648044.8299999998
+    "volume_fp": 1648469.68
    },
    "ex_stats_first": {
     "open_interest_fp": 1027364.75,
@@ -4827,9 +5024,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 117561.66,
+    "open_interest_fp": 118148.26,
     "volume_24h_fp": 30469.62,
-    "volume_fp": 136956.7
+    "volume_fp": 137543.3
    },
    "ex_stats_first": {
     "open_interest_fp": 109014.38,
@@ -5095,7 +5292,7 @@
    },
    "ex_stats_close": {
     "openInterest": 26341333.0,
-    "volume": 54651358.0
+    "volume": 54680458.0
    },
    "ex_stats_first": {
     "openInterest": 26640059.0,
@@ -5232,8 +5429,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 23255912.0,
-    "volume": 30945708.0
+    "openInterest": 23257746.0,
+    "volume": 30947542.0
    },
    "ex_stats_first": {
     "openInterest": 9377107.0,
@@ -5499,9 +5696,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 8870.93,
+    "open_interest_fp": 8872.289999999999,
     "volume_24h_fp": 1643.0900000000001,
-    "volume_fp": 10455.37
+    "volume_fp": 10456.73
    },
    "ex_stats_first": {
     "open_interest_fp": 8316.22,
@@ -6129,9 +6326,9 @@
     "volume_fp": 121.04
    },
    "ex_stats_close": {
-    "open_interest_fp": 1122084.28,
+    "open_interest_fp": 1122170.89,
     "volume_24h_fp": 100026.69,
-    "volume_fp": 1206758.36
+    "volume_fp": 1206904.97
    },
    "ex_stats_first": {
     "open_interest_fp": 1079758.46,
@@ -13553,8 +13750,8 @@
     "volume": 11275.0
    },
    "ex_stats_close": {
-    "openInterest": 35647668.0,
-    "volume": 54249823.0
+    "openInterest": 35653500.0,
+    "volume": 54311325.0
    },
    "ex_stats_first": {
     "openInterest": 6438126.0,
@@ -14680,8 +14877,8 @@
     "volume": 20250.0
    },
    "ex_stats_close": {
-    "openInterest": 60707577.0,
-    "volume": 83096695.0
+    "openInterest": 60926140.0,
+    "volume": 83362789.0
    },
    "ex_stats_first": {
     "openInterest": 9180670.0,
@@ -19663,9 +19860,9 @@
     "volume_fp": 39.4
    },
    "ex_stats_close": {
-    "open_interest_fp": 101233.58,
+    "open_interest_fp": 101263.88,
     "volume_24h_fp": 94484.66,
-    "volume_fp": 105689.0
+    "volume_fp": 105719.3
    },
    "ex_stats_first": {
     "open_interest_fp": 8644.28,
@@ -19868,9 +20065,9 @@
     "volume_fp": 37.13
    },
    "ex_stats_close": {
-    "open_interest_fp": 232970.81,
+    "open_interest_fp": 233477.6,
     "volume_24h_fp": 204380.34,
-    "volume_fp": 246920.04
+    "volume_fp": 247426.83
    },
    "ex_stats_first": {
     "open_interest_fp": 27244.74,
@@ -22004,9 +22201,9 @@
     "volume_fp": 308.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 2096373.3499999999,
+    "open_interest_fp": 2104852.38,
     "volume_24h_fp": 1804818.97,
-    "volume_fp": 2271596.5199999996
+    "volume_fp": 2282245.23
    },
    "ex_stats_first": {
     "open_interest_fp": 323794.29000000004,
@@ -24721,9 +24918,9 @@
     "volume_fp": 666.67
    },
    "ex_stats_close": {
-    "open_interest_fp": 2858011.91,
+    "open_interest_fp": 2879883.74,
     "volume_24h_fp": 2383292.45,
-    "volume_fp": 3053511.52
+    "volume_fp": 3076020.09
    },
    "ex_stats_first": {
     "open_interest_fp": 404335.91000000003,
