@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 26, 6:00 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 17.
+Updated Thu Nov 26, 6:10 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 18.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 26 6:10AM | NCAAB | Georgia vs Cincinnati | moneyline: Cincinnati | kalshi | $37k | -122 |  |  | +0.0c |  | pending |
 | Nov 26 2:30AM | NCAAB | Georgetown @ Texas | moneyline: TEX (0) | novig | $26k | -335 | ✅ kalshi |  | +0.5c |  | pending |
 | Nov 26 1:20AM | NCAAB | SMU vs LSU | moneyline: LSU | kalshi | $26k | -213 |  |  | +0.0c | yes | pending |
 | Nov 26 1:20AM | NCAAB | Arkansas vs Michigan St. | moneyline: Michigan St. | kalshi | $25k | -203 |  |  | +0.0c | yes | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 1:30AM | NCAAB | Navy vs Rider | moneyline: Navy | kalshi | $27k | -203 |  |  | -2.0c | yes | L |
 | Nov 21 1:30AM | NCAAB | Fordham vs Portland | moneyline: Fordham | kalshi | $29k | -223 |  |  | -4.0c |  | W |
 | Nov 21 1:30AM | NCAAB | Denver vs Eastern Michigan | moneyline: Eastern Michigan | kalshi | $28k | -285 |  |  | +1.0c | yes | W |
-| Nov 21 1:30AM | NCAAB | Cornell vs Morgan St. | moneyline: Cornell | kalshi | $26k | -233 |  |  | +0.0c | yes | W |
