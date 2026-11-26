@@ -158,8 +158,9 @@ def diag():
         if fid:
             continue
         t0 = cl.tp(snap.get("game_start"))
-        near = sorted((abs((cl.tp(f["start"]) - t0).total_seconds()), f) for f in fx.values()
-                      if t0 and cl.tp(f["start"]) and abs((cl.tp(f["start"]) - t0).total_seconds()) < 6 * 3600)
+        near = sorted([(abs((cl.tp(f["start"]) - t0).total_seconds()), f) for f in fx.values()
+                       if t0 and cl.tp(f["start"]) and abs((cl.tp(f["start"]) - t0).total_seconds()) < 6 * 3600],
+                      key=lambda z: z[0])
         k = "AMBIGUOUS" if "AMBIGUOUS" in note or "ambiguous" in note else ("no event within 6h" if not near
                                                                              else "names do not map")
         kinds[(lg, k)] += 1
