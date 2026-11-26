@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 25, 10:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 69.
+Updated Wed Nov 25, 10:25 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 67.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1973-1544 (-45.77u flat) | rule met: 1176-926
+**Record:** 1974-1545 (-46.31u flat) | rule met: 1176-927
 
-**Fade (paper, betting against the print):** 1278-1700 (-187.39u flat, after fees)
+**Fade (paper, betting against the print):** 1279-1701 (-187.38u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -19,7 +19,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 25 8:16PM | NHL | San Jose vs Anaheim: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $30k | +117 | ✅ prophetx |  | -4.0c |  | pending |
 | Nov 25 7:45PM | NFL | Green Bay Packers at Los Angeles Rams | moneyline: Green Bay Packers | prophetx | $59k | +122 | ✅ novig |  | -0.2c |  | pending |
 | Nov 25 7:45PM | NHL | Nashville vs Dallas: Total Goals | total: NOT Over 5.5 goals scored | kalshi | $26k | +108 |  |  | +0.0c | yes | pending |
-| Nov 25 7:40PM | NBA | Los Angeles C vs Memphis: Spread | spread: NOT Memphis wins by over 7.5 points | kalshi | $46k | -113 | ✅ novig |  | +0.0c | yes | pending |
+| Nov 25 7:40PM | NBA | Los Angeles C vs Memphis: Spread | spread: NOT Memphis wins by over 7.5 points | kalshi | $46k | -113 | ✅ novig |  | +0.0c | yes | L |
 | Nov 25 7:20PM | NFL | Chicago vs Detroit | moneyline: Detroit | kalshi | $433k | +108 | ✅ prophetx |  | +0.0c |  | pending |
 | Nov 25 6:55PM | NHL | Ottawa vs Florida: Total Goals | total: NOT Over 5.5 goals scored | kalshi | $64k | +108 | ✅ prophetx |  | +0.0c |  | L |
 | Nov 25 6:45PM | NFL | Green Bay Packers @ Los Angeles Rams | total: Under 43.5 (43.5) | novig | $31k | -106 | ✅ kalshi,prophetx | ✅ | -0.5c | yes | pending |
@@ -27,7 +27,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 25 6:25PM | NHL | Winnipeg Jets @ Boston Bruins | moneyline: BOS (0) | novig | $34k | -160 | ✅ kalshi,prophetx |  | -0.5c |  | L |
 | Nov 25 6:15PM | NHL | Philadelphia vs Washington: Total Goals | total: Over 6.5 goals scored | kalshi | $37k | +104 | ✅ novig |  | +1.0c | yes | W |
 | Nov 25 6:10PM | NHL | Carolina vs Tampa Bay: Spread | spread: NOT Carolina wins by over 1.5 goals | kalshi | $31k | -223 | ✅ novig |  | +0.0c | yes | L |
-| Nov 25 6:05PM | NFL | Chicago Bears @ Detroit Lions | spread: CHI -1.5 (1.5) | novig | $46k | -100 | ✅ kalshi |  | -0.5c | yes | pending |
+| Nov 25 6:05PM | NFL | Chicago Bears @ Detroit Lions | spread: CHI -1.5 (1.5) | novig | $46k | -100 | ✅ kalshi |  | +0.0c | yes | pending |
 | Nov 25 6:05PM | NFL | Chicago Bears @ Detroit Lions | moneyline: CHI (0) | novig | $50k | -108 |  |  | +0.5c | yes | pending |
 | Nov 25 5:40PM | NHL | Carolina vs Tampa Bay | moneyline: Carolina | kalshi | $79k | -104 | ✅ novig |  | +1.0c |  | W |
 | Nov 25 5:35PM | NFL | Chicago vs Detroit: Total Points | total: Over 55.5 points | kalshi | $69k | -104 | ✅ novig,prophetx |  | +1.0c |  | pending |
@@ -101,7 +101,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 24 9:50PM | NFL | Green Bay vs Los Angeles R: Spread | spread: Los Angeles R wins by over 2.5 points | kalshi | $106k | -104 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 24 8:50PM | NBA | Brooklyn vs Milwaukee | moneyline: Milwaukee | kalshi | $33k | -104 |  |  | +1.0c |  | pending |
 | Nov 24 8:15PM | NBA | Brooklyn vs Milwaukee | moneyline: Brooklyn | kalshi | $26k | +104 |  |  | +0.0c | yes | pending |
-| Nov 24 8:00PM | NBA | Los Angeles C vs Memphis | moneyline: Memphis | kalshi | $39k | -213 |  |  | +4.0c |  | pending |
+| Nov 24 8:00PM | NBA | Los Angeles C vs Memphis | moneyline: Memphis | kalshi | $39k | -213 |  |  | +4.0c |  | W |
 | Nov 24 7:16PM | NHL | St. Louis vs New York I | moneyline: New York I | kalshi | $26k | -117 | ✅ novig |  | +3.0c |  | W |
 | Nov 24 7:05PM | NHL | Vegas vs Edmonton: Total Goals | total: Over 6.5 goals scored | kalshi | $75k | -122 | ✅ novig,prophetx |  | -1.0c | yes | W |
 | Nov 24 7:00PM | NBA | Detroit vs Orlando: Spread | spread: NOT Orlando wins by over 3.5 points | kalshi | $33k | -104 | ✅ novig |  | +0.0c | yes | W |
