@@ -1,6 +1,403 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-26T17:10:18Z",
+   "base_depth": 140361,
+   "best_price": 0.53,
+   "best_price_american": -113,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.53,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 4,
+   "date": "2026-11-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 11361,
+     "new_this_side": 46536,
+     "other_side": 40363,
+     "other_side_all_levels": 143428,
+     "ratio": 2.5,
+     "this_side": 100197,
+     "this_side_all_levels": 185539
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "APP +3.5 (-3.5)",
+     "price": 0.53,
+     "this_side": 30727
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 15535.42,
+    "volume_24h_fp": 15367.06,
+    "volume_fp": 15538.63
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 15535.42,
+    "volume_24h_fp": 15367.06,
+    "volume_fp": 15538.63
+   },
+   "fade_price": 0.48,
+   "first_seen_utc": "2026-11-26T17:05:49Z",
+   "game": "Appalachian St. vs South Alabama: Spread",
+   "game_surge_books": [
+    "novig"
+   ],
+   "game_x": 1.31,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26NOV27APPUSA-USA4\"}",
+   "lead_min": 1610,
+   "league": "NCAAF",
+   "line": 3.5,
+   "market": "spread",
+   "new_money": 46536,
+   "new_x": 0.35,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 15535.42,
+      "volume_24h_fp": 15367.06,
+      "volume_fp": 15538.63
+     },
+     "game_normal": 141258,
+     "game_x": 1.31,
+     "normal": 133077,
+     "now": 185539,
+     "type": "SPREAD",
+     "x": 1.39
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 487380.0,
+      "volume": 636447.0
+     },
+     "game_normal": 20953,
+     "game_x": 2.07,
+     "normal": 12173,
+     "now": 43270,
+     "type": "SPREAD",
+     "x": 3.55
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.53,
+   "price_american": -113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.53,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 3.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": 3.0,
+     "price": -102
+    },
+    "betrivers": {
+     "point": 3.5,
+     "price": -118
+    },
+    "betus": {
+     "point": 3.5,
+     "price": -115
+    },
+    "bovada": {
+     "point": 3.0,
+     "price": -103
+    },
+    "circasports": {
+     "point": 3.5,
+     "price": -115
+    },
+    "draftkings": {
+     "point": 3.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": 3.0,
+     "price": -105
+    },
+    "fanduel": {
+     "point": 3.5,
+     "price": -115
+    },
+    "kalshi": {
+     "point": 3.5,
+     "price": -113
+    },
+    "lowvig": {
+     "point": 3.0,
+     "price": 102
+    },
+    "mybookieag": {
+     "point": 3.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 3.5,
+     "price": -113
+    },
+    "polymarket": {
+     "point": 3.5,
+     "price": -113
+    },
+    "prophetx": {
+     "point": 3.5,
+     "price": -112
+    },
+    "williamhill_us": {
+     "point": 3.5,
+     "price": -117
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFSPREAD-26NOV27APPUSA-USA4"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Appalachian St.",
+   "side_label": "NOT South Alabama wins by over 3.5 points",
+   "size_x": 1.39,
+   "start_source": "odds",
+   "start_utc": "2026-11-27T20:00:00Z",
+   "surge_books": [
+    "novig"
+   ],
+   "teams": [
+    "Appalachian St.",
+    "South Alabama"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-26T17:10:18Z",
+   "base_depth": 282575,
+   "best_price": 0.405,
+   "best_price_american": 147,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.4,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 4,
+   "date": "2026-11-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 12799,
+     "new_this_side": 44872,
+     "other_side": 50059,
+     "other_side_all_levels": 327730,
+     "ratio": 2.8,
+     "this_side": 139473,
+     "this_side_all_levels": 331685
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "APP (0)",
+     "price": 0.405,
+     "this_side": 31299
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Appalachian State",
+     "price": 0.4032,
+     "this_side": 7288
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 3429.95,
+    "volume_24h_fp": 828.71,
+    "volume_fp": 3953.19
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 3429.95,
+    "volume_24h_fp": 828.71,
+    "volume_fp": 3953.19
+   },
+   "fade_price": 0.6,
+   "first_seen_utc": "2026-11-26T17:05:49Z",
+   "game": "Appalachian St. vs South Alabama",
+   "game_surge_books": [
+    "novig"
+   ],
+   "game_x": 1.16,
+   "key": "kalshi|KXNCAAFGAME-26NOV27APPUSA|ml|0",
+   "lead_min": 1610,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 44872,
+   "new_x": 0.15,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 3429.95,
+      "volume_24h_fp": 828.71,
+      "volume_fp": 3953.19
+     },
+     "game_normal": 286817,
+     "game_x": 1.16,
+     "normal": 299677,
+     "now": 331685,
+     "type": "ML",
+     "x": 1.11
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 18834.0,
+      "volume": 26982.0
+     },
+     "game_normal": 14279,
+     "game_x": 2.19,
+     "normal": 20585,
+     "now": 31313,
+     "type": "ML",
+     "x": 1.52
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 6068,
+     "game_x": 1.2,
+     "normal": 6713,
+     "now": 7288,
+     "type": "ML",
+     "x": 1.09
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.4,
+   "price_american": 150,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.4,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 138
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 140
+    },
+    "betrivers": {
+     "point": null,
+     "price": 135
+    },
+    "betus": {
+     "point": null,
+     "price": 138
+    },
+    "bovada": {
+     "point": null,
+     "price": 138
+    },
+    "circasports": {
+     "point": null,
+     "price": 145
+    },
+    "draftkings": {
+     "point": null,
+     "price": 140
+    },
+    "fanatics": {
+     "point": null,
+     "price": 135
+    },
+    "fanduel": {
+     "point": null,
+     "price": 136
+    },
+    "kalshi": {
+     "point": null,
+     "price": 150
+    },
+    "lowvig": {
+     "point": null,
+     "price": 140
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 141
+    },
+    "novig": {
+     "point": null,
+     "price": 147
+    },
+    "polymarket": {
+     "point": null,
+     "price": 144
+    },
+    "prophetx": {
+     "point": null,
+     "price": 148
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 136
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26NOV27APPUSA-APP"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Appalachian St.",
+   "side_label": "Appalachian St.",
+   "size_x": 1.11,
+   "start_source": "odds",
+   "start_utc": "2026-11-27T20:00:00Z",
+   "surge_books": [],
+   "teams": [
+    "Appalachian St.",
+    "South Alabama"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-26T16:50:20Z",
    "base_depth": 45044,
    "best_price": 0.5,
@@ -14,8 +411,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.5025,
-   "clv_cents": 0.0,
+   "close_price": 0.5074,
+   "clv_cents": 0.5,
    "confirmed_after_min": 5,
    "date": "2026-11-26",
    "depth_by_book": {
@@ -249,9 +646,9 @@
     "volume_fp": 5274.26
    },
    "ex_stats_close": {
-    "open_interest_fp": 94808.54,
+    "open_interest_fp": 95628.8,
     "volume_24h_fp": 89781.56,
-    "volume_fp": 99741.75
+    "volume_fp": 100562.01
    },
    "ex_stats_first": {
     "open_interest_fp": 89081.03,
@@ -452,8 +849,8 @@
     "volume": 928822.0
    },
    "ex_stats_close": {
-    "openInterest": 12343304.0,
-    "volume": 15651686.0
+    "openInterest": 12349970.0,
+    "volume": 15663560.0
    },
    "ex_stats_first": {
     "openInterest": 11535615.0,
@@ -655,9 +1052,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 22007.67,
+    "open_interest_fp": 22029.04,
     "volume_24h_fp": 8048.94,
-    "volume_fp": 28490.890000000003
+    "volume_fp": 28516.04
    },
    "ex_stats_first": {
     "open_interest_fp": 21903.269999999997,
@@ -836,9 +1233,9 @@
     "volume_fp": 9.85
    },
    "ex_stats_close": {
-    "open_interest_fp": 22007.67,
+    "open_interest_fp": 22029.04,
     "volume_24h_fp": 8048.94,
-    "volume_fp": 28490.890000000003
+    "volume_fp": 28516.04
    },
    "ex_stats_first": {
     "open_interest_fp": 21622.550000000003,
@@ -974,9 +1371,9 @@
     "volume_fp": 122.29
    },
    "ex_stats_close": {
-    "open_interest_fp": 30523.37,
+    "open_interest_fp": 30538.269999999997,
     "volume_24h_fp": 25091.55,
-    "volume_fp": 39728.619999999995
+    "volume_fp": 39748.12
    },
    "ex_stats_first": {
     "open_interest_fp": 26752.58,
@@ -1113,9 +1510,9 @@
     "volume_fp": 295.9
    },
    "ex_stats_close": {
-    "open_interest_fp": 92455.42,
+    "open_interest_fp": 93422.17,
     "volume_24h_fp": 82746.73,
-    "volume_fp": 128232.84
+    "volume_fp": 129215.09
    },
    "ex_stats_first": {
     "open_interest_fp": 80813.09,
@@ -1252,8 +1649,8 @@
     "volume": 26023.0
    },
    "ex_stats_close": {
-    "openInterest": 12205700.0,
-    "volume": 17046588.0
+    "openInterest": 12470948.0,
+    "volume": 17312040.0
    },
    "ex_stats_first": {
     "openInterest": 7529201.0,
@@ -1379,9 +1776,9 @@
     "volume_fp": 235.63
    },
    "ex_stats_close": {
-    "open_interest_fp": 10757.51,
+    "open_interest_fp": 10811.69,
     "volume_24h_fp": 9500.25,
-    "volume_fp": 11596.19
+    "volume_fp": 11650.369999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 9262.64,
@@ -1512,9 +1909,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 16934.93,
+    "open_interest_fp": 17052.89,
     "volume_24h_fp": 13530.36,
-    "volume_fp": 18397.53
+    "volume_fp": 18515.489999999998
    },
    "ex_stats_first": {
     "open_interest_fp": 15796.61,
@@ -1768,8 +2165,8 @@
     "volume": 13333.0
    },
    "ex_stats_close": {
-    "openInterest": 14258318.0,
-    "volume": 19729583.0
+    "openInterest": 14609612.0,
+    "volume": 20369428.0
    },
    "ex_stats_first": {
     "openInterest": 5245484.0,
@@ -1882,9 +2279,9 @@
     "volume_fp": 79.71
    },
    "ex_stats_close": {
-    "open_interest_fp": 303096.29,
+    "open_interest_fp": 304881.04,
     "volume_24h_fp": 265030.12,
-    "volume_fp": 317411.35
+    "volume_fp": 319686.09
    },
    "ex_stats_first": {
     "open_interest_fp": 241287.85,
@@ -2401,8 +2798,8 @@
     "volume": 104996.0
    },
    "ex_stats_close": {
-    "openInterest": 48025411.0,
-    "volume": 72003526.0
+    "openInterest": 48462158.0,
+    "volume": 72469596.0
    },
    "ex_stats_first": {
     "openInterest": 15423854.0,
@@ -2539,9 +2936,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 24633.37,
+    "open_interest_fp": 24635.989999999998,
     "volume_24h_fp": 7057.5599999999995,
-    "volume_fp": 26893.45
+    "volume_fp": 26896.07
    },
    "ex_stats_first": {
     "open_interest_fp": 22737.87,
@@ -2689,9 +3086,9 @@
     "volume_fp": 3201.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 1137042.06,
+    "open_interest_fp": 1137829.24,
     "volume_24h_fp": 804815.3999999999,
-    "volume_fp": 1544281.75
+    "volume_fp": 1545170.99
    },
    "ex_stats_first": {
     "open_interest_fp": 1027364.75,
@@ -2824,9 +3221,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 113312.62,
+    "open_interest_fp": 113379.66,
     "volume_24h_fp": 29940.04,
-    "volume_fp": 132667.69
+    "volume_fp": 132734.73
    },
    "ex_stats_first": {
     "open_interest_fp": 109014.38,
@@ -3229,8 +3626,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 20964777.0,
-    "volume": 26074937.0
+    "openInterest": 20986407.0,
+    "volume": 26096567.0
    },
    "ex_stats_first": {
     "openInterest": 9377107.0,
@@ -3359,9 +3756,9 @@
     "volume_fp": 9.97
    },
    "ex_stats_close": {
-    "open_interest_fp": 7163.030000000001,
+    "open_interest_fp": 7165.55,
     "volume_24h_fp": 5784.030000000001,
-    "volume_fp": 8479.63
+    "volume_fp": 8482.15
    },
    "ex_stats_first": {
     "open_interest_fp": 3526.54,
@@ -3496,9 +3893,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 8699.529999999999,
+    "open_interest_fp": 8706.34,
     "volume_24h_fp": 1344.27,
-    "volume_fp": 9976.279999999999
+    "volume_fp": 9983.09
    },
    "ex_stats_first": {
     "open_interest_fp": 8316.22,
@@ -3922,9 +4319,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 4536.7,
+    "open_interest_fp": 4629.52,
     "volume_24h_fp": 1056.13,
-    "volume_fp": 6400.52
+    "volume_fp": 6493.34
    },
    "ex_stats_first": {
     "open_interest_fp": 4339.91,
@@ -4126,9 +4523,9 @@
     "volume_fp": 121.04
    },
    "ex_stats_close": {
-    "open_interest_fp": 1109981.54,
+    "open_interest_fp": 1110064.66,
     "volume_24h_fp": 75804.2,
-    "volume_fp": 1178016.29
+    "volume_fp": 1178435.68
    },
    "ex_stats_first": {
     "open_interest_fp": 1079758.46,
@@ -4313,9 +4710,9 @@
     "volume_fp": 40.04
    },
    "ex_stats_close": {
-    "open_interest_fp": 20683.71,
+    "open_interest_fp": 20743.29,
     "volume_24h_fp": 19559.45,
-    "volume_fp": 23998.83
+    "volume_fp": 24058.41
    },
    "ex_stats_first": {
     "open_interest_fp": 5490.219999999999,
@@ -4485,9 +4882,9 @@
     "volume_fp": 278.36
    },
    "ex_stats_close": {
-    "open_interest_fp": 821638.03,
+    "open_interest_fp": 852421.22,
     "volume_24h_fp": 969318.65,
-    "volume_fp": 1004996.63
+    "volume_fp": 1041428.03
    },
    "ex_stats_first": {
     "open_interest_fp": 313918.81,
@@ -6627,9 +7024,9 @@
     "volume_fp": 2209.84
    },
    "ex_stats_close": {
-    "open_interest_fp": 5668480.27,
+    "open_interest_fp": 5819780.21,
     "volume_24h_fp": 5515443.59,
-    "volume_fp": 6384031.4
+    "volume_fp": 6544341.02
    },
    "ex_stats_first": {
     "open_interest_fp": 809831.86,
@@ -8127,8 +8524,8 @@
     "volume": 2000.0
    },
    "ex_stats_close": {
-    "openInterest": 48025411.0,
-    "volume": 72003526.0
+    "openInterest": 48462158.0,
+    "volume": 72469596.0
    },
    "ex_stats_first": {
     "openInterest": 3957309.0,
@@ -8332,8 +8729,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 208140718.0,
-    "volume": 318484013.0
+    "openInterest": 211268746.0,
+    "volume": 321650424.0
    },
    "ex_stats_first": {
     "openInterest": 21634685.0,
@@ -8769,9 +9166,9 @@
     "volume_fp": 1.74
    },
    "ex_stats_close": {
-    "open_interest_fp": 386090.18,
+    "open_interest_fp": 386989.58,
     "volume_24h_fp": 384207.3,
-    "volume_fp": 417227.41
+    "volume_fp": 418367.75
    },
    "ex_stats_first": {
     "open_interest_fp": 22850.33,
@@ -9800,9 +10197,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 61001.97,
+    "open_interest_fp": 61494.58,
     "volume_24h_fp": 60951.69,
-    "volume_fp": 63089.23
+    "volume_fp": 63581.84
    },
    "ex_stats_first": {
     "open_interest_fp": 977.76,
@@ -11547,8 +11944,8 @@
     "volume": 11275.0
    },
    "ex_stats_close": {
-    "openInterest": 30734825.0,
-    "volume": 45288079.0
+    "openInterest": 30928238.0,
+    "volume": 45513861.0
    },
    "ex_stats_first": {
     "openInterest": 6438126.0,
@@ -12459,8 +12856,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 208140718.0,
-    "volume": 318484013.0
+    "openInterest": 211268746.0,
+    "volume": 321650424.0
    },
    "ex_stats_first": {
     "openInterest": 21062030.0,
@@ -12674,8 +13071,8 @@
     "volume": 20250.0
    },
    "ex_stats_close": {
-    "openInterest": 31814491.0,
-    "volume": 44638321.0
+    "openInterest": 32041187.0,
+    "volume": 44867397.0
    },
    "ex_stats_first": {
     "openInterest": 9180670.0,
@@ -17657,9 +18054,9 @@
     "volume_fp": 39.4
    },
    "ex_stats_close": {
-    "open_interest_fp": 71754.87,
+    "open_interest_fp": 71906.2,
     "volume_24h_fp": 63946.1,
-    "volume_fp": 73985.4
+    "volume_fp": 74136.73
    },
    "ex_stats_first": {
     "open_interest_fp": 8644.28,
@@ -17862,9 +18259,9 @@
     "volume_fp": 37.13
    },
    "ex_stats_close": {
-    "open_interest_fp": 161865.94,
+    "open_interest_fp": 163134.85,
     "volume_24h_fp": 138636.25,
-    "volume_fp": 173439.81
+    "volume_fp": 174708.72
    },
    "ex_stats_first": {
     "open_interest_fp": 27244.74,
@@ -19998,9 +20395,9 @@
     "volume_fp": 308.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 1573519.42,
+    "open_interest_fp": 1579230.54,
     "volume_24h_fp": 1327853.6800000002,
-    "volume_fp": 1721138.57
+    "volume_fp": 1731126.6
    },
    "ex_stats_first": {
     "open_interest_fp": 323794.29000000004,
@@ -22084,9 +22481,9 @@
     "volume_fp": 100.49
    },
    "ex_stats_close": {
-    "open_interest_fp": 215306.38,
+    "open_interest_fp": 217263.14,
     "volume_24h_fp": 179259.33,
-    "volume_fp": 257831.02
+    "volume_fp": 259787.78
    },
    "ex_stats_first": {
     "open_interest_fp": 43080.25,
@@ -22714,9 +23111,9 @@
     "volume_fp": 666.67
    },
    "ex_stats_close": {
-    "open_interest_fp": 1688004.81,
+    "open_interest_fp": 1714112.6300000001,
     "volume_24h_fp": 1239828.63,
-    "volume_fp": 1796815.4100000001
+    "volume_fp": 1823492.9899999998
    },
    "ex_stats_first": {
     "open_interest_fp": 404335.91000000003,
