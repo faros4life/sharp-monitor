@@ -12,4 +12,9 @@ ok("_disp_t = datetime.now(timezone.utc)" in seg and "res = dict(res, dispatched
 ok("novig_place(ids[\"outcome_id\"], limit_cost, count * 100, label, None, derive_key(p) or \"\")" in seg,
    "the dispatch call itself is unchanged")
 ok('"dispatched_utc": lo.get("dispatched_utc")' in src, "the order record carries dispatched_utc")
+seg2 = src[src.index("def journal_order("):src.index("def journal_order(") + 6000]
+ok('"dogs_gate": (DOGS_GATE_VERSION if dogs_strict(r.get("play") or {}) else None)' in seg2 and '"dogs_giveback_cents"' in seg2,
+   "the order record carries the Dogs gate version, tolerance and give-back")
+import executor as ex
+ok(ex.dogs_giveback_cents(104, 104) is not None, "give-back is computable from the alert and order prices")
 print("FAILED" if fails else "all passed"); raise SystemExit(1 if fails else 0)

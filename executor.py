@@ -7320,6 +7320,14 @@ def journal_order(r, lo, is_rest=False, cid=None):
                    # Nov 26 (Peter, live-feed integrity): submit and venue-answer times. Logging only.
                    "submitted_utc": lo.get("submitted_utc"), "answered_utc": lo.get("answered_utc"),
                    "dispatched_utc": lo.get("dispatched_utc"),
+                   # Nov 27 (Peter): the Dogs price-gate evidence on the ORDER record too, so it reaches reporting/ledger.enc
+                   # (the decision row that already carries it goes only to the private email). Logging only.
+                   "dogs_gate": (DOGS_GATE_VERSION if dogs_strict(r.get("play") or {}) else None),
+                   "dogs_tol_cents": (DOGS_TOL_CENTS if dogs_strict(r.get("play") or {}) else None),
+                   "dogs_giveback_cents": (dogs_giveback_cents((r.get("entry") or {}).get("price_after_fee"),
+                                                               (r.get("live") or {}).get("am"))
+                                           if dogs_strict(r.get("play") or {}) and (r.get("live") or {}).get("am") is not None
+                                           else None),
                    # Nov 11: resolves the write-ahead intent row and makes the money count once
                    "client_id": cid or (r.get("live") or {}).get("client_id"), "intent": False,
                    # Nov 18: the execution-time fee, so the CLV ledger grades this fill on the
