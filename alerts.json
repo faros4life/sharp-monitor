@@ -159,6 +159,85 @@
    "units_flat": null
   },
   {
+   "alert_utc": "2026-11-27T04:45:26Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "Under 157.5 (-115)",
+   "book": "Hard Rock",
+   "book_key": "hardrockbet",
+   "book_quote_age_s": 13,
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+1.5 pts",
+   "clv_conv_pts": null,
+   "clv_pin_line": null,
+   "clv_read_utc": null,
+   "clv_skipped": null,
+   "clv_source": null,
+   "clv_verified": null,
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -1.2,
+   "executable_book": true,
+   "fade_book": "hardrockbet",
+   "fade_point": 157.5,
+   "fade_price": -105,
+   "fade_price_after_fee": -105,
+   "fade_units": null,
+   "final": null,
+   "floor_line": 156.5,
+   "game": "Drake Bulldogs @ Boise State Broncos",
+   "grade": "A",
+   "hr1_eligible": true,
+   "hr1_pushed": true,
+   "hr1_verified": false,
+   "hr1_verify_status": "unverified",
+   "hr1_verify_why": "no other book sits on 157.5 (nearest market 156.5) - price not corroborated; check the exact line and price on the Hard Rock board before betting",
+   "kind": "tot",
+   "late": false,
+   "minutes_before_start": 1065,
+   "pin_quote_age_s": 14,
+   "point": 157.5,
+   "price": -115,
+   "price_after_fee": -115,
+   "prices_at_alert": {
+    "hardrockbet": {
+     "after_fee": -115,
+     "point": 157.5,
+     "price": -115
+    },
+    "kalshi": {
+     "after_fee": -115.8,
+     "point": 156.5,
+     "price": -108
+    },
+    "novig": {
+     "after_fee": -108,
+     "point": 156.5,
+     "price": -108
+    },
+    "prophetx": {
+     "after_fee": -110.2,
+     "point": 156.5,
+     "price": -108
+    }
+   },
+   "pricing_bettable": true,
+   "quote_book_utc": "2026-11-27T04:45:14Z",
+   "quote_pin_utc": "2026-11-27T04:45:13Z",
+   "quote_recv_utc": "2026-11-27T04:45:25Z",
+   "result": null,
+   "score": 75,
+   "sent_to_phone": false,
+   "sport": "NCAAB",
+   "start_utc": "2026-11-27T22:30:00Z",
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alert_utc": "2026-11-27T04:10:29Z",
    "beat_close": true,
    "beat_true_close": null,
@@ -128330,6 +128409,30 @@
  ],
  "all_alerts": [
   {
+   "alert_text": "Under 157.5 (-115) at Hard Rock (also: ProphetX, Novig, Kalshi)",
+   "bet": "Under 157.5 (-115)",
+   "bet_result": null,
+   "book": "Hard Rock",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -1.2,
+   "final": null,
+   "game": "Drake Bulldogs @ Boise State Broncos",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 1065,
+   "price": -115,
+   "price_after_fee": -115,
+   "pushed_to_phone": false,
+   "repeat": false,
+   "score": 75,
+   "sent_et": "2026-11-26 23:45",
+   "sport": "NCAAB",
+   "start_utc": "2026-11-27T22:30:00Z",
+   "why": "Pinnacle total moved 157.5 -> 156; bet only at 156.5 or better (confirmed by BetOnline)"
+  },
+  {
    "alert_text": "Under 231.5 (-106) at Novig (also: Hard Rock, ProphetX)",
    "bet": "Under 231.5 (-106)",
    "bet_result": null,
@@ -184862,17 +184965,17 @@
   }
  ],
  "feed_health": {
-  "alerts_sent": 1,
-  "credits_remaining": 4870546,
-  "events_seen": 83,
+  "alerts_sent": 0,
+  "credits_remaining": 4870535,
+  "events_seen": 85,
   "fetch_ok": true,
-  "last_fetch_ok_utc": "2026-11-27T04:40:23Z",
+  "last_fetch_ok_utc": "2026-11-27T04:45:27Z",
   "quota_exhausted": false,
   "reason": "",
   "sports_due": 5,
   "sports_polled": 5,
   "state": "HEALTHY",
-  "written_utc": "2026-11-27T04:40:23Z"
+  "written_utc": "2026-11-27T04:45:27Z"
  },
  "note": "alerts = one entry per bet (game/market/side), used for the record; result W/L/P or null. all_alerts = every alert sent, newest first, repeats marked repeat=true (logged from Oct 21). units_flat = 1u risked at the first alert's price, after the book's fee on winnings (ProphetX 2%; price_after_fee). Edge, the -130 cap, best-book choice and CLV all use price_after_fee. fade_* (from Oct 26) = best retail price on the OTHER side at the mirrored number when the alert fired; fade_units = 1u on that side, after fees. close_value_pct = TRUE closing value (from Oct 25): expected profit per 1u of price_after_fee at Pinnacle's no-vig win chance from one final read just before start, at the play's own number; beat_true_close = close_value_pct > 0. close_value_pct is PROVISIONAL, not certified: it comes from a read 20-30 min before start (clv_source, clv_read_utc, close_read_mins_before), and against the certified historical Pinnacle close it runs about 0.61 pt optimistic on average, up to 6.4 pt on one play. clv_verified is True only for a certified historical close; it is False on every live read, including clv_conv_pts == 0, and None where no reading exists. clv_pin_line is Pinnacle's own number and clv_conv_pts the half-point conversion applied (0 = our line); both are null on rows written before Nov 10, where no conversion record was kept. clv_skipped says why a play has no reading. CERTIFIED, MODELED and PROVISIONAL CLV are never combined in one figure. The older beat_close/clv fields beat the close almost by construction (ignore). executable_book = the alert book or an 'also' book is Novig/Kalshi/ProphetX/Polymarket. pushed_to_phone/sent_to_phone = not muted (delivery to the phone is not confirmed)."
 }
