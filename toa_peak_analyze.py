@@ -196,7 +196,7 @@ def alert_rows(t0, t1, sports):
     for a in (A if isinstance(A, list) else A.get("alerts") or []):
         t = tp(a.get("alert_utc"))
         if t and t0 <= t <= t1 and a.get("sport") in lgs:
-            out.append(("LANE 1 candidates (sharp alerts)", {"t": t, "lg": a.get("sport"), "game": a.get("game"),
+            out.append(("LANE 1 PROXY (sharp alerts - NOT Lane 1 qualification)", {"t": t, "lg": a.get("sport"), "game": a.get("game"),
                         "bet": a.get("bet"), "book": a.get("book_key"), "am": a.get("price")}))
     Q = json.load(open("liquidity/alerts.json"))
     Q = Q if isinstance(Q, list) else Q.get("alerts") or []
@@ -293,7 +293,7 @@ def main(path):
 
     P = by_poll(S)
     O = opportunities(S, P, start, sp_of, poll_t, poll_s)
-    print("AFTER-FEE OPPORTUNITIES vs Pinnacle exact-line no-vig (indicative quotes, no size)")
+    print("AFTER-FEE POTENTIAL OPPORTUNITIES vs Pinnacle exact-line no-vig (indicative quotes, no size - not confirmed executable trades)")
     for lvl in ("actionable", "marginal"):
         for trade in ("bot-tradeable", "manual only"):
             for b in ("<=60 min", ">60 min"):
@@ -308,7 +308,7 @@ def main(path):
 
     print("ALERTS IN THE WINDOW (alerted venue, alerted line; price change in cents, + = better for us)")
     rows = alert_rows(poll_t[0], poll_t[-1], {v[0] for v in names.values()})
-    for strat in ("LIQUIDITY DOGS", "LANE 1 candidates (sharp alerts)", "BOARD PLAY calls"):
+    for strat in ("LIQUIDITY DOGS", "LANE 1 PROXY (sharp alerts - NOT Lane 1 qualification)", "BOARD PLAY calls"):
         A = [a for s, a in rows if s == strat]
         F = []
         for a in A:
