@@ -202,7 +202,8 @@ def fill_rows():
         if num(b.get("price")) is None:
             continue
         if SINCE_ET:
-            d = str(b.get("date") or b.get("settled") or b.get("first_seen") or "")[:10]
+            # Nov 27 (Peter): strategy reporting uses the PLACEMENT date everywhere
+            d = str(b.get("placed") or b.get("first_seen") or b.get("date") or "")[:10]
             if d and d < SINCE_ET:
                 continue
         out.append(b)

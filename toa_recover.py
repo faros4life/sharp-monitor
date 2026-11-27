@@ -70,6 +70,10 @@ def fills_pass():
     """Nov 26 (Peter): actual bot fills first. Every graded bot fill without a stored close gets its snapshot; the
     fill's own after-fee price is applied later by executed_clv, exactly as before. Returns (fills, resolved)."""
     import executed_clv as xc
+    import live_ledger as ll
+    _src = ll.load()   # Nov 27: include the bot fills the ledger proves (24 ProphetX fills are tagged "Peter")
+    xc.ACCT = ll.account(*_src, ll.feed_alerts()) if _src else None
+    xc.LEDGER_LANE = ll.lane_of_rows(xc.ACCT) if xc.ACCT else {}
     F, _n = xc.fill_rows()
 
     def q_of(b):

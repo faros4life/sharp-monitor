@@ -88,7 +88,7 @@ def main():
     start = ll.START_UTC[:10]
 
     bot = {i: b for i, b in B.items() if str(b.get("source") or "").lower() == "bot"
-           and str(b.get("date") or b.get("first_seen") or b.get("game_start") or "")[:10] >= start}
+           and str(b.get("placed") or b.get("first_seen") or b.get("date") or "")[:10] >= start}
     graded = {i for i, b in bot.items() if b.get("result") in ("W", "L", "P")}
 
     where = {}
