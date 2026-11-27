@@ -22,6 +22,7 @@ on:
         default: "0"
 permissions:
   contents: read
+  actions: read
 concurrency:
   group: toa-recover
   cancel-in-progress: false
@@ -44,11 +45,19 @@ jobs:
           key: hcache-${{ github.run_id }}
           restore-keys: hcache-
       - name: Restore The Odds API store
+        id: toacache
         uses: actions/cache/restore@v4
         with:
           path: toa_hist
           key: toa-hist-${{ github.run_id }}
           restore-keys: toa-hist-
+      - name: Restore The Odds API store (artifact fallback)
+        if: steps.toacache.outputs.cache-matched-key == ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          id=$(gh api "repos/${{ github.repository }}/actions/artifacts?name=toa-hist&per_page=1" -q '.artifacts[0].id' || true)
+          if [ -n "$id" ]; then gh api "repos/${{ github.repository }}/actions/artifacts/$id/zip" > /tmp/t.zip && mkdir -p toa_hist && unzip -q -o /tmp/t.zip -d toa_hist && echo "store restored from artifact"; else echo "no store artifact"; fi
       - name: Recover (counts only)
         env:
           TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
