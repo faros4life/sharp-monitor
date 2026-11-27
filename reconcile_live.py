@@ -211,7 +211,9 @@ def main():
     say("\nDOGS ORDER ROWS IN THE ENCRYPTED LEDGER (price-gate evidence; no money)")
     n = 0
     for (kind, oid), (_seen, o) in ll.latest(L).items():
-        if str(o.get("source") or "").lower() != "dogs" and not str(o.get("key") or "").startswith("dogs|"):
+        import json as _jj
+        if (str(o.get("source") or "").lower() != "dogs" and not str(o.get("key") or "").startswith("dogs|")
+                and '"dogs_gate": "' not in _jj.dumps(o) and "Buffalo vs Akron" not in _jj.dumps(o)):
             continue
         n += 1
         lo = o.get("live_order") or {}
