@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 27, 9:35 AM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 71.
+Updated Fri Nov 27, 9:40 AM ET. This run: 2 new, 0 not confirmed, 1 pending. Open alerts: 73.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 27 9:40AM | NHL | Seattle vs Edmonton: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $36k | -113 |  |  | +0.0c |  | pending |
+| Nov 27 9:40AM | NBA | Memphis vs Minnesota | moneyline: Minnesota | kalshi | $103k | -178 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 27 9:30AM | NFL | Denver Broncos @ Pittsburgh Steelers | spread: PIT +4.5 (4.5) | novig | $34k | +102 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 27 9:20AM | NCAAF | Texas vs Texas A&M: Total Points | total: Over 41.5 points | kalshi | $94k | -104 | ✅ novig | ✅ | +0.0c |  | pending |
 | Nov 27 9:16AM | NHL | Detroit vs Columbus: Total Goals | total: Over 5.5 goals scored | kalshi | $25k | -113 | ✅ novig | ✅ | +0.0c |  | pending |
@@ -18,7 +20,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 27 8:50AM | NFL | Denver vs Pittsburgh: Total Points | total: Over 37.5 points | kalshi | $127k | +104 | ✅ novig |  | +0.0c |  | pending |
 | Nov 27 8:45AM | NFL | Denver vs Pittsburgh: Spread | spread: Denver wins by over 4.5 points | kalshi | $115k | -104 |  |  | +0.0c |  | pending |
 | Nov 27 8:25AM | NCAAF | Buffalo vs Akron: Total Points | total: Over 49.5 points | kalshi | $42k | -108 |  | ✅ | +0.0c |  | pending |
-| Nov 27 8:05AM | NBA | Los Angeles Lakers @ San Antonio Spurs | moneyline: SAS (0) | novig | $28k | -199 | ✅ kalshi |  | +0.5c |  | pending |
+| Nov 27 8:05AM | NBA | Los Angeles Lakers @ San Antonio Spurs | moneyline: SAS (0) | novig | $28k | -199 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 27 8:05AM | NCAAF | Florida vs Florida St.: Spread | spread: NOT Florida wins by over 6.5 points | kalshi | $28k | -100 |  |  | +0.0c |  | pending |
 | Nov 27 8:00AM | NBA | Brooklyn vs Toronto: Spread | spread: Toronto wins by over 8.5 points | kalshi | $32k | -108 |  |  | +2.0c |  | pending |
 | Nov 27 7:55AM | NCAAF | Buffalo vs Akron: Total Points | total: Over 48.5 points | kalshi | $37k | -113 |  | ✅ | +2.0c |  | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 24 4:55PM | NBA | Cleveland vs New York | moneyline: New York | kalshi | $29k | -144 |  |  | +4.0c |  | W |
 | Nov 24 4:30PM | NCAAF | Miami Ohio @ Western Michigan | spread: M-OH +4.5 (-4.5) | novig | $38k | +102 |  |  | +1.0c |  | pending |
 | Nov 24 4:20PM | NCAAF | Kent State @ Eastern Michigan | spread: EMU -6.5 (-6.5) | novig | $33k | -100 | ✅ kalshi |  | +1.5c |  | L |
-| Nov 24 3:20PM | NCAAF | Miami (OH) vs Western Michigan: Total Points | total: Over 45.5 points | kalshi | $117k | +104 | ✅ novig,prophetx |  | -2.0c |  | W |
-| Nov 24 3:15PM | NCAAF | Kent State @ Eastern Michigan | moneyline: EMU (0) | novig | $35k | -208 | ✅ kalshi,prophetx |  | +1.5c |  | W |
