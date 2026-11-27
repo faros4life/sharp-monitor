@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 26, 11:35 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 43.
+Updated Thu Nov 26, 11:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 43.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -16,7 +16,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 26 8:46PM | NCAAF | Texas vs Texas A&M: Spread | spread: NOT Texas wins by over 11.5 points | kalshi | $42k | -108 |  |  | +1.0c |  | pending |
 | Nov 26 7:35PM | NFL | Kansas City Chiefs at Buffalo Bills | moneyline: Buffalo Bills | prophetx | $25k | -154 | ✅ kalshi,novig | ✅ | +0.0c |  | W |
 | Nov 26 7:35PM | NBA | Brooklyn vs Toronto | moneyline: Toronto | kalshi | $54k | -285 | ✅ novig |  | +0.0c |  | pending |
-| Nov 26 7:30PM | NCAAF | Nebraska vs Iowa: Spread | spread: NOT Iowa wins by over 3.5 points | kalshi | $37k | -100 | ✅ novig | ✅ | +0.0c |  | pending |
+| Nov 26 7:30PM | NCAAF | Nebraska vs Iowa: Spread | spread: NOT Iowa wins by over 3.5 points | kalshi | $37k | -100 | ✅ novig | ✅ | +0.0c | yes | pending |
 | Nov 26 7:10PM | NHL | Calgary vs New Jersey | moneyline: New Jersey | kalshi | $29k | -257 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 26 6:50PM | NCAAF | Air Force @ New Mexico | moneyline: UNM (0) | novig | $30k | -245 | ✅ kalshi,prophetx |  | -0.5c | yes | pending |
 | Nov 26 6:20PM | NFL | Kansas City Chiefs @ Buffalo Bills | spread: KC +2.5 (-2.5) | novig | $54k | +115 |  | ❌ | -0.5c | yes | L |
@@ -62,7 +62,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 26 7:50AM | NFL | Philadelphia Eagles at Dallas Cowboys | moneyline: Dallas Cowboys | prophetx | $27k | -400 | ✅ kalshi,novig |  | -0.6c | yes | L |
 | Nov 26 5:50AM | NFL | Chicago Bears @ Detroit Lions | spread: DET +1.5 (1.5) | novig | $27k | -111 | ✅ kalshi |  | +0.0c | yes | L |
 | Nov 26 5:20AM | NCAAF | Minnesota vs Wisconsin | moneyline: Wisconsin | kalshi | $96k | -300 | ✅ prophetx |  | +0.0c | yes | pending |
-| Nov 26 5:10AM | NFL | Denver vs Pittsburgh | moneyline: Denver | kalshi | $209k | -203 | ✅ novig,prophetx |  | +1.0c |  | pending |
+| Nov 26 5:10AM | NFL | Denver vs Pittsburgh | moneyline: Denver | kalshi | $209k | -203 | ✅ novig,prophetx |  | +2.0c |  | pending |
 | Nov 26 5:10AM | NCAAF | Texas vs Texas A&M | moneyline: Texas | kalshi | $74k | -426 |  |  | -1.0c |  | pending |
 | Nov 26 5:05AM | NCAAF | Air Force vs New Mexico | moneyline: New Mexico | kalshi | $46k | -245 |  |  | +0.0c |  | pending |
 | Nov 26 4:45AM | NFL | Denver Broncos @ Pittsburgh Steelers | moneyline: DEN (0) | novig | $49k | -203 | ✅ kalshi,prophetx |  | +2.0c | yes | pending |
