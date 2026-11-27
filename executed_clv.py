@@ -193,7 +193,9 @@ def fill_rows():
     out = []
     for b in rows:
         src = str(b.get("source") or "").lower()
-        if "all" not in SOURCES and src not in SOURCES:
+        # Nov 27: a fill the ledger proves is the bot's (order-id join) is a bot fill whatever the tracker's source tag
+        # says - 24 ProphetX bot fills on the shared account were tagged "Peter" and silently left out.
+        if "all" not in SOURCES and src not in SOURCES and b.get("_id") not in LEDGER_LANE:
             continue
         if not UNGRADED and b.get("result") not in ("W", "L", "P"):
             continue
@@ -279,6 +281,14 @@ def main():
         f"{'CACHE ONLY - zero OddsPapi credits' if CACHE_ONLY else 'PURCHASES ALLOWED'}")
     say()
 
+    global ACCT, LEDGER_LANE
+    try:
+        _src = ll.load()
+        ACCT = ll.account(*_src, ll.feed_alerts()) if _src else None
+    except Exception as _e:
+        say(f"  ledger attribution unavailable ({type(_e).__name__}) - every fill is UNATTRIBUTED")
+        ACCT = None
+    LEDGER_LANE = ll.lane_of_rows(ACCT) if ACCT else {}
     try:
         F, total = fill_rows()
     except Exception as e:
@@ -294,7 +304,7 @@ def main():
     say("POPULATION - what the books' own records give us")
     say("=" * 74)
     say(f"  tracker rows                       {total}")
-    say(f"  tagged source=='bot' AND graded    {len(F)}")
+    say(f"  bot fills (tagged bot, or proven by a ledger order) AND graded {len(F)}")
     if not F:
         say()
         say("  No graded bot fill is in the tracker state. That is the finding, not an error:")
@@ -348,14 +358,6 @@ def main():
     else:
         mkmap = cl.load_markets(st, now)
 
-    global ACCT, LEDGER_LANE
-    try:
-        _src = ll.load()
-        ACCT = ll.account(*_src, ll.feed_alerts()) if _src else None
-    except Exception as _e:
-        say(f"  ledger attribution unavailable ({type(_e).__name__}) - every fill is UNATTRIBUTED")
-        ACCT = None
-    LEDGER_LANE = ll.lane_of_rows(ACCT) if ACCT else {}
     miss = Counter()
     unmatched = []
     excl = []
