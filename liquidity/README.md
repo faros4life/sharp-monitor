@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 27, 4:25 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 109.
+Updated Fri Nov 27, 4:30 PM ET. This run: 0 new, 2 not confirmed, 0 pending. Open alerts: 109.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -17,7 +17,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 27 3:46PM | NCAAF | Air Force @ New Mexico | spread: AFA +7.5 (-7.5) | novig | $26k | -111 |  | ❌ | -0.5c |  | pending |
 | Nov 27 3:40PM | NHL | Vegas vs San Jose: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $41k | +104 | ✅ prophetx |  | +0.0c | yes | pending |
 | Nov 27 3:35PM | NCAAF | Louisiana Tech vs Georgia Southern: Spread | spread: NOT Georgia Southern wins by over 2.5 points | kalshi | $29k | -104 | ✅ novig |  | +0.0c |  | pending |
-| Nov 27 3:25PM | NCAAF | Air Force vs New Mexico: Spread | spread: NOT New Mexico wins by over 7.5 points | kalshi | $40k | -104 |  | ❌ | +1.0c |  | pending |
+| Nov 27 3:25PM | NCAAF | Air Force vs New Mexico: Spread | spread: NOT New Mexico wins by over 7.5 points | kalshi | $40k | -104 |  | ❌ | +1.0c | yes | pending |
 | Nov 27 3:20PM | NHL | Colorado vs Minnesota | moneyline: Minnesota | kalshi | $81k | -108 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 27 2:45PM | NHL | Vancouver vs Philadelphia: Spread | spread: Philadelphia wins by over 1.5 goals | kalshi | $55k | +113 |  |  | -2.0c | yes | pending |
 | Nov 27 2:30PM | NHL | Vegas vs San Jose | moneyline: Vegas | kalshi | $35k | -203 | ✅ novig,prophetx |  | +0.0c | yes | pending |
@@ -30,7 +30,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 27 2:06PM | NCAAF | Michigan vs Ohio St. | moneyline: Ohio St. | kalshi | $180k | -355 | ✅ novig,prophetx |  | +0.0c | yes | pending |
 | Nov 27 2:00PM | NBA | Golden State vs Portland: Total Points | total: NOT Over 217.5 points | kalshi | $34k | -100 |  |  | +1.0c | yes | pending |
 | Nov 27 1:45PM | NCAAF | Florida @ Florida State | spread: FLA -6.5 (6.5) | novig | $59k | -102 |  |  | +1.5c |  | pending |
-| Nov 27 1:45PM | NCAAF | Air Force vs New Mexico: Spread | spread: New Mexico wins by over 7.5 points | kalshi | $37k | +108 | ✅ novig,prophetx | ✅ | +1.0c |  | pending |
+| Nov 27 1:45PM | NCAAF | Air Force vs New Mexico: Spread | spread: New Mexico wins by over 7.5 points | kalshi | $37k | +108 | ✅ novig,prophetx | ✅ | +1.0c | yes | pending |
 | Nov 27 1:45PM | NCAAF | NC St. vs North Carolina | moneyline: North Carolina | kalshi | $338k | -203 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 27 1:40PM | NCAAF | UMass vs Bowling Green | moneyline: Bowling Green | kalshi | $140k | -138 |  |  | +0.0c |  | pending |
 | Nov 27 1:20PM | NBA | Denver vs Utah: Total Points | total: Over 230.5 points | kalshi | $27k | -108 |  | ✅ | +3.0c | yes | pending |
@@ -40,7 +40,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 27 12:50PM | NCAAF | Penn State @ Maryland | moneyline: PSU (0) | novig | $39k | -270 |  |  | -0.5c |  | pending |
 | Nov 27 12:50PM | NBA | New Orleans vs Los Angeles C | moneyline: Los Angeles C | kalshi | $54k | -127 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 27 12:36PM | NFL | Denver Broncos @ Pittsburgh Steelers | spread: DEN -4.5 (4.5) | novig | $51k | -102 |  |  | +0.0c | yes | pending |
-| Nov 27 12:36PM | NBA | Philadelphia vs Indiana | moneyline: Philadelphia | kalshi | $53k | -163 | ✅ novig,prophetx | ✅ | +0.0c | yes | pending |
+| Nov 27 12:36PM | NBA | Philadelphia vs Indiana | moneyline: Philadelphia | kalshi | $53k | -163 | ✅ novig,prophetx | ✅ | -1.0c | yes | pending |
 | Nov 27 12:30PM | NFL | Denver Broncos at Pittsburgh Steelers | moneyline: Denver Broncos | prophetx | $51k | -225 | ✅ kalshi,novig |  | +0.5c | yes | pending |
 | Nov 27 12:20PM | NCAAF | Florida @ Florida State | moneyline: FLA (0) | novig | $113k | -223 |  |  | +1.0c |  | pending |
 | Nov 27 12:10PM | NHL | Los Angeles vs Anaheim: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $29k | -104 | ✅ prophetx |  | +0.0c | yes | pending |
@@ -48,7 +48,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 27 11:45AM | NCAAF | Nebraska vs Iowa: Spread | spread: Iowa wins by over 3.5 points | kalshi | $87k | -104 | ✅ novig | ❌ | -1.0c | yes | W |
 | Nov 27 11:40AM | NCAAF | Nebraska at Iowa | moneyline: Iowa | prophetx | $25k | -178 | ✅ kalshi,novig | ❌ | +0.0c | yes | W |
 | Nov 27 11:40AM | NHL | Winnipeg vs New York I: Spread | spread: NOT New York I wins by over 1.5 goals | kalshi | $77k | -233 | ✅ novig |  | +0.0c |  | pending |
-| Nov 27 11:40AM | NBA | Miami vs New York: Spread | spread: NOT New York wins by over 3.5 points | kalshi | $33k | -108 |  | ❌ | +3.0c |  | pending |
+| Nov 27 11:40AM | NBA | Miami vs New York: Spread | spread: NOT New York wins by over 3.5 points | kalshi | $33k | -108 |  | ❌ | +3.0c | yes | pending |
 | Nov 27 11:36AM | NCAAF | Toledo at Ohio | moneyline: Toledo | prophetx | $39k | -166 | ✅ kalshi,novig | ✅ | +0.0c |  | W |
 | Nov 27 11:36AM | NHL | Pittsburgh vs Buffalo: Total Goals | total: Over 6.5 goals scored | kalshi | $28k | -113 | ✅ novig |  | +0.0c |  | pending |
 | Nov 27 11:36AM | NCAAF | Tulsa vs UTSA: Total Points | total: Over 55.5 points | kalshi | $36k | -108 |  |  | -2.0c | yes | L |
@@ -78,7 +78,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 27 10:10AM | NCAAF | Tulsa @ UTSA | moneyline: TLSA (0) | novig | $30k | -111 |  | ❌ | +0.0c |  | L |
 | Nov 27 10:05AM | NBA | Milwaukee vs Detroit: Total Points | total: Over 218.5 points | kalshi | $46k | -104 | ✅ novig |  | +0.0c |  | pending |
 | Nov 27 10:05AM | NHL | Ottawa vs Tampa Bay | moneyline: Tampa Bay | kalshi | $40k | -133 | ✅ novig |  | -4.0c | yes | pending |
-| Nov 27 10:00AM | NCAAF | Texas @ Texas A&M | spread: TEX -10.5 (10.5) | novig | $37k | -106 |  |  | +0.0c |  | pending |
+| Nov 27 10:00AM | NCAAF | Texas @ Texas A&M | spread: TEX -10.5 (10.5) | novig | $37k | -106 |  |  | +0.5c |  | pending |
 | Nov 27 10:00AM | NHL | Colorado vs Minnesota | moneyline: Colorado | kalshi | $63k | +113 | ✅ novig |  | +1.0c | yes | pending |
 | Nov 27 9:45AM | NCAAF | Nebraska @ Iowa | spread: IOWA -3.5 (-3.5) | novig | $36k | -106 |  | ❌ | -1.0c |  | W |
 | Nov 27 9:40AM | NHL | Seattle vs Edmonton: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $36k | -113 |  |  | +0.0c |  | pending |
@@ -103,7 +103,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 27 5:25AM | NHL | Calgary vs New Jersey: Spread | spread: NOT New Jersey wins by over 1.5 goals | kalshi | $31k | -108 |  |  | +2.0c |  | L |
 | Nov 27 4:10AM | NCAAF | North Dakota St. vs San Jose St.: Spread | spread: North Dakota St. wins by over 7.5 points | kalshi | $69k | -104 |  |  | +5.0c | yes | pending |
 | Nov 27 2:10AM | NBA | Denver Nuggets @ Utah Jazz | moneyline: DEN (0) | novig | $28k | -413 | ✅ kalshi |  | -1.5c | yes | pending |
-| Nov 27 2:10AM | NBA | Golden State Warriors @ Portland Trail Blazers | moneyline: POR (0) | novig | $27k | -344 | ✅ kalshi |  | -4.5c | yes | pending |
+| Nov 27 2:10AM | NBA | Golden State Warriors @ Portland Trail Blazers | moneyline: POR (0) | novig | $27k | -344 | ✅ kalshi |  | -4.0c | yes | pending |
 | Nov 27 2:10AM | NBA | Atlanta Hawks @ Boston Celtics | moneyline: BOS (0) | novig | $29k | -344 | ✅ kalshi |  | -0.5c |  | pending |
 | Nov 27 2:10AM | NBA | Brooklyn Nets @ Toronto Raptors | moneyline: TOR (0) | novig | $27k | -277 | ✅ kalshi |  | +3.0c | yes | pending |
 | Nov 27 2:10AM | NBA | Milwaukee Bucks @ Detroit Pistons | moneyline: DET (0) | novig | $29k | -335 | ✅ kalshi |  | +2.0c |  | pending |
