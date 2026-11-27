@@ -137,7 +137,17 @@ def sweep(store, rows, exclude_cid=None, write=True, attempts=3):
     raise R.ReservationRefused("sweep could not win the write - the store kept moving")
 
 
-TERMINAL_ROW = ("filled", "settled", "canceled", "cancelled", "expired")
+TERMINAL_ROW = ("filled", "settled", "canceled", "cancelled", "expired", "refused")
+# Nov 27: "refused" was missing, so a venue refusal was classified still_live and the leg held its
+# FULL ASK for ever - a Novig fill-or-kill refused at 14:16:35Z on Buffalo -7.5 kept $300 of the
+# play's unit with no money anywhere near the venue, and no later order on that play could pass.
+# A REFUSAL IS ITS OWN PROOF OF ZERO. The Nov 19 rule - never release on an unread zero, because an
+# initialised zero once read as "venue confirms zero" and released real exposure - guards a fill
+# FIELD that may simply never have been read. A refusal is not an unread field: it is the venue
+# answering, and a fill-or-kill cannot partially fill, so nothing matched by definition. This is
+# also already how the rest of the ledger reads it - review_unit_reservation.IGNORED carries
+# "refused" and scores such a leg at 0.0 exposure.
+REFUSAL_PROVES_ZERO = ("refused",)
 
 
 def reconcile_outcomes(store, rows, write=True, attempts=3):
@@ -198,15 +208,25 @@ def reconcile_outcomes(store, rows, write=True, attempts=3):
             f = None if filled is None else float(filled)
         except (TypeError, ValueError):
             f = None
-        if f is None or (f == 0.0 and src.get("fill_read") is not True):
+        if st in REFUSAL_PROVES_ZERO and (f is None or f == 0.0):
+            f = 0.0                                  # the refusal is the read; nothing matched
+        elif f is None or (f == 0.0 and src.get("fill_read") is not True):
             counts["unread_zero_held"] += 1          # an unread fill is never a releasable zero
             continue
         if not write:
             counts["reduced_to_fill" if f > 0 else "released_zero_fill"] += 1
             continue
         try:
-            R.record_outcome(store, leg.get("key"), leg.get("leg_id"), st, f, True,
-                             f"registry row: {st}, fill read {f}")
+            # A refusal releases through the IGNORED path, not the terminal-verified one. That is
+            # the module's own design - "void/refused/dry contribute ZERO exposure, so moving a
+            # reserved leg into one of them frees its whole reservation" - and it still demands
+            # evidence and a zero fill, both of which the venue's own row supplies here.
+            # terminal_verified is for TERMINAL_STATES; asserting it on a refusal fails closed and
+            # the leg would keep its hold, which is how the Buffalo leg stayed stuck.
+            _ignored = st in R.IGNORED
+            R.record_outcome(store, leg.get("key"), leg.get("leg_id"), st, f,
+                             not _ignored,
+                             f"registry row: venue answered {st}, fill {f}")
             counts["reduced_to_fill" if f > 0 else "released_zero_fill"] += 1
         except Exception:
             counts["refused"] += 1                   # validation said no: the leg keeps its hold
