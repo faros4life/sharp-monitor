@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 27, 1:15 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 32.
+Updated Fri Nov 27, 1:20 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 32.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -12,7 +12,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 27 12:40PM | NCAAB | Memphis vs Wake Forest: Point Total | total: NOT Over 153.5 points | kalshi | $31k | -108 |  |  | +0.0c |  | pending |
 | Nov 27 12:30PM | NCAAB | Iowa St. vs St. John's | moneyline: Iowa St. | kalshi | $69k | +104 |  | ✅ | +1.0c | yes | pending |
-| Nov 27 12:00PM | NCAAB | Memphis vs Wake Forest | moneyline: Memphis | kalshi | $41k | -104 | ✅ novig | ❌ | +2.0c |  | pending |
+| Nov 27 12:00PM | NCAAB | Memphis vs Wake Forest | moneyline: Memphis | kalshi | $41k | -104 | ✅ novig | ❌ | +1.0c |  | pending |
 | Nov 27 11:40AM | NCAAB | UMass Lowell vs Hampton | moneyline: Hampton | kalshi | $26k | +108 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 27 11:10AM | NCAAB | Niagara vs Lafayette | moneyline: Lafayette | kalshi | $45k | -203 | ✅ novig |  | +0.0c |  | pending |
 | Nov 27 10:20AM | NCAAB | La Salle @ Bucknell | moneyline: LAS (0) | novig | $28k | -400 |  |  | +0.0c |  | pending |
