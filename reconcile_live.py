@@ -208,6 +208,18 @@ def main():
     say(f"  ledger Dogs orders since 12 Nov: confirmed plays {sum(1 for p in acct['plays'] if str(p['lane']) == 'DOGS')} | "
         f"unfilled/excluded {sum(1 for e in acct['excluded'] if str(e.get('lane')) in ('dogs', 'DOGS'))}")
 
+    say("\nDOGS ORDER ROWS IN THE ENCRYPTED LEDGER (price-gate evidence; no money)")
+    n = 0
+    for (kind, oid), (_seen, o) in ll.latest(L).items():
+        if str(o.get("source") or "").lower() != "dogs" and not str(o.get("key") or "").startswith("dogs|"):
+            continue
+        n += 1
+        lo = o.get("live_order") or {}
+        say(f"  {kind} {str(o.get('decided_utc') or '')[:16]} | gate {o.get('dogs_gate')} | tol {o.get('dogs_tol_cents')}c | "
+            f"give-back {o.get('dogs_giveback_cents')}c | alert {o.get('alert_price_after_fee')} | book {lo.get('book') or o.get('live_book')}"
+            f" | status {lo.get('status')} | dispatched {lo.get('dispatched_utc')} | answered {lo.get('answered_utc')}")
+    say(f"  dogs ledger rows: {n}")
+
     say("\nVENUE SETTLEMENT CHECK (tracker profit vs stake x price x result, bot rows that are graded)")
     bad = 0
     for i in graded:
