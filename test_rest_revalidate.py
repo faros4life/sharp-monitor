@@ -46,13 +46,12 @@ try:
     ok("a worse current market price does not refuse a maker bid", ex.rest_revalidate(PLAY, "novig", 149.5)[0])
 
     # --- what MUST still refuse -------------------------------------------------------------------
-    # Design B (Peter, Nov 26): refuse only on a CONTRADICTION. An unreadable venue is an absence
-    # of evidence, not evidence the market moved, and the bid is limit-bounded either way - so it
-    # posts on the evaluated ladder and says so, rather than stopping the lane on a transient read.
+    # STRICT (Peter's ruling, Nov 26): an UNVERIFIED resting order does not go. He accepts the
+    # availability cost. These are the unsuccessful-verification cases, and every one refuses.
     ex.reread_book = lambda b, ln, rv: None
     okk, why, fr = ex.rest_revalidate(PLAY, "novig", 149.5)
-    ok("an unreadable venue still posts, on the evaluated ladder", okk and fr is None, why)
-    ok("and it is said out loud", "posting on the evaluated ladder" in why, why)
+    ok("UNSUCCESSFUL verification: unreadable venue refuses", not okk and "unreadable" in why, why)
+    ok("and nothing is handed back to price from", fr is None)
 
     ex.reread_book = lambda b, ln, rv: dict(NOVIG_OK, line=150.5)
     okk, why, _ = ex.rest_revalidate(PLAY, "novig", 149.5)
@@ -77,15 +76,40 @@ try:
         raise RuntimeError("venue down")
     ex.reread_book = boom
     okk, why, fr = ex.rest_revalidate(PLAY, "novig", 149.5)
-    ok("a raising reader posts on the evaluated ladder, naming the error",
-       okk and fr is None and "RuntimeError" in why, why)
+    ok("UNSUCCESSFUL verification: a raising reader refuses, naming the error",
+       not okk and "RuntimeError" in why and "fail closed" in why, why)
 
     # no basis recorded -> refuse, never post blind
     ex.reread_book = lambda b, ln, rv: dict(NOVIG_OK)
     okk, why, fr = ex.rest_revalidate({}, "novig", 149.5)
-    ok("no revalidation basis posts on the evaluated ladder", okk and fr is None, why)
+    ok("UNSUCCESSFUL verification: no revalidation basis refuses",
+       not okk and "fail closed" in why, why)
 finally:
     ex.reread_book = orig
+
+# --- SUCCESSFUL verification: the full happy path, both venues ----------------------------------
+orig2 = with_reread(lambda b, ln, rv: dict(NOVIG_OK))
+try:
+    okk, why, fresh = ex.rest_revalidate(PLAY, "novig", 149.5)
+    ok("SUCCESSFUL verification: novig verifies and returns the fresh ladder",
+       okk and why == "" and fresh["outcome_id"] == "oc-1", why)
+    ex.reread_book = lambda b, ln, rv: dict(KALSHI_OK)
+    okk, why, fresh = ex.rest_revalidate(PLAY, "kalshi", 149.5)
+    ok("SUCCESSFUL verification: kalshi verifies and returns its market",
+       okk and why == "" and fresh["kalshi_buy"][0]["ticker"] == "T1", why)
+    # the ladder handed back is the FRESH one, not the stale one the caller held
+    ex.reread_book = lambda b, ln, rv: dict(NOVIG_OK, buy_levels=[{"p": 0.61}])
+    _, _, fresh = ex.rest_revalidate(PLAY, "novig", 149.5)
+    ok("the CURRENT grid is returned, not the evaluated one", fresh["buy_levels"] == [{"p": 0.61}])
+finally:
+    ex.reread_book = orig2
+
+# --- rest_bid refuses rather than posting unverified ---------------------------------------------
+body0 = src0 = open("executor.py", encoding="utf-8").read()
+_rb = src0[src0.index("def rest_bid("):]
+_rb = _rb[:_rb.index("\ndef ", 10)]
+ok("rest_bid never posts on a failed verification", "x = _fresh" in _rb and "elif _rwhy" not in _rb)
+ok("a failed verification is recorded in why_not", "why_not.append(_rwhy)" in _rb)
 
 # --- the limit price is never taken from the re-read ---------------------------------------------
 src = open("executor.py", encoding="utf-8").read()
