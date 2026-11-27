@@ -40,6 +40,15 @@ def run(play_key, source=None, lane_state=None, lane_attr=None, unit_price=-117,
     cap arithmetic is then asserted directly against dogs_gate, the same function rest_bid now calls.
     """
     SUBMITTED.clear()
+    # Nov 27 (item 2): the lane caps now sum the registry SNAPSHOT with what this run has already
+    # committed (executor.LANE_RUN), and journal_order commits on every successful post. This
+    # harness pins the snapshot per case via lane_state, so it must pin the in-run tally too -
+    # otherwise exposure from an earlier case in this process eats the headroom a later case sets
+    # up, which is how section 4's $60 of headroom went missing. Resetting it keeps each case the
+    # isolated scenario it was written as; the accumulation itself is asserted in
+    # test_review_ledger_on_scenarios.py, where it is the subject rather than a side effect.
+    for _l in ex.LANE_RUN:
+        ex.LANE_RUN[_l] = {"risk": 0.0, "keys": set()}
     start = datetime.now(timezone.utc) + timedelta(hours=5)
     play = {"sport": "NCAAF", "game": "New Mexico Lobos @ Wyoming Cowboys",
             "bet": "New Mexico Lobos -7.5 (-117)", "play_key": play_key,

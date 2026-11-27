@@ -3866,7 +3866,13 @@ def _account_rows(rows, graded, ids, seen_oids, _intents, _confirmed):
             # settled win or push stops consuming the $1,500.
             if row.get("source") == "board" and d_et in (None, datetime.now(lm.ET).date()):
                 if row.get("key"):
-                    BOARD["keys"].add(row["key"])      # one intended bet = one play, so a
+                    BOARD["keys"].add(row["key"])
+                    BOARD["keys"].add(lane_strip(row["key"]))   # Nov 27 item 3: both spellings, as
+                    # LIVEKEYS has done since Nov 12. Two of the three row builders write the
+                    # lane-prefixed play_key and the third writes the unprefixed derive_key, while
+                    # the gates are asked with the unprefixed form - so one play could hold two
+                    # slots. lane_counts() counts over the stripped form, and storing both keeps a
+                    # raw-key membership test correct for any other reader of this set.      # one intended bet = one play, so a
                     # retry, a top-up or a partial fill of the same key never counts twice
                 if graded.get(row.get("key")) not in ("W", "P"):
                     fs_b = lo.get("filled_stake")
@@ -3875,6 +3881,12 @@ def _account_rows(rows, graded, ids, seen_oids, _intents, _confirmed):
             if row.get("source") == "r1" and d_et in (None, datetime.now(lm.ET).date()):   # same rules as the board block above
                 if row.get("key"):
                     R1["keys"].add(row["key"])
+                    R1["keys"].add(lane_strip(row["key"]))   # Nov 27 item 3: both spellings, as
+                    # LIVEKEYS has done since Nov 12. Two of the three row builders write the
+                    # lane-prefixed play_key and the third writes the unprefixed derive_key, while
+                    # the gates are asked with the unprefixed form - so one play could hold two
+                    # slots. lane_counts() counts over the stripped form, and storing both keeps a
+                    # raw-key membership test correct for any other reader of this set.
                 if graded.get(row.get("key")) not in ("W", "P"):
                     fs_r = lo.get("filled_stake")
                     R1["risk"] += (max(float(fs_r or 0), float(lo.get("asked_stake") or 0))
@@ -3882,6 +3894,12 @@ def _account_rows(rows, graded, ids, seen_oids, _intents, _confirmed):
             if row.get("source") == "ncs" and d_et in (None, datetime.now(lm.ET).date()):   # same rules again
                 if row.get("key"):
                     NCS["keys"].add(row["key"])
+                    NCS["keys"].add(lane_strip(row["key"]))   # Nov 27 item 3: both spellings, as
+                    # LIVEKEYS has done since Nov 12. Two of the three row builders write the
+                    # lane-prefixed play_key and the third writes the unprefixed derive_key, while
+                    # the gates are asked with the unprefixed form - so one play could hold two
+                    # slots. lane_counts() counts over the stripped form, and storing both keeps a
+                    # raw-key membership test correct for any other reader of this set.
                 if graded.get(row.get("key")) not in ("W", "P"):
                     fs_n = lo.get("filled_stake")
                     NCS["risk"] += (max(float(fs_n or 0), float(lo.get("asked_stake") or 0))
@@ -3889,6 +3907,12 @@ def _account_rows(rows, graded, ids, seen_oids, _intents, _confirmed):
             if row.get("source") == "dogs" and d_et in (None, datetime.now(lm.ET).date()):   # same rules again
                 if row.get("key"):
                     DOGS["keys"].add(row["key"])
+                    DOGS["keys"].add(lane_strip(row["key"]))   # Nov 27 item 3: both spellings, as
+                    # LIVEKEYS has done since Nov 12. Two of the three row builders write the
+                    # lane-prefixed play_key and the third writes the unprefixed derive_key, while
+                    # the gates are asked with the unprefixed form - so one play could hold two
+                    # slots. lane_counts() counts over the stripped form, and storing both keeps a
+                    # raw-key membership test correct for any other reader of this set.
                 if graded.get(row.get("key")) not in ("W", "P"):
                     fs_d = lo.get("filled_stake")
                     DOGS["risk"] += (max(float(fs_d or 0), float(lo.get("asked_stake") or 0))
@@ -4167,6 +4191,72 @@ BOARD_MAX_PLAYS = int(os.environ.get("EXEC_BOARD_MAX_PLAYS", "") or "10")   # wa
 BOARD = {"risk": 0.0, "keys": set(), "known": False}
 
 
+# Nov 27 (Peter, items 2 and 3). TWO defects in one structure, both measured.
+#
+# ITEM 2 - IN-RUN ACCUMULATION. Each lane's risk total and key set are read from the registry ONCE
+# per run (_account_rows, behind live_guards' once-per-run GUARD cache) and were never incremented
+# after a gate approved an order. Every gate call in a pass therefore measured the same stale
+# number. Measured on BOARD with $1,000 already at risk against a $2,000 cap: six consecutive $200
+# approvals all passed, each printing "$1,000.00/$2,000" - $1,200 of new exposure admitted on top of
+# the $1,000. The GLOBAL stop never had this flaw because the venue layer accumulates per order;
+# the lane caps did. LANE_RUN is that missing accumulator: what THIS run has already committed,
+# added to the snapshot before any cap is judged, so a pending order, a partial fill and a resting
+# reservation all count before the next submission is authorised.
+#
+# ITEM 3 - KEY NORMALISATION. The snapshot sets were filled with row["key"], and two of the three
+# row builders write the LANE-PREFIXED play_key (journal_order, live_intent) while the third writes
+# the unprefixed derive_key (ledger_row). The gates were then asked with the unprefixed key, so the
+# same play could occupy two slots and a retry, top-up or rest of an already-counted play burned a
+# second one. This is the identical defect the Nov 12 LIVEKEYS fix closed by storing BOTH forms
+# (see _account_rows) - the lane sets never got the same treatment. Play COUNT is now taken over
+# lane-stripped keys, so every leg and every spelling of one play consumes ONE slot, while RISK is
+# summed and never deduplicated, so the combined exposure of those legs stays fully accounted.
+LANE_RUN = {k: {"risk": 0.0, "keys": set()} for k in ("board", "r1", "ncs", "dogs")}
+
+
+def lane_run_amount(leg, is_rest):
+    """Dollars a just-placed leg puts at risk, by the SAME rule _account_rows applies to the
+    snapshot: a resting bid or an unread fill reserves everything asked, a read fill reserves what
+    filled. One rule, so the in-run tally and the registry read cannot disagree."""
+    fs = leg.get("filled_stake")
+    asked = leg.get("asked_stake")
+    if is_rest or fs is None:
+        return max(float(fs or 0), float(asked or 0))
+    return float(fs)
+
+
+def lane_commit_run(lane, key, amount):
+    """Record exposure this run has committed, so the next gate call in the same pass sees it."""
+    if lane not in LANE_RUN:
+        return False                       # Lane 1 and anything unproven: no lane cap to feed
+    try:
+        amt = float(amount)
+    except (TypeError, ValueError):
+        return False
+    if math.isfinite(amt) and amt > 0:
+        LANE_RUN[lane]["risk"] += amt
+    if key:
+        LANE_RUN[lane]["keys"].add(str(key))
+        LANE_RUN[lane]["keys"].add(lane_strip(str(key)))
+    return True
+
+
+def lane_counts(lane, state, key):
+    """(risk already at risk today, play count including this one, plays already counted) for a lane.
+
+    Snapshot PLUS what this run has committed (item 2). The count is over lane-stripped keys so one
+    play is one slot however its key was spelled (item 3); the risk is a plain sum, because two legs
+    of one play are two lots of real money even though they are one slot."""
+    run = LANE_RUN.get(lane) or {"risk": 0.0, "keys": set()}
+    risk = float(state.get("risk") or 0.0) + float(run.get("risk") or 0.0)
+    norm = {lane_strip(str(k)) for k in (set(state.get("keys") or ()) | set(run.get("keys") or ())) if k}
+    nk = lane_strip(str(key)) if key else None
+    # `used` is what is ALREADY counted; `n` includes this play. They differ by one only when this
+    # play is new, which is why the messages report `used` and never n-1: on a retry or a second leg
+    # of a counted play n == used, and n-1 would report one fewer play than the lane is holding.
+    return risk, len(norm) + (0 if (nk and nk in norm) else 1), len(norm)
+
+
 def board_gate(risk, key=None):
     """(ok, why) for ONE board v3 order of `risk` dollars. Fail closed.
 
@@ -4179,9 +4269,9 @@ def board_gate(risk, key=None):
         # The board ledger was not readable this run, so today's board exposure is unknown. An
         # unknown exposure can never be allowed to place money - same rule as the global registry.
         return False, "board exposure unknown this run (ledger unreadable) - fail closed"
-    n = len(BOARD["keys"]) + (0 if (key and key in BOARD["keys"]) else 1)
+    _at_risk, n, _used = lane_counts("board", BOARD, key)   # snapshot + this run (items 2 and 3)
     if n > BOARD_MAX_PLAYS:
-        return False, (f"board play cap: {len(BOARD['keys'])} already submitted or resting today (ET), "
+        return False, (f"board play cap: {_used} already submitted or resting today (ET), "
                        f"cap {BOARD_MAX_PLAYS}")
     try:
         risk = float(risk or 0)
@@ -4189,11 +4279,11 @@ def board_gate(risk, key=None):
         return False, "board order risk unreadable - fail closed"
     if risk <= 0:
         return False, "board order risk is zero - fail closed"
-    if BOARD["risk"] + risk > BOARD_DAILY_RISK + 1e-9:
-        return False, (f"board daily risk limit: ${BOARD['risk']:,.2f} already at risk today (ET) + "
+    if _at_risk + risk > BOARD_DAILY_RISK + 1e-9:
+        return False, (f"board daily risk limit: ${_at_risk:,.2f} already at risk today (ET) + "
                        f"${risk:,.2f} would exceed ${BOARD_DAILY_RISK:,.0f}")
-    return True, (f"ok (board today: {len(BOARD['keys'])}/{BOARD_MAX_PLAYS} plays, "
-                  f"${BOARD['risk']:,.2f}/${BOARD_DAILY_RISK:,.0f} at risk)")
+    return True, (f"ok (board today: {_used}/{BOARD_MAX_PLAYS} plays, "
+                  f"${_at_risk:,.2f}/${BOARD_DAILY_RISK:,.0f} at risk)")
 
 
 def r1_gate(risk, key=None):
@@ -4202,23 +4292,26 @@ def r1_gate(risk, key=None):
     override the risk limit, and neither overrides the global daily stop."""
     if not R1["known"]:
         return False, "R1 exposure unknown this run (ledger unreadable) - fail closed"
-    n = len(R1["keys"]) + (0 if (key and key in R1["keys"]) else 1)
+    _at_risk, n, _used = lane_counts("r1", R1, key)   # snapshot + this run (items 2 and 3)
     if n > R1_MAX_PLAYS:
-        return False, f"R1 play cap: {len(R1['keys'])} already submitted or resting today (ET), cap {R1_MAX_PLAYS}"
+        return False, f"R1 play cap: {_used} already submitted or resting today (ET), cap {R1_MAX_PLAYS}"
     try:
         risk = float(risk or 0)
     except Exception:
         return False, "R1 order risk unreadable - fail closed"
     if risk <= 0:
         return False, "R1 order risk is zero - fail closed"
-    if R1["risk"] + risk > R1_DAILY_RISK + 1e-9:
-        return False, (f"R1 daily risk limit: ${R1['risk']:,.2f} already at risk today (ET) + "
+    if _at_risk + risk > R1_DAILY_RISK + 1e-9:
+        return False, (f"R1 daily risk limit: ${_at_risk:,.2f} already at risk today (ET) + "
                        f"${risk:,.2f} would exceed ${R1_DAILY_RISK:,.0f}")
-    return True, f"ok (R1 today: {len(R1['keys'])}/{R1_MAX_PLAYS} plays, ${R1['risk']:,.2f}/${R1_DAILY_RISK:,.0f} at risk)"
+    return True, f"ok (R1 today: {_used}/{R1_MAX_PLAYS} plays, ${_at_risk:,.2f}/${R1_DAILY_RISK:,.0f} at risk)"
 
 
 def dogs_strict(p):
-    """True for a DOGS play. ONE test, so the no-tolerance / alert-line-only / no-Gmail / no-rest rules cannot drift apart."""
+    """True for a DOGS play. ONE test, so the no-tolerance / alert-line-only / no-Gmail rules cannot
+    drift apart. NO-REST WAS REMOVED on Nov 27 (Peter): Dogs may rest when immediate execution is
+    unavailable or a fill-or-kill returns empty - see rest_wanted(). The other three still hold, and
+    this docstring is the record that only one of the four was lifted."""
     return isinstance(p, dict) and p.get("source") == "dogs"
 
 
@@ -4414,19 +4507,19 @@ def dogs_gate(risk, key=None):
                        f"not 'on') - fail closed")
     if not DOGS["known"]:
         return False, "DOGS exposure unknown this run (ledger unreadable) - fail closed"
-    n = len(DOGS["keys"]) + (0 if (key and key in DOGS["keys"]) else 1)
+    _at_risk, n, _used = lane_counts("dogs", DOGS, key)   # snapshot + this run (items 2 and 3)
     if n > DOGS_MAX_PLAYS:
-        return False, f"DOGS play cap: {len(DOGS['keys'])} already submitted or resting today (ET), cap {DOGS_MAX_PLAYS}"
+        return False, f"DOGS play cap: {_used} already submitted or resting today (ET), cap {DOGS_MAX_PLAYS}"
     try:
         risk = float(risk)
     except (TypeError, ValueError):
         return False, "DOGS order risk unreadable - fail closed"
     if not (risk > 0):
         return False, "DOGS order risk is zero - fail closed"
-    if DOGS["risk"] + risk > DOGS_DAILY_RISK + 1e-9:
-        return False, (f"DOGS daily risk limit: ${DOGS['risk']:,.2f} already at risk today (ET) + "
+    if _at_risk + risk > DOGS_DAILY_RISK + 1e-9:
+        return False, (f"DOGS daily risk limit: ${_at_risk:,.2f} already at risk today (ET) + "
                        f"${risk:,.2f} would exceed ${DOGS_DAILY_RISK:,.0f}")
-    return True, f"ok (DOGS today: {len(DOGS['keys'])}/{DOGS_MAX_PLAYS} plays, ${DOGS['risk']:,.2f}/${DOGS_DAILY_RISK:,.0f} at risk)"
+    return True, f"ok (DOGS today: {_used}/{DOGS_MAX_PLAYS} plays, ${_at_risk:,.2f}/${DOGS_DAILY_RISK:,.0f} at risk)"
 
 
 def ncs_gate(risk, key=None):
@@ -4438,19 +4531,19 @@ def ncs_gate(risk, key=None):
     case rests on CLV (+1.34c vs the board close, beat close 62%), not on outcomes."""
     if not NCS["known"]:
         return False, "NCS exposure unknown this run (ledger unreadable) - fail closed"
-    n = len(NCS["keys"]) + (0 if (key and key in NCS["keys"]) else 1)
+    _at_risk, n, _used = lane_counts("ncs", NCS, key)   # snapshot + this run (items 2 and 3)
     if n > NCS_MAX_PLAYS:
-        return False, f"NCS play cap: {len(NCS['keys'])} already submitted or resting today (ET), cap {NCS_MAX_PLAYS}"
+        return False, f"NCS play cap: {_used} already submitted or resting today (ET), cap {NCS_MAX_PLAYS}"
     try:
         risk = float(risk or 0)
     except Exception:
         return False, "NCS order risk unreadable - fail closed"
     if risk <= 0:
         return False, "NCS order risk is zero - fail closed"
-    if NCS["risk"] + risk > NCS_DAILY_RISK + 1e-9:
-        return False, (f"NCS daily risk limit: ${NCS['risk']:,.2f} already at risk today (ET) + "
+    if _at_risk + risk > NCS_DAILY_RISK + 1e-9:
+        return False, (f"NCS daily risk limit: ${_at_risk:,.2f} already at risk today (ET) + "
                        f"${risk:,.2f} would exceed ${NCS_DAILY_RISK:,.0f}")
-    return True, f"ok (NCS today: {len(NCS['keys'])}/{NCS_MAX_PLAYS} plays, ${NCS['risk']:,.2f}/${NCS_DAILY_RISK:,.0f} at risk)"
+    return True, f"ok (NCS today: {_used}/{NCS_MAX_PLAYS} plays, ${_at_risk:,.2f}/${NCS_DAILY_RISK:,.0f} at risk)"
 
 
 def live_guards():
@@ -4944,7 +5037,7 @@ def _unit_ledger_record(r, path, book=None):
     return None
 
 
-def _unit_ledger_guard(r, path, book=None):
+def _unit_ledger_guard(r, path, book=None, stake=None, shown=None, unit=None):
     """REVIEW BRANCH ONLY. Reserve this play's capacity in the SHARED ledger before dispatch.
 
     Returns None when EXEC_UNIT_LEDGER is off, which is the default and which makes every caller
@@ -4991,7 +5084,10 @@ def _unit_ledger_guard(r, path, book=None):
     _id = derive_key(p) or p.get("play_key") or (r.get("live") or {}).get("cid")
     if not _id:
         raise RuntimeError("shared ledger: no order identity for this play - refusing to submit")
-    _id = f"{_id}|{lv.get('line')}|{lv.get('shown')}"
+    # `shown` joins the identity, so on the rest-only path (where lv has none) it degraded to
+    # "...|None". It now follows the same explicit value the reservation uses, which leaves the take
+    # path's identity string unchanged because there the two are the same read.
+    _id = f"{_id}|{lv.get('line')}|{lv.get('shown') if shown is None else shown}"
     # Every earlier order ATTEMPT is swept into the ledger before this one is judged: an older run
     # still in flight, a record that failed, an order placed just before enforcement began. Each
     # wrote a write-ahead intent, and an intent with no ledger entry is exposure not yet counted.
@@ -5007,9 +5103,42 @@ def _unit_ledger_guard(r, path, book=None):
     if _rows is None:
         raise RuntimeError("shared ledger: order rows unreadable - cannot match this play across feeds, refusing")
     _resm.set_play_matcher(_unit_ledger_matcher(p, _rows))
+    # Nov 27 (Peter, item 1): "Use the actual computed resting stake, approved fee-adjusted limit
+    # price and applicable strategy unit. Never substitute guessed values for missing exposure
+    # information."
+    #
+    # MEASURED defect this closes. On the rest-ONLY path r["live"] is {go: False, lane, why} - it
+    # carries no "risk", no "shown" and no "unit", because nothing priced a take. The three reads
+    # below therefore handed the shared ledger (None, None, LIVE_UNIT): review_unit_reservation
+    # raises ExposureUnknown("stake") on the None stake, _unit_ledger_guard re-raises, and the
+    # exception escapes rest_bid entirely - a SKIP "error: stake" row and a STOP-worthy push rather
+    # than a refusal, with the |rest submission claim left held so the NEXT run refuses too.
+    # Reproduced end to end with EXEC_UNIT_LEDGER=on. So resting was not merely unledgered: with the
+    # ledger enforced - which dogs_gate REQUIRES - a rest-only bid could not be placed at all.
+    #
+    # A caller that knows the real figures passes them. Nothing is inferred when they are absent:
+    # an explicit caller whose values are missing or not finite positive numbers REFUSES, because
+    # the one substitution available here is LIVE_UNIT, and silently reserving Lane 1's $300 for a
+    # $200 lane is the guessed value Peter's instruction forbids. The take path passes nothing and
+    # reads lv exactly as before, so its sizing and its ledger identity are byte-for-byte unchanged.
+    _explicit = not (stake is None and shown is None and unit is None)
+    _stake = lv.get("risk") if stake is None else stake
+    _shown = lv.get("shown") if shown is None else shown
+    _unit = (lv.get("unit") or LIVE_UNIT) if unit is None else unit
+    if _explicit:
+        for _nm, _v in (("stake", _stake), ("unit", _unit)):
+            try:
+                _f = float(_v)
+            except (TypeError, ValueError):
+                raise RuntimeError(f"shared ledger: {path} {_nm} is unreadable ({_v!r}) - refusing")
+            if not (math.isfinite(_f) and _f > 0):
+                raise RuntimeError(f"shared ledger: {path} {_nm} is not a finite positive number "
+                                   f"({_v!r}) - refusing")
+        if _shown is None:
+            raise RuntimeError(f"shared ledger: {path} has no limit price to reserve against - refusing")
     try:
         return ri.guard_or_refuse(store, key, f"{path}|{_id}",
-                                  lv.get("risk"), lv.get("shown"), lv.get("unit") or LIVE_UNIT,
+                                  _stake, _shown, _unit,
                                   actor=ri.actor_for("sharp-monitor", path, book or lv.get("book")),
                                   intent_cid=lv.get("client_id"))
     except Exception:
@@ -5494,8 +5623,13 @@ def rest_wanted(r):
     lv = r.get("live")
     if not lv or not px_live.LIVE or not REST_BOOKS:
         return False
-    if dogs_strict(r.get("play")):
-        return False   # Nov 23: a DOGS play fills at the alert number now or not at all - it never rests a bid
+    # Nov 23 - Nov 27: DOGS returned False here ("fills at the alert number now or not at all").
+    # Peter lifted the no-rest half of that rule on Nov 27. Everything else about dogs_strict is
+    # untouched - no price tolerance, the alert line only, no Gmail lookup. The conditions below
+    # already deliver his other terms without a Dogs special case: a REFUSAL never rests (the
+    # go-branch requires status "placed"), an EMPTY fill-or-kill rests the full unit, and a PARTIAL
+    # rests only risk - filled. The per-lane cap, the kill bar, the venue allow-list, T-30, the
+    # shared ledger and duplicate protection are all enforced in rest_bid, not here.
     if lv.get("go"):
         o = lv.get("order") or {}
         allo = [o] + list(lv.get("more") or [])
@@ -5805,7 +5939,8 @@ def rest_bid(r):
     if af is None:
         return {"status": "refused", "reason": "alert after-fee price unknown (fail closed)"}
     p_star = american_to_prob(int(af))
-    risk, _ = live_stake(int(af), unit_for((r.get("live") or {}).get("lane")))
+    _rb_unit = unit_for((r.get("live") or {}).get("lane"))   # the SAME unit the stake is sized from
+    risk, _ = live_stake(int(af), _rb_unit)
     _unit_risk = risk            # the INTENDED total for one unit, before any remainder trim.
     # Nov 20 (Peter caught this in review): the cross-venue remainder below must be measured from
     # THIS figure, not from the already-trimmed `risk`. rest_risk is itself intended-minus-filled,
@@ -6001,7 +6136,10 @@ def rest_bid(r):
         # Reserved only once we have a priced, exact-line market on this venue: a venue we screen
         # out above must not consume the play's unit.
         if _rb_grant is None:
-            _rb_grant = _unit_ledger_guard(r, "rest_bid", b)
+            # The computed resting stake (after BOTH ceilings), the alert's approved fee-adjusted
+            # price, and this lane's own unit - never lv's absent take values. See the guard.
+            _rb_grant = _unit_ledger_guard(r, "rest_bid", b, stake=risk, shown=int(af),
+                                           unit=_rb_unit)
             _unit_ledger_consume(_rb_grant, risk)
         if b == "kalshi":
             kb = x.get("kalshi_buy") or []
@@ -7445,6 +7583,25 @@ def journal_order(r, lo, is_rest=False, cid=None):
                    # Nov 18: the execution-time fee, so the CLV ledger grades this fill on the
                    # coefficient that actually applied and never on today's schedule.
                    **fee_meta(book, maker=bool(is_rest or lo.get("resting")))}}
+        # Nov 27 (Peter, item 2): COMMIT this order's exposure to the in-run lane tally, here and
+        # nowhere else. journal_order is the single chokepoint every placement passes through - the
+        # three take sites and the resting site all call it the moment a venue has answered - so one
+        # call covers both paths and cannot drift. Done BEFORE the email below, because exposure
+        # accounting must not depend on a send succeeding.
+        #
+        # The lane comes from registry.row_lane, the SAME resolver the caps themselves use, so an
+        # order can never be gated as one lane and tallied as another. An unproven lane commits
+        # nothing, which is safe only because such a bid is refused before it is ever placed.
+        try:
+            from registry import row_lane as _jrl
+            _jlane = _jrl({"key": row.get("key"), "source": row.get("source")})
+            _jleg = row.get("live_rest" if is_rest else "live_order") or {}
+            lane_commit_run(_jlane, row.get("key"), lane_run_amount(_jleg, is_rest))
+        except Exception as _lex:
+            # LOUD, never fatal: the order exists at the venue. An uncounted dollar makes the next
+            # gate in this pass permissive, so it must be visible in the log.
+            print(f"LANE TALLY NOT UPDATED for {oid} ({type(_lex).__name__}: {str(_lex)[:50]}) - "
+                  f"this run's remaining lane caps are measured without it", flush=True)
         send(f"Bets LIVE: order journal {book} {oid}",
              "ORDER JOURNAL - one durable registry row, written the moment this order was placed, so a run\n"
              "killed before its end-of-run ledger cannot lose this order from the registry (daily-stop\n"

@@ -336,8 +336,12 @@ try:
     ex.px_live.LIVE = True
     _rw = lambda v, why, reason=None: ex.rest_wanted({"play": {"source": "dogs"}, "books": {}, "verdict": v, "reason": reason,
                                                      "live": {"go": False, "why": why}})
-    ok("DOGS never rests a bid (price skip)", _rw("SKIP", ["price: x"], "price: x") is False)
-    ok("DOGS never rests a bid (no live book at the number)", _rw("WOULD PLACE", ["no live book has the alert number or better"]) is False)
+    # Nov 27 (Peter): the no-rest quarter of the dogs_strict bundle was LIFTED. Inverted in place
+    # rather than deleted, so this file still names the behaviour and the date it changed. The terms
+    # it came with are asserted in test_review_ledger_on_scenarios.py.
+    ok("DOGS rests on a price skip (Nov 27)", _rw("SKIP", ["price: x"], "price: x") is True)
+    ok("DOGS rests when no live book has the alert number (Nov 27)",
+       _rw("WOULD PLACE", ["no live book has the alert number or better"]) is True)
 finally:
     ex.px_live.LIVE = _live
 
