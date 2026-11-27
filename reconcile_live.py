@@ -143,8 +143,15 @@ def main():
     say(f"  PLAY  = one game + market + side for one strategy; every confirmed-filled order leg on it merges into it")
     say(f"  bot fills since {start}: {len(bot)} = {len(inplay)} inside confirmed plays + "
         f"{sum(1 for i in bot if where.get(i, ('',))[0] == 'UNRESOLVED')} unresolved + {sum(1 for i in bot if i not in where)} with no ledger order")
-    say(f"  {len(inplay)} fills merge into {len({id(where[i][2]) for i in inplay})} plays; plus {e4} plays whose fill is confirmed on"
-        f" the order row with no bot-linked tracker row (E4) -> {len(acct['plays'])} confirmed plays")
+    rows_all = {i for p in acct["plays"] for i in p.get("rows") or []}
+    other = rows_all - set(bot)
+    say(f"  {len(inplay)} bot-tagged fills merge into {len({id(where[i][2]) for i in inplay})} plays")
+    say(f"  {len(other)} further fills sit in confirmed plays but are NOT tagged source=bot in the tracker (joined by order id,"
+        f" E1/E2) -> {len({id(p) for p in acct['plays'] if set(p.get('rows') or []) & other and not set(p.get('rows') or []) & set(bot)})} more plays")
+    say(f"  {e4} plays have a confirmed fill on the order row and no tracker row (E4)")
+    say(f"  confirmed plays total {len(acct['plays'])} | settled {sum(p.get('res') in ('W', 'L', 'P') for p in acct['plays'])}")
+    print("  tracker source of the untagged order-linked fills:",
+          dict(collections.Counter(str(B[i].get('source')) for i in other if i in B)))
 
     say("\nUNRESOLVED / EXCLUDED (counts for nobody), by reason")
     why = collections.Counter()
@@ -208,7 +215,7 @@ def main():
                 on, out = True, [t]
                 continue
             if on:
-                if t and t.split()[0] in {str(p["lane"]) for p in acct["plays"]}:
+                if t and any(t.startswith(str(p["lane"]) + " ") for p in acct["plays"]):
                     out.append(t)
                 else:
                     break
