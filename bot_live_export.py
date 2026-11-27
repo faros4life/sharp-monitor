@@ -36,6 +36,93 @@ FIRST_MULTI_LANE_DAY = "2026-11-11"   # R1 and Board v3 were approved on Nov 11;
 OUT = "tracker/bot_live.enc"
 LANES = {"LANE 1": "Lane 1", "BOARD V4": "Bets Board v4", "R1": "R1", "LANE 2": "Lane 2"}
 
+# Nov 27 (Peter): both reports must use IDENTICAL attribution, window and counting. The lane map is
+# IMPORTED from executed_clv rather than copied, so the two cannot drift - a second copy is how they
+# disagreed in the first place. LANES above knew only four spellings while the tracker carries
+# "rules", "PHASE 1", "r1" and "BOARD V3", and had no Dogs or NCS at all: 47 settled bot rows landed
+# in Unattributed and R1 graded 2 plays against 21 confirmed.
+import os
+import executed_clv as _xc            # import-safe: no network, no decrypt, no side effects
+LANE_CANON = dict(_xc.LANE_NAME)
+WINDOW_ET = (os.environ.get("EXPORT_SINCE") or "2026-11-12").strip()   # ET day, inclusive
+
+
+def lane_of(b, keylane=None):
+    """Canonical lane for one tracker row. The row's own tag first, then the bot's private registry.
+    NEVER inferred from a date or a neighbouring row - an unattributable fill stays unattributed."""
+    raw = str(b.get("lane") or "").strip().lower()
+    if raw in LANE_CANON:
+        return LANE_CANON[raw], "tracker tag"
+    if keylane:
+        for k, v in keylane.items():
+            if tb.bot_match(b, {k}):
+                return LANE_CANON.get(str(v).strip().lower(), str(v)), "registry"
+    return None, "none"
+
+
+def in_window(b):
+    """Settled on or after the pinned ET day. A row with no date is OUT - never assumed recent."""
+    d = str(b.get("date") or b.get("settled") or b.get("game_start") or "")[:10]
+    return bool(d) and d >= WINDOW_ET
+
+
+def performance(rows, keylane):
+    """Per-strategy performance over SETTLED BOT fills in the window.
+
+    Dollars and units are kept apart on purpose (Peter, Nov 27): dollar P&L is what the account did,
+    units are stake-normalised so lanes with different unit sizes can be compared. Mixing them makes
+    a $300 lane look three times better than a $100 lane at identical skill.
+
+    Partial fills are MERGED: the tracker can carry more than one row for one play, so rows are
+    grouped by (lane, game, bet, book) and their stake and profit summed before anything is counted.
+    Manual bets are excluded by source. Anything settled that cannot be attributed from a tag or the
+    registry goes to an explicit `unresolved` bucket and is counted nowhere else."""
+    merged, unresolved = {}, []
+    for b in rows:
+        if (b.get("source") or "") != "bot":
+            continue                                   # manual bets excluded
+        if b.get("result") not in ("W", "L", "P"):
+            continue                                   # settled only
+        if not in_window(b):
+            continue
+        lane, src = lane_of(b, keylane)
+        if not lane:
+            unresolved.append({"game": b.get("game"), "bet": b.get("bet"), "book": b.get("book"),
+                               "tag": b.get("lane"), "date": str(b.get("date") or "")[:10]})
+            continue
+        k = (lane, str(b.get("game") or ""), str(b.get("bet") or ""), str(b.get("book") or ""))
+        m = merged.setdefault(k, {"lane": lane, "src": src, "stake": 0.0, "profit": 0.0,
+                                  "result": b.get("result"), "when": str(b.get("date") or "")[:10]})
+        m["stake"] += float(b.get("stake") or 0)
+        m["profit"] += float(b.get("profit") or 0)
+
+    out = {}
+    for lane in sorted({m["lane"] for m in merged.values()}):
+        plays = sorted([m for m in merged.values() if m["lane"] == lane], key=lambda x: x["when"])
+        out[lane] = _block(plays)
+        half = len(plays) // 2
+        if half:
+            out[lane]["first_half"] = _block(plays[:half])
+            out[lane]["second_half"] = _block(plays[half:])
+    return {"by_lane": out, "unresolved": unresolved, "unresolved_n": len(unresolved),
+            "window_et_from": WINDOW_ET, "basis": "settled bot fills; partials merged; manual excluded"}
+
+
+def _block(plays):
+    n = len(plays)
+    w = sum(1 for p in plays if p["result"] == "W")
+    lo = sum(1 for p in plays if p["result"] == "L")
+    pu = sum(1 for p in plays if p["result"] == "P")
+    dollars = round(sum(p["profit"] for p in plays), 2)
+    staked = round(sum(p["stake"] for p in plays), 2)
+    units = [p["profit"] / p["stake"] for p in plays if p["stake"]]
+    u = round(sum(units), 4) if units else None
+    return {"n": n, "W": w, "L": lo, "P": pu, "record": f"{w}-{lo}" + (f"-{pu}" if pu else ""),
+            "dollars_pnl": dollars, "dollars_staked": staked,
+            "roi_pct": (round(100 * dollars / staked, 2) if staked else None),
+            "units": u, "units_per_play": (round(u / len(units), 4) if units else None),
+            "from": plays[0]["when"] if plays else None, "to": plays[-1]["when"] if plays else None}
+
 
 def play(b):
     st = b.get("stake") or 0
@@ -216,6 +303,9 @@ def main():
     trig_ci = {k: {"all_time": units_ci(v), "last_20": units_ci(v, last=20)} for k, v in tp.items()}
     print("trigger CI sample sizes (counts only):", {k: (c["all_time"]["n"], c["last_20"]["n"]) for k, c in trig_ci.items()})
     keylane = registry_lanes()
+    perf = performance(rows, keylane)
+    print("performance: lanes", {k: v["record"] for k, v in perf["by_lane"].items()},
+          "| unresolved", perf["unresolved_n"], "| from", perf["window_et_from"])   # counts only
     how = {"tracker tag": 0, "registry": 0, "none": 0}
     for b in rows:
         if (b.get("source") or "") != "bot" or id(b) in used:
@@ -236,7 +326,8 @@ def main():
         out[k] = out[k][:80]
     doc = {"at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"), "lanes": out,
            "trigger_src": msrc if mt else "built-in list (" + msrc + ")",
-           "trigger_ci": trig_ci, "ci_frame": CI_FRAME, "ci_caveat": CI_CAVEAT}
+           "trigger_ci": trig_ci, "ci_frame": CI_FRAME, "ci_caveat": CI_CAVEAT,
+           "performance": perf}
     json.dump(tb.enc(doc), open(OUT, "w"))
     print("lane source:", how)
     print("exported plays per lane:", {k: len(v) for k, v in out.items()})

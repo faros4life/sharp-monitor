@@ -28,6 +28,9 @@ jobs:
       - name: Export bot plays by lane
         env:
           TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          # Nov 27 (Peter): the SAME ET day executed-clv is pinned to, from the same variable, so a
+          # change moves both reports together and neither can drift to its own window.
+          EXPORT_SINCE: ${{ vars.REPORT_SINCE_ET || '2026-11-12' }}
           REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}   # contents read on the private registry
           GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}     # READ ONLY: Muse's trigger-list email; nothing is sent
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
