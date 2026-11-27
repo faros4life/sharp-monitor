@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 27, 1:50 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 19.
+Updated Fri Nov 27, 2:00 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 18.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 523-318 (-28.54u flat) | rule met: 126-86
+**Record:** 524-318 (-27.91u flat) | rule met: 127-86
 
-**Fade (paper, betting against the print):** 293-488 (+24.43u flat, after fees)
+**Fade (paper, betting against the print):** 293-489 (+23.43u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -25,7 +25,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 26 3:00PM | NCAAB | Louisville vs St. John's | moneyline: St. John's | kalshi | $28k | -113 |  |  | +0.0c | yes | L |
 | Nov 26 2:20PM | NCAAB | Saint Mary's vs UCLA: Spread | spread: UCLA wins by over 7.5 points | kalshi | $28k | -104 |  |  | +2.0c |  | L |
 | Nov 26 12:00PM | NCAAB | TCU vs Creighton: Spread | spread: NOT Creighton wins by over 1.5 points | kalshi | $25k | -108 |  |  | -4.0c | yes | L |
-| Nov 26 12:00PM | NCAAB | Baylor vs Gonzaga | moneyline: Gonzaga | kalshi | $34k | -163 | ✅ novig |  | -4.0c | yes | pending |
+| Nov 26 12:00PM | NCAAB | Baylor vs Gonzaga | moneyline: Gonzaga | kalshi | $34k | -163 | ✅ novig |  | -4.0c | yes | W |
 | Nov 26 11:00AM | NCAAB | Oklahoma vs Purdue | moneyline: Purdue | kalshi | $72k | -186 | ✅ novig |  | +2.0c |  | L |
 | Nov 26 10:10AM | NCAAB | Georgia @ Cincinnati | moneyline: CIN (0) | novig | $39k | -125 | ✅ kalshi |  | +3.5c |  | W |
 | Nov 26 10:10AM | NCAAB | Georgia vs Cincinnati: Point Total | total: Over 156.5 points | kalshi | $28k | +113 |  |  | +4.0c |  | W |
