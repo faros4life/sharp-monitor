@@ -115,6 +115,8 @@
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.76,
+   "price_after_15m": 0.76,
+   "price_after_15m_book": "novig",
    "price_american": -317,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.76,
@@ -173,6 +175,7 @@
    "size_x": 4.5,
    "start_source": "odds",
    "start_utc": "2026-11-27T22:00:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi"
    ],
@@ -297,6 +300,8 @@
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.83,
+   "price_after_15m": 0.8399,
+   "price_after_15m_book": "kalshi",
    "price_american": -488,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.83,
@@ -359,6 +364,7 @@
    "size_x": 6.1,
    "start_source": "odds",
    "start_utc": "2026-11-28T00:00:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi",
     "novig",
@@ -418,7 +424,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 3487.72,
-    "volume_24h_fp": 3064.17,
+    "volume_24h_fp": 3068.38,
     "volume_fp": 6193.49
    },
    "ex_stats_first": {
@@ -808,9 +814,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 486.67,
-    "volume_24h_fp": 471.97,
-    "volume_fp": 492.15
+    "open_interest_fp": 489.22,
+    "volume_24h_fp": 492.15,
+    "volume_fp": 494.70000000000005
    },
    "ex_stats_first": {
     "open_interest_fp": 444.67,
@@ -1158,9 +1164,9 @@
     "volume_fp": 355.02
    },
    "ex_stats_close": {
-    "open_interest_fp": 19298.75,
-    "volume_24h_fp": 22403.49,
-    "volume_fp": 24855.07
+    "open_interest_fp": 19581.45,
+    "volume_24h_fp": 24007.18,
+    "volume_fp": 25137.77
    },
    "ex_stats_first": {
     "open_interest_fp": 5189.18,
@@ -1351,9 +1357,9 @@
     "volume_fp": 2.15
    },
    "ex_stats_close": {
-    "open_interest_fp": 791.9300000000001,
+    "open_interest_fp": 802.1800000000001,
     "volume_24h_fp": 764.45,
-    "volume_fp": 811.85
+    "volume_fp": 822.1
    },
    "ex_stats_first": {
     "open_interest_fp": 524.31,
@@ -3134,7 +3140,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Gonzaga",
@@ -5616,7 +5622,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas Tech",
@@ -7221,7 +7227,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 174,
+   "settle_tries": 175,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNCW (0)",
