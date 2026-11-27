@@ -1,4 +1,4 @@
-# Paper splits (updated 2026-11-27T23:00:34Z)
+# Paper splits (updated 2026-11-27T23:05:23Z)
 
 Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kill bar: 30+ resulted at -0.10u/play or worse closes a split.
 
@@ -17,11 +17,11 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 | Tier 2 core (paper) | tier | 2026-10-27 | 25-25-0 | -3.49 | -0.070 | -2.69 | CLOSED |
 | Evening sends, ex-Hard Rock | scan | 2026-10-26 | 26-23-0 | -0.38 | -0.008 | -2.26 | OPEN |
 | Muted midday (11 AM-2 PM ET) | scan | 2026-10-26 | 125-120-0 | -8.71 | -0.036 | -0.51 | OPEN |
-| Liquidity totals, no sharp agree | scan | 2026-10-22 | 339-319-0 | +7.67 | +0.012 |  | OPEN |
+| Liquidity totals, no sharp agree | scan | 2026-10-22 | 340-320-0 | +7.54 | +0.011 |  | OPEN |
 | Liquidity vs sharp (oppose) | scan | 2026-10-22 | 272-244-0 | -13.37 | -0.026 |  | CLOSED |
-| Liquidity spreads | scan | 2026-10-22 | 621-586-0 | -37.35 | -0.031 |  | CLOSED (by decision, 2026-10-27) |
-| Liquidity overnight (12-5 AM ET) | scan | 2026-10-26 | 183-123-0 | +0.89 | +0.003 |  | CLOSED |
-| Liquidity evening (5-8 PM ET) | scan | 2026-10-26 | 345-291-0 | -24.74 | -0.039 |  | CLOSED |
+| Liquidity spreads | scan | 2026-10-22 | 623-588-0 | -37.35 | -0.031 |  | CLOSED (by decision, 2026-10-27) |
+| Liquidity overnight (12-5 AM ET) | scan | 2026-10-26 | 183-124-0 | -0.11 | -0.000 |  | CLOSED |
+| Liquidity evening (5-8 PM ET) | scan | 2026-10-26 | 346-291-0 | -23.76 | -0.037 |  | CLOSED |
 | NBA liquidity totals (lane) | scan | 2026-10-28 | 144-119-0 | +19.73 | +0.075 |  | OPEN |
 | NBA liquidity totals - unders | scan | 2026-10-28 | 77-65-0 | +9.95 | +0.070 |  | OPEN |
 | NBA liquidity totals - no sharp tag | scan | 2026-10-28 | 70-56-0 | +11.12 | +0.088 |  | OPEN |
@@ -30,7 +30,7 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 | NBA liquidity totals - evacuation | scan | 2026-10-28 | 40-45-0 | -6.35 | -0.075 |  | CLOSED |
 | NBA liquidity, price -129..-105 | scan | 2026-10-28 | 133-123-0 | -2.30 | -0.009 |  | OPEN |
 
-**All-history reference (every resulted play in the feed, not forward; read only):** Tier 2 core (paper) 32-28-0, -0.62u (-0.010/play); Evening sends, ex-Hard Rock 34-31-0, -1.70u (-0.026/play); Muted midday (11 AM-2 PM ET) 149-128-0, +3.89u (+0.014/play); Liquidity overnight (12-5 AM ET) 218-144-0, +5.50u (+0.015/play); Liquidity evening (5-8 PM ET) 393-348-0, -49.09u (-0.066/play)
+**All-history reference (every resulted play in the feed, not forward; read only):** Tier 2 core (paper) 32-28-0, -0.62u (-0.010/play); Evening sends, ex-Hard Rock 34-31-0, -1.70u (-0.026/play); Muted midday (11 AM-2 PM ET) 149-128-0, +3.89u (+0.014/play); Liquidity overnight (12-5 AM ET) 218-145-0, +4.50u (+0.012/play); Liquidity evening (5-8 PM ET) 394-348-0, -48.11u (-0.065/play)
 
 **Muted midday (11 AM-2 PM ET): breakdowns** (resulted plays only)
 
@@ -49,7 +49,7 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 
 **ProphetX tripwire:** 30/30 resulted, -0.106u/play - PAUSE LIVE.
 
-**Price gaps (measurement only):** {"gaps": 276, "per_day": 25.1, "edge_pct_median": 13.93, "edge_pct_p90": 27.06, "size_est_median_upper_bound": 636.5, "seen_once_share": 0.26, "lifetime_min_median": 40.0, "lived_10min_plus": 199, "with_200_both_legs_upper_bound": 187, "scan_sec_median": 212.0}
+**Price gaps (measurement only):** {"gaps": 276, "per_day": 25.1, "edge_pct_median": 13.93, "edge_pct_p90": 27.06, "size_est_median_upper_bound": 636.5, "seen_once_share": 0.25, "lifetime_min_median": 40.0, "lived_10min_plus": 199, "with_200_both_legs_upper_bound": 187, "scan_sec_median": 212.0}
 
 **Counting rules:** resulted = W, L or P with a unit value (pushes count, at 0u); liquidity artifacts excluded; pending/ungraded plays don't count. Times are America/New_York (DST-aware). Lead = start minus alert time. Streams: SENT (pushed), MUTED (logged, never pushed), LIVE (phase-1 subset of SENT), LIQ-MAIN, LIQ-EXTRA; paper = never bet. ALL PLAYS = every resulted play in a stream; GRADED ERA = Oct 20+ only.
 
