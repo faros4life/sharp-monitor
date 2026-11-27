@@ -591,32 +591,58 @@ def lane_stats(plays):
     if len(c) > 1:
         m, se = _st.mean(c), _st.stdev(c) / len(c) ** 0.5
         ci = (m - 1.96 * se, m + 1.96 * se)
+    # Nov 27 (Peter): "Add 95% units/play confidence intervals ... CLV confidence intervals alone are
+    # insufficient." This is the quantity his 25 Nov yardstick actually judges a lane on - CI fully above 0
+    # is proven, fully below is kill territory, crossing 0 is unproven - so it needs its own interval and
+    # not the CLV one standing in for it. Same estimator as the CLV interval above, deliberately: one method
+    # in this file, so the two intervals cannot drift apart in meaning.
+    # A single play has no spread, so no interval is claimed for n=1 rather than a width of zero being
+    # printed - an interval of zero width would read as certainty from one bet.
+    upp = _st.mean(u) if u else None
+    uci = None
+    if len(u) > 1:
+        mu, seu = _st.mean(u), _st.stdev(u) / len(u) ** 0.5
+        uci = (mu - 1.96 * seu, mu + 1.96 * seu)
     return {"n": len(plays), "w": sum(p["res"] == "W" for p in plays), "l": sum(p["res"] == "L" for p in plays),
             "p": sum(p["res"] == "P" for p in plays), "u": sum(u), "roi": 100 * sum(u) / len(u) if u else None,
-            "clv": _st.mean(c) if c else None, "cn": len(c), "ci": ci,
+            "clv": _st.mean(c) if c else None, "cn": len(c), "ci": ci, "upp": upp, "uci": uci,
             "beat": 100 * sum(x > 0 for x in c) / len(c) if c else None}
 
 
 def lane_summary(acct, last=50):
     """Lines of the authoritative per-strategy table. Settled plays only; window = last `last` per lane."""
-    out = [f"AUTHORITATIVE LIVE TABLE - from {START_UTC[:10]}, lane from the bot's own order rows, merged plays, "
-           f"1u at the after-fee fill, certified CLV only (last {last} settled plays per lane)"]
+    # ONE header line, deliberately. reconcile_live.block_of() starts at this line and stops at the first
+    # line that does not begin with a lane name, so a second header line would end the block immediately and
+    # all three reports would compare as "IDENTICAL (1 line vs 1)" - a check that passes while verifying
+    # nothing. The window legend therefore rides on the header itself.
+    out = [f"AUTHORITATIVE LIVE TABLE - from {START_UTC[:10]}, lane from the bot's own order rows, merged "
+           f"plays, 1u at the after-fee fill, certified CLV only; u/play carries its own 95% interval; "
+           f"windows ALL = every settled play (governs qualification, Peter 25 Nov), L50/L20 = last 50/20, "
+           f"H1/H2 = chronological halves of ALL"]
     lanes = sorted({str(p["lane"]) for p in acct["plays"]})
     for ln in lanes:
-        S = sorted([p for p in acct["plays"] if str(p["lane"]) == ln and p.get("res") in ("W", "L", "P")
-                    and p.get("am_net") is not None], key=lambda p: p["t"])[-last:]
-        if not S:
+        A = sorted([p for p in acct["plays"] if str(p["lane"]) == ln and p.get("res") in ("W", "L", "P")
+                    and p.get("am_net") is not None], key=lambda p: p["t"])
+        if not A:
             out.append(f"  {ln}: no settled plays")
             continue
-        h = len(S) // 2
-        for tag, part in (("ALL", S), ("H1", S[:h]), ("H2", S[h:])):
+        h = len(A) // 2
+        # ALL is all-time now, not the last `last`: his 25 Nov ruling makes the ALL-TIME interval the one
+        # that governs statistical qualification, so it must not silently be a 50-play window. L50 keeps the
+        # old window under its own honest name, and L20 is the supporting evidence that never qualifies alone.
+        for tag, part in (("ALL", A), ("L50", A[-50:]), ("L20", A[-20:]), ("H1", A[:h]), ("H2", A[h:])):
             if not part:
                 continue
+            if tag in ("L50", "L20") and len(part) == len(A):
+                continue        # same rows as ALL: say it once rather than three identical lines
             x = lane_stats(part)
             roi = "n/a" if x["roi"] is None else f"{x['roi']:+.1f}%"
+            upp = ("n/a" if x["upp"] is None else f"{x['upp']:+.3f}"
+                   + (f" 95% [{x['uci'][0]:+.3f},{x['uci'][1]:+.3f}]" if x["uci"] else " (n=1, no interval)"))
             clv = "n/a" if x["clv"] is None else (f"{x['clv']:+.2f}% ({x['cn']}/{x['n']}, beat {x['beat']:.0f}%"
                                                   + (f", 95% [{x['ci'][0]:+.2f},{x['ci'][1]:+.2f}]" if x["ci"] else "") + ")")
-            out.append(f"  {ln:<9} {tag:<3} n{x['n']:<3} {x['w']}-{x['l']}-{x['p']} | {x['u']:+.2f}u | ROI {roi} | CLV {clv}")
+            out.append(f"  {ln:<9} {tag:<3} n{x['n']:<3} {x['w']}-{x['l']}-{x['p']} | {x['u']:+.2f}u | "
+                       f"u/play {upp} | ROI {roi} | CLV {clv}")
     return out
 
 
