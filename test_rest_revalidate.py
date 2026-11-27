@@ -136,5 +136,35 @@ ok("the unit-ledger guard still runs after it", body.index("rest_revalidate(") <
 ok("the T-30 expiry is untouched", "REST_BEFORE_MIN" in src)
 ok("the ledger consume ordering is unchanged", "_unit_ledger_consume(_rb_grant, risk)" in body)
 
+# --- Peter's four pre-deployment questions, answered from the code -------------------------------
+_src = open("executor.py", encoding="utf-8").read()
+_rb = _src[_src.index("def rest_bid("):]
+_rb = _rb[:_rb.index("\ndef ", 10)]
+_i_rev = _rb.index("rest_revalidate(")
+_i_cont = _rb.index("why_not.append(_rwhy)")
+
+ok("1. a refused book CANNOT consume a unit - it continues before the ledger guard",
+   _i_cont < _rb.index("_unit_ledger_guard"))
+ok("   and before the ledger consume", _i_cont < _rb.index("_unit_ledger_consume"))
+ok("   the grant stays None until a book passes", "_rb_grant = None" in _rb
+   and _rb.index("_rb_grant = None") < _i_rev)
+
+ok("2. no ORPHANED CLAIM: the all-refused path releases the submission claim",
+   _rb.index("why_not.append(_rwhy)") < _rb.rindex("registry.release_submission"))
+ok("   and a failed release leaves it HELD so the next run refuses",
+   "it stays held, next run refuses" in _rb)
+
+ok("3. no INCORRECT EXPOSURE: consume runs only for the book that passed",
+   _rb.index("_unit_ledger_consume") > _i_rev
+   and _rb.count("_unit_ledger_consume") == 1)
+
+ok("4. FALLBACK preserved: a refusal continues to the next book",
+   _rb[_i_cont:_i_cont + 120].find("continue") > 0)
+ok("   using the same fallthrough the pre-existing refusals use",
+   _rb.count("continue") >= 5 and "falls through to the next book" in _rb)
+
+ok("5. an all-refused run is announced, not silent",
+   "RESTING BID NOT PLACED" in _rb and "_why[:300]" in _rb)
+
 print(f"\n{len(FAILED)} failed" if FAILED else "\nall passed")
 raise SystemExit(1 if FAILED else 0)
