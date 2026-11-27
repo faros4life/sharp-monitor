@@ -31,11 +31,30 @@ jobs:
           python-version: "3.12"
       - run: pip install -q cryptography
       - name: Strategy completeness gate
+        # Nov 27 (Peter): "Verify the actual live-switch configuration." Without these the job saw no
+        # EXEC_*_LIVE variable at all and the gate reported every lane - LANE 1 and BOARD V4 included -
+        # as "switch off", then skipped the incomplete ones. These are on/off repository VARIABLES, not
+        # secrets: no credential, no money figure, nothing that cannot appear in a public log.
+        #
+        # A variable that does not exist renders as the empty string, which strategy_registry reads as
+        # UNKNOWN and fails closed as live. So deleting a line here makes the gate stricter, never laxer.
+        env:
+          EXEC_LIVE: ${{ vars.EXEC_LIVE }}
+          EXEC_BOARD_LIVE: ${{ vars.EXEC_BOARD_LIVE }}
+          EXEC_R1_LIVE: ${{ vars.EXEC_R1_LIVE }}
+          EXEC_NCS_LIVE: ${{ vars.EXEC_NCS_LIVE }}
+          EXEC_DOGS_LIVE: ${{ vars.EXEC_DOGS_LIVE }}
         run: python -u test_strategy_registry.py
       - name: Reporting lane maps agree with the executor
         run: python -u test_lane_reporting.py
       - name: Every live lane has a unit in the exposure ledger
         run: python -u test_lane_units_complete.py
       - name: Integration status for every lane (report)
+        env:
+          EXEC_LIVE: ${{ vars.EXEC_LIVE }}
+          EXEC_BOARD_LIVE: ${{ vars.EXEC_BOARD_LIVE }}
+          EXEC_R1_LIVE: ${{ vars.EXEC_R1_LIVE }}
+          EXEC_NCS_LIVE: ${{ vars.EXEC_NCS_LIVE }}
+          EXEC_DOGS_LIVE: ${{ vars.EXEC_DOGS_LIVE }}
         if: always()
         run: python -u strategy_registry.py

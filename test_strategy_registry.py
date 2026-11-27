@@ -36,20 +36,93 @@ for lane, (const, switch) in sorted(SR.LIVE_LANES.items()):
     ok(f"{lane}: the executor has a {switch} switch", switch in open("executor.py", encoding="utf-8").read())
     ok(f"{lane}: the registry gives it the executor's label", SR.label(lane) == ex.LANE_NAME.get(lane))
 
-# ---- 2. THE GATE. A lane that is live, or has a live record, must have no missing integration.
-# LANE 1, R1, BOARD V4 and DOGS have placed real orders or been switched on; NCS never has.
+# ---- 2. THE GATE.
+# Nov 27 (Peter): "Fix the completeness gate so an enabled strategy cannot bypass integration requirements
+# simply because it has no fills. Verify the actual live-switch configuration. Keep NCS disabled; defer its
+# remaining integration work."
+#
+# The bypass this removes: the gate used to require completeness only for a lane that was switched on OR
+# appeared in the hand-written HAS_LIVE_RECORD list below. Both halves failed for the case that matters.
+# switched_on() read an unset variable as "off", so in a job that is passed no EXEC_*_LIVE variables EVERY
+# lane looked off - and a brand-new lane that Peter had switched on but which had not filled yet is in no
+# hand-written list either. So a lane could be enabled, incomplete, and silently skipped. That is the DOGS
+# case exactly: switched on 23 Nov, zero fills, invisible to every report for four days.
+#
+# The rule now: a lane must be complete unless its switch is EXPLICITLY off. Unknown counts as live and
+# fails closed, so a job that cannot see the configuration cannot wave a lane through. "No fills" is no
+# longer a reason for anything - it is not consulted.
+#
+# A live record still forces completeness on top of that, for a lane deliberately switched off that has
+# already placed real orders (R1, paused 23 Nov) - its history still has to be graded and reported.
+#
+# One more distinction, so this is enforceable rather than merely strict. A job that is passed NO switch
+# variables at all (a local run, run_tests.py, any other workflow) cannot verify the configuration, and
+# failing there would paint every suite red for something that is not a defect. A job passed SOME of them
+# has had one dropped, which IS a defect and fails closed per lane. So:
+#   - some switches visible -> every unknown fails closed as live
+#   - none visible          -> this run cannot verify; say so, enforce the live-record rule, and instead
+#                             assert statically that the authoritative workflow passes all five.
+# The static check below is what keeps the bypass shut everywhere, including here.
 HAS_LIVE_RECORD = ("rules", "r1", "board", "dogs")
+_STATES = {ln: SR.switch_state(ln) for ln in SR.LIVE_LANES}
+_ANY_VISIBLE = any(v != "unknown" for v in _STATES.values())
+if not _ANY_VISIBLE:
+    print("NOTE  no EXEC_*_LIVE variable reached this job, so the live configuration is NOT verified here."
+          " The strategy-completeness workflow passes them; the static check below asserts that it does.")
+
+_WF = open(".github/workflows/strategy-completeness.yml", encoding="utf-8").read()
+for lane, (_const, _switch) in sorted(SR.LIVE_LANES.items()):
+    ok(f"the completeness workflow passes {_switch} to the gate",
+       f"{_switch}: ${{{{ vars.{_switch} }}}}" in _WF,
+       "not in strategy-completeness.yml env - that job cannot see this lane's real switch")
+
 for lane in sorted(SR.LIVE_LANES):
-    on, rec = SR.switched_on(lane), lane in HAS_LIVE_RECORD
+    state, rec = _STATES[lane], lane in HAS_LIVE_RECORD
+    if state == "unknown" and not _ANY_VISIBLE:
+        state = "off"          # unverifiable here; the static check above carries the enforcement
     m = SR.missing(lane)
-    if on or rec:
-        why = "is switched on" if on else "has a live record"
+    if state != "off" or rec:
+        why = ("is switched on" if state == "on" else
+               "has an UNREADABLE switch, which fails closed as live" if state == "unknown" else
+               "has a live record")
         ok(f"{lane} {why}, so every required integration is present",
            not m, "; ".join(f"{k} ({x})" for k, _d, x in m))
     else:
-        print(f"SKIP  {lane} is not live and has no live record - {len(m)} integration(s) still missing"
-              + (": " + ", ".join(k for k, _d, _x in m) if m else ""))
+        print(f"DEFERRED  {lane} is explicitly switched off and has no live record"
+              + (f" - {len(m)} integration(s) still missing: " + ", ".join(k for k, _d, _x in m) if m
+                 else " - complete"))
         ok(f"{lane} is correctly reported as NOT ready to go live", not SR.live_ready(lane)[0] or not m)
+
+# ---- 2b. the gate's own teeth, proved rather than assumed: an enabled incomplete lane must FAIL, and an
+# unreadable switch must behave like enabled. Asserted against a synthetic lane so it holds for the NEXT
+# trigger, not just today's five. These are the two properties Peter asked for.
+import os as _os
+
+
+def _demands_completeness(value):
+    """Would the gate demand completeness for a lane whose switch reads `value`? (value None = unset)"""
+    _sw = "EXEC_GATEPROBE_LIVE"
+    _prev = _os.environ.get(_sw)
+    SR.LIVE_LANES["_gateprobe"] = ("GATEPROBE_UNIT", _sw)
+    try:
+        if value is None:
+            _os.environ.pop(_sw, None)
+        else:
+            _os.environ[_sw] = value
+        return SR.switch_state("_gateprobe") != "off"
+    finally:
+        SR.LIVE_LANES.pop("_gateprobe", None)
+        _os.environ.pop(_sw, None)
+        if _prev is not None:
+            _os.environ[_sw] = _prev
+
+
+ok("an ENABLED lane is held to completeness whatever its fill count", _demands_completeness("on"))
+ok("an UNSET switch fails closed as live, never as off", _demands_completeness(None))
+ok("an EMPTY switch (missing repo variable) fails closed as live", _demands_completeness(""))
+ok("an UNRECOGNISED switch value fails closed as live", _demands_completeness("maybe"))
+ok("only an EXPLICIT off defers a lane", not _demands_completeness("off"))
+ok("and 'false' is an explicit off too", not _demands_completeness("false"))
 
 # ---- 3. the paper lane must stay out of the live scorecard and the unit schedule.
 for lane in SR.PAPER_LANES:

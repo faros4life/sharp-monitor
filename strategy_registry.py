@@ -52,11 +52,39 @@ def label(lane):
     return _ex().LANE_NAME.get(lane)
 
 
-def switched_on(lane):
-    """True when the lane's money switch is 'on' in THIS environment. Off/unset in CI, which is why the
-    completeness test also checks every lane that already has a live record."""
+def switch_state(lane):
+    """"on" | "off" | "unknown" - the lane's ACTUAL money-switch configuration in this environment.
+
+    Nov 27 (Peter): "Fix the completeness gate so an enabled strategy cannot bypass integration
+    requirements simply because it has no fills. Verify the actual live-switch configuration."
+
+    The distinction between off and unknown is the whole point and must not be collapsed. This used to
+    read `os.environ.get(sw) or "off"`, so a variable that was never passed to the job was indistinguishable
+    from one Peter had deliberately switched off - and the gate ran every lane as "off", printing `switch off`
+    for LANE 1 and BOARD V4 while both were live. That is fail-OPEN on a safety gate: an enabled, incomplete
+    lane read as off and was skipped.
+
+    UNSET is therefore "unknown", never "off", and the caller fails closed on it. An EMPTY value is also
+    unknown: GitHub renders a missing repository variable as the empty string, so `EXEC_X_LIVE: ''` means the
+    variable does not exist, not that it is off. Only an explicit word decides.
+    """
     sw = (LIVE_LANES.get(lane) or (None, None))[1]
-    return bool(sw) and (os.environ.get(sw) or "off").strip().lower() == "on"
+    if not sw:
+        return "unknown"
+    raw = os.environ.get(sw)
+    if raw is None or not raw.strip():
+        return "unknown"
+    v = raw.strip().lower()
+    if v in ("on", "1", "true", "yes"):
+        return "on"
+    if v in ("off", "0", "false", "no"):
+        return "off"
+    return "unknown"                       # an unrecognised value is not evidence of off
+
+
+def switched_on(lane):
+    """True only when the switch is explicitly on. Use switch_state() where unknown must fail closed."""
+    return switch_state(lane) == "on"
 
 
 # ---------------------------------------------------------------- the required integrations
@@ -200,7 +228,8 @@ def missing(lane):
 
 def report():
     """{lane: {"label":, "on":, "missing": [...]}} for every live lane the executor names."""
-    return {ln: {"label": label(ln), "on": switched_on(ln), "missing": missing(ln)} for ln in sorted(LIVE_LANES)}
+    return {ln: {"label": label(ln), "on": switched_on(ln), "state": switch_state(ln),
+                 "missing": missing(ln)} for ln in sorted(LIVE_LANES)}
 
 
 def live_ready(lane):
@@ -212,8 +241,15 @@ def live_ready(lane):
 
 
 if __name__ == "__main__":
+    _st = {"on": "ON     ", "off": "off    ", "unknown": "UNKNOWN"}
+    _unk = [ln for ln, r in report().items() if r["state"] == "unknown"]
     for ln, r in report().items():
-        print(f"{ln:7} {str(r['label']):9} switch {'ON ' if r['on'] else 'off'} "
+        print(f"{ln:7} {str(r['label']):9} switch {_st[r['state']]} "
               f"{'COMPLETE' if not r['missing'] else str(len(r['missing'])) + ' MISSING'}")
         for k, d, x in r["missing"]:
             print(f"          - {k}: {d}\n            {x}")
+    if _unk:
+        print(f"\n  SWITCH CONFIGURATION NOT VISIBLE for {len(_unk)} lane(s): {', '.join(sorted(_unk))}.")
+        print("  The job was not given those EXEC_*_LIVE repository variables, so this report cannot say")
+        print("  whether they are live. The gate treats unknown as live and fails closed; it is never read")
+        print("  as 'off'. Pass the variables in the workflow env to see the real configuration.")
