@@ -1,0 +1,41 @@
+name: strategy-completeness
+
+# Peter, 27 Nov 2026: "Automated completeness tests must prevent a new trigger from going live if any required
+# integration is missing." DOGS spent four days live and invisible to every report because each reporting module
+# kept its own copy of a lane list written before DOGS existed.
+#
+# This runs the completeness gate on every push to main and on every pull request, so an incomplete lane cannot
+# reach main switched on. READ-ONLY: no secrets, no network, no venue, no orders, contents: read. It runs tests
+# that import the executor and inspect constants; nothing is placed, sized, graded or killed.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: strategy-completeness-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Strategy completeness gate
+        run: python -u test_strategy_registry.py
+      - name: Reporting lane maps agree with the executor
+        run: python -u test_lane_reporting.py
+      - name: Every live lane has a unit in the exposure ledger
+        run: python -u test_lane_units_complete.py
+      - name: Integration status for every lane (report)
+        if: always()
+        run: python -u strategy_registry.py

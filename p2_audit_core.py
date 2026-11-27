@@ -281,23 +281,58 @@ CSV_FIELDS = ("bucket", "segment", "book", "plays", "verified_money", "W", "L", 
 # executor.LIVE_UNIT records the change $200 -> $300 on 9 Nov. A segment gets units ONLY when EXACT-attributed
 # to that lane and every play in it is dated on/after the effective time. Other lanes: UNAVAILABLE until confirmed.
 # R1 and BOARD V4: executor.R1_UNIT / BOARD_UNIT, both "Peter, 11 Nov" written approvals, unchanged since.
-# DOGS: Peter's written spec change of 25 Nov 2026 set the unit at $300 (executor.DOGS_UNIT); the 23-24 Nov
-# pilot ran at $100. One (since, unit) pair cannot carry both, and units_for() grants units only when every
-# play in the segment is dated on/after `since`, so dating DOGS from 25 Nov reports the pilot's own plays as
-# UNAVAILABLE rather than valuing a $100 bet at $300. Conservative on purpose; it understates nothing.
-UNIT_SCHEDULE = {"LANE 1": ("2026-11-09T00:00:00+00:00", 300.0),
-                 "R1": ("2026-11-11T00:00:00+00:00", 200.0),
-                 "BOARD V4": ("2026-11-11T00:00:00+00:00", 200.0),
-                 "DOGS": ("2026-11-25T00:00:00+00:00", 300.0)}
+#
+# UNIT_HISTORY (Peter, 27 Nov: "preserve the historical $100 pilot unit and the subsequent $300 unit using their
+# verified effective dates"). A lane's unit can change, so one (since, unit) pair is not enough: DOGS ran the
+# $100 pilot from 23 Nov and $300 from the 25 Nov spec change. Segments are oldest-first and each play is valued
+# at the unit in force on its own date. A play that falls before a lane's first segment still gets NO units -
+# the schedule is a record of written approvals, never an assumption.
+# The 25 Nov change has no recorded time of day, so the ET day boundary is used; it can only mis-value a Dogs
+# order placed earlier that same day, and there are no Dogs orders at all, so today this changes no number.
+UNIT_HISTORY = {"LANE 1": (("2026-11-09T00:00:00+00:00", 300.0),),
+                "R1": (("2026-11-11T00:00:00+00:00", 200.0),),
+                "BOARD V4": (("2026-11-11T00:00:00+00:00", 200.0),),
+                "DOGS": (("2026-11-23T15:50:00+00:00", 100.0),      # Peter flipped EXEC_DOGS_LIVE, ~10:50 AM ET
+                         ("2026-11-25T05:00:00+00:00", 300.0))}     # DOGS SPEC CHANGE, 25 Nov (ET day start)
+# The CURRENT unit per lane, kept in the original shape for every caller that wants one number and one date.
+UNIT_SCHEDULE = {ln: h[-1] for ln, h in UNIT_HISTORY.items()}
+
+
+def unit_history(lane):
+    """((since, unit), ...) oldest-first for a lane's display label, or () when nothing is confirmed."""
+    return UNIT_HISTORY.get(lane) or ()
+
+
+def unit_at(lane, when):
+    """The unit in force for `lane` at `when` (an ISO string or datetime), or None when the date falls before
+    the lane's first confirmed unit. Never guesses a unit for an undated play."""
+    t = utc(when) if not hasattr(when, "tzinfo") else when
+    if t is None:
+        return None
+    out = None
+    for since, unit in unit_history(lane):
+        t0 = utc(since)
+        if t0 and t >= t0:
+            out = unit
+    return out
 
 
 def units_for(bucket, seg_range, net):
+    """Units for a whole segment's net. Granted only when ONE unit was in force across the entire segment,
+    which is the same strictness as before: a segment straddling a unit change reports UNAVAILABLE."""
     lane = bucket.split(":", 1)[1] if bucket.startswith("EXACT:") else None
-    if lane not in UNIT_SCHEDULE or not seg_range or not seg_range[0]:
+    if not unit_history(lane) or not seg_range or not seg_range[0]:
         return None
-    since, unit = UNIT_SCHEDULE[lane]
-    t0, t1 = utc(seg_range[0]), utc(since)
-    return round(net / unit, 2) if t0 and t1 and t0 >= t1 else None
+    u0 = unit_at(lane, seg_range[0])
+    if u0 is None:
+        return None
+    # The end of the range is checked only when it is a readable date (callers pass a placeholder when the
+    # segment has one play), so a segment that straddles a unit change reports UNAVAILABLE rather than a
+    # number computed at the wrong unit.
+    end = seg_range[-1] if len(seg_range) > 1 else None
+    if end is not None and utc(end) is not None and unit_at(lane, end) != u0:
+        return None
+    return round(net / u0, 2)
 
 
 def render(rep):

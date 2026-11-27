@@ -619,17 +619,29 @@ def _ci(vals):
     return [round(m - h, 2), round(m + h, 2)]
 
 
-def seg_stats(plays, clv, unit, unit_since):
+def seg_stats(plays, clv, unit, unit_since, lane=None):
     """One segment: W-L-P, net, risked, ROI, units (only if every play is on/after the unit's start), certified CLV,
-    beat-close %, coverage, and 95% intervals for CLV and units. Missing closes are excluded, never zero."""
-    from p2_audit_core import verified_money, utc
+    beat-close %, coverage, and 95% intervals for CLV and units. Missing closes are excluded, never zero.
+
+    Nov 27 (Peter: preserve each lane's historical units with their verified effective dates): when `lane` is
+    given and p2_audit_core records more than one unit for it, EVERY PLAY is valued at the unit in force on its
+    own date rather than one unit for the whole segment - which is what DOGS needs ($100 pilot from 23 Nov,
+    $300 from the 25 Nov spec change). A play dated before the lane's first confirmed unit still gets no units,
+    so a segment is never valued at a unit nobody approved."""
+    from p2_audit_core import verified_money, utc, unit_history, unit_at
     ok = [p for p in plays if verified_money(p)]
     net, risked = sum(p["profit"] for p in ok), sum(p["stake"] for p in ok)
     t0 = utc(unit_since) if unit_since else None
     def _when(p):
         return utc(p.get("game_start") or "") or utc(p.get("settled") or "")
-    dated = bool(ok) and t0 is not None and all(_when(p) is not None and _when(p) >= t0 for p in ok)
-    units_each = [p["profit"] / unit for p in ok] if (unit and dated) else None
+    hist = unit_history(lane) if lane else ()
+    if len(hist) > 1:
+        per = [(p, unit_at(lane, _when(p))) for p in ok]
+        dated = bool(ok) and all(u is not None for _p, u in per)
+        units_each = [p["profit"] / u for p, u in per] if dated else None
+    else:
+        dated = bool(ok) and t0 is not None and all(_when(p) is not None and _when(p) >= t0 for p in ok)
+        units_each = [p["profit"] / unit for p in ok] if (unit and dated) else None
     cv = []
     for p in plays:
         v = [clv.get(i) for i in p.get("ids") or []]
@@ -651,11 +663,11 @@ def lane_scope(rep, lane, clv, unit_sched, est=None):
         return None
     plays = b.get("_settled_timed") or []
     h = len(plays) // 2
-    w, h1, h2 = (seg_stats(x, clv, unit, since) for x in (plays, plays[:h], plays[h:]))
+    w, h1, h2 = (seg_stats(x, clv, unit, since, lane) for x in (plays, plays[:h], plays[h:]))
     from clv_dashboard import gate
     g = gate(lane, {"clv": h1["clv"], "units": h1["units"]}, {"clv": h2["clv"], "units": h2["units"]},
              {"n": w["clv_n"], "clv": w["clv"], "ci": w["clv_ci"], "pos": round((w["beat"] or 0) * w["clv_n"] / 100)}, True)
-    est_seg = {k: seg_stats(x, est or {}, unit, since) for k, x in (("whole", plays), ("H1", plays[:h]), ("H2", plays[h:]))}
+    est_seg = {k: seg_stats(x, est or {}, unit, since, lane) for k, x in (("whole", plays), ("H1", plays[:h]), ("H2", plays[h:]))}
     return {"whole": w, "H1": h1, "H2": h2, "open": b.get("open_or_ambiguous", 0), "verdict": g["verdict"],
             "clauses": g.get("clauses") or [], "est": est_seg, "plays": plays}
 
