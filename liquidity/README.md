@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 27, 3:25 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 122.
+Updated Fri Nov 27, 3:30 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 122.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -18,7 +18,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 27 2:20PM | NHL | Detroit vs Columbus | moneyline: Columbus | kalshi | $35k | -122 | ✅ novig,prophetx |  | +4.0c |  | pending |
 | Nov 27 2:15PM | NHL | Detroit vs Columbus: Spread | spread: NOT Columbus wins by over 1.5 goals | kalshi | $47k | -213 | ✅ novig |  | -3.0c | yes | pending |
 | Nov 27 2:10PM | NCAAF | Florida vs Florida St.: Total Points | total: NOT Over 54.5 points | kalshi | $32k | -100 |  | ❌ | +0.0c | yes | pending |
-| Nov 27 2:06PM | NCAAF | Florida vs Florida St.: Spread | spread: Florida wins by over 6.5 points | kalshi | $247k | -104 |  |  | +1.0c |  | pending |
+| Nov 27 2:06PM | NCAAF | Florida vs Florida St.: Spread | spread: Florida wins by over 6.5 points | kalshi | $247k | -104 |  |  | +1.0c | yes | pending |
 | Nov 27 2:06PM | NHL | Vancouver vs Philadelphia: Spread | spread: NOT Philadelphia wins by over 1.5 goals | kalshi | $26k | -113 | ✅ novig |  | +3.0c | yes | pending |
 | Nov 27 2:06PM | NCAAF | Michigan vs Ohio St. | moneyline: Ohio St. | kalshi | $180k | -355 | ✅ novig,prophetx |  | +0.0c | yes | pending |
 | Nov 27 2:00PM | NBA | Golden State vs Portland: Total Points | total: NOT Over 217.5 points | kalshi | $34k | -100 |  |  | +1.0c | yes | pending |
