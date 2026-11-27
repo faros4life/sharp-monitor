@@ -1183,6 +1183,86 @@
    "units_flat": null
   },
   {
+   "alert_utc": "2026-11-27T19:40:27Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "West Virginia Mountaineers +26.5 (-110)",
+   "book": "Hard Rock",
+   "book_key": "hardrockbet",
+   "book_quote_age_s": 83,
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+1.5 pts",
+   "clv_conv_pts": null,
+   "clv_pin_line": null,
+   "clv_read_utc": null,
+   "clv_skipped": null,
+   "clv_source": null,
+   "clv_verified": null,
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": 2.2,
+   "executable_book": true,
+   "fade_book": "prophetx",
+   "fade_point": -26.5,
+   "fade_price": 107,
+   "fade_price_after_fee": 105,
+   "fade_units": null,
+   "final": null,
+   "floor_line": 25.5,
+   "game": "West Virginia Mountaineers @ Utah Utes",
+   "grade": "A",
+   "hr1_eligible": false,
+   "hr1_pushed": false,
+   "hr1_verified": null,
+   "hr1_verify_status": null,
+   "hr1_verify_why": null,
+   "kind": "spr",
+   "late": false,
+   "minutes_before_start": 380,
+   "pin_quote_age_s": 27,
+   "point": 26.5,
+   "price": -110,
+   "price_after_fee": -110,
+   "prices_at_alert": {
+    "hardrockbet": {
+     "after_fee": -110,
+     "point": 26.5,
+     "price": -110
+    },
+    "kalshi": {
+     "after_fee": -103.1,
+     "point": 24.5,
+     "price": 104
+    },
+    "novig": {
+     "after_fee": -104,
+     "point": 25.5,
+     "price": -104
+    },
+    "prophetx": {
+     "after_fee": -116.3,
+     "point": 26.5,
+     "price": -114
+    }
+   },
+   "pricing_bettable": true,
+   "quote_book_utc": "2026-11-27T19:39:04Z",
+   "quote_pin_utc": "2026-11-27T19:40:00Z",
+   "quote_recv_utc": "2026-11-27T19:40:27Z",
+   "result": null,
+   "score": 82,
+   "sent_to_phone": false,
+   "sport": "NCAAF",
+   "start_utc": "2026-11-28T02:00:00Z",
+   "top25": true,
+   "units_flat": null
+  },
+  {
    "alert_utc": "2026-11-27T13:30:28Z",
    "beat_close": false,
    "beat_true_close": null,
@@ -3243,7 +3323,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+0.5 pts",
+   "clv": "+1 pts",
    "clv_conv_pts": null,
    "clv_pin_line": null,
    "clv_read_utc": null,
@@ -134380,6 +134460,55 @@
  ],
  "all_alerts": [
   {
+   "alert_text": "West Virginia Mountaineers +26.5 (-110) at Hard Rock (also: ProphetX, Novig)",
+   "bet": "West Virginia Mountaineers +26.5 (-110)",
+   "bet_result": null,
+   "book": "Hard Rock",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": 2.2,
+   "final": null,
+   "game": "West Virginia Mountaineers @ Utah Utes",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 380,
+   "price": -110,
+   "price_after_fee": -110,
+   "pushed_to_phone": false,
+   "repeat": false,
+   "score": 82,
+   "sent_et": "2026-11-27 14:40",
+   "sport": "NCAAF",
+   "start_utc": "2026-11-28T02:00:00Z",
+   "why": "Pinnacle moved +26 -> +25; bet only at +25.5 or better (confirmed by BetOnline, Matchbook)"
+  },
+  {
+   "alert_text": "New Mexico Lobos -6.5 (-120) at Hard Rock",
+   "bet": "New Mexico Lobos -6.5 (-120)",
+   "bet_result": null,
+   "book": "Hard Rock",
+   "confirmed_by": [
+    "Matchbook"
+   ],
+   "edge_pct": 0.6,
+   "final": null,
+   "game": "Air Force Falcons @ New Mexico Lobos",
+   "grade": "B",
+   "late": false,
+   "minutes_before_start": 110,
+   "price": -120,
+   "price_after_fee": -120,
+   "pushed_to_phone": false,
+   "repeat": true,
+   "score": 60,
+   "sent_et": "2026-11-27 14:40",
+   "sport": "NCAAF",
+   "start_utc": "2026-11-27T21:30:00Z",
+   "why": "Pinnacle moved -7 -> -7.5; bet only at -7 or better (confirmed by Matchbook)"
+  },
+  {
    "alert_text": "Michigan Wolverines -9.5 (-108) at Kalshi [-116 after Kalshi fee]",
    "bet": "Michigan Wolverines -9.5 (-108)",
    "bet_result": null,
@@ -192984,16 +193113,16 @@
  ],
  "feed_health": {
   "alerts_sent": 0,
-  "credits_remaining": null,
-  "events_seen": 0,
-  "fetch_ok": false,
-  "last_fetch_ok_utc": "2026-11-27T19:30:28Z",
+  "credits_remaining": 4868342,
+  "events_seen": 101,
+  "fetch_ok": true,
+  "last_fetch_ok_utc": "2026-11-27T19:40:27Z",
   "quota_exhausted": false,
-  "reason": "no poll attempted this run",
-  "sports_due": 0,
-  "sports_polled": 0,
-  "state": "FAILED",
-  "written_utc": "2026-11-27T19:35:26Z"
+  "reason": "",
+  "sports_due": 5,
+  "sports_polled": 5,
+  "state": "HEALTHY",
+  "written_utc": "2026-11-27T19:40:27Z"
  },
  "note": "alerts = one entry per bet (game/market/side), used for the record; result W/L/P or null. all_alerts = every alert sent, newest first, repeats marked repeat=true (logged from Oct 21). units_flat = 1u risked at the first alert's price, after the book's fee on winnings (ProphetX 2%; price_after_fee). Edge, the -130 cap, best-book choice and CLV all use price_after_fee. fade_* (from Oct 26) = best retail price on the OTHER side at the mirrored number when the alert fired; fade_units = 1u on that side, after fees. close_value_pct = TRUE closing value (from Oct 25): expected profit per 1u of price_after_fee at Pinnacle's no-vig win chance from one final read just before start, at the play's own number; beat_true_close = close_value_pct > 0. close_value_pct is PROVISIONAL, not certified: it comes from a read 20-30 min before start (clv_source, clv_read_utc, close_read_mins_before), and against the certified historical Pinnacle close it runs about 0.61 pt optimistic on average, up to 6.4 pt on one play. clv_verified is True only for a certified historical close; it is False on every live read, including clv_conv_pts == 0, and None where no reading exists. clv_pin_line is Pinnacle's own number and clv_conv_pts the half-point conversion applied (0 = our line); both are null on rows written before Nov 10, where no conversion record was kept. clv_skipped says why a play has no reading. CERTIFIED, MODELED and PROVISIONAL CLV are never combined in one figure. The older beat_close/clv fields beat the close almost by construction (ignore). executable_book = the alert book or an 'also' book is Novig/Kalshi/ProphetX/Polymarket. pushed_to_phone/sent_to_phone = not muted (delivery to the phone is not confirmed)."
 }
