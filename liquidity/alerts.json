@@ -1,6 +1,215 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-27T20:40:27Z",
+   "base_depth": 116308,
+   "best_price": 0.485,
+   "best_price_american": 106,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.49,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -8183,
+     "new_this_side": 40794,
+     "other_side": 95533,
+     "other_side_all_levels": 117227,
+     "ratio": 1.3,
+     "this_side": 120473,
+     "this_side_all_levels": 156076
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "Under 6.5 (6.5)",
+     "price": 0.485,
+     "this_side": 26782
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "under 6.5 (6.5)",
+     "price": 0.4854,
+     "this_side": 15443
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 11795.11,
+    "volume_24h_fp": 11184.96,
+    "volume_fp": 11927.17
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 37.21,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 37.21
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 11757.9,
+    "volume_24h_fp": 11184.96,
+    "volume_fp": 11889.96
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-11-27T20:35:52Z",
+   "game": "Vegas vs San Jose: Total Goals",
+   "game_surge_books": [],
+   "game_x": 1.47,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLTOTAL-26NOV27VGKSJ-7\"}",
+   "lead_min": 20,
+   "league": "NHL",
+   "line": 6.5,
+   "market": "total",
+   "new_money": 40794,
+   "new_x": 0.45,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 11795.11,
+      "volume_24h_fp": 11184.96,
+      "volume_fp": 11927.17
+     },
+     "game_normal": 106486,
+     "game_x": 1.47,
+     "normal": 91181,
+     "now": 156076,
+     "type": "UNDER",
+     "x": 1.71
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 401746.0,
+      "volume": 477100.0
+     },
+     "game_normal": 30137,
+     "game_x": 1.05,
+     "normal": 10277,
+     "now": 31629,
+     "type": "UNDER",
+     "x": 3.08
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 12044,
+     "game_x": 1.28,
+     "normal": 9320,
+     "now": 15448,
+     "type": "UNDER",
+     "x": 1.66
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.49,
+   "price_american": 104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.49,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 6.5,
+     "price": -102
+    },
+    "betonlineag": {
+     "point": 6.5,
+     "price": 102
+    },
+    "betopenly": {
+     "point": 6.5,
+     "price": 110
+    },
+    "betrivers": {
+     "point": 6.5,
+     "price": -108
+    },
+    "betus": {
+     "point": 6.5,
+     "price": 100
+    },
+    "bovada": {
+     "point": 6.5,
+     "price": -103
+    },
+    "circasports": {
+     "point": 6.5,
+     "price": 102
+    },
+    "draftkings": {
+     "point": 6.5,
+     "price": -105
+    },
+    "fanatics": {
+     "point": 6.5,
+     "price": 100
+    },
+    "fanduel": {
+     "point": 6.5,
+     "price": -104
+    },
+    "kalshi": {
+     "point": 6.5,
+     "price": 104
+    },
+    "lowvig": {
+     "point": 6.5,
+     "price": 102
+    },
+    "mybookieag": {
+     "point": 6.5,
+     "price": -104
+    },
+    "novig": {
+     "point": 6.5,
+     "price": 106
+    },
+    "polymarket": {
+     "point": 6.5,
+     "price": 104
+    },
+    "prophetx": {
+     "point": 6.5,
+     "price": 106
+    },
+    "williamhill_us": {
+     "point": 6.5,
+     "price": -106
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLTOTAL-26NOV27VGKSJ-7"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 6.5 goals scored",
+   "size_x": 1.71,
+   "start_source": "odds",
+   "start_utc": "2026-11-27T21:00:00Z",
+   "surge_books": [
+    "novig"
+   ],
+   "teams": [
+    "Vegas",
+    "San Jose"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-27T20:35:52Z",
    "base_depth": 49784,
    "best_price": 0.51,
@@ -44,6 +253,11 @@
     "open_interest_fp": 0.0,
     "volume_24h_fp": 0.0,
     "volume_fp": 0.0
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 2431.27,
+    "volume_24h_fp": 1278.08,
+    "volume_fp": 2590.06
    },
    "ex_stats_first": {
     "open_interest_fp": 2431.27,
@@ -228,9 +442,9 @@
     "volume_fp": 10669.02
    },
    "ex_stats_close": {
-    "open_interest_fp": 99754.18,
+    "open_interest_fp": 106538.24,
     "volume_24h_fp": 101653.38,
-    "volume_fp": 135223.57
+    "volume_fp": 142915.48
    },
    "ex_stats_first": {
     "open_interest_fp": 86863.1,
@@ -416,9 +630,9 @@
     "volume_fp": 2861.97
    },
    "ex_stats_close": {
-    "open_interest_fp": 53837.11,
+    "open_interest_fp": 59452.66,
     "volume_24h_fp": 47804.7,
-    "volume_fp": 54769.369999999995
+    "volume_fp": 60384.92
    },
    "ex_stats_first": {
     "open_interest_fp": 44931.58,
@@ -842,9 +1056,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 32889.04,
+    "open_interest_fp": 34063.3,
     "volume_24h_fp": 26639.480000000003,
-    "volume_fp": 33571.479999999996
+    "volume_fp": 34745.74
    },
    "ex_stats_first": {
     "open_interest_fp": 20129.29,
@@ -1064,9 +1278,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 6825.19,
+    "open_interest_fp": 7217.92,
     "volume_24h_fp": 6980.33,
-    "volume_fp": 6982.19
+    "volume_fp": 7374.92
    },
    "ex_stats_first": {
     "open_interest_fp": 6409.83,
@@ -2247,9 +2461,9 @@
     "volume_fp": 317.66
    },
    "ex_stats_close": {
-    "open_interest_fp": 347311.60000000003,
+    "open_interest_fp": 348593.52,
     "volume_24h_fp": 108775.58,
-    "volume_fp": 380079.6
+    "volume_fp": 381403.89
    },
    "ex_stats_first": {
     "open_interest_fp": 325923.35000000003,
@@ -2464,7 +2678,7 @@
    "ex_stats_close": {
     "open_interest_fp": 156651.42,
     "volume_24h_fp": 158020.5,
-    "volume_fp": 158067.89
+    "volume_fp": 158077.55
    },
    "ex_stats_first": {
     "open_interest_fp": 1228.45,
@@ -2777,9 +2991,9 @@
     "volume_fp": 531.53
    },
    "ex_stats_close": {
-    "open_interest_fp": 99754.18,
+    "open_interest_fp": 106538.24,
     "volume_24h_fp": 101653.38,
-    "volume_fp": 135223.57
+    "volume_fp": 142915.48
    },
    "ex_stats_first": {
     "open_interest_fp": 45911.79,
@@ -4390,9 +4604,9 @@
     "volume_fp": 10.81
    },
    "ex_stats_close": {
-    "open_interest_fp": 35638.03,
+    "open_interest_fp": 35646.03,
     "volume_24h_fp": 34567.0,
-    "volume_fp": 37013.64
+    "volume_fp": 37021.64
    },
    "ex_stats_first": {
     "open_interest_fp": 27731.09,
@@ -4811,9 +5025,9 @@
     "volume_fp": 555.81
    },
    "ex_stats_close": {
-    "open_interest_fp": 319119.55,
+    "open_interest_fp": 320197.46,
     "volume_24h_fp": 313191.24,
-    "volume_fp": 347573.82
+    "volume_fp": 348651.73
    },
    "ex_stats_first": {
     "open_interest_fp": 204941.31,
@@ -5361,9 +5575,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3111.68,
+    "open_interest_fp": 10959.0,
     "volume_24h_fp": 3356.89,
-    "volume_fp": 3376.84
+    "volume_fp": 11224.16
    },
    "ex_stats_first": {
     "open_interest_fp": 1675.92,
@@ -5570,8 +5784,8 @@
     "volume": 16471.0
    },
    "ex_stats_close": {
-    "openInterest": 2542946.0,
-    "volume": 3901667.0
+    "openInterest": 2548714.0,
+    "volume": 3907435.0
    },
    "ex_stats_first": {
     "openInterest": 2346875.0,
@@ -6575,12 +6789,14 @@
    "ex_stats_change": null,
    "ex_stats_first": null,
    "fade_price": 0.3876,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-27T16:30:23Z",
    "game": "Toledo at Ohio",
    "game_surge_books": [
     "prophetx"
    ],
    "game_x": 2.71,
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 0, \"px_event\": 1704773782, \"px_market\": 219, \"side\": \"0\"}",
    "lead_min": 25,
    "league": "NCAAF",
@@ -6701,7 +6917,7 @@
     "px_market": 219,
     "side": "0"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -6709,7 +6925,8 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 18,
+   "settle_tries": 19,
+   "settled_utc": "2026-11-27T20:40:27Z",
    "sharp_agree": [
     "Toledo Rockets -3.5 (-104)"
    ],
@@ -6730,7 +6947,7 @@
     "Ohio"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.61
   },
   {
    "alerted_utc": "2026-11-27T16:36:03Z",
@@ -6784,9 +7001,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 6825.19,
+    "open_interest_fp": 7217.92,
     "volume_24h_fp": 6980.33,
-    "volume_fp": 6982.19
+    "volume_fp": 7374.92
    },
    "ex_stats_first": {
     "open_interest_fp": 5315.16,
@@ -7185,12 +7402,14 @@
     "volume": 9687806.0
    },
    "fade_price": 0.51,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-27T16:25:49Z",
    "game": "Toledo @ Ohio",
    "game_surge_books": [
     "novig"
    ],
    "game_x": 2.34,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a20386-a30b-7682-a23e-a8d2a3dc67ef\", \"outcome_id\": \"01a20386-a30b-7682-a23e-a8e78377cfd6\"}",
    "lead_min": 31,
    "league": "NCAAF",
@@ -7314,12 +7533,13 @@
     "market_id": "01a20386-a30b-7682-a23e-a8d2a3dc67ef",
     "outcome_id": "01a20386-a30b-7682-a23e-a8e78377cfd6"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 18,
+   "settle_tries": 19,
+   "settled_utc": "2026-11-27T20:40:27Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -7338,7 +7558,7 @@
     "Ohio"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 1.02
   },
   {
    "alerted_utc": "2026-11-27T16:25:49Z",
@@ -7392,10 +7612,12 @@
     "volume": 13682301.0
    },
    "fade_price": 0.5,
+   "fade_units": 1.0,
    "first_seen_utc": "2026-11-27T16:20:26Z",
    "game": "Toledo @ Ohio",
    "game_surge_books": [],
    "game_x": 1.53,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a2037d-0624-7863-889a-0931638d8109\", \"outcome_id\": \"01a2037d-0624-7863-889a-095a83380177\"}",
    "lead_min": 35,
    "league": "NCAAF",
@@ -7509,14 +7731,15 @@
     "market_id": "01a2037d-0624-7863-889a-0931638d8109",
     "outcome_id": "01a2037d-0624-7863-889a-095a83380177"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi"
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 18,
+   "settle_tries": 19,
+   "settled_utc": "2026-11-27T20:40:27Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Toledo",
@@ -7533,7 +7756,7 @@
     "Ohio"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-27T16:25:49Z",
@@ -7816,12 +8039,14 @@
     "volume_fp": 283115.42
    },
    "fade_price": 0.49,
+   "fade_units": 0.97,
    "first_seen_utc": "2026-11-27T16:20:26Z",
    "game": "Toledo vs Ohio: Total Points",
    "game_surge_books": [
     "prophetx"
    ],
    "game_x": 1.79,
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFTOTAL-26NOV27TOLOHIO-45\"}",
    "lead_min": 35,
    "league": "NCAAF",
@@ -7945,12 +8170,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFTOTAL-26NOV27TOLOHIO-45"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 18,
+   "settle_tries": 19,
+   "settled_utc": "2026-11-27T20:40:27Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -7969,7 +8195,7 @@
     "Ohio"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-27T16:25:49Z",
@@ -8237,12 +8463,14 @@
     "volume": 16004386.0
    },
    "fade_price": 0.38,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-27T16:15:49Z",
    "game": "Toledo @ Ohio",
    "game_surge_books": [
     "prophetx"
    ],
    "game_x": 1.49,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1fd16-4685-7860-bfaf-d4e200b1f788\", \"outcome_id\": \"01a1fd16-4685-7860-bfaf-d5083ffca19e\"}",
    "lead_min": 41,
    "league": "NCAAF",
@@ -8365,7 +8593,7 @@
     "market_id": "01a1fd16-4685-7860-bfaf-d4e200b1f788",
     "outcome_id": "01a1fd16-4685-7860-bfaf-d5083ffca19e"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -8373,7 +8601,8 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 18,
+   "settle_tries": 19,
+   "settled_utc": "2026-11-27T20:40:27Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Toledo",
@@ -8392,7 +8621,7 @@
     "Ohio"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.62
   },
   {
    "alerted_utc": "2026-11-27T16:10:25Z",
@@ -8599,7 +8828,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Utah",
@@ -8857,9 +9086,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 6439.83,
+    "open_interest_fp": 6486.2,
     "volume_24h_fp": 6846.78,
-    "volume_fp": 6846.78
+    "volume_fp": 6893.15
    },
    "ex_stats_first": {
     "open_interest_fp": 2099.59,
@@ -9290,7 +9519,7 @@
    "ex_stats_close": {
     "open_interest_fp": 2609.34,
     "volume_24h_fp": 2775.42,
-    "volume_fp": 2865.9
+    "volume_fp": 2907.62
    },
    "ex_stats_first": {
     "open_interest_fp": 2546.1,
@@ -10437,9 +10666,9 @@
     "volume_fp": 92.48
    },
    "ex_stats_close": {
-    "open_interest_fp": 122611.99,
+    "open_interest_fp": 122803.75,
     "volume_24h_fp": 123960.28,
-    "volume_fp": 124459.8
+    "volume_fp": 124651.56
    },
    "ex_stats_first": {
     "open_interest_fp": 97870.62,
@@ -10645,7 +10874,7 @@
    "ex_stats_close": {
     "open_interest_fp": 165980.93,
     "volume_24h_fp": 198330.24,
-    "volume_fp": 227354.1
+    "volume_fp": 227861.15
    },
    "ex_stats_first": {
     "open_interest_fp": 91844.93,
@@ -11202,9 +11431,9 @@
     "volume_fp": 13.5
    },
    "ex_stats_close": {
-    "open_interest_fp": 17638.71,
+    "open_interest_fp": 17649.58,
     "volume_24h_fp": 16763.77,
-    "volume_fp": 17803.01
+    "volume_fp": 17813.88
    },
    "ex_stats_first": {
     "open_interest_fp": 7435.5,
@@ -12513,9 +12742,9 @@
     "volume_fp": 90.13
    },
    "ex_stats_close": {
-    "open_interest_fp": 53837.11,
+    "open_interest_fp": 59452.66,
     "volume_24h_fp": 47804.7,
-    "volume_fp": 54769.369999999995
+    "volume_fp": 60384.92
    },
    "ex_stats_first": {
     "open_interest_fp": 12791.1,
@@ -13148,9 +13377,9 @@
     "volume_fp": 290.26
    },
    "ex_stats_close": {
-    "open_interest_fp": 159192.77,
+    "open_interest_fp": 159378.4,
     "volume_24h_fp": 146090.06,
-    "volume_fp": 190203.68
+    "volume_fp": 190389.31
    },
    "ex_stats_first": {
     "open_interest_fp": 67674.22,
@@ -13574,9 +13803,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 108815.81,
+    "open_interest_fp": 109778.04,
     "volume_24h_fp": 125470.35,
-    "volume_fp": 127857.93
+    "volume_fp": 129062.8
    },
    "ex_stats_first": {
     "open_interest_fp": 12025.37,
@@ -14014,9 +14243,9 @@
     "volume_fp": 166.38
    },
    "ex_stats_close": {
-    "open_interest_fp": 384228.91,
+    "open_interest_fp": 386068.85,
     "volume_24h_fp": 466680.61,
-    "volume_fp": 528531.83
+    "volume_fp": 534466.63
    },
    "ex_stats_first": {
     "open_interest_fp": 144095.18,
@@ -15003,8 +15232,8 @@
     "volume": 3762.0
    },
    "ex_stats_close": {
-    "openInterest": 11689815.0,
-    "volume": 18586460.0
+    "openInterest": 11699443.0,
+    "volume": 18598888.0
    },
    "ex_stats_first": {
     "openInterest": 3103725.0,
@@ -15906,9 +16135,9 @@
     "volume_fp": 2.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2395.43,
+    "open_interest_fp": 2429.43,
     "volume_24h_fp": 2278.16,
-    "volume_fp": 2408.58
+    "volume_fp": 2442.58
    },
    "ex_stats_first": {
     "open_interest_fp": 137.59,
@@ -16107,9 +16336,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 5960.68,
+    "open_interest_fp": 6201.79,
     "volume_24h_fp": 5688.11,
-    "volume_fp": 6090.08
+    "volume_fp": 6331.19
    },
    "ex_stats_first": {
     "open_interest_fp": 514.5,
@@ -16465,7 +16694,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Nashville",
@@ -16684,7 +16913,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -16760,6 +16989,7 @@
     "volume_fp": 5006.07
    },
    "fade_price": 0.49,
+   "fade_units": 0.97,
    "first_seen_utc": "2026-11-27T10:20:24Z",
    "game": "Calgary vs New Jersey: Spread",
    "game_surge_books": [],
@@ -16873,12 +17103,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNHLSPREAD-26NOV27CGYNJ-NJ2"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 7,
+   "settle_tries": 8,
+   "settled_utc": "2026-11-27T20:40:27Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Calgary",
@@ -16895,7 +17126,7 @@
     "New Jersey"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-27T09:10:22Z",
@@ -17585,8 +17816,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 4673838.0,
-    "volume": 5395591.0
+    "openInterest": 4693411.0,
+    "volume": 5415164.0
    },
    "ex_stats_first": {
     "openInterest": 3705199.0,
@@ -17803,8 +18034,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 6102873.0,
-    "volume": 9063355.0
+    "openInterest": 6116949.0,
+    "volume": 9081597.0
    },
    "ex_stats_first": {
     "openInterest": 1057874.0,
@@ -18022,8 +18253,8 @@
     "volume": 22377.0
    },
    "ex_stats_close": {
-    "openInterest": 8088538.0,
-    "volume": 12306639.0
+    "openInterest": 8089104.0,
+    "volume": 12307205.0
    },
    "ex_stats_first": {
     "openInterest": 2857468.0,
@@ -18237,7 +18468,7 @@
    "ex_stats_close": {
     "open_interest_fp": 90625.92,
     "volume_24h_fp": 91675.9,
-    "volume_fp": 94735.49
+    "volume_fp": 94756.0
    },
    "ex_stats_first": {
     "open_interest_fp": 5150.29,
@@ -18411,9 +18642,9 @@
     "volume_fp": 0.5
    },
    "ex_stats_close": {
-    "open_interest_fp": 194434.69,
+    "open_interest_fp": 194493.39,
     "volume_24h_fp": 190887.12,
-    "volume_fp": 202208.23
+    "volume_fp": 202313.27
    },
    "ex_stats_first": {
     "open_interest_fp": 11889.36,
@@ -18798,10 +19029,12 @@
     "volume_fp": 4617.22
    },
    "fade_price": 0.53,
+   "fade_units": 0.83,
    "first_seen_utc": "2026-11-27T05:04:37Z",
    "game": "Toledo vs Ohio: Spread",
    "game_surge_books": [],
    "game_x": 1.01,
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26NOV27TOLOHIO-TOL4\"}",
    "lead_min": 710,
    "league": "NCAAF",
@@ -18912,12 +19145,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26NOV27TOLOHIO-TOL4"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 19,
+   "settle_tries": 20,
+   "settled_utc": "2026-11-27T20:40:27Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Toledo",
@@ -18932,7 +19166,7 @@
     "Ohio"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-27T04:10:24Z",
@@ -18986,9 +19220,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 80616.77,
+    "open_interest_fp": 82148.78,
     "volume_24h_fp": 78620.51999999999,
-    "volume_fp": 82533.03
+    "volume_fp": 84065.04
    },
    "ex_stats_first": {
     "open_interest_fp": 4579.74,
@@ -19571,7 +19805,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Boston",
@@ -19630,9 +19864,9 @@
     "volume_fp": 118.26
    },
    "ex_stats_close": {
-    "open_interest_fp": 71798.07,
+    "open_interest_fp": 72395.06,
     "volume_24h_fp": 51945.18,
-    "volume_fp": 88699.16
+    "volume_fp": 89296.15
    },
    "ex_stats_first": {
     "open_interest_fp": 34489.83,
@@ -19970,9 +20204,9 @@
     "volume_fp": 13.27
    },
    "ex_stats_close": {
-    "open_interest_fp": 49819.869999999995,
+    "open_interest_fp": 51741.96,
     "volume_24h_fp": 48253.69,
-    "volume_fp": 55331.47
+    "volume_fp": 57258.86
    },
    "ex_stats_first": {
     "open_interest_fp": 14906.98,
@@ -20401,6 +20635,7 @@
     "volume_fp": 1906.9099999999999
    },
    "fade_price": 0.29,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-27T00:05:49Z",
    "game": "Calgary vs New Jersey",
    "game_surge_books": [],
@@ -20536,14 +20771,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26NOV27CGYNJ-NJ"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
+   "settled_utc": "2026-11-27T20:40:27Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New Jersey",
@@ -20561,7 +20797,7 @@
     "New Jersey"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.41
   },
   {
    "alerted_utc": "2026-11-26T23:50:25Z",
@@ -20614,7 +20850,7 @@
    },
    "ex_stats_close": {
     "openInterest": 16121250.0,
-    "volume": 18241684.0
+    "volume": 18250612.0
    },
    "ex_stats_first": {
     "openInterest": 252702.0,
@@ -21431,9 +21667,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 73827.02,
+    "open_interest_fp": 74207.24,
     "volume_24h_fp": 52259.16,
-    "volume_fp": 81031.6
+    "volume_fp": 81411.82
    },
    "ex_stats_first": {
     "open_interest_fp": 2092.82,
@@ -21644,9 +21880,9 @@
     "volume_fp": 141.1
    },
    "ex_stats_close": {
-    "open_interest_fp": 384228.91,
+    "open_interest_fp": 386068.85,
     "volume_24h_fp": 466680.61,
-    "volume_fp": 528531.83
+    "volume_fp": 534466.63
    },
    "ex_stats_first": {
     "open_interest_fp": 53892.83,
@@ -22438,8 +22674,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 21497429.0,
-    "volume": 26064811.0
+    "openInterest": 21500879.0,
+    "volume": 26068261.0
    },
    "ex_stats_first": {
     "openInterest": 1697825.0,
@@ -24745,9 +24981,9 @@
     "volume_fp": 73.81
    },
    "ex_stats_close": {
-    "open_interest_fp": 319119.55,
+    "open_interest_fp": 320197.46,
     "volume_24h_fp": 313191.24,
-    "volume_fp": 347573.82
+    "volume_fp": 348651.73
    },
    "ex_stats_first": {
     "open_interest_fp": 23433.79,
@@ -24939,8 +25175,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 7333942.0,
-    "volume": 10823712.0
+    "openInterest": 7483812.0,
+    "volume": 11025712.0
    },
    "ex_stats_first": {
     "openInterest": 4275338.0,
@@ -26831,8 +27067,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.79,
-   "clv_cents": -5.0,
+   "close_price": 0.8,
+   "clv_cents": -4.0,
    "confirmed_after_min": 5,
    "date": "2026-11-27",
    "depth_by_book": {
@@ -26863,9 +27099,9 @@
     "volume_fp": 122.29
    },
    "ex_stats_close": {
-    "open_interest_fp": 277354.5,
+    "open_interest_fp": 277369.35000000003,
     "volume_24h_fp": 277993.92,
-    "volume_fp": 325873.97
+    "volume_fp": 326149.6
    },
    "ex_stats_first": {
     "open_interest_fp": 26752.58,
@@ -27003,9 +27239,9 @@
     "volume_fp": 295.9
    },
    "ex_stats_close": {
-    "open_interest_fp": 919362.09,
+    "open_interest_fp": 922366.63,
     "volume_24h_fp": 878091.13,
-    "volume_fp": 1039923.7
+    "volume_fp": 1043111.72
    },
    "ex_stats_first": {
     "open_interest_fp": 80813.09,
@@ -27273,9 +27509,9 @@
     "volume_fp": 235.63
    },
    "ex_stats_close": {
-    "open_interest_fp": 438581.31,
+    "open_interest_fp": 438470.21,
     "volume_24h_fp": 442888.35,
-    "volume_fp": 457882.27
+    "volume_fp": 458691.82
    },
    "ex_stats_first": {
     "open_interest_fp": 9262.64,
@@ -27406,9 +27642,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 255757.18,
+    "open_interest_fp": 256877.57,
     "volume_24h_fp": 257843.08,
-    "volume_fp": 286018.41000000003
+    "volume_fp": 287294.73
    },
    "ex_stats_first": {
     "open_interest_fp": 15796.61,
@@ -28461,9 +28697,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 372782.74,
+    "open_interest_fp": 374846.69,
     "volume_24h_fp": 348468.69,
-    "volume_fp": 377630.8
+    "volume_fp": 380908.45
    },
    "ex_stats_first": {
     "open_interest_fp": 22737.87,
@@ -28747,9 +28983,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 368958.93,
+    "open_interest_fp": 374315.33,
     "volume_24h_fp": 248307.28,
-    "volume_fp": 393757.27
+    "volume_fp": 399113.67
    },
    "ex_stats_first": {
     "open_interest_fp": 109014.38,
@@ -28872,9 +29108,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 145415.18,
+    "open_interest_fp": 149873.46,
     "volume_24h_fp": 145149.7,
-    "volume_fp": 160101.91999999998
+    "volume_fp": 168648.03
    },
    "ex_stats_first": {
     "open_interest_fp": 12326.130000000001,
@@ -29286,9 +29522,9 @@
     "volume_fp": 9.97
    },
    "ex_stats_close": {
-    "open_interest_fp": 47706.2,
+    "open_interest_fp": 47744.990000000005,
     "volume_24h_fp": 46739.600000000006,
-    "volume_fp": 55935.91
+    "volume_fp": 55974.7
    },
    "ex_stats_first": {
     "open_interest_fp": 3526.54,
@@ -29655,10 +29891,12 @@
     "volume_fp": 3380.63
    },
    "fade_price": 0.41,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-26T06:05:41Z",
    "game": "Toledo vs Ohio",
    "game_surge_books": [],
    "game_x": 1.18,
+   "graded_by": "espn",
    "key": "kalshi|KXNCAAFGAME-26NOV27TOLOHIO|ml|0",
    "lead_min": 2090,
    "league": "NCAAF",
@@ -29782,12 +30020,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26NOV27TOLOHIO-TOL"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 19,
+   "settle_tries": 20,
+   "settled_utc": "2026-11-27T20:40:27Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Toledo",
@@ -29802,7 +30041,7 @@
     "Ohio"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.68
   },
   {
    "alerted_utc": "2026-11-26T06:10:18Z",
@@ -30251,9 +30490,9 @@
     "volume_fp": 40.04
    },
    "ex_stats_close": {
-    "open_interest_fp": 165292.03,
+    "open_interest_fp": 165323.21,
     "volume_24h_fp": 147723.84,
-    "volume_fp": 174791.93
+    "volume_fp": 175425.21000000002
    },
    "ex_stats_first": {
     "open_interest_fp": 5490.219999999999,
