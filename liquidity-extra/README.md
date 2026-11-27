@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 27, 2:00 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 18.
+Updated Fri Nov 27, 2:10 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 17.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 524-318 (-27.91u flat) | rule met: 127-86
+**Record:** 525-318 (-27.68u flat) | rule met: 127-86
 
-**Fade (paper, betting against the print):** 293-489 (+23.43u flat, after fees)
+**Fade (paper, betting against the print):** 293-490 (+22.43u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -40,7 +40,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 26 1:20AM | NCAAB | Arkansas vs Michigan St. | moneyline: Michigan St. | kalshi | $25k | -203 |  |  | +1.0c | yes | W |
 | Nov 26 12:25AM | NCAAB | Saint Louis vs Stanford | moneyline: Saint Louis | kalshi | $69k | -163 |  |  | +25.0c | yes | pending |
 | Nov 25 10:50PM | NCAAB | Alabama vs Kansas St.: Point Total | total: Over 169.5 points | kalshi | $61k | -104 |  |  | +1.0c |  | W |
-| Nov 25 10:50PM | NCAAB | Texas Tech vs Oregon | moneyline: Texas Tech | kalshi | $163k | -400 |  |  | +4.0c |  | pending |
+| Nov 25 10:50PM | NCAAB | Texas Tech vs Oregon | moneyline: Texas Tech | kalshi | $163k | -400 |  |  | +4.0c |  | W |
 | Nov 25 10:50PM | NCAAB | Omaha vs Pacific | moneyline: Pacific | kalshi | $163k | -317 |  |  | -1.0c |  | W |
 | Nov 25 10:50PM | NCAAB | Georgetown vs Texas | moneyline: Texas | kalshi | $161k | -335 |  |  | -2.0c |  | W |
 | Nov 25 9:50PM | NCAAB | Saint Mary's vs UCLA | moneyline: UCLA | kalshi | $29k | -300 |  |  | +1.0c |  | L |
