@@ -1,0 +1,170 @@
+"""reconcile_live.py - one authoritative attribution of every live bot fill (Peter, Nov 27). READ-ONLY, zero API calls.
+
+AUTHORITY: the bot's own order rows in reporting/ledger.enc, attributed by live_ledger.account (registry.row_lane on the
+stored order; evidence E1 order id, E2 registry order id, E3 bot wallet + same play). The tracker's display `lane` field
+is NOT an attribution source; it is compared against the ledger here so the two reports' disagreement is explained fill
+by fill. Nothing is guessed: a fill the ledger cannot place is UNRESOLVED with its reason.
+
+POPULATION: tracker rows with source == "bot" (the bot wallets / bot-linked fills) whose bet date is on or after
+live_ledger.START_UTC (12 Nov 2026 00:00 ET). Partial fills of one play merge into one play (game + market + side).
+
+PUBLIC LOG: counts, units, percentages, short row ids. PRIVATE EMAIL: the same plus games, bets, dollars risked and net
+profit per strategy, and the venue-settlement check. Nothing financial reaches the log.
+"""
+import collections
+import hashlib
+import os
+import statistics as st
+import sys
+
+import live_ledger as ll
+
+PRIV = []
+
+
+def say(t=""):
+    print(t)
+    PRIV.append(t)
+
+
+def priv(t=""):
+    PRIV.append(t)
+
+
+def rid(i):
+    return hashlib.sha1(str(i).encode()).hexdigest()[:7]
+
+
+def lane_label(b):
+    """The tracker's display lane, normalised only for spelling (rules / phase 1 / lane 1 are one label)."""
+    s = str(b.get("lane") or "").strip().lower()
+    return {"rules": "LANE 1", "phase 1": "LANE 1", "lane 1": "LANE 1", "r1": "R1", "board v3": "BOARD V3",
+            "board v4": "BOARD V4", "dogs": "DOGS", "ncs": "NCS"}.get(s, s.upper() or "(no tracker lane)")
+
+
+def ci(xs):
+    if len(xs) < 2:
+        return None
+    m, se = st.mean(xs), st.stdev(xs) / len(xs) ** 0.5
+    return m - 1.96 * se, m + 1.96 * se
+
+
+def block(name, P, B):
+    S = sorted([p for p in P if p.get("res") in ("W", "L", "P")], key=lambda p: p["t"])
+    W = S[-50:]
+    def stats(xs):
+        u = [ll.units(p["am_net"], p["res"]) for p in xs]
+        u = [x for x in u if x is not None]
+        c = [p["clv"] for p in xs if p.get("clv") is not None]
+        risk = sum(float(B[i].get("stake") or 0) for p in xs for i in p.get("rows") or [] if i in B)
+        prof = sum(float(B[i].get("profit") or 0) for p in xs for i in p.get("rows") or [] if i in B)
+        return {"n": len(xs), "w": sum(p["res"] == "W" for p in xs), "l": sum(p["res"] == "L" for p in xs),
+                "p": sum(p["res"] == "P" for p in xs), "u": sum(u), "roi": 100 * sum(u) / len(u) if u else None,
+                "clv": st.mean(c) if c else None, "cn": len(c), "ci": ci(c),
+                "beat": 100 * sum(x > 0 for x in c) / len(c) if c else None, "risk": risk, "prof": prof}
+    def fmt(h):
+        roi = "n/a" if h["roi"] is None else f"{h['roi']:+.1f}%"
+        clv = "n/a" if h["clv"] is None else (f"{h['clv']:+.2f}% ({h['cn']}/{h['n']} covered, beat {h['beat']:.0f}%"
+                                              + (f", 95% [{h['ci'][0]:+.2f},{h['ci'][1]:+.2f}]" if h["ci"] else "") + ")")
+        return f"{h['w']}-{h['l']}-{h['p']} | {h['u']:+.2f}u | ROI {roi} | certified CLV {clv}"
+    say(f"\n{name}: settled plays {len(S)} (window = last {len(W)})")
+    if not W:
+        return
+    h = len(W) // 2
+    for tag, part in (("ALL ", W), ("H1  ", W[:h]), ("H2  ", W[h:])):
+        s = stats(part)
+        say(f"  {tag} n{s['n']:<3} {fmt(s)}")
+        if tag == "ALL ":
+            priv(f"        dollars: risked ${s['risk']:,.2f} | net profit ${s['prof']:+,.2f} (tracker venue settlement)")
+
+
+def main():
+    src = ll.load()
+    if src is None:
+        print("UNANSWERED: TRACKER_PASSPHRASE missing - the ledger cannot be read")
+        return 1
+    L, B, C = src
+    acct = ll.account(L, B, C, ll.feed_alerts())
+    start = ll.START_UTC[:10]
+
+    bot = {i: b for i, b in B.items() if str(b.get("source") or "").lower() == "bot"
+           and str(b.get("date") or b.get("first_seen") or b.get("game_start") or "")[:10] >= start}
+    graded = {i for i, b in bot.items() if b.get("result") in ("W", "L", "P")}
+
+    where = {}
+    for p in acct["plays"]:
+        for i in p.get("rows") or []:
+            where[i] = ("PLAY", p["lane"], p)
+    for u in acct["unresolved"]:
+        for i in u.get("rows") or []:
+            where.setdefault(i, ("UNRESOLVED", u.get("lane"), u))
+    for m in acct["manual"]:
+        for i in m.get("rows") or []:
+            where.setdefault(i, ("MANUAL", None, m))
+
+    say("RECONCILIATION - live bot fills from " + start + " (authority: the bot's own order rows, reporting/ledger.enc)")
+    say(f"tracker bot rows {len(bot)} | graded {len(graded)} | in a ledger play {sum(where.get(i, ('',))[0] == 'PLAY' for i in bot)}"
+        f" | unresolved {sum(where.get(i, ('',))[0] == 'UNRESOLVED' for i in bot)}"
+        f" | tracker says bot but ledger calls it manual {sum(where.get(i, ('',))[0] == 'MANUAL' for i in bot)}"
+        f" | no ledger order {sum(i not in where for i in bot)}")
+    say(f"ledger plays {len(acct['plays'])} | excluded orders {len(acct['excluded'])} | unresolved {len(acct['unresolved'])}")
+
+    say("\nTRACKER DISPLAY LANE vs LEDGER LANE (bot rows; this is the executed-CLV report's label vs the authority)")
+    x = collections.Counter((lane_label(b), (where.get(i) or ("NONE", None))[1] or (where.get(i) or ("NONE",))[0])
+                            for i, b in bot.items())
+    for (t, l), n in sorted(x.items(), key=lambda kv: -kv[1]):
+        say(f"  {t:<20} -> {str(l):<14} {n}")
+
+    say("\nPER ROW (id | date | tracker lane | ledger status/lane | result | evidence)")
+    for i, b in sorted(bot.items(), key=lambda kv: str(kv[1].get("first_seen") or "")):
+        st_, ln, obj = where.get(i) or ("NO LEDGER ORDER", None, {})
+        ev = obj.get("evidence") or obj.get("why") or ""
+        say(f"  {rid(i)} {str(b.get('first_seen') or b.get('date') or '')[:10]} {lane_label(b):<18} {st_:<11} "
+            f"{str(ln or ''):<9} {b.get('result') or '-':<2} {str(ev)[:60]}")
+        priv(f"          {b.get('game')} | {b.get('bet')} | {b.get('book')} | stake ${float(b.get('stake') or 0):,.2f} "
+             f"| profit ${float(b.get('profit') or 0):+,.2f}")
+
+    say("\nAUTHORITATIVE PER-STRATEGY TABLES (ledger lanes; one play = game + market + side; flat 1u at the after-fee fill)")
+    for lane in sorted({str(p["lane"]) for p in acct["plays"]}):
+        block(lane, [p for p in acct["plays"] if str(p["lane"]) == lane], B)
+
+    say("\nUNRESOLVED / EXCLUDED (counts for nobody), by reason")
+    why = collections.Counter()
+    for u in acct["unresolved"]:
+        why["unresolved: " + str(u.get("why"))[:70]] += 1
+    for e in acct["excluded"]:
+        why["excluded order: " + str(e.get("why"))[:62]] += 1
+    for i in bot:
+        if i not in where:
+            why["tracker bot row with no ledger order"] += 1
+    for k, n in why.most_common():
+        say(f"  {n:4d}  {k}")
+
+    say("\nVENUE SETTLEMENT CHECK (tracker profit vs stake x price x result, bot rows that are graded)")
+    bad = 0
+    for i in graded:
+        b = B[i]
+        am, stake, prof = b.get("price"), float(b.get("stake") or 0), float(b.get("profit") or 0)
+        try:
+            am = float(am)
+        except (TypeError, ValueError):
+            continue
+        exp = {"W": stake * (am / 100 if am > 0 else 100 / abs(am)), "L": -stake, "P": 0.0}[b["result"]]
+        if abs(exp - prof) > max(0.05, 0.02 * stake):
+            bad += 1
+            priv(f"  MISMATCH {rid(i)} {b.get('game')} {b.get('bet')} {b['result']} stake ${stake:,.2f} "
+                 f"profit ${prof:+,.2f} expected ${exp:+,.2f}")
+    say(f"  graded bot rows {len(graded)} | profit differs from the price-implied result by >2%: {bad} (detail by email)")
+
+    if os.environ.get("GMAIL_ADDRESS"):
+        try:
+            import executor as ex
+            ex.send("Bets LIVE RECONCILIATION - authoritative attribution (private)", "\n".join(PRIV))
+            print("private email sent")
+        except Exception as e:
+            print(f"email failed ({type(e).__name__})")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
