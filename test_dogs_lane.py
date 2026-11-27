@@ -5,6 +5,7 @@ Three things are checked: (1) the selection reproduces the record the ruling was
 feed itself; (2) every bet string names the row's own side and number - read a sign backwards and the lane bets
 the other team; (3) every dispatch point knows the lane, because a lane added to a list but not to a dispatch
 point is a no-op that looks like success."""
+import inspect
 import json
 import os
 import sys
@@ -336,8 +337,15 @@ try:
     ex.px_live.LIVE = True
     _rw = lambda v, why, reason=None: ex.rest_wanted({"play": {"source": "dogs"}, "books": {}, "verdict": v, "reason": reason,
                                                      "live": {"go": False, "why": why}})
-    ok("DOGS never rests a bid (price skip)", _rw("SKIP", ["price: x"], "price: x") is False)
-    ok("DOGS never rests a bid (no live book at the number)", _rw("WOULD PLACE", ["no live book has the alert number or better"]) is False)
+    # Nov 27 (Peter): the no-rest half of the DOGS strict rule was LIFTED. These two assertions were
+    # "is False" until that ruling; they are inverted here rather than deleted, so the file still
+    # names the behaviour and the date it changed. test_dogs_resting.py holds the terms it came with.
+    ok("DOGS rests when no live book has the alert number (Nov 27)",
+       _rw("WOULD PLACE", ["no live book has the alert number or better"]) is True)
+    ok("DOGS rests on a price skip (Nov 27)", _rw("SKIP", ["price: x"], "price: x") is True)
+    ok("DOGS strict still carries no-tolerance / alert-line-only / no-Gmail, not no-rest",
+       "no-Gmail rules cannot" in inspect.getsource(ex.dogs_strict)
+       and "NO-REST WAS REMOVED" in inspect.getsource(ex.dogs_strict))
 finally:
     ex.px_live.LIVE = _live
 
@@ -381,7 +389,7 @@ ok("OFF puts a reason in `why` before any gate is asked", 'why = [] if DOGS_LIVE
 ok('"go": True is reachable only with an empty `why`', BR.count('"go": True') == 1
    and 'if not why and r["verdict"] == "WOULD PLACE" and r.get("lc"):\n                    r["live"] = {"go": True' in BR)
 ok("code default is off (unset, empty, or anything but 'on')", '(os.environ.get("EXEC_DOGS_LIVE") or "off")' in SRC)
-ok("limits unchanged: $100 unit, 8 plays, $800/day, 30-minute freshness",
+ok("limits unchanged: $300 unit, 8 plays, 30-minute freshness",   # label was stale ($100/$800) - the asserted values are the live ones
    (ex.DOGS_UNIT, ex.DOGS_MAX_PLAYS, ex.DOGS_MAX_AGE_MIN) == (300.0, 8, 30)
    or any(os.environ.get(v) for v in ("EXEC_DOGS_DAILY_RISK", "EXEC_DOGS_MAX_PLAYS", "EXEC_DOGS_MAX_AGE_MIN")))
 

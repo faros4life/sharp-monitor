@@ -4218,7 +4218,10 @@ def r1_gate(risk, key=None):
 
 
 def dogs_strict(p):
-    """True for a DOGS play. ONE test, so the no-tolerance / alert-line-only / no-Gmail / no-rest rules cannot drift apart."""
+    """True for a DOGS play. ONE test, so the no-tolerance / alert-line-only / no-Gmail rules cannot
+    drift apart. NO-REST WAS REMOVED on Nov 27 (Peter): Dogs may rest when immediate execution is
+    unavailable or a fill-or-kill returns empty - see rest_wanted(). The other three still hold, and
+    this docstring is the record that only one of the four was lifted."""
     return isinstance(p, dict) and p.get("source") == "dogs"
 
 
@@ -5485,8 +5488,19 @@ def rest_wanted(r):
     lv = r.get("live")
     if not lv or not px_live.LIVE or not REST_BOOKS:
         return False
-    if dogs_strict(r.get("play")):
-        return False   # Nov 23: a DOGS play fills at the alert number now or not at all - it never rests a bid
+    # Nov 23 - Nov 27: DOGS used to return False here ("fills at the alert number now or not at
+    # all"). Peter lifted the no-rest half of that rule on Nov 27: a Dogs play may now rest when
+    # immediate execution is unavailable or a fill-or-kill comes back EMPTY. Everything else about
+    # dogs_strict is untouched - no price tolerance, the alert line only, no Gmail lookup - and the
+    # conditions below already deliver the rest of Peter's terms without a Dogs special case:
+    #   * a REFUSAL never rests: the go-branch requires the order status to be "placed", and a
+    #     refused order is not placed, so an unexplained venue rejection ends the play;
+    #   * an EMPTY fill-or-kill rests the full unit; a PARTIAL rests only risk - filled, so take
+    #     plus rest can never exceed the play's unit by arithmetic, before the ledger even looks;
+    #   * the $300 combined cap across venues is the shared unit ledger, which rest_bid consults
+    #     through _unit_ledger_guard on the resting leg as well as the take;
+    #   * Novig and Kalshi only, PMUS resting blocked, strict venue revalidation, T-30 expiry and
+    #     duplicate claims are all unchanged in rest_bid.
     if lv.get("go"):
         o = lv.get("order") or {}
         allo = [o] + list(lv.get("more") or [])
@@ -5904,6 +5918,33 @@ def rest_bid(r):
         registry.release_submission(_rkey, REST_CID)
         return {"status": "refused",
                 "reason": f"resting stake is not a finite positive number ({risk!r}) - fail closed"}
+    # ---------------------------------------------------------------- Nov 27: DOGS LANE CAPS
+    # Peter's terms for allowing Dogs to rest keep "the $2,400 daily cap and eight-play maximum
+    # unchanged". Unchanged means still BINDING, and they were not reachable from here: dogs_gate()
+    # is consulted at exactly one place (the take branch, which requires verdict WOULD PLACE and a
+    # live candidate r["lc"]), and the whole reason a Dogs play reaches rest_bid is that there was
+    # no live candidate - so the gate had never once been asked about a resting bid. While Dogs
+    # could not rest at all that was harmless. Lifting the no-rest rule without this makes a $300
+    # bid rest with NO lane cap, NO play maximum and - because dogs_kill_state() is the gate's first
+    # question - NO kill bar. That is three protections silently dropped by removing one line, which
+    # is CLAUDE.md's "a name that has no branch is silently dropped": check the caller, not the list.
+    #
+    # Checked HERE, after every ceiling has been applied, so the cap sees the amount that will
+    # actually be posted and not the untrimmed unit. Scoped to Dogs by Peter's "no other strategy or
+    # execution changes": Board V4, R1 and NCS resting bids reach their venues exactly as they did
+    # before this commit. The same gap exists for those three lanes and is NOT touched here - it is
+    # reported, not fixed.
+    #
+    # Two known conservatisms, both in the refusing direction, neither an overbet: DOGS["risk"] and
+    # DOGS["keys"] are read from the registry at the start of the run and are not updated in-run, so
+    # a take followed by a rest on the same play in the same run counts that play once more than it
+    # should and measures against start-of-run risk. It can refuse a legitimate remainder near the
+    # cap; it cannot admit one above it.
+    if dogs_strict(p):
+        _dok, _dwhy = dogs_gate(risk, derive_key(p) or p.get("play_key"))
+        if not _dok:
+            registry.release_submission(_rkey, REST_CID)
+            return {"status": "refused", "reason": _dwhy}
     rest_pre_alert(r, risk, expire, REST_BOOKS)
     why_not = []
     _rb_grant = None
