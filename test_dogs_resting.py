@@ -171,12 +171,16 @@ try:
         ok("TERM 8: within every cap the bid is NOT refused by the lane gate",
            "daily risk limit" not in str(res.get("reason") or "")
            and "play cap" not in str(res.get("reason") or ""), res)
-        # Scope: Peter's "no other strategy or execution changes". The other three lanes keep the
-        # behaviour they had before this commit - their gates are still take-only. Recorded as an
-        # observation, not fixed here.
-        ok("scope: the lane gate added to rest_bid is DOGS-only",
-           _code(RB).count("dogs_gate(") == 1 and "board_gate(" not in _code(RB)
-           and "r1_gate(" not in _code(RB) and "ncs_gate(" not in _code(RB))
+        # Nov 27: this asserted "DOGS-only" when the Dogs gate was the only one wired. Peter then
+        # ordered the remaining capital-protection corrections, so rest_bid now asks ONE dispatcher
+        # that covers every lane. Dogs reaches dogs_gate through it - every check above still passes
+        # unchanged, which is the point of asserting behaviour rather than a call site.
+        ok("rest_bid asks one lane dispatcher, not a per-lane special case",
+           _code(RB).count("rest_lane_gate(r, risk)") == 1
+           and "dogs_gate(" not in _code(RB) and "board_gate(" not in _code(RB))
+        ok("...and the dispatcher wires all four lane gates",
+           ex.REST_LANE_GATES == {"board": ex.board_gate, "r1": ex.r1_gate,
+                                  "ncs": ex.ncs_gate, "dogs": ex.dogs_gate})
     finally:
         (ex.registry, ex.committed_risk, ex.live_guards, ex.journal_latch_why,
          ex.dogs_kill_state, ex.rest_pre_alert, _d, ex.DOGS_DAILY_RISK,

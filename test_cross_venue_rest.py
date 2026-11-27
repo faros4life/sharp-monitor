@@ -249,8 +249,14 @@ def _run_rest_bid(rows, rest_risk=None, unit_price=-117):
     """Call the production rest_bid() with the venue stubbed; return (result, submitted_cost)."""
     SUBMITTED.clear()
     start = datetime.now(timezone.utc) + timedelta(hours=6)
+    # Nov 27: "source" added. It was absent while nothing read it, and rest_bid now asks
+    # rest_lane_gate(), which cross-checks lv["lane"] against p["source"] - a bid sized by one
+    # lane and capped by another's limits does not go out. In production that pairing cannot
+    # disagree: all thirteen sites that set a "lane" sit inside a branch already matched on
+    # p["source"] and set the same value. So this fixture was simply incomplete, not newly
+    # constrained; the check it tripped is the protection working on a malformed play.
     play = {"sport": "NCAAF", "game": "New Mexico Lobos @ Wyoming Cowboys",
-            "bet": "New Mexico Lobos -7.5 (-117)", "play_key": "r1|" + KEY,
+            "bet": "New Mexico Lobos -7.5 (-117)", "play_key": "r1|" + KEY, "source": "r1",
             "start_utc": start.strftime("%Y-%m-%dT%H:%M:%SZ")}
     live = {"lane": "r1", "client_id": "this-run"}
     if rest_risk is not None:
@@ -286,7 +292,14 @@ def _run_rest_bid(rows, rest_risk=None, unit_price=-117):
     saved = (ex.registry, ex.REST_BOOKS, ex.book_live.novig_place, ex.live_guards,
              ex.rest_pre_alert, ex.journal_latch_why, ex.novig_grid_floor,
              ex.gmail, ex.send, ex.push, ex.tg_push)
+    _r1 = dict(ex.R1)
     try:
+        # The R1 lane's own daily cap and play maximum now apply to a resting bid (Nov 27). This
+        # file tests remainder ARITHMETIC, so the lane is given a clean, KNOWN slate and the cap is
+        # left to test_rest_lane_caps.py, where refusing at the limit is the subject. An unreadable
+        # lane exposure refuses, which is correct and would mask every assertion here.
+        ex.R1.clear()
+        ex.R1.update({"known": True, "keys": set(), "risk": 0.0})
         ex.gmail = lambda: ("u", "p", "t")
         ex.send = lambda *a, **k: None
         ex.push = lambda *a, **k: None
@@ -303,6 +316,8 @@ def _run_rest_bid(rows, rest_risk=None, unit_price=-117):
         (ex.registry, ex.REST_BOOKS, ex.book_live.novig_place, ex.live_guards,
          ex.rest_pre_alert, ex.journal_latch_why, ex.novig_grid_floor,
          ex.gmail, ex.send, ex.push, ex.tg_push) = saved
+        ex.R1.clear()
+        ex.R1.update(_r1)
     return res, SUBMITTED.get("dollars")
 
 

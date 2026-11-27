@@ -4432,6 +4432,49 @@ def dogs_gate(risk, key=None):
     return True, f"ok (DOGS today: {len(DOGS['keys'])}/{DOGS_MAX_PLAYS} plays, ${DOGS['risk']:,.2f}/${DOGS_DAILY_RISK:,.0f} at risk)"
 
 
+REST_LANE_GATES = None          # built below, once every gate above exists
+
+
+def rest_lane_gate(r, risk):
+    """(ok, why) - the per-lane daily cap and play maximum for a RESTING bid of `risk` dollars.
+
+    WHY THIS EXISTS (Nov 27, Peter: "the remaining capital-protection corrections"). Every lane gate
+    - board_gate, r1_gate, ncs_gate, dogs_gate - was consulted at exactly ONE place: the take branch,
+    which requires verdict WOULD PLACE and a live candidate r["lc"]. A play reaches rest_bid()
+    precisely BECAUSE there was no live candidate, so no lane gate had ever been asked about a
+    resting bid. Every one of those gates says in its own docstring that it counts orders "already
+    submitted OR RESTING today" - they were written expecting this call and never got it.
+
+    The effect was a $200 (board/R1/NCS) or $300 (DOGS) bid reaching a venue with no lane daily cap,
+    no play maximum and, for DOGS, no kill bar. Only the $3,000 global stop applied. This is
+    CLAUDE.md's rule exactly: a name with no branch is silently dropped - check the caller, not the
+    list - and a no-op that looks like success is the worst failure available.
+
+    THE LANE IS TAKEN FROM ONE PLACE AND CROSS-CHECKED AGAINST THE PLAY. rest_bid already sizes with
+    unit_for(lv["lane"]), so if the lane were wrong the bid would be sized by one lane and capped by
+    another's limits. p["source"] is the authority for which lane a play belongs to, so the two must
+    agree or nothing rests. Lane 1 is the one lane with no per-lane gate - its only limit is the
+    $3,000 global stop, which rest_bid applies to every lane already - and it is spelled "rules" in
+    p["source"] while its live dict carries no "lane" key at all, so both spellings normalise here.
+
+    An unrecognised lane FAILS CLOSED. unit_for() falls back to Lane 1's $300 for any unknown
+    string, so an unknown lane would otherwise rest $300 against no cap at all."""
+    lv = r.get("live") or {}
+    p = r.get("play") or {}
+    lane = str(lv.get("lane") or "rules")          # Lane 1's live dict has no "lane" key
+    src = str(p.get("source") or "rules")
+    if lane != src:
+        return False, (f"lane disagreement: the order is sized as '{lane}' but the play is '{src}' - "
+                       f"a bid sized by one lane and capped by another's limits is not placed")
+    if lane == "rules":
+        return True, "Lane 1: no per-lane cap; the global daily stop applies"
+    fn = (REST_LANE_GATES or {}).get(lane)
+    if fn is None:
+        return False, (f"no risk gate is wired for lane '{lane}' - a resting bid cannot be capped, "
+                       f"so none is placed (fail closed)")
+    return fn(risk, derive_key(p) or p.get("play_key"))
+
+
 def ncs_gate(risk, key=None):
     """(ok, why) for ONE NCS order of `risk` dollars. Fail closed, exactly as board_gate and r1_gate:
     counts submitted AND resting orders, a retry or partial fill of the same key is never an extra
@@ -4454,6 +4497,13 @@ def ncs_gate(risk, key=None):
         return False, (f"NCS daily risk limit: ${NCS['risk']:,.2f} already at risk today (ET) + "
                        f"${risk:,.2f} would exceed ${NCS_DAILY_RISK:,.0f}")
     return True, f"ok (NCS today: {len(NCS['keys'])}/{NCS_MAX_PLAYS} plays, ${NCS['risk']:,.2f}/${NCS_DAILY_RISK:,.0f} at risk)"
+
+
+# Built HERE and not beside rest_lane_gate, because every one of these four must already be
+# defined: a dict literal evaluates its values immediately, so placing this above ncs_gate would
+# raise NameError at import. Named functions, not strings, so a renamed or deleted gate breaks at
+# import rather than silently becoming an unknown lane that fails closed on live money.
+REST_LANE_GATES = {"board": board_gate, "r1": r1_gate, "ncs": ncs_gate, "dogs": dogs_gate}
 
 
 def live_guards():
@@ -5918,33 +5968,24 @@ def rest_bid(r):
         registry.release_submission(_rkey, REST_CID)
         return {"status": "refused",
                 "reason": f"resting stake is not a finite positive number ({risk!r}) - fail closed"}
-    # ---------------------------------------------------------------- Nov 27: DOGS LANE CAPS
-    # Peter's terms for allowing Dogs to rest keep "the $2,400 daily cap and eight-play maximum
-    # unchanged". Unchanged means still BINDING, and they were not reachable from here: dogs_gate()
-    # is consulted at exactly one place (the take branch, which requires verdict WOULD PLACE and a
-    # live candidate r["lc"]), and the whole reason a Dogs play reaches rest_bid is that there was
-    # no live candidate - so the gate had never once been asked about a resting bid. While Dogs
-    # could not rest at all that was harmless. Lifting the no-rest rule without this makes a $300
-    # bid rest with NO lane cap, NO play maximum and - because dogs_kill_state() is the gate's first
-    # question - NO kill bar. That is three protections silently dropped by removing one line, which
-    # is CLAUDE.md's "a name that has no branch is silently dropped": check the caller, not the list.
+    # ------------------------------------------------- Nov 27: PER-LANE CAPS ON THE RESTING PATH
+    # The capital-protection correction. Every lane gate was take-only (see rest_lane_gate for why
+    # and for what it cost), so a resting bid reached its venue with no lane daily cap and no play
+    # maximum - and for DOGS no kill bar - with only the $3,000 global stop above it.
     #
-    # Checked HERE, after every ceiling has been applied, so the cap sees the amount that will
-    # actually be posted and not the untrimmed unit. Scoped to Dogs by Peter's "no other strategy or
-    # execution changes": Board V4, R1 and NCS resting bids reach their venues exactly as they did
-    # before this commit. The same gap exists for those three lanes and is NOT touched here - it is
-    # reported, not fixed.
+    # Asked HERE, after every ceiling has been applied, so the cap sees the amount that will
+    # actually be posted and not the untrimmed unit, and before rest_pre_alert so a capped bid is
+    # never announced. Lane 1 is unchanged: it has no per-lane gate and never had one.
     #
-    # Two known conservatisms, both in the refusing direction, neither an overbet: DOGS["risk"] and
-    # DOGS["keys"] are read from the registry at the start of the run and are not updated in-run, so
-    # a take followed by a rest on the same play in the same run counts that play once more than it
-    # should and measures against start-of-run risk. It can refuse a legitimate remainder near the
-    # cap; it cannot admit one above it.
-    if dogs_strict(p):
-        _dok, _dwhy = dogs_gate(risk, derive_key(p) or p.get("play_key"))
-        if not _dok:
-            registry.release_submission(_rkey, REST_CID)
-            return {"status": "refused", "reason": _dwhy}
+    # Two known conservatisms, both in the refusing direction and neither an overbet: each lane's
+    # risk and key set is read from the registry at the start of the run and is not updated in-run,
+    # so a take followed by a rest on the same play in the same run counts that play once more than
+    # it should and measures against start-of-run risk. It can refuse a legitimate remainder near
+    # the cap; it cannot admit one above it.
+    _lok, _lwhy = rest_lane_gate(r, risk)
+    if not _lok:
+        registry.release_submission(_rkey, REST_CID)
+        return {"status": "refused", "reason": _lwhy}
     rest_pre_alert(r, risk, expire, REST_BOOKS)
     why_not = []
     _rb_grant = None
