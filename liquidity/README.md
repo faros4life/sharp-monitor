@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 27, 9:05 AM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 66.
+Updated Fri Nov 27, 9:10 AM ET. This run: 1 new, 0 not confirmed, 3 pending. Open alerts: 67.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 27 9:10AM | NCAAF | Buffalo vs Akron: Spread | spread: Buffalo wins by over 7.5 points | kalshi | $37k | +104 |  |  | +0.0c |  | pending |
 | Nov 27 8:50AM | NFL | Denver vs Pittsburgh: Total Points | total: Over 37.5 points | kalshi | $127k | +104 | ✅ novig |  | +0.0c |  | pending |
 | Nov 27 8:45AM | NFL | Denver vs Pittsburgh: Spread | spread: Denver wins by over 4.5 points | kalshi | $115k | -104 |  |  | +0.0c |  | pending |
 | Nov 27 8:25AM | NCAAF | Buffalo vs Akron: Total Points | total: Over 49.5 points | kalshi | $42k | -108 |  | ✅ | +0.0c |  | pending |
@@ -26,7 +27,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 27 4:10AM | NCAAF | North Dakota St. vs San Jose St.: Spread | spread: North Dakota St. wins by over 7.5 points | kalshi | $69k | -104 |  |  | +1.0c |  | pending |
 | Nov 27 2:10AM | NBA | Denver Nuggets @ Utah Jazz | moneyline: DEN (0) | novig | $28k | -413 | ✅ kalshi |  | -1.0c | yes | pending |
 | Nov 27 2:10AM | NBA | Golden State Warriors @ Portland Trail Blazers | moneyline: POR (0) | novig | $27k | -344 | ✅ kalshi |  | +0.0c | yes | pending |
-| Nov 27 2:10AM | NBA | Atlanta Hawks @ Boston Celtics | moneyline: BOS (0) | novig | $29k | -344 | ✅ kalshi |  | -1.5c |  | pending |
+| Nov 27 2:10AM | NBA | Atlanta Hawks @ Boston Celtics | moneyline: BOS (0) | novig | $29k | -344 | ✅ kalshi |  | -2.0c |  | pending |
 | Nov 27 2:10AM | NBA | Brooklyn Nets @ Toronto Raptors | moneyline: TOR (0) | novig | $27k | -277 | ✅ kalshi |  | +3.0c | yes | pending |
 | Nov 27 2:10AM | NBA | Milwaukee Bucks @ Detroit Pistons | moneyline: DET (0) | novig | $29k | -335 | ✅ kalshi |  | +2.0c |  | pending |
 | Nov 27 1:30AM | NCAAF | Texas vs Texas A&M: Total Points | total: Over 40.5 points | kalshi | $30k | -113 |  |  | +1.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 24 1:55PM | NFL | Green Bay vs Los Angeles R | moneyline: Los Angeles R | kalshi | $1,098k | -127 | ✅ prophetx |  | +0.0c | yes | W |
 | Nov 24 1:40PM | NBA | Boston vs Washington: Spread | spread: Boston wins by over 10.5 points | kalshi | $31k | -108 | ✅ novig |  | +1.0c |  | W |
 | Nov 24 12:50PM | NCAAF | Miami (OH) vs Western Michigan: Spread | spread: NOT Western Michigan wins by over 5.5 points | kalshi | $59k | -100 |  |  | +3.0c |  | W |
-| Nov 24 12:45PM | NBA | Detroit vs Orlando | moneyline: Detroit | kalshi | $354k | -122 |  |  | -13.0c | yes | W |
