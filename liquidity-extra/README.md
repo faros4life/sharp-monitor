@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 27, 1:40 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 33.
+Updated Fri Nov 27, 1:50 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 34.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 27 1:50PM | NCAAB | Missouri St. vs Oral Roberts | moneyline: Oral Roberts | kalshi | $32k | -186 | ✅ novig |  | +0.0c |  | pending |
 | Nov 27 1:30PM | NCAAB | Villanova vs Kansas | moneyline: Kansas | kalshi | $70k | -567 | ✅ novig | ❌ | +0.0c |  | pending |
 | Nov 27 12:40PM | NCAAB | Memphis vs Wake Forest: Point Total | total: NOT Over 153.5 points | kalshi | $31k | -108 |  |  | +0.0c |  | pending |
 | Nov 27 12:30PM | NCAAB | Iowa St. vs St. John's | moneyline: Iowa St. | kalshi | $69k | +104 |  | ✅ | +1.0c | yes | pending |
@@ -30,7 +31,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 27 2:40AM | NCAAB | Princeton vs UNC Wilmington | moneyline: UNC Wilmington | kalshi | $162k | -317 |  |  | +0.0c |  | pending |
 | Nov 27 2:40AM | NCAAB | Michigan vs Kansas St. | moneyline: Michigan | kalshi | $146k | -300 |  |  | +5.0c |  | pending |
 | Nov 27 1:30AM | NCAAB | Texas vs Saint Mary's | moneyline: Texas | kalshi | $25k | -317 |  |  | -1.0c |  | pending |
-| Nov 27 1:30AM | NCAAB | Charleston Southern vs East Tennessee St. | moneyline: East Tennessee St. | kalshi | $34k | -488 |  |  | +1.0c |  | pending |
+| Nov 27 1:30AM | NCAAB | Charleston Southern vs East Tennessee St. | moneyline: East Tennessee St. | kalshi | $34k | -488 |  |  | +0.0c |  | pending |
 | Nov 27 1:20AM | NCAAB | Texas St. vs Louisiana Tech | moneyline: Texas St. | kalshi | $26k | -194 |  |  | -3.0c |  | pending |
 | Nov 27 1:20AM | NCAAB | Radford vs American | moneyline: American | kalshi | $27k | -300 |  |  | -1.0c |  | pending |
 | Nov 27 1:20AM | NCAAB | Georgetown vs UCLA | moneyline: UCLA | kalshi | $28k | -335 |  |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 22 10:20AM | NCAAB | UNC Asheville vs Samford | moneyline: Samford | kalshi | $163k | -456 | ✅ novig |  | +1.0c |  | W |
 | Nov 22 10:20AM | NCAAB | Maryland-Eastern Shore vs IU Indy | moneyline: IU Indy | kalshi | $69k | -525 |  |  | +0.0c | yes | W |
 | Nov 22 10:20AM | NCAAB | Lamar vs Rice | moneyline: Lamar | kalshi | $52k | -122 | ✅ novig |  | +2.0c | yes | L |
-| Nov 22 10:10AM | NCAAB | Miami (OH) vs UIC: Spread | spread: NOT Miami (OH) wins by over 1.5 points | kalshi | $25k | -122 |  |  | +0.0c |  | L |
