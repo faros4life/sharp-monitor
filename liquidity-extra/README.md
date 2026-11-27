@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 27, 6:30 PM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 30.
+Updated Fri Nov 27, 6:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 28.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 536-323 (-28.39u flat) | rule met: 129-87
+**Record:** 538-323 (-27.77u flat) | rule met: 129-87
 
-**Fade (paper, betting against the print):** 298-501 (+17.04u flat, after fees)
+**Fade (paper, betting against the print):** 298-503 (+15.04u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -42,11 +42,11 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 27 1:30AM | NCAAB | Texas vs Saint Mary's | moneyline: Texas | kalshi | $25k | -317 |  |  | -1.0c |  | pending |
 | Nov 27 1:30AM | NCAAB | Charleston Southern vs East Tennessee St. | moneyline: East Tennessee St. | kalshi | $34k | -488 |  |  | -1.0c |  | pending |
 | Nov 27 1:20AM | NCAAB | Texas St. vs Louisiana Tech | moneyline: Texas St. | kalshi | $26k | -194 |  |  | -4.0c |  | W |
-| Nov 27 1:20AM | NCAAB | Radford vs American | moneyline: American | kalshi | $27k | -300 |  |  | -1.0c |  | pending |
+| Nov 27 1:20AM | NCAAB | Radford vs American | moneyline: American | kalshi | $27k | -300 |  |  | -1.0c |  | W |
 | Nov 27 1:20AM | NCAAB | Georgetown vs UCLA | moneyline: UCLA | kalshi | $28k | -335 |  |  | +0.0c |  | W |
 | Nov 27 1:20AM | NCAAB | Bucknell vs La Salle | moneyline: La Salle | kalshi | $31k | -376 |  |  | +2.0c |  | W |
 | Nov 26 11:30PM | NCAAB | Virginia vs Xavier | moneyline: Virginia | kalshi | $32k | -317 |  |  | -2.0c | yes | W |
-| Nov 26 11:30PM | NCAAB | Cincinnati vs Boston College | moneyline: Cincinnati | kalshi | $30k | -376 |  |  | -1.0c | yes | pending |
+| Nov 26 11:30PM | NCAAB | Cincinnati vs Boston College | moneyline: Cincinnati | kalshi | $30k | -376 |  |  | -1.0c | yes | W |
 | Nov 26 6:40PM | NCAAB | SMU vs LSU: Spread | spread: NOT LSU wins by over 6.5 points | kalshi | $245k | +104 |  |  | +4.0c | yes | L |
 | Nov 26 6:40PM | NCAAB | Pittsburgh vs DePaul | moneyline: DePaul | kalshi | $162k | -100 |  | ❌ | +5.0c | yes | L |
 | Nov 26 5:50PM | NCAAB | Omaha @ Pacific | moneyline: Pacific (0) | novig | $28k | -300 | ✅ kalshi | ❌ | +0.0c |  | W |
