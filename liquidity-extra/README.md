@@ -1,15 +1,17 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 27, 5:50 PM ET. This run: 0 new, 0 not confirmed, 3 pending. Open alerts: 30.
+Updated Fri Nov 27, 6:00 PM ET. This run: 2 new, 0 not confirmed, 2 pending. Open alerts: 31.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 534-322 (-27.89u flat) | rule met: 129-87
+**Record:** 534-323 (-28.89u flat) | rule met: 129-87
 
-**Fade (paper, betting against the print):** 297-499 (+17.75u flat, after fees)
+**Fade (paper, betting against the print):** 298-499 (+19.04u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 27 6:00PM | NCAAB | West Virginia vs North Carolina | moneyline: West Virginia | kalshi | $51k | -138 | ✅ novig,prophetx |  | +0.0c |  | pending |
+| Nov 27 6:00PM | NCAAB | Texas Tech vs San Diego St. | moneyline: Texas Tech | kalshi | $40k | -335 | ✅ novig | ✅ | +0.0c |  | pending |
 | Nov 27 4:30PM | NCAAB | Kansas State @ Michigan | moneyline: MICH (0) | novig | $25k | -426 | ✅ kalshi,prophetx | ✅ | +0.0c |  | pending |
 | Nov 27 4:20PM | NCAAB | Texas A&M vs Marquette: Spread | spread: Marquette wins by over 1.5 points | kalshi | $29k | -108 | ✅ novig | ✅ | +3.0c |  | pending |
 | Nov 27 4:10PM | NCAAB | Texas A&M vs Marquette | moneyline: Marquette | kalshi | $57k | -117 | ✅ novig,prophetx | ✅ | +3.0c |  | pending |
@@ -26,12 +28,12 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 27 10:20AM | NCAAB | La Salle @ Bucknell | moneyline: LAS (0) | novig | $28k | -400 |  |  | +0.5c |  | pending |
 | Nov 27 9:50AM | NCAAB | Tennessee vs Louisville | moneyline: Louisville | kalshi | $40k | -138 | ✅ novig |  | +3.0c | yes | pending |
 | Nov 27 9:30AM | NCAAB | Georgetown @ UCLA | moneyline: UCLA (0) | novig | $38k | -317 | ✅ kalshi |  | +0.5c |  | W |
-| Nov 27 9:30AM | NCAAB | Oregon vs Maryland | moneyline: Maryland | kalshi | $39k | -138 |  |  | +3.0c |  | pending |
+| Nov 27 9:30AM | NCAAB | Oregon vs Maryland | moneyline: Maryland | kalshi | $39k | -138 |  |  | +3.0c |  | L |
 | Nov 27 9:20AM | NCAAB | Texas @ Saint Mary's | moneyline: TEX (0) | novig | $27k | -300 | ✅ kalshi |  | +0.0c |  | pending |
-| Nov 27 9:20AM | NCAAB | Charleston Southern @ East Tennessee State | moneyline: ETSU (0) | novig | $26k | -545 | ✅ kalshi |  | -2.5c |  | pending |
+| Nov 27 9:20AM | NCAAB | Charleston Southern @ East Tennessee State | moneyline: ETSU (0) | novig | $26k | -545 | ✅ kalshi |  | -3.0c |  | pending |
 | Nov 27 9:20AM | NCAAB | Cincinnati @ Boston College | moneyline: CIN (0) | novig | $27k | -355 | ✅ kalshi | ❌ | +0.0c |  | pending |
 | Nov 27 9:20AM | NCAAB | Virginia @ Xavier | moneyline: UVA (0) | novig | $30k | -292 |  |  | -1.0c |  | W |
-| Nov 27 9:20AM | NCAAB | Pacific vs UC Davis | moneyline: Pacific | kalshi | $56k | -233 | ✅ novig |  | +2.0c |  | pending |
+| Nov 27 9:20AM | NCAAB | Pacific vs UC Davis | moneyline: Pacific | kalshi | $56k | -233 | ✅ novig |  | +1.0c |  | pending |
 | Nov 27 9:20AM | NCAAB | Creighton vs Gonzaga | moneyline: Gonzaga | kalshi | $28k | -223 |  |  | +1.0c |  | pending |
 | Nov 27 2:40AM | NCAAB | Penn St. vs Mississippi St. | moneyline: Mississippi St. | kalshi | $150k | -257 |  |  | +1.0c |  | pending |
 | Nov 27 2:40AM | NCAAB | Princeton vs UNC Wilmington | moneyline: UNC Wilmington | kalshi | $162k | -317 |  |  | +0.0c |  | W |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 22 12:56PM | NCAAB | Utah Tech vs South Dakota | moneyline: Utah Tech | kalshi | $56k | -108 | ✅ novig |  | +2.0c | yes | L |
 | Nov 22 12:56PM | NCAAB | Loyola Marymount vs UC Irvine | moneyline: UC Irvine | kalshi | $67k | -122 |  | ❌ | +0.0c |  | L |
 | Nov 22 11:50AM | NCAAB | NJIT vs Boston College: Spread | spread: NOT Boston College wins by over 23.5 points | kalshi | $39k | -108 |  |  | +0.0c |  | W |
-| Nov 22 10:30AM | NCAAB | Maryland-Eastern Shore @ IU Indianapolis | moneyline: IUPUI (0) | novig | $29k | -506 |  |  | +0.5c |  | pending |
-| Nov 22 10:30AM | NCAAB | San Jose St. vs Loyola Chicago | moneyline: Loyola Chicago | kalshi | $37k | -186 | ✅ novig |  | +0.0c |  | W |
