@@ -539,7 +539,7 @@ def _gh(method, url, body=None, tok=None):
         return r.status, (json.loads(t) if t else {})
 
 
-def novig_place(outcome_id, limit_cost, qty, label="", ttl_ms=None, key="", lane=""):
+def novig_place(outcome_id, limit_cost, qty, label="", ttl_ms=None, key=""):
     """Novig blocks cloud servers, so the order is SENT to Peter's home PC (private repo novig-runner, workflow
     novig-live-order) which places it with the trading key and writes the result to snapshot/novig_orders.json.
     ttl_ms None = FOK; else GTT (fills what's there, rests the remainder until ttl_ms). Novig: 1 contract pays 1c, so
@@ -568,10 +568,6 @@ def novig_place(outcome_id, limit_cost, qty, label="", ttl_ms=None, key="", lane
     inputs = {"outcome_id": str(outcome_id), "price": f"{limit_cost:.3f}", "qty": str(int(qty)),
               "tif": "GTT" if ttl_ms else "FOK", "ttl_ms": str(int(min(ttl_ms or 0, 86400000))), "client_id": cid,
               "label": label[:120], "play_key": key[:120]}
-    # Nov 27 (Peter): the lane goes to the runner ONLY when it is set, so a dispatch to a runner workflow that does not
-    # yet accept the input is byte-identical to today's. The runner uses it for the Dogs-only $300 cost cap.
-    if lane:
-        inputs["lane"] = str(lane)[:20]
     try:
         st, _ = _gh("POST", f"https://api.github.com/repos/{NV_REPO}/actions/workflows/{NV_WORKFLOW}/dispatches",
                     {"ref": "main", "inputs": inputs}, tok=_dispatch_token())
