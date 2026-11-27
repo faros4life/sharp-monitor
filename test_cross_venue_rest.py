@@ -286,6 +286,14 @@ def _run_rest_bid(rows, rest_risk=None, unit_price=-117):
     saved = (ex.registry, ex.REST_BOOKS, ex.book_live.novig_place, ex.live_guards,
              ex.rest_pre_alert, ex.journal_latch_why, ex.novig_grid_floor,
              ex.gmail, ex.send, ex.push, ex.tg_push)
+    # Nov 27: rest_bid now asks the play's LANE GATE before posting (Peter: "complete resting-path risk
+    # enforcement across all applicable lanes"). In production bot_orders() populates R1/BOARD/DOGS from
+    # the ledger before any order work, so the gate has today's exposure to measure against. This file
+    # tests remainder ARITHMETIC, so it supplies that run-state with plenty of headroom - the same reason
+    # it already stubs live_guards and the notifiers. That the gate REFUSES when the lane ledger was not
+    # read, and when a cap is reached, is asserted in test_rest_lane_caps.py where it belongs.
+    _saved_r1 = dict(ex.R1)
+    ex.R1.update(risk=0.0, keys=set(), known=True)
     try:
         ex.gmail = lambda: ("u", "p", "t")
         ex.send = lambda *a, **k: None
@@ -303,6 +311,8 @@ def _run_rest_bid(rows, rest_risk=None, unit_price=-117):
         (ex.registry, ex.REST_BOOKS, ex.book_live.novig_place, ex.live_guards,
          ex.rest_pre_alert, ex.journal_latch_why, ex.novig_grid_floor,
          ex.gmail, ex.send, ex.push, ex.tg_push) = saved
+        ex.R1.clear()
+        ex.R1.update(_saved_r1)
     return res, SUBMITTED.get("dollars")
 
 
