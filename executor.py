@@ -5022,7 +5022,7 @@ def _unit_ledger_record(r, path, book=None):
     return None
 
 
-def _unit_ledger_guard(r, path, book=None):
+def _unit_ledger_guard(r, path, book=None, stake=None, shown=None, unit=None):
     """REVIEW BRANCH ONLY. Reserve this play's capacity in the SHARED ledger before dispatch.
 
     Returns None when EXEC_UNIT_LEDGER is off, which is the default and which makes every caller
@@ -5069,7 +5069,10 @@ def _unit_ledger_guard(r, path, book=None):
     _id = derive_key(p) or p.get("play_key") or (r.get("live") or {}).get("cid")
     if not _id:
         raise RuntimeError("shared ledger: no order identity for this play - refusing to submit")
-    _id = f"{_id}|{lv.get('line')}|{lv.get('shown')}"
+    # `shown` joins the ledger identity, so on the rest-only path it degraded to "...|None". It now
+    # follows the same explicit value the reservation uses; on the take path the two are the same
+    # read, so that identity string is unchanged.
+    _id = f"{_id}|{lv.get('line')}|{lv.get('shown') if shown is None else shown}"
     # Every earlier order ATTEMPT is swept into the ledger before this one is judged: an older run
     # still in flight, a record that failed, an order placed just before enforcement began. Each
     # wrote a write-ahead intent, and an intent with no ledger entry is exposure not yet counted.
@@ -5085,9 +5088,46 @@ def _unit_ledger_guard(r, path, book=None):
     if _rows is None:
         raise RuntimeError("shared ledger: order rows unreadable - cannot match this play across feeds, refusing")
     _resm.set_play_matcher(_unit_ledger_matcher(p, _rows))
+    # Nov 27 (Peter): "Fix shared-ledger sizing on the resting-only path. Use the actual computed
+    # resting stake, approved fee-adjusted limit price and applicable strategy unit. Never substitute
+    # guessed values for missing exposure information."
+    #
+    # MEASURED, end to end, with EXEC_UNIT_LEDGER=on. On the rest-ONLY path r["live"] is
+    # {go: False, lane, why}: no "risk", no "shown", no "unit", because nothing priced a take. The
+    # three reads below therefore called the shared ledger with (None, None, LIVE_UNIT).
+    # review_unit_reservation raises ExposureUnknown("stake") on the None stake and this function
+    # re-raises, so the exception escaped rest_bid entirely - a SKIP "error: stake" row and a
+    # STOP-worthy "LIVE PLAY ERROR" push instead of a refusal, with the |rest submission claim left
+    # HELD, so the next run refused with "another run is already posting this resting bid".
+    #
+    # That makes it a blocker for DOGS specifically: dogs_gate refuses unless the ledger is
+    # ENFORCED, so there was no configuration in which a DOGS rest-only bid could be placed - ledger
+    # off, dogs_gate refuses; ledger on, this raises. Every other test of rest_bid runs with the
+    # ledger off (test_rest_lane_caps says so in its own docstring), which is why it stayed hidden.
+    #
+    # A caller that knows the real figures passes them. NOTHING is inferred when they are absent: an
+    # explicit caller whose values are missing or not finite positive REFUSES, because the only
+    # substitution available here is LIVE_UNIT, and silently reserving Lane 1's $300 against a $200
+    # lane is exactly the guessed value the instruction forbids. The take path passes nothing and
+    # reads lv as before, so its sizing and its ledger identity are byte-for-byte unchanged.
+    _explicit = not (stake is None and shown is None and unit is None)
+    _stake = lv.get("risk") if stake is None else stake
+    _shown = lv.get("shown") if shown is None else shown
+    _unit = (lv.get("unit") or LIVE_UNIT) if unit is None else unit
+    if _explicit:
+        for _nm, _v in (("stake", _stake), ("unit", _unit)):
+            try:
+                _f = float(_v)
+            except (TypeError, ValueError):
+                raise RuntimeError(f"shared ledger: {path} {_nm} is unreadable ({_v!r}) - refusing")
+            if not (math.isfinite(_f) and _f > 0):
+                raise RuntimeError(f"shared ledger: {path} {_nm} is not a finite positive number "
+                                   f"({_v!r}) - refusing")
+        if _shown is None:
+            raise RuntimeError(f"shared ledger: {path} has no limit price to reserve against - refusing")
     try:
         return ri.guard_or_refuse(store, key, f"{path}|{_id}",
-                                  lv.get("risk"), lv.get("shown"), lv.get("unit") or LIVE_UNIT,
+                                  _stake, _shown, _unit,
                                   actor=ri.actor_for("sharp-monitor", path, book or lv.get("book")),
                                   intent_cid=lv.get("client_id"))
     except Exception:
@@ -5894,7 +5934,8 @@ def rest_bid(r):
     if af is None:
         return {"status": "refused", "reason": "alert after-fee price unknown (fail closed)"}
     p_star = american_to_prob(int(af))
-    risk, _ = live_stake(int(af), unit_for((r.get("live") or {}).get("lane")))
+    _rb_unit = unit_for((r.get("live") or {}).get("lane"))   # the SAME unit the stake is sized from
+    risk, _ = live_stake(int(af), _rb_unit)
     _unit_risk = risk            # the INTENDED total for one unit, before any remainder trim.
     # Nov 20 (Peter caught this in review): the cross-venue remainder below must be measured from
     # THIS figure, not from the already-trimmed `risk`. rest_risk is itself intended-minus-filled,
@@ -6090,7 +6131,10 @@ def rest_bid(r):
         # Reserved only once we have a priced, exact-line market on this venue: a venue we screen
         # out above must not consume the play's unit.
         if _rb_grant is None:
-            _rb_grant = _unit_ledger_guard(r, "rest_bid", b)
+            # The computed resting stake (after BOTH ceilings), the alert's approved fee-adjusted
+            # price, and this lane's own unit - never lv's absent take values. See the guard.
+            _rb_grant = _unit_ledger_guard(r, "rest_bid", b, stake=risk, shown=int(af),
+                                           unit=_rb_unit)
             _unit_ledger_consume(_rb_grant, risk)
         if b == "kalshi":
             kb = x.get("kalshi_buy") or []
