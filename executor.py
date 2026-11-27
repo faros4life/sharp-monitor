@@ -5733,6 +5733,48 @@ def committed_risk(pkey, rows_=None):
     return round(total, 2), None
 
 
+def rest_revalidate(r, book, line):
+    """Maker-safe venue re-read before POSTING a resting bid. Peter, Nov 26 2026 (Task 2).
+
+    rest_bid prices from r["books"] - the ladder evaluate() built earlier in the run. That is the
+    SAME stale source revalidate() was added to fix for takes, and it is the one remaining path by
+    which a stale feed reaches money: nothing re-reads the venue before a bid is posted.
+
+    This is deliberately NOT revalidate(). A resting bid is a MAKER order: by definition there is no
+    executable liquidity at its price, and that is the wanted case, not a fault. revalidate()'s
+    depth-at-threshold and price-not-worse-than-the-gate tests are TAKER tests, and applying them
+    here would refuse every valid resting bid - which is exactly what Peter ruled out.
+
+      checked, all fail closed   venue unreadable; market missing or closed; the line moved off the
+                                 alert's exact number; the identifiers we price from are gone
+      deliberately NOT checked   executable depth at our price, and whether the market's current
+                                 price beats our limit
+
+    Returns (ok, why, fresh). `fresh` replaces the stale ladder so cost and size are computed from
+    CURRENT grid levels. The LIMIT PRICE is never taken from here: it stays the alert's after-fee
+    number, so this can refuse a post but can never move the price Peter is resting at."""
+    rv = r.get("reval") or {}
+    if not rv:
+        return False, "no revalidation basis recorded - fail closed", None
+    try:
+        fresh = reread_book(book, line, rv)
+    except Exception as ex:
+        return False, f"{book}: re-read raised ({type(ex).__name__}) - fail closed", None
+    if not fresh:
+        # STRICT, by Peter's ruling of Nov 26: an UNVERIFIED resting order does not go. He accepts
+        # the availability cost. A transient read failure therefore stops the bid, and that is the
+        # intended behaviour, not a gap to be optimised away later.
+        return False, f"{book}: market unreadable at order time - fail closed", None
+    fl = fresh.get("line")
+    if line is not None and fl is not None and float(fl) != float(line):
+        return False, f"{book}: line moved {line} -> {fl} - no resting bid at a different number", None
+    if book == "novig" and not (fresh.get("outcome_id") and fresh.get("buy_levels")):
+        return False, "novig: outcome or grid missing at order time - fail closed", None
+    if book == "kalshi" and len(fresh.get("kalshi_buy") or []) != 1:
+        return False, "kalshi: market ambiguous at order time - fail closed", None
+    return True, "", fresh
+
+
 def rest_bid(r):
     """Rest ONE bid at the alert's after-fee number (no 2c extra) on the first REST_BOOKS book that lists the exact
     alert line: Kalshi (good-till-cancelled with an expiry) or Novig (GTT on the home PC). Same unit, cap, STOP and
@@ -5867,6 +5909,14 @@ def rest_bid(r):
     _rb_grant = None
     for b in REST_BOOKS:
         x = books.get(b) or {}
+        # Nov 26 (Task 2): re-read THIS venue before posting. Maker-safe - no depth test - so a
+        # legitimate resting bid is never refused for lack of executable liquidity.
+        if x:
+            _rok, _rwhy, _fresh = rest_revalidate(r, b, x.get("line", e.get("line")))
+            if not _rok:
+                why_not.append(_rwhy)
+                continue
+            x = _fresh           # priced from the CURRENT grid; a failed verification never gets here
         # Nov 18 (Peter: "There is a game on both"). This merged TWO failures with opposite remedies
         # into one string, "no exact-line market": the venue having no priced market at all, and the
         # venue having the game at a DIFFERENT line. The first is a matching or listing problem; the
@@ -5909,6 +5959,22 @@ def rest_bid(r):
             res = book_live.novig_place(x["outcome_id"], c, q, f"{p.get('sport')} {p.get('game')} | {p.get('bet')}",
                                         int(secs * 1000), derive_key(p) or "")
         elif b == "polymarket_us":
+            # BLOCKED, Peter, Nov 27. Polymarket US cannot expire a resting order. The venue accepts
+            # tif TIME_IN_FORCE_GOOD_TILL_TIME with goodTillTime and then silently stores
+            # TIME_IN_FORCE_DAY with goodTillTime null (order DMGX8V5G13ZD; it normalises
+            # FILL_OR_KILL to IMMEDIATE_OR_CANCEL the same way), so the expiry we send is decoration.
+            # The only exit is pmus_rest_sweep cancelling at T-30, which runs ONLY while the bot runs
+            # - a bot outage leaves the bid resting with nothing to pull it, and STOP does not cancel
+            # a resting bid either. Kalshi (absolute timestamp) and Novig (duration) are genuinely
+            # venue-enforced; this venue is the only one that is not.
+            #
+            # It was already off by default - REST_BOOKS is "novig,kalshi" - but only by a variable
+            # being unset, so adding polymarket_us to EXEC_REST_BOOKS would have silently created
+            # un-expirable exposure. This makes the refusal explicit instead of incidental.
+            # The TAKE path is untouched: takes do not come through REST_BOOKS.
+            why_not.append("Polymarket US: resting BLOCKED - the venue cannot enforce an expiry "
+                           "(tif is rewritten to DAY) and cancellation needs the bot alive")
+            continue
             # Nov 10. Until now this fell through to the `else: continue` below, which meant
             # putting polymarket_us in REST_BOOKS placed NOTHING and said nothing - the worst
             # failure available, because it looks like success. Resting and cancelling are both

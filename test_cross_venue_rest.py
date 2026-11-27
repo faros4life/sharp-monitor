@@ -255,10 +255,18 @@ def _run_rest_bid(rows, rest_risk=None, unit_price=-117):
     live = {"lane": "r1", "client_id": "this-run"}
     if rest_risk is not None:
         live["rest_risk"] = rest_risk
+    _ladder = {"status": "ok", "exact_line": True, "line": -7.5, "alert_line": -7.5,
+               "outcome_id": "OC1", "buy_levels": [{"price": 0.50, "size": 100000}]}
     r = {"play": play, "entry": {"price_after_fee": unit_price}, "live": live,
-         "books": {"novig": {"status": "ok", "exact_line": True, "line": -7.5, "alert_line": -7.5,
-                             "outcome_id": "OC1",
-                             "buy_levels": [{"price": 0.50, "size": 100000}]}}}
+         # Nov 26: rest_bid now re-reads the venue before posting and REFUSES an unverified order
+         # (Peter's strict ruling). This file tests remainder ARITHMETIC, so it supplies a basis and
+         # a venue that verifies cleanly - the venue is unchanged since evaluate(). That an
+         # unverified venue refuses to rest is asserted in test_rest_revalidate.py, where it belongs,
+         # and the arithmetic protections below are untouched.
+         "reval": {"al": {"bet": play["bet"]}, "mtype": "spread", "side": "New Mexico Lobos",
+                   "price": unit_price, "teams": ["New Mexico Lobos", "Wyoming Cowboys"], "line": -7.5},
+         "books": {"novig": dict(_ladder)}}
+    ex.reread_book = lambda b, ln, rv: dict(_ladder) if b == "novig" else None
 
     reg = types.SimpleNamespace(
         enabled=lambda: True,
