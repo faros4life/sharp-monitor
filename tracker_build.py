@@ -1209,6 +1209,40 @@ def reclass(b):
     return any(d == r[0] and (r[1] & words) and (len(r) < 3 or b.get("book") == r[2]) for r in RECLASS)
 
 
+def ledger_attribution(bets, loader=None):
+    """Stamp source='bot' on every tracker row the LEDGER proves is a bot fill. Returns a log line.
+
+    Mutates `bets` in place and returns a counts-only string. `loader` is for tests; production passes
+    nothing and the live_ledger module is used.
+
+    FAIL CLOSED: no ledger, no passphrase, or any error re-attributes NOTHING. An unreadable authority must
+    never move a row between the manual and bot records in either direction, and a row the ledger does not
+    place keeps exactly the tag it had (Peter, 16 Nov: unresolved ownership stays separate, never assumed).
+    """
+    try:
+        if loader is None:
+            import live_ledger as ll      # local import: live_ledger imports tracker_build
+            loader = ll
+        src = loader.load()
+        if not src:
+            return "UNAVAILABLE (no TRACKER_PASSPHRASE or ledger unreadable) - tags unchanged"
+        acct = loader.account(src[0], bets, src[2], loader.feed_alerts())
+        proven = {i: l for i, l in (loader.lane_of_rows(acct) or {}).items()
+                  if l and str(l).strip().lower() not in ("none", "")}
+        moved = 0
+        for rid, lane in proven.items():
+            row = bets.get(rid)
+            if not row or row.get("source") == "bot":
+                continue
+            row["source"] = "bot"
+            row.setdefault("lane", lane)
+            row["src_fix"] = "ledger order id"      # why this row changed hands, for the audit
+            moved += 1
+        return f"ok {len(proven)} row(s) proven bot by order id; {moved} re-attributed from manual this build"
+    except Exception as e:
+        return f"UNAVAILABLE ({type(e).__name__}) - tags unchanged"
+
+
 def bot_match(b, keys):
     pb = parse_bet(b.get("bet"), b.get("flip"))
     bw = (b.get("bet") or "").strip().upper()
@@ -1926,6 +1960,27 @@ def main():
 
     def gdate(b):
         return et_date(b.get("game_start")) or et_date(b.get("settled"))
+
+    # ---------------------------------------------------------------- authoritative source attribution
+    # Nov 27 (Peter): "Correct the underlying attribution, not just one report. They must not appear in
+    # both manual and bot performance."
+    #
+    # MEASURED: 24 ProphetX bot fills were tagged "Peter" and counted in his MANUAL record while the
+    # ledger proved them bot by order id, so executed_clv's fix put them in the BOT record too - the same
+    # 24 fills in both. The cause is above, at the settled-row source line: a row is tagged bot only when
+    # bot_match() hits the key set from bot_keys(None, days=2) - a TWO-DAY key window - and once a row is
+    # stored as "Peter" that tag is sticky, because the fallback chain treats a stored "Peter" as no
+    # evidence and lands on "Peter" again. A fill whose key missed its window is therefore manual forever.
+    #
+    # The ledger's order-id join is the authority (Peter, 16 Nov: "live lane attribution must come from the
+    # reporting ledger/order IDs"), so it outranks the key-window tag. This runs AFTER the settled loop so
+    # this build's own fills are attributed now rather than one build late, and it writes through to
+    # state["bets"] below - the store every report and the nightly CSV read, not one report's view.
+    #
+    # FAIL CLOSED: no ledger, no passphrase, or any error re-attributes NOTHING and says so. An unreadable
+    # authority must never move a row between the manual and bot records in either direction, and a row the
+    # ledger does not place stays exactly as it was (Peter, 16 Nov: unresolved ownership stays separate).
+    LOG["ledger_attr"] = ledger_attribution(bets)
 
     sett = [b for b in bets.values() if b.get("result") in ("W", "L", "P") and not b.get("dup_of")]
     tile = lambda t0: round(sum(b.get("profit") or 0 for b in sett if gdate(b) and gdate(b) >= t0), 2)
