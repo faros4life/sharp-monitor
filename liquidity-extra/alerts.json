@@ -1,6 +1,192 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-27T23:10:22Z",
+   "base_depth": 444078,
+   "best_price": 0.6818,
+   "best_price_american": -214,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.68,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 26496,
+     "new_this_side": 102973,
+     "other_side": 96460,
+     "other_side_all_levels": 231702,
+     "ratio": 2.3,
+     "this_side": 219475,
+     "this_side_all_levels": 548160
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Georgia",
+     "price": 0.6774,
+     "this_side": 16365
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 5701.29,
+    "volume_24h_fp": 5053.34,
+    "volume_fp": 5847.9
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 187.93,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 259.84
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 5513.36,
+    "volume_24h_fp": 5053.34,
+    "volume_fp": 5588.0599999999995
+   },
+   "fade_price": 0.33,
+   "first_seen_utc": "2026-11-27T23:00:38Z",
+   "game": "Georgia vs UCF",
+   "game_surge_books": [
+    "prophetx"
+   ],
+   "game_x": 1.42,
+   "key": "kalshi|KXNCAAMBGAME-26NOV27UGAUCF|ml|0",
+   "lead_min": 50,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 102973,
+   "new_x": 1.2,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 5701.29,
+      "volume_24h_fp": 5053.34,
+      "volume_fp": 5847.9
+     },
+     "game_normal": 386454,
+     "game_x": 1.42,
+     "normal": 86015,
+     "now": 548160,
+     "type": "ML",
+     "x": 6.37
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 6631,
+     "game_x": 2.49,
+     "normal": 1120,
+     "now": 16501,
+     "type": "ML",
+     "x": 14.74
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.68,
+   "price_american": -213,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.68,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -235
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -230
+    },
+    "betrivers": {
+     "point": null,
+     "price": -245
+    },
+    "betus": {
+     "point": null,
+     "price": -230
+    },
+    "bovada": {
+     "point": null,
+     "price": -240
+    },
+    "circasports": {
+     "point": null,
+     "price": -235
+    },
+    "draftkings": {
+     "point": null,
+     "price": -230
+    },
+    "fanatics": {
+     "point": null,
+     "price": -235
+    },
+    "fanduel": {
+     "point": null,
+     "price": -225
+    },
+    "kalshi": {
+     "point": null,
+     "price": -213
+    },
+    "lowvig": {
+     "point": null,
+     "price": -230
+    },
+    "novig": {
+     "point": null,
+     "price": -212
+    },
+    "polymarket": {
+     "point": null,
+     "price": -213
+    },
+    "prophetx": {
+     "point": null,
+     "price": -210
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -225
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV27UGAUCF-UGA"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Georgia",
+   "side_label": "Georgia",
+   "size_x": 6.37,
+   "start_source": "odds",
+   "start_utc": "2026-11-28T00:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "prophetx"
+   ],
+   "teams": [
+    "Georgia",
+    "UCF"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-27T23:00:38Z",
    "base_depth": 324182,
    "best_price": 0.59,
@@ -50,6 +236,11 @@
     "open_interest_fp": 3304.44,
     "volume_24h_fp": 8119.73,
     "volume_fp": 3304.44
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 71312.55,
+    "volume_24h_fp": 65888.26,
+    "volume_fp": 72451.1
    },
    "ex_stats_first": {
     "open_interest_fp": 63145.09999999999,
@@ -260,6 +451,11 @@
     "open_interest_fp": 41.53,
     "volume_24h_fp": 127.21,
     "volume_fp": 62.14
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 9192.74,
+    "volume_24h_fp": 11944.449999999999,
+    "volume_fp": 12173.07
    },
    "ex_stats_first": {
     "open_interest_fp": 8953.37,
@@ -1107,9 +1303,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 294.55,
+    "open_interest_fp": 309.93,
     "volume_24h_fp": 295.31,
-    "volume_fp": 295.31
+    "volume_fp": 310.69
    },
    "ex_stats_first": {
     "open_interest_fp": 255.04,
@@ -3211,7 +3407,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "LAS (0)",
@@ -3282,9 +3478,9 @@
     "volume_fp": 89.41
    },
    "ex_stats_close": {
-    "open_interest_fp": 196416.05,
+    "open_interest_fp": 209920.02000000002,
     "volume_24h_fp": 206997.97,
-    "volume_fp": 207226.15
+    "volume_fp": 220892.01
    },
    "ex_stats_first": {
     "open_interest_fp": 38635.75,
@@ -4110,8 +4306,8 @@
     "volume": 24375.0
    },
    "ex_stats_close": {
-    "openInterest": 1860195.0,
-    "volume": 2277560.0
+    "openInterest": 1892709.0,
+    "volume": 2310074.0
    },
    "ex_stats_first": {
     "openInterest": 376467.0,
@@ -4846,9 +5042,9 @@
     "volume_fp": 100.33
    },
    "ex_stats_close": {
-    "open_interest_fp": 11634.25,
+    "open_interest_fp": 11750.11,
     "volume_24h_fp": 12337.46,
-    "volume_fp": 12337.46
+    "volume_fp": 12459.46
    },
    "ex_stats_first": {
     "open_interest_fp": 1337.47,
@@ -5769,8 +5965,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.83,
-   "clv_cents": 0.0,
+   "close_price": 0.82,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-27",
    "depth_by_book": {
@@ -5807,9 +6003,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1718.2400000000002,
+    "open_interest_fp": 1782.3200000000002,
     "volume_24h_fp": 1865.72,
-    "volume_fp": 1880.2199999999998
+    "volume_fp": 1944.3000000000002
    },
    "ex_stats_first": {
     "open_interest_fp": 118.74000000000001,
@@ -6316,7 +6512,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "American",
@@ -6676,7 +6872,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "La Salle",
