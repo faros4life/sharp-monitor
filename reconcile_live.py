@@ -165,21 +165,43 @@ def main():
     for k, n in why.most_common():
         say(f"  {n:4d}  {k}")
 
-    say("\nDOGS - every tracker row on a Dogs alert play since the Dogs lane went live (25 Nov), by source")
+    # Nov 27 (Peter): two corrections to this block.
+    #  1. The window is 23 NOV, not 25 Nov - the day he switched EXEC_DOGS_LIVE on. The 25th is the date of the
+    #     $300 spec change, which moved the stake and nothing about what the lane selects. Starting on the 25th
+    #     silently dropped the first two days of live signals.
+    #  2. The lane's own FIRST-PRINT rule applies: dogs_select takes the first bettable print per game + market
+    #     + side over all eligible rows and only that print can qualify. Counting every qualifying print
+    #     overstated what the lane could ever have played.
+    # The first-print set is built exactly as dogs_select builds it, from the executor's own constants, so the
+    # count here cannot drift from the lane.
+    DOGS_LIVE_FROM = "2026-11-23"      # Peter flipped the switch ~10:50 AM ET; the $300 unit followed on the 25th
+    say(f"\nDOGS - every tracker row on a Dogs alert play since the lane went live ({DOGS_LIVE_FROM}), by source")
     import executor as ex
     import json as _j
     Q = _j.load(open("liquidity/alerts.json"))
     Q = Q if isinstance(Q, list) else Q.get("alerts") or []
-    dg = [x for x in Q if isinstance(x, dict) and str(x.get("alerted_utc") or "") >= "2026-11-25" and ex.dogs_qualifies(x)
-          and ex.dogs_bet(x)]
+    _elig = [x for x in Q if isinstance(x, dict) and not x.get("artifact") and not x.get("close_suspect")
+             and str(x.get("book") or "").strip().lower() not in ex.DOGS_NOT_BETTABLE and ex.iso_t(x.get("alerted_utc"))]
+    _elig.sort(key=lambda x: ex.iso_t(x.get("alerted_utc")))
+    _first = {}
+    for x in _elig:
+        _first.setdefault((str(x.get("game")).lower(), x.get("market"), str(x.get("side")).lower()), x)
+    dg = [x for x in _first.values() if str(x.get("alerted_utc") or "") >= DOGS_LIVE_FROM
+          and ex.dogs_qualifies(x) and ex.dogs_bet(x)]
+    _laterprints = sum(1 for x in Q if isinstance(x, dict) and str(x.get("alerted_utc") or "") >= DOGS_LIVE_FROM
+                       and ex.dogs_qualifies(x)) - sum(1 for x in _first.values()
+                                                       if str(x.get("alerted_utc") or "") >= DOGS_LIVE_FROM
+                                                       and ex.dogs_qualifies(x))
     hits = collections.Counter()
     for x in dg:
         gt = set(ll.toks(x.get("game")))
         for i, b in B.items():
-            if str(b.get("first_seen") or "")[:10] >= "2026-11-25" and len(gt & set(ll.toks(b.get("game")))) >= 2 \
+            if str(b.get("first_seen") or "")[:10] >= DOGS_LIVE_FROM and len(gt & set(ll.toks(b.get("game")))) >= 2 \
                     and set(ll.toks(x.get("side"))) & set(ll.toks(b.get("bet"))):
                 hits[(str(b.get("source")), str(b.get("book")), where.get(i, ("NO LEDGER ORDER",))[0])] += 1
-    say(f"  qualifying Dogs alerts since 25 Nov: {len(dg)} | tracker rows on those plays: {sum(hits.values())}")
+    say(f"  playable Dogs signals since {DOGS_LIVE_FROM} (first print per game+market+side, bet readable): {len(dg)}"
+        f" | later prints on the same play, which the lane can never take: {_laterprints}"
+        f" | tracker rows on those plays: {sum(hits.values())}")
     for k, n in hits.most_common():
         say(f"    source {k[0]:<8} venue {k[1]:<9} ledger {k[2]:<16} {n}")
     dlo = [p for p in acct["plays"] if str(p["lane"]) == "DOGS"] + [e for e in acct["excluded"] if str(e.get("lane")) in ("dogs", "DOGS")]
