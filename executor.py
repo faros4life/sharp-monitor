@@ -5235,6 +5235,12 @@ def live_remainder(r):
     return more
 
 
+# Nov 27 (Peter): which lanes tell the Novig runner their lane. ONLY Dogs: the runner raises its cost cap to $300 for
+# lane "dogs" at plus money and for nothing else, so sending other lanes would change nothing - and leaving them out
+# means a runner that has not been updated sees exactly today's dispatch for every other lane.
+NOVIG_LANE_ARG = {"dogs": "dogs"}
+
+
 def live_order_other(r):
     """Oct 28 (Peter): phase-1 live fill on Kalshi or Polymarket US when that book has the best after-fee price.
     Same unit, cap, STOP and daily stop (book_live counts these dollars as lost until settled)."""
@@ -5284,7 +5290,10 @@ def live_order_other(r):
     elif book == "novig":   # Novig contracts pay 1c: plan() counted $1 contracts, so x100
         if not ids.get("outcome_id"):
             return refuse_untransmitted(r, "Novig outcome unknown - fail closed", book=book)
-        res = book_live.novig_place(ids["outcome_id"], limit_cost, count * 100, label, None, derive_key(p) or "")
+        _disp_t = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")   # Nov 27: hand-off to the runner (log only)
+        res = book_live.novig_place(ids["outcome_id"], limit_cost, count * 100, label, None, derive_key(p) or "",
+                                    lane=NOVIG_LANE_ARG.get(str((r.get("live") or {}).get("lane") or p.get("source") or ""), ""))
+        res = dict(res, dispatched_utc=_disp_t)   # submitted_utc is stamped by the runner when it actually sends
     else:
         return refuse_untransmitted(r, f"no live order code for {name}", book=book)
     res = dict(res, book=book, answered_utc=datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"))   # Nov 26: log only
@@ -7317,6 +7326,7 @@ def journal_order(r, lo, is_rest=False, cid=None):
                    "expires_utc": lo.get("expires_utc"),
                    # Nov 26 (Peter, live-feed integrity): submit and venue-answer times. Logging only.
                    "submitted_utc": lo.get("submitted_utc"), "answered_utc": lo.get("answered_utc"),
+                   "dispatched_utc": lo.get("dispatched_utc"),
                    # Nov 11: resolves the write-ahead intent row and makes the money count once
                    "client_id": cid or (r.get("live") or {}).get("client_id"), "intent": False,
                    # Nov 18: the execution-time fee, so the CLV ledger grades this fill on the
