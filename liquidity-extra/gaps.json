@@ -2,36 +2,6 @@
  "note": "PAPER ONLY (Oct 25; persistence added Oct 26): opposite sides of the same game/market/line on two different exchanges whose combined cost after fees is under $1 (Kalshi/Novig/ProphetX; Polymarket here is the global book, excluded). edge_pct = locked profit per $ staked at first sight; max/last_edge_pct while open. size_est = smaller leg's near-price depth (UPPER BOUND). first/last_seen_utc, scans_seen, lifetime_min = how long the gap stayed open (scan-interval resolution; a 1-scan gap may be a feed artifact). scan_sec = seconds from run start to this save, the most the two legs' reads can be apart. Measurement only: never alerted, never bet.",
  "gaps": [
   {
-   "seen_utc": "2026-11-13T23:50:15Z",
-   "league": "NCAAB",
-   "game": "Sam Houston State @ Illinois",
-   "market": "total",
-   "line": 170.5,
-   "edge_pct": 0.99,
-   "total_cost": 0.9902,
-   "size_est": 2101,
-   "legs": [
-    {
-     "book": "novig",
-     "side": "Under 170.5 (170.5)",
-     "price": 0.495,
-     "cost_after_fee": 0.495
-    },
-    {
-     "book": "prophetx",
-     "side": "over 170.5 (170.5)",
-     "price": 0.4902,
-     "cost_after_fee": 0.4952
-    }
-   ],
-   "first_seen_utc": "2026-11-13T23:50:15Z",
-   "last_seen_utc": "2026-11-13T23:50:15Z",
-   "scans_seen": 1,
-   "max_edge_pct": 0.99,
-   "scan_sec": 328,
-   "lifetime_min": 0
-  },
-  {
    "seen_utc": "2026-11-14T00:00:31Z",
    "league": "NCAAB",
    "game": "Southern Mississippi @ Texas State",
@@ -1413,13 +1383,13 @@
     }
    ],
    "first_seen_utc": "2026-11-26T05:00:28Z",
-   "last_seen_utc": "2026-11-27T23:40:24Z",
-   "scans_seen": 253,
+   "last_seen_utc": "2026-11-27T23:50:19Z",
+   "scans_seen": 254,
    "max_edge_pct": 60.0,
    "scan_sec": 233,
-   "lifetime_min": 2560,
+   "lifetime_min": 2570,
    "last_edge_pct": 56.25,
-   "last_size_est": 23148
+   "last_size_est": 22983
   },
   {
    "seen_utc": "2026-11-26T06:00:29Z",
@@ -1535,11 +1505,11 @@
     }
    ],
    "first_seen_utc": "2026-11-27T01:20:21Z",
-   "last_seen_utc": "2026-11-27T23:40:24Z",
-   "scans_seen": 133,
+   "last_seen_utc": "2026-11-27T23:50:19Z",
+   "scans_seen": 134,
    "max_edge_pct": 59.31,
    "scan_sec": 233,
-   "lifetime_min": 1340,
+   "lifetime_min": 1350,
    "last_edge_pct": 54.58,
    "last_size_est": 8764
   },
