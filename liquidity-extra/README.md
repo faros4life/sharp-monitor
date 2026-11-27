@@ -1,23 +1,23 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 26, 10:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 17.
+Updated Thu Nov 26, 10:10 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 15.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 519-316 (-28.54u flat) | rule met: 125-86
+**Record:** 520-317 (-29.07u flat) | rule met: 125-86
 
-**Fade (paper, betting against the print):** 291-484 (+26.56u flat, after fees)
+**Fade (paper, betting against the print):** 292-485 (+26.42u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 26 6:40PM | NCAAB | SMU vs LSU: Spread | spread: NOT LSU wins by over 6.5 points | kalshi | $245k | +104 |  |  | +4.0c | yes | pending |
+| Nov 26 6:40PM | NCAAB | SMU vs LSU: Spread | spread: NOT LSU wins by over 6.5 points | kalshi | $245k | +104 |  |  | +4.0c | yes | L |
 | Nov 26 6:40PM | NCAAB | Pittsburgh vs DePaul | moneyline: DePaul | kalshi | $162k | -100 |  | ❌ | +5.0c | yes | L |
 | Nov 26 5:50PM | NCAAB | Omaha @ Pacific | moneyline: Pacific (0) | novig | $28k | -300 | ✅ kalshi | ❌ | +0.0c |  | pending |
 | Nov 26 5:00PM | NCAAB | TCU vs Creighton | moneyline: Creighton | kalshi | $84k | -108 | ✅ novig |  | +4.0c | yes | W |
 | Nov 26 3:00PM | NCAAB | Louisville vs St. John's | moneyline: St. John's | kalshi | $28k | -113 |  |  | +0.0c | yes | pending |
 | Nov 26 2:20PM | NCAAB | Saint Mary's vs UCLA: Spread | spread: UCLA wins by over 7.5 points | kalshi | $28k | -104 |  |  | +2.0c |  | L |
 | Nov 26 12:00PM | NCAAB | TCU vs Creighton: Spread | spread: NOT Creighton wins by over 1.5 points | kalshi | $25k | -108 |  |  | -4.0c | yes | L |
-| Nov 26 12:00PM | NCAAB | Baylor vs Gonzaga | moneyline: Gonzaga | kalshi | $34k | -163 | ✅ novig |  | -2.0c | yes | pending |
+| Nov 26 12:00PM | NCAAB | Baylor vs Gonzaga | moneyline: Gonzaga | kalshi | $34k | -163 | ✅ novig |  | -3.0c | yes | pending |
 | Nov 26 11:00AM | NCAAB | Oklahoma vs Purdue | moneyline: Purdue | kalshi | $72k | -186 | ✅ novig |  | +2.0c |  | L |
 | Nov 26 10:10AM | NCAAB | Georgia @ Cincinnati | moneyline: CIN (0) | novig | $39k | -125 | ✅ kalshi |  | +3.5c |  | W |
 | Nov 26 10:10AM | NCAAB | Georgia vs Cincinnati: Point Total | total: Over 156.5 points | kalshi | $28k | +113 |  |  | +4.0c |  | W |
@@ -28,7 +28,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 26 8:30AM | NCAAB | Miami (FL) vs Michigan | moneyline: Miami (FL) | kalshi | $60k | -122 |  |  | -3.0c | yes | W |
 | Nov 26 6:10AM | NCAAB | Georgia vs Cincinnati | moneyline: Cincinnati | kalshi | $37k | -122 |  |  | +3.0c |  | W |
 | Nov 26 2:30AM | NCAAB | Georgetown @ Texas | moneyline: TEX (0) | novig | $26k | -335 | ✅ kalshi |  | -1.0c |  | W |
-| Nov 26 1:20AM | NCAAB | SMU vs LSU | moneyline: LSU | kalshi | $26k | -213 |  |  | +5.0c | yes | pending |
+| Nov 26 1:20AM | NCAAB | SMU vs LSU | moneyline: LSU | kalshi | $26k | -213 |  |  | +5.0c | yes | W |
 | Nov 26 1:20AM | NCAAB | Arkansas vs Michigan St. | moneyline: Michigan St. | kalshi | $25k | -203 |  |  | +1.0c | yes | W |
 | Nov 26 12:25AM | NCAAB | Saint Louis vs Stanford | moneyline: Saint Louis | kalshi | $69k | -163 |  |  | +25.0c | yes | pending |
 | Nov 25 10:50PM | NCAAB | Alabama vs Kansas St.: Point Total | total: Over 169.5 points | kalshi | $61k | -104 |  |  | +1.0c |  | pending |
