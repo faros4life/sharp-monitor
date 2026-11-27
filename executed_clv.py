@@ -289,11 +289,28 @@ def main():
         say(f"  ledger attribution unavailable ({type(_e).__name__}) - every fill is UNATTRIBUTED")
         ACCT = None
     LEDGER_LANE = ll.lane_of_rows(ACCT) if ACCT else {}
+
+    # Nov 27 (Peter: "Resolve the failed executed_clv consistency check"). The authoritative per-strategy table
+    # is printed from ONE source (live_ledger.lane_summary) so this report, last50_report and reconcile_live are
+    # identical by construction - and reconcile_live verifies that. But main() has early returns above the
+    # printing site (no graded bot fill; nothing verified), and on those paths the table never printed at all,
+    # so the identity check read 0 lines and reported DIFFERENT every run. The table does not depend on this
+    # report's own fill join, so it is emitted on EVERY path now, once, through this helper.
+    def lane_table():
+        if lane_table.done:
+            return
+        lane_table.done = True
+        say()
+        for _ln in (ll.lane_summary(ACCT) if ACCT else ["  AUTHORITATIVE LIVE TABLE unavailable: ledger not readable"]):
+            say("  " + _ln if not _ln.startswith("  ") else _ln)
+    lane_table.done = False
+
     try:
         F, total = fill_rows()
     except Exception as e:
         say(f"tracker state unreadable ({type(e).__name__}: {str(e)[:80]})")
         say("Nothing computed. This job needs tracker/state.enc, which only decrypts inside Actions.")
+        lane_table()
         try:
             ex.send("Bets EXECUTED CLV (state unreadable)", "\n".join(L))
         except Exception:
@@ -311,6 +328,7 @@ def main():
         say("  Executed CLV cannot be computed without a filled price, and the join that tags a")
         say("  fill as the bot's is tracker_build.bot_keys/bot_match over the 'Bets LIVE' emails.")
         say("  If fills exist but none is tagged, that join is what to look at - not this script.")
+        lane_table()
         try:
             ex.send("Bets EXECUTED CLV (no graded bot fills)", "\n".join(L))
         except Exception:
@@ -490,6 +508,7 @@ def main():
         say("  No fill cleared the standard's requirements, so there is no Executed CLV to report.")
         say("  The standard forbids a modelled or converted close in a headline figure, so this")
         say("  reports nothing rather than something weaker. The exclusion counts above say why.")
+        lane_table()
         try:
             ex.send("Bets EXECUTED CLV (no verified closes)", "\n".join(L))
         except Exception:
@@ -539,9 +558,7 @@ def main():
     # Nov 26 (Peter): actual bot plays by lane - after-fee units, ROI, mean certified CLV, beat-close, first and
     # second half by date. Same rows and same math as the headline; units only in the log.
     # Nov 27 (Peter): per-strategy results are the ONE shared table (live_ledger.lane_summary), identical to last50.
-    say("")
-    for _ln in (ll.lane_summary(ACCT) if ACCT else ["  AUTHORITATIVE LIVE TABLE unavailable: ledger not readable"]):
-        say("  " + _ln)
+    lane_table()
     say("\n  EXECUTED CLV per fill by authoritative lane (fill legs, headline venues; fills the ledger cannot place are"
         " UNATTRIBUTED)")
     for ln in sorted({r["lane"] for r in clean}):
