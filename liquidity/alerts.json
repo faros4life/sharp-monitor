@@ -108,6 +108,8 @@
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.71,
+   "price_after_15m": 0.71,
+   "price_after_15m_book": "novig",
    "price_american": -245,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.71,
@@ -193,6 +195,7 @@
    "size_x": 2.54,
    "start_source": "odds",
    "start_utc": "2026-11-27T21:30:00Z",
+   "still_actionable": true,
    "surge_books": [
     "novig"
    ],
@@ -247,8 +250,8 @@
     "volume": 56479.0
    },
    "ex_stats_close": {
-    "openInterest": 49161906.0,
-    "volume": 59819608.0
+    "openInterest": 49151906.0,
+    "volume": 60413519.0
    },
    "ex_stats_first": {
     "openInterest": 40908511.0,
@@ -414,8 +417,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.405,
-   "clv_cents": 0.0,
+   "close_price": 0.4,
+   "clv_cents": -0.5,
    "confirmed_after_min": 5,
    "date": "2026-11-26",
    "depth_by_book": {
@@ -450,8 +453,8 @@
     "volume": 797913.0
    },
    "ex_stats_close": {
-    "openInterest": 62300922.0,
-    "volume": 95852556.0
+    "openInterest": 63049128.0,
+    "volume": 96827871.0
    },
    "ex_stats_first": {
     "openInterest": 52573367.0,
@@ -659,7 +662,7 @@
    },
    "ex_stats_close": {
     "openInterest": 22128846.0,
-    "volume": 25378032.0
+    "volume": 25465728.0
    },
    "ex_stats_first": {
     "openInterest": 13653467.0,
@@ -1065,9 +1068,9 @@
     "volume_fp": 141.1
    },
    "ex_stats_close": {
-    "open_interest_fp": 60323.05,
-    "volume_24h_fp": 72388.18,
-    "volume_fp": 83759.36
+    "open_interest_fp": 59738.119999999995,
+    "volume_24h_fp": 73808.25,
+    "volume_fp": 85516.70999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 53892.83,
@@ -1440,9 +1443,9 @@
     "volume_fp": 290.13
    },
    "ex_stats_close": {
-    "open_interest_fp": 61318.89,
-    "volume_24h_fp": 60612.09,
-    "volume_fp": 65591.16
+    "open_interest_fp": 61550.25,
+    "volume_24h_fp": 61220.54,
+    "volume_fp": 65840.78
    },
    "ex_stats_first": {
     "open_interest_fp": 51375.53,
@@ -1644,9 +1647,9 @@
     "volume_fp": 156.87
    },
    "ex_stats_close": {
-    "open_interest_fp": 418198.41,
-    "volume_24h_fp": 309021.19,
-    "volume_fp": 428386.68
+    "open_interest_fp": 418342.11,
+    "volume_24h_fp": 306538.79,
+    "volume_fp": 428547.99
    },
    "ex_stats_first": {
     "open_interest_fp": 415726.38,
@@ -1846,8 +1849,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 1771413.0,
-    "volume": 2264415.0
+    "openInterest": 1782025.0,
+    "volume": 2275027.0
    },
    "ex_stats_first": {
     "openInterest": 1697825.0,
@@ -2045,9 +2048,9 @@
     "volume_fp": 3234.85
    },
    "ex_stats_close": {
-    "open_interest_fp": 156291.53,
-    "volume_24h_fp": 159489.33,
-    "volume_fp": 174522.3
+    "open_interest_fp": 160211.83,
+    "volume_24h_fp": 161591.78,
+    "volume_fp": 179306.41
    },
    "ex_stats_first": {
     "open_interest_fp": 110652.03,
@@ -2235,8 +2238,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 19238615.0,
-    "volume": 26862912.0
+    "openInterest": 19285615.0,
+    "volume": 26945205.0
    },
    "ex_stats_first": {
     "openInterest": 19441976.0,
@@ -2605,7 +2608,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [
     "Over 48.5 (-112)"
@@ -2823,7 +2826,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Philadelphia Eagles",
@@ -2880,8 +2883,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 18126048.0,
-    "volume": 20294296.0
+    "openInterest": 18174736.0,
+    "volume": 20349315.0
    },
    "ex_stats_first": {
     "openInterest": 10726956.0,
@@ -3201,7 +3204,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Dallas Cowboys",
@@ -3487,9 +3490,9 @@
     "volume_fp": 308.37
    },
    "ex_stats_close": {
-    "open_interest_fp": 156336.99,
-    "volume_24h_fp": 63218.55,
-    "volume_fp": 168344.69
+    "open_interest_fp": 156395.73,
+    "volume_24h_fp": 63272.95,
+    "volume_fp": 168403.43
    },
    "ex_stats_first": {
     "open_interest_fp": 120664.88,
@@ -4122,9 +4125,9 @@
     "volume_fp": 73.81
    },
    "ex_stats_close": {
-    "open_interest_fp": 39199.94,
-    "volume_24h_fp": 39922.41,
-    "volume_fp": 46172.58
+    "open_interest_fp": 39476.68,
+    "volume_24h_fp": 40005.31,
+    "volume_fp": 46640.66
    },
    "ex_stats_first": {
     "open_interest_fp": 23433.79,
@@ -4438,9 +4441,9 @@
     "volume_fp": 1206.84
    },
    "ex_stats_close": {
-    "open_interest_fp": 630867.8999999999,
-    "volume_24h_fp": 526542.25,
-    "volume_fp": 770125.8200000001
+    "open_interest_fp": 639313.4199999999,
+    "volume_24h_fp": 541804.63,
+    "volume_fp": 778626.9199999999
    },
    "ex_stats_first": {
     "open_interest_fp": 350458.26,
@@ -5418,7 +5421,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Philadelphia Eagles",
@@ -5483,9 +5486,9 @@
     "volume_fp": 5274.26
    },
    "ex_stats_close": {
-    "open_interest_fp": 135619.62,
-    "volume_24h_fp": 82418.66,
-    "volume_fp": 140843.25
+    "open_interest_fp": 136845.09,
+    "volume_24h_fp": 83345.56,
+    "volume_fp": 142068.72
    },
    "ex_stats_first": {
     "open_interest_fp": 89081.03,
@@ -5892,7 +5895,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 25773.420000000002,
-    "volume_24h_fp": 11058.14,
+    "volume_24h_fp": 10420.289999999999,
     "volume_fp": 32519.69
    },
    "ex_stats_first": {
@@ -6073,7 +6076,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 25773.420000000002,
-    "volume_24h_fp": 11058.14,
+    "volume_24h_fp": 10420.289999999999,
     "volume_fp": 32519.69
    },
    "ex_stats_first": {
@@ -6210,9 +6213,9 @@
     "volume_fp": 122.29
    },
    "ex_stats_close": {
-    "open_interest_fp": 44629.36,
-    "volume_24h_fp": 48438.58,
-    "volume_fp": 68023.89
+    "open_interest_fp": 44691.229999999996,
+    "volume_24h_fp": 49497.44,
+    "volume_fp": 68129.95000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 26752.58,
@@ -6312,8 +6315,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.64,
-   "clv_cents": 0.0,
+   "close_price": 0.65,
+   "clv_cents": 1.0,
    "confirmed_after_min": 5,
    "date": "2026-11-27",
    "depth_by_book": {
@@ -6350,9 +6353,9 @@
     "volume_fp": 295.9
    },
    "ex_stats_close": {
-    "open_interest_fp": 149898.78999999998,
-    "volume_24h_fp": 149111.56,
-    "volume_fp": 204629.24
+    "open_interest_fp": 152717.99,
+    "volume_24h_fp": 152123.65,
+    "volume_fp": 207501.11000000002
    },
    "ex_stats_first": {
     "open_interest_fp": 80813.09,
@@ -6552,7 +6555,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Dallas Cowboys",
@@ -6617,9 +6620,9 @@
     "volume_fp": 235.63
    },
    "ex_stats_close": {
-    "open_interest_fp": 15843.2,
-    "volume_24h_fp": 14993.619999999999,
-    "volume_fp": 18071.37
+    "open_interest_fp": 15902.54,
+    "volume_24h_fp": 15060.869999999999,
+    "volume_fp": 18130.71
    },
    "ex_stats_first": {
     "open_interest_fp": 9262.64,
@@ -6750,9 +6753,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 29710.16,
-    "volume_24h_fp": 27277.809999999998,
-    "volume_fp": 32890.07
+    "open_interest_fp": 29752.04,
+    "volume_24h_fp": 27465.33,
+    "volume_fp": 32931.95
    },
    "ex_stats_first": {
     "open_interest_fp": 15796.61,
@@ -6884,7 +6887,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 9660.48,
-    "volume_24h_fp": 6394.66,
+    "volume_24h_fp": 6495.16,
     "volume_fp": 10499.75
    },
    "ex_stats_first": {
@@ -7124,9 +7127,9 @@
     "volume_fp": 79.71
    },
    "ex_stats_close": {
-    "open_interest_fp": 870521.17,
-    "volume_24h_fp": 742350.57,
-    "volume_fp": 898635.07
+    "open_interest_fp": 898262.0,
+    "volume_24h_fp": 776933.09,
+    "volume_fp": 926375.9
    },
    "ex_stats_first": {
     "open_interest_fp": 241287.85,
@@ -7384,9 +7387,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 50453.11,
-    "volume_24h_fp": 25018.05,
-    "volume_fp": 51883.62
+    "open_interest_fp": 53296.73,
+    "volume_24h_fp": 26913.8,
+    "volume_fp": 54727.24
    },
    "ex_stats_first": {
     "open_interest_fp": 48854.75,
@@ -7584,7 +7587,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Dallas Cowboys",
@@ -7790,9 +7793,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 73172.16,
-    "volume_24h_fp": 53561.649999999994,
-    "volume_fp": 76157.14
+    "open_interest_fp": 73894.19,
+    "volume_24h_fp": 53662.42,
+    "volume_fp": 76879.17
    },
    "ex_stats_first": {
     "open_interest_fp": 22737.87,
@@ -7940,9 +7943,9 @@
     "volume_fp": 3201.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 1566602.18,
-    "volume_24h_fp": 813572.23,
-    "volume_fp": 2081317.95
+    "open_interest_fp": 1566711.87,
+    "volume_24h_fp": 817838.8300000001,
+    "volume_fp": 2084407.11
    },
    "ex_stats_first": {
     "open_interest_fp": 1027364.75,
@@ -8075,9 +8078,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 130101.97,
-    "volume_24h_fp": 38461.74,
-    "volume_fp": 149604.29
+    "open_interest_fp": 130183.18,
+    "volume_24h_fp": 38359.32,
+    "volume_fp": 149685.5
    },
    "ex_stats_first": {
     "open_interest_fp": 109014.38,
@@ -8201,7 +8204,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 14102.68,
-    "volume_24h_fp": 2592.07,
+    "volume_24h_fp": 2573.43,
     "volume_fp": 15151.85
    },
    "ex_stats_first": {
@@ -8342,8 +8345,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 29700359.0,
-    "volume": 60421140.0
+    "openInterest": 29700514.0,
+    "volume": 60421295.0
    },
    "ex_stats_first": {
     "openInterest": 26640059.0,
@@ -8480,8 +8483,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 49161906.0,
-    "volume": 59819608.0
+    "openInterest": 49151906.0,
+    "volume": 60413519.0
    },
    "ex_stats_first": {
     "openInterest": 9377107.0,
@@ -8610,9 +8613,9 @@
     "volume_fp": 9.97
    },
    "ex_stats_close": {
-    "open_interest_fp": 8487.98,
-    "volume_24h_fp": 6988.09,
-    "volume_fp": 10041.240000000002
+    "open_interest_fp": 8561.93,
+    "volume_24h_fp": 6989.32,
+    "volume_fp": 10115.19
    },
    "ex_stats_first": {
     "open_interest_fp": 3526.54,
@@ -8748,7 +8751,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 9274.46,
-    "volume_24h_fp": 1558.1299999999999,
+    "volume_24h_fp": 1555.4099999999999,
     "volume_fp": 10858.900000000001
    },
    "ex_stats_first": {
@@ -8964,7 +8967,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 4203.49,
-    "volume_24h_fp": 1592.45,
+    "volume_24h_fp": 1598.93,
     "volume_fp": 4378.35
    },
    "ex_stats_first": {
@@ -9174,7 +9177,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 5287.879999999999,
-    "volume_24h_fp": 1727.12,
+    "volume_24h_fp": 1725.85,
     "volume_fp": 7343.4400000000005
    },
    "ex_stats_first": {
@@ -9377,9 +9380,9 @@
     "volume_fp": 121.04
    },
    "ex_stats_close": {
-    "open_interest_fp": 1341561.01,
-    "volume_24h_fp": 525012.19,
-    "volume_fp": 1649688.03
+    "open_interest_fp": 1346761.71,
+    "volume_24h_fp": 539630.78,
+    "volume_fp": 1662357.2
    },
    "ex_stats_first": {
     "open_interest_fp": 1079758.46,
@@ -9564,9 +9567,9 @@
     "volume_fp": 40.04
    },
    "ex_stats_close": {
-    "open_interest_fp": 31076.120000000003,
-    "volume_24h_fp": 29845.11,
-    "volume_fp": 35308.270000000004
+    "open_interest_fp": 31571.88,
+    "volume_24h_fp": 30124.65,
+    "volume_fp": 35804.03
    },
    "ex_stats_first": {
     "open_interest_fp": 5490.219999999999,
@@ -15072,9 +15075,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 71557.26,
-    "volume_24h_fp": 70247.12,
-    "volume_fp": 73644.52
+    "open_interest_fp": 72522.1,
+    "volume_24h_fp": 70742.0,
+    "volume_fp": 74609.36
    },
    "ex_stats_first": {
     "open_interest_fp": 977.76,
@@ -16783,8 +16786,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.6,
-   "clv_cents": 1.5,
+   "close_price": 0.605,
+   "clv_cents": 2.0,
    "confirmed_after_min": 4,
    "date": "2026-11-26",
    "depth_by_book": {
@@ -16819,8 +16822,8 @@
     "volume": 11275.0
    },
    "ex_stats_close": {
-    "openInterest": 62300922.0,
-    "volume": 95852556.0
+    "openInterest": 63049128.0,
+    "volume": 96827871.0
    },
    "ex_stats_first": {
     "openInterest": 6438126.0,
@@ -18104,7 +18107,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Dallas Cowboys",
@@ -23072,7 +23075,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -23290,7 +23293,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Philadelphia",
@@ -25279,9 +25282,9 @@
     "volume_fp": 308.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 4794163.95,
-    "volume_24h_fp": 4116766.44,
-    "volume_fp": 5141382.66
+    "open_interest_fp": 4958954.96,
+    "volume_24h_fp": 4362411.94,
+    "volume_fp": 5313974.4399999995
    },
    "ex_stats_first": {
     "open_interest_fp": 323794.29000000004,
@@ -28154,7 +28157,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Dallas",
