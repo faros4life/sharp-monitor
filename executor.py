@@ -3908,6 +3908,81 @@ def _account_rows(rows, graded, ids, seen_oids, _intents, _confirmed):
                     VENUE["adjusted"] += 1
 
 
+LANE_STATE = {"board": "BOARD", "r1": "R1", "dogs": "DOGS", "ncs": "NCS"}   # "rules" has no lane cap
+
+
+def lane_leg_amount(lo, is_rest):
+    """Dollars ONE placed leg consumes of its lane's daily capacity.
+
+    The same arithmetic as _account_rows() uses on the ledger, deliberately duplicated nowhere else:
+    a RESTING leg and a leg whose fill is UNKNOWN reserve the full ask, a known fill counts what
+    filled. Peter, 22 Nov: "open resting orders reserve full potential exposure until verified
+    terminal evidence releases it; unknown or unreconciled exposure fails closed."
+    """
+    lo = lo or {}
+    if lo.get("status") != "placed":
+        return 0.0
+    fs = lo.get("filled_stake")
+    a = lm.num(lo.get("asked_stake"))
+    f = lm.num(fs)
+    if is_rest or fs is None:
+        return max(f or 0.0, a or 0.0)
+    return f or 0.0
+
+
+def lane_consume(p, r):
+    """Charge THIS PLAY's combined exposure to its lane, in-run, after its orders are placed.
+
+    Nov 27 (Peter): "Fix in-run accumulation of daily exposure and unique plays... Multiple
+    submissions in the same run must not exceed the daily risk cap or unique-play maximum. Count
+    multiple legs on the same play as one unique play, while accounting for their combined exposure."
+
+    MEASURED GAP: BOARD["risk"] += and BOARD["keys"].add appear ONLY inside _account_rows(), the
+    run-start ledger read. Nothing updated them after a placement, so two plays in one pass were both
+    measured by their lane gate against the SAME baseline. With a $2,000 cap, a $1,700 starting
+    exposure and two $200 plays, each gate saw 1700+200 <= 2000 and allowed it; the day ended at
+    $2,100. The play maximum had the same hole: at 9 of 10, two new plays each computed 10 <= 10.
+    (The catch-up passes are separate processes - the workflow shell loops `python -u executor.py` -
+    so module state starts fresh each pass and there is no cross-pass double count. Verified before
+    writing this, because resetting state that is already fresh would have hidden the real gap.)
+
+    ONE PLAY, COMBINED EXPOSURE: keys is a set and the play key is added once, so a take plus a
+    remainder leg plus a resting bid on the same bet is ONE unique play - while every placed leg's
+    dollars are summed into risk. That is Peter's 4 Nov rule ("one play counts once") and his 27 Nov
+    one ("accounting for their combined exposure") at the same time.
+
+    Filled, pending, partial and resting legs all consume: lane_leg_amount() reserves the full ask
+    for a resting or unknown leg and the filled amount for a read fill. Returns dollars charged.
+    """
+    lv = (r or {}).get("live") or {}
+    from registry import row_lane as _row_lane
+    # TWO different keys, for two different jobs, and mixing them up double-counts a play:
+    #   lane resolution uses the LANE-PREFIXED play_key, so row_lane can read the prefix as well as
+    #     `source` and refuse when they disagree;
+    #   the KEYS SET uses derive_key(p), with NO prefix - because that is the form _account_rows puts
+    #     in BOARD["keys"] from the ledger (ledger_row stores key = derive_key(p)) and the form the
+    #     gates are asked about (lk = derive_key(p) or p["play_key"]). Adding the prefixed key here
+    #     would make the same bet TWO plays against the cap: "NCAAF|..." from the ledger on the next
+    #     pass and "r1|NCAAF|..." from this one.
+    lane = _row_lane({"key": (p or {}).get("play_key"), "source": (p or {}).get("source")})
+    attr = LANE_STATE.get(lane)
+    if not attr:
+        return 0.0            # Lane 1 and any unresolved lane have no lane-specific capacity
+    state = globals().get(attr)
+    if not isinstance(state, dict):
+        return 0.0
+    legs = [(False, lv.get("order")), (True, lv.get("rest"))]
+    legs += [(False, x) for x in (lv.get("more") or [])]
+    amt = round(sum(lane_leg_amount(lo, is_rest) for is_rest, lo in legs), 2)
+    key = derive_key(p) or (p or {}).get("play_key")
+    if amt <= 0 and not any((lo or {}).get("status") == "placed" for _ir, lo in legs):
+        return 0.0            # nothing was placed: charge nothing, and do not consume a play slot
+    if key:
+        state.setdefault("keys", set()).add(key)
+    state["risk"] = round(float(state.get("risk") or 0.0) + amt, 2)
+    return amt
+
+
 def bot_orders(M, days=4):
     """{order_id: book} the bot PLACED in the last few days, read from its own 'Bets LIVE:' emails' LEDGER rows.
     Gmail is the registry (nothing financial in the public repo). None if unreadable -> live refuses (fail closed).
@@ -4218,7 +4293,10 @@ def r1_gate(risk, key=None):
 
 
 def dogs_strict(p):
-    """True for a DOGS play. ONE test, so the no-tolerance / alert-line-only / no-Gmail / no-rest rules cannot drift apart."""
+    """True for a DOGS play. ONE test, so the no-tolerance / alert-line-only / no-Gmail rules cannot
+    drift apart. NO-REST WAS REMOVED on Nov 27 (Peter): Dogs may rest when immediate execution is
+    unavailable or a fill-or-kill returns empty - see rest_wanted(). The other three still hold, and
+    this docstring is the record that only one of the four was lifted."""
     return isinstance(p, dict) and p.get("source") == "dogs"
 
 
@@ -5494,8 +5572,19 @@ def rest_wanted(r):
     lv = r.get("live")
     if not lv or not px_live.LIVE or not REST_BOOKS:
         return False
-    if dogs_strict(r.get("play")):
-        return False   # Nov 23: a DOGS play fills at the alert number now or not at all - it never rests a bid
+    # Nov 23 - Nov 27: DOGS used to return False here ("fills at the alert number now or not at
+    # all"). Peter lifted the no-rest half of that rule on Nov 27: a Dogs play may now rest when
+    # immediate execution is unavailable or a fill-or-kill comes back EMPTY. Everything else about
+    # dogs_strict is untouched - no price tolerance, the alert line only, no Gmail lookup - and the
+    # conditions below already deliver the rest of Peter's terms without a Dogs special case:
+    #   * a REFUSAL never rests: the go-branch requires the order status to be "placed", and a
+    #     refused order is not placed, so an unexplained venue rejection ends the play;
+    #   * an EMPTY fill-or-kill rests the full unit; a PARTIAL rests only risk - filled, so take
+    #     plus rest can never exceed the play's unit by arithmetic, before the ledger even looks;
+    #   * the $300 combined cap across venues is the shared unit ledger, which rest_bid consults
+    #     through _unit_ledger_guard on the resting leg as well as the take;
+    #   * Novig and Kalshi only, PMUS resting blocked, strict venue revalidation, T-30 expiry and
+    #     duplicate claims are all unchanged in rest_bid.
     if lv.get("go"):
         o = lv.get("order") or {}
         allo = [o] + list(lv.get("more") or [])
@@ -8010,6 +8099,19 @@ def main():
                 with perf("rest_bid"):
                     r["live"]["rest"] = rest_bid(r)
                 LIVEKEYS.add(derive_key(p) or p["play_key"])
+            # Nov 27 (Peter): charge this play to its lane NOW, so the next play in THIS pass is gated
+            # against the real figure. One call, placed after all three paths (take, remainder, rest)
+            # have run, so a take plus a remainder leg plus a resting bid is ONE unique play with its
+            # legs' COMBINED exposure - not three plays, and not one leg's worth. It never raises: a
+            # failure to charge must not take down a run that has already placed money, and the next
+            # pass rebuilds the figure from the ledger anyway.
+            try:
+                _charged = lane_consume(p, r)
+                if _charged:
+                    LOG.append(f"lane charge: {derive_key(p) or p['play_key']} ${_charged:,.2f}")
+            except Exception as _lex:
+                LOG.append(f"IN-RUN LANE CHARGE FAILED ({type(_lex).__name__}) - the next play this "
+                           f"pass is gated on the run-start figure only")
             results.append(r)
             if (r["verdict"] == "WOULD PLACE" or ((r.get("live") or {}).get("rest") or {}).get("status") == "placed") \
                     and derive_key(p) and p.get("source") not in ("rules", "board", "r1", "lane2", "ncs", "dogs"):
