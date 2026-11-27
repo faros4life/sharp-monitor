@@ -51,15 +51,24 @@ WINDOW_ET = (os.environ.get("EXPORT_SINCE") or "2026-11-12").strip()   # ET day,
 
 
 def lane_of(b, keylane=None):
-    """Canonical lane for one tracker row. The row's own tag first, then the bot's private registry.
-    NEVER inferred from a date or a neighbouring row - an unattributable fill stays unattributed."""
-    raw = str(b.get("lane") or "").strip().lower()
-    if raw in LANE_CANON:
-        return LANE_CANON[raw], "tracker tag"
+    """Canonical lane for one tracker row. NEVER inferred from a date or a neighbouring row.
+
+    REGISTRY FIRST (Peter, Nov 27). registry_lanes() is the bot's own order record - its docstring
+    calls it "the source of truth; Gmail is only the backup" - while a tracker label is only what
+    something believed when the row was written, and date-based inference used to write those
+    labels. Checking the tag first let a historical GUESS override an authoritative order record,
+    which is exactly what must not happen. The registry keeps only about 4 days, so a tag still
+    fills the gap for older plays - but it never outranks a record.
+
+    Returns (lane, source). "registry" is CONFIRMED attribution; "tracker tag" is not, and the two
+    are counted separately so a guess can never be reported as a confirmation."""
     if keylane:
         for k, v in keylane.items():
             if tb.bot_match(b, {k}):
                 return LANE_CANON.get(str(v).strip().lower(), str(v)), "registry"
+    raw = str(b.get("lane") or "").strip().lower()
+    if raw in LANE_CANON:
+        return LANE_CANON[raw], "tracker tag"
     return None, "none"
 
 
@@ -93,9 +102,16 @@ def performance(rows, keylane):
             unresolved.append({"game": b.get("game"), "bet": b.get("bet"), "book": b.get("book"),
                                "tag": b.get("lane"), "date": str(b.get("date") or "")[:10]})
             continue
-        k = (lane, str(b.get("game") or ""), str(b.get("bet") or ""), str(b.get("book") or ""))
-        m = merged.setdefault(k, {"lane": lane, "src": src, "stake": 0.0, "profit": 0.0,
-                                  "result": b.get("result"), "when": str(b.get("date") or "")[:10]})
+        # BOOK IS NOT IN THE KEY (Peter, Nov 27). One play filled across two venues - a remainder
+        # resting on Kalshi after Novig took part - is ONE play. Keying on the book counted it as
+        # two: n inflated, units/play halved, and a single win reported as 2-0.
+        k = (lane, str(b.get("game") or ""), str(b.get("bet") or ""))
+        m = merged.setdefault(k, {"lane": lane, "srcs": set(), "books": set(), "stake": 0.0,
+                                  "profit": 0.0, "result": b.get("result"),
+                                  "when": str(b.get("date") or "")[:10]})
+        m["srcs"].add(src)
+        if b.get("book"):
+            m["books"].add(str(b.get("book")))
         m["stake"] += float(b.get("stake") or 0)
         m["profit"] += float(b.get("profit") or 0)
 
@@ -120,7 +136,10 @@ def _block(plays):
     staked = round(sum(p["stake"] for p in plays), 2)
     units = [p["profit"] / p["stake"] for p in plays if p["stake"]]
     u = round(sum(units), 4) if units else None
+    conf = sum(1 for p in plays if "registry" in p.get("srcs", set()))
+    xv = sum(1 for p in plays if len(p.get("books", set())) > 1)
     return {"n": n, "W": w, "L": lo, "P": pu, "record": f"{w}-{lo}" + (f"-{pu}" if pu else ""),
+            "confirmed_by_registry": conf, "attributed_by_tag_only": n - conf, "cross_venue": xv,
             "dollars_pnl": dollars, "dollars_staked": staked,
             "roi_pct": (round(100 * dollars / staked, 2) if staked else None),
             "units": u, "units_per_play": (round(u / len(units), 4) if units else None),
