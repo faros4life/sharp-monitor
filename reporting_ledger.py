@@ -84,7 +84,7 @@ def snapshot(L, reg, tracker, clv, now):
 
 
 RES = {"W": "W", "WIN": "W", "WON": "W", "L": "L", "LOSS": "L", "LOST": "L", "P": "P", "PUSH": "P", "VOID": "P"}
-LANES = ("rules", "rule", "board", "r1", "lane2")
+LANES = ("rules", "rule", "board", "r1", "lane2", "dogs", "ncs")   # Nov 27: dogs/ncs added (lane_of_key only)
 
 
 def lane_of_key(k):

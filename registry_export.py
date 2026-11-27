@@ -13,7 +13,10 @@ import json
 import re
 import sys
 
-LANES = {"rules": "LANE 1", "board": "BOARD V4", "r1": "R1", "lane2": "LANE 2 (paper)"}
+# Nov 27: DOGS (live 23 Nov) and NCS were absent, so the export's lane_map and live_strategy_keys did not
+# name them and anything reading this export could not resolve a Dogs order.
+LANES = {"rules": "LANE 1", "board": "BOARD V4", "r1": "R1", "lane2": "LANE 2 (paper)",
+         "dogs": "DOGS", "ncs": "NCS"}
 
 
 def clean(x):

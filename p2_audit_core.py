@@ -281,9 +281,14 @@ CSV_FIELDS = ("bucket", "segment", "book", "plays", "verified_money", "W", "L", 
 # executor.LIVE_UNIT records the change $200 -> $300 on 9 Nov. A segment gets units ONLY when EXACT-attributed
 # to that lane and every play in it is dated on/after the effective time. Other lanes: UNAVAILABLE until confirmed.
 # R1 and BOARD V4: executor.R1_UNIT / BOARD_UNIT, both "Peter, 11 Nov" written approvals, unchanged since.
+# DOGS: Peter's written spec change of 25 Nov 2026 set the unit at $300 (executor.DOGS_UNIT); the 23-24 Nov
+# pilot ran at $100. One (since, unit) pair cannot carry both, and units_for() grants units only when every
+# play in the segment is dated on/after `since`, so dating DOGS from 25 Nov reports the pilot's own plays as
+# UNAVAILABLE rather than valuing a $100 bet at $300. Conservative on purpose; it understates nothing.
 UNIT_SCHEDULE = {"LANE 1": ("2026-11-09T00:00:00+00:00", 300.0),
                  "R1": ("2026-11-11T00:00:00+00:00", 200.0),
-                 "BOARD V4": ("2026-11-11T00:00:00+00:00", 200.0)}
+                 "BOARD V4": ("2026-11-11T00:00:00+00:00", 200.0),
+                 "DOGS": ("2026-11-25T00:00:00+00:00", 300.0)}
 
 
 def units_for(bucket, seg_range, net):

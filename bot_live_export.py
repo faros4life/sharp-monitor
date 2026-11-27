@@ -34,7 +34,10 @@ TRIGGERS = {
 FIRST_MULTI_LANE_DAY = "2026-11-11"   # R1 and Board v3 were approved on Nov 11; before it only Lane 1 (LANE 1) could place
 
 OUT = "tracker/bot_live.enc"
-LANES = {"LANE 1": "Lane 1", "BOARD V4": "Bets Board v4", "R1": "R1", "LANE 2": "Lane 2"}
+# Nov 27: DOGS (live 23 Nov) and NCS were missing here, so a Dogs play read "Unattributed" on the page
+# however well the ledger had attributed it. Keys are live_ledger.LANES' values (the ledger's lane labels).
+LANES = {"LANE 1": "Lane 1", "BOARD V4": "Bets Board v4", "R1": "R1", "LANE 2": "Lane 2",
+         "DOGS": "Dogs", "NCS": "NCS"}
 
 
 def play(b):

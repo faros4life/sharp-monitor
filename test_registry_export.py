@@ -38,7 +38,13 @@ ok("alert_price is named as the binding gap",
    any("alert_price" in g and "binding gap" in g for g in d["gaps"]))
 ok("the missing play_id is named", any("play_id" in g for g in d["gaps"]))
 ok("the strategy_key limitation is named", any("strategy_key" in g for g in d["gaps"]))
-ok("the lane map is exported", d["lane_map"]["r1"] == "R1" and len(d["lane_map"]) == 4)
+# Nov 27: this asserted len == 4, which pinned the export to the four lanes that predate DOGS and NCS and
+# would have had to be reverted to keep a stale map passing. The count is replaced by the thing it was
+# standing in for: the export names every lane the executor names. Stricter, and it cannot go stale.
+import executor as _ex
+ok("the lane map is exported", d["lane_map"]["r1"] == "R1")
+ok("the lane map names every lane executor names",
+   set(d["lane_map"]) == set(_ex.LANE_NAME), sorted(set(_ex.LANE_NAME) ^ set(d["lane_map"])))
 
 print(("FAILED: " + ", ".join(FAILED)) if FAILED else "ALL PASS")
 print(f"{TOTAL - len(FAILED)} passed, {len(FAILED)} failed")
