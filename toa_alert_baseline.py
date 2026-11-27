@@ -68,6 +68,25 @@ def toa_fair(x, src, rec, lg, ta):
     return c["p"] if c and c.get("how") == rec.get("how") else None
 
 
+def fetch(sport, when, tries=6):
+    """One snapshot. HTTP 429 (rate limit) waits and retries with back-off; any other error stops the run."""
+    import time
+    import urllib.error
+    for k in range(tries):
+        try:
+            toa.fetch_snapshot(sport, when)
+            return True
+        except urllib.error.HTTPError as e:
+            if e.code != 429 or k == tries - 1:
+                print(f"fetch failed (HTTP {e.code}) - stopping")
+                return False
+            time.sleep(2 ** k * 5)
+        except Exception as e:
+            print(f"fetch failed ({type(e).__name__}) - stopping")
+            return False
+    return False
+
+
 def main():
     import paper_clv_certify as pc
     import board_build as bb
@@ -93,10 +112,7 @@ def main():
             if toa.METER["credits"] + (toa.METER["credits"] // max(toa.METER["calls"], 1) or COST) > BUDGET:
                 print("STOPPED: next call would exceed the budget")
                 break
-            try:
-                toa.fetch_snapshot(sport, when)
-            except Exception as e:
-                print(f"fetch failed ({type(e).__name__}) - stopping")
+            if not fetch(sport, when):
                 break
         print(f"CREDITS: calls {toa.METER['calls']} | credits {toa.METER['credits']} | empty {toa.METER['empty']} | "
               f"per call {toa.METER['credits'] / max(toa.METER['calls'], 1):.1f}")
