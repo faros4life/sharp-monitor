@@ -5913,6 +5913,62 @@ def rest_bid(r):
         registry.release_submission(_rkey, REST_CID)
         return {"status": "refused",
                 "reason": f"resting stake is not a finite positive number ({risk!r}) - fail closed"}
+    # ---------------------------------------------------------------- Nov 27: LANE CAPS ON THE RESTING PATH
+    # Peter, 27 Nov: "Complete resting-path risk enforcement across all applicable lanes."
+    #
+    # MEASURED: board_gate, r1_gate, ncs_gate and dogs_gate are each called at exactly ONE site, and
+    # every one of those sites sits inside `if not why and r["verdict"] == "WOULD PLACE" and r.get("lc")`
+    # - the TAKE branch, which requires a live candidate. rest_bid() is called from a different place
+    # entirely, so no lane gate had ever been asked about a resting bid. executor.py's own note at the
+    # top of rest_wanted says it plainly: "There is ONE call site and it is not lane-gated."
+    #
+    # What that dropped, per lane, on every resting bid: the daily risk cap, the maximum plays, and -
+    # because the kill check is the gate's first question - the kill bar. BOARD V4 is live and does post
+    # resting bids under Peter's 11 Nov pilot rules, so its $2,000 cap and 10-play maximum were not
+    # binding there. The audit found no actual breach (peak day $225.77 of $2,000), but an unenforced
+    # control is not a safe control.
+    #
+    # Checked HERE, after every ceiling has been applied, so the gate sees the amount that will actually
+    # be posted rather than the untrimmed unit, and before rest_pre_alert so a refusal is silent rather
+    # than announcing a bid that never goes out.
+    #
+    # FAIL CLOSED ON AN UNPROVEN LANE. The lane comes from registry.row_lane(), the repo's existing
+    # resolver, rather than a second rule written here: it honours a lane prefix on the play key AND the
+    # play's `source`, and returns None when the two disagree ("prove nothing") or when the source is
+    # unknown. Writing a fresh `p["source"]` check instead looked simpler and was wrong - the play dict
+    # does not always carry `source` (test_cross_venue_rest's play carries only play_key), so a source-only
+    # read would have refused legitimate bids. One resolver, so this cannot drift from the daily stop's
+    # own lane attribution.
+    #
+    # An unresolved lane is REFUSED, not waved through: CLAUDE.md's "a name that has no branch is silently
+    # dropped - check the caller, not just the list" is exactly how a future lane would inherit no cap.
+    # NCS resolves to None today because registry.LANE_PREFIX has no "ncs" entry - that is the deferred
+    # integration work Peter held on 27 Nov, and until it lands an NCS resting bid refuses here. NCS is
+    # switched off, so this blocks nothing that is running.
+    #
+    # "rules" (Lane 1) maps to None deliberately: it has no lane-specific cap by design, only the
+    # per-order guard and the $3,000 global stop, both of which already apply to a resting bid.
+    #
+    # row_lane is imported from the module directly, NOT read off `registry`. It is pure logic - no
+    # store, no network - and tests swap `ex.registry` for a stub to control claims and rows. Routing
+    # pure logic through that stub would mean every present and future test had to reimplement lane
+    # resolution to keep this gate working, which is how a gate ends up tested against a copy of itself.
+    # Store operations below still go through `registry` so tests keep their control of them.
+    from registry import row_lane as _row_lane
+    _REST_LANE_GATES = {"rules": None, "board": board_gate, "r1": r1_gate, "dogs": dogs_gate}
+    _lane = _row_lane({"key": (p or {}).get("play_key") or _pkey,
+                       "source": (p or {}).get("source")})
+    if _lane not in _REST_LANE_GATES:
+        registry.release_submission(_rkey, REST_CID)
+        return {"status": "refused",
+                "reason": f"resting bid whose lane could not be proven ({_lane!r}) - no lane cap could "
+                          f"be applied, so nothing is posted (fail closed)"}
+    _lgate = _REST_LANE_GATES[_lane]
+    if _lgate is not None:
+        _lok, _lwhy = _lgate(risk, derive_key(p) or (p or {}).get("play_key"))
+        if not _lok:
+            registry.release_submission(_rkey, REST_CID)
+            return {"status": "refused", "reason": _lwhy}
     rest_pre_alert(r, risk, expire, REST_BOOKS)
     why_not = []
     _rb_grant = None
