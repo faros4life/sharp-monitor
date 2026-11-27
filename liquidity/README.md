@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 26, 10:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 57.
+Updated Thu Nov 26, 10:05 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 57.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -50,7 +50,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 26 9:40AM | NBA | Los Angeles L vs San Antonio | moneyline: San Antonio | kalshi | $29k | -178 |  |  | +2.0c |  | pending |
 | Nov 26 9:35AM | NFL | Philadelphia Eagles @ Dallas Cowboys | spread: DAL -8.5 (-8.5) | novig | $39k | -104 | ✅ prophetx |  | -1.5c |  | L |
 | Nov 26 9:35AM | NBA | Golden State vs Portland | moneyline: Portland | kalshi | $79k | -300 |  |  | +2.0c |  | pending |
-| Nov 26 9:35AM | NBA | Dallas vs Phoenix | moneyline: Phoenix | kalshi | $59k | -108 |  |  | +3.0c |  | pending |
+| Nov 26 9:35AM | NBA | Dallas vs Phoenix | moneyline: Phoenix | kalshi | $59k | -108 |  |  | +2.0c |  | pending |
 | Nov 26 9:25AM | NFL | Denver vs Pittsburgh: Total Points | total: NOT Over 37.5 points | kalshi | $58k | -113 | ✅ novig |  | +0.0c |  | pending |
 | Nov 26 9:20AM | NFL | Chicago Bears @ Detroit Lions | total: Under 56.5 (56.5) | novig | $31k | -106 |  |  | -1.0c |  | L |
 | Nov 26 8:40AM | NFL | Kansas City vs Buffalo: Spread | spread: Buffalo wins by over 2.5 points | kalshi | $189k | -122 |  |  | +0.0c | yes | pending |
