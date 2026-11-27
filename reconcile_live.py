@@ -125,9 +125,26 @@ def main():
         priv(f"          {b.get('game')} | {b.get('bet')} | {b.get('book')} | stake ${float(b.get('stake') or 0):,.2f} "
              f"| profit ${float(b.get('profit') or 0):+,.2f}")
 
-    say("\nAUTHORITATIVE PER-STRATEGY TABLES (ledger lanes; one play = game + market + side; flat 1u at the after-fee fill)")
+    say("")
+    for ln in ll.lane_summary(acct):
+        say(ln)
     for lane in sorted({str(p["lane"]) for p in acct["plays"]}):
-        block(lane, [p for p in acct["plays"] if str(p["lane"]) == lane], B)
+        P = [p for p in acct["plays"] if str(p["lane"]) == lane and p.get("res") in ("W", "L", "P")]
+        risk = sum(float(B[i].get("stake") or 0) for p in P for i in p.get("rows") or [] if i in B)
+        prof = sum(float(B[i].get("profit") or 0) for p in P for i in p.get("rows") or [] if i in B)
+        priv(f"  {lane}: dollars risked ${risk:,.2f} | net profit ${prof:+,.2f} (tracker venue settlement, bot rows)")
+
+    # fills vs orders vs plays (Peter, Nov 27)
+    inplay = [i for i in bot if where.get(i, ("",))[0] == "PLAY"]
+    e4 = sum(1 for p in acct["plays"] if not (p.get("rows") or []))
+    say("\nFILLS vs ORDERS vs PLAYS")
+    say(f"  FILL  = one tracker settlement row on a bot wallet/order (a partial fill can be several rows)")
+    say(f"  ORDER = one bot order row in the ledger (may fill in several legs, or not at all)")
+    say(f"  PLAY  = one game + market + side for one strategy; every confirmed-filled order leg on it merges into it")
+    say(f"  bot fills since {start}: {len(bot)} = {len(inplay)} inside confirmed plays + "
+        f"{sum(1 for i in bot if where.get(i, ('',))[0] == 'UNRESOLVED')} unresolved + {sum(1 for i in bot if i not in where)} with no ledger order")
+    say(f"  {len(inplay)} fills merge into {len({id(where[i][2]) for i in inplay})} plays; plus {e4} plays whose fill is confirmed on"
+        f" the order row with no bot-linked tracker row (E4) -> {len(acct['plays'])} confirmed plays")
 
     say("\nUNRESOLVED / EXCLUDED (counts for nobody), by reason")
     why = collections.Counter()
@@ -141,6 +158,27 @@ def main():
     for k, n in why.most_common():
         say(f"  {n:4d}  {k}")
 
+    say("\nDOGS - every tracker row on a Dogs alert play since the Dogs lane went live (25 Nov), by source")
+    import executor as ex
+    import json as _j
+    Q = _j.load(open("liquidity/alerts.json"))
+    Q = Q if isinstance(Q, list) else Q.get("alerts") or []
+    dg = [x for x in Q if isinstance(x, dict) and str(x.get("alerted_utc") or "") >= "2026-11-25" and ex.dogs_qualifies(x)
+          and ex.dogs_bet(x)]
+    hits = collections.Counter()
+    for x in dg:
+        gt = set(ll.toks(x.get("game")))
+        for i, b in B.items():
+            if str(b.get("first_seen") or "")[:10] >= "2026-11-25" and len(gt & set(ll.toks(b.get("game")))) >= 2 \
+                    and set(ll.toks(x.get("side"))) & set(ll.toks(b.get("bet"))):
+                hits[(str(b.get("source")), str(b.get("book")), where.get(i, ("NO LEDGER ORDER",))[0])] += 1
+    say(f"  qualifying Dogs alerts since 25 Nov: {len(dg)} | tracker rows on those plays: {sum(hits.values())}")
+    for k, n in hits.most_common():
+        say(f"    source {k[0]:<8} venue {k[1]:<9} ledger {k[2]:<16} {n}")
+    dlo = [p for p in acct["plays"] if str(p["lane"]) == "DOGS"] + [e for e in acct["excluded"] if str(e.get("lane")) in ("dogs", "DOGS")]
+    say(f"  ledger Dogs orders since 12 Nov: confirmed plays {sum(1 for p in acct['plays'] if str(p['lane']) == 'DOGS')} | "
+        f"unfilled/excluded {sum(1 for e in acct['excluded'] if str(e.get('lane')) in ('dogs', 'DOGS'))}")
+
     say("\nVENUE SETTLEMENT CHECK (tracker profit vs stake x price x result, bot rows that are graded)")
     bad = 0
     for i in graded:
@@ -153,9 +191,48 @@ def main():
         exp = {"W": stake * (am / 100 if am > 0 else 100 / abs(am)), "L": -stake, "P": 0.0}[b["result"]]
         if abs(exp - prof) > max(0.05, 0.02 * stake):
             bad += 1
+            say(f"  MISMATCH {rid(i)} | {b.get('book')} | {b['result']} | profit / price-implied = "
+                f"{(prof / exp) if exp else float('nan'):.3f}")
             priv(f"  MISMATCH {rid(i)} {b.get('game')} {b.get('bet')} {b['result']} stake ${stake:,.2f} "
                  f"profit ${prof:+,.2f} expected ${exp:+,.2f}")
     say(f"  graded bot rows {len(graded)} | profit differs from the price-implied result by >2%: {bad} (detail by email)")
+
+    # identical-results check: the other two reports' per-strategy blocks, captured in-process (no email sent)
+    say("\nVERIFY - per-strategy table as printed by last50_report and executed_clv")
+    import contextlib, io
+    def block_of(lines):
+        out, on = [], False
+        for t in lines:
+            t = t.strip()
+            if t.startswith("AUTHORITATIVE LIVE TABLE"):
+                on, out = True, [t]
+                continue
+            if on:
+                if t and t.split()[0] in {str(p["lane"]) for p in acct["plays"]}:
+                    out.append(t)
+                else:
+                    break
+        return out
+    mine = block_of(ll.lane_summary(acct))
+    import last50_report as L5
+    L5.send_report = lambda *a, **k: True
+    with contextlib.redirect_stdout(io.StringIO()):
+        try:
+            L5.main()
+        except SystemExit:
+            pass
+    a = block_of(L5.L)
+    import executed_clv as ec
+    ec.send_csv = lambda *a, **k: None
+    ec.ex.send = lambda *a, **k: None
+    with contextlib.redirect_stdout(io.StringIO()):
+        try:
+            ec.main()
+        except SystemExit:
+            pass
+    b_ = block_of(ec.L)
+    for nm, blk in (("last50_report", a), ("executed_clv", b_)):
+        say(f"  {nm}: {'IDENTICAL' if blk == mine else 'DIFFERENT'} ({len(blk)} lines vs {len(mine)})")
 
     if os.environ.get("GMAIL_ADDRESS"):
         try:

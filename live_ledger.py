@@ -32,8 +32,8 @@ import re
 from collections import defaultdict
 
 START_UTC = "2026-11-12T05:00:00Z"          # Peter: every live bot bet from 12 Nov 2026 00:00 ET
-LANES = {"rules": "LANE 1", "r1": "R1", "board": "BOARD V4", "lane2": "LANE 2"}
-PREFIX = ("rule", "rules", "board", "r1", "lane2")
+LANES = {"rules": "LANE 1", "r1": "R1", "board": "BOARD V4", "lane2": "LANE 2", "dogs": "DOGS", "ncs": "NCS"}
+PREFIX = ("rule", "rules", "board", "r1", "lane2", "dogs", "ncs")   # Nov 27: Dogs and NCS were dropped as "no lane"
 FEED_MAX_DAYS = 7
 RES = {"W": "W", "WIN": "W", "WON": "W", "L": "L", "LOSS": "L", "LOST": "L", "P": "P", "PUSH": "P", "VOID": "P"}
 WORD = re.compile(r"[a-z0-9.]+")
@@ -578,3 +578,48 @@ def resting(L, start=START_UTC):
     for r in sorted(out, key=lambda r: (not r["filled"], r["t"])):
         best.setdefault(r["key"], r)
     return list(best.values())
+
+
+# ------------------------------------------------------------------ ONE per-strategy table (Peter, Nov 27)
+# Every report that shows live results per strategy prints THIS, so the numbers cannot disagree: attribution from the
+# bot's own order rows (account), merged plays, the START_UTC window, flat 1u at the after-fee fill, certified CLV only.
+def lane_stats(plays):
+    import statistics as _st
+    u = [units(p["am_net"], p["res"]) for p in plays]
+    c = [p["clv"] for p in plays if p.get("clv") is not None]
+    ci = None
+    if len(c) > 1:
+        m, se = _st.mean(c), _st.stdev(c) / len(c) ** 0.5
+        ci = (m - 1.96 * se, m + 1.96 * se)
+    return {"n": len(plays), "w": sum(p["res"] == "W" for p in plays), "l": sum(p["res"] == "L" for p in plays),
+            "p": sum(p["res"] == "P" for p in plays), "u": sum(u), "roi": 100 * sum(u) / len(u) if u else None,
+            "clv": _st.mean(c) if c else None, "cn": len(c), "ci": ci,
+            "beat": 100 * sum(x > 0 for x in c) / len(c) if c else None}
+
+
+def lane_summary(acct, last=50):
+    """Lines of the authoritative per-strategy table. Settled plays only; window = last `last` per lane."""
+    out = [f"AUTHORITATIVE LIVE TABLE - from {START_UTC[:10]}, lane from the bot's own order rows, merged plays, "
+           f"1u at the after-fee fill, certified CLV only (last {last} settled plays per lane)"]
+    lanes = sorted({str(p["lane"]) for p in acct["plays"]})
+    for ln in lanes:
+        S = sorted([p for p in acct["plays"] if str(p["lane"]) == ln and p.get("res") in ("W", "L", "P")
+                    and p.get("am_net") is not None], key=lambda p: p["t"])[-last:]
+        if not S:
+            out.append(f"  {ln}: no settled plays")
+            continue
+        h = len(S) // 2
+        for tag, part in (("ALL", S), ("H1", S[:h]), ("H2", S[h:])):
+            if not part:
+                continue
+            x = lane_stats(part)
+            roi = "n/a" if x["roi"] is None else f"{x['roi']:+.1f}%"
+            clv = "n/a" if x["clv"] is None else (f"{x['clv']:+.2f}% ({x['cn']}/{x['n']}, beat {x['beat']:.0f}%"
+                                                  + (f", 95% [{x['ci'][0]:+.2f},{x['ci'][1]:+.2f}]" if x["ci"] else "") + ")")
+            out.append(f"  {ln:<9} {tag:<3} n{x['n']:<3} {x['w']}-{x['l']}-{x['p']} | {x['u']:+.2f}u | ROI {roi} | CLV {clv}")
+    return out
+
+
+def lane_of_rows(acct):
+    """{tracker row id: ledger lane} for rows inside a confirmed play. A row not in here has NO authoritative lane."""
+    return {i: str(p["lane"]) for p in acct["plays"] for i in p.get("rows") or []}

@@ -62,12 +62,14 @@ from datetime import datetime, timedelta, timezone
 import clv_ledger as cl
 import clv_std as cs
 import executor as ex
+import live_ledger as ll
 import hist_cache as hc
 import toa
 import tracker_build as tb
 
 ET = tb.ET
 TSTATE = "tracker/state.enc"
+ACCT, LEDGER_LANE = None, {}
 DAYS = int(os.environ.get("XC_DAYS", "") or "30")
 UNIT = float(os.environ.get("EXEC_UNIT", "") or "200")
 CACHE_ONLY = (os.environ.get("XC_CACHE_ONLY", "") or "1") != "0"
@@ -178,14 +180,16 @@ def wilson(k, n):
 # Polymarket fee came to be set wrong on 25 Oct.
 SOURCES = tuple(x.strip().lower() for x in (os.environ.get("XC_SOURCES") or "bot").split(",") if x.strip())
 UNGRADED = (os.environ.get("XC_UNGRADED") or "") == "1"
-SINCE_ET = (os.environ.get("XC_SINCE") or "").strip()      # YYYY-MM-DD, ET day, inclusive
+# Nov 27 (Peter): default window = the live ledger's start, so this report and last50 cover the same plays.
+SINCE_ET = (os.environ.get("XC_SINCE") or "2026-11-12").strip()      # YYYY-MM-DD, ET day, inclusive
 
 
 def fill_rows():
     """Bot fills by default. With XC_SOURCES / XC_UNGRADED / XC_SINCE, any source and any grade."""
     st = tb.dec(json.load(open(TSTATE)))
     raw = (st or {}).get("bets")
-    rows = list(raw.values()) if isinstance(raw, dict) else (raw if isinstance(raw, list) else [])
+    rows = ([dict(b, _id=i) for i, b in raw.items()] if isinstance(raw, dict)
+            else (raw if isinstance(raw, list) else []))
     out = []
     for b in rows:
         src = str(b.get("source") or "").lower()
@@ -344,6 +348,14 @@ def main():
     else:
         mkmap = cl.load_markets(st, now)
 
+    global ACCT, LEDGER_LANE
+    try:
+        _src = ll.load()
+        ACCT = ll.account(*_src, ll.feed_alerts()) if _src else None
+    except Exception as _e:
+        say(f"  ledger attribution unavailable ({type(_e).__name__}) - every fill is UNATTRIBUTED")
+        ACCT = None
+    LEDGER_LANE = ll.lane_of_rows(ACCT) if ACCT else {}
     miss = Counter()
     unmatched = []
     excl = []
@@ -442,7 +454,9 @@ def main():
             "pin_p": c["p"],            # the verified close itself, so the export can be re-graded
             "beat": c["p"] * nd > 1 + TOL,
             "stake": num(b.get("stake")), "profit": num(b.get("profit")), "res": b.get("result"),
-            "lane": LANE_NAME.get(str(b.get("lane") or "").strip().lower(), str(b.get("lane") or "unlabelled")), "src": c.get("src") or "oddspapi",
+            # Nov 27 (Peter): the lane comes ONLY from the bot's own order rows (live_ledger), never the tracker's display
+            # label; a fill the ledger cannot place is UNATTRIBUTED and counts for no strategy.
+            "lane": LEDGER_LANE.get(b.get("_id")) or "UNATTRIBUTED", "src": c.get("src") or "oddspapi",
         })
 
     say()
@@ -522,20 +536,16 @@ def main():
 
     # Nov 26 (Peter): actual bot plays by lane - after-fee units, ROI, mean certified CLV, beat-close, first and
     # second half by date. Same rows and same math as the headline; units only in the log.
-    say("\n  BY LANE (headline venues; units; halves split by date order)")
-    lanes = sorted({r["lane"] for r in clean})
-    for ln in lanes:
-        rows = sorted([r for r in clean if r["lane"] == ln], key=lambda r: r["day"])
-        for tag, part in (("all", rows), ("1st half", rows[:len(rows) // 2]), ("2nd half", rows[len(rows) // 2:])):
-            if not part:
-                continue
-            n_, st_ = len(part), sum(r["stake"] or 0 for r in part)
-            pf = sum(r["profit"] or 0 for r in part)
-            w = sum(r["res"] == "W" for r in part)
-            l_ = sum(r["res"] == "L" for r in part)
-            say(f"    {ln[:14]:<14} {tag:<8} n {n_:>3} | {w}-{l_} | {pf / UNIT:+.2f}u | ROI "
-                f"{(100 * pf / st_ if st_ else 0):+.1f}% | CLV {sum(r['clv'] for r in part) / n_:+.2f}% | "
-                f"beat {100 * sum(r['beat'] for r in part) / n_:.0f}% | src TOA {sum(r['src'] == 'theoddsapi' for r in part)}")
+    # Nov 27 (Peter): per-strategy results are the ONE shared table (live_ledger.lane_summary), identical to last50.
+    say("")
+    for _ln in (ll.lane_summary(ACCT) if ACCT else ["  AUTHORITATIVE LIVE TABLE unavailable: ledger not readable"]):
+        say("  " + _ln)
+    say("\n  EXECUTED CLV per fill by authoritative lane (fill legs, headline venues; fills the ledger cannot place are"
+        " UNATTRIBUTED)")
+    for ln in sorted({r["lane"] for r in clean}):
+        part = [r for r in clean if r["lane"] == ln]
+        say(f"    {ln[:14]:<14} fills {len(part):>3} | executed CLV {sum(r['clv'] for r in part) / len(part):+.2f}% | "
+            f"beat {100 * sum(r['beat'] for r in part) / len(part):.0f}%")
 
     amb = [r for r in R if r["book"] in AMBIG]
     if amb:
