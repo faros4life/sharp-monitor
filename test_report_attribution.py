@@ -36,6 +36,34 @@ for raw, want in (("PHASE 1", "Lane 1"), ("rules", "Lane 1"), ("r1", "R1"), ("R1
 ok("an unknown tag is NOT attributed", x.lane_of(row(lane="mystery"))[0] is None)
 ok("a missing tag is NOT attributed", x.lane_of(row(lane=None))[0] is None)
 
+# --- a guessed tracker label must NEVER outrank an authoritative order record ---------------------
+import tracker_build as _tb
+_om = _tb.bot_match
+try:
+    _tb.bot_match = lambda b, ks: True            # the registry claims this row
+    lane, src = x.lane_of(row(lane="BOARD V3"), {"k1": "r1"})
+    ok("the REGISTRY wins over a stale tracker tag", lane == "R1" and src == "registry", (lane, src))
+    _tb.bot_match = lambda b, ks: False           # registry silent (older than ~4 days)
+    lane, src = x.lane_of(row(lane="BOARD V3"), {"k1": "r1"})
+    ok("the tag still fills the gap when the registry is silent",
+       lane == "Board V3" and src == "tracker tag", (lane, src))
+finally:
+    _tb.bot_match = _om
+ok("registry attribution is labelled CONFIRMED, a tag is not",
+   "CONFIRMED" in x.lane_of.__doc__ and "never outranks" in x.lane_of.__doc__)
+
+# --- cross-venue execution is ONE play, not two ----------------------------------------------------
+XV = x.performance([row(game="X @ Y", bet="b1", book="novig", stake=120.0, profit=110.0),
+                    row(game="X @ Y", bet="b1", book="kalshi", stake=80.0, profit=72.0)], {})["by_lane"]["Lane 1"]
+ok("a play filled on two venues counts ONCE", XV["n"] == 1, XV["n"])
+ok("its record is 1-0, not 2-0", XV["record"] == "1-0", XV["record"])
+ok("stake is summed across venues", XV["dollars_staked"] == 200.0, XV["dollars_staked"])
+ok("P&L is summed across venues", XV["dollars_pnl"] == 182.0, XV["dollars_pnl"])
+ok("units/play is not halved by the split", abs(XV["units_per_play"] - 0.91) < 1e-6, XV["units_per_play"])
+ok("cross-venue plays are counted and visible", XV["cross_venue"] == 1, XV["cross_venue"])
+ok("confirmed and tag-only attribution are reported apart",
+   XV["confirmed_by_registry"] + XV["attributed_by_tag_only"] == XV["n"])
+
 # --- the window is pinned, and a dateless row is OUT ----------------------------------------------
 ok("window pinned to 2026-11-12", x.WINDOW_ET == "2026-11-12")
 ok("on the boundary is IN", x.in_window(row(date="2026-11-12")))
