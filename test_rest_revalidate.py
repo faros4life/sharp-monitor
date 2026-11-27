@@ -105,7 +105,7 @@ finally:
     ex.reread_book = orig2
 
 # --- rest_bid refuses rather than posting unverified ---------------------------------------------
-body0 = src0 = open("executor.py", encoding="utf-8").read()
+_src = body0 = src0 = open("executor.py", encoding="utf-8").read()
 _rb = src0[src0.index("def rest_bid("):]
 _rb = _rb[:_rb.index("\ndef ", 10)]
 ok("rest_bid never posts on a failed verification", "x = _fresh" in _rb and "elif _rwhy" not in _rb)
@@ -165,6 +165,21 @@ ok("   using the same fallthrough the pre-existing refusals use",
 
 ok("5. an all-refused run is announced, not silent",
    "RESTING BID NOT PLACED" in _rb and "_why[:300]" in _rb)
+
+# --- PMUS resting is BLOCKED (Peter, Nov 27) -----------------------------------------------------
+# The venue cannot enforce an expiry: it accepts GOOD_TILL_TIME + goodTillTime and stores DAY with
+# goodTillTime null. The only exit is a bot-side cancel at T-30, so a bot outage leaves it resting.
+_pm = _rb[_rb.index('elif b == "polymarket_us":'):]
+_pm = _pm[:_pm.index("\n        elif ") if "\n        elif " in _pm else len(_pm)]
+ok("PMUS resting refuses before any pricing", _pm.index("why_not.append") < _pm.index("continue"))
+ok("it refuses before the ledger guard could run",
+   "polymarket_us" in _rb and _rb.index('elif b == "polymarket_us":') > _rb.index("_unit_ledger_guard"))
+ok("the refusal names the expiry defect", "cannot enforce an expiry" in _pm)
+ok("and that cancellation needs the bot alive", "needs the bot alive" in _pm)
+ok("no PMUS order can be placed from the resting path",
+   _pm.index("continue") < (_pm.index("pmus_place") if "pmus_place" in _pm else len(_pm)))
+ok("the TAKE path is untouched - takes do not use REST_BOOKS",
+   "REST_BOOKS" not in _src[_src.index("def live_order("):_src.index("def live_order(") + 4000])
 
 print(f"\n{len(FAILED)} failed" if FAILED else "\nall passed")
 raise SystemExit(1 if FAILED else 0)

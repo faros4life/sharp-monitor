@@ -5959,6 +5959,22 @@ def rest_bid(r):
             res = book_live.novig_place(x["outcome_id"], c, q, f"{p.get('sport')} {p.get('game')} | {p.get('bet')}",
                                         int(secs * 1000), derive_key(p) or "")
         elif b == "polymarket_us":
+            # BLOCKED, Peter, Nov 27. Polymarket US cannot expire a resting order. The venue accepts
+            # tif TIME_IN_FORCE_GOOD_TILL_TIME with goodTillTime and then silently stores
+            # TIME_IN_FORCE_DAY with goodTillTime null (order DMGX8V5G13ZD; it normalises
+            # FILL_OR_KILL to IMMEDIATE_OR_CANCEL the same way), so the expiry we send is decoration.
+            # The only exit is pmus_rest_sweep cancelling at T-30, which runs ONLY while the bot runs
+            # - a bot outage leaves the bid resting with nothing to pull it, and STOP does not cancel
+            # a resting bid either. Kalshi (absolute timestamp) and Novig (duration) are genuinely
+            # venue-enforced; this venue is the only one that is not.
+            #
+            # It was already off by default - REST_BOOKS is "novig,kalshi" - but only by a variable
+            # being unset, so adding polymarket_us to EXEC_REST_BOOKS would have silently created
+            # un-expirable exposure. This makes the refusal explicit instead of incidental.
+            # The TAKE path is untouched: takes do not come through REST_BOOKS.
+            why_not.append("Polymarket US: resting BLOCKED - the venue cannot enforce an expiry "
+                           "(tif is rewritten to DAY) and cancellation needs the bot alive")
+            continue
             # Nov 10. Until now this fell through to the `else: continue` below, which meant
             # putting polymarket_us in REST_BOOKS placed NOTHING and said nothing - the worst
             # failure available, because it looks like success. Resting and cancelling are both
