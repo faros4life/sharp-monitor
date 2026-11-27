@@ -120,7 +120,8 @@ def main():
         st_, ln, obj = where.get(i) or ("NO LEDGER ORDER", None, {})
         ev = obj.get("evidence") or obj.get("why") or ""
         say(f"  {rid(i)} {str(b.get('first_seen') or b.get('date') or '')[:10]} {lane_label(b):<18} {st_:<11} "
-            f"{str(ln or ''):<9} {b.get('result') or '-':<2} {str(ev)[:60]}")
+            f"{str(ln or ''):<9} {b.get('result') or '-':<2} {str(ev)[:40]} | {b.get('book')} | lane_src {b.get('lane_src')} "
+            f"| order_ref {'yes' if b.get('order_ref') else 'no'} | placed {str(b.get('placed') or b.get('first_seen') or '')[:16]}")
         priv(f"          {b.get('game')} | {b.get('bet')} | {b.get('book')} | stake ${float(b.get('stake') or 0):,.2f} "
              f"| profit ${float(b.get('profit') or 0):+,.2f}")
 
