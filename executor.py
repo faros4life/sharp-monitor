@@ -4676,6 +4676,15 @@ def fill_reports():
             novig_reports()
         except Exception as ex:
             print(f"novig report check failed: {str(ex)[:60]}")
+    # Nov 27 (Peter): refusal writeback. SEPARATE try from novig_reports() above, deliberately - that
+    # one announces to Telegram and this one releases money. A Telegram or Gmail failure must not be
+    # able to swallow an exposure release, and vice versa; sharing a try/except is what would let the
+    # cheaper of the two take the important one down with it.
+    try:
+        novig_refusal_writeback()
+    except Exception as ex:
+        print(f"novig refusal writeback failed ({type(ex).__name__}: {str(ex)[:60]}) - "
+              f"nothing released, every reservation stands")
     # Nov 12 (Peter, Step 1): Kalshi reporting moves to the fill-reports workflow. Measured at
     # 518.8s of a 632-second pass - 82% - while gating nothing, and that is what held the run open
     # past the 12-minute registry freshness window and made AGAINST YOUR BET unavailable.
@@ -6203,6 +6212,64 @@ class ReportClaim:
         """Drop the claim when the send did not go out, so the next pass retries immediately."""
         if self.reg:
             registry.release_token(tok)
+
+
+def novig_refusal_writeback():
+    """Carry the runner's PROVEN pre-submission refusal into the registry, and release that exposure.
+
+    Nov 27 (Peter): "require exact order identity, fill_read=True, zero filled quantity and
+    authoritative confirmation of no submission before releasing exposure. Make the release
+    idempotent. Unknown or contradictory records must remain reserved."
+
+    MEASURED defect: the Dogs order decided 2026-11-27T14:16:09Z reads `status=placed,
+    filled_stake=None, reason=None` in the registry while the runner's log for run 46014376990 at
+    14:16:06Z says "status refused; filled no". The runner records the proof durably - filled_qty 0,
+    fill_read True, fill_read_src "not submitted" - and appends it to snapshot/novig_orders.json.
+    novig_reports() above reads that snapshot and only ANNOUNCES it. Nothing wrote it back and nothing
+    released the reservation taken before dispatch.
+
+    Every decision rule lives in novig_writeback, which is pure and unit-tested; this function is only
+    the plumbing: read, decide, persist, release, count. It writes NOTHING on an empty plan, so a run
+    with no refusal costs one snapshot read.
+    """
+    import novig_writeback as nw
+    if not (os.environ.get("NOVIG_SNAPSHOT_TOKEN") or "").strip():
+        print("novig writeback: no snapshot token - nothing read, nothing released")
+        return 0
+    with perf("novig refusal writeback (read-only until a release is proven)"):
+        recs = book_live.novig_results() or []
+        rows = registry.rows()
+    # registry.rows() returning None means the store was UNREADABLE. That is not "no refusals": it is
+    # no evidence, and an unreadable authority may never release a dollar (same rule as the daily stop).
+    if rows is None:
+        print("novig writeback: registry unreadable - FAIL CLOSED, nothing released")
+        return 0
+    releases, other = nw.plan(recs, rows)
+    done = 0
+    for cid, row, field, why in releases:
+        leg = (row.get(field) if field != "live_more" else
+               next((x for x in (row.get("live_more") or [])
+                     if isinstance(x, dict) and str(x.get("client_id") or "").strip() == cid), None))
+        if not isinstance(leg, dict):
+            continue
+        rec = next((r for r in recs if str((r or {}).get("client_id") or "").strip() == cid), {})
+        nw.apply_to_leg(leg, rec)
+        # Persist the proven zero BEFORE releasing the claim. If the process dies between the two, a
+        # stored zero with a claim still held is harmless - the next pass reads it as DONE and the
+        # claim ages out. The reverse order would free capacity with no record of why.
+        if not registry.put_rows([row]):
+            print(f"novig writeback: could not persist {cid} - claim NOT released")
+            continue
+        registry.release_submission(row.get("key"), cid)
+        done += 1
+    if done or other:
+        print(f"novig writeback: {done} proven refusal(s) written back and released; "
+              + "; ".join(f"{k} {len(v)}" for k, v in sorted(other.items())))
+        for k, reasons in sorted(other.items()):
+            if k == nw.HOLD:       # a HOLD is money still reserved: say which and why, every run
+                for r in reasons[:12]:
+                    print(f"   HOLD {r}")
+    return done
 
 
 def novig_reports():
