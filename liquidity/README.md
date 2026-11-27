@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 27, 1:25 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 46.
+Updated Fri Nov 27, 1:30 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 47.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 27 1:30AM | NCAAF | Texas vs Texas A&M: Total Points | total: Over 40.5 points | kalshi | $30k | -113 |  |  | +0.0c |  | pending |
 | Nov 27 1:05AM | NCAAF | West Virginia vs Utah: Spread | spread: Utah wins by over 24.5 points | kalshi | $37k | -117 |  |  | +0.0c |  | pending |
 | Nov 27 1:00AM | NBA | Atlanta vs Boston: Spread | spread: NOT Boston wins by over 9.5 points | kalshi | $27k | -113 |  |  | +0.0c |  | pending |
 | Nov 27 12:10AM | NCAAF | Toledo vs Ohio: Spread | spread: Toledo wins by over 3.5 points | kalshi | $69k | +108 |  |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 23 9:00PM | NBA | San Antonio vs Sacramento: Spread | spread: NOT San Antonio wins by over 8.5 points | kalshi | $46k | -108 | ✅ novig |  | +1.0c | yes | L |
 | Nov 23 8:50PM | NBA | Utah vs Los Angeles L: Spread | spread: NOT Los Angeles L wins by over 13.5 points | kalshi | $44k | -108 | ✅ novig |  | +1.0c | yes | L |
 | Nov 23 8:05PM | NBA | Boston vs Washington | moneyline: Boston | kalshi | $46k | -355 |  |  | +1.0c |  | W |
-| Nov 23 7:05PM | NBA | Detroit vs Orlando | moneyline: Orlando | kalshi | $26k | +122 |  |  | +12.0c |  | L |
