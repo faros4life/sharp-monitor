@@ -70,6 +70,9 @@ jobs:
           ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
           XC_DAYS: ${{ inputs.days }}
           XC_CACHE_ONLY: ${{ inputs.cache_only }}
+          # Nov 27 (Peter): both reports pinned to the SAME ET day, so their strategy-level figures
+          # are comparable. bot_live_export reads EXPORT_SINCE with the identical default.
+          XC_SINCE: ${{ vars.REPORT_SINCE_ET || '2026-11-12' }}
         run: python -u executed_clv.py
       # Placement reconciliation (Peter, Nov 10). Runs even when the step above fails, because the
       # question it answers - does our record of what we placed match the books' - is exactly the
