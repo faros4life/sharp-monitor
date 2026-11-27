@@ -79,7 +79,7 @@ def fair_at_alert(x, src, rec, allfx, mkmap):
         c, w = toa.close(snap, dict(f, start=cl.iso(ta)), fid, lg, cl.parsed, fxm.resolve_side, cl.which_team,
                          cl.novig_p, cl.FRESH_MIN)
         if not c:
-            return None, "no stored snapshot at the alert (toa)"
+            return None, "toa: " + " ".join(str(w).split()[:6])
         return (c["p"], None) if c.get("how") == rec.get("how") else (None, "different basis from the close")
     f, h = allfx.get(fid), oa.cached_pin(fid)
     if not f or h is None:
