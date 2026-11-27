@@ -1,11 +1,13 @@
 name: toa-peak-probe
-# Peter, 26 Nov 2026: peak-hour sampling study - 15s ground truth vs simulated 30s/60s/5min, Pinnacle line moves caught
-# or missed, exchange price changes, split by minutes to start. Dispatch only. Log: counts and seconds only.
+# Peter, 26 Nov 2026: peak-hour sampling study - 15s ground truth vs simulated 30s/60s/5min. Research only; production
+# polling stays at 5 minutes. Nov 26 (Saturday study): hard credit cap per run, the full 15 s series kept as an artifact,
+# and toa_peak_analyze reads it after pulling the alerts that fired during the window. Log: counts, seconds, cents, %.
 on:
   workflow_dispatch:
     inputs:
       minutes: {default: "60"}
       sports: {default: "basketball_nba,basketball_ncaab,americanfootball_nfl"}
+      max_credits: {default: "3000"}
 permissions:
   contents: read
 jobs:
@@ -16,8 +18,26 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: "3.12"}
-      - env:
+      - run: python test_toa_peak_analyze.py
+      - name: Collect the 15 s series (hard credit cap)
+        env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           MINUTES: ${{ inputs.minutes }}
           PROBE_SPORTS: ${{ inputs.sports }}
+          PROBE_MAX_CREDITS: ${{ inputs.max_credits }}
+          PROBE_OUT: probe_series.json.gz
         run: python -u toa_peak_probe.py
+      - name: Pull the alerts written during the window (read only)
+        run: |
+          git fetch -q origin main
+          git checkout origin/main -- alerts.json liquidity/alerts.json board/calls.json
+      - name: Analyze (zero API calls)
+        run: python -u toa_peak_analyze.py probe_series.json.gz
+      - name: Keep the series
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: probe-series-${{ github.run_id }}
+          path: probe_series.json.gz
+          retention-days: 30
+          if-no-files-found: ignore

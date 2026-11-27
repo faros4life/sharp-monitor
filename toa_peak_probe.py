@@ -27,14 +27,19 @@ SPORTS = (os.environ.get("PROBE_SPORTS") or "basketball_nba,basketball_ncaab,ame
 BOOKS = "pinnacle,novig,prophetx,kalshi,polymarket_us,hardrockbet_fl"
 POLL_S = int(os.environ.get("POLL_S") or "15")
 MINUTES = int(os.environ.get("MINUTES") or "60")
+MAX_CREDITS = int(os.environ.get("PROBE_MAX_CREDITS") or "3000")   # hard stop for this run (Peter, Nov 26: 6,000 for both)
+OUT = os.environ.get("PROBE_OUT") or ""                            # gz file of the full 15 s series for toa_peak_analyze
 RATES = {"15s": 1, "30s": 30 // POLL_S, "60s": 60 // POLL_S, "5min": 300 // POLL_S}
 
 series = collections.defaultdict(list)   # (sport, ev, book, market, outcome) -> [(poll_i, t, (point, price))]
 start_of = {}
+names = {}
+poll_t = []
 credits = 0
 i = 0
 end = time.time() + MINUTES * 60
-while time.time() < end:
+while time.time() < end and credits < MAX_CREDITS:
+    poll_t.append(time.time())
     for sp in SPORTS:
         q = urllib.parse.urlencode({"apiKey": KEY, "bookmakers": BOOKS, "markets": "spreads,totals,h2h",
                                     "oddsFormat": "american"})
@@ -50,6 +55,7 @@ while time.time() < end:
             if st <= now:
                 continue   # pre-game only
             start_of[ev["id"]] = st
+            names[ev["id"]] = (sp, ev.get("home_team"), ev.get("away_team"))
             for bk in ev.get("bookmakers") or []:
                 for m in bk.get("markets") or []:
                     for o in m.get("outcomes") or []:
@@ -95,6 +101,13 @@ for k, obs in series.items():
         else:
             exch[(rate, bucket, "truth")] += len(truth)
             exch[(rate, bucket, "seen")] += len(seen)
+if credits >= MAX_CREDITS:
+    print(f"STOPPED at the credit cap {MAX_CREDITS}")
+if OUT:
+    import gzip
+    with gzip.open(OUT, "wt") as fh:
+        json.dump({"poll_s": POLL_S, "poll_t": poll_t, "start": start_of, "names": names,
+                   "series": [[list(k), [[a, b, list(v)] for a, b, v in obs]] for k, obs in series.items()]}, fh)
 print(f"polls {i} every {POLL_S}s over {MINUTES} min | sports {SPORTS} | events {len(start_of)} | credits {credits}")
 print("PINNACLE LINE MOVES (what alerts act on): caught / total, median detection delay")
 for bucket in ("<=60 min", ">60 min"):
