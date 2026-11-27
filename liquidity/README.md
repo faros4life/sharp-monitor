@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 27, 11:30 AM ET. This run: 1 new, 0 not confirmed, 3 pending. Open alerts: 102.
+Updated Fri Nov 27, 11:36 AM ET. This run: 3 new, 0 not confirmed, 3 pending. Open alerts: 105.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,14 +10,17 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 27 11:30AM | NCAAF | Toledo @ Ohio | total: Over 44.5 (44.5) | novig | $40k | +102 |  |  | +0.0c |  | pending |
+| Nov 27 11:36AM | NCAAF | Toledo at Ohio | moneyline: Toledo | prophetx | $39k | -166 | ✅ kalshi,novig | ✅ | +0.0c |  | pending |
+| Nov 27 11:36AM | NHL | Pittsburgh vs Buffalo: Total Goals | total: Over 6.5 goals scored | kalshi | $28k | -113 | ✅ novig |  | +0.0c |  | pending |
+| Nov 27 11:36AM | NCAAF | Tulsa vs UTSA: Total Points | total: Over 55.5 points | kalshi | $36k | -108 |  |  | +0.0c |  | pending |
+| Nov 27 11:30AM | NCAAF | Toledo @ Ohio | total: Over 44.5 (44.5) | novig | $40k | +102 |  |  | +0.5c |  | pending |
 | Nov 27 11:25AM | NCAAF | Toledo @ Ohio | spread: TOL -3.5 (3.5) | novig | $49k | -102 | ✅ kalshi |  | +0.5c |  | pending |
 | Nov 27 11:25AM | NCAAF | Tulsa @ UTSA | moneyline: UTSA (0) | novig | $46k | +104 | ✅ kalshi | ❌ | +0.0c |  | pending |
 | Nov 27 11:25AM | NCAAF | Toledo vs Ohio: Total Points | total: NOT Over 44.5 points | kalshi | $169k | -108 |  |  | +0.0c |  | pending |
 | Nov 27 11:25AM | NCAAF | Buffalo vs Akron: Spread | spread: NOT Buffalo wins by over 7.5 points | kalshi | $124k | -113 | ✅ novig |  | +0.0c |  | pending |
 | Nov 27 11:20AM | NCAAF | Toledo @ Ohio | moneyline: TOL (0) | novig | $62k | -167 | ✅ kalshi,prophetx |  | -0.5c |  | pending |
 | Nov 27 11:10AM | NHL | Utah vs Nashville | moneyline: Utah | kalshi | $88k | -104 | ✅ novig |  | +0.0c | yes | pending |
-| Nov 27 11:05AM | NCAAF | Tulsa at UTSA | moneyline: Tulsa | prophetx | $36k | -110 | ✅ kalshi | ✅ | -0.2c | yes | pending |
+| Nov 27 11:05AM | NCAAF | Tulsa at UTSA | moneyline: Tulsa | prophetx | $36k | -110 | ✅ kalshi | ✅ | -0.7c | yes | pending |
 | Nov 27 11:00AM | NBA | Brooklyn vs Toronto: Spread | spread: Toronto wins by over 9.5 points | kalshi | $53k | -100 | ✅ novig,prophetx | ✅ | +0.0c |  | pending |
 | Nov 27 11:00AM | NHL | Florida vs Washington: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $49k | +104 | ✅ novig |  | -1.0c |  | pending |
 | Nov 27 11:00AM | NHL | Pittsburgh vs Buffalo: Spread | spread: NOT Buffalo wins by over 1.5 goals | kalshi | $38k | -178 | ✅ novig |  | +0.0c |  | pending |
@@ -28,11 +31,11 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 27 10:55AM | NCAAF | North Dakota State @ San Jose State | moneyline: NDSU (0) | novig | $30k | -308 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Nov 27 10:55AM | NHL | Pittsburgh vs Buffalo | moneyline: Pittsburgh | kalshi | $129k | +133 |  |  | +1.0c |  | pending |
 | Nov 27 10:45AM | NCAAF | Texas vs Texas A&M: Spread | spread: Texas wins by over 10.5 points | kalshi | $60k | -104 |  |  | +1.0c |  | pending |
-| Nov 27 10:40AM | NCAAF | Buffalo at Akron | moneyline: Buffalo | prophetx | $57k | -270 | ✅ kalshi,novig |  | +0.0c |  | pending |
+| Nov 27 10:40AM | NCAAF | Buffalo at Akron | moneyline: Buffalo | prophetx | $57k | -270 | ✅ kalshi,novig |  | +0.4c |  | pending |
 | Nov 27 10:40AM | NCAAF | Florida vs Florida St.: Total Points | total: Over 54.5 points | kalshi | $25k | -100 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 27 10:30AM | NHL | Winnipeg vs New York I | moneyline: Winnipeg | kalshi | $144k | +108 | ✅ novig,prophetx |  | +0.0c |  | pending |
-| Nov 27 10:26AM | NCAAF | Nebraska @ Iowa | moneyline: IOWA (0) | novig | $35k | -178 | ✅ kalshi,prophetx | ❌ | -0.5c |  | pending |
-| Nov 27 10:20AM | NCAAF | Mississippi State @ Ole Miss | spread: MISS -17.5 (-17.5) | novig | $28k | +102 |  | ❌ | -0.5c |  | pending |
+| Nov 27 10:26AM | NCAAF | Nebraska @ Iowa | moneyline: IOWA (0) | novig | $35k | -178 | ✅ kalshi,prophetx | ❌ | +0.0c |  | pending |
+| Nov 27 10:20AM | NCAAF | Mississippi State @ Ole Miss | spread: MISS -17.5 (-17.5) | novig | $28k | +102 |  | ❌ | +0.0c |  | pending |
 | Nov 27 10:10AM | NCAAF | Tulsa @ UTSA | moneyline: TLSA (0) | novig | $30k | -111 |  | ❌ | -1.0c |  | pending |
 | Nov 27 10:05AM | NBA | Milwaukee vs Detroit: Total Points | total: Over 218.5 points | kalshi | $46k | -104 | ✅ novig |  | +0.0c |  | pending |
 | Nov 27 10:05AM | NHL | Ottawa vs Tampa Bay | moneyline: Tampa Bay | kalshi | $40k | -133 | ✅ novig |  | +0.0c | yes | pending |
@@ -82,11 +85,11 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 26 6:15PM | NFL | Kansas City Chiefs @ Buffalo Bills | moneyline: KC (0) | novig | $92k | +147 |  | ❌ | -0.5c | yes | L |
 | Nov 26 6:00PM | NCAAF | TCU @ Texas Tech | spread: TTU -13.5 (-13.5) | novig | $27k | -113 |  | ❌ | -1.5c | yes | W |
 | Nov 26 5:20PM | NCAAF | Air Force vs New Mexico: Spread | spread: New Mexico wins by over 6.5 points | kalshi | $70k | -113 | ✅ novig,prophetx |  | +2.0c | yes | pending |
-| Nov 26 5:20PM | NBA | Miami vs New York | moneyline: New York | kalshi | $242k | -156 |  |  | -4.0c |  | pending |
+| Nov 26 5:20PM | NBA | Miami vs New York | moneyline: New York | kalshi | $242k | -156 |  |  | -3.0c |  | pending |
 | Nov 26 5:15PM | NCAAF | Tulsa vs UTSA: Spread | spread: Tulsa wins by over 1.5 points | kalshi | $36k | +104 |  | ✅ | +1.0c | yes | pending |
 | Nov 26 5:15PM | NCAAF | TCU vs Texas Tech: Total Points | total: NOT Over 47.5 points | kalshi | $34k | -108 | ✅ novig |  | +0.0c | yes | L |
 | Nov 26 5:00PM | NFL | Denver vs Pittsburgh: Spread | spread: NOT Denver wins by over 4.5 points | kalshi | $312k | -100 |  |  | +0.0c |  | pending |
-| Nov 26 4:40PM | NCAAF | Minnesota @ Wisconsin | moneyline: WIS (0) | novig | $27k | -292 | ✅ kalshi |  | +1.5c |  | pending |
+| Nov 26 4:40PM | NCAAF | Minnesota @ Wisconsin | moneyline: WIS (0) | novig | $27k | -292 | ✅ kalshi |  | +1.0c |  | pending |
 | Nov 26 4:36PM | NFL | Kansas City vs Buffalo: Total Points | total: Over 44.5 points | kalshi | $57k | -122 |  |  | +1.0c | yes | L |
 | Nov 26 4:10PM | NCAAF | TCU @ Texas Tech | moneyline: TTU (0) | novig | $49k | -545 | ✅ kalshi,prophetx | ❌ | -1.0c | yes | W |
 | Nov 26 4:00PM | NFL | Philadelphia vs Dallas: Total Points | total: NOT Over 49.5 points | kalshi | $297k | -104 |  | ❌ | +0.0c | yes | L |
@@ -207,6 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 25 8:30AM | NFL | Kansas City vs Buffalo | moneyline: Buffalo | kalshi | $137k | -144 | ✅ novig |  | +2.0c | yes | W |
 | Nov 25 8:25AM | NBA | Sacramento vs Golden State: Spread | spread: Golden State wins by over 6.5 points | kalshi | $79k | -104 |  |  | +7.0c |  | W |
 | Nov 25 7:40AM | NHL | New Jersey vs Columbus: Spread | spread: NOT New Jersey wins by over 1.5 goals | kalshi | $51k | -186 | ✅ novig |  | +1.0c | yes | W |
-| Nov 25 7:35AM | NHL | Utah vs Minnesota: Spread | spread: NOT Minnesota wins by over 1.5 goals | kalshi | $29k | -194 |  |  | +0.0c | yes | W |
-| Nov 25 7:35AM | NHL | San Jose vs Anaheim: Spread | spread: NOT Anaheim wins by over 1.5 goals | kalshi | $29k | -186 |  |  | +2.0c | yes | L |
-| Nov 25 7:35AM | NHL | Ottawa vs Florida: Spread | spread: NOT Florida wins by over 1.5 goals | kalshi | $40k | -233 | ✅ novig |  | +0.0c | yes | L |
