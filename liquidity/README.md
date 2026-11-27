@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 27, 12:50 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 44.
+Updated Fri Nov 27, 12:55 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 44.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -24,7 +24,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 26 6:15PM | NFL | Kansas City Chiefs @ Buffalo Bills | moneyline: KC (0) | novig | $92k | +147 |  | ❌ | -0.5c | yes | L |
 | Nov 26 6:00PM | NCAAF | TCU @ Texas Tech | spread: TTU -13.5 (-13.5) | novig | $27k | -113 |  | ❌ | -1.5c | yes | W |
 | Nov 26 5:20PM | NCAAF | Air Force vs New Mexico: Spread | spread: New Mexico wins by over 6.5 points | kalshi | $70k | -113 | ✅ novig,prophetx |  | +0.0c | yes | pending |
-| Nov 26 5:20PM | NBA | Miami vs New York | moneyline: New York | kalshi | $242k | -156 |  |  | +1.0c |  | pending |
+| Nov 26 5:20PM | NBA | Miami vs New York | moneyline: New York | kalshi | $242k | -156 |  |  | +0.0c |  | pending |
 | Nov 26 5:15PM | NCAAF | Tulsa vs UTSA: Spread | spread: Tulsa wins by over 1.5 points | kalshi | $36k | +104 |  | ✅ | +0.0c |  | pending |
 | Nov 26 5:15PM | NCAAF | TCU vs Texas Tech: Total Points | total: NOT Over 47.5 points | kalshi | $34k | -108 | ✅ novig |  | +0.0c | yes | L |
 | Nov 26 5:00PM | NFL | Denver vs Pittsburgh: Spread | spread: NOT Denver wins by over 4.5 points | kalshi | $312k | -100 |  |  | +0.0c |  | pending |
