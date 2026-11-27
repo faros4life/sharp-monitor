@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 27, 9:50 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 74.
+Updated Fri Nov 27, 9:55 AM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 74.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -25,7 +25,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 27 8:05AM | NCAAF | Florida vs Florida St.: Spread | spread: NOT Florida wins by over 6.5 points | kalshi | $28k | -100 |  |  | +0.0c |  | pending |
 | Nov 27 8:00AM | NBA | Brooklyn vs Toronto: Spread | spread: Toronto wins by over 8.5 points | kalshi | $32k | -108 |  |  | +2.0c |  | pending |
 | Nov 27 7:55AM | NCAAF | Buffalo vs Akron: Total Points | total: Over 48.5 points | kalshi | $37k | -113 |  | ✅ | +2.0c |  | pending |
-| Nov 27 7:05AM | NHL | Seattle vs Edmonton: Spread | spread: NOT Edmonton wins by over 1.5 goals | kalshi | $29k | -133 | ✅ novig |  | +0.0c |  | pending |
+| Nov 27 7:05AM | NHL | Seattle vs Edmonton: Spread | spread: NOT Edmonton wins by over 1.5 goals | kalshi | $29k | -133 | ✅ novig |  | +1.0c |  | pending |
 | Nov 27 7:00AM | NHL | New York R vs Chicago: Spread | spread: NOT New York R wins by over 1.5 goals | kalshi | $28k | -170 | ✅ novig |  | +0.0c |  | pending |
 | Nov 27 7:00AM | NHL | Colorado vs Minnesota: Spread | spread: NOT Minnesota wins by over 1.5 goals | kalshi | $50k | -223 | ✅ novig |  | +0.0c |  | pending |
 | Nov 27 6:50AM | NHL | Utah vs Nashville | moneyline: Nashville | kalshi | $40k | +104 |  |  | +1.0c |  | pending |
