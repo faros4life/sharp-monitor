@@ -53,6 +53,18 @@ ok("a lane/play disagreement refuses (sized by one lane, capped by another's lim
    _m[0] is False and "lane disagreement" in _m[1], _m)
 ok("...in both directions", _rg("dogs", "board")[0] is False)
 ok("lane2 is never rest-eligible, so it needs no gate", "lane2" not in ex.REST_LANE_GATES)
+# Nov 27, closing a gap an independent review found and PROVED with a mutation: hoisting the
+# Lane 1 early-out above the lane/play cross-check kept every other assertion in this file green,
+# while a DOGS play whose live dict had lost its "lane" key was then treated as Lane 1 - resting
+# $300 (unit_for(None)) with no daily cap, no play maximum and no kill bar. The combination neither
+# harness covered is lane ABSENT with a capped source, because both always set lane == source.
+for _src in ("dogs", "board", "r1", "ncs"):
+    _g = ex.rest_lane_gate({"live": {}, "play": {"source": _src}}, 300.0)
+    ok(f"a {ex.LANE_NAME.get(_src, _src)} play that has LOST its lane key is refused, not treated as Lane 1",
+       _g[0] is False and "lane disagreement" in _g[1], _g)
+ok("...so the cross-check must stay ahead of the Lane 1 exemption",
+   inspect.getsource(ex.rest_lane_gate).index("lane disagreement")
+   < inspect.getsource(ex.rest_lane_gate).index('if lane == "rules"'))
 
 # --- 2. each lane's cap, play maximum and unknown-exposure refusal, through rest_bid() ---------
 class _Reg:
@@ -116,6 +128,24 @@ try:
     res = _bid("dogs")
     ok("DOGS: the kill bar refuses a resting bid too", "kill bar" in str(res.get("reason") or ""), res)
     ex.dogs_kill_state = lambda: {"blocked": False, "why": "ok"}
+
+    # Nov 27, second gap the review proved: of every test file touching rest_bid, none constructed
+    # live with `go` truthy, so a change guarding the gate behind `if not lv.get("go")` - a
+    # plausible "the take already asked" optimisation - passed the whole suite. That is the
+    # take-then-rest path, where the remainder of a partial fill rests, and it must be gated too.
+    _st, _fn, _unit, _maxp, _dr = LANES["dogs"]
+    _st.clear()
+    _st.update({"known": True, "keys": set(), "risk": _dr})          # the day's budget already gone
+    _ptr = {"source": "dogs", "play_key": "dogs|NBA|E @ F|side|E", "sport": "NBA", "game": "E @ F",
+            "bet": "E ML (+140)", "start_utc": _far}
+    res = ex.rest_bid({"play": _ptr, "books": {}, "verdict": "WOULD PLACE", "reason": None,
+                       "entry": {"price_after_fee": 140, "line": None},
+                       "live": {"go": True, "lane": "dogs", "risk": 300.0, "shown": 140,
+                                "unit": 300.0, "rest_risk": 190.0,
+                                "order": {"status": "placed", "fills_read": True,
+                                          "filled_stake": 110.0, "asked_stake": 300.0}}})
+    ok("the take-then-rest remainder is gated too, not waved through as already-approved",
+       res["status"] == "refused" and "daily risk limit" in res["reason"], res)
 
     # Lane 1 must be UNCHANGED by this correction: no per-lane gate, only the global stop.
     p1 = {"source": "rules", "play_key": "NBA|C @ D|total|under", "sport": "NBA", "game": "C @ D",

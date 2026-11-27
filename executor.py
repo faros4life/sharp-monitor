@@ -5977,11 +5977,32 @@ def rest_bid(r):
     # actually be posted and not the untrimmed unit, and before rest_pre_alert so a capped bid is
     # never announced. Lane 1 is unchanged: it has no per-lane gate and never had one.
     #
-    # Two known conservatisms, both in the refusing direction and neither an overbet: each lane's
-    # risk and key set is read from the registry at the start of the run and is not updated in-run,
-    # so a take followed by a rest on the same play in the same run counts that play once more than
-    # it should and measures against start-of-run risk. It can refuse a legitimate remainder near
-    # the cap; it cannot admit one above it.
+    # WHAT THIS CAP DOES AND DOES NOT GUARANTEE. Corrected Nov 27 after an independent read-only
+    # review: an earlier version of this comment said the gate "can refuse a legitimate remainder
+    # near the cap; it cannot admit one above it." THAT WAS FALSE, and it is the CLAUDE.md rule
+    # "bound a claim, do not assert it" being broken in the direction that matters - a reader would
+    # have taken the lane cap for hard.
+    #
+    # Each lane's risk total and key set are read from the registry ONCE per run (_account_rows,
+    # behind live_guards' once-per-run GUARD cache) and are NEVER incremented after a gate approves
+    # an order. So every call in one pass measures against the same start-of-run number. Measured:
+    # with BOARD["risk"] at $1,000 against a $2,000 cap, six consecutive $200 approvals all pass and
+    # each one prints "$1,000.00/$2,000" - $1,200 of new exposure admitted on top of the $1,000.
+    # The global stop does not share this flaw - its own exposure counter accumulates in-run, per
+    # order, in the venue layer - but the lane caps do. (Written without naming that module's
+    # attribute: test_review_integration asserts that no send site appears in this function before
+    # the unit-ledger guard, and it scans the source text, so a send-shaped token in a COMMENT
+    # fails it. The measurement was right to complain and the guard order is unchanged.)
+    #
+    # This is PRE-EXISTING on the take path and is not introduced here. What is new is that the same
+    # stale snapshot now governs a second order per play, so the per-run slip roughly doubles.
+    # Making the snapshot in-run accurate is a live-money behaviour change and is Peter's to approve,
+    # so it is recorded here and not done. What the gate does guarantee, and all it guarantees, is
+    # that no single order is approved against a start-of-run total already at or above the cap.
+    #
+    # One further conservatism, in the refusing direction: because the key set is also a start-of-run
+    # read, a take followed by a rest on the same play in the same run counts that play once more
+    # than it should. That can refuse a legitimate remainder; it cannot admit one.
     _lok, _lwhy = rest_lane_gate(r, risk)
     if not _lok:
         registry.release_submission(_rkey, REST_CID)
