@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 27, 9:20 AM ET. This run: 6 new, 0 not confirmed, 3 pending. Open alerts: 24.
+Updated Fri Nov 27, 9:30 AM ET. This run: 2 new, 1 not confirmed, 0 pending. Open alerts: 26.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,15 +10,17 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 27 9:30AM | NCAAB | Georgetown @ UCLA | moneyline: UCLA (0) | novig | $38k | -317 | ✅ kalshi |  | +0.0c |  | pending |
+| Nov 27 9:30AM | NCAAB | Oregon vs Maryland | moneyline: Maryland | kalshi | $39k | -138 |  |  | +0.0c |  | pending |
 | Nov 27 9:20AM | NCAAB | Texas @ Saint Mary's | moneyline: TEX (0) | novig | $27k | -300 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 27 9:20AM | NCAAB | Charleston Southern @ East Tennessee State | moneyline: ETSU (0) | novig | $26k | -545 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 27 9:20AM | NCAAB | Cincinnati @ Boston College | moneyline: CIN (0) | novig | $27k | -355 | ✅ kalshi | ❌ | +0.0c |  | pending |
-| Nov 27 9:20AM | NCAAB | Virginia @ Xavier | moneyline: UVA (0) | novig | $30k | -292 |  |  | +0.0c |  | pending |
-| Nov 27 9:20AM | NCAAB | Pacific vs UC Davis | moneyline: Pacific | kalshi | $56k | -233 | ✅ novig |  | +0.0c |  | pending |
-| Nov 27 9:20AM | NCAAB | Creighton vs Gonzaga | moneyline: Gonzaga | kalshi | $28k | -223 |  |  | +0.0c |  | pending |
+| Nov 27 9:20AM | NCAAB | Virginia @ Xavier | moneyline: UVA (0) | novig | $30k | -292 |  |  | -0.5c |  | pending |
+| Nov 27 9:20AM | NCAAB | Pacific vs UC Davis | moneyline: Pacific | kalshi | $56k | -233 | ✅ novig |  | +1.0c |  | pending |
+| Nov 27 9:20AM | NCAAB | Creighton vs Gonzaga | moneyline: Gonzaga | kalshi | $28k | -223 |  |  | +1.0c |  | pending |
 | Nov 27 2:40AM | NCAAB | Penn St. vs Mississippi St. | moneyline: Mississippi St. | kalshi | $150k | -257 |  |  | +0.0c |  | pending |
 | Nov 27 2:40AM | NCAAB | Princeton vs UNC Wilmington | moneyline: UNC Wilmington | kalshi | $162k | -317 |  |  | +0.0c |  | pending |
-| Nov 27 2:40AM | NCAAB | Michigan vs Kansas St. | moneyline: Michigan | kalshi | $146k | -300 |  |  | +2.0c |  | pending |
+| Nov 27 2:40AM | NCAAB | Michigan vs Kansas St. | moneyline: Michigan | kalshi | $146k | -300 |  |  | +4.0c |  | pending |
 | Nov 27 1:30AM | NCAAB | Texas vs Saint Mary's | moneyline: Texas | kalshi | $25k | -317 |  |  | -2.0c |  | pending |
 | Nov 27 1:30AM | NCAAB | Charleston Southern vs East Tennessee St. | moneyline: East Tennessee St. | kalshi | $34k | -488 |  |  | +2.0c |  | pending |
 | Nov 27 1:20AM | NCAAB | Texas St. vs Louisiana Tech | moneyline: Texas St. | kalshi | $26k | -194 |  |  | -2.0c |  | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 21 7:20PM | NCAAB | Presbyterian vs Tennessee Tech | moneyline: Tennessee Tech | kalshi | $58k | -317 | ✅ prophetx |  | +0.0c |  | W |
 | Nov 21 6:50PM | NCAAB | Michigan vs Villanova: Point Total | total: NOT Over 159.5 points | kalshi | $39k | -100 |  | ❌ | +0.0c |  | W |
 | Nov 21 5:00PM | NCAAB | Michigan @ Villanova | moneyline: MICH (0) | novig | $26k | -153 | ✅ kalshi,prophetx |  | +0.0c |  | L |
-| Nov 21 4:40PM | NCAAB | Michigan vs Villanova | moneyline: Michigan | kalshi | $49k | -150 |  |  | +1.0c |  | L |
-| Nov 21 4:10PM | NCAAB | Air Force vs UTSA: Point Total | total: NOT Over 172.5 points | kalshi | $32k | +108 |  | ❌ | +0.0c |  | W |
