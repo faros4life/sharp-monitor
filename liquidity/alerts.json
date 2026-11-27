@@ -1,6 +1,200 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-27T00:30:22Z",
+   "base_depth": 269085,
+   "best_price": 0.495,
+   "best_price_american": 102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 1163,
+     "new_this_side": 37366,
+     "other_side": 72320,
+     "other_side_all_levels": 202845,
+     "ratio": 2.7,
+     "this_side": 198679,
+     "this_side_all_levels": 306373
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "NEB +3.5 (-3.5)",
+     "price": 0.495,
+     "this_side": 29162
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 2969.04,
+    "volume_24h_fp": 1578.67,
+    "volume_fp": 3356.71
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 2969.04,
+    "volume_24h_fp": 1578.67,
+    "volume_fp": 3356.71
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-11-27T00:25:42Z",
+   "game": "Nebraska vs Iowa: Spread",
+   "game_surge_books": [],
+   "game_x": 1.14,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26NOV27NEBIOWA-IOWA4\"}",
+   "lead_min": 990,
+   "league": "NCAAF",
+   "line": 3.5,
+   "market": "spread",
+   "new_money": 37366,
+   "new_x": 0.17,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 2969.04,
+      "volume_24h_fp": 1578.67,
+      "volume_fp": 3356.71
+     },
+     "game_normal": 269524,
+     "game_x": 1.14,
+     "normal": 214168,
+     "now": 306373,
+     "type": "SPREAD",
+     "x": 1.43
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 632844.0,
+      "volume": 943054.0
+     },
+     "game_normal": 27273,
+     "game_x": 1.29,
+     "normal": 29278,
+     "now": 35171,
+     "type": "SPREAD",
+     "x": 1.2
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 3.5,
+     "price": -108
+    },
+    "betonlineag": {
+     "point": 3.5,
+     "price": -115
+    },
+    "betopenly": {
+     "point": 4.0,
+     "price": -101
+    },
+    "betrivers": {
+     "point": 3.5,
+     "price": -114
+    },
+    "betus": {
+     "point": 3.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 4.0,
+     "price": -112
+    },
+    "circasports": {
+     "point": 3.5,
+     "price": -115
+    },
+    "draftkings": {
+     "point": 3.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 3.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 3.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 3.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": 3.5,
+     "price": -107
+    },
+    "mybookieag": {
+     "point": 3.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 3.5,
+     "price": 102
+    },
+    "polymarket": {
+     "point": 3.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 3.5,
+     "price": 101
+    },
+    "williamhill_us": {
+     "point": 3.5,
+     "price": -108
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFSPREAD-26NOV27NEBIOWA-IOWA4"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [
+    "Nebraska Cornhuskers +4.5 (-105)"
+   ],
+   "sharp_oppose": [],
+   "side": "Nebraska",
+   "side_label": "NOT Iowa wins by over 3.5 points",
+   "size_x": 1.43,
+   "start_source": "odds",
+   "start_utc": "2026-11-27T17:00:00Z",
+   "surge_books": [],
+   "teams": [
+    "Nebraska",
+    "Iowa"
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-27T00:10:19Z",
    "base_depth": 247596,
    "best_price": 0.71,
@@ -52,9 +246,9 @@
     "volume_fp": 1.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1670.6399999999999,
+    "open_interest_fp": 1670.71,
     "volume_24h_fp": 1309.22,
-    "volume_fp": 1907.9099999999999
+    "volume_fp": 1907.98
    },
    "ex_stats_first": {
     "open_interest_fp": 1669.6399999999999,
@@ -472,8 +666,8 @@
     "volume": 56479.0
    },
    "ex_stats_close": {
-    "openInterest": 50493039.0,
-    "volume": 62875907.0
+    "openInterest": 50537603.0,
+    "volume": 63032515.0
    },
    "ex_stats_first": {
     "openInterest": 40908511.0,
@@ -675,8 +869,8 @@
     "volume": 797913.0
    },
    "ex_stats_close": {
-    "openInterest": 68244211.0,
-    "volume": 102180254.0
+    "openInterest": 71520347.0,
+    "volume": 107173733.0
    },
    "ex_stats_first": {
     "openInterest": 52573367.0,
@@ -884,7 +1078,7 @@
    },
    "ex_stats_close": {
     "openInterest": 22153567.0,
-    "volume": 25536442.0
+    "volume": 25573163.0
    },
    "ex_stats_first": {
     "openInterest": 13653467.0,
@@ -1290,9 +1484,9 @@
     "volume_fp": 141.1
    },
    "ex_stats_close": {
-    "open_interest_fp": 78603.02,
+    "open_interest_fp": 79035.75,
     "volume_24h_fp": 94636.78,
-    "volume_fp": 105924.95
+    "volume_fp": 106429.86
    },
    "ex_stats_first": {
     "open_interest_fp": 53892.83,
@@ -1665,9 +1859,9 @@
     "volume_fp": 290.13
    },
    "ex_stats_close": {
-    "open_interest_fp": 65950.78,
+    "open_interest_fp": 66141.73,
     "volume_24h_fp": 66163.67,
-    "volume_fp": 72249.45
+    "volume_fp": 72509.5
    },
    "ex_stats_first": {
     "open_interest_fp": 51375.53,
@@ -1869,9 +2063,9 @@
     "volume_fp": 156.87
    },
    "ex_stats_close": {
-    "open_interest_fp": 418933.96,
+    "open_interest_fp": 419034.01,
     "volume_24h_fp": 305889.69,
-    "volume_fp": 429178.48
+    "volume_fp": 429278.53
    },
    "ex_stats_first": {
     "open_interest_fp": 415726.38,
@@ -2270,9 +2464,9 @@
     "volume_fp": 3234.85
    },
    "ex_stats_close": {
-    "open_interest_fp": 185901.99,
+    "open_interest_fp": 191893.29,
     "volume_24h_fp": 188800.61,
-    "volume_fp": 208581.34
+    "volume_fp": 215720.6
    },
    "ex_stats_first": {
     "open_interest_fp": 110652.03,
@@ -2424,8 +2618,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.835,
-   "clv_cents": -1.0,
+   "close_price": 0.84,
+   "clv_cents": -0.5,
    "confirmed_after_min": 5,
    "date": "2026-11-26",
    "depth_by_book": {
@@ -2460,8 +2654,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 19963563.0,
-    "volume": 27919778.0
+    "openInterest": 20308240.0,
+    "volume": 28525092.0
    },
    "ex_stats_first": {
     "openInterest": 19441976.0,
@@ -2830,7 +3024,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 12,
+   "settle_tries": 13,
    "sharp_agree": [],
    "sharp_oppose": [
     "Over 48.5 (-112)"
@@ -3048,7 +3242,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 12,
+   "settle_tries": 13,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Philadelphia Eagles",
@@ -3081,8 +3275,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.515,
-   "clv_cents": 0.0,
+   "close_price": 0.52,
+   "clv_cents": 0.5,
    "confirmed_after_min": 4,
    "date": "2026-11-26",
    "depth_by_book": {
@@ -3105,8 +3299,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 18195149.0,
-    "volume": 20530455.0
+    "openInterest": 19121242.0,
+    "volume": 21562011.0
    },
    "ex_stats_first": {
     "openInterest": 10726956.0,
@@ -3426,7 +3620,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 12,
+   "settle_tries": 13,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Dallas Cowboys",
@@ -3712,9 +3906,9 @@
     "volume_fp": 308.37
    },
    "ex_stats_close": {
-    "open_interest_fp": 157262.59999999998,
+    "open_interest_fp": 157471.46000000002,
     "volume_24h_fp": 63605.8,
-    "volume_fp": 169279.31
+    "volume_fp": 169503.22999999998
    },
    "ex_stats_first": {
     "open_interest_fp": 120664.88,
@@ -4347,9 +4541,9 @@
     "volume_fp": 73.81
    },
    "ex_stats_close": {
-    "open_interest_fp": 40029.68,
+    "open_interest_fp": 40018.13,
     "volume_24h_fp": 40745.259999999995,
-    "volume_fp": 47202.32
+    "volume_fp": 47252.770000000004
    },
    "ex_stats_first": {
     "open_interest_fp": 23433.79,
@@ -4663,9 +4857,9 @@
     "volume_fp": 1206.84
    },
    "ex_stats_close": {
-    "open_interest_fp": 678682.81,
+    "open_interest_fp": 687546.35,
     "volume_24h_fp": 582260.71,
-    "volume_fp": 819128.71
+    "volume_fp": 828075.3500000001
    },
    "ex_stats_first": {
     "open_interest_fp": 350458.26,
@@ -5643,7 +5837,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 12,
+   "settle_tries": 13,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Philadelphia Eagles",
@@ -5708,9 +5902,9 @@
     "volume_fp": 5274.26
    },
    "ex_stats_close": {
-    "open_interest_fp": 143997.22,
+    "open_interest_fp": 144278.94,
     "volume_24h_fp": 87553.45,
-    "volume_fp": 151454.91
+    "volume_fp": 151972.26
    },
    "ex_stats_first": {
     "open_interest_fp": 89081.03,
@@ -6403,8 +6597,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.77,
-   "clv_cents": -7.0,
+   "close_price": 0.78,
+   "clv_cents": -6.0,
    "confirmed_after_min": 5,
    "date": "2026-11-27",
    "depth_by_book": {
@@ -6435,9 +6629,9 @@
     "volume_fp": 122.29
    },
    "ex_stats_close": {
-    "open_interest_fp": 45538.03,
+    "open_interest_fp": 45953.020000000004,
     "volume_24h_fp": 50658.46000000001,
-    "volume_fp": 69292.7
+    "volume_fp": 69707.69
    },
    "ex_stats_first": {
     "open_interest_fp": 26752.58,
@@ -6575,9 +6769,9 @@
     "volume_fp": 295.9
    },
    "ex_stats_close": {
-    "open_interest_fp": 155110.22,
+    "open_interest_fp": 157061.45,
     "volume_24h_fp": 157088.04,
-    "volume_fp": 210199.53
+    "volume_fp": 212283.47999999998
    },
    "ex_stats_first": {
     "open_interest_fp": 80813.09,
@@ -6777,7 +6971,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 12,
+   "settle_tries": 13,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Dallas Cowboys",
@@ -6842,9 +7036,9 @@
     "volume_fp": 235.63
    },
    "ex_stats_close": {
-    "open_interest_fp": 16404.370000000003,
+    "open_interest_fp": 16449.149999999998,
     "volume_24h_fp": 15656.599999999999,
-    "volume_fp": 18672.1
+    "volume_fp": 18716.88
    },
    "ex_stats_first": {
     "open_interest_fp": 9262.64,
@@ -6975,9 +7169,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 30063.32,
+    "open_interest_fp": 30256.03,
     "volume_24h_fp": 27680.12,
-    "volume_fp": 33288.86
+    "volume_fp": 33481.57
    },
    "ex_stats_first": {
     "open_interest_fp": 15796.61,
@@ -7349,9 +7543,9 @@
     "volume_fp": 79.71
    },
    "ex_stats_close": {
-    "open_interest_fp": 1018951.74,
+    "open_interest_fp": 1057048.27,
     "volume_24h_fp": 891830.8,
-    "volume_fp": 1047311.19
+    "volume_fp": 1085407.9
    },
    "ex_stats_first": {
     "open_interest_fp": 241287.85,
@@ -7809,7 +8003,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 12,
+   "settle_tries": 13,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Dallas Cowboys",
@@ -8165,9 +8359,9 @@
     "volume_fp": 3201.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 1570759.8599999999,
+    "open_interest_fp": 1571924.5899999999,
     "volume_24h_fp": 819961.4600000001,
-    "volume_fp": 2092609.21
+    "volume_fp": 2093777.23
    },
    "ex_stats_first": {
     "open_interest_fp": 1027364.75,
@@ -8300,9 +8494,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 131041.46,
+    "open_interest_fp": 131379.87,
     "volume_24h_fp": 39204.16,
-    "volume_fp": 150543.78
+    "volume_fp": 150882.19
    },
    "ex_stats_first": {
     "open_interest_fp": 109014.38,
@@ -8425,9 +8619,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 14105.85,
+    "open_interest_fp": 14105.880000000001,
     "volume_24h_fp": 2560.72,
-    "volume_fp": 15155.02
+    "volume_fp": 15155.05
    },
    "ex_stats_first": {
     "open_interest_fp": 12326.130000000001,
@@ -8567,8 +8761,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 30036814.0,
-    "volume": 60757595.0
+    "openInterest": 30038284.0,
+    "volume": 60759065.0
    },
    "ex_stats_first": {
     "openInterest": 26640059.0,
@@ -8705,8 +8899,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 50493039.0,
-    "volume": 62875907.0
+    "openInterest": 50537603.0,
+    "volume": 63032515.0
    },
    "ex_stats_first": {
     "openInterest": 9377107.0,
@@ -8974,7 +9168,7 @@
    "ex_stats_close": {
     "open_interest_fp": 9288.08,
     "volume_24h_fp": 1554.05,
-    "volume_fp": 10872.52
+    "volume_fp": 10958.24
    },
    "ex_stats_first": {
     "open_interest_fp": 8316.22,
@@ -9188,9 +9382,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 4229.06,
+    "open_interest_fp": 4229.700000000001,
     "volume_24h_fp": 1608.29,
-    "volume_fp": 4403.92
+    "volume_fp": 4404.56
    },
    "ex_stats_first": {
     "open_interest_fp": 3213.87,
@@ -9602,9 +9796,9 @@
     "volume_fp": 121.04
    },
    "ex_stats_close": {
-    "open_interest_fp": 1394275.17,
+    "open_interest_fp": 1408748.81,
     "volume_24h_fp": 589203.26,
-    "volume_fp": 1739371.53
+    "volume_fp": 1753882.0
    },
    "ex_stats_first": {
     "open_interest_fp": 1079758.46,
@@ -9757,8 +9951,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.79,
-   "clv_cents": 3.0,
+   "close_price": 0.78,
+   "clv_cents": 2.0,
    "confirmed_after_min": 5,
    "date": "2026-11-27",
    "depth_by_book": {
@@ -9789,9 +9983,9 @@
     "volume_fp": 40.04
    },
    "ex_stats_close": {
-    "open_interest_fp": 32544.269999999997,
+    "open_interest_fp": 32664.85,
     "volume_24h_fp": 31334.57,
-    "volume_fp": 36816.42
+    "volume_fp": 36937.0
    },
    "ex_stats_first": {
     "open_interest_fp": 5490.219999999999,
@@ -15297,9 +15491,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 74027.68,
+    "open_interest_fp": 74100.28,
     "volume_24h_fp": 72245.0,
-    "volume_fp": 76114.94
+    "volume_fp": 76187.54
    },
    "ex_stats_first": {
     "open_interest_fp": 977.76,
@@ -17044,8 +17238,8 @@
     "volume": 11275.0
    },
    "ex_stats_close": {
-    "openInterest": 68244211.0,
-    "volume": 102180254.0
+    "openInterest": 71520347.0,
+    "volume": 107173733.0
    },
    "ex_stats_first": {
     "openInterest": 6438126.0,
@@ -18329,7 +18523,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 12,
+   "settle_tries": 13,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Dallas Cowboys",
@@ -23297,7 +23491,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 12,
+   "settle_tries": 13,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -23515,7 +23709,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 12,
+   "settle_tries": 13,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Philadelphia",
@@ -25504,9 +25698,9 @@
     "volume_fp": 308.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 5600070.32,
+    "open_interest_fp": 5823335.28,
     "volume_24h_fp": 5018659.19,
-    "volume_fp": 5981223.98
+    "volume_fp": 6208275.41
    },
    "ex_stats_first": {
     "open_interest_fp": 323794.29000000004,
@@ -28379,7 +28573,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 12,
+   "settle_tries": 13,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Dallas",
