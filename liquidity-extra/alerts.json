@@ -266,8 +266,8 @@
     "volume": 31677.0
    },
    "ex_stats_close": {
-    "openInterest": 8880256.0,
-    "volume": 9004039.0
+    "openInterest": 8899749.0,
+    "volume": 9023532.0
    },
    "ex_stats_first": {
     "openInterest": 4577490.0,
@@ -476,6 +476,7 @@
     "volume_fp": 20355.01
    },
    "fade_price": 0.46,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-28T00:30:22Z",
    "game": "Miami (FL) vs Alabama: Point Total",
    "game_surge_books": [],
@@ -582,12 +583,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAMBTOTAL-26NOV27MIAALA-171"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 3,
+   "settle_tries": 4,
+   "settled_utc": "2026-11-28T04:00:27Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -604,7 +606,7 @@
     "Alabama"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.78
   },
   {
    "alerted_utc": "2026-11-28T00:00:30Z",
@@ -657,6 +659,7 @@
     "volume_fp": 24296.21
    },
    "fade_price": 0.26,
+   "fade_units": 2.66,
    "first_seen_utc": "2026-11-27T23:50:19Z",
    "game": "Towson vs Penn",
    "game_surge_books": [],
@@ -698,11 +701,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV27TOWSPENN-PENN"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settle_tries": 1,
+   "settled_utc": "2026-11-28T04:00:27Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Penn",
@@ -719,7 +724,7 @@
     "Penn"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-27T23:10:22Z",
@@ -1191,9 +1196,9 @@
     "volume_fp": 62.14
    },
    "ex_stats_close": {
-    "open_interest_fp": 36539.4,
+    "open_interest_fp": 45854.3,
     "volume_24h_fp": 40665.59,
-    "volume_fp": 40891.590000000004
+    "volume_fp": 50325.729999999996
    },
    "ex_stats_first": {
     "open_interest_fp": 8953.37,
@@ -4390,6 +4395,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Louisville",
@@ -5789,6 +5795,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.69,
    "clv_cents": 0.0,
    "confirmed_after_min": 10,
