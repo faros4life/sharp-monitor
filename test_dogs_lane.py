@@ -191,7 +191,7 @@ finally:
 ok("play_key prefix registered", "dogs|" in ex.LANE_PREFIXES)
 ok("lane name (drives the Telegram tag)", ex.LANE_NAME.get("dogs") == "DOGS" and ex.src_tag({"source": "dogs"}) == "[DOGS] ")
 ok("lane_tag on a result", ex.lane_tag({"play": {"source": "dogs"}, "live": {}}) == "[DOGS] ")
-ok("candidates include the lane", "+ ncsplays + dogsplays + l2plays" in SRC and "dogsplays = dogs_plays(now)" in SRC)
+ok("candidates include the lane", "+ ncsplays + dogsplays +" in SRC and "dogsplays = dogs_plays(now)" in SRC)
 ok("own live-decision branch", 'elif p.get("source") == "dogs":' in SRC and "dogs_gate(lr, lk)" in SRC
    and '"lane": "dogs", "unit": DOGS_UNIT' in SRC)
 ok("alert-line floor applies to the lane", 'p.get("source") in ("board", "r1", "ncs", "dogs")' in SRC)

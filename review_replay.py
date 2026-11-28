@@ -95,7 +95,7 @@ LANE_UNIT = {"lane1": 300.0, "r1": 200.0, "board": 200.0, "ncs": 200.0, "dogs": 
              "12k": 200.0}   # dogs 100 -> 300, Peter 25 Nov; k12 200 ("to win 200"), Peter 28 Nov
 # The two places a row states its lane: the play-key prefix and the row's source.
 PREFIX_LANE = {"rule": "lane1", "rules": "lane1", "board": "board", "r1": "r1", "ncs": "ncs",
-               "dogs": "dogs"}
+               "dogs": "dogs", "12k": "12k"}   # Nov 28: 12K
 SOURCE_LANE = {"rules": "lane1", "board": "board", "r1": "r1", "ncs": "ncs", "dogs": "dogs",
                "12k": "12k"}   # Nov 28: 12K
 # Nov 23: DOGS was missing from all three while the lane was LIVE and the ledger was enforcing.

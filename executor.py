@@ -1336,17 +1336,16 @@ NCS = {"risk": 0.0, "keys": set(), "known": False}
 # ledger on the resting leg, the separate |rest duplicate claim, and this lane's own daily cap and
 # play maximum through k12_gate.
 #
-# WHAT IS NOT SETTLED, and must be before the switch is flipped:
-#   * K12_MIN_MONEY. "12K" has NO definition anywhere in this repo - there is no 12000 threshold in
-#     liquidity_monitor (its SECOND_MIN is 10000, a different thing, and "none_10k" is its second-
-#     book status string). The cohort is named in Peter's own forward study, which is not code here.
-#     $12,000 of new_money is the literal reading and is what this uses, but MEASURED on the current
-#     feed every NFL spread row already clears it - 208 of 208 - so as a filter it currently selects
-#     nothing extra, which means the literal reading is probably NOT what Peter means. The threshold
-#     is therefore isolated in one env-overridable constant and one predicate, so correcting it is a
-#     one-line change and never a hunt. Do not flip the switch until Peter confirms what 12K filters.
-#   * K12_DAILY_RISK and K12_MAX_PLAYS. The spec sets the unit and no caps. These default to the
-#     NCS settings - the precedent for a lane with no live forward record - and are Peter's to set.
+# THE TRIGGER IS SETTLED. Peter supplied the registered definition on 28 Nov - $12k+ of per-book
+# `this_side` depth on EACH of Kalshi, Novig and ProphetX, read from ONE moneyline entry - and the
+# acceptance case (Detroit: 3,774,670 / 61,428 / 39,131) is asserted in test_12k_lane. An earlier
+# version of this block said the trigger was unconfirmed and warned against flipping the switch;
+# that was true for about an hour and is kept nowhere, because a stale warning under a live-money
+# switch is worse than none.
+#
+# CAPS, Peter 28 Nov: $1,200 a day, 5 plays. He left the play maximum at 5. Worth his attention
+# rather than mine: one replayed pass produced 46 qualifying plays, so on a full NFL card both caps
+# bind hard and the lane takes the first five by alert time.
 K12_LIVE = (os.environ.get("EXEC_12K_LIVE") or "off").strip().lower() == "on"   # money switch (repo variable; Peter flips it)
 K12_UNIT = 200.0           # Peter, 28 Nov: "to win 200" - to win $200 at minus, risk $200 at plus,
                             # which is live_stake(shown, 200.0), the same basis as R1, NCS and Board.
@@ -1539,6 +1538,82 @@ def k12_select(rows, now):
                         k12_spread_source=note,
                         k12_trigger_depth={b: k12_book_depth(x, b) for b in K12_TRIGGER_BOOKS}))
     return out, skipped
+
+
+def k12_bet(x):
+    """The bet string for a selected 12K spread play, or None when it cannot be read safely.
+
+    Same format and the same never-guess rule as dogs_bet: `line` is the BETTOR'S signed handicap,
+    so a spread is f"{side} {line:+g} ({am:+d})". It differs in ONE way, deliberately: the side is
+    validated against the row's teams with the TOKEN matcher, not string equality. A 12K play's side
+    comes from the moneyline trigger ("Detroit Lions") while the spread row it is priced from may
+    name it in another dialect ("Detroit"), and dogs_bet's `str(sd) in dogs_teams(x)` would reject
+    that - silently dropping every mirrored and cross-dialect play. Still never guessed: a side that
+    matches NEITHER team returns None and the play is skipped and counted."""
+    sd, ln, am = x.get("side"), x.get("line"), x.get("price_american")
+    if not sd or am is None or ln is None:
+        return None
+    if not any(k12_same_side(sd, t) for t in (x.get("teams") or [])):
+        return None
+    try:
+        return f"{sd} {float(ln):+g} ({int(am):+d})"
+    except (TypeError, ValueError):
+        return None
+
+
+def k12_plays(now):
+    """The 12K lane's candidates, as PLAY DICTS for the shared downstream path.
+
+    THIS FUNCTION WAS MISSING, and an independent review caught it. k12_select existed, was tested
+    66 ways and was called by nothing but tests: no producer, so the lane selected nothing in
+    production and flipping EXEC_12K_LIVE would have placed nothing at all. The end-to-end "46
+    plays" replay called k12_select directly, which proved the function and not the lane - exactly
+    CLAUDE.md's no-op that looks like success, and it got as far as a merge gate.
+
+    LIQ-MAIN only, like DOGS: the cohort was measured on this feed.
+
+    k12_entry is what the downstream price gate reads. It carries the SELECTED row's own price and
+    line - which for a mirrored play are the complement price and the -L line that k12_spread_play
+    computed, not the raw mirror's - so the order is priced at the alert number for the side being
+    bet. Without it r["entry"] is {} and rest_bid refuses with "alert after-fee price unknown"."""
+    try:
+        with open(DOGS_FEED) as fh:
+            a = json.load(fh)
+        rows = a if isinstance(a, list) else (a.get("alerts") or [])
+    except Exception as ex:
+        LOG.append(f"liquidity feed unreadable (12k): {type(ex).__name__}")
+        return []
+    sel, skipped = k12_select(rows, now)
+    out, seen = [], set()
+    for x in sel:
+        bet = k12_bet(x)
+        if not bet:
+            skipped += 1
+            continue
+        p = {"sport": x.get("league") or "", "game": x.get("game") or "", "bet": bet,
+             "start_utc": x.get("start_utc"), "late": False, "source": "12k",
+             "alert_utc": x.get("k12_trigger_utc") or x.get("alerted_utc"),
+             "rules": {"verdict": "AGREE", "gate": None,
+                       "reason": "12K (NFL, $12k+ this-side depth on Kalshi+Novig+ProphetX on the "
+                                 "ML print, first print 12-24h out, spread played)"},
+             "k12_entry": {"alert_utc": x.get("k12_trigger_utc") or x.get("alerted_utc"),
+                           "book_key": x.get("book"),
+                           "price_after_fee": x.get("price_american"),
+                           "alert_price_raw": x.get("price_american"),
+                           "point": x.get("line"), "line": x.get("line"),
+                           "sport": x.get("league"), "bet": None,
+                           "k12_spread_source": x.get("k12_spread_source")}}
+        k = derive_key(p)
+        if not k:
+            skipped += 1
+            continue
+        if k in seen:
+            continue
+        seen.add(k)
+        out.append(dict(p, play_key="12k|" + k))
+    if skipped:
+        LOG.append(f"12K: {skipped} qualifying row(s) skipped - not playable (never guessed)")
+    return out
 
 
 def k12_gate(risk, key=None):
@@ -1817,7 +1892,11 @@ def dogs_plays(now):
     return out
 
 
-LANE_PREFIXES = ("rule|", "board|", "r1|", "lane2|", "ncs|", "dogs|")   # every lane that stamps its own play_key
+# Nov 28: "12k|" added WITH its producer, in the same commit. Without the prefix, same_bet and
+# opp_bet split a "12k|..." key into 5 fields, fail the len != 4 check and return False on every
+# comparison - both duplicate guards blind, which lane_strip's own note below calls "two vigs for a
+# guaranteed loss". A review proved exactly that before this entry existed.
+LANE_PREFIXES = ("rule|", "board|", "r1|", "lane2|", "ncs|", "dogs|", "12k|")   # every lane that stamps its own play_key
 
 
 def lane_strip(k):
@@ -8032,7 +8111,13 @@ def main():
     # one Gmail search PER CANDIDATE play - with dozens of candidates across five lanes this is the
     # prime suspect for the unmeasured time, so it is counted and the call count is printed
     dogsplays = dogs_no_gmail(dogsplays, "dedupe")   # Nov 23 (Peter): a DOGS candidate never causes a Gmail search
-    _cand = plays + rplays + bplays + r1plays + ncsplays + dogsplays + l2plays
+    try:   # Nov 28 (Peter): 12K - NFL, three-book $12k ML depth, spread played. Ships OFF.
+        with perf("k12_plays"):
+            k12plays = k12_plays(now)
+    except Exception as ex:
+        LOG.append(f"12k unavailable: {str(ex)[:60]}")
+        k12plays = []
+    _cand = plays + rplays + bplays + r1plays + ncsplays + dogsplays + k12plays + l2plays
     with perf("handled_pids (one Gmail search)", n=len(_cand)):
         _seen = handled_pids(M, _cand)
         _phase("dedupe resolved")

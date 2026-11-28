@@ -275,7 +275,9 @@ LANE_NAME = {"rules": "Lane 1", "phase 1": "Lane 1", "lane 1": "Lane 1", "r1": "
              # Nov 28: both spellings. This map is looked up by DISPLAY name lowercased
              # ("12k"), while the lane's own key is "12k" - carrying one and not the
              # other is how a lane's fills land in the report as Unattributed.
-             "12k": "12K", "12k": "12K"}
+             "12k": "12K"}   # Nov 28: was two entries ("all3" and the lowercased display "all-3");
+             # the rename collapsed them into one duplicate key. Harmless - both lookups are now
+             # the same string - but a duplicate key is a trap, so it is one entry deliberately.
 
 
 def main():

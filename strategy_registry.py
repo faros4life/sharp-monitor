@@ -37,10 +37,10 @@ LIVE_LANES = {
     "r1": ("R1_UNIT", "EXEC_R1_LIVE"),
     "ncs": ("NCS_UNIT", "EXEC_NCS_LIVE"),
     "dogs": ("DOGS_UNIT", "EXEC_DOGS_LIVE"),
-    # Nov 28: 12K (NFL 12K all-three-books ML trigger, spread play, 12-24h first print). Ships OFF
-    # - EXEC_12K_LIVE is unset - and its base 12K trigger is still unconfirmed, so it selects
-    # nothing. It is registered here anyway: a live lane missing from this registry is absent from
-    # the scorecard and the unit schedule, which is how a lane goes live unwatched.
+    # Nov 28: 12K (NFL, $12k+ this-side depth on Kalshi+Novig+ProphetX on the ML print, spread
+    # played, first print 12-24h out). Ships OFF - EXEC_12K_LIVE is unset. Registered here because
+    # a live lane missing from this registry is absent from the scorecard and the unit schedule,
+    # which is how a lane goes live unwatched.
     "12k": ("K12_UNIT", "EXEC_12K_LIVE"),
 }
 # Dry-run only, deliberately not live: it must NOT appear in the live scorecard or the unit schedule.

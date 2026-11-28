@@ -247,5 +247,63 @@ ok("...with T-30 expiry, the shared ledger and the separate |rest claim",
    ex.REST_BEFORE_MIN == 30 and '_unit_ledger_guard(r, "rest_bid"' in _rb
    and '_pkey + "|rest"' in _rb)
 
+# --- 8. THE PRODUCTION PATH (added after a review found the lane had none) ---------------------
+# k12_select existed, was tested 66 ways, and was called by NOTHING but tests: no producer, so the
+# lane selected nothing in production and flipping EXEC_12K_LIVE would have placed nothing. The
+# "46 plays" replay called k12_select directly - it proved the function, not the lane.
+ok("a producer exists", hasattr(ex, "k12_plays"))
+ok("...and the pipeline calls it", "k12plays = k12_plays(now)" in SRC
+   and "+ k12plays +" in SRC)
+ok("...behind its own try/except, like every other lane", '12k unavailable' in SRC)
+_pick = None
+_el = sorted([x for x in FEED if ex.iso_t(x.get("alerted_utc"))], key=lambda x: ex.iso_t(x["alerted_utc"]))
+_tk = []
+for _x in _el:
+    if not ex.k12_qualifies(_x) or any(ex.k12_same_game(_x, _t) for _t in _tk):
+        continue
+    _tk.append(_x)
+    _a, _s2 = ex.iso_t(_x["alerted_utc"]), ex.iso_t(_x.get("start_utc"))
+    if _a and _s2 and ex.K12_LEAD_LO <= (_s2 - _a).total_seconds() / 60.0 < ex.K12_LEAD_HI:
+        _pick = _x
+        break
+_prod = ex.k12_plays(ex.iso_t(_pick["alerted_utc"]) + timedelta(seconds=1)) if _pick else []
+ok("the producer yields PLAY DICTS, not feed rows", _prod and all(
+   {"source", "play_key", "bet", "k12_entry", "rules", "start_utc"} <= set(x) for x in _prod), len(_prod))
+ok("every play is tagged source '12k'", all(x["source"] == "12k" for x in _prod))
+ok("every play_key carries the 12k| prefix", all(x["play_key"].startswith("12k|") for x in _prod))
+ok("every play carries a k12_entry price - without it rest_bid refuses 'price unknown'",
+   all(x["k12_entry"]["price_after_fee"] is not None for x in _prod))
+ok("...and the entry's price is the SELECTED row's, so a mirrored play is priced at its complement",
+   all(x["k12_entry"]["price_after_fee"] == x["k12_entry"]["alert_price_raw"] for x in _prod))
+ok("the spread source is recorded on the entry (it read a pre-rename key and was silently None)",
+   {x["k12_entry"]["k12_spread_source"] for x in _prod} <= {"direct", "mirrored"}
+   and None not in {x["k12_entry"]["k12_spread_source"] for x in _prod},
+   sorted({str(x["k12_entry"]["k12_spread_source"]) for x in _prod}))
+ok("the bet string names the side and its signed line",
+   all(" " in x["bet"] and "(" in x["bet"] for x in _prod))
+# the duplicate guards must SEE this lane's prefix, or both are blind - "two vigs for a guaranteed
+# loss" in lane_strip's own words. Proved blind by a review before LANE_PREFIXES carried "12k|".
+ok("12k| is registered in LANE_PREFIXES", "12k|" in ex.LANE_PREFIXES)
+_k = "NFL|A @ B|spread|A"
+ok("same_bet sees a 12k| key (duplicate guard)", ex.same_bet("12k|" + _k, _k) is True)
+ok("opp_bet sees a 12k| key (first-side guard)",
+   ex.opp_bet("12k|" + _k, "NFL|A @ B|spread|B") is True)
+ok("lane_strip strips it", ex.lane_strip("12k|" + _k) == _k)
+
+# --- 9. ELIGIBILITY FILTERS, which nothing pinned ---------------------------------------------
+# A review mutated away the non-bettable-book filter and the whole suite stayed green; Polymarket
+# Global is not bettable from the US and clv_std refuses to price it at all.
+_base = _row(_G, "Detroit Lions", 1000, teams=_T)
+_bspr = _row(_G, "Detroit Lions", 1000, teams=_T, market="spread")
+for _fld, _val, _why in (("book", "polymarket", "a non-bettable book"),
+                         ("artifact", True, "an artifact row"),
+                         ("close_suspect", True, "a close-suspect row")):
+    _p, _ = ex.k12_select([dict(_base, **{_fld: _val}), dict(_bspr, **{_fld: _val})], _t0)
+    ok(f"{_why} is not selected", _p == [], _p)
+ok("a game that has already started is not selected",
+   ex.k12_select([_base, _bspr], datetime(2026, 11, 29, 0, 0, tzinfo=timezone.utc))[0] == [])
+ok("a side matching NEITHER team yields no bet string, never a guess",
+   ex.k12_bet(dict(_bspr, side="Nobody FC")) is None)
+
 print(f"\n{len(RAN) - len(FAILED)} passed, {len(FAILED)} failed")
 sys.exit(1 if FAILED else 0)
