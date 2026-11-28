@@ -1,16 +1,16 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 28, 12:00 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 11.
+Updated Sat Nov 28, 12:10 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 10.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 552-330 (-26.13u flat) | rule met: 139-91
+**Record:** 553-330 (-25.49u flat) | rule met: 140-91
 
-**Fade (paper, betting against the print):** 305-517 (+19.60u flat, after fees)
+**Fade (paper, betting against the print):** 305-518 (+18.60u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 27 8:40PM | NCAAB | Louisville @ Tennessee | moneyline: LOU (0) | novig | $38k | -156 | ✅ kalshi,prophetx | ✅ | +0.0c | yes | pending |
+| Nov 27 8:40PM | NCAAB | Louisville @ Tennessee | moneyline: LOU (0) | novig | $38k | -156 | ✅ kalshi,prophetx | ✅ | +0.0c | yes | W |
 | Nov 27 8:00PM | NCAAB | Texas Tech @ San Diego State | moneyline: TTU (0) | novig | $26k | -335 | ✅ kalshi | ✅ | +1.0c | yes | pending |
 | Nov 27 7:40PM | NCAAB | Miami (FL) vs Alabama: Point Total | total: NOT Over 170.5 points | kalshi | $49k | -122 |  |  | +0.0c | yes | W |
 | Nov 27 7:00PM | NCAAB | Towson vs Penn | moneyline: Penn | kalshi | $31k | -300 |  |  | -52.0c | yes | L |
