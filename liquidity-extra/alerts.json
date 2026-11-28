@@ -1,6 +1,686 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-28T06:30:27Z",
+   "base_depth": 50096,
+   "best_price": 0.845,
+   "best_price_american": -545,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.84,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-28",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 417,
+     "new_this_side": 37340,
+     "other_side": 1705,
+     "other_side_all_levels": 5115,
+     "ratio": 4.2,
+     "this_side": 7238,
+     "this_side_all_levels": 87492
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "UNLV (0)",
+     "price": 0.845,
+     "this_side": 2549
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 166.51999999999998,
+    "volume_24h_fp": 27.47,
+    "volume_fp": 166.51999999999998
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.11,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 166.51999999999998,
+    "volume_24h_fp": 27.36,
+    "volume_fp": 166.51999999999998
+   },
+   "fade_price": 0.17,
+   "first_seen_utc": "2026-11-28T06:20:28Z",
+   "game": "UT Rio Grande Valley vs UNLV",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 2.23,
+   "key": "kalshi|KXNCAAMBGAME-26NOV28UTRGVUNLV|ml|1",
+   "lead_min": 810,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 37340,
+   "new_x": 1.05,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 166.51999999999998,
+      "volume_24h_fp": 27.47,
+      "volume_fp": 166.51999999999998
+     },
+     "game_normal": 39174,
+     "game_x": 2.23,
+     "normal": 35538,
+     "now": 87492,
+     "type": "ML",
+     "x": 2.46
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 51570.0,
+      "volume": 51570.0
+     },
+     "game_normal": 3526,
+     "game_x": 0.74,
+     "normal": 1763,
+     "now": 2593,
+     "type": "ML",
+     "x": 1.47
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.84,
+   "price_american": -525,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.84,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -650
+    },
+    "betopenly": {
+     "point": null,
+     "price": -545
+    },
+    "betrivers": {
+     "point": null,
+     "price": -590
+    },
+    "fanatics": {
+     "point": null,
+     "price": -650
+    },
+    "fanduel": {
+     "point": null,
+     "price": -630
+    },
+    "kalshi": {
+     "point": null,
+     "price": -525
+    },
+    "novig": {
+     "point": null,
+     "price": -545
+    },
+    "polymarket": {
+     "point": null,
+     "price": -525
+    },
+    "prophetx": {
+     "point": null,
+     "price": -610
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV28UTRGVUNLV-UNLV"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNLV",
+   "side_label": "UNLV",
+   "size_x": 2.46,
+   "start_source": "odds",
+   "start_utc": "2026-11-28T20:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "UT Rio Grande Valley",
+    "UNLV"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-28T06:30:27Z",
+   "base_depth": 75370,
+   "best_price": 0.85,
+   "best_price_american": -567,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.85,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-28",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -85,
+     "new_this_side": 32597,
+     "other_side": 3736,
+     "other_side_all_levels": 7181,
+     "ratio": 4.8,
+     "this_side": 17836,
+     "this_side_all_levels": 116105
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "NIU (0)",
+     "price": 0.85,
+     "this_side": 3754
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 982.58,
+    "volume_24h_fp": 891.1199999999999,
+    "volume_fp": 1000.0999999999999
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.11,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 982.58,
+    "volume_24h_fp": 891.01,
+    "volume_fp": 1000.0999999999999
+   },
+   "fade_price": 0.16,
+   "first_seen_utc": "2026-11-28T06:20:28Z",
+   "game": "Northern Illinois vs Eastern Illinois",
+   "game_surge_books": [],
+   "game_x": 1.77,
+   "key": "kalshi|KXNCAAMBGAME-26NOV28NIUEIU|ml|0",
+   "lead_min": 810,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 32597,
+   "new_x": 0.92,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 982.58,
+      "volume_24h_fp": 891.1199999999999,
+      "volume_fp": 1000.0999999999999
+     },
+     "game_normal": 65536,
+     "game_x": 1.77,
+     "normal": 35538,
+     "now": 116105,
+     "type": "ML",
+     "x": 3.27
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 319.0,
+      "volume": 319.0
+     },
+     "game_normal": 3763,
+     "game_x": 1.05,
+     "normal": 1763,
+     "now": 3943,
+     "type": "ML",
+     "x": 2.24
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.85,
+   "price_american": -567,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.85,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -625
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -675
+    },
+    "betopenly": {
+     "point": null,
+     "price": -568
+    },
+    "betrivers": {
+     "point": null,
+     "price": -715
+    },
+    "bovada": {
+     "point": null,
+     "price": -675
+    },
+    "circasports": {
+     "point": null,
+     "price": -650
+    },
+    "draftkings": {
+     "point": null,
+     "price": -675
+    },
+    "fanatics": {
+     "point": null,
+     "price": -650
+    },
+    "fanduel": {
+     "point": null,
+     "price": -670
+    },
+    "kalshi": {
+     "point": null,
+     "price": -567
+    },
+    "lowvig": {
+     "point": null,
+     "price": -675
+    },
+    "novig": {
+     "point": null,
+     "price": -567
+    },
+    "polymarket": {
+     "point": null,
+     "price": -614
+    },
+    "prophetx": {
+     "point": null,
+     "price": -590
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV28NIUEIU-NIU"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Northern Illinois",
+   "side_label": "Northern Illinois",
+   "size_x": 3.27,
+   "start_source": "odds",
+   "start_utc": "2026-11-28T20:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "Northern Illinois",
+    "Eastern Illinois"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-28T06:30:27Z",
+   "base_depth": 42047,
+   "best_price": 0.6966,
+   "best_price_american": -230,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.69,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-28",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 3548,
+     "new_this_side": 31396,
+     "other_side": 6965,
+     "other_side_all_levels": 20487,
+     "ratio": 2.0,
+     "this_side": 13689,
+     "this_side_all_levels": 73429
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "UNC Wilmington",
+     "price": 0.6923,
+     "this_side": 457
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 202.97,
+    "volume_24h_fp": 195.88,
+    "volume_fp": 202.97
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 7.09,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 7.09
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 195.88,
+    "volume_24h_fp": 195.88,
+    "volume_fp": 195.88
+   },
+   "fade_price": 0.33,
+   "first_seen_utc": "2026-11-28T06:20:28Z",
+   "game": "Liberty vs UNC Wilmington",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 2.49,
+   "key": "kalshi|KXNCAAMBGAME-26NOV28LIBUNCW|ml|1",
+   "lead_min": 810,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 31396,
+   "new_x": 0.88,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 202.97,
+      "volume_24h_fp": 195.88,
+      "volume_fp": 202.97
+     },
+     "game_normal": 29516,
+     "game_x": 2.49,
+     "normal": 35538,
+     "now": 73429,
+     "type": "ML",
+     "x": 2.07
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 529,
+     "game_x": 1.05,
+     "normal": 483,
+     "now": 557,
+     "type": "ML",
+     "x": 1.15
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.69,
+   "price_american": -223,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.69,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -235
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -250
+    },
+    "betopenly": {
+     "point": null,
+     "price": -228
+    },
+    "betrivers": {
+     "point": null,
+     "price": -278
+    },
+    "bovada": {
+     "point": null,
+     "price": -230
+    },
+    "circasports": {
+     "point": null,
+     "price": -245
+    },
+    "draftkings": {
+     "point": null,
+     "price": -245
+    },
+    "fanatics": {
+     "point": null,
+     "price": -235
+    },
+    "fanduel": {
+     "point": null,
+     "price": -250
+    },
+    "kalshi": {
+     "point": null,
+     "price": -223
+    },
+    "lowvig": {
+     "point": null,
+     "price": -250
+    },
+    "novig": {
+     "point": null,
+     "price": -217
+    },
+    "polymarket": {
+     "point": null,
+     "price": -233
+    },
+    "prophetx": {
+     "point": null,
+     "price": -225
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV28LIBUNCW-UNCW"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNC Wilmington",
+   "side_label": "UNC Wilmington",
+   "size_x": 2.07,
+   "start_source": "odds",
+   "start_utc": "2026-11-28T20:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Liberty",
+    "UNC Wilmington"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-28T06:30:27Z",
+   "base_depth": 45447,
+   "best_price": 0.845,
+   "best_price_american": -545,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.85,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-28",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 179,
+     "new_this_side": 27856,
+     "other_side": 1144,
+     "other_side_all_levels": 4161,
+     "ratio": 3.0,
+     "this_side": 3446,
+     "this_side_all_levels": 73294
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "NCAT (0)",
+     "price": 0.845,
+     "this_side": 2262
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 15.23,
+    "volume_24h_fp": 15.23,
+    "volume_fp": 15.23
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.11,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 15.23,
+    "volume_24h_fp": 15.120000000000001,
+    "volume_fp": 15.23
+   },
+   "fade_price": 0.16,
+   "first_seen_utc": "2026-11-28T06:20:28Z",
+   "game": "Delaware St. vs North Carolina A&T",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 2.14,
+   "key": "kalshi|KXNCAAMBGAME-26NOV28DSUNCAT|ml|1",
+   "lead_min": 750,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 27856,
+   "new_x": 0.78,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 15.23,
+      "volume_24h_fp": 15.23,
+      "volume_fp": 15.23
+     },
+     "game_normal": 34178,
+     "game_x": 2.14,
+     "normal": 35538,
+     "now": 73294,
+     "type": "ML",
+     "x": 2.06
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 0.0,
+      "volume": 0.0
+     },
+     "game_normal": 2611,
+     "game_x": 0.97,
+     "normal": 1763,
+     "now": 2528,
+     "type": "ML",
+     "x": 1.43
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.85,
+   "price_american": -567,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.85,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -625
+    },
+    "betrivers": {
+     "point": null,
+     "price": -715
+    },
+    "draftkings": {
+     "point": null,
+     "price": -625
+    },
+    "fanatics": {
+     "point": null,
+     "price": -600
+    },
+    "kalshi": {
+     "point": null,
+     "price": -567
+    },
+    "novig": {
+     "point": null,
+     "price": -545
+    },
+    "polymarket": {
+     "point": null,
+     "price": -567
+    },
+    "prophetx": {
+     "point": null,
+     "price": -620
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV28DSUNCAT-NCAT"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "North Carolina A&T",
+   "side_label": "North Carolina A&T",
+   "size_x": 2.06,
+   "start_source": "odds",
+   "start_utc": "2026-11-28T19:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Delaware St.",
+    "North Carolina A&T"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-28T01:40:23Z",
    "base_depth": 34398,
    "best_price": 0.61,
@@ -408,6 +1088,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [
     "Texas Tech Red Raiders -7.5 (-115)"
    ],
@@ -1345,6 +2026,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [
     "Texas Tech Red Raiders -7.5 (-115)"
    ],
@@ -5979,7 +6661,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Gonzaga",
