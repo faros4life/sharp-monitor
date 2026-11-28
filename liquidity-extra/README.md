@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 28, 8:50 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 18.
+Updated Sat Nov 28, 9:00 AM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 18.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -11,7 +11,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 28 8:40AM | NCAAB | Northern Arizona vs Cal State Bakersfield | moneyline: Cal State Bakersfield | kalshi | $29k | -233 |  |  | +1.0c |  | pending |
-| Nov 28 2:40AM | NCAAB | Robert Morris vs Northern Iowa | moneyline: Northern Iowa | kalshi | $26k | -233 |  |  | +1.0c |  | pending |
+| Nov 28 2:40AM | NCAAB | Robert Morris vs Northern Iowa | moneyline: Northern Iowa | kalshi | $26k | -233 |  |  | +0.0c |  | pending |
 | Nov 28 2:40AM | NCAAB | Portland St. vs Southern Illinois | moneyline: Southern Illinois | kalshi | $27k | -285 |  |  | +0.0c |  | pending |
 | Nov 28 2:40AM | NCAAB | Austin Peay vs Furman | moneyline: Furman | kalshi | $27k | -285 |  |  | -2.0c |  | pending |
 | Nov 28 2:40AM | NCAAB | Lehigh vs Pepperdine | moneyline: Pepperdine | kalshi | $31k | -426 |  |  | +1.0c |  | pending |
