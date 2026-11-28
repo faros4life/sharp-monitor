@@ -194,7 +194,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [
     "Louisville Cardinals -3.5 (-102)",
     "Louisville Cardinals -2.5 (-120)"
@@ -1159,6 +1159,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.78,
    "clv_cents": 1.0,
    "confirmed_after_min": 10,
@@ -1328,7 +1329,8 @@
      "price": -400
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-28T04:30:29Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV27TTUSDSU-TTU"
@@ -4264,6 +4266,7 @@
     "volume_fp": 39871.28
    },
    "fade_price": 0.43,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-27T14:40:25Z",
    "game": "Tennessee vs Louisville",
    "game_surge_books": [
@@ -4389,14 +4392,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV27TENNLOU-LOU"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
+   "settled_utc": "2026-11-28T04:30:29Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Louisville",
@@ -4414,7 +4418,7 @@
     "Louisville"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.71
   },
   {
    "alerted_utc": "2026-11-27T14:30:24Z",
