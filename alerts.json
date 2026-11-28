@@ -241,6 +241,85 @@
    "units_flat": null
   },
   {
+   "alert_utc": "2026-11-28T13:40:31Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "CSU Bakersfield Roadrunners -5.5 (-125)",
+   "book": "Hard Rock",
+   "book_key": "hardrockbet",
+   "book_quote_age_s": 16,
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+1 pts",
+   "clv_conv_pts": null,
+   "clv_pin_line": null,
+   "clv_read_utc": null,
+   "clv_skipped": null,
+   "clv_source": null,
+   "clv_verified": null,
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -3.8,
+   "executable_book": true,
+   "fade_book": "kalshi",
+   "fade_point": 5.5,
+   "fade_price": 117,
+   "fade_price_after_fee": 109,
+   "fade_units": null,
+   "final": null,
+   "floor_line": -6.0,
+   "game": "Northern Arizona Lumberjacks @ CSU Bakersfield Roadrunners",
+   "grade": "B",
+   "hr1_eligible": false,
+   "hr1_pushed": false,
+   "hr1_verified": null,
+   "hr1_verify_status": null,
+   "hr1_verify_why": null,
+   "kind": "spr",
+   "late": false,
+   "minutes_before_start": 499,
+   "pin_quote_age_s": 18,
+   "point": -5.5,
+   "price": -125,
+   "price_after_fee": -125,
+   "prices_at_alert": {
+    "hardrockbet": {
+     "after_fee": -125,
+     "point": -5.5,
+     "price": -125
+    },
+    "kalshi": {
+     "after_fee": -130.9,
+     "point": -5.5,
+     "price": -122
+    },
+    "novig": {
+     "after_fee": -108,
+     "point": -6.5,
+     "price": -108
+    },
+    "prophetx": {
+     "after_fee": -110.2,
+     "point": -6.5,
+     "price": -108
+    }
+   },
+   "pricing_bettable": true,
+   "quote_book_utc": "2026-11-28T13:40:16Z",
+   "quote_pin_utc": "2026-11-28T13:40:14Z",
+   "quote_recv_utc": "2026-11-28T13:40:31Z",
+   "result": null,
+   "score": 65,
+   "sent_to_phone": false,
+   "sport": "NCAAB",
+   "start_utc": "2026-11-28T22:00:00Z",
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alert_utc": "2026-11-28T00:25:36Z",
    "beat_close": true,
    "beat_true_close": null,
@@ -122799,6 +122878,30 @@
  ],
  "all_alerts": [
   {
+   "alert_text": "CSU Bakersfield Roadrunners -5.5 (-125) at Hard Rock (also: Kalshi)",
+   "bet": "CSU Bakersfield Roadrunners -5.5 (-125)",
+   "bet_result": null,
+   "book": "Hard Rock",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -3.8,
+   "final": null,
+   "game": "Northern Arizona Lumberjacks @ CSU Bakersfield Roadrunners",
+   "grade": "B",
+   "late": false,
+   "minutes_before_start": 499,
+   "price": -125,
+   "price_after_fee": -125,
+   "pushed_to_phone": false,
+   "repeat": false,
+   "score": 65,
+   "sent_et": "2026-11-28 08:40",
+   "sport": "NCAAB",
+   "start_utc": "2026-11-28T22:00:00Z",
+   "why": "Pinnacle moved -5.5 -> -6.5; bet only at -6 or better (confirmed by BetOnline)"
+  },
+  {
    "alert_text": "Austin Peay Governors +6.5 (+100) at Hard Rock (also: Novig)",
    "bet": "Austin Peay Governors +6.5 (+100)",
    "bet_result": null,
@@ -182427,16 +182530,16 @@
  ],
  "feed_health": {
   "alerts_sent": 0,
-  "credits_remaining": null,
-  "events_seen": 0,
-  "fetch_ok": false,
-  "last_fetch_ok_utc": "2026-11-28T13:30:33Z",
+  "credits_remaining": 4864163,
+  "events_seen": 134,
+  "fetch_ok": true,
+  "last_fetch_ok_utc": "2026-11-28T13:40:32Z",
   "quota_exhausted": false,
-  "reason": "no poll attempted this run",
-  "sports_due": 0,
-  "sports_polled": 0,
-  "state": "FAILED",
-  "written_utc": "2026-11-28T13:35:22Z"
+  "reason": "",
+  "sports_due": 4,
+  "sports_polled": 4,
+  "state": "HEALTHY",
+  "written_utc": "2026-11-28T13:40:32Z"
  },
  "note": "alerts = one entry per bet (game/market/side), used for the record; result W/L/P or null. all_alerts = every alert sent, newest first, repeats marked repeat=true (logged from Oct 21). units_flat = 1u risked at the first alert's price, after the book's fee on winnings (ProphetX 2%; price_after_fee). Edge, the -130 cap, best-book choice and CLV all use price_after_fee. fade_* (from Oct 26) = best retail price on the OTHER side at the mirrored number when the alert fired; fade_units = 1u on that side, after fees. close_value_pct = TRUE closing value (from Oct 25): expected profit per 1u of price_after_fee at Pinnacle's no-vig win chance from one final read just before start, at the play's own number; beat_true_close = close_value_pct > 0. close_value_pct is PROVISIONAL, not certified: it comes from a read 20-30 min before start (clv_source, clv_read_utc, close_read_mins_before), and against the certified historical Pinnacle close it runs about 0.61 pt optimistic on average, up to 6.4 pt on one play. clv_verified is True only for a certified historical close; it is False on every live read, including clv_conv_pts == 0, and None where no reading exists. clv_pin_line is Pinnacle's own number and clv_conv_pts the half-point conversion applied (0 = our line); both are null on rows written before Nov 10, where no conversion record was kept. clv_skipped says why a play has no reading. CERTIFIED, MODELED and PROVISIONAL CLV are never combined in one figure. The older beat_close/clv fields beat the close almost by construction (ignore). executable_book = the alert book or an 'also' book is Novig/Kalshi/ProphetX/Polymarket. pushed_to_phone/sent_to_phone = not muted (delivery to the phone is not confirmed)."
 }
