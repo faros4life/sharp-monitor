@@ -2,326 +2,6 @@
  "note": "PAPER ONLY (Oct 25; persistence added Oct 26): opposite sides of the same game/market/line on two different exchanges whose combined cost after fees is under $1 (Kalshi/Novig/ProphetX; Polymarket here is the global book, excluded). edge_pct = locked profit per $ staked at first sight; max/last_edge_pct while open. size_est = smaller leg's near-price depth (UPPER BOUND). first/last_seen_utc, scans_seen, lifetime_min = how long the gap stayed open (scan-interval resolution; a 1-scan gap may be a feed artifact). scan_sec = seconds from run start to this save, the most the two legs' reads can be apart. Measurement only: never alerted, never bet.",
  "gaps": [
   {
-   "seen_utc": "2026-11-14T08:25:33Z",
-   "league": "NCAAF",
-   "game": "Arkansas St. vs Coastal Carolina: Spread",
-   "market": "spread",
-   "line": -11.5,
-   "edge_pct": 22.44,
-   "total_cost": 0.8167,
-   "size_est": 690,
-   "legs": [
-    {
-     "book": "kalshi",
-     "side": "Coastal Carolina wins by over 11.5 points",
-     "price": 0.22,
-     "cost_after_fee": 0.232
-    },
-    {
-     "book": "prophetx",
-     "side": "Arkansas +11.5 (+11.5)",
-     "price": 0.5798,
-     "cost_after_fee": 0.5847
-    }
-   ],
-   "first_seen_utc": "2026-11-14T08:25:33Z",
-   "last_seen_utc": "2026-11-14T08:40:20Z",
-   "scans_seen": 2,
-   "max_edge_pct": 22.44,
-   "scan_sec": 249,
-   "lifetime_min": 15,
-   "last_edge_pct": 22.44,
-   "last_size_est": 763
-  },
-  {
-   "seen_utc": "2026-11-14T08:25:33Z",
-   "league": "NCAAF",
-   "game": "Arkansas St. vs Coastal Carolina: Spread",
-   "market": "spread",
-   "line": -10.5,
-   "edge_pct": 21.79,
-   "total_cost": 0.8211,
-   "size_est": 623,
-   "legs": [
-    {
-     "book": "kalshi",
-     "side": "Coastal Carolina wins by over 10.5 points",
-     "price": 0.24,
-     "cost_after_fee": 0.2528
-    },
-    {
-     "book": "prophetx",
-     "side": "Arkansas +10.5 (+10.5)",
-     "price": 0.5633,
-     "cost_after_fee": 0.5683
-    }
-   ],
-   "first_seen_utc": "2026-11-14T08:25:33Z",
-   "last_seen_utc": "2026-11-14T08:40:20Z",
-   "scans_seen": 2,
-   "max_edge_pct": 21.79,
-   "scan_sec": 249,
-   "lifetime_min": 15,
-   "last_edge_pct": 21.79,
-   "last_size_est": 619
-  },
-  {
-   "seen_utc": "2026-11-14T08:25:33Z",
-   "league": "NCAAF",
-   "game": "Arkansas St. vs Coastal Carolina: Spread",
-   "market": "spread",
-   "line": -9.5,
-   "edge_pct": 24.29,
-   "total_cost": 0.8046,
-   "size_est": 411,
-   "legs": [
-    {
-     "book": "kalshi",
-     "side": "Coastal Carolina wins by over 9.5 points",
-     "price": 0.26,
-     "cost_after_fee": 0.2735
-    },
-    {
-     "book": "prophetx",
-     "side": "Arkansas +9.5 (+9.5)",
-     "price": 0.5261,
-     "cost_after_fee": 0.5311
-    }
-   ],
-   "first_seen_utc": "2026-11-14T08:25:33Z",
-   "last_seen_utc": "2026-11-14T08:40:20Z",
-   "scans_seen": 2,
-   "max_edge_pct": 24.29,
-   "scan_sec": 249,
-   "lifetime_min": 15,
-   "last_edge_pct": 24.29,
-   "last_size_est": 863
-  },
-  {
-   "seen_utc": "2026-11-14T08:25:33Z",
-   "league": "NCAAF",
-   "game": "Arkansas St. vs Coastal Carolina: Spread",
-   "market": "spread",
-   "line": -7.5,
-   "edge_pct": 24.67,
-   "total_cost": 0.8021,
-   "size_est": 5161,
-   "legs": [
-    {
-     "book": "kalshi",
-     "side": "Coastal Carolina wins by over 7.5 points",
-     "price": 0.29,
-     "cost_after_fee": 0.3044
-    },
-    {
-     "book": "prophetx",
-     "side": "Arkansas +7.5 (+7.5)",
-     "price": 0.4926,
-     "cost_after_fee": 0.4977
-    }
-   ],
-   "first_seen_utc": "2026-11-14T08:25:33Z",
-   "last_seen_utc": "2026-11-14T08:40:20Z",
-   "scans_seen": 2,
-   "max_edge_pct": 24.67,
-   "scan_sec": 249,
-   "lifetime_min": 15,
-   "last_edge_pct": 24.67,
-   "last_size_est": 6002
-  },
-  {
-   "seen_utc": "2026-11-14T08:25:33Z",
-   "league": "NCAAF",
-   "game": "Arkansas St. vs Coastal Carolina: Spread",
-   "market": "spread",
-   "line": -6.5,
-   "edge_pct": 27.96,
-   "total_cost": 0.7815,
-   "size_est": 404,
-   "legs": [
-    {
-     "book": "kalshi",
-     "side": "Coastal Carolina wins by over 6.5 points",
-     "price": 0.33,
-     "cost_after_fee": 0.3455
-    },
-    {
-     "book": "prophetx",
-     "side": "Arkansas +6.5 (+6.5)",
-     "price": 0.431,
-     "cost_after_fee": 0.436
-    }
-   ],
-   "first_seen_utc": "2026-11-14T08:25:33Z",
-   "last_seen_utc": "2026-11-14T08:40:20Z",
-   "scans_seen": 2,
-   "max_edge_pct": 27.96,
-   "scan_sec": 249,
-   "lifetime_min": 15,
-   "last_edge_pct": 27.96,
-   "last_size_est": 1044
-  },
-  {
-   "seen_utc": "2026-11-14T08:25:33Z",
-   "league": "NCAAF",
-   "game": "Arkansas St. vs Coastal Carolina: Spread",
-   "market": "spread",
-   "line": -5.5,
-   "edge_pct": 26.39,
-   "total_cost": 0.7912,
-   "size_est": 326,
-   "legs": [
-    {
-     "book": "kalshi",
-     "side": "Coastal Carolina wins by over 5.5 points",
-     "price": 0.37,
-     "cost_after_fee": 0.3863
-    },
-    {
-     "book": "prophetx",
-     "side": "Arkansas +5.5 (+5.5)",
-     "price": 0.4,
-     "cost_after_fee": 0.4049
-    }
-   ],
-   "first_seen_utc": "2026-11-14T08:25:33Z",
-   "last_seen_utc": "2026-11-14T08:40:20Z",
-   "scans_seen": 2,
-   "max_edge_pct": 26.39,
-   "scan_sec": 249,
-   "lifetime_min": 15,
-   "last_edge_pct": 25.88,
-   "last_size_est": 902
-  },
-  {
-   "seen_utc": "2026-11-14T08:25:33Z",
-   "league": "NCAAF",
-   "game": "Arkansas St. vs Coastal Carolina: Spread",
-   "market": "spread",
-   "line": -4.5,
-   "edge_pct": 25.14,
-   "total_cost": 0.7991,
-   "size_est": 825,
-   "legs": [
-    {
-     "book": "kalshi",
-     "side": "Coastal Carolina wins by over 4.5 points",
-     "price": 0.39,
-     "cost_after_fee": 0.4067
-    },
-    {
-     "book": "prophetx",
-     "side": "Arkansas +4.5 (+4.5)",
-     "price": 0.3876,
-     "cost_after_fee": 0.3924
-    }
-   ],
-   "first_seen_utc": "2026-11-14T08:25:33Z",
-   "last_seen_utc": "2026-11-14T08:40:20Z",
-   "scans_seen": 2,
-   "max_edge_pct": 25.14,
-   "scan_sec": 249,
-   "lifetime_min": 15,
-   "last_edge_pct": 25.14,
-   "last_size_est": 822
-  },
-  {
-   "seen_utc": "2026-11-14T08:25:33Z",
-   "league": "NCAAF",
-   "game": "Arkansas St. vs Coastal Carolina: Spread",
-   "market": "spread",
-   "line": -3.5,
-   "edge_pct": 24.77,
-   "total_cost": 0.8015,
-   "size_est": 936,
-   "legs": [
-    {
-     "book": "kalshi",
-     "side": "Coastal Carolina wins by over 3.5 points",
-     "price": 0.42,
-     "cost_after_fee": 0.4371
-    },
-    {
-     "book": "prophetx",
-     "side": "Arkansas +3.5 (+3.5)",
-     "price": 0.3597,
-     "cost_after_fee": 0.3644
-    }
-   ],
-   "first_seen_utc": "2026-11-14T08:25:33Z",
-   "last_seen_utc": "2026-11-14T08:40:20Z",
-   "scans_seen": 2,
-   "max_edge_pct": 24.77,
-   "scan_sec": 249,
-   "lifetime_min": 15,
-   "last_edge_pct": 24.77,
-   "last_size_est": 933
-  },
-  {
-   "seen_utc": "2026-11-14T08:25:33Z",
-   "league": "NCAAF",
-   "game": "Arkansas St. vs Coastal Carolina: Spread",
-   "market": "spread",
-   "line": -2.5,
-   "edge_pct": 24.25,
-   "total_cost": 0.8048,
-   "size_est": 837,
-   "legs": [
-    {
-     "book": "kalshi",
-     "side": "Coastal Carolina wins by over 2.5 points",
-     "price": 0.48,
-     "cost_after_fee": 0.4975
-    },
-    {
-     "book": "prophetx",
-     "side": "Arkansas +2.5 (+2.5)",
-     "price": 0.303,
-     "cost_after_fee": 0.3073
-    }
-   ],
-   "first_seen_utc": "2026-11-14T08:25:33Z",
-   "last_seen_utc": "2026-11-14T08:40:20Z",
-   "scans_seen": 2,
-   "max_edge_pct": 24.25,
-   "scan_sec": 249,
-   "lifetime_min": 15,
-   "last_edge_pct": 24.25,
-   "last_size_est": 837
-  },
-  {
-   "seen_utc": "2026-11-14T08:25:33Z",
-   "league": "NCAAF",
-   "game": "Arkansas State @ Coastal Carolina",
-   "market": "moneyline",
-   "line": null,
-   "edge_pct": 27.88,
-   "total_cost": 0.782,
-   "size_est": 2882,
-   "legs": [
-    {
-     "book": "novig",
-     "side": "CCU (0)",
-     "price": 0.525,
-     "cost_after_fee": 0.525
-    },
-    {
-     "book": "prophetx",
-     "side": "Arkansas",
-     "price": 0.2532,
-     "cost_after_fee": 0.257
-    }
-   ],
-   "first_seen_utc": "2026-11-14T08:25:33Z",
-   "last_seen_utc": "2026-11-14T08:40:20Z",
-   "scans_seen": 2,
-   "max_edge_pct": 27.88,
-   "scan_sec": 249,
-   "lifetime_min": 15,
-   "last_edge_pct": 27.06,
-   "last_size_est": 2893
-  },
-  {
    "seen_utc": "2026-11-14T09:20:19Z",
    "league": "NCAAF",
    "game": "Arkansas St. vs Coastal Carolina: Spread",
@@ -6929,13 +6609,13 @@
     }
    ],
    "first_seen_utc": "2026-11-27T05:00:26Z",
-   "last_seen_utc": "2026-11-28T08:40:19Z",
-   "scans_seen": 590,
+   "last_seen_utc": "2026-11-28T08:45:55Z",
+   "scans_seen": 592,
    "max_edge_pct": 8.27,
    "scan_sec": 179,
    "last_edge_pct": 8.27,
-   "last_size_est": 131,
-   "lifetime_min": 1660
+   "last_size_est": 187,
+   "lifetime_min": 1665
   },
   {
    "seen_utc": "2026-11-27T05:00:26Z",
@@ -7025,13 +6705,13 @@
     }
    ],
    "first_seen_utc": "2026-11-27T05:00:26Z",
-   "last_seen_utc": "2026-11-28T08:40:19Z",
-   "scans_seen": 300,
+   "last_seen_utc": "2026-11-28T08:45:55Z",
+   "scans_seen": 301,
    "max_edge_pct": 20.92,
    "scan_sec": 179,
-   "lifetime_min": 1660,
+   "lifetime_min": 1665,
    "last_edge_pct": 18.39,
-   "last_size_est": 4796
+   "last_size_est": 4584
   },
   {
    "seen_utc": "2026-11-27T08:35:42Z",
@@ -7489,11 +7169,11 @@
     }
    ],
    "first_seen_utc": "2026-11-27T20:20:25Z",
-   "last_seen_utc": "2026-11-28T08:40:19Z",
-   "scans_seen": 139,
+   "last_seen_utc": "2026-11-28T08:45:55Z",
+   "scans_seen": 140,
    "max_edge_pct": 19.01,
    "scan_sec": 201,
-   "lifetime_min": 740,
+   "lifetime_min": 746,
    "last_edge_pct": 15.19,
    "last_size_est": 1539
   },
@@ -7521,11 +7201,11 @@
     }
    ],
    "first_seen_utc": "2026-11-27T20:20:25Z",
-   "last_seen_utc": "2026-11-28T08:40:19Z",
-   "scans_seen": 139,
+   "last_seen_utc": "2026-11-28T08:45:55Z",
+   "scans_seen": 140,
    "max_edge_pct": 19.2,
    "scan_sec": 201,
-   "lifetime_min": 740,
+   "lifetime_min": 746,
    "last_edge_pct": 15.43,
    "last_size_est": 1738
   },
@@ -7553,13 +7233,13 @@
     }
    ],
    "first_seen_utc": "2026-11-27T20:20:25Z",
-   "last_seen_utc": "2026-11-28T08:40:19Z",
-   "scans_seen": 139,
+   "last_seen_utc": "2026-11-28T08:45:55Z",
+   "scans_seen": 140,
    "max_edge_pct": 17.55,
    "scan_sec": 201,
-   "lifetime_min": 740,
+   "lifetime_min": 746,
    "last_edge_pct": 14.51,
-   "last_size_est": 494
+   "last_size_est": 520
   },
   {
    "seen_utc": "2026-11-27T20:20:25Z",
@@ -7585,11 +7265,11 @@
     }
    ],
    "first_seen_utc": "2026-11-27T20:20:25Z",
-   "last_seen_utc": "2026-11-28T08:40:19Z",
-   "scans_seen": 139,
+   "last_seen_utc": "2026-11-28T08:45:55Z",
+   "scans_seen": 140,
    "max_edge_pct": 15.22,
    "scan_sec": 201,
-   "lifetime_min": 740,
+   "lifetime_min": 746,
    "last_edge_pct": 15.22,
    "last_size_est": 270
   },
@@ -7617,11 +7297,11 @@
     }
    ],
    "first_seen_utc": "2026-11-27T20:20:25Z",
-   "last_seen_utc": "2026-11-28T08:40:19Z",
-   "scans_seen": 139,
+   "last_seen_utc": "2026-11-28T08:45:55Z",
+   "scans_seen": 140,
    "max_edge_pct": 14.36,
    "scan_sec": 201,
-   "lifetime_min": 740,
+   "lifetime_min": 746,
    "last_edge_pct": 14.06,
    "last_size_est": 250
   },
@@ -7745,11 +7425,11 @@
     }
    ],
    "first_seen_utc": "2026-11-27T22:20:20Z",
-   "last_seen_utc": "2026-11-28T08:40:19Z",
-   "scans_seen": 161,
+   "last_seen_utc": "2026-11-28T08:45:55Z",
+   "scans_seen": 163,
    "max_edge_pct": 3.57,
    "scan_sec": 215,
-   "lifetime_min": 620,
+   "lifetime_min": 626,
    "last_edge_pct": 2.87,
    "last_size_est": 135
   },
@@ -7777,13 +7457,13 @@
     }
    ],
    "first_seen_utc": "2026-11-27T22:20:20Z",
-   "last_seen_utc": "2026-11-28T08:40:19Z",
-   "scans_seen": 232,
+   "last_seen_utc": "2026-11-28T08:45:55Z",
+   "scans_seen": 234,
    "max_edge_pct": 4.59,
    "scan_sec": 215,
    "last_edge_pct": 4.59,
-   "last_size_est": 131,
-   "lifetime_min": 620
+   "last_size_est": 187,
+   "lifetime_min": 626
   },
   {
    "seen_utc": "2026-11-27T22:20:20Z",
@@ -7809,13 +7489,13 @@
     }
    ],
    "first_seen_utc": "2026-11-27T22:20:20Z",
-   "last_seen_utc": "2026-11-28T08:40:19Z",
-   "scans_seen": 230,
+   "last_seen_utc": "2026-11-28T08:45:55Z",
+   "scans_seen": 232,
    "max_edge_pct": 7.12,
    "scan_sec": 215,
-   "last_edge_pct": 6.47,
-   "last_size_est": 260,
-   "lifetime_min": 620
+   "last_edge_pct": 5.82,
+   "last_size_est": 322,
+   "lifetime_min": 626
   },
   {
    "seen_utc": "2026-11-27T22:20:20Z",
@@ -7841,13 +7521,13 @@
     }
    ],
    "first_seen_utc": "2026-11-27T22:20:20Z",
-   "last_seen_utc": "2026-11-28T08:40:19Z",
-   "scans_seen": 230,
+   "last_seen_utc": "2026-11-28T08:45:55Z",
+   "scans_seen": 232,
    "max_edge_pct": 5.61,
    "scan_sec": 215,
    "last_edge_pct": 4.91,
    "last_size_est": 283,
-   "lifetime_min": 620
+   "lifetime_min": 626
   },
   {
    "seen_utc": "2026-11-27T22:20:20Z",
@@ -7905,13 +7585,13 @@
     }
    ],
    "first_seen_utc": "2026-11-27T22:20:20Z",
-   "last_seen_utc": "2026-11-28T08:40:19Z",
-   "scans_seen": 230,
+   "last_seen_utc": "2026-11-28T08:45:55Z",
+   "scans_seen": 232,
    "max_edge_pct": 5.83,
    "scan_sec": 215,
    "last_edge_pct": 4.72,
    "last_size_est": 2268,
-   "lifetime_min": 620
+   "lifetime_min": 626
   },
   {
    "seen_utc": "2026-11-27T22:35:51Z",
@@ -7937,11 +7617,11 @@
     }
    ],
    "first_seen_utc": "2026-11-27T22:35:51Z",
-   "last_seen_utc": "2026-11-28T08:40:19Z",
-   "scans_seen": 157,
+   "last_seen_utc": "2026-11-28T08:45:55Z",
+   "scans_seen": 159,
    "max_edge_pct": 2.82,
    "scan_sec": 231,
-   "lifetime_min": 604,
+   "lifetime_min": 610,
    "last_edge_pct": 2.59,
    "last_size_est": 477
   },
@@ -7969,13 +7649,13 @@
     }
    ],
    "first_seen_utc": "2026-11-27T22:35:51Z",
-   "last_seen_utc": "2026-11-28T08:40:19Z",
-   "scans_seen": 226,
+   "last_seen_utc": "2026-11-28T08:45:55Z",
+   "scans_seen": 228,
    "max_edge_pct": 2.35,
    "scan_sec": 231,
    "last_edge_pct": 1.72,
    "last_size_est": 84,
-   "lifetime_min": 604
+   "lifetime_min": 610
   },
   {
    "seen_utc": "2026-11-27T22:35:51Z",
@@ -8415,11 +8095,11 @@
     }
    ],
    "first_seen_utc": "2026-11-28T03:10:28Z",
-   "last_seen_utc": "2026-11-28T08:40:19Z",
-   "scans_seen": 60,
+   "last_seen_utc": "2026-11-28T08:45:55Z",
+   "scans_seen": 61,
    "max_edge_pct": 16.86,
    "scan_sec": 249,
-   "lifetime_min": 330,
+   "lifetime_min": 335,
    "last_edge_pct": 16.86,
    "last_size_est": 6234
   },
@@ -8575,11 +8255,11 @@
     }
    ],
    "first_seen_utc": "2026-11-28T04:10:20Z",
-   "last_seen_utc": "2026-11-28T08:40:19Z",
-   "scans_seen": 51,
+   "last_seen_utc": "2026-11-28T08:45:55Z",
+   "scans_seen": 52,
    "max_edge_pct": 4.04,
    "scan_sec": 192,
-   "lifetime_min": 270,
+   "lifetime_min": 276,
    "last_edge_pct": 3.41,
    "last_size_est": 3494
   },
@@ -8607,11 +8287,11 @@
     }
    ],
    "first_seen_utc": "2026-11-28T04:15:52Z",
-   "last_seen_utc": "2026-11-28T08:40:19Z",
-   "scans_seen": 50,
+   "last_seen_utc": "2026-11-28T08:45:55Z",
+   "scans_seen": 51,
    "max_edge_pct": 3.24,
    "scan_sec": 209,
-   "lifetime_min": 264,
+   "lifetime_min": 270,
    "last_edge_pct": 2.75,
    "last_size_est": 167
   },
@@ -8639,13 +8319,13 @@
     }
    ],
    "first_seen_utc": "2026-11-28T04:15:52Z",
-   "last_seen_utc": "2026-11-28T08:40:19Z",
-   "scans_seen": 50,
+   "last_seen_utc": "2026-11-28T08:45:55Z",
+   "scans_seen": 51,
    "max_edge_pct": 2.72,
    "scan_sec": 209,
-   "lifetime_min": 264,
+   "lifetime_min": 270,
    "last_edge_pct": 1.93,
-   "last_size_est": 444
+   "last_size_est": 499
   },
   {
    "seen_utc": "2026-11-28T04:20:19Z",
@@ -8733,13 +8413,13 @@
     }
    ],
    "first_seen_utc": "2026-11-28T04:40:24Z",
-   "last_seen_utc": "2026-11-28T08:40:19Z",
-   "scans_seen": 46,
+   "last_seen_utc": "2026-11-28T08:45:55Z",
+   "scans_seen": 47,
    "max_edge_pct": 3.43,
    "scan_sec": 250,
-   "lifetime_min": 240,
+   "lifetime_min": 246,
    "last_edge_pct": 3.43,
-   "last_size_est": 3957
+   "last_size_est": 3565
   },
   {
    "seen_utc": "2026-11-28T04:40:24Z",
@@ -8765,11 +8445,11 @@
     }
    ],
    "first_seen_utc": "2026-11-28T04:40:24Z",
-   "last_seen_utc": "2026-11-28T08:40:19Z",
-   "scans_seen": 91,
+   "last_seen_utc": "2026-11-28T08:45:55Z",
+   "scans_seen": 93,
    "max_edge_pct": 80.28,
    "scan_sec": 250,
-   "lifetime_min": 240,
+   "lifetime_min": 246,
    "last_edge_pct": 15.58,
    "last_size_est": 8792
   },
@@ -8797,13 +8477,13 @@
     }
    ],
    "first_seen_utc": "2026-11-28T04:40:24Z",
-   "last_seen_utc": "2026-11-28T08:40:19Z",
-   "scans_seen": 46,
+   "last_seen_utc": "2026-11-28T08:45:55Z",
+   "scans_seen": 47,
    "max_edge_pct": 16.32,
    "scan_sec": 250,
-   "lifetime_min": 240,
+   "lifetime_min": 246,
    "last_edge_pct": 15.31,
-   "last_size_est": 4796
+   "last_size_est": 4584
   },
   {
    "seen_utc": "2026-11-28T04:50:37Z",
@@ -8829,13 +8509,13 @@
     }
    ],
    "first_seen_utc": "2026-11-28T04:50:37Z",
-   "last_seen_utc": "2026-11-28T08:40:19Z",
-   "scans_seen": 46,
+   "last_seen_utc": "2026-11-28T08:45:55Z",
+   "scans_seen": 47,
    "max_edge_pct": 3.01,
    "scan_sec": 295,
-   "lifetime_min": 230,
-   "last_edge_pct": 3.01,
-   "last_size_est": 205
+   "lifetime_min": 235,
+   "last_edge_pct": 2.08,
+   "last_size_est": 224
   },
   {
    "seen_utc": "2026-11-28T04:50:37Z",
@@ -8861,11 +8541,11 @@
     }
    ],
    "first_seen_utc": "2026-11-28T04:50:37Z",
-   "last_seen_utc": "2026-11-28T08:40:19Z",
-   "scans_seen": 47,
+   "last_seen_utc": "2026-11-28T08:45:55Z",
+   "scans_seen": 48,
    "max_edge_pct": 1.95,
    "scan_sec": 295,
-   "lifetime_min": 230,
+   "lifetime_min": 235,
    "last_edge_pct": 0.88,
    "last_size_est": 78
   },
@@ -8893,13 +8573,13 @@
     }
    ],
    "first_seen_utc": "2026-11-28T04:50:37Z",
-   "last_seen_utc": "2026-11-28T08:40:19Z",
-   "scans_seen": 44,
+   "last_seen_utc": "2026-11-28T08:45:55Z",
+   "scans_seen": 45,
    "max_edge_pct": 16.1,
    "scan_sec": 295,
-   "lifetime_min": 230,
+   "lifetime_min": 235,
    "last_edge_pct": 16.1,
-   "last_size_est": 18337
+   "last_size_est": 19884
   },
   {
    "seen_utc": "2026-11-28T05:00:26Z",
@@ -9015,13 +8695,13 @@
     }
    ],
    "first_seen_utc": "2026-11-28T05:36:08Z",
-   "last_seen_utc": "2026-11-28T08:40:19Z",
-   "scans_seen": 38,
+   "last_seen_utc": "2026-11-28T08:45:55Z",
+   "scans_seen": 39,
    "max_edge_pct": 1.79,
    "scan_sec": 209,
-   "lifetime_min": 184,
+   "lifetime_min": 190,
    "last_edge_pct": 1.28,
-   "last_size_est": 5232
+   "last_size_est": 5123
   },
   {
    "seen_utc": "2026-11-28T05:36:08Z",
@@ -9047,11 +8727,11 @@
     }
    ],
    "first_seen_utc": "2026-11-28T05:36:08Z",
-   "last_seen_utc": "2026-11-28T08:40:19Z",
-   "scans_seen": 38,
+   "last_seen_utc": "2026-11-28T08:45:55Z",
+   "scans_seen": 39,
    "max_edge_pct": 4.77,
    "scan_sec": 209,
-   "lifetime_min": 184,
+   "lifetime_min": 190,
    "last_edge_pct": 4.22,
    "last_size_est": 3494
   },
@@ -9143,11 +8823,11 @@
     }
    ],
    "first_seen_utc": "2026-11-28T07:00:25Z",
-   "last_seen_utc": "2026-11-28T08:40:19Z",
-   "scans_seen": 21,
+   "last_seen_utc": "2026-11-28T08:45:55Z",
+   "scans_seen": 22,
    "max_edge_pct": 1.77,
    "scan_sec": 198,
-   "lifetime_min": 100,
+   "lifetime_min": 106,
    "last_edge_pct": 1.77,
    "last_size_est": 85
   },
@@ -9175,13 +8855,13 @@
     }
    ],
    "first_seen_utc": "2026-11-28T07:00:25Z",
-   "last_seen_utc": "2026-11-28T08:40:19Z",
-   "scans_seen": 21,
+   "last_seen_utc": "2026-11-28T08:45:55Z",
+   "scans_seen": 22,
    "max_edge_pct": 0.66,
    "scan_sec": 198,
-   "lifetime_min": 100,
+   "lifetime_min": 106,
    "last_edge_pct": 0.66,
-   "last_size_est": 163
+   "last_size_est": 228
   },
   {
    "seen_utc": "2026-11-28T07:05:47Z",
@@ -9271,13 +8951,13 @@
     }
    ],
    "first_seen_utc": "2026-11-28T07:35:55Z",
-   "last_seen_utc": "2026-11-28T08:40:19Z",
-   "scans_seen": 14,
+   "last_seen_utc": "2026-11-28T08:45:55Z",
+   "scans_seen": 15,
    "max_edge_pct": 3.4,
    "scan_sec": 184,
-   "lifetime_min": 64,
+   "lifetime_min": 70,
    "last_edge_pct": 3.4,
-   "last_size_est": 3370
+   "last_size_est": 3428
   },
   {
    "seen_utc": "2026-11-28T07:35:55Z",
@@ -9303,13 +8983,13 @@
     }
    ],
    "first_seen_utc": "2026-11-28T07:35:55Z",
-   "last_seen_utc": "2026-11-28T08:40:19Z",
-   "scans_seen": 14,
+   "last_seen_utc": "2026-11-28T08:45:55Z",
+   "scans_seen": 15,
    "max_edge_pct": 4.32,
    "scan_sec": 184,
-   "lifetime_min": 64,
+   "lifetime_min": 70,
    "last_edge_pct": 4.32,
-   "last_size_est": 320
+   "last_size_est": 376
   },
   {
    "seen_utc": "2026-11-28T07:45:53Z",
@@ -9335,11 +9015,11 @@
     }
    ],
    "first_seen_utc": "2026-11-28T07:45:53Z",
-   "last_seen_utc": "2026-11-28T08:40:19Z",
-   "scans_seen": 12,
+   "last_seen_utc": "2026-11-28T08:45:55Z",
+   "scans_seen": 13,
    "max_edge_pct": 1.06,
    "scan_sec": 227,
-   "lifetime_min": 54,
+   "lifetime_min": 60,
    "last_edge_pct": 1.06,
    "last_size_est": 335
   },
@@ -9367,13 +9047,13 @@
     }
    ],
    "first_seen_utc": "2026-11-28T07:45:53Z",
-   "last_seen_utc": "2026-11-28T08:40:19Z",
-   "scans_seen": 12,
+   "last_seen_utc": "2026-11-28T08:45:55Z",
+   "scans_seen": 13,
    "max_edge_pct": 1.16,
    "scan_sec": 227,
-   "lifetime_min": 54,
+   "lifetime_min": 60,
    "last_edge_pct": 1.16,
-   "last_size_est": 134
+   "last_size_est": 166
   },
   {
    "seen_utc": "2026-11-28T08:05:54Z",
@@ -9399,13 +9079,13 @@
     }
    ],
    "first_seen_utc": "2026-11-28T08:05:54Z",
-   "last_seen_utc": "2026-11-28T08:40:19Z",
-   "scans_seen": 8,
+   "last_seen_utc": "2026-11-28T08:45:55Z",
+   "scans_seen": 9,
    "max_edge_pct": 1.42,
    "scan_sec": 204,
-   "lifetime_min": 34,
+   "lifetime_min": 40,
    "last_edge_pct": 1.42,
-   "last_size_est": 320
+   "last_size_est": 376
   },
   {
    "seen_utc": "2026-11-28T08:25:43Z",
@@ -9431,11 +9111,13 @@
     }
    ],
    "first_seen_utc": "2026-11-28T08:25:43Z",
-   "last_seen_utc": "2026-11-28T08:25:43Z",
-   "scans_seen": 1,
+   "last_seen_utc": "2026-11-28T08:45:55Z",
+   "scans_seen": 2,
    "max_edge_pct": 1.06,
    "scan_sec": 220,
-   "lifetime_min": 0
+   "lifetime_min": 20,
+   "last_edge_pct": 1.06,
+   "last_size_est": 39
   }
  ]
 }
