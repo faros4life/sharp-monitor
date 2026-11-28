@@ -86,7 +86,7 @@ def t_lane_name_follows_the_live_rule():
             # Nov 22: NCS (NCAAB spreads) joined the map. Kept as an EXACT comparison on purpose -
             # a lane that appears here without being wired everywhere else is the failure this guards.
             assert m.LANE_NAME == {"board": "BOARD V4", "r1": "R1", "lane2": "LANE 2",
-                                   "rules": "LANE 1", "ncs": "NCS", "dogs": "DOGS"}   # Nov 23: DOGS pilot lane
+                                   "rules": "LANE 1", "ncs": "NCS", "dogs": "DOGS", "all3": "ALL-3"}   # Nov 23: DOGS pilot lane
             assert m.BOARD_UNIT == 200.0 and "board|" in m.LANE_PREFIXES      # unit and play-key prefix untouched
     finally:
         if prev is None:

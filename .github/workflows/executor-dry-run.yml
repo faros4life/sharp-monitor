@@ -156,6 +156,10 @@ jobs:
           # Nov 23 (Peter): DOGS pilot lane (liquidity underdogs). Places money only when this repo VARIABLE is "on"
           # (and EXEC_LIVE is on). Own $300 unit (Peter, 25 Nov; was the $100 pilot), own cap and daily risk limit.
           EXEC_DOGS_LIVE: ${{ vars.EXEC_DOGS_LIVE || 'off' }}
+          # Nov 28: ALL-3. Passed here from the start BECAUSE of the Nov 25 lesson recorded just
+          # below - a lane whose cap variables are not passed runs on its code default whatever the
+          # repo variable says. Ships off; Peter flips EXEC_ALL3_LIVE.
+          EXEC_ALL3_LIVE: ${{ vars.EXEC_ALL3_LIVE || 'off' }}
           # Nov 25: EXEC_DOGS_DAILY_RISK and EXEC_NCS_DAILY_RISK were NOT passed here, so both ran on
           # their code default whatever the repo variable said. Peter set EXEC_DOGS_DAILY_RISK=2400 in
           # settings and the job kept reading 800 - a no-op that looked like success, and the exact
@@ -163,11 +167,14 @@ jobs:
           # defaults so the two can never disagree; the repo variable overrides both.
           EXEC_DOGS_DAILY_RISK: ${{ vars.EXEC_DOGS_DAILY_RISK || '800' }}
           EXEC_NCS_DAILY_RISK: ${{ vars.EXEC_NCS_DAILY_RISK || '1000' }}
+          EXEC_ALL3_DAILY_RISK: ${{ vars.EXEC_ALL3_DAILY_RISK || '1000' }}
           # Same gap, found by the same test. Defaults match the code exactly, so wiring these
           # changes NOTHING today - it only means a repo variable will be obeyed if one is ever set,
           # instead of being silently ignored.
           EXEC_DOGS_MAX_PLAYS: ${{ vars.EXEC_DOGS_MAX_PLAYS || '8' }}
           EXEC_NCS_MAX_PLAYS: ${{ vars.EXEC_NCS_MAX_PLAYS || '5' }}
+          EXEC_ALL3_MAX_PLAYS: ${{ vars.EXEC_ALL3_MAX_PLAYS || '5' }}
+          EXEC_ALL3_MIN_MONEY: ${{ vars.EXEC_ALL3_MIN_MONEY || '12000' }}
           EXEC_BOARD_MAX_PLAYS: ${{ vars.EXEC_BOARD_MAX_PLAYS || '10' }}
           EXEC_R1_MAX_PLAYS: ${{ vars.EXEC_R1_MAX_PLAYS || '10' }}
           # Nov 11 (Peter: "Make it 2000", "And global 3000"). Neither of these was passed here before,

@@ -1238,7 +1238,12 @@ def selftest():
 # venue's own order id on a fill row, looked up EXACTLY against the order ids this registry already
 # stores. Read-only: nothing here writes, and nothing in execution reads it. A miss or an id that maps
 # to two different lanes returns None - the caller then records the row as unresolved, never a guess.
-LANE_PREFIX = {"rule": "rules", "rules": "rules", "board": "board", "r1": "r1", "lane2": "lane2", "dogs": "dogs"}
+# Nov 28: "all3" added with the lane. A lane missing from here makes row_lane() return None, and
+# every lane-keyed accumulator then silently skips it - lane_consume charges nothing and the lane
+# cap never binds. That is exactly the NCS hole ("ncs" is still absent, deliberately, while that
+# lane is off). CLAUDE.md: a name with no branch is silently dropped, so check the caller.
+LANE_PREFIX = {"rule": "rules", "rules": "rules", "board": "board", "r1": "r1", "lane2": "lane2",
+               "dogs": "dogs", "all3": "all3"}
 
 
 def _venue(x):

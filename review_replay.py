@@ -91,11 +91,13 @@ def canonical_registry_key(raw):
 # Lane units, per Peter (Nov 23): $300 for Lane 1, $200 for R1, Board and NCS. These mirror
 # executor.LIVE_UNIT / R1_UNIT / BOARD_UNIT / NCS_UNIT and a test asserts they still agree;
 # executor itself is not imported, to keep the order paths out of this script's reachable set.
-LANE_UNIT = {"lane1": 300.0, "r1": 200.0, "board": 200.0, "ncs": 200.0, "dogs": 300.0}   # dogs 100 -> 300, Peter 25 Nov
+LANE_UNIT = {"lane1": 300.0, "r1": 200.0, "board": 200.0, "ncs": 200.0, "dogs": 300.0,
+             "all3": 200.0}   # dogs 100 -> 300, Peter 25 Nov; all3 200 ("to win 200"), Peter 28 Nov
 # The two places a row states its lane: the play-key prefix and the row's source.
 PREFIX_LANE = {"rule": "lane1", "rules": "lane1", "board": "board", "r1": "r1", "ncs": "ncs",
                "dogs": "dogs"}
-SOURCE_LANE = {"rules": "lane1", "board": "board", "r1": "r1", "ncs": "ncs", "dogs": "dogs"}
+SOURCE_LANE = {"rules": "lane1", "board": "board", "r1": "r1", "ncs": "ncs", "dogs": "dogs",
+               "all3": "all3"}   # Nov 28: ALL-3
 # Nov 23: DOGS was missing from all three while the lane was LIVE and the ledger was enforcing.
 # Its own reservation was right (that takes the unit off the play record), but every path that
 # re-derives the unit from the ROW - the sweep, the seed, completeness - read "lane unknown". The

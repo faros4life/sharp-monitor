@@ -1314,6 +1314,199 @@ NCS_MIN_LEAD = 240          # minutes: the 4h+ condition the board's v3 PLAY rul
 NCS_BOOK = "kalshi"
 NCS = {"risk": 0.0, "keys": set(), "known": False}
 
+# ---------------------------------------------------------------- ALL-3 (NFL 12K, 12-24h lead)
+# Peter's decision, 28 Nov 2026, relayed as a written spec: make the 12K ALL-3 subset a live bot
+# lane. SCOPE is exactly that subset - NFL 12K spread plays, first side only, whose FIRST qualifying
+# print falls 12-24h before the start. Every other 12K print stays alert-only/manual, and the paper
+# forward cohorts (all / 4-24h / 12-24h) continue unchanged. This overrides the Nov 26 frozen-test
+# "no live activation" clause FOR THIS SUBSET ONLY, by Peter's direct decision; the rest of that
+# test stands.
+#
+# SHIPS OFF, and Peter's instruction when he commissioned the build was "build it but don't turn it
+# on". With EXEC_ALL3_LIVE unset this selects, prices and logs WOULD PLACE and places nothing. The
+# switch is a repo variable, which Claude cannot write - Peter flips it.
+#
+# TAKE-ONLY, deliberately. The spec says "one attempt per book" and says nothing about resting, so
+# "all3" is NOT registered in rest_bid's _REST_LANE_GATES. That is not an omission: a lane absent
+# from that table is REFUSED there (fail closed), which is the behaviour wanted, and the refusal is
+# asserted in the tests so it can never become a silent no-op.
+#
+# WHAT IS NOT SETTLED, and must be before the switch is flipped:
+#   * ALL3_MIN_MONEY. "12K" has NO definition anywhere in this repo - there is no 12000 threshold in
+#     liquidity_monitor (its SECOND_MIN is 10000, a different thing, and "none_10k" is its second-
+#     book status string). The cohort is named in Peter's own forward study, which is not code here.
+#     $12,000 of new_money is the literal reading and is what this uses, but MEASURED on the current
+#     feed every NFL spread row already clears it - 208 of 208 - so as a filter it currently selects
+#     nothing extra, which means the literal reading is probably NOT what Peter means. The threshold
+#     is therefore isolated in one env-overridable constant and one predicate, so correcting it is a
+#     one-line change and never a hunt. Do not flip the switch until Peter confirms what 12K filters.
+#   * ALL3_DAILY_RISK and ALL3_MAX_PLAYS. The spec sets the unit and no caps. These default to the
+#     NCS settings - the precedent for a lane with no live forward record - and are Peter's to set.
+ALL3_LIVE = (os.environ.get("EXEC_ALL3_LIVE") or "off").strip().lower() == "on"   # money switch (repo variable; Peter flips it)
+ALL3_UNIT = 200.0           # Peter, 28 Nov: "to win 200" - to win $200 at minus, risk $200 at plus,
+                            # which is live_stake(shown, 200.0), the same basis as R1, NCS and Board.
+ALL3_DAILY_RISK = float(os.environ.get("EXEC_ALL3_DAILY_RISK", "") or "1000")   # NCS precedent; UNCONFIRMED
+ALL3_MAX_PLAYS = int(os.environ.get("EXEC_ALL3_MAX_PLAYS", "") or "5")          # NCS precedent; UNCONFIRMED
+ALL3_MIN_MONEY = float(os.environ.get("EXEC_ALL3_MIN_MONEY", "") or "12000")    # the "12K" floor; UNCONFIRMED
+ALL3_LEAD_LO, ALL3_LEAD_HI = 720.0, 1440.0   # 12-24h before the start, in minutes, inclusive
+ALL3_LEAGUE = "NFL"
+ALL3 = {"risk": 0.0, "keys": set(), "known": False}
+
+
+ALL3_TRIGGER_BOOKS = ("kalshi", "novig", "prophetx")
+
+
+def all3_book_new_money(x, book):
+    """New money printed on THIS side at ONE book, or None when that book did not print.
+
+    MEASURED on the feed: depth_by_book carries new_this_side only for the row's OWN alerting book -
+    on an NFL moneyline row, kalshi and novig show this_side (total depth) with no new_* keys at all,
+    while the alerting prophetx entry has new_this_side. So a single row can prove one book's print
+    and never three. That is what makes all3_trigger_ok() unsatisfiable row-by-row today; see there."""
+    d = (x or {}).get("depth_by_book") or {}
+    v = d.get(book) or {}
+    n = v.get("new_this_side") if isinstance(v, dict) else None
+    try:
+        return float(n) if n is not None else None
+    except (TypeError, ValueError):
+        return None
+
+
+def all3_trigger_ok(x):
+    """The base 12K trigger: $12k+ of new money on EACH of Kalshi, Novig and ProphetX, on the
+    MONEYLINE print. That conjunction across all three books is what "ALL-3" names.
+
+    Peter, 28 Nov: "the base 12K trigger definition ($12k+ on each of Kalshi/Novig/ProphetX on the
+    ML print)". The play is the SPREAD; this is the trigger, and it is read on the ML row.
+
+    FAIL CLOSED, and currently that means it selects NOTHING. Measured on liquidity/alerts.json:
+    all 210 NFL moneyline rows carry new money for exactly ONE book - grouping by game+side gives
+    210 groups, every one with a single book, and ZERO with $12k+ on all three. So the conjunction
+    cannot be evaluated from these rows as they stand. It needs either the monitor's cross-venue
+    join (liquidity/state.json is keyed per book per venue ticker - kalshi|KXNBA...|ml|1 - not by a
+    shared game id) or Peter's own definition of how the three books' prints are combined.
+    Registered with him from Nov 25-26; it is not in this repo, and it was lost from this session's
+    history, so it is NOT reconstructed here by guesswork.
+    Returning False keeps the lane selecting nothing rather than betting a cohort nobody verified -
+    and the lane also ships with EXEC_ALL3_LIVE off, so this is the second of two independent stops.
+    """
+    if not isinstance(x, dict) or x.get("market") != "moneyline":
+        return False
+    got = [all3_book_new_money(x, b) for b in ALL3_TRIGGER_BOOKS]
+    return all(v is not None and v >= ALL3_MIN_MONEY for v in got)
+
+
+def all3_qualifies(x):
+    """Row conditions for an ALL-3 TRIGGER: NFL, and the 12K all-three-books moneyline print. Pure -
+    no timing and no first-print rule, which all3_select applies, the same split as
+    dogs_qualifies/dogs_select.
+
+    The league field is `league`, NOT `sport`: every row in this feed has sport None, so reading
+    sport returns an empty cohort. Checked against the feed rather than assumed - a selection that
+    silently matches nothing is the failure that looks like "no plays today"."""
+    if not isinstance(x, dict):
+        return False
+    return (str(x.get("league") or "").strip().upper() == ALL3_LEAGUE
+            and x.get("price_american") is not None
+            and all3_trigger_ok(x))
+
+
+def all3_select(rows, now):
+    """(plays, skipped) for the ALL-3 lane. FIRST SIDE ONLY per game, and that first qualifying
+    print must sit 12-24h before the start.
+
+    FIRST SIDE ONLY is per GAME, not per game+market+side as DOGS does: the spec says first-side-
+    only, so once a game's first qualifying print is taken the other side of that game can never
+    become an ALL-3 play. Ordering is by alerted_utc over every bettable non-artifact row, so the
+    first print decides and only that print can qualify - the same shape as dogs_select, for the
+    same reason: a later print on the same game is not a new opportunity, it is the same one moving.
+
+    The 12-24h test is applied to THAT first print's own lead time, not to now: a play whose first
+    qualifying print was 30h out does not become eligible by being re-read at 20h."""
+    elig = [x for x in (rows or []) if isinstance(x, dict) and not x.get("artifact")
+            and not x.get("close_suspect") and iso_t(x.get("alerted_utc"))
+            and str(x.get("book") or "").strip().lower() not in DOGS_NOT_BETTABLE]
+    elig.sort(key=lambda x: iso_t(x.get("alerted_utc")))
+    first = {}
+    for x in elig:
+        first.setdefault(str(x.get("game") or "").strip().lower(), x)
+    out, skipped = [], 0
+    for x in first.values():
+        if not all3_qualifies(x):
+            skipped += 1
+            continue
+        at, st = iso_t(x.get("alerted_utc")), iso_t(x.get("start_utc"))
+        if not st or not at or st <= now:
+            skipped += 1
+            continue
+        lead = (st - at).total_seconds() / 60.0      # the FIRST print's own lead, not now's
+        if not (ALL3_LEAD_LO <= lead <= ALL3_LEAD_HI):
+            skipped += 1
+            continue
+        spr = spread_for(elig, x)
+        if spr is None:
+            skipped += 1          # triggered, but no spread entry to bet - never bet the ML instead
+            continue
+        out.append(dict(spr, all3_lead_min=round(lead, 1), all3_trigger_utc=x.get("alerted_utc"),
+                        all3_trigger_money={b: all3_book_new_money(x, b) for b in ALL3_TRIGGER_BOOKS}))
+    return out, skipped
+
+
+def spread_for(rows, trig):
+    """The SPREAD entry for the trigger's game and side - "direct or mirrored" per the spec.
+
+    The trigger is the MONEYLINE print; the play is the spread. DIRECT is the same side's spread on
+    the same game. MIRRORED is the other team's spread with the sign flipped, which is the same bet
+    when only the opposite side is listed. Nothing is inferred about the number: the row's own line
+    and price are used, so the price gate downstream compares against the alert's own after-fee
+    price and never a derived one.
+
+    Returns None when no spread entry exists, and the caller SKIPS rather than falling back to the
+    moneyline - betting a different market from the one the rule was measured on is not the play."""
+    g = str((trig or {}).get("game") or "").strip().lower()
+    side = str((trig or {}).get("side") or "").strip().lower()
+    teams = [str(t).strip().lower() for t in ((trig or {}).get("teams") or [])]
+    other = next((t for t in teams if t != side), None)
+    direct = [x for x in rows if x.get("market") == "spread"
+              and str(x.get("game") or "").strip().lower() == g
+              and str(x.get("side") or "").strip().lower() == side]
+    if direct:
+        return direct[0]
+    mirrored = [x for x in rows if x.get("market") == "spread"
+                and str(x.get("game") or "").strip().lower() == g
+                and other and str(x.get("side") or "").strip().lower() == other]
+    return mirrored[0] if mirrored else None
+
+
+def all3_gate(risk, key=None):
+    """(ok, why) for ONE ALL-3 order of `risk` dollars. Fail closed, and identical in shape to
+    ncs_gate, r1_gate and board_gate: unknown exposure, the play cap, an unreadable or zero risk, or
+    the daily risk limit all refuse.
+
+    In-run accumulation comes from lane_consume(), which charges a placed play's combined exposure
+    straight into ALL3["risk"]/["keys"] after dispatch - so reading those dicts here already counts
+    what this run has committed, and two plays in one pass are never both measured on the run-start
+    figure. Written against lane_consume deliberately: an earlier draft of this gate called a
+    lane_counts() helper that exists only on a DISCARDED branch of mine, which would have raised
+    AttributeError on the first live ALL-3 order. This lane's own test caught it."""
+    if not ALL3["known"]:
+        return False, "ALL-3 exposure unknown this run (ledger unreadable) - fail closed"
+    n = len(ALL3["keys"]) + (0 if (key and key in ALL3["keys"]) else 1)
+    if n > ALL3_MAX_PLAYS:
+        return False, (f"ALL-3 play cap: {len(ALL3['keys'])} already submitted or resting today "
+                       f"(ET), cap {ALL3_MAX_PLAYS}")
+    try:
+        risk = float(risk or 0)
+    except Exception:
+        return False, "ALL-3 order risk unreadable - fail closed"
+    if risk <= 0:
+        return False, "ALL-3 order risk is zero - fail closed"
+    if ALL3["risk"] + risk > ALL3_DAILY_RISK + 1e-9:
+        return False, (f"ALL-3 daily risk limit: ${ALL3['risk']:,.2f} already at risk today (ET) + "
+                       f"${risk:,.2f} would exceed ${ALL3_DAILY_RISK:,.0f}")
+    return True, (f"ok (ALL-3 today: {len(ALL3['keys'])}/{ALL3_MAX_PLAYS} plays, "
+                  f"${ALL3['risk']:,.2f}/${ALL3_DAILY_RISK:,.0f} at risk)")
+
 
 def ncs_teams(x):
     """The two teams, taken from the GAME STRING, not from the row's own `teams` field.
@@ -1721,10 +1914,10 @@ def unit_for(lane):
     else is Lane 1's unit."""
     l = str(lane or "")
     return (BOARD_UNIT if l == "board" else R1_UNIT if l == "r1" else NCS_UNIT if l == "ncs"
-            else DOGS_UNIT if l == "dogs" else LIVE_UNIT)
+            else DOGS_UNIT if l == "dogs" else ALL3_UNIT if l == "all3" else LIVE_UNIT)
 
 
-LANE_NAME = {"board": "BOARD V4", "r1": "R1", "lane2": "LANE 2", "rules": "LANE 1", "ncs": "NCS", "dogs": "DOGS"}
+LANE_NAME = {"board": "BOARD V4", "r1": "R1", "lane2": "LANE 2", "rules": "LANE 1", "ncs": "NCS", "dogs": "DOGS", "all3": "ALL-3"}
 
 # Nov 12 (Peter): "Remove suggestions to place held bot orders manually unless there is an explicit
 # safe handoff that prevents automated retries." The handoff EXISTS - a "Bets manual" note, which
@@ -3886,6 +4079,14 @@ def _account_rows(rows, graded, ids, seen_oids, _intents, _confirmed):
                     fs_n = _acct_fill(lo)
                     NCS["risk"] += (max(float(fs_n or 0), float(lo.get("asked_stake") or 0))
                                     if (is_rest or fs_n is None) else float(fs_n))
+            if row.get("source") == "all3" and d_et in (None, datetime.now(lm.ET).date()):   # same rules again
+                if row.get("key"):
+                    ALL3["keys"].add(row["key"])
+                    ALL3["keys"].add(lane_strip(row["key"]))
+                if graded.get(row.get("key")) not in ("W", "P"):
+                    fs_a = _acct_fill(lo)
+                    ALL3["risk"] += (max(float(fs_a or 0), float(lo.get("asked_stake") or 0))
+                                     if (is_rest or fs_a is None) else float(fs_a))
             if row.get("source") == "dogs" and d_et in (None, datetime.now(lm.ET).date()):   # same rules again
                 if row.get("key"):
                     DOGS["keys"].add(row["key"])
@@ -3908,7 +4109,7 @@ def _account_rows(rows, graded, ids, seen_oids, _intents, _confirmed):
                     VENUE["adjusted"] += 1
 
 
-LANE_STATE = {"board": "BOARD", "r1": "R1", "dogs": "DOGS", "ncs": "NCS"}   # "rules" has no lane cap
+LANE_STATE = {"board": "BOARD", "r1": "R1", "dogs": "DOGS", "ncs": "NCS", "all3": "ALL3"}   # "rules" has no lane cap
 
 
 def _acct_fill(lo):
@@ -4162,6 +4363,7 @@ def _bot_orders_finish(M, ids, _intents, _confirmed, from_store=False):
     R1["known"] = True      # ...and today's R1 exposure
     NCS["known"] = True     # ...and today's NCS exposure
     DOGS["known"] = True    # ...and today's DOGS exposure
+    ALL3["known"] = True    # ...and today's ALL-3 exposure
     return ids
 
 
@@ -8116,6 +8318,35 @@ def main():
                                                                      if r["verdict"] == "WOULD PLACE" else (r.get("reason") or "skipped")]}
                 else:
                     r["live"] = {"go": False, "lane": "ncs", "why": why}
+            elif p.get("source") == "all3":   # ALL-3 lane: own live decision, own $200 unit, own daily limit
+                # Peter, 28 Nov. Mirrors the NCS branch exactly, so the four lane branches cannot
+                # drift. nfl=True because this lane is NFL by definition (all3_qualifies requires
+                # league NFL), and that flag drives the NFL-specific notification path.
+                r["entry"] = ent = p.get("all3_entry") or {}
+                trigger_first(r, ent)
+                lk = derive_key(p) or p["play_key"]
+                why = [] if ALL3_LIVE else ["ALL-3 lane not switched on (EXEC_ALL3_LIVE)"]
+                if lk in MANUAL_HELD:
+                    why.append(f"{MANUAL_HELD[lk]} with Peter's manual bet (Bets manual note)")
+                if lk in LIVEKEYS or any(same_bet(lk, k) for k in LIVEKEYS):
+                    why.append("a live order or resting bid was already sent for this bet (another lane)")
+                if any(opp_bet(lk, k) for k in LIVEKEYS):
+                    why.append("CONFLICT: the other side of this game was already bet (first side stays)")
+                if not why and r["verdict"] == "WOULD PLACE" and r.get("lc"):
+                    lc = r["lc"]
+                    lr, lw = live_stake(lc["shown"], ALL3_UNIT)   # to win $200; $200 risked at plus
+                    g_ok, g_why = all3_gate(lr, lk)
+                    if not g_ok:
+                        why.append(g_why)
+                if not why and r["verdict"] == "WOULD PLACE" and r.get("lc"):
+                    r["live"] = {"go": True, "book": lc["book"], "risk": lr, "to_win": lw, "am": lc["am"], "shown": lc["shown"],
+                                 "line": lc["line"], "partial": lc["avail"] < lr, "px": lc, "ids": lc.get("ids") or {},
+                                 "nfl": True, "lane": "all3", "unit": ALL3_UNIT}
+                elif not why:
+                    r["live"] = {"go": False, "lane": "all3", "why": ["no live book has the alert number or better"
+                                                                      if r["verdict"] == "WOULD PLACE" else (r.get("reason") or "skipped")]}
+                else:
+                    r["live"] = {"go": False, "lane": "all3", "why": why}
             elif p.get("source") == "dogs":   # DOGS lane: own live decision, own $100 unit, own daily limit
                 r["entry"] = ent = p.get("dogs_entry") or {}
                 trigger_first(r, ent)

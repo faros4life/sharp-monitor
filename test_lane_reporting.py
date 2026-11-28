@@ -38,7 +38,8 @@ SRC = open("executor.py", encoding="utf-8").read()
 # A lane can place live money when the executor gives it both a unit constant and a money switch.
 LIVE = {"rules": ("LIVE_UNIT", "EXEC_LIVE"), "board": ("BOARD_UNIT", "EXEC_BOARD_LIVE"),
         "r1": ("R1_UNIT", "EXEC_R1_LIVE"), "ncs": ("NCS_UNIT", "EXEC_NCS_LIVE"),
-        "dogs": ("DOGS_UNIT", "EXEC_DOGS_LIVE")}
+        "dogs": ("DOGS_UNIT", "EXEC_DOGS_LIVE"),
+              "all3": ("ALL3_UNIT", "EXEC_ALL3_LIVE")}   # Nov 28: ALL-3, ships off
 
 ok("the live-lane list still matches the lanes executor names",
    set(LIVE) | {"lane2"} == set(ex.LANE_NAME), sorted(set(ex.LANE_NAME)))

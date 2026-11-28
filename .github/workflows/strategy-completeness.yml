@@ -44,6 +44,7 @@ jobs:
           EXEC_R1_LIVE: ${{ vars.EXEC_R1_LIVE }}
           EXEC_NCS_LIVE: ${{ vars.EXEC_NCS_LIVE }}
           EXEC_DOGS_LIVE: ${{ vars.EXEC_DOGS_LIVE }}
+          EXEC_ALL3_LIVE: ${{ vars.EXEC_ALL3_LIVE }}
         run: python -u test_strategy_registry.py
       - name: Reporting lane maps agree with the executor
         run: python -u test_lane_reporting.py
@@ -56,5 +57,6 @@ jobs:
           EXEC_R1_LIVE: ${{ vars.EXEC_R1_LIVE }}
           EXEC_NCS_LIVE: ${{ vars.EXEC_NCS_LIVE }}
           EXEC_DOGS_LIVE: ${{ vars.EXEC_DOGS_LIVE }}
+          EXEC_ALL3_LIVE: ${{ vars.EXEC_ALL3_LIVE }}
         if: always()
         run: python -u strategy_registry.py
