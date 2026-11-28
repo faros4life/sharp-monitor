@@ -1,4 +1,4 @@
-# Paper splits (updated 2026-11-28T01:45:33Z)
+# Paper splits (updated 2026-11-28T02:00:32Z)
 
 Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kill bar: 30+ resulted at -0.10u/play or worse closes a split.
 
@@ -12,7 +12,7 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 | Unders only | scan | 2026-10-26 | 109-90-0 | +6.79 | +0.034 | -0.82 | OPEN |
 | Combined filter | scan | 2026-10-26 | 128-124-0 | -10.38 | -0.041 | -2.11 | OPEN |
 | Priced -125 or worse | scan | 2026-10-26 | 18-22-0 | -7.71 | -0.193 | -2.80 | CLOSED |
-| College basketball | scan | 2026-10-26 | 499-426-0 | +12.53 | +0.014 | -1.17 | OPEN |
+| College basketball | scan | 2026-10-26 | 500-426-0 | +13.41 | +0.014 | -1.17 | OPEN |
 | Fade alerts sent 12-24h out | scan | 2026-10-26 | 91-78-0 | -9.73 | -0.058 | -1.31 | CLOSED |
 | Tier 2 core (paper) | tier | 2026-10-27 | 25-25-0 | -3.49 | -0.070 | -2.69 | CLOSED |
 | Evening sends, ex-Hard Rock | scan | 2026-10-26 | 26-23-0 | -0.38 | -0.008 | -2.26 | OPEN |
@@ -49,7 +49,7 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 
 **ProphetX tripwire:** 30/30 resulted, -0.106u/play - PAUSE LIVE.
 
-**Price gaps (measurement only):** {"gaps": 281, "per_day": 23.4, "edge_pct_median": 13.79, "edge_pct_p90": 26.89, "size_est_median_upper_bound": 636, "seen_once_share": 0.25, "lifetime_min_median": 45, "lived_10min_plus": 205, "with_200_both_legs_upper_bound": 190, "scan_sec_median": 212}
+**Price gaps (measurement only):** {"gaps": 282, "per_day": 23.5, "edge_pct_median": 13.785, "edge_pct_p90": 26.89, "size_est_median_upper_bound": 636.5, "seen_once_share": 0.25, "lifetime_min_median": 45.0, "lived_10min_plus": 205, "with_200_both_legs_upper_bound": 191, "scan_sec_median": 212.0}
 
 **Counting rules:** resulted = W, L or P with a unit value (pushes count, at 0u); liquidity artifacts excluded; pending/ungraded plays don't count. Times are America/New_York (DST-aware). Lead = start minus alert time. Streams: SENT (pushed), MUTED (logged, never pushed), LIVE (phase-1 subset of SENT), LIQ-MAIN, LIQ-EXTRA; paper = never bet. ALL PLAYS = every resulted play in a stream; GRADED ERA = Oct 20+ only.
 
