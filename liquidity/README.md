@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 28, 12:05 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 42.
+Updated Sat Nov 28, 12:10 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 42.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 28 12:05AM | NCAAF | Louisville vs Kentucky | moneyline: Louisville | kalshi | $138k | -138 | ✅ novig,prophetx |  | +0.0c |  | pending |
+| Nov 28 12:10AM | NCAAF | Louisville vs Kentucky | moneyline: Louisville | kalshi | $138k | -138 | ✅ prophetx |  | +0.0c |  | pending |
 | Nov 28 12:00AM | NCAAF | Louisiana Tech vs Georgia Southern | moneyline: Louisiana Tech | kalshi | $136k | +113 | ✅ novig,prophetx | ✅ | +1.0c |  | pending |
 | Nov 27 11:30PM | NCAAF | UCF vs Colorado: Spread | spread: NOT Colorado wins by over 2.5 points | kalshi | $34k | -104 |  |  | +0.0c |  | pending |
 | Nov 27 10:55PM | NCAAF | Southern Miss vs Old Dominion: Spread | spread: NOT Old Dominion wins by over 5.5 points | kalshi | $97k | -104 | ✅ novig |  | +0.0c |  | pending |
