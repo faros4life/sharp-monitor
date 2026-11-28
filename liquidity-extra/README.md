@@ -1,20 +1,20 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 27, 9:10 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 20.
+Updated Fri Nov 27, 9:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 19.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 547-326 (-26.82u flat) | rule met: 136-89
+**Record:** 547-327 (-27.82u flat) | rule met: 136-90
 
-**Fade (paper, betting against the print):** 301-512 (+12.62u flat, after fees)
+**Fade (paper, betting against the print):** 302-512 (+14.51u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 27 8:40PM | NCAAB | Louisville @ Tennessee | moneyline: LOU (0) | novig | $38k | -156 | ✅ kalshi,prophetx | ✅ | +0.0c | yes | pending |
-| Nov 27 8:00PM | NCAAB | Texas Tech @ San Diego State | moneyline: TTU (0) | novig | $26k | -335 | ✅ kalshi | ✅ | +0.5c | yes | pending |
+| Nov 27 8:00PM | NCAAB | Texas Tech @ San Diego State | moneyline: TTU (0) | novig | $26k | -335 | ✅ kalshi | ✅ | +1.0c | yes | pending |
 | Nov 27 7:40PM | NCAAB | Miami (FL) vs Alabama: Point Total | total: NOT Over 170.5 points | kalshi | $49k | -122 |  |  | +0.0c | yes | pending |
 | Nov 27 7:00PM | NCAAB | Towson vs Penn | moneyline: Penn | kalshi | $31k | -300 |  |  | -52.0c | yes | pending |
-| Nov 27 6:10PM | NCAAB | Georgia vs UCF | moneyline: Georgia | kalshi | $103k | -213 | ✅ prophetx |  | +0.0c |  | pending |
+| Nov 27 6:10PM | NCAAB | Georgia vs UCF | moneyline: Georgia | kalshi | $103k | -213 | ✅ prophetx |  | +0.0c |  | L |
 | Nov 27 6:00PM | NCAAB | West Virginia vs North Carolina | moneyline: West Virginia | kalshi | $51k | -138 | ✅ novig,prophetx |  | +0.0c |  | W |
 | Nov 27 6:00PM | NCAAB | Texas Tech vs San Diego St. | moneyline: Texas Tech | kalshi | $40k | -335 | ✅ novig | ✅ | +0.0c |  | pending |
 | Nov 27 4:30PM | NCAAB | Kansas State @ Michigan | moneyline: MICH (0) | novig | $25k | -426 | ✅ kalshi,prophetx | ✅ | +0.0c |  | W |
