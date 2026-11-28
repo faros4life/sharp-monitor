@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 27, 10:40 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 66.
+Updated Fri Nov 27, 10:45 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 67.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 27 10:45PM | NCAAF | Michigan vs Ohio St.: Spread | spread: NOT Ohio St. wins by over 10.5 points | kalshi | $49k | -104 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 27 10:40PM | NCAAF | Army vs Rice: Total Points | total: NOT Over 47.5 points | kalshi | $34k | -117 |  | ✅ | +0.0c |  | pending |
 | Nov 27 9:55PM | NCAAF | UConn vs Wyoming: Spread | spread: NOT UConn wins by over 3.5 points | kalshi | $47k | -104 |  |  | +0.0c |  | pending |
 | Nov 27 9:55PM | NCAAF | Southern Miss vs Old Dominion | moneyline: Old Dominion | kalshi | $152k | -194 | ✅ novig |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 25 9:30PM | NBA | Sacramento Kings @ Golden State Warriors | total: Over 216.5 (216.5) | novig | $31k | -104 | ✅ kalshi | ❌ | -1.0c |  | W |
 | Nov 25 9:30PM | NHL | Chicago vs Seattle | moneyline: Seattle | kalshi | $79k | -144 | ✅ novig,prophetx |  | +0.0c | yes | L |
 | Nov 25 9:25PM | NBA | San Antonio vs Portland | moneyline: Portland | kalshi | $280k | +150 | ✅ novig,prophetx |  | +1.0c |  | W |
-| Nov 25 8:16PM | NHL | San Jose vs Anaheim: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $30k | +117 | ✅ prophetx |  | -4.0c |  | L |

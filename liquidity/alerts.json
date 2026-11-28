@@ -1,6 +1,219 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-28T03:45:50Z",
+   "base_depth": 345428,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-28",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 12323,
+     "new_this_side": 48618,
+     "other_side": 179920,
+     "other_side_all_levels": 321333,
+     "ratio": 1.5,
+     "this_side": 273626,
+     "this_side_all_levels": 393844
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "MICH +10.5 (-10.5)",
+     "price": 0.51,
+     "this_side": 28280
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Michigan +10.5 (+10.5)",
+     "price": 0.5074,
+     "this_side": 15393
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 61154.45,
+    "volume_24h_fp": 35508.3,
+    "volume_fp": 66548.37
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 187.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 187.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 60967.45,
+    "volume_24h_fp": 35508.3,
+    "volume_fp": 66361.37
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-28T03:40:23Z",
+   "game": "Michigan vs Ohio St.: Spread",
+   "game_surge_books": [
+    "prophetx"
+   ],
+   "game_x": 1.07,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26NOV28MICHOSU-OSU11\"}",
+   "lead_min": 794,
+   "league": "NCAAF",
+   "line": 10.5,
+   "market": "spread",
+   "new_money": 48618,
+   "new_x": 0.33,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 61154.45,
+      "volume_24h_fp": 35508.3,
+      "volume_fp": 66548.37
+     },
+     "game_normal": 369302,
+     "game_x": 1.07,
+     "normal": 145731,
+     "now": 393844,
+     "type": "SPREAD",
+     "x": 2.7
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 1848268.0,
+      "volume": 2933482.0
+     },
+     "game_normal": 29214,
+     "game_x": 1.01,
+     "normal": 16713,
+     "now": 29557,
+     "type": "SPREAD",
+     "x": 1.77
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 4835,
+     "game_x": 3.38,
+     "normal": 897,
+     "now": 16360,
+     "type": "SPREAD",
+     "x": 18.24
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 10.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": 10.0,
+     "price": -108
+    },
+    "betopenly": {
+     "point": 10.5,
+     "price": -101
+    },
+    "betrivers": {
+     "point": 10.5,
+     "price": -115
+    },
+    "betus": {
+     "point": 10.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 10.5,
+     "price": -115
+    },
+    "circasports": {
+     "point": 10.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 10.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 10.5,
+     "price": -115
+    },
+    "fanduel": {
+     "point": 10.5,
+     "price": -115
+    },
+    "kalshi": {
+     "point": 10.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 10.0,
+     "price": -104
+    },
+    "mybookieag": {
+     "point": 10.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 10.5,
+     "price": -104
+    },
+    "polymarket": {
+     "point": 10.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": 10.5,
+     "price": -103
+    },
+    "williamhill_us": {
+     "point": 10.5,
+     "price": -114
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFSPREAD-26NOV28MICHOSU-OSU11"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Michigan",
+   "side_label": "NOT Ohio St. wins by over 10.5 points",
+   "size_x": 2.7,
+   "start_source": "odds",
+   "start_utc": "2026-11-28T17:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "prophetx"
+   ],
+   "teams": [
+    "Michigan",
+    "Ohio St."
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-28T03:40:23Z",
    "base_depth": 82021,
    "best_price": 0.5484,
@@ -38,6 +251,11 @@
     "open_interest_fp": 0.0,
     "volume_24h_fp": 0.0,
     "volume_fp": 0.0
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 4267.77,
+    "volume_24h_fp": 4122.14,
+    "volume_fp": 4273.8
    },
    "ex_stats_first": {
     "open_interest_fp": 4267.77,
@@ -1842,8 +2060,8 @@
     "volume": 943.0
    },
    "ex_stats_close": {
-    "openInterest": 2365290.0,
-    "volume": 3274688.0
+    "openInterest": 2395477.0,
+    "volume": 3304875.0
    },
    "ex_stats_first": {
     "openInterest": 2186137.0,
@@ -2550,7 +2768,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [
     "Memphis Grizzlies +3.5 (-115)"
@@ -2821,9 +3039,9 @@
     "volume_fp": 55.23
    },
    "ex_stats_close": {
-    "open_interest_fp": 51831.840000000004,
+    "open_interest_fp": 51952.36,
     "volume_24h_fp": 47459.549999999996,
-    "volume_fp": 52384.38
+    "volume_fp": 52504.9
    },
    "ex_stats_first": {
     "open_interest_fp": 10884.529999999999,
@@ -3405,7 +3623,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Edmonton",
@@ -4002,7 +4220,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas A&M",
@@ -4222,7 +4440,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [
     "Over 40.5 (-115)"
@@ -5070,7 +5288,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas A&M",
@@ -5141,9 +5359,9 @@
     "volume_fp": 142.17
    },
    "ex_stats_close": {
-    "open_interest_fp": 60967.45,
+    "open_interest_fp": 61154.45,
     "volume_24h_fp": 35508.3,
-    "volume_fp": 66361.37
+    "volume_fp": 66548.37
    },
    "ex_stats_first": {
     "open_interest_fp": 42652.99,
@@ -5347,9 +5565,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 102858.55,
+    "open_interest_fp": 103455.25,
     "volume_24h_fp": 97220.16,
-    "volume_fp": 103824.64
+    "volume_fp": 104421.34
    },
    "ex_stats_first": {
     "open_interest_fp": 66953.16,
@@ -5726,9 +5944,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 5576.86,
+    "open_interest_fp": 5586.33,
     "volume_24h_fp": 4776.73,
-    "volume_fp": 6780.69
+    "volume_fp": 6790.16
    },
    "ex_stats_first": {
     "open_interest_fp": 3095.41,
@@ -6073,7 +6291,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -8303,7 +8521,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -9355,9 +9573,9 @@
     "volume_fp": 317.66
    },
    "ex_stats_close": {
-    "open_interest_fp": 486703.27,
+    "open_interest_fp": 489263.22000000003,
     "volume_24h_fp": 226515.12,
-    "volume_fp": 528057.61
+    "volume_fp": 530669.82
    },
    "ex_stats_first": {
     "open_interest_fp": 325923.35000000003,
@@ -10112,9 +10330,9 @@
     "volume_fp": 70.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 13011.56,
+    "open_interest_fp": 13014.47,
     "volume_24h_fp": 5273.46,
-    "volume_fp": 14307.76
+    "volume_fp": 14310.670000000002
    },
    "ex_stats_first": {
     "open_interest_fp": 9563.86,
@@ -12721,8 +12939,8 @@
     "volume": 16471.0
    },
    "ex_stats_close": {
-    "openInterest": 3769966.0,
-    "volume": 5213365.0
+    "openInterest": 3771889.0,
+    "volume": 5215288.0
    },
    "ex_stats_first": {
     "openInterest": 2346875.0,
@@ -14092,7 +14310,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -16611,7 +16829,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Pittsburgh",
@@ -17791,7 +18009,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Pittsburgh",
@@ -17907,7 +18125,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas wins by over 10.5 points",
@@ -19666,7 +19884,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "TEX -10.5 (10.5)",
@@ -20306,7 +20524,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -20536,7 +20754,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Minnesota",
@@ -20958,7 +21176,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [
     "Over 40.5 (-115)"
    ],
@@ -23106,7 +23324,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Seattle",
@@ -25020,7 +25238,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Boston Celtics",
@@ -25651,7 +25869,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -27001,7 +27219,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "NOT Texas wins by over 11.5 points",
@@ -29918,7 +30136,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Wisconsin",
@@ -32339,7 +32557,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "TEX (0)",
@@ -35906,7 +36124,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Wisconsin",
@@ -36173,7 +36391,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas",
