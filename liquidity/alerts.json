@@ -51,6 +51,11 @@
     "volume_24h_fp": 9912.11,
     "volume_fp": 4415.33
    },
+   "ex_stats_close": {
+    "open_interest_fp": 113219.29000000001,
+    "volume_24h_fp": 102449.34999999999,
+    "volume_fp": 116644.09
+   },
    "ex_stats_first": {
     "open_interest_fp": 107761.08,
     "volume_24h_fp": 92537.23999999999,
@@ -228,6 +233,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.52,
    "clv_cents": 0.0,
    "confirmed_after_min": 5,
@@ -313,6 +319,8 @@
    "norm_ready_books": 2,
    "paper_only": false,
    "price": 0.52,
+   "price_after_15m": 0.5175,
+   "price_after_15m_book": "kalshi",
    "price_american": -108,
    "price_rule": "ok",
    "price_when_first_seen": 0.52,
@@ -386,7 +394,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-28T00:40:23Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNBASPREAD-26NOV27PHIIND-PHI4"
@@ -409,6 +418,7 @@
    "size_x": 1.92,
    "start_source": "odds",
    "start_utc": "2026-11-28T00:30:00Z",
+   "still_actionable": false,
    "surge_books": [
     "novig"
    ],
@@ -465,9 +475,9 @@
     "volume_fp": 20.59
    },
    "ex_stats_close": {
-    "open_interest_fp": 53705.86,
+    "open_interest_fp": 54585.03,
     "volume_24h_fp": 57831.87,
-    "volume_fp": 59310.82
+    "volume_fp": 60189.99
    },
    "ex_stats_first": {
     "open_interest_fp": 52637.87,
@@ -1907,9 +1917,9 @@
     "volume_fp": 142.17
    },
    "ex_stats_close": {
-    "open_interest_fp": 55222.26,
+    "open_interest_fp": 55260.21,
     "volume_24h_fp": 31460.11,
-    "volume_fp": 60006.62
+    "volume_fp": 60044.57
    },
    "ex_stats_first": {
     "open_interest_fp": 42652.99,
@@ -2112,9 +2122,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 67291.36,
+    "open_interest_fp": 67309.36,
     "volume_24h_fp": 62383.13,
-    "volume_fp": 68250.61
+    "volume_fp": 68268.61
    },
    "ex_stats_first": {
     "open_interest_fp": 66953.16,
@@ -2490,9 +2500,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3334.35,
+    "open_interest_fp": 3439.96,
     "volume_24h_fp": 2494.57,
-    "volume_fp": 4489.53
+    "volume_fp": 4595.14
    },
    "ex_stats_first": {
     "open_interest_fp": 3095.41,
@@ -3061,7 +3071,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New York R",
@@ -3319,9 +3329,9 @@
     "volume_fp": 209.95
    },
    "ex_stats_close": {
-    "open_interest_fp": 146105.11,
+    "open_interest_fp": 148103.69,
     "volume_24h_fp": 150181.03,
-    "volume_fp": 158871.0
+    "volume_fp": 160869.58
    },
    "ex_stats_first": {
     "open_interest_fp": 23180.91,
@@ -3571,7 +3581,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 14,
+   "settle_tries": 15,
    "sharp_agree": [],
    "sharp_oppose": [
     "New Mexico Lobos -6.5 (-120)",
@@ -3861,9 +3871,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3342.85,
+    "open_interest_fp": 3382.25,
     "volume_24h_fp": 2189.66,
-    "volume_fp": 3501.64
+    "volume_fp": 3541.04
    },
    "ex_stats_first": {
     "open_interest_fp": 2431.27,
@@ -4173,7 +4183,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 14,
+   "settle_tries": 15,
    "sharp_agree": [],
    "sharp_oppose": [
     "New Mexico Lobos -6.5 (-120)",
@@ -4906,9 +4916,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 40055.59,
+    "open_interest_fp": 41261.2,
     "volume_24h_fp": 40210.73,
-    "volume_fp": 40212.59
+    "volume_fp": 41418.2
    },
    "ex_stats_first": {
     "open_interest_fp": 6409.83,
@@ -6104,9 +6114,9 @@
     "volume_fp": 317.66
    },
    "ex_stats_close": {
-    "open_interest_fp": 399554.92000000004,
+    "open_interest_fp": 403069.32,
     "volume_24h_fp": 147099.75999999998,
-    "volume_fp": 438791.33
+    "volume_fp": 442699.73
    },
    "ex_stats_first": {
     "open_interest_fp": 325923.35000000003,
@@ -6321,7 +6331,7 @@
    "ex_stats_close": {
     "open_interest_fp": 157903.56,
     "volume_24h_fp": 160410.86,
-    "volume_fp": 160417.98
+    "volume_fp": 160420.99
    },
    "ex_stats_first": {
     "open_interest_fp": 1228.45,
@@ -6784,7 +6794,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 14,
+   "settle_tries": 15,
    "sharp_agree": [
     "New Mexico Lobos -6.5 (-110)"
    ],
@@ -6858,9 +6868,9 @@
     "volume_fp": 70.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 11416.85,
+    "open_interest_fp": 11429.829999999998,
     "volume_24h_fp": 3859.66,
-    "volume_fp": 12697.439999999999
+    "volume_fp": 12710.419999999998
    },
    "ex_stats_first": {
     "open_interest_fp": 9563.86,
@@ -8264,9 +8274,9 @@
     "volume_fp": 10.81
    },
    "ex_stats_close": {
-    "open_interest_fp": 52075.26,
+    "open_interest_fp": 52637.44,
     "volume_24h_fp": 48074.979999999996,
-    "volume_fp": 53776.020000000004
+    "volume_fp": 54346.86
    },
    "ex_stats_first": {
     "open_interest_fp": 27731.09,
@@ -8651,6 +8661,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.63,
    "clv_cents": 1.0,
    "confirmed_after_min": 6,
@@ -10680,9 +10691,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 40055.59,
+    "open_interest_fp": 41261.2,
     "volume_24h_fp": 40210.73,
-    "volume_fp": 40212.59
+    "volume_fp": 41418.2
    },
    "ex_stats_first": {
     "open_interest_fp": 5315.16,
@@ -13202,9 +13213,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 6700.07,
+    "open_interest_fp": 6753.24,
     "volume_24h_fp": 8336.47,
-    "volume_fp": 8426.95
+    "volume_fp": 8480.12
    },
    "ex_stats_first": {
     "open_interest_fp": 2546.1,
@@ -14367,9 +14378,9 @@
     "volume_fp": 92.48
    },
    "ex_stats_close": {
-    "open_interest_fp": 239593.22,
+    "open_interest_fp": 244118.44999999998,
     "volume_24h_fp": 243826.40999999997,
-    "volume_fp": 247278.47999999998
+    "volume_fp": 251803.71
    },
    "ex_stats_first": {
     "open_interest_fp": 97870.62,
@@ -15861,6 +15872,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.51,
    "clv_cents": 0.0,
    "confirmed_after_min": 5,
@@ -17090,9 +17102,9 @@
     "volume_fp": 290.26
    },
    "ex_stats_close": {
-    "open_interest_fp": 251167.28999999998,
+    "open_interest_fp": 252211.57,
     "volume_24h_fp": 223580.66,
-    "volume_fp": 286524.14
+    "volume_fp": 287568.42
    },
    "ex_stats_first": {
     "open_interest_fp": 67674.22,
@@ -18962,8 +18974,8 @@
     "volume": 3762.0
    },
    "ex_stats_close": {
-    "openInterest": 14411519.0,
-    "volume": 22216383.0
+    "openInterest": 14469799.0,
+    "volume": 22296497.0
    },
    "ex_stats_first": {
     "openInterest": 3103725.0,
@@ -19666,9 +19678,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 28762.93,
+    "open_interest_fp": 29676.14,
     "volume_24h_fp": 27241.08,
-    "volume_fp": 29167.61
+    "volume_fp": 30080.82
    },
    "ex_stats_first": {
     "open_interest_fp": 2567.48,
@@ -20009,7 +20021,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Chicago",
@@ -21123,8 +21135,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 6322660.0,
-    "volume": 9355422.0
+    "openInterest": 6335682.0,
+    "volume": 9371547.0
    },
    "ex_stats_first": {
     "openInterest": 634542.0,
@@ -21348,8 +21360,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 12008079.0,
-    "volume": 18039034.0
+    "openInterest": 12004729.0,
+    "volume": 18044018.0
    },
    "ex_stats_first": {
     "openInterest": 1263562.0,
@@ -21567,8 +21579,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 6442868.0,
-    "volume": 7952618.0
+    "openInterest": 6506553.0,
+    "volume": 8016303.0
    },
    "ex_stats_first": {
     "openInterest": 3705199.0,
@@ -22394,9 +22406,9 @@
     "volume_fp": 0.5
    },
    "ex_stats_close": {
-    "open_interest_fp": 331972.26,
+    "open_interest_fp": 333176.82,
     "volume_24h_fp": 341449.42,
-    "volume_fp": 359927.59
+    "volume_fp": 361615.24
    },
    "ex_stats_first": {
     "open_interest_fp": 11889.36,
@@ -22572,9 +22584,9 @@
     "volume_fp": 497.4
    },
    "ex_stats_close": {
-    "open_interest_fp": 27553.18,
+    "open_interest_fp": 31947.9,
     "volume_24h_fp": 28784.94,
-    "volume_fp": 31995.66
+    "volume_fp": 36556.22
    },
    "ex_stats_first": {
     "open_interest_fp": 2915.78,
@@ -24752,7 +24764,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 14,
+   "settle_tries": 15,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New Mexico",
@@ -25574,7 +25586,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 14,
+   "settle_tries": 15,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New Mexico",
@@ -28718,6 +28730,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.38,
    "clv_cents": -2.0,
    "confirmed_after_min": 6,
@@ -30848,6 +30861,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.79,
    "clv_cents": -5.0,
    "confirmed_after_min": 5,
@@ -30982,8 +30996,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.65,
-   "clv_cents": 1.0,
+   "close_price": 0.66,
+   "clv_cents": 2.0,
    "confirmed_after_min": 5,
    "date": "2026-11-27",
    "depth_by_book": {
@@ -31020,9 +31034,9 @@
     "volume_fp": 295.9
    },
    "ex_stats_close": {
-    "open_interest_fp": 1340975.75,
+    "open_interest_fp": 1346149.84,
     "volume_24h_fp": 1271622.8,
-    "volume_fp": 1496922.29
+    "volume_fp": 1502142.8399999999
    },
    "ex_stats_first": {
     "open_interest_fp": 80813.09,
@@ -31290,9 +31304,9 @@
     "volume_fp": 235.63
    },
    "ex_stats_close": {
-    "open_interest_fp": 490806.43000000005,
+    "open_interest_fp": 491811.82,
     "volume_24h_fp": 505603.25,
-    "volume_fp": 525286.24
+    "volume_fp": 526291.63
    },
    "ex_stats_first": {
     "open_interest_fp": 9262.64,
@@ -31423,9 +31437,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 393501.93,
+    "open_interest_fp": 395481.33999999997,
     "volume_24h_fp": 472199.51,
-    "volume_fp": 510682.29000000004
+    "volume_fp": 513141.95999999996
    },
    "ex_stats_first": {
     "open_interest_fp": 15796.61,
@@ -32975,7 +32989,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 14,
+   "settle_tries": 15,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New Mexico",
@@ -33318,9 +33332,9 @@
     "volume_fp": 9.97
    },
    "ex_stats_close": {
-    "open_interest_fp": 74041.39,
+    "open_interest_fp": 85464.92,
     "volume_24h_fp": 71380.0,
-    "volume_fp": 83901.3
+    "volume_fp": 95324.83
    },
    "ex_stats_first": {
     "open_interest_fp": 3526.54,
@@ -34289,9 +34303,9 @@
     "volume_fp": 40.04
    },
    "ex_stats_close": {
-    "open_interest_fp": 321914.49,
+    "open_interest_fp": 326653.63,
     "volume_24h_fp": 294055.88,
-    "volume_fp": 336674.44
+    "volume_fp": 341723.24
    },
    "ex_stats_first": {
     "open_interest_fp": 5490.219999999999,
