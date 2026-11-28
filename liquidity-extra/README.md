@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 28, 9:45 AM ET. This run: 0 new, 0 not confirmed, 7 pending. Open alerts: 18.
+Updated Sat Nov 28, 9:50 AM ET. This run: 7 new, 0 not confirmed, 4 pending. Open alerts: 25.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,13 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 28 9:50AM | NCAAB | St. Thomas vs Princeton | moneyline: St. Thomas | kalshi | $35k | -127 |  |  | +0.0c |  | pending |
+| Nov 28 9:50AM | NCAAB | UC Irvine vs Seattle | moneyline: Seattle | kalshi | $78k | -203 | ✅ novig |  | +0.0c |  | pending |
+| Nov 28 9:50AM | NCAAB | Tennessee Tech vs Eastern Kentucky | moneyline: Tennessee Tech | kalshi | $56k | -233 |  | ✅ | +0.0c |  | pending |
+| Nov 28 9:50AM | NCAAB | Southeast Missouri St. vs Kansas City | moneyline: Kansas City | kalshi | $26k | -133 |  |  | +0.0c |  | pending |
+| Nov 28 9:50AM | NCAAB | Saint Joseph's vs Monmouth | moneyline: Saint Joseph's | kalshi | $79k | -178 |  | ✅ | +0.0c |  | pending |
+| Nov 28 9:50AM | NCAAB | Bethune-Cookman vs San Francisco | moneyline: San Francisco | kalshi | $59k | -426 | ✅ novig |  | +0.0c |  | pending |
+| Nov 28 9:50AM | NCAAB | Buffalo vs Towson | moneyline: Towson | kalshi | $26k | -150 | ✅ novig |  | +0.0c |  | pending |
 | Nov 28 8:40AM | NCAAB | Northern Arizona vs Cal State Bakersfield | moneyline: Cal State Bakersfield | kalshi | $29k | -233 |  |  | +1.0c |  | pending |
 | Nov 28 2:40AM | NCAAB | Robert Morris vs Northern Iowa | moneyline: Northern Iowa | kalshi | $26k | -233 |  |  | +1.0c |  | pending |
 | Nov 28 2:40AM | NCAAB | Portland St. vs Southern Illinois | moneyline: Southern Illinois | kalshi | $27k | -285 |  |  | -1.0c |  | pending |
@@ -203,10 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 23 1:20AM | NCAAB | FDU vs Iona | moneyline: Iona | kalshi | $30k | -376 |  |  | -62.0c | yes | L |
 | Nov 23 1:20AM | NCAAB | Central Arkansas vs North Florida | moneyline: Central Arkansas | kalshi | $31k | -400 |  |  | -2.0c |  | W |
 | Nov 23 1:10AM | NCAAB | TCU vs Miami (FL) | moneyline: Miami | kalshi | $138k | -300 |  |  | -8.0c |  | L |
-| Nov 23 1:10AM | NCAAB | St. John's vs Oregon | moneyline: St. John's | kalshi | $154k | -456 |  |  | +3.0c |  | W |
-| Nov 23 1:10AM | NCAAB | San Diego St. vs Iowa St. | moneyline: Iowa St. | kalshi | $138k | -335 |  |  | +3.0c |  | W |
-| Nov 23 1:10AM | NCAAB | Northern Iowa vs Davidson | moneyline: Davidson | kalshi | $134k | -203 |  |  | +2.0c |  | W |
-| Nov 23 1:10AM | NCAAB | UNC Greensboro vs Pepperdine | moneyline: Pepperdine | kalshi | $146k | -567 |  |  | -1.0c |  | W |
-| Nov 23 1:10AM | NCAAB | Tulsa vs Oregon St. | moneyline: Oregon St. | kalshi | $118k | -257 |  |  | -5.0c |  | W |
-| Nov 23 1:10AM | NCAAB | St. Bonaventure vs Appalachian St. | moneyline: St. Bonaventure | kalshi | $123k | -203 |  |  | -3.0c |  | W |
-| Nov 23 1:10AM | NCAAB | Nevada vs San Francisco | moneyline: Nevada | kalshi | $131k | -285 |  |  | -1.0c |  | W |
