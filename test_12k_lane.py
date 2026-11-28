@@ -305,5 +305,26 @@ ok("a game that has already started is not selected",
 ok("a side matching NEITHER team yields no bet string, never a guess",
    ex.k12_bet(dict(_bspr, side="Nobody FC")) is None)
 
+# --- 10. SAME-CITY SIDES MUST NOT CROSS -------------------------------------------------------
+# A bare token intersection matched "New York Giants" to "New York Jets" on {new, york}. In a
+# Giants-vs-Jets game that picked the JETS spread row for a GIANTS trigger - a live bet on the
+# opposite outcome. Found by driving the helper, not by reading it.
+for _a, _b in (("New York Giants", "New York Jets"), ("Los Angeles Chargers", "Los Angeles Rams"),
+               ("Los Angeles C", "Los Angeles R"), ("New York G", "New York J")):
+    ok(f"{_a!r} does not match {_b!r}", ex.k12_same_side(_a, _b, others=[_a]) is False)
+    ok(f"...and {_a!r} still matches itself", ex.k12_same_side(_a, _a, others=[_b]) is True)
+ok("dialects still match (Detroit Lions == Detroit)",
+   ex.k12_same_side("Detroit Lions", "Detroit", others=["Chicago Bears"]) is True)
+ok("an ambiguous tie fails CLOSED rather than guessing",
+   ex.k12_same_side("New York", "New York Jets", others=["New York Giants"]) is False)
+# end to end: a Giants trigger in a Giants/Jets game must never be priced from the Jets row
+_GJ, _GJT = "New York Giants @ New York Jets", ["New York Giants", "New York Jets"]
+_trigG = _row(_GJ, "New York Giants", 1000, teams=_GJT)
+_sprJ = _row(_GJ, "New York Jets", 1000, teams=_GJT, market="spread", line=3.5,
+             label="New York Jets +3.5")
+_p, _ = ex.k12_select([_trigG, _sprJ], _t0)
+ok("a Giants trigger is NOT priced from the Jets spread row",
+   all("jets" not in str(x.get("side")).lower() for x in _p), [x.get("side") for x in _p])
+
 print(f"\n{len(RAN) - len(FAILED)} passed, {len(FAILED)} failed")
 sys.exit(1 if FAILED else 0)

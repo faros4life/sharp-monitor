@@ -1437,13 +1437,39 @@ def k12_same_game(a, b):
         return False
 
 
-def k12_same_side(a, b):
-    """True when two entries name the same team, across dialects ("Detroit" == "Detroit Lions")."""
+def k12_side_tokens(x):
+    """Team tokens for a side name, or an empty set."""
     try:
-        ta, tb = lm.toks(str(a or ""), None), lm.toks(str(b or ""), None)
-        return bool(ta and tb and (ta & tb))
+        return lm.toks(str(x or ""), None) or set()
     except Exception:
-        return str(a or "").strip().lower() == str(b or "").strip().lower()
+        return set()
+
+
+def k12_same_side(want, cand, others=()):
+    """True when `cand` names the same team as `want`, across dialects - and UNAMBIGUOUSLY so.
+
+    A plain token intersection is NOT safe here and would bet the wrong team. Measured:
+    toks("New York Giants") = {new, york, giants} and toks("New York Jets") = {new, york, jets}, so
+    they intersect on the city and a bare `ta & tb` returns True. In a Giants-vs-Jets game that
+    matches the JETS spread row to a GIANTS trigger - a live bet on the opposite outcome. Same for
+    the two Los Angeles and the two New York clubs, and for the feed's truncated dialects
+    ("Los Angeles C" vs "Los Angeles R").
+
+    So a match must also be BETTER than every rival name in `others`: strictly more overlapping
+    tokens than any other team in the same game. Ties lose, which keeps it fail-closed - an
+    ambiguous side yields no play rather than a guessed one. With `others` empty this is the old
+    behaviour and is only safe where the caller has already fixed the team set, so every caller in
+    this lane passes the game's other team."""
+    w, c = k12_side_tokens(want), k12_side_tokens(cand)
+    if not w or not c:
+        return False
+    hit = len(w & c)
+    if not hit:
+        return False
+    for o in others or ():
+        if len(w & k12_side_tokens(o)) >= hit:
+            return False
+    return True
 
 
 def k12_spread_play(rows, trig):
@@ -1460,11 +1486,13 @@ def k12_spread_play(rows, trig):
     same = [x for x in rows if x.get("market") == "spread" and k12_same_game(x, trig)]
     if not same:
         return None, "no spread entry for this game"
-    direct = [x for x in same if k12_same_side(x.get("side"), trig.get("side"))]
+    direct = [x for x in same if k12_same_side(trig.get("side"), x.get("side"),
+                                               others=_k12_rivals(x, trig))]
     if direct:
         return dict(direct[0]), "direct"
     mir = [x for x in same if "not " in str(x.get("side_label") or "").lower()
-           and k12_same_side(_k12_mirror_team(x), trig.get("side"))]
+           and k12_same_side(trig.get("side"), _k12_mirror_team(x),
+                             others=_k12_rivals(x, trig))]
     if not mir:
         return None, "spread entry exists but names neither our side nor its mirror"
     m = mir[0]
@@ -1483,6 +1511,19 @@ def k12_spread_play(rows, trig):
     return dict(m, side=trig.get("side"), line=line, best_price=round(1.0 - frac, 4),
                 best_price_american=am, price_american=am,
                 k12_mirrored_from=m.get("side_label")), "mirrored"
+
+
+def _k12_rivals(row, trig):
+    """Every team named in this game OTHER than the one the trigger is on - the names a side match
+    has to beat. Drawn from both rows, because the two feeds spell teams differently and a rival
+    missing from the list is a rival the uniqueness test cannot rule out."""
+    want = k12_side_tokens((trig or {}).get("side"))
+    out = []
+    for t in list((row or {}).get("teams") or []) + list((trig or {}).get("teams") or []):
+        tt = k12_side_tokens(t)
+        if tt and tt != want and not (want and tt >= want):
+            out.append(t)
+    return out
 
 
 def _k12_mirror_team(x):
@@ -1553,7 +1594,11 @@ def k12_bet(x):
     sd, ln, am = x.get("side"), x.get("line"), x.get("price_american")
     if not sd or am is None or ln is None:
         return None
-    if not any(k12_same_side(sd, t) for t in (x.get("teams") or [])):
+    # The side must match EXACTLY ONE of the row's teams. Passing the rivals matters here too: with
+    # a bare intersection, "New York Giants" matches both New York clubs and the check proves
+    # nothing about which team is being bet.
+    _ts = list(x.get("teams") or [])
+    if sum(1 for t in _ts if k12_same_side(sd, t, others=[o for o in _ts if o != t])) != 1:
         return None
     try:
         return f"{sd} {float(ln):+g} ({int(am):+d})"
