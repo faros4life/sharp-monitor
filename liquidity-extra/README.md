@@ -1,27 +1,27 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 27, 7:10 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 28.
+Updated Fri Nov 27, 7:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 25.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 539-323 (-27.29u flat) | rule met: 130-87
+**Record:** 541-324 (-26.98u flat) | rule met: 132-88
 
-**Fade (paper, betting against the print):** 298-504 (+14.04u flat, after fees)
+**Fade (paper, betting against the print):** 299-506 (+13.09u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 27 7:00PM | NCAAB | Towson vs Penn | moneyline: Penn | kalshi | $31k | -300 |  |  | -2.0c |  | pending |
+| Nov 27 7:00PM | NCAAB | Towson vs Penn | moneyline: Penn | kalshi | $31k | -300 |  |  | +8.0c |  | pending |
 | Nov 27 6:10PM | NCAAB | Georgia vs UCF | moneyline: Georgia | kalshi | $103k | -213 | ✅ prophetx |  | +0.0c |  | pending |
 | Nov 27 6:00PM | NCAAB | West Virginia vs North Carolina | moneyline: West Virginia | kalshi | $51k | -138 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 27 6:00PM | NCAAB | Texas Tech vs San Diego St. | moneyline: Texas Tech | kalshi | $40k | -335 | ✅ novig | ✅ | +0.0c |  | pending |
 | Nov 27 4:30PM | NCAAB | Kansas State @ Michigan | moneyline: MICH (0) | novig | $25k | -426 | ✅ kalshi,prophetx | ✅ | +0.0c |  | pending |
 | Nov 27 4:20PM | NCAAB | Texas A&M vs Marquette: Spread | spread: Marquette wins by over 1.5 points | kalshi | $29k | -108 | ✅ novig | ✅ | +3.0c |  | pending |
-| Nov 27 4:10PM | NCAAB | Texas A&M vs Marquette | moneyline: Marquette | kalshi | $57k | -117 | ✅ novig,prophetx | ✅ | +3.0c |  | pending |
+| Nov 27 4:10PM | NCAAB | Texas A&M vs Marquette | moneyline: Marquette | kalshi | $57k | -117 | ✅ novig,prophetx | ✅ | +3.0c |  | L |
 | Nov 27 3:20PM | NCAAB | North Texas vs North Dakota St. | moneyline: North Texas | kalshi | $30k | -233 |  |  | +0.0c |  | pending |
-| Nov 27 2:50PM | NCAAB | Texas A&M vs Marquette | moneyline: Texas A&M | kalshi | $116k | +113 | ✅ novig | ✅ | -3.0c | yes | pending |
+| Nov 27 2:50PM | NCAAB | Texas A&M vs Marquette | moneyline: Texas A&M | kalshi | $116k | +113 | ✅ novig | ✅ | -3.0c | yes | W |
 | Nov 27 2:50PM | NCAAB | TCU vs Baylor | moneyline: Baylor | kalshi | $26k | -186 |  |  | +0.0c |  | L |
 | Nov 27 1:50PM | NCAAB | Missouri St. vs Oral Roberts | moneyline: Oral Roberts | kalshi | $32k | -186 | ✅ novig |  | -1.0c | yes | pending |
-| Nov 27 1:30PM | NCAAB | Villanova vs Kansas | moneyline: Kansas | kalshi | $70k | -567 | ✅ novig | ❌ | +1.0c | yes | pending |
+| Nov 27 1:30PM | NCAAB | Villanova vs Kansas | moneyline: Kansas | kalshi | $70k | -567 | ✅ novig | ❌ | +1.0c | yes | W |
 | Nov 27 12:40PM | NCAAB | Memphis vs Wake Forest: Point Total | total: NOT Over 153.5 points | kalshi | $31k | -108 |  |  | +0.0c |  | L |
 | Nov 27 12:30PM | NCAAB | Iowa St. vs St. John's | moneyline: Iowa St. | kalshi | $69k | +104 |  | ✅ | +1.0c | yes | L |
 | Nov 27 12:00PM | NCAAB | Memphis vs Wake Forest | moneyline: Memphis | kalshi | $41k | -104 | ✅ novig | ❌ | +1.0c |  | W |
