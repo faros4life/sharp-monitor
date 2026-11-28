@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 28, 3:00 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 38.
+Updated Sat Nov 28, 3:05 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 38.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 28 2:30AM | NCAAF | Tulane vs South Florida | moneyline: South Florida | kalshi | $149k | -223 | ✅ novig,prophetx |  | +1.0c |  | pending |
+| Nov 28 2:30AM | NCAAF | Tulane vs South Florida | moneyline: South Florida | kalshi | $149k | -223 | ✅ novig,prophetx |  | +3.0c |  | pending |
 | Nov 28 2:30AM | NCAAF | Marshall vs Louisiana-Monroe | moneyline: Marshall | kalshi | $55k | -223 |  |  | +0.0c |  | pending |
 | Nov 28 2:30AM | NCAAF | Idaho St. vs North Dakota | moneyline: North Dakota | kalshi | $34k | -376 |  |  | +0.0c |  | pending |
 | Nov 28 2:05AM | NCAAF | Troy vs Arkansas St. | moneyline: Arkansas St. | kalshi | $26k | -163 | ✅ prophetx |  | +0.0c |  | pending |
@@ -32,7 +32,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 27 9:40PM | NCAAF | Navy vs Charlotte: Spread | spread: Navy wins by over 16.5 points | kalshi | $26k | -104 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 27 9:10PM | NCAAF | Michigan vs Ohio St.: Total Points | total: Over 37.5 points | kalshi | $29k | +104 |  |  | -1.0c |  | pending |
 | Nov 27 8:56PM | NBA | Los Angeles L vs San Antonio: Total Points | total: Over 226.5 points | kalshi | $64k | -104 |  |  | +2.0c | yes | L |
-| Nov 27 8:40PM | NCAAF | Louisiana Tech @ Georgia Southern | moneyline: LT (0) | novig | $29k | +111 |  |  | +0.5c |  | pending |
+| Nov 27 8:40PM | NCAAF | Louisiana Tech @ Georgia Southern | moneyline: LT (0) | novig | $29k | +111 |  |  | +0.0c |  | pending |
 | Nov 27 8:40PM | NCAAF | West Virginia vs Utah: Spread | spread: NOT Utah wins by over 24.5 points | kalshi | $74k | -100 |  | ✅ | +5.0c | yes | W |
 | Nov 27 8:40PM | NBA | Denver vs Utah: Total Points | total: NOT Over 232.5 points | kalshi | $27k | -104 | ✅ novig | ❌ | +2.0c | yes | W |
 | Nov 27 8:25PM | NBA | Memphis vs Minnesota: Spread | spread: Minnesota wins by over 2.5 points | kalshi | $43k | -108 |  | ❌ | +0.0c | yes | L |
