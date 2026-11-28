@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 28, 9:00 AM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 18.
+Updated Sat Nov 28, 9:10 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 18.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -17,7 +17,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 28 2:40AM | NCAAB | Lehigh vs Pepperdine | moneyline: Pepperdine | kalshi | $31k | -426 |  |  | +1.0c |  | pending |
 | Nov 28 2:40AM | NCAAB | East Texas A&M vs Marshall | moneyline: Marshall | kalshi | $32k | -335 |  |  | +1.0c |  | pending |
 | Nov 28 2:40AM | NCAAB | Delaware vs Stony Brook | moneyline: Stony Brook | kalshi | $26k | -213 |  |  | +2.0c |  | pending |
-| Nov 28 1:30AM | NCAAB | UT Rio Grande Valley vs UNLV | moneyline: UNLV | kalshi | $37k | -525 |  |  | +1.0c |  | pending |
+| Nov 28 1:30AM | NCAAB | UT Rio Grande Valley vs UNLV | moneyline: UNLV | kalshi | $37k | -525 |  |  | +0.0c |  | pending |
 | Nov 28 1:30AM | NCAAB | Northern Illinois vs Eastern Illinois | moneyline: Northern Illinois | kalshi | $33k | -567 |  |  | +0.0c | yes | pending |
 | Nov 28 1:30AM | NCAAB | Liberty vs UNC Wilmington | moneyline: UNC Wilmington | kalshi | $31k | -223 |  |  | -1.0c |  | pending |
 | Nov 28 1:30AM | NCAAB | Delaware St. vs North Carolina A&T | moneyline: North Carolina A&T | kalshi | $28k | -567 |  |  | +0.0c |  | pending |
