@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 27, 7:55 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 73.
+Updated Fri Nov 27, 8:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 73.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 27 7:45PM | NBA | Dallas vs Phoenix: Spread | spread: Phoenix wins by over 4.5 points | kalshi | $35k | -100 | ✅ novig | ✅ | +0.0c |  | pending |
+| Nov 27 7:45PM | NBA | Dallas vs Phoenix: Spread | spread: Phoenix wins by over 4.5 points | kalshi | $35k | -100 | ✅ novig | ✅ | +0.0c | yes | pending |
 | Nov 27 7:35PM | NHL | Seattle vs Edmonton | moneyline: Edmonton | kalshi | $66k | -194 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 27 7:20PM | NBA | Philadelphia vs Indiana: Spread | spread: Philadelphia wins by over 3.5 points | kalshi | $32k | -108 | ✅ novig | ✅ | +0.0c | yes | pending |
 | Nov 27 7:20PM | NBA | Golden State vs Portland: Spread | spread: NOT Portland wins by over 8.5 points | kalshi | $36k | -108 | ✅ novig | ❌ | -1.0c |  | pending |
@@ -105,7 +105,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 27 8:50AM | NFL | Denver vs Pittsburgh: Total Points | total: Over 37.5 points | kalshi | $127k | +104 | ✅ novig |  | -1.0c | yes | L |
 | Nov 27 8:45AM | NFL | Denver vs Pittsburgh: Spread | spread: Denver wins by over 4.5 points | kalshi | $115k | -104 |  |  | +0.0c | yes | L |
 | Nov 27 8:25AM | NCAAF | Buffalo vs Akron: Total Points | total: Over 49.5 points | kalshi | $42k | -108 |  | ✅ | +0.0c | yes | L |
-| Nov 27 8:05AM | NBA | Los Angeles Lakers @ San Antonio Spurs | moneyline: SAS (0) | novig | $28k | -199 | ✅ kalshi |  | -0.5c | yes | pending |
+| Nov 27 8:05AM | NBA | Los Angeles Lakers @ San Antonio Spurs | moneyline: SAS (0) | novig | $28k | -199 | ✅ kalshi |  | -1.0c | yes | pending |
 | Nov 27 8:05AM | NCAAF | Florida vs Florida St.: Spread | spread: NOT Florida wins by over 6.5 points | kalshi | $28k | -100 |  |  | -1.0c | yes | L |
 | Nov 27 8:00AM | NBA | Brooklyn vs Toronto: Spread | spread: Toronto wins by over 8.5 points | kalshi | $32k | -108 |  |  | +2.0c | yes | pending |
 | Nov 27 7:55AM | NCAAF | Buffalo vs Akron: Total Points | total: Over 48.5 points | kalshi | $37k | -113 |  | ✅ | +2.0c | yes | L |
