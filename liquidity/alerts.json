@@ -1,6 +1,198 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-28T03:55:50Z",
+   "base_depth": 121654,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-11-28",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -37419,
+     "new_this_side": 96770,
+     "other_side": 32565,
+     "other_side_all_levels": 70534,
+     "ratio": 6.2,
+     "this_side": 202264,
+     "this_side_all_levels": 226179
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "USM +5.5 (-5.5)",
+     "price": 0.51,
+     "this_side": 25433
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 613.36,
+    "volume_24h_fp": 328.42,
+    "volume_fp": 781.47
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 613.36,
+    "volume_24h_fp": 328.42,
+    "volume_fp": 781.47
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-28T03:50:13Z",
+   "game": "Southern Miss vs Old Dominion: Spread",
+   "game_surge_books": [],
+   "game_x": 1.99,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26NOV28USMODU-ODU6\"}",
+   "lead_min": 844,
+   "league": "NCAAF",
+   "line": 5.5,
+   "market": "spread",
+   "new_money": 96770,
+   "new_x": 0.68,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 613.36,
+      "volume_24h_fp": 328.42,
+      "volume_fp": 781.47
+     },
+     "game_normal": 113820,
+     "game_x": 1.99,
+     "normal": 142510,
+     "now": 226179,
+     "type": "SPREAD",
+     "x": 1.59
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 3348995.0,
+      "volume": 3356651.0
+     },
+     "game_normal": 33765,
+     "game_x": 0.9,
+     "normal": 16635,
+     "now": 30360,
+     "type": "SPREAD",
+     "x": 1.83
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 5.5,
+     "price": -108
+    },
+    "betonlineag": {
+     "point": 5.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 5.5,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 5.5,
+     "price": -109
+    },
+    "betus": {
+     "point": 5.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 5.5,
+     "price": -108
+    },
+    "circasports": {
+     "point": 5.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 5.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 5.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 5.5,
+     "price": -105
+    },
+    "kalshi": {
+     "point": 5.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 5.5,
+     "price": -106
+    },
+    "mybookieag": {
+     "point": 5.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 5.5,
+     "price": -104
+    },
+    "polymarket": {
+     "point": 5.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 5.5,
+     "price": -104
+    },
+    "williamhill_us": {
+     "point": 5.5,
+     "price": -107
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFSPREAD-26NOV28USMODU-ODU6"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Southern Miss",
+   "side_label": "NOT Old Dominion wins by over 5.5 points",
+   "size_x": 1.59,
+   "start_source": "odds",
+   "start_utc": "2026-11-28T18:00:00Z",
+   "surge_books": [],
+   "teams": [
+    "Southern Miss",
+    "Old Dominion"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-28T03:45:50Z",
    "base_depth": 345428,
    "best_price": 0.51,
@@ -52,9 +244,9 @@
     "volume_fp": 187.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 61172.86,
+    "open_interest_fp": 61241.24,
     "volume_24h_fp": 35772.66,
-    "volume_fp": 66688.72
+    "volume_fp": 66831.1
    },
    "ex_stats_first": {
     "open_interest_fp": 60967.45,
@@ -298,6 +490,8 @@
    "norm_ready_books": 1,
    "paper_only": false,
    "price": 0.54,
+   "price_after_15m": 0.5484,
+   "price_after_15m_book": "prophetx",
    "price_american": -117,
    "price_rule": "ok",
    "price_when_first_seen": 0.54,
@@ -371,7 +565,8 @@
      "price": -112
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-28T03:55:50Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFTOTAL-26NOV28ARMYRICE-48"
@@ -390,6 +585,7 @@
    "size_x": 1.24,
    "start_source": "odds",
    "start_utc": "2026-11-28T19:00:00Z",
+   "still_actionable": true,
    "surge_books": [],
    "teams": [
     "Army",
@@ -438,9 +634,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 17273.92,
+    "open_interest_fp": 17745.61,
     "volume_24h_fp": 6329.14,
-    "volume_fp": 17885.07
+    "volume_fp": 18356.76
    },
    "ex_stats_first": {
     "open_interest_fp": 17175.35,
@@ -631,9 +827,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2210.94,
+    "open_interest_fp": 2222.61,
     "volume_24h_fp": 944.45,
-    "volume_fp": 2259.94
+    "volume_fp": 2271.61
    },
    "ex_stats_first": {
     "open_interest_fp": 2127.38,
@@ -1063,7 +1259,7 @@
    "ex_stats_close": {
     "open_interest_fp": 3415.6,
     "volume_24h_fp": 429.78,
-    "volume_fp": 6644.74
+    "volume_fp": 6647.93
    },
    "ex_stats_first": {
     "open_interest_fp": 3403.89,
@@ -1273,9 +1469,9 @@
     "volume_fp": 48.13
    },
    "ex_stats_close": {
-    "open_interest_fp": 2335.09,
+    "open_interest_fp": 2338.23,
     "volume_24h_fp": 1328.69,
-    "volume_fp": 2402.36
+    "volume_fp": 2405.5
    },
    "ex_stats_first": {
     "open_interest_fp": 2041.65,
@@ -2071,8 +2267,8 @@
     "volume": 943.0
    },
    "ex_stats_close": {
-    "openInterest": 2395477.0,
-    "volume": 3383822.0
+    "openInterest": 2415564.0,
+    "volume": 3425927.0
    },
    "ex_stats_first": {
     "openInterest": 2186137.0,
@@ -2779,7 +2975,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [
     "Memphis Grizzlies +3.5 (-115)"
@@ -3050,9 +3246,9 @@
     "volume_fp": 55.23
    },
    "ex_stats_close": {
-    "open_interest_fp": 51952.36,
+    "open_interest_fp": 52020.450000000004,
     "volume_24h_fp": 47563.03999999999,
-    "volume_fp": 52504.9
+    "volume_fp": 52572.99
    },
    "ex_stats_first": {
     "open_interest_fp": 10884.529999999999,
@@ -4233,7 +4429,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 13,
+   "settle_tries": 14,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas A&M",
@@ -4453,7 +4649,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 13,
+   "settle_tries": 14,
    "sharp_agree": [],
    "sharp_oppose": [
     "Over 40.5 (-115)"
@@ -5301,7 +5497,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 13,
+   "settle_tries": 14,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas A&M",
@@ -5372,9 +5568,9 @@
     "volume_fp": 142.17
    },
    "ex_stats_close": {
-    "open_interest_fp": 61172.86,
+    "open_interest_fp": 61241.24,
     "volume_24h_fp": 35772.66,
-    "volume_fp": 66688.72
+    "volume_fp": 66831.1
    },
    "ex_stats_first": {
     "open_interest_fp": 42652.99,
@@ -5759,8 +5955,8 @@
     "volume": 13844.0
    },
    "ex_stats_close": {
-    "openInterest": 2161509.0,
-    "volume": 2797102.0
+    "openInterest": 2166892.0,
+    "volume": 2803233.0
    },
    "ex_stats_first": {
     "openInterest": 1890233.0,
@@ -6165,6 +6361,7 @@
     "volume_fp": 26780.96
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-27T21:05:59Z",
    "game": "Minnesota vs Wisconsin: Total Points",
    "game_surge_books": [],
@@ -6296,7 +6493,7 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFTOTAL-26NOV27MINNWIS-38"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -6304,7 +6501,8 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 13,
+   "settle_tries": 14,
+   "settled_utc": "2026-11-28T03:55:50Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -6322,7 +6520,7 @@
     "Wisconsin"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.94
   },
   {
    "alerted_utc": "2026-11-27T21:05:59Z",
@@ -8534,7 +8732,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -9586,9 +9784,9 @@
     "volume_fp": 317.66
    },
    "ex_stats_close": {
-    "open_interest_fp": 490992.44,
+    "open_interest_fp": 494090.27,
     "volume_24h_fp": 230770.40999999997,
-    "volume_fp": 532399.04
+    "volume_fp": 535528.73
    },
    "ex_stats_first": {
     "open_interest_fp": 325923.35000000003,
@@ -10343,9 +10541,9 @@
     "volume_fp": 70.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 13177.76,
+    "open_interest_fp": 13183.49,
     "volume_24h_fp": 5435.299999999999,
-    "volume_fp": 14473.96
+    "volume_fp": 14479.69
    },
    "ex_stats_first": {
     "open_interest_fp": 9563.86,
@@ -10549,9 +10747,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 4094.5299999999997,
+    "open_interest_fp": 4117.41,
     "volume_24h_fp": 2743.9900000000002,
-    "volume_fp": 4099.13
+    "volume_fp": 4122.01
    },
    "ex_stats_first": {
     "open_interest_fp": 1756.3999999999999,
@@ -12952,8 +13150,8 @@
     "volume": 16471.0
    },
    "ex_stats_close": {
-    "openInterest": 3774599.0,
-    "volume": 5326219.0
+    "openInterest": 3778946.0,
+    "volume": 5330566.0
    },
    "ex_stats_first": {
     "openInterest": 2346875.0,
@@ -14323,7 +14521,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -16842,7 +17040,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Pittsburgh",
@@ -18022,7 +18220,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Pittsburgh",
@@ -18138,7 +18336,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 13,
+   "settle_tries": 14,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas wins by over 10.5 points",
@@ -19897,7 +20095,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 13,
+   "settle_tries": 14,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "TEX -10.5 (10.5)",
@@ -20623,6 +20821,7 @@
     "volume_fp": 90984.74
    },
    "fade_price": 0.37,
+   "fade_units": 1.59,
    "first_seen_utc": "2026-11-27T14:35:50Z",
    "game": "Memphis vs Minnesota",
    "game_surge_books": [],
@@ -20761,7 +20960,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26NOV27MEMMIN-MIN"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -20769,7 +20968,8 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
+   "settled_utc": "2026-11-28T03:55:50Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Minnesota",
@@ -20787,7 +20987,7 @@
     "Minnesota"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-27T14:30:22Z",
@@ -21191,7 +21391,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 13,
+   "settle_tries": 14,
    "sharp_agree": [
     "Over 40.5 (-115)"
    ],
@@ -25255,7 +25455,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Boston Celtics",
@@ -25886,7 +26086,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 13,
+   "settle_tries": 14,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -27236,7 +27436,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 13,
+   "settle_tries": 14,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "NOT Texas wins by over 11.5 points",
@@ -30020,10 +30220,12 @@
     "volume": 2187982.0
    },
    "fade_price": 0.26,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-26T21:36:00Z",
    "game": "Minnesota @ Wisconsin",
    "game_surge_books": [],
    "game_x": 1.17,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1fd16-4d20-7803-bd33-b7d5105e9e05\", \"outcome_id\": \"01a1fd16-4d20-7803-bd33-b7e68e1754a1\"}",
    "lead_min": 1610,
    "league": "NCAAF",
@@ -30146,14 +30348,15 @@
     "market_id": "01a1fd16-4d20-7803-bd33-b7d5105e9e05",
     "outcome_id": "01a1fd16-4d20-7803-bd33-b7e68e1754a1"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 13,
+   "settle_tries": 14,
+   "settled_utc": "2026-11-28T03:55:50Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Wisconsin",
@@ -30170,7 +30373,7 @@
     "Wisconsin"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.34
   },
   {
    "alerted_utc": "2026-11-26T21:36:00Z",
@@ -32574,7 +32777,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 13,
+   "settle_tries": 14,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "TEX (0)",
@@ -36072,6 +36275,7 @@
     "volume_fp": 24948.58
    },
    "fade_price": 0.26,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-26T10:15:52Z",
    "game": "Minnesota vs Wisconsin",
    "game_surge_books": [],
@@ -36134,14 +36338,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26NOV27MINNWIS-WIS"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "prophetx"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 13,
+   "settle_tries": 14,
+   "settled_utc": "2026-11-28T03:55:50Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Wisconsin",
@@ -36159,7 +36364,7 @@
     "Wisconsin"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.34
   },
   {
    "alerted_utc": "2026-11-26T10:10:31Z",
@@ -36408,7 +36613,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 13,
+   "settle_tries": 14,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas",
