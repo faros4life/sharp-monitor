@@ -22,7 +22,7 @@ SRC = open("executor.py", encoding="utf-8").read()
 LIVE_LANES = {"rules": ("LIVE_UNIT", "EXEC_LIVE"), "board": ("BOARD_UNIT", "EXEC_BOARD_LIVE"),
               "r1": ("R1_UNIT", "EXEC_R1_LIVE"), "ncs": ("NCS_UNIT", "EXEC_NCS_LIVE"),
               "dogs": ("DOGS_UNIT", "EXEC_DOGS_LIVE"),
-              "all3": ("ALL3_UNIT", "EXEC_ALL3_LIVE")}   # Nov 28: ALL-3, ships off
+              "12k": ("K12_UNIT", "EXEC_12K_LIVE")}   # Nov 28: 12K, ships off
 
 ok("the live-lane list still matches the lanes executor names",
    set(LIVE_LANES) | {"lane2"} == set(ex.LANE_NAME), sorted(set(ex.LANE_NAME)))

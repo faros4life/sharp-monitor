@@ -273,9 +273,9 @@ TOA_N = [0]
 LANE_NAME = {"rules": "Lane 1", "phase 1": "Lane 1", "lane 1": "Lane 1", "r1": "R1", "board v3": "Board V3",
              "board v4": "Board V4", "dogs": "Dogs", "ncs": "NCS",
              # Nov 28: both spellings. This map is looked up by DISPLAY name lowercased
-             # ("all-3"), while the lane's own key is "all3" - carrying one and not the
+             # ("12k"), while the lane's own key is "12k" - carrying one and not the
              # other is how a lane's fills land in the report as Unattributed.
-             "all3": "ALL-3", "all-3": "ALL-3"}
+             "12k": "12K", "12k": "12K"}
 
 
 def main():

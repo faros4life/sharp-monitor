@@ -45,7 +45,7 @@ check("no live venue -> nothing chosen", r["lc"] is None)
 src = open("executor.py").read()
 # Nov 22: four lanes - board, r1, ncs and the phase-1 branch. Nov 23: five with DOGS. Every lane that can
 # place must call trigger_first, or its order skips the trigger-venue ordering entirely.
-# Nov 28: six with ALL-3. Every lane that can place MUST call trigger_first, or its order skips the
+# Nov 28: six with 12K. Every lane that can place MUST call trigger_first, or its order skips the
 # trigger-venue ordering entirely - which is why this is a count and not a spot check.
 check("applied in all six live lanes", src.count("                trigger_first(r, ent)\n") == 6)
 print("ALL PASS" if not BAD else f"{len(BAD)} FAILED")
