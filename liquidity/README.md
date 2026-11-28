@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 28, 3:30 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 40.
+Updated Sat Nov 28, 3:35 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 40.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -11,7 +11,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 28 3:20AM | NCAAF | UCF vs Colorado | moneyline: Colorado | kalshi | $171k | -117 | ✅ novig,prophetx |  | +0.0c |  | pending |
-| Nov 28 3:10AM | NCAAF | Tulane @ South Florida | moneyline: USF (0) | novig | $29k | -264 | ✅ kalshi,prophetx |  | +0.0c | yes | pending |
+| Nov 28 3:10AM | NCAAF | Tulane @ South Florida | moneyline: USF (0) | novig | $29k | -264 | ✅ kalshi,prophetx |  | -0.5c | yes | pending |
 | Nov 28 2:30AM | NCAAF | Tulane vs South Florida | moneyline: South Florida | kalshi | $149k | -223 | ✅ novig,prophetx |  | +3.0c |  | pending |
 | Nov 28 2:30AM | NCAAF | Marshall vs Louisiana-Monroe | moneyline: Marshall | kalshi | $55k | -223 |  |  | +0.0c |  | pending |
 | Nov 28 2:30AM | NCAAF | Idaho St. vs North Dakota | moneyline: North Dakota | kalshi | $34k | -376 |  |  | +0.0c |  | pending |
