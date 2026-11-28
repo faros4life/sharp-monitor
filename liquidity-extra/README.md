@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 28, 9:50 AM ET. This run: 7 new, 0 not confirmed, 4 pending. Open alerts: 25.
+Updated Sat Nov 28, 10:00 AM ET. This run: 4 new, 0 not confirmed, 1 pending. Open alerts: 29.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,14 +10,18 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 28 9:50AM | NCAAB | St. Thomas vs Princeton | moneyline: St. Thomas | kalshi | $35k | -127 |  |  | +0.0c |  | pending |
+| Nov 28 10:00AM | NCAAB | Portland State @ Southern Illinois | moneyline: Southern Illinois (0) | novig | $28k | -264 | ✅ kalshi |  | +0.0c |  | pending |
+| Nov 28 10:00AM | NCAAB | Rider @ Army | moneyline: ARMY (0) | novig | $32k | -376 | ✅ kalshi |  | +0.0c |  | pending |
+| Nov 28 10:00AM | NCAAB | Delaware @ Stony Brook | moneyline: STBK (0) | novig | $25k | -245 |  | ❌ | +0.0c |  | pending |
+| Nov 28 10:00AM | NCAAB | UT Rio Grande Valley @ UNLV | moneyline: UNLV (0) | novig | $37k | -545 | ✅ kalshi |  | +0.0c |  | pending |
+| Nov 28 9:50AM | NCAAB | St. Thomas vs Princeton | moneyline: St. Thomas | kalshi | $35k | -127 |  |  | +1.0c |  | pending |
 | Nov 28 9:50AM | NCAAB | UC Irvine vs Seattle | moneyline: Seattle | kalshi | $78k | -203 | ✅ novig |  | +0.0c |  | pending |
 | Nov 28 9:50AM | NCAAB | Tennessee Tech vs Eastern Kentucky | moneyline: Tennessee Tech | kalshi | $56k | -233 |  | ✅ | +0.0c |  | pending |
 | Nov 28 9:50AM | NCAAB | Southeast Missouri St. vs Kansas City | moneyline: Kansas City | kalshi | $26k | -133 |  |  | +0.0c |  | pending |
 | Nov 28 9:50AM | NCAAB | Saint Joseph's vs Monmouth | moneyline: Saint Joseph's | kalshi | $79k | -178 |  | ✅ | +0.0c |  | pending |
 | Nov 28 9:50AM | NCAAB | Bethune-Cookman vs San Francisco | moneyline: San Francisco | kalshi | $59k | -426 | ✅ novig |  | +0.0c |  | pending |
 | Nov 28 9:50AM | NCAAB | Buffalo vs Towson | moneyline: Towson | kalshi | $26k | -150 | ✅ novig |  | +0.0c |  | pending |
-| Nov 28 8:40AM | NCAAB | Northern Arizona vs Cal State Bakersfield | moneyline: Cal State Bakersfield | kalshi | $29k | -233 |  |  | +1.0c |  | pending |
+| Nov 28 8:40AM | NCAAB | Northern Arizona vs Cal State Bakersfield | moneyline: Cal State Bakersfield | kalshi | $29k | -233 |  |  | +2.0c |  | pending |
 | Nov 28 2:40AM | NCAAB | Robert Morris vs Northern Iowa | moneyline: Northern Iowa | kalshi | $26k | -233 |  |  | +1.0c |  | pending |
 | Nov 28 2:40AM | NCAAB | Portland St. vs Southern Illinois | moneyline: Southern Illinois | kalshi | $27k | -285 |  |  | -1.0c |  | pending |
 | Nov 28 2:40AM | NCAAB | Austin Peay vs Furman | moneyline: Furman | kalshi | $27k | -285 |  |  | +0.0c |  | pending |
@@ -206,7 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 23 10:40AM | NCAAB | Indiana St. vs East Carolina | moneyline: East Carolina | kalshi | $45k | -138 | ✅ novig |  | -3.0c | yes | L |
 | Nov 23 9:31AM | NCAAB | Long Beach State @ Florida International | moneyline: FIU (0) | novig | $25k | -365 | ✅ kalshi |  | -2.0c |  | W |
 | Nov 23 9:00AM | NCAAB | Middle Tennessee vs Southern Illinois | moneyline: Southern Illinois | kalshi | $62k | -133 | ✅ novig |  | +4.0c | yes | L |
-| Nov 23 1:20AM | NCAAB | Temple vs Tennessee-Martin | moneyline: Temple | kalshi | $27k | -213 |  |  | -58.0c | yes | L |
-| Nov 23 1:20AM | NCAAB | FDU vs Iona | moneyline: Iona | kalshi | $30k | -376 |  |  | -62.0c | yes | L |
-| Nov 23 1:20AM | NCAAB | Central Arkansas vs North Florida | moneyline: Central Arkansas | kalshi | $31k | -400 |  |  | -2.0c |  | W |
-| Nov 23 1:10AM | NCAAB | TCU vs Miami (FL) | moneyline: Miami | kalshi | $138k | -300 |  |  | -8.0c |  | L |

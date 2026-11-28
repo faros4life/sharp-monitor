@@ -1,6 +1,715 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-28T15:00:30Z",
+   "base_depth": 16350,
+   "best_price": 0.725,
+   "best_price_american": -264,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.725,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-28",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Southern Illinois",
+     "price": 0.73,
+     "this_side": 28987
+    },
+    "novig": {
+     "new_other_side": 6323,
+     "new_this_side": 27533,
+     "other_side": 3027,
+     "other_side_all_levels": 11549,
+     "ratio": 15.5,
+     "this_side": 47044,
+     "this_side_all_levels": 59411
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Southern Illinois",
+     "price": 0.7222,
+     "this_side": 1798
+    }
+   },
+   "ex_stats_alert": {
+    "openInterest": 1335387.0,
+    "volume": 1395205.0
+   },
+   "ex_stats_change": {
+    "openInterest": 867499.0,
+    "volume": 867499.0
+   },
+   "ex_stats_first": {
+    "openInterest": 467888.0,
+    "volume": 527706.0
+   },
+   "fade_price": 0.28,
+   "first_seen_utc": "2026-11-28T14:50:19Z",
+   "game": "Portland State @ Southern Illinois",
+   "game_surge_books": [
+    "novig"
+   ],
+   "game_x": 3.43,
+   "key": "novig|{\"market_id\": \"01a2153a-7c9e-7c00-b34a-6611c73943bb\", \"outcome_id\": \"01a2153a-7c9e-7c00-b34a-66210ceb485a\"}",
+   "lead_min": 539,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 27533,
+   "new_x": 12.3,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 256.63,
+      "volume_24h_fp": 256.63,
+      "volume_fp": 256.63
+     },
+     "game_normal": 77037,
+     "game_x": 1.53,
+     "normal": 48388,
+     "now": 117838,
+     "type": "ML",
+     "x": 2.44
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 1335387.0,
+      "volume": 1395205.0
+     },
+     "game_normal": 17298,
+     "game_x": 3.43,
+     "normal": 2238,
+     "now": 59411,
+     "type": "ML",
+     "x": 26.54
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 2198,
+     "game_x": 1.1,
+     "normal": 667,
+     "now": 2411,
+     "type": "ML",
+     "x": 3.61
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.725,
+   "price_american": -264,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.725,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -275
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -280
+    },
+    "betopenly": {
+     "point": null,
+     "price": -272
+    },
+    "betrivers": {
+     "point": null,
+     "price": -295
+    },
+    "betus": {
+     "point": null,
+     "price": -280
+    },
+    "bovada": {
+     "point": null,
+     "price": -280
+    },
+    "circasports": {
+     "point": null,
+     "price": -265
+    },
+    "draftkings": {
+     "point": null,
+     "price": -290
+    },
+    "fanatics": {
+     "point": null,
+     "price": -300
+    },
+    "fanduel": {
+     "point": null,
+     "price": -255
+    },
+    "kalshi": {
+     "point": null,
+     "price": -270
+    },
+    "lowvig": {
+     "point": null,
+     "price": -280
+    },
+    "novig": {
+     "point": null,
+     "price": -264
+    },
+    "polymarket": {
+     "point": null,
+     "price": -257
+    },
+    "prophetx": {
+     "point": null,
+     "price": -260
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a2153a-7c9e-7c00-b34a-6611c73943bb",
+    "outcome_id": "01a2153a-7c9e-7c00-b34a-66210ceb485a"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Southern Illinois",
+   "side_label": "Southern Illinois (0)",
+   "size_x": 26.54,
+   "start_source": "odds",
+   "start_utc": "2026-11-29T00:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Portland State",
+    "Southern Illinois"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-28T15:00:30Z",
+   "base_depth": 16839,
+   "best_price": 0.79,
+   "best_price_american": -376,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.79,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-28",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Army",
+     "price": 0.79,
+     "this_side": 24628
+    },
+    "novig": {
+     "new_other_side": 7545,
+     "new_this_side": 31975,
+     "other_side": 11975,
+     "other_side_all_levels": 14141,
+     "ratio": 0.3,
+     "this_side": 3781,
+     "this_side_all_levels": 58696
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Army",
+     "price": 0.7938,
+     "this_side": 1760
+    }
+   },
+   "ex_stats_alert": {
+    "openInterest": 42707.0,
+    "volume": 42707.0
+   },
+   "ex_stats_change": {
+    "openInterest": 0.0,
+    "volume": 0.0
+   },
+   "ex_stats_first": {
+    "openInterest": 42707.0,
+    "volume": 42707.0
+   },
+   "fade_price": 0.215,
+   "first_seen_utc": "2026-11-28T14:50:19Z",
+   "game": "Rider @ Army",
+   "game_surge_books": [
+    "novig",
+    "prophetx"
+   ],
+   "game_x": 3.38,
+   "key": "novig|{\"market_id\": \"01a2153a-7c2b-7b40-ba4e-e20765e5a366\", \"outcome_id\": \"01a2153a-7c2b-7b40-ba4e-e21e5b714d5e\"}",
+   "lead_min": 539,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 31975,
+   "new_x": 14.29,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 1838.46,
+      "volume_24h_fp": 1763.17,
+      "volume_fp": 1838.46
+     },
+     "game_normal": 75982,
+     "game_x": 1.55,
+     "normal": 48388,
+     "now": 117802,
+     "type": "ML",
+     "x": 2.43
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 42707.0,
+      "volume": 42707.0
+     },
+     "game_normal": 17371,
+     "game_x": 3.38,
+     "normal": 2238,
+     "now": 58696,
+     "type": "ML",
+     "x": 26.23
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 449,
+     "game_x": 4.14,
+     "normal": 667,
+     "now": 1861,
+     "type": "ML",
+     "x": 2.79
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.79,
+   "price_american": -376,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.79,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -425
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -425
+    },
+    "betrivers": {
+     "point": null,
+     "price": -530
+    },
+    "bovada": {
+     "point": null,
+     "price": -460
+    },
+    "circasports": {
+     "point": null,
+     "price": -420
+    },
+    "draftkings": {
+     "point": null,
+     "price": -425
+    },
+    "fanatics": {
+     "point": null,
+     "price": -425
+    },
+    "fanduel": {
+     "point": null,
+     "price": -375
+    },
+    "kalshi": {
+     "point": null,
+     "price": -376
+    },
+    "lowvig": {
+     "point": null,
+     "price": -425
+    },
+    "novig": {
+     "point": null,
+     "price": -376
+    },
+    "polymarket": {
+     "point": null,
+     "price": -400
+    },
+    "prophetx": {
+     "point": null,
+     "price": -385
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -420
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a2153a-7c2b-7b40-ba4e-e20765e5a366",
+    "outcome_id": "01a2153a-7c2b-7b40-ba4e-e21e5b714d5e"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Army",
+   "side_label": "ARMY (0)",
+   "size_x": 26.23,
+   "start_source": "odds",
+   "start_utc": "2026-11-29T00:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Rider",
+    "Army"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-28T15:00:30Z",
+   "base_depth": 17530,
+   "best_price": 0.71,
+   "best_price_american": -245,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.71,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-28",
+   "depth_by_book": {
+    "novig": {
+     "new_other_side": 6582,
+     "new_this_side": 25158,
+     "other_side": 1725,
+     "other_side_all_levels": 13744,
+     "ratio": 24.2,
+     "this_side": 41684,
+     "this_side_all_levels": 52960
+    }
+   },
+   "ex_stats_alert": {
+    "openInterest": 1415830.0,
+    "volume": 1891461.0
+   },
+   "ex_stats_change": {
+    "openInterest": 32.0,
+    "volume": 32.0
+   },
+   "ex_stats_first": {
+    "openInterest": 1415798.0,
+    "volume": 1891429.0
+   },
+   "fade_price": 0.295,
+   "first_seen_utc": "2026-11-28T14:50:19Z",
+   "game": "Delaware @ Stony Brook",
+   "game_surge_books": [
+    "novig"
+   ],
+   "game_x": 3.24,
+   "key": "novig|{\"market_id\": \"01a21495-c6df-7c42-b120-f9a471ffadbe\", \"outcome_id\": \"01a21495-c6df-7c42-b120-f9b6064b89d5\"}",
+   "lead_min": 359,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 25158,
+   "new_x": 11.24,
+   "norm_by_book": {
+    "novig": {
+     "ex_stats": {
+      "openInterest": 1415830.0,
+      "volume": 1891461.0
+     },
+     "game_normal": 16357,
+     "game_x": 3.24,
+     "normal": 2238,
+     "now": 52960,
+     "type": "ML",
+     "x": 23.66
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.71,
+   "price_american": -245,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.71,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "market_id": "01a21495-c6df-7c42-b120-f9a471ffadbe",
+    "outcome_id": "01a21495-c6df-7c42-b120-f9b6064b89d5"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Stony Brook Seawolves -5.5 (-110)"
+   ],
+   "side": "STBK (0)",
+   "side_label": "STBK (0)",
+   "size_x": 23.66,
+   "start_source": "odds",
+   "start_utc": "2026-11-28T21:00:00Z",
+   "surge_books": [
+    "novig"
+   ],
+   "teams": [
+    "Delaware",
+    "Stony Brook"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-28T15:00:30Z",
+   "base_depth": 20079,
+   "best_price": 0.8414,
+   "best_price_american": -531,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.845,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-28",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "UNLV",
+     "price": 0.84,
+     "this_side": 76187
+    },
+    "novig": {
+     "new_other_side": 6087,
+     "new_this_side": 37153,
+     "other_side": 4962,
+     "other_side_all_levels": 8659,
+     "ratio": 8.7,
+     "this_side": 43110,
+     "this_side_all_levels": 57380
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "UNLV",
+     "price": 0.8387,
+     "this_side": 1716
+    }
+   },
+   "ex_stats_alert": {
+    "openInterest": 76931.0,
+    "volume": 77519.0
+   },
+   "ex_stats_change": {
+    "openInterest": 0.0,
+    "volume": 0.0
+   },
+   "ex_stats_first": {
+    "openInterest": 76931.0,
+    "volume": 77519.0
+   },
+   "fade_price": 0.16,
+   "first_seen_utc": "2026-11-28T14:50:19Z",
+   "game": "UT Rio Grande Valley @ UNLV",
+   "game_surge_books": [
+    "novig",
+    "prophetx"
+   ],
+   "game_x": 2.81,
+   "key": "novig|{\"market_id\": \"01a2145e-cc34-7a61-9c87-3a9f0e85cb1a\", \"outcome_id\": \"01a2145e-cc34-7a61-9c87-3aa11da637b8\"}",
+   "lead_min": 299,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 37153,
+   "new_x": 16.6,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 941.88,
+      "volume_24h_fp": 796.4,
+      "volume_fp": 946.88
+     },
+     "game_normal": 119249,
+     "game_x": 1.58,
+     "normal": 48388,
+     "now": 188113,
+     "type": "ML",
+     "x": 3.89
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 76931.0,
+      "volume": 77519.0
+     },
+     "game_normal": 20428,
+     "game_x": 2.81,
+     "normal": 2238,
+     "now": 57380,
+     "type": "ML",
+     "x": 25.64
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 405,
+     "game_x": 4.24,
+     "normal": 667,
+     "now": 1717,
+     "type": "ML",
+     "x": 2.57
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.845,
+   "price_american": -545,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.845,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -600
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -550
+    },
+    "betopenly": {
+     "point": null,
+     "price": -500
+    },
+    "betrivers": {
+     "point": null,
+     "price": -590
+    },
+    "bovada": {
+     "point": null,
+     "price": -600
+    },
+    "circasports": {
+     "point": null,
+     "price": -550
+    },
+    "draftkings": {
+     "point": null,
+     "price": -575
+    },
+    "fanatics": {
+     "point": null,
+     "price": -600
+    },
+    "fanduel": {
+     "point": null,
+     "price": -580
+    },
+    "kalshi": {
+     "point": null,
+     "price": -525
+    },
+    "lowvig": {
+     "point": null,
+     "price": -550
+    },
+    "novig": {
+     "point": null,
+     "price": -545
+    },
+    "polymarket": {
+     "point": null,
+     "price": -525
+    },
+    "prophetx": {
+     "point": null,
+     "price": -520
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -550
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a2145e-cc34-7a61-9c87-3a9f0e85cb1a",
+    "outcome_id": "01a2145e-cc34-7a61-9c87-3aa11da637b8"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNLV",
+   "side_label": "UNLV (0)",
+   "size_x": 25.64,
+   "start_source": "odds",
+   "start_utc": "2026-11-28T20:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "UT Rio Grande Valley",
+    "UNLV"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-28T14:50:19Z",
    "base_depth": 96475,
    "best_price": 0.5772,
@@ -14,8 +723,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.56,
-   "clv_cents": 0.0,
+   "close_price": 0.57,
+   "clv_cents": 1.0,
    "confirmed_after_min": 5,
    "date": "2026-11-28",
    "depth_by_book": {
@@ -44,6 +753,11 @@
     "open_interest_fp": -9.07,
     "volume_24h_fp": 398.44,
     "volume_fp": 396.71
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 13433.560000000001,
+    "volume_24h_fp": 16243.6,
+    "volume_fp": 16948.84
    },
    "ex_stats_first": {
     "open_interest_fp": 12838.25,
@@ -238,6 +952,11 @@
     "open_interest_fp": 0.0,
     "volume_24h_fp": 0.0,
     "volume_fp": 0.0
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 347.71000000000004,
+    "volume_24h_fp": 314.47,
+    "volume_fp": 352.13
    },
    "ex_stats_first": {
     "open_interest_fp": 347.71000000000004,
@@ -439,6 +1158,11 @@
     "volume_24h_fp": 0.3,
     "volume_fp": 1.39
    },
+   "ex_stats_close": {
+    "open_interest_fp": 50849.049999999996,
+    "volume_24h_fp": 50934.44,
+    "volume_fp": 51170.049999999996
+   },
    "ex_stats_first": {
     "open_interest_fp": 50615.44,
     "volume_24h_fp": 50934.14,
@@ -630,6 +1354,11 @@
     "volume_24h_fp": 3.4,
     "volume_fp": 3.4
    },
+   "ex_stats_close": {
+    "open_interest_fp": 500.55,
+    "volume_24h_fp": 510.6,
+    "volume_fp": 536.14
+   },
    "ex_stats_first": {
     "open_interest_fp": 471.61,
     "volume_24h_fp": 507.2,
@@ -749,6 +1478,11 @@
     "open_interest_fp": 2.58,
     "volume_24h_fp": 2.58,
     "volume_fp": 2.58
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 12928.69,
+    "volume_24h_fp": 12974.57,
+    "volume_fp": 12996.9
    },
    "ex_stats_first": {
     "open_interest_fp": 12904.779999999999,
@@ -942,6 +1676,11 @@
     "open_interest_fp": 0.0,
     "volume_24h_fp": 9.61,
     "volume_fp": 0.0
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 957.0200000000001,
+    "volume_24h_fp": 796.12,
+    "volume_fp": 1003.0200000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 957.0200000000001,
@@ -1150,6 +1889,11 @@
     "volume_24h_fp": 10.0,
     "volume_fp": 40.53
    },
+   "ex_stats_close": {
+    "open_interest_fp": 1026.94,
+    "volume_24h_fp": 1382.42,
+    "volume_fp": 1599.3300000000002
+   },
    "ex_stats_first": {
     "open_interest_fp": 986.41,
     "volume_24h_fp": 1372.42,
@@ -1322,8 +2066,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.71,
-   "clv_cents": 1.0,
+   "close_price": 0.72,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-28",
    "depth_by_book": {
@@ -1360,9 +2104,9 @@
     "volume_fp": 8.79
    },
    "ex_stats_close": {
-    "open_interest_fp": 1095.85,
+    "open_interest_fp": 1096.6799999999998,
     "volume_24h_fp": 1614.96,
-    "volume_fp": 1614.96
+    "volume_fp": 1615.79
    },
    "ex_stats_first": {
     "open_interest_fp": 135.4,
@@ -1564,9 +2308,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1738.51,
+    "open_interest_fp": 1747.74,
     "volume_24h_fp": 1858.6799999999998,
-    "volume_fp": 1911.3400000000001
+    "volume_fp": 1920.5700000000002
    },
    "ex_stats_first": {
     "open_interest_fp": 840.66,
@@ -2184,9 +2928,9 @@
     "volume_fp": 4.73
    },
    "ex_stats_close": {
-    "open_interest_fp": 7823.5,
+    "open_interest_fp": 7834.0,
     "volume_24h_fp": 8320.369999999999,
-    "volume_fp": 8320.369999999999
+    "volume_fp": 8330.869999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 1225.17,
@@ -2364,9 +3108,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 601.44,
+    "open_interest_fp": 615.46,
     "volume_24h_fp": 570.37,
-    "volume_fp": 601.44
+    "volume_fp": 615.46
    },
    "ex_stats_first": {
     "open_interest_fp": 235.12,
@@ -2719,9 +3463,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 930.45,
+    "open_interest_fp": 941.88,
     "volume_24h_fp": 796.4,
-    "volume_fp": 935.45
+    "volume_fp": 946.88
    },
    "ex_stats_first": {
     "open_interest_fp": 166.51999999999998,
@@ -2889,9 +3633,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1377.04,
+    "open_interest_fp": 1382.94,
     "volume_24h_fp": 1285.58,
-    "volume_fp": 1394.56
+    "volume_fp": 1400.46
    },
    "ex_stats_first": {
     "open_interest_fp": 982.58,
@@ -3266,9 +4010,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 51.87,
+    "open_interest_fp": 69.57,
     "volume_24h_fp": 51.87,
-    "volume_fp": 51.87
+    "volume_fp": 69.57
    },
    "ex_stats_first": {
     "open_interest_fp": 15.23,
