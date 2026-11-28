@@ -1516,13 +1516,31 @@ def k12_spread_play(rows, trig):
 def _k12_rivals(row, trig):
     """Every team named in this game OTHER than the one the trigger is on - the names a side match
     has to beat. Drawn from both rows, because the two feeds spell teams differently and a rival
-    missing from the list is a rival the uniqueness test cannot rule out."""
+    missing from the list is a rival the uniqueness test cannot rule out.
+
+    The same-club exclusion is BIDIRECTIONAL, and that is the whole point of this function. It used
+    to drop only names equal to or a SUPERSET of the trigger side, so a SUBSET survived: against a
+    long trigger ("Seattle Seahawks") the candidate row's own short dialect ("Seattle") stayed in
+    the rival list and defeated the candidate with itself - one overlapping token each, a tie, and
+    k12_same_side fails closed. 27 of the 32 NFL clubs have a short dialect in this feed, so the
+    long-trigger -> short-row direction failed for nearly all of them. Measured on liquidity/
+    alerts.json replayed at 2026-10-25: 44 plays became 46, with `Chicago @ Detroit` moving from
+    Detroit +1.5 (-111) to Detroit +2.5 (-108) - a FULL POINT, and since evaluate()'s bet-only-at
+    floor is built from that line, a mis-anchored line also weakens the floor. Two matchups (KC vs
+    Seattle, LV vs SF) were not played at all.
+
+    A subset or superset of `want` is the same club in another dialect and must go. Anything else
+    stays: in a same-city game neither "Los Angeles Rams" nor "Los Angeles Chargers" is a subset of
+    the other, so both survive and the uniqueness test still refuses an ambiguous side."""
     want = k12_side_tokens((trig or {}).get("side"))
     out = []
     for t in list((row or {}).get("teams") or []) + list((trig or {}).get("teams") or []):
         tt = k12_side_tokens(t)
-        if tt and tt != want and not (want and tt >= want):
-            out.append(t)
+        if not tt or not want:
+            continue
+        if tt == want or tt >= want or tt <= want:   # same club, either dialect direction
+            continue
+        out.append(t)
     return out
 
 

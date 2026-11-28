@@ -22,6 +22,7 @@ Totals: 7 live/manual channels, 16 paper tests, 3 lenses, 6 research tracks.
 | --- | --- | --- |
 | 1 | **LANE 1** | ProphetX-priced totals (NBA/NFL unders, NCAAF unders + Top-25 overs), $200 unit, −130 cap, T-60 cutoff. **KEPT UNCHANGED.** |
 | 2 | **RESTING BIDS** | Lane 1's resting-order lane, Novig GTT / Kalshi GTC, expires T-30, graded separately. KEPT. |
+| 33 | **12K** | NFL only. Trigger: one moneyline print carrying $12,000+ of this-side depth on **each** of Kalshi, Novig and ProphetX. Play the spread for that game and side (direct entry, or the mirrored `NOT <team> wins by over L` form at the complement price), from the first qualifying print 12–24h before start, first side only, one play per matchup. Unit to win $200 ($200 risked at plus money). Entry at the alert line's after-fee price or better, never worse. Immediate take across ProphetX / Kalshi / Novig / Polymarket US with partials allowed and one attempt per book; otherwise rests at the same fee-adjusted alert price, expiring T-30. $1,200 daily risk, 5 plays maximum. **BUILT, SWITCHED OFF** (`EXEC_12K_LIVE`), pending Peter's activation approval. |
 
 ## MANUAL — Peter bets by hand
 

@@ -261,14 +261,14 @@ check("rule| with a contradicting source -> UNKNOWN", _lf("rule|NBA|a+b|total|OV
 check("rule| with no source -> UNKNOWN, prefix alone is not evidence", _lf("rule|NBA|a+b|total|OVER", None) is None)
 check("board| still resolves to board", _lf("board|NBA|a+b|total|OVER", "board") == "board")
 
-print("16. Band D lists all 32 registered entries; attribution only where evidenced")
+print("16. Band D lists all 33 registered entries; attribution only where evidenced")
 ents = dash.parse_registry_md()
-check("REGISTRY.md parses to exactly 32 entries", len(ents) == 32, len(ents))
-check("numbers 1..32 each appear once", sorted(e["num"] for e in ents) == list(range(1, 33)))
+check("REGISTRY.md parses to exactly 33 entries", len(ents) == 33, len(ents))
+check("numbers 1..33 each appear once", sorted(e["num"] for e in ents) == list(range(1, 34)))
 check("only entries 1 and 8 carry a written lane mapping", sorted(dash.REGISTERED_LANE) == [1, 8])
 check("every mapping cites its evidence", all(len(v[1]) > 40 for v in dash.REGISTERED_LANE.values()))
 check("the page renders UNKNOWN for unmapped entries", "UNKNOWN" in dash.PAGE and "D.registered" in dash.PAGE)
-check("the INCOMPLETE disclaimer is gone only because all 32 are listed",
+check("the INCOMPLETE disclaimer is gone only because all 33 are listed",
       "INCOMPLETE" not in open("clv_dashboard.py").read().split('bands["D_triggers"]')[1][:1200])
 check("a missing REGISTRY.md fails to an empty list, not an invented one",
       dash.parse_registry_md("/nonexistent/REGISTRY.md") == [])

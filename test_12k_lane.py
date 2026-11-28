@@ -369,5 +369,38 @@ _p, _ = ex.k12_select([_trigG, _sprJ], _t0)
 ok("a Giants trigger is NOT priced from the Jets spread row",
    all("jets" not in str(x.get("side")).lower() for x in _p), [x.get("side") for x in _p])
 
+# --- 11. THE RIVAL LIST PRODUCTION ACTUALLY BUILDS ---------------------------------------------
+# Every dialect assertion above hand-writes `others=`, and that is exactly why the self-rival bug
+# shipped green: production never passes those lists. k12_spread_play passes _k12_rivals(x, trig),
+# which draws from BOTH rows - so the candidate row's own short dialect is in there. Drive the
+# production list, never a curated one.
+for _long, _short, _rival in (("Seattle Seahawks", "Seattle", "Kansas City"),
+                              ("Detroit Lions", "Detroit", "Chicago"),
+                              ("San Francisco 49ers", "San Francisco", "Las Vegas"),
+                              ("Denver Broncos", "Denver", "Arizona")):
+    _cand = {"teams": [_short, _rival]}
+    _trg = {"side": _long, "teams": [_long, _rival + " Club"]}
+    _ot = ex._k12_rivals(_cand, _trg)
+    ok(f"{_short!r} is not its own rival against {_long!r}", _short not in _ot, _ot)
+    ok(f"{_long!r} matches {_short!r} through the PRODUCTION rival list",
+       ex.k12_same_side(_long, _short, others=_ot) is True, _ot)
+    ok(f"...and the real rival {_rival!r} survives the exclusion",
+       any(_rival.lower() in str(o).lower() for o in _ot), _ot)
+# and the same-city pair must still BOTH survive, or the uniqueness test stops refusing
+_lac = ex._k12_rivals({"teams": ["Los Angeles Chargers", "Los Angeles Rams"]},
+                      {"side": "Los Angeles Rams", "teams": ["Los Angeles Rams"]})
+ok("a same-city rival is NOT dropped as a dialect of our own club",
+   any("chargers" in str(o).lower() for o in _lac), _lac)
+ok("...so a Rams trigger still refuses the Chargers row",
+   ex.k12_same_side("Los Angeles Rams", "Los Angeles Chargers", others=_lac) is False)
+# end to end: a long trigger priced from a short-dialect spread row, through k12_select
+_SK = "Kansas City Chiefs @ Seattle Seahawks"
+_trigS = _row(_SK, "Seattle Seahawks", 1000, teams=["Seattle Seahawks", "Kansas City Chiefs"])
+_sprS = _row(_SK, "Seattle", 1000, teams=["Seattle", "Kansas City"], market="spread",
+             line=-2.5, label="Seattle -2.5")
+_ps, _ = ex.k12_select([_trigS, _sprS], _t0)
+ok("a long-dialect trigger IS priced from the short-dialect spread row", len(_ps) == 1, _ps)
+ok("...on our own side", _ps and str(_ps[0].get("side")).lower().startswith("seattle"))
+
 print(f"\n{len(RAN) - len(FAILED)} passed, {len(FAILED)} failed")
 sys.exit(1 if FAILED else 0)

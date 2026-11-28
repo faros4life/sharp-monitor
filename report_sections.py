@@ -580,7 +580,7 @@ CHANGE_UTC = "2026-11-11T16:31:19+00:00"     # the approved pricing-model change
 # Nov 27: DOGS added. It has been placing real money since 23 Nov and Section H never evaluated it, so the
 # lane with the least forward evidence was the one lane the scorecard did not grade. R1 stays listed while it
 # is paper (its live record is still being graded out). The registered bars in clv_dashboard.gate are unchanged.
-LANES_LIVE = ("LANE 1", "R1", "BOARD V4", "DOGS")
+LANES_LIVE = ("LANE 1", "R1", "BOARD V4", "DOGS", "12K")
 # Nov 17 (Peter, CLV_STANDARD.md section 1): only a same-line Pinnacle close (or the exact moneyline market) is
 # CERTIFIED. A close read off Pinnacle's main line and moved to the bet's number with the half-point table is an
 # ESTIMATE: reported separately, never in a certified mean, half, interval or qualification gate. Ledger rows are

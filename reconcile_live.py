@@ -222,6 +222,33 @@ def main():
             f" | status {lo.get('status')} | dispatched {lo.get('dispatched_utc')} | answered {lo.get('answered_utc')}")
     say(f"  dogs ledger rows: {n}")
 
+    # ------------------------------------------------------------------------------- 12K
+    # Same shape as the Dogs block above and for the same reason: a lane that reaches live money
+    # must be reconciled from the day the switch is flipped, not from the day someone notices it is
+    # missing. The lane's own producer is reused (k12_plays' selector), so the signal count here is
+    # the lane's, never a re-implementation that can drift from it. While EXEC_12K_LIVE is off this
+    # prints zero orders against a non-zero signal count, which is exactly the expected reading.
+    say("\n12K - NFL three-book $12k ML-depth plays, and what reached the ledger")
+    try:
+        _k12sel, _k12skip = ex.k12_select(Q, ex.datetime.now(ex.timezone.utc))
+        _k12ok = [x for x in _k12sel if ex.k12_bet(x)]
+        say(f"  playable 12K signals (first qualifying print per matchup, 12-24h out, spread readable):"
+            f" {len(_k12ok)} | qualifying rows skipped: {_k12skip}")
+    except Exception as _ex12:
+        say(f"  12K signal count UNAVAILABLE: {type(_ex12).__name__}: {str(_ex12)[:80]}")
+    say(f"  ledger 12K orders: confirmed plays {sum(1 for p in acct['plays'] if str(p['lane']) == '12K')} | "
+        f"unfilled/excluded {sum(1 for e in acct['excluded'] if str(e.get('lane')) in ('12k', '12K'))}")
+    n12 = 0
+    for (kind, oid), (_seen, o) in ll.latest(L).items():
+        if str(o.get("source") or "").lower() != "12k" and not str(o.get("key") or "").startswith("12k|"):
+            continue
+        n12 += 1
+        lo = o.get("live_order") or {}
+        say(f"  {kind} {str(o.get('decided_utc') or '')[:16]} | alert {o.get('alert_price_after_fee')} | "
+            f"book {lo.get('book') or o.get('live_book')} | status {lo.get('status')} | "
+            f"dispatched {lo.get('dispatched_utc')} | answered {lo.get('answered_utc')}")
+    say(f"  12k ledger rows: {n12}")
+
     say("\nVENUE SETTLEMENT CHECK (tracker profit vs stake x price x result, bot rows that are graded)")
     bad = 0
     for i in graded:
