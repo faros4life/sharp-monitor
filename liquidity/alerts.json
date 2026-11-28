@@ -1,6 +1,215 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-28T09:40:19Z",
+   "base_depth": 115173,
+   "best_price": 0.475,
+   "best_price_american": 111,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.64,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 4,
+   "date": "2026-11-28",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 8642,
+     "new_this_side": 111091,
+     "other_side": 97917,
+     "other_side_all_levels": 137733,
+     "ratio": 1.6,
+     "this_side": 156778,
+     "this_side_all_levels": 226257
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "LT (0)",
+     "price": 0.475,
+     "this_side": 34097
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Louisiana Tech",
+     "price": 0.4739,
+     "this_side": 15516
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 5652.08,
+    "volume_24h_fp": 3653.94,
+    "volume_fp": 6216.5599999999995
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 15.24,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 15.24
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 5636.84,
+    "volume_24h_fp": 3653.94,
+    "volume_fp": 6201.32
+   },
+   "fade_price": 0.37,
+   "first_seen_utc": "2026-11-28T09:35:51Z",
+   "game": "Louisiana vs Georgia St.",
+   "game_surge_books": [],
+   "game_x": 1.82,
+   "key": "kalshi|KXNCAAFGAME-26NOV28ULLGAST|ml|0",
+   "lead_min": 440,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 111091,
+   "new_x": 0.44,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 5652.08,
+      "volume_24h_fp": 3653.94,
+      "volume_fp": 6216.5599999999995
+     },
+     "game_normal": 124559,
+     "game_x": 1.82,
+     "normal": 253258,
+     "now": 226257,
+     "type": "ML",
+     "x": 0.89
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 3904429.0,
+      "volume": 5683646.0
+     },
+     "game_normal": 39676,
+     "game_x": 1.03,
+     "normal": 18430,
+     "now": 40838,
+     "type": "ML",
+     "x": 2.22
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 14834,
+     "game_x": 1.05,
+     "normal": 7124,
+     "now": 15516,
+     "type": "ML",
+     "x": 2.18
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.64,
+   "price_american": -178,
+   "price_rule": "ml_edge_ok",
+   "price_when_first_seen": 0.64,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 100
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -103
+    },
+    "betrivers": {
+     "point": null,
+     "price": 102
+    },
+    "betus": {
+     "point": null,
+     "price": 110
+    },
+    "bovada": {
+     "point": null,
+     "price": 105
+    },
+    "circasports": {
+     "point": null,
+     "price": 110
+    },
+    "draftkings": {
+     "point": null,
+     "price": 100
+    },
+    "fanatics": {
+     "point": null,
+     "price": 100
+    },
+    "fanduel": {
+     "point": null,
+     "price": 104
+    },
+    "kalshi": {
+     "point": null,
+     "price": 108
+    },
+    "lowvig": {
+     "point": null,
+     "price": -103
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -105
+    },
+    "novig": {
+     "point": null,
+     "price": 111
+    },
+    "polymarket": {
+     "point": null,
+     "price": 108
+    },
+    "prophetx": {
+     "point": null,
+     "price": 111
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 104
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26NOV28ULLGAST-ULL"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [
+    "Louisiana Tech Bulldogs +2.5 (-109)"
+   ],
+   "sharp_oppose": [],
+   "side": "Louisiana",
+   "side_label": "Louisiana",
+   "size_x": 0.89,
+   "start_source": "odds",
+   "start_utc": "2026-11-28T17:00:00Z",
+   "surge_books": [
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Louisiana",
+    "Georgia St."
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-28T08:20:22Z",
    "base_depth": 753564,
    "best_price": 0.55,
@@ -52,9 +261,9 @@
     "volume_fp": 2049.82
    },
    "ex_stats_close": {
-    "open_interest_fp": 49249.94,
+    "open_interest_fp": 49276.850000000006,
     "volume_24h_fp": 34152.009999999995,
-    "volume_fp": 54570.41
+    "volume_fp": 54597.32
    },
    "ex_stats_first": {
     "open_interest_fp": 44649.7,
@@ -816,9 +1025,9 @@
     "volume_fp": 112.06
    },
    "ex_stats_close": {
-    "open_interest_fp": 12510.04,
+    "open_interest_fp": 12544.06,
     "volume_24h_fp": 7165.95,
-    "volume_fp": 13033.7
+    "volume_fp": 13067.72
    },
    "ex_stats_first": {
     "open_interest_fp": 11576.6,
@@ -1362,9 +1571,9 @@
     "volume_fp": 45.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 167396.08,
+    "open_interest_fp": 167419.08,
     "volume_24h_fp": 163371.42,
-    "volume_fp": 173808.46
+    "volume_fp": 174175.46
    },
    "ex_stats_first": {
     "open_interest_fp": 107116.84,
@@ -1551,9 +1760,9 @@
     "volume_fp": 233.76
    },
    "ex_stats_close": {
-    "open_interest_fp": 102706.12,
+    "open_interest_fp": 102707.28,
     "volume_24h_fp": 74155.82,
-    "volume_fp": 110060.25
+    "volume_fp": 110061.41
    },
    "ex_stats_first": {
     "open_interest_fp": 67748.1,
@@ -1748,9 +1957,9 @@
     "volume_fp": 31.21
    },
    "ex_stats_close": {
-    "open_interest_fp": 31813.4,
+    "open_interest_fp": 31852.739999999998,
     "volume_24h_fp": 19546.54,
-    "volume_fp": 32298.97
+    "volume_fp": 32338.31
    },
    "ex_stats_first": {
     "open_interest_fp": 20840.76,
@@ -1932,9 +2141,9 @@
     "volume_fp": 20835.27
    },
    "ex_stats_close": {
-    "open_interest_fp": 216363.77,
+    "open_interest_fp": 216535.11,
     "volume_24h_fp": 199791.34,
-    "volume_fp": 240995.30000000002
+    "volume_fp": 241166.64
    },
    "ex_stats_first": {
     "open_interest_fp": 83789.22,
@@ -2138,9 +2347,9 @@
     "volume_fp": 558.3
    },
    "ex_stats_close": {
-    "open_interest_fp": 111263.06,
+    "open_interest_fp": 111273.58,
     "volume_24h_fp": 101453.45999999999,
-    "volume_fp": 114796.87
+    "volume_fp": 114807.39
    },
    "ex_stats_first": {
     "open_interest_fp": 93952.62999999999,
@@ -2753,9 +2962,9 @@
     "volume_fp": 187.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 204538.52,
+    "open_interest_fp": 205001.09,
     "volume_24h_fp": 216984.28,
-    "volume_fp": 252768.19
+    "volume_fp": 253230.76
    },
    "ex_stats_first": {
     "open_interest_fp": 60967.45,
@@ -3339,9 +3548,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3012.41,
+    "open_interest_fp": 3026.99,
     "volume_24h_fp": 1677.8,
-    "volume_fp": 3063.5499999999997
+    "volume_fp": 3078.13
    },
    "ex_stats_first": {
     "open_interest_fp": 2127.38,
@@ -3769,9 +3978,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 4230.55,
+    "open_interest_fp": 4246.5,
     "volume_24h_fp": 1369.1,
-    "volume_fp": 7650.56
+    "volume_fp": 7666.51
    },
    "ex_stats_first": {
     "open_interest_fp": 3403.89,
@@ -8110,9 +8319,9 @@
     "volume_fp": 142.17
    },
    "ex_stats_close": {
-    "open_interest_fp": 204538.52,
+    "open_interest_fp": 205001.09,
     "volume_24h_fp": 216984.28,
-    "volume_fp": 252768.19
+    "volume_fp": 253230.76
    },
    "ex_stats_first": {
     "open_interest_fp": 42652.99,
@@ -8316,9 +8525,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 167396.08,
+    "open_interest_fp": 167419.08,
     "volume_24h_fp": 163371.42,
-    "volume_fp": 173808.46
+    "volume_fp": 174175.46
    },
    "ex_stats_first": {
     "open_interest_fp": 66953.16,
@@ -12331,9 +12540,9 @@
     "volume_fp": 317.66
    },
    "ex_stats_close": {
-    "open_interest_fp": 776510.4600000001,
+    "open_interest_fp": 778231.7799999999,
     "volume_24h_fp": 507237.45,
-    "volume_fp": 823344.5299999999
+    "volume_fp": 825065.85
    },
    "ex_stats_first": {
     "open_interest_fp": 325923.35000000003,
@@ -13092,9 +13301,9 @@
     "volume_fp": 70.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 23370.15,
+    "open_interest_fp": 24843.03,
     "volume_24h_fp": 15707.32,
-    "volume_fp": 25286.3
+    "volume_fp": 26759.18
    },
    "ex_stats_first": {
     "open_interest_fp": 9563.86,
@@ -15707,8 +15916,8 @@
     "volume": 16471.0
    },
    "ex_stats_close": {
-    "openInterest": 13322667.0,
-    "volume": 17679038.0
+    "openInterest": 13327449.0,
+    "volume": 17683820.0
    },
    "ex_stats_first": {
     "openInterest": 2346875.0,
