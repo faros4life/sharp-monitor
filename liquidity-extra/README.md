@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 27, 10:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 16.
+Updated Fri Nov 27, 10:10 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 15.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 548-329 (-29.39u flat) | rule met: 137-91
+**Record:** 549-329 (-28.85u flat) | rule met: 138-91
 
-**Fade (paper, betting against the print):** 304-513 (+20.94u flat, after fees)
+**Fade (paper, betting against the print):** 304-514 (+19.94u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -23,7 +23,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 27 3:20PM | NCAAB | North Texas vs North Dakota St. | moneyline: North Texas | kalshi | $30k | -233 |  |  | +0.0c |  | pending |
 | Nov 27 2:50PM | NCAAB | Texas A&M vs Marquette | moneyline: Texas A&M | kalshi | $116k | +113 | ✅ novig | ✅ | -3.0c | yes | W |
 | Nov 27 2:50PM | NCAAB | TCU vs Baylor | moneyline: Baylor | kalshi | $26k | -186 |  |  | +0.0c |  | L |
-| Nov 27 1:50PM | NCAAB | Missouri St. vs Oral Roberts | moneyline: Oral Roberts | kalshi | $32k | -186 | ✅ novig |  | -1.0c | yes | pending |
+| Nov 27 1:50PM | NCAAB | Missouri St. vs Oral Roberts | moneyline: Oral Roberts | kalshi | $32k | -186 | ✅ novig |  | -1.0c | yes | W |
 | Nov 27 1:30PM | NCAAB | Villanova vs Kansas | moneyline: Kansas | kalshi | $70k | -567 | ✅ novig | ❌ | +1.0c | yes | W |
 | Nov 27 12:40PM | NCAAB | Memphis vs Wake Forest: Point Total | total: NOT Over 153.5 points | kalshi | $31k | -108 |  |  | +0.0c |  | L |
 | Nov 27 12:30PM | NCAAB | Iowa St. vs St. John's | moneyline: Iowa St. | kalshi | $69k | +104 |  | ✅ | +1.0c | yes | L |
