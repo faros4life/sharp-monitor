@@ -1,6 +1,212 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-28T02:40:20Z",
+   "base_depth": 84980,
+   "best_price": 0.5,
+   "best_price_american": -100,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 4,
+   "date": "2026-11-28",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -3829,
+     "new_this_side": 25994,
+     "other_side": 71182,
+     "other_side_all_levels": 90791,
+     "ratio": 1.2,
+     "this_side": 86063,
+     "this_side_all_levels": 113381
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "NAVY -16.5 (16.5)",
+     "price": 0.5,
+     "this_side": 28998
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Navy -16.5 (-16.5)",
+     "price": 0.505,
+     "this_side": 12883
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 2015.97,
+    "volume_24h_fp": 789.16,
+    "volume_fp": 2015.97
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 2015.97,
+    "volume_24h_fp": 789.16,
+    "volume_fp": 2015.97
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-28T02:36:08Z",
+   "game": "Navy vs Charlotte: Spread",
+   "game_surge_books": [],
+   "game_x": 1.14,
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26NOV28NAVYCHAR-NAVY17\"}",
+   "lead_min": 860,
+   "league": "NCAAF",
+   "line": -16.5,
+   "market": "spread",
+   "new_money": 25994,
+   "new_x": 0.16,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 2015.97,
+      "volume_24h_fp": 789.16,
+      "volume_fp": 2015.97
+     },
+     "game_normal": 99360,
+     "game_x": 1.14,
+     "normal": 158963,
+     "now": 113381,
+     "type": "SPREAD",
+     "x": 0.71
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 1291374.0,
+      "volume": 1433265.0
+     },
+     "game_normal": 36238,
+     "game_x": 0.81,
+     "normal": 16534,
+     "now": 29273,
+     "type": "SPREAD",
+     "x": 1.77
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 11509,
+     "game_x": 1.12,
+     "normal": 828,
+     "now": 12883,
+     "type": "SPREAD",
+     "x": 15.56
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -16.5,
+     "price": -108
+    },
+    "betonlineag": {
+     "point": -16.5,
+     "price": -103
+    },
+    "betrivers": {
+     "point": -17.0,
+     "price": -109
+    },
+    "betus": {
+     "point": -16.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": -16.5,
+     "price": -112
+    },
+    "circasports": {
+     "point": -16.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": -16.5,
+     "price": -112
+    },
+    "fanatics": {
+     "point": -16.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": -16.5,
+     "price": -115
+    },
+    "kalshi": {
+     "point": -16.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": -16.5,
+     "price": 101
+    },
+    "mybookieag": {
+     "point": -16.5,
+     "price": -110
+    },
+    "novig": {
+     "point": -16.5,
+     "price": 100
+    },
+    "polymarket": {
+     "point": -16.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": -16.5,
+     "price": -102
+    },
+    "williamhill_us": {
+     "point": -16.5,
+     "price": -114
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFSPREAD-26NOV28NAVYCHAR-NAVY17"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Navy",
+   "side_label": "Navy wins by over 16.5 points",
+   "size_x": 0.71,
+   "start_source": "odds",
+   "start_utc": "2026-11-28T17:00:00Z",
+   "surge_books": [
+    "prophetx"
+   ],
+   "teams": [
+    "Navy",
+    "Charlotte"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-28T02:10:19Z",
    "base_depth": 154554,
    "best_price": 0.49,
@@ -212,6 +418,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.53,
    "clv_cents": 2.0,
    "confirmed_after_min": 6,
@@ -352,7 +559,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-28T02:40:20Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNBATOTAL-26NOV27LALSAS-227"
@@ -919,7 +1127,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-28T02:40:20Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26NOV27DENUTA-233"
@@ -2189,7 +2398,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [
     "Philadelphia 76ers -2.5 (-111)"
    ],
@@ -2226,6 +2435,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.52,
    "clv_cents": 0.0,
    "confirmed_after_min": 5,
@@ -2384,7 +2594,8 @@
      "price": -115
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-28T02:40:20Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26NOV27GSWPOR-POR9"
@@ -2575,7 +2786,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas A&M",
@@ -2795,7 +3006,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [
     "Over 40.5 (-115)"
@@ -3020,7 +3231,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -3235,7 +3446,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [
     "New York Knicks -3.5 (-115)"
    ],
@@ -3453,7 +3664,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [
     "Detroit Pistons -8.5 (-127)"
    ],
@@ -3635,7 +3846,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas A&M",
@@ -3706,9 +3917,9 @@
     "volume_fp": 142.17
    },
    "ex_stats_close": {
-    "open_interest_fp": 58628.14,
+    "open_interest_fp": 58669.3,
     "volume_24h_fp": 33306.48,
-    "volume_fp": 63414.38
+    "volume_fp": 63472.92
    },
    "ex_stats_first": {
     "open_interest_fp": 42652.99,
@@ -3912,9 +4123,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 101610.2,
+    "open_interest_fp": 102693.95,
     "volume_24h_fp": 96520.55,
-    "volume_fp": 102569.45
+    "volume_fp": 103653.2
    },
    "ex_stats_first": {
     "open_interest_fp": 66953.16,
@@ -4637,7 +4848,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -7918,9 +8129,9 @@
     "volume_fp": 317.66
    },
    "ex_stats_close": {
-    "open_interest_fp": 438625.26,
+    "open_interest_fp": 441773.87,
     "volume_24h_fp": 180689.5,
-    "volume_fp": 479455.28
+    "volume_fp": 482699.63
    },
    "ex_stats_first": {
     "open_interest_fp": 325923.35000000003,
@@ -8101,6 +8312,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.53,
    "clv_cents": 3.0,
    "confirmed_after_min": 4,
@@ -8674,9 +8886,9 @@
     "volume_fp": 70.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 12193.15,
+    "open_interest_fp": 12229.36,
     "volume_24h_fp": 4473.96,
-    "volume_fp": 13489.349999999999
+    "volume_fp": 13525.56
    },
    "ex_stats_first": {
     "open_interest_fp": 9563.86,
@@ -9891,8 +10103,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 1119305.0,
-    "volume": 1624201.0
+    "openInterest": 1120734.0,
+    "volume": 1625986.0
    },
    "ex_stats_first": {
     "openInterest": 902962.0,
@@ -10665,7 +10877,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [
     "Philadelphia 76ers -2.5 (-111)"
    ],
@@ -11251,8 +11463,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.775,
-   "clv_cents": -0.5,
+   "close_price": 0.78,
+   "clv_cents": 0.0,
    "confirmed_after_min": 6,
    "date": "2026-11-28",
    "depth_by_book": {
@@ -11281,8 +11493,8 @@
     "volume": 16471.0
    },
    "ex_stats_close": {
-    "openInterest": 3588233.0,
-    "volume": 4986369.0
+    "openInterest": 3613706.0,
+    "volume": 5011842.0
    },
    "ex_stats_first": {
     "openInterest": 2346875.0,
@@ -12041,7 +12253,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Winnipeg",
@@ -12227,7 +12439,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [
     "New York Knicks -3.5 (-115)"
@@ -14738,7 +14950,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [
     "Toronto Raptors -8.5 (-112)"
    ],
@@ -16458,7 +16670,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas wins by over 10.5 points",
@@ -17118,7 +17330,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Winnipeg",
@@ -17877,7 +18089,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -18213,7 +18425,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "TEX -10.5 (10.5)",
@@ -19503,7 +19715,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [
     "Over 40.5 (-115)"
    ],
@@ -19956,7 +20168,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [
     "New York Knicks -3.5 (-115)"
@@ -21255,7 +21467,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Toronto",
@@ -23779,7 +23991,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Toronto Raptors",
@@ -24004,7 +24216,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Detroit Pistons",
@@ -24184,7 +24396,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -25531,7 +25743,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "NOT Texas wins by over 11.5 points",
@@ -25959,7 +26171,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Toronto",
@@ -27637,7 +27849,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New York",
@@ -28444,7 +28656,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Wisconsin",
@@ -30753,7 +30965,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Indiana",
@@ -30863,7 +31075,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "TEX (0)",
@@ -32812,7 +33024,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Detroit",
@@ -32845,6 +33057,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.68,
    "clv_cents": 4.0,
    "confirmed_after_min": 5,
@@ -33121,6 +33334,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.74,
    "clv_cents": -1.0,
    "confirmed_after_min": 5,
@@ -34426,7 +34640,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Wisconsin",
@@ -34693,7 +34907,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas",
