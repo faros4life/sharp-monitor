@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 28, 12:20 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 40.
+Updated Sat Nov 28, 12:25 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 41.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 28 12:25AM | NCAAF | UConn vs Wyoming | moneyline: UConn | kalshi | $92k | -156 |  |  | +0.0c |  | pending |
 | Nov 28 12:10AM | NCAAF | Louisville vs Kentucky | moneyline: Louisville | kalshi | $138k | -138 | ✅ prophetx |  | +0.0c |  | pending |
 | Nov 28 12:00AM | NCAAF | Louisiana Tech vs Georgia Southern | moneyline: Louisiana Tech | kalshi | $136k | +113 | ✅ novig,prophetx | ✅ | +1.0c |  | pending |
 | Nov 27 11:30PM | NCAAF | UCF vs Colorado: Spread | spread: NOT Colorado wins by over 2.5 points | kalshi | $34k | -104 |  |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 26 12:45AM | NFL | Kansas City vs Buffalo: Total Points | total: NOT Over 47.5 points | kalshi | $59k | -122 |  |  | +2.0c | yes | W |
 | Nov 26 12:30AM | NBA | Atlanta vs Boston | moneyline: Boston | kalshi | $201k | -317 |  |  | +1.0c |  | L |
 | Nov 25 9:55PM | NFL | Chicago vs Detroit: Spread | spread: NOT Chicago wins by over 1.5 points | kalshi | $283k | -108 |  |  | +1.0c | yes | L |
-| Nov 25 9:50PM | NBA | Sacramento vs Golden State: Spread | spread: Golden State wins by over 8.5 points | kalshi | $32k | -104 | ✅ novig | ✅ | +0.0c | yes | W |
