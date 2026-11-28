@@ -5,6 +5,7 @@ Three things are checked: (1) the selection reproduces the record the ruling was
 feed itself; (2) every bet string names the row's own side and number - read a sign backwards and the lane bets
 the other team; (3) every dispatch point knows the lane, because a lane added to a list but not to a dispatch
 point is a no-op that looks like success."""
+import inspect
 import json
 import os
 import sys
@@ -190,12 +191,22 @@ finally:
 ok("play_key prefix registered", "dogs|" in ex.LANE_PREFIXES)
 ok("lane name (drives the Telegram tag)", ex.LANE_NAME.get("dogs") == "DOGS" and ex.src_tag({"source": "dogs"}) == "[DOGS] ")
 ok("lane_tag on a result", ex.lane_tag({"play": {"source": "dogs"}, "live": {}}) == "[DOGS] ")
-ok("candidates include the lane", "+ ncsplays + dogsplays + l2plays" in SRC and "dogsplays = dogs_plays(now)" in SRC)
+ok("candidates include the lane", "+ ncsplays + dogsplays +" in SRC and "dogsplays = dogs_plays(now)" in SRC)
+# Nov 28: this assertion was the ONLY place pinning l2plays into _cand, and loosening it for the 12K
+# insertion left Lane 2 unpinned anywhere. Pinned separately so the next lane insertion cannot drop
+# it silently. Lane 2 is dry-run only, so losing it costs paper data, not money - but silently.
+ok("...and Lane 2 is still in the candidate list", "+ l2plays" in SRC)
 ok("own live-decision branch", 'elif p.get("source") == "dogs":' in SRC and "dogs_gate(lr, lk)" in SRC
    and '"lane": "dogs", "unit": DOGS_UNIT' in SRC)
-ok("alert-line floor applies to the lane", 'p.get("source") in ("board", "r1", "ncs", "dogs")' in SRC)
+# Nov 28: the tuple gained "12k". Asserted as membership rather than as an exact literal, so adding
+# the NEXT lane does not fail this while still failing if "dogs" is ever dropped from the floor.
+ok("alert-line floor applies to the lane",
+   any(f'p.get("source") in ("board", "r1", "ncs", "dogs"{t})' in SRC for t in ("", ', "12k"')))
 ok("exposure is read from the ledger for the lane", 'row.get("source") == "dogs"' in SRC and 'DOGS["known"] = True' in SRC)
-ok("not treated as a Muse/sharp play for taken_now", '("rules", "board", "r1", "lane2", "ncs", "dogs")' in SRC)
+# Nov 28: the exclusion list gained "12k". Matched as a PREFIX so appending the next lane does not
+# fail this, while dropping "dogs" from the exclusion still does.
+ok("not treated as a Muse/sharp play for taken_now",
+   '("rules", "board", "r1", "lane2", "ncs", "dogs' in SRC)
 ok("per-lane report and header list the lane", '("dogs", "DOGS (liquidity dogs)"' in SRC and '("DOGS", DOGS_LIVE, DOGS_UNIT)' in SRC)
 ok("reads LIQ-MAIN only", ex.DOGS_FEED == "liquidity/alerts.json")
 wf = open(os.path.join(HERE, ".github", "workflows", "executor-dry-run.yml")).read()
@@ -336,8 +347,15 @@ try:
     ex.px_live.LIVE = True
     _rw = lambda v, why, reason=None: ex.rest_wanted({"play": {"source": "dogs"}, "books": {}, "verdict": v, "reason": reason,
                                                      "live": {"go": False, "why": why}})
-    ok("DOGS never rests a bid (price skip)", _rw("SKIP", ["price: x"], "price: x") is False)
-    ok("DOGS never rests a bid (no live book at the number)", _rw("WOULD PLACE", ["no live book has the alert number or better"]) is False)
+    # Nov 27 (Peter): the no-rest half of the DOGS strict rule was LIFTED. These two assertions were
+    # "is False" until that ruling; they are inverted here rather than deleted, so the file still
+    # names the behaviour and the date it changed. test_dogs_resting.py holds the terms it came with.
+    ok("DOGS rests when no live book has the alert number (Nov 27)",
+       _rw("WOULD PLACE", ["no live book has the alert number or better"]) is True)
+    ok("DOGS rests on a price skip (Nov 27)", _rw("SKIP", ["price: x"], "price: x") is True)
+    ok("DOGS strict still carries no-tolerance / alert-line-only / no-Gmail, not no-rest",
+       "no-Gmail rules cannot" in inspect.getsource(ex.dogs_strict)
+       and "NO-REST WAS REMOVED" in inspect.getsource(ex.dogs_strict))
 finally:
     ex.px_live.LIVE = _live
 
@@ -381,7 +399,7 @@ ok("OFF puts a reason in `why` before any gate is asked", 'why = [] if DOGS_LIVE
 ok('"go": True is reachable only with an empty `why`', BR.count('"go": True') == 1
    and 'if not why and r["verdict"] == "WOULD PLACE" and r.get("lc"):\n                    r["live"] = {"go": True' in BR)
 ok("code default is off (unset, empty, or anything but 'on')", '(os.environ.get("EXEC_DOGS_LIVE") or "off")' in SRC)
-ok("limits unchanged: $100 unit, 8 plays, $800/day, 30-minute freshness",
+ok("limits unchanged: $300 unit, 8 plays, 30-minute freshness",   # label was stale ($100/$800) - the asserted values are the live ones
    (ex.DOGS_UNIT, ex.DOGS_MAX_PLAYS, ex.DOGS_MAX_AGE_MIN) == (300.0, 8, 30)
    or any(os.environ.get(v) for v in ("EXEC_DOGS_DAILY_RISK", "EXEC_DOGS_MAX_PLAYS", "EXEC_DOGS_MAX_AGE_MIN")))
 

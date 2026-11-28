@@ -34,7 +34,7 @@ ck("board producer writes no floor_line (the defect this fixes)",
 # default (their own alert line or strictly better). The guard is the same - evaluate must still
 # hand a board-sourced play a floor - only its spelling in the source changed.
 ck("evaluate defaults a board floor",
-   'p.get("source") in ("board", "r1", "ncs", "dogs")' in src and "floor = line" in src)   # Nov 23: DOGS takes the same default
+   'p.get("source") in ("board", "r1", "ncs", "dogs' in src and "floor = line" in src)   # Nov 23: DOGS takes the same default; Nov 28: "12k" appended, so the prefix is matched not the whole tuple
 ck("the board lane is still covered by that branch", '"board"' in src)
 floor_blk = [l.strip() for l in src.splitlines() if "floor = line" in l]
 ck("the default is applied exactly once", len(floor_blk) == 1, repr(floor_blk))
