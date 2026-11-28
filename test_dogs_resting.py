@@ -207,8 +207,14 @@ ok("TERM 5: a venue with no dispatch branch cannot silently place (CLAUDE.md: ch
 # --- TERM 6: T-30 expiry, the shared unit ledger, duplicate protection -------------------------
 ok("TERM 6: the bid expires at T-30", ex.REST_BEFORE_MIN == 30
    and "expire = st - timedelta(minutes=REST_BEFORE_MIN)" in RB)
-ok("TERM 6: the shared unit ledger is claimed for the resting leg",
-   '_unit_ledger_guard(r, "rest_bid", b)' in RB and "_unit_ledger_consume(_rb_grant, risk)" in RB)
+# Nov 27: this asserted the old call shape '_unit_ledger_guard(r, "rest_bid", b)'. The guard now
+# takes the resting stake, the fee-adjusted alert price and the lane unit EXPLICITLY, because reading
+# them off lv handed the ledger (None, None, LIVE_UNIT) on the rest-only path and raised
+# ExposureUnknown out of rest_bid. The term is unchanged and the assertion is strengthened: it is no
+# longer enough that the ledger is called, it must be called with this path's real figures.
+ok("TERM 6: the shared unit ledger is claimed for the resting leg, with this path's real figures",
+   '_unit_ledger_guard(r, "rest_bid", b, stake=risk, shown=int(af),' in RB
+   and "unit=_rb_unit)" in RB and "_unit_ledger_consume(_rb_grant, risk)" in RB)
 ok("TERM 6: a separate |rest claim stops two runs posting the same bid",
    '_pkey + "|rest"' in RB and "claim_submission(_rkey, REST_CID)" in RB)
 ok("TERM 6: ...and it refuses while another run holds the immediate claim",

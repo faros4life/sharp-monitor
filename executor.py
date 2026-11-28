@@ -1314,6 +1314,382 @@ NCS_MIN_LEAD = 240          # minutes: the 4h+ condition the board's v3 PLAY rul
 NCS_BOOK = "kalshi"
 NCS = {"risk": 0.0, "keys": set(), "known": False}
 
+# ---------------------------------------------------------------- 12K (NFL 12K, 12-24h lead)
+# Peter's decision, 28 Nov 2026, relayed as a written spec: make the 12K 12K subset a live bot
+# lane. SCOPE is exactly that subset - NFL 12K spread plays, first side only, whose FIRST qualifying
+# print falls 12-24h before the start. Every other 12K print stays alert-only/manual, and the paper
+# forward cohorts (all / 4-24h / 12-24h) continue unchanged. This overrides the Nov 26 frozen-test
+# "no live activation" clause FOR THIS SUBSET ONLY, by Peter's direct decision; the rest of that
+# test stands.
+#
+# SHIPS OFF, and Peter's instruction when he commissioned the build was "build it but don't turn it
+# on". With EXEC_12K_LIVE unset this selects, prices and logs WOULD PLACE and places nothing. The
+# switch is a repo variable, which Claude cannot write - Peter flips it.
+#
+# RESTS, at the alert number. Built take-only first, from the spec's "one attempt per book"; Peter
+# then asked for both lanes "running the right way with resting bids at the alert number" (28 Nov),
+# so "12k" is registered in rest_bid's _REST_LANE_GATES with its own gate. Nothing about the PRICE
+# changes or needed to: rest_bid rests at the alert's own after-fee number with no tolerance added,
+# which is already this lane's price gate ("the alert line's after-fee price or better, never
+# worse"). Resting inherits every protection the other lanes get there - Novig and Kalshi only with
+# Polymarket US blocked, strict venue revalidation before pricing, T-30 expiry, the shared unit
+# ledger on the resting leg, the separate |rest duplicate claim, and this lane's own daily cap and
+# play maximum through k12_gate.
+#
+# THE TRIGGER IS SETTLED. Peter supplied the registered definition on 28 Nov - $12k+ of per-book
+# `this_side` depth on EACH of Kalshi, Novig and ProphetX, read from ONE moneyline entry - and the
+# acceptance case (Detroit: 3,774,670 / 61,428 / 39,131) is asserted in test_12k_lane. An earlier
+# version of this block said the trigger was unconfirmed and warned against flipping the switch;
+# that was true for about an hour and is kept nowhere, because a stale warning under a live-money
+# switch is worse than none.
+#
+# CAPS, Peter 28 Nov: $1,200 a day, 5 plays. He left the play maximum at 5. Worth his attention
+# rather than mine: one replayed pass produced 46 qualifying plays, so on a full NFL card both caps
+# bind hard and the lane takes the first five by alert time.
+K12_LIVE = (os.environ.get("EXEC_12K_LIVE") or "off").strip().lower() == "on"   # money switch (repo variable; Peter flips it)
+K12_UNIT = 200.0           # Peter, 28 Nov: "to win 200" - to win $200 at minus, risk $200 at plus,
+                            # which is live_stake(shown, 200.0), the same basis as R1, NCS and Board.
+K12_DAILY_RISK = float(os.environ.get("EXEC_12K_DAILY_RISK", "") or "1200")   # Peter, 28 Nov
+K12_MAX_PLAYS = int(os.environ.get("EXEC_12K_MAX_PLAYS", "") or "5")          # Peter left it at 5 (28 Nov)
+K12_MIN_MONEY = float(os.environ.get("EXEC_12K_MIN_MONEY", "") or "12000")    # per-book depth floor
+# 12h <= lead < 24h, in minutes. The HIGH end is EXCLUSIVE, per the registered spec. Peter's relay
+# said my earlier 719/720/1440/1441 boundary tests "match this" - they did not: the old code and
+# test admitted exactly 1440 (24h on the nose). Written to the spec, and the test now pins 1439 in
+# and 1440 OUT. One minute, one play, so it is worth the correction rather than the assumption.
+K12_LEAD_LO, K12_LEAD_HI = 720.0, 1440.0
+K12_LEAGUE = "NFL"
+K12 = {"risk": 0.0, "keys": set(), "known": False}
+
+
+K12_TRIGGER_BOOKS = ("kalshi", "novig", "prophetx")
+
+
+def k12_book_depth(x, book):
+    """THIS-SIDE depth at ONE book on ONE entry, as dollars. A book absent from depth_by_book is
+    $0.00 and therefore fails the condition - never None, never skipped.
+
+    Peter's registered definition, relayed 28 Nov: the condition reads depth_by_book's per-book
+    `this_side` on a SINGLE moneyline entry. It is NOT the row's own `new_money`, and it is NOT a
+    cross-row join. My first build read `new_this_side` and so measured only the primary book's new
+    print - 210 NFL rows each with one book - and concluded the conjunction was unsatisfiable. It
+    was the wrong field: the conjunction lives in `this_side`.
+
+    Book names vary in case between feeds, so the lookup is case-insensitive."""
+    d = (x or {}).get("depth_by_book") or {}
+    want = str(book or "").strip().lower()
+    for k, v in d.items():
+        if str(k).strip().lower() == want and isinstance(v, dict):
+            try:
+                return float(v.get("this_side") or 0.0)
+            except (TypeError, ValueError):
+                return 0.0
+    return 0.0
+
+
+def k12_trigger_ok(x):
+    """The base 12K trigger, as registered Nov 25-26 and relayed by Peter on 28 Nov: ONE main-feed
+    moneyline entry whose depth_by_book `this_side` is >= $12,000 on EACH of Kalshi, Novig AND
+    ProphetX. That three-book conjunction is what "12K" names.
+
+    Read from a single entry - no cross-row join. A book missing from depth_by_book is $0 and fails.
+
+    The worked example Peter supplied, which is the acceptance case: Detroit Lions, first qualifying
+    print 2026-11-25T21:15:54Z, Kalshi $3,774,670 / Novig $61,428 / ProphetX $39,131 - all three
+    over $12k, so it qualifies. Kalshi's figure is FULL-BOOK depth; that is the rule as registered
+    and backtested, and his instruction was explicit: do not re-derive it."""
+    if not isinstance(x, dict) or x.get("market") != "moneyline":
+        return False
+    return all(k12_book_depth(x, b) >= K12_MIN_MONEY for b in K12_TRIGGER_BOOKS)
+
+
+def k12_qualifies(x):
+    """Row conditions for an 12K TRIGGER: NFL, and the 12K all-three-books moneyline print. Pure -
+    no timing and no first-print rule, which k12_select applies, the same split as
+    dogs_qualifies/dogs_select.
+
+    The league field is `league`, NOT `sport`: every row in this feed has sport None, so reading
+    sport returns an empty cohort. Checked against the feed rather than assumed - a selection that
+    silently matches nothing is the failure that looks like "no plays today"."""
+    if not isinstance(x, dict):
+        return False
+    return (str(x.get("league") or "").strip().upper() == K12_LEAGUE
+            and x.get("price_american") is not None
+            and k12_trigger_ok(x))
+
+
+def prob_to_american(p):
+    """Fraction -> American. The inverse of american_to_prob, so the two cannot drift."""
+    p = float(p)
+    if not (0.0 < p < 1.0):
+        return None
+    return int(round(-100.0 * p / (1.0 - p))) if p >= 0.5 else int(round(100.0 * (1.0 - p) / p))
+
+
+def k12_same_game(a, b):
+    """True when two feed entries are the same matchup, across book dialects.
+
+    "Chicago vs Detroit" and "Chicago Bears vs Detroit Lions" are one play. The matching is
+    liquidity_monitor.same_game - the monitor's OWN team-token matcher, not a second one written
+    here. One normaliser, so the lane's dedupe cannot drift from the monitor's."""
+    try:
+        return lm.same_game(a, b) is not None
+    except Exception:
+        return False
+
+
+def k12_side_tokens(x):
+    """Team tokens for a side name, or an empty set."""
+    try:
+        return lm.toks(str(x or ""), None) or set()
+    except Exception:
+        return set()
+
+
+def k12_same_side(want, cand, others=()):
+    """True when `cand` names the same team as `want`, across dialects - and UNAMBIGUOUSLY so.
+
+    A plain token intersection is NOT safe here and would bet the wrong team. Measured:
+    toks("New York Giants") = {new, york, giants} and toks("New York Jets") = {new, york, jets}, so
+    they intersect on the city and a bare `ta & tb` returns True. In a Giants-vs-Jets game that
+    matches the JETS spread row to a GIANTS trigger - a live bet on the opposite outcome. Same for
+    the two Los Angeles and the two New York clubs, and for the feed's truncated dialects
+    ("Los Angeles C" vs "Los Angeles R").
+
+    So a match must also be BETTER than every rival name in `others`: strictly more overlapping
+    tokens than any other team in the same game. Ties lose, which keeps it fail-closed - an
+    ambiguous side yields no play rather than a guessed one. With `others` empty this is the old
+    behaviour and is only safe where the caller has already fixed the team set, so every caller in
+    this lane passes the game's other team."""
+    w, c = k12_side_tokens(want), k12_side_tokens(cand)
+    if not w or not c:
+        return False
+    hit = len(w & c)
+    if not hit:
+        return False
+    for o in others or ():
+        if len(w & k12_side_tokens(o)) >= hit:
+            return False
+    return True
+
+
+def k12_spread_play(rows, trig):
+    """The spread play for a trigger: the EARLIEST spread entry for that game and side.
+
+    Peter's spec, 28 Nov: "the spread for that game and side from the same feed - the earliest
+    spread entry; if the only spread entry is the mirrored 'NOT <team> wins by over <L>' form, the
+    play is <team> -<L> at the complement price (1 minus that entry's best fraction, converted to
+    American)."
+
+    So the MIRRORED case is not "bet the other team's row as listed" - which is what my first build
+    did, and it would have bet the wrong side at the wrong price. It is the SAME team at -L, priced
+    at the complement. Returns (play_row, note) or (None, reason)."""
+    same = [x for x in rows if x.get("market") == "spread" and k12_same_game(x, trig)]
+    if not same:
+        return None, "no spread entry for this game"
+    direct = [x for x in same if k12_same_side(trig.get("side"), x.get("side"),
+                                               others=_k12_rivals(x, trig))]
+    if direct:
+        return dict(direct[0]), "direct"
+    mir = [x for x in same if "not " in str(x.get("side_label") or "").lower()
+           and k12_same_side(trig.get("side"), _k12_mirror_team(x),
+                             others=_k12_rivals(x, trig))]
+    if not mir:
+        return None, "spread entry exists but names neither our side nor its mirror"
+    m = mir[0]
+    try:
+        frac = float(m.get("best_price"))
+    except (TypeError, ValueError):
+        return None, "mirrored spread entry has no readable price"
+    am = prob_to_american(1.0 - frac)
+    if am is None:
+        return None, f"mirrored complement price out of range ({frac!r})"
+    line = m.get("line")
+    try:
+        line = -abs(float(line))      # <team> -L: the favourite side of the mirrored statement
+    except (TypeError, ValueError):
+        return None, "mirrored spread entry has no readable line"
+    return dict(m, side=trig.get("side"), line=line, best_price=round(1.0 - frac, 4),
+                best_price_american=am, price_american=am,
+                k12_mirrored_from=m.get("side_label")), "mirrored"
+
+
+def _k12_rivals(row, trig):
+    """Every team named in this game OTHER than the one the trigger is on - the names a side match
+    has to beat. Drawn from both rows, because the two feeds spell teams differently and a rival
+    missing from the list is a rival the uniqueness test cannot rule out."""
+    want = k12_side_tokens((trig or {}).get("side"))
+    out = []
+    for t in list((row or {}).get("teams") or []) + list((trig or {}).get("teams") or []):
+        tt = k12_side_tokens(t)
+        if tt and tt != want and not (want and tt >= want):
+            out.append(t)
+    return out
+
+
+def _k12_mirror_team(x):
+    """The team named inside a mirrored label: "NOT Detroit wins by over 1.5" -> "Detroit"."""
+    t = str(x.get("side_label") or "")
+    low = t.lower()
+    if "not " not in low:
+        return ""
+    after = t[low.index("not ") + 4:]
+    for cut in (" wins by over", " wins by", " covers"):
+        k = after.lower().find(cut)
+        if k != -1:
+            return after[:k].strip()
+    return after.strip()
+
+
+def k12_select(rows, now):
+    """(plays, skipped) for the 12K lane.
+
+    ONE play per matchup, from the FIRST qualifying print only, and first-side-only: a later
+    qualifying print on the opposite side is skipped, not played. Matching is across book dialects,
+    so "Chicago vs Detroit" and "Chicago Bears vs Detroit Lions" are the same play.
+
+    The 12-24h test is applied to THAT first print's own lead, not to now: a play whose first
+    qualifying print was 30h out does not become eligible by being re-read at 20h. The high end is
+    EXCLUSIVE (lead < 24h), per the registered spec."""
+    elig = [x for x in (rows or []) if isinstance(x, dict) and not x.get("artifact")
+            and not x.get("close_suspect") and iso_t(x.get("alerted_utc"))
+            and str(x.get("book") or "").strip().lower() not in DOGS_NOT_BETTABLE]
+    elig.sort(key=lambda x: iso_t(x.get("alerted_utc")))
+    out, taken, skipped = [], [], 0
+    for x in elig:
+        if not k12_qualifies(x):
+            continue
+        if any(k12_same_game(x, t) for t in taken):
+            skipped += 1          # the matchup already fired on its first print; first side stays
+            continue
+        at, st = iso_t(x.get("alerted_utc")), iso_t(x.get("start_utc"))
+        if not st or not at or st <= now:
+            skipped += 1
+            continue
+        lead = (st - at).total_seconds() / 60.0
+        if not (K12_LEAD_LO <= lead < K12_LEAD_HI):
+            taken.append(x)       # it WAS this matchup's first qualifying print - just not 12K
+            skipped += 1
+            continue
+        spr, note = k12_spread_play(elig, x)
+        taken.append(x)
+        if spr is None:
+            skipped += 1          # triggered, but no playable spread - never bet the ML instead
+            continue
+        out.append(dict(spr, k12_lead_min=round(lead, 1), k12_trigger_utc=x.get("alerted_utc"),
+                        k12_spread_source=note,
+                        k12_trigger_depth={b: k12_book_depth(x, b) for b in K12_TRIGGER_BOOKS}))
+    return out, skipped
+
+
+def k12_bet(x):
+    """The bet string for a selected 12K spread play, or None when it cannot be read safely.
+
+    Same format and the same never-guess rule as dogs_bet: `line` is the BETTOR'S signed handicap,
+    so a spread is f"{side} {line:+g} ({am:+d})". It differs in ONE way, deliberately: the side is
+    validated against the row's teams with the TOKEN matcher, not string equality. A 12K play's side
+    comes from the moneyline trigger ("Detroit Lions") while the spread row it is priced from may
+    name it in another dialect ("Detroit"), and dogs_bet's `str(sd) in dogs_teams(x)` would reject
+    that - silently dropping every mirrored and cross-dialect play. Still never guessed: a side that
+    matches NEITHER team returns None and the play is skipped and counted."""
+    sd, ln, am = x.get("side"), x.get("line"), x.get("price_american")
+    if not sd or am is None or ln is None:
+        return None
+    # The side must match EXACTLY ONE of the row's teams. Passing the rivals matters here too: with
+    # a bare intersection, "New York Giants" matches both New York clubs and the check proves
+    # nothing about which team is being bet.
+    _ts = list(x.get("teams") or [])
+    if sum(1 for t in _ts if k12_same_side(sd, t, others=[o for o in _ts if o != t])) != 1:
+        return None
+    try:
+        return f"{sd} {float(ln):+g} ({int(am):+d})"
+    except (TypeError, ValueError):
+        return None
+
+
+def k12_plays(now):
+    """The 12K lane's candidates, as PLAY DICTS for the shared downstream path.
+
+    THIS FUNCTION WAS MISSING, and an independent review caught it. k12_select existed, was tested
+    66 ways and was called by nothing but tests: no producer, so the lane selected nothing in
+    production and flipping EXEC_12K_LIVE would have placed nothing at all. The end-to-end "46
+    plays" replay called k12_select directly, which proved the function and not the lane - exactly
+    CLAUDE.md's no-op that looks like success, and it got as far as a merge gate.
+
+    LIQ-MAIN only, like DOGS: the cohort was measured on this feed.
+
+    k12_entry is what the downstream price gate reads. It carries the SELECTED row's own price and
+    line - which for a mirrored play are the complement price and the -L line that k12_spread_play
+    computed, not the raw mirror's - so the order is priced at the alert number for the side being
+    bet. Without it r["entry"] is {} and rest_bid refuses with "alert after-fee price unknown"."""
+    try:
+        with open(DOGS_FEED) as fh:
+            a = json.load(fh)
+        rows = a if isinstance(a, list) else (a.get("alerts") or [])
+    except Exception as ex:
+        LOG.append(f"liquidity feed unreadable (12k): {type(ex).__name__}")
+        return []
+    sel, skipped = k12_select(rows, now)
+    out, seen = [], set()
+    for x in sel:
+        bet = k12_bet(x)
+        if not bet:
+            skipped += 1
+            continue
+        p = {"sport": x.get("league") or "", "game": x.get("game") or "", "bet": bet,
+             "start_utc": x.get("start_utc"), "late": False, "source": "12k",
+             "alert_utc": x.get("k12_trigger_utc") or x.get("alerted_utc"),
+             "rules": {"verdict": "AGREE", "gate": None,
+                       "reason": "12K (NFL, $12k+ this-side depth on Kalshi+Novig+ProphetX on the "
+                                 "ML print, first print 12-24h out, spread played)"},
+             "k12_entry": {"alert_utc": x.get("k12_trigger_utc") or x.get("alerted_utc"),
+                           "book_key": x.get("book"),
+                           "price_after_fee": x.get("price_american"),
+                           "alert_price_raw": x.get("price_american"),
+                           "point": x.get("line"), "line": x.get("line"),
+                           "sport": x.get("league"), "bet": None,
+                           "k12_spread_source": x.get("k12_spread_source")}}
+        k = derive_key(p)
+        if not k:
+            skipped += 1
+            continue
+        if k in seen:
+            continue
+        seen.add(k)
+        out.append(dict(p, play_key="12k|" + k))
+    if skipped:
+        LOG.append(f"12K: {skipped} qualifying row(s) skipped - not playable (never guessed)")
+    return out
+
+
+def k12_gate(risk, key=None):
+    """(ok, why) for ONE 12K order of `risk` dollars. Fail closed, and identical in shape to
+    ncs_gate, r1_gate and board_gate: unknown exposure, the play cap, an unreadable or zero risk, or
+    the daily risk limit all refuse.
+
+    In-run accumulation comes from lane_consume(), which charges a placed play's combined exposure
+    straight into K12["risk"]/["keys"] after dispatch - so reading those dicts here already counts
+    what this run has committed, and two plays in one pass are never both measured on the run-start
+    figure. Written against lane_consume deliberately: an earlier draft of this gate called a
+    lane_counts() helper that exists only on a DISCARDED branch of mine, which would have raised
+    AttributeError on the first live 12K order. This lane's own test caught it."""
+    if not K12["known"]:
+        return False, "12K exposure unknown this run (ledger unreadable) - fail closed"
+    n = len(K12["keys"]) + (0 if (key and key in K12["keys"]) else 1)
+    if n > K12_MAX_PLAYS:
+        return False, (f"12K play cap: {len(K12['keys'])} already submitted or resting today "
+                       f"(ET), cap {K12_MAX_PLAYS}")
+    try:
+        risk = float(risk or 0)
+    except Exception:
+        return False, "12K order risk unreadable - fail closed"
+    if risk <= 0:
+        return False, "12K order risk is zero - fail closed"
+    if K12["risk"] + risk > K12_DAILY_RISK + 1e-9:
+        return False, (f"12K daily risk limit: ${K12['risk']:,.2f} already at risk today (ET) + "
+                       f"${risk:,.2f} would exceed ${K12_DAILY_RISK:,.0f}")
+    return True, (f"ok (12K today: {len(K12['keys'])}/{K12_MAX_PLAYS} plays, "
+                  f"${K12['risk']:,.2f}/${K12_DAILY_RISK:,.0f} at risk)")
+
 
 def ncs_teams(x):
     """The two teams, taken from the GAME STRING, not from the row's own `teams` field.
@@ -1561,7 +1937,11 @@ def dogs_plays(now):
     return out
 
 
-LANE_PREFIXES = ("rule|", "board|", "r1|", "lane2|", "ncs|", "dogs|")   # every lane that stamps its own play_key
+# Nov 28: "12k|" added WITH its producer, in the same commit. Without the prefix, same_bet and
+# opp_bet split a "12k|..." key into 5 fields, fail the len != 4 check and return False on every
+# comparison - both duplicate guards blind, which lane_strip's own note below calls "two vigs for a
+# guaranteed loss". A review proved exactly that before this entry existed.
+LANE_PREFIXES = ("rule|", "board|", "r1|", "lane2|", "ncs|", "dogs|", "12k|")   # every lane that stamps its own play_key
 
 
 def lane_strip(k):
@@ -1721,10 +2101,10 @@ def unit_for(lane):
     else is Lane 1's unit."""
     l = str(lane or "")
     return (BOARD_UNIT if l == "board" else R1_UNIT if l == "r1" else NCS_UNIT if l == "ncs"
-            else DOGS_UNIT if l == "dogs" else LIVE_UNIT)
+            else DOGS_UNIT if l == "dogs" else K12_UNIT if l == "12k" else LIVE_UNIT)
 
 
-LANE_NAME = {"board": "BOARD V4", "r1": "R1", "lane2": "LANE 2", "rules": "LANE 1", "ncs": "NCS", "dogs": "DOGS"}
+LANE_NAME = {"board": "BOARD V4", "r1": "R1", "lane2": "LANE 2", "rules": "LANE 1", "ncs": "NCS", "dogs": "DOGS", "12k": "12K"}
 
 # Nov 12 (Peter): "Remove suggestions to place held bot orders manually unless there is an explicit
 # safe handoff that prevents automated retries." The handoff EXISTS - a "Bets manual" note, which
@@ -1882,7 +2262,10 @@ def lane_report(results):
             ("board", ("Board v4" if BOARD_V4 else "Board v3"), BOARD_UNIT, BOARD_MAX_PLAYS, BOARD_DAILY_RISK, BOARD, BOARD_LIVE),   # Nov 17: the per-lane report names the rule that is deciding
             ("r1", "R1", R1_UNIT, R1_MAX_PLAYS, R1_DAILY_RISK, R1, R1_LIVE),
             ("ncs", "NCS (NCAAB spreads)", NCS_UNIT, NCS_MAX_PLAYS, NCS_DAILY_RISK, NCS, NCS_LIVE),
-            ("dogs", "DOGS (liquidity dogs)", DOGS_UNIT, DOGS_MAX_PLAYS, DOGS_DAILY_RISK, DOGS, DOGS_LIVE)):
+            ("dogs", "DOGS (liquidity dogs)", DOGS_UNIT, DOGS_MAX_PLAYS, DOGS_DAILY_RISK, DOGS, DOGS_LIVE),
+            # Nov 28: 12K. Absent, this lane placed and rested with NO LINE in the per-lane report -
+            # live and unwatched, which is the condition strategy_registry's own note warns about.
+            ("12k", "12K (NFL three-book ML depth)", K12_UNIT, K12_MAX_PLAYS, K12_DAILY_RISK, K12, K12_LIVE)):
         rs = [r for r in results if (r.get("play") or {}).get("source") == lane
               or (lane == "rules" and (r.get("play") or {}).get("source") in (None, "muse", "rules"))]
         placed = [r for r in rs if ((r.get("live") or {}).get("order") or {}).get("status") == "placed"]
@@ -3102,7 +3485,16 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
     # WORSE line whenever an estimated half-point value (half_point(), HP_FALLBACK when the ladders
     # cannot say) appeared to compensate, with only the -130 cap behind it. A board play's floor is
     # its OWN alert line. Lane 1 is untouched: it keeps the floor its producer supplies.
-    if floor is None and mtype in ("spread", "total") and p.get("source") in ("board", "r1", "ncs", "dogs"):   # R1, NCS and DOGS too: their own alert line or strictly better
+    # Nov 28: "12k" added. It was absent, and a review proved the consequence: 12K is an ALL-SPREAD
+    # lane, so with floor None the floor_blocked check below never fires and better_halfpoints can
+    # fill at a WORSE line than the alert whenever an estimated half-point value appears to
+    # compensate, with only CAP_LINE behind it. HP_FALLBACK["NFL"] is 0.030, so ~3c of apparent
+    # compensation buys half a point - across 3 and 7, on an NFL-only lane. That is verbatim the
+    # Board defect the note above fixed on Nov 11 and that R1, NCS and DOGS were added to. The
+    # lane's own spec is "the alert line's after-fee price or better, never worse": true of rest_bid,
+    # which anchors on price_after_fee, and NOT of the take path until this line changed - and the
+    # take path is where the order goes first. CLAUDE.md: a name with no branch is silently dropped.
+    if floor is None and mtype in ("spread", "total") and p.get("source") in ("board", "r1", "ncs", "dogs", "12k"):   # R1, NCS, DOGS and 12K too: their own alert line or strictly better
         floor = line
     cands, floor_blocked, no_qual_basis = [], 0, 0
     lvs_notes = []   # Nov 12: SHADOW capture of EVERY candidate and why it was rejected. Records only; no decision reads it.
@@ -3268,7 +3660,10 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
     # Oct 28 (Peter): phase-1 live fills on the best after-fee price among the LIVE books
     # (ProphetX keeps its 2c; Novig gets the same 2c from Nov 11 - see TOL_BOOKS)
     lcs = [c for c in capped if c["book"] in LIVE_BOOKS]
-    _u = unit_for(p.get("source") if p.get("source") in ("board", "r1", "ncs", "dogs") else None)
+    # Same dropped name, same tuple: without "12k" this asked unit_for(None) = Lane 1's $300 for a
+    # 12K play instead of K12_UNIT $200, overstating the availability a candidate needs to count as
+    # full. Conservative in direction, wrong in fact, and fixed in the same edit as the floor.
+    _u = unit_for(p.get("source") if p.get("source") in ("board", "r1", "ncs", "dogs", "12k") else None)
     lfull = [c for c in lcs if c["avail"] >= live_stake(c["shown"], _u)[0]]
     lc = (lfull or lcs)[0] if lcs else None
     return dict(out, verdict="WOULD PLACE", book=pick["book"], american=pick["am"], shown=pick["shown"], take_line=pick["line"],
@@ -3395,6 +3790,7 @@ def src_tag(p):
             else "[R1] " if p.get("source") == "r1"
             else "[NCS] " if p.get("source") == "ncs"
             else "[DOGS] " if p.get("source") == "dogs"
+            else "[12K] " if p.get("source") == "12k"   # Nov 28: absent, a 12K push carried NO lane tag
             else "[Lane 2 dry run] " if p.get("source") == "lane2"
             else ("[Muse] " if SOURCE == "both" else ""))
 
@@ -3869,34 +4265,42 @@ def _account_rows(rows, graded, ids, seen_oids, _intents, _confirmed):
                     BOARD["keys"].add(row["key"])      # one intended bet = one play, so a
                     # retry, a top-up or a partial fill of the same key never counts twice
                 if graded.get(row.get("key")) not in ("W", "P"):
-                    fs_b = lo.get("filled_stake")
+                    fs_b = _acct_fill(lo)
                     BOARD["risk"] += (max(float(fs_b or 0), float(lo.get("asked_stake") or 0))
                                       if (is_rest or fs_b is None) else float(fs_b))
             if row.get("source") == "r1" and d_et in (None, datetime.now(lm.ET).date()):   # same rules as the board block above
                 if row.get("key"):
                     R1["keys"].add(row["key"])
                 if graded.get(row.get("key")) not in ("W", "P"):
-                    fs_r = lo.get("filled_stake")
+                    fs_r = _acct_fill(lo)
                     R1["risk"] += (max(float(fs_r or 0), float(lo.get("asked_stake") or 0))
                                    if (is_rest or fs_r is None) else float(fs_r))
             if row.get("source") == "ncs" and d_et in (None, datetime.now(lm.ET).date()):   # same rules again
                 if row.get("key"):
                     NCS["keys"].add(row["key"])
                 if graded.get(row.get("key")) not in ("W", "P"):
-                    fs_n = lo.get("filled_stake")
+                    fs_n = _acct_fill(lo)
                     NCS["risk"] += (max(float(fs_n or 0), float(lo.get("asked_stake") or 0))
                                     if (is_rest or fs_n is None) else float(fs_n))
+            if row.get("source") == "12k" and d_et in (None, datetime.now(lm.ET).date()):   # same rules again
+                if row.get("key"):
+                    K12["keys"].add(row["key"])
+                    K12["keys"].add(lane_strip(row["key"]))
+                if graded.get(row.get("key")) not in ("W", "P"):
+                    fs_a = _acct_fill(lo)
+                    K12["risk"] += (max(float(fs_a or 0), float(lo.get("asked_stake") or 0))
+                                     if (is_rest or fs_a is None) else float(fs_a))
             if row.get("source") == "dogs" and d_et in (None, datetime.now(lm.ET).date()):   # same rules again
                 if row.get("key"):
                     DOGS["keys"].add(row["key"])
                 if graded.get(row.get("key")) not in ("W", "P"):
-                    fs_d = lo.get("filled_stake")
+                    fs_d = _acct_fill(lo)
                     DOGS["risk"] += (max(float(fs_d or 0), float(lo.get("asked_stake") or 0))
                                      if (is_rest or fs_d is None) else float(fs_d))
             if graded.get(row.get("key")) in ("W", "P"):
                 continue   # settled win/push: not a loss toward the daily stop
             if (lo.get("book") or "prophetx") != "prophetx" and d_et in (None, datetime.now(lm.ET).date()):
-                fs = lo.get("filled_stake")   # fill-or-kill: what filled (unknown = all asked); resting: all asked
+                fs = _acct_fill(lo)   # fill-or-kill: what filled (unknown = all asked); resting: all asked
                 _amt = (max(float(fs or 0), float(lo.get("asked_stake") or 0)) if (is_rest or fs is None)
                         else float(fs))
                 _use, _why = reconciled_amount(lo, _amt, is_rest)
@@ -3908,7 +4312,22 @@ def _account_rows(rows, graded, ids, seen_oids, _intents, _confirmed):
                     VENUE["adjusted"] += 1
 
 
-LANE_STATE = {"board": "BOARD", "r1": "R1", "dogs": "DOGS", "ncs": "NCS"}   # "rules" has no lane cap
+LANE_STATE = {"board": "BOARD", "r1": "R1", "dogs": "DOGS", "ncs": "NCS", "12k": "K12"}   # "rules" has no lane cap
+
+
+def _acct_fill(lo):
+    """A leg's filled_stake, with an explicitly FAILED fill read reported as None (unknown).
+
+    Nov 27 (Peter, fix 4). _account_rows and lane_leg_amount must apply ONE rule, or the run-start
+    snapshot and the in-run tally disagree about the same order. Both read the fill through here: a
+    0.0 sitting beside fills_read False is a failed read, not a read zero, and unknown exposure
+    reserves everything asked. Defence in depth behind the null at the dispatch sites, so a leg that
+    reaches the accounting in the raw shape is still never booked at zero."""
+    lo = lo or {}
+    fs = lo.get("filled_stake")
+    if fs is not None and (lo.get("fills_read") is False or lo.get("fill_read") is False):
+        return None
+    return fs
 
 
 def lane_leg_amount(lo, is_rest):
@@ -3922,7 +4341,7 @@ def lane_leg_amount(lo, is_rest):
     lo = lo or {}
     if lo.get("status") != "placed":
         return 0.0
-    fs = lo.get("filled_stake")
+    fs = _acct_fill(lo)
     a = lm.num(lo.get("asked_stake"))
     f = lm.num(fs)
     if is_rest or fs is None:
@@ -4147,6 +4566,7 @@ def _bot_orders_finish(M, ids, _intents, _confirmed, from_store=False):
     R1["known"] = True      # ...and today's R1 exposure
     NCS["known"] = True     # ...and today's NCS exposure
     DOGS["known"] = True    # ...and today's DOGS exposure
+    K12["known"] = True    # ...and today's 12K exposure
     return ids
 
 
@@ -5022,7 +5442,7 @@ def _unit_ledger_record(r, path, book=None):
     return None
 
 
-def _unit_ledger_guard(r, path, book=None):
+def _unit_ledger_guard(r, path, book=None, stake=None, shown=None, unit=None):
     """REVIEW BRANCH ONLY. Reserve this play's capacity in the SHARED ledger before dispatch.
 
     Returns None when EXEC_UNIT_LEDGER is off, which is the default and which makes every caller
@@ -5069,7 +5489,10 @@ def _unit_ledger_guard(r, path, book=None):
     _id = derive_key(p) or p.get("play_key") or (r.get("live") or {}).get("cid")
     if not _id:
         raise RuntimeError("shared ledger: no order identity for this play - refusing to submit")
-    _id = f"{_id}|{lv.get('line')}|{lv.get('shown')}"
+    # `shown` joins the ledger identity, so on the rest-only path it degraded to "...|None". It now
+    # follows the same explicit value the reservation uses; on the take path the two are the same
+    # read, so that identity string is unchanged.
+    _id = f"{_id}|{lv.get('line')}|{lv.get('shown') if shown is None else shown}"
     # Every earlier order ATTEMPT is swept into the ledger before this one is judged: an older run
     # still in flight, a record that failed, an order placed just before enforcement began. Each
     # wrote a write-ahead intent, and an intent with no ledger entry is exposure not yet counted.
@@ -5085,9 +5508,46 @@ def _unit_ledger_guard(r, path, book=None):
     if _rows is None:
         raise RuntimeError("shared ledger: order rows unreadable - cannot match this play across feeds, refusing")
     _resm.set_play_matcher(_unit_ledger_matcher(p, _rows))
+    # Nov 27 (Peter): "Fix shared-ledger sizing on the resting-only path. Use the actual computed
+    # resting stake, approved fee-adjusted limit price and applicable strategy unit. Never substitute
+    # guessed values for missing exposure information."
+    #
+    # MEASURED, end to end, with EXEC_UNIT_LEDGER=on. On the rest-ONLY path r["live"] is
+    # {go: False, lane, why}: no "risk", no "shown", no "unit", because nothing priced a take. The
+    # three reads below therefore called the shared ledger with (None, None, LIVE_UNIT).
+    # review_unit_reservation raises ExposureUnknown("stake") on the None stake and this function
+    # re-raises, so the exception escaped rest_bid entirely - a SKIP "error: stake" row and a
+    # STOP-worthy "LIVE PLAY ERROR" push instead of a refusal, with the |rest submission claim left
+    # HELD, so the next run refused with "another run is already posting this resting bid".
+    #
+    # That makes it a blocker for DOGS specifically: dogs_gate refuses unless the ledger is
+    # ENFORCED, so there was no configuration in which a DOGS rest-only bid could be placed - ledger
+    # off, dogs_gate refuses; ledger on, this raises. Every other test of rest_bid runs with the
+    # ledger off (test_rest_lane_caps says so in its own docstring), which is why it stayed hidden.
+    #
+    # A caller that knows the real figures passes them. NOTHING is inferred when they are absent: an
+    # explicit caller whose values are missing or not finite positive REFUSES, because the only
+    # substitution available here is LIVE_UNIT, and silently reserving Lane 1's $300 against a $200
+    # lane is exactly the guessed value the instruction forbids. The take path passes nothing and
+    # reads lv as before, so its sizing and its ledger identity are byte-for-byte unchanged.
+    _explicit = not (stake is None and shown is None and unit is None)
+    _stake = lv.get("risk") if stake is None else stake
+    _shown = lv.get("shown") if shown is None else shown
+    _unit = (lv.get("unit") or LIVE_UNIT) if unit is None else unit
+    if _explicit:
+        for _nm, _v in (("stake", _stake), ("unit", _unit)):
+            try:
+                _f = float(_v)
+            except (TypeError, ValueError):
+                raise RuntimeError(f"shared ledger: {path} {_nm} is unreadable ({_v!r}) - refusing")
+            if not (math.isfinite(_f) and _f > 0):
+                raise RuntimeError(f"shared ledger: {path} {_nm} is not a finite positive number "
+                                   f"({_v!r}) - refusing")
+        if _shown is None:
+            raise RuntimeError(f"shared ledger: {path} has no limit price to reserve against - refusing")
     try:
         return ri.guard_or_refuse(store, key, f"{path}|{_id}",
-                                  lv.get("risk"), lv.get("shown"), lv.get("unit") or LIVE_UNIT,
+                                  _stake, _shown, _unit,
                                   actor=ri.actor_for("sharp-monitor", path, book or lv.get("book")),
                                   intent_cid=lv.get("client_id"))
     except Exception:
@@ -5194,6 +5654,16 @@ def live_order(r):
                        extra=f"{res['reason'][:200]}\nRESULT UNKNOWN: the order may or may not exist at the venue. Check My Trades before retrying.")
         tg(_n)
         push("LIVE ORDER ERROR: " + (p.get("bet") or "")[:50], _n, mirror=False)
+    # Nov 27 (Peter, fix 4): "Unread or ambiguous fills must remain reserved at the appropriate
+    # exposure, never zero." px_live.live_order() initialises filled=0.0 and returns
+    # fills_read = (mine is not None), so when trades() fails the record is filled_stake 0.0 with
+    # fills_read False - a READ ZERO in shape, an UNKNOWN in fact. Every exposure consumer keys on
+    # "filled_stake is None" to mean unknown, so such an order booked ZERO against the lane cap, the
+    # daily stop and the per-play budget, while its own notification said "STATUS UNKNOWN - VERIFY".
+    # Two states with opposite remedies, collapsed into one value. live_order_other has nulled this
+    # since it was written; the ProphetX path never did.
+    if res.get("status") == "placed" and not res.get("fills_read"):
+        res["filled_stake"] = None   # unknown fill: everything asked stays reserved
     out = dict(res, asked_stake=stake, limit=limit, book="prophetx")
     if out.get("status") == "placed":   # Nov 11: durable registry row NOW, before anything can kill the run
         out["journaled"] = journal_order(r, out, cid=lv.get("client_id"))
@@ -5894,7 +6364,8 @@ def rest_bid(r):
     if af is None:
         return {"status": "refused", "reason": "alert after-fee price unknown (fail closed)"}
     p_star = american_to_prob(int(af))
-    risk, _ = live_stake(int(af), unit_for((r.get("live") or {}).get("lane")))
+    _rb_unit = unit_for((r.get("live") or {}).get("lane"))   # the SAME unit the stake is sized from
+    risk, _ = live_stake(int(af), _rb_unit)
     _unit_risk = risk            # the INTENDED total for one unit, before any remainder trim.
     # Nov 20 (Peter caught this in review): the cross-venue remainder below must be measured from
     # THIS figure, not from the already-trimmed `risk`. rest_risk is itself intended-minus-filled,
@@ -6044,7 +6515,8 @@ def rest_bid(r):
     # resolution to keep this gate working, which is how a gate ends up tested against a copy of itself.
     # Store operations below still go through `registry` so tests keep their control of them.
     from registry import row_lane as _row_lane
-    _REST_LANE_GATES = {"rules": None, "board": board_gate, "r1": r1_gate, "dogs": dogs_gate}
+    _REST_LANE_GATES = {"rules": None, "board": board_gate, "r1": r1_gate, "dogs": dogs_gate,
+                        "12k": k12_gate}
     _lane = _row_lane({"key": (p or {}).get("play_key") or _pkey,
                        "source": (p or {}).get("source")})
     if _lane not in _REST_LANE_GATES:
@@ -6090,7 +6562,41 @@ def rest_bid(r):
         # Reserved only once we have a priced, exact-line market on this venue: a venue we screen
         # out above must not consume the play's unit.
         if _rb_grant is None:
-            _rb_grant = _unit_ledger_guard(r, "rest_bid", b)
+            # The computed resting stake (after BOTH ceilings), the alert's approved fee-adjusted
+            # price, and this lane's own unit - never lv's absent take values. See the guard.
+            # Nov 27 (Peter, fix 5): "Fix resting-claim recovery without releasing any potentially
+            # exposed order."
+            #
+            # MEASURED: every refusal in this function releases the |rest claim, but an EXCEPTION
+            # released nothing. The shared unit ledger does not refuse by returning - this guard
+            # RAISES (ReservationRefused when the play's unit is already spent, RuntimeError on an
+            # unreadable store) - so such a play escaped rest_bid with the claim still held, and
+            # registry.claim_submission has deliberately no staleness expiry, so every later run
+            # refused with "another run is already posting this resting bid" - permanently, for a
+            # bid that was never placed.
+            #
+            # Caught HERE and nowhere wider, because this is the one point that can raise while
+            # NOTHING is exposed: the guard runs before this venue's place() call, and a previous
+            # iteration that had placed would already have returned. So a release here cannot
+            # release a potentially exposed order. An exception from place() itself, or anywhere
+            # after it, is deliberately left to propagate with the claim HELD - the order may exist,
+            # and an unknown outcome must keep blocking retries until it is reconciled.
+            try:
+                _rb_grant = _unit_ledger_guard(r, "rest_bid", b, stake=risk, shown=int(af),
+                                               unit=_rb_unit)
+            except Exception as _lex:
+                # NO release here. test_rest_concurrency enforces, correctly, that a release may
+                # only sit where non-submission is PROVEN - before the pre-alert, or at the
+                # all-refused exit - and never between them. Reaching that exit IS the proof, since
+                # a placed or error result returns above and keeps the claim. So this records the
+                # refusal and BREAKS to that exit, which releases the claim on the one proven path
+                # instead of adding a second, unproven one. Reusing it also means a future change to
+                # the release rule has one site to change, not two.
+                why_not.append(f"{BOOK_NAME.get(b, b)}: shared unit ledger refused "
+                               f"({type(_lex).__name__}: {str(_lex)[:90]})")
+                LOG.append(f"resting bid: ledger refused before any venue call "
+                           f"({type(_lex).__name__}) - claim released at the all-refused exit")
+                break
             _unit_ledger_consume(_rb_grant, risk)
         if b == "kalshi":
             kb = x.get("kalshi_buy") or []
@@ -6390,25 +6896,46 @@ def novig_refusal_writeback():
         print("novig writeback: registry unreadable - FAIL CLOSED, nothing released")
         return 0
     releases, other = nw.plan(recs, rows)
-    done = 0
-    for cid, row, field, why in releases:
+    done, failed = 0, 0
+    for cid, row, field, why, _persist in releases:
         leg = (row.get(field) if field != "live_more" else
                next((x for x in (row.get("live_more") or [])
                      if isinstance(x, dict) and str(x.get("client_id") or "").strip() == cid), None))
         if not isinstance(leg, dict):
             continue
-        rec = next((r for r in recs if str((r or {}).get("client_id") or "").strip() == cid), {})
-        nw.apply_to_leg(leg, rec)
-        # Persist the proven zero BEFORE releasing the claim. If the process dies between the two, a
-        # stored zero with a claim still held is harmless - the next pass reads it as DONE and the
-        # claim ages out. The reverse order would free capacity with no record of why.
-        if not registry.put_rows([row]):
-            print(f"novig writeback: could not persist {cid} - claim NOT released")
-            continue
-        registry.release_submission(row.get("key"), cid)
-        done += 1
-    if done or other:
-        print(f"novig writeback: {done} proven refusal(s) written back and released; "
+        if _persist:
+            rec = next((r for r in recs if str((r or {}).get("client_id") or "").strip() == cid), {})
+            nw.apply_to_leg(leg, rec)
+            # Persist the proven zero BEFORE releasing the claim: a crash between the two leaves the
+            # zero stored with the claim still held, and the NEXT pass retries the release -
+            # novig_writeback returns RELEASE_AGAIN, re-checking the PERSISTED PROOF rather than
+            # trusting its own mark (fix 2). The reverse order would free capacity with no record of
+            # why. The comment that stood here claimed the claim "ages out"; claim_submission
+            # explicitly does not, which is what made the leak permanent.
+            if not registry.put_rows([row]):
+                print(f"novig writeback: could not persist {cid} - claim NOT released")
+                failed += 1
+                continue
+        # Nov 27 (Peter, fix 1): release the key the claim was actually TAKEN under. journal_intent
+        # claims lane_strip(row["key"]) - the UNPREFIXED play key - while row["key"] carries the lane
+        # prefix ("dogs|NBA|..."), and registry.release_submission pops only on an exact key+cid
+        # match. So this released NOTHING for board, r1, ncs and dogs, every time, while `done` was
+        # incremented regardless: the log asserted a release that never happened. With no staleness
+        # expiry on the claim, that play was then blocked permanently - takes as well as rests -
+        # until cleared by hand. It fired on exactly the path this function exists for: the runner's
+        # pre-submission refusal.
+        _rk = lane_strip(str(row.get("key") or "")) or str(row.get("key") or "")
+        if registry.release_submission(_rk, cid):
+            done += 1
+        else:
+            # Not fatal, and never silent. A false "released" is what made the original defect
+            # invisible, so a release that does not take effect is counted and named.
+            failed += 1
+            print(f"novig writeback: claim NOT released for {cid} on key {_rk!r} - the play stays "
+                  f"blocked until a later pass retries or Peter clears it", flush=True)
+    if done or failed or other:
+        print(f"novig writeback: {done} proven refusal(s) written back and RELEASED, "
+              f"{failed} release(s) did not take effect; "
               + "; ".join(f"{k} {len(v)}" for k, v in sorted(other.items())))
         for k, reasons in sorted(other.items()):
             if k == nw.HOLD:       # a HOLD is money still reserved: say which and why, every run
@@ -7645,7 +8172,13 @@ def main():
     # one Gmail search PER CANDIDATE play - with dozens of candidates across five lanes this is the
     # prime suspect for the unmeasured time, so it is counted and the call count is printed
     dogsplays = dogs_no_gmail(dogsplays, "dedupe")   # Nov 23 (Peter): a DOGS candidate never causes a Gmail search
-    _cand = plays + rplays + bplays + r1plays + ncsplays + dogsplays + l2plays
+    try:   # Nov 28 (Peter): 12K - NFL, three-book $12k ML depth, spread played. Ships OFF.
+        with perf("k12_plays"):
+            k12plays = k12_plays(now)
+    except Exception as ex:
+        LOG.append(f"12k unavailable: {str(ex)[:60]}")
+        k12plays = []
+    _cand = plays + rplays + bplays + r1plays + ncsplays + dogsplays + k12plays + l2plays
     with perf("handled_pids (one Gmail search)", n=len(_cand)):
         _seen = handled_pids(M, _cand)
         _phase("dedupe resolved")
@@ -7995,6 +8528,35 @@ def main():
                                                                      if r["verdict"] == "WOULD PLACE" else (r.get("reason") or "skipped")]}
                 else:
                     r["live"] = {"go": False, "lane": "ncs", "why": why}
+            elif p.get("source") == "12k":   # 12K lane: own live decision, own $200 unit, own daily limit
+                # Peter, 28 Nov. Mirrors the NCS branch exactly, so the four lane branches cannot
+                # drift. nfl=True because this lane is NFL by definition (k12_qualifies requires
+                # league NFL), and that flag drives the NFL-specific notification path.
+                r["entry"] = ent = p.get("k12_entry") or {}
+                trigger_first(r, ent)
+                lk = derive_key(p) or p["play_key"]
+                why = [] if K12_LIVE else ["12K lane not switched on (EXEC_12K_LIVE)"]
+                if lk in MANUAL_HELD:
+                    why.append(f"{MANUAL_HELD[lk]} with Peter's manual bet (Bets manual note)")
+                if lk in LIVEKEYS or any(same_bet(lk, k) for k in LIVEKEYS):
+                    why.append("a live order or resting bid was already sent for this bet (another lane)")
+                if any(opp_bet(lk, k) for k in LIVEKEYS):
+                    why.append("CONFLICT: the other side of this game was already bet (first side stays)")
+                if not why and r["verdict"] == "WOULD PLACE" and r.get("lc"):
+                    lc = r["lc"]
+                    lr, lw = live_stake(lc["shown"], K12_UNIT)   # to win $200; $200 risked at plus
+                    g_ok, g_why = k12_gate(lr, lk)
+                    if not g_ok:
+                        why.append(g_why)
+                if not why and r["verdict"] == "WOULD PLACE" and r.get("lc"):
+                    r["live"] = {"go": True, "book": lc["book"], "risk": lr, "to_win": lw, "am": lc["am"], "shown": lc["shown"],
+                                 "line": lc["line"], "partial": lc["avail"] < lr, "px": lc, "ids": lc.get("ids") or {},
+                                 "nfl": True, "lane": "12k", "unit": K12_UNIT}
+                elif not why:
+                    r["live"] = {"go": False, "lane": "12k", "why": ["no live book has the alert number or better"
+                                                                      if r["verdict"] == "WOULD PLACE" else (r.get("reason") or "skipped")]}
+                else:
+                    r["live"] = {"go": False, "lane": "12k", "why": why}
             elif p.get("source") == "dogs":   # DOGS lane: own live decision, own $100 unit, own daily limit
                 r["entry"] = ent = p.get("dogs_entry") or {}
                 trigger_first(r, ent)
@@ -8114,7 +8676,7 @@ def main():
                            f"pass is gated on the run-start figure only")
             results.append(r)
             if (r["verdict"] == "WOULD PLACE" or ((r.get("live") or {}).get("rest") or {}).get("status") == "placed") \
-                    and derive_key(p) and p.get("source") not in ("rules", "board", "r1", "lane2", "ncs", "dogs"):
+                    and derive_key(p) and p.get("source") not in ("rules", "board", "r1", "lane2", "ncs", "dogs", "12k"):
                 taken_now.add(derive_key(p))
         except Exception as ex:
             results.append({"play": p, "pid": pid(p["play_key"]), "verdict": "SKIP", "reason": f"error: {str(ex)[:100]}"})

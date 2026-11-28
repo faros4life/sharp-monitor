@@ -353,9 +353,13 @@ def _const(name):
 ok("the lane units mirror executor's constants exactly",
    RR.LANE_UNIT == {"lane1": _const("LIVE_UNIT"), "r1": _const("R1_UNIT"),
                     "board": _const("BOARD_UNIT"), "ncs": _const("NCS_UNIT"),
-                    "dogs": _const("DOGS_UNIT")}, str(RR.LANE_UNIT))
-ok("Lane 1 is $300, R1/Board/NCS are $200, and DOGS is $100",
-   RR.LANE_UNIT == {"lane1": 300.0, "r1": 200.0, "board": 200.0, "ncs": 200.0, "dogs": 300.0})
+                    "dogs": _const("DOGS_UNIT"),
+                    "12k": _const("K12_UNIT")}, str(RR.LANE_UNIT))
+# Nov 28: 12K added at $200 ("to win 200", Peter). The label below was already stale - DOGS has
+# been $300 since 25 Nov while it still said $100 - so it now states the units it actually asserts.
+ok("Lane 1 and DOGS are $300; R1, Board, NCS and 12K are $200",
+   RR.LANE_UNIT == {"lane1": 300.0, "r1": 200.0, "board": 200.0, "ncs": 200.0, "dogs": 300.0,
+                    "12k": 200.0})
 _K = "NFL|MIN @ SF|total|UNDER"
 for _row, _want in (({"key": "rule|" + _K}, ("lane1", 300.0)),
                     ({"key": _K, "source": "rules"}, ("lane1", 300.0)),

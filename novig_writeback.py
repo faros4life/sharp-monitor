@@ -33,7 +33,8 @@ DONE_MARK = "novig_writeback"
 
 RELEASE = "RELEASE"        # proven zero exposure: write back and release
 HOLD = "HOLD"              # unknown or contradictory: stays reserved, reported
-DONE = "DONE"              # already written back; idempotent no-op
+DONE = "DONE"              # already written back AND released; idempotent no-op
+RELEASE_AGAIN = "RELEASE_AGAIN"   # written back on an earlier pass, claim may still be held
 NO_MATCH = "NO_MATCH"      # no registry leg carries this identity
 
 
@@ -91,9 +92,30 @@ def classify(rec, index):
                       "nothing released")
     _row, _field, leg = hits[0]
 
-    # ---- idempotent ------------------------------------------------------------------------
+    # ---- idempotent, and crash-safe ---------------------------------------------------------
+    # Nov 27 (Peter, fix 2): "A persisted, proven zero must allow the next pass to retry the claim
+    # release safely." The caller persists the zero BEFORE releasing the claim, so a crash between
+    # the two leaves the mark written and the claim held. This used to return DONE, which never
+    # retried - and registry.claim_submission has deliberately NO staleness expiry, so that play was
+    # blocked for takes AND rests until Peter cleared it by hand. The in-code comment claiming the
+    # claim "ages out" was simply wrong.
+    #
+    # Retrying is safe only because the PERSISTED PROOF is re-checked here rather than trusted from
+    # the mark: the mark alone is a record that someone wrote something. If the mark is present but
+    # the proof is not intact, that is a contradiction and it HOLDS. release_submission is itself
+    # idempotent (it pops only on an exact key+cid match), so a retry after a successful release is
+    # a harmless no-op.
     if leg.get("writeback") == DONE_MARK:
-        return DONE, f"client_id {cid} was already written back"
+        if (_num(leg.get("filled_stake")) == 0.0 and leg.get("filled_stake") is not None
+                and leg.get("fill_read") is True
+                and str(leg.get("fill_read_src") or "") == NOT_SUBMITTED
+                and str(leg.get("status") or "") == "refused"):
+            return RELEASE_AGAIN, (f"client_id {cid} was written back on an earlier pass; "
+                                   f"retrying the claim release in case it did not complete")
+        return HOLD, (f"client_id {cid} carries the writeback mark but not the proven zero "
+                      f"(filled {leg.get('filled_stake')!r}, read {leg.get('fill_read')!r}, "
+                      f"src {leg.get('fill_read_src')!r}, status {leg.get('status')!r}) - "
+                      f"contradictory, nothing released")
 
     # ---- fill_read is True, by identity and not by truthiness ------------------------------
     if leg.get("filled_stake") is not None and _num(leg.get("filled_stake")) == 0.0 \
@@ -149,14 +171,17 @@ def plan(recs, rows):
     seen = set()
     for rec in recs or []:
         d, why = classify(rec, index)
-        if d == RELEASE:
+        if d in (RELEASE, RELEASE_AGAIN):
             cid = str((rec or {}).get("client_id")).strip()
             if cid in seen:          # the same refusal twice in one snapshot: act once
                 other.setdefault(DONE, []).append(f"client_id {cid}: duplicate record in this snapshot")
                 continue
             seen.add(cid)
             row, field, _leg = index[cid][0]
-            releases.append((cid, row, field, why))
+            # The 5th element says whether the row still needs WRITING. A RELEASE_AGAIN is already
+            # persisted, so re-writing it would burn a registry write and a sha race for nothing;
+            # only the claim release is retried.
+            releases.append((cid, row, field, why, d == RELEASE))
         else:
             other.setdefault(d, []).append(why)
     return releases, other

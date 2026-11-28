@@ -37,7 +37,7 @@ OUT = "tracker/bot_live.enc"
 # Nov 27: DOGS (live 23 Nov) and NCS were missing here, so a Dogs play read "Unattributed" on the page
 # however well the ledger had attributed it. Keys are live_ledger.LANES' values (the ledger's lane labels).
 LANES = {"LANE 1": "Lane 1", "BOARD V4": "Bets Board v4", "R1": "R1", "LANE 2": "Lane 2",
-         "DOGS": "Dogs", "NCS": "NCS"}
+         "DOGS": "Dogs", "NCS": "NCS", "12K": "12K"}
 
 # Nov 27 (Peter): both reports must use IDENTICAL attribution, window and counting. The lane map is
 # IMPORTED from executed_clv rather than copied, so the two cannot drift - a second copy is how they

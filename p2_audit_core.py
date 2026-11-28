@@ -61,7 +61,11 @@ def time_basis(r):
 
 # executor.LANE_NAME (executor.py:951) plus the registry's own spellings. Matched after _norm, so 'r1' == 'R1'.
 LANE_CANON = {"rules": "LANE 1", "rule": "LANE 1", "phase1": "LANE 1", "lane1": "LANE 1",
-              "board": "BOARD V4", "boardv3": "BOARD V4", "r1": "R1", "lane2": "LANE 2"}
+              "board": "BOARD V4", "boardv3": "BOARD V4", "r1": "R1", "lane2": "LANE 2",
+                            # Nov 28: explicit entry for 12K. REQUIRED under the old name ("all3" -> "ALL3"
+              # never equals "ALL-3"); after the rename "12k".upper() == "12K" and the fallback
+              # would cover it. Kept explicit rather than resting on that coincidence.
+              "12k": "12K"}
 
 
 def canon_lane(v):
