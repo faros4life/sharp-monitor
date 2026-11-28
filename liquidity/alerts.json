@@ -39,6 +39,11 @@
     "volume_24h_fp": 119.41,
     "volume_fp": 0.0
    },
+   "ex_stats_close": {
+    "open_interest_fp": 17175.35,
+    "volume_24h_fp": 6230.57,
+    "volume_fp": 17786.5
+   },
    "ex_stats_first": {
     "open_interest_fp": 17175.35,
     "volume_24h_fp": 6111.16,
@@ -222,6 +227,11 @@
     "open_interest_fp": 0.0,
     "volume_24h_fp": 0.0,
     "volume_fp": 0.0
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 2184.55,
+    "volume_24h_fp": 857.73,
+    "volume_fp": 2233.55
    },
    "ex_stats_first": {
     "open_interest_fp": 2127.38,
@@ -432,6 +442,11 @@
     "volume_24h_fp": 4.87,
     "volume_fp": 0.0
    },
+   "ex_stats_close": {
+    "open_interest_fp": 2874.02,
+    "volume_24h_fp": 1190.01,
+    "volume_fp": 2884.11
+   },
    "ex_stats_first": {
     "open_interest_fp": 2874.02,
     "volume_24h_fp": 1185.14,
@@ -635,6 +650,11 @@
     "volume_24h_fp": 0.0,
     "volume_fp": 0.0
    },
+   "ex_stats_close": {
+    "open_interest_fp": 3415.6,
+    "volume_24h_fp": 434.03000000000003,
+    "volume_fp": 6636.7699999999995
+   },
    "ex_stats_first": {
     "open_interest_fp": 3403.89,
     "volume_24h_fp": 434.03000000000003,
@@ -837,6 +857,11 @@
     "open_interest_fp": 48.13,
     "volume_24h_fp": 0.78,
     "volume_fp": 48.13
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 2089.78,
+    "volume_24h_fp": 1065.05,
+    "volume_fp": 2157.05
    },
    "ex_stats_first": {
     "open_interest_fp": 2041.65,
@@ -1628,8 +1653,8 @@
     "volume": 943.0
    },
    "ex_stats_close": {
-    "openInterest": 2287057.0,
-    "volume": 2979815.0
+    "openInterest": 2287267.0,
+    "volume": 2980025.0
    },
    "ex_stats_first": {
     "openInterest": 2186137.0,
@@ -2606,9 +2631,9 @@
     "volume_fp": 55.23
    },
    "ex_stats_close": {
-    "open_interest_fp": 51337.87,
+    "open_interest_fp": 51499.99,
     "volume_24h_fp": 46982.4,
-    "volume_fp": 51889.869999999995
+    "volume_fp": 52051.990000000005
    },
    "ex_stats_first": {
     "open_interest_fp": 10884.529999999999,
@@ -3190,6 +3215,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Edmonton",
@@ -3396,7 +3422,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [
     "Philadelphia 76ers -2.5 (-111)"
    ],
@@ -3784,7 +3810,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas A&M",
@@ -4004,7 +4030,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [
     "Over 40.5 (-115)"
@@ -4296,12 +4322,14 @@
    "ex_stats_change": null,
    "ex_stats_first": null,
    "fade_price": 0.4065,
+   "fade_units": 1.43,
    "first_seen_utc": "2026-11-27T23:25:51Z",
    "game": "Miami Heat at New York Knicks",
    "game_surge_books": [
     "prophetx"
    ],
    "game_x": 2.76,
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 0, \"px_event\": 1704780295, \"px_market\": 219, \"side\": \"1\"}",
    "lead_min": 30,
    "league": "NBA",
@@ -4438,7 +4466,7 @@
     "px_market": 219,
     "side": "1"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -4446,7 +4474,8 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
+   "settled_utc": "2026-11-28T03:00:27Z",
    "sharp_agree": [
     "New York Knicks -3.5 (-115)"
    ],
@@ -4469,7 +4498,7 @@
     "New York Knicks"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-27T23:20:19Z",
@@ -4664,7 +4693,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [
     "Detroit Pistons -8.5 (-127)"
    ],
@@ -4846,7 +4875,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas A&M",
@@ -4917,9 +4946,9 @@
     "volume_fp": 142.17
    },
    "ex_stats_close": {
-    "open_interest_fp": 58804.62,
+    "open_interest_fp": 59013.14,
     "volume_24h_fp": 33162.89,
-    "volume_fp": 63620.24
+    "volume_fp": 63828.76
    },
    "ex_stats_first": {
     "open_interest_fp": 42652.99,
@@ -5848,7 +5877,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -8078,6 +8107,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -9129,9 +9159,9 @@
     "volume_fp": 317.66
    },
    "ex_stats_close": {
-    "open_interest_fp": 458467.26,
+    "open_interest_fp": 460076.51,
     "volume_24h_fp": 198920.92,
-    "volume_fp": 499541.29000000004
+    "volume_fp": 501233.04
    },
    "ex_stats_first": {
     "open_interest_fp": 325923.35000000003,
@@ -9886,9 +9916,9 @@
     "volume_fp": 70.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 12310.47,
+    "open_interest_fp": 12616.86,
     "volume_24h_fp": 4611.59,
-    "volume_fp": 13606.669999999998
+    "volume_fp": 13913.060000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 9563.86,
@@ -11877,7 +11907,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [
     "Philadelphia 76ers -2.5 (-111)"
    ],
@@ -13253,7 +13283,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Winnipeg",
@@ -13862,6 +13892,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -15952,7 +15983,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [
     "Toronto Raptors -8.5 (-112)"
    ],
@@ -16378,6 +16409,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Pittsburgh",
@@ -17557,6 +17589,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Pittsburgh",
@@ -17672,7 +17705,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas wins by over 10.5 points",
@@ -18332,7 +18365,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Winnipeg",
@@ -19091,7 +19124,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -19427,7 +19460,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "TEX -10.5 (10.5)",
@@ -20067,6 +20100,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -20717,7 +20751,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [
     "Over 40.5 (-115)"
    ],
@@ -22471,7 +22505,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Toronto",
@@ -22863,6 +22897,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Seattle",
@@ -24776,6 +24811,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Boston Celtics",
@@ -24995,7 +25031,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Toronto Raptors",
@@ -25220,7 +25256,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Detroit Pistons",
@@ -25400,7 +25436,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -25770,6 +25806,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Atlanta",
@@ -26747,7 +26784,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "NOT Texas wins by over 11.5 points",
@@ -27175,7 +27212,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Toronto",
@@ -29662,7 +29699,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Wisconsin",
@@ -31971,7 +32008,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Indiana",
@@ -32081,7 +32118,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "TEX (0)",
@@ -34030,7 +34067,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Detroit",
@@ -35646,7 +35683,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Wisconsin",
@@ -35913,7 +35950,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas",
@@ -37489,6 +37526,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Boston",
