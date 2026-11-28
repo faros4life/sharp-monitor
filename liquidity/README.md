@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 28, 8:10 AM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 44.
+Updated Sat Nov 28, 8:15 AM ET. This run: 2 new, 0 not confirmed, 0 pending. Open alerts: 46.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 28 8:15AM | NCAAF | Michigan St. vs Rutgers | moneyline: Rutgers | kalshi | $67k | +122 | ✅ novig |  | +0.0c |  | pending |
+| Nov 28 8:15AM | NCAAF | Baylor vs Houston | moneyline: Houston | kalshi | $107k | -156 |  |  | +0.0c |  | pending |
 | Nov 28 8:00AM | NCAAF | LSU vs Arkansas: Spread | spread: NOT LSU wins by over 14.5 points | kalshi | $71k | -104 | ✅ novig |  | +0.0c |  | pending |
 | Nov 28 7:00AM | NCAAF | South Carolina vs Clemson | moneyline: South Carolina | kalshi | $114k | -213 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 28 5:25AM | NCAAF | Louisville vs Kentucky: Spread | spread: Louisville wins by over 2.5 points | kalshi | $51k | -113 |  |  | +0.0c | yes | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 26 8:40AM | NFL | Kansas City vs Buffalo: Spread | spread: Buffalo wins by over 2.5 points | kalshi | $189k | -122 |  |  | +0.0c | yes | W |
 | Nov 26 8:30AM | NFL | Chicago Bears @ Detroit Lions | total: Over 55.5 (55.5) | novig | $27k | -106 | ✅ kalshi |  | +0.0c |  | W |
 | Nov 26 7:55AM | NCAAF | Mississippi St. vs Ole Miss: Spread | spread: Ole Miss wins by over 18.5 points | kalshi | $41k | -104 |  |  | -4.0c | yes | W |
-| Nov 26 7:50AM | NFL | Philadelphia Eagles at Dallas Cowboys | moneyline: Dallas Cowboys | prophetx | $27k | -400 | ✅ kalshi,novig |  | -0.6c | yes | L |
-| Nov 26 5:50AM | NFL | Chicago Bears @ Detroit Lions | spread: DET +1.5 (1.5) | novig | $27k | -111 | ✅ kalshi |  | +0.0c | yes | L |
