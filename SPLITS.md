@@ -1,19 +1,19 @@
-# Paper splits (updated 2026-11-28T07:20:30Z)
+# Paper splits (updated 2026-11-28T07:30:30Z)
 
 Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kill bar: 30+ resulted at -0.10u/play or worse closes a split.
 
 | Split | Type | Start | W-L-P | Units | u/play | True close % | Status |
 |---|---|---|---|---|---|---|---|
 | Phase-1 live filter (paper view) | a-priori | 2026-10-26 | 42-37-0 | -0.73 | -0.009 | -2.12 | CLOSED |
-| Phase-1 control group | control | 2026-10-26 | 82-66-2 | +4.54 | +0.030 | -1.75 | OPEN |
+| Phase-1 control group | control | 2026-10-26 | 82-67-2 | +3.54 | +0.023 | -1.74 | OPEN |
 | Hard Rock-priced, routed | a-priori | 2026-10-26 | 116-101-0 | +2.36 | +0.011 | -1.18 | ELIGIBLE at next review |
 | Fade Hard Rock-priced | scan | 2026-10-26 | 116-101-0 | -13.84 | -0.064 | -1.18 | CLOSED |
 | PM-global-priced, routed | a-priori | 2026-10-26 | 0-0-0 | +0.00 |  |  | OPEN |
 | Unders only | scan | 2026-10-26 | 114-91-0 | +10.09 | +0.049 | -0.77 | OPEN |
 | Combined filter | scan | 2026-10-26 | 134-124-0 | -5.42 | -0.021 | -2.14 | OPEN |
 | Priced -125 or worse | scan | 2026-10-26 | 20-22-0 | -6.15 | -0.146 | -2.87 | CLOSED |
-| College basketball | scan | 2026-10-26 | 508-431-0 | +15.38 | +0.016 | -1.19 | OPEN |
-| Fade alerts sent 12-24h out | scan | 2026-10-26 | 94-79-0 | -11.78 | -0.068 | -1.26 | CLOSED |
+| College basketball | scan | 2026-10-26 | 508-432-0 | +14.38 | +0.015 | -1.19 | OPEN |
+| Fade alerts sent 12-24h out | scan | 2026-10-26 | 94-80-0 | -10.81 | -0.062 | -1.26 | CLOSED |
 | Tier 2 core (paper) | tier | 2026-10-27 | 27-25-0 | -1.84 | -0.035 | -2.71 | CLOSED |
 | Evening sends, ex-Hard Rock | scan | 2026-10-26 | 28-23-0 | +1.44 | +0.028 | -1.98 | OPEN |
 | Muted midday (11 AM-2 PM ET) | scan | 2026-10-26 | 131-120-0 | -3.59 | -0.014 | -0.55 | OPEN |
