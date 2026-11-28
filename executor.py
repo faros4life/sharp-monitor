@@ -2262,7 +2262,10 @@ def lane_report(results):
             ("board", ("Board v4" if BOARD_V4 else "Board v3"), BOARD_UNIT, BOARD_MAX_PLAYS, BOARD_DAILY_RISK, BOARD, BOARD_LIVE),   # Nov 17: the per-lane report names the rule that is deciding
             ("r1", "R1", R1_UNIT, R1_MAX_PLAYS, R1_DAILY_RISK, R1, R1_LIVE),
             ("ncs", "NCS (NCAAB spreads)", NCS_UNIT, NCS_MAX_PLAYS, NCS_DAILY_RISK, NCS, NCS_LIVE),
-            ("dogs", "DOGS (liquidity dogs)", DOGS_UNIT, DOGS_MAX_PLAYS, DOGS_DAILY_RISK, DOGS, DOGS_LIVE)):
+            ("dogs", "DOGS (liquidity dogs)", DOGS_UNIT, DOGS_MAX_PLAYS, DOGS_DAILY_RISK, DOGS, DOGS_LIVE),
+            # Nov 28: 12K. Absent, this lane placed and rested with NO LINE in the per-lane report -
+            # live and unwatched, which is the condition strategy_registry's own note warns about.
+            ("12k", "12K (NFL three-book ML depth)", K12_UNIT, K12_MAX_PLAYS, K12_DAILY_RISK, K12, K12_LIVE)):
         rs = [r for r in results if (r.get("play") or {}).get("source") == lane
               or (lane == "rules" and (r.get("play") or {}).get("source") in (None, "muse", "rules"))]
         placed = [r for r in rs if ((r.get("live") or {}).get("order") or {}).get("status") == "placed"]
@@ -3787,6 +3790,7 @@ def src_tag(p):
             else "[R1] " if p.get("source") == "r1"
             else "[NCS] " if p.get("source") == "ncs"
             else "[DOGS] " if p.get("source") == "dogs"
+            else "[12K] " if p.get("source") == "12k"   # Nov 28: absent, a 12K push carried NO lane tag
             else "[Lane 2 dry run] " if p.get("source") == "lane2"
             else ("[Muse] " if SOURCE == "both" else ""))
 
@@ -8672,7 +8676,7 @@ def main():
                            f"pass is gated on the run-start figure only")
             results.append(r)
             if (r["verdict"] == "WOULD PLACE" or ((r.get("live") or {}).get("rest") or {}).get("status") == "placed") \
-                    and derive_key(p) and p.get("source") not in ("rules", "board", "r1", "lane2", "ncs", "dogs"):
+                    and derive_key(p) and p.get("source") not in ("rules", "board", "r1", "lane2", "ncs", "dogs", "12k"):
                 taken_now.add(derive_key(p))
         except Exception as ex:
             results.append({"play": p, "pid": pid(p["play_key"]), "verdict": "SKIP", "reason": f"error: {str(ex)[:100]}"})

@@ -305,6 +305,19 @@ ok("...and the unit_for caller covers it too (it asked for Lane 1's $300 before)
    SRC.count('("board", "r1", "ncs", "dogs", "12k")') >= 2)
 ok("unit_for knows the lane, so the two cannot disagree",
    ex.unit_for("12k") == ex.K12_UNIT == 200.0)
+
+# --- 12. DROPPED-NAME SWEEP (an external review found three more) ------------------------------
+# Each of these was a hardcoded lane enumeration with 12K missing. None is a grep: each asserts the
+# behaviour the omission changed.
+ok("the per-lane run report names this lane (it placed and rested with no line before)",
+   '("12k", "12K (NFL three-book ML depth)"' in SRC)
+ok("a 12K push carries its lane tag (it was empty)", ex.src_tag({"source": "12k"}) == "[12K] ")
+ok("lane_tag on a result names it", ex.lane_tag({"play": {"source": "12k"}, "live": {}}) == "[12K] ")
+ok("12K is excluded from taken_now like every other lane, so it cannot over-block another lane",
+   '("rules", "board", "r1", "lane2", "ncs", "dogs", "12k")' in SRC)
+import reconcile_live as _rl
+ok("the reconciler labels it (via the upper-case fallback, checked not assumed)",
+   _rl.lane_label({"lane": "12k"}) == "12K")
 ok("the spread source is recorded on the entry (it read a pre-rename key and was silently None)",
    {x["k12_entry"]["k12_spread_source"] for x in _prod} <= {"direct", "mirrored"}
    and None not in {x["k12_entry"]["k12_spread_source"] for x in _prod},
