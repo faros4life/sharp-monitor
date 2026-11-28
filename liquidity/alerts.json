@@ -1,6 +1,214 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-28T12:00:25Z",
+   "base_depth": 914269,
+   "best_price": 0.69,
+   "best_price_american": -223,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.68,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-28",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 9330,
+     "new_this_side": 114176,
+     "other_side": 163489,
+     "other_side_all_levels": 399870,
+     "ratio": 3.6,
+     "this_side": 587578,
+     "this_side_all_levels": 1037315
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "SC (0)",
+     "price": 0.69,
+     "this_side": 54813
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "South Carolina",
+     "price": 0.697,
+     "this_side": 20861
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 130230.44,
+    "volume_24h_fp": 65942.66,
+    "volume_fp": 133906.9
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 188.97,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 188.97
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 130041.47,
+    "volume_24h_fp": 65942.66,
+    "volume_fp": 133717.93
+   },
+   "fade_price": 0.32,
+   "first_seen_utc": "2026-11-28T11:55:50Z",
+   "game": "South Carolina vs Clemson",
+   "game_surge_books": [],
+   "game_x": 1.13,
+   "key": "kalshi|KXNCAAFGAME-26NOV28SCARCLEM|ml|0",
+   "lead_min": 480,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 114176,
+   "new_x": 0.42,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 130230.44,
+      "volume_24h_fp": 65942.66,
+      "volume_fp": 133906.9
+     },
+     "game_normal": 914451,
+     "game_x": 1.13,
+     "normal": 269820,
+     "now": 1037315,
+     "type": "ML",
+     "x": 3.84
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 5023217.0,
+      "volume": 6089969.0
+     },
+     "game_normal": 68416,
+     "game_x": 1.02,
+     "normal": 20219,
+     "now": 69752,
+     "type": "ML",
+     "x": 3.45
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 20949,
+     "game_x": 1.0,
+     "normal": 7430,
+     "now": 20962,
+     "type": "ML",
+     "x": 2.82
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.68,
+   "price_american": -213,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.68,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -235
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -250
+    },
+    "betrivers": {
+     "point": null,
+     "price": -220
+    },
+    "betus": {
+     "point": null,
+     "price": -250
+    },
+    "bovada": {
+     "point": null,
+     "price": -250
+    },
+    "circasports": {
+     "point": null,
+     "price": -250
+    },
+    "draftkings": {
+     "point": null,
+     "price": -250
+    },
+    "fanatics": {
+     "point": null,
+     "price": -245
+    },
+    "fanduel": {
+     "point": null,
+     "price": -235
+    },
+    "kalshi": {
+     "point": null,
+     "price": -213
+    },
+    "lowvig": {
+     "point": null,
+     "price": -250
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -275
+    },
+    "novig": {
+     "point": null,
+     "price": -223
+    },
+    "polymarket": {
+     "point": null,
+     "price": -233
+    },
+    "prophetx": {
+     "point": null,
+     "price": -230
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -250
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26NOV28SCARCLEM-SCAR"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "South Carolina",
+   "side_label": "South Carolina",
+   "size_x": 3.84,
+   "start_source": "odds",
+   "start_utc": "2026-11-28T20:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "South Carolina",
+    "Clemson"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-28T10:25:52Z",
    "base_depth": 346512,
    "best_price": 0.525,
@@ -48,7 +256,7 @@
    "ex_stats_close": {
     "open_interest_fp": 80435.46,
     "volume_24h_fp": 78391.4,
-    "volume_fp": 86428.44
+    "volume_fp": 86457.54
    },
    "ex_stats_first": {
     "open_interest_fp": 74135.62,
@@ -253,9 +461,9 @@
     "volume_fp": 15.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 5703.799999999999,
+    "open_interest_fp": 5718.5,
     "volume_24h_fp": 3720.91,
-    "volume_fp": 6268.29
+    "volume_fp": 6282.99
    },
    "ex_stats_first": {
     "open_interest_fp": 5636.84,
@@ -471,9 +679,9 @@
     "volume_fp": 2049.82
    },
    "ex_stats_close": {
-    "open_interest_fp": 50404.44,
+    "open_interest_fp": 50424.69,
     "volume_24h_fp": 35054.58,
-    "volume_fp": 55724.91
+    "volume_fp": 55745.16
    },
    "ex_stats_first": {
     "open_interest_fp": 44649.7,
@@ -1112,9 +1320,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 117962.56999999999,
+    "open_interest_fp": 117966.81999999999,
     "volume_24h_fp": 117043.23,
-    "volume_fp": 118150.90999999999
+    "volume_fp": 118155.15999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 116607.22,
@@ -1237,7 +1445,7 @@
    "ex_stats_close": {
     "open_interest_fp": 12687.25,
     "volume_24h_fp": 7343.160000000001,
-    "volume_fp": 13210.91
+    "volume_fp": 13273.279999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 11576.6,
@@ -1970,9 +2178,9 @@
     "volume_fp": 233.76
    },
    "ex_stats_close": {
-    "open_interest_fp": 104455.02,
+    "open_interest_fp": 104724.26999999999,
     "volume_24h_fp": 75782.89,
-    "volume_fp": 111818.41
+    "volume_fp": 112087.66
    },
    "ex_stats_first": {
     "open_interest_fp": 67748.1,
@@ -2167,9 +2375,9 @@
     "volume_fp": 31.21
    },
    "ex_stats_close": {
-    "open_interest_fp": 36220.99,
+    "open_interest_fp": 38067.759999999995,
     "volume_24h_fp": 22614.440000000002,
-    "volume_fp": 36760.65
+    "volume_fp": 38607.42
    },
    "ex_stats_first": {
     "open_interest_fp": 20840.76,
@@ -2351,9 +2559,9 @@
     "volume_fp": 20835.27
    },
    "ex_stats_close": {
-    "open_interest_fp": 228630.65000000002,
+    "open_interest_fp": 228881.41999999998,
     "volume_24h_fp": 210955.09999999998,
-    "volume_fp": 254272.90000000002
+    "volume_fp": 254523.66999999998
    },
    "ex_stats_first": {
     "open_interest_fp": 83789.22,
@@ -2557,9 +2765,9 @@
     "volume_fp": 558.3
    },
    "ex_stats_close": {
-    "open_interest_fp": 126796.53,
+    "open_interest_fp": 126800.54999999999,
     "volume_24h_fp": 116817.76999999999,
-    "volume_fp": 130334.36
+    "volume_fp": 130338.38
    },
    "ex_stats_first": {
     "open_interest_fp": 93952.62999999999,
@@ -2966,9 +3174,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 18523.62,
+    "open_interest_fp": 18542.94,
     "volume_24h_fp": 18142.63,
-    "volume_fp": 18691.73
+    "volume_fp": 18711.05
    },
    "ex_stats_first": {
     "open_interest_fp": 613.36,
@@ -3174,7 +3382,7 @@
    "ex_stats_close": {
     "open_interest_fp": 207302.71,
     "volume_24h_fp": 227169.37,
-    "volume_fp": 262958.36
+    "volume_fp": 263025.72
    },
    "ex_stats_first": {
     "open_interest_fp": 60967.45,
@@ -3565,9 +3773,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 24945.99,
+    "open_interest_fp": 24964.59,
     "volume_24h_fp": 12912.21,
-    "volume_fp": 26514.79
+    "volume_fp": 26533.39
    },
    "ex_stats_first": {
     "open_interest_fp": 17175.35,
@@ -3758,9 +3966,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3093.96,
+    "open_interest_fp": 3105.63,
     "volume_24h_fp": 1759.35,
-    "volume_fp": 3145.1000000000004
+    "volume_fp": 3156.77
    },
    "ex_stats_first": {
     "open_interest_fp": 2127.38,
@@ -4400,9 +4608,9 @@
     "volume_fp": 48.13
    },
    "ex_stats_close": {
-    "open_interest_fp": 5961.16,
+    "open_interest_fp": 5984.72,
     "volume_24h_fp": 4241.35,
-    "volume_fp": 6030.87
+    "volume_fp": 6054.43
    },
    "ex_stats_first": {
     "open_interest_fp": 2041.65,
@@ -4820,9 +5028,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 38345.25,
+    "open_interest_fp": 38710.58,
     "volume_24h_fp": 31827.24,
-    "volume_fp": 39935.33
+    "volume_fp": 40300.66
    },
    "ex_stats_first": {
     "open_interest_fp": 13640.93,
@@ -5201,8 +5409,8 @@
     "volume": 943.0
    },
    "ex_stats_close": {
-    "openInterest": 4562344.0,
-    "volume": 6346561.0
+    "openInterest": 4563287.0,
+    "volume": 6347504.0
    },
    "ex_stats_first": {
     "openInterest": 2186137.0,
@@ -6192,9 +6400,9 @@
     "volume_fp": 55.23
    },
    "ex_stats_close": {
-    "open_interest_fp": 63610.99,
+    "open_interest_fp": 63638.56,
     "volume_24h_fp": 58484.3,
-    "volume_fp": 65490.21
+    "volume_fp": 65517.78
    },
    "ex_stats_first": {
     "open_interest_fp": 10884.529999999999,
@@ -8531,7 +8739,7 @@
    "ex_stats_close": {
     "open_interest_fp": 207302.71,
     "volume_24h_fp": 227169.37,
-    "volume_fp": 262958.36
+    "volume_fp": 263025.72
    },
    "ex_stats_first": {
     "open_interest_fp": 42652.99,
@@ -12750,9 +12958,9 @@
     "volume_fp": 317.66
    },
    "ex_stats_close": {
-    "open_interest_fp": 822731.39,
+    "open_interest_fp": 824027.68,
     "volume_24h_fp": 552778.47,
-    "volume_fp": 871146.74
+    "volume_fp": 872443.03
    },
    "ex_stats_first": {
     "open_interest_fp": 325923.35000000003,
@@ -13511,9 +13719,9 @@
     "volume_fp": 70.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 28662.73,
+    "open_interest_fp": 28673.550000000003,
     "volume_24h_fp": 19067.53,
-    "volume_fp": 30732.25
+    "volume_fp": 30743.07
    },
    "ex_stats_first": {
     "open_interest_fp": 9563.86,
@@ -16126,8 +16334,8 @@
     "volume": 16471.0
    },
    "ex_stats_close": {
-    "openInterest": 14443559.0,
-    "volume": 18854648.0
+    "openInterest": 14528080.0,
+    "volume": 18939169.0
    },
    "ex_stats_first": {
     "openInterest": 2346875.0,
