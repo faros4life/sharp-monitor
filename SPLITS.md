@@ -1,4 +1,4 @@
-# Paper splits (updated 2026-11-28T05:30:34Z)
+# Paper splits (updated 2026-11-28T05:35:35Z)
 
 Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kill bar: 30+ resulted at -0.10u/play or worse closes a split.
 
@@ -6,31 +6,31 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 |---|---|---|---|---|---|---|---|
 | Phase-1 live filter (paper view) | a-priori | 2026-10-26 | 42-37-0 | -0.73 | -0.009 | -2.12 | CLOSED |
 | Phase-1 control group | control | 2026-10-26 | 82-66-2 | +4.54 | +0.030 | -1.75 | OPEN |
-| Hard Rock-priced, routed | a-priori | 2026-10-26 | 116-100-0 | +3.36 | +0.016 | -1.18 | ELIGIBLE at next review |
-| Fade Hard Rock-priced | scan | 2026-10-26 | 116-100-0 | -14.79 | -0.068 | -1.18 | CLOSED |
+| Hard Rock-priced, routed | a-priori | 2026-10-26 | 116-101-0 | +2.36 | +0.011 | -1.18 | ELIGIBLE at next review |
+| Fade Hard Rock-priced | scan | 2026-10-26 | 116-101-0 | -13.84 | -0.064 | -1.18 | CLOSED |
 | PM-global-priced, routed | a-priori | 2026-10-26 | 0-0-0 | +0.00 |  |  | OPEN |
-| Unders only | scan | 2026-10-26 | 114-90-0 | +11.09 | +0.054 | -0.77 | OPEN |
+| Unders only | scan | 2026-10-26 | 114-91-0 | +10.09 | +0.049 | -0.77 | OPEN |
 | Combined filter | scan | 2026-10-26 | 134-124-0 | -5.42 | -0.021 | -2.14 | OPEN |
 | Priced -125 or worse | scan | 2026-10-26 | 20-22-0 | -6.15 | -0.146 | -2.87 | CLOSED |
 | College basketball | scan | 2026-10-26 | 508-431-0 | +15.38 | +0.016 | -1.19 | OPEN |
-| Fade alerts sent 12-24h out | scan | 2026-10-26 | 94-78-0 | -12.73 | -0.074 | -1.27 | CLOSED |
+| Fade alerts sent 12-24h out | scan | 2026-10-26 | 94-79-0 | -11.78 | -0.068 | -1.26 | CLOSED |
 | Tier 2 core (paper) | tier | 2026-10-27 | 27-25-0 | -1.84 | -0.035 | -2.71 | CLOSED |
 | Evening sends, ex-Hard Rock | scan | 2026-10-26 | 28-23-0 | +1.44 | +0.028 | -1.98 | OPEN |
 | Muted midday (11 AM-2 PM ET) | scan | 2026-10-26 | 131-120-0 | -3.59 | -0.014 | -0.55 | OPEN |
-| Liquidity totals, no sharp agree | scan | 2026-10-22 | 347-327-0 | +7.27 | +0.011 |  | OPEN |
-| Liquidity vs sharp (oppose) | scan | 2026-10-22 | 279-248-0 | -10.44 | -0.020 |  | CLOSED |
-| Liquidity spreads | scan | 2026-10-22 | 641-597-0 | -31.49 | -0.025 |  | CLOSED (by decision, 2026-10-27) |
-| Liquidity overnight (12-5 AM ET) | scan | 2026-10-26 | 188-128-0 | -1.93 | -0.006 |  | CLOSED |
-| Liquidity evening (5-8 PM ET) | scan | 2026-10-26 | 354-296-0 | -23.03 | -0.035 |  | CLOSED |
-| NBA liquidity totals (lane) | scan | 2026-10-28 | 145-123-0 | +16.69 | +0.062 |  | OPEN |
-| NBA liquidity totals - unders | scan | 2026-10-28 | 78-65-0 | +10.91 | +0.076 |  | OPEN |
-| NBA liquidity totals - no sharp tag | scan | 2026-10-28 | 70-59-0 | +8.12 | +0.063 |  | OPEN |
-| NBA liquidity totals - lead 4-12h | scan | 2026-10-28 | 77-56-0 | +18.62 | +0.140 |  | ELIGIBLE at next review |
-| NBA liquidity totals - $25-50k prints | scan | 2026-10-28 | 109-78-0 | +27.01 | +0.144 |  | ELIGIBLE at next review |
+| Liquidity totals, no sharp agree | scan | 2026-10-22 | 348-327-0 | +8.29 | +0.012 |  | OPEN |
+| Liquidity vs sharp (oppose) | scan | 2026-10-22 | 279-249-0 | -11.44 | -0.022 |  | CLOSED |
+| Liquidity spreads | scan | 2026-10-22 | 642-598-0 | -31.47 | -0.025 |  | CLOSED (by decision, 2026-10-27) |
+| Liquidity overnight (12-5 AM ET) | scan | 2026-10-26 | 190-128-0 | -1.40 | -0.004 |  | CLOSED |
+| Liquidity evening (5-8 PM ET) | scan | 2026-10-26 | 354-297-0 | -24.03 | -0.037 |  | CLOSED |
+| NBA liquidity totals (lane) | scan | 2026-10-28 | 146-123-0 | +17.71 | +0.066 |  | OPEN |
+| NBA liquidity totals - unders | scan | 2026-10-28 | 79-65-0 | +11.93 | +0.083 |  | OPEN |
+| NBA liquidity totals - no sharp tag | scan | 2026-10-28 | 71-59-0 | +9.14 | +0.070 |  | OPEN |
+| NBA liquidity totals - lead 4-12h | scan | 2026-10-28 | 78-56-0 | +19.64 | +0.147 |  | ELIGIBLE at next review |
+| NBA liquidity totals - $25-50k prints | scan | 2026-10-28 | 110-78-0 | +28.03 | +0.149 |  | ELIGIBLE at next review |
 | NBA liquidity totals - evacuation | scan | 2026-10-28 | 41-45-0 | -5.39 | -0.063 |  | CLOSED |
-| NBA liquidity, price -129..-105 | scan | 2026-10-28 | 137-127-0 | -2.60 | -0.010 |  | OPEN |
+| NBA liquidity, price -129..-105 | scan | 2026-10-28 | 137-128-0 | -3.60 | -0.014 |  | OPEN |
 
-**All-history reference (every resulted play in the feed, not forward; read only):** Tier 2 core (paper) 34-28-0, +1.03u (+0.017/play); Evening sends, ex-Hard Rock 36-31-0, +0.12u (+0.002/play); Muted midday (11 AM-2 PM ET) 155-128-0, +9.01u (+0.032/play); Liquidity overnight (12-5 AM ET) 223-149-0, +2.68u (+0.007/play); Liquidity evening (5-8 PM ET) 402-353-0, -47.38u (-0.063/play)
+**All-history reference (every resulted play in the feed, not forward; read only):** Tier 2 core (paper) 34-28-0, +1.03u (+0.017/play); Evening sends, ex-Hard Rock 36-31-0, +0.12u (+0.002/play); Muted midday (11 AM-2 PM ET) 155-128-0, +9.01u (+0.032/play); Liquidity overnight (12-5 AM ET) 225-149-0, +3.21u (+0.009/play); Liquidity evening (5-8 PM ET) 402-354-0, -48.38u (-0.064/play)
 
 **Muted midday (11 AM-2 PM ET): breakdowns** (resulted plays only)
 
