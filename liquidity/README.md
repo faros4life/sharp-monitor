@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 27, 9:40 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 80.
+Updated Fri Nov 27, 9:45 PM ET. This run: 0 new, 0 not confirmed, 6 pending. Open alerts: 80.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -18,7 +18,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 27 8:40PM | NBA | Denver vs Utah: Total Points | total: NOT Over 232.5 points | kalshi | $27k | -104 | ✅ novig | ❌ | +2.0c | yes | pending |
 | Nov 27 8:25PM | NBA | Memphis vs Minnesota: Spread | spread: Minnesota wins by over 2.5 points | kalshi | $43k | -108 |  | ❌ | +0.0c | yes | pending |
 | Nov 27 8:10PM | NBA | Golden State Warriors @ Portland Trail Blazers | spread: POR -8.5 (-8.5) | novig | $27k | +102 |  | ✅ | +0.5c |  | pending |
-| Nov 27 8:10PM | NCAAF | Illinois vs Northwestern | moneyline: Northwestern | kalshi | $233k | -133 | ✅ novig | ✅ | +2.0c | yes | pending |
+| Nov 27 8:10PM | NCAAF | Illinois vs Northwestern | moneyline: Northwestern | kalshi | $233k | -133 | ✅ novig | ✅ | +3.0c | yes | pending |
 | Nov 27 7:45PM | NBA | Dallas vs Phoenix: Spread | spread: Phoenix wins by over 4.5 points | kalshi | $35k | -100 | ✅ novig | ✅ | +0.0c | yes | pending |
 | Nov 27 7:35PM | NHL | Seattle vs Edmonton | moneyline: Edmonton | kalshi | $66k | -194 | ✅ novig,prophetx |  | +0.0c | yes | pending |
 | Nov 27 7:20PM | NBA | Philadelphia vs Indiana: Spread | spread: Philadelphia wins by over 3.5 points | kalshi | $32k | -108 | ✅ novig | ✅ | +0.0c | yes | pending |
