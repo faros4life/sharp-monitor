@@ -46,9 +46,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 15092.12,
-    "volume_24h_fp": 16092.38,
-    "volume_fp": 16158.38
+    "open_interest_fp": 15237.03,
+    "volume_24h_fp": 16158.38,
+    "volume_fp": 16573.82
    },
    "ex_stats_first": {
     "open_interest_fp": 15062.12,
@@ -255,9 +255,9 @@
     "volume_fp": 4415.33
    },
    "ex_stats_close": {
-    "open_interest_fp": 115552.77,
-    "volume_24h_fp": 107466.16,
-    "volume_fp": 118977.57
+    "open_interest_fp": 118059.22,
+    "volume_24h_fp": 109677.29000000001,
+    "volume_fp": 121648.54999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 107761.08,
@@ -315,6 +315,8 @@
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.66,
+   "price_after_15m": 0.6549,
+   "price_after_15m_book": "prophetx",
    "price_american": -194,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.66,
@@ -412,6 +414,7 @@
    "size_x": 1.64,
    "start_source": "odds",
    "start_utc": "2026-11-28T01:00:00Z",
+   "still_actionable": true,
    "surge_books": [
     "novig"
    ],
@@ -678,9 +681,9 @@
     "volume_fp": 20.59
    },
    "ex_stats_close": {
-    "open_interest_fp": 56109.78,
-    "volume_24h_fp": 58711.04,
-    "volume_fp": 61714.74
+    "open_interest_fp": 56191.78,
+    "volume_24h_fp": 60235.79,
+    "volume_fp": 61796.74
    },
    "ex_stats_first": {
     "open_interest_fp": 52637.87,
@@ -2120,9 +2123,9 @@
     "volume_fp": 142.17
    },
    "ex_stats_close": {
-    "open_interest_fp": 55483.87,
-    "volume_24h_fp": 31509.61,
-    "volume_fp": 60268.23
+    "open_interest_fp": 55503.87,
+    "volume_24h_fp": 31517.73,
+    "volume_fp": 60288.23
    },
    "ex_stats_first": {
     "open_interest_fp": 42652.99,
@@ -2326,7 +2329,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 67328.34,
-    "volume_24h_fp": 62401.13,
+    "volume_24h_fp": 62420.11,
     "volume_fp": 68287.59
    },
    "ex_stats_first": {
@@ -2475,8 +2478,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.84,
-   "clv_cents": 0.5,
+   "close_price": 0.835,
+   "clv_cents": 0.0,
    "confirmed_after_min": 5,
    "date": "2026-11-28",
    "depth_by_book": {
@@ -2505,8 +2508,8 @@
     "volume": 13844.0
    },
    "ex_stats_close": {
-    "openInterest": 2012492.0,
-    "volume": 2483687.0
+    "openInterest": 2028097.0,
+    "volume": 2503409.0
    },
    "ex_stats_first": {
     "openInterest": 1890233.0,
@@ -2703,9 +2706,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3448.96,
-    "volume_24h_fp": 2600.18,
-    "volume_fp": 4604.14
+    "open_interest_fp": 3549.43,
+    "volume_24h_fp": 2609.18,
+    "volume_fp": 4704.61
    },
    "ex_stats_first": {
     "open_interest_fp": 3095.41,
@@ -3274,7 +3277,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New York R",
@@ -3532,9 +3535,9 @@
     "volume_fp": 209.95
    },
    "ex_stats_close": {
-    "open_interest_fp": 150116.56,
-    "volume_24h_fp": 160005.92,
-    "volume_fp": 163075.74
+    "open_interest_fp": 151802.78,
+    "volume_24h_fp": 162197.2,
+    "volume_fp": 164761.96
    },
    "ex_stats_first": {
     "open_interest_fp": 23180.91,
@@ -3740,10 +3743,12 @@
     "volume": 14306811.0
    },
    "fade_price": 0.48,
+   "fade_units": 1.08,
    "first_seen_utc": "2026-11-27T20:40:27Z",
    "game": "Air Force @ New Mexico",
    "game_surge_books": [],
    "game_x": 1.36,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a20380-13c8-7891-bcc3-740d74f6fb04\", \"outcome_id\": \"01a20380-13c8-7891-bcc3-7427429d2228\"}",
    "lead_min": 44,
    "league": "NCAAF",
@@ -3779,12 +3784,13 @@
     "market_id": "01a20380-13c8-7891-bcc3-740d74f6fb04",
     "outcome_id": "01a20380-13c8-7891-bcc3-7427429d2228"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 17,
+   "settle_tries": 18,
+   "settled_utc": "2026-11-28T00:55:47Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "New Mexico Lobos -6.5 (-120)",
@@ -3804,7 +3810,7 @@
     "New Mexico"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-27T20:40:27Z",
@@ -4275,6 +4281,7 @@
     "volume_fp": 90482.68
    },
    "fade_price": 0.5,
+   "fade_units": 0.93,
    "first_seen_utc": "2026-11-27T20:20:25Z",
    "game": "Air Force vs New Mexico: Spread",
    "game_surge_books": [],
@@ -4381,12 +4388,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26NOV27AFAUNM-UNM8"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 17,
+   "settle_tries": 18,
+   "settled_utc": "2026-11-28T00:55:47Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "New Mexico Lobos -6.5 (-120)",
@@ -4404,7 +4412,7 @@
     "New Mexico"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-27T20:20:25Z",
@@ -5119,9 +5127,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 41840.76,
-    "volume_24h_fp": 41557.04,
-    "volume_fp": 41997.76
+    "open_interest_fp": 42026.19,
+    "volume_24h_fp": 41995.9,
+    "volume_fp": 42183.19
    },
    "ex_stats_first": {
     "open_interest_fp": 6409.83,
@@ -6317,9 +6325,9 @@
     "volume_fp": 317.66
    },
    "ex_stats_close": {
-    "open_interest_fp": 408274.47000000003,
+    "open_interest_fp": 409753.01,
     "volume_24h_fp": 159151.18,
-    "volume_fp": 447920.35000000003
+    "volume_fp": 449398.88999999996
    },
    "ex_stats_first": {
     "open_interest_fp": 325923.35000000003,
@@ -6532,9 +6540,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 157903.56,
+    "open_interest_fp": 158005.18,
     "volume_24h_fp": 160420.99,
-    "volume_fp": 160420.99
+    "volume_fp": 160622.0
    },
    "ex_stats_first": {
     "open_interest_fp": 1228.45,
@@ -6862,6 +6870,7 @@
     "volume_fp": 48877.16
    },
    "fade_price": 0.53,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-27T18:40:19Z",
    "game": "Air Force vs New Mexico: Spread",
    "game_surge_books": [],
@@ -6989,7 +6998,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26NOV27AFAUNM-UNM8"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -6997,7 +7006,8 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 17,
+   "settle_tries": 18,
+   "settled_utc": "2026-11-28T00:55:47Z",
    "sharp_agree": [
     "New Mexico Lobos -6.5 (-110)"
    ],
@@ -7017,7 +7027,7 @@
     "New Mexico"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 1.08
   },
   {
    "alerted_utc": "2026-11-27T18:45:56Z",
@@ -7071,9 +7081,9 @@
     "volume_fp": 70.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 11605.490000000002,
+    "open_interest_fp": 11630.28,
     "volume_24h_fp": 4277.0599999999995,
-    "volume_fp": 12897.32
+    "volume_fp": 12922.11
    },
    "ex_stats_first": {
     "open_interest_fp": 9563.86,
@@ -7278,7 +7288,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1811.28,
-    "volume_24h_fp": 531.35,
+    "volume_24h_fp": 533.0699999999999,
     "volume_fp": 1815.8799999999999
    },
    "ex_stats_first": {
@@ -8477,9 +8487,9 @@
     "volume_fp": 10.81
    },
    "ex_stats_close": {
-    "open_interest_fp": 53821.009999999995,
+    "open_interest_fp": 54869.380000000005,
     "volume_24h_fp": 51629.69,
-    "volume_fp": 55530.43
+    "volume_fp": 56578.8
    },
    "ex_stats_first": {
     "open_interest_fp": 27731.09,
@@ -9675,8 +9685,8 @@
     "volume": 16471.0
    },
    "ex_stats_close": {
-    "openInterest": 3088105.0,
-    "volume": 4475597.0
+    "openInterest": 3103321.0,
+    "volume": 4490813.0
    },
    "ex_stats_first": {
     "openInterest": 2346875.0,
@@ -10894,9 +10904,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 41840.76,
-    "volume_24h_fp": 41557.04,
-    "volume_fp": 41997.76
+    "open_interest_fp": 42026.19,
+    "volume_24h_fp": 41995.9,
+    "volume_fp": 42183.19
    },
    "ex_stats_first": {
     "open_interest_fp": 5315.16,
@@ -13416,9 +13426,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 6804.59,
-    "volume_24h_fp": 8389.64,
-    "volume_fp": 8531.47
+    "open_interest_fp": 7116.97,
+    "volume_24h_fp": 8440.99,
+    "volume_fp": 8843.85
    },
    "ex_stats_first": {
     "open_interest_fp": 2546.1,
@@ -14581,9 +14591,9 @@
     "volume_fp": 92.48
    },
    "ex_stats_close": {
-    "open_interest_fp": 249826.72,
-    "volume_24h_fp": 251384.86,
-    "volume_fp": 257511.97999999998
+    "open_interest_fp": 298814.37,
+    "volume_24h_fp": 256909.91999999998,
+    "volume_fp": 306692.26
    },
    "ex_stats_first": {
     "open_interest_fp": 97870.62,
@@ -17092,9 +17102,9 @@
     "volume_fp": 9918.5
    },
    "ex_stats_close": {
-    "open_interest_fp": 26228.45,
+    "open_interest_fp": 27727.78,
     "volume_24h_fp": 26259.16,
-    "volume_fp": 26270.65
+    "volume_fp": 27769.98
    },
    "ex_stats_first": {
     "open_interest_fp": 613.58,
@@ -17305,9 +17315,9 @@
     "volume_fp": 290.26
    },
    "ex_stats_close": {
-    "open_interest_fp": 270331.94,
+    "open_interest_fp": 282174.21,
     "volume_24h_fp": 245159.91,
-    "volume_fp": 306164.41
+    "volume_fp": 318100.84
    },
    "ex_stats_first": {
     "open_interest_fp": 67674.22,
@@ -19147,8 +19157,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.655,
-   "clv_cents": -1.0,
+   "close_price": 0.66,
+   "clv_cents": -0.5,
    "confirmed_after_min": 5,
    "date": "2026-11-27",
    "depth_by_book": {
@@ -19177,8 +19187,8 @@
     "volume": 3762.0
    },
    "ex_stats_close": {
-    "openInterest": 14480676.0,
-    "volume": 22310830.0
+    "openInterest": 14574691.0,
+    "volume": 22470897.0
    },
    "ex_stats_first": {
     "openInterest": 3103725.0,
@@ -19881,9 +19891,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 33250.32,
-    "volume_24h_fp": 29564.88,
-    "volume_fp": 33655.0
+    "open_interest_fp": 33818.01,
+    "volume_24h_fp": 33139.06,
+    "volume_fp": 34222.69
    },
    "ex_stats_first": {
     "open_interest_fp": 2567.48,
@@ -20224,7 +20234,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Chicago",
@@ -21563,8 +21573,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 12021872.0,
-    "volume": 18078633.0
+    "openInterest": 12065898.0,
+    "volume": 18122659.0
    },
    "ex_stats_first": {
     "openInterest": 1263562.0,
@@ -21782,8 +21792,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 6551066.0,
-    "volume": 8085746.0
+    "openInterest": 7013645.0,
+    "volume": 8559325.0
    },
    "ex_stats_first": {
     "openInterest": 3705199.0,
@@ -22609,9 +22619,9 @@
     "volume_fp": 0.5
    },
    "ex_stats_close": {
-    "open_interest_fp": 343075.8,
-    "volume_24h_fp": 350372.85,
-    "volume_fp": 371555.1
+    "open_interest_fp": 345501.31,
+    "volume_24h_fp": 360312.71,
+    "volume_fp": 373980.61
    },
    "ex_stats_first": {
     "open_interest_fp": 11889.36,
@@ -22787,9 +22797,9 @@
     "volume_fp": 497.4
    },
    "ex_stats_close": {
-    "open_interest_fp": 34304.9,
-    "volume_24h_fp": 34168.6,
-    "volume_fp": 38913.22
+    "open_interest_fp": 35423.47,
+    "volume_24h_fp": 36525.6,
+    "volume_fp": 40031.79
    },
    "ex_stats_first": {
     "open_interest_fp": 2915.78,
@@ -24836,10 +24846,12 @@
     "volume": 275487.0
    },
    "fade_price": 0.295,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-26T23:45:53Z",
    "game": "Air Force @ New Mexico",
    "game_surge_books": [],
    "game_x": 1.35,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1fd16-4c08-7de0-85f1-9fe250847913\", \"outcome_id\": \"01a1fd16-4c08-7de0-85f1-9ff01569d9bd\"}",
    "lead_min": 1300,
    "league": "NCAAF",
@@ -24959,7 +24971,7 @@
     "market_id": "01a1fd16-4c08-7de0-85f1-9fe250847913",
     "outcome_id": "01a1fd16-4c08-7de0-85f1-9ff01569d9bd"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -24967,7 +24979,8 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 17,
+   "settle_tries": 18,
+   "settled_utc": "2026-11-28T00:55:47Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New Mexico",
@@ -24984,7 +24997,7 @@
     "New Mexico"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.41
   },
   {
    "alerted_utc": "2026-11-26T23:20:19Z",
@@ -25658,6 +25671,7 @@
     "volume_fp": 2250.48
    },
    "fade_price": 0.48,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-26T22:15:55Z",
    "game": "Air Force vs New Mexico: Spread",
    "game_surge_books": [],
@@ -25781,7 +25795,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26NOV27AFAUNM-UNM7"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -25789,7 +25803,8 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 17,
+   "settle_tries": 18,
+   "settled_utc": "2026-11-28T00:55:47Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New Mexico",
@@ -25808,7 +25823,7 @@
     "New Mexico"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.9
   },
   {
    "alerted_utc": "2026-11-26T22:20:18Z",
@@ -31237,9 +31252,9 @@
     "volume_fp": 295.9
    },
    "ex_stats_close": {
-    "open_interest_fp": 1366287.68,
-    "volume_24h_fp": 1291223.36,
-    "volume_fp": 1522594.6
+    "open_interest_fp": 1377011.09,
+    "volume_24h_fp": 1306449.52,
+    "volume_fp": 1533825.0899999999
    },
    "ex_stats_first": {
     "open_interest_fp": 80813.09,
@@ -31507,9 +31522,9 @@
     "volume_fp": 235.63
    },
    "ex_stats_close": {
-    "open_interest_fp": 496121.29,
-    "volume_24h_fp": 507733.92,
-    "volume_fp": 530738.87
+    "open_interest_fp": 497678.0,
+    "volume_24h_fp": 511922.08999999997,
+    "volume_fp": 532320.24
    },
    "ex_stats_first": {
     "open_interest_fp": 9262.64,
@@ -31640,9 +31655,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 400153.38,
+    "open_interest_fp": 405233.25,
     "volume_24h_fp": 487344.9,
-    "volume_fp": 521047.55
+    "volume_fp": 526168.3300000001
    },
    "ex_stats_first": {
     "open_interest_fp": 15796.61,
@@ -33126,6 +33141,7 @@
     "volume_fp": 13234.64
    },
    "fade_price": 0.3,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-26T10:00:31Z",
    "game": "Air Force vs New Mexico",
    "game_surge_books": [],
@@ -33187,12 +33203,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26NOV27AFAUNM-UNM"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 17,
+   "settle_tries": 18,
+   "settled_utc": "2026-11-28T00:55:47Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New Mexico",
@@ -33207,7 +33224,7 @@
     "New Mexico"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.42
   },
   {
    "alerted_utc": "2026-11-26T09:45:58Z",
@@ -33535,9 +33552,9 @@
     "volume_fp": 9.97
    },
    "ex_stats_close": {
-    "open_interest_fp": 86161.23,
-    "volume_24h_fp": 84019.33,
-    "volume_fp": 96058.56
+    "open_interest_fp": 86646.07,
+    "volume_24h_fp": 84602.98999999999,
+    "volume_fp": 96543.4
    },
    "ex_stats_first": {
     "open_interest_fp": 3526.54,
@@ -34506,9 +34523,9 @@
     "volume_fp": 40.04
    },
    "ex_stats_close": {
-    "open_interest_fp": 340372.92,
-    "volume_24h_fp": 305992.99,
-    "volume_fp": 357870.6
+    "open_interest_fp": 361748.32,
+    "volume_24h_fp": 320181.73,
+    "volume_fp": 379624.65
    },
    "ex_stats_first": {
     "open_interest_fp": 5490.219999999999,
