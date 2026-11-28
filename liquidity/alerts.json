@@ -47,7 +47,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 18209.49,
-    "volume_24h_fp": 328.42,
+    "volume_24h_fp": 17924.55,
     "volume_fp": 18377.6
    },
    "ex_stats_first": {
@@ -249,9 +249,9 @@
     "volume_fp": 187.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 62987.16,
-    "volume_24h_fp": 35772.66,
-    "volume_fp": 68577.02
+    "open_interest_fp": 63399.92,
+    "volume_24h_fp": 37422.65,
+    "volume_fp": 69852.2
    },
    "ex_stats_first": {
     "open_interest_fp": 60967.45,
@@ -311,6 +311,8 @@
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.51,
+   "price_after_15m": 0.51,
+   "price_after_15m_book": "novig",
    "price_american": -104,
    "price_rule": "ok",
    "price_when_first_seen": 0.51,
@@ -405,6 +407,7 @@
    "size_x": 2.7,
    "start_source": "odds",
    "start_utc": "2026-11-28T17:00:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi",
     "prophetx"
@@ -640,7 +643,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 17745.61,
-    "volume_24h_fp": 6329.14,
+    "volume_24h_fp": 6800.83,
     "volume_fp": 18356.76
    },
    "ex_stats_first": {
@@ -833,7 +836,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 2222.61,
-    "volume_24h_fp": 944.45,
+    "volume_24h_fp": 956.12,
     "volume_fp": 2271.61
    },
    "ex_stats_first": {
@@ -1051,7 +1054,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 3022.9700000000003,
-    "volume_24h_fp": 1336.53,
+    "volume_24h_fp": 1338.96,
     "volume_fp": 3033.0600000000004
    },
    "ex_stats_first": {
@@ -1262,9 +1265,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3415.6,
-    "volume_24h_fp": 429.78,
-    "volume_fp": 6647.93
+    "open_interest_fp": 3417.35,
+    "volume_24h_fp": 432.96999999999997,
+    "volume_fp": 6649.68
    },
    "ex_stats_first": {
     "open_interest_fp": 3403.89,
@@ -1474,9 +1477,9 @@
     "volume_fp": 48.13
    },
    "ex_stats_close": {
-    "open_interest_fp": 2353.23,
-    "volume_24h_fp": 1328.69,
-    "volume_fp": 2420.5
+    "open_interest_fp": 2354.84,
+    "volume_24h_fp": 1331.83,
+    "volume_fp": 2422.11
    },
    "ex_stats_first": {
     "open_interest_fp": 2041.65,
@@ -1894,9 +1897,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 17809.97,
-    "volume_24h_fp": 10698.15,
-    "volume_fp": 18043.02
+    "open_interest_fp": 17829.67,
+    "volume_24h_fp": 11122.26,
+    "volume_fp": 18062.72
    },
    "ex_stats_first": {
     "open_interest_fp": 13640.93,
@@ -2576,7 +2579,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [
     "West Virginia Mountaineers +26.5 (-110)"
    ],
@@ -3254,9 +3257,9 @@
     "volume_fp": 55.23
    },
    "ex_stats_close": {
-    "open_interest_fp": 52056.26,
-    "volume_24h_fp": 47563.03999999999,
-    "volume_fp": 52608.799999999996
+    "open_interest_fp": 52106.65,
+    "volume_24h_fp": 47666.94,
+    "volume_fp": 52659.19
    },
    "ex_stats_first": {
     "open_interest_fp": 10884.529999999999,
@@ -3613,7 +3616,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [
     "Phoenix Suns -3.5 (-115)",
     "Phoenix Suns -2.5 (-115)"
@@ -4324,10 +4327,12 @@
     "volume": 44695713.0
    },
    "fade_price": 0.495,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-27T23:50:19Z",
    "game": "Texas @ Texas A&M",
    "game_surge_books": [],
    "game_x": 1.66,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1f66b-be67-7530-9835-e8317426204d\", \"outcome_id\": \"01a1f66b-be67-7530-9835-e84b64f74217\"}",
    "lead_min": 34,
    "league": "NCAAF",
@@ -4433,12 +4438,13 @@
     "market_id": "01a1f66b-be67-7530-9835-e8317426204d",
     "outcome_id": "01a1f66b-be67-7530-9835-e84b64f74217"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 15,
+   "settle_tries": 16,
+   "settled_utc": "2026-11-28T04:05:56Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas A&M",
@@ -4455,7 +4461,7 @@
     "Texas A&M"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.96
   },
   {
    "alerted_utc": "2026-11-27T23:50:19Z",
@@ -4520,6 +4526,7 @@
     "volume_fp": 237244.42
    },
    "fade_price": 0.51,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-27T23:45:53Z",
    "game": "Texas vs Texas A&M: Total Points",
    "game_surge_books": [],
@@ -4651,14 +4658,15 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFTOTAL-26NOV27TEXTXAM-42"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "prophetx"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 15,
+   "settle_tries": 16,
+   "settled_utc": "2026-11-28T04:05:56Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Over 40.5 (-115)"
@@ -4679,7 +4687,7 @@
     "Texas A&M"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.96
   },
   {
    "alerted_utc": "2026-11-27T23:36:00Z",
@@ -5393,10 +5401,12 @@
     "volume": 10280659.0
    },
    "fade_price": 0.49,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-27T22:55:48Z",
    "game": "Texas @ Texas A&M",
    "game_surge_books": [],
    "game_x": 1.28,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1f66b-be67-7530-9835-e86b43513a0d\", \"outcome_id\": \"01a1f66b-be67-7530-9835-e8719f76e133\"}",
    "lead_min": 90,
    "league": "NCAAF",
@@ -5501,12 +5511,13 @@
     "market_id": "01a1f66b-be67-7530-9835-e86b43513a0d",
     "outcome_id": "01a1f66b-be67-7530-9835-e8719f76e133"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 15,
+   "settle_tries": 16,
+   "settled_utc": "2026-11-28T04:05:56Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas A&M",
@@ -5523,7 +5534,7 @@
     "Texas A&M"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.94
   },
   {
    "alerted_utc": "2026-11-27T22:25:45Z",
@@ -5577,9 +5588,9 @@
     "volume_fp": 142.17
    },
    "ex_stats_close": {
-    "open_interest_fp": 62987.16,
-    "volume_24h_fp": 35772.66,
-    "volume_fp": 68577.02
+    "open_interest_fp": 63399.92,
+    "volume_24h_fp": 37422.65,
+    "volume_fp": 69852.2
    },
    "ex_stats_first": {
     "open_interest_fp": 42652.99,
@@ -5783,9 +5794,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 103571.73,
-    "volume_24h_fp": 97828.02,
-    "volume_fp": 104537.82
+    "open_interest_fp": 104298.53,
+    "volume_24h_fp": 97933.34,
+    "volume_fp": 105264.62
    },
    "ex_stats_first": {
     "open_interest_fp": 66953.16,
@@ -6162,9 +6173,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 5644.22,
+    "open_interest_fp": 5786.38,
     "volume_24h_fp": 4882.0,
-    "volume_fp": 6885.96
+    "volume_fp": 7028.12
    },
    "ex_stats_first": {
     "open_interest_fp": 3095.41,
@@ -7139,7 +7150,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [
     "Under 66.5 (-115)"
    ],
@@ -9796,9 +9807,9 @@
     "volume_fp": 317.66
    },
    "ex_stats_close": {
-    "open_interest_fp": 503354.32999999996,
-    "volume_24h_fp": 230770.40999999997,
-    "volume_fp": 544817.12
+    "open_interest_fp": 504734.58,
+    "volume_24h_fp": 243232.71,
+    "volume_fp": 546258.86
    },
    "ex_stats_first": {
     "open_interest_fp": 325923.35000000003,
@@ -10553,9 +10564,9 @@
     "volume_fp": 70.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 13359.960000000001,
-    "volume_24h_fp": 5435.299999999999,
-    "volume_fp": 14656.16
+    "open_interest_fp": 13401.82,
+    "volume_24h_fp": 5620.41,
+    "volume_fp": 14698.02
    },
    "ex_stats_first": {
     "open_interest_fp": 9563.86,
@@ -10759,9 +10770,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 4117.41,
-    "volume_24h_fp": 2743.9900000000002,
-    "volume_fp": 4122.01
+    "open_interest_fp": 4236.41,
+    "volume_24h_fp": 2766.8700000000003,
+    "volume_fp": 4241.01
    },
    "ex_stats_first": {
     "open_interest_fp": 1756.3999999999999,
@@ -13162,8 +13173,8 @@
     "volume": 16471.0
    },
    "ex_stats_close": {
-    "openInterest": 3816872.0,
-    "volume": 5368492.0
+    "openInterest": 4880229.0,
+    "volume": 6915179.0
    },
    "ex_stats_first": {
     "openInterest": 2346875.0,
@@ -18308,6 +18319,7 @@
     "volume_fp": 113296.54
    },
    "fade_price": 0.5,
+   "fade_units": 0.93,
    "first_seen_utc": "2026-11-27T15:40:19Z",
    "game": "Texas vs Texas A&M: Spread",
    "game_surge_books": [],
@@ -18349,12 +18361,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26NOV27TEXTXAM-TEX11"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 15,
+   "settle_tries": 16,
+   "settled_utc": "2026-11-28T04:05:56Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas wins by over 10.5 points",
@@ -18371,7 +18384,7 @@
     "Texas A&M"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-27T15:40:19Z",
@@ -20069,10 +20082,12 @@
     "volume": 3243117.0
    },
    "fade_price": 0.49,
+   "fade_units": 1.04,
    "first_seen_utc": "2026-11-27T14:55:53Z",
    "game": "Texas @ Texas A&M",
    "game_surge_books": [],
    "game_x": 1.59,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1f66b-be67-7530-9835-e8317426204d\", \"outcome_id\": \"01a1f66b-be67-7530-9835-e8559f9ca200\"}",
    "lead_min": 570,
    "league": "NCAAF",
@@ -20108,12 +20123,13 @@
     "market_id": "01a1f66b-be67-7530-9835-e8317426204d",
     "outcome_id": "01a1f66b-be67-7530-9835-e8559f9ca200"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 15,
+   "settle_tries": 16,
+   "settled_utc": "2026-11-28T04:05:56Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "TEX -10.5 (10.5)",
@@ -20130,7 +20146,7 @@
     "Texas A&M"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-27T15:00:29Z",
@@ -21273,6 +21289,7 @@
     "volume_fp": 12319.23
    },
    "fade_price": 0.5,
+   "fade_units": 0.93,
    "first_seen_utc": "2026-11-27T14:16:17Z",
    "game": "Texas vs Texas A&M: Total Points",
    "game_surge_books": [
@@ -21402,14 +21419,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFTOTAL-26NOV27TEXTXAM-42"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 15,
+   "settle_tries": 16,
+   "settled_utc": "2026-11-28T04:05:56Z",
    "sharp_agree": [
     "Over 40.5 (-115)"
    ],
@@ -21430,7 +21448,7 @@
     "Texas A&M"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-27T14:16:17Z",
@@ -25997,6 +26015,7 @@
     "volume_fp": 5726.18
    },
    "fade_price": 0.48,
+   "fade_units": 1.01,
    "first_seen_utc": "2026-11-27T06:25:47Z",
    "game": "Texas vs Texas A&M: Total Points",
    "game_surge_books": [],
@@ -26102,12 +26121,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFTOTAL-26NOV27TEXTXAM-41"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 15,
+   "settle_tries": 16,
+   "settled_utc": "2026-11-28T04:05:56Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -26122,7 +26142,7 @@
     "Texas A&M"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-27T06:05:43Z",
@@ -26281,7 +26301,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Utah",
@@ -27412,6 +27432,7 @@
     "volume_fp": 40274.53
    },
    "fade_price": 0.49,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-27T01:40:20Z",
    "game": "Texas vs Texas A&M: Spread",
    "game_surge_books": [],
@@ -27453,12 +27474,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26NOV27TEXTXAM-TEX12"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 15,
+   "settle_tries": 16,
+   "settled_utc": "2026-11-28T04:05:56Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "NOT Texas wins by over 11.5 points",
@@ -27473,7 +27495,7 @@
     "Texas A&M"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.86
   },
   {
    "alerted_utc": "2026-11-27T00:35:47Z",
@@ -32754,10 +32776,12 @@
     "volume": 6371279.0
    },
    "fade_price": 0.21,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-26T17:35:57Z",
    "game": "Texas @ Texas A&M",
    "game_surge_books": [],
    "game_x": 1.2,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1f66b-be66-74a0-a7d7-50a519ce176b\", \"outcome_id\": \"01a1f66b-be66-74a0-a7d7-50c854255218\"}",
    "lead_min": 1850,
    "league": "NCAAF",
@@ -32794,12 +32818,13 @@
     "market_id": "01a1f66b-be66-74a0-a7d7-50a519ce176b",
     "outcome_id": "01a1f66b-be66-74a0-a7d7-50c854255218"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 15,
+   "settle_tries": 16,
+   "settled_utc": "2026-11-28T04:05:56Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "TEX (0)",
@@ -32816,7 +32841,7 @@
     "Texas A&M"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.25
   },
   {
    "alerted_utc": "2026-11-26T17:40:21Z",
@@ -35296,6 +35321,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Phoenix",
@@ -36590,6 +36616,7 @@
     "volume_fp": 125972.92
    },
    "fade_price": 0.21,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-26T10:05:59Z",
    "game": "Texas vs Texas A&M",
    "game_surge_books": [],
@@ -36630,12 +36657,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFGAME-26NOV27TEXTXAM-TXAM"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 15,
+   "settle_tries": 16,
+   "settled_utc": "2026-11-28T04:05:56Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas",
@@ -36652,7 +36680,7 @@
     "Texas A&M"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.22
   },
   {
    "alerted_utc": "2026-11-26T10:05:59Z",
