@@ -1,6 +1,176 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-28T00:40:23Z",
+   "base_depth": 129474,
+   "best_price": 0.5606,
+   "best_price_american": -128,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.55,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 5977,
+     "new_this_side": 49007,
+     "other_side": 20897,
+     "other_side_all_levels": 134985,
+     "ratio": 3.0,
+     "this_side": 63019,
+     "this_side_all_levels": 172501
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 19764.68,
+    "volume_24h_fp": 20355.01,
+    "volume_fp": 22036.7
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 1681.69,
+    "volume_24h_fp": 2234.16,
+    "volume_fp": 1681.69
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 18082.99,
+    "volume_24h_fp": 18120.85,
+    "volume_fp": 20355.01
+   },
+   "fade_price": 0.46,
+   "first_seen_utc": "2026-11-28T00:30:22Z",
+   "game": "Miami (FL) vs Alabama: Point Total",
+   "game_surge_books": [],
+   "game_x": 1.55,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAMBTOTAL-26NOV27MIAALA-171\"}",
+   "lead_min": 50,
+   "league": "NCAAB",
+   "line": 170.5,
+   "market": "total",
+   "new_money": 49007,
+   "new_x": 2.13,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 19764.68,
+      "volume_24h_fp": 20355.01,
+      "volume_fp": 22036.7
+     },
+     "game_normal": 111005,
+     "game_x": 1.55,
+     "normal": 22975,
+     "now": 172501,
+     "type": "UNDER",
+     "x": 7.51
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.55,
+   "price_american": -122,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.55,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 169.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": 168.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 169.5,
+     "price": -104
+    },
+    "betrivers": {
+     "point": 168.5,
+     "price": -109
+    },
+    "betus": {
+     "point": 168.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 169.0,
+     "price": -110
+    },
+    "circasports": {
+     "point": 168.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 168.5,
+     "price": -107
+    },
+    "fanatics": {
+     "point": 169.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 169.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 170.5,
+     "price": -122
+    },
+    "lowvig": {
+     "point": 168.5,
+     "price": -108
+    },
+    "novig": {
+     "point": 145.5,
+     "price": -3348
+    },
+    "polymarket": {
+     "point": 198.5,
+     "price": -9900
+    },
+    "prophetx": {
+     "point": 169.5,
+     "price": -111
+    },
+    "williamhill_us": {
+     "point": 169.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAMBTOTAL-26NOV27MIAALA-171"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 170.5 points",
+   "size_x": 7.51,
+   "start_source": "odds",
+   "start_utc": "2026-11-28T01:30:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Miami (FL)",
+    "Alabama"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-28T00:00:30Z",
    "base_depth": 83034,
    "best_price": 0.7631,
@@ -40,9 +210,9 @@
     "volume_fp": 19389.07
    },
    "ex_stats_close": {
-    "open_interest_fp": 91413.54,
-    "volume_24h_fp": 77723.85,
-    "volume_fp": 133546.57
+    "open_interest_fp": 106012.39,
+    "volume_24h_fp": 126548.41,
+    "volume_fp": 154526.78999999998
    },
    "ex_stats_first": {
     "open_interest_fp": 23625.17,
@@ -577,9 +747,9 @@
     "volume_fp": 62.14
    },
    "ex_stats_close": {
-    "open_interest_fp": 12218.09,
-    "volume_24h_fp": 15180.55,
-    "volume_fp": 15810.449999999999
+    "open_interest_fp": 23117.83,
+    "volume_24h_fp": 15796.609999999999,
+    "volume_fp": 26787.89
    },
    "ex_stats_first": {
     "open_interest_fp": 8953.37,
@@ -936,7 +1106,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [
     "Michigan Wolverines -9.5 (-108)",
     "Michigan Wolverines -8.5 (-120)"
@@ -1438,7 +1608,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 528.25,
-    "volume_24h_fp": 492.09,
+    "volume_24h_fp": 529.01,
     "volume_fp": 529.01
    },
    "ex_stats_first": {
@@ -2071,9 +2241,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 6381.24,
-    "volume_24h_fp": 5879.51,
-    "volume_fp": 6394.9800000000005
+    "open_interest_fp": 6445.45,
+    "volume_24h_fp": 6257.17,
+    "volume_fp": 6459.1900000000005
    },
    "ex_stats_first": {
     "open_interest_fp": 972.55,
@@ -3586,8 +3756,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.62,
-   "clv_cents": 4.0,
+   "close_price": 0.61,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-11-27",
    "depth_by_book": {
@@ -3624,9 +3794,9 @@
     "volume_fp": 89.41
    },
    "ex_stats_close": {
-    "open_interest_fp": 294087.41000000003,
-    "volume_24h_fp": 280880.24,
-    "volume_fp": 307035.02
+    "open_interest_fp": 311463.31,
+    "volume_24h_fp": 305688.37,
+    "volume_fp": 324410.92000000004
    },
    "ex_stats_first": {
     "open_interest_fp": 38635.75,
@@ -4389,7 +4559,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas",
@@ -4975,9 +5145,9 @@
     "volume_fp": 1.41
    },
    "ex_stats_close": {
-    "open_interest_fp": 1658.06,
-    "volume_24h_fp": 1666.52,
-    "volume_fp": 1678.23
+    "open_interest_fp": 1910.88,
+    "volume_24h_fp": 1671.44,
+    "volume_fp": 1931.05
    },
    "ex_stats_first": {
     "open_interest_fp": 95.91,
@@ -5193,9 +5363,9 @@
     "volume_fp": 100.33
    },
    "ex_stats_close": {
-    "open_interest_fp": 13819.52,
-    "volume_24h_fp": 14486.72,
-    "volume_fp": 14707.560000000001
+    "open_interest_fp": 14302.330000000002,
+    "volume_24h_fp": 14693.130000000001,
+    "volume_fp": 15190.369999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 1337.47,
@@ -5897,7 +6067,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Michigan",
@@ -6085,7 +6255,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas",
