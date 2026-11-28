@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 28, 1:30 AM ET. This run: 4 new, 0 not confirmed, 0 pending. Open alerts: 14.
+Updated Sat Nov 28, 1:40 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 14.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -12,7 +12,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 28 1:30AM | NCAAB | UT Rio Grande Valley vs UNLV | moneyline: UNLV | kalshi | $37k | -525 |  |  | +0.0c |  | pending |
 | Nov 28 1:30AM | NCAAB | Northern Illinois vs Eastern Illinois | moneyline: Northern Illinois | kalshi | $33k | -567 |  |  | +0.0c |  | pending |
-| Nov 28 1:30AM | NCAAB | Liberty vs UNC Wilmington | moneyline: UNC Wilmington | kalshi | $31k | -223 |  |  | +0.0c |  | pending |
+| Nov 28 1:30AM | NCAAB | Liberty vs UNC Wilmington | moneyline: UNC Wilmington | kalshi | $31k | -223 |  |  | -1.0c |  | pending |
 | Nov 28 1:30AM | NCAAB | Delaware St. vs North Carolina A&T | moneyline: North Carolina A&T | kalshi | $28k | -567 |  |  | +0.0c |  | pending |
 | Nov 27 8:40PM | NCAAB | Louisville @ Tennessee | moneyline: LOU (0) | novig | $38k | -156 | ✅ kalshi,prophetx | ✅ | +0.0c | yes | W |
 | Nov 27 8:00PM | NCAAB | Texas Tech @ San Diego State | moneyline: TTU (0) | novig | $26k | -335 | ✅ kalshi | ✅ | +1.0c | yes | pending |
