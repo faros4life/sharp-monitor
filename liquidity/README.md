@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 27, 7:05 PM ET. This run: 0 new, 1 not confirmed, 1 pending. Open alerts: 78.
+Updated Fri Nov 27, 7:10 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 78.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -50,7 +50,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 27 12:50PM | NCAAF | Penn State @ Maryland | moneyline: PSU (0) | novig | $39k | -270 |  |  | -0.5c | yes | pending |
 | Nov 27 12:50PM | NBA | New Orleans vs Los Angeles C | moneyline: Los Angeles C | kalshi | $54k | -127 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 27 12:36PM | NFL | Denver Broncos @ Pittsburgh Steelers | spread: DEN -4.5 (4.5) | novig | $51k | -102 |  |  | +0.0c | yes | L |
-| Nov 27 12:36PM | NBA | Philadelphia vs Indiana | moneyline: Philadelphia | kalshi | $53k | -163 | ✅ novig,prophetx | ✅ | +0.0c | yes | pending |
+| Nov 27 12:36PM | NBA | Philadelphia vs Indiana | moneyline: Philadelphia | kalshi | $53k | -163 | ✅ novig,prophetx | ✅ | +1.0c | yes | pending |
 | Nov 27 12:30PM | NFL | Denver Broncos at Pittsburgh Steelers | moneyline: Denver Broncos | prophetx | $51k | -225 | ✅ kalshi,novig |  | +0.5c | yes | L |
 | Nov 27 12:20PM | NCAAF | Florida @ Florida State | moneyline: FLA (0) | novig | $113k | -223 |  |  | +1.0c |  | W |
 | Nov 27 12:10PM | NHL | Los Angeles vs Anaheim: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $29k | -104 | ✅ prophetx |  | +0.0c | yes | L |
