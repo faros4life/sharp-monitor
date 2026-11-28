@@ -67,7 +67,7 @@ def reset(lane="dogs", lane_risk=0.0, lane_keys=(), place_result=None, rows=()):
     SUB.clear()
     REL[:] = []
     CLAIMS.clear()
-    st = {"board": ex.BOARD, "r1": ex.R1, "ncs": ex.NCS, "dogs": ex.DOGS}[lane]
+    st = {"board": ex.BOARD, "r1": ex.R1, "ncs": ex.NCS, "dogs": ex.DOGS, "12k": ex.K12}[lane]
     st.clear()
     st.update({"known": True, "keys": set(lane_keys), "risk": float(lane_risk)})
     ex.registry.enabled = lambda: True
@@ -457,6 +457,38 @@ ok("fix 4: the ProphetX dispatch nulls an unread fill, as live_order_other alrea
    _src.count('if res.get("status") == "placed" and not res.get("fills_read"):'))
 ok("fix 4: the snapshot read and the in-run tally share ONE rule",
    _src.count("_acct_fill(lo)") >= 5 and "fs = _acct_fill(lo)" in _src)
+
+# --- 10. THE 12K LANE RESTS AT THE ALERT NUMBER (Peter, 28 Nov) --------------------------------
+print("\n10. 12K RESTING, LEDGER ON")
+reset(lane="12k")
+_p12 = {"source": "12k", "play_key": "12k|NFL|A @ B|spread|A", "sport": "NFL", "game": "A @ B",
+        "bet": "A -2.5 (-108)", "start_utc": FAR}
+res, exc = bid(_p12, price=-108)
+ok("a 12K rest-only bid is placed, not refused for its lane",
+   exc is None and (res or {}).get("status") == "placed", exc or str(res)[:110])
+_r12, _w12 = ex.live_stake(-108, ex.K12_UNIT)
+ok("...sized to win $200 (risk $216 at -108)", round(_w12, 2) == 200.0 and round(_r12, 2) == 216.0,
+   (_r12, _w12))
+ok("...at the stake the lane's unit implies", SUB.get("dollars") == round(_r12, 2),
+   (SUB.get("dollars"), _r12))
+ok("...and the ledger reserved exactly that", reserved() == round(_r12, 2), reserved())
+# the lane's own cap must bind on the RESTING path, which is what registering it in the table buys
+reset(lane="12k", lane_risk=ex.K12_DAILY_RISK)
+res, exc = bid(_p12, price=-108)
+ok("the 12K daily cap refuses a resting bid",
+   (res or {}).get("status") == "refused" and "daily risk limit" in str((res or {}).get("reason")),
+   str(res)[:110] or exc)
+reset(lane="12k", lane_keys={f"k{i}" for i in range(ex.K12_MAX_PLAYS)})
+res, exc = bid(_p12, price=-108)
+ok("the 12K play maximum refuses a resting bid",
+   (res or {}).get("status") == "refused" and "play cap" in str((res or {}).get("reason")),
+   str(res)[:110] or exc)
+reset(lane="12k")
+ex.K12.update({"known": False})
+res, exc = bid(_p12, price=-108)
+ok("unknown 12K exposure refuses a resting bid (fail closed)",
+   (res or {}).get("status") == "refused" and "unknown" in str((res or {}).get("reason")),
+   str(res)[:110] or exc)
 
 # --- PRESERVED, as instructed ------------------------------------------------------------------
 print("\nPRESERVED")

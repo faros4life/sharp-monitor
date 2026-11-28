@@ -5,10 +5,12 @@ Peter's decision, 28 Nov 2026, and his instruction when commissioning it: "build
 it on." So the first thing asserted is that it ships OFF, and the second is that the one input that
 is NOT settled - what "12K" filters on - fails CLOSED rather than guessing a cohort.
 
-The lane is TAKE-ONLY by spec ("one attempt per book", nothing about resting), which is enforced by
-ABSENCE from rest_bid's _REST_LANE_GATES. A lane absent from that table is refused there. That is
-the behaviour wanted, but an absence is exactly what CLAUDE.md warns silently becomes a no-op, so it
-is asserted here rather than assumed."""
+The lane RESTS at the alert number. It was built take-only from the spec's "one attempt per book";
+Peter then asked for both lanes "running the right way with resting bids at the alert number"
+(28 Nov), so it is registered in rest_bid's _REST_LANE_GATES with its own gate. Registration there
+is asserted below, because a lane absent from that table is silently refused - which was the
+deliberate behaviour before and would now be a lane that never rests while looking as if it does."""
+import inspect
 import json
 import os
 import sys
@@ -229,10 +231,21 @@ ok("the exposure snapshot reads it", 'row.get("source") == "12k"' in SRC and 'K1
 ok("the snapshot stores both key spellings (item 3)", 'K12["keys"].add(lane_strip(row["key"]))' in SRC)
 ok("there is exactly ONE dispatch branch for it", SRC.count('elif p.get("source") == "12k":') == 1)
 _rg = SRC.split("_REST_LANE_GATES = ")[1].split("}")[0]
-ok("TAKE-ONLY: absent from _REST_LANE_GATES, so a resting bid is REFUSED there",
-   '"12k"' not in _rg, _rg)
-ok("...and that absence is a refusal, not a silent skip",
+ok("RESTS: registered in _REST_LANE_GATES, with its OWN gate",
+   '"12k": k12_gate' in _rg, _rg)
+ok("...so an unproven lane is still refused there (the fail-closed default is intact)",
    "resting bid whose lane could not be proven" in SRC)
+# The price a resting bid goes out at IS the alert's own after-fee number, with no tolerance added -
+# which is this lane's price gate. Asserted at the source of the price, not from a comment.
+_rb = inspect.getsource(ex.rest_bid)
+ok("a resting bid is priced at the alert's after-fee number",
+   'af = e.get("price_after_fee")' in _rb and "p_star = american_to_prob(int(af))" in _rb)
+ok("...with no price tolerance applied on the resting path", "TOL" not in _rb)
+ok("...on Novig and Kalshi only, Polymarket US blocked",
+   'if b == "kalshi"' in _rb and 'elif b == "novig"' in _rb and "resting BLOCKED" in _rb)
+ok("...with T-30 expiry, the shared ledger and the separate |rest claim",
+   ex.REST_BEFORE_MIN == 30 and '_unit_ledger_guard(r, "rest_bid"' in _rb
+   and '_pkey + "|rest"' in _rb)
 
 print(f"\n{len(RAN) - len(FAILED)} passed, {len(FAILED)} failed")
 sys.exit(1 if FAILED else 0)

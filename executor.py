@@ -1326,10 +1326,15 @@ NCS = {"risk": 0.0, "keys": set(), "known": False}
 # on". With EXEC_12K_LIVE unset this selects, prices and logs WOULD PLACE and places nothing. The
 # switch is a repo variable, which Claude cannot write - Peter flips it.
 #
-# TAKE-ONLY, deliberately. The spec says "one attempt per book" and says nothing about resting, so
-# "12k" is NOT registered in rest_bid's _REST_LANE_GATES. That is not an omission: a lane absent
-# from that table is REFUSED there (fail closed), which is the behaviour wanted, and the refusal is
-# asserted in the tests so it can never become a silent no-op.
+# RESTS, at the alert number. Built take-only first, from the spec's "one attempt per book"; Peter
+# then asked for both lanes "running the right way with resting bids at the alert number" (28 Nov),
+# so "12k" is registered in rest_bid's _REST_LANE_GATES with its own gate. Nothing about the PRICE
+# changes or needed to: rest_bid rests at the alert's own after-fee number with no tolerance added,
+# which is already this lane's price gate ("the alert line's after-fee price or better, never
+# worse"). Resting inherits every protection the other lanes get there - Novig and Kalshi only with
+# Polymarket US blocked, strict venue revalidation before pricing, T-30 expiry, the shared unit
+# ledger on the resting leg, the separate |rest duplicate claim, and this lane's own daily cap and
+# play maximum through k12_gate.
 #
 # WHAT IS NOT SETTLED, and must be before the switch is flipped:
 #   * K12_MIN_MONEY. "12K" has NO definition anywhere in this repo - there is no 12000 threshold in
@@ -6370,7 +6375,8 @@ def rest_bid(r):
     # resolution to keep this gate working, which is how a gate ends up tested against a copy of itself.
     # Store operations below still go through `registry` so tests keep their control of them.
     from registry import row_lane as _row_lane
-    _REST_LANE_GATES = {"rules": None, "board": board_gate, "r1": r1_gate, "dogs": dogs_gate}
+    _REST_LANE_GATES = {"rules": None, "board": board_gate, "r1": r1_gate, "dogs": dogs_gate,
+                        "12k": k12_gate}
     _lane = _row_lane({"key": (p or {}).get("play_key") or _pkey,
                        "source": (p or {}).get("source")})
     if _lane not in _REST_LANE_GATES:
