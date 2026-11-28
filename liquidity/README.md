@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 28, 5:00 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 41.
+Updated Sat Nov 28, 5:05 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 41.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -89,7 +89,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 27 12:30PM | NFL | Denver Broncos at Pittsburgh Steelers | moneyline: Denver Broncos | prophetx | $51k | -225 | ✅ kalshi,novig |  | +0.5c | yes | L |
 | Nov 27 12:20PM | NCAAF | Florida @ Florida State | moneyline: FLA (0) | novig | $113k | -223 |  |  | +1.0c |  | W |
 | Nov 27 12:10PM | NHL | Los Angeles vs Anaheim: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $29k | -104 | ✅ prophetx |  | +0.0c | yes | L |
-| Nov 27 11:55AM | NCAAF | Michigan @ Ohio State | moneyline: OSU (0) | novig | $32k | -355 | ✅ prophetx |  | +0.0c | yes | pending |
+| Nov 27 11:55AM | NCAAF | Michigan @ Ohio State | moneyline: OSU (0) | novig | $32k | -355 | ✅ prophetx |  | -0.5c | yes | pending |
 | Nov 27 11:45AM | NCAAF | Nebraska vs Iowa: Spread | spread: Iowa wins by over 3.5 points | kalshi | $87k | -104 | ✅ novig | ❌ | -1.0c | yes | W |
 | Nov 27 11:40AM | NCAAF | Nebraska at Iowa | moneyline: Iowa | prophetx | $25k | -178 | ✅ kalshi,novig | ❌ | +0.0c | yes | W |
 | Nov 27 11:40AM | NHL | Winnipeg vs New York I: Spread | spread: NOT New York I wins by over 1.5 goals | kalshi | $77k | -233 | ✅ novig |  | -1.0c |  | W |
