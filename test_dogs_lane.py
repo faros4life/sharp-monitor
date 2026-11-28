@@ -203,7 +203,10 @@ ok("own live-decision branch", 'elif p.get("source") == "dogs":' in SRC and "dog
 ok("alert-line floor applies to the lane",
    any(f'p.get("source") in ("board", "r1", "ncs", "dogs"{t})' in SRC for t in ("", ', "12k"')))
 ok("exposure is read from the ledger for the lane", 'row.get("source") == "dogs"' in SRC and 'DOGS["known"] = True' in SRC)
-ok("not treated as a Muse/sharp play for taken_now", '("rules", "board", "r1", "lane2", "ncs", "dogs")' in SRC)
+# Nov 28: the exclusion list gained "12k". Matched as a PREFIX so appending the next lane does not
+# fail this, while dropping "dogs" from the exclusion still does.
+ok("not treated as a Muse/sharp play for taken_now",
+   '("rules", "board", "r1", "lane2", "ncs", "dogs' in SRC)
 ok("per-lane report and header list the lane", '("dogs", "DOGS (liquidity dogs)"' in SRC and '("DOGS", DOGS_LIVE, DOGS_UNIT)' in SRC)
 ok("reads LIQ-MAIN only", ex.DOGS_FEED == "liquidity/alerts.json")
 wf = open(os.path.join(HERE, ".github", "workflows", "executor-dry-run.yml")).read()
