@@ -1,16 +1,16 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 27, 7:00 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 29.
+Updated Fri Nov 27, 7:10 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 28.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 538-323 (-27.77u flat) | rule met: 129-87
+**Record:** 539-323 (-27.29u flat) | rule met: 130-87
 
-**Fade (paper, betting against the print):** 298-503 (+15.04u flat, after fees)
+**Fade (paper, betting against the print):** 298-504 (+14.04u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 27 7:00PM | NCAAB | Towson vs Penn | moneyline: Penn | kalshi | $31k | -300 |  |  | +0.0c |  | pending |
+| Nov 27 7:00PM | NCAAB | Towson vs Penn | moneyline: Penn | kalshi | $31k | -300 |  |  | -2.0c |  | pending |
 | Nov 27 6:10PM | NCAAB | Georgia vs UCF | moneyline: Georgia | kalshi | $103k | -213 | ✅ prophetx |  | +0.0c |  | pending |
 | Nov 27 6:00PM | NCAAB | West Virginia vs North Carolina | moneyline: West Virginia | kalshi | $51k | -138 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 27 6:00PM | NCAAB | Texas Tech vs San Diego St. | moneyline: Texas Tech | kalshi | $40k | -335 | ✅ novig | ✅ | +0.0c |  | pending |
@@ -26,7 +26,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 27 12:30PM | NCAAB | Iowa St. vs St. John's | moneyline: Iowa St. | kalshi | $69k | +104 |  | ✅ | +1.0c | yes | L |
 | Nov 27 12:00PM | NCAAB | Memphis vs Wake Forest | moneyline: Memphis | kalshi | $41k | -104 | ✅ novig | ❌ | +1.0c |  | W |
 | Nov 27 11:40AM | NCAAB | UMass Lowell vs Hampton | moneyline: Hampton | kalshi | $26k | +108 | ✅ novig |  | +0.0c | yes | L |
-| Nov 27 11:10AM | NCAAB | Niagara vs Lafayette | moneyline: Lafayette | kalshi | $45k | -203 | ✅ novig |  | +1.0c |  | pending |
+| Nov 27 11:10AM | NCAAB | Niagara vs Lafayette | moneyline: Lafayette | kalshi | $45k | -203 | ✅ novig |  | +1.0c |  | W |
 | Nov 27 10:20AM | NCAAB | La Salle @ Bucknell | moneyline: LAS (0) | novig | $28k | -400 |  |  | +0.5c |  | W |
 | Nov 27 9:50AM | NCAAB | Tennessee vs Louisville | moneyline: Louisville | kalshi | $40k | -138 | ✅ novig |  | +4.0c | yes | pending |
 | Nov 27 9:30AM | NCAAB | Georgetown @ UCLA | moneyline: UCLA (0) | novig | $38k | -317 | ✅ kalshi |  | +0.5c |  | W |
