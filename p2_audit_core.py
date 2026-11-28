@@ -297,7 +297,11 @@ UNIT_HISTORY = {"LANE 1": (("2026-11-09T00:00:00+00:00", 300.0),),
                 "R1": (("2026-11-11T00:00:00+00:00", 200.0),),
                 "BOARD V4": (("2026-11-11T00:00:00+00:00", 200.0),),
                 "DOGS": (("2026-11-23T15:50:00+00:00", 100.0),      # Peter flipped EXEC_DOGS_LIVE, ~10:50 AM ET
-                         ("2026-11-25T05:00:00+00:00", 300.0))}     # DOGS SPEC CHANGE, 25 Nov (ET day start)
+                         ("2026-11-25T05:00:00+00:00", 300.0)),     # DOGS SPEC CHANGE, 25 Nov (ET day start)
+                # 12K: Peter's written spec, 27 Nov - "To win 200". The lane has placed NOTHING (it has
+                # never been switched on), so this segment values no existing play; it is here so that the
+                # first play is valued the day the switch is flipped rather than reported UNAVAILABLE.
+                "12K": (("2026-11-27T00:00:00+00:00", 200.0),)}
 # The CURRENT unit per lane, kept in the original shape for every caller that wants one number and one date.
 UNIT_SCHEDULE = {ln: h[-1] for ln, h in UNIT_HISTORY.items()}
 

@@ -685,7 +685,8 @@ def main():
         acct = ll.account(Lg, B, C, ll.feed_alerts())
         for _ln in ll.lane_summary(acct):      # Nov 27: the ONE table every report prints (identical by construction)
             say(_ln)
-        for lane, reg_n in (("LANE 1", 1), ("R1", None), ("BOARD V4", None), ("LANE 2", 8), ("DOGS", None), ("NCS", None)):
+        for lane, reg_n in (("LANE 1", 1), ("R1", None), ("BOARD V4", None), ("LANE 2", 8), ("DOGS", None),
+                            ("NCS", None), ("12K", None)):
             rows = live_rows(acct, lane)
             run(f"{lane} - live fills", rows, "confirmed fills only; partial fills merged; 1u at the fill price")
             if reg_n and rows:

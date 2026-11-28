@@ -14,8 +14,8 @@ def ok(name, cond, extra=""):
 
 
 e = re_.entries()
-ok("the master list parses to 34 entries", len(e) == 34, len(e))
-ok("25 are betting lanes", sum(1 for r in e if r["is_betting_lane"]) == 25)
+ok("the master list parses to 35 entries", len(e) == 35, len(e))
+ok("26 are betting lanes", sum(1 for r in e if r["is_betting_lane"]) == 26)
 ok("9 are lenses or research, not strategies", sum(1 for r in e if not r["is_betting_lane"]) == 9)
 ok("LENSES are not counted as betting lanes",
    all(not r["is_betting_lane"] for r in e if r["section"].startswith("LENSES")))
