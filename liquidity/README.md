@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 27, 10:25 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 69.
+Updated Fri Nov 27, 10:30 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 66.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 2081-1628 (-44.27u flat) | rule met: 1242-975
+**Record:** 2084-1628 (-43.34u flat) | rule met: 1245-975
 
-**Fade (paper, betting against the print):** 1362-1808 (-196.75u flat, after fees)
+**Fade (paper, betting against the print):** 1362-1811 (-199.75u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -32,7 +32,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 27 6:50PM | NCAAF | Texas vs Texas A&M: Total Points | total: NOT Over 41.5 points | kalshi | $73k | -100 | ✅ prophetx | ❌ | -2.0c | yes | pending |
 | Nov 27 6:36PM | NBA | Miami vs New York: Total Points | total: Over 221.5 points | kalshi | $53k | -104 | ✅ novig |  | +0.0c |  | L |
 | Nov 27 6:30PM | NBA | Miami Heat at New York Knicks | moneyline: New York Knicks | prophetx | $30k | -148 | ✅ kalshi,novig | ✅ | -1.3c |  | L |
-| Nov 27 6:20PM | NBA | Milwaukee Bucks at Detroit Pistons | moneyline: Detroit Pistons | prophetx | $30k | -365 | ✅ kalshi,novig | ✅ | +0.0c |  | pending |
+| Nov 27 6:20PM | NBA | Milwaukee Bucks at Detroit Pistons | moneyline: Detroit Pistons | prophetx | $30k | -365 | ✅ kalshi,novig | ✅ | +0.0c |  | W |
 | Nov 27 6:00PM | NCAAF | Texas @ Texas A&M | spread: TA&M +11.5 (11.5) | novig | $29k | -106 |  |  | +0.0c |  | pending |
 | Nov 27 5:25PM | NCAAF | Michigan vs Ohio St.: Spread | spread: Ohio St. wins by over 10.5 points | kalshi | $201k | -100 |  |  | +0.0c | yes | pending |
 | Nov 27 5:20PM | NCAAF | Notre Dame vs Syracuse: Spread | spread: NOT Notre Dame wins by over 24.5 points | kalshi | $122k | +104 |  |  | +0.0c | yes | pending |
@@ -133,8 +133,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 27 2:10AM | NBA | Denver Nuggets @ Utah Jazz | moneyline: DEN (0) | novig | $28k | -413 | ✅ kalshi |  | -2.5c | yes | pending |
 | Nov 27 2:10AM | NBA | Golden State Warriors @ Portland Trail Blazers | moneyline: POR (0) | novig | $27k | -344 | ✅ kalshi |  | -3.0c | yes | pending |
 | Nov 27 2:10AM | NBA | Atlanta Hawks @ Boston Celtics | moneyline: BOS (0) | novig | $29k | -344 | ✅ kalshi |  | -0.5c |  | pending |
-| Nov 27 2:10AM | NBA | Brooklyn Nets @ Toronto Raptors | moneyline: TOR (0) | novig | $27k | -277 | ✅ kalshi |  | +2.5c | yes | pending |
-| Nov 27 2:10AM | NBA | Milwaukee Bucks @ Detroit Pistons | moneyline: DET (0) | novig | $29k | -335 | ✅ kalshi |  | +1.5c |  | pending |
+| Nov 27 2:10AM | NBA | Brooklyn Nets @ Toronto Raptors | moneyline: TOR (0) | novig | $27k | -277 | ✅ kalshi |  | +2.5c | yes | W |
+| Nov 27 2:10AM | NBA | Milwaukee Bucks @ Detroit Pistons | moneyline: DET (0) | novig | $29k | -335 | ✅ kalshi |  | +1.5c |  | W |
 | Nov 27 1:30AM | NCAAF | Texas vs Texas A&M: Total Points | total: Over 40.5 points | kalshi | $30k | -113 |  |  | +2.0c |  | pending |
 | Nov 27 1:05AM | NCAAF | West Virginia vs Utah: Spread | spread: Utah wins by over 24.5 points | kalshi | $37k | -117 |  |  | -8.0c |  | pending |
 | Nov 27 1:00AM | NBA | Atlanta vs Boston: Spread | spread: NOT Boston wins by over 9.5 points | kalshi | $27k | -113 |  |  | -1.0c | yes | pending |
