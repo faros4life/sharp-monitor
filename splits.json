@@ -34,14 +34,14 @@
    "status": "OPEN",
    "closed_utc": null,
    "plays": 156,
-   "resulted": 149,
-   "W": 81,
+   "resulted": 150,
+   "W": 82,
    "L": 66,
    "P": 2,
-   "units": 3.75,
-   "u_per_play": 0.025,
-   "true_close_value_pct": -1.73,
-   "true_close_n": 145
+   "units": 4.54,
+   "u_per_play": 0.03,
+   "true_close_value_pct": -1.75,
+   "true_close_n": 146
   },
   {
    "id": "hr_routed",
@@ -55,14 +55,14 @@
    "status": "ELIGIBLE at next review",
    "closed_utc": null,
    "plays": 221,
-   "resulted": 212,
-   "W": 115,
-   "L": 97,
+   "resulted": 214,
+   "W": 116,
+   "L": 98,
    "P": 0,
-   "units": 5.53,
-   "u_per_play": 0.026,
-   "true_close_value_pct": -1.2,
-   "true_close_n": 208
+   "units": 5.36,
+   "u_per_play": 0.025,
+   "true_close_value_pct": -1.19,
+   "true_close_n": 210
   },
   {
    "id": "hr_fade",
@@ -76,14 +76,14 @@
    "status": "CLOSED",
    "closed_utc": "2026-11-01T03:35:12Z",
    "plays": 221,
-   "resulted": 212,
-   "W": 115,
-   "L": 97,
+   "resulted": 214,
+   "W": 116,
+   "L": 98,
    "P": 0,
-   "units": -16.76,
+   "units": -16.81,
    "u_per_play": -0.079,
-   "true_close_value_pct": -1.2,
-   "true_close_n": 208
+   "true_close_value_pct": -1.19,
+   "true_close_n": 210
   },
   {
    "id": "pmg_routed",
@@ -118,14 +118,14 @@
    "status": "OPEN",
    "closed_utc": null,
    "plays": 210,
-   "resulted": 202,
-   "W": 112,
+   "resulted": 204,
+   "W": 114,
    "L": 90,
    "P": 0,
-   "units": 9.48,
-   "u_per_play": 0.047,
-   "true_close_value_pct": -0.74,
-   "true_close_n": 199
+   "units": 11.09,
+   "u_per_play": 0.054,
+   "true_close_value_pct": -0.77,
+   "true_close_n": 201
   },
   {
    "id": "combined",
@@ -139,14 +139,14 @@
    "status": "OPEN",
    "closed_utc": null,
    "plays": 263,
-   "resulted": 256,
-   "W": 132,
+   "resulted": 258,
+   "W": 134,
    "L": 124,
    "P": 0,
-   "units": -7.03,
-   "u_per_play": -0.027,
-   "true_close_value_pct": -2.12,
-   "true_close_n": 251
+   "units": -5.42,
+   "u_per_play": -0.021,
+   "true_close_value_pct": -2.14,
+   "true_close_n": 253
   },
   {
    "id": "worse_125",
@@ -160,14 +160,14 @@
    "status": "CLOSED",
    "closed_utc": "2026-11-18T04:00:27Z",
    "plays": 43,
-   "resulted": 41,
-   "W": 19,
+   "resulted": 42,
+   "W": 20,
    "L": 22,
    "P": 0,
-   "units": -6.94,
-   "u_per_play": -0.169,
-   "true_close_value_pct": -2.85,
-   "true_close_n": 39
+   "units": -6.15,
+   "u_per_play": -0.146,
+   "true_close_value_pct": -2.87,
+   "true_close_n": 40
   },
   {
    "id": "ncaab",
@@ -181,14 +181,14 @@
    "status": "OPEN",
    "closed_utc": null,
    "plays": 1030,
-   "resulted": 934,
-   "W": 505,
-   "L": 429,
+   "resulted": 939,
+   "W": 508,
+   "L": 431,
    "P": 0,
-   "units": 14.89,
+   "units": 15.38,
    "u_per_play": 0.016,
-   "true_close_value_pct": -1.18,
-   "true_close_n": 918
+   "true_close_value_pct": -1.19,
+   "true_close_n": 923
   },
   {
    "id": "fade_1224",
@@ -767,16 +767,16 @@
   "status": "PAUSE LIVE"
  },
  "gaps": {
-  "gaps": 299,
-  "per_day": 24.9,
+  "gaps": 302,
+  "per_day": 25.2,
   "edge_pct_median": 12.91,
-  "edge_pct_p90": 26.89,
-  "size_est_median_upper_bound": 647,
-  "seen_once_share": 0.24,
-  "lifetime_min_median": 45,
-  "lived_10min_plus": 215,
-  "with_200_both_legs_upper_bound": 202,
-  "scan_sec_median": 213
+  "edge_pct_p90": 26.39,
+  "size_est_median_upper_bound": 644.5,
+  "seen_once_share": 0.25,
+  "lifetime_min_median": 45.0,
+  "lived_10min_plus": 218,
+  "with_200_both_legs_upper_bound": 203,
+  "scan_sec_median": 213.0
  },
  "untimed": {
   "ntfy_evening": 0,
@@ -785,5 +785,5 @@
   "liq_evening": 0
  },
  "resulted_rule": "resulted = result W, L or P with a unit value (pushes count as 0u); liquidity artifacts excluded; pending and ungraded plays do not count",
- "updated_utc": "2026-11-28T04:55:42Z"
+ "updated_utc": "2026-11-28T05:00:32Z"
 }
