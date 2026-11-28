@@ -96,8 +96,28 @@ def main():
     W.apply_to_leg(leg, OK)
     ok &= check("after apply, the leg carries a proven zero", leg["filled_stake"] == 0.0
                 and leg["fill_read"] is True and leg["writeback"] == W.DONE_MARK)
-    ok &= check("second pass is DONE, not a second release", d(OK, r)[0] == W.DONE)
-    ok &= check("  and the reason says so", "already" in d(OK, r)[1])
+    # Nov 27 (Peter, fix 2): the requirement CHANGED. It was "second pass is DONE, not a second
+    # release", which never retried - and because the caller persists the proven zero BEFORE
+    # releasing the claim, a crash between the two left the mark written and the claim held forever
+    # (registry.claim_submission has no staleness expiry, so it needed clearing by hand). Peter:
+    # "A persisted, proven zero must allow the next pass to retry the claim release safely."
+    # So a second pass is now RELEASE_AGAIN: it retries the RELEASE only, never a second write.
+    # The retry is safe because classify re-checks the PERSISTED PROOF rather than trusting the
+    # mark, and release_submission pops only on an exact key+cid match, so a retry after a
+    # successful release is a no-op.
+    ok &= check("second pass retries the RELEASE, it does not write again",
+                d(OK, r)[0] == W.RELEASE_AGAIN)
+    ok &= check("  and the reason says the write already happened", "earlier pass" in d(OK, r)[1])
+    ok &= check("  and plan() marks it as needing no persist",
+                W.plan([OK], r)[0][0][4] is False)
+    # The mark alone must never be enough: a mark beside a contradictory leg HOLDS.
+    for _bad in ({"filled_stake": 150.0}, {"fill_read": False}, {"status": "placed"},
+                 {"fill_read_src": "venue read"}):
+        _leg = dict(leg, **_bad)
+        _rbad = rows()
+        _rbad[0]["live_order"] = _leg
+        ok &= check(f"the writeback mark beside {list(_bad)[0]}={list(_bad.values())[0]!r} HOLDS",
+                    d(OK, _rbad)[0] == W.HOLD, d(OK, _rbad))
     r2 = rows(filled_stake=0.0, fill_read=True)
     ok &= check("a leg already carrying a proven zero is DONE even without the mark",
                 d(OK, r2)[0] == W.DONE)

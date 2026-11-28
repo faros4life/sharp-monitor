@@ -229,6 +229,54 @@ ok("item 3: a different play is a second slot", len(ex.DOGS["keys"]) == 2, ex.DO
 ok("item 3: the stored key is the UNPREFIXED form the gates are asked about",
    all("|" in k and not k.startswith("dogs|") for k in ex.DOGS["keys"]), ex.DOGS["keys"])
 
+# --- 4b. THE PRODUCTION WIRING ITSELF (Peter, fix 3) -------------------------------------------
+# "Add a production-path regression test that fails when lane_consume is disconnected. Testing the
+# function independently is insufficient."
+#
+# PROVEN NECESSARY: with the call site in main() disabled, the whole suite stayed byte-identically
+# green - 220 files ok, 4367 assertions, both ways - because every other test calls lane_consume by
+# hand. The capital consequence of that mutation, measured: $1,600 admitted in one pass against $450
+# of headroom, $1,150 over a $2,000 board cap.
+#
+# Asserted over the AST, not the source text: a real Call node cannot be satisfied by a comment,
+# which is the weakness of the substring assertions elsewhere in this repo. The argument NAMES are
+# checked too, so lane_consume(None, None) or a call on the wrong objects does not pass.
+import ast as _ast
+
+_tree = _ast.parse(open("executor.py", encoding="utf-8").read())
+_main = next((n for n in _ast.walk(_tree)
+              if isinstance(n, _ast.FunctionDef) and n.name == "main"), None)
+ok("main() exists to be checked", _main is not None)
+_calls = [c for c in _ast.walk(_main) if isinstance(c, _ast.Call)
+          and getattr(c.func, "id", "") == "lane_consume"] if _main else []
+ok("fix 3: main() CALLS lane_consume - the in-run charge is wired, not just unit-tested",
+   len(_calls) == 1, len(_calls))
+if _calls:
+    _args = [getattr(a, "id", None) for a in _calls[0].args]
+    ok("fix 3: ...and it is called on the play and its result, not placeholders",
+       _args == ["p", "r"], _args)
+    _dispatch = [c.lineno for c in _ast.walk(_main) if isinstance(c, _ast.Call)
+                 and getattr(c.func, "id", "") in ("live_order", "live_remainder", "rest_bid")]
+    ok("fix 3: ...after the order dispatch, so it charges what was actually placed",
+       _dispatch and _calls[0].lineno > min(_dispatch), (_calls[0].lineno, min(_dispatch or [0])))
+# And the consequence, behaviourally: if a placed play is NOT charged, the next gate in the pass is
+# measured on the stale figure and admits money the cap should have refused. This is what the wiring
+# above prevents, so it is asserted rather than assumed.
+reset(lane="board", lane_risk=ex.BOARD_DAILY_RISK - 250.0)
+_p_a = play("board", key="board|NBA|W1 @ L1|side|A", game="W1 @ L1")
+_res_a, _ = bid(_p_a)
+ok("a first board bid posts with $250 of headroom", (_res_a or {}).get("status") == "placed",
+   str(_res_a)[:70])
+_charged = ex.lane_consume(_p_a, {"live": {"lane": "board",
+                                           "rest": {"status": "placed", "asked_stake": 200.0}}})
+ok("charging it consumes the headroom", _charged == 200.0 and ex.BOARD["risk"] == ex.BOARD_DAILY_RISK - 50.0,
+   (_charged, ex.BOARD["risk"]))
+_p_b = play("board", key="board|NBA|W2 @ L2|side|A", game="W2 @ L2")
+_res_b, _ = bid(_p_b)
+ok("...so the SECOND bid is refused at the cap - which only happens because it was charged",
+   (_res_b or {}).get("status") == "refused" and "daily risk limit" in str((_res_b or {}).get("reason")),
+   str(_res_b)[:80])
+
 # --- SCENARIO 5: missing or contradictory lane attribution -------------------------------------
 print("\n5. MISSING OR CONTRADICTORY LANE ATTRIBUTION")
 reset()
@@ -259,6 +307,156 @@ res, exc = bid(play("dogs", key="NBA|A @ B|side|A", src=None))   # refused BEFOR
 ok("a refusal decided before any venue contact releases its claim (provably zero exposure)",
    REL and REL[-1].endswith("|rest"), REL[-1:] )
 ok("...and reserves nothing", reserved() == 0.0, reserved())
+
+# --- 7. THE REFUSAL WRITEBACK, DRIVEN (Peter, fixes 1 and 2) -----------------------------------
+# novig_refusal_writeback() had NO test of any kind: test_novig_writeback covers only the pure
+# decision module. That is why the release key could be wrong for every lane-prefixed lane and the
+# log could still say "released". Driven here end to end.
+print("\n7. REFUSAL WRITEBACK: THE RELEASE KEY, AND CRASH RECOVERY")
+import novig_writeback as _nw
+
+_SUBS, _PUTS = {}, []
+
+
+def _wb(rows, recs, release_ok=True, put_ok=True):
+    """Drive the real novig_refusal_writeback() with the snapshot, registry and claims stubbed."""
+    _PUTS[:] = []
+    os.environ["NOVIG_SNAPSHOT_TOKEN"] = "t"
+    ex.book_live.novig_results = lambda: list(recs)
+    ex.registry.rows = lambda: list(rows)
+    ex.registry.put_rows = lambda rs: (_PUTS.append(rs) or True) if put_ok else False
+
+    def _rel(k, c):
+        if not release_ok:
+            return False
+        cur = _SUBS.get(k)
+        if not isinstance(cur, dict) or cur.get("cid") != c:
+            return False          # the real registry pops only on an exact key+cid match
+        _SUBS.pop(k, None)
+        return True
+    ex.registry.release_submission = _rel
+    return ex.novig_refusal_writeback()
+
+
+# A DOGS play: the claim is taken under the UNPREFIXED key (journal_intent uses lane_strip), while
+# the registry row carries the lane-prefixed one. That mismatch was the whole defect.
+_KEY_PREFIXED, _CID = "dogs|NBA|A @ B|side|A", "cid-abc"
+_KEY_CLAIMED = ex.lane_strip(_KEY_PREFIXED)
+ok("the claim key really is the unprefixed form", _KEY_CLAIMED == "NBA|A @ B|side|A", _KEY_CLAIMED)
+
+
+def _row():
+    return {"key": _KEY_PREFIXED, "source": "dogs",
+            "live_order": {"status": "placed", "order_id": None, "client_id": _CID,
+                           "asked_stake": 299.88, "filled_stake": None, "book": "novig"}}
+
+
+def _rec():
+    return {"client_id": _CID, "filled_qty": 0, "fill_read": True,
+            "fill_read_src": "not submitted", "error": "refused before submission",
+            "fill_read_why": "no trading key"}
+
+
+_SUBS.clear()
+_SUBS[_KEY_CLAIMED] = {"cid": _CID}
+_n = _wb([_row()], [_rec()])
+ok("fix 1: the proven refusal RELEASES the claim that was actually taken",
+   _KEY_CLAIMED not in _SUBS, dict(_SUBS))
+ok("fix 1: ...and it is counted as done", _n == 1, _n)
+ok("fix 1: ...and the proven zero was persisted first", len(_PUTS) == 1, len(_PUTS))
+
+# The counter must track reality: a release that does not take effect is NOT a success.
+_SUBS.clear()
+_SUBS["some|other|key"] = {"cid": _CID}
+_n = _wb([_row()], [_rec()], release_ok=False)
+ok("fix 1: a release that does not take effect is NOT reported as done", _n == 0, _n)
+
+# fix 2: the crash case - zero persisted, claim still held, next pass must retry the RELEASE only.
+_leg = _row()
+_nw.apply_to_leg(_leg["live_order"], _rec())          # as the previous pass left it
+_SUBS.clear()
+_SUBS[_KEY_CLAIMED] = {"cid": _CID}
+_n = _wb([_leg], [_rec()])
+ok("fix 2: a persisted-but-unreleased zero is retried and released on the next pass",
+   _n == 1 and _KEY_CLAIMED not in _SUBS, (_n, dict(_SUBS)))
+ok("fix 2: ...and the row is NOT written a second time", len(_PUTS) == 0, len(_PUTS))
+# Idempotent: once released, a further pass releases nothing and claims nothing.
+_n = _wb([_leg], [_rec()])
+ok("fix 2: a further pass is a harmless no-op", _n == 0, _n)
+# The mark alone is never proof.
+_bad = _row()
+_nw.apply_to_leg(_bad["live_order"], _rec())
+_bad["live_order"]["filled_stake"] = 150.0            # contradicts the proven zero
+_SUBS.clear()
+_SUBS[_KEY_CLAIMED] = {"cid": _CID}
+_n = _wb([_bad], [_rec()])
+ok("fix 2: a writeback mark beside a contradictory fill releases NOTHING",
+   _n == 0 and _KEY_CLAIMED in _SUBS, (_n, dict(_SUBS)))
+# An unreadable registry releases nothing at all.
+_SUBS.clear()
+_SUBS[_KEY_CLAIMED] = {"cid": _CID}
+ex.registry.rows = lambda: None
+os.environ["NOVIG_SNAPSHOT_TOKEN"] = "t"
+ex.book_live.novig_results = lambda: [_rec()]
+ok("an unreadable registry releases nothing (fail closed)",
+   ex.novig_refusal_writeback() == 0 and _KEY_CLAIMED in _SUBS, dict(_SUBS))
+
+# --- 8. FIX 5: RESTING-CLAIM RECOVERY ----------------------------------------------------------
+print("\n8. RESTING-CLAIM RECOVERY WITHOUT RELEASING A POSSIBLY EXPOSED ORDER")
+reset()
+_p = play()
+# Spend the play's whole unit in the ledger first, so the guard REFUSES by raising.
+_g = ex._unit_ledger_guard({"play": _p, "live": {"lane": "dogs", "risk": 300.0, "shown": 140,
+                                                 "unit": 300.0, "client_id": "pre-1"}},
+                           "live_order", "novig")
+res, exc = bid(_p)
+ok("fix 5: a ledger refusal comes back as a REFUSAL, not an exception",
+   exc is None and (res or {}).get("status") == "refused", exc or str(res)[:90])
+# The refusal now comes back through the ALL-REFUSED exit, not from an inline return: that exit is
+# the only place where non-submission is proven, and test_rest_concurrency enforces it. So the
+# reason names the venue and the ledger rather than a hand-written sentence.
+ok("fix 5: ...naming the ledger as the refuser",
+   "shared unit ledger refused" in str((res or {}).get("reason")),
+   str((res or {}).get("reason"))[:110])
+ok("fix 5: ...and the resting claim is RELEASED, so the play can retry",
+   REL and REL[-1].endswith("|rest"), REL[-1:])
+# The other half of the rule: once a venue call has started, the claim must be HELD.
+reset()
+def _boom(*a, **k):
+    raise RuntimeError("connection reset mid-submit")
+ex.book_live.novig_place = _boom
+REL[:] = []
+res, exc = bid(play())
+ok("fix 5: an exception AFTER the venue call was started propagates", exc is not None, res)
+ok("fix 5: ...and the claim is NOT released - the order may exist",
+   not any(str(k).endswith("|rest") for k in REL), REL)
+
+# --- 9. FIX 4: AN UNREAD OR AMBIGUOUS FILL RESERVES THE ASK, NEVER ZERO -----------------------
+print("\n9. UNREAD / AMBIGUOUS FILLS")
+# px_live returns filled_stake 0.0 with fills_read False when trades() fails: a read zero in shape,
+# an unknown in fact. Booked at zero it consumed NO capacity while its own notification said
+# "STATUS UNKNOWN - VERIFY" - two states with opposite remedies collapsed into one value.
+_unread = {"status": "placed", "asked_stake": 300.0, "filled_stake": 0.0, "fills_read": False}
+ok("fix 4: an explicitly FAILED fill read is reported as unknown, not zero",
+   ex._acct_fill(_unread) is None, ex._acct_fill(_unread))
+ok("fix 4: ...so it reserves the full ask against the lane",
+   ex.lane_leg_amount(_unread, False) == 300.0, ex.lane_leg_amount(_unread, False))
+_readzero = {"status": "placed", "asked_stake": 300.0, "filled_stake": 0.0, "fills_read": True}
+ok("fix 4: a genuine READ zero still counts zero - the two states stay apart",
+   ex._acct_fill(_readzero) == 0.0 and ex.lane_leg_amount(_readzero, False) == 0.0)
+_partial = {"status": "placed", "asked_stake": 300.0, "filled_stake": 110.0, "fills_read": True}
+ok("fix 4: a read partial counts what filled", ex.lane_leg_amount(_partial, False) == 110.0)
+ok("fix 4: a resting leg reserves everything asked regardless",
+   ex.lane_leg_amount({"status": "placed", "asked_stake": 190.0, "filled_stake": 0.0,
+                       "fills_read": True}, True) == 190.0)
+ok("fix 4: the registry-leg spelling fill_read is honoured too",
+   ex._acct_fill({"status": "placed", "filled_stake": 0.0, "fill_read": False}) is None)
+_src = open("executor.py", encoding="utf-8").read()
+ok("fix 4: the ProphetX dispatch nulls an unread fill, as live_order_other already did",
+   _src.count('if res.get("status") == "placed" and not res.get("fills_read"):') == 2, 
+   _src.count('if res.get("status") == "placed" and not res.get("fills_read"):'))
+ok("fix 4: the snapshot read and the in-run tally share ONE rule",
+   _src.count("_acct_fill(lo)") >= 5 and "fs = _acct_fill(lo)" in _src)
 
 # --- PRESERVED, as instructed ------------------------------------------------------------------
 print("\nPRESERVED")

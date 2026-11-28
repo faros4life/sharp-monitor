@@ -3869,34 +3869,34 @@ def _account_rows(rows, graded, ids, seen_oids, _intents, _confirmed):
                     BOARD["keys"].add(row["key"])      # one intended bet = one play, so a
                     # retry, a top-up or a partial fill of the same key never counts twice
                 if graded.get(row.get("key")) not in ("W", "P"):
-                    fs_b = lo.get("filled_stake")
+                    fs_b = _acct_fill(lo)
                     BOARD["risk"] += (max(float(fs_b or 0), float(lo.get("asked_stake") or 0))
                                       if (is_rest or fs_b is None) else float(fs_b))
             if row.get("source") == "r1" and d_et in (None, datetime.now(lm.ET).date()):   # same rules as the board block above
                 if row.get("key"):
                     R1["keys"].add(row["key"])
                 if graded.get(row.get("key")) not in ("W", "P"):
-                    fs_r = lo.get("filled_stake")
+                    fs_r = _acct_fill(lo)
                     R1["risk"] += (max(float(fs_r or 0), float(lo.get("asked_stake") or 0))
                                    if (is_rest or fs_r is None) else float(fs_r))
             if row.get("source") == "ncs" and d_et in (None, datetime.now(lm.ET).date()):   # same rules again
                 if row.get("key"):
                     NCS["keys"].add(row["key"])
                 if graded.get(row.get("key")) not in ("W", "P"):
-                    fs_n = lo.get("filled_stake")
+                    fs_n = _acct_fill(lo)
                     NCS["risk"] += (max(float(fs_n or 0), float(lo.get("asked_stake") or 0))
                                     if (is_rest or fs_n is None) else float(fs_n))
             if row.get("source") == "dogs" and d_et in (None, datetime.now(lm.ET).date()):   # same rules again
                 if row.get("key"):
                     DOGS["keys"].add(row["key"])
                 if graded.get(row.get("key")) not in ("W", "P"):
-                    fs_d = lo.get("filled_stake")
+                    fs_d = _acct_fill(lo)
                     DOGS["risk"] += (max(float(fs_d or 0), float(lo.get("asked_stake") or 0))
                                      if (is_rest or fs_d is None) else float(fs_d))
             if graded.get(row.get("key")) in ("W", "P"):
                 continue   # settled win/push: not a loss toward the daily stop
             if (lo.get("book") or "prophetx") != "prophetx" and d_et in (None, datetime.now(lm.ET).date()):
-                fs = lo.get("filled_stake")   # fill-or-kill: what filled (unknown = all asked); resting: all asked
+                fs = _acct_fill(lo)   # fill-or-kill: what filled (unknown = all asked); resting: all asked
                 _amt = (max(float(fs or 0), float(lo.get("asked_stake") or 0)) if (is_rest or fs is None)
                         else float(fs))
                 _use, _why = reconciled_amount(lo, _amt, is_rest)
@@ -3911,6 +3911,21 @@ def _account_rows(rows, graded, ids, seen_oids, _intents, _confirmed):
 LANE_STATE = {"board": "BOARD", "r1": "R1", "dogs": "DOGS", "ncs": "NCS"}   # "rules" has no lane cap
 
 
+def _acct_fill(lo):
+    """A leg's filled_stake, with an explicitly FAILED fill read reported as None (unknown).
+
+    Nov 27 (Peter, fix 4). _account_rows and lane_leg_amount must apply ONE rule, or the run-start
+    snapshot and the in-run tally disagree about the same order. Both read the fill through here: a
+    0.0 sitting beside fills_read False is a failed read, not a read zero, and unknown exposure
+    reserves everything asked. Defence in depth behind the null at the dispatch sites, so a leg that
+    reaches the accounting in the raw shape is still never booked at zero."""
+    lo = lo or {}
+    fs = lo.get("filled_stake")
+    if fs is not None and (lo.get("fills_read") is False or lo.get("fill_read") is False):
+        return None
+    return fs
+
+
 def lane_leg_amount(lo, is_rest):
     """Dollars ONE placed leg consumes of its lane's daily capacity.
 
@@ -3922,7 +3937,7 @@ def lane_leg_amount(lo, is_rest):
     lo = lo or {}
     if lo.get("status") != "placed":
         return 0.0
-    fs = lo.get("filled_stake")
+    fs = _acct_fill(lo)
     a = lm.num(lo.get("asked_stake"))
     f = lm.num(fs)
     if is_rest or fs is None:
@@ -5234,6 +5249,16 @@ def live_order(r):
                        extra=f"{res['reason'][:200]}\nRESULT UNKNOWN: the order may or may not exist at the venue. Check My Trades before retrying.")
         tg(_n)
         push("LIVE ORDER ERROR: " + (p.get("bet") or "")[:50], _n, mirror=False)
+    # Nov 27 (Peter, fix 4): "Unread or ambiguous fills must remain reserved at the appropriate
+    # exposure, never zero." px_live.live_order() initialises filled=0.0 and returns
+    # fills_read = (mine is not None), so when trades() fails the record is filled_stake 0.0 with
+    # fills_read False - a READ ZERO in shape, an UNKNOWN in fact. Every exposure consumer keys on
+    # "filled_stake is None" to mean unknown, so such an order booked ZERO against the lane cap, the
+    # daily stop and the per-play budget, while its own notification said "STATUS UNKNOWN - VERIFY".
+    # Two states with opposite remedies, collapsed into one value. live_order_other has nulled this
+    # since it was written; the ProphetX path never did.
+    if res.get("status") == "placed" and not res.get("fills_read"):
+        res["filled_stake"] = None   # unknown fill: everything asked stays reserved
     out = dict(res, asked_stake=stake, limit=limit, book="prophetx")
     if out.get("status") == "placed":   # Nov 11: durable registry row NOW, before anything can kill the run
         out["journaled"] = journal_order(r, out, cid=lv.get("client_id"))
@@ -6133,8 +6158,39 @@ def rest_bid(r):
         if _rb_grant is None:
             # The computed resting stake (after BOTH ceilings), the alert's approved fee-adjusted
             # price, and this lane's own unit - never lv's absent take values. See the guard.
-            _rb_grant = _unit_ledger_guard(r, "rest_bid", b, stake=risk, shown=int(af),
-                                           unit=_rb_unit)
+            # Nov 27 (Peter, fix 5): "Fix resting-claim recovery without releasing any potentially
+            # exposed order."
+            #
+            # MEASURED: every refusal in this function releases the |rest claim, but an EXCEPTION
+            # released nothing. The shared unit ledger does not refuse by returning - this guard
+            # RAISES (ReservationRefused when the play's unit is already spent, RuntimeError on an
+            # unreadable store) - so such a play escaped rest_bid with the claim still held, and
+            # registry.claim_submission has deliberately no staleness expiry, so every later run
+            # refused with "another run is already posting this resting bid" - permanently, for a
+            # bid that was never placed.
+            #
+            # Caught HERE and nowhere wider, because this is the one point that can raise while
+            # NOTHING is exposed: the guard runs before this venue's place() call, and a previous
+            # iteration that had placed would already have returned. So a release here cannot
+            # release a potentially exposed order. An exception from place() itself, or anywhere
+            # after it, is deliberately left to propagate with the claim HELD - the order may exist,
+            # and an unknown outcome must keep blocking retries until it is reconciled.
+            try:
+                _rb_grant = _unit_ledger_guard(r, "rest_bid", b, stake=risk, shown=int(af),
+                                               unit=_rb_unit)
+            except Exception as _lex:
+                # NO release here. test_rest_concurrency enforces, correctly, that a release may
+                # only sit where non-submission is PROVEN - before the pre-alert, or at the
+                # all-refused exit - and never between them. Reaching that exit IS the proof, since
+                # a placed or error result returns above and keeps the claim. So this records the
+                # refusal and BREAKS to that exit, which releases the claim on the one proven path
+                # instead of adding a second, unproven one. Reusing it also means a future change to
+                # the release rule has one site to change, not two.
+                why_not.append(f"{BOOK_NAME.get(b, b)}: shared unit ledger refused "
+                               f"({type(_lex).__name__}: {str(_lex)[:90]})")
+                LOG.append(f"resting bid: ledger refused before any venue call "
+                           f"({type(_lex).__name__}) - claim released at the all-refused exit")
+                break
             _unit_ledger_consume(_rb_grant, risk)
         if b == "kalshi":
             kb = x.get("kalshi_buy") or []
@@ -6434,25 +6490,46 @@ def novig_refusal_writeback():
         print("novig writeback: registry unreadable - FAIL CLOSED, nothing released")
         return 0
     releases, other = nw.plan(recs, rows)
-    done = 0
-    for cid, row, field, why in releases:
+    done, failed = 0, 0
+    for cid, row, field, why, _persist in releases:
         leg = (row.get(field) if field != "live_more" else
                next((x for x in (row.get("live_more") or [])
                      if isinstance(x, dict) and str(x.get("client_id") or "").strip() == cid), None))
         if not isinstance(leg, dict):
             continue
-        rec = next((r for r in recs if str((r or {}).get("client_id") or "").strip() == cid), {})
-        nw.apply_to_leg(leg, rec)
-        # Persist the proven zero BEFORE releasing the claim. If the process dies between the two, a
-        # stored zero with a claim still held is harmless - the next pass reads it as DONE and the
-        # claim ages out. The reverse order would free capacity with no record of why.
-        if not registry.put_rows([row]):
-            print(f"novig writeback: could not persist {cid} - claim NOT released")
-            continue
-        registry.release_submission(row.get("key"), cid)
-        done += 1
-    if done or other:
-        print(f"novig writeback: {done} proven refusal(s) written back and released; "
+        if _persist:
+            rec = next((r for r in recs if str((r or {}).get("client_id") or "").strip() == cid), {})
+            nw.apply_to_leg(leg, rec)
+            # Persist the proven zero BEFORE releasing the claim: a crash between the two leaves the
+            # zero stored with the claim still held, and the NEXT pass retries the release -
+            # novig_writeback returns RELEASE_AGAIN, re-checking the PERSISTED PROOF rather than
+            # trusting its own mark (fix 2). The reverse order would free capacity with no record of
+            # why. The comment that stood here claimed the claim "ages out"; claim_submission
+            # explicitly does not, which is what made the leak permanent.
+            if not registry.put_rows([row]):
+                print(f"novig writeback: could not persist {cid} - claim NOT released")
+                failed += 1
+                continue
+        # Nov 27 (Peter, fix 1): release the key the claim was actually TAKEN under. journal_intent
+        # claims lane_strip(row["key"]) - the UNPREFIXED play key - while row["key"] carries the lane
+        # prefix ("dogs|NBA|..."), and registry.release_submission pops only on an exact key+cid
+        # match. So this released NOTHING for board, r1, ncs and dogs, every time, while `done` was
+        # incremented regardless: the log asserted a release that never happened. With no staleness
+        # expiry on the claim, that play was then blocked permanently - takes as well as rests -
+        # until cleared by hand. It fired on exactly the path this function exists for: the runner's
+        # pre-submission refusal.
+        _rk = lane_strip(str(row.get("key") or "")) or str(row.get("key") or "")
+        if registry.release_submission(_rk, cid):
+            done += 1
+        else:
+            # Not fatal, and never silent. A false "released" is what made the original defect
+            # invisible, so a release that does not take effect is counted and named.
+            failed += 1
+            print(f"novig writeback: claim NOT released for {cid} on key {_rk!r} - the play stays "
+                  f"blocked until a later pass retries or Peter clears it", flush=True)
+    if done or failed or other:
+        print(f"novig writeback: {done} proven refusal(s) written back and RELEASED, "
+              f"{failed} release(s) did not take effect; "
               + "; ".join(f"{k} {len(v)}" for k, v in sorted(other.items())))
         for k, reasons in sorted(other.items()):
             if k == nw.HOLD:       # a HOLD is money still reserved: say which and why, every run
