@@ -14,8 +14,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.83,
-   "clv_cents": 8.0,
+   "close_price": 0.68,
+   "clv_cents": -7.0,
    "confirmed_after_min": 10,
    "date": "2026-11-27",
    "depth_by_book": {
@@ -40,9 +40,9 @@
     "volume_fp": 19389.07
    },
    "ex_stats_close": {
-    "open_interest_fp": 61457.81,
-    "volume_24h_fp": 59260.57,
-    "volume_fp": 81932.5
+    "open_interest_fp": 91413.54,
+    "volume_24h_fp": 77723.85,
+    "volume_fp": 133546.57
    },
    "ex_stats_first": {
     "open_interest_fp": 23625.17,
@@ -577,9 +577,9 @@
     "volume_fp": 62.14
    },
    "ex_stats_close": {
-    "open_interest_fp": 11983.8,
-    "volume_24h_fp": 14575.18,
-    "volume_fp": 15180.55
+    "open_interest_fp": 12218.09,
+    "volume_24h_fp": 15180.55,
+    "volume_fp": 15810.449999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 8953.37,
@@ -936,6 +936,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [
     "Michigan Wolverines -9.5 (-108)",
     "Michigan Wolverines -8.5 (-120)"
@@ -1015,6 +1016,7 @@
     "volume_fp": 19978.5
    },
    "fade_price": 0.49,
+   "fade_units": 0.97,
    "first_seen_utc": "2026-11-27T21:10:19Z",
    "game": "Texas A&M vs Marquette: Spread",
    "game_surge_books": [
@@ -1134,14 +1136,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBSPREAD-26NOV27TXAMMARQ-MARQ2"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
+   "settled_utc": "2026-11-28T00:30:22Z",
    "sharp_agree": [
     "Marquette Golden Eagles +1.5 (-120)"
    ],
@@ -1163,7 +1166,7 @@
     "Marquette"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-27T21:10:19Z",
@@ -1434,9 +1437,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 491.33,
-    "volume_24h_fp": 462.88,
-    "volume_fp": 492.09
+    "open_interest_fp": 528.25,
+    "volume_24h_fp": 492.09,
+    "volume_fp": 529.01
    },
    "ex_stats_first": {
     "open_interest_fp": 255.04,
@@ -2068,9 +2071,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 5965.64,
-    "volume_24h_fp": 5456.44,
-    "volume_fp": 5979.38
+    "open_interest_fp": 6381.24,
+    "volume_24h_fp": 5879.51,
+    "volume_fp": 6394.9800000000005
    },
    "ex_stats_first": {
     "open_interest_fp": 972.55,
@@ -3621,9 +3624,9 @@
     "volume_fp": 89.41
    },
    "ex_stats_close": {
-    "open_interest_fp": 273704.98,
-    "volume_24h_fp": 260399.53,
-    "volume_fp": 286598.02
+    "open_interest_fp": 294087.41000000003,
+    "volume_24h_fp": 280880.24,
+    "volume_fp": 307035.02
    },
    "ex_stats_first": {
     "open_interest_fp": 38635.75,
@@ -4386,7 +4389,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas",
@@ -4649,12 +4652,14 @@
     "volume": 354055.0
    },
    "fade_price": 0.225,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-27T14:10:20Z",
    "game": "Cincinnati @ Boston College",
    "game_surge_books": [
     "novig"
    ],
    "game_x": 2.1,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a20f8a-c1e7-7002-abe7-066f2ada30b1\", \"outcome_id\": \"01a20f8a-c1e7-7002-abe7-0685285bfb12\"}",
    "lead_min": 430,
    "league": "NCAAB",
@@ -4773,14 +4778,15 @@
     "market_id": "01a20f8a-c1e7-7002-abe7-066f2ada30b1",
     "outcome_id": "01a20f8a-c1e7-7002-abe7-0685285bfb12"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi"
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 6,
+   "settle_tries": 7,
+   "settled_utc": "2026-11-28T00:30:22Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Boston College Eagles +8.5 (-106)"
@@ -4801,7 +4807,7 @@
     "Boston College"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.28
   },
   {
    "alerted_utc": "2026-11-27T14:20:22Z",
@@ -4969,9 +4975,9 @@
     "volume_fp": 1.41
    },
    "ex_stats_close": {
-    "open_interest_fp": 1653.1399999999999,
-    "volume_24h_fp": 1327.47,
-    "volume_fp": 1673.31
+    "open_interest_fp": 1658.06,
+    "volume_24h_fp": 1666.52,
+    "volume_fp": 1678.23
    },
    "ex_stats_first": {
     "open_interest_fp": 95.91,
@@ -5187,9 +5193,9 @@
     "volume_fp": 100.33
    },
    "ex_stats_close": {
-    "open_interest_fp": 13598.68,
-    "volume_24h_fp": 14033.45,
-    "volume_fp": 14486.72
+    "open_interest_fp": 13819.52,
+    "volume_24h_fp": 14486.72,
+    "volume_fp": 14707.560000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 1337.47,
@@ -5891,6 +5897,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Michigan",
@@ -6078,7 +6085,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas",

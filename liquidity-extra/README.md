@@ -1,21 +1,21 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 27, 7:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 25.
+Updated Fri Nov 27, 7:30 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 23.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 541-324 (-26.98u flat) | rule met: 132-88
+**Record:** 542-325 (-27.70u flat) | rule met: 133-89
 
-**Fade (paper, betting against the print):** 299-506 (+13.09u flat, after fees)
+**Fade (paper, betting against the print):** 300-507 (+13.06u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 27 7:00PM | NCAAB | Towson vs Penn | moneyline: Penn | kalshi | $31k | -300 |  |  | +8.0c |  | pending |
+| Nov 27 7:00PM | NCAAB | Towson vs Penn | moneyline: Penn | kalshi | $31k | -300 |  |  | -7.0c |  | pending |
 | Nov 27 6:10PM | NCAAB | Georgia vs UCF | moneyline: Georgia | kalshi | $103k | -213 | ✅ prophetx |  | +0.0c |  | pending |
 | Nov 27 6:00PM | NCAAB | West Virginia vs North Carolina | moneyline: West Virginia | kalshi | $51k | -138 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 27 6:00PM | NCAAB | Texas Tech vs San Diego St. | moneyline: Texas Tech | kalshi | $40k | -335 | ✅ novig | ✅ | +0.0c |  | pending |
 | Nov 27 4:30PM | NCAAB | Kansas State @ Michigan | moneyline: MICH (0) | novig | $25k | -426 | ✅ kalshi,prophetx | ✅ | +0.0c |  | pending |
-| Nov 27 4:20PM | NCAAB | Texas A&M vs Marquette: Spread | spread: Marquette wins by over 1.5 points | kalshi | $29k | -108 | ✅ novig | ✅ | +3.0c |  | pending |
+| Nov 27 4:20PM | NCAAB | Texas A&M vs Marquette: Spread | spread: Marquette wins by over 1.5 points | kalshi | $29k | -108 | ✅ novig | ✅ | +3.0c |  | L |
 | Nov 27 4:10PM | NCAAB | Texas A&M vs Marquette | moneyline: Marquette | kalshi | $57k | -117 | ✅ novig,prophetx | ✅ | +3.0c |  | L |
 | Nov 27 3:20PM | NCAAB | North Texas vs North Dakota St. | moneyline: North Texas | kalshi | $30k | -233 |  |  | +0.0c |  | pending |
 | Nov 27 2:50PM | NCAAB | Texas A&M vs Marquette | moneyline: Texas A&M | kalshi | $116k | +113 | ✅ novig | ✅ | -3.0c | yes | W |
@@ -33,7 +33,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 27 9:30AM | NCAAB | Oregon vs Maryland | moneyline: Maryland | kalshi | $39k | -138 |  |  | +3.0c |  | L |
 | Nov 27 9:20AM | NCAAB | Texas @ Saint Mary's | moneyline: TEX (0) | novig | $27k | -300 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 27 9:20AM | NCAAB | Charleston Southern @ East Tennessee State | moneyline: ETSU (0) | novig | $26k | -545 | ✅ kalshi |  | -3.0c |  | pending |
-| Nov 27 9:20AM | NCAAB | Cincinnati @ Boston College | moneyline: CIN (0) | novig | $27k | -355 | ✅ kalshi | ❌ | +0.0c |  | pending |
+| Nov 27 9:20AM | NCAAB | Cincinnati @ Boston College | moneyline: CIN (0) | novig | $27k | -355 | ✅ kalshi | ❌ | +0.0c |  | W |
 | Nov 27 9:20AM | NCAAB | Virginia @ Xavier | moneyline: UVA (0) | novig | $30k | -292 |  |  | -1.0c |  | W |
 | Nov 27 9:20AM | NCAAB | Pacific vs UC Davis | moneyline: Pacific | kalshi | $56k | -233 | ✅ novig |  | +1.0c |  | pending |
 | Nov 27 9:20AM | NCAAB | Creighton vs Gonzaga | moneyline: Gonzaga | kalshi | $28k | -223 |  |  | +1.0c |  | pending |
