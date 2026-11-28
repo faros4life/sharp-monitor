@@ -192,9 +192,16 @@ ok("play_key prefix registered", "dogs|" in ex.LANE_PREFIXES)
 ok("lane name (drives the Telegram tag)", ex.LANE_NAME.get("dogs") == "DOGS" and ex.src_tag({"source": "dogs"}) == "[DOGS] ")
 ok("lane_tag on a result", ex.lane_tag({"play": {"source": "dogs"}, "live": {}}) == "[DOGS] ")
 ok("candidates include the lane", "+ ncsplays + dogsplays +" in SRC and "dogsplays = dogs_plays(now)" in SRC)
+# Nov 28: this assertion was the ONLY place pinning l2plays into _cand, and loosening it for the 12K
+# insertion left Lane 2 unpinned anywhere. Pinned separately so the next lane insertion cannot drop
+# it silently. Lane 2 is dry-run only, so losing it costs paper data, not money - but silently.
+ok("...and Lane 2 is still in the candidate list", "+ l2plays" in SRC)
 ok("own live-decision branch", 'elif p.get("source") == "dogs":' in SRC and "dogs_gate(lr, lk)" in SRC
    and '"lane": "dogs", "unit": DOGS_UNIT' in SRC)
-ok("alert-line floor applies to the lane", 'p.get("source") in ("board", "r1", "ncs", "dogs")' in SRC)
+# Nov 28: the tuple gained "12k". Asserted as membership rather than as an exact literal, so adding
+# the NEXT lane does not fail this while still failing if "dogs" is ever dropped from the floor.
+ok("alert-line floor applies to the lane",
+   any(f'p.get("source") in ("board", "r1", "ncs", "dogs"{t})' in SRC for t in ("", ', "12k"')))
 ok("exposure is read from the ledger for the lane", 'row.get("source") == "dogs"' in SRC and 'DOGS["known"] = True' in SRC)
 ok("not treated as a Muse/sharp play for taken_now", '("rules", "board", "r1", "lane2", "ncs", "dogs")' in SRC)
 ok("per-lane report and header list the lane", '("dogs", "DOGS (liquidity dogs)"' in SRC and '("DOGS", DOGS_LIVE, DOGS_UNIT)' in SRC)

@@ -273,8 +273,38 @@ ok("every play is tagged source '12k'", all(x["source"] == "12k" for x in _prod)
 ok("every play_key carries the 12k| prefix", all(x["play_key"].startswith("12k|") for x in _prod))
 ok("every play carries a k12_entry price - without it rest_bid refuses 'price unknown'",
    all(x["k12_entry"]["price_after_fee"] is not None for x in _prod))
-ok("...and the entry's price is the SELECTED row's, so a mirrored play is priced at its complement",
-   all(x["k12_entry"]["price_after_fee"] == x["k12_entry"]["alert_price_raw"] for x in _prod))
+# A review mutated price_after_fee AND alert_price_raw together by 15c and this file stayed 85/85:
+# comparing them to each other proves nothing. The entry price must equal the price of the row
+# k12_select actually chose, recomputed here from the feed.
+_sel, _ = ex.k12_select(FEED, ex.iso_t(_pick["alerted_utc"]) + timedelta(seconds=1)) if _pick else ([], 0)
+_by_key = {}
+for _r2 in _sel:
+    _pp = {"sport": _r2.get("league") or "", "game": _r2.get("game") or "",
+           "bet": ex.k12_bet(_r2) or "", "start_utc": _r2.get("start_utc")}
+    _by_key[ex.derive_key(_pp)] = _r2
+ok("...and the entry price is the SELECTED row's own, not an anchor shifted off it",
+   _prod and all(
+       x["k12_entry"]["price_after_fee"] == _by_key[ex.lane_strip(x["play_key"])].get("price_american")
+       for x in _prod if ex.lane_strip(x["play_key"]) in _by_key),
+   [(x["k12_entry"]["price_after_fee"],
+     _by_key.get(ex.lane_strip(x["play_key"]), {}).get("price_american")) for x in _prod[:3]])
+ok("...and the mirrored plays carry the COMPLEMENT price, not the mirror row's own",
+   all(x["k12_entry"]["price_after_fee"]
+       == _by_key[ex.lane_strip(x["play_key"])].get("price_american")
+       for x in _prod if x["k12_entry"]["k12_spread_source"] == "mirrored"
+       and ex.lane_strip(x["play_key"]) in _by_key))
+
+# --- 11. THE TAKE PATH'S ALERT-LINE FLOOR -----------------------------------------------------
+# 12K is an ALL-SPREAD lane. Without "12k" in evaluate()'s floor tuple, floor stayed None, the
+# floor_blocked check never fired, and better_halfpoints could fill at a WORSE line than the alert
+# with only CAP_LINE behind it - the Nov 11 Board defect, reopened. Found by review, not by me.
+_ev = inspect.getsource(ex.evaluate)
+ok("the alert-line floor covers this lane on the TAKE path",
+   '"ncs", "dogs", "12k")' in _ev and "floor is None and mtype in" in _ev)
+ok("...and the unit_for caller covers it too (it asked for Lane 1's $300 before)",
+   SRC.count('("board", "r1", "ncs", "dogs", "12k")') >= 2)
+ok("unit_for knows the lane, so the two cannot disagree",
+   ex.unit_for("12k") == ex.K12_UNIT == 200.0)
 ok("the spread source is recorded on the entry (it read a pre-rename key and was silently None)",
    {x["k12_entry"]["k12_spread_source"] for x in _prod} <= {"direct", "mirrored"}
    and None not in {x["k12_entry"]["k12_spread_source"] for x in _prod},

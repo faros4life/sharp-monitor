@@ -3482,7 +3482,16 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
     # WORSE line whenever an estimated half-point value (half_point(), HP_FALLBACK when the ladders
     # cannot say) appeared to compensate, with only the -130 cap behind it. A board play's floor is
     # its OWN alert line. Lane 1 is untouched: it keeps the floor its producer supplies.
-    if floor is None and mtype in ("spread", "total") and p.get("source") in ("board", "r1", "ncs", "dogs"):   # R1, NCS and DOGS too: their own alert line or strictly better
+    # Nov 28: "12k" added. It was absent, and a review proved the consequence: 12K is an ALL-SPREAD
+    # lane, so with floor None the floor_blocked check below never fires and better_halfpoints can
+    # fill at a WORSE line than the alert whenever an estimated half-point value appears to
+    # compensate, with only CAP_LINE behind it. HP_FALLBACK["NFL"] is 0.030, so ~3c of apparent
+    # compensation buys half a point - across 3 and 7, on an NFL-only lane. That is verbatim the
+    # Board defect the note above fixed on Nov 11 and that R1, NCS and DOGS were added to. The
+    # lane's own spec is "the alert line's after-fee price or better, never worse": true of rest_bid,
+    # which anchors on price_after_fee, and NOT of the take path until this line changed - and the
+    # take path is where the order goes first. CLAUDE.md: a name with no branch is silently dropped.
+    if floor is None and mtype in ("spread", "total") and p.get("source") in ("board", "r1", "ncs", "dogs", "12k"):   # R1, NCS, DOGS and 12K too: their own alert line or strictly better
         floor = line
     cands, floor_blocked, no_qual_basis = [], 0, 0
     lvs_notes = []   # Nov 12: SHADOW capture of EVERY candidate and why it was rejected. Records only; no decision reads it.
@@ -3648,7 +3657,10 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
     # Oct 28 (Peter): phase-1 live fills on the best after-fee price among the LIVE books
     # (ProphetX keeps its 2c; Novig gets the same 2c from Nov 11 - see TOL_BOOKS)
     lcs = [c for c in capped if c["book"] in LIVE_BOOKS]
-    _u = unit_for(p.get("source") if p.get("source") in ("board", "r1", "ncs", "dogs") else None)
+    # Same dropped name, same tuple: without "12k" this asked unit_for(None) = Lane 1's $300 for a
+    # 12K play instead of K12_UNIT $200, overstating the availability a candidate needs to count as
+    # full. Conservative in direction, wrong in fact, and fixed in the same edit as the floor.
+    _u = unit_for(p.get("source") if p.get("source") in ("board", "r1", "ncs", "dogs", "12k") else None)
     lfull = [c for c in lcs if c["avail"] >= live_stake(c["shown"], _u)[0]]
     lc = (lfull or lcs)[0] if lcs else None
     return dict(out, verdict="WOULD PLACE", book=pick["book"], american=pick["am"], shown=pick["shown"], take_line=pick["line"],
